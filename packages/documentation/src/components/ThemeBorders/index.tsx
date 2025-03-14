@@ -32,7 +32,7 @@ function Search(props: { onChange: (value: string) => void }) {
 
       <input
         type={'text'}
-        className={'form-control'}
+        className={'ix-form-control'}
         placeholder="Search"
         onChange={(input) => {
           const value = input.target.value;

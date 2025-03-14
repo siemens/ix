@@ -41,6 +41,10 @@
       "path": "./packages/angular-test-app"
     },
     {
+      "name": "angular-test-app (standalone)",
+      "path": "./packages/angular-standalone-test-app"
+    },
+    {
       "name": "vue-test-app",
       "path": "./packages/vue-test-app"
     },

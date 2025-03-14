@@ -7,12 +7,24 @@ SPDX-License-Identifier: MIT
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
       name="viewport"
     />
     <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import {
+        iconHome,
+        iconStar,
+      } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconHome,
+        iconStar,
+      });
+    </script>
   </head>
   <body style="width: 100vw; height: 100vh">
     <ix-basic-navigation>

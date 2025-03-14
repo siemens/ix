@@ -24,6 +24,7 @@ const Icons: React.FC = () => {
       <div className={clsx(styles.Search)}>
         <span className={clsx(styles.Search__Label)}>Search: </span>
         <input
+          className='ix-form-control'
           placeholder="Search Icon"
           onInput={(e) =>
             setSearchIcon(
@@ -48,11 +49,11 @@ const Icons: React.FC = () => {
                 ref={(r) => {
                   refs.current[icon] = r;
                 }}
-                className={clsx(styles.Hide__Input)}
+                className={clsx('ix-form-control', styles.Hide__Input)}
                 type="text"
                 readOnly
                 value={icon}
-                onChange={() => {}}
+                onChange={() => { }}
               ></input>
             </div>
           ))}

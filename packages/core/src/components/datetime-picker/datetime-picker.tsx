@@ -12,8 +12,8 @@ import type { DateChangeEvent } from '../date-picker/date-picker';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 
 export type DateTimeSelectEvent = {
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
   time: string;
 };
 
@@ -125,6 +125,13 @@ export class DatetimePicker
   @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
 
   /**
+   * Top label of time picker
+   *
+   * @since 3.0.0
+   */
+  @Prop() i18nTime: string = 'Time';
+
+  /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
    *
@@ -141,6 +148,14 @@ export class DatetimePicker
   @Prop() locale?: string;
 
   /**
+   * Shows week numbers displayed on the left side of the date picker
+   *
+   * @since 3.0.0
+   */
+  @Prop() showWeekNumbers = false;
+
+  /**
+
    * Time change
    *
    * @since 1.1.0
@@ -210,10 +225,11 @@ export class DatetimePicker
                 weekStartIndex={this.weekStartIndex}
                 standaloneAppearance={false}
                 locale={this.locale}
+                showWeekNumbers={this.showWeekNumbers}
               ></ix-date-picker>
             </ix-col>
 
-            <ix-col class="d-flex flex-column">
+            <ix-col>
               <ix-time-picker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
@@ -223,6 +239,7 @@ export class DatetimePicker
                 showSeconds={this.showSeconds}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
+                textTime={this.i18nTime}
                 time={this.time}
               ></ix-time-picker>
               <div class="btn-select-date-container">

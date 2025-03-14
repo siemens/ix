@@ -8,8 +8,8 @@
  */
 import axios from 'axios';
 import fs, { ensureDirSync } from 'fs-extra';
-import rimraf from 'rimraf';
 import path from 'path';
+import rimraf from 'rimraf';
 import tar from 'tar';
 import zlib from 'zlib';
 

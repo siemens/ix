@@ -73,7 +73,7 @@ export default function Fonts() {
               <td>{v.name}</td>
               <td>
                 <input
-                  className="form-control"
+                  className="ix-form-control"
                   defaultValue={v.className}
                   onFocus={(e) => {
                     // copyToClipboard(e.target as HTMLInputElement);

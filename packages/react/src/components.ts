@@ -407,7 +407,7 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
 });
 
 type IxDateInputEvents = {
-    onValueChange: EventName<CustomEvent<string>>,
+    onValueChange: EventName<CustomEvent<string | undefined>>,
     onValidityStateChange: EventName<IxDateInputCustomEvent<DateInputValidityState>>
 };
 

@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.27.1",
+    "version": "4.27.2",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -4632,6 +4632,35 @@
           "setter": false
         },
         {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "to",
           "type": "string",
           "complexType": {
@@ -4756,11 +4785,11 @@
       "events": [
         {
           "event": "dateRangeChange",
-          "detail": "{ id: string; from: string; to: string; }",
+          "detail": "{ id: string; from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateRangeChangeEvent",
-            "resolved": "{ id: string; from: string; to: string; }",
+            "resolved": "{ id: string; from?: string; to?: string; }",
             "references": {
               "DateRangeChangeEvent": {
                 "location": "local",
@@ -5157,6 +5186,35 @@
           "setter": false
         },
         {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "validText",
           "type": "string",
           "complexType": {
@@ -5198,7 +5256,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -5303,7 +5361,7 @@
           "detail": "string",
           "bubbles": true,
           "complexType": {
-            "original": "string",
+            "original": "string | undefined",
             "resolved": "string",
             "references": {}
           },
@@ -5609,6 +5667,35 @@
           "setter": false
         },
         {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "to",
           "type": "string",
           "complexType": {
@@ -5693,11 +5780,11 @@
       "events": [
         {
           "event": "dateChange",
-          "detail": "{ from: string; to: string; }",
+          "detail": "{ from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateChangeEvent",
-            "resolved": "{ from: string; to: string; }",
+            "resolved": "{ from?: string; to?: string; }",
             "references": {
               "DateChangeEvent": {
                 "location": "local",
@@ -5718,11 +5805,11 @@
         },
         {
           "event": "dateRangeChange",
-          "detail": "{ from: string; to: string; }",
+          "detail": "{ from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateChangeEvent",
-            "resolved": "{ from: string; to: string; }",
+            "resolved": "{ from?: string; to?: string; }",
             "references": {
               "DateChangeEvent": {
                 "location": "local",
@@ -5743,11 +5830,11 @@
         },
         {
           "event": "dateSelect",
-          "detail": "{ from: string; to: string; }",
+          "detail": "{ from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateChangeEvent",
-            "resolved": "{ from: string; to: string; }",
+            "resolved": "{ from?: string; to?: string; }",
             "references": {
               "DateChangeEvent": {
                 "location": "local",
@@ -5898,6 +5985,35 @@
             }
           ],
           "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-time",
+          "reflectToAttr": false,
+          "docs": "Top label of time picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "'Time'",
           "values": [
             {
               "type": "string"
@@ -6122,6 +6238,35 @@
           "setter": false
         },
         {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "time",
           "type": "string",
           "complexType": {
@@ -6268,11 +6413,11 @@
       "events": [
         {
           "event": "dateChange",
-          "detail": "string | { from: string; to: string; }",
+          "detail": "string | { from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateTimeDateChangeEvent",
-            "resolved": "string | { from: string; to: string; }",
+            "resolved": "string | { from?: string; to?: string; }",
             "references": {
               "DateTimeDateChangeEvent": {
                 "location": "local",
@@ -6293,11 +6438,11 @@
         },
         {
           "event": "dateSelect",
-          "detail": "{ from: string; to: string; time: string; }",
+          "detail": "{ from?: string; to?: string; time: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateTimeSelectEvent",
-            "resolved": "{ from: string; to: string; time: string; }",
+            "resolved": "{ from?: string; to?: string; time: string; }",
             "references": {
               "DateTimeSelectEvent": {
                 "location": "local",
@@ -6327,7 +6472,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Time change",
+          "docs": "\nTime change",
           "docsTags": [
             {
               "name": "since",
@@ -10696,11 +10841,17 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "since 3.0.0. Will be removed with 4.0.0.\nUse the 'ix-input' component instead"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
+      "deprecation": "since 3.0.0. Will be removed with 4.0.0.\nUse the 'ix-input' component instead",
       "props": [],
       "methods": [],
       "events": [],
@@ -13772,25 +13923,51 @@
         },
         {
           "name": "type",
-          "type": "\"danger\" | \"info\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "'danger' | 'warning' | 'info'",
-            "resolved": "\"danger\" | \"info\" | \"warning\"",
+            "original": "| 'alarm'\n    | 'danger'\n    | 'critical'\n    | 'warning'\n    | 'success'\n    | 'info'\n    | 'neutral'\n    | 'primary'",
+            "resolved": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
             "references": {}
           },
           "mutable": false,
           "attr": "type",
           "reflectToAttr": false,
           "docs": "Specifies the type of the alert.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Type `danger` will be removed in 4.0. Use `alarm` instead."
+            }
+          ],
           "default": "'info'",
+          "deprecation": "Type `danger` will be removed in 4.0. Use `alarm` instead.",
           "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
             {
               "value": "danger",
               "type": "string"
             },
             {
               "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
               "type": "string"
             },
             {
@@ -20928,10 +21105,10 @@
       "props": [
         {
           "name": "for",
-          "type": "HTMLElement | Promise<HTMLElement> | string",
+          "type": "ElementReference[] | HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "ElementReference",
-            "resolved": "HTMLElement | Promise<HTMLElement> | string",
+            "original": "ElementReference | ElementReference[]",
+            "resolved": "ElementReference[] | HTMLElement | Promise<HTMLElement> | string",
             "references": {
               "ElementReference": {
                 "location": "import",
@@ -20946,6 +21123,9 @@
           "docs": "CSS selector for hover trigger element e.g. `for=\"[data-my-custom-select]\"`",
           "docsTags": [],
           "values": [
+            {
+              "type": "ElementReference[]"
+            },
             {
               "type": "HTMLElement"
             },
@@ -22563,12 +22743,12 @@
       "path": "src/components/date-time-card/date-time-card.tsx"
     },
     "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption": {
-      "declaration": "{\n  id: string;\n  label: string;\n  from: string;\n  to: string;\n}",
+      "declaration": "{\n  id: string;\n  label: string;\n  from?: string;\n  to?: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
     "src/components/date-dropdown/date-dropdown.tsx::DateRangeChangeEvent": {
-      "declaration": "{\n  id: string;\n  from: string;\n  to: string;\n}",
+      "declaration": "{\n  id: string;\n  from?: string;\n  to?: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
@@ -22578,7 +22758,7 @@
       "path": "src/components/date-input/date-input.tsx"
     },
     "src/components/date-picker/date-picker.tsx::DateChangeEvent": {
-      "declaration": "{\n  from: string;\n  to: string;\n}",
+      "declaration": "{\n  from?: string;\n  to?: string;\n}",
       "docstring": "",
       "path": "src/components/date-picker/date-picker.tsx"
     },
@@ -22588,7 +22768,7 @@
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
     "src/components/datetime-picker/datetime-picker.tsx::DateTimeSelectEvent": {
-      "declaration": "{\n  from: string;\n  to: string;\n  time: string;\n}",
+      "declaration": "{\n  from?: string;\n  to?: string;\n  time: string;\n}",
       "docstring": "",
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
@@ -22777,10 +22957,10 @@
       "docstring": "",
       "path": "src/components.d.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.27.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "../../node_modules/.pnpm/@stencil+core@4.27.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.27.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "../../node_modules/.pnpm/@stencil+core@4.27.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

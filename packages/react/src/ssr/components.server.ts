@@ -672,6 +672,7 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
             outline: 'outline',
             ghost: 'ghost',
             loading: 'loading',
+            showWeekNumbers: 'show-week-numbers',
             customRangeAllowed: 'custom-range-allowed',
             locale: 'locale',
             weekStartIndex: 'week-start-index',
@@ -684,7 +685,7 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
     });
 
 type IxDateInputEvents = {
-    onValueChange: EventName<CustomEvent<string>>,
+    onValueChange: EventName<CustomEvent<string | undefined>>,
     onValidityStateChange: EventName<IxDateInputCustomEvent<DateInputValidityState>>
 };
 
@@ -718,7 +719,8 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
             warningText: 'warning-text',
             validText: 'valid-text',
             showTextAsTooltip: 'show-text-as-tooltip',
-            i18nErrorDateUnparsable: 'i18n-error-date-unparsable'
+            i18nErrorDateUnparsable: 'i18n-error-date-unparsable',
+            showWeekNumbers: 'show-week-numbers'
         },
         hydrateModule: import('@siemens/ix/hydrate')
     });
@@ -755,6 +757,7 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
             i18nDone: 'i18n-done',
             weekStartIndex: 'week-start-index',
             locale: 'locale',
+            showWeekNumbers: 'show-week-numbers',
             standaloneAppearance: 'standalone-appearance',
             today: 'today'
         },
@@ -797,8 +800,10 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
             showTimeReference: 'show-time-reference',
             timeReference: 'time-reference',
             i18nDone: 'i18n-done',
+            i18nTime: 'i-1-8n-time',
             weekStartIndex: 'week-start-index',
-            locale: 'locale'
+            locale: 'locale',
+            showWeekNumbers: 'show-week-numbers'
         },
         hydrateModule: import('@siemens/ix/hydrate')
     });

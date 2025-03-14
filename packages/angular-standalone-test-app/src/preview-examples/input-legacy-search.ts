@@ -22,7 +22,7 @@ import {
   selector: 'app-example',
   imports: [IxInputGroup, IxIcon, IxIconButton, FormsModule],
   template: `
-    <form class="needs-validation m-2">
+    <form class="needs-validation">
       <ix-input-group>
         <span slot="input-start">
           <ix-icon name="search" size="16"></ix-icon>

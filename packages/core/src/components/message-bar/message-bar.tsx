@@ -22,8 +22,16 @@ import {
   iconClose,
   iconError,
   iconInfo,
+  iconNotification,
+  iconSuccess,
   iconWarning,
+  iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
+
+interface MessageTypeConfig {
+  icon?: string;
+  color: NotificationColor;
+}
 
 @Component({
   tag: 'ix-message-bar',
@@ -33,8 +41,17 @@ import {
 export class MessageBar {
   /**
    * Specifies the type of the alert.
+   * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
    */
-  @Prop() type: 'danger' | 'warning' | 'info' = 'info';
+  @Prop() type:
+    | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary' = 'info';
 
   /**
    * If true, close button is enabled and alert can be dismissed by the user
@@ -52,27 +69,30 @@ export class MessageBar {
   @Event() closeAnimationCompleted!: EventEmitter;
 
   @State() icon?: string;
-
   @State() color?: NotificationColor;
 
   private static readonly duration = 300;
+  private static readonly messageTypeConfigs: Record<
+    string,
+    MessageTypeConfig
+  > = {
+    alarm: { icon: iconError, color: 'color-alarm' },
+    danger: { icon: iconError, color: 'color-alarm' },
+    critical: { icon: iconWarningRhomb, color: 'color-critical' },
+    warning: { icon: iconWarning, color: 'color-warning' },
+    success: { icon: iconSuccess, color: 'color-success' },
+    info: { icon: iconInfo, color: 'color-info' },
+    neutral: { icon: iconNotification, color: 'color-neutral' },
+    primary: { icon: iconNotification, color: 'color-primary' },
+  };
 
   private divElement?: HTMLElement;
 
   componentWillRender() {
-    if (this.type === 'danger') {
-      this.icon = iconError;
-      this.color = 'color-alarm';
-    }
-
-    if (this.type === 'info') {
-      this.icon = iconInfo;
-      this.color = 'color-info';
-    }
-
-    if (this.type === 'warning') {
-      this.icon = iconWarning;
-      this.color = 'color-warning';
+    const config = MessageBar.messageTypeConfigs[this.type];
+    if (config) {
+      this.icon = config.icon;
+      this.color = config.color;
     }
   }
 

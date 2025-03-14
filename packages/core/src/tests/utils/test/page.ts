@@ -12,7 +12,16 @@ import {
   PageScreenshotOptions,
   test as testBase,
   TestInfo,
+  expect,
 } from '@playwright/test';
+
+export type Mount = (
+  selector: string,
+  config?: {
+    headTags?: string[];
+    icons?: Record<string, string>;
+  }
+) => Promise<ElementHandle<HTMLElement>>;
 
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
@@ -22,7 +31,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     type: theme,
   });
   page.goto = async (url: string, options) => {
-    if (testInfo.config.metadata['componentTest'] === true) {
+    if (testInfo['componentTest'] === true) {
       return originalGoto(url, options);
     }
 
@@ -48,6 +57,7 @@ async function mountComponent(
   selector: string,
   config?: {
     headTags?: string[];
+    icons?: Record<string, string>;
   }
 ): Promise<ElementHandle<HTMLElement>> {
   return page.evaluateHandle(
@@ -61,6 +71,32 @@ async function mountComponent(
 
           head.innerHTML += tag;
         });
+      }
+
+      if (config?.icons) {
+        const iconImport = Object.keys(config.icons).join(',\n');
+        const addIconsScript = `
+          import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+          import {
+            ${iconImport}
+          } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+          addIcons({
+            ${iconImport}
+          });
+        `;
+
+        const head = document.querySelector('head');
+
+        if (!head) {
+          throw new Error('No head tag found in the document.');
+        }
+
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.textContent = addIconsScript;
+
+        head.appendChild(script);
       }
 
       const loadScript = document.createElement('script');
@@ -92,6 +128,7 @@ export const regressionTest = testBase.extend<{
     selector: string,
     config?: {
       headTags?: string[];
+      icons?: Record<string, string>;
     }
   ) => Promise<ElementHandle<HTMLElement>>;
   createElement: (
@@ -101,6 +138,23 @@ export const regressionTest = testBase.extend<{
 }>({
   page: async ({ page }, use, testInfo) => {
     page = await extendPageFixture(page, testInfo);
+
+    await page.route('*/**/svg/*.svg', async (route, request) => {
+      if (!process.env.CI) {
+        const [__, svg] = request.url().split('/svg/');
+        console.warn(
+          testInfo.file,
+          testInfo.title,
+          'SVGs fetched by static path',
+          svg
+        );
+
+        expect(false, 'SVGs fetched by static path').toBe(true);
+      }
+
+      return route.continue();
+    });
+
     await use(page);
   },
   createElement: async ({ page }, use) => {
@@ -123,7 +177,7 @@ export const regressionTest = testBase.extend<{
     );
   },
   mount: async ({ page }, use, testInfo) => {
-    testInfo.config.metadata['componentTest'] = true;
+    testInfo['componentTest'] = true;
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
     testInfo.annotations.push({
       type: theme,
@@ -136,10 +190,3 @@ export const regressionTest = testBase.extend<{
 });
 
 export const test = regressionTest;
-
-export type Mount = (
-  selector: string,
-  config?: {
-    headTags?: string[];
-  }
-) => Promise<ElementHandle<HTMLElement>>;

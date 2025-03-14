@@ -17,18 +17,16 @@
   right: 0;
   @include box-shadow(3);
 
-  display: flex;
+  display: block;
   position: absolute;
-  flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
+  opacity: 0;
 
   max-height: 100vh;
   min-height: $large-space;
   background-color: var(--theme-color-1);
   border-radius: $default-border-radius;
-
-  transition: all var(--theme-medium-time) ease-out;
 
   .drawer-container {
     z-index: 100;
@@ -52,7 +50,6 @@
   .content {
     position: relative;
     flex: 1;
-    flex-grow: 1;
     order: 2;
     height: 100%;
     width: 100%;
@@ -60,10 +57,6 @@
   }
 }
 
-:host(.drawer-hidden) {
+:host(.display-none) {
   display: none;
-}
-
-:host(.toggle) {
-  visibility: visible;
 }

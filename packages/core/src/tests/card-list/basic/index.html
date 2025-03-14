@@ -18,6 +18,14 @@ SPDX-License-Identifier: MIT
         margin: 1rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconBulb } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconBulb,
+      });
+    </script>
   </head>
   <body>
     <ix-card-list label="example label" show-all-count="1337">

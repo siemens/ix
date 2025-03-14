@@ -32,8 +32,8 @@ import {
 } from '@siemens/ix-icons/icons';
 
 export type DateChangeEvent = {
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
 };
 
 interface CalendarWeek {
@@ -147,6 +147,13 @@ export class DatePicker implements IxDatePickerComponent {
   onLocaleChange() {
     this.setTranslations();
   }
+
+  /**
+   * Shows week numbers displayed on the left side of the date picker
+   *
+   * @since 3.0.0
+   */
+  @Prop() showWeekNumbers = false;
 
   /** @internal */
   @Prop() standaloneAppearance = true;
@@ -350,8 +357,7 @@ export class DatePicker implements IxDatePickerComponent {
 
   private async onDone() {
     const date = await this.getCurrentDate();
-    // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-    this.dateSelect.emit(date as DateChangeEvent);
+    this.dateSelect.emit(date);
   }
 
   private calculateCalendar() {
@@ -545,11 +551,9 @@ export class DatePicker implements IxDatePickerComponent {
 
   private onDateChange() {
     this.getCurrentDate().then((date) => {
-      // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-      this.dateChange.emit(date as DateChangeEvent);
+      this.dateChange.emit(date);
       if (this.range) {
-        // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-        this.dateRangeChange.emit(date as DateChangeEvent);
+        this.dateRangeChange.emit(date);
       }
     });
   }
@@ -753,8 +757,13 @@ export class DatePicker implements IxDatePickerComponent {
               class="arrows"
             ></ix-icon-button>
           </div>
-          <div class="grid">
-            <div class="calendar-item week-day"></div>
+          <div
+            class={{
+              grid: true,
+              'grid--show-week-numbers': this.showWeekNumbers,
+            }}
+          >
+            {this.showWeekNumbers && <div class="calendar-item week-day"></div>}
             {this.dayNames.map((name) => (
               <div key={name} class="calendar-item week-day">
                 <div class="overflow">{name.slice(0, 3)}</div>
@@ -763,7 +772,11 @@ export class DatePicker implements IxDatePickerComponent {
             {this.calendar.map((week) => {
               return (
                 <Fragment>
-                  <div class="calendar-item week-number">{week.weekNumber}</div>
+                  {this.showWeekNumbers && (
+                    <div class="calendar-item week-number">
+                      {week.weekNumber}
+                    </div>
+                  )}
                   {week.dayNumbers.map((day) => {
                     return day ? (
                       <div

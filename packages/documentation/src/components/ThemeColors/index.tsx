@@ -16,7 +16,7 @@ import {
   IxRow,
   showToast,
 } from '@siemens/ix-react';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { resolveColorValue, themeColors } from './resolve-colors';
 import './ThemeColors.css';
 import { useTheme } from '@site/src/utils/hooks/useTheme';
@@ -38,6 +38,7 @@ function Search(props: { onChange: (value: string) => void }) {
           const value = input.target.value;
           props.onChange(value);
         }}
+        className='ix-form-control'
       />
     </IxInputGroup>
   );
@@ -82,7 +83,7 @@ const ThemeColors: React.FC = () => {
     });
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setColors([...colors]);
   }, [theme]);
 

@@ -14,7 +14,7 @@
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-icons": "0.0.0-pr-72-20250227071449",
+    "@siemens/ix-icons": "3.0.0-alpha.0",
     "@siemens/ix-react": "workspace:*",
     "ag-grid-community": "^30.2.1",
     "ag-grid-react": "^29.3.5",

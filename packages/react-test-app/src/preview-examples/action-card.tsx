@@ -7,12 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconRefresh } from '@siemens/ix-icons/icons';
 import { IxActionCard } from '@siemens/ix-react';
 
 export default () => {
   return (
     <IxActionCard
-      icon="refresh"
+      icon={iconRefresh}
       heading="Scan for new devices"
       subheading="Secondary text"
       variant="outline"

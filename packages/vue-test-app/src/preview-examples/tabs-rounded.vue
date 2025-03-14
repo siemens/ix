@@ -8,28 +8,36 @@
 -->
 
 <script setup lang="ts">
+import {
+  iconCalendarSettings,
+  iconHierarchy,
+  iconMaintenance,
+  iconSoundLoud,
+  iconSuccess,
+  iconTree,
+} from '@siemens/ix-icons/icons';
 import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-vue';
 </script>
 
 <template>
   <IxTabs rounded>
     <IxTabItem>
-      <IxIcon name="success"></IxIcon>
+      <IxIcon :name="iconSuccess"></IxIcon>
     </IxTabItem>
     <IxTabItem :counter="200">
-      <IxIcon name="tree"></IxIcon>
+      <IxIcon :name="iconTree"></IxIcon>
     </IxTabItem>
     <IxTabItem>
-      <IxIcon name="maintenance"></IxIcon>
+      <IxIcon :name="iconMaintenance"></IxIcon>
     </IxTabItem>
     <IxTabItem disabled :counter="24">
-      <IxIcon name="sound-loud"></IxIcon>
+      <IxIcon :name="iconSoundLoud"></IxIcon>
     </IxTabItem>
     <IxTabItem>
-      <IxIcon name="hierarchy"></IxIcon>
+      <IxIcon :name="iconHierarchy"></IxIcon>
     </IxTabItem>
     <IxTabItem disabled>
-      <IxIcon name="calendar-settings"></IxIcon>
+      <IxIcon :name="iconCalendarSettings"></IxIcon>
     </IxTabItem>
   </IxTabs>
 </template>

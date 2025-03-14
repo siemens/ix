@@ -48,7 +48,7 @@ regressionTest('initial checked', async ({ mount, page }) => {
   await expect(radioOption2).toHaveClass(/hydrated/);
   await expect(radioOption3).toHaveClass(/hydrated/);
 
-  await expect(radioOption2.locator('.checkmark')).toBeAttached();
+  await expect(radioOption2.locator('.checkmark')).toBeVisible();
 });
 
 regressionTest('change checked', async ({ mount, page }) => {
@@ -68,14 +68,14 @@ regressionTest('change checked', async ({ mount, page }) => {
   await expect(radioGroupElement).toHaveClass(/hydrated/);
   await expect(radioOption1).toHaveClass(/hydrated/);
   await expect(radioOption2).toHaveClass(/hydrated/);
-  await expect(radioOption2.locator('.checkmark')).toBeAttached();
+  await expect(radioOption2.locator('.checkmark')).toBeVisible();
   await expect(radioOption3).toHaveClass(/hydrated/);
 
   await radioOption3.click();
 
   await expect(radioOption2).not.toHaveAttribute('checked');
-  await expect(radioOption2.locator('.checkmark')).not.toBeAttached();
-  await expect(radioOption3.locator('.checkmark')).toBeAttached();
+  await expect(radioOption2.locator('.checkmark')).not.toBeVisible();
+  await expect(radioOption3.locator('.checkmark')).toBeVisible();
   await expect(radioOption3).toHaveAttribute('checked');
 });
 
@@ -119,5 +119,5 @@ regressionTest('disabled', async ({ mount, page }) => {
   );
   const radioOption3 = page.locator('ix-radio').nth(2);
   await expect(radioOption3).not.toBeEnabled();
-  await expect(radioOption3.locator('.checkmark')).not.toBeAttached();
+  await expect(radioOption3.locator('.checkmark')).not.toBeVisible();
 });

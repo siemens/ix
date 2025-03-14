@@ -1,20 +1,19 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'common-variables';
-@import 'mixins/fonts';
-@import 'mixins/validation/form-component';
+@import './fonts';
+@import './validation/form-component';
 
 @mixin element-input($feature-read-only: true) {
   & {
     @include typography-body;
     min-height: 2rem;
-    width: 100%;
+    width: auto;
     padding: 0.25rem 0.5rem;
     background-color: var(--theme-input--background);
     color: var(--theme-input--color);
@@ -24,6 +23,16 @@
       var(--theme-input--border-color);
     border-radius: var(--theme-input--border-radius);
     box-shadow: var(--theme-input--box-shadow);
+  }
+
+  &[type='number'] {
+    text-align: right;
+
+    &::-webkit-inner-spin-button {
+      margin-right: -2px;
+      margin-left: 2px;
+      display: none;
+    }
   }
 
   &:-webkit-autofill,
@@ -82,10 +91,7 @@
       border-bottom: var(--theme-input--border-thickness, 1px)
         solid
         var(--theme-input--border-color-bottom--readonly);
-    }
 
-    &.read-only,
-    &:read-only {
       &::placeholder {
         color: transparent;
       }
@@ -119,90 +125,25 @@
   }
 }
 
-@mixin form {
-  label {
+@mixin label($namespace: '') {
+  label#{$namespace} {
     color: var(--theme-color-soft-text);
     padding: 2px 0px;
   }
 
-  label.label-alignment-left {
+  label#{$namespace}.label-alignment-left {
     padding: 6px 0px;
   }
+}
 
-  input {
+@mixin form($namespace: '') {
+  input#{$namespace} {
     @include element-input();
   }
 
-  input[type='number'] {
-    &::-webkit-inner-spin-button {
-      margin-right: -2px;
-      margin-left: 2px;
-      display: none;
-    }
-
-    text-align: right;
-  }
-
-  textarea {
+  textarea#{$namespace} {
     @include element-input();
     @include element-textarea();
-  }
-
-  textarea ~ .valid-feedback,
-  textarea ~ .invalid-feedback,
-  input ~ .valid-feedback,
-  input ~ .invalid-feedback {
-    display: none;
-
-    @include typography-body;
-  }
-
-  form {
-    textarea ~ .valid-feedback,
-    input ~ .valid-feedback {
-      color: var(--theme-color-success);
-    }
-
-    textarea ~ .invalid-feedback,
-    input ~ .invalid-feedback {
-      color: var(--theme-color-alarm-text);
-    }
-  }
-
-  form:not([novalidate]),
-  form.was-validated {
-    :invalid,
-    .is-invalid {
-      background-color: var(--theme-input-error--background);
-      border-color: var(--theme-input-error--border-color);
-      background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='512px' height='512px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: sketchtool 62 (101010) - https://sketch.com --%3E%3Ctitle%3Eerror%3C/title%3E%3Cdesc%3ECreated with sketchtool.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' fill-opacity='0.75'%3E%3Cg id='error' fill='%23ff2640'%3E%3Cg id='error/error'%3E%3Cpath d='M256,42.6666667 C373.626371,42.6666667 469.333333,138.373627 469.333333,256 C469.333333,373.626371 373.626371,469.333333 256,469.333333 C138.373627,469.333333 42.6666667,373.626371 42.6666667,256 C42.6666667,138.373627 138.373627,42.6666667 256,42.6666667 Z M256,85.3333333 C161.559631,85.3333333 85.3333333,161.559631 85.3333333,256 C85.3333333,350.44037 161.559631,426.666667 256,426.666667 C350.44037,426.666667 426.666667,350.44037 426.666667,256 C426.666667,161.559631 350.44037,85.3333333 256,85.3333333 Z M326.248389,155.581722 L356.418278,185.751611 L286.168667,255.999667 L356.418278,326.248389 L326.248389,356.418278 L255.999667,286.168667 L185.751611,356.418278 L155.581722,326.248389 L225.829667,255.999667 L155.581722,185.751611 L185.751611,155.581722 L255.999667,225.829667 L326.248389,155.581722 Z' id='Combined-Shape'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") !important;
-      background-position: left calc(0.375em + 0.1875rem) center;
-      padding-right: 0.75rem;
-      padding-left: calc(1.5em + 0.75rem);
-      background-size: 18px;
-      background-repeat: no-repeat;
-    }
-
-    :invalid,
-    .is-invalid {
-      & ~ .invalid-feedback {
-        display: block;
-      }
-    }
-
-    :valid,
-    .is-valid {
-      & ~ .valid-feedback {
-        display: block;
-      }
-    }
-  }
-
-  form:not(.was-validated) {
-    .invalid-feedback,
-    .valid-feedback {
-      display: none !important;
-    }
   }
 
   @include input-valid;
@@ -259,4 +200,57 @@
   }
 }
 
-@include form;
+@mixin element-form($namespace) {
+  textarea#{$namespace} ~ .valid-feedback,
+  textarea#{$namespace} ~ .invalid-feedback,
+  input#{$namespace} ~ .valid-feedback,
+  input#{$namespace} ~ .invalid-feedback {
+    display: none;
+    @include typography-body;
+  }
+
+  form {
+    textarea#{$namespace} ~ .valid-feedback,
+    input#{$namespace} ~ .valid-feedback {
+      color: var(--theme-color-success);
+    }
+
+    textarea#{$namespace} ~ .invalid-feedback,
+    input#{$namespace} ~ .invalid-feedback {
+      color: var(--theme-color-alarm-text);
+    }
+  }
+
+  form:not([novalidate]),
+  form.was-validated {
+    #{$namespace}:invalid,
+    #{$namespace}.is-invalid {
+      background-color: var(--theme-input-error--background);
+      border-color: var(--theme-input-error--border-color);
+      background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='512px' height='512px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: sketchtool 62 (101010) - https://sketch.com --%3E%3Ctitle%3Eerror%3C/title%3E%3Cdesc%3ECreated with sketchtool.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' fill-opacity='0.75'%3E%3Cg id='error' fill='%23ff2640'%3E%3Cg id='error/error'%3E%3Cpath d='M256,42.6666667 C373.626371,42.6666667 469.333333,138.373627 469.333333,256 C469.333333,373.626371 373.626371,469.333333 256,469.333333 C138.373627,469.333333 42.6666667,373.626371 42.6666667,256 C42.6666667,138.373627 138.373627,42.6666667 256,42.6666667 Z M256,85.3333333 C161.559631,85.3333333 85.3333333,161.559631 85.3333333,256 C85.3333333,350.44037 161.559631,426.666667 256,426.666667 C350.44037,426.666667 426.666667,350.44037 426.666667,256 C426.666667,161.559631 350.44037,85.3333333 256,85.3333333 Z M326.248389,155.581722 L356.418278,185.751611 L286.168667,255.999667 L356.418278,326.248389 L326.248389,356.418278 L255.999667,286.168667 L185.751611,356.418278 L155.581722,326.248389 L225.829667,255.999667 L155.581722,185.751611 L185.751611,155.581722 L255.999667,225.829667 L326.248389,155.581722 Z' id='Combined-Shape'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") !important;
+      background-position: left calc(0.375em + 0.1875rem) center;
+      padding-right: 0.75rem;
+      padding-left: calc(1.5em + 0.75rem);
+      background-size: 18px;
+      background-repeat: no-repeat;
+
+      & ~ .invalid-feedback {
+        display: block;
+      }
+    }
+
+    #{$namespace}:valid,
+    #{$namespace}.is-valid {
+      & ~ .valid-feedback {
+        display: block;
+      }
+    }
+  }
+
+  form:not(.was-validated) {
+    #{$namespace}.invalid-feedback,
+    #{$namespace}.valid-feedback {
+      display: none !important;
+    }
+  }
+}

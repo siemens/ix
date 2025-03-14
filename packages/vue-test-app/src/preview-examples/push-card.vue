@@ -8,12 +8,13 @@
 -->
 
 <script setup lang="ts">
+import { iconBulb } from '@siemens/ix-icons/icons';
 import { IxPushCard } from '@siemens/ix-vue';
 </script>
 
 <template>
   <IxPushCard
-    icon="bulb"
+    :icon="iconBulb"
     notification="99"
     heading="Heading content"
     subheading="Subheading"

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconBulb } from '@siemens/ix-icons/icons';
 import {
   IxButton,
   IxContent,
@@ -63,7 +64,7 @@ export default () => {
         <IxMapNavigationOverlay
           slot="overlay"
           name="Custom overlay"
-          icon="bulb"
+          icon={iconBulb}
           onCloseClick={() => closeOverlay()}
         >
           <IxContent>Overlay content</IxContent>

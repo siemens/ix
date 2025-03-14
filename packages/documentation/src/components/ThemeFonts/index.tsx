@@ -32,7 +32,7 @@ function Search(props: { onChange: (value: string) => void }) {
 
       <input
         type={'text'}
-        className={'form-control'}
+        className={'ix-form-control'}
         placeholder="Search"
         onChange={(input) => {
           const value = input.target.value;
@@ -79,26 +79,26 @@ const ThemeFonts: React.FunctionComponent = () => {
         <IxTabItem onTabClick={() => setFramework('class')}>CSS</IxTabItem>
       </IxTabs>
       <Search onChange={(value) => updateFilter(value)} />
-      <div className="container-fluid">
-        <div className="Section row">
-          <IxTypography className="col-sm-2" format={'h3'}>
+      <div className="Table__Fonts">
+        <div className="Section">
+          <IxTypography className="Column Column-2" format={'h3'}>
             Name
           </IxTypography>
-          <IxTypography className="col-sm-4" format={'h3'}>
+          <IxTypography className="Column Column-4" format={'h3'}>
             Preview
           </IxTypography>
-          <IxTypography className="col-sm-3" format={'h3'}>
+          <IxTypography className="Column Column-3" format={'h3'}>
             Code
           </IxTypography>
         </div>
         {items.map((font) => {
           return (
-            <div key={font} className={'Section row'}>
-              <div className="col-sm-2 Fonts__Name">{font}</div>
-              <IxTypography className="col-sm-4" format={font}>
+            <div key={font} className="Section">
+              <div className="Column Column-2 Fonts__Name">{font}</div>
+              <IxTypography className="Column Column-4" format={font}>
                 {getPreview(font)}
               </IxTypography>
-              <div className="col-sm-6">
+              <div className="Column Column-6">
                 <CodeBlock language="jsx" className="Code">
                   {getCodeExample(font, framework)}
                 </CodeBlock>

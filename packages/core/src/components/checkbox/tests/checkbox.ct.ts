@@ -10,6 +10,7 @@ import {
   getFormValue,
   preventFormSubmission,
   regressionTest,
+  test,
 } from '@utils/test';
 import { expect } from '@playwright/test';
 
@@ -85,4 +86,36 @@ regressionTest('label', async ({ mount, page }) => {
   await mount(`<ix-checkbox label="some label"></ix-checkbox>`);
   const checkboxElement = page.locator('ix-checkbox').locator('label');
   await expect(checkboxElement).toHaveText('some label');
+});
+
+test('Checkbox should not cause layout shift when checked', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-checkbox label="test"></ix-checkbox>
+    <div id="element-below">This element should not move</div>
+  `);
+
+  await page.waitForSelector('ix-checkbox', { state: 'attached' });
+
+  const initialBounds = await page.$eval('#element-below', (el) => {
+    const rect = el.getBoundingClientRect();
+    return { top: rect.top, left: rect.left };
+  });
+
+  await page.click('ix-checkbox');
+
+  await page.waitForFunction(() => {
+    const checkbox = document.querySelector('ix-checkbox');
+    return checkbox?.getAttribute('aria-checked') === 'true';
+  });
+
+  const newBounds = await page.$eval('#element-below', (el) => {
+    const rect = el.getBoundingClientRect();
+    return { top: rect.top, left: rect.left };
+  });
+
+  expect(newBounds.top).toBeCloseTo(initialBounds.top, 0);
+  expect(newBounds.left).toBeCloseTo(initialBounds.left, 0);
 });

@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "2.7.0",
+  "version": "3.0.0-alpha.0",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
@@ -45,14 +45,14 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.13",
-    "@stencil/core": "^4.27.1",
+    "@stencil/core": "^4.27.2",
     "@types/luxon": "^3.4.2",
     "animejs": "~3.2.2",
     "luxon": "^3.4.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@siemens/ix-icons": "0.0.0-pr-72-20250227071449",
+    "@siemens/ix-icons": "3.0.0-alpha.0",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "^0.9.0",
@@ -69,7 +69,7 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "animate.css": "~4.1.1",
-    "autoprefixer": "10.4.5",
+    "autoprefixer": "10.4.20",
     "cssnano": "^6.1.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.0",
@@ -89,7 +89,7 @@
     "typescript": "~5.4.5"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "0.0.0-pr-72-20250227071449"
+    "@siemens/ix-icons": "3.0.0-alpha.0"
   },
   "config": {
     "commitizen": {

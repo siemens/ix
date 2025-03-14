@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconAdd } from '@siemens/ix-icons/icons';
 import { IxEmptyState } from '@siemens/ix-react';
 
 export default () => {
@@ -15,7 +16,7 @@ export default () => {
       layout="compactBreak"
       header="No elements available"
       subHeader="Create an element first"
-      icon="add"
+      icon={iconAdd}
       action="Create element"
       onActionClick={console.log}
     ></IxEmptyState>

@@ -16,6 +16,7 @@ import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
 import { IxEmptyState } from '@siemens/ix-react';
+import { iconInfo } from '@siemens/ix-icons/icons';
 
 export default function Echarts() {
   registerTheme(echarts);
@@ -57,7 +58,7 @@ export default function Echarts() {
             className="empty-state"
             header="No elements available"
             subHeader="Failed to retrieve data"
-            icon="info"
+            icon={iconInfo}
             action="Try again"
           />
         </div>

@@ -7,6 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  iconContextMenu,
+  iconInfo,
+  iconRename,
+  iconTrashcan,
+} from '@siemens/ix-icons/icons';
 import './blind-header-actions.scoped.css';
 
 import {
@@ -19,12 +25,12 @@ import {
 export default () => {
   return (
     <>
-      <IxBlind label="Example" icon="info">
+      <IxBlind label="Example" icon={iconInfo}>
         <IxIconButton
           id="context-menu"
           slot="header-actions"
           ghost
-          icon="context-menu"
+          icon={iconContextMenu}
           iconColor="color-primary"
         ></IxIconButton>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
@@ -38,8 +44,8 @@ export default () => {
         ipsum dolor sit amet.
       </IxBlind>
       <IxDropdown trigger={'context-menu'}>
-        <IxDropdownItem icon="rename">Rename...</IxDropdownItem>
-        <IxDropdownItem icon="trashcan">Delete</IxDropdownItem>
+        <IxDropdownItem icon={iconRename}>Rename...</IxDropdownItem>
+        <IxDropdownItem icon={iconTrashcan}>Delete</IxDropdownItem>
       </IxDropdown>
     </>
   );

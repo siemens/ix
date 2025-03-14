@@ -140,10 +140,6 @@ export namespace Components {
          */
         "forceBreakpoint": Breakpoint | undefined;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "force-breakpoint"?: Breakpoint | undefined;
-        /**
           * Application theme
          */
         "theme"?: IxTheme;
@@ -151,10 +147,6 @@ export namespace Components {
           * Use the system appearance dark or light
          */
         "themeSystemAppearance": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "theme-system-appearance"?: boolean;
     }
     interface IxApplicationHeader {
         /**
@@ -166,10 +158,6 @@ export namespace Components {
           * @since 2.5.0
          */
         "showMenu"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-menu"?: boolean;
     }
     interface IxApplicationSidebar {
     }
@@ -205,10 +193,6 @@ export namespace Components {
          */
         "applicationName"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "application-name"?: string;
-        /**
           * Supported layouts
           * @example ['sm', 'md']
          */
@@ -218,17 +202,9 @@ export namespace Components {
          */
         "forceBreakpoint": Breakpoint | undefined;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "force-breakpoint"?: Breakpoint | undefined;
-        /**
           * Hide application header. Will disable responsive feature of basic navigation.
          */
         "hideHeader": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-header"?: boolean;
     }
     interface IxBlind {
         /**
@@ -262,10 +238,6 @@ export namespace Components {
          */
         "ariaLabelPreviousButton": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "aria-label-previous-button"?: string;
-        /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
         "ghost": boolean;
@@ -277,10 +249,6 @@ export namespace Components {
           * Excess items will get hidden inside of dropdown
          */
         "visibleItemCount": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "visible-item-count"?: number;
     }
     interface IxBreadcrumbItem {
         "ghost": boolean;
@@ -290,18 +258,10 @@ export namespace Components {
         "icon"?: string;
         "isDropdownTrigger": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-dropdown-trigger"?: boolean;
-        /**
           * Breadcrumb label
          */
         "label"?: string;
         "showChevron": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-chevron"?: boolean;
         "visible": boolean;
     }
     interface IxButton {
@@ -319,10 +279,6 @@ export namespace Components {
          */
         "icon"?: string;
         "iconSize": '12' | '16' | '24';
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-size"?: '12' | '16' | '24';
         /**
           * Loading button
           * @since 2.0.0
@@ -384,25 +340,13 @@ export namespace Components {
          */
         "hideShowAll": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-show-all"?: boolean;
-        /**
           * i18n More cards available
          */
         "i18nMoreCards": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-more-cards"?: string;
-        /**
           * i18n Show all button
          */
         "i18nShowAll": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-show-all"?: string;
         /**
           * Name the card list
          */
@@ -412,33 +356,17 @@ export namespace Components {
          */
         "listStyle": 'stack' | 'scroll';
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "list-style"?: 'stack' | 'scroll';
-        /**
           * Maximal visible cards
          */
         "maxVisibleCards": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-visible-cards"?: number;
         /**
           * Overwrite the default show all count.
          */
         "showAllCount"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-all-count"?: number;
-        /**
           * Suppress the overflow handling of child elements
          */
         "suppressOverflowHandling": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-overflow-handling"?: boolean;
     }
     /**
      * @since 1.6.0
@@ -468,17 +396,9 @@ export namespace Components {
          */
         "hideIcon": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-icon"?: boolean;
-        /**
           * i18n
          */
         "i18nPlainText": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-plain-text"?: string;
         /**
           * The icon next to the actual text input Defaults to 'search'
          */
@@ -487,10 +407,6 @@ export namespace Components {
           * i18n
          */
         "labelCategories": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "label-categories"?: string;
         /**
           * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
          */
@@ -510,27 +426,15 @@ export namespace Components {
          */
         "repeatCategories": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "repeat-categories"?: boolean;
-        /**
           * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
           * @since 2.2.0
          */
         "staticOperator"?: LogicalFilterOperator;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "static-operator"?: LogicalFilterOperator;
-        /**
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions"?: string[];
         "tmpDisableScrollIntoView": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "tmp-disable-scroll-into-view"?: boolean;
     }
     /**
      * @since 2.6.0
@@ -582,25 +486,13 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * Info text for the checkbox group
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the checkbox group
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Label for the checkbox group
          */
@@ -610,25 +502,13 @@ export namespace Components {
          */
         "showTextAsTooltip": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the checkbox group
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * Warning text for the checkbox group
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxChip {
         /**
@@ -643,10 +523,6 @@ export namespace Components {
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
         "chipColor": string | undefined;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "chip-color"?: string | undefined;
         /**
           * Show close icon
          */
@@ -664,10 +540,6 @@ export namespace Components {
           * @since 3.0.0
          */
         "tooltipText": string | boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "tooltip-text"?: string | boolean;
         /**
           * Chip variant
          */
@@ -693,25 +565,13 @@ export namespace Components {
          */
         "sizeLg"?: ColumnSize;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "size-lg"?: ColumnSize;
-        /**
           * Size of the column for md screens
          */
         "sizeMd"?: ColumnSize;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "size-md"?: ColumnSize;
-        /**
           * Size of the column for sm screens
          */
         "sizeSm"?: ColumnSize;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "size-sm"?: ColumnSize;
     }
     /**
      * @since 2.1.0
@@ -724,25 +584,13 @@ export namespace Components {
          */
         "hasBackButton": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "has-back-button"?: boolean;
-        /**
           * Subtitle of Header
          */
         "headerSubtitle": string | undefined;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "header-subtitle"?: string | undefined;
-        /**
           * Title of Header
          */
         "headerTitle"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "header-title"?: string;
         /**
           * Variant of content header
          */
@@ -759,10 +607,6 @@ export namespace Components {
           * Grid item name
          */
         "itemName": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "item-name"?: string;
     }
     /**
      * @since 2.6.0
@@ -773,25 +617,13 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * Info text for the field component
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the field component
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Label for the field component
          */
@@ -805,25 +637,13 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the field component
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * Warning text for the field component
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     /**
      * @since 2.1.0
@@ -834,17 +654,9 @@ export namespace Components {
          */
         "customRangeAllowed": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "custom-range-allowed"?: boolean;
-        /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
          */
         "dateRangeId": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "date-range-id"?: string;
         /**
           * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
@@ -876,25 +688,13 @@ export namespace Components {
          */
         "i18nCustomItem": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-custom-item"?: string;
-        /**
           * Text for the done button. Will be used for translation.
          */
         "i18nDone": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-done"?: string;
-        /**
           * Text for the done button. Will be used for translation.
          */
         "i18nNoRange": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-no-range"?: string;
         /**
           * Loading button
          */
@@ -909,17 +709,9 @@ export namespace Components {
          */
         "maxDate": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-date"?: string;
-        /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
          */
         "minDate": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-date"?: string;
         /**
           * Outline button
          */
@@ -928,6 +720,11 @@ export namespace Components {
           * If true a range of dates can be selected.
          */
         "range": boolean;
+        /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers": boolean;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
@@ -942,10 +739,6 @@ export namespace Components {
           * @since 2.6.0
          */
         "weekStartIndex": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "week-start-index"?: number;
     }
     /**
      * @since 2.6.0
@@ -976,33 +769,17 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * i18n string for the error message when the date is not parsable
          */
         "i18nErrorDateUnparsable": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-error-date-unparsable"?: string;
         /**
           * info text below the input field
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * error text below the input field
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Returns whether the text field has been touched.
          */
@@ -1037,29 +814,22 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
-        "show-text-as-tooltip"?: boolean;
+        "showWeekNumbers": boolean;
         /**
           * valid text below the input field
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * value of the input element
          */
-        "value": string;
+        "value"?: string;
         /**
           * warning text below the input field
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxDatePicker {
         /**
@@ -1085,10 +855,6 @@ export namespace Components {
          */
         "i18nDone": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-done"?: string;
-        /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.1.0
          */
@@ -1099,27 +865,20 @@ export namespace Components {
          */
         "maxDate": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-date"?: string;
-        /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
         "minDate": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-date"?: string;
-        /**
           * If true a date-range can be selected (from/to).
          */
         "range": boolean;
-        "standaloneAppearance": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
-        "standalone-appearance"?: boolean;
+        "showWeekNumbers": boolean;
+        "standaloneAppearance": boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
@@ -1131,10 +890,6 @@ export namespace Components {
           * @since 2.1.0
          */
         "weekStartIndex": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "week-start-index"?: number;
     }
     interface IxDateTimeCard {
         /**
@@ -1146,10 +901,6 @@ export namespace Components {
          */
         "individual": boolean;
         "standaloneAppearance"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "standalone-appearance"?: boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -1157,10 +908,6 @@ export namespace Components {
           * @since 1.1.0
          */
         "dateFormat": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "date-format"?: string;
         /**
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
@@ -1172,9 +919,10 @@ export namespace Components {
          */
         "i18nDone": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+          * Top label of time picker
+          * @since 3.0.0
          */
-        "i18n-done"?: string;
+        "i18nTime": string;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
@@ -1186,18 +934,10 @@ export namespace Components {
          */
         "maxDate"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-date"?: string;
-        /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
         "minDate"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-date"?: string;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -1207,25 +947,13 @@ export namespace Components {
          */
         "showHour": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-hour"?: boolean;
-        /**
           * Show minutes input
          */
         "showMinutes": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-minutes"?: boolean;
-        /**
           * Show seconds input
          */
         "showSeconds": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-seconds"?: boolean;
         /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
@@ -1233,9 +961,10 @@ export namespace Components {
          */
         "showTimeReference": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
-        "show-time-reference"?: boolean;
+        "showWeekNumbers": boolean;
         /**
           * Select time with format string
           * @since 1.1.0
@@ -1247,17 +976,9 @@ export namespace Components {
          */
         "timeFormat": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "time-format"?: string;
-        /**
           * Set time reference
          */
         "timeReference"?: 'AM' | 'PM';
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "time-reference"?: 'AM' | 'PM';
         /**
           * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
@@ -1268,10 +989,6 @@ export namespace Components {
           * @since 2.1.0
          */
         "weekStartIndex": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "week-start-index"?: number;
     }
     /**
      * @since 1.4.0
@@ -1284,33 +1001,17 @@ export namespace Components {
          */
         "closeOnClickOutside": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-on-click-outside"?: boolean;
-        /**
           * Render the drawer with maximum height
          */
         "fullHeight": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "full-height"?: boolean;
         /**
           * Max width interpreted as REM
          */
         "maxWidth": number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-width"?: number;
-        /**
           * Min width interpreted as REM
          */
         "minWidth": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-width"?: number;
         /**
           * Show or hide the drawer
          */
@@ -1334,25 +1035,13 @@ export namespace Components {
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
         "closeBehavior": CloseBehavior;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-behavior"?: CloseBehavior;
         "discoverAllSubmenus": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "discover-all-submenus"?: boolean;
         "discoverSubmenu": () => Promise<void>;
         /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
         "ignoreRelatedSubmenu": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "ignore-related-submenu"?: boolean;
         /**
           * Move dropdown along main axis of alignment
          */
@@ -1374,10 +1063,6 @@ export namespace Components {
          */
         "positioningStrategy": 'absolute' | 'fixed';
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "positioning-strategy"?: 'absolute' | 'fixed';
-        /**
           * Show dropdown
          */
         "show": boolean;
@@ -1386,15 +1071,7 @@ export namespace Components {
           * @since 2.0.0
          */
         "suppressAutomaticPlacement": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-automatic-placement"?: boolean;
         "suppressOverflowBehavior": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-overflow-behavior"?: boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
@@ -1413,10 +1090,6 @@ export namespace Components {
           * @since 2.1.0
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-behavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
          */
@@ -1477,18 +1150,10 @@ export namespace Components {
         "icon"?: string;
         "isSubMenu": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-sub-menu"?: boolean;
-        /**
           * Label of dropdown item
          */
         "label"?: string;
         "suppressChecked": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-checked"?: boolean;
     }
     /**
      * @since 1.4.0
@@ -1519,10 +1184,6 @@ export namespace Components {
           * Optional empty state sub header
          */
         "subHeader"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "sub-header"?: string;
     }
     interface IxEventList {
         /**
@@ -1541,10 +1202,6 @@ export namespace Components {
           * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'.
          */
         "itemHeight": 'S' | 'L' | number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "item-height"?: 'S' | 'L' | number;
     }
     interface IxEventListItem {
         /**
@@ -1561,10 +1218,6 @@ export namespace Components {
          */
         "itemColor"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "item-color"?: string;
-        /**
           * Show event list item as selected
          */
         "selected": boolean;
@@ -1575,10 +1228,6 @@ export namespace Components {
           * @since 1.6.0
          */
         "fullWidth": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "full-width"?: boolean;
         /**
           * Button with no background or outline
          */
@@ -1612,15 +1261,7 @@ export namespace Components {
           * The id of the form element that the label is associated with
          */
         "htmlFor"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "html-for"?: string;
         "isInvalid": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-invalid"?: boolean;
         /**
           * A value is required or must be checked for the form to be submittable
          */
@@ -1638,65 +1279,33 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The id of the form element that the label is associated with
          */
         "htmlForLabel"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "html-for-label"?: string;
         /**
           * Info text for the field component
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the field component
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Is the field component info
          */
         "isInfo": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-info"?: boolean;
-        /**
           * Is the field component invalid
          */
         "isInvalid": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-invalid"?: boolean;
         /**
           * Is the field component valid
          */
         "isValid": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-valid"?: boolean;
-        /**
           * Is the field component warning
          */
         "isWarning": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-warning"?: boolean;
         /**
           * Label for the field component
          */
@@ -1710,25 +1319,13 @@ export namespace Components {
          */
         "showTextAsTooltip": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the field component
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * Warning text for the field component
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxFilterChip {
         /**
@@ -1767,10 +1364,6 @@ export namespace Components {
           * Controls the visibility of the content
          */
         "contentVisible": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "content-visible"?: boolean;
     }
     interface IxGroup {
         /**
@@ -1781,10 +1374,6 @@ export namespace Components {
           * Expand the group if the header is clicked
          */
         "expandOnHeaderClick": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "expand-on-header-click"?: boolean;
         /**
           * Group header
          */
@@ -1802,17 +1391,9 @@ export namespace Components {
          */
         "subHeader"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "sub-header"?: string;
-        /**
           * Prevent header from being selectable
          */
         "suppressHeaderSelection": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-header-selection"?: boolean;
     }
     interface IxGroupContextMenu {
     }
@@ -1834,10 +1415,6 @@ export namespace Components {
          */
         "secondaryText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "secondary-text"?: string;
-        /**
           * Show selected state
          */
         "selected": boolean;
@@ -1845,10 +1422,6 @@ export namespace Components {
           * Supress the selection of the group
          */
         "suppressSelection": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-selection"?: boolean;
         /**
           * Group item text
          */
@@ -1860,49 +1433,25 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The id of the form element that the label is associated with
          */
         "htmlFor"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "html-for"?: string;
         /**
           * Info text for the field component
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the field component
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Valid text for the field component
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * Warning text for the field component
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxIconButton {
         /**
@@ -1910,10 +1459,6 @@ export namespace Components {
           * @since 2.1.0
          */
         "a11yLabel"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "a11y-label"?: string;
         /**
           * Disabled
          */
@@ -1930,10 +1475,6 @@ export namespace Components {
           * Color of icon in  button
          */
         "iconColor"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-color"?: string;
         /**
           * Loading button
           * @since 2.0.0
@@ -2008,10 +1549,6 @@ export namespace Components {
          */
         "allowedCharactersPattern"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "allowed-characters-pattern"?: string;
-        /**
           * Specifies whether the text field is disabled.
          */
         "disabled": boolean;
@@ -2030,25 +1567,13 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The info text for the text field.
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * The error text for the text field.
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Returns whether the text field has been touched.
          */
@@ -2062,17 +1587,9 @@ export namespace Components {
          */
         "maxLength"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-length"?: number;
-        /**
           * The minimum length of the text field.
          */
         "minLength"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-length"?: number;
         /**
           * The name of the text field.
          */
@@ -2098,10 +1615,6 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
          */
         "type": 'text' | 'email' | 'password' | 'tel' | 'url';
@@ -2110,10 +1623,6 @@ export namespace Components {
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * The value of the text field.
          */
         "value": string;
@@ -2121,11 +1630,11 @@ export namespace Components {
           * The warning text for the text field.
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
+    /**
+     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * Use the 'ix-input' component instead
+     */
     interface IxInputGroup {
     }
     /**
@@ -2144,10 +1653,6 @@ export namespace Components {
           * Optional key value label position - 'top' or 'left'
          */
         "labelPosition": KeyValueLabelPosition;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "label-position"?: KeyValueLabelPosition;
         /**
           * Optional key value text value
          */
@@ -2197,10 +1702,6 @@ export namespace Components {
           * The grid will not have any horizontal padding
          */
         "noMargin": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "no-margin"?: boolean;
     }
     /**
      * @since 2.0.0
@@ -2225,10 +1726,6 @@ export namespace Components {
          */
         "applicationName"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "application-name"?: string;
-        /**
           * Close current shown overlay
           * @deprecated Will be removed in 2.0.0. Use slot based approach
          */
@@ -2238,17 +1735,9 @@ export namespace Components {
          */
         "hideContextMenu": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-context-menu"?: boolean;
-        /**
           * Navigation title
          */
         "navigationTitle"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "navigation-title"?: string;
         /**
           * Open a overlay inside content area
           * @deprecated Will be removed in 2.0.0. Use slot based approach
@@ -2280,10 +1769,6 @@ export namespace Components {
          */
         "iconColor"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-color"?: string;
-        /**
           * Title of overlay
          */
         "name"?: string;
@@ -2294,75 +1779,31 @@ export namespace Components {
          */
         "applicationDescription": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "application-description"?: string;
-        /**
           * Should only be set if you use ix-menu standalone
          */
         "applicationName"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "application-name"?: string;
         "enableMapExpand": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "enable-map-expand"?: boolean;
         /**
           * Is settings tab is visible
          */
         "enableSettings": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "enable-settings"?: boolean;
-        /**
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "enable-toggle-theme"?: boolean;
         /**
           * Toggle the expand state of the menu
          */
         "expand": boolean;
         "i18nCollapse": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-collapse"?: string;
         "i18nExpand": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-expand"?: string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
          */
         "i18nExpandSidebar": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-expand-sidebar"?: string;
         "i18nLegal": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-legal"?: string;
         "i18nSettings": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-settings"?: string;
         "i18nToggleTheme": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-toggle-theme"?: string;
         /**
           * Menu stays pinned to the left
          */
@@ -2372,26 +1813,14 @@ export namespace Components {
          */
         "showAbout": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-about"?: boolean;
-        /**
           * Is settings tab visible
          */
         "showSettings": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-settings"?: boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
           * @since 2.2.0
          */
         "startExpanded": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "start-expanded"?: boolean;
         /**
           * Toggle About tabs
           * @param show
@@ -2419,10 +1848,6 @@ export namespace Components {
          */
         "activeTabLabel"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "active-tab-label"?: string;
-        /**
           * Content of the header
          */
         "label": string;
@@ -2439,16 +1864,8 @@ export namespace Components {
           * Subtitle of the about news
          */
         "aboutItemLabel"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "about-item-label"?: string;
         "expanded": boolean;
         "i18nShowMore": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-show-more"?: string;
         /**
           * Title of the about news
          */
@@ -2457,10 +1874,6 @@ export namespace Components {
           * Bottom offset
          */
         "offsetBottom": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "offset-bottom"?: number;
         /**
           * Show about news
          */
@@ -2476,10 +1889,6 @@ export namespace Components {
          */
         "i18nLogout": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-logout"?: string;
-        /**
           * Display a avatar image
           * @since 1.4.0
          */
@@ -2494,10 +1903,6 @@ export namespace Components {
           * @since 2.1.0
          */
         "showLogoutButton": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-logout-button"?: boolean;
         /**
           * First line of text
          */
@@ -2545,10 +1950,6 @@ export namespace Components {
          */
         "ixAriaLabel": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "ix-aria-label"?: string;
-        /**
           * Display as pinned
          */
         "pinned": boolean;
@@ -2577,10 +1978,6 @@ export namespace Components {
         "icon"?: string;
         "isCategory": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-category"?: boolean;
-        /**
           * Label of the menu item. Will also be used as tooltip text
           * @since 2.2.0
          */
@@ -2595,10 +1992,6 @@ export namespace Components {
           * Active tab
          */
         "activeTabLabel"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "active-tab-label"?: string;
         /**
           * Label of first tab
          */
@@ -2618,8 +2011,16 @@ export namespace Components {
         "dismissible": boolean;
         /**
           * Specifies the type of the alert.
+          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
          */
-        "type": 'danger' | 'warning' | 'info';
+        "type": | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
@@ -2648,17 +2049,9 @@ export namespace Components {
          */
         "closeOnBackdropClick": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-on-backdrop-click"?: boolean;
-        /**
           * If set to true the modal can be closed by pressing the Escape key
          */
         "closeOnEscape": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-on-escape"?: boolean;
         /**
           * Dismiss the dialog
          */
@@ -2692,10 +2085,6 @@ export namespace Components {
          */
         "hideClose": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-close"?: boolean;
-        /**
           * Icon of the Header
          */
         "icon"?: string;
@@ -2703,10 +2092,6 @@ export namespace Components {
           * Icon color
          */
         "iconColor"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-color"?: string;
     }
     interface IxModalLoading {
     }
@@ -2719,10 +2104,6 @@ export namespace Components {
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "allowed-characters-pattern"?: string;
         /**
           * Disables the input field
          */
@@ -2742,25 +2123,13 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The info text for the input field
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * The error text for the input field
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Returns true if the input field has been touched
          */
@@ -2802,25 +2171,13 @@ export namespace Components {
          */
         "showStepperButtons"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-stepper-buttons"?: boolean;
-        /**
           * Indicates if the text should be shown as a tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * The valid text for the input field
          */
         "validText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
         /**
           * The value of the input field
          */
@@ -2829,10 +2186,6 @@ export namespace Components {
           * The warning text for the input field
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     /**
      * @since 1.5.0
@@ -2851,49 +2204,25 @@ export namespace Components {
          */
         "i18nItems": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-items"?: string;
-        /**
           * i18n
          */
         "i18nOf": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-of"?: string;
         /**
           * i18n
          */
         "i18nPage": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-page"?: string;
-        /**
           * Number of items shown at once. Can only be changed in advaced mode.
          */
         "itemCount": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "item-count"?: number;
         /**
           * Zero based index of currently selected page
          */
         "selectedPage": number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "selected-page"?: number;
-        /**
           * Show item count in advanced mode
          */
         "showItemCount": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-item-count"?: boolean;
     }
     /**
      * @since 2.1.0
@@ -2920,23 +2249,11 @@ export namespace Components {
          */
         "hideOnCollapse": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-on-collapse"?: boolean;
-        /**
           * Name of the icon
          */
         "icon"?: string;
         "ignoreLayoutSettings": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "ignore-layout-settings"?: boolean;
         "isMobile": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-mobile"?: boolean;
         /**
           * The maximum size of the sidebar, when it is expanded
          */
@@ -2975,10 +2292,6 @@ export namespace Components {
          */
         "alignLeft": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "align-left"?: boolean;
-        /**
           * Custom color for pill. Only working for `variant='custom'`
          */
         "background": string | undefined;
@@ -2995,18 +2308,10 @@ export namespace Components {
          */
         "pillColor": string | undefined;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "pill-color"?: string | undefined;
-        /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
          */
         "tooltipText": string | boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "tooltip-text"?: string | boolean;
         /**
           * Pill variant
          */
@@ -3091,25 +2396,13 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * Info text for the field component
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the field component
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Label for the field component
          */
@@ -3119,17 +2412,9 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the field component
          */
         "validText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
         /**
           * Value of the radiobutton group component
          */
@@ -3138,10 +2423,6 @@ export namespace Components {
           * Warning text for the field component
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     /**
      * @since 2.0.0
@@ -3157,10 +2438,6 @@ export namespace Components {
          */
         "allowClear": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "allow-clear"?: boolean;
-        /**
           * If true the select will be in disabled state
          */
         "disabled": boolean;
@@ -3170,18 +2447,10 @@ export namespace Components {
          */
         "dropdownMaxWidth"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "dropdown-max-width"?: string;
-        /**
           * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
           * @since 2.7.0
          */
         "dropdownWidth"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "dropdown-width"?: string;
         /**
           * Select is extendable
          */
@@ -3202,69 +2471,37 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * Hide list header
           * @since 1.5.0
          */
         "hideListHeader": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-list-header"?: boolean;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @since 1.5.0
          */
         "i18nNoMatches": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-no-matches"?: string;
-        /**
           * Input field placeholder
          */
         "i18nPlaceholder": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-placeholder"?: string;
         /**
           * Input field placeholder for editable select
          */
         "i18nPlaceholderEditable": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-placeholder-editable"?: string;
-        /**
           * Select list header
          */
         "i18nSelectListHeader": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-select-list-header"?: string;
         /**
           * Info text for the select component
           * @since 2.6.0
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the select component
           * @since 2.6.0
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Check if the input field has been touched.
          */
@@ -3298,18 +2535,10 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the select component
           * @since 2.6.0
          */
         "validText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
           * @since 2.0.0
@@ -3320,10 +2549,6 @@ export namespace Components {
           * @since 2.6.0
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxSelectItem {
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
@@ -3383,20 +2608,12 @@ export namespace Components {
          */
         "traceReference": number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "trace-reference"?: number;
-        /**
           * Current value of the slider
          */
         "value": number;
     }
     interface IxSpinner {
         "hideTrack": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-track"?: boolean;
         /**
           * Size of spinner
          */
@@ -3412,10 +2629,6 @@ export namespace Components {
           * @since 2.3.0
          */
         "closeBehavior": CloseBehavior;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-behavior"?: CloseBehavior;
         /**
           * Disabled
          */
@@ -3444,10 +2657,6 @@ export namespace Components {
           * Icon of the button on the right
          */
         "splitIcon"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "split-icon"?: string;
         /**
           * Color variant of button
          */
@@ -3533,25 +2742,13 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The info text for the textarea field.
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * The error text for the textarea field.
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Check if the textarea field has been touched.
          */
@@ -3565,17 +2762,9 @@ export namespace Components {
          */
         "maxLength"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-length"?: number;
-        /**
           * The minimum length of the textarea field.
          */
         "minLength"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-length"?: number;
         /**
           * The name of the textarea field.
          */
@@ -3597,57 +2786,29 @@ export namespace Components {
          */
         "resizeBehavior": TextareaResizeBehavior;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "resize-behavior"?: TextareaResizeBehavior;
-        /**
           * Determines if the text should be displayed as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
         /**
           * The width of the textarea specified by number of characters.
          */
         "textareaCols"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "textarea-cols"?: number;
-        /**
           * The height of the textarea field (e.g. "52px").
          */
         "textareaHeight"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "textarea-height"?: string;
         /**
           * The height of the textarea specified by number of rows.
          */
         "textareaRows"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "textarea-rows"?: number;
-        /**
           * The width of the textarea field (e.g. "200px").
          */
         "textareaWidth"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "textarea-width"?: string;
-        /**
           * The valid text for the textarea field.
          */
         "validText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
         /**
           * The value of the textarea field.
          */
@@ -3656,10 +2817,6 @@ export namespace Components {
           * The warning text for the textarea field.
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxTile {
         /**
@@ -3686,51 +2843,27 @@ export namespace Components {
          */
         "showHour": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-hour"?: boolean;
-        /**
           * Show minutes input
          */
         "showMinutes": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-minutes"?: boolean;
         /**
           * Show seconds input
          */
         "showSeconds": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-seconds"?: boolean;
-        /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
         "standaloneAppearance": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "standalone-appearance"?: boolean;
         /**
           * Text of date select button
           * @since 1.1.0
          */
         "textSelectTime": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-select-time"?: string;
-        /**
           * Text for top label
           * @since 2.1.0
          */
         "textTime": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-time"?: string;
         /**
           * Select time with format string Format has to match the `format` property.
           * @since 1.1.0
@@ -3740,10 +2873,6 @@ export namespace Components {
           * Set time reference
          */
         "timeReference": 'AM' | 'PM' | undefined;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "time-reference"?: 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**
@@ -3751,17 +2880,9 @@ export namespace Components {
          */
         "autoClose": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "auto-close"?: boolean;
-        /**
           * Autoclose title after delay
          */
         "autoCloseDelay": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "auto-close-delay"?: number;
         /**
           * Icon of toast
          */
@@ -3771,17 +2892,9 @@ export namespace Components {
          */
         "iconColor"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-color"?: string;
-        /**
           * Toast title
          */
         "toastTitle"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "toast-title"?: string;
         /**
           * Toast type
          */
@@ -3789,15 +2902,7 @@ export namespace Components {
     }
     interface IxToastContainer {
         "containerClass": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "container-class"?: string;
         "containerId": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "container-id"?: string;
         "position": 'bottom-right' | 'top-right';
         /**
           * Display a toast message
@@ -3824,10 +2929,6 @@ export namespace Components {
          */
         "hideText": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-text"?: boolean;
-        /**
           * If true the control is in indeterminate state
          */
         "indeterminate": boolean;
@@ -3844,25 +2945,13 @@ export namespace Components {
          */
         "textIndeterminate": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-indeterminate"?: string;
-        /**
           * Text for off state
          */
         "textOff": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-off"?: string;
-        /**
           * Text for on state
          */
         "textOn": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-on"?: string;
         /**
           * Value of the checkbox component
          */
@@ -3907,19 +2996,11 @@ export namespace Components {
     interface IxTooltip {
         "animationFrame": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "animation-frame"?: boolean;
-        /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: ElementReference;
+        "for"?: ElementReference | ElementReference[];
         "hideDelay": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-delay"?: number;
-        "hideTooltip": () => Promise<void>;
+        "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
          */
@@ -3930,19 +3011,11 @@ export namespace Components {
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
         "showDelay": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-delay"?: number;
         "showTooltip": (anchorElement: Element) => Promise<void>;
         /**
           * Title of the tooltip
          */
         "titleContent"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "title-content"?: string;
     }
     interface IxTree {
         /**
@@ -3978,10 +3051,6 @@ export namespace Components {
          */
         "hasChildren": boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "has-children"?: boolean;
-        /**
           * Text
          */
         "text"?: string;
@@ -4003,17 +3072,9 @@ export namespace Components {
          */
         "textColor"?: TypographyColors;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-color"?: TypographyColors;
-        /**
           * Text decoration
          */
         "textDecoration": TextDecoration;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-decoration"?: TextDecoration;
     }
     interface IxUpload {
         /**
@@ -4029,25 +3090,13 @@ export namespace Components {
          */
         "i18nUploadDisabled": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-upload-disabled"?: string;
-        /**
           * Label for upload file button
          */
         "i18nUploadFile": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-upload-file"?: string;
-        /**
           * Will be used by state = UploadFileState.LOADING
          */
         "loadingText": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "loading-text"?: string;
         /**
           * Whether the text should wrap to more than one line
          */
@@ -4060,10 +3109,6 @@ export namespace Components {
           * Will be used by state = UploadFileState.SELECT_FILE
          */
         "selectFileText": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "select-file-text"?: string;
         /**
           * Set files
           * @param obj
@@ -4078,17 +3123,9 @@ export namespace Components {
          */
         "uploadFailedText": string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "upload-failed-text"?: string;
-        /**
           * Will be used by state = UploadFileState.UPLOAD_SUCCESSED
          */
         "uploadSuccessText": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "upload-success-text"?: string;
     }
     interface IxValidationTooltip {
         /**
@@ -4104,10 +3141,6 @@ export namespace Components {
           * @since 2.0.0
          */
         "suppressAutomaticPlacement": boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-automatic-placement"?: boolean;
     }
     interface IxWorkflowStep {
         /**
@@ -4144,10 +3177,6 @@ export namespace Components {
           * Activate navigation click
          */
         "selectedIndex": number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "selected-index"?: number;
         /**
           * Select orientation
          */
@@ -4739,7 +3768,7 @@ declare global {
         new (): HTMLIxDateDropdownElement;
     };
     interface HTMLIxDateInputElementEventMap {
-        "valueChange": string;
+        "valueChange": string | undefined;
         "validityStateChange": DateInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
@@ -5103,6 +4132,10 @@ declare global {
         prototype: HTMLIxInputElement;
         new (): HTMLIxInputElement;
     };
+    /**
+     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * Use the 'ix-input' component instead
+     */
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
     var HTMLIxInputGroupElement: {
@@ -6092,10 +5125,6 @@ declare namespace LocalJSX {
          */
         "forceBreakpoint"?: Breakpoint | undefined;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "force-breakpoint"?: Breakpoint | undefined;
-        /**
           * Application theme
          */
         "theme"?: IxTheme;
@@ -6103,10 +5132,6 @@ declare namespace LocalJSX {
           * Use the system appearance dark or light
          */
         "themeSystemAppearance"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "theme-system-appearance"?: boolean;
     }
     interface IxApplicationHeader {
         /**
@@ -6128,10 +5153,6 @@ declare namespace LocalJSX {
           * @since 2.5.0
          */
         "showMenu"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-menu"?: boolean;
     }
     interface IxApplicationSidebar {
     }
@@ -6167,10 +5188,6 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "application-name"?: string;
-        /**
           * Supported layouts
           * @example ['sm', 'md']
          */
@@ -6180,17 +5197,9 @@ declare namespace LocalJSX {
          */
         "forceBreakpoint"?: Breakpoint | undefined;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "force-breakpoint"?: Breakpoint | undefined;
-        /**
           * Hide application header. Will disable responsive feature of basic navigation.
          */
         "hideHeader"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-header"?: boolean;
     }
     interface IxBlind {
         /**
@@ -6228,10 +5237,6 @@ declare namespace LocalJSX {
          */
         "ariaLabelPreviousButton"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "aria-label-previous-button"?: string;
-        /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
         "ghost"?: boolean;
@@ -6251,10 +5256,6 @@ declare namespace LocalJSX {
           * Excess items will get hidden inside of dropdown
          */
         "visibleItemCount"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "visible-item-count"?: number;
     }
     interface IxBreadcrumbItem {
         "ghost"?: boolean;
@@ -6264,19 +5265,11 @@ declare namespace LocalJSX {
         "icon"?: string;
         "isDropdownTrigger"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-dropdown-trigger"?: boolean;
-        /**
           * Breadcrumb label
          */
         "label"?: string;
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
         "showChevron"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-chevron"?: boolean;
         "visible"?: boolean;
     }
     interface IxButton {
@@ -6294,10 +5287,6 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         "iconSize"?: '12' | '16' | '24';
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-size"?: '12' | '16' | '24';
         /**
           * Loading button
           * @since 2.0.0
@@ -6360,25 +5349,13 @@ declare namespace LocalJSX {
          */
         "hideShowAll"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-show-all"?: boolean;
-        /**
           * i18n More cards available
          */
         "i18nMoreCards"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-more-cards"?: string;
-        /**
           * i18n Show all button
          */
         "i18nShowAll"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-show-all"?: string;
         /**
           * Name the card list
          */
@@ -6388,17 +5365,9 @@ declare namespace LocalJSX {
          */
         "listStyle"?: 'stack' | 'scroll';
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "list-style"?: 'stack' | 'scroll';
-        /**
           * Maximal visible cards
          */
         "maxVisibleCards"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-visible-cards"?: number;
         /**
           * Fire event when the collapse state is changed by the user
          */
@@ -6420,17 +5389,9 @@ declare namespace LocalJSX {
          */
         "showAllCount"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-all-count"?: number;
-        /**
           * Suppress the overflow handling of child elements
          */
         "suppressOverflowHandling"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-overflow-handling"?: boolean;
     }
     /**
      * @since 1.6.0
@@ -6460,17 +5421,9 @@ declare namespace LocalJSX {
          */
         "hideIcon"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-icon"?: boolean;
-        /**
           * i18n
          */
         "i18nPlainText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-plain-text"?: string;
         /**
           * The icon next to the actual text input Defaults to 'search'
          */
@@ -6479,10 +5432,6 @@ declare namespace LocalJSX {
           * i18n
          */
         "labelCategories"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "label-categories"?: string;
         /**
           * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
          */
@@ -6518,27 +5467,15 @@ declare namespace LocalJSX {
          */
         "repeatCategories"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "repeat-categories"?: boolean;
-        /**
           * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
           * @since 2.2.0
          */
         "staticOperator"?: LogicalFilterOperator;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "static-operator"?: LogicalFilterOperator;
-        /**
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions"?: string[];
         "tmpDisableScrollIntoView"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "tmp-disable-scroll-into-view"?: boolean;
     }
     /**
      * @since 2.6.0
@@ -6596,25 +5533,13 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * Info text for the checkbox group
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the checkbox group
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Label for the checkbox group
          */
@@ -6624,25 +5549,13 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the checkbox group
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * Warning text for the checkbox group
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxChip {
         /**
@@ -6657,10 +5570,6 @@ declare namespace LocalJSX {
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
         "chipColor"?: string | undefined;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "chip-color"?: string | undefined;
         /**
           * Show close icon
          */
@@ -6683,10 +5592,6 @@ declare namespace LocalJSX {
           * @since 3.0.0
          */
         "tooltipText"?: string | boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "tooltip-text"?: string | boolean;
         /**
           * Chip variant
          */
@@ -6712,25 +5617,13 @@ declare namespace LocalJSX {
          */
         "sizeLg"?: ColumnSize;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "size-lg"?: ColumnSize;
-        /**
           * Size of the column for md screens
          */
         "sizeMd"?: ColumnSize;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "size-md"?: ColumnSize;
-        /**
           * Size of the column for sm screens
          */
         "sizeSm"?: ColumnSize;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "size-sm"?: ColumnSize;
     }
     /**
      * @since 2.1.0
@@ -6743,25 +5636,13 @@ declare namespace LocalJSX {
          */
         "hasBackButton"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "has-back-button"?: boolean;
-        /**
           * Subtitle of Header
          */
         "headerSubtitle"?: string | undefined;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "header-subtitle"?: string | undefined;
-        /**
           * Title of Header
          */
         "headerTitle"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "header-title"?: string;
         /**
           * Triggered when back button is clicked
          */
@@ -6782,10 +5663,6 @@ declare namespace LocalJSX {
           * Grid item name
          */
         "itemName": string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "item-name"?: string;
     }
     /**
      * @since 2.6.0
@@ -6796,25 +5673,13 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * Info text for the field component
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the field component
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Label for the field component
          */
@@ -6828,25 +5693,13 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the field component
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * Warning text for the field component
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     /**
      * @since 2.1.0
@@ -6857,17 +5710,9 @@ declare namespace LocalJSX {
          */
         "customRangeAllowed"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "custom-range-allowed"?: boolean;
-        /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
          */
         "dateRangeId"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "date-range-id"?: string;
         /**
           * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
@@ -6895,25 +5740,13 @@ declare namespace LocalJSX {
          */
         "i18nCustomItem"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-custom-item"?: string;
-        /**
           * Text for the done button. Will be used for translation.
          */
         "i18nDone"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-done"?: string;
-        /**
           * Text for the done button. Will be used for translation.
          */
         "i18nNoRange"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-no-range"?: string;
         /**
           * Loading button
          */
@@ -6928,17 +5761,9 @@ declare namespace LocalJSX {
          */
         "maxDate"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-date"?: string;
-        /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
          */
         "minDate"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-date"?: string;
         /**
           * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
          */
@@ -6951,6 +5776,11 @@ declare namespace LocalJSX {
           * If true a range of dates can be selected.
          */
         "range"?: boolean;
+        /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers"?: boolean;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
@@ -6965,10 +5795,6 @@ declare namespace LocalJSX {
           * @since 2.6.0
          */
         "weekStartIndex"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "week-start-index"?: number;
     }
     /**
      * @since 2.6.0
@@ -6988,33 +5814,17 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * i18n string for the error message when the date is not parsable
          */
         "i18nErrorDateUnparsable"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-error-date-unparsable"?: string;
         /**
           * info text below the input field
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * error text below the input field
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * label of the input field
          */
@@ -7037,7 +5847,7 @@ declare namespace LocalJSX {
         /**
           * Input change event.
          */
-        "onValueChange"?: (event: IxDateInputCustomEvent<string>) => void;
+        "onValueChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         /**
           * placeholder of the input element
          */
@@ -7055,17 +5865,14 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
-        "show-text-as-tooltip"?: boolean;
+        "showWeekNumbers"?: boolean;
         /**
           * valid text below the input field
          */
         "validText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
         /**
           * value of the input element
          */
@@ -7074,10 +5881,6 @@ declare namespace LocalJSX {
           * warning text below the input field
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxDatePicker {
         /**
@@ -7099,10 +5902,6 @@ declare namespace LocalJSX {
          */
         "i18nDone"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i18n-done"?: string;
-        /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.1.0
          */
@@ -7113,18 +5912,10 @@ declare namespace LocalJSX {
          */
         "maxDate"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-date"?: string;
-        /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
         "minDate"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-date"?: string;
         /**
           * Triggers if the date selection changes. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
           * @since 2.1.0
@@ -7144,11 +5935,12 @@ declare namespace LocalJSX {
           * If true a date-range can be selected (from/to).
          */
         "range"?: boolean;
-        "standaloneAppearance"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
-        "standalone-appearance"?: boolean;
+        "showWeekNumbers"?: boolean;
+        "standaloneAppearance"?: boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
@@ -7160,10 +5952,6 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "weekStartIndex"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "week-start-index"?: number;
     }
     interface IxDateTimeCard {
         /**
@@ -7175,10 +5963,6 @@ declare namespace LocalJSX {
          */
         "individual"?: boolean;
         "standaloneAppearance"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "standalone-appearance"?: boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -7186,10 +5970,6 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "dateFormat"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "date-format"?: string;
         /**
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
@@ -7201,9 +5981,10 @@ declare namespace LocalJSX {
          */
         "i18nDone"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+          * Top label of time picker
+          * @since 3.0.0
          */
-        "i18n-done"?: string;
+        "i18nTime"?: string;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
@@ -7215,18 +5996,10 @@ declare namespace LocalJSX {
          */
         "maxDate"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-date"?: string;
-        /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
         "minDate"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-date"?: string;
         /**
           * Date change
           * @since 1.1.0
@@ -7251,25 +6024,13 @@ declare namespace LocalJSX {
          */
         "showHour"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-hour"?: boolean;
-        /**
           * Show minutes input
          */
         "showMinutes"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-minutes"?: boolean;
-        /**
           * Show seconds input
          */
         "showSeconds"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-seconds"?: boolean;
         /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
@@ -7277,9 +6038,10 @@ declare namespace LocalJSX {
          */
         "showTimeReference"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
-        "show-time-reference"?: boolean;
+        "showWeekNumbers"?: boolean;
         /**
           * Select time with format string
           * @since 1.1.0
@@ -7291,17 +6053,9 @@ declare namespace LocalJSX {
          */
         "timeFormat"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "time-format"?: string;
-        /**
           * Set time reference
          */
         "timeReference"?: 'AM' | 'PM';
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "time-reference"?: 'AM' | 'PM';
         /**
           * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
@@ -7312,10 +6066,6 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "weekStartIndex"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "week-start-index"?: number;
     }
     /**
      * @since 1.4.0
@@ -7328,33 +6078,17 @@ declare namespace LocalJSX {
          */
         "closeOnClickOutside"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-on-click-outside"?: boolean;
-        /**
           * Render the drawer with maximum height
          */
         "fullHeight"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "full-height"?: boolean;
         /**
           * Max width interpreted as REM
          */
         "maxWidth"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-width"?: number;
-        /**
           * Min width interpreted as REM
          */
         "minWidth"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-width"?: number;
         /**
           * Fire event after drawer is close
          */
@@ -7381,24 +6115,12 @@ declare namespace LocalJSX {
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
         "closeBehavior"?: CloseBehavior;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-behavior"?: CloseBehavior;
         "discoverAllSubmenus"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "discover-all-submenus"?: boolean;
         /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
         "ignoreRelatedSubmenu"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "ignore-related-submenu"?: boolean;
         /**
           * Move dropdown along main axis of alignment
          */
@@ -7424,10 +6146,6 @@ declare namespace LocalJSX {
          */
         "positioningStrategy"?: 'absolute' | 'fixed';
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "positioning-strategy"?: 'absolute' | 'fixed';
-        /**
           * Show dropdown
          */
         "show"?: boolean;
@@ -7436,15 +6154,7 @@ declare namespace LocalJSX {
           * @since 2.0.0
          */
         "suppressAutomaticPlacement"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-automatic-placement"?: boolean;
         "suppressOverflowBehavior"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-overflow-behavior"?: boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
@@ -7459,10 +6169,6 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-behavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
          */
@@ -7521,19 +6227,11 @@ declare namespace LocalJSX {
         "icon"?: string;
         "isSubMenu"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-sub-menu"?: boolean;
-        /**
           * Label of dropdown item
          */
         "label"?: string;
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
         "suppressChecked"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-checked"?: boolean;
     }
     /**
      * @since 1.4.0
@@ -7568,10 +6266,6 @@ declare namespace LocalJSX {
           * Optional empty state sub header
          */
         "subHeader"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "sub-header"?: string;
     }
     interface IxEventList {
         /**
@@ -7590,10 +6284,6 @@ declare namespace LocalJSX {
           * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'.
          */
         "itemHeight"?: 'S' | 'L' | number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "item-height"?: 'S' | 'L' | number;
     }
     interface IxEventListItem {
         /**
@@ -7610,10 +6300,6 @@ declare namespace LocalJSX {
          */
         "itemColor"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "item-color"?: string;
-        /**
           * Event list item click
          */
         "onItemClick"?: (event: IxEventListItemCustomEvent<any>) => void;
@@ -7628,10 +6314,6 @@ declare namespace LocalJSX {
           * @since 1.6.0
          */
         "fullWidth"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "full-width"?: boolean;
         /**
           * Button with no background or outline
          */
@@ -7669,15 +6351,7 @@ declare namespace LocalJSX {
           * The id of the form element that the label is associated with
          */
         "htmlFor"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "html-for"?: string;
         "isInvalid"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-invalid"?: boolean;
         /**
           * A value is required or must be checked for the form to be submittable
          */
@@ -7695,65 +6369,33 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The id of the form element that the label is associated with
          */
         "htmlForLabel"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "html-for-label"?: string;
         /**
           * Info text for the field component
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the field component
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Is the field component info
          */
         "isInfo"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-info"?: boolean;
-        /**
           * Is the field component invalid
          */
         "isInvalid"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-invalid"?: boolean;
         /**
           * Is the field component valid
          */
         "isValid"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-valid"?: boolean;
-        /**
           * Is the field component warning
          */
         "isWarning"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-warning"?: boolean;
         /**
           * Label for the field component
          */
@@ -7767,25 +6409,13 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the field component
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * Warning text for the field component
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxFilterChip {
         /**
@@ -7833,10 +6463,6 @@ declare namespace LocalJSX {
           * Controls the visibility of the content
          */
         "contentVisible"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "content-visible"?: boolean;
     }
     interface IxGroup {
         /**
@@ -7847,10 +6473,6 @@ declare namespace LocalJSX {
           * Expand the group if the header is clicked
          */
         "expandOnHeaderClick"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "expand-on-header-click"?: boolean;
         /**
           * Group header
          */
@@ -7880,17 +6502,9 @@ declare namespace LocalJSX {
          */
         "subHeader"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "sub-header"?: string;
-        /**
           * Prevent header from being selectable
          */
         "suppressHeaderSelection"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-header-selection"?: boolean;
     }
     interface IxGroupContextMenu {
     }
@@ -7916,10 +6530,6 @@ declare namespace LocalJSX {
          */
         "secondaryText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "secondary-text"?: string;
-        /**
           * Show selected state
          */
         "selected"?: boolean;
@@ -7927,10 +6537,6 @@ declare namespace LocalJSX {
           * Supress the selection of the group
          */
         "suppressSelection"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-selection"?: boolean;
         /**
           * Group item text
          */
@@ -7942,49 +6548,25 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The id of the form element that the label is associated with
          */
         "htmlFor"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "html-for"?: string;
         /**
           * Info text for the field component
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the field component
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Valid text for the field component
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * Warning text for the field component
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxIconButton {
         /**
@@ -7992,10 +6574,6 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "a11yLabel"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "a11y-label"?: string;
         /**
           * Disabled
          */
@@ -8012,10 +6590,6 @@ declare namespace LocalJSX {
           * Color of icon in  button
          */
         "iconColor"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-color"?: string;
         /**
           * Loading button
           * @since 2.0.0
@@ -8094,10 +6668,6 @@ declare namespace LocalJSX {
          */
         "allowedCharactersPattern"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "allowed-characters-pattern"?: string;
-        /**
           * Specifies whether the text field is disabled.
          */
         "disabled"?: boolean;
@@ -8106,25 +6676,13 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The info text for the text field.
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * The error text for the text field.
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * The label for the text field.
          */
@@ -8134,17 +6692,9 @@ declare namespace LocalJSX {
          */
         "maxLength"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-length"?: number;
-        /**
           * The minimum length of the text field.
          */
         "minLength"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-length"?: number;
         /**
           * The name of the text field.
          */
@@ -8182,10 +6732,6 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
          */
         "type"?: 'text' | 'email' | 'password' | 'tel' | 'url';
@@ -8194,10 +6740,6 @@ declare namespace LocalJSX {
          */
         "validText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
-        /**
           * The value of the text field.
          */
         "value"?: string;
@@ -8205,11 +6747,11 @@ declare namespace LocalJSX {
           * The warning text for the text field.
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
+    /**
+     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * Use the 'ix-input' component instead
+     */
     interface IxInputGroup {
     }
     /**
@@ -8228,10 +6770,6 @@ declare namespace LocalJSX {
           * Optional key value label position - 'top' or 'left'
          */
         "labelPosition"?: KeyValueLabelPosition;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "label-position"?: KeyValueLabelPosition;
         /**
           * Optional key value text value
          */
@@ -8281,10 +6819,6 @@ declare namespace LocalJSX {
           * The grid will not have any horizontal padding
          */
         "noMargin"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "no-margin"?: boolean;
     }
     /**
      * @since 2.0.0
@@ -8309,25 +6843,13 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "application-name"?: string;
-        /**
           * Hide the sidebar context menu button when set to true
          */
         "hideContextMenu"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-context-menu"?: boolean;
-        /**
           * Navigation title
          */
         "navigationTitle"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "navigation-title"?: string;
         /**
           * Context menu clicked
          */
@@ -8352,10 +6874,6 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-color"?: string;
-        /**
           * Title of overlay
          */
         "name"?: string;
@@ -8370,75 +6888,31 @@ declare namespace LocalJSX {
          */
         "applicationDescription"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "application-description"?: string;
-        /**
           * Should only be set if you use ix-menu standalone
          */
         "applicationName"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "application-name"?: string;
         "enableMapExpand"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "enable-map-expand"?: boolean;
         /**
           * Is settings tab is visible
          */
         "enableSettings"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "enable-settings"?: boolean;
-        /**
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "enable-toggle-theme"?: boolean;
         /**
           * Toggle the expand state of the menu
          */
         "expand"?: boolean;
         "i18nCollapse"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-collapse"?: string;
         "i18nExpand"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-expand"?: string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
          */
         "i18nExpandSidebar"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-expand-sidebar"?: string;
         "i18nLegal"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-legal"?: string;
         "i18nSettings"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-settings"?: string;
         "i18nToggleTheme"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-toggle-theme"?: string;
         /**
           * Menu expanded
          */
@@ -8471,36 +6945,20 @@ declare namespace LocalJSX {
          */
         "showAbout"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-about"?: boolean;
-        /**
           * Is settings tab visible
          */
         "showSettings"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-settings"?: boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
           * @since 2.2.0
          */
         "startExpanded"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "start-expanded"?: boolean;
     }
     interface IxMenuAbout {
         /**
           * Active tab
          */
         "activeTabLabel"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "active-tab-label"?: string;
         /**
           * Content of the header
          */
@@ -8531,16 +6989,8 @@ declare namespace LocalJSX {
           * Subtitle of the about news
          */
         "aboutItemLabel"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "about-item-label"?: string;
         "expanded"?: boolean;
         "i18nShowMore"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-show-more"?: string;
         /**
           * Title of the about news
          */
@@ -8549,10 +6999,6 @@ declare namespace LocalJSX {
           * Bottom offset
          */
         "offsetBottom"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "offset-bottom"?: number;
         /**
           * Popover closed
          */
@@ -8576,10 +7022,6 @@ declare namespace LocalJSX {
          */
         "i18nLogout"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-logout"?: string;
-        /**
           * Display a avatar image
           * @since 1.4.0
          */
@@ -8598,10 +7040,6 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "showLogoutButton"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-logout-button"?: boolean;
         /**
           * First line of text
          */
@@ -8653,10 +7091,6 @@ declare namespace LocalJSX {
          */
         "ixAriaLabel"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "ix-aria-label"?: string;
-        /**
           * Display as pinned
          */
         "pinned"?: boolean;
@@ -8685,10 +7119,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         "isCategory"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-category"?: boolean;
-        /**
           * Label of the menu item. Will also be used as tooltip text
           * @since 2.2.0
          */
@@ -8703,10 +7133,6 @@ declare namespace LocalJSX {
           * Active tab
          */
         "activeTabLabel"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "active-tab-label"?: string;
         /**
           * Label of first tab
          */
@@ -8747,8 +7173,16 @@ declare namespace LocalJSX {
         "onClosedChange"?: (event: IxMessageBarCustomEvent<any>) => void;
         /**
           * Specifies the type of the alert.
+          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
          */
-        "type"?: 'danger' | 'warning' | 'info';
+        "type"?: | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
@@ -8773,17 +7207,9 @@ declare namespace LocalJSX {
          */
         "closeOnBackdropClick"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-on-backdrop-click"?: boolean;
-        /**
           * If set to true the modal can be closed by pressing the Escape key
          */
         "closeOnEscape"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-on-escape"?: boolean;
         /**
           * Dialog close
          */
@@ -8817,10 +7243,6 @@ declare namespace LocalJSX {
          */
         "hideClose"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-close"?: boolean;
-        /**
           * Icon of the Header
          */
         "icon"?: string;
@@ -8828,10 +7250,6 @@ declare namespace LocalJSX {
           * Icon color
          */
         "iconColor"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-color"?: string;
         /**
           * Emits when close icon is clicked and closes the modal Can be prevented, in which case only the event is triggered, and the modal remains open
          */
@@ -8849,10 +7267,6 @@ declare namespace LocalJSX {
          */
         "allowedCharactersPattern"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "allowed-characters-pattern"?: string;
-        /**
           * Disables the input field
          */
         "disabled"?: boolean;
@@ -8861,25 +7275,13 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The info text for the input field
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * The error text for the input field
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * The label for the input field
          */
@@ -8929,25 +7331,13 @@ declare namespace LocalJSX {
          */
         "showStepperButtons"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-stepper-buttons"?: boolean;
-        /**
           * Indicates if the text should be shown as a tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * The valid text for the input field
          */
         "validText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
         /**
           * The value of the input field
          */
@@ -8956,10 +7346,6 @@ declare namespace LocalJSX {
           * The warning text for the input field
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     /**
      * @since 1.5.0
@@ -8978,33 +7364,17 @@ declare namespace LocalJSX {
          */
         "i18nItems"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-items"?: string;
-        /**
           * i18n
          */
         "i18nOf"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-of"?: string;
         /**
           * i18n
          */
         "i18nPage"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-page"?: string;
-        /**
           * Number of items shown at once. Can only be changed in advaced mode.
          */
         "itemCount"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "item-count"?: number;
         /**
           * Item count change event
          */
@@ -9018,17 +7388,9 @@ declare namespace LocalJSX {
          */
         "selectedPage"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "selected-page"?: number;
-        /**
           * Show item count in advanced mode
          */
         "showItemCount"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-item-count"?: boolean;
     }
     /**
      * @since 2.1.0
@@ -9055,23 +7417,11 @@ declare namespace LocalJSX {
          */
         "hideOnCollapse"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-on-collapse"?: boolean;
-        /**
           * Name of the icon
          */
         "icon"?: string;
         "ignoreLayoutSettings"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "ignore-layout-settings"?: boolean;
         "isMobile"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "is-mobile"?: boolean;
         /**
           * This event is triggered when the variant of the pane is changed
          */
@@ -9124,10 +7474,6 @@ declare namespace LocalJSX {
          */
         "alignLeft"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "align-left"?: boolean;
-        /**
           * Custom color for pill. Only working for `variant='custom'`
          */
         "background"?: string | undefined;
@@ -9144,18 +7490,10 @@ declare namespace LocalJSX {
          */
         "pillColor"?: string | undefined;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "pill-color"?: string | undefined;
-        /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
          */
         "tooltipText"?: string | boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "tooltip-text"?: string | boolean;
         /**
           * Pill variant
          */
@@ -9246,25 +7584,13 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * Info text for the field component
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the field component
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Label for the field component
          */
@@ -9278,17 +7604,9 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the field component
          */
         "validText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
         /**
           * Value of the radiobutton group component
          */
@@ -9297,10 +7615,6 @@ declare namespace LocalJSX {
           * Warning text for the field component
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     /**
      * @since 2.0.0
@@ -9316,10 +7630,6 @@ declare namespace LocalJSX {
          */
         "allowClear"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "allow-clear"?: boolean;
-        /**
           * If true the select will be in disabled state
          */
         "disabled"?: boolean;
@@ -9329,18 +7639,10 @@ declare namespace LocalJSX {
          */
         "dropdownMaxWidth"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "dropdown-max-width"?: string;
-        /**
           * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
           * @since 2.7.0
          */
         "dropdownWidth"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "dropdown-width"?: string;
         /**
           * Select is extendable
          */
@@ -9351,69 +7653,37 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * Hide list header
           * @since 1.5.0
          */
         "hideListHeader"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-list-header"?: boolean;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @since 1.5.0
          */
         "i18nNoMatches"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-no-matches"?: string;
-        /**
           * Input field placeholder
          */
         "i18nPlaceholder"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-placeholder"?: string;
         /**
           * Input field placeholder for editable select
          */
         "i18nPlaceholderEditable"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-placeholder-editable"?: string;
-        /**
           * Select list header
          */
         "i18nSelectListHeader"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-select-list-header"?: string;
         /**
           * Info text for the select component
           * @since 2.6.0
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * Error text for the select component
           * @since 2.6.0
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * Label for the select component
           * @since 2.6.0
@@ -9461,18 +7731,10 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
-        /**
           * Valid text for the select component
           * @since 2.6.0
          */
         "validText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
           * @since 2.0.0
@@ -9483,10 +7745,6 @@ declare namespace LocalJSX {
           * @since 2.6.0
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxSelectItem {
         "hover"?: boolean;
@@ -9546,20 +7804,12 @@ declare namespace LocalJSX {
          */
         "traceReference"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "trace-reference"?: number;
-        /**
           * Current value of the slider
          */
         "value"?: number;
     }
     interface IxSpinner {
         "hideTrack"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-track"?: boolean;
         /**
           * Size of spinner
          */
@@ -9575,10 +7825,6 @@ declare namespace LocalJSX {
           * @since 2.3.0
          */
         "closeBehavior"?: CloseBehavior;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "close-behavior"?: CloseBehavior;
         /**
           * Disabled
          */
@@ -9611,10 +7857,6 @@ declare namespace LocalJSX {
           * Icon of the button on the right
          */
         "splitIcon"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "split-icon"?: string;
         /**
           * Color variant of button
          */
@@ -9700,25 +7942,13 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "helper-text"?: string;
-        /**
           * The info text for the textarea field.
          */
         "infoText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "info-text"?: string;
-        /**
           * The error text for the textarea field.
          */
         "invalidText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "invalid-text"?: string;
         /**
           * The label for the textarea field.
          */
@@ -9728,17 +7958,9 @@ declare namespace LocalJSX {
          */
         "maxLength"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "max-length"?: number;
-        /**
           * The minimum length of the textarea field.
          */
         "minLength"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "min-length"?: number;
         /**
           * The name of the textarea field.
          */
@@ -9772,57 +7994,29 @@ declare namespace LocalJSX {
          */
         "resizeBehavior"?: TextareaResizeBehavior;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "resize-behavior"?: TextareaResizeBehavior;
-        /**
           * Determines if the text should be displayed as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-text-as-tooltip"?: boolean;
         /**
           * The width of the textarea specified by number of characters.
          */
         "textareaCols"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "textarea-cols"?: number;
-        /**
           * The height of the textarea field (e.g. "52px").
          */
         "textareaHeight"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "textarea-height"?: string;
         /**
           * The height of the textarea specified by number of rows.
          */
         "textareaRows"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "textarea-rows"?: number;
-        /**
           * The width of the textarea field (e.g. "200px").
          */
         "textareaWidth"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "textarea-width"?: string;
-        /**
           * The valid text for the textarea field.
          */
         "validText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "valid-text"?: string;
         /**
           * The value of the textarea field.
          */
@@ -9831,10 +8025,6 @@ declare namespace LocalJSX {
           * The warning text for the textarea field.
          */
         "warningText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "warning-text"?: string;
     }
     interface IxTile {
         /**
@@ -9865,51 +8055,27 @@ declare namespace LocalJSX {
          */
         "showHour"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-hour"?: boolean;
-        /**
           * Show minutes input
          */
         "showMinutes"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-minutes"?: boolean;
         /**
           * Show seconds input
          */
         "showSeconds"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-seconds"?: boolean;
-        /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
         "standaloneAppearance"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "standalone-appearance"?: boolean;
         /**
           * Text of date select button
           * @since 1.1.0
          */
         "textSelectTime"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-select-time"?: string;
-        /**
           * Text for top label
           * @since 2.1.0
          */
         "textTime"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-time"?: string;
         /**
           * Select time with format string Format has to match the `format` property.
           * @since 1.1.0
@@ -9919,10 +8085,6 @@ declare namespace LocalJSX {
           * Set time reference
          */
         "timeReference"?: 'AM' | 'PM' | undefined;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "time-reference"?: 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**
@@ -9930,17 +8092,9 @@ declare namespace LocalJSX {
          */
         "autoClose"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "auto-close"?: boolean;
-        /**
           * Autoclose title after delay
          */
         "autoCloseDelay"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "auto-close-delay"?: number;
         /**
           * Icon of toast
          */
@@ -9950,10 +8104,6 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "icon-color"?: string;
-        /**
           * Toast closed
          */
         "onCloseToast"?: (event: IxToastCustomEvent<any>) => void;
@@ -9962,25 +8112,13 @@ declare namespace LocalJSX {
          */
         "toastTitle"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "toast-title"?: string;
-        /**
           * Toast type
          */
         "type"?: ToastType;
     }
     interface IxToastContainer {
         "containerClass"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "container-class"?: string;
         "containerId"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "container-id"?: string;
         "position"?: 'bottom-right' | 'top-right';
     }
     /**
@@ -9999,10 +8137,6 @@ declare namespace LocalJSX {
           * Hide `on` and `off` text
          */
         "hideText"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-text"?: boolean;
         /**
           * If true the control is in indeterminate state
          */
@@ -10025,25 +8159,13 @@ declare namespace LocalJSX {
          */
         "textIndeterminate"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-indeterminate"?: string;
-        /**
           * Text for off state
          */
         "textOff"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-off"?: string;
-        /**
           * Text for on state
          */
         "textOn"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-on"?: string;
         /**
           * Value of the checkbox component
          */
@@ -10092,18 +8214,10 @@ declare namespace LocalJSX {
     interface IxTooltip {
         "animationFrame"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "animation-frame"?: boolean;
-        /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: ElementReference;
+        "for"?: ElementReference | ElementReference[];
         "hideDelay"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "hide-delay"?: number;
         /**
           * Define if the user can access the tooltip via mouse.
          */
@@ -10115,17 +8229,9 @@ declare namespace LocalJSX {
         "placement"?: 'top' | 'right' | 'bottom' | 'left';
         "showDelay"?: number;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "show-delay"?: number;
-        /**
           * Title of the tooltip
          */
         "titleContent"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "title-content"?: string;
     }
     interface IxTree {
         /**
@@ -10179,10 +8285,6 @@ declare namespace LocalJSX {
          */
         "hasChildren"?: boolean;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "has-children"?: boolean;
-        /**
           * Click on item not on the expand/collapse icon
          */
         "onItemClick"?: (event: IxTreeItemCustomEvent<void>) => void;
@@ -10212,17 +8314,9 @@ declare namespace LocalJSX {
          */
         "textColor"?: TypographyColors;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-color"?: TypographyColors;
-        /**
           * Text decoration
          */
         "textDecoration"?: TextDecoration;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "text-decoration"?: TextDecoration;
     }
     interface IxUpload {
         /**
@@ -10238,25 +8332,13 @@ declare namespace LocalJSX {
          */
         "i18nUploadDisabled"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-upload-disabled"?: string;
-        /**
           * Label for upload file button
          */
         "i18nUploadFile"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "i-1-8n-upload-file"?: string;
-        /**
           * Will be used by state = UploadFileState.LOADING
          */
         "loadingText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "loading-text"?: string;
         /**
           * Whether the text should wrap to more than one line
          */
@@ -10274,10 +8356,6 @@ declare namespace LocalJSX {
          */
         "selectFileText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "select-file-text"?: string;
-        /**
           * After a file is uploaded you can set the upload component to a defined state
          */
         "state"?: UploadFileState;
@@ -10286,17 +8364,9 @@ declare namespace LocalJSX {
          */
         "uploadFailedText"?: string;
         /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "upload-failed-text"?: string;
-        /**
           * Will be used by state = UploadFileState.UPLOAD_SUCCESSED
          */
         "uploadSuccessText"?: string;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "upload-success-text"?: string;
     }
     interface IxValidationTooltip {
         /**
@@ -10312,10 +8382,6 @@ declare namespace LocalJSX {
           * @since 2.0.0
          */
         "suppressAutomaticPlacement"?: boolean;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "suppress-automatic-placement"?: boolean;
     }
     interface IxWorkflowStep {
         /**
@@ -10357,10 +8423,6 @@ declare namespace LocalJSX {
           * Activate navigation click
          */
         "selectedIndex"?: number;
-        /**
-         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
-         */
-        "selected-index"?: number;
         /**
           * Select orientation
          */
@@ -10608,6 +8670,10 @@ declare module "@stencil/core" {
              * @form-ready 2.6.0
              */
             "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
+            /**
+             * @deprecated since 3.0.0. Will be removed with 4.0.0.
+             * Use the 'ix-input' component instead
+             */
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
              * @since 1.6.0

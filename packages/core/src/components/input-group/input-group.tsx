@@ -10,6 +10,10 @@
 import { Component, Element, h, Host, State } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
 
+/**
+ * @deprecated since 3.0.0. Will be removed with 4.0.0.
+ * Use the 'ix-input' component instead
+ */
 @Component({
   tag: 'ix-input-group',
   styleUrl: 'input-group.scss',
@@ -22,6 +26,9 @@ export class InputGroup {
 
   @State() inputPaddingLeft = 0;
   @State() inputPaddingRight = 0;
+
+  startSlotRef?: HTMLElement;
+  endSlotRef?: HTMLElement;
 
   private get inputElement() {
     return this.hostElement.querySelector('input') as HTMLInputElement;
@@ -90,7 +97,7 @@ export class InputGroup {
       }
     } else {
       console.warn(
-        'You used the ix-input-group without an input tag, e.g. <input class="form-control" />'
+        'You used the ix-input-group without an input tag, e.g. <input class="ix-form-control" />'
       );
     }
   }
@@ -100,12 +107,8 @@ export class InputGroup {
   }
 
   private startSlotChanged() {
-    const slot = this.hostElement.shadowRoot!.querySelector(
-      'slot[name="input-start"]'
-    )!;
-
     setTimeout(() => {
-      const startPadding = this.getChildrenWidth(slot);
+      const startPadding = this.getChildrenWidth(this.startSlotRef);
 
       if (startPadding !== 0) {
         this.inputPaddingLeft = 11 + startPadding;
@@ -134,16 +137,12 @@ export class InputGroup {
   }
 
   private endSlotChanged() {
-    const slot = this.hostElement.shadowRoot!.querySelector(
-      'slot[name="input-end"]'
-    )!;
-
     setTimeout(() => {
-      this.inputPaddingRight = 15 + this.getChildrenWidth(slot);
+      this.inputPaddingRight = 15 + this.getChildrenWidth(this.endSlotRef);
     });
   }
 
-  private getChildrenWidth(slotElement: Element) {
+  private getChildrenWidth(slotElement: Element | undefined) {
     if (!slotElement) {
       return 0;
     }
@@ -166,11 +165,17 @@ export class InputGroup {
     return (
       <Host class={{ disabled: this.disabled }}>
         <div class="group group-start">
-          <slot name="input-start"></slot>
+          <slot
+            ref={(el) => (this.startSlotRef = el as HTMLElement)}
+            name="input-start"
+          ></slot>
         </div>
         <slot></slot>
         <div class="group group-end">
-          <slot name="input-end"></slot>
+          <slot
+            ref={(el) => (this.endSlotRef = el as HTMLElement)}
+            name="input-end"
+          ></slot>
         </div>
       </Host>
     );

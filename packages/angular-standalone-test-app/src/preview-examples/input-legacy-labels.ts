@@ -15,7 +15,7 @@ import { IxInputGroup } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxInputGroup],
   template: `
-    <form class="needs-validation m-2">
+    <form class="needs-validation">
       <ix-input-group style="margin-bottom: 0.5rem;">
         <span slot="input-start">Label Start</span>
         <input type="text" />

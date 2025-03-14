@@ -19,5 +19,6 @@ import { IxKeyValue } from '@siemens/ix-angular/standalone';
       <input placeholder="Enter text here" type="text" slot="custom-value" />
     </ix-key-value>
   `,
+  styleUrls: ['./key-value-with-custom-value.css'],
 })
 export default class KeyValueWithCustomValue {}

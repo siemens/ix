@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of thi  s source tree.
  */
 import { expect } from '@playwright/test';
+import { iconEye } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -25,14 +26,19 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest('initial padding start', async ({ mount, page }) => {
-  await mount(`
+  await mount(
+    `
     <ix-input-group>
       <span slot="input-start">
         <ix-icon name="eye" size="16"></ix-icon>
       </span>
       <input class="parameter-value" type="text" value="Some initial value" />
     </ix-input-group>
-  `);
+  `,
+    {
+      icons: { iconEye },
+    }
+  );
 
   const group = page.locator('ix-input-group');
   await expect(group).toHaveClass(/hydrated/);
@@ -43,7 +49,8 @@ regressionTest('initial padding start', async ({ mount, page }) => {
 });
 
 regressionTest('initial padding end', async ({ mount, page }) => {
-  await mount(`
+  await mount(
+    `
     <ix-input-group>
       <span slot="input-start">
           <ix-icon name="eye" size="16"></ix-icon>
@@ -53,7 +60,11 @@ regressionTest('initial padding end', async ({ mount, page }) => {
       </span>
       <input class="parameter-value" type="text" value="Some initial value" />
     </ix-input-group>
-  `);
+  `,
+    {
+      icons: { iconEye },
+    }
+  );
 
   const group = page.locator('ix-input-group');
   await expect(group).toHaveClass(/hydrated/);
@@ -133,7 +144,8 @@ regressionTest('validation padding', async ({ mount, page }) => {
 regressionTest(
   'validation padding with input-start slot',
   async ({ mount, page }) => {
-    await mount(`
+    await mount(
+      `
     <form class="needs-validation" noValidation>
       <ix-input-group>
         <ix-icon name="eye" size="12" slot="input-start"></ix-icon>
@@ -142,7 +154,11 @@ regressionTest(
 
       <ix-button type="submit">Submit</ix-button>
     </form>
-  `);
+  `,
+      {
+        icons: { iconEye },
+      }
+    );
 
     const form = page.locator('form');
     await form.evaluate((form) =>
@@ -168,14 +184,19 @@ regressionTest(
 regressionTest(
   'validation with class padding with input-start slot',
   async ({ mount, page }) => {
-    await mount(`
+    await mount(
+      `
     <form class="needs-validation" noValidation>
       <ix-input-group>
         <ix-icon name="eye" size="12" slot="input-start"></ix-icon>
         <input type="text" class="is-invalid" />
       </ix-input-group>
     </form>
-  `);
+  `,
+      {
+        icons: { iconEye },
+      }
+    );
 
     const form = page.locator('form');
     await form.evaluate((form) =>

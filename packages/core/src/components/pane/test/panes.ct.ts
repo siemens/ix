@@ -8,6 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
+import { iconStar } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -17,7 +18,8 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest('expanded', async ({ mount, page }) => {
-  await mount(`
+  await mount(
+    `
     <ix-pane
       heading="LEFT"
       composition="left"
@@ -26,14 +28,19 @@ regressionTest('expanded', async ({ mount, page }) => {
     >
       <h1>Test Heading</h1>
     </ix-pane>
-  `);
+  `,
+    {
+      icons: { iconStar },
+    }
+  );
 
   const title = page.locator('h1');
   await expect(title).toBeVisible();
 });
 
 regressionTest('prevent pane expansion', async ({ mount, page }) => {
-  await mount(`
+  await mount(
+    `
     <ix-pane
       heading="LEFT"
       composition="left"
@@ -43,7 +50,11 @@ regressionTest('prevent pane expansion', async ({ mount, page }) => {
     >
       <h1>Test Heading</h1>
     </ix-pane>
-  `);
+  `,
+    {
+      icons: { iconStar },
+    }
+  );
 
   const pane = page.locator('ix-pane');
 
