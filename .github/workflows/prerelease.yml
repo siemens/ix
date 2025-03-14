@@ -73,8 +73,7 @@ jobs:
 
       - name: Publish to npm + GitHub
         id: changesets
-        # Only publish if we're still in pre mode and the last commit was
-        # from an automatically created Version Packages PR
+        # Only publish if we're still in pre mode and the last commit was from an automatically created Version Packages PR
         if: steps.check_files.outputs.files_exists == 'true' && startsWith(github.event.head_commit.message, 'Version Packages')
         uses: changesets/action@v1
         with:
