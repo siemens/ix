@@ -17,9 +17,9 @@ The Siemens brand library contains Siemens specific brand elements and is only a
 
 › [Get more information here](https://siemens-ix.code.siemens.io/ix-brand-theme/)
 
-We use Figma variables to provide you a seamless and customizable experience when working with our themes. For detailed instructions on how to modify theme variables and select themes using the Figma library, please visit the [Theme Switching](./guidelines/theme-switching.md) page.
+We use Figma variables to provide you with a seamless and customizable experience when working with our themes. For detailed instructions on how to modify theme variables and select themes using the Figma library, please visit the [Theme Switching](./guidelines/theme-switching.md) page.
 
-For the Figma classic theme library (Open Source) please [contact us](contact-us.md).
+For the Figma classic theme library (open source) please [contact us](contact-us.md).
 
 <CardList>
   <Card label="For developers" link="getting-started" icon="script"/>
