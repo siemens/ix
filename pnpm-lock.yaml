@@ -60,7 +60,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: ^2.7.0 || ^3.0.0
+        specifier: ^3.0.0-alpha.0
         version: link:../core
     devDependencies:
       '@playwright/test':
@@ -112,7 +112,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.7.0
+        specifier: ~3.0.0-alpha.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: 3.0.0-alpha.0
@@ -847,7 +847,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.7.0
+        specifier: ~3.0.0-alpha.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: 3.0.0-alpha.0
@@ -1090,7 +1090,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.7.0
+        specifier: ~3.0.0-alpha.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: 3.0.0-alpha.0
