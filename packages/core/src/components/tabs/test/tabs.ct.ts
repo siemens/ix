@@ -94,11 +94,9 @@ test('should not change tab by native click event on prevent default', async ({
   await expect(firstTab).toHaveClass(/selected/);
 
   await secondTab.click();
-
-  await expect(secondTab).toHaveClass(/selected/);
-
   await lastTab.click();
 
+  await expect(secondTab).toHaveClass(/selected/);
   await expect(lastTab).not.toHaveClass(/selected/);
 });
 
