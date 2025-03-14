@@ -11,6 +11,7 @@ import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 import anime from 'animejs';
+import { isNumber } from '../utils/condition-checks';
 
 @Component({
   tag: 'ix-event-list',
@@ -60,8 +61,8 @@ export class EventList {
       this.triggerFadeIn();
     }
 
-    if (!Number.isNaN(Number(this.itemHeight))) {
-      const height = convertToRemString(this.itemHeight as number);
+    if (isNumber(this.itemHeight)) {
+      const height = convertToRemString(this.itemHeight);
       this.hostElement
         .querySelectorAll('ix-event-list-item')
         .forEach((item) => {
@@ -79,24 +80,50 @@ export class EventList {
 
   private onMutation(mutationRecords: Array<MutationRecord>) {
     this.triggerFadeOut().then(() => {
-      if (typeof this.itemHeight === 'number') {
+      if (isNumber(this.itemHeight)) {
         const height = convertToRemString(this.itemHeight);
 
-        mutationRecords
-          .filter((mutation) => mutation.type === 'childList')
-          .forEach((mutation) =>
-            mutation.addedNodes.forEach((item) => {
-              const itemHtml = item as HTMLElement;
+        // Find all newly added ix-event-list-item elements, including nested ones
+        const eventListItems = this.findEventListItems(mutationRecords);
 
-              this.setCustomHeight(itemHtml, height);
-            })
-          );
+        // Apply height to each item
+        eventListItems.forEach((item) => this.setCustomHeight(item, height));
       }
 
       this.handleChevron(this.chevron);
 
       this.triggerFadeIn();
     });
+  }
+
+  private findEventListItems(mutationRecords: MutationRecord[]): HTMLElement[] {
+    const eventListItems: HTMLElement[] = [];
+
+    mutationRecords.forEach((mutation) => {
+      if (mutation.type !== 'childList') {
+        return;
+      }
+
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType !== Node.ELEMENT_NODE) {
+          return;
+        }
+
+        const element = node as HTMLElement;
+
+        // If the node itself is an ix-event-list-item, add it
+        if (element.tagName === 'IX-EVENT-LIST-ITEM') {
+          eventListItems.push(element);
+        }
+
+        // Also find and add any nested ix-event-list-item elements
+        eventListItems.push(
+          ...Array.from(element.querySelectorAll('ix-event-list-item'))
+        );
+      });
+    });
+
+    return eventListItems;
   }
 
   private setCustomHeight(item: HTMLElement, height: string) {
