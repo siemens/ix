@@ -9,7 +9,6 @@
 
 import { useLocation } from '@docusaurus/router';
 import React, { useEffect, useLayoutEffect } from 'react';
-import { useTheme } from '../utils/hooks/useTheme';
 
 declare global {
   interface Window {
@@ -21,8 +20,7 @@ declare global {
 }
 
 export default function Root({ children }) {
-  const { pathname } = useLocation();
-  const theme = useTheme();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     window.ste_statistic = window.ste_statistic || [];
@@ -30,13 +28,13 @@ export default function Root({ children }) {
       action: 'page.ready',
       data: {
         page: {
-          path: pathname,
+          path: `${pathname}#${hash}`,
           country: 'WW',
           language: 'en',
         },
       },
     });
-  }, [pathname]);
+  }, [pathname, hash]);
 
   useLayoutEffect(() => {
     const isAlreadyLoaded = document.head.querySelector(

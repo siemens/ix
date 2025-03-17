@@ -61,7 +61,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Build
-        run: pnpm build --cache-dir=.turbo --filter \!documentation
+        run: pnpm build --cache-dir=.turbo --filter '!documentation'
 
       - name: Lint
         run: pnpm lint
@@ -194,4 +194,4 @@ jobs:
         run: pnpm exec playwright install chromium --with-deps
 
       - name: Test
-        run: pnpm run test --cache-dir=.turbo --filter !\documentation
+        run: pnpm run test --cache-dir=.turbo --filter '!documentation'

@@ -1,0 +1,107 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+@use './overwrite/doc-sidebar';
+@use './overwrite/navbar';
+@use './overwrite/doc-generated-index-page';
+@use './overwrite/doc-markdown';
+@use './overwrite/code-block';
+@use './overwrite/toc';
+@use './overwrite/doc-footer';
+@use './overwrite/container';
+@use './overwrite/table';
+@use './overwrite/admonition';
+@use './components/docsLayoutWrapper';
+@use './components/apiTable';
+@use './components/navLink';
+
+@use './../../node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css';
+@use './../../node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --default-content-padding-top: 5.5rem;
+  --default-content-padding-left: calc(1rem + 4vw);
+  --default-content-padding: var(--default-content-padding-top)
+    var(--default-content-padding-left);
+}
+
+:root[data-ix-theme='brand'][data-ix-variant='dark'],
+#__docusaurus.theme-classic-dark {
+  --ifm-background-color: var(--theme-color-1);
+  --ifm-navbar-background-color: var(--theme-color-1);
+}
+
+:root[data-ix-theme],
+#__docusaurus.theme-classic-dark,
+#__docusaurus.theme-classic-dark {
+  --ifm-color-primary: var(--theme-color-dynamic);
+  --ifm-code-font-size: 95%;
+  --ifm-toc-border-color: var(--theme-color-x-weak-bdr);
+  --ifm-spacing-horizontal: 0rem;
+  --ifm-menu-color-active: var(--theme-color-dynamic);
+  --ifm-footer-background-color: var(--theme-color-1);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-ix-theme='brand'][data-ix-variant='dark'],
+#__docusaurus.theme-classic-dark {
+  --ix-docs-hero-background: var(--theme-color-1);
+  --ix-docs-hero-tab-active: var(--theme-color-1);
+}
+
+[data-ix-theme='brand'][data-ix-variant='light'],
+#__docusaurus.theme-classic-light {
+  --ix-docs-hero-background: var(--theme-color-1);
+  --ix-docs-hero-tab-active: var(--theme-color-1);
+}
+
+#__docusaurus {
+  background-color: var(--theme-color-1);
+}
+
+.color-table-classic-dark {
+  @extend .theme-classic-dark;
+}
+
+.color-table-classic-light {
+  @extend .theme-classic-light;
+}
+
+[id]::before {
+  content: '';
+  display: block;
+  height: 15rem;
+  margin-top: -15rem;
+  visibility: hidden;
+}
+
+ix-tooltip {
+  // Increase z-index to make sure it is displayed on top of the sidebar
+  z-index: 9999;
+}
+
+.all-unset {
+  all: unset;
+}
+
+@media (pointer: fine) {
+  .thin-scrollbar {
+    scrollbar-width: thin;
+  }
+
+  @supports not (-moz-appearance: none) {
+    .thin-scrollbar {
+      scrollbar-width: auto;
+    }
+  }
+}
+
+
+
