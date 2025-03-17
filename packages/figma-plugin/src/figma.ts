@@ -76,7 +76,7 @@ async function getImageResource(
       logger.log('🕰️ Retry after 60 seconds');
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(getImageResource(fileName, nodeIds, figmaToken));
+          resolve(getImageResource(fileName, nodeIds, figmaToken, fileVersion));
         }, 60 * 1000);
       });
     }
@@ -190,21 +190,15 @@ export default (config: FigmaConfig) => {
 
   return () => {
     const transformer = async (ast: any) => {
-      const nodes: EnhancedMDXImageNode[] = [];
-      const bucketUrls = new Map<string, Record<string, string>>();
       const imageRequests = new Map<string, Set<string>>();
+      const standardNodes: any[] = [];
 
       visit(ast, 'image', (node: any) => {
-        const { fileName, nodeId } = getFigmaMeta(node);
-        nodes.push({
-          ...node,
-          fileName,
-          nodeId,
-        } satisfies EnhancedMDXImageNode);
+        standardNodes.push(node);
       });
 
-      for (const node of nodes) {
-        const { fileName, nodeId } = node;
+      for (const node of standardNodes) {
+        const { fileName, nodeId } = getFigmaMeta(node);
         if (imageRequests.has(fileName)) {
           imageRequests.get(fileName).add(nodeId);
         } else {
@@ -212,32 +206,32 @@ export default (config: FigmaConfig) => {
         }
       }
 
-      const requestImagesFromFigma: Promise<void>[] = [];
-      for (const [fileName, ids] of imageRequests) {
-        requestImagesFromFigma.push(
-          getImageResource(
-            fileName,
-            Array.from(ids),
-            config.apiToken,
-            config.fileVersionId
-          ).then((images) => {
-            bucketUrls.set(fileName, images);
-          })
+      const waitForAllImageRequest: Promise<Record<string, string>>[] = [];
+      imageRequests.forEach(async (ids, fileName) => {
+        const images = getImageResource(
+          fileName,
+          Array.from(ids),
+          config.apiToken,
+          config.fileVersionId
         );
-      }
+        waitForAllImageRequest.push(images);
+      });
 
-      await Promise.all(requestImagesFromFigma);
+      const urls = await Promise.all(waitForAllImageRequest);
 
-      for (const node of nodes) {
-        const { fileName } = getFigmaMeta(node);
+      const modifiedNodes: Promise<void>[] = [];
+      urls.forEach((s3BucketUrls) => {
+        standardNodes.forEach((node) => {
+          const { nodeId } = getFigmaMeta(node);
+          const localId = decodeURIComponent(nodeId).replace(/-/, ':');
 
-        logger.debug('Modify MDX URL for', fileName);
-        requestImagesFromFigma.push(
-          modifyMDXUrl(node, bucketUrls.get(fileName), config)
-        );
-      }
+          if (s3BucketUrls[localId]) {
+            modifiedNodes.push(modifyMDXUrl(node, s3BucketUrls, config));
+          }
+        });
+      });
 
-      await Promise.all(requestImagesFromFigma);
+      await Promise.all(modifiedNodes);
     };
     return transformer;
   };
