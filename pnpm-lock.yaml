@@ -398,7 +398,7 @@ importers:
         specifier: ^5.3.3
         version: 5.6.3
 
-  packages/documentation-redesign:
+  packages/documentation:
     dependencies:
       '@docusaurus/core':
         specifier: 3.7.0
@@ -5784,9 +5784,6 @@ packages:
   '@types/hast@2.3.7':
     resolution: {integrity: sha512-EVLigw5zInURhzfXUM65eixfadfsHKomGKUakToXo84t8gGIJuTcD2xooM2See7GyQ7DRtYjhCHnSUQez8JaLw==}
 
-  '@types/hast@3.0.2':
-    resolution: {integrity: sha512-B5hZHgHsXvfCoO3xgNJvBnX7N8p86TqQeGKXcokW4XXi+qY4vxxPSFYofytvVmpFxzPv7oxDQzjg5Un5m2/xiw==}
-
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
 
@@ -7773,6 +7770,7 @@ packages:
 
   critters@0.0.24:
     resolution: {integrity: sha512-Oyqew0FGM0wYUSNqR0L6AteO5MpMoUU0rhKRieXeiKs+PmRTxiJMyaunYB2KF6fQ3dzChXKCpbFOEJx3OQ1v/Q==}
+    deprecated: Ownership of Critters has moved to the Nuxt team, who will be maintaining the project going forward. If you'd like to keep using Critters, please switch to the actively-maintained fork at https://github.com/danielroe/beasties
 
   cross-fetch@4.0.0:
     resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
@@ -10980,10 +10978,6 @@ packages:
     peerDependenciesMeta:
       node-notifier:
         optional: true
-
-  jiti@1.20.0:
-    resolution: {integrity: sha512-3TV69ZbrvV6U5DfQimop50jE9Dl6J8O1ja1dvBbMba/sZ3YBEQqJ2VZRoQPVnhlzjNtU1vaXRZVrVjU4qtm8yA==}
-    hasBin: true
 
   jiti@1.21.7:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
@@ -17281,7 +17275,7 @@ snapshots:
     dependencies:
       '@babel/compat-data': 7.26.2
       '@babel/helper-validator-option': 7.25.9
-      browserslist: 4.24.2
+      browserslist: 4.24.4
       lru-cache: 5.1.1
       semver: 6.3.1
 
@@ -17289,7 +17283,7 @@ snapshots:
     dependencies:
       '@babel/compat-data': 7.26.2
       '@babel/helper-validator-option': 7.25.9
-      browserslist: 4.24.2
+      browserslist: 4.24.4
       lru-cache: 5.1.1
       semver: 6.3.1
 
@@ -19866,15 +19860,15 @@ snapshots:
 
   '@csstools/postcss-cascade-layers@1.1.1(postcss@8.4.31)':
     dependencies:
-      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.0.16)
+      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.1.2)
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-cascade-layers@1.1.1(postcss@8.4.48)':
     dependencies:
-      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.0.16)
+      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.1.2)
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-cascade-layers@5.0.1(postcss@8.4.48)':
     dependencies:
@@ -20003,15 +19997,15 @@ snapshots:
 
   '@csstools/postcss-is-pseudo-class@2.0.7(postcss@8.4.31)':
     dependencies:
-      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.0.16)
+      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.1.2)
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-is-pseudo-class@2.0.7(postcss@8.4.48)':
     dependencies:
-      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.0.16)
+      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.1.2)
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-is-pseudo-class@5.0.1(postcss@8.4.48)':
     dependencies:
@@ -20226,9 +20220,9 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.0.0
 
-  '@csstools/selector-specificity@2.2.0(postcss-selector-parser@6.0.16)':
+  '@csstools/selector-specificity@2.2.0(postcss-selector-parser@6.1.2)':
     dependencies:
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   '@csstools/selector-specificity@5.0.0(postcss-selector-parser@7.0.0)':
     dependencies:
@@ -21016,7 +21010,7 @@ snapshots:
       github-slugger: 1.5.0
       globby: 11.1.0
       gray-matter: 4.0.3
-      jiti: 1.20.0
+      jiti: 1.21.7
       js-yaml: 4.1.0
       lodash: 4.17.21
       micromatch: 4.0.8
@@ -22133,7 +22127,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.6
       '@types/estree-jsx': 1.0.2
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       '@types/mdx': 2.0.9
       collapse-white-space: 2.1.0
       devlop: 1.1.0
@@ -23387,10 +23381,6 @@ snapshots:
   '@types/hast@2.3.7':
     dependencies:
       '@types/unist': 2.0.9
-
-  '@types/hast@3.0.2':
-    dependencies:
-      '@types/unist': 3.0.1
 
   '@types/hast@3.0.4':
     dependencies:
@@ -24702,8 +24692,8 @@ snapshots:
 
   autoprefixer@10.4.5(postcss@8.4.48):
     dependencies:
-      browserslist: 4.24.2
-      caniuse-lite: 1.0.30001684
+      browserslist: 4.24.4
+      caniuse-lite: 1.0.30001703
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
@@ -25117,7 +25107,7 @@ snapshots:
 
   browserslist@4.23.3:
     dependencies:
-      caniuse-lite: 1.0.30001684
+      caniuse-lite: 1.0.30001703
       electron-to-chromium: 1.5.7
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.3)
@@ -25296,8 +25286,8 @@ snapshots:
 
   caniuse-api@3.0.0:
     dependencies:
-      browserslist: 4.24.2
-      caniuse-lite: 1.0.30001684
+      browserslist: 4.24.4
+      caniuse-lite: 1.0.30001703
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
 
@@ -25764,11 +25754,11 @@ snapshots:
 
   core-js-compat@3.38.0:
     dependencies:
-      browserslist: 4.24.2
+      browserslist: 4.24.4
 
   core-js-compat@3.39.0:
     dependencies:
-      browserslist: 4.24.2
+      browserslist: 4.24.4
 
   core-js-pure@3.33.1: {}
 
@@ -25789,7 +25779,7 @@ snapshots:
     dependencies:
       '@types/node': 18.18.7
       cosmiconfig: 8.3.6(typescript@5.6.3)
-      jiti: 1.20.0
+      jiti: 1.21.7
       typescript: 5.6.3
     optional: true
 
@@ -25935,12 +25925,12 @@ snapshots:
   css-blank-pseudo@3.0.3(postcss@8.4.31):
     dependencies:
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   css-blank-pseudo@3.0.3(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   css-blank-pseudo@7.0.1(postcss@8.4.48):
     dependencies:
@@ -25954,12 +25944,12 @@ snapshots:
   css-has-pseudo@3.0.4(postcss@8.4.31):
     dependencies:
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   css-has-pseudo@3.0.4(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   css-has-pseudo@7.0.2(postcss@8.4.48):
     dependencies:
@@ -26074,7 +26064,7 @@ snapshots:
   cssnano-preset-advanced@6.1.2(postcss@8.4.48):
     dependencies:
       autoprefixer: 10.4.20(postcss@8.4.48)
-      browserslist: 4.24.2
+      browserslist: 4.24.4
       cssnano-preset-default: 6.1.2(postcss@8.4.48)
       postcss: 8.4.48
       postcss-discard-unused: 6.0.5(postcss@8.4.48)
@@ -28727,7 +28717,7 @@ snapshots:
 
   hast-util-from-parse5@8.0.1:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       '@types/unist': 3.0.1
       devlop: 1.1.0
       hastscript: 8.0.0
@@ -28740,11 +28730,11 @@ snapshots:
 
   hast-util-parse-selector@4.0.0:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
 
   hast-util-raw@9.0.1:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       '@types/unist': 3.0.1
       '@ungap/structured-clone': 1.2.0
       hast-util-from-parse5: 8.0.1
@@ -28762,7 +28752,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.6
       '@types/estree-jsx': 1.0.2
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       comma-separated-tokens: 2.0.3
       devlop: 1.1.0
       estree-util-attach-comments: 3.0.0
@@ -28781,7 +28771,7 @@ snapshots:
 
   hast-util-to-jsx-runtime@2.2.0:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       '@types/unist': 3.0.1
       comma-separated-tokens: 2.0.3
       hast-util-whitespace: 3.0.0
@@ -28793,7 +28783,7 @@ snapshots:
 
   hast-util-to-parse5@8.0.0:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       comma-separated-tokens: 2.0.3
       devlop: 1.1.0
       property-information: 6.3.0
@@ -28803,7 +28793,7 @@ snapshots:
 
   hast-util-whitespace@3.0.0:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
 
   hastscript@6.0.0:
     dependencies:
@@ -28815,7 +28805,7 @@ snapshots:
 
   hastscript@8.0.0:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       comma-separated-tokens: 2.0.3
       hast-util-parse-selector: 4.0.0
       property-information: 6.3.0
@@ -30376,8 +30366,6 @@ snapshots:
       - supports-color
       - ts-node
 
-  jiti@1.20.0: {}
-
   jiti@1.21.7: {}
 
   joi@17.11.0:
@@ -31258,7 +31246,7 @@ snapshots:
   mdast-util-mdx-expression@2.0.0:
     dependencies:
       '@types/estree-jsx': 1.0.2
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       '@types/mdast': 4.0.2
       devlop: 1.1.0
       mdast-util-from-markdown: 2.0.0
@@ -31269,7 +31257,7 @@ snapshots:
   mdast-util-mdx-jsx@3.0.0:
     dependencies:
       '@types/estree-jsx': 1.0.2
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       '@types/mdast': 4.0.2
       '@types/unist': 3.0.1
       ccount: 2.0.1
@@ -31297,7 +31285,7 @@ snapshots:
   mdast-util-mdxjs-esm@2.0.1:
     dependencies:
       '@types/estree-jsx': 1.0.2
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       '@types/mdast': 4.0.2
       devlop: 1.1.0
       mdast-util-from-markdown: 2.0.0
@@ -31312,7 +31300,7 @@ snapshots:
 
   mdast-util-to-hast@13.0.2:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       '@types/mdast': 4.0.2
       '@ungap/structured-clone': 1.2.0
       devlop: 1.1.0
@@ -32859,12 +32847,12 @@ snapshots:
   postcss-attribute-case-insensitive@5.0.2(postcss@8.4.31):
     dependencies:
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-attribute-case-insensitive@5.0.2(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-attribute-case-insensitive@7.0.1(postcss@8.4.48):
     dependencies:
@@ -32874,7 +32862,7 @@ snapshots:
   postcss-calc@9.0.1(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
   postcss-clamp@4.1.0(postcss@8.4.31):
@@ -32992,12 +32980,12 @@ snapshots:
   postcss-custom-selectors@6.0.3(postcss@8.4.31):
     dependencies:
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-custom-selectors@6.0.3(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-custom-selectors@8.0.4(postcss@8.4.48):
     dependencies:
@@ -33010,12 +32998,12 @@ snapshots:
   postcss-dir-pseudo-class@6.0.5(postcss@8.4.31):
     dependencies:
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-dir-pseudo-class@6.0.5(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-dir-pseudo-class@9.0.1(postcss@8.4.48):
     dependencies:
@@ -33041,7 +33029,7 @@ snapshots:
   postcss-discard-unused@6.0.5(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-double-position-gradients@3.1.2(postcss@8.4.31):
     dependencies:
@@ -33080,22 +33068,22 @@ snapshots:
   postcss-focus-visible@6.0.4(postcss@8.4.31):
     dependencies:
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-focus-visible@6.0.4(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-focus-within@5.0.4(postcss@8.4.31):
     dependencies:
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-focus-within@5.0.4(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-focus-within@9.0.1(postcss@8.4.48):
     dependencies:
@@ -33222,7 +33210,7 @@ snapshots:
   postcss-loader@7.3.3(postcss@8.4.48)(typescript@5.5.4)(webpack@5.96.1):
     dependencies:
       cosmiconfig: 8.3.6(typescript@5.5.4)
-      jiti: 1.20.0
+      jiti: 1.21.7
       postcss: 8.4.48
       semver: 7.6.3
       webpack: 5.96.1
@@ -33281,7 +33269,7 @@ snapshots:
       caniuse-api: 3.0.0
       cssnano-utils: 4.0.2(postcss@8.4.48)
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-minify-font-values@6.1.0(postcss@8.4.48):
     dependencies:
@@ -33305,7 +33293,7 @@ snapshots:
   postcss-minify-selectors@6.0.4(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-modules-extract-imports@3.1.0(postcss@8.4.48):
     dependencies:
@@ -33335,15 +33323,15 @@ snapshots:
 
   postcss-nesting@10.2.0(postcss@8.4.31):
     dependencies:
-      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.0.16)
+      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.1.2)
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-nesting@10.2.0(postcss@8.4.48):
     dependencies:
-      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.0.16)
+      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.1.2)
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-nesting@13.0.1(postcss@8.4.48):
     dependencies:
@@ -33634,12 +33622,12 @@ snapshots:
   postcss-pseudo-class-any-link@7.1.6(postcss@8.4.31):
     dependencies:
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-pseudo-class-any-link@7.1.6(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-reduce-idents@6.0.3(postcss@8.4.48):
     dependencies:
@@ -33668,12 +33656,12 @@ snapshots:
   postcss-selector-not@6.0.1(postcss@8.4.31):
     dependencies:
       postcss: 8.4.31
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-selector-not@6.0.1(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-selector-not@8.0.1(postcss@8.4.48):
     dependencies:
@@ -33709,7 +33697,7 @@ snapshots:
   postcss-unique-selectors@6.0.4(postcss@8.4.48):
     dependencies:
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   postcss-url@10.1.3(postcss@8.4.48):
     dependencies:
@@ -33979,7 +33967,7 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.26.2
       address: 1.2.2
-      browserslist: 4.24.2
+      browserslist: 4.24.4
       chalk: 4.1.2
       cross-spawn: 7.0.6
       detect-port-alt: 1.1.6
@@ -34322,7 +34310,7 @@ snapshots:
 
   rehype-raw@7.0.0:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       hast-util-raw: 9.0.1
       vfile: 6.0.1
 
@@ -34387,7 +34375,7 @@ snapshots:
 
   remark-rehype@11.0.0:
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       '@types/mdast': 4.0.2
       mdast-util-to-hast: 13.0.2
       unified: 11.0.4
@@ -35551,9 +35539,9 @@ snapshots:
 
   stylehacks@6.1.1(postcss@8.4.48):
     dependencies:
-      browserslist: 4.24.2
+      browserslist: 4.24.4
       postcss: 8.4.48
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.2
 
   stylus-loader@7.0.0(stylus@0.59.0)(webpack@5.76.1(esbuild@0.15.5)):
     dependencies:
@@ -37161,7 +37149,7 @@ snapshots:
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
       acorn: 8.14.0
-      browserslist: 4.24.2
+      browserslist: 4.24.4
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.17.1
       es-module-lexer: 1.6.0
