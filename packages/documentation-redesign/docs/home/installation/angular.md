@@ -1,7 +1,11 @@
 ---
 sidebar_position: 1
-sidebar_title: Angular
+sidebar_label: Angular
 title: Angular
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'Angular is a popular framework for building dynamic web applications. This section guides you through the steps to install and set up our design system within an Angular project, ensuring a smooth integration process.'
 ---
 
 import Tabs from '@theme/Tabs';

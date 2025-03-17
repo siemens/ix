@@ -1,10 +1,12 @@
 ---
 sidebar_position: 1
-sidebar_title: Roadmap
+sidebar_label: Roadmap
 title: Roadmap
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'We’re constantly improving our design system for you by extending the component library, developing our user guidance and ensuring the system is reliable and easy to use. Here’s what’s happening over the next year so you know what to expect from your Siemens Industrial Experience team.'
 ---
-
-# Siemens Industrial Experience Roadmap
 
 ![Roadmap](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?type=design&node-id=694-130&mode=design&t=7oYieUSvKMurFcpx-11)
 

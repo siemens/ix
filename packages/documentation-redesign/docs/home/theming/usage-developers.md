@@ -1,15 +1,33 @@
-# Developing with themes
+---
+sidebar_label: Developing with themes
+title: Developing with themes
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'Siemens Industrial Experience supports theming for all of its components. Everyone can use the two embedded themes that already ship with Siemens Industrial Experience: Classic light (theme-classic-light) and Classic dark (theme-classic-dark). You can also create your own themes to customize the design system for your own brand. Siemens AG applications should utilize the exclusive Siemens AG Corporate Brand Theme.'
+---
 
-Siemens Industrial Experience supports theming for all of its components.
+## Siemens AG Corporate Brand Theme
 
-Everyone can use the two embedded themes that already ship with Siemens Industrial Experience:
+<div className="siemens-brand-section">
 
-- Classic light (theme-classic-light)
-- Classic dark (theme-classic-dark)
+The Siemens AG Corporate Brand Theme is exclusively available for official Siemens AG products, where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
 
-You can also create your own themes in order to customize the design system for your own brand.
+Siemens AG employees can access the Corporate Brand Theme at [**https://code.siemens.com/siemens-ix/ix-brand-theme**](https://code.siemens.com/siemens-ix/ix-brand-theme).
 
-Siemens AG applications should utilize the exclusive Siemens AG Corporate Brand Theme.
+</div>
+
+## How to set a theme
+
+The default theme is `theme-classic-dark`. To set a different theme, change the `class` attribute of the `<body>` tag to contain e.g. `theme-classic-light` instead of `theme-classic-dark`.
+
+```html
+<html>
+  <!-- Framework related imports -->
+  <!--  -->
+  <body class="theme-classic-light"></body>
+</html>
+```
 
 ## Using the old classic theme
 
@@ -38,28 +56,6 @@ If this step is done, you can set the theme name class on the body tag:
 
 - **deprecated** Legacy Classic light (theme-legacy-classic-light)
 - **deprecated** Legacy Classic dark (theme-legacy-classic-dark)
-
-## Siemens AG Corporate Brand Theme
-
-<div className="siemens-brand-section">
-
-The Siemens AG Corporate Brand Theme is exclusively available for official Siemens AG products, where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
-
-Siemens AG employees can access the Corporate Brand Theme at [**https://code.siemens.com/siemens-ix/ix-brand-theme**](https://code.siemens.com/siemens-ix/ix-brand-theme).
-
-</div>
-
-## How to set a theme
-
-The default theme is `theme-classic-dark`. To set a different theme, change the `class` attribute of the `<body>` tag to contain e.g. `theme-classic-light` instead of `theme-classic-dark`.
-
-```html
-<html>
-  <!-- Framework related imports -->
-  <!--  -->
-  <body class="theme-classic-light"></body>
-</html>
-```
 
 ## Applying only one theme to reduce build size
 

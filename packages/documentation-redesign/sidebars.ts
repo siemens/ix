@@ -43,6 +43,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'home/installation/angular',
         'home/installation/react',
+        'home/installation/javascript',
         'home/installation/vue',
         'home/installation/csp',
         'home/installation/blazor',
