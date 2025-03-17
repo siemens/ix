@@ -4866,6 +4866,33 @@
           "setter": false
         },
         {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "to",
           "type": "string",
           "complexType": {
@@ -5418,6 +5445,33 @@
           "setter": false
         },
         {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "validText",
           "type": "string | undefined",
           "complexType": {
@@ -5944,6 +5998,33 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
         },
         {
           "name": "textSelectDate",
@@ -6589,6 +6670,33 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
         },
         {
           "name": "textSelectDate",
