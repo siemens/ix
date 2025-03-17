@@ -1,0 +1,30 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
+ */
+.docItemContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem var(--default-content-padding-left) 3rem
+    var(--default-content-padding-left);
+  width: 100%;
+  position: relative;
+}
+
+.Row {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.toc {
+  max-width: 14rem;
+}
+
+@media (max-width: 997px) {
+  .docItemContainer {
+    padding: 3rem 2rem;
+  }
+
+  .Row {
+    grid-template-columns: 100%;
+  }
+}

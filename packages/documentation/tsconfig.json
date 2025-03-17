@@ -7,10 +7,6 @@
       "node",
       "@docusaurus/module-type-aliases",
       "@docusaurus/preset-classic"
-    ],
-    "paths": {
-      "@siemens/ix-icons/*": ["./node_modules/@siemens/ix-icons/*"],
-      "@siemens/ix-icons": ["./node_modules/@siemens/ix-icons"]
-    }
+    ]
   }
 }
