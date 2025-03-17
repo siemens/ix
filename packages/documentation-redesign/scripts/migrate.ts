@@ -9,6 +9,7 @@
 import path from 'path';
 import fs from 'fs-extra';
 import Mustache from 'mustache';
+import { toKebabCase } from '@site/scripts/utils/string-utils';
 
 console.log('Migration script');
 
@@ -59,9 +60,10 @@ function flatMarkdowns(
 ) {
   const files = fs.readdirSync(filePath).filter((file) => {
     if (only) {
-      return only.some((o) => file.includes(o));
+      return only.some((o) => file === o || file.startsWith(o + '/'));
     }
-    return !ignore.some((i) => file.includes(i));
+
+    return !ignore.some((i) => file === i);
   });
 
   files.forEach((file) => {
@@ -79,6 +81,7 @@ function flatMarkdowns(
 
       const regex = /_(.*)_(code|styleguide|guide|style)\.(md|mdx)$/g;
       const match = regex.exec(file);
+
       if (match) {
         const [, name, type] = match;
 
@@ -116,15 +119,10 @@ flatMarkdowns(
   [
     '_divider.md',
     '_category_.json',
-    'toast',
-    'modal',
     '_toast',
     '_modal',
-    '_forms-toggle_styleguide.md',
   ],
-  undefined,
-  // forms-behavior does not have tabs but is located under components
-  ['forms-behavior']
+  undefined
 );
 
 const indexMdTemplate = fs.readFileSync(__migrationIndexTemplate, 'utf-8');
@@ -206,6 +204,8 @@ function normalizeHeadlines(name: string, file: string): string {
     '#### Angular',
     '#### Vue',
     '#### Javascript',
+    '#### By template',
+    '#### By instance',
   ]);
 
   const normalizedSections = sections
@@ -449,6 +449,69 @@ function processGuideFile(guideFile) {
   return finalLines.join('\n');
 }
 
+function removeUnusedImports(content) {
+  const importRegex =
+    /^import\s+(?:(?:\{[^}]*\})|(?:[^{}\s]+))?\s+from\s+['"]([^'"]+)['"];?/gm;
+  const imports = [];
+  let match;
+
+  while ((match = importRegex.exec(content)) !== null) {
+    imports.push({
+      statement: match[0],
+      module: match[1],
+      start: match.index,
+      end: match.index + match[0].length,
+    });
+  }
+
+  const unusedImports = imports.filter((imp) => {
+    const importedItems = imp.statement.match(
+      /import\s+(\{[^}]*\}|[^{}\s;]+)/
+    )[1];
+
+    if (importedItems.startsWith('{')) {
+      const items = importedItems
+        .slice(1, -1)
+        .split(',')
+        .map((item) => {
+          const trimmed = item.trim();
+          if (trimmed.includes(' as ')) {
+            return trimmed.split(' as ')[1].trim();
+          }
+          return trimmed;
+        });
+
+      return !items.some((item) => {
+        const contentAfterImports = content.substring(imp.end);
+        return new RegExp(`\\b${item}\\b`).test(contentAfterImports);
+      });
+    } else {
+      let importName = importedItems;
+      if (importedItems.includes(' as ')) {
+        importName = importedItems.split(' as ')[1].trim();
+      }
+
+      const contentAfterImports = content.substring(imp.end);
+      return !new RegExp(`\\b${importName}\\b`).test(contentAfterImports);
+    }
+  });
+
+  let result = content;
+  for (let i = unusedImports.length - 1; i >= 0; i--) {
+    const imp = unusedImports[i];
+    let end = imp.end;
+
+    if (content[end] === '\n') {
+      end++;
+    } else if (content.substring(end, end + 2) === '\r\n') {
+      end += 2;
+    }
+
+    result = result.substring(0, imp.start) + result.substring(end);
+  }
+
+  return result;
+}
 Object.keys(newDocs).forEach((name) => {
   const { guidePath, codePath, flatMarkdown } = newDocs[name];
   const folderName = path.resolve(__newDocumentationComponents, name);
@@ -472,18 +535,18 @@ Object.keys(newDocs).forEach((name) => {
   if (guidePath) {
     tabs.push('Usage');
     let guideFile = fs.readFileSync(guidePath, 'utf-8');
-
-    // Process the guide file to fix heading structure
+    guideFile = guideFile.replace(
+      /^---\s*sidebar_position:\s*\d+\s*---$/gm,
+      ''
+    );
     guideFile = processGuideFile(guideFile);
-
     guideFile = tryToResolveBrokenLinks(guideFile);
-
     const { file, text } = tryToGetIntroductionText(guideFile);
     guideFile = file;
-
     if (text) {
       introductionText = text;
     }
+
     guideFile = enforceSingleBlankLineAroundHeadings(guideFile);
     guideFile = removeLeadingNewline(guideFile);
     fs.writeFileSync(path.resolve(folderName, 'guide.md'), guideFile);
@@ -496,6 +559,30 @@ Object.keys(newDocs).forEach((name) => {
     codeFile = codeFile.replace(/^# [^\n]*\n/gm, '');
     codeFile = codeFile.replace(/#{1,4} Examples/g, '');
     codeFile = codeFile.replace(/import DocsTabs.*;\n/gm, '');
+
+    // Transform Tabs/TabItem structure to H3 headings
+    codeFile = codeFile.replace(
+      /<Tabs>[\s\S]*?<TabItem[\s\S]*?value="([^"]*)"[\s\S]*?label="([^"]*)"[\s\S]*?>([\s\S]*?)<\/TabItem>[\s\S]*?<\/Tabs>/g,
+      function (match) {
+        let result = '';
+        const tabItems = [];
+        let tabItemRegex =
+          /<TabItem\s+value="([^"]*)"\s+label="([^"]*)"(?:\s+default)?>([\s\S]*?)<\/TabItem>/g;
+        let tabMatch;
+
+        while ((tabMatch = tabItemRegex.exec(match)) !== null) {
+          const [, value, label, content] = tabMatch;
+          tabItems.push({ value, label, content: content.trim() });
+        }
+
+        tabItems.forEach((item) => {
+          result += `\n\n### ${item.label}\n\n${item.content}\n\n`;
+        });
+
+        return result;
+      }
+    );
+
     codeFile = codeFile.replace(
       /<Playground(.*?)(\/>)/g,
       '<Playground$1></Playground>'
@@ -504,52 +591,323 @@ Object.keys(newDocs).forEach((name) => {
       /<Playground.*?name="([^"]+)".*?<\/Playground>/gms;
     const playgrounds = codeFile.match(patchCodeMarkdown);
     const playgroundImports: string[] = [];
+
     playgrounds?.forEach((playground) => {
       const nameRegex = /name="([^"]+)"/gms;
       const heightRegex = /height="([^"]+)"/gms;
+      const frameworksRegex = /frameworks={(\[[^\]]+\])}/gms;
+      const additionalFilesRegex = /additionalFiles={{([^}]+)}}/gms;
+      const devianRootFileNameRegex = /deviantRootFileName="([^"]+)"/gms;
+
       const nameMatch = nameRegex.exec(playground);
       const heightMatch = heightRegex.exec(playground);
-      if (nameMatch) {
-        const [, playgroundName] = nameMatch;
+      const frameworksMatch = frameworksRegex.exec(playground);
+      const additionalFilesMatch = additionalFilesRegex.exec(playground);
+      const devianRootFileNameMatch = devianRootFileNameRegex.exec(playground);
+
+      if (!nameMatch) return;
+
+      const [, playgroundName] = nameMatch;
+
+      const toValidJSIdentifier = (filename) => {
+        return filename.replace(/-/g, '_').replace(/\./g, '_');
+      };
+
+      if (frameworksMatch && additionalFilesMatch) {
+        const playgroundImport =
+          "import Playground from '@site/src/components/Playground';";
+        if (!playgroundImports.includes(playgroundImport)) {
+          playgroundImports.push(playgroundImport);
+        }
+
+        const frameworksArray = frameworksMatch[1]
+          .replace(/[\[\]"'\s]/g, '')
+          .split(',')
+          .filter(Boolean);
+
+        const frameworks = frameworksArray.length
+          ? frameworksArray
+          : ['react', 'angular', 'vue', 'html'];
+
+        const cleanedFrameworks = frameworks.map((fw) =>
+          fw === 'javascript' ? 'html' : fw
+        );
+
+        const rootFileName = devianRootFileNameMatch
+          ? devianRootFileNameMatch[1]
+          : playgroundName;
+
+        const additionalFiles = {};
+        if (additionalFilesMatch && additionalFilesMatch[1]) {
+          const content = additionalFilesMatch[1].replace(
+            /javascript/g,
+            'html'
+          ); // Replace javascript with html
+          const frameworkSections = content.split(/(\w+):\s*\[/g);
+
+          for (let i = 1; i < frameworkSections.length; i += 2) {
+            const framework =
+              frameworkSections[i].trim() === 'javascript'
+                ? 'html'
+                : frameworkSections[i].trim();
+            const filesSection = frameworkSections[i + 1];
+            if (filesSection) {
+              const filesList = filesSection
+                .split(']')[0]
+                .split(',')
+                .map((f) => f.replace(/[']/g, '').trim())
+                .filter(Boolean);
+
+              additionalFiles[framework] = filesList;
+            }
+          }
+        }
+
+        let sourceImports = [];
+        let sourceObj = {};
+        let filesObj = {};
+
+        cleanedFrameworks.forEach((framework) => {
+          if (!sourceObj[framework]) sourceObj[framework] = {};
+          if (!filesObj[framework]) filesObj[framework] = {};
+
+          let files = [];
+
+          if (
+            additionalFiles[framework] &&
+            additionalFiles[framework].length > 0
+          ) {
+            additionalFiles[framework].forEach((fileName) => {
+              const hasQuotes = fileName.includes('"');
+              const cleanFileName = fileName.replace(/"/g, '');
+              const fileNameNoExt = cleanFileName
+                .split('.')
+                .slice(0, -1)
+                .join('.');
+              const ext = cleanFileName.split('.').pop();
+
+              let alias = `${toValidJSIdentifier(
+                fileNameNoExt
+              )}_${ext}_${framework}`;
+
+              files.push({
+                name: fileName,
+                cleanName: cleanFileName,
+                alias: alias,
+                hasQuotes: hasQuotes,
+              });
+            });
+          } else {
+            switch (framework) {
+              case 'react':
+                files = [
+                  {
+                    name: `${rootFileName}.tsx`,
+                    cleanName: `${rootFileName}.tsx`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_tsx_react`,
+                    hasQuotes: false,
+                  },
+                  {
+                    name: `${rootFileName}.scoped.css`,
+                    cleanName: `${rootFileName}.scoped.css`,
+                    alias: `${toValidJSIdentifier(
+                      rootFileName
+                    )}_scoped_css_react`,
+                    hasQuotes: false,
+                  },
+                ];
+                break;
+              case 'angular':
+                files = [
+                  {
+                    name: `${rootFileName}.ts`,
+                    cleanName: `${rootFileName}.ts`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_ts_angular`,
+                    hasQuotes: false,
+                  },
+                  {
+                    name: `${rootFileName}.css`,
+                    cleanName: `${rootFileName}.css`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_css_angular`,
+                    hasQuotes: false,
+                  },
+                ];
+                break;
+              case 'vue':
+                files = [
+                  {
+                    name: `${rootFileName}.vue`,
+                    cleanName: `${rootFileName}.vue`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_vue_vue`,
+                    hasQuotes: false,
+                  },
+                  {
+                    name: `${rootFileName}.css`,
+                    cleanName: `${rootFileName}.css`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_css_vue`,
+                    hasQuotes: false,
+                  },
+                ];
+                break;
+              case 'html':
+                files = [
+                  {
+                    name: `${rootFileName}.html`,
+                    cleanName: `${rootFileName}.html`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_html_html`,
+                    hasQuotes: false,
+                  },
+                  {
+                    name: `${rootFileName}.css`,
+                    cleanName: `${rootFileName}.css`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_css_html`,
+                    hasQuotes: false,
+                  },
+                ];
+                break;
+            }
+          }
+
+          files.forEach((file) => {
+            const importPath = `@site/docs/autogenerated/usage/${framework}/${file.cleanName}.md`;
+            sourceImports.push(`import ${file.alias} from '${importPath}';`);
+
+            const displayName = file.hasQuotes
+              ? `"${file.cleanName}"`
+              : file.cleanName;
+
+            sourceObj[framework][displayName] = file.alias;
+
+            const filePath = `'${framework}/${displayName}'`;
+            filesObj[framework][displayName] = filePath;
+          });
+        });
+
+        sourceImports.forEach((importStatement) => {
+          if (!playgroundImports.includes(importStatement)) {
+            playgroundImports.push(importStatement);
+          }
+        });
+
+        const formatNestedObj = (obj, quoteValues = false) => {
+          let result = '{{'; // Start with double braces
+          for (const [framework, files] of Object.entries(obj)) {
+            result += `${framework}: {`;
+            for (const [fileName, value] of Object.entries(files)) {
+              result += `\n            '${fileName}': ${value},`;
+            }
+            result += '\n          },\n          ';
+          }
+          result = result.slice(0, -12) + '}}'; // Close with double braces
+          return result;
+        };
+
+        const updatedPlayground = `<Playground
+        name="${playgroundName}" source=${formatNestedObj(sourceObj)}
+        files=${formatNestedObj(filesObj)}
+        height={props.height}
+        ${
+          cleanedFrameworks.length === 1
+            ? `onlyFramework="${cleanedFrameworks[0]}"`
+            : 'onlyFramework={props.onlyFramework}'
+        }
+        ></Playground>`;
+
+        codeFile = codeFile.replace(playground, updatedPlayground);
+      } else {
         let height = '';
         if (heightMatch?.length) {
           height = ` height="${heightMatch[1]}"`;
         }
         const componentName = `${kebabToCamelCase(playgroundName)}Playground`;
-        playgroundImports.push(
-          `import ${componentName} from '@site/docs/autogenerated/playground/${playgroundName}.mdx';`
-        );
+        const importStatement = `import ${componentName} from '@site/docs/autogenerated/playground/${playgroundName}.mdx';`;
+
+        if (!playgroundImports.includes(importStatement)) {
+          playgroundImports.push(importStatement);
+        }
+
         codeFile = codeFile.replace(
           playground,
           `<${componentName}${height} />`
         );
       }
     });
+
     codeFile = codeFile.replace(/import?.Preview.*;\n/g, '');
+    codeFile = codeFile.replace(/import.*(Tabs|TabItem)';\n/g, '');
     codeFile = codeFile.replace(
-      /import (.*) from '.*(ix-.*)\/props.md';/g,
-      "import $1Api from '@site/docs/autogenerated/api/$2/api.mdx';"
+      /import (.*) from '.*\/auto-generated\/utils\/(core\/.*)'/g,
+      (match, p1, p2) => {
+        const kebabCaseP1 = toKebabCase(p1);
+        return `import ${p1} from '@site/docs/autogenerated/utils/${kebabCaseP1}.mdx';`;
+      }
     );
+
+    codeFile = codeFile
+      .replace(
+        /import (.*) from '.*(ix-.*)\/props.md';?/g,
+        "import $1Api from '@site/docs/autogenerated/api/$2/api.mdx';"
+      )
+      .replace(/;;/g, ';');
     codeFile = codeFile.replace(
-      /import (.*) from.*auto-generated\/(.*)\/(events|slots).md';\n/g,
+      /import (.*) from.*auto-generated\/(.*)\/(events|slots).md';?\n/g,
       ``
     );
+
+    if (name === 'toast') {
+      codeFile = codeFile
+        .replace(
+          /import (.*Api) from '.\/\\_toast\/.*\/(.*-.*).md';/g,
+          "import $1 from '@site/docs/autogenerated/utils/$2.mdx';"
+        )
+        .replace(/.html/, '');
+
+      const processedPaths = new Set();
+
+      codeFile = codeFile.replace(
+        /import\s+([^;]+?)\s+from\s+['"](@site\/docs\/autogenerated\/utils\/[^'"]+)['"];/g,
+        function (match, importedElements, importPath) {
+          if (processedPaths.has(importPath)) {
+            return '';
+          }
+          processedPaths.add(importPath);
+          return match;
+        }
+      );
+    }
+
+    if (name === 'modal') {
+      const modalServiceImport =
+        "import ModalService from '@site/docs/autogenerated/utils/modal-service.mdx';";
+      if (!playgroundImports.includes(modalServiceImport)) {
+        playgroundImports.push(modalServiceImport);
+      }
+    }
+
     codeFile = codeFile.replace(
       /import.*Playground.*from.*Playground.*';?\n/g,
       playgroundImports.join('\n') + '\n'
     );
     codeFile = codeFile.replace(/#+\s(Properties|Events)\n+/gs, '');
     const apiComponents: string[] = [];
-    Array.from(codeFile.matchAll(/import (.*Api) from.*/gm)).forEach(
-      (match) => {
-        apiComponents.push(match[1]);
-      }
-    );
+    Array.from(
+      codeFile.matchAll(/import (.*Api|.*Config|.*Instance) from.*/gm)
+    ).forEach((match) => {
+      apiComponents.push(match[1]);
+    });
 
     codeFile = codeFile.replace(
-      /(#+\sAPI.*\/>)/gms,
+      /(#+\sAPI.*)/gms,
       `${apiComponents.map((c) => `<${c} />`).join('\n')}`
     );
+
+    if (!codeFile.endsWith('\n')) {
+      codeFile += '\n';
+    }
+
+    if (name === 'modal') {
+      codeFile += '<ModalService />\n';
+    }
 
     codeFile = tryToResolveBrokenLinks(codeFile);
     const { text, file } = tryToGetIntroductionText(codeFile);
@@ -557,6 +915,7 @@ Object.keys(newDocs).forEach((name) => {
     if (text) {
       introductionText = text;
     }
+
     codeFile = normalizeHeadlines(name, codeFile);
     codeFile = tryToReplaceTags(codeFile, name);
     codeFile = tryToReplaceSourceCodeSnippets(codeFile);
@@ -604,6 +963,7 @@ Object.keys(newDocs).forEach((name) => {
 
   let output = Mustache.render(indexMdTemplate, {
     hasGuide: tabs.includes('Usage'),
+    hasCode: tabs.includes('Code'),
     tabs: tabs,
     noSingleTab: no_single_tab_files.includes(name),
     title: title.replace(/-/g, ' '),
@@ -613,5 +973,9 @@ Object.keys(newDocs).forEach((name) => {
 
   output = output.replace(/, ]$/gm, ']');
   output = removeLeadingNewline(output);
+  if (name === "forms-behavior") {
+    console.log(output);
+  }
+  output = removeUnusedImports(output);
   fs.writeFileSync(path.resolve(folderName, 'index.mdx'), output);
 });

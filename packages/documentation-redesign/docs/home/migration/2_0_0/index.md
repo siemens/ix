@@ -163,7 +163,7 @@ As for now, bootstrap is still a part of our library, but we are planning to dro
 
 If you want to check if your application is still working smoothly without bootstrap, you can already test this by loading the new `core CSS` file.
 
-A detailed description can be found [here](./../../guidelines/theme#applying-only-one-theme-to-reduce-build-size).
+A detailed description can be found [here](../../theming/usage-developers#applying-only-one-theme-to-reduce-build-size).
 
 ## Questions ❓🙋‍♀️
 

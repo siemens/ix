@@ -125,7 +125,9 @@ additionalFiles={{
 ### Javascript
 
 <Playground
-name="modal" height="18rem" preventDefaultExample
+name="modal" 
+height="18rem" 
+preventDefaultExample
 frameworks={['javascript']}
 additionalFiles={{
   javascript: ['modal.html'],
@@ -136,11 +138,14 @@ additionalFiles={{
 
 How to open a loading modal is independent of the framework in use. Note that you have to import `showModalLoading` from the core package `@siemens/ix`.
 
-<Playground name="loading" preventDefaultExample
+<Playground 
+name="loading"
+preventDefaultExample
 frameworks={['react']}
 additionalFiles={{
 react: ['loading.tsx'],
-}}/>
+}}>
+</Playground>
 
 ### Message
 
@@ -154,11 +159,14 @@ How to open a message modal is independent of the framework in use. Note that yo
 - success
 - question
 
-<Playground name="message" height="15rem"
+<Playground 
+name="message" 
+height="15rem"
 frameworks={['react']}
 preventDefaultExample additionalFiles={{
 react: ['message.tsx'],
-}}/>
+}}>
+</Playground>
 
 The `showMessage` method returns a Listener with the following signature:
 
