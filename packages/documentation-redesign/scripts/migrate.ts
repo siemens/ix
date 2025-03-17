@@ -499,12 +499,19 @@ function removeUnusedImports(content) {
   let result = content;
   for (let i = unusedImports.length - 1; i >= 0; i--) {
     const imp = unusedImports[i];
-    result = result.substring(0, imp.start) + result.substring(imp.end);
+    let end = imp.end;
+
+    if (content[end] === '\n') {
+      end++;
+    } else if (content.substring(end, end + 2) === '\r\n') {
+      end += 2;
+    }
+
+    result = result.substring(0, imp.start) + result.substring(end);
   }
 
   return result;
 }
-
 Object.keys(newDocs).forEach((name) => {
   const { guidePath, codePath, flatMarkdown } = newDocs[name];
   const folderName = path.resolve(__newDocumentationComponents, name);
