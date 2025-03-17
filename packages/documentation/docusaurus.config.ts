@@ -121,7 +121,35 @@ const config: Config = {
     },
   ],
 
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'module',
+        src: 'https://cdn.jsdelivr.net/npm/@siemens/ix-icons@3.0.0-alpha.0/dist/ix-icons/ix-icons.esm.js',
+      },
+    },
+    {
+      tagName: 'script',
+      attributes: {
+        nomodule: 'true',
+        src: 'https://cdn.jsdelivr.net/npm/@siemens/ix-icons@3.0.0-alpha.0/dist/ix-icons/ix-icons.js',
+      },
+    },
+  ],
   themeConfig: {
+    metadata: [
+      {
+        name: 'keywords',
+        content:
+          'siemens-ix, ix, stenciljs, angular, webcomponent, react, siemens, ix, siemens, industrial, experience, vue',
+      },
+      {
+        name: 'description',
+        content:
+          'Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
+      },
+    ],
     colorMode: {
       defaultMode: 'dark',
     },
@@ -130,7 +158,7 @@ const config: Config = {
     navbar: {
       hideOnScroll: false,
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Siemens AG',
         src: `logos/siemens-dark.svg`,
         srcDark: `logos/siemens.svg`,
         height: 24,

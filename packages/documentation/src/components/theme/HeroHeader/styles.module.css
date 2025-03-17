@@ -16,6 +16,8 @@
   padding-top: 0;
   padding-bottom: var(--ifm-paragraph-margin-bottom);
   margin: 0;
+
+  z-index: 1;
 }
 
 .sticky_h1 {

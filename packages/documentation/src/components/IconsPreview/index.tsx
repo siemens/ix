@@ -9,7 +9,7 @@
 
 import ICON_LIST from '@siemens/ix-icons/dist/sample.json';
 import clsx from 'clsx';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './Icons.module.css';
 
 const Icons: React.FC = () => {

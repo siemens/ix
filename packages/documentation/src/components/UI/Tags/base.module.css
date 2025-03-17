@@ -43,6 +43,11 @@
 .Redirect .Link {
   color: var(--theme-color-primary);
 }
+
+.Redirect .Link p {
+  margin: 0px;
+}
+
 .Redirect .Link:hover {
   text-decoration: none;
 }

@@ -109,10 +109,8 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Navigation and hierarchy',
       items: [
-        'components/basic-navigation/index',
         'components/breadcrumb/index',
         'components/group/index',
-        'components/map-navigation/index',
         'components/pagination/index',
         'components/tabs/index',
         'components/tree/index',

@@ -522,8 +522,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@types/react@18.3.18)(react@18.3.1)
       '@siemens/ix-icons':
-        specifier: ^2.2.0
-        version: 2.2.0
+        specifier: 3.0.0-alpha.0
+        version: 3.0.0-alpha.0
       '@stackblitz/sdk':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5505,10 +5505,6 @@ packages:
 
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
-
-  '@siemens/ix-icons@2.2.0':
-    resolution: {integrity: sha512-GwIWARbWqDpT9xlvMboKm74B3K+WvbqeslgQSremaqBNmVn3ppbuwydXi1CLt5xTF49zFXZ4jc837wuUp/eI+w==}
-    engines: {node: '>=18.x.x', pnpm: '>=9.x.x'}
 
   '@siemens/ix-icons@3.0.0-alpha.0':
     resolution: {integrity: sha512-gaET4behhughx0VJJtI8VqnVaYPi3c7g5+7jtHPSXc1RyDlguHoN1joJiqbK1os1VKipbI0LTLHKLtIH7y2uwg==}
@@ -22648,10 +22644,6 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
-  '@siemens/ix-icons@2.2.0':
-    dependencies:
-      '@stencil/core': 4.27.2
-
   '@siemens/ix-icons@3.0.0-alpha.0':
     dependencies:
       '@stencil/core': 4.27.2
@@ -28753,7 +28745,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.2.1
     optionalDependencies:
-      webpack: 5.94.0(esbuild@0.23.0)
+      webpack: 5.94.0(esbuild@0.20.1)
     optional: true
 
   html-webpack-plugin@5.6.3(webpack@5.96.1):
