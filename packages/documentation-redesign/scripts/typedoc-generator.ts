@@ -17,6 +17,7 @@ import {
   TSConfigReader,
   UnionType,
 } from 'typedoc';
+import { toKebabCase } from '@site/scripts/utils/string-utils';
 
 export type TypeDocTarget = {
   name: string;
@@ -59,96 +60,135 @@ async function generateDocsForEntrypoint(entrypoint: string, targetPath: string)
     return;
   }
 
+  const types = processProjectChildren(project, __root);
+  await generateTypeDocs(types, targetPath, __templates);
+}
+
+function getPropertyType(property: any): string {
+  if (property.type instanceof IntrinsicType) {
+    return property.type.name;
+  } else if (property.type instanceof ReferenceType) {
+    return property.type.qualifiedName;
+  } else if (property.type instanceof UnionType) {
+    return property.type.types
+      .filter((t) => 'name' in t)
+      .map((t: any) => t.name)
+      .join(' | ');
+  } else {
+    console.log(`=== Type ${property.name} is unknown`);
+    return 'unknown';
+  }
+}
+
+function extractCommentTags(property: any): Array<{ tag: string; text?: string }> {
+  const tags: Array<{ tag: string; text?: string }> = [];
+
+  if (!property.comment?.blockTags) {
+    return tags;
+  }
+
+  for (const tag of property.comment.blockTags) {
+    const tagName = tag.tag.substring(1); // Remove @ symbol
+    const tagText = tag.content
+      .filter(content => content.kind === 'text')
+      .map(content => content.text)
+      .join('');
+
+    tags.push({ tag: tagName, text: tagText });
+  }
+
+  return tags;
+}
+
+function getCommentSummary(property: any): string {
+  if (!property?.comment?.summary) {
+    return '';
+  }
+
+  return property.comment.summary
+    .filter((summary) => summary.kind === 'text')
+    .map((summary) => summary.text)
+    .join('');
+}
+
+function processProperties(child: any): TypeDocProperty[] {
+  const properties: TypeDocProperty[] = [];
+
+  if (!child?.children) {
+    return properties;
+  }
+
+  for (const property of child.children) {
+    const type = getPropertyType(property);
+    const tags = extractCommentTags(property);
+    const comment = getCommentSummary(property);
+
+    properties.push({
+      name: property.name,
+      defaultValue: property.defaultValue,
+      type,
+      comment,
+      tags
+    });
+  }
+
+  return properties;
+}
+
+function processProjectChildren(project: any, rootPath: string): TypeDocTarget[] {
   const types: TypeDocTarget[] = [];
 
-  project.children?.forEach((child) => {
+  if (!project.children) {
+    return types;
+  }
+
+  for (const child of project.children) {
     const source = path.relative(
-      __root,
+      rootPath,
       child.sources![0].fullFileName
     );
-    const properties: TypeDocProperty[] = [];
+
+    const properties = processProperties(child);
+
     types.push({
       name: child.name,
-      properties: properties,
+      properties,
       type: 'Type',
       source,
     });
+  }
 
-    child?.children?.forEach((property) => {
-      let type = 'unknown';
-      if (property.type instanceof IntrinsicType) {
-        type = property.type.name;
-      } else if (property.type instanceof ReferenceType) {
-        type = property.type.qualifiedName;
-      } else if (property.type instanceof UnionType) {
-        type = property.type.types
-          .filter((t) => 'name' in t)
-          .map((t: any) => t.name)
-          .join(' | ');
-      } else {
-        console.log(`=== Type ${property.name} is unknown`);
-      }
+  return types;
+}
 
-      const tags: Array<{ tag: string; text?: string }> = [];
-      if (property.comment?.blockTags) {
-        property.comment.blockTags.forEach((tag) => {
-          const tagName = tag.tag.substring(1); // Remove @ symbol
-          const tagText = tag.content
-            .filter(content => content.kind === 'text')
-            .map(content => content.text)
-            .join('');
+function determineFramework(source: string): string | undefined {
+  const frameworks = ['react', 'angular', 'vue'];
 
-          tags.push({ tag: tagName, text: tagText });
-        });
-      }
+  for (const framework of frameworks) {
+    if (source.includes(framework)) {
+      return framework;
+    }
+  }
 
-      properties.push({
-        name: property.name,
-        defaultValue: property.defaultValue,
-        type,
-        comment: property?.comment?.summary
-          ?.filter((summary) => summary.kind === 'text')
-          .map((summary) => summary.text)
-          .join('') || '',
-        tags
-      });
-    });
-  });
+  return undefined;
+}
+
+async function generateTypeDocs(types: TypeDocTarget[], targetPath: string, templatesPath: string) {
+  const utilsPath = path.join(targetPath, 'utils');
+  await fs.ensureDir(utilsPath);
 
   for (const typedoc of types) {
+    const current_framework = determineFramework(typedoc.source);
+    const mdxContent = generateStructuredMDX(typedoc, templatesPath, current_framework);
 
-    let utilsPath = path.join(targetPath, 'utils');
-    const frameworks = ['react', 'angular', 'vue'];
-    let current_framework = undefined;
-
-    for (const framework of frameworks) {
-      if (typedoc.source.includes(framework)) {
-        //utilsPath = path.join(utilsPath, framework);
-        current_framework = framework;
-        break;
-      }
-    }
-
-    const mdxContent = generateStructuredMDX(typedoc, __templates, current_framework);
-
-    await fs.ensureDir(utilsPath);
-    console.log(`Generating TypeDoc: ${path.join(utilsPath, `${toKebabCase(typedoc.name)}.mdx`)}`);
-    await fs.writeFile(
-      path.join(utilsPath, `${toKebabCase(typedoc.name)}.mdx`),
-      mdxContent
-    );
+    const outputPath = path.join(utilsPath, `${toKebabCase(typedoc.name)}.mdx`);
+    console.log(`Generating TypeDoc: ${outputPath}`);
+    await fs.writeFile(outputPath, mdxContent);
 
     if (global.gc) {
       global.gc();
     }
   }
-}
-
-function toKebabCase(str: string): string {
-  return str
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/([A-Z])([A-Z])(?=[a-z])/g, '$1-$2')
-    .toLowerCase();
 }
 
 function convertTagsToTSXElements(tags: Array<{ tag: string; text?: string }>) {

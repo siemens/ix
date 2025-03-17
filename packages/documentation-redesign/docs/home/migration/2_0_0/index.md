@@ -157,7 +157,7 @@ In addition, you can specify which layout modes should be enabled for your menu 
 ## Preparation for removing Bootstrap as dependency
 
 One goal of the [Shadow DOM](#shadow-dom) refactoring was to make all ix components interoperable. Therefore, we have decided that we no longer want to depend on any third party CSS framework.
-In the past, we relied on bootstrap which is nor longer necessary. By removing bootstrap from the list of peer dependencies we will provide you with the flexibility to choose any one of the available CSS frameworks without running into conflicts.
+In the past, we relied on bootstrap which is no longer necessary. By removing bootstrap from the list of peer dependencies we will provide you with the flexibility to choose any one of the available CSS frameworks without running into conflicts.
 
 As for now, bootstrap is still a part of our library, but we are planning to drop it entirely in a future release.
 
