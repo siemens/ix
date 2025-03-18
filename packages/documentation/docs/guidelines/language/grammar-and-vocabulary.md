@@ -1,3 +1,18 @@
+---
+sidebar_position: 2
+sidebar_title: Grammar and vocabulary
+title: Grammar and vocabulary
+---
+
+import Guideline from '@site/src/components/Guideline';
+
+
+### Grammar tenses
+
+- Use present simple tense to describe an action or instruction
+
+- Only use simple verb forms in the past or future when necessary
+
 ::::layout
 
 :::col

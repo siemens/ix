@@ -11,7 +11,6 @@ function Layout({ children }: LayoutProps): JSX.Element {
   return <div className={`${styles.layout}`}>{children}</div>;
 }
 
-
 type ColVariant = 'do' | 'dont' | 'doGradient' | 'dontGradient' | 'info';
 
 interface ColProps {
@@ -20,13 +19,12 @@ interface ColProps {
 }
 
 const ICON_CONFIG: Record<string, { name: string; color: string }> = {
-  'do': { name: 'success', color: 'color-success' },
-  'dont': { name: 'cancelled', color: 'color-alarm' },
-  'doGradient': { name: 'success', color: 'color-success' },
-  'dontGradient': { name: 'cancelled', color: 'color-alarm' },
-  'info': { name: 'info', color: 'color-neutral' },
+  do: { name: 'success', color: 'color-success' },
+  dont: { name: 'cancelled', color: 'color-alarm' },
+  doGradient: { name: 'success', color: 'color-success' },
+  dontGradient: { name: 'cancelled', color: 'color-alarm' },
+  info: { name: 'info', color: 'color-neutral' },
 };
-
 
 function Col({ children }: ColProps): JSX.Element {
   const fragmentElements = children?.props?.children || [];
@@ -35,7 +33,7 @@ function Col({ children }: ColProps): JSX.Element {
     if (!content) return [];
 
     if (typeof content === 'string') {
-      return content.split('\n').filter(line => line.trim());
+      return content.split('\n').filter((line) => line.trim());
     }
 
     if (Array.isArray(content)) {
@@ -51,7 +49,7 @@ function Col({ children }: ColProps): JSX.Element {
 
   const contentItems = processContent(fragmentElements);
 
-  const variantRegex = /\[!(do|dont|info)(-gradient)?\]/;
+  const variantRegex = /\[!(do|dont|info)(-gradient)?]/;
   let variant: string | null = null;
 
   const displayItems = contentItems.filter((item) => {
@@ -70,11 +68,7 @@ function Col({ children }: ColProps): JSX.Element {
     <div className={`${styles.col} ${variantClassName}`}>
       {displayItems.map((item, index) => (
         <div key={index} className={styles.item}>
-          <IxIcon
-            name={iconProps.name}
-            color={iconProps.color}
-            size="24"
-          />
+          <IxIcon name={iconProps.name} color={iconProps.color} size="24" />
           <p>{item}</p>
         </div>
       ))}
@@ -84,8 +78,8 @@ function Col({ children }: ColProps): JSX.Element {
 
 const AdmonitionTypes = {
   ...DefaultAdmonitionTypes,
-  'layout': Layout,
-  'col': Col,
+  layout: Layout,
+  col: Col,
 };
 
 export default AdmonitionTypes;
