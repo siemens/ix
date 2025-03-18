@@ -4,6 +4,7 @@ title: FAQ
 ---
 
 import Accordion from '@site/src/components/Accordion';
+import { SinceTag } from '@site/src/components/UI/Tags';
 import './faq.css';
 
 # FAQs
@@ -36,8 +37,26 @@ With the help of our design system, you are able to swiftly build the user inter
 Read more on the topic in our development and UX guides on mobile development with the Industrial Experience Design System [here](/docs/mobile/mobile-app-dev).
 </Accordion>
 
-<Accordion title="What languages does Industrial Experience support?" id="i18n" showBorderBottom>
+<Accordion title="What languages does Industrial Experience support?" id="i18n">
 Our design system uses English as default, but it can be used with any language. All texts are fully customizable and therefore integrate nicely with third-party i18n solutions which means your software can easily be adapted for users of different cultures and languages.
+</Accordion>
+
+<Accordion title="Can I use Industrial Experience with a restrictive Content Security Policy (CSP)?" showBorderBottom>
+<SinceTag message="1.5.0" />
+In order to prevent certain XSS (Cross-Site Scripting) attacks a [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) can be implemented.
+Depending on the CSP configuration in place inline styles and scripts can be forbidden.
+By applying a [CSP nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) such elements can be explicitly allowed even if they would violate the CSP otherwise.
+
+With version 3 the Web Component compiler Stencil (used to build all of our components) introduced support for CSP nonces.
+For details on how to use them please read the [official Stencil docs](https://stenciljs.com/docs/csp-nonce) on the topic.
+
+To prevent Industrial Experience Web Components from causing load errors, call the `setNonce` function with a nonce created by your server.
+
+```ts
+import { setNonce } from '@siemens/ix/loader';
+
+setNonce('replace-with-nonce');
+```
 </Accordion>
 
 <div className="h2-faq">

@@ -44,7 +44,6 @@ const sidebars: SidebarsConfig = {
         'home/installation/angular',
         'home/installation/react',
         'home/installation/vue',
-        'home/installation/csp',
         'home/installation/blazor',
       ],
       collapsed: false,
