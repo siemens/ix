@@ -5,50 +5,17 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { IxIcon } from '@siemens/ix-react';
 import {
   iconArrowRight,
-  iconAttach,
-  iconBulb,
-  iconBulbFilled,
-  iconCalendarSettings,
-  iconCheckbox,
   iconChevronDown,
-  iconChevronLeft,
-  iconChevronRight,
-  iconConfiguration,
-  iconControlledDevice,
-  iconDiamond,
-  iconHeart,
-  iconHierarchy,
-  iconHourglass,
-  iconMaintenance,
-  iconMaintenanceDocuments,
-  iconMap,
-  iconOpenExternal,
-  iconRadarchart,
-  iconRocket,
-  iconScreen,
   iconSingleCheck,
-  iconSoundLoud,
-  iconSpatial,
-  iconSuccess,
-  iconSupport,
-  iconTag,
-  iconTouch,
-  iconTree,
-  iconTrend,
-  iconUploadSuccess,
-  iconUserManagement,
-  iconVersionHistory,
-  iconXlsDocument,
-  iconYAxisSettings,
 } from '@siemens/ix-icons/icons';
+import { IxIcon } from '@siemens/ix-react';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
-import Anime from 'react-anime';
+import React, { useEffect } from 'react';
 import styles from './index.module.scss';
+import Link from '@docusaurus/Link';
 
 function parallax(id: string, min: number, max: number, translateMax: number) {
   let counter = 0;
@@ -240,16 +207,6 @@ function Homepage() {
             </div>
           </div>
         </div>
-
-        <a
-          href="#getting-started"
-          className={clsx(
-            styles.scroll_down,
-            'animate__animated animate__shakeY'
-          )}
-        >
-          <IxIcon name={iconChevronDown}></IxIcon>
-        </a>
       </div>
     </div>
   );
@@ -262,7 +219,7 @@ function Button(props: {
   link: string;
 }) {
   return (
-    <a
+    <Link
       href={props.link}
       className={clsx(
         styles.Button,
@@ -295,7 +252,7 @@ function Button(props: {
       >
         {props.label}
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -304,414 +261,10 @@ function CallToActions() {
     <div className={clsx(styles.container, styles.call_to_actions)}>
       <div className={styles.lines}>
         <Button
-          link={useBaseUrl('/docs/getting-started-for-designers')}
+          link={useBaseUrl('/docs/home/overview')}
           icon={iconArrowRight}
-          label="iX for Designers"
+          label="Getting started"
           style="primary"
-        />
-        <Button
-          link={useBaseUrl('/docs/getting-started')}
-          icon={iconArrowRight}
-          label="iX for Developers"
-          style="primary"
-        />
-      </div>
-    </div>
-  );
-}
-
-function Devices() {
-  return (
-    <div className={clsx(styles.container, styles.devices)}>
-      <div className={styles.content}>
-        <img
-          src={useBaseUrl('/img/220804_Keyvisual_Freisteller.png')}
-          alt=""
-          className={styles.image}
-        ></img>
-
-        <div className={styles.device_headline}>
-          <Headline
-            title="Industrial Experience"
-            subtitle="for all devices"
-            description="Our industry-focused components empower you to design and deliver complex analytic, scientific and industrial ideas simply and consistently across all devices"
-          ></Headline>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function UX() {
-  parallax('SketchShadow', 170, 550, 20);
-  parallax('FigmaShadow', 170, 550, 20);
-
-  return (
-    <div className={clsx(styles.container, styles.ux)}>
-      <div className={styles.content}>
-        <Headline
-          dark
-          title="iX design libraries are built"
-          subtitle="for UX designers"
-          description="Rapidly create consistent prototypes using our libraries to support the exchange of ideas with your stakeholders and developers"
-        ></Headline>
-
-        <div className={styles.images}>
-          <div className={styles.image}>
-            <img
-              src={useBaseUrl('/img/sketch-seeklogo.com.png')}
-              alt=""
-              className={styles.main}
-            />
-            <img
-              id="SketchShadow"
-              src={useBaseUrl('/img/Screen_04_Image_01.svg')}
-              alt=""
-              className={styles.shadow}
-            />
-            <div className={clsx(styles.text_dark, styles.names)}>Sketch</div>
-          </div>
-          <div className={styles.image}>
-            <img
-              src={useBaseUrl('/img/Gruppe 2986.png')}
-              alt=""
-              className={styles.main}
-            />
-            <img
-              id="FigmaShadow"
-              src={useBaseUrl('/img/Screen_04_Image_02.svg')}
-              alt=""
-              className={styles.shadow}
-            />
-            <div className={clsx(styles.text_dark, styles.names)}>Figma</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Developers() {
-  parallax('AngularLogoShadow', 170, 550, 20);
-  parallax('WebcomponentLogoShadow', 170, 550, 20);
-  parallax('ReactLogoShadow', 170, 550, 20);
-
-  return (
-    <div id="developers" className={clsx(styles.container, styles.developers)}>
-      <div className={styles.content}>
-        <Headline
-          dark
-          title="iX components are built"
-          subtitle="for developers with native web technology"
-          description="Adopt the major frameworks for seamless integration into your products and use the tech stack you need to build your UI and websites"
-        ></Headline>
-
-        <div className={styles.images}>
-          <div className={styles.image}>
-            <img
-              src={useBaseUrl(
-                '/img/web tecnology/4691504_angular_icon_dark.png'
-              )}
-              className={styles.image_main}
-              alt=""
-            />
-            <img
-              id="AngularLogoShadow"
-              src={useBaseUrl('/img/web tecnology/4691504_angular_icon.png')}
-              className={styles.image_shadow}
-              alt=""
-            />
-            <div className={clsx(styles.text_dark, styles.names)}>Angular</div>
-          </div>
-          <div className={styles.image}>
-            <img
-              src={useBaseUrl(
-                '/img/web tecnology/4691425_dot_org_webcomponents_icon_dark.png'
-              )}
-              className={styles.image_main}
-              alt=""
-            />
-            <img
-              id="WebcomponentLogoShadow"
-              src={useBaseUrl(
-                '/img/web tecnology/4691425_dot_org_webcomponents_icon.png'
-              )}
-              className={styles.image_shadow}
-              alt=""
-            />
-            <div className={clsx(styles.text_dark, styles.names)}>
-              Web Components
-            </div>
-          </div>
-          <div className={styles.image}>
-            <img
-              src={useBaseUrl(
-                '/img/web tecnology/4691292_react native_react_icon_dark.png'
-              )}
-              className={styles.image_main}
-              alt=""
-            />
-            <img
-              id="ReactLogoShadow"
-              src={useBaseUrl(
-                '/img/web tecnology/4691292_react native_react_icon.png'
-              )}
-              className={styles.image_shadow}
-              alt=""
-            />
-            <div className={clsx(styles.text_dark, styles.names)}>React</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Icons() {
-  const icons = [
-    [
-      iconYAxisSettings,
-      iconXlsDocument,
-      iconVersionHistory,
-      iconCheckbox,
-      iconUploadSuccess,
-      iconTrend,
-    ],
-    [
-      iconTree,
-      iconTouch,
-      iconSupport,
-      iconSpatial,
-      iconRadarchart,
-      iconOpenExternal,
-    ],
-    [
-      iconMap,
-      iconMaintenance,
-      iconHourglass,
-      iconHierarchy,
-      iconConfiguration,
-      iconCalendarSettings,
-    ],
-    [
-      iconAttach,
-      iconControlledDevice,
-      iconTag,
-      iconSuccess,
-      iconSoundLoud,
-      iconRocket,
-    ],
-  ];
-
-  for (let i = 0; i < icons.length; i++) {
-    for (let j = 0; j < icons[i].length; j++) {
-      parallax(icons[i][j], 70, 650, 40);
-    }
-  }
-
-  return (
-    <div className={clsx(styles.container, styles.icons)}>
-      <div className={styles.content}>
-        <Headline
-          title="Industrial icon system"
-          subtitle="500+ icons"
-          description="Integrate our growing and comprehensive icon system for industrial applications using web fonts or SVG"
-          description_width="538px"
-        ></Headline>
-
-        <div>
-          <div className={styles.images}>
-            {icons.map((iconLine, index) => (
-              <div className={styles.row} key={index}>
-                {iconLine.map((icon, iKey) => (
-                  <div key={iKey + icon}>
-                    <IxIcon
-                      name={icon}
-                      className={clsx(styles.icon_main)}
-                    ></IxIcon>
-                    <IxIcon
-                      id={icon}
-                      name={icon}
-                      className={clsx(styles.icon_shadow)}
-                    ></IxIcon>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BrandDesign() {
-  const totalSteps = 2;
-  let [step, setStep] = useState(1);
-
-  function click(increment: number) {
-    let nextStep = step + increment;
-
-    if (nextStep > totalSteps) return setStep(totalSteps);
-    if (nextStep < 1) return setStep(1);
-
-    setStep(nextStep);
-  }
-
-  return (
-    <div className={styles.brand_desgin_background_color}>
-      <img
-        src={useBaseUrl('/img/Screen_07_background_image.png')}
-        alt=""
-        className={styles.brand_desgin_background_image}
-      ></img>
-      <div className={clsx(styles.container, styles.brand_design)}>
-        <div className={styles.content}>
-          <Headline
-            title="Always aligned with"
-            subtitle="Siemens Brand Design"
-            description="Create beautiful products and experiences fully aligned with the latest Siemens Brand guidelines"
-          ></Headline>
-
-          <div className={styles.row}>
-            <IxIcon
-              name={iconChevronLeft}
-              className={clsx(styles.arrow)}
-              onClick={() => click(-1)}
-            ></IxIcon>
-            <img
-              src={useBaseUrl('/img/Screen_07_Macbook_01.png')}
-              alt=""
-              className={step !== 1 ? styles.hidden : ''}
-            />
-            <img
-              src={useBaseUrl('/img/Screen_07_Macbook_02.png')}
-              alt=""
-              className={step !== 2 ? styles.hidden : ''}
-            />
-            <IxIcon
-              name={iconChevronRight}
-              className={clsx(styles.arrow)}
-              onClick={() => click(1)}
-            ></IxIcon>
-          </div>
-
-          <div className={styles.carousel_indicators}>
-            {Array.from(Array(totalSteps), (_, index) => index + 1).map(
-              (value, index) => (
-                <span
-                  key={index}
-                  className={clsx(
-                    styles.circle,
-                    step === index + 1 ? styles.selected : ''
-                  )}
-                ></span>
-              )
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Components() {
-  return (
-    <div className={clsx(styles.container, styles.components)}>
-      <div className={styles.content}>
-        <Headline
-          text="dark"
-          title="Flexible components"
-          subtitle="in light and dark mode"
-          description="Meet the mood and preference of your users with our light and dark modes for every component"
-        ></Headline>
-
-        <video className={styles.video} muted autoPlay>
-          <source src={useBaseUrl('/img/iX_components.mp4')} type="video/mp4" />
-        </video>
-      </div>
-    </div>
-  );
-}
-
-function InformationCards() {
-  const icons = [
-    [iconMaintenanceDocuments, iconBulb, iconTree],
-    [iconScreen, iconDiamond, iconUserManagement],
-  ];
-
-  const phrases = [
-    [
-      'Open-Source-Contribution by community welcome',
-      'Build your own Corporate Design by theming',
-      'Designed for complex User Interface and Data Analytics',
-    ],
-    [
-      'Delivered as framework agnostic',
-      'Intuitive User Experience and timeless Visual Design',
-      'Built by Siemens UX/UI experts',
-    ],
-  ];
-
-  return (
-    <div>
-      <div className={clsx(styles.container, styles.information_cards)}>
-        <img
-          src={useBaseUrl('/img/Screen_09_background_image.png')}
-          alt=""
-          className={styles.information_cards_background}
-        ></img>
-        <div className={styles.content}>
-          <div className={clsx(styles.column)}>
-            {icons.map((cardLine, index) => (
-              <div className={styles.row} key={index}>
-                {cardLine.map((icon, iKey) => (
-                  <div className={clsx(styles.card)} key={iKey}>
-                    <div className={styles.icon_gap}>
-                      <IxIcon
-                        name={iconBulbFilled}
-                        className={clsx(icon !== 'bulb' ? styles.hidden : '')}
-                      ></IxIcon>
-                      <IxIcon name={icon}></IxIcon>
-                    </div>
-
-                    <div className={clsx(styles.text)}>
-                      {phrases[index][iKey]}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function FooterButtons() {
-  return (
-    <div className={clsx(styles.container, styles.footer_buttons)}>
-      <div className={styles.lines}>
-        <Button
-          link={useBaseUrl('/docs/getting-started-for-designers')}
-          icon={iconRocket}
-          label="Start iX now"
-          style="primary"
-        />
-        <Button
-          link={useBaseUrl('/docs/contact-us')}
-          icon={iconHeart}
-          label="Meet the team"
-          style="secondary"
-        />
-      </div>
-      <div className={styles.lines}>
-        <Button
-          link={'https://community.siemens.com/c/ix/'}
-          icon={iconUserManagement}
-          label="iX Community"
-          style="secondary"
         />
       </div>
     </div>
@@ -723,25 +276,9 @@ const Home: React.FC = () => {
   return (
     <BrowserOnly>
       {() => (
-        <>
-          <Anime
-            easing="easeInOutExpo"
-            duration="2000"
-            opacity={[0, 1]}
-          ></Anime>
-
-          <Layout>
-            <Homepage />
-            <Devices />
-            <UX />
-            <Developers />
-            <Icons />
-            <BrandDesign />
-            <Components />
-            <InformationCards />
-            <FooterButtons />
-          </Layout>
-        </>
+        <Layout>
+          <Homepage />
+        </Layout>
       )}
     </BrowserOnly>
   );
