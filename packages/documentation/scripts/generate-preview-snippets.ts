@@ -9,7 +9,7 @@
 import { Listr } from 'listr2';
 import path from 'path';
 import fs from 'fs-extra';
-import { rimrafSync } from 'rimraf';
+import rimraf from 'rimraf';
 const __root = path.join(__dirname, '../');
 const __node_modules = path.join(__root, 'node_modules');
 const __static = path.join(__root, 'static');
@@ -72,7 +72,7 @@ const tasks = new Listr([
   {
     title: 'Write Angular snippets',
     task: async () => {
-      rimrafSync(__previews);
+      rimraf.sync(__previews);
       await fs.ensureDir(__previews);
     },
   },

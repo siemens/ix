@@ -119,6 +119,7 @@ export const config: Config = {
           warn: true,
         },
       ],
+      externalRuntime: false,
       includeGlobalScripts: false,
       externalRuntime: false,
     },

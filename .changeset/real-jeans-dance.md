@@ -1,5 +1,5 @@
 ---
-'@siemens/ix': major
+'@siemens/ix': minor
 ---
 
 __ix-date-picker__: Week numbers are now hidden by default inside the ix-date-picker. They can be shown by setting showWeekNumbers to true.

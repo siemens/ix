@@ -16,32 +16,32 @@ export interface IxDatePickerComponent {
   format: string;
 
   /**
-   * Annotae with @Prop() decorator
+   * Annotate with @Prop() decorator
    */
   range: boolean;
 
   /**
-   * Annotae with @Prop() decorator
+   * Annotate with @Prop() decorator
    */
   corners: DateTimeCardCorners;
 
   /**
-   * Annotae with @Prop() decorator
+   * Annotate with @Prop() decorator
    */
   from?: string;
 
   /**
-   * Annotae with @Prop() decorator
+   * Annotate with @Prop() decorator
    */
   to?: string;
 
   /**
-   * Annotae with @Prop() decorator
+   * Annotate with @Prop() decorator
    */
   minDate?: string;
 
   /**
-   * Annotae with @Prop() decorator
+   * Annotate with @Prop() decorator
    */
   maxDate?: string;
 
@@ -51,12 +51,17 @@ export interface IxDatePickerComponent {
   i18nDone: string;
 
   /**
-   * Annotae with @Prop() decorator
+   * Annotate with @Prop() decorator
    */
   weekStartIndex: number;
 
   /**
-   * Annotae with @Prop() decorator
+   * Annotate with @Prop() decorator
    */
   locale?: string;
+
+  /**
+   * Annotate with @Prop() decorator
+   */
+  showWeekNumbers: boolean;
 }
