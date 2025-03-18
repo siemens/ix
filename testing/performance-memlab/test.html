@@ -1,0 +1,71 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <meta name="ix:legacy-icons" content="false" />
+    <link
+      rel="stylesheet"
+      href="./node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css"
+    />
+
+    <title>Stencil Component Starter</title>
+  </head>
+
+  <body style="margin: 0px; height: 100vh">
+    <button id="run">CREATE</button>
+    <button id="remove">REMOVE</button>
+    <div id="mount"></div>
+    <script type="module">
+      const queryParam = new URLSearchParams(window.location.search);
+      const selector = queryParam.get('selector');
+
+      const { defineCustomElement } = await import(
+        `/node_modules/@siemens/ix/components/${selector}.js`
+      );
+
+      defineCustomElement();
+
+      await window.customElements.whenDefined(selector);
+      console.log('Stencil components are ready');
+      function remove() {
+        const container = document.getElementById('mount');
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+      }
+
+      // Step 1: Dynamically create and remove date inputs
+      function createelements(count = 1) {
+        const container = document.querySelector('div');
+
+        for (let i = 0; i < count; i++) {
+          console.log('create');
+          const component = document.createElement(selector);
+          component.innerText = 'TEST';
+          component.setAttribute('show', 'true');
+          container.appendChild(component);
+        }
+      }
+
+      const btn = document.querySelector('#run');
+      btn.addEventListener('click', () => {
+        createelements();
+      });
+
+      const removeBtn = document.querySelector('#remove');
+      removeBtn.addEventListener('click', () => {
+        remove();
+      });
+    </script>
+  </body>
+</html>
