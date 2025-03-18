@@ -21,22 +21,23 @@ import Guideline from '@site/src/components/Guideline';
 
 - Only use ‘OK’ as an option if you cannot find an appropriate verb
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Title: Add user  / Buttons: Cancel, Add'></Guideline>
-<Guideline do={false} label='Title: Add user  / Buttons: Cancel, OK'></Guideline>
-</span>
+::::layout
 
-<span class="m-2">
-<Guideline do label='Title: Delete file  / Buttons: Cancel, Delete'></Guideline>
-<Guideline do={false} label='Title: Are you sure  / Buttons: Cancel, Delete'></Guideline>
-</span>
+:::col
+[!do]
+Title: Add user  / Buttons: Cancel, Add
+Title: Delete file  / Buttons: Cancel, Delete
+Title: Edit details  / Buttons: Cancel, Save
+:::
 
-<span class="m-2">
-<Guideline do label='Title: Edit details  / Buttons: Cancel, Save'></Guideline>
-<Guideline do={false} label='Title: Edit details  / Buttons: Cancel, Edit'></Guideline>
-</span>
-</div>
+:::col
+[!dont]
+Title: Add user  / Buttons: Cancel, OK
+Title: Are you sure  / Buttons: Cancel, Delete
+Title: Edit details  / Buttons: Cancel, Edit
+:::
+
+::::
 
 ### Primary and secondary actions
 
@@ -44,9 +45,16 @@ import Guideline from '@site/src/components/Guideline';
 
 - Primary actions can either be positive (Send, Save) or negative (Delete)
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Cancel, Save'></Guideline>
-<Guideline do={false} label='Save, Cancel'></Guideline>
-</span>
-</div>
+::::layout
+
+:::col
+[!do]
+Cancel, Save
+:::
+
+:::col
+[!dont]
+Save, Cancel
+:::
+
+::::
