@@ -67,8 +67,8 @@ importers:
         specifier: ^1.49.1
         version: 1.49.1
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       '@types/gulp':
         specifier: ^4.0.14
         version: 4.0.16
@@ -115,8 +115,8 @@ importers:
         specifier: ~3.0.0-alpha.0
         version: link:../core
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
     devDependencies:
       '@angular/animations':
         specifier: ^17.3.12
@@ -219,8 +219,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       ag-grid-angular:
         specifier: ^32.0.2
         version: 32.3.3(@angular/common@17.3.12(@angular/core@17.3.12(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@17.3.12(rxjs@7.8.1)(zone.js@0.14.10))(ag-grid-community@32.1.0)
@@ -322,8 +322,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       ag-grid-angular:
         specifier: ^32.0.2
         version: 32.3.3(@angular/common@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.14.10))(ag-grid-community@32.1.0)
@@ -408,8 +408,8 @@ importers:
         specifier: ^1.49.1
         version: 1.49.1
       '@siemens/ix-icons':
-        specifier: file:./../../siemens-ix-icons-2.2.0.tgz
-        version: file:siemens-ix-icons-2.2.0.tgz
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       '@stencil-community/eslint-plugin':
         specifier: ^0.7.2
         version: 0.7.2(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.4.5))(eslint-plugin-react@7.37.4(eslint@8.57.1))(eslint@8.57.1)(typescript@5.4.5)
@@ -537,8 +537,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -735,8 +735,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       vite:
         specifier: ^3.2.10
         version: 3.2.11(@types/node@22.10.5)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.36.0)
@@ -777,8 +777,8 @@ importers:
         specifier: workspace:*
         version: link:../core
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -890,8 +890,8 @@ importers:
         specifier: ~3.0.0-alpha.0
         version: link:../core
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       '@stencil/react-output-target':
         specifier: 0.0.1-dev.11741888614.1fd07d67
         version: 0.0.1-dev.11741888614.1fd07d67(@stencil/core@4.28.2)(@types/react@18.2.33)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -975,8 +975,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -1061,8 +1061,8 @@ importers:
         specifier: workspace:*
         version: link:../core
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       '@stencil/core':
         specifier: ~4.17.0
         version: 4.17.2
@@ -1133,8 +1133,8 @@ importers:
         specifier: ~3.0.0-alpha.0
         version: link:../core
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
@@ -1179,8 +1179,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../vue
@@ -1234,8 +1234,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
       '@siemens/ix-icons':
-        specifier: 3.0.0-alpha.0
-        version: 3.0.0-alpha.0
+        specifier: 0.0.0-pr-77-20250318121935
+        version: 0.0.0-pr-77-20250318121935
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -5874,13 +5874,8 @@ packages:
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
-  '@siemens/ix-icons@3.0.0-alpha.0':
-    resolution: {integrity: sha512-gaET4behhughx0VJJtI8VqnVaYPi3c7g5+7jtHPSXc1RyDlguHoN1joJiqbK1os1VKipbI0LTLHKLtIH7y2uwg==}
-    engines: {node: '>=18.x.x', pnpm: '>=9.x.x'}
-
-  '@siemens/ix-icons@file:siemens-ix-icons-2.2.0.tgz':
-    resolution: {integrity: sha512-TjYO9VK+PyJqukqWlH7p5Ww03FsK00hGAONh5L+ii0VXo8w0k80AQKQWeQ3d/7inwMqTe4PvnW5JX4exDURbjQ==, tarball: file:siemens-ix-icons-2.2.0.tgz}
-    version: 2.2.0
+  '@siemens/ix-icons@0.0.0-pr-77-20250318121935':
+    resolution: {integrity: sha512-Hx1TcQ6fFXT2tUdkWDiBxSCiz0K5jUsyJNxH8Ogc9Oz3iBrRz/gUYnSaPYcwaq3e4E3PHX4AF0fmonp2HdNxcQ==}
     engines: {node: '>=18.x.x', pnpm: '>=9.x.x'}
 
   '@sigstore/bundle@2.3.2':
@@ -5959,11 +5954,6 @@ packages:
 
   '@stencil/core@4.17.2':
     resolution: {integrity: sha512-MX7yaLmpTU9iZvCire9nhecTcE0qBlV0vPWrLMeIXewYN7/hb8B3NjnhQyBKC93FDPI8NBRmt6KIugLw9zcRZg==}
-    engines: {node: '>=16.0.0', npm: '>=7.10.0'}
-    hasBin: true
-
-  '@stencil/core@4.27.2':
-    resolution: {integrity: sha512-phsgSxWYumdjVhNHZ0pPTXhrM8CgajWidRuoxBfVl76+sVLu3+O2gTuIKd+bZEjixGFb1bHvQeMmlNuwKgxf8Q==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -23534,11 +23524,7 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
-  '@siemens/ix-icons@3.0.0-alpha.0':
-    dependencies:
-      '@stencil/core': 4.27.2
-
-  '@siemens/ix-icons@file:siemens-ix-icons-2.2.0.tgz':
+  '@siemens/ix-icons@0.0.0-pr-77-20250318121935':
     dependencies:
       '@stencil/core': 4.28.2
 
@@ -23626,8 +23612,6 @@ snapshots:
       '@stencil/core': 4.28.2
 
   '@stencil/core@4.17.2': {}
-
-  '@stencil/core@4.27.2': {}
 
   '@stencil/core@4.28.2':
     optionalDependencies:
@@ -26060,13 +26044,6 @@ snapshots:
       junit-report-builder: 5.1.1
       picocolors: 1.1.1
       playwright: 1.49.1
-
-  axios@0.27.2:
-    dependencies:
-      follow-redirects: 1.15.3(debug@4.4.0)
-      form-data: 4.0.0
-    transitivePeerDependencies:
-      - debug
 
   axios@0.27.2(debug@4.3.4):
     dependencies:
@@ -30160,7 +30137,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.2.1
     optionalDependencies:
-      webpack: 5.94.0(esbuild@0.23.0)
+      webpack: 5.94.0(esbuild@0.20.1)
     optional: true
 
   html-webpack-plugin@5.6.3(webpack@5.96.1(@swc/core@1.9.2)):
@@ -30242,7 +30219,7 @@ snapshots:
   http-proxy-middleware@2.0.6(@types/express@4.17.20):
     dependencies:
       '@types/http-proxy': 1.17.13
-      http-proxy: 1.18.1(debug@4.4.0)
+      http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
       micromatch: 4.0.8
@@ -30254,7 +30231,7 @@ snapshots:
   http-proxy-middleware@2.0.6(@types/express@4.17.21):
     dependencies:
       '@types/http-proxy': 1.17.13
-      http-proxy: 1.18.1(debug@4.4.0)
+      http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
       micromatch: 4.0.8
@@ -30266,7 +30243,7 @@ snapshots:
   http-proxy-middleware@2.0.7(@types/express@4.17.20):
     dependencies:
       '@types/http-proxy': 1.17.13
-      http-proxy: 1.18.1(debug@4.4.0)
+      http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
       micromatch: 4.0.5
@@ -30278,7 +30255,7 @@ snapshots:
   http-proxy-middleware@2.0.7(@types/express@4.17.21):
     dependencies:
       '@types/http-proxy': 1.17.13
-      http-proxy: 1.18.1(debug@4.4.0)
+      http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
       micromatch: 4.0.5
@@ -30298,6 +30275,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  http-proxy@1.18.1:
+    dependencies:
+      eventemitter3: 4.0.7
+      follow-redirects: 1.15.3(debug@4.3.4)
+      requires-port: 1.0.0
+    transitivePeerDependencies:
+      - debug
+
   http-proxy@1.18.1(debug@4.4.0):
     dependencies:
       eventemitter3: 4.0.7
@@ -30313,7 +30298,7 @@ snapshots:
       corser: 2.0.1
       he: 1.2.0
       html-encoding-sniffer: 3.0.0
-      http-proxy: 1.18.1(debug@4.4.0)
+      http-proxy: 1.18.1
       mime: 1.6.0
       minimist: 1.2.8
       opener: 1.5.2
@@ -31349,7 +31334,7 @@ snapshots:
       signal-exit: 3.0.7
       spawnd: 5.0.0
       tree-kill: 1.2.2
-      wait-on: 7.0.1
+      wait-on: 7.0.1(debug@4.3.4)
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -31760,7 +31745,7 @@ snapshots:
       dom-serialize: 2.2.1
       glob: 7.2.3
       graceful-fs: 4.2.11
-      http-proxy: 1.18.1(debug@4.4.0)
+      http-proxy: 1.18.1
       isbinaryfile: 4.0.10
       lodash: 4.17.21
       log4js: 6.9.1
@@ -37691,16 +37676,6 @@ snapshots:
   w3c-xmlserializer@5.0.0:
     dependencies:
       xml-name-validator: 5.0.0
-
-  wait-on@7.0.1:
-    dependencies:
-      axios: 0.27.2
-      joi: 17.11.0
-      lodash: 4.17.21
-      minimist: 1.2.8
-      rxjs: 7.8.1
-    transitivePeerDependencies:
-      - debug
 
   wait-on@7.0.1(debug@4.3.4):
     dependencies:

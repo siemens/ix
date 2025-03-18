@@ -11,8 +11,8 @@
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "type": "module",
-  "main": "dist/cjs/index.cjs.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
   "types": "dist/types/interfaces.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@siemens/ix-icons": "file:./../../siemens-ix-icons-2.2.0.tgz",
+    "@siemens/ix-icons": "0.0.0-pr-77-20250318121935",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "0.0.1-dev.11741888614.1fd07d67",
@@ -123,7 +123,7 @@
     "typescript": "~5.4.5"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "3.0.0-alpha.0"
+    "@siemens/ix-icons": "0.0.0-pr-77-20250318121935"
   },
   "config": {
     "commitizen": {
