@@ -35,7 +35,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     type: theme,
   });
   page.goto = async (url: string, options) => {
-    if ((testInfo as any).componentTest === true) {
+    if (testInfo.componentTest === true) {
       return originalGoto(url, options);
     }
 
@@ -180,8 +180,8 @@ export const regressionTest = testBase.extend<{
       )
     );
   },
-  mount: async ({ page }, use, testInfo) => {
-    (testInfo as any).componentTest = true;
+  mount: async ({ page }, use, testInfo: TestInfo) => {
+    testInfo.componentTest = true;
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
     testInfo.annotations.push({
       type: theme,
