@@ -1,0 +1,121 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts special zoom example</title>
+    <link rel="stylesheet" href="./echarts-special-zoom.css" />
+    <!-- External resources -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <!-- External resources -->
+  </head>
+  <body class="theme-classic-dark">
+    <div id="main" class="echarts"></div>
+
+    <script type="module">
+      import {
+        registerTheme,
+        getComputedCSSProperty,
+      } from '@siemens/ix-echarts';
+      import { themeSwitcher } from '@siemens/ix';
+
+      function initChart(theme, options) {
+        var myChart = echarts.init(document.querySelector('#main'), theme);
+        myChart.setOption(options);
+
+        return myChart;
+      }
+
+      //create some random data
+      let base = +new Date(1968, 9, 3);
+      let oneDay = 24 * 3600 * 1000;
+      let date = [];
+
+      let data = [Math.random() * 300];
+
+      for (let i = 1; i < 20000; i++) {
+        var now = new Date((base += oneDay));
+        date.push(
+          [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')
+        );
+        data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+      }
+
+      const options = {
+        toolbox: {
+          feature: {
+            dataZoom: {
+              yAxisIndex: 'none',
+            },
+          },
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: date,
+        },
+        yAxis: {
+          type: 'value',
+          boundaryGap: [0, '100%'],
+        },
+        dataZoom: [
+          {
+            type: 'inside',
+            start: 0,
+            end: 10,
+          },
+          {
+            start: 0,
+            end: 10,
+          },
+        ],
+        series: [
+          {
+            name: 'Synthetic data',
+            type: 'line',
+            symbol: 'none',
+            sampling: 'lttb',
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: getComputedCSSProperty('color-primary'),
+                },
+                {
+                  offset: 1,
+                  color: 'transparent',
+                },
+              ]),
+            },
+            data: data,
+          },
+        ],
+      };
+
+      // providing echarts is in this case optional
+      registerTheme(echarts);
+
+      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+
+      themeSwitcher.themeChanged.on((theme) => {
+        myChart.dispose();
+        myChart = initChart(theme, options);
+      });
+
+      window.onresize = function () {
+        myChart.resize();
+      };
+    </script>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

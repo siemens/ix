@@ -1,0 +1,38 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown submenu example</title>
+    
+    <script type="module" crossorigin src="../assets/dropdown-submenu.72df4227.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.78f61b49.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.d5e03d48.js">
+    <link rel="modulepreload" crossorigin href="../assets/icon-1f00a566.c138dee3.js">
+    <link rel="modulepreload" crossorigin href="../assets/index.d8c24d78.js">
+    <link rel="stylesheet" href="../assets/global.2d4b91bd.css">
+  </head>
+  <body>
+    <ix-button id="iconTriggerId">Open</ix-button>
+    <ix-dropdown trigger="iconTriggerId">
+      <ix-dropdown-item id="submenuTrigger" label="Submenu"></ix-dropdown-item>
+      <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+      <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>
+    </ix-dropdown>
+    <ix-dropdown trigger="submenuTrigger" placement="right-start">
+      <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+    </ix-dropdown>
+    
+  </body>
+</html>

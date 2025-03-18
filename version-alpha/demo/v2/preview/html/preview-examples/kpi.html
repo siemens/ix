@@ -1,0 +1,45 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kpi example</title>
+    
+    <script type="module" crossorigin src="../assets/kpi.0004776f.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.78f61b49.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.d5e03d48.js">
+    <link rel="stylesheet" href="../assets/global.2d4b91bd.css">
+    <link rel="stylesheet" href="../assets/kpi.7af4a96b.css">
+  </head>
+  <body>
+    <div class="example">
+      <ix-kpi label="Motor speed" value="Nominal"></ix-kpi>
+      <ix-kpi label="Motor speed" value="122.6" unit="rpm"></ix-kpi>
+      <ix-kpi label="Motor speed" value="122.6" state="alarm"></ix-kpi>
+      <ix-kpi label="Motor speed" value="122.6" state="warning"></ix-kpi>
+
+      <ix-kpi
+        label="Motor speed"
+        value="Nominal"
+        orientation="vertical"
+      ></ix-kpi>
+      <ix-kpi
+        label="Motor speed"
+        value="122.6"
+        unit="rpm"
+        state="alarm"
+        orientation="vertical"
+      ></ix-kpi>
+    </div>
+    
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs rounded example</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconSoundLoud,
+        iconHierarchy,
+        iconCalendarSettings,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconSoundLoud,
+        iconHierarchy,
+        iconCalendarSettings,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-tabs rounded>
+      <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>
+      <ix-tab-item counter="200"><ix-icon name="tree"></ix-icon></ix-tab-item>
+      <ix-tab-item><ix-icon name="maintenance"></ix-icon></ix-tab-item>
+      <ix-tab-item disabled counter="24"
+        ><ix-icon name="sound-loud"></ix-icon
+      ></ix-tab-item>
+      <ix-tab-item><ix-icon name="hierarchy"></ix-icon></ix-tab-item>
+      <ix-tab-item disabled
+        ><ix-icon name="calendar-settings"></ix-icon
+      ></ix-tab-item>
+    </ix-tabs>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

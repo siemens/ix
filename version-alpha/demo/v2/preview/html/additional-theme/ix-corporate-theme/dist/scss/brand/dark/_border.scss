@@ -1,0 +1,34 @@
+@use './../utils' as util;
+
+@mixin border {
+  @include util.match-variant("dark") {
+      --theme-primary-bdr-1: 0.0625rem solid var(--theme-color-primary);
+      --theme-primary-bdr-2: 0.125rem solid var(--theme-color-primary);
+      --theme-dynamic-bdr-1: 0.0625rem solid var(--theme-color-dynamic);
+      --theme-dynamic-bdr-2: 0.125rem solid var(--theme-color-dynamic);
+      --theme-contrast-bdr-1: 0.0625rem solid var(--theme-color-contrast-bdr);
+      --theme-contrast-bdr-2: 0.125rem solid var(--theme-color-contrast-bdr);
+      --theme-std-bdr-1: 0.0625rem solid var(--theme-color-std-bdr);
+      --theme-std-bdr-2: 0.125rem solid var(--theme-color-std-bdr);
+      --theme-soft-bdr-1: 0.0625rem solid var(--theme-color-soft-bdr);
+      --theme-soft-bdr-2: 0.125rem solid var(--theme-color-soft-bdr);
+      --theme-soft-dashed-bdr-1: 0.0625rem dashed var(--theme-color-soft-bdr);
+      --theme-soft-dashed-bdr-2: 0.125rem dashed var(--theme-color-soft-bdr);
+      --theme-weak-bdr-1: 0.0625rem solid var(--theme-color-weak-bdr);
+      --theme-weak-bdr-2: 0.125rem solid var(--theme-color-weak-bdr);
+      --theme-x-weak-bdr-1: 0.0625rem solid var(--theme-color-x-weak-bdr);
+      --theme-x-weak-bdr-2: 0.125rem solid var(--theme-color-x-weak-bdr);
+      --theme-alarm-bdr-1: 0.0625rem solid var(--theme-color-alarm);
+      --theme-alarm-bdr-2: 0.125rem solid var(--theme-color-alarm);
+      --theme-critical-bdr-1: 0.0625rem solid var(--theme-color-critical);
+      --theme-critical-bdr-2: 0.125rem solid var(--theme-color-critical);
+      --theme-warning-bdr-1: 0.0625rem solid var(--theme-color-warning);
+      --theme-warning-bdr-2: 0.125rem solid var(--theme-color-warning);
+      --theme-success-bdr-1: 0.0625rem solid var(--theme-color-success);
+      --theme-success-bdr-2: 0.125rem solid var(--theme-color-success);
+      --theme-info-bdr-1: 0.0625rem solid var(--theme-color-info);
+      --theme-info-bdr-2: 0.125rem solid var(--theme-color-info);
+      --theme-neutral-bdr-1: 0.0625rem solid var(--theme-color-neutral);
+      --theme-neutral-bdr-2: 0.125rem solid var(--theme-color-neutral);
+  }
+}

@@ -1,0 +1,52 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pill example</title>
+    <link rel="stylesheet" href="./pill.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconStar } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconStar,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-pill variant="custom" color="white" background="purple">Label</ix-pill>
+
+    <ix-pill tooltip-text="Custom tooltip text">Label</ix-pill>
+    <ix-pill tooltip-text outline>Label</ix-pill>
+    <ix-pill class="styled">Label</ix-pill>
+
+    <ix-pill icon="star">Label</ix-pill>
+    <ix-pill icon="star"></ix-pill>
+    <ix-pill icon="star" class="styled">Label</ix-pill>
+    <ix-pill outline align-left icon="star" class="styled">Label</ix-pill>
+
+    <ix-pill variant="alarm">Label</ix-pill>
+    <ix-pill variant="alarm" outline>Label</ix-pill>
+    <ix-pill variant="alarm" class="styled">Label</ix-pill>
+
+    <ix-pill variant="alarm" icon="star">Label</ix-pill>
+    <ix-pill variant="alarm" icon="star" class="styled">Label</ix-pill>
+    <ix-pill variant="alarm" outline align-left icon="star" class="styled">
+      Label
+    </ix-pill>
+    <ix-pill icon="star" class="styled-ellipsis-4">Label</ix-pill>
+    <ix-pill outline icon="star" class="styled-ellipsis-4">Label</ix-pill>
+    <ix-pill class="styled-ellipsis-3">Label</ix-pill>
+    <ix-pill outline class="styled-ellipsis-3">Label</ix-pill>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
