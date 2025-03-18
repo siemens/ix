@@ -157,8 +157,7 @@ export class ApplicationHeader {
     return nodes.length !== 0;
   }
 
-  private async attachSiemensLogoIfLoaded() {
-    await window.customElements.whenDefined('ix-siemens-logo');
+  private attachSiemensLogoIfLoaded() {
     const logoElement = document.createElement('ix-siemens-logo');
     if (!this.isLogoSlotted()) {
       this.hostElement

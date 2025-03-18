@@ -161,7 +161,7 @@ export class Blind {
                   ? 'color-primary'
                   : `color-${this.variant}--contrast`
               }
-              ref={(ref: HTMLElement) => (this.chevronRef = ref)}
+              ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
             ></ix-icon>
             <div
               class="blind-header-title"
