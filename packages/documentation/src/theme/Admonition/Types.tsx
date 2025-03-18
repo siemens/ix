@@ -11,23 +11,20 @@ function Layout({ children }: LayoutProps): JSX.Element {
   return <div className={`${styles.layout}`}>{children}</div>;
 }
 
-type ColVariant = 'do' | 'dont' | 'doGradient' | 'dontGradient' | 'info';
-
-interface ColProps {
-  children: ReactElement;
-  variant?: ColVariant;
-}
-
 const ICON_CONFIG: Record<string, { name: string; color: string }> = {
   do: { name: 'success', color: 'color-success' },
   dont: { name: 'cancelled', color: 'color-alarm' },
   doGradient: { name: 'success', color: 'color-success' },
   dontGradient: { name: 'cancelled', color: 'color-alarm' },
-  info: { name: 'info', color: 'color-neutral' },
+  default: { name: 'info', color: 'color-neutral' },
 };
 
+interface ColProps {
+  children: ReactElement | ReactElement[];
+}
+
 function Col({ children }: ColProps): JSX.Element {
-  const fragmentElements = children?.props?.children || [];
+  const fragmentElements = React.Children.toArray(children);
 
   const processContent = (content: any): string[] => {
     if (!content) return [];
@@ -53,7 +50,7 @@ function Col({ children }: ColProps): JSX.Element {
   let variant: string | null = null;
 
   const displayItems = contentItems.filter((item) => {
-    const match = item.match(variantRegex);
+    const match = variantRegex.exec(item);
     if (match) {
       variant = match[1] + (match[2] || '');
       return false;
@@ -67,7 +64,7 @@ function Col({ children }: ColProps): JSX.Element {
   return (
     <div className={`${styles.col} ${variantClassName}`}>
       {displayItems.map((item, index) => (
-        <div key={index} className={styles.item}>
+        <div className={styles.item} key={index}>
           <IxIcon name={iconProps.name} color={iconProps.color} size="24" />
           <p>{item}</p>
         </div>
