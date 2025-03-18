@@ -106,10 +106,6 @@ const sidebars: SidebarsConfig = {
               type: 'doc',
               id: 'installation/blazor',
             },
-            {
-              type: 'doc',
-              id: 'installation/csp',
-            },
           ],
         },
       ],
