@@ -11,8 +11,8 @@
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "type": "module",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.js",
   "types": "dist/types/interfaces.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
@@ -29,7 +29,7 @@
     ".": {
       "types": "./dist/types/interfaces.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
+      "require": "./dist/cjs/index.cjs",
       "default": "./dist/esm/index.js"
     },
     "./hydrate": {
@@ -51,7 +51,7 @@
     "./components": {
       "types": "./dist/types/components.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
+      "require": "./dist/cjs/index.cjs",
       "default": "./dist/esm/index.js"
     },
     "./dist/siemens-ix/siemens-ix.css": "./dist/siemens-ix/siemens-ix.css",
@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@siemens/ix-icons": "3.0.0-alpha.0",
+    "@siemens/ix-icons": "file:./../../siemens-ix-icons-2.2.0.tgz",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "0.0.1-dev.11741888614.1fd07d67",
