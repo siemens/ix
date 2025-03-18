@@ -228,7 +228,6 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import EventListCustomItemHeightDynamicList from 'src/preview-examples/event-list-custom-item-height-dynamic-list';
 
 const routes: Routes = [
   {
@@ -551,11 +550,7 @@ const routes: Routes = [
         component: EventListCompact,
       },
       {
-        path: 'event-list-custom-item-height-dynamic-list',
-        component: EventListCustomItemHeightDynamicList,
-      },
-      {
-        path: 'event-list-custom-item-height-dynamic-list',
+        path: 'event-list-custom-item-height',
         component: EventListCustomItemHeight,
       },
       {

@@ -19,14 +19,9 @@ import { Component } from '@angular/core';
         >
       </ng-container>
     </ix-event-list>
-    <ix-button (click)="onAdd()">Add</ix-button>
   `,
 })
-export default class EventListCustomItemHeightDynamicList {
-  items = [1, 2, 3];
+export default class EventListCustomItemHeightInNumber {
   itemHeight = 60;
-
-  onAdd() {
-    this.items.push(this.items.length + 1);
-  }
+  items = [1, 2, 3];
 }

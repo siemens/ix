@@ -7,15 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxButton, IxEventList, IxEventListItem } from '@siemens/ix-react';
+import { IxEventList, IxEventListItem } from '@siemens/ix-react';
 import { useState } from 'react';
 
 export default () => {
-  const [items, setItems] = useState([1, 2, 3]);
-
-  const onAdd = () => {
-    setItems([...items, items.length + 1]);
-  };
+  const [items] = useState([1, 2, 3]);
 
   return (
     <>
@@ -28,7 +24,6 @@ export default () => {
           </div>
         ))}
       </IxEventList>
-      <IxButton onClick={onAdd}>Add</IxButton>
     </>
   );
 };

@@ -223,7 +223,6 @@ import InputWithSlots from './preview-examples/input-with-slots';
 import NumberInputWithSlots from './preview-examples/number-input-with-slots';
 import DateInput from './preview-examples/date-input';
 import DateInputWithSlots from './preview-examples/date-input-with-slots';
-import EventListCustomItemHeightDynamicList from './preview-examples/event-list-custom-item-height-dynamic-list.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -399,10 +398,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route
           path="/preview/event-list-compact"
           element={<EventListCompact />}
-        />
-        <Route
-          path="/preview/event-list-custom-item-height-dynamic-list"
-          element={<EventListCustomItemHeightDynamicList />}
         />
         <Route
           path="/preview/event-list-custom-item-height"

@@ -11,7 +11,6 @@ import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 import anime from 'animejs';
-import { isNumber } from '../utils/condition-checks';
 
 @Component({
   tag: 'ix-event-list',
@@ -61,8 +60,8 @@ export class EventList {
       this.triggerFadeIn();
     }
 
-    if (isNumber(this.itemHeight)) {
-      const height = convertToRemString(this.itemHeight);
+    if (!Number.isNaN(Number(this.itemHeight))) {
+      const height = convertToRemString(this.itemHeight as number);
       this.hostElement
         .querySelectorAll('ix-event-list-item')
         .forEach((item) => {
@@ -80,18 +79,13 @@ export class EventList {
 
   private onMutation(mutationRecords: Array<MutationRecord>) {
     this.triggerFadeOut().then(() => {
-      if (isNumber(this.itemHeight)) {
-        const height = convertToRemString(this.itemHeight);
-
-        // Find all newly added ix-event-list-item elements, including nested ones
+      if (!Number.isNaN(Number(this.itemHeight))) {
+        const height = convertToRemString(this.itemHeight as number);
         const eventListItems = this.findEventListItems(mutationRecords);
-
-        // Apply height to each item
         eventListItems.forEach((item) => this.setCustomHeight(item, height));
       }
 
       this.handleChevron(this.chevron);
-
       this.triggerFadeIn();
     });
   }
@@ -111,12 +105,10 @@ export class EventList {
 
         const element = node as HTMLElement;
 
-        // If the node itself is an ix-event-list-item, add it
         if (element.tagName === 'IX-EVENT-LIST-ITEM') {
           eventListItems.push(element);
         }
 
-        // Also find and add any nested ix-event-list-item elements
         eventListItems.push(
           ...Array.from(element.querySelectorAll('ix-event-list-item'))
         );

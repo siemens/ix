@@ -222,7 +222,6 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import VerticalTabs from './preview-examples/vertical-tabs.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
-import EventListCustomItemHeightDynamicList from './preview-examples/event-list-custom-item-height-dynamic-list.vue';
 
 const routes: any = {
   '/': App,
@@ -301,7 +300,6 @@ const routes: any = {
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
   '/preview/event-list-compact': EventListCompact,
-  '/preview/event-list-custom-item-height-dynamic-list': EventListCustomItemHeightDynamicList,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
   '/preview/event-list-selected': EventListSelected,
   '/preview/event-list': EventList,

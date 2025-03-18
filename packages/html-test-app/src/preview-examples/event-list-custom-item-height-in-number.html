@@ -7,13 +7,12 @@
     <script type="module">
       document.addEventListener('DOMContentLoaded', () => {
         const eventList = document.querySelector('ix-event-list');
-        const addButton = document.querySelector('#add-button');
         let items = [1, 2, 3];
 
-        // Function to render items
+        eventList.itemHeight = 60;
+
         const renderItems = () => {
-          addButton.textContent = `Add`;
-          eventList.innerHTML = ''; // Clear existing items
+          eventList.innerHTML = '';
           items.forEach((item) => {
             const listItem = document.createElement('ix-event-list-item');
             listItem.setAttribute('color', 'color-primary');
@@ -22,20 +21,12 @@
           });
         };
 
-        // Add item on button click
-        addButton.addEventListener('click', () => {
-          items.push(items.length + 1);
-          renderItems();
-        });
-
-        // Initial render
         renderItems();
       });
     </script>
     <script type="module" src="./init.js"></script>
   </head>
   <body>
-    <ix-event-list item-height="60"></ix-event-list>
-    <ix-button id="add-button"></ix-button>
+    <ix-event-list></ix-event-list>
   </body>
 </html>

@@ -87,10 +87,8 @@ test('should add an item dynamically and verify its height', async ({
 
   const eventListItems = page.locator('ix-event-list-item');
 
-  // Ensure initial count is 4
   await expect(eventListItems).toHaveCount(4);
 
-  // add an item and nested item
   await page.evaluate(() => {
     const eventListItem = document.createElement('ix-event-list-item');
     eventListItem.textContent = 'Newly added item';
@@ -105,10 +103,8 @@ test('should add an item dynamically and verify its height', async ({
     }
   });
 
-  // Validate that the new item is added
   await expect(eventListItems).toHaveCount(5);
 
-  // Wait for the last item's style to be applied properly
   await page.waitForFunction(() => {
     const lastItem = document.querySelectorAll('ix-event-list-item');
     if (!lastItem.length) return false;
@@ -116,14 +112,12 @@ test('should add an item dynamically and verify its height', async ({
     return computedStyle.getPropertyValue('--event-list-item-height') !== '';
   });
 
-  // Fetch the computed height of each event list item
   const heights = await eventListItems.evaluateAll((items) =>
     items.map((item) =>
       getComputedStyle(item).getPropertyValue('--event-list-item-height')
     )
   );
 
-  // Validate the heights (convert 60px to rem)
   const expectedHeightInRem = `${itemHeight / remInPixel}rem`;
 
   heights.forEach((height) => {
