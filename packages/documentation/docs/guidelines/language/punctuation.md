@@ -83,64 +83,39 @@ Always consider whether necessary
 
 - Numbers: Use No. as an abbreviation for number, no spacing between abbreviated No. and number: No.8
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do label='11am'></Guideline>
-<Guideline do={false} label='11 a.m.'></Guideline>
-</span>
+:::col
+[!do]
+11am
+Monday, January 12, 2021
+€999.50
+€2.5 million
+$400,456.50
+£320
+30 mm
+10 oz
+10-40%
+No.7
+Number 7
+:::
 
-<span class="m-2">
-<Guideline do label='Monday, January 12, 2021'></Guideline>
-<Guideline do={false} label='Monday, 12 January 2021'></Guideline>
-</span>
+:::col
+[!dont]
+11 a.m.
+Monday, 12 January 2021
+€999,50
+€2,5 million
+$400.456,50
+320£
+30 mms
+10 oz.
+10–40%
+#7
+Num 7
+:::
 
-<span class="m-2">
-<Guideline do label='€999.50'></Guideline>
-<Guideline do={false} label='€999,50'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='€2.5 million'></Guideline>
-<Guideline do={false} label='€2,5 million'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='$400,456.50'></Guideline>
-<Guideline do={false} label='$400.456,50'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='£320'></Guideline>
-<Guideline do={false} label='320£'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='30 mm'></Guideline>
-<Guideline do={false} label='30 mms'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='10 oz'></Guideline>
-<Guideline do={false} label='10 oz.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='10-40%'></Guideline>
-<Guideline do={false} label='10–40%'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='No.7'></Guideline>
-<Guideline do={false} label='#7'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Number 7'></Guideline>
-<Guideline do={false} label='Num 7'></Guideline>
-</span>
-
-</div>
+::::
 
 ### Spacing
 
@@ -154,29 +129,25 @@ Always consider whether necessary
 
 - Add a space before unit of measurement
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do label='50%'></Guideline>
-<Guideline do={false} label='50 %'></Guideline>
-</span>
+:::col
+[!do]
+50%
+11am
+Tuesday: no data
+Browse…
+:::
 
-<span class="m-2">
-<Guideline do label='11am'></Guideline>
-<Guideline do={false} label='11 am'></Guideline>
-</span>
+:::col
+[!dont]
+50 %
+11 am
+Tuesday: no data
+Browse …
+:::
 
-<span class="m-2">
-<Guideline do label='Tuesday: no data'></Guideline>
-<Guideline do={false} label='Tuesday: no data'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Browse…'></Guideline>
-<Guideline do={false} label='Browse …'></Guideline>
-</span>
-
-</div>
+::::
 
 ### Lists
 

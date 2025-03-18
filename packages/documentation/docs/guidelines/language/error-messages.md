@@ -41,47 +41,61 @@ import Guideline from '@site/src/components/Guideline';
 
 - An error message alerts user of a problem that exists and must be addressed
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='System error: You’re offline. Check your connection and try again.'></Guideline>
-<Guideline do label='File error: We cannot upload this file. Try uploading again.'></Guideline>
-<Guideline do label='Permission error: To carry out this task, you need more permissions. Contact admin to change permissions. '></Guideline>
-<Guideline do={false} label='What did you do!?'></Guideline>
-<Guideline do={false} label='The email address you entered does not match the required format. Please enter your email address using the standard format.'></Guideline>
-<Guideline do={false} label='You have failed to delete the device.'></Guideline>
-<Guideline do={false} label='Error 404'></Guideline>
-<Guideline do={false} label='Value out of range.'></Guideline>
-<Guideline do={false} label='File not found.'></Guideline>
-<Guideline do={false} label='Title: Input error'></Guideline>
-<Guideline do={false} label='Explanation: Input error detected.'></Guideline>
-<Guideline do={false} label='Action: Try again.'></Guideline>
-</span>
-</div>
+::::layout
+
+:::col
+[!do]
+System error: You’re offline. Check your connection and try again.
+File error: We cannot upload this file. Try uploading again.
+Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.
+:::
+
+:::col
+[!dont]
+What did you do!?
+The email address you entered does not match the required format. Please enter your email address using the standard format.
+You have failed to delete the device.
+Error 404
+Value out of range.
+File not found.
+Title: Input error
+Explanation: Input error detected.
+Action: Try again.
+:::
+
+::::
 
 ### Warning messages
 
 - A warning message alerts users of a condition that may cause a problem in the future
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Title: You have not saved all documents'></Guideline>
-<Guideline do label='Explanation: You have to save all documents'></Guideline>
-<Guideline do label='Action: (Ok button)'></Guideline>
-</span>
-</div>
+::::layout
+
+:::col
+[!do]
+Title: You have not saved all documents
+Explanation: You have to save all documents
+Action: (Ok button)
+:::
+
+::::
 
 ### Notifications
 
 - Notifications are informative and no actions are required from the user
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Access Point 2 is connected.'></Guideline>
-<Guideline do={false} label='Access Point connection failed. Try again.'></Guideline>
-</span>
+::::layout
 
-<span class="m-2">
-<Guideline do label='Changes are saved automatically.'></Guideline>
-<Guideline do={false} label='No rows to show.'></Guideline>
-</span>
-</div>
+:::col
+[!do]
+Access Point 2 is connected.
+Changes are saved automatically.
+:::
+
+:::col
+[!dont]
+Access Point connection failed. Try again.
+No rows to show.
+:::
+
+::::
