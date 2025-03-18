@@ -17,8 +17,7 @@ For the full experience, please use the Siemens Industrial Experience components
 
 ## Usage
 
-1. When using UXT below v2.7.0, download the [CSS theme](/uxt/uxt-ix-css.css) and import it into your project.  
-   _If you are using UXT v2.7.0 or higher, it is already part of the UXT CSS._
+1. Download the [Brand CSS theme](https://code.siemens.com/siemens-ix/ix-brand-theme/uxt) (available exclusively for Siemens AG products) and import it into your project. For non Siemens AG products, please [contact us](../contact-us.md).
 2. Apply the class `.ix` to the `.uxt-defaults` element.
 3. Depending if you want to use the dark or light theme, add `.uxt-ix-theme-dark` or `.uxt-ix-theme-light` to your `body` element.
 
