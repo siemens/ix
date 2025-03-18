@@ -13,10 +13,9 @@ import postcss from 'postcss';
 import { rimraf } from 'rimraf';
 import * as sass from 'sass';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
 
 const ROOT = path.join(__dirname, '..', '..');
 const SCSS = path.join(ROOT, 'scss');
@@ -120,7 +119,10 @@ function copyDistCssToDist() {
   );
 
   optimizedCss.forEach((result) => {
-    fse.writeFileSync(result.opts.to!, result.css);
+    if (!result.opts.to) {
+      throw Error('No output path');
+    }
+    fse.writeFileSync(result.opts.to, result.css);
   });
 
   copyDistCssToDist();

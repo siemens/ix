@@ -81,7 +81,10 @@ describe(`a describe`, () => {
 
     await queries.expectDropdownToBeVisible();
 
-    user.click(deepQuerySelector(screen.getByTestId('opt1'), 'button')!);
+    const opt1 = deepQuerySelector(screen.getByTestId('opt1'), 'button');
+    expect(opt1).not.toBeNull();
+
+    user.click(opt1!);
 
     await vi.waitFor(() => {
       expect(onValueChange).toHaveBeenCalledWith(

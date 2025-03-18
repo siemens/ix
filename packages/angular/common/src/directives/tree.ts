@@ -23,9 +23,9 @@ import type {
   TreeContext as ICwTreeTreeContext,
   TreeContext,
   UpdateCallback,
+  Components,
 } from '@siemens/ix';
 import { Subscription } from 'rxjs';
-import type { Components } from '@siemens/ix';
 
 export declare interface TreeBaseDirective
   extends Omit<Components.IxTree, 'renderItem'> {
