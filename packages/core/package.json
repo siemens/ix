@@ -58,7 +58,8 @@
     "./dist/siemens-ix/siemens-ix-core.css": "./dist/siemens-ix/siemens-ix-core.css",
     "./dist/siemens-ix/theme/classic-dark.css": "./dist/siemens-ix/theme/classic-dark.css",
     "./dist/siemens-ix/theme/classic-light.css": "./dist/siemens-ix/theme/classic-light.css",
-    "./component-doc.json": "./component-doc.json"
+    "./component-doc.json": "./component-doc.json",
+    "./scss/*": "./scss/*"
   },
   "scripts": {
     "build": "stencil build --prod && npm run build.scss",
