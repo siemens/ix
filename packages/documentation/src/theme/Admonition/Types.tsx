@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 import { IxIcon } from '@siemens/ix-react';
 
 interface LayoutProps {
-  children: ReactNode;
+  readonly children: ReactNode;
 }
 
 function Layout({ children }: LayoutProps): JSX.Element {
@@ -16,11 +16,11 @@ const ICON_CONFIG: Record<string, { name: string; color: string }> = {
   dont: { name: 'cancelled', color: 'color-alarm' },
   doGradient: { name: 'success', color: 'color-success' },
   dontGradient: { name: 'cancelled', color: 'color-alarm' },
-  default: { name: 'info', color: 'color-neutral' },
+  default: { name: null, color: null },
 };
 
 interface ColProps {
-  children: ReactElement | ReactElement[];
+  readonly children: ReactElement | ReactElement[];
 }
 
 function Col({ children }: ColProps): JSX.Element {
@@ -47,7 +47,7 @@ function Col({ children }: ColProps): JSX.Element {
   const contentItems = processContent(fragmentElements);
 
   const variantRegex = /\[!(do|dont|info)(-gradient)?]/;
-  let variant: string | null = null;
+  let variant: string | undefined = undefined;
 
   const displayItems = contentItems.filter((item) => {
     const match = variantRegex.exec(item);
@@ -58,14 +58,16 @@ function Col({ children }: ColProps): JSX.Element {
     return true;
   });
 
-  const variantClassName = variant ? styles[variant] : styles.info;
-  const iconProps = variant ? ICON_CONFIG[variant] : ICON_CONFIG.info;
+  const variantClassName = variant ? styles[variant] : '';
+  const iconProps = variant ? ICON_CONFIG[variant] : undefined;
 
   return (
     <div className={`${styles.col} ${variantClassName}`}>
-      {displayItems.map((item, index) => (
-        <div className={styles.item} key={index}>
-          <IxIcon name={iconProps.name} color={iconProps.color} size="24" />
+      {displayItems.map((item) => (
+        <div className={styles.item}>
+          {iconProps && (
+            <IxIcon name={iconProps.name} color={iconProps.color} size="24" />
+          )}
           <p>{item}</p>
         </div>
       ))}
