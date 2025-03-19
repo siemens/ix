@@ -74,6 +74,7 @@ export class Tabs {
 
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
+  private startTouchX = 0;
 
   private clickAction: {
     timeout: NodeJS.Timeout | null;
@@ -323,43 +324,55 @@ export class Tabs {
   }
 
   private setupWheelEvent(tabsWrapper: HTMLElement) {
-    tabsWrapper.addEventListener('wheel', this.handleWheelScroll as EventListener, { passive: false });
+    tabsWrapper.addEventListener(
+      'wheel',
+      this.handleWheelScroll as EventListener,
+      { passive: false }
+    );
   }
 
-  private handleWheelScroll = (event: WheelEvent) => {
+  private handleWheelScroll(event: WheelEvent) {
     if (!event.deltaY) return;
 
     event.preventDefault();
     const scrollAmount =
       event.deltaY > 0 ? -this.scrollAmount : this.scrollAmount;
     this.move(scrollAmount, true);
-  };
-
-  private setupTouchEvents(tabsWrapper: HTMLElement) {
-    tabsWrapper.addEventListener('touchstart', this.handleTouchStart as EventListener, { passive: true });
-    tabsWrapper.addEventListener('touchmove', this.handleTouchMove as EventListener, { passive: false });
   }
 
-  private startTouchX = 0;
+  private setupTouchEvents(tabsWrapper: HTMLElement) {
+    tabsWrapper.addEventListener(
+      'touchstart',
+      this.handleTouchStart as EventListener,
+      { passive: true }
+    );
+    tabsWrapper.addEventListener(
+      'touchmove',
+      this.handleTouchMove as EventListener,
+      { passive: false }
+    );
+  }
 
-  private handleTouchStart = (event: TouchEvent) => {
+  private handleTouchStart(event: TouchEvent) {
     this.startTouchX = event.touches[0].clientX;
-  };
+  }
 
-  private handleTouchMove = (event: TouchEvent) => {
+  private handleTouchMove(event: TouchEvent) {
     const moveX = event.touches[0].clientX - this.startTouchX;
     if (Math.abs(moveX) > 10) {
       event.preventDefault();
       this.move(moveX > 0 ? this.scrollAmount : -this.scrollAmount, true);
       this.startTouchX = event.touches[0].clientX;
     }
-  };
+  }
 
   private isTouchOnlyDevice(): boolean {
     const ua = window.navigator.userAgent;
     const isIOS = /iPhone|iPad|iPod/.test(ua);
 
-    const isStandalone = 'standalone' in window.navigator && (window.navigator as ExtendedNavigator).standalone;
+    const isStandalone =
+      'standalone' in window.navigator &&
+      (window.navigator as ExtendedNavigator).standalone;
     const isWebView = isIOS && !isStandalone && !/Safari/.test(ua);
 
     const isMobileSafari = isIOS && !isWebView;
