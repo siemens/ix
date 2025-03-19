@@ -68,6 +68,7 @@ export function BannerDocItemLayout({ children }: Props): JSX.Element {
   return (
     <>
       <HeroHeader
+        id={metadata.id}
         title={title}
         description={description}
         tabs={[]}
@@ -78,7 +79,7 @@ export function BannerDocItemLayout({ children }: Props): JSX.Element {
           <article>
             {docTOC.mobile}
 
-            <div className={styles.docContentComponent}>
+            <div className={styles.docContent}>
               <DocItemContent>{children}</DocItemContent>
             </div>
           </article>
@@ -120,6 +121,7 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
   return (
     <>
       <HeroHeader
+        id={metadata.id}
         title={title}
         description={description}
         tabs={tabs}
@@ -130,7 +132,9 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
           <article>
             {docTOC.mobile}
 
-            <div className={styles.docContentComponent}>
+            <div
+              className={clsx(styles.docContent, styles.docContentComponent)}
+            >
               <DocItemContent>{children}</DocItemContent>
             </div>
           </article>

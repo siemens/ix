@@ -19,10 +19,12 @@
   max-width: 14rem;
 }
 
-.docContentComponent {
-  h1 {
-    display: none;
-  }
+.docContent h1:first-of-type {
+  display: none;
+}
+
+.docContentComponent h2:first-of-type {
+  display: none;
 }
 
 @media (max-width: 997px) {

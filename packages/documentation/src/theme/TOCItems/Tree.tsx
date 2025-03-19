@@ -23,7 +23,7 @@ export default function TreeWrapper(props: Props): JSX.Element {
 
     let _nestedToc = toc[currentIndex];
     if (_nestedToc) {
-      setNestedToc([_nestedToc]);
+      setNestedToc(_nestedToc.children);
     }
   }, [currentIndex, setNestedToc, metadata]);
 

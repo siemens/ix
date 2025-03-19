@@ -57,17 +57,27 @@ function Tab(props: { label: string; value: string }) {
 }
 
 export default function HeroHeader(props: {
+  id: string;
   title: string;
   description: string;
   tabs: string[];
   frontMatter: any;
 }) {
-  const { description, tabs, title, frontMatter } = props;
+  const { description, tabs, title, frontMatter, id } = props;
   const noSingleTab = props.frontMatter.no_single_tab;
 
   return (
     <>
-      <h1 className={styles.sticky_h1}>{title}</h1>
+      <h1 className={styles.sticky_h1}>
+        {title}
+
+        <a
+          href={`#${id.replaceAll('/', '-')}`}
+          className="hash-link"
+          aria-label={title}
+          title={title}
+        ></a>
+      </h1>
 
       {description && (
         <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
