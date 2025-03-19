@@ -14,7 +14,7 @@ import { IxIcon } from '@siemens/ix-react';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React, { useEffect } from 'react';
-import styles from './index.module.scss';
+import styles from './index.module.css';
 import Link from '@docusaurus/Link';
 
 function parallax(id: string, min: number, max: number, translateMax: number) {
@@ -92,11 +92,7 @@ function Headline({
       </div>
 
       <div
-        className={clsx(
-          styles.text_2,
-          styles.description,
-          dark || text === 'dark' ? styles.text_dark : ''
-        )}
+        className={clsx(styles.text_2, styles.description)}
         style={{ width: description_width }}
       >
         {description}
@@ -225,7 +221,6 @@ function Button(props: {
         styles.Button,
         props.style === 'primary' ? styles.Primary : '',
         props.style === 'secondary' ? styles.Secondary : '',
-        props.style === 'grey' ? styles.Grey : '',
         props.icon === '' ? styles.Justify : ''
       )}
     >

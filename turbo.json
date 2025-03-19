@@ -1,6 +1,6 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalEnv": ["CI", "FIGMA_API_TOKEN", "GITHUB_TOKEN", "CSC", "FAST_START"],
+  "globalEnv": ["CI", "FIGMA_API_TOKEN", "GITHUB_TOKEN", "CSC", "BASE_URL"],
   "globalDependencies": [".env"],
   "ui": "stream",
   "tasks": {
