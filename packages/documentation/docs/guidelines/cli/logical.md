@@ -1,14 +1,19 @@
 ---
 sidebar_position: 2
-sidebar_title: Logical
+sidebar_label: Logical
 title: Logical
+hide_table_of_contents: false
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "Commands guide users through tasks logically and intuitively to remove doubt."
 ---
 
 import Separator from '@site/src/components/Separator';
 
-Commands guide users through tasks logically and intuitively to remove doubt.
+#
 
-### Arguments and flags
+## Arguments and flags
 - Try to use flags instead of arguments
 - Boolean flags must default to false and be set to true when present
 - If the default of a boolean flag is true, use the prefix no- to flip the default
@@ -54,7 +59,7 @@ Commands guide users through tasks logically and intuitively to remove doubt.
 ![Arguments and flags 6 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1034-6732&t=2JP2nlNciwS43htp-1)
 
 
-### Naming
+## Naming
 Use names that are:
 - memorable
 - logical

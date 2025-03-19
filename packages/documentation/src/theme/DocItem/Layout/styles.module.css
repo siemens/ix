@@ -19,6 +19,12 @@
   max-width: 14rem;
 }
 
+.docContentComponent {
+  h1 {
+    display: none;
+  }
+}
+
 @media (max-width: 997px) {
   .docItemContainer {
     padding: 3rem 2rem;

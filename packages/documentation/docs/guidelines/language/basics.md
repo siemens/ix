@@ -1,15 +1,18 @@
 ---
 sidebar_position: 1
-sidebar_title: Basics
-title: Basics
+sidebar_label: Basics
+title: UX Writing Basics
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "Dive into the fundamental principles of UX writing, where you'll learn how to create text that enhances user experience by being clear, concise, and user-friendly. This section lays the groundwork for all your UX writing endeavors."
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-The following sections contain advice we follow at Siemens to create our own products and includes common writing errors to avoid when creating industrial products and experiences.
-
-### Style
+## Style
 
 - Use as few words as possible
 
@@ -17,7 +20,7 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 - Use the same words and grammatical forms, lengths, and styles repeatedly
 
-### Tone and voice
+## Tone and voice
 
 - Use natural, conversational language and not robotic, funny, cool or clever
 
@@ -63,7 +66,7 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 </div>
 
-### Length
+## Length
 
 - Use sentences only when necessary
 
@@ -77,7 +80,7 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 - Use info icons only when necessary: Icons cannot contain the same content as the UI
 
-### Use of big and small letters (capitalization/casing)
+## Use of big and small letters (capitalization/casing)
 
 - Capitalize the first letter of the first word in a title / sentence / tooltip / menu item / list item / button
 
@@ -108,7 +111,7 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 </div>
 
-### Common UX wording mistakes
+## Common UX wording mistakes
 
 <div class="d-flex flex-wrap">
 <span class="m-2">

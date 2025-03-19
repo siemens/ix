@@ -1,13 +1,18 @@
 ---
 sidebar_position: 7
-sidebar_title: Best practices
+sidebar_label: Best practices
 title: Best practices
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'Familiarize yourself with general best practices for UX writing to maintain consistency and clarity across all your content. This section offers overarching guidelines that apply to various aspects of UX writing.'
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### Transitional text to show something is happening
+## Transitional text to show something is happening
 
 - Use -ing verbs and ellipses (…)
 
@@ -38,7 +43,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Error messages
+## Error messages
 
 - Add a clear reason for the error
 
@@ -60,7 +65,7 @@ import Guideline from '@site/src/components/Guideline';
 </span>
 </div>
 
-### Empty-state text
+## Empty-state text
 
 - Empty-state wording tells the user the empty space is intentional and should be there, i.e. not an error
 
@@ -90,7 +95,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Restoring behavior of items
+## Restoring behavior of items
 
 - Be clear on deleting, removing, creating and adding
 

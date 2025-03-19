@@ -1,11 +1,15 @@
 ---
 sidebar_position: 8
+sidebar_label: Ad hoc conversations
 title: Ad hoc conversations
+hide_table_of_contents: false
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "Even in industrial scenarios, users test and play with chatbots. Some ad hoc interactions can be fun and build relationships between your users and chatbots, however some can be undesirable and damaging for your brand. To mitigate this risk, it’s important to implement filters and set up clear guidelines. Companies and projects can decide if they need to implement more than a basic response and give, for example, a warning message. Either way, most chatbots respond in the same way when it comes to offensive or inappropriate user queries."
 ---
-# Ad hoc conversations 
-## Overview 
 
-Even in industrial scenarios, users test and play with chatbots. Some ad hoc interactions can be fun and build relationships between your users and chatbots, however some can be undesirable and damaging for your brand. To mitigate this risk, it’s important to implement filters and set up clear guidelines. Companies and projects can decide if they need to implement more than a basic response and give, for example, a warning message. Either way, most chatbots respond in the same way when it comes to offensive or inappropriate user queries. 
+# 
 
 ## Examples 
 

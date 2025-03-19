@@ -28,6 +28,10 @@ export default function LayoutWrapper(props: Props): JSX.Element {
     );
   }
 
+  if (docType === 'banner') {
+    return <BannerDocItemLayout {...props} />;
+  }
+
   return (
     <div className={clsx('docLayoutWrapper', `docLayout--${docType}`)}>
       <ComponentDocItemLayout {...props} />
@@ -54,6 +58,37 @@ function useDocTOC() {
     mobile,
     desktop,
   };
+}
+
+export function BannerDocItemLayout({ children }: Props): JSX.Element {
+  const docTOC = useDocTOC();
+  const { metadata } = useDoc();
+  const { title, description } = metadata;
+
+  return (
+    <>
+      <HeroHeader
+        title={title}
+        description={description}
+        tabs={[]}
+        frontMatter={{ ...metadata.frontMatter, no_single_tab: false }}
+      />
+      <div className={styles.Row}>
+        <div className={styles.docItemContainer}>
+          <article>
+            {docTOC.mobile}
+
+            <div className={styles.docContentComponent}>
+              <DocItemContent>{children}</DocItemContent>
+            </div>
+          </article>
+          <DocItemFooter />
+          <DocItemPaginator />
+        </div>
+        <div className={clsx('col', styles.toc)}>{docTOC.desktop}</div>
+      </div>
+    </>
+  );
 }
 
 export function ComponentDocItemLayout({ children }: Props): JSX.Element {
@@ -91,14 +126,8 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
         frontMatter={metadata.frontMatter}
       />
       <div className={styles.Row}>
-        {/* <div className="col"> */}
-        {/* <ContentVisibility metadata={metadata} /> */}
-        {/* <DocVersionBanner /> */}
-        {/* <div className={styles.docItemContainer}> */}
         <div className={styles.docItemContainer}>
           <article>
-            {/* <DocBreadcrumbs /> */}
-            {/* <DocVersionBadge /> */}
             {docTOC.mobile}
 
             <div className={styles.docContentComponent}>
@@ -108,7 +137,6 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
           <DocItemFooter />
           <DocItemPaginator />
         </div>
-        {/* </div> */}
         <div className={clsx('col', styles.toc)}>{docTOC.desktop}</div>
       </div>
     </>

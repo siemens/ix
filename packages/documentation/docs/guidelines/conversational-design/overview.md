@@ -1,13 +1,15 @@
 ---
 sidebar_position: 2
-title: Overview
+sidebar_label: Overview
+title: Overview Conversational design
+hide_table_of_contents: false
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'Communication between users and machines can be text-based, voice-based, or a combination of both. Chatbots are typically designed to communicate with users via text or voice interfaces, while virtual assistants function without a visual interface and respond to voice commands (such as Siri and Alexa). This set of guidelines focuses on chatbots that communicate via text within user interfaces.'
 ---
-# Conversational design
 
-## Overview
-Conversational design is the practice of designing AI assistants, chatbots and voice interfaces to communicate with users naturally and intuitively. Also known as Conversation UX (CUX), conversational design bridges the gap between technology and human communication, making interactions with our industrial software users more efficient, helpful and engaging. 
-
-Communication between users and machines can be text-based, voice-based, or a combination of both. Chatbots are typically designed to communicate with users via text or voice interfaces, while virtual assistants function without a visual interface and respond to voice commands (such as Siri and Alexa). This set of guidelines focuses on chatbots that communicate via text within user interfaces.
+# 
 
 ## Conversational design benefits
 - **User satisfaction and engagement:** Great conversation design creates authentic experiences between you and your users.

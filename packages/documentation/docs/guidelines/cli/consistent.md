@@ -1,12 +1,17 @@
 ---
 sidebar_position: 1
-sidebar_title: Consistent
+sidebar_label: Consistent
 title: Consistent
+hide_table_of_contents: false
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "CLIs are the same across the whole product, follow our conventions and use our recommended frameworks."
 ---
 
-CLIs are the same across the whole product, follow our conventions and use our recommended frameworks.
+#
 
-### Best practice
+## Best practice
 - Always use a command line library when available
 - Always return a zero exit code to signal success
 - Always return non-zero exit code to signal failure
@@ -17,7 +22,7 @@ CLIs are the same across the whole product, follow our conventions and use our r
 
 ![Best practice - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1025-1460&t=uLX24CWds4Z1hGKZ-1)
 
-### Subcommands
+## Subcommands
 - Use consistent subcommands
 - Use consistent names for all subcommand levels
 - Use clear and unique names for subcommands
@@ -26,7 +31,7 @@ CLIs are the same across the whole product, follow our conventions and use our r
 
 ![Subcommands - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1025-1674&t=uLX24CWds4Z1hGKZ-1)
 
-### Changes 
+## Changes 
 - Always try to make additive changes 
 - Always warn users about non-additive changes
 - Avoid making breaking changes

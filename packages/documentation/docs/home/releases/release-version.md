@@ -1,16 +1,16 @@
 ---
 sidebar_position: 2
-sidebar_title: Versioning and releases
+sidebar_label: Versioning and releases
 title: Versioning and releases
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'Our Siemens Industrial Experience design team strive to provide a stable and reliable system that is constantly evolving to meet your needs. This section describes our practices for new features and changes, deprecating and removing outdated features, and our long-term support for older versions.'
 ---
 
-# Siemens Industrial Experience versioning and releases
+# 
 
-<p className="text-l-title">
-Our Siemens Industrial Experience design team strives to provide a stable and reliable system that's constantly evolving to meet your needs. This section describes our practices for new features and changes, deprecating and removing outdated features, and our long-term support for older versions. 
-</p>
-
-### Versioning
+## Versioning
 
 We use [semantic versioning](https://semver.org/) for our releases. Version numbers indicate the level of changes introduced by the release and follow the standard major, minor and patch format.
 
@@ -20,7 +20,7 @@ We use [semantic versioning](https://semver.org/) for our releases. Version numb
 | Minor        | Contains smaller features and changes. Updating requires no developer efforts. Minor versions can include components changing their status to deprecated. They are fully backward compatible.                                                                                                                    |
 | Patch        | Contains bug fixes. Updating requires no developer efforts.                                                                                                                                                                                                                                                      |
 
-### Release frequency
+## Release frequency
 
 We follow a time-based release schedule consisting of:
 
@@ -28,7 +28,7 @@ We follow a time-based release schedule consisting of:
 - 1-3 minor releases for each major release
 - Patch releases as hotfixes when necessary
 
-### Support policy
+## Support policy
 
 All major releases receive support for approximately 12 months. We distinguish between two support stages for major releases:
 
@@ -41,7 +41,7 @@ Our support policy applies to all components of the design system including the 
 
 We recommend always following the active release. When a version moves from the active stage to the LTS stage, projects should start migrating to the new active major version.
 
-### Supported versions
+## Supported versions
 
 | Version | Status | Released     |
 | ------- | :----: | ------------ |

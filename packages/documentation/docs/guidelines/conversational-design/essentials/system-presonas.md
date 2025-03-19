@@ -1,13 +1,17 @@
 ---
 sidebar_position: 3
+sidebar_label: System personas
 title: System personas
+hide_table_of_contents: false
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "System personas refer to the personality of the chatbot. This includes its character, voice and how the chatbot responds and interacts with its users."
 ---
 
-# System personas
+# 
 
-## Overview
-
-System personas refer to the personality of the chatbot. This includes its character, voice and how the chatbot responds and interacts with its users. System personas act as an extension of the company brand and should exhibit the same character traits. If your brand represents trustworthiness, creativity and authenticity, your chatbot should be prompted to respond in a way that reflects these characteristics. Without system prompting or a rounded personality, your chatbot may respond in a way that damages your brand and adds frustration and dissatisfaction to your customers. A good persona makes interactions with customers and users more enjoyable and engaging, thus boosting brand satisfaction. 
+System personas act as an extension of the company brand and should exhibit the same character traits. If your brand represents trustworthiness, creativity and authenticity, your chatbot should be prompted to respond in a way that reflects these characteristics. Without system prompting or a rounded personality, your chatbot may respond in a way that damages your brand and adds frustration and dissatisfaction to your customers. A good persona makes interactions with customers and users more enjoyable and engaging, thus boosting brand satisfaction. 
 
 ## Creating personas 
 

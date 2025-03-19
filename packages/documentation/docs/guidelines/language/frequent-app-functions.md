@@ -1,12 +1,18 @@
 ---
 sidebar_position: 6
-sidebar_title: Frequent app functions
+sidebar_label: Frequent app functions
 title: Frequent app functions
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'Get tips for naming common app functions clearly and effectively. This subchapter focuses on how to describe frequent actions and features in a way that users can quickly understand and use.'
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
-### Overview
+#
+
+## Overview
 
 - Overview
 
@@ -28,7 +34,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Analytics
+## Analytics
 
 - Analysis
 
@@ -45,7 +51,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Monitoring and scheduling
+## Monitoring and scheduling
 
 - Watchlist
 
@@ -63,7 +69,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Detail view
+## Detail view
 
 - Device details
 
@@ -82,7 +88,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-#### Asset properties
+### Asset properties
 
 - Product name
 
@@ -106,7 +112,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - SW version
 
-### Thresholds
+## Thresholds
 
 - Default value
 
@@ -118,7 +124,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Set custom threshold
 
-### Upload
+## Upload
 
 - Drag a file here or select a file
 
@@ -132,7 +138,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Comments
+## Comments
 
 - Write comment
 
@@ -146,7 +152,7 @@ import Guideline from '@site/src/components/Guideline';
 <Guideline do={false} label='Write a comment'></Guideline>
 </span>
 
-### Grid and list actions
+## Grid and list actions
 
 - Group
 
@@ -158,7 +164,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Search by XY
 
-### Notifications
+## Notifications
 
 - Events
 
@@ -174,7 +180,7 @@ import Guideline from '@site/src/components/Guideline';
 <Guideline do={false} label='Problem'></Guideline>
 </span>
 
-### Event types
+## Event types
 
 - Configuration change
 
@@ -188,7 +194,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Limit exceeded
 
-### Event status
+## Event status
 
 - Open
 
@@ -207,7 +213,7 @@ import Guideline from '@site/src/components/Guideline';
 <Guideline do={false} label='Unacknl.'></Guideline>
 </span>
 
-### Event actions
+## Event actions
 
 - Apply
 
@@ -233,7 +239,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Move to plan / acknowledged / schedule
 
-### NAMUR NE107 States
+## NAMUR NE107 States
 
 - Failure
 

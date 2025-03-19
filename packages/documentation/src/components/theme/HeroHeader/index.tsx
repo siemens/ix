@@ -1,14 +1,13 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import styles from './styles.module.css';
-import clsx from 'clsx';
 import { useHistory, useLocation } from '@docusaurus/router';
-import useSearchParams from '@site/src/utils/hooks/useSearchParams';
-import ReadMore from '@site/src/components/ReadMore';
-import { useCallback, useEffect, useState } from 'react';
-import { RedirectTag } from '@site/src/components/UI/Tags';
 import { useScrollPosition } from '@docusaurus/theme-common/internal';
+import { RedirectTag } from '@site/src/components/UI/Tags';
+import useSearchParams from '@site/src/utils/hooks/useSearchParams';
+import clsx from 'clsx';
+import { Fragment, useCallback, useEffect, useState } from 'react';
+import styles from './styles.module.css';
 
 function Tabs({ children }) {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -72,7 +71,7 @@ export default function HeroHeader(props: {
 
       {description && (
         <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
-          <ReadMore>{description}</ReadMore>
+          <p>{description}</p>
           {frontMatter.deprecated &&
             Array.from(frontMatter.deprecated) &&
             frontMatter.deprecated.map((link: string) => (
@@ -83,17 +82,15 @@ export default function HeroHeader(props: {
         </div>
       )}
 
-      {tabs.length > 0 && (
-        <Tabs>
-          {tabs.map((tab) => {
-            if (tabs.length > 0 && !noSingleTab) {
-              return <Tab value={tab} label={tab} key={tab} />;
-            }
+      <Tabs>
+        {tabs.map((tab, index) => {
+          if (tabs.length > 0 && !noSingleTab) {
+            return <Tab value={tab} label={tab} key={tab} />;
+          }
 
-            return <></>;
-          })}
-        </Tabs>
-      )}
+          return <Fragment key={index}></Fragment>;
+        })}
+      </Tabs>
     </>
   );
 }

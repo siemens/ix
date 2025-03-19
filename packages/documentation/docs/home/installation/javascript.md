@@ -1,13 +1,19 @@
 ---
 sidebar_position: 3
-sidebar_title: Web Components
+sidebar_label: Web Components
 title: Web Components
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'Web Components are a set of web platform APIs that allow you to create reusable and encapsulated custom elements. This section guides you through the steps to install and set up our design system using web components, ensuring a straightforward and flexible integration process.'
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Library installation
+#
+
+## Library installation
 
 Install `@siemens/ix` and `@siemens/ix-icons` using a package manager:
 

@@ -1,13 +1,18 @@
 ---
 sidebar_position: 4
-sidebar_title: Proper nouns
+sidebar_label: Proper nouns
 title: Proper nouns
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'Learn the guidelines for using proper nouns correctly in your text. This subchapter will help you understand when and how to capitalize names, brands, and other specific terms to maintain consistency and professionalism.'
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### Capitalize proper nouns
+## Capitalize proper nouns
 
 - A proper noun is the name of a particular person, place, or object that is spelled with a capital letter
 
@@ -19,7 +24,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Avoid making up your own proper nouns, e.g. ball valve instead of Ball Valve
 
-### Siemens proper nouns
+## Siemens proper nouns
 
 - Siemens Corporate Information
 
@@ -37,7 +42,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Siemens Service & Support
 
-### Technical terms
+## Technical terms
 
 - Operating systems: iOS, Android, Windows, Linux
 

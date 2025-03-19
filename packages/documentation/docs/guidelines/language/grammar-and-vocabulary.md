@@ -1,13 +1,18 @@
 ---
 sidebar_position: 2
-sidebar_title: Grammar and vocabulary
+sidebar_label: Grammar and vocabulary
 title: Grammar and vocabulary
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "Discover the importance of proper grammar and vocabulary in UX writing. This subchapter will guide you on how to use language effectively to create professional and easily understandable content."
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### Grammar tenses
+## Grammar tenses
 
 - Use present simple tense to describe an action or instruction
 
@@ -27,7 +32,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Active voice
+## Active voice
 
 <div class="d-flex flex-wrap">
 
@@ -58,7 +63,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### UI terminology
+## UI terminology
 
 - Mouse terminology: drag, hover, point, tap, click
 
@@ -80,7 +85,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Idioms and phrasal verbs
+## Idioms and phrasal verbs
 
 - Avoid multi-word phrasal verbs when one word works
 
@@ -112,7 +117,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Jargon, buzz words and terms
+## Jargon, buzz words and terms
 
 - Use simple vocabulary
 
@@ -120,7 +125,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Define new or unfamiliar terms and use existing explanations (do not reinvent the wheel)
 
-### Abbreviations and acronyms
+## Abbreviations and acronyms
 
 - Avoid abbreviations (info, incl, excl) and acronyms (SIOS for Siemens Industry Online Support)
 
@@ -156,7 +161,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Time based vocabulary: Last, latest and recent
+## Time based vocabulary: Last, latest and recent
 
 - Last implies nothing else will follow. It's the last, and after this it is finished. No more are coming.
 
