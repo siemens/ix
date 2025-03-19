@@ -117,7 +117,8 @@ export function getFigmaMeta(node: MDXImageNode): {
 async function modifyMDXUrl(
   node: MDXImageNode,
   images: Record<string, string>,
-  config: FigmaConfig
+  config: FigmaConfig,
+  retry = false
 ) {
   const { fileName, nodeId } = getFigmaMeta(node);
   let id = decodeURIComponent(nodeId).replace(/-/, ':');
@@ -148,21 +149,38 @@ async function modifyMDXUrl(
     ) {
       isFetching.add(imageUUID);
       logger.log('Download image for filename', fileName, 'node', id);
-      const imageResponse = await axios.get(s3BucketUrl, {
-        responseType: 'stream',
-      });
+      try {
+        const imageResponse = await axios.get(s3BucketUrl, {
+          responseType: 'stream',
+        });
 
-      const imagePath = path.join(config.figmaFolder, imageFileName);
-      const imageStream = fs.createWriteStream(imagePath);
+        const imagePath = path.join(config.figmaFolder, imageFileName);
+        const imageStream = fs.createWriteStream(imagePath);
 
-      imageResponse.data.pipe(imageStream);
+        imageResponse.data.pipe(imageStream);
 
-      await new Promise((resolve, reject) => {
-        imageStream.on('finish', resolve);
-        imageStream.on('error', reject);
-      });
+        await new Promise((resolve, reject) => {
+          imageStream.on('finish', resolve);
+          imageStream.on('error', reject);
+        });
 
-      logger.log(`Image downloaded to ${imagePath}`);
+        logger.log(`Image downloaded to ${imagePath}`);
+      } catch (e) {
+        logger.error('Error downloading image', e);
+        if (retry) {
+          logger.error('Abort retry executed second time', e);
+          throw Error(
+            'Error downloading image. Abort retry executed second time'
+          );
+        }
+        logger.error('Retry downloading image', e);
+        await new Promise<void>((resolve) => {
+          setTimeout(async () => {
+            await modifyMDXUrl(node, images, config);
+            resolve();
+          }, 2000);
+        });
+      }
     } else {
       logger.log('Skip download. Image already existing or in fetching phase.');
     }

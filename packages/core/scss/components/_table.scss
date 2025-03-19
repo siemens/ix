@@ -34,6 +34,7 @@
   vertical-align: top;
   border-color: var(--theme-table--border-color);
   @include text-default;
+  @include bs-legacy-support;
 
   --ix-table-background: var(--theme-table--background);
 
