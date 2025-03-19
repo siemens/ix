@@ -1,6 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import DefaultAdmonitionTypes from '@theme-original/Admonition/Types';
 import styles from './styles.module.css';
+import { iconCancelled, iconSuccess } from '@siemens/ix-icons/icons';
 import { IxIcon } from '@siemens/ix-react';
 
 interface LayoutProps {
@@ -11,12 +12,12 @@ function Layout({ children }: LayoutProps): JSX.Element {
   return <div className={`${styles.layout}`}>{children}</div>;
 }
 
-const ICON_CONFIG: Record<string, { name: string; color: string }> = {
-  do: { name: 'success', color: 'color-success' },
-  dont: { name: 'cancelled', color: 'color-alarm' },
-  doGradient: { name: 'success', color: 'color-success' },
-  dontGradient: { name: 'cancelled', color: 'color-alarm' },
-  default: { name: null, color: null },
+const ICON_CONFIG: Record<string, { icon: string; iconColor: string }> = {
+  do: { icon: iconSuccess, iconColor: 'color-success' },
+  dont: { icon: iconCancelled, iconColor: 'color-alarm' },
+  doGradient: { icon: iconSuccess, iconColor: 'color-success' },
+  dontGradient: { icon: iconCancelled, iconColor: 'color-alarm' },
+  default: { icon: null, iconColor: null },
 };
 
 interface ColProps {
@@ -66,7 +67,7 @@ function Col({ children }: ColProps): JSX.Element {
       {displayItems.map((item) => (
         <div key={item} className={styles.item}>
           {iconProps && (
-            <IxIcon name={iconProps.name} color={iconProps.color} size="24" />
+            <IxIcon name={iconProps.icon} color={iconProps.iconColor} size="24" />
           )}
           <p>{item}</p>
         </div>
