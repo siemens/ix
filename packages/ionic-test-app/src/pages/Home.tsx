@@ -42,6 +42,7 @@ const TriggerEventModal = () => {
       <IxModalContent>
         <label>Event name</label>
         <input
+          className="ix-form-control"
           type="text"
           onInput={(e) => setName(e.currentTarget.value)}
           defaultValue={name}

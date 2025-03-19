@@ -227,7 +227,15 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Deprecated',
-      items: ['legacy/basic-navigation/index', 'legacy/map-navigation/index'],
+      items: [
+        'legacy/basic-navigation/index',
+        'legacy/map-navigation/index',
+        'legacy/checkbox',
+        'legacy/input',
+        'legacy/radiobutton',
+        'legacy/textarea',
+        'legacy/validation',
+      ],
     },
   ],
 

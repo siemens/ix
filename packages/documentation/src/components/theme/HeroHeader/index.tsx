@@ -3,7 +3,7 @@
  */
 import { useHistory, useLocation } from '@docusaurus/router';
 import { useScrollPosition } from '@docusaurus/theme-common/internal';
-import { RedirectTag } from '@site/src/components/UI/Tags';
+import { DeprecatedTag, RedirectTag } from '@site/src/components/UI/Tags';
 import useSearchParams from '@site/src/utils/hooks/useSearchParams';
 import clsx from 'clsx';
 import { Fragment, useCallback, useEffect, useState } from 'react';
@@ -82,13 +82,32 @@ export default function HeroHeader(props: {
       {description && (
         <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
           <p>{description}</p>
-          {frontMatter.deprecated &&
-            Array.from(frontMatter.deprecated) &&
-            frontMatter.deprecated.map((link: string) => (
-              <RedirectTag key={link} link={link}>
-                Show deprecated version
-              </RedirectTag>
-            ))}
+          <div className={styles.Tags}>
+            {frontMatter.deprecated &&
+              Array.from(frontMatter.deprecated) &&
+              frontMatter.deprecated.map(
+                (
+                  link: string | { type: string; message: string; href: string }
+                ) => {
+                  if (typeof link === 'string') {
+                    return (
+                      <RedirectTag key={link} link={link}>
+                        Show deprecated version
+                      </RedirectTag>
+                    );
+                  }
+
+                  if (link.type === 'deprecated') {
+                    return (
+                      <DeprecatedTag
+                        key={link.message}
+                        message={link.message}
+                      ></DeprecatedTag>
+                    );
+                  }
+                }
+              )}
+          </div>
         </div>
       )}
 
