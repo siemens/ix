@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: Chatbot checklist
 title: Chatbot checklist
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "This subchapter provides a comprehensive guide for creating an industrial chatbot. It outlines essential steps and considerations, from defining the chatbot's purpose and selecting the right technology stack to developing user journeys and continuously testing and updating the chatbot. By following these guidelines, your team can ensure the chatbot meets user needs and aligns with your brand's voice and tone."

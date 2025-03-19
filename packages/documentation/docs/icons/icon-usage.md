@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: Icon usage
 title: Icon usage
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Icons are graphical representations of terms, functions or objects. Ideally, we use them together with a descriptive text to make it easier for users to learn their meaning. "

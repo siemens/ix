@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: Acknowledging users
 title: Acknowledging users
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "In conversations, humans like to be acknowledged to shows the other person is listening and understands the situation. When a chatbot acknowledges user input, it prompts users to continue interacting, boosts the overall user experience, and makes interactions more authentic."

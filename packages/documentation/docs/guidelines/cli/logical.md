@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: Logical
 title: Logical
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Commands guide users through tasks logically and intuitively to remove doubt."

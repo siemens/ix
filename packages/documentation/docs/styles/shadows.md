@@ -3,7 +3,7 @@ sidebar_position: 3
 sidebar_label: Shadows
 title: Shadows
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Shadows serve as crucial visual elements that add depth, create dimension, and enhance the perception of hierarchy within your application."

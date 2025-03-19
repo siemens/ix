@@ -2,7 +2,7 @@
 sidebar_position: 2
 sidebar_label: Migration from UXT 2.7.0
 title: Migration from UXT 2.7.0
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'For a quick and easy migration without changing your code base, the iX-UXT CSS Theme is prepared for app developers using the CSS from UXT (User Experience Toolkit, formerly named MindSphere Design System).'

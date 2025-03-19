@@ -2,7 +2,7 @@
 sidebar_position: 2
 sidebar_label: Accessibility
 title: Accessibility
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Accessibility ensures that digital products are usable by everyone, including people with disabilities. It is crucial for creating inclusive solutions that meet diverse needs and comply with standards like WCAG, enhancing the overall user experience.'

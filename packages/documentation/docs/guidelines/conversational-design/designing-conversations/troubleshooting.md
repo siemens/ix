@@ -3,7 +3,7 @@ sidebar_position: 7
 sidebar_label: Troubleshooting
 title: Troubleshooting
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "For many industrial applications, chatbots are these to support users with their daily tasks and improve the efficiency of their work. This naturally includes talking about system errors and troubleshooting with users. We recommend not just offering the reason for the error, but following our UX Writing style guide steps to also contextualize errors and give users more support to solve the error."

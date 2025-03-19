@@ -2,7 +2,7 @@
 sidebar_position: 2
 sidebar_label: React
 title: React
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'React is a widely-used library for building user interfaces, particularly single-page applications. This section  guides you through the steps to install and set up our design system within a React project, ensuring a seamless integration process.'

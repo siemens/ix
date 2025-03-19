@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: Designing new icons
 title: Designing new icons
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "When designing new icons beyond the existing library, follow our detailed guidelines to ensure consistency and quality. Be sure to consider both the technical and formal requirements outlined."

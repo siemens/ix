@@ -1,7 +1,7 @@
 ---
 sidebar_label: Designing
 title: Getting started with designing
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Designed to work seamlessly with Figma, our design system offers a streamlined workflow for UX designers. The documentation provides integrated information for both designers and developers, fostering a collaborative and efficient approach to app design.'

@@ -1,7 +1,7 @@
 ---
 sidebar_label: Mobile experience
 title: Mobile experience
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Use Siemens Industrial Experience to create mobile applications jointly with web technology based approaches easily. With the help of our design system you are able to swiftly build the user interface of your mobile web app or hybrid app. Discover best practices for creating designs that work seamlessly across different devices and screen sizes.'

@@ -2,7 +2,7 @@
 sidebar_position: 2
 sidebar_label: Versioning and releases
 title: Versioning and releases
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Our Siemens Industrial Experience design team strive to provide a stable and reliable system that is constantly evolving to meet your needs. This section describes our practices for new features and changes, deprecating and removing outdated features, and our long-term support for older versions.'

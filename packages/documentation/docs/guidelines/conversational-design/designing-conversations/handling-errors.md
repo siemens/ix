@@ -3,7 +3,7 @@ sidebar_position: 5
 sidebar_label: Handling errors
 title: Handling errors
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "When talking about chatbots and the mistakes they make, it’s always talked about handling them ‘gracefully’. However, in industrial situations, they must also be handled quickly so users can move on and possibly get another support source. There are often time-sensitive actions within industrial situations that require chatbots and workers to move quickly to find solutions. If a chatbot response is inaccurate or the chatbot cannot give users the solution they need, it can be consequential and even costly."

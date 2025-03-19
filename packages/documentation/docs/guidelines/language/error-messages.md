@@ -2,7 +2,7 @@
 sidebar_position: 8
 sidebar_label: Errors, warnings and notifications
 title: Errors, warnings and notifications
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Learn how to write error messages, warnings, and notifications that are helpful and user-friendly. This subchapter provides strategies for communicating issues and alerts in a way that guides users towards solutions.'

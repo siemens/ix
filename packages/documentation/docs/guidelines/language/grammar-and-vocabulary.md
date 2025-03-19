@@ -2,7 +2,7 @@
 sidebar_position: 2
 sidebar_label: Grammar and vocabulary
 title: Grammar and vocabulary
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Discover the importance of proper grammar and vocabulary in UX writing. This subchapter will guide you on how to use language effectively to create professional and easily understandable content."

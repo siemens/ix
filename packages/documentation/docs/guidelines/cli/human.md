@@ -3,7 +3,7 @@ sidebar_position: 5
 sidebar_label: Human
 title: Human
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Design your commands for humans. Have a conversation. Speak the Siemens brand: Authentic, open and engaging."

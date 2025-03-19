@@ -3,7 +3,7 @@ sidebar_position: 3
 sidebar_label: Confirming requests
 title: Confirming requests
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Chatbots in industrial applications are sometimes required to carry out long-lasting and consequential changes to systems. Changing a system incorrectly can lead to substantial issues within a plant or a factory, such as not connecting a device properly, resetting a password without informing users, or onboarding new roles or user permissions incorrectly. To mitigate these risks, chatbots should always confirm user requests."

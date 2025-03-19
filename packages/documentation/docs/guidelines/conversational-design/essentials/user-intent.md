@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: User intent
 title: User intent
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "User intent refers to the main purpose or goal of users and is directly related to what they want to achieve – whether they’re trying to access information, schedule maintenance or ask a question about a product or system."

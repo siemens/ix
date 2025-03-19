@@ -3,7 +3,7 @@ sidebar_position: 3
 sidebar_label: Efficient
 title: Efficient
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Commands are scannable, giving users just the right amount of information at the right time."

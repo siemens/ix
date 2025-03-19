@@ -2,7 +2,7 @@
 sidebar_position: 2
 sidebar_label: FAQ
 title: FAQ
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Welcome to the Industrial Experience design system FAQ. These are your go-to resource for quick and clear answers about Industrial Experience. Whether you’re just starting with the design system or need insights into integration and functionality, you’ll find answers to the most common questions here. If you can’t find what you’re looking for, feel free to reach out. The FAQ are continuously updated, and we welcome suggestions for improvement via email to our support team. Thank you for choosing to use Siemens Industrial Experience."

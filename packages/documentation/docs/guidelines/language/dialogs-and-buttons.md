@@ -2,7 +2,7 @@
 sidebar_position: 9
 sidebar_label: Dialogs and buttons
 title: Dialogs and buttons
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Discover guidelines for writing dialogs and button labels to ensure clear and actionable instructions. This section helps you create effective prompts and calls to action that enhance user interaction.'

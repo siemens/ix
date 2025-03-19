@@ -2,7 +2,7 @@
 sidebar_position: 1
 sidebar_label: Overview
 title: Guidelines overview
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Our guidelines section provides comprehensive information to help you create user-friendly and consistent designs. This section covers various aspects of design, ensuring that your work meets high standards of accessibility, responsiveness, and usability.'

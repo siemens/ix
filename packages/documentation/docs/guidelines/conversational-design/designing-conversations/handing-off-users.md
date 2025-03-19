@@ -3,7 +3,7 @@ sidebar_position: 6
 sidebar_label: Handing off users
 title: Handing off users
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Chatbots must hand off their users whenever they’ve failed to clarify what the user wants or reach an accurate response. They should never continue to ask questions, clarify or funnel more than 3 times before handing users off to an alternative support system."

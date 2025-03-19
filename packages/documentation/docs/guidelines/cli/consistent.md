@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: Consistent
 title: Consistent
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "CLIs are the same across the whole product, follow our conventions and use our recommended frameworks."

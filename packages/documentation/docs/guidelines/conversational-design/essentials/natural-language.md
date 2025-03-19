@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: Natural language
 title: Natural language
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Even in industrial contexts, chatbots or virtual assistants have to interact with their users in a human way. They have to understand the language used by users and respond naturally and appropriately for the industrial situation. We want our industrial chatbots to respond as an industrial expert, similar to a colleague they trust, to get our users the information they need."

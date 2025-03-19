@@ -2,7 +2,7 @@
 sidebar_position: 1
 sidebar_label: Roadmap
 title: Roadmap
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'We’re constantly improving our design system for you by extending the component library, developing our user guidance and ensuring the system is reliable and easy to use. Here’s what’s happening over the next year so you know what to expect from your Siemens Industrial Experience team.'

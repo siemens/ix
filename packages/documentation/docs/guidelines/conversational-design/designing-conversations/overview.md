@@ -3,7 +3,7 @@ sidebar_position: 0
 sidebar_label: Overview
 title: Overview
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Designing sample conversations support chatbot persona creation and focuses specifically on the user journey. Dialogs should both reflect user journeys and make the expected chatbot interactions transparent for the whole team."

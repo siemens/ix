@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: Getting started
 title: Getting started with Conversational design
 hide_table_of_contents: true
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Conversational design is the practice of designing AI assistants, chatbots and voice interfaces to communicate with users naturally and intuitively. Also known as Conversation UX (CUX), conversational design bridges the gap between technology and human communication, making interactions with our industrial software users more efficient, helpful and engaging.'

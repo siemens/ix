@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: Overview
 title: Overview Conversational design
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Communication between users and machines can be text-based, voice-based, or a combination of both. Chatbots are typically designed to communicate with users via text or voice interfaces, while virtual assistants function without a visual interface and respond to voice commands (such as Siri and Alexa). This set of guidelines focuses on chatbots that communicate via text within user interfaces.'

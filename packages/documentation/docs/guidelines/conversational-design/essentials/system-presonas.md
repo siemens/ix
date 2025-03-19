@@ -3,7 +3,7 @@ sidebar_position: 3
 sidebar_label: System personas
 title: System personas
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "System personas refer to the personality of the chatbot. This includes its character, voice and how the chatbot responds and interacts with its users."

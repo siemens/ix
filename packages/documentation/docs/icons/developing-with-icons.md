@@ -3,7 +3,7 @@ sidebar_position: 3
 sidebar_label: Developing with icons
 title: Developing with icons
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'The integration of icons into the code varies by framework. To accommodate the diverse range of potential use cases, external icons can be integrated in addition to the existing icon set.'

@@ -2,7 +2,7 @@
 sidebar_position: 3
 sidebar_label: Contact us
 title: Contact us
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "If you have any questions, feedback, or ideas, we're here to help. For feature requests and bug tickets, visit our GitHub repository. Siemens employees are also welcome to join our Viva Engage community for lively discussions about all aspects of the design system. For inquiries about collaborations, email our team."

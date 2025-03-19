@@ -3,7 +3,7 @@ sidebar_position: 4
 sidebar_label: Helpful
 title: Helpful
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "CLIs support users by giving suggestions, being empathetic and providing error messages to move them forward."

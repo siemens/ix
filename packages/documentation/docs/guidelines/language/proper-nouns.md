@@ -2,7 +2,7 @@
 sidebar_position: 4
 sidebar_label: Proper nouns
 title: Proper nouns
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Learn the guidelines for using proper nouns correctly in your text. This subchapter will help you understand when and how to capitalize names, brands, and other specific terms to maintain consistency and professionalism.'

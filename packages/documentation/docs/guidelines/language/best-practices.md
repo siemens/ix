@@ -2,7 +2,7 @@
 sidebar_position: 7
 sidebar_label: Best practices
 title: Best practices
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Familiarize yourself with general best practices for UX writing to maintain consistency and clarity across all your content. This section offers overarching guidelines that apply to various aspects of UX writing.'

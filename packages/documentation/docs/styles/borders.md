@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: Borders
 title: Borders
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Borders serve as essential visual elements that define boundaries, create structure, and enhance the clarity of user interfaces."

@@ -1,7 +1,7 @@
 ---
 sidebar_label: Developing
 title: Getting started with developing
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Siemens Industrial Experience is framework agnostic. Build your products and apps easily by using native web technology and our support for multiple frameworks.'

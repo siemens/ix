@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: Colors
 title: Color palette
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "The color palette in our design system provides a comprehensive guide to the use of colors, ensuring consistency and accessibility across all components, from background and text colors to chart series and status indicators."

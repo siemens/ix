@@ -2,7 +2,7 @@
 sidebar_position: 4
 sidebar_label: Vue
 title: Vue
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Vue is a progressive framework for building user interfaces, known for its simplicity and flexibility. This section  guides you through the steps to install and set up our design system within a Vue project, ensuring a smooth and efficient integration process.'

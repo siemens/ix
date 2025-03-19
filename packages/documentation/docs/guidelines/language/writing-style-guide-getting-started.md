@@ -2,7 +2,7 @@
 sidebar_position: 0
 sidebar_label: Getting started
 title: Getting started with UX writing
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'The writing style guide provides support for content designers, writers, designers and developers at Siemens. These are the guidelines we use as Siemens to create consistent and clear products within industrial contexts and includes common writing errors to avoid.'

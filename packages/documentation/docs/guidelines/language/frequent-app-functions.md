@@ -2,7 +2,7 @@
 sidebar_position: 6
 sidebar_label: Frequent app functions
 title: Frequent app functions
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Get tips for naming common app functions clearly and effectively. This subchapter focuses on how to describe frequent actions and features in a way that users can quickly understand and use.'

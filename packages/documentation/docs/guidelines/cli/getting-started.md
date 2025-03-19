@@ -3,7 +3,7 @@ sidebar_position: 0
 sidebar_label: Getting started
 title: Getting started with CLI design
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "This guide provides support for CLI creators at Siemens to offer consistent and clear commands that can be easily understood by our customers."

@@ -2,7 +2,7 @@
 sidebar_position: 3
 sidebar_label: Punctuation
 title: Punctuation
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Master the use of punctuation to improve the readability and comprehension of your text. This section covers the rules and best practices for using punctuation marks to ensure your writing is clear and precise."

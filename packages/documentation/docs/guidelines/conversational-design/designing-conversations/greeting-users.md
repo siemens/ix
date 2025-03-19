@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: Greeting users
 title: Greeting users
 hide_table_of_contents: false
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: "Greeting users is a key communicative function as this introduces your chatbot to your users, establishes its voice, and can be used to clarify your chatbot’s abilities and constraints."

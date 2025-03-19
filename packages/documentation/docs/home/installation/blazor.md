@@ -2,7 +2,7 @@
 sidebar_position: 5
 sidebar_label: Blazor
 title: Blazor
-doc-type: 'component'
+doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Blazor is a framework for building interactive web applications using C# and .NET. This section guides you through the steps to install and set up our design system within a Blazor project, ensuring a seamless and efficient integration process.'
