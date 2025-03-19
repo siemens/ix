@@ -28,7 +28,7 @@ A toggle is a user interface element that enables users to switch between two st
 - Don't use toggles for actions that require a confirmation or additional input  
 - Don't use toggles for actions that are irreversible or have serious consequences
 
-### Related patterns
+### Related
 
 - [Form field](../forms-field)
 - [Validation](../forms-validation)

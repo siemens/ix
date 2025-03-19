@@ -26,7 +26,7 @@ Unlike a modal, popover news does not prevent users from navigating and interact
 - Don‘t use popover news for essential information a user must read, instead use a [modal](../messagebar)
 - Don‘t use popover news for system feedback or messages, instead use a [modal](../toast)
 
-### Related patterns
+### Related
 
 - [Toast message](../toast)
 - [Modal](../modal)

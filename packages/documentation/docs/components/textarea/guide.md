@@ -54,7 +54,7 @@ Textareas have five states: Default, hover, focused, read-only and disabled.
 - Do set minimum and maximum character limits to ensure appropriate input length
 - Don’t use the textarea for short, single-line input like name or email address, use an [input field](../input) instead
 
-### Related patterns
+### Related
 
 - [Form fields](../forms-field)
 - [Validation](../forms-validation)

@@ -62,7 +62,7 @@ Cards can take one of three states: Default, hover and active. Action cards also
 - Don't nest cards inside each other
 - Don't use cards to collect user input
 
-### Related patterns:
+### Related
 
 - [Card list](../card-list)
 - [Flip](../flip)

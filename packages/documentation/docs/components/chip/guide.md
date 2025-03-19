@@ -55,6 +55,6 @@ Chips take a default, hover, focused or active state with a varying background c
 - Don't use different styles for chips with the same or similar use
 - Don't use chips without any interaction (we recommend pills instead)
 
-### Related patterns
+### Related
 
 - [Pill](../pill)

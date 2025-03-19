@@ -37,7 +37,7 @@ Our content header variants makes it easier to achieve a well-balanced visual hi
 - Don't use a secondary content header as a page title
 - Don't use more than one primary headline in one page
 
-### Related patterns
+### Related
 
 - [Application header](../application-header)
 - [Content](../content)

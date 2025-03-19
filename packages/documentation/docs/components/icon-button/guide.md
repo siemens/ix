@@ -21,7 +21,7 @@ All the variants, options and states of the [button](../button) component apply 
 - Don’t use icon buttons in large numbers, instead use a toolbar
 - Don’t stretch icon buttons to span a container’s width
 
-### Related patterns
+### Related
 
 - [Button](../button)
 <!-- - [Toolbar](...) -->
