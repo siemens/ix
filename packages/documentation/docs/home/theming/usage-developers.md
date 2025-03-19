@@ -7,15 +7,15 @@ no_single_tab: true
 description: 'Siemens Industrial Experience supports theming for all of its components. Everyone can use the two embedded themes that already ship with Siemens Industrial Experience: Classic light (theme-classic-light) and Classic dark (theme-classic-dark). You can also create your own themes to customize the design system for your own brand. Siemens AG applications should utilize the exclusive Siemens AG Corporate Brand Theme.'
 ---
 
+#
+
 ## Siemens AG Corporate Brand Theme
 
-<div className="siemens-brand-section">
-
+:::info
 The Siemens AG Corporate Brand Theme is exclusively available for official Siemens AG products, where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
 
 Siemens AG employees can access the Corporate Brand Theme at [**https://code.siemens.com/siemens-ix/ix-brand-theme**](https://code.siemens.com/siemens-ix/ix-brand-theme).
-
-</div>
+:::
 
 ## How to set a theme
 

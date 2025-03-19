@@ -1,8 +1,16 @@
+---
+sidebar_label: Mobile experience
+title: Mobile experience
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: 'Use Siemens Industrial Experience to create mobile applications jointly with web technology based approaches easily. With the help of our design system you are able to swiftly build the user interface of your mobile web app or hybrid app. Discover best practices for creating designs that work seamlessly across different devices and screen sizes.'
+---
+
 import DevicePreview from '@site/src/components/DevicePreview';
 import mobileGif from './mobile.gif';
 
-# Mobile experience
-
+# 
 <br/>
 
 <table className="table-no-border">
@@ -13,8 +21,6 @@ import mobileGif from './mobile.gif';
       </td>
       <td style={{ verticalAlign: 'top', paddingLeft: '2rem' }}>
         <br/>
-        Use Siemens Industrial Experience to create mobile applications jointly with web technology based approaches easily. With the help of our design system you are able to swiftly build the user interface of your mobile web app or hybrid app.
-
         Check out our hybrid example application using Ionic, React and Siemens Industrial Experience on the left.
 
         Regardless of the technology there are aspects to take into consideration when you optimize applications for mobile devices:

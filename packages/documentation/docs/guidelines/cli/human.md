@@ -1,14 +1,19 @@
 ---
 sidebar_position: 5
-sidebar_title: Human
+sidebar_label: Human
 title: Human
+hide_table_of_contents: false
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "Design your commands for humans. Have a conversation. Speak the Siemens brand: Authentic, open and engaging."
 ---
 
 import Separator from '@site/src/components/Separator';
 
-Design your commands for humans. Have a conversation. Speak the Siemens brand: Authentic, open and engaging.
+#
 
-### Interactivity
+## Interactivity
 - Offer interactive modes when developing primarily for human interaction
 - Tell users which environment they are in (interactive / non-interactive)  
 - Use --no-input when you don't want to interact with your terminal
@@ -28,7 +33,7 @@ Design your commands for humans. Have a conversation. Speak the Siemens brand: A
 
 ![Interactivity 3 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-13525&t=2JP2nlNciwS43htp-1)
 
-### Output
+## Output
 - Return brief response messages, e.g. x done / x created / x named / x not done / x not created / x not named
 - Respond by repeating command words, e.g. createdevice  = device created / device not created
 - Give command suggestions

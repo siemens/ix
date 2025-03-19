@@ -11,6 +11,8 @@ description: 'Vue is a progressive framework for building user interfaces, known
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+#
+
 :::caution Experimental disclaimer
 
 There is no guarantee that the core functionality is fully covered by the Vue wrappers.
@@ -19,7 +21,7 @@ Nevertheless feedback of any kind will be helpful.
 
 :::
 
-### Library installation
+## Library installation
 
 Install `@siemens/ix`, `@siemens/ix-vue` and `@siemens/ix-icons` using a package manager:
 
@@ -41,7 +43,7 @@ Install `@siemens/ix`, `@siemens/ix-vue` and `@siemens/ix-icons` using a package
   </TabItem>
 </Tabs>
 
-### Usage
+## Usage
 
 ```ts
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';

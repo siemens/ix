@@ -8,6 +8,8 @@ no_single_tab: true
 description: 'Core UI was the predecessor to the Siemens Industrial Experience design system. This section provides detailed instructions on how to migrate from Core UI 6.5.0 to Siemens Industrial Experience design system v1.'
 ---
 
+#
+
 ## Changed dependencies
 
 - Updated to `bootstrap@5.2.0`

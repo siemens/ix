@@ -14,6 +14,8 @@ import WebComponentsIcon from '@site/static/img/webcomponents.svg';
 import VueIcon from '@site/static/img/vue.svg';
 import BlazorIcon from '@site/static/img/blazor.svg';
 
+#
+
 ## Documentation overview
 
 Use the horizontal navigation in the header to quickly access the desired topic.

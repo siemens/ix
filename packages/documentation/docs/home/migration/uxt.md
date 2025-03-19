@@ -10,6 +10,8 @@ description: 'For a quick and easy migration without changing your code base, th
 
 import Accordion from '@site/src/components/Accordion';
 
+#
+
 :::info
 
 For the full experience, please use the Siemens Industrial Experience components. The theme is intended for a quick, yet, incomplete switch from UXT as a legacy design system.

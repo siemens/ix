@@ -1,13 +1,18 @@
 ---
 sidebar_position: 0
+sidebar_label: Overview
 title: Overview
+hide_table_of_contents: false
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "Designing sample conversations support chatbot persona creation and focuses specifically on the user journey. Dialogs should both reflect user journeys and make the expected chatbot interactions transparent for the whole team."
 ---
-# Designing conversations 
-## Overview
 
-Designing sample conversations support chatbot persona creation and focuses specifically on the user journey. Dialogs should both reflect  user journeys and make the expected chatbot interactions transparent for the whole team. Use your dialogs to highlight the complex interactions required for your industrial software and then use them train your chatbot to handle these multifaceted industrial scenarios. 
+# 
 
-It’s not possible or necessary to create hundreds of sample dialogs. Focus on the main industrial use cases, user intent within their industrial working environment, and the most common communicative functions required by your users. We’ve added the most common here with example dialogs. Either use these directly if they match your industrial use case or adapt them to your needs.
+Use your dialogs to highlight the complex interactions required for your industrial software and then use them train your chatbot to handle these multifaceted industrial scenarios. It’s not possible or necessary to create hundreds of sample dialogs. Focus on the main industrial use cases, user intent within their industrial working environment, and the most common communicative functions required by your users. We’ve added the most common here with example dialogs. Either use these directly if they match your industrial use case or adapt them to your needs.
+
 ## Preparation 
 
 1.	Collect brand voice and tone guidelines

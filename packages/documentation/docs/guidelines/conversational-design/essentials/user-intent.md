@@ -1,12 +1,15 @@
 ---
 sidebar_position: 2
+sidebar_label: User intent
 title: User intent
+hide_table_of_contents: false
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "User intent refers to the main purpose or goal of users and is directly related to what they want to achieve – whether they’re trying to access information, schedule maintenance or ask a question about a product or system."
 ---
-# User intent 
 
-## Overview 
-
-User intent refers to the main purpose or goal of users and is directly related to what they want to achieve – whether they’re trying to access information, schedule maintenance or ask a question about a product or system. 
+#
 
 For chatbots to recognize and establish intent correctly, they need knowledge of the user’s working environment that continuously builds as users give them input. It often requires chatbots to use follow-up questions in order to correctly establish intent and then provide the most accurate response. When chatbots are unable to understand user intent, they cannot provide relevant or helpful responses. 
 

@@ -1,8 +1,15 @@
 ---
-sidebar_title: Changelog
-hide_table_of_contents: true
+sidebar_label: Changelog
 title: Changelog
+hide_table_of_contents: true
+doc-type: 'component'
+component-tabs: ['']
+no_single_tab: true
+description: "Our changelog provides a detailed record of all the changes, updates, and fixes made to the project over time. We include comprehensive information about each version's modifications here and all the changes are linked to their corresponding entries on GitHub."
 ---
+
+#
+
 ## [@siemens/ix-angular@3.0.0-alpha.0](https://github.com/siemens/ix/releases/tag/%40siemens/ix-angular%403.0.0-alpha.0) (2025-03-14T09:59:00Z)
 ### Major Changes
 

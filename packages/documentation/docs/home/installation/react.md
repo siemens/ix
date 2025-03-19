@@ -11,7 +11,9 @@ description: 'React is a widely-used library for building user interfaces, parti
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Library installation
+#
+
+## Library installation
 
 Install `@siemens/ix`, `@siemens/ix-react` and `@siemens/ix-icons` using a package manager:
 
@@ -33,7 +35,7 @@ Install `@siemens/ix`, `@siemens/ix-react` and `@siemens/ix-icons` using a packa
   </TabItem>
 </Tabs>
 
-### Import styles
+## Import styles
 
 ```css
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';

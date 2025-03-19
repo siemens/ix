@@ -11,7 +11,9 @@ description: 'Web Components are a set of web platform APIs that allow you to cr
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Library installation
+#
+
+## Library installation
 
 Install `@siemens/ix` and `@siemens/ix-icons` using a package manager:
 

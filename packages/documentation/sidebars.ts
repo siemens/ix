@@ -54,7 +54,6 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Theme',
       items: [
-        'home/theming/theme',
         'home/theming/usage-developers',
         'home/theming/usage-designers',
       ],
@@ -234,9 +233,11 @@ const sidebars: SidebarsConfig = {
   ],
 
   guidelines: [
+    'guidelines/overview',
+    'guidelines/accessibility',
     {
       type: 'category',
-      label: 'Mobile experience',
+      label: 'Responsive design',
       items: [
         'guidelines/mobile/mobile-app-dev',
         'guidelines/mobile/mobile-ux',
@@ -279,32 +280,16 @@ const sidebars: SidebarsConfig = {
   ],
   icons: [
     'icons/icon-library',
-    {
-      type: 'category',
-      label: 'Icon guidelines',
-      // link: { type: 'doc', id: 'components/overview' },
-      // link: { type: 'generated-index' },
-      items: [
-        'icons/guidelines/overview',
-        'icons/guidelines/design-new-icons',
-        'icons/guidelines/icon-design-guidelines',
-      ],
-      collapsed: false,
-    },
-    {
-      type: 'category',
-      label: 'Development',
-      // link: { type: 'doc', id: 'components/overview' },
-      // link: { type: 'generated-index' },
-      items: ['icons/code/usage', 'icons/code/integration'],
-      collapsed: false,
-    },
+    'icons/icon-usage',
+    'icons/design-new-icons',
+    'icons/developing-with-icons',
   ],
   styles: [
     'styles/colors',
-    'styles/typography',
+    'styles/typography/index',
     'styles/borders',
     'styles/shadows',
+    'styles/animation',
   ],
 };
 

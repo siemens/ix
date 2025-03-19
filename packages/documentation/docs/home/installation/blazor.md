@@ -8,6 +8,8 @@ no_single_tab: true
 description: 'Blazor is a framework for building interactive web applications using C# and .NET. This section guides you through the steps to install and set up our design system within a Blazor project, ensuring a seamless and efficient integration process.'
 ---
 
+#
+
 :::caution Experimental disclaimer
 
 There is no guarantee that the core functionality is fully covered by the Blazor library.
