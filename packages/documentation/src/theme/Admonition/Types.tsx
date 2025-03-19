@@ -63,8 +63,8 @@ function Col({ children }: ColProps): JSX.Element {
 
   return (
     <div className={`${styles.col} ${variantClassName}`}>
-      {displayItems.map((item) => (
-        <div className={styles.item}>
+      {displayItems.map((item, index) => (
+        <div key={`item-${index}`} className={styles.item}>
           {iconProps && (
             <IxIcon name={iconProps.name} color={iconProps.color} size="24" />
           )}
