@@ -11,6 +11,43 @@ import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix
 import { defineCustomElements } from '@siemens/ix/loader';
 import './global.css';
 
+const scrollbarOverwrite = `
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: $small-space;
+    height: $small-space;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: var(--theme-scrollbar-track--background);
+  }
+
+  ::-webkit-scrollbar-track:hover {
+    background: var(--theme-scrollbar-track--background--hover);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: var(--theme-scrollbar-thumb--background);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-scrollbar-thumb--background--hover);
+  }
+
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
+`;
+
 function loadAdditionalTheme() {
   const theme = __THEME__;
   if (theme?.css) {
@@ -83,40 +120,3 @@ function setBodySizes() {
   scrollbarStyle.innerHTML = scrollbarOverwrite;
   header.appendChild(scrollbarStyle);
 })();
-
-const scrollbarOverwrite = `
-  ::-webkit-scrollbar-button {
-    display: none;
-  }
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: $small-space;
-    height: $small-space;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    border-radius: 5px;
-    background: var(--theme-scrollbar-track--background);
-  }
-
-  ::-webkit-scrollbar-track:hover {
-    background: var(--theme-scrollbar-track--background--hover);
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background: var(--theme-scrollbar-thumb--background);
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-scrollbar-thumb--background--hover);
-  }
-
-  ::-webkit-scrollbar-corner {
-    display: none;
-  }
-`;

@@ -1,3 +1,12 @@
+---
+sidebar_label: Developing
+title: Getting started with developing
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'Siemens Industrial Experience is framework agnostic. Build your products and apps easily by using native web technology and our support for multiple frameworks.'
+---
+
 import {Card, CardList} from '@site/src/components/Card';
 import AngularIcon from '@site/static/img/angular.svg';
 import ReactIcon from '@site/static/img/react.svg';
@@ -5,11 +14,20 @@ import WebComponentsIcon from '@site/static/img/webcomponents.svg';
 import VueIcon from '@site/static/img/vue.svg';
 import BlazorIcon from '@site/static/img/blazor.svg';
 
-# Developers
+#
 
-Siemens Industrial Experience is framework agnostic.
-It can be used to build apps simply by using native web technology (HTML, CSS & JavaScript).
-In addition to that it provides support for Angular and React.
+## Documentation overview
+
+Use the horizontal navigation in the header to quickly access the desired topic.
+
+- **Home:** Find essential resources including installation and migration guides, how to apply themes, detailed release notes with a changelog, and the FAQ section.
+- **Guidelines:** This section is valuable for developers to understand best practices, especially the guidelines on mobile app development which are developer-focused.
+- **Components:** Within the code tab on component pages, you'll find component previews and code examples for all supported frameworks, with StackBlitz integration, and annotated property and event tables.
+- **Icons:** Access our icon library with code snippets to integrate icons directly into your code. Learn how to integrate icons based on your framework and how to incorporate external icons.
+- **Styles:** Explore detailed overviews of our design elements, including colors, borders, shadows, and typography, complete with properties and code snippets to apply these styles in your code.
+
+
+## Development frameworks
 
 Follow the links below to the respective installation guides:
 

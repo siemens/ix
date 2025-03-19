@@ -1,13 +1,19 @@
 ---
 sidebar_position: 1
-sidebar_title: Angular
+sidebar_label: Angular
 title: Angular
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'Angular is a popular framework for building dynamic web applications. This section guides you through the steps to install and set up our design system within an Angular project, ensuring a smooth integration process.'
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Library installation
+#
+
+## Library installation
 
 :::info
 Currently, iX only supports `NgModule` based Angular projects. We are actively working to provide support for the new standalone component based approach soon. Otherwise Siemens iX is fully compatible with Angular version 17 and higher.
@@ -33,7 +39,7 @@ Install `@siemens/ix`, `@siemens/ix-angular` and `@siemens/ix-icons` using a pac
   </TabItem>
 </Tabs>
 
-### Import styles
+## Import styles
 
 Import the design system styling in your global stylesheet (e.g.: `src/styles.scss`):
 

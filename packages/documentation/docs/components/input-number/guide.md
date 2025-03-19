@@ -44,7 +44,7 @@ The number input has five states: default, hover, focused, disabled and read-onl
 - Do consider special cases such as zero, negative numbers and very large numbers to ensure all possible inputs are handled correctly
 - Don't specify patterns that do not align with your use case, e.g. inappropriate intervals between valid values
 
-### Related patterns
+### Related
 
 - [Form fields](../forms-field)
 - [Validation](../forms-validation)

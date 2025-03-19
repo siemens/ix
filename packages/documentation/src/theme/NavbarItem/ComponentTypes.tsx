@@ -1,23 +1,15 @@
 import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
-import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
-import LocaleDropdownNavbarItem from '@theme/NavbarItem/LocaleDropdownNavbarItem';
-import SearchNavbarItem from '@theme/NavbarItem/SearchNavbarItem';
-import HtmlNavbarItem from '@theme/NavbarItem/HtmlNavbarItem';
 import DocNavbarItem from '@theme/NavbarItem/DocNavbarItem';
 import DocSidebarNavbarItem from '@theme/NavbarItem/DocSidebarNavbarItem';
-import DocsVersionNavbarItem from '@theme/NavbarItem/DocsVersionNavbarItem';
 import DocsVersionDropdownNavbarItem from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
-
+import DocsVersionNavbarItem from '@theme/NavbarItem/DocsVersionNavbarItem';
+import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
+import HtmlNavbarItem from '@theme/NavbarItem/HtmlNavbarItem';
+import LocaleDropdownNavbarItem from '@theme/NavbarItem/LocaleDropdownNavbarItem';
+import NavLink from '@site/src/components/theme/NavLink';
+import SearchNavbarItem from '@theme/NavbarItem/SearchNavbarItem';
 import type { ComponentTypesObject } from '@theme/NavbarItem/ComponentTypes';
-import Link from '@docusaurus/Link';
-
-function NavLink({ value, label }) {
-  return (
-    <Link className="navbar__item nav-link" to={value}>
-      {label}
-    </Link>
-  );
-}
+import VersionSelection from '@site/src/components/theme/VersionSelection';
 
 const ComponentTypes: ComponentTypesObject = {
   default: DefaultNavbarItem,
@@ -30,6 +22,7 @@ const ComponentTypes: ComponentTypesObject = {
   docsVersion: DocsVersionNavbarItem,
   docsVersionDropdown: DocsVersionDropdownNavbarItem,
   'custom-nav-link': NavLink,
+  'custom-version-selection': VersionSelection,
 };
 
 export default ComponentTypes;

@@ -3,14 +3,8 @@
  */
 import { useDoc } from '@docusaurus/plugin-content-docs/client';
 
-export function useDocType(): 'default' | 'component' | undefined {
+export function useDocType(): 'default' | 'component' | 'banner' | undefined {
   const { metadata } = useDoc();
-  if (
-    metadata.frontMatter['component-tabs'] &&
-    Array.isArray(metadata.frontMatter['component-tabs'])
-  ) {
-    return metadata.frontMatter['doc-type'] as any;
-  }
 
-  return;
+  return metadata.frontMatter['doc-type'] as any;
 }

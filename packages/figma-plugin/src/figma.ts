@@ -33,16 +33,6 @@ type FigmaConfig = {
   rimraf?: boolean;
 };
 
-type FigmaId = {
-  fileName: string;
-  nodeId: string;
-};
-
-type FigmaVersion = {
-  id: string;
-  label?: string;
-};
-
 const isFetching = new Set<string>();
 
 async function getImageResource(

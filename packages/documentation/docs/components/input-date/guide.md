@@ -57,7 +57,7 @@ Date input has five states: Default, hover, disabled, read-only and focused.
 - Don't use ambiguous formats like 09/08/2006 without giving clear context
 - Don't allow free text without validation or formatting guidance
 
-### Related patterns
+### Related
 
 - [Date dropdown](../date-dropdown)
 - [Date picker](../date-picker)

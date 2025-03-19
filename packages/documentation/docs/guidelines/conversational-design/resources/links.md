@@ -1,10 +1,15 @@
 ---
 sidebar_position: 2
+sidebar_label: Links
 title: Links
+hide_table_of_contents: false
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "We’ve created a set of useful resources for you to further research the topic of conversational design."
 ---
-# Links 
 
-We’ve created a set of useful resources for you to further research the topic of conversational design.  
+# 
 
 ## Siemens internal resources 
 

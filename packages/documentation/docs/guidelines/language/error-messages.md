@@ -1,13 +1,18 @@
 ---
 sidebar_position: 8
-sidebar_title: Errors, warnings and notifications
+sidebar_label: Errors, warnings and notifications
 title: Errors, warnings and notifications
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'Learn how to write error messages, warnings, and notifications that are helpful and user-friendly. This subchapter provides strategies for communicating issues and alerts in a way that guides users towards solutions.'
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### General rules for messaging
+## General rules for messaging
 
 - Three parts of a message: 1. title 2. explanation 3. action
 
@@ -37,7 +42,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Show urgency through wording, e.g. “immediately” only if there are serious consequences from ignoring messages
 
-### Error messages
+## Error messages
 
 - An error message alerts user of a problem that exists and must be addressed
 
@@ -65,7 +70,7 @@ Action: Try again.
 
 ::::
 
-### Warning messages
+## Warning messages
 
 - A warning message alerts users of a condition that may cause a problem in the future
 
@@ -80,7 +85,7 @@ Action: (Ok button)
 
 ::::
 
-### Notifications
+## Notifications
 
 - Notifications are informative and no actions are required from the user
 

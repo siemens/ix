@@ -1,9 +1,15 @@
 ---
 sidebar_position: 1
+sidebar_label: Chatbot checklist
 title: Chatbot checklist
+hide_table_of_contents: false
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "This subchapter provides a comprehensive guide for creating an industrial chatbot. It outlines essential steps and considerations, from defining the chatbot's purpose and selecting the right technology stack to developing user journeys and continuously testing and updating the chatbot. By following these guidelines, your team can ensure the chatbot meets user needs and aligns with your brand's voice and tone."
 ---
 
-# Chatbot checklist
+# 
 
 ## Assumptions
 
@@ -13,7 +19,9 @@ title: Chatbot checklist
 4. You work in a team with developers, designers, and writers.
 5. You test continuously or iteratively.
 
-### Follow these steps and answer the questions with your teams to create your industrial chatbot
+## Steps
+
+Follow these steps and answer the questions with your teams to create your industrial chatbot
 
 **1. Define your industrial use case**
    - What is the purpose and scope of the chatbot?

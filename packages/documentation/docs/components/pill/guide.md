@@ -47,6 +47,6 @@ Pills are read-only.
 - Don't use different styles for pills with the same or similar use
 - Don't use pills if users can interact with the component (e.g. click, close) use chips instead
 
-### Related patterns
+### Related
 
 - [Chip](../chip)

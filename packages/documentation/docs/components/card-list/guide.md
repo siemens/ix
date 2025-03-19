@@ -43,7 +43,7 @@ The scroll card list style displays the content items from left to right next to
 - Don't place different types of components within card lists
 - Don't nest card lists within each other
 
-### Related patterns:
+### Related
 
 - [Blind](../blind)
 - [Card](../card)

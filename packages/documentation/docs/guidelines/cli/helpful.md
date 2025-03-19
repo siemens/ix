@@ -1,12 +1,17 @@
 ---
 sidebar_position: 4
-sidebar_title: Helpful
+sidebar_label: Helpful
 title: Helpful
+hide_table_of_contents: false
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "CLIs support users by giving suggestions, being empathetic and providing error messages to move them forward."
 ---
 
-CLIs support users by giving suggestions, being empathetic and providing error messages to move them forward.
+#
 
-### Support
+## Support
 - Always implement a help option with the two common flags: -h or --help
 - Structure help sections with usage, commands, arguments, options and examples
 - Provide help when users make invalid requests
@@ -17,7 +22,7 @@ CLIs support users by giving suggestions, being empathetic and providing error m
 ![Support - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-8879&t=2JP2nlNciwS43htp-1)
 
 
-### Errors
+## Errors
 - Keep users informed
 - Provide text-based error descriptions
 - Present errors logically, e.g. by location or type

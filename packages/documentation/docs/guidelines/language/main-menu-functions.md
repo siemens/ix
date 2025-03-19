@@ -1,13 +1,18 @@
 ---
 sidebar_position: 5
-sidebar_title: Main menu functions
+sidebar_label: Main menu functions
 title: Main menu functions
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'Explore best practices for writing main menu functions to ensure intuitive navigation. This section provides tips on how to label and organize menu items so users can easily find what they need.'
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### Welcome page
+## Welcome page
 
 - Username or email
 
@@ -25,7 +30,7 @@ Login (as it is a noun, not a verb)
 
 ::::
 
-### User management
+## User management
 
 - Username
 
@@ -59,7 +64,7 @@ Surname / Initial name / Given name
 
 ::::
 
-### Roles
+## Roles
 
 - User
 
@@ -73,7 +78,7 @@ Surname / Initial name / Given name
 
 - Administrator
 
-### Password
+## Password
 
 - Change password
 
@@ -83,7 +88,7 @@ Surname / Initial name / Given name
 
 - Repeat new password
 
-#### License management
+## License management
 
 - Used licenses
 
@@ -114,7 +119,7 @@ licence
 
 ::::
 
-### About & legal information
+## About & legal information
 
 - General information
 
@@ -149,7 +154,7 @@ V1
 
 ::::
 
-### Service & Support
+## Service & Support
 
 - Contact Service & Support: support@mail.com
 
@@ -169,7 +174,7 @@ User manual
 
 ::::
 
-### Workspace
+## Workspace
 
 - Application status
 
@@ -187,7 +192,7 @@ KPIS settings
 
 ::::
 
-### Resetting
+## Resetting
 
 - Factory reset
 

@@ -1,13 +1,18 @@
 ---
 sidebar_position: 7
-sidebar_title: Best practices
+sidebar_label: Best practices
 title: Best practices
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'Familiarize yourself with general best practices for UX writing to maintain consistency and clarity across all your content. This section offers overarching guidelines that apply to various aspects of UX writing.'
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### Transitional text to show something is happening
+## Transitional text to show something is happening
 
 - Use -ing verbs and ellipses (…)
 
@@ -35,7 +40,7 @@ Training models… > Training done
 
 ::::
 
-### Error messages
+## Error messages
 
 - Add a clear reason for the error
 
@@ -64,7 +69,7 @@ The email address you entered does not match the required format. Please enter y
 
 ::::
 
-### Empty-state text
+## Empty-state text
 
 - Empty-state wording tells the user the empty space is intentional and should be there, i.e. not an error
 
@@ -94,7 +99,7 @@ No projects saved.
 
 ::::
 
-### Restoring behavior of items
+## Restoring behavior of items
 
 - Be clear on deleting, removing, creating and adding
 

@@ -33,7 +33,7 @@ Dropdown buttons have five states: Default, hover, active, disabled and focused.
 - Do use dropdown buttons when selecting an option triggers an action
 - Don't use dropdown buttons when there is a frequent or most-important action (use a standard button or a split button instead)
 
-### Related patterns
+### Related
 
 - [Button](../button)
 - [Dropdown](../dropdown)

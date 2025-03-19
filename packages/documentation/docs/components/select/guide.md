@@ -62,7 +62,7 @@ The select field has five states: default, hover, focused, disabled and read-onl
 
 ![Don't combine data attributes](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3978-800&t=MWpyPDZDK5B531n9-4)
 
-### Related patterns
+### Related
 
 - [Form field](../forms-field)
 - [Validation](../forms-validation)

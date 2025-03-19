@@ -53,7 +53,7 @@ Panes have two states: collapsed and expanded. The appearance of the states vari
 - Don't use panes for a small amount of content
 - Don't use panes for content that should stay visible
 
-### Related patterns
+### Related
 
 - [Drawers](../drawer)
 - [Header](../application-header)

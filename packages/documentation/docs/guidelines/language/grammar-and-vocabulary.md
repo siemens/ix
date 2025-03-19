@@ -1,13 +1,18 @@
 ---
 sidebar_position: 2
-sidebar_title: Grammar and vocabulary
+sidebar_label: Grammar and vocabulary
 title: Grammar and vocabulary
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "Discover the importance of proper grammar and vocabulary in UX writing. This subchapter will guide you on how to use language effectively to create professional and easily understandable content."
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### Grammar tenses
+## Grammar tenses
 
 - Use present simple tense to describe an action or instruction
 
@@ -29,7 +34,7 @@ file is going to be loaded, file has been loaded
 
 ::::
 
-### Active voice
+## Active voice
 
 ::::layout
 
@@ -53,7 +58,7 @@ The data is calculated by application.
 
 ::::
 
-### UI terminology
+## UI terminology
 
 - Mouse terminology: drag, hover, point, tap, click
 
@@ -77,7 +82,7 @@ mouse over
 
 ::::
 
-### Idioms and phrasal verbs
+## Idioms and phrasal verbs
 
 - Avoid multi-word phrasal verbs when one word works
 
@@ -105,7 +110,7 @@ Apple, Android, iOS, smartphone
 
 ::::
 
-### Jargon, buzz words and terms
+## Jargon, buzz words and terms
 
 - Use simple vocabulary
 
@@ -113,7 +118,7 @@ Apple, Android, iOS, smartphone
 
 - Define new or unfamiliar terms and use existing explanations (do not reinvent the wheel)
 
-### Abbreviations and acronyms
+## Abbreviations and acronyms
 
 - Avoid abbreviations (info, incl, excl) and acronyms (SIOS for Siemens Industry Online Support)
 
@@ -144,7 +149,7 @@ IO component, i/o list, I-O module
 :::
 
 ::::
-### Time based vocabulary: Last, latest and recent
+## Time based vocabulary: Last, latest and recent
 
 - Last implies nothing else will follow. It's the last, and after this it is finished. No more are coming.
 

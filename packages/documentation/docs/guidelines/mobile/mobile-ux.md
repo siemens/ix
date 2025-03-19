@@ -1,4 +1,13 @@
-# User experience considerations
+---
+sidebar_label: Optimizing mobile UX
+title: Optimizing mobile user experience
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'In this subchapter, we explore the key aspects of responsive and adaptive design to ensure your applications provide an optimal user experience across various devices. Learn how to handle different viewport sizes, touch interactions, and device-specific features to create a seamless and user-friendly mobile experience.'
+---
+
+# 
 
 ## Responsive and adaptive design
 

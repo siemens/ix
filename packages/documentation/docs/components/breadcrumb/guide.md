@@ -43,7 +43,7 @@ Interactive items can take one of four states: Default, hover, active and focuse
 - Don't use breadcrumbs to display a multistep process (use the [workflow](../workflow) control instead)
 - Don't show multiple breadcrumbs on one screen, e.g. in a content area and in a drawer
 
-### Related patterns:
+### Related
 
 - [Dropdown](../dropdown)
 - [Basic navigation](../basic-navigation)

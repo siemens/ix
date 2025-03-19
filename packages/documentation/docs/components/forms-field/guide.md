@@ -45,7 +45,7 @@ When a feedback tooltip is chosen over a message, the field shows a tooltip when
 - Don’t use helper text as a replacement for clear labels
 - Don’t mix different variants of feedback text and tooltips
 
-### Related patterns
+### Related
 
 - [Validation](../forms-validation)
 - [Behavior](../forms-behavior)

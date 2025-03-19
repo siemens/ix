@@ -1,12 +1,18 @@
 ---
 sidebar_position: 6
-sidebar_title: Frequent app functions
+sidebar_label: Frequent app functions
 title: Frequent app functions
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'Get tips for naming common app functions clearly and effectively. This subchapter focuses on how to describe frequent actions and features in a way that users can quickly understand and use.'
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
-### Overview
+#
+
+## Overview
 
 - Overview
 
@@ -25,7 +31,7 @@ Control panel
 
 ::::
 
-### Analytics
+## Analytics
 
 - Analysis
 
@@ -41,7 +47,7 @@ Examination
 
 ::::
 
-### Monitoring and scheduling
+## Monitoring and scheduling
 
 - Watchlist
 
@@ -60,7 +66,7 @@ Watch list
 
 ::::
 
-### Detail view
+## Detail view
 
 - Device details
 
@@ -78,7 +84,7 @@ Specifics
 
 ::::
 
-#### Asset properties
+### Asset properties
 
 - Product name
 
@@ -102,7 +108,7 @@ Specifics
 
 - SW version
 
-### Thresholds
+## Thresholds
 
 - Default value
 
@@ -114,7 +120,7 @@ Specifics
 
 - Set custom threshold
 
-### Upload
+## Upload
 
 - Drag a file here or select a file
 
@@ -129,7 +135,7 @@ Drag and drop here or browse
 
 ::::
 
-### Comments
+## Comments
 
 - Write comment
 
@@ -148,7 +154,7 @@ Write a comment
 
 ::::
 
-### Grid and list actions
+## Grid and list actions
 
 - Group
 
@@ -160,7 +166,7 @@ Write a comment
 
 - Search by XY
 
-### Notifications
+## Notifications
 
 - Events
 
@@ -181,7 +187,7 @@ Problem
 
 ::::
 
-### Event types
+## Event types
 
 - Configuration change
 
@@ -195,7 +201,7 @@ Problem
 
 - Limit exceeded
 
-### Event status
+## Event status
 
 - Open
 
@@ -219,7 +225,7 @@ Unacknl.
 
 ::::
 
-### Event actions
+## Event actions
 
 - Apply
 
@@ -245,7 +251,7 @@ Unacknl.
 
 - Move to plan / acknowledged / schedule
 
-### NAMUR NE107 States
+## NAMUR NE107 States
 
 - Failure
 

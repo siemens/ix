@@ -3,6 +3,22 @@ import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 import figmaPlugin from 'figma-plugin';
 import path from 'path';
+import versionDeployment from './version-deployment.json' with { type: 'json '};
+
+function getAnnouncementBarConfig() {
+  const latestVersion = versionDeployment.versions.find(version => version.id === versionDeployment.currentVersion);
+
+  if (versionDeployment.currentVersion !== versionDeployment.latestVersion) {
+    return {
+      announcementBar: {
+        content:
+          `<span style="font-size: 1rem">You are viewing the documentation for version ${latestVersion?.label}. To access the documentation for the latest release please visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a>.</span>`,
+        isCloseable: false,
+        backgroundColor: 'var(--theme-color-warning)',
+      },
+    };
+  }
+}
 
 const customCss = [
   './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
@@ -142,6 +158,7 @@ const config: Config = {
     },
   ],
   themeConfig: {
+    ...getAnnouncementBarConfig(),
     metadata: [
       {
         name: 'keywords',
@@ -200,6 +217,11 @@ const config: Config = {
           label: 'Styles',
         },
         // { to: '/blog', label: 'Blog', position: 'left' },
+        {
+          type: 'custom-version-selection',
+          position: 'right',
+          value: versionDeployment
+        },
         {
           type: 'html',
           position: 'right',

@@ -1,10 +1,17 @@
 ---
 sidebar_position: 4
-sidebar_title: Vue
+sidebar_label: Vue
 title: Vue
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'Vue is a progressive framework for building user interfaces, known for its simplicity and flexibility. This section  guides you through the steps to install and set up our design system within a Vue project, ensuring a smooth and efficient integration process.'
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+#
 
 :::caution Experimental disclaimer
 
@@ -14,7 +21,7 @@ Nevertheless feedback of any kind will be helpful.
 
 :::
 
-### Library installation
+## Library installation
 
 Install `@siemens/ix`, `@siemens/ix-vue` and `@siemens/ix-icons` using a package manager:
 
@@ -36,7 +43,7 @@ Install `@siemens/ix`, `@siemens/ix-vue` and `@siemens/ix-icons` using a package
   </TabItem>
 </Tabs>
 
-### Usage
+## Usage
 
 ```ts
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';

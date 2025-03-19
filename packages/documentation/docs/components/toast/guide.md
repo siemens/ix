@@ -44,7 +44,7 @@ Toasts are UI elements where an event causes a small text field to appear on scr
 - Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work (use a [modal](../messagebar) instead)
 - Don’t edit or reuse icons or icon colors from the four predefined toast types when creating custom toasts
 
-### Related patterns
+### Related
 
 - [Modal](../modal)
 - [Message bar](../messagebar)
