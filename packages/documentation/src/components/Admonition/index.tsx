@@ -1,5 +1,4 @@
 import React, { ReactElement, ReactNode } from 'react';
-import DefaultAdmonitionTypes from '@theme-original/Admonition/Types';
 import styles from './styles.module.css';
 import { iconCancelled, iconSuccess } from '@siemens/ix-icons/icons';
 import { IxIcon } from '@siemens/ix-react';
@@ -8,7 +7,7 @@ interface LayoutProps {
   readonly children: ReactNode;
 }
 
-function Layout({ children }: LayoutProps): JSX.Element {
+export function Layout({ children }: LayoutProps): JSX.Element {
   return <div className={`${styles.layout}`}>{children}</div>;
 }
 
@@ -24,7 +23,7 @@ interface ColProps {
   readonly children: ReactElement | ReactElement[];
 }
 
-function Col({ children }: ColProps): JSX.Element {
+export function Col({ children }: ColProps): JSX.Element {
   const fragmentElements = React.Children.toArray(children);
 
   const processContent = (content: any): string[] => {
@@ -75,11 +74,3 @@ function Col({ children }: ColProps): JSX.Element {
     </div>
   );
 }
-
-const AdmonitionTypes = {
-  ...DefaultAdmonitionTypes,
-  layout: Layout,
-  col: Col,
-};
-
-export default AdmonitionTypes;
