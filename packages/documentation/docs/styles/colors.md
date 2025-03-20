@@ -1,6 +1,17 @@
+---
+sidebar_position: 1
+sidebar_label: Colors
+title: Color palette
+hide_table_of_contents: false
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "The color palette in our design system provides a comprehensive guide to the use of colors, ensuring consistency and accessibility across all components, from background and text colors to chart series and status indicators."
+---
+
 import ColorTable from '@site/src/components/ColorTable';
 
-# Colors
+# 
 
 All colors are provided as custom properties.
 To access them the `var()` CSS function can be called with the color's name:

@@ -1,6 +1,8 @@
 ---
-sidebar_title: Overview
-title: Overview
+sidebar_label: Overview
+title: Welcome to Siemens Industrial Experience
+doc-type: 'banner'
+description: 'Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers within industrial contexts. It gives you access to a broad range of UI patterns, web-based code implementations, design tools, resources and content guidelines to accelerate collaboration between designers, developers and writers, helping to build efficient and consistent products.'
 ---
 
 import GuidingPrinciples from '@site/src/components/GuidingPrinciples';
@@ -12,12 +14,6 @@ import VueIcon from '@site/static/img/vue.svg';
 import GitHubIcon from '@site/static/img/github.svg';
 import BlazorIcon from '@site/static/img/blazor.svg';
 import './card-with-icon.css';
-
-# Welcome to Siemens Industrial Experience
-
-<span className="text-l-title">
-Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers within industrial contexts. It gives you access to a broad range of UI patterns, web-based code implementations, design tools, resources and content guidelines to accelerate collaboration between designers, developers and writers, helping to build efficient and consistent products.
-</span>
 
 ## Guiding principles
 
@@ -32,7 +28,7 @@ Siemens Industrial Experience provides and maintains a Figma design kit containi
   <Card link="icons/icon-library">Go to icon set</Card>
 </CardList>
 
-### Choose your framework
+## Choose your framework
 
 <CardList>
   <Card link="home/installation/angular"><AngularIcon className="Card_Icon" />Angular</Card>

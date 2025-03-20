@@ -43,7 +43,7 @@ The input field has five states: default, focused, hover, disabled and read-only
 - Don’t overcrowd the input field with too many elements
 - Don’t use placeholders as a substitute for labels
 
-### Related patterns
+### Related
 
 - [Form field](../forms-field)
 - [Validation](../forms-validation)

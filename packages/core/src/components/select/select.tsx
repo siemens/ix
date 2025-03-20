@@ -331,7 +331,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.itemClick(newId);
   }
 
-  async updateFormInternalValue(value: string | string[]) {
+  updateFormInternalValue(value: string | string[]) {
     if (Array.isArray(value)) {
       this.formInternals.setFormValue(value.join(','));
       return;

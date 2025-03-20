@@ -1,14 +1,13 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import styles from './styles.module.css';
-import clsx from 'clsx';
 import { useHistory, useLocation } from '@docusaurus/router';
-import useSearchParams from '@site/src/utils/hooks/useSearchParams';
-import ReadMore from '@site/src/components/ReadMore';
-import { useCallback, useEffect, useState } from 'react';
-import { RedirectTag } from '@site/src/components/UI/Tags';
 import { useScrollPosition } from '@docusaurus/theme-common/internal';
+import { DeprecatedTag, RedirectTag } from '@site/src/components/UI/Tags';
+import useSearchParams from '@site/src/utils/hooks/useSearchParams';
+import clsx from 'clsx';
+import { Fragment, useCallback, useEffect, useState } from 'react';
+import styles from './styles.module.css';
 
 function Tabs({ children }) {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -58,42 +57,69 @@ function Tab(props: { label: string; value: string }) {
 }
 
 export default function HeroHeader(props: {
+  id: string;
   title: string;
   description: string;
   tabs: string[];
   frontMatter: any;
 }) {
-  const { description, tabs, title, frontMatter } = props;
+  const { description, tabs, title, frontMatter, id } = props;
   const noSingleTab = props.frontMatter.no_single_tab;
 
   return (
     <>
-      <h1 className={styles.sticky_h1}>{title}</h1>
+      <h1 className={styles.sticky_h1}>
+        {title}
+
+        <a
+          href={`#${id.replaceAll('/', '-')}`}
+          className="hash-link"
+          aria-label={title}
+          title={title}
+        ></a>
+      </h1>
 
       {description && (
         <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
-          <ReadMore>{description}</ReadMore>
-          {frontMatter.deprecated &&
-            Array.from(frontMatter.deprecated) &&
-            frontMatter.deprecated.map((link: string) => (
-              <RedirectTag key={link} link={link}>
-                Show deprecated version
-              </RedirectTag>
-            ))}
+          <p>{description}</p>
+          <div className={styles.Tags}>
+            {frontMatter.deprecated &&
+              Array.from(frontMatter.deprecated) &&
+              frontMatter.deprecated.map(
+                (
+                  link: string | { type: string; message: string; href: string }
+                ) => {
+                  if (typeof link === 'string') {
+                    return (
+                      <RedirectTag key={link} link={link}>
+                        Show deprecated version
+                      </RedirectTag>
+                    );
+                  }
+
+                  if (link.type === 'deprecated') {
+                    return (
+                      <DeprecatedTag
+                        key={link.message}
+                        message={link.message}
+                      ></DeprecatedTag>
+                    );
+                  }
+                }
+              )}
+          </div>
         </div>
       )}
 
-      {tabs.length > 0 && (
-        <Tabs>
-          {tabs.map((tab) => {
-            if (tabs.length > 0 && !noSingleTab) {
-              return <Tab value={tab} label={tab} key={tab} />;
-            }
+      <Tabs>
+        {tabs.map((tab, index) => {
+          if (tabs.length > 0 && !noSingleTab) {
+            return <Tab value={tab} label={tab} key={tab} />;
+          }
 
-            return <></>;
-          })}
-        </Tabs>
-      )}
+          return <Fragment key={index}></Fragment>;
+        })}
+      </Tabs>
     </>
   );
 }

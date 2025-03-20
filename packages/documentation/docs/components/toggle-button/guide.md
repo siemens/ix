@@ -25,7 +25,7 @@ Toggle buttons have five states: Default, hover, active, disabled, loading and f
 - Do use toggle buttons when users can switch between more than two exclusive options
 - Do use toggle buttons when two opposing options don't follow the on/off metaphor
 
-### Related patterns
+### Related
 
 - [Button](../button)
 - [Icon button](../icon-button)

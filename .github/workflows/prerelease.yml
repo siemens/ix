@@ -33,7 +33,7 @@ jobs:
 
       - name: Check for pre.json file existence
         id: check_files
-        uses: andstor/file-existence-action@v3.0.0
+        uses: andstor/file-existence-action@076e0072799f4942c8bc574a82233e1e4d13e9d6
         with:
           files: '.changeset/pre.json'
 
@@ -51,7 +51,7 @@ jobs:
 
       - name: Get prerelease changesets
         id: prerelease-changesets
-        uses: notiz-dev/github-action-json-property@release
+        uses: notiz-dev/github-action-json-property@a5a9c668b16513c737c3e1f8956772c99c73f6e8
         with:
           path: '.changeset/pre.json'
           prop_path: 'changesets'
@@ -62,7 +62,7 @@ jobs:
         # 2. we are not actively publishing after merging a Version Packages PR
         # 3. AND we have prerelease changesets to publish (otherwise it errors)
         if: steps.check_files.outputs.files_exists == 'true' && !startsWith(github.event.head_commit.message, 'Version Packages')
-        uses: changesets/action@v1
+        uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc
         with:
           version: pnpm ci:version
         env:
@@ -75,7 +75,7 @@ jobs:
         id: changesets
         # Only publish if we're still in pre mode and the last commit was from an automatically created Version Packages PR
         if: steps.check_files.outputs.files_exists == 'true' && startsWith(github.event.head_commit.message, 'Version Packages')
-        uses: changesets/action@v1
+        uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc
         with:
           version: echo "This step should never version"
           publish: pnpm ci:publish

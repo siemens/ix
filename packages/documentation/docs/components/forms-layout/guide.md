@@ -30,7 +30,7 @@ Effective ways to organize form elements enhance user comprehension and interact
 - **Field width:** Use a consistent width for input fields to create a harmonious layout. For example, use a width of 100% for full-width fields and 50% for two-column fields.
   %% - **Responsive behavior**: xxx - Layout grid or flexbox - should I use 1 or 2 columns? %%
 
-### Related patterns
+### Related
 
 - [Validation](../forms-validation)
 - [Behavior](../forms-behavior)

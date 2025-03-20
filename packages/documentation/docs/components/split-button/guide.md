@@ -40,7 +40,7 @@ Split buttons have five states: Default, hover, active, disabled and focused. St
 - Don't use split buttons for unrelated actions
 - Don't duplicate the default option in the dropdown
 
-### Related patterns
+### Related
 
 - [Button](../button)
 - [Dropdown](../dropdown)

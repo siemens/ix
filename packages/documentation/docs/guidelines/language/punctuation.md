@@ -1,73 +1,80 @@
 ---
 sidebar_position: 3
-sidebar_title: Punctuation
+sidebar_label: Punctuation
 title: Punctuation
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "Master the use of punctuation to improve the readability and comprehension of your text. This section covers the rules and best practices for using punctuation marks to ensure your writing is clear and precise."
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### Minimalist punctuation
+## Minimalist punctuation
 
 Always consider whether necessary
 
+`!` Exclamation mark for high-level warnings only!
+
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>!</span> Exclamation mark for high-level warnings only!
+`!` Exclamation mark for high-level warnings only!
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>?</span> Question mark only if necessary
+`?` Question mark only if necessary
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Use colons: especially to introduce lists
+`:` Use colons: especially to introduce lists
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops at the end of all full sentences
+`.` Full stops at the end of all full sentences
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops before all file extensions: .csv .txt .zip
+`.` Full stops before all file extensions: .csv .txt .zip
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Consistent use of full stops throughout the application
+`.` Consistent use of full stops throughout the application
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>…</span> Ellipsis only for transitional text: Upload… 
+`…` Ellipsis only for transitional text: Upload… 
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>'</span> Single quotation mark for possession: Customer’s role (single), customers’ roles (plural)
+`'` Single quotation mark for possession: Customer’s role (single), customers’ roles (plural)
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}> </span> No quotation mark or brackets for plurals: PDFs
+`  ` No quotation mark or brackets for plurals: PDFs
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>&</span> Avoid ampersands unless in a product or company name: Siemens & Halske AG
+`&` Avoid ampersands unless in a product or company name: Siemens & Halske AG
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>*</span> Avoid asterisks in applications
+`*` Avoid asterisks in applications
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>(</span> Avoid brackets ( ) and [ ]
+`(` Avoid brackets ( ) and [ ]
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>;</span> Avoid semi-colons
+`;` Avoid semi-colons
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Avoid and remove colons whenever possible, for example Username instead of Username:
+`:` Avoid and remove colons whenever possible, for example Username instead of Username:
 </div>
 
-### Formats
+## Formats
 
 - 12-hour clock: 11am and 11pm or 11AM and 11PM
 
@@ -142,7 +149,7 @@ Always consider whether necessary
 
 </div>
 
-### Spacing
+## Spacing
 
 - No space before %
 
@@ -178,7 +185,7 @@ Always consider whether necessary
 
 </div>
 
-### Lists
+## Lists
 
 - Consistent use of full stops in lists / bullet points
 

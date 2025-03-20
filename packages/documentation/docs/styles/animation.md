@@ -1,12 +1,17 @@
-# Animations
+---
+sidebar_position: 4
+sidebar_label: Animations
+title: Animations
+hide_table_of_contents: false
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "We use meaningful animations to make applications appear physically tangible. This way UIs become predictable and interactions easier to follow along with for users. Abrupt state changes are prevented in oder to make UIs feel smooth and anchored in reality."
+---
 
-Siemens Industrial Experience uses meaningful animations to make applications appear physically tangible.
-This way UIs become predictable and interactions easier to follow along with for users.  
-Abrupt state changes are prevented in oder to make UIs feel smooth and anchored in reality.
+# 
 
-<hr/>
-
-### Standard timings
+## Standard timings
 
 If an animation is too slow it can feel sluggish and disturb efficient workflows.  
 In contrast an animation that runs too fast can be irritating and stressful.  
@@ -37,8 +42,6 @@ Therefore it is important to choose the correct timing for the respective situat
 - Slide-out movements (to off screen) should use `ease-in` only
 - transformations or translations within the screen (object is visible the whole time) should use `ease-in-out`
 - hiding or appearing objects (opacity) use linear transitions as there is no mass to accelerate/decelerate
-
-<hr/>
 
 ### Animation timing variables
 

@@ -1,13 +1,18 @@
 ---
 sidebar_position: 5
-sidebar_title: Main menu functions
+sidebar_label: Main menu functions
 title: Main menu functions
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'Explore best practices for writing main menu functions to ensure intuitive navigation. This section provides tips on how to label and organize menu items so users can easily find what they need.'
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### Welcome page
+## Welcome page
 
 - Username or email
 
@@ -24,7 +29,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### User management
+## User management
 
 - Username
 
@@ -63,7 +68,7 @@ import Guideline from '@site/src/components/Guideline';
 
 </div>
 
-### Roles
+## Roles
 
 - User
 
@@ -77,7 +82,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Administrator
 
-### Password
+## Password
 
 - Change password
 
@@ -87,7 +92,7 @@ import Guideline from '@site/src/components/Guideline';
 
 - Repeat new password
 
-#### License management
+## License management
 
 - Used licenses
 
@@ -113,7 +118,7 @@ import Guideline from '@site/src/components/Guideline';
 <Guideline do={false} label='licence'></Guideline>
 </span>
 
-### About & legal information
+## About & legal information
 
 - General information
 
@@ -143,7 +148,7 @@ import Guideline from '@site/src/components/Guideline';
 <Guideline do={false} label='V1'></Guideline>
 </span>
 
-### Service & Support
+## Service & Support
 
 - Contact Service & Support: support@mail.com
 
@@ -158,7 +163,7 @@ import Guideline from '@site/src/components/Guideline';
 <Guideline do={false} label='User manual'></Guideline>
 </span>
 
-### Workspace
+## Workspace
 
 - Application status
 
@@ -171,7 +176,7 @@ import Guideline from '@site/src/components/Guideline';
 <Guideline do={false} label='KPIS settings'></Guideline>
 </span>
 
-### Resetting
+## Resetting
 
 - Factory reset
 

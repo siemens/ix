@@ -1,11 +1,16 @@
 ---
 sidebar_position: 1
+sidebar_label: Greeting users
 title: Greeting users
+hide_table_of_contents: false
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "Greeting users is a key communicative function as this introduces your chatbot to your users, establishes its voice, and can be used to clarify your chatbot’s abilities and constraints."
 ---
-# Greeting users 
-## Overview 
 
-Greeting users is a key communicative function as this introduces your chatbot to your users, establishes its voice, and can be used to clarify your chatbot’s abilities and constraints. 
+# 
+
 ## Examples
 
 ![Greeting users with a simple introduction](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4327&t=etx1DcSbA7VDx5xD-4)

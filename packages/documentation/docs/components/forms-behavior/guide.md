@@ -52,7 +52,7 @@ In this strategy, there is no need for a submit button. The form is automaticall
 
 For more information on form validation, refer to the [validation](../forms-validation) chapter.
 
-### Related patterns
+### Related
 
 - [Validation](../forms-validation)
 - [Layout](../forms-layout)

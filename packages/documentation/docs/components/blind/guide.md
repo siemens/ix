@@ -50,7 +50,7 @@ For all blind variants, a default, hover, active and focused state is available.
 - Don't use a blind if there is only a single category to be displayed
 - Don't use blinds to display hierarchically structured files or objects - rather use a tree for such cases
 
-### Related patterns:
+### Related
 
 - [Tabs](../tabs)
 - [Tree](../tree)

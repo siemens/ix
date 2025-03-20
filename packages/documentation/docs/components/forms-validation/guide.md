@@ -69,7 +69,7 @@ Example: When the user completes the shipping address section of an e-commerce c
 - Do include all relevant information in the validation message, including context
 - Don’t show valid feedback on components, only in the input help component
 
-### Related patterns
+### Related
 
 - [Form field](../forms-field)
 - [Behavior](../forms-behavior)

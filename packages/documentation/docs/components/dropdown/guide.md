@@ -59,7 +59,7 @@ Dropdown items have five states: Default, hover, active, disabled and focused. W
 - Don’t use too many dropdown items - we recommend a maximum of seven
 - Don’t insert the [date picker](../date-dropdown) instead)
 
-### Related patterns
+### Related
 
 - [Dropdown button](../dropdown-button)
 - [Split button](../split-button)

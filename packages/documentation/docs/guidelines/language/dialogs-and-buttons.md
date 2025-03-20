@@ -1,13 +1,18 @@
 ---
 sidebar_position: 9
-sidebar_title: Dialogs and buttons
+sidebar_label: Dialogs and buttons
 title: Dialogs and buttons
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: 'Discover guidelines for writing dialogs and button labels to ensure clear and actionable instructions. This section helps you create effective prompts and calls to action that enhance user interaction.'
 ---
 
 import Guideline from '@site/src/components/Guideline';
 
+#
 
-### Clear title and button options
+## Clear title and button options
 
 - Concise and descriptive dialog title: Add user
 
@@ -38,7 +43,7 @@ import Guideline from '@site/src/components/Guideline';
 </span>
 </div>
 
-### Primary and secondary actions
+## Primary and secondary actions
 
 - Primary on the right, secondary left (Cancel, OK) not (OK, Cancel)
 

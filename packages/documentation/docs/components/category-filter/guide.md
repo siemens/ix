@@ -50,7 +50,7 @@ Category filter has six states: Default, hover, active, disabled, read-only and 
 - Don’t use if it slows down the user experience
 - Don’t use if your users are not familiar with the category names
 
-### Related patterns
+### Related
 
 - [Expanding search](../expanding-search)
 - [Input](../input)

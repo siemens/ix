@@ -1,11 +1,16 @@
 ---
 sidebar_position: 2
+sidebar_label: Acknowledging users
 title: Acknowledging users
+hide_table_of_contents: false
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "In conversations, humans like to be acknowledged to shows the other person is listening and understands the situation. When a chatbot acknowledges user input, it prompts users to continue interacting, boosts the overall user experience, and makes interactions more authentic."
 ---
-# Acknowledging users 
-## Overview 
 
-In conversations, humans like to be acknowledged to shows the other person is listening and understands the situation. When a chatbot acknowledges user input, it prompts users to continue interacting, boosts the overall user experience, and makes interactions more authentic. 
+# 
+
 ## Examples 
 
 ![Acknowledging users example 1](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4329&t=etx1DcSbA7VDx5xD-4) 

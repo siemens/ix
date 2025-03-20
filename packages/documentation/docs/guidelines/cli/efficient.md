@@ -1,14 +1,19 @@
 ---
 sidebar_position: 3
-sidebar_title: Efficient
+sidebar_label: Efficient
 title: Efficient
+hide_table_of_contents: false
+doc-type: 'banner'
+component-tabs: ['']
+no_single_tab: true
+description: "Commands are scannable, giving users just the right amount of information at the right time."
 ---
 
 import Separator from '@site/src/components/Separator';
 
-Commands are scannable, giving users just the right amount of information at the right time.
+#
 
-### Informing
+## Informing
 
 - Keep users informed when processes are known to take time
 - Give users time indicators when possible
@@ -26,7 +31,7 @@ Commands are scannable, giving users just the right amount of information at the
 
 ![Informing 2 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-11430&t=2JP2nlNciwS43htp-1)
 
-### Robustness
+## Robustness
 
 - Ensure your program validates user input
 - Ensure your program can recover and bring the system back to safety

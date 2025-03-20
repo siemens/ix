@@ -4,14 +4,17 @@ component-tabs: ['Usage', 'Code']
 description: 'Basic navigation combines essential infrastructure components to form the foundational layout structure of an application.'
 title: 'Basic navigation'
 deprecated:
+  - { type: 'deprecated', message: 'Since 2.6.0' }
+  - /docs/components/application
 toc_min_heading_level: 2
 toc_max_heading_level: 5
+unlisted: true
 ---
+
 import Guide from './guide.md';
 import Code from './code.mdx';
 import QueryStringContent from '@site/src/components/theme/QueryStringContent';
-
-#
+import { RedirectTag, DeprecatedTag } from '@site/src/components/UI/Tags';
 
 <QueryStringContent>
   <Guide />
