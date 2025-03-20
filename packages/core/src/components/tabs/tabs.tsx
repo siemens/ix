@@ -331,14 +331,14 @@ export class Tabs {
     );
   }
 
-  private handleWheelScroll(event: WheelEvent) {
+  private handleWheelScroll = (event: WheelEvent) => {
     if (!event.deltaY) return;
 
     event.preventDefault();
     const scrollAmount =
       event.deltaY > 0 ? -this.scrollAmount : this.scrollAmount;
     this.move(scrollAmount, true);
-  }
+  };
 
   private setupTouchEvents(tabsWrapper: HTMLElement) {
     tabsWrapper.addEventListener(
@@ -353,18 +353,18 @@ export class Tabs {
     );
   }
 
-  private handleTouchStart(event: TouchEvent) {
+  private handleTouchStart = (event: TouchEvent) => {
     this.startTouchX = event.touches[0].clientX;
-  }
+  };
 
-  private handleTouchMove(event: TouchEvent) {
+  private handleTouchMove = (event: TouchEvent) => {
     const moveX = event.touches[0].clientX - this.startTouchX;
     if (Math.abs(moveX) > 10) {
       event.preventDefault();
       this.move(moveX > 0 ? this.scrollAmount : -this.scrollAmount, true);
       this.startTouchX = event.touches[0].clientX;
     }
-  }
+  };
 
   private isTouchOnlyDevice(): boolean {
     const ua = window.navigator.userAgent;
