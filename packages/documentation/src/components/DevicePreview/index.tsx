@@ -8,6 +8,7 @@
  */
 import clsx from 'clsx';
 import './DevicePreview.scss';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 const DevicePreview = (props: {
   children: any;
@@ -16,6 +17,7 @@ const DevicePreview = (props: {
 }) => {
   // TODO: Show theme dynamic const theme = useTheme();
   const theme = 'theme-brand-dark';
+  const url = useBaseUrl('/demo/v2/preview/mobile/');
 
   return (
     <figure className="DevicePreview" style={props.style}>
@@ -28,7 +30,7 @@ const DevicePreview = (props: {
           <img src={props.image} alt="Device preview" />
         ) : (
           <iframe
-            src={`/demo/v2/preview/mobile/?preview-mode=ios&preview-theme=${theme}#/`}
+            src={`${url}?preview-mode=ios&preview-theme=${theme}#/`}
           ></iframe>
         )}
       </div>
