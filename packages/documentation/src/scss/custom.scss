@@ -15,6 +15,7 @@
 @use './overwrite/table';
 @use './overwrite/admonition';
 @use './overwrite/footer';
+@use './overwrite/announcement-bar';
 @use './components/docsLayoutWrapper';
 @use './components/apiTable';
 @use './components/navLink';
@@ -76,15 +77,16 @@
   @extend .theme-classic-light;
 }
 
-[id]::before {
-  content: '';
-  display: block;
-  height: 15rem;
-  margin-top: -15rem;
-  visibility: hidden;
+.docLayoutWrapper .anchor {
+  scroll-margin-top: 15rem !important;
 }
 
 ix-tooltip {
+  // Increase z-index to make sure it is displayed on top of the sidebar
+  z-index: 9999;
+}
+
+ix-dropdown {
   // Increase z-index to make sure it is displayed on top of the sidebar
   z-index: 9999;
 }
