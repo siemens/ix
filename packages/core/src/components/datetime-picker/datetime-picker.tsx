@@ -133,6 +133,13 @@ export class DatetimePicker
   @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
 
   /**
+   * Top label of time picker
+   *
+   * @since 3.0.0
+   */
+  @Prop() i18nTime: string = 'Time';
+
+  /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
    *
@@ -156,6 +163,13 @@ export class DatetimePicker
    * @deprecated Not used anymore see `done` event
    */
   @Prop() eventDelimiter = ' - ';
+
+  /**
+   * Shows week numbers displayed on the left side of the date picker
+   *
+   * @since 3.0.0
+   */
+  @Prop() showWeekNumbers = false;
 
   /**
    * Done event
@@ -239,6 +253,7 @@ export class DatetimePicker
                 weekStartIndex={this.weekStartIndex}
                 standaloneAppearance={false}
                 locale={this.locale}
+                showWeekNumbers={this.showWeekNumbers}
               ></ix-date-picker>
             </ix-col>
 
@@ -252,6 +267,7 @@ export class DatetimePicker
                 showSeconds={this.showSeconds}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
+                textTime={this.i18nTime}
                 time={this.time}
               ></ix-time-picker>
               <div class="btn-select-date-container">
