@@ -29,6 +29,10 @@
   z-index: 2;
   margin: 0;
   padding-bottom: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 0.5rem;
 }
 
 .Tabs {
