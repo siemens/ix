@@ -14,7 +14,7 @@ import {
   ElementRef,
   NgZone,
 } from '@angular/core';
-import type { Components } from '@siemens/ix';
+import type { Components } from '@siemens/ix-icons';
 import { ProxyCmp } from './angular-component-lib/utils';
 
 export declare interface IxIcon extends Components.IxIcon {}

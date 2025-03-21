@@ -90,6 +90,7 @@ coverage
 # compiled output
 /tmp
 /out-tsc
+*.tgz
 
 # dependencies
 node_modules

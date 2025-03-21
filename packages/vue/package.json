@@ -11,6 +11,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/vue"
   },
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -40,7 +41,7 @@
     "vue": "^3.4.34"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "3.0.0-alpha.0",
+    "@siemens/ix-icons": "3.0.0-alpha.1",
     "vue": ">=3.2.45"
   }
 }

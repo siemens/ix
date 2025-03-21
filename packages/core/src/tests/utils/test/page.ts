@@ -11,9 +11,13 @@ import {
   Page,
   PageScreenshotOptions,
   test as testBase,
-  TestInfo,
+  TestInfo as _TestInfo,
   expect,
 } from '@playwright/test';
+
+interface TestInfo extends _TestInfo {
+  componentTest?: boolean;
+}
 
 export type Mount = (
   selector: string,
@@ -22,12 +26,6 @@ export type Mount = (
     icons?: Record<string, string>;
   }
 ) => Promise<ElementHandle<HTMLElement>>;
-
-declare module '@playwright/test' {
-  interface TestInfo {
-    componentTest: boolean;
-  }
-}
 
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
@@ -182,7 +180,7 @@ export const regressionTest = testBase.extend<{
       )
     );
   },
-  mount: async ({ page }, use, testInfo) => {
+  mount: async ({ page }, use, testInfo: TestInfo) => {
     testInfo.componentTest = true;
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
     testInfo.annotations.push({

@@ -85,7 +85,7 @@ export class SelectItem implements DropdownItemWrapper {
 
   componentDidRender() {
     if (this.value === undefined || this.value === null) {
-      throw Error('ix-select-item must have a `value` property');
+      console.warn('ix-select-item must have a `value` property');
     }
     this.componentLoaded = true;
   }

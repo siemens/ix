@@ -20,10 +20,10 @@ import {
   TemplateRef,
 } from '@angular/core';
 import type {
-  Components,
   TreeContext as ICwTreeTreeContext,
   TreeContext,
   UpdateCallback,
+  Components,
 } from '@siemens/ix';
 import { Subscription } from 'rxjs';
 
