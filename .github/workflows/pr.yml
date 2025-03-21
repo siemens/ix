@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Track changes between commits
         id: changes
-        uses: tj-actions/changed-files@v43
+        uses: tj-actions/changed-files@2f7c5bfce28377bc069a65ba478de0a74aa0ca32
         with:
           files_yaml: |
             core:
@@ -195,3 +195,18 @@ jobs:
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
+
+  unit-memlab:
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' }}
+    needs: [build, changes]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Test
+        run: |
+          cd testing/performance-memlab
+          pnpm dlx puppeteer browsers install chrome@127.0.6533.88
+          pnpm test.memlab

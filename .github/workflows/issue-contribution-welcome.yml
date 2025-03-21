@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Contribution welcome comment created
         if: "contains(github.event.label.name, 'Contribution welcome')"
-        uses: actions-cool/issues-helper@v3
+        uses: actions-cool/issues-helper@375963b92b795c7b979927c580dd6f2a65ebcf28
         with:
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}
