@@ -2,10 +2,11 @@
 sidebar_position: 1
 sidebar_label: Basics
 title: UX Writing Basics
-doc-type: 'banner'
-component-tabs: ['']
+doc-type: banner
+component-tabs:
+  - ""
 no_single_tab: true
-description: "Dive into the fundamental principles of UX writing, where you'll learn how to create text that enhances user experience by being clear, concise, and user-friendly. This section lays the groundwork for all your UX writing endeavors."
+description: Dive into the fundamental principles of UX writing, where you'll learn how to create text that enhances user experience by being clear, concise, and user-friendly. This section lays the groundwork for all your UX writing endeavors.
 ---
 
 import Guideline from '@site/src/components/Guideline';

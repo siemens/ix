@@ -19,8 +19,8 @@ Toasts are UI elements where an event causes a small text field to appear on scr
   - Warning: Warns users of potential problems that could occur due to the action.
   - Error: Notifies users that the action cannot be performed due to a specific problem.
   - Custom: Adjust the icon and its color to customize your own toast messages.
-- **Header:** Add a header for the toast. Use short and concise words. We typically use 1 to 3 keywords, such as "Error occurred" or "Action completed".
-- **Message:** Add a clear and concise message providing more detailed information about the toast event. We typically provide additional context or instructions related to the event, e.g. "Please check your email for further instructions" or "Your changes have been saved successfully".
+- **Header:** Add a header for the toast. Use short and concise words. We typically use 1 to 3 keywords, such as "Error occurred" or "Action completed" (see [writing guideline](./../../guidelines/language/messaging/toast.mdx) for more information).
+- **Message:** Add a clear and concise message providing more detailed information about the toast event. We typically provide additional context or instructions related to the event, e.g. "Please check your email for further instructions" or "Your changes have been saved successfully" (see [writing guideline](../../guidelines/language/messaging/toast.mdx) for more information).
 - **Button:** Include a button to provide users with an option to take further action. We typically use a button to give the user an option to undo the action or to provide a link for further information.
 - **Position:** Toasts are positioned either at the bottom or top right. The default position is bottom right. This position is configured globally, which means all toasts appear from the same position. We typically change the default position if the toast covers important workflow elements.
 
@@ -41,7 +41,7 @@ Toasts are UI elements where an event causes a small text field to appear on scr
 - Do use toasts to instantly inform a user about the outcome of an action
 - Do include shortcuts to undo an action immediately after it's taken
 - Do stick with a consistent position for toasts within the same app and avoid interchanging their positions
-- Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work (use a [modal](../messagebar) instead)
+- Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work (use a [message bar](../messagebar) instead)
 - Don’t edit or reuse icons or icon colors from the four predefined toast types when creating custom toasts
 
 ### Related

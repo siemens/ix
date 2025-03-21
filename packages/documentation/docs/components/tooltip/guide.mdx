@@ -1,0 +1,35 @@
+## Guidelines
+
+[Tooltip overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4952-836&t=ZV5eIufDzLMcjh8j-4)
+1. Container
+2. Spike
+3. Title (icon and text)
+4. Content
+
+### Options
+
+- **For (anchor element)**: Specify the element that triggers the tooltip, usually interactive elements like buttons or links.
+- **Interactive**: Define whether the tooltip can contain interactive elements such as links or buttons. Interactive tooltips remain visible when the user hovers over the tooltip itself.
+- **Placement**: Place tooltips at the top, bottom, left or right edge of its anchor element. The placement may be automatically adjusted in case it cannot be displayed correctly (see [behavior in context](#behavior-in-context) below). We typically use the default (bottom) placement option to ensure consistency.
+- **Title**: Set a concise and informative text and/or icon, providing clear guidance about the anchor element.
+- **Content**: Set a text to provide additional information.
+
+### Behavior in context
+
+- **Interaction**: Tooltips appear when users hover over or focus on the anchor element. They disappear when the user moves the cursor away or the element loses focus. Interactive tooltips remain visible as long as the user interacts with the tooltip content.
+- **Visibility**: Ensure that tooltips are visible and readable. They should contrast with the background and not be obscured by other UI elements.
+- **Responsiveness**: Tooltips should be responsive and adapt to different screen sizes. On smaller screens, consider alternative ways to provide the same information, such as inline text or modal dialogs.
+- **Placement:** The position depends on the anchor element (e.g. [buttons](../button)). By default, the dropdown is displayed at the bottom right of the trigger element. When there is not enough space for the selected placement, it is corrected automatically. The placement of the submenu is always generated automatically.
+
+### Dos and Don'ts
+
+- Do use tooltips to provide additional information or guidance
+- Do keep tooltip content concise and to the point (see [writing guideline](./../../guidelines/language/messaging/tooltip.mdx))
+- Do ensure tooltips are accessible and can be read by screen readers by using the aria-describedby attribute (see [accessibility guidelines](../../guidelines/accessibility.md))
+- Don't use tooltips for essential information that users need to complete a task (use a helper text instead)
+- Don't overload tooltips with too much text
+
+### Related patterns
+
+- [Modal](../modal)
+- [Dropdown](../dropdown)
