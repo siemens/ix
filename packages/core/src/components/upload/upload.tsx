@@ -261,12 +261,14 @@ export class Upload {
           {this.renderUploadState()}
           <div>
             <input
+
               aria-label={ariaLabel}
               aria-disabled={disabled}
               multiple={this.multiple}
               type="file"
               class="upload-browser"
               id="upload-browser"
+              tabindex="-1"
               onChange={(e) => {
                 this.fileChangeEvent(e);
               }}
@@ -274,7 +276,6 @@ export class Upload {
               disabled={disabled}
             />
             <ix-button
-              tabindex="-1"
               outline
               onClick={() => this.inputElement.click()}
               disabled={disabled}
