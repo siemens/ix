@@ -1,0 +1,14 @@
+{{#slots}}
+<ApiTable id="slot-{{name}}">
+  <ApiTable.SlotHeader name="{{name}}">
+    {{#docsTags}}
+      {{{ rTag }}}
+    {{/docsTags}}
+  </ApiTable.SlotHeader>
+
+  <ApiTable.Text name="Description">
+    { `{{ docs }}` }
+  </ApiTable.Text>
+</ApiTable>
+{{/slots}}
+

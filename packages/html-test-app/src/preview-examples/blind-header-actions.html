@@ -14,6 +14,14 @@ LICENSE file in the root directory of this source tree.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blind header actions example</title>
     <link rel="stylesheet" href="./blind-header-actions.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconInfo, iconContextMenu } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconInfo,
+        iconContextMenu,
+      });
+    </script>
   </head>
   <body>
     <ix-blind label="Example" icon="info">

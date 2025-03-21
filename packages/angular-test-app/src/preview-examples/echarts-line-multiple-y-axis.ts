@@ -8,11 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import {
-  convertThemeName,
-  getComputedCSSProperty,
-  registerTheme,
-} from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import { EChartsOption, SeriesOption } from 'echarts';
@@ -21,10 +17,10 @@ import { YAXisOption } from 'echarts/types/dist/shared';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-line-multiple-y-axis.html',
-  styleUrls: ["./echarts-line-multiple-y-axis.css"],
+  styleUrls: ['./echarts-line-multiple-y-axis.css'],
 })
 export default class EchartsLineMultipleYAxis implements OnInit {
-  theme = convertThemeName(themeSwitcher.getCurrentTheme());
+  theme = themeSwitcher.getCurrentTheme();
 
   dates = Array.from({ length: 2025 - 2013 }, (_, i) => (2013 + i).toString());
 
@@ -169,7 +165,7 @@ export default class EchartsLineMultipleYAxis implements OnInit {
     registerTheme(echarts);
 
     themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = convertThemeName(theme);
+      this.theme = theme;
     });
   }
 }

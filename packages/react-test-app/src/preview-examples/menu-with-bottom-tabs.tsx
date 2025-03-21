@@ -7,19 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './menu-with-bottom-tabs.scoped.css';
-
+import { iconGlobe, iconHome } from '@siemens/ix-icons/icons';
 import { IxMenu, IxMenuItem } from '@siemens/ix-react';
 
 export default () => {
   return (
     <IxMenu>
-      <IxMenuItem home tab-icon="home">
+      <IxMenuItem home tab-icon={iconHome}>
         Home
       </IxMenuItem>
-      <IxMenuItem tab-icon="globe" slot="bottom">
-        {' '}
-        Bottom Tab{' '}
+      <IxMenuItem tab-icon={iconGlobe} slot="bottom">
+        Bottom Tab
       </IxMenuItem>
     </IxMenu>
   );

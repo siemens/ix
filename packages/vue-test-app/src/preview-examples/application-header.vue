@@ -15,15 +15,17 @@ import {
   IxDropdownItem,
   IxIconButton,
 } from '@siemens/ix-vue';
+
+import { iconCheckboxes } from '@siemens/ix-icons/icons';
 </script>
 
 <template>
   <IxApplicationHeader name="My Application">
     <div className="placeholder-logo" slot="logo"></div>
 
-    <IxIconButton ghost icon="checkboxes"></IxIconButton>
-    <IxIconButton ghost icon="checkboxes"></IxIconButton>
-    <IxIconButton ghost icon="checkboxes"></IxIconButton>
+    <IxIconButton ghost :icon="iconCheckboxes"></IxIconButton>
+    <IxIconButton ghost :icon="iconCheckboxes"></IxIconButton>
+    <IxIconButton ghost :icon="iconCheckboxes"></IxIconButton>
 
     <IxDropdownButton variant="secondary" label="Select config" ghost>
       <IxDropdownItem label="Config 1"></IxDropdownItem>

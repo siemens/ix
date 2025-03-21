@@ -8,27 +8,28 @@
 -->
 
 <script setup lang="ts">
+import { iconBulb, iconRocket } from '@siemens/ix-icons/icons';
 import { IxCardList, IxPushCard } from '@siemens/ix-vue';
 </script>
 
 <template>
   <IxCardList label="Stack Layout" :showAllCount="12" listStyle="stack">
     <IxPushCard
-      icon="rocket"
+      :icon="iconRocket"
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="notification"
+      variant="filled"
     ></IxPushCard>
     <IxPushCard
-      icon="bulb"
+      :icon="iconBulb"
       notification="1"
       heading="Heading content"
       subheading="Subheading"
       variant="warning"
     ></IxPushCard>
     <IxPushCard
-      icon="rocket"
+      :icon="iconRocket"
       notification="3"
       heading="Heading content"
       subheading="Subheading"
@@ -38,39 +39,39 @@ import { IxCardList, IxPushCard } from '@siemens/ix-vue';
 
   <IxCardList label="Flow Layout" :showAllCount="12" listStyle="scroll">
     <IxPushCard
-      icon="rocket"
+      :icon="iconRocket"
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="notification"
+      variant="filled"
     ></IxPushCard>
     <IxPushCard
-      icon="bulb"
+      :icon="iconBulb"
       notification="1"
       heading="Heading content"
       subheading="Subheading"
-      variant="warning"
+      variant="filled"
     ></IxPushCard>
     <IxPushCard
-      icon="rocket"
+      :icon="iconRocket"
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="notification"
+      variant="filled"
     ></IxPushCard>
     <IxPushCard
-      icon="rocket"
+      :icon="iconRocket"
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="notification"
+      variant="filled"
     ></IxPushCard>
     <IxPushCard
-      icon="rocket"
+      :icon="iconRocket"
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="notification"
+      variant="filled"
     ></IxPushCard>
   </IxCardList>
 </template>

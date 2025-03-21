@@ -18,13 +18,12 @@ import {
 } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./application.css"></style>
-
 <template>
   <IxApplication>
     <IxApplicationHeader name="My Application">
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
+
     <IxMenu>
       <IxMenuItem>Item 1</IxMenuItem>
       <IxMenuItem>Item 2</IxMenuItem>

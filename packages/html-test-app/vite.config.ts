@@ -28,8 +28,7 @@ entryPoints.forEach((file) => {
 });
 
 const additionalTheme = {
-  loader: 'ix-brand-theme/loader',
-  css: 'ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css',
+  css: 'ix-corporate-theme/dist/css/brand-theme.css',
 };
 
 // https://vitejs.dev/config/

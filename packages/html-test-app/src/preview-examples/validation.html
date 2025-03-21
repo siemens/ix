@@ -19,8 +19,16 @@ LICENSE file in the root directory of this source tree.
       <ix-layout-grid>
         <ix-row>
           <ix-col size="4">
-            <label for="validationCustom01">First name</label>
-            <input type="text" id="validationCustom01" value="" required />
+            <label class="ix-form-label" for="validationCustom01"
+              >First name</label
+            >
+            <input
+              class="ix-form-control"
+              type="text"
+              id="validationCustom01"
+              value=""
+              required
+            />
             <div class="invalid-feedback">Please choose a first name.</div>
             <div class="valid-feedback">Looks good!</div>
           </ix-col>
@@ -28,15 +36,26 @@ LICENSE file in the root directory of this source tree.
         <ix-row>
           <ix-col size="4">
             <ix-validation-tooltip message="Cannot be empty!">
-              <label for="validationCustom02">Last name</label>
-              <input type="text" id="validationCustom02" value="" required />
+              <label class="ix-form-label" for="validationCustom02"
+                >Last name</label
+              >
+              <input
+                class="ix-form-control"
+                type="text"
+                id="validationCustom02"
+                value=""
+                required
+              />
             </ix-validation-tooltip>
           </ix-col>
         </ix-row>
         <ix-row>
           <ix-col size="4">
-            <label for="validationCustomUsername"> Username </label>
+            <label class="ix-form-label" for="validationCustomUsername">
+              Username
+            </label>
             <input
+              class="ix-form-control"
               type="text"
               id="validationCustomUsername"
               aria-describedby="inputGroupPrepend"
@@ -48,7 +67,7 @@ LICENSE file in the root directory of this source tree.
         </ix-row>
         <ix-row>
           <ix-col>
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <ix-button type="submit">Submit form</ix-button>
           </ix-col>
         </ix-row>
       </ix-layout-grid>

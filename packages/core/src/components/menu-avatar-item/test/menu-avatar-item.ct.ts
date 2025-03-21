@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 const html = String.raw;
 
-test('Nested dropdowns', async ({ mount, page }) => {
+regressionTest('Nested dropdowns', async ({ mount, page }) => {
   await mount(html`
     <ix-menu>
       <ix-menu-avatar>

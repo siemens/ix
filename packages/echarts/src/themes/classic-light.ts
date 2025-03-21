@@ -28,7 +28,7 @@ const colors = [
 ];
 
 export default {
-  themeName: 'classic-light',
+  themeName: 'theme-classic-light',
   theme: {
     color: colors,
     backgroundColor: 'rgba(0,0,0,0)',

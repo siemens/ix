@@ -27,7 +27,7 @@ export const addDisposableEventListenerAsArray = (
     eventType: string;
     callback: EventListenerOrEventListenerObject;
   }[]
-) => {
+): DisposableEventListener => {
   const disposables = listener.map(({ callback, element, eventType }) =>
     addDisposableEventListener(element, eventType, callback)
   );

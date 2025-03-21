@@ -8,9 +8,10 @@
  */
 
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 import { showMessage } from 'src/components/utils/modal/message';
 import { IxModalSize } from 'src/components';
+import { iconInfo } from '@siemens/ix-icons/icons';
 
 declare global {
   interface Window {
@@ -29,7 +30,7 @@ const screenWidths: IxModalSize[] = [
 ];
 
 screenWidths.forEach((size) => {
-  test(`message size ${size}`, async ({ page, mount }) => {
+  regressionTest(`message size ${size}`, async ({ page, mount }) => {
     await mount(``);
 
     await page.evaluate(() => {
@@ -49,17 +50,17 @@ screenWidths.forEach((size) => {
     await page.waitForTimeout(500);
 
     await page.evaluate(
-      ({ size }) => {
+      ({ size, iconInfo }) => {
         window.showMessage({
           messageTitle: 'Example title',
           message: 'message',
-          icon: 'info',
+          icon: iconInfo,
           size: size,
           centered: true,
           actions: [],
         });
       },
-      { size }
+      { size, iconInfo }
     );
 
     await page.waitForTimeout(500);
