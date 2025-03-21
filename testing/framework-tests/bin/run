@@ -1,5 +1,0 @@
-#!/usr/bin/env tsx
-import Runner from './../src/run.ts';
-
-console.log('Running tests...');
-Runner.run();

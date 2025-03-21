@@ -3,18 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "bin": {
-    "framework-tests": "./bin/run"
-  },
-  "scripts": {
-    "execute-tests": "tsx ./src/run.ts"
-  },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@types/http-server": "^0.12.4",
     "@types/node": "^20.16.0",
-    "execa": "^9.5.2",
-    "http-server": "^14.1.1",
-    "tsx": "^4.19.3"
-  }
+    "typescript": "^5.8.2"
+  },
+  "files": [
+    "./tests"
+  ]
 }
