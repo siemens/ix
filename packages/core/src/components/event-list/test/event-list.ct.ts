@@ -68,3 +68,59 @@ test('check if items still clickable', async ({ mount, page }) => {
 
   clickCountHandle.dispose();
 });
+
+test('should add an item dynamically and verify its height', async ({
+  mount,
+  page,
+}) => {
+  const itemHeight = 60;
+  const remInPixel = 16;
+
+  await mount(`
+    <ix-event-list item-height="${itemHeight}">
+      <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Text 2</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
+    </ix-event-list>
+  `);
+
+  const eventListItems = page.locator('ix-event-list-item');
+
+  await expect(eventListItems).toHaveCount(4);
+
+  await page.evaluate(() => {
+    const eventListItem = document.createElement('ix-event-list-item');
+    eventListItem.textContent = 'Newly added item';
+    eventListItem.setAttribute('color', 'color-primary');
+
+    const eventList = document.querySelector('ix-event-list');
+    if (eventList) {
+      eventList.appendChild(eventListItem);
+      const div = document.createElement('div');
+      div.appendChild(eventListItem);
+      eventList.appendChild(div);
+    }
+  });
+
+  await expect(eventListItems).toHaveCount(5);
+
+  await page.waitForFunction(() => {
+    const lastItem = document.querySelectorAll('ix-event-list-item');
+    if (!lastItem.length) return false;
+    const computedStyle = getComputedStyle(lastItem[lastItem.length - 1]);
+    return computedStyle.getPropertyValue('--event-list-item-height') !== '';
+  });
+
+  const heights = await eventListItems.evaluateAll((items) =>
+    items.map((item) =>
+      getComputedStyle(item).getPropertyValue('--event-list-item-height')
+    )
+  );
+
+  const expectedHeightInRem = `${itemHeight / remInPixel}rem`;
+
+  heights.forEach((height) => {
+    expect(height.trim()).toBe(expectedHeightInRem);
+  });
+});
