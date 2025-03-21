@@ -64,7 +64,7 @@ Items in this section do not navigate away from the current content. They either
 2. Toggle theme: Toggles between light and dark themes.
 3. Custom item
 4. About & legal information: Opens the [about & legal](../about-and-legal) overlay to display legal information, release notes, license information, etc.
-5. Collapse/expand side panel: Only relevant for [map navigation](../map-navigation).
+5. Collapse/expand side panel: Only relevant for [map navigation](../../legacy/map-navigation).
 
 <br></br>
 
@@ -72,7 +72,7 @@ Items in this section do not navigate away from the current content. They either
 
 - **enableSettings `default: true`:** Shows the settings icon (gear wheel) in the bottom section, it opens the [settings](../settings) overlay and the content can be freely defined.
 - **enableToggleTheme `default: false`:** Shows the theme toggle icon, offers an easy and direct way to toggle between light and dark themes. We don’t typically use this when dedicated theme settings are available elsewhere, e.g. in the settings overlay.
-- **enableMapExpand `default: false`:** Only relevant for [map navigation](../map-navigation), shows an icon that expands/collapses the side panel of the map navigation.
+- **enableMapExpand `default: false`:** Only relevant for [map navigation](../../legacy/map-navigation), shows an icon that expands/collapses the side panel of the map navigation.
 
 See the code tab for more information and other options available.
 
