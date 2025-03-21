@@ -20,14 +20,15 @@ import Guideline from '@site/src/components/Guideline';
 
 - Forgot password?
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do={false} label='Sign in / Sign up'></Guideline>
-<Guideline do={false} label='Login (as it is a noun, not a verb)'></Guideline>
-</span>
+:::col
+[!dont]
+Sign in / Sign up
+Login (as it is a noun, not a verb)
+:::
 
-</div>
+::::
 
 ## User management
 
@@ -51,22 +52,17 @@ import Guideline from '@site/src/components/Guideline';
 
 - Edit account
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do={false} label='id / identification'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='E-mail'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Add a user / Delete a user / Add permission'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Surname / Initial name / Given name'></Guideline>
-</span>
+:::col
+[!dont]
+id / identification
+E-mail
+Add a user / Delete a user / Add permission
+Surname / Initial name / Given name
+:::
 
-</div>
+::::
 
 ## Roles
 
@@ -114,9 +110,14 @@ import Guideline from '@site/src/components/Guideline';
 
 - Expired licenses
 
-<span class="m-2">
-<Guideline do={false} label='licence'></Guideline>
-</span>
+::::layout
+
+:::col
+[!dont]
+licence
+:::
+
+::::
 
 ## About & legal information
 
@@ -144,9 +145,14 @@ import Guideline from '@site/src/components/Guideline';
 
 - © Siemens AG 20XX
 
-<span class="m-2">
-<Guideline do={false} label='V1'></Guideline>
-</span>
+::::layout
+
+:::col
+[!dont]
+V1
+:::
+
+::::
 
 ## Service & Support
 
@@ -158,10 +164,15 @@ import Guideline from '@site/src/components/Guideline';
 
 - FAQ
 
-<span class="m-2">
-<Guideline do={false} label='Documentation'></Guideline>
-<Guideline do={false} label='User manual'></Guideline>
-</span>
+::::layout
+
+:::col
+[!dont]
+Documentation
+User manual
+:::
+
+::::
 
 ## Workspace
 
@@ -171,10 +182,15 @@ import Guideline from '@site/src/components/Guideline';
 
 - KPIs
 
-<span class="m-2">
-<Guideline do={false} label={"KPI's settings"}></Guideline>
-<Guideline do={false} label='KPIS settings'></Guideline>
-</span>
+::::layout
+
+:::col
+[!dont]
+KPI's settings
+KPIS settings
+:::
+
+::::
 
 ## Resetting
 

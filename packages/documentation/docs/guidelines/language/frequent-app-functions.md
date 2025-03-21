@@ -20,19 +20,16 @@ import Guideline from '@site/src/components/Guideline';
 
 - Cockpit
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do={false} label='Console'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Dash'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Control panel'></Guideline>
-</span>
+:::col
+[!dont]
+Console
+Dash
+Control panel
+:::
 
-</div>
+::::
 
 ## Analytics
 
@@ -40,16 +37,15 @@ import Guideline from '@site/src/components/Guideline';
 
 - Anomaly detection
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do={false} label='Assessment'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Examination'></Guideline>
-</span>
+:::col
+[!dont]
+Assessment
+Examination
+:::
 
-</div>
+::::
 
 ## Monitoring and scheduling
 
@@ -61,13 +57,14 @@ import Guideline from '@site/src/components/Guideline';
 
 - Remove from watchlist
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do={false} label='Watch list'></Guideline>
-</span>
+:::col
+[!dont]
+Watch list
+:::
 
-</div>
+::::
 
 ## Detail view
 
@@ -77,16 +74,15 @@ import Guideline from '@site/src/components/Guideline';
 
 - Details
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do={false} label='Facts'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Specifics'></Guideline>
-</span>
+:::col
+[!dont]
+Facts
+Specifics
+:::
 
-</div>
+::::
 
 ### Asset properties
 
@@ -130,13 +126,14 @@ import Guideline from '@site/src/components/Guideline';
 
 - Drag files here or select files
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do={false} label='Drag and drop here or browse'></Guideline>
-</span>
+:::col
+[!dont]
+Drag and drop here or browse
+:::
 
-</div>
+::::
 
 ## Comments
 
@@ -148,9 +145,14 @@ import Guideline from '@site/src/components/Guideline';
 
 - Write your comments here
 
-<span class="m-2">
-<Guideline do={false} label='Write a comment'></Guideline>
-</span>
+::::layout
+
+:::col
+[!dont]
+Write a comment
+:::
+
+::::
 
 ## Grid and list actions
 
@@ -174,11 +176,16 @@ import Guideline from '@site/src/components/Guideline';
 
 - Notify me when X occurs
 
-<span class="m-2">
-<Guideline do={false} label='Error'></Guideline>
-<Guideline do={false} label='Issue'></Guideline>
-<Guideline do={false} label='Problem'></Guideline>
-</span>
+::::layout
+
+:::col
+[!dont]
+Error
+Issue
+Problem
+:::
+
+::::
 
 ## Event types
 
@@ -206,12 +213,17 @@ import Guideline from '@site/src/components/Guideline';
 
 - Detected
 
-<span class="m-2">
-<Guideline do={false} label='Unacklowedged'></Guideline>
-<Guideline do={false} label='Unack.'></Guideline>
-<Guideline do={false} label='Unackn.'></Guideline>
-<Guideline do={false} label='Unacknl.'></Guideline>
-</span>
+::::layout
+
+:::col
+[!dont]
+Unacklowedged
+Unack.
+Unackn.
+Unacknl.
+:::
+
+::::
 
 ## Event actions
 
