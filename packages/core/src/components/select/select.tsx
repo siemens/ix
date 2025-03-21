@@ -941,6 +941,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                   !this.readonly &&
                   (this.selectedLabels?.length || this.inputFilterText) ? (
                     <ix-icon-button
+                      key="clear"
                       class="clear"
                       icon={'clear'}
                       ghost
@@ -956,14 +957,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                   {this.disabled || this.readonly ? null : (
                     <ix-icon-button
                       data-select-dropdown
+                      key="dropdown"
                       class={{ 'dropdown-visible': this.dropdownShow }}
                       icon="chevron-down-small"
                       ghost
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
-                      }}
-                      onClick={() => {
-                        this.dropdownShow = !this.dropdownShow;
                       }}
                     ></ix-icon-button>
                   )}
