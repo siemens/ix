@@ -1,0 +1,14 @@
+{
+  "name": "framework-tests",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^20.16.0",
+    "typescript": "^5.8.2"
+  },
+  "files": [
+    "./tests"
+  ]
+}
