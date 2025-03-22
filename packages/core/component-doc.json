@@ -1509,6 +1509,37 @@
           "setter": false
         },
         {
+          "name": "form",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "form",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "ghost",
           "type": "boolean",
           "complexType": {
@@ -1569,13 +1600,8 @@
           "mutable": false,
           "attr": "loading",
           "reflectToAttr": false,
-          "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docs": "Annotate with",
+          "docsTags": [],
           "default": "false",
           "values": [
             {

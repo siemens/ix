@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Listen, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Listen,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
 
@@ -50,6 +58,9 @@ export class Button implements IxButtonComponent {
    *
    * @since 2.0.0
    */
+
+  @Prop() form?: string;
+
   @Prop() loading: boolean = false;
 
   /**
@@ -68,6 +79,7 @@ export class Button implements IxButtonComponent {
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
+
   submitButtonElement?: HTMLButtonElement;
 
   @Listen('click', { capture: true })
@@ -75,18 +87,34 @@ export class Button implements IxButtonComponent {
     if (this.disabled || this.loading) {
       event.stopPropagation();
       event.preventDefault();
+      return;
     }
   }
 
   componentDidLoad() {
-    if (this.type === 'submit') {
-      const submitButton = document.createElement('button');
-      submitButton.style.display = 'none';
-      submitButton.type = 'submit';
-      submitButton.tabIndex = -1;
-      this.hostElement.appendChild(submitButton);
+    if (this.type !== 'submit') {
+      return;
+    }
+    const submitButton = document.createElement('button');
+    submitButton.style.display = 'none';
+    submitButton.type = 'submit';
+    submitButton.tabIndex = -1;
 
-      this.submitButtonElement = submitButton;
+    if (this.form) {
+      submitButton.setAttribute('form', this.form);
+    }
+    this.hostElement.appendChild(submitButton);
+    this.submitButtonElement = submitButton;
+  }
+
+  @Watch('form')
+  handleFormChange(newValue: string | undefined) {
+    if (this.submitButtonElement) {
+      if (newValue) {
+        this.submitButtonElement.setAttribute('form', newValue);
+      } else {
+        this.submitButtonElement.removeAttribute('form');
+      }
     }
   }
 
@@ -101,13 +129,29 @@ export class Button implements IxButtonComponent {
 
   dispatchFormEvents() {
     if (
-      this.type === 'submit' &&
-      this.submitButtonElement &&
-      !this.disabled &&
-      !this.loading
+      this.disabled ||
+      this.loading ||
+      this.type !== 'submit' ||
+      !this.submitButtonElement
     ) {
-      this.submitButtonElement.click();
+      return;
     }
+
+    const formElement = this.form
+      ? (document.getElementById(this.form) as HTMLFormElement | null)
+      : null;
+
+    if (!formElement) {
+      this.submitButtonElement.click();
+      console.warn('No form found to submit.');
+      return;
+    }
+
+    const submitEvent = new Event('submit', {
+      bubbles: true,
+      cancelable: true,
+    });
+    formElement.dispatchEvent(submitEvent);
   }
 
   setFocus() {

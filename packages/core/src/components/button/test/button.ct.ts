@@ -12,6 +12,7 @@ import { test } from '@utils/test';
 declare global {
   interface Window {
     submitCount: number;
+    isFormSubmitted: boolean;
   }
 }
 
@@ -95,4 +96,71 @@ test('form can be submitted multiple times', async ({ mount, page }) => {
 
   await expect(button).not.toHaveAttribute('disabled');
   await expect(button).not.toHaveClass(/loading/);
+});
+
+test('should submit form when form attribute is set', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form id="test-form">
+      <input type="text" name="test-input" required minlength="1">
+    </form>
+    <ix-button type="submit" form="test-form">Submit</ix-button>
+  `);
+
+  await page.evaluate(() => {
+    window.isFormSubmitted = false;
+    const form = document.getElementById('test-form');
+
+    if (!form) {
+      console.warn('Warning: Form with ID "test-form" not found.');
+      return;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.isFormSubmitted = true;
+    });
+  });
+
+  const button = page.locator('ix-button');
+
+  await button.click();
+
+  const formSubmitted = await page.evaluate(() => window.isFormSubmitted);
+  expect(formSubmitted).toBe(true);
+});
+
+test('should not submit if form attribute is invalid', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form id="test-form">
+      <input type="text" name="test-input" required minlength="1">
+    </form>
+    <ix-button type="submit" form="invalid-form">Submit</ix-button>
+  `);
+
+  await page.evaluate(() => {
+    window.isFormSubmitted = false;
+    const form = document.getElementById('test-form');
+
+    if (!form) {
+      console.warn('Warning: Form with ID "test-form" not found.');
+      return;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.isFormSubmitted = true;
+    });
+  });
+
+  const button = page.locator('ix-button');
+  await button.click();
+
+  const isFormSubmitted = await page.evaluate(() => window.isFormSubmitted);
+  expect(isFormSubmitted).toBe(false);
 });

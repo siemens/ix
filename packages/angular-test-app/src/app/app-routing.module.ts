@@ -228,6 +228,7 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import ModalFormIxButtonSubmit from 'src/preview-examples/modal-form-ix-button-submit';
 
 const routes: Routes = [
   {
@@ -732,6 +733,10 @@ const routes: Routes = [
       {
         path: 'modal-by-template',
         component: ModalByTemplate,
+      },
+      {
+        path: 'modal-form-ix-button-submit',
+        component: ModalFormIxButtonSubmit,
       },
       {
         path: 'modal-sizes',

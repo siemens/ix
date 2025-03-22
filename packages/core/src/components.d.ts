@@ -272,6 +272,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "form"?: string;
+        /**
           * Button with no background or outline
          */
         "ghost": boolean;
@@ -281,8 +286,7 @@ export namespace Components {
         "icon"?: string;
         "iconSize": '12' | '16' | '24';
         /**
-          * Loading button
-          * @since 2.0.0
+          * Annotate with
          */
         "loading": boolean;
         /**
@@ -5428,6 +5432,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "form"?: string;
+        /**
           * Button with no background or outline
          */
         "ghost"?: boolean;
@@ -5437,8 +5446,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         "iconSize"?: '12' | '16' | '24';
         /**
-          * Loading button
-          * @since 2.0.0
+          * Annotate with
          */
         "loading"?: boolean;
         /**
