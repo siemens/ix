@@ -11,13 +11,18 @@ description: 'Angular is a popular framework for building dynamic web applicatio
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-#
+### Peer dependencies
 
-## Library installation
+Both `@angular/core` and `@angular/forms` are peer dependencies which means they must be installed before iX.
 
-:::info
-Currently, iX only supports `NgModule` based Angular projects. We are actively working to provide support for the new standalone component based approach soon. Otherwise Siemens iX is fully compatible with Angular version 17 and higher.
-:::
+```json
+"peerDependencies": {
+  "@angular/core": ">=17.3.0",
+  "@angular/forms": ">=17.3.0",
+}
+```
+
+### Library installation
 
 Install `@siemens/ix`, `@siemens/ix-angular` and `@siemens/ix-icons` using a package manager:
 
@@ -39,13 +44,40 @@ Install `@siemens/ix`, `@siemens/ix-angular` and `@siemens/ix-icons` using a pac
   </TabItem>
 </Tabs>
 
-## Import styles
+### Import styles
 
 Import the design system styling in your global stylesheet (e.g.: `src/styles.scss`):
 
 ```css
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 ```
+
+### Standalone setup
+
+Standalone setup is a little different to module setup. Instead of importing the `IxModule` in your module file, iX components and necessary directives are directly imported from `@siemens/ix-angular/standalone` in your component file.
+
+```typescript
+import { Component } from '@angular/core';
+import { IxButton, IxDropdown, IxDropdownItem, IxDropdownTriggerDirective } from '@siemens/ix-angular/standalone';
+
+@Component({
+  standalone: true,
+  selector: 'standalone-example',
+  imports: [IxButton, IxDropdown, IxDropdownItem, IxDropdownTriggerDirective],
+  template: `
+    <ix-button #trigger>Open</ix-button>
+    <ix-dropdown [ixDropdownTrigger]="trigger">
+      <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 3"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 4"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 5"></ix-dropdown-item>
+    </ix-dropdown>
+  `,
+})
+export default class StandaloneExample {}
+```
+
+### Module setup (legacy)
 
 Import `IxModule` and `BrowserAnimationsModule` (in some cases also the `RouterModule.forRoot([/** your routes **/])`) in your application module.
 
