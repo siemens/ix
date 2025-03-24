@@ -11,7 +11,11 @@ import fse from 'fs-extra';
 import path from 'path';
 import postcss from 'postcss';
 import { rimraf } from 'rimraf';
-import sass from 'sass';
+import * as sass from 'sass';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const ROOT = path.join(__dirname, '..', '..');
 const SCSS = path.join(ROOT, 'scss');
@@ -22,7 +26,7 @@ const DIST_CSS = path.join(ROOT, 'dist-css');
 const DIST_THEME = path.join(ROOT, 'dist-css', 'theme');
 
 async function setupDistFolder() {
-  await rimraf.sync(DIST_CSS);
+  rimraf.sync(DIST_CSS);
   fse.ensureDirSync(DIST_CSS);
   fse.ensureDirSync(DIST_THEME);
 }
@@ -115,6 +119,9 @@ function copyDistCssToDist() {
   );
 
   optimizedCss.forEach((result) => {
+    if (!result.opts.to) {
+      throw Error('No output path');
+    }
     fse.writeFileSync(result.opts.to, result.css);
   });
 
