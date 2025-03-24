@@ -76,9 +76,10 @@ export class DatePicker implements IxDatePickerComponent {
 
   @Watch('from')
   watchFromPropHandler(newValue: string) {
-    const date = this.formatDateString(newValue);
+    const date = DateTime.fromFormat(newValue, this.format);
 
-    if (!date) {
+    if (!date.isValid) {
+      console.error(date.invalidExplanation);
       return;
     }
 
@@ -98,9 +99,10 @@ export class DatePicker implements IxDatePickerComponent {
 
   @Watch('to')
   watchToPropHandler(newValue: string) {
-    const date = this.formatDateString(newValue);
+    const date = DateTime.fromFormat(newValue, this.format);
 
-    if (!date) {
+    if (!date.isValid) {
+      console.error(date.invalidExplanation);
       return;
     }
 
@@ -305,16 +307,6 @@ export class DatePicker implements IxDatePickerComponent {
 
   private getDateTimeNow() {
     return DateTime.fromISO(this.today);
-  }
-
-  private formatDateString(dateString: string): DateTime | undefined {
-    const date = DateTime.fromFormat(dateString, this.format);
-
-    if (date && date.isValid) {
-      return date;
-    }
-
-    return undefined;
   }
 
   onDayBlur() {
