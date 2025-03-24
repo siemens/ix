@@ -722,3 +722,23 @@ test('should trim the value before saving', async ({ mount, page }) => {
 
   await expect(input).toHaveValue('Item 7');
 });
+
+test('should preserve spaces within input and show add icon', async ({ mount, page }) => {
+  const itemText = 'Item      1';
+  await mount(`<ix-select editable></ix-select>`);
+  const select = page.locator('ix-select');
+  const itemAdded = select.evaluate((elm) => {
+    return new Promise<number>((resolve) => {
+      elm.addEventListener('addItem', (e: Event) =>
+        resolve((e as CustomEvent).detail)
+      );
+    });
+  });
+  const input = page.locator('input');
+  await input.focus();
+  await input.fill(itemText);
+  await page.keyboard.press('Enter');
+
+  await expect(select).toHaveClass(/hydrated/);
+  expect(await itemAdded).toBe(itemText);
+});
