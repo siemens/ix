@@ -7,7 +7,8 @@
     "start": "pnpm copy-preview-styles && ng serve",
     "build": "pnpm copy-preview-styles && ng build",
     "watch": "pnpm copy-preview-styles && ng build --watch --configuration development",
-    "test": "ng test --watch false --browsers ChromeHeadless"
+    "test": "playwright test",
+    "preview": "http-server ./dist/angular-standalone-test-app/browser -p 4173 --proxy http://localhost:4173?"
   },
   "private": true,
   "dependencies": {
@@ -20,9 +21,9 @@
     "@angular/platform-browser-dynamic": "^17.3.12",
     "@angular/router": "^17.3.12",
     "@siemens/ix": "workspace:*",
+    "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-icons": "3.0.0-alpha.0",
     "ag-grid-angular": "^32.0.2",
     "ag-grid-community": "^32.0.2",
@@ -38,7 +39,10 @@
     "@angular-devkit/build-angular": "^17.3.8",
     "@angular/cli": "^17.3.8",
     "@angular/compiler-cli": "^17.3.12",
+    "@playwright/test": "^1.49.1",
     "@types/jasmine": "~5.1.4",
+    "@types/node": "^20.16.0",
+    "http-server": "^14.1.1",
     "jasmine-core": "~5.1.2",
     "karma": "~6.4.3",
     "karma-chrome-launcher": "~3.2.0",
