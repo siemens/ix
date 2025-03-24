@@ -107,7 +107,7 @@ export class DatePicker implements IxDatePickerComponent {
   @Watch('to')
   watchToPropHandler(newValue: string) {
     if (!newValue) {
-      this.currFromDate = undefined;
+      this.currToDate = undefined;
 
       return;
     }
