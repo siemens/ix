@@ -1,7 +1,5 @@
 ## Guidelines
 
-Forms behavior refers to the way in which user input is handled and validated within a form. It plays a crucial role in providing a seamless and user-friendly experience for form interactions.
-
 ### Validation feedback
 
 When data is validated, a validation result is provided to guide users to correct invalid data, convey a sense of security, warn about critical inputs or inform about special features of an input.
