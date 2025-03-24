@@ -39,6 +39,8 @@ jobs:
     needs: changes
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.docs_any_changed == 'true' }}
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
