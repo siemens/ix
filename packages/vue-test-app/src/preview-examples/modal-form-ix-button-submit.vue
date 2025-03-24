@@ -2,7 +2,6 @@
 import {
   HTMLRefElement,
   IxButton,
-  IxModal,
   IxModalHeader,
   IxModalContent,
   IxModalFooter,
