@@ -127,6 +127,13 @@ export class DateDropdown
    */
   @Prop() loading: boolean = false;
 
+  /**
+   * Shows week numbers displayed on the left side of the date picker
+   *
+   * @since 3.0.0
+   */
+  @Prop() showWeekNumbers = false;
+
   @Watch('dateRangeId')
   @Watch('to')
   @Watch('from')
@@ -384,7 +391,7 @@ export class DateDropdown
             }
           }}
         >
-          <ix-layout-grid no-margin="true">
+          <ix-layout-grid noMargin>
             <ix-row>
               {this.dateRangeOptions?.length > 1 && (
                 <ix-col
@@ -432,6 +439,7 @@ export class DateDropdown
                       maxDate={this.maxDate}
                       today={this.today}
                       weekStartIndex={this.weekStartIndex}
+                      showWeekNumbers={this.showWeekNumbers}
                     ></ix-date-picker>
                     <div class="pull-right">
                       <ix-button

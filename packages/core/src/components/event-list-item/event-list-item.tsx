@@ -102,7 +102,7 @@ export class EventListItem {
             }`}
             style={{
               'background-color':
-                this.itemColor ?? this.color ? color : 'inherit',
+                (this.itemColor ?? this.color) ? color : 'inherit',
               opacity: `${this.disabled ? 0.4 : 1}`,
             }}
           ></div>
