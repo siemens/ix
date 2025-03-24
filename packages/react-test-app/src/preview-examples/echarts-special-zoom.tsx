@@ -19,7 +19,7 @@ import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
-import { OrdinalRawValue } from 'echarts/types/src/util/types';
+import type { OrdinalRawValue } from 'echarts/types/src/util/types.js';
 
 export default function EchartsSpecialZoom() {
   registerTheme(echarts);

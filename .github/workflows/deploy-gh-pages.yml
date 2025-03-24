@@ -3,16 +3,18 @@ name: Deploy GitHub Page (prod)
 on:
   workflow_dispatch:
     inputs:
-        confirm_deployment:
-          description: 'Please confirm deployment'
-          required: true
-          type: boolean
+      confirm_deployment:
+        description: 'Please confirm deployment'
+        required: true
+        type: boolean
 
 concurrency: deploy-gh-pages-${{ github.ref }}
 
 jobs:
   deploy-gh-pages:
     if: ${{ inputs.confirm_deployment == true && github.repository == 'siemens/ix' }}
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,7 +30,6 @@ jobs:
           CSC: ${{ secrets.READ_CSC_TOKEN }}
 
       - name: Deploy GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8
         with:
           folder: ./packages/documentation/build
-
