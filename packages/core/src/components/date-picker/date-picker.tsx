@@ -76,10 +76,17 @@ export class DatePicker implements IxDatePickerComponent {
 
   @Watch('from')
   watchFromPropHandler(newValue: string) {
+    if (!newValue) {
+      this.currFromDate = undefined;
+
+      return;
+    }
+
     const date = DateTime.fromFormat(newValue, this.format);
 
     if (!date.isValid) {
       console.error(date.invalidExplanation);
+
       return;
     }
 
@@ -99,10 +106,17 @@ export class DatePicker implements IxDatePickerComponent {
 
   @Watch('to')
   watchToPropHandler(newValue: string) {
+    if (!newValue) {
+      this.currFromDate = undefined;
+
+      return;
+    }
+
     const date = DateTime.fromFormat(newValue, this.format);
 
     if (!date.isValid) {
       console.error(date.invalidExplanation);
+
       return;
     }
 
