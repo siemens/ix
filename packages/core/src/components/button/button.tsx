@@ -87,7 +87,6 @@ export class Button implements IxButtonComponent {
     if (this.disabled || this.loading) {
       event.stopPropagation();
       event.preventDefault();
-      return;
     }
   }
 
