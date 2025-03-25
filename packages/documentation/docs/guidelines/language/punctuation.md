@@ -168,23 +168,24 @@ Browse …
 
 - Make lists parallel, i.e. all items / bullets have the same look, length, feel, punctuation, capitalization
 
-<div class="d-flex flex-wrap">
+::::layout
 
-<span class="m-2">
-<Guideline do label='Activate comments within your smartphone to
-'></Guideline>
-<ul>
-<li> Write comments</li>
-<li> Respond to comments</li>
-<li> Approve work orders</li>
-</ul>
+:::col
+[!do]
+Activate comments within your smartphone to
+Write comments
+Respond to comments
+Approve work orders
+:::
 
-<Guideline do={false} label='Activate comments within your smartphone to'></Guideline>
+:::col
+[!dont]
+Activate comments within your smartphone to
+Write comments
+Respond to comments
+Approve work orders by adding your fingerprint to your user management section in your smartphone
+:::
 
-<ul>
-<li>Write comments</li>
-<li>Respond to comments</li>
-<li>Approve work orders by adding your fingerprint to your user management section in your smartphone.</li>
-</ul>
-</span>
-</div>
+::::
+
+
