@@ -8,18 +8,12 @@
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { IxEventList, IxEventListItem } from '@siemens/ix-vue';
-
-const items = ref([
-    { id: 1, text: 'Text 1', color: 'color-primary' },
-    { id: 2, text: 'Text 2', color: 'color-primary' },
-    { id: 3, text: 'Text 3', color: 'color-primary' },
-]);
 </script>
 
 <template>
-    <IxEventList :itemHeight="60">
-        <IxEventListItem v-for="item in items" :key="item.id" :color="item.color">{{ item.text }}</IxEventListItem>
-    </IxEventList>
+  <IxEventList :itemHeight="60">
+    <IxEventListItem color="color-primary">Text 1</IxEventListItem>
+    <IxEventListItem color="color-primary">Text 2</IxEventListItem>
+  </IxEventList>
 </template>

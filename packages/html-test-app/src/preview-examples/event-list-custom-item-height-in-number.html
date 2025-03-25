@@ -3,30 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event List Custom Item Height Dynamic List</title>
+    <title>Event List Custom Item Height List</title>
     <script type="module">
       document.addEventListener('DOMContentLoaded', () => {
         const eventList = document.querySelector('ix-event-list');
-        let items = [1, 2, 3];
-
         eventList.itemHeight = 60;
-
-        const renderItems = () => {
-          eventList.innerHTML = '';
-          items.forEach((item) => {
-            const listItem = document.createElement('ix-event-list-item');
-            listItem.setAttribute('color', 'color-primary');
-            listItem.textContent = `Text ${item}`;
-            eventList.appendChild(listItem);
-          });
-        };
-
-        renderItems();
       });
     </script>
     <script type="module" src="./init.js"></script>
   </head>
   <body>
-    <ix-event-list></ix-event-list>
+    <ix-event-list>
+      <ix-event-list-item color="color-primary">Test 1</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Test 2</ix-event-list-item>
+    </ix-event-list>
   </body>
 </html>

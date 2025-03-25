@@ -99,19 +99,11 @@ export class EventList {
       }
 
       mutation.addedNodes.forEach((node) => {
-        if (node.nodeType !== Node.ELEMENT_NODE) {
-          return;
-        }
-
         const element = node as HTMLElement;
 
         if (element.tagName === 'IX-EVENT-LIST-ITEM') {
           eventListItems.push(element);
         }
-
-        eventListItems.push(
-          ...Array.from(element.querySelectorAll('ix-event-list-item'))
-        );
       });
     });
 
