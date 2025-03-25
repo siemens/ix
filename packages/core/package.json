@@ -7,14 +7,12 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.1",
   "license": "MIT",
   "description": "Siemens iX Web Components",
+  "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
-  "jsnext:main": "dist/esm/index.js",
   "types": "dist/types/interfaces.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
@@ -27,9 +25,45 @@
     "scss/",
     "hydrate/"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/interfaces.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs",
+      "default": "./dist/esm/index.js"
+    },
+    "./hydrate": {
+      "types": "./hydrate/index.d.ts",
+      "import": "./hydrate/index.mjs",
+      "require": "./hydrate/index.js",
+      "default": "./hydrate/index.mjs"
+    },
+    "./loader": {
+      "types": "./loader/index.d.ts",
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs.js",
+      "default": "./loader/index.js"
+    },
+    "./components/*.js": {
+      "types": "./dist/types/components/*.d.ts",
+      "import": "./components/*.js"
+    },
+    "./components": {
+      "types": "./dist/types/components.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs",
+      "default": "./dist/esm/index.js"
+    },
+    "./dist/siemens-ix/siemens-ix.css": "./dist/siemens-ix/siemens-ix.css",
+    "./dist/siemens-ix/siemens-ix-core.css": "./dist/siemens-ix/siemens-ix-core.css",
+    "./dist/siemens-ix/theme/classic-dark.css": "./dist/siemens-ix/theme/classic-dark.css",
+    "./dist/siemens-ix/theme/classic-light.css": "./dist/siemens-ix/theme/classic-light.css",
+    "./component-doc.json": "./component-doc.json",
+    "./scss/*": "./scss/*"
+  },
   "scripts": {
     "build": "stencil build --prod && npm run build.scss",
-    "build.scss": "ts-node -P ./scripts/build/tsconfig.json ./scripts/build/build-css.ts",
+    "build.scss": "tsx ./scripts/build/build-css.ts",
     "build.watch": "stencil build --watch",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "lint:fix": "npm run lint -- --fix",
@@ -45,23 +79,25 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.13",
-    "@stencil/core": "^4.27.2",
+    "@stencil/core": "^4.28.2",
     "@types/luxon": "^3.4.2",
     "animejs": "~3.2.2",
     "luxon": "^3.4.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@siemens/ix-icons": "3.0.0-alpha.0",
+    "@siemens/ix-icons": "3.0.0-alpha.1",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
-    "@stencil/angular-output-target": "^0.9.0",
-    "@stencil/react-output-target": "^0.7.1",
+    "@stencil/angular-output-target": "0.0.1-dev.11741888614.1fd07d67",
+    "@stencil/core": "^4.23.2",
+    "@stencil/react-output-target": "0.0.1-dev.11741888614.1fd07d67",
     "@stencil/sass": "^3.0.12",
     "@stencil/vue-output-target": "0.8.8",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.1",
     "@types/animejs": "^3.1.12",
+    "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.12",
     "@types/mustache": "^4.2.5",
     "@types/node": "^20.16.0",
@@ -84,11 +120,11 @@
     "rimraf": "^5.0.9",
     "sass": "^1.77.8",
     "start-server-and-test": "^1.14.0",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
     "typescript": "~5.4.5"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "3.0.0-alpha.0"
+    "@siemens/ix-icons": "3.0.0-alpha.1"
   },
   "config": {
     "commitizen": {

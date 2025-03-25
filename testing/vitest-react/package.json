@@ -1,0 +1,31 @@
+{
+  "name": "vitest-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-icons": "3.0.0-alpha.1",
+    "@siemens/ix-react": "workspace:*",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "happy-dom": "^17.4.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vitest": "^3.0.9"
+  },
+  "devDependencies": {
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.3.4",
+    "element-internals-polyfill": "^3.0.1",
+    "shadow-dom-testing-library": "^1.11.2",
+    "typescript": "^5.2.2",
+    "vite": "^6.2.2",
+    "vitest-browser-react": "^0.1.1"
+  }
+}

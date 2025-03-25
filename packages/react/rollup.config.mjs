@@ -7,10 +7,9 @@ const __dirname = resolve();
 const external = ['react', 'react-dom', 'react-dom/client', 'tslib'];
 
 export default {
-  input: 'src/index.ts',
   output: [
     {
-      dir: 'dist/',
+      dir: 'dist',
       entryFileNames: '[name].js',
       chunkFileNames: '[name]-[hash].js',
       format: 'es',
@@ -18,6 +17,11 @@ export default {
       preserveModules: true,
     },
   ],
+  input: {
+    index: 'src/index.ts',
+    'components.server': 'src/components.server.ts',
+  },
+
   plugins: [
     typescript({
       tsconfig: resolve(__dirname, 'tsconfig.lib.json'),
@@ -30,7 +34,8 @@ export default {
       id.startsWith('@siemens/ix') ||
       id.startsWith('@siemens/ix/hydrate') ||
       id.startsWith('@siemens/ix-icons') ||
-      id.startsWith('@stencil/react-output-target')
+      id.startsWith('@stencil/react-output-target') ||
+      id.startsWith('@stencil/react-output-target/runtime')
     );
   },
 };

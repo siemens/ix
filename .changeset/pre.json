@@ -18,7 +18,8 @@
     "vue-test-app": "2.1.2",
     "angular-standalone-test-app": "0.0.0",
     "ionic-test-app": "0.0.1",
-    "storybook-docs": "0.0.0"
+    "storybook-docs": "0.0.0",
+    "performance-memlab": "0.0.0"
   },
   "changesets": [
     "afraid-papayas-own",
@@ -29,6 +30,7 @@
     "curly-mice-build",
     "curvy-eels-arrive",
     "curvy-meals-deliver",
+    "early-parrots-peel",
     "eighty-doors-wait",
     "fresh-maps-ring",
     "gentle-snails-destroy",
@@ -36,6 +38,7 @@
     "hungry-impalas-serve",
     "large-tables-greet",
     "late-hotels-approve",
+    "late-sheep-call",
     "mighty-numbers-work",
     "nervous-badgers-count",
     "nervous-hotels-build",
@@ -52,9 +55,11 @@
     "shy-experts-rest",
     "shy-jars-attack",
     "shy-lions-hear",
+    "shy-turkeys-wash",
     "silly-carrots-complain",
     "six-wombats-grow",
     "sixty-carpets-sniff",
+    "spicy-buses-kneel",
     "stale-ladybugs-wave",
     "tame-deers-kick",
     "tame-emus-poke",
@@ -63,6 +68,7 @@
     "thick-vans-arrive",
     "wicked-windows-approve",
     "witty-geese-swim",
-    "yellow-islands-perform"
+    "yellow-islands-perform",
+    "yellow-planes-dream"
   ]
 }
