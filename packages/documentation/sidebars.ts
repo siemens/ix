@@ -1,5 +1,31 @@
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
+function createTabItem(item: {
+  id: string;
+  label: string;
+  items: {
+    id: string;
+    label: string;
+  }[];
+}): any {
+  return {
+    type: 'category',
+    label: item.label,
+    link: {
+      type: 'doc',
+      id: item.id,
+    },
+    collapsed: false,
+    collapsible: false,
+    items: item.items.map((child) => ({
+      type: 'doc',
+      id: child.id,
+      className: 'display-none',
+      label: child.label,
+    })),
+  };
+}
+
 /**
  * Creating a sidebar enables you to:
  - create an ordered group of docs
@@ -90,12 +116,36 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Application frame',
-      // link: { type: 'doc', id: 'components/overview' },
-      // link: { type: 'generated-index' },
       items: [
-        'components/application/index',
+        createTabItem({
+          id: 'components/application/index',
+          label: 'Application',
+          items: [
+            {
+              id: 'components/application/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/application/code',
+              label: 'Code',
+            },
+          ],
+        }),
         'components/application-header/index',
-        'components/application-menu/index',
+        createTabItem({
+          id: 'components/application-menu/index',
+          label: 'Application menu',
+          items: [
+            {
+              id: 'components/application-menu/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/application-menu/code',
+              label: 'Code',
+            },
+          ],
+        }),
         'components/avatar/index',
         'components/content/index',
         'components/about-and-legal/index',
@@ -108,7 +158,16 @@ const sidebars: SidebarsConfig = {
       label: 'Navigation and hierarchy',
       items: [
         'components/breadcrumb/index',
-        'components/group/index',
+        createTabItem({
+          id: 'components/group/index',
+          label: 'Group',
+          items: [
+            {
+              id: 'components/group/code',
+              label: 'Code',
+            },
+          ],
+        }),
         'components/pagination/index',
         'components/tabs/index',
         'components/tree/index',

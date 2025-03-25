@@ -1,20 +1,28 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import Layout from '@theme-original/DocItem/Layout';
-import type LayoutType from '@theme/DocItem/Layout';
+import {
+  useDoc,
+  useCurrentSidebarCategory,
+  useDocById,
+} from '@docusaurus/plugin-content-docs/client';
+import { useHistory } from '@docusaurus/router';
+import { useWindowSize } from '@docusaurus/theme-common';
+
 import type { WrapperProps } from '@docusaurus/types';
+import HeroHeader from '@site/src/components/theme/HeroHeader';
+import { useSubPageHook } from '@site/src/components/theme/QueryStringContent';
 import { useDocType } from '@site/src/utils/hooks/useDocType';
-import clsx from 'clsx';
-import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import DocItemContent from '@theme-original/DocItem/Content';
 import DocItemFooter from '@theme-original/DocItem/Footer';
+import Layout from '@theme-original/DocItem/Layout';
 import DocItemPaginator from '@theme-original/DocItem/Paginator';
-import HeroHeader from '@site/src/components/theme/HeroHeader';
-import { useWindowSize } from '@docusaurus/theme-common';
-import DocItemTOCMobile from '@theme/DocItem/TOC/Mobile';
+import type LayoutType from '@theme/DocItem/Layout';
 import DocItemTOCDesktop from '@theme/DocItem/TOC/Desktop';
+import DocItemTOCMobile from '@theme/DocItem/TOC/Mobile';
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.css';
-import { useSubPageHook } from '@site/src/components/theme/QueryStringContent';
-import { useHistory } from '@docusaurus/router';
+import HeroHeaderByPathname from '@site/src/components/theme/HeroHeaderByPathname';
+import { PropSidebarItemLink } from '@docusaurus/plugin-content-docs';
+
 type Props = WrapperProps<typeof LayoutType>;
 
 export default function LayoutWrapper(props: Props): JSX.Element {
@@ -30,6 +38,14 @@ export default function LayoutWrapper(props: Props): JSX.Element {
 
   if (docType === 'banner') {
     return <BannerDocItemLayout {...props} />;
+  }
+
+  if (docType === 'tabs') {
+    return <DocItemTabsLayout {...props} />;
+  }
+
+  if (docType === 'tab-item') {
+    return <DocItemTabItemLayout {...props} />;
   }
 
   return (
@@ -126,6 +142,61 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
         description={description}
         tabs={tabs}
         frontMatter={metadata.frontMatter}
+      />
+      <div className={styles.Row}>
+        <div className={styles.docItemContainer}>
+          <article>
+            {docTOC.mobile}
+
+            <div
+              className={clsx(styles.docContent, styles.docContentComponent)}
+            >
+              <DocItemContent>{children}</DocItemContent>
+            </div>
+          </article>
+          <DocItemFooter />
+          <DocItemPaginator />
+        </div>
+        <div className={clsx('col', styles.toc)}>{docTOC.desktop}</div>
+      </div>
+    </>
+  );
+}
+
+export function DocItemTabsLayout({ children }: Props): JSX.Element {
+  const history = useHistory();
+  const { metadata } = useDoc();
+
+  const sidebar = useCurrentSidebarCategory() as { items: { href: string }[] };
+
+  useEffect(() => {
+    if (sidebar.items.length > 0) {
+      history.push(sidebar.items[0].href);
+    }
+  }, [sidebar]);
+
+  return <></>;
+}
+
+export function DocItemTabItemLayout({ children }: Props): JSX.Element {
+  const docTOC = useDocTOC();
+  const doc = useDoc();
+  const { metadata } = doc;
+  const { title, description } = metadata;
+
+  const sidebar = useCurrentSidebarCategory();
+
+  const parentId = metadata.id.split('/').splice(0, 2).join('/') + '/index';
+  const parentDoc = useDocById(parentId);
+
+  return (
+    <>
+      <HeroHeaderByPathname
+        id={metadata.id}
+        title={parentDoc.title}
+        description={parentDoc.description}
+        frontMatter={metadata.frontMatter}
+        tabs={sidebar.items as PropSidebarItemLink[]}
       />
       <div className={styles.Row}>
         <div className={styles.docItemContainer}>
