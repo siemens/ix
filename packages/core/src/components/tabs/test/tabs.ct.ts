@@ -161,3 +161,24 @@ test('should scroll selected tab into view', async ({ mount, page }) => {
   await expect(clickedTab).toBeInViewport();
   await expect(lastTab).not.toBeInViewport();
 });
+
+test('should scroll tabs with mouse wheel', async ({ mount, page }) => {
+  await mount(`
+    <ix-tabs>
+      <ix-tab-item>Item 1</ix-tab-item>
+      <ix-tab-item>Item 2</ix-tab-item>
+      <ix-tab-item>Item 3</ix-tab-item>
+      <ix-tab-item>Item 4</ix-tab-item>
+      <ix-tab-item>Item 5</ix-tab-item>
+      <ix-tab-item>Item 6</ix-tab-item>
+    </ix-tabs>
+  `);
+  await page.setViewportSize({ width: 300, height: 100 });
+  await page.waitForSelector('ix-tabs');
+  const lastTab = page.locator('ix-tab-item').last();
+  await expect(lastTab).not.toBeInViewport();
+  for (let i = 0; i < 2; i++) {
+    await page.mouse.wheel(0, 100);
+  }
+  await expect(lastTab).toBeInViewport();
+});
