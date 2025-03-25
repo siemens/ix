@@ -60,17 +60,8 @@ export class IconButton {
   /**
    * Size of icon in button
    *
-   * @deprecated Only size 32 will be removed in 3.0.0
    */
-  @Prop() size: '32' | '24' | '16' | '12' = '24';
-
-  /**
-   * Color of icon in  button
-   *
-   * @deprecated since 2.1.0 use `icon-color`
-   */
-  // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color?: string;
+  @Prop() size: '24' | '16' | '12' = '24';
 
   /**
    * Color of icon in  button
@@ -121,7 +112,7 @@ export class IconButton {
     return {
       'btn-icon-12': this.size === '12',
       'btn-icon-16': this.size === '16',
-      'btn-icon-32': this.size === '32' || this.size === '24' || !this.size,
+      'btn-icon-32': this.size === '24' || !this.size,
     };
   }
 
@@ -140,7 +131,7 @@ export class IconButton {
       selected: false,
       disabled: this.disabled || this.loading,
       icon: this.icon,
-      iconColor: this.iconColor ?? this.color,
+      iconColor: this.iconColor,
       iconSize: this.size,
       loading: this.loading,
       onClick: () => this.dispatchFormEvents(),

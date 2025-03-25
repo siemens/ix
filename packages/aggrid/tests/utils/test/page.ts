@@ -18,7 +18,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
   });
   page.goto = async (url: string, options) => {
     const response = await originalGoto(`http://127.0.0.1:8080/tests/${url}?theme=${theme}`, options);
-    // Inital timeout for webKit to render Web Components
+    // Initial timeout for webKit to render Web Components
     await page.waitForTimeout(1000);
     return response;
   };

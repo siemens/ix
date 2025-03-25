@@ -13,14 +13,27 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Input legacy search example</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconClear,
+        iconSearch,
+      });
+    </script>
   </head>
   <body>
-    <form class="needs-validation m-2">
+    <form class="needs-validation">
       <ix-input-group>
         <span slot="input-start">
           <ix-icon name="search" size="16"></ix-icon>
         </span>
-        <input onInput="toggleClear()" id="input-string" type="string" />
+        <input
+          class="ix-form-control"
+          onInput="toggleClear()"
+          id="input-string"
+          type="string"
+        />
         <span slot="input-end">
           <ix-icon-button
             id="clear-button"

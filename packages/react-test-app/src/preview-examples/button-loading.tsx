@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconStar } from '@siemens/ix-icons/icons';
 import './button-loading.scoped.css';
 
 import { IxButton, IxIconButton } from '@siemens/ix-react';
@@ -40,7 +41,7 @@ export default () => {
         }}
         loading={toggle2}
         outline
-        icon="star"
+        icon={iconStar}
       >
         Button
       </IxButton>
@@ -54,7 +55,7 @@ export default () => {
         }}
         loading={toggle3}
         outline
-        icon="star"
+        icon={iconStar}
       ></IxButton>
 
       <IxIconButton
@@ -66,7 +67,7 @@ export default () => {
         }}
         loading={toggle}
         outline
-        icon="star"
+        icon={iconStar}
       ></IxIconButton>
       <IxButton loading outline>
         Button

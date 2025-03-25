@@ -8,6 +8,7 @@
 -->
 
 <script setup lang="ts">
+import { iconCheckboxes } from '@siemens/ix-icons/icons';
 import { IxDropdownButton } from '@siemens/ix-vue';
 </script>
 
@@ -15,19 +16,19 @@ import { IxDropdownButton } from '@siemens/ix-vue';
 
 <template>
   <div class="dropdown-button">
-    <IxDropdownButton label="Dropdown" icon="checkboxes">
+    <IxDropdownButton label="Dropdown" :icon="iconCheckboxes">
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxDropdownButton>
-    <IxDropdownButton label="Dropdown" outline icon="checkboxes">
+    <IxDropdownButton label="Dropdown" outline :icon="iconCheckboxes">
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxDropdownButton>
-    <IxDropdownButton label="Dropdown" ghost icon="checkboxes">
+    <IxDropdownButton label="Dropdown" ghost :icon="iconCheckboxes">
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxDropdownButton>
-    <IxDropdownButton label="Dropdown" disabled icon="checkboxes">
+    <IxDropdownButton label="Dropdown" disabled :icon="iconCheckboxes">
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxDropdownButton>

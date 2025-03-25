@@ -1,0 +1,42 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<div class="grid">
+  <h4>Column 6 takes up more space to a max of 12 columns total</h4>
+  <ix-layout-grid>
+    <ix-row>
+      <ix-col><ix-typography format="display">1</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">2</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">3</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">4</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">5</ix-typography></ix-col>
+      <ix-col size="6"
+        ><ix-typography format="display">6</ix-typography></ix-col
+      >
+    </ix-row>
+  </ix-layout-grid>
+
+  <h4>Stack columns on smaller screens</h4>
+  <ix-layout-grid>
+    <ix-row>
+      <ix-col size="12" size-md="3"
+        ><ix-typography format="display">1</ix-typography></ix-col
+      >
+      <ix-col size="12" size-md="3"
+        ><ix-typography format="display">2</ix-typography></ix-col
+      >
+      <ix-col size="12" size-md="3"
+        ><ix-typography format="display">3</ix-typography></ix-col
+      >
+      <ix-col size="12" size-md="3"
+        ><ix-typography format="display">4</ix-typography></ix-col
+      >
+    </ix-row>
+  </ix-layout-grid>
+</div>

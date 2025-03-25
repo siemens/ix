@@ -37,8 +37,16 @@
       "path": "./packages/react-test-app"
     },
     {
+      "name": "nextjs-test-app",
+      "path": "./packages/nextjs-test-app"
+    },
+    {
       "name": "angular-test-app",
       "path": "./packages/angular-test-app"
+    },
+    {
+      "name": "angular-test-app (standalone)",
+      "path": "./packages/angular-standalone-test-app"
     },
     {
       "name": "vue-test-app",

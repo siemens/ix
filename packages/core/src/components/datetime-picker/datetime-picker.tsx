@@ -12,8 +12,8 @@ import type { DateChangeEvent } from '../date-picker/date-picker';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 
 export type DateTimeSelectEvent = {
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
   time: string;
 };
 
@@ -120,14 +120,6 @@ export class DatetimePicker
   /**
    * Text of date select button
    *
-   * @since 1.1.0
-   * @deprecated since 2.1.0. Use `i18nDone`
-   */
-  @Prop() textSelectDate?: string;
-
-  /**
-   * Text of date select button
-   *
    * @since 2.1.0
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
@@ -156,15 +148,6 @@ export class DatetimePicker
   @Prop() locale?: string;
 
   /**
-   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
-   * This combination can be configured over the delimiter
-   *
-   * @since 1.1.0
-   * @deprecated Not used anymore see `done` event
-   */
-  @Prop() eventDelimiter = ' - ';
-
-  /**
    * Shows week numbers displayed on the left side of the date picker
    *
    * @since 3.0.0
@@ -172,14 +155,7 @@ export class DatetimePicker
   @Prop() showWeekNumbers = false;
 
   /**
-   * Done event
-   *
-   * Set `doneEventDelimiter` to null or undefine to get the typed event
-   * @deprecated Use `this.dateChange`
-   */
-  @Event() done!: EventEmitter<string>;
 
-  /**
    * Time change
    *
    * @since 1.1.0
@@ -212,10 +188,6 @@ export class DatetimePicker
       to: date?.to ?? '',
       time: time ?? '',
     });
-
-    this.done.emit(
-      [date?.from, date?.to ?? '', time].join(this.eventDelimiter)
-    );
   }
 
   private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
@@ -257,7 +229,7 @@ export class DatetimePicker
               ></ix-date-picker>
             </ix-col>
 
-            <ix-col class="d-flex flex-column">
+            <ix-col>
               <ix-time-picker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
@@ -275,7 +247,7 @@ export class DatetimePicker
                   class="btn-select-date"
                   onClick={() => this.onDone()}
                 >
-                  {this.textSelectDate || this.i18nDone}
+                  {this.i18nDone}
                 </ix-button>
               </div>
             </ix-col>

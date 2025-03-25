@@ -53,7 +53,7 @@ export function renderHelperText({
 }) {
   if (isInvalid && invalidText !== undefined) {
     return (
-      <ix-typography color="alarm" class="bottom-text">
+      <ix-typography textColor="alarm" class="bottom-text">
         <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
 
         {invalidText}
@@ -63,7 +63,7 @@ export function renderHelperText({
 
   if (isWarning && warningText !== undefined) {
     return (
-      <ix-typography color="std" class="bottom-text">
+      <ix-typography textColor="std" class="bottom-text">
         <ix-icon
           class="text-icon warning"
           name={iconWarning}
@@ -76,7 +76,7 @@ export function renderHelperText({
 
   if (isInfo && infoText !== undefined) {
     return (
-      <ix-typography color="std" class="bottom-text">
+      <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon info" name={iconInfo} size="16"></ix-icon>
         {infoText}
       </ix-typography>
@@ -85,7 +85,7 @@ export function renderHelperText({
 
   if (isValid && validText !== undefined) {
     return (
-      <ix-typography color="std" class="bottom-text">
+      <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon valid" name={iconSuccess} size="16"></ix-icon>
         {validText}
       </ix-typography>
@@ -94,7 +94,7 @@ export function renderHelperText({
 
   return (
     helperText && (
-      <ix-typography class="bottom-text" color="soft">
+      <ix-typography class="bottom-text" textColor="soft">
         {helperText}
       </ix-typography>
     )

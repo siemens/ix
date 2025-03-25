@@ -12,6 +12,8 @@ import { devices } from '@playwright/test';
 import path from 'path';
 import defaultConfig from './playwright.config';
 
+const __dirname = path.resolve();
+
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -28,6 +30,10 @@ const config: PlaywrightTestConfig = {
       },
     },
   ],
+  webServer: {
+    command: 'pnpm run host-root',
+    port: 8080,
+  },
   retries: 3,
 };
 

@@ -1,79 +1,35 @@
-import React, { useMemo } from 'react';
-import Link from '@docusaurus/Link';
-import type { Props } from '@theme/TOCItems/Tree';
-import type { TOCTreeNode } from '@docusaurus/theme-common/internal';
-import { useLocation } from '@docusaurus/router';
-import {
-  developmentTabValue,
-  docsTabQueryString,
-  guidelinesTabValue,
-} from '@site/src/components/LinkableDocsTabs';
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
+ */
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useDoc } from '@docusaurus/plugin-content-docs/client';
+import Tree from '@theme-original/TOCItems/Tree';
+import type TreeType from '@theme/TOCItems/Tree';
+import type { WrapperProps } from '@docusaurus/types';
+import { useSubPageHook } from '@site/src/components/theme/QueryStringContent';
 
-type IxProps = Props & {
-  parentTocItems: readonly TOCTreeNode[];
-};
+type Props = WrapperProps<typeof TreeType>;
 
-// Recursive component rendering the toc tree
-function TOCItemTree({
-  toc,
-  className,
-  linkClassName,
-  isChild,
-  parentTocItems,
-}: IxProps): JSX.Element | null {
-  const _location = useLocation();
-  if (!toc.length) {
-    return null;
-  }
+export default function TreeWrapper(props: Props): JSX.Element {
+  const { metadata } = useDoc();
+  const toc = props.toc;
+  const [nestedToc, setNestedToc] = useState<readonly any[]>(toc);
+  const { currentIndex } = useSubPageHook();
+
+  useEffect(() => {
+    if (metadata.frontMatter['doc-type'] !== 'component') {
+      return;
+    }
+
+    let _nestedToc = toc[currentIndex];
+    if (_nestedToc) {
+      setNestedToc(_nestedToc.children);
+    }
+  }, [currentIndex, setNestedToc, metadata]);
 
   return (
-    <ul className={isChild ? undefined : className}>
-      {toc.map((heading) => {
-        const searchParams = new URLSearchParams(_location.search);
-
-        let tabId = '';
-        parentTocItems?.forEach((tab) => {
-          tab.children.forEach((child) => {
-            if (child.id === heading.id) {
-              searchParams.set(docsTabQueryString, tab.id);
-              tabId = tab.id;
-            }
-          });
-        });
-
-        if (tabId === '' && !parentTocItems) {
-          const tab = toc.find(
-            (firstLevelHeading) => firstLevelHeading.id === heading.id
-          );
-          tabId = tab?.id ?? '';
-        }
-
-        let queryParam = '';
-        if (tabId === guidelinesTabValue || tabId === developmentTabValue) {
-          queryParam = `?${docsTabQueryString}=${tabId}`;
-        }
-
-        return (
-          <li key={heading.id}>
-            <Link
-              to={`${queryParam}#${heading.id}`}
-              className={linkClassName ?? undefined}
-              // Developer provided the HTML, so assume it's safe.
-              dangerouslySetInnerHTML={{ __html: heading.value }}
-            />
-            <TOCItemTree
-              isChild
-              toc={heading.children}
-              parentTocItems={isChild ? parentTocItems : toc}
-              className={className}
-              linkClassName={linkClassName}
-            />
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <Tree {...props} toc={nestedToc} />
+    </>
   );
 }
-
-// Memo only the tree root is enough
-export default React.memo(TOCItemTree);

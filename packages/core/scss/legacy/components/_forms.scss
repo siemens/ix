@@ -16,8 +16,8 @@
   color: $form-feedback-invalid-color;
 }
 
-.form-control,
-.form-control-plaintext {
+.ix-form-control,
+.ix-form-control-plaintext {
   @include text-default();
   color: var(--theme-input--color);
   @include ellipsis;
@@ -52,11 +52,11 @@
   }
 }
 
-.form-control:focus-visible {
+.ix-form-control:focus-visible {
   color: var(--theme-input--color);
 }
 
-.form-control[type='number'] {
+.ix-form-control[type='number'] {
   &::-webkit-inner-spin-button {
     margin-right: -2px;
     margin-left: 2px;
@@ -66,8 +66,8 @@
   text-align: right;
 }
 
-.form-control.readonly,
-.form-control[readonly] {
+.ix-form-control.readonly,
+.ix-form-control[readonly] {
   background: transparent !important;
   border-block-start: none !important;
   border-inline-start: none !important;
@@ -75,10 +75,10 @@
   border-radius: 0rem;
 }
 
-.form-control:read-only,
-.form-control[readonly],
-.form-control[readOnly],
-.form-control.readonly {
+.ix-form-control:read-only,
+.ix-form-control[readonly],
+.ix-form-control[readOnly],
+.ix-form-control.readonly {
   box-shadow: none !important;
   outline: none !important;
   border-color: var(--theme-input--border-color);
@@ -89,8 +89,8 @@
   }
 }
 
-.form-control:disabled,
-.form-control.disabled {
+.ix-form-control:disabled,
+.ix-form-control.disabled {
   background: transparent !important;
   border-block-start: none !important;
   border-inline-start: none !important;
@@ -105,7 +105,7 @@
   }
 }
 
-.form-control-plaintext {
+.ix-form-control-plaintext {
   outline: 0;
 }
 
@@ -131,17 +131,15 @@
   }
 }
 
-select.form-control {
+select.ix-form-control {
   padding: 0 0.312rem;
 }
 
-textarea {
-  &.form-control {
-    padding: 0.375rem $small-space;
-  }
+textarea.ix-form-control {
+  padding: 0.375rem $small-space;
 }
 
-input {
+input.ix-form-control {
   &.disabled,
   &:disabled {
     color: var(--theme-input--color--disabled);

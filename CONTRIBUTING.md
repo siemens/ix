@@ -242,7 +242,7 @@ These preview-examples will be translated to markdown files and get copied into 
 
 To see all image references it is necessary to create a personal access token (https://www.figma.com/developers/api#access-tokens).
 
-Store the token as environment variable "FIGMA_API_TOKEN" or in the .env file inside root.
+Store the token as environment variable "FIGMA_API_TOKEN" or in the .env file inside project root.
 
 Serve documentation [locally](http://localhost:3000/siemens-ix/)
 
