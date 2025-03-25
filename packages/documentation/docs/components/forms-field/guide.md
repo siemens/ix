@@ -1,7 +1,5 @@
 ## Guidelines
 
-A field is a form element when user input is needed. It's typically used with other form elements in a fieldset.
-
 ![Field](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2781-323&t=pKzFQBhaXmjTsR8P-4)
 
 1. Label

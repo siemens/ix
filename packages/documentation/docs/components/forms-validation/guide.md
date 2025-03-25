@@ -1,7 +1,5 @@
 ## Guidelines
 
-Form validation gives users feedback on their input to ensure accurate, consistent data is submitted. When requirements are not met or data is incorrect, it’s rejected.
-
 ![Invalid state](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2767-5955&t=IIgjTqoOEP524yAH-4)
 
 Key aspects:
