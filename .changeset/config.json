@@ -21,8 +21,10 @@
     "vue-test-app",
     "html-test-app",
     "ionic-test-app",
+    "nextjs-test-app",
     "figma-plugin",
     "documentation",
-    "storybook-docs"
+    "storybook-docs",
+    "vitest-react"
   ]
 }
