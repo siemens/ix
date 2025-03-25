@@ -14,7 +14,7 @@ import {
   ElementRef,
   NgZone,
 } from '@angular/core';
-import { defineCustomElement as defineIxTree } from '@siemens/ix/components/ix-tree';
+import { defineCustomElement as defineIxTree } from '@siemens/ix/components/ix-tree.js';
 import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 import { TreeBaseDirective } from '@siemens/ix-angular/common';
 

@@ -10,7 +10,7 @@
 import { postcss } from '@stencil-community/postcss';
 import { angularOutputTarget } from '@stencil/angular-output-target';
 import { Config } from '@stencil/core';
-import { reactOutputTarget } from './scripts/build/react';
+import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import { vueOutputTarget } from '@stencil/vue-output-target';
 import autoprefixer from 'autoprefixer';
@@ -100,9 +100,10 @@ export const config: Config = {
     ...getAngularConfig(),
     reactOutputTarget({
       stencilPackageName: corePackageName,
-      outDir: '../react/src/components',
-      esModules: true,
+      outDir: '../react/src',
       excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
+      hydrateModule: '@siemens/ix/hydrate',
+      serializeShadowRoot: { scoped: [], default: 'declarative-shadow-dom' },
     }),
     {
       type: 'dist',

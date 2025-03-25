@@ -1,5 +1,4 @@
 packages:
   - 'packages/*'
   - 'tools/*'
-  - 'test-apps/*'
   - 'testing/*'
