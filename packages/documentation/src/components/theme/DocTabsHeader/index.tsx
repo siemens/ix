@@ -101,7 +101,7 @@ export default function DocTabsHeader(props: {
       )}
 
       <Tabs>
-        {tabs.map((tab, index) => {
+        {tabs.map((tab) => {
           return <Tab value={tab.href} label={tab.label} key={tab.docId} />;
         })}
       </Tabs>

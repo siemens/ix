@@ -1,12 +1,10 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import { useHistory, useLocation } from '@docusaurus/router';
 import { useScrollPosition } from '@docusaurus/theme-common/internal';
 import { DeprecatedTag, RedirectTag } from '@site/src/components/UI/Tags';
-import useSearchParams from '@site/src/utils/hooks/useSearchParams';
 import clsx from 'clsx';
-import { Fragment, useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './styles.module.css';
 
 function Separator() {
@@ -31,8 +29,7 @@ export default function DocDefaultHeader(props: {
   tabs: string[];
   frontMatter: any;
 }) {
-  const { description, tabs, title, frontMatter, id } = props;
-  const noSingleTab = props.frontMatter.no_single_tab;
+  const { description, title, frontMatter, id } = props;
 
   return (
     <>
