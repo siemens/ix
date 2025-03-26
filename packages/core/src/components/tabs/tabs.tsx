@@ -361,7 +361,9 @@ export class Tabs {
     const moveX = event.touches[0].clientX - this.startTouchX;
     if (Math.abs(moveX) > 10) {
       event.preventDefault();
-      this.move(moveX > 0 ? this.scrollAmount : -this.scrollAmount, true);
+      requestAnimationFrame(() => {
+        this.move(moveX > 0 ? this.scrollAmount : -this.scrollAmount, true);
+      });
       this.startTouchX = event.touches[0].clientX;
     }
   };
