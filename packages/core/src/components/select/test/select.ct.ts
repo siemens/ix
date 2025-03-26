@@ -672,24 +672,6 @@ test('should be 100% when dropdown-max-width is greater than the viewport width'
   expect(box?.width).toBe(pageWidth);
 });
 
-test('should not show add icon when only spaces are entered in input', async ({
-  mount,
-  page,
-}) => {
-  await mount(`<ix-select editable>
-    <ix-select-item label="Item 1" value="1"></ix-select-item>
-    <ix-select-item label="Item 2" value="2"></ix-select-item>
-  </ix-select>`);
-
-  const select = page.locator('ix-select');
-  const input = select.locator('input');
-
-  await input.fill('    ');
-
-  const addIcon = page.locator('[isAddItemVisible]');
-  await expect(addIcon).toBeHidden();
-});
-
 test('should not show add icon when spaces are entered at the start of input', async ({
   mount,
   page,
@@ -704,8 +686,26 @@ test('should not show add icon when spaces are entered at the start of input', a
 
   await input.fill('  Item 1');
 
-  const addIcon = page.locator('[isAddItemVisible]');
-  await expect(addIcon).toBeHidden();
+  const addItem = select.locator('.add-item');
+  await expect(addItem).toHaveCount(0);
+});
+
+test('should not show add icon when only spaces are entered in input', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-select editable>
+    <ix-select-item label="Item 1" value="1"></ix-select-item>
+    <ix-select-item label="Item 2" value="2"></ix-select-item>
+  </ix-select>`);
+
+  const select = page.locator('ix-select');
+  const input = select.locator('input');
+
+  await input.fill('    ');
+
+  const addItem = select.locator('.add-item');
+  await expect(addItem).toHaveCount(0);
 });
 
 test('should trim the value before saving', async ({ mount, page }) => {
