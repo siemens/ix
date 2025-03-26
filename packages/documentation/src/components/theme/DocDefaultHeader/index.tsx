@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
-function Tabs({ children }) {
+function Separator() {
   const [isScrolling, setIsScrolling] = useState(false);
   useScrollPosition(({ scrollY }) => {
     setIsScrolling(scrollY > 50);
@@ -20,9 +20,7 @@ function Tabs({ children }) {
       className={clsx(styles.Tabs, {
         [styles.Scrolled]: isScrolling,
       })}
-    >
-      {children}
-    </div>
+    ></div>
   );
 }
 
@@ -111,15 +109,7 @@ export default function DocDefaultHeader(props: {
         </div>
       )}
 
-      <Tabs>
-        {tabs.map((tab, index) => {
-          if (tabs.length > 0 && !noSingleTab) {
-            return <Tab value={tab} label={tab} key={tab} />;
-          }
-
-          return <Fragment key={index}></Fragment>;
-        })}
-      </Tabs>
+      <Separator />
     </>
   );
 }

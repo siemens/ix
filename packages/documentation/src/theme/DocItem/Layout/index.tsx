@@ -34,7 +34,7 @@ export default function LayoutWrapper(props: Props): JSX.Element {
   }
 
   if (docType === 'tabs') {
-    return <DocItemTabsLayout {...props} />;
+    return <DocItemTabsLayout />;
   }
 
   if (docType === 'tab-item') {
@@ -103,7 +103,7 @@ export function BannerDocItemLayout({ children }: Props): JSX.Element {
   );
 }
 
-export function DocItemTabsLayout({}: Props): JSX.Element {
+export function DocItemTabsLayout(): JSX.Element {
   const history = useHistory();
   const { metadata } = useDoc();
 

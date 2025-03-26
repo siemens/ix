@@ -35,14 +35,14 @@ function Tab(props: { label: string; value: string }) {
   }, [props.value, history]);
 
   return (
-    <div
-      className={clsx(styles.Tab, {
+    <button
+      className={clsx('all-unset', styles.Tab, {
         [styles['Tab--active']]: location.pathname === props.value,
       })}
       onClick={onNavigate}
     >
       {props.label}
-    </div>
+    </button>
   );
 }
 

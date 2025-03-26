@@ -77,6 +77,7 @@
 }
 
 .Tab {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,6 +86,10 @@
   min-width: 11rem;
   height: 2.875rem;
   cursor: pointer;
+}
+
+.Tab:focus-visible {
+  outline: 1px solid var(--theme-color-focus-bdr);
 }
 
 .Tab:not(.Tab--active):hover {
