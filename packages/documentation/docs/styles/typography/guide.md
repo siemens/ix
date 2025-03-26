@@ -1,5 +1,9 @@
 ## Guidelines
 
+:::info
+🚧 Under construction. We're working hard to bring you this page! Stay tuned for updates as we continue to build and improve our documentation. Thank you for your patience and understanding.🚧
+:::
+
 ### Headings
 
 Use headings from H1 to H6 for headlines to organize content and indicate the hierarchy of information.

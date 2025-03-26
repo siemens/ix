@@ -11,6 +11,10 @@ description: "Borders serve as essential visual elements that define boundaries,
 
 # 
 
+:::info
+🚧 Under construction. We're working hard to bring you this page! Stay tuned for updates as we continue to build and improve our documentation. Thank you for your patience and understanding.🚧
+:::
+
 All borders are provided as custom properties.
 To access them the `var()` CSS function can be called with the border's name:
 

@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/react"
   },
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "Siemens iX for React",
   "files": [
     "LICENSE",
@@ -67,7 +67,7 @@
     "react-dom": "^18 || ^19"
   },
   "dependencies": {
-    "@siemens/ix": "~3.0.0-alpha.1",
+    "@siemens/ix": "~3.0.0-alpha.2",
     "@stencil/react-output-target": "0.0.1-dev.11741888614.1fd07d67",
     "tslib": "*"
   }

@@ -11,6 +11,10 @@ description: "Shadows serve as crucial visual elements that add depth, create di
 
 # 
 
+:::info
+🚧 Under construction. We're working hard to bring you this page! Stay tuned for updates as we continue to build and improve our documentation. Thank you for your patience and understanding.🚧
+:::
+
 All shadows are provided as custom properties.
 To access them the `var()` CSS function can be called with the shadow's name:
 
