@@ -331,7 +331,7 @@ export class Tabs {
     );
   }
 
-  private handleWheelScroll = (event: WheelEvent) => {
+  private readonly handleWheelScroll = (event: WheelEvent) => {
     if (!event.deltaY) return;
 
     event.preventDefault();
@@ -353,11 +353,11 @@ export class Tabs {
     );
   }
 
-  private handleTouchStart = (event: TouchEvent) => {
+  private readonly handleTouchStart = (event: TouchEvent) => {
     this.startTouchX = event.touches[0].clientX;
   };
 
-  private handleTouchMove = (event: TouchEvent) => {
+  private readonly handleTouchMove = (event: TouchEvent) => {
     const moveX = event.touches[0].clientX - this.startTouchX;
     if (Math.abs(moveX) > 10) {
       event.preventDefault();
