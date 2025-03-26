@@ -82,9 +82,9 @@ Value out of range.
 File not found.
 :::
 :::item
-Title: Input error:::
+Title: Input error
+:::
 :::item
-
 Explanation: Input error detected.
 :::
 :::item
