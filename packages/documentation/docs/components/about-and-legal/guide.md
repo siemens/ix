@@ -1,4 +1,7 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# About and legal - Usage
 
 The About and legal component appears when users click on the "About and legal" icon (1) and overlays the current content. Closing this overlay brings users back to the original content.
 
@@ -10,7 +13,7 @@ The About and legal component appears when users click on the "About and legal" 
 - (4) Tabs (optional): navigates through multiple content categories
 - (5) Changeable content: we use this to add specific application information and local legal regulations (note our Figma design is our personal recommendation)
 
-### Behavior
+## Behavior
 
 Overlay opens on top of application content with a semi-transparent background with a background blur effect to emphasize the overlay character. Closing this overlay brings users back to the previous content.
 
