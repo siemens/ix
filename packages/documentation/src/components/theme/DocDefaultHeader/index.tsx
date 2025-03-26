@@ -3,16 +3,11 @@
  */
 import { useHistory, useLocation } from '@docusaurus/router';
 import { useScrollPosition } from '@docusaurus/theme-common/internal';
-import type {
-  PropSidebarItem,
-  PropSidebarItemLink,
-} from '@docusaurus/plugin-content-docs';
 import { DeprecatedTag, RedirectTag } from '@site/src/components/UI/Tags';
 import useSearchParams from '@site/src/utils/hooks/useSearchParams';
 import clsx from 'clsx';
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import styles from './styles.module.css';
-import useRouteContext from '@docusaurus/useRouteContext';
 
 function Tabs({ children }) {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -33,16 +28,26 @@ function Tabs({ children }) {
 
 function Tab(props: { label: string; value: string }) {
   const location = useLocation();
+  const currentTab = useSearchParams('current-tabs');
   const history = useHistory();
 
+  const [isActive, setIsActive] = useState(false);
+
   const onNavigate = useCallback(() => {
-    history.push(props.value);
-  }, [props.value, history]);
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('current-tabs', props.value);
+    location.search = searchParams.toString();
+    history.push(location);
+  }, [props.value, location]);
+
+  useEffect(() => {
+    setIsActive(props.value === currentTab);
+  }, [location, currentTab]);
 
   return (
     <div
       className={clsx(styles.Tab, {
-        [styles['Tab--active']]: location.pathname === props.value,
+        [styles['Tab--active']]: isActive,
       })}
       onClick={onNavigate}
     >
@@ -51,14 +56,15 @@ function Tab(props: { label: string; value: string }) {
   );
 }
 
-export default function HeroHeaderByPathname(props: {
+export default function DocDefaultHeader(props: {
   id: string;
   title: string;
   description: string;
-  tabs: PropSidebarItemLink[];
+  tabs: string[];
   frontMatter: any;
 }) {
   const { description, tabs, title, frontMatter, id } = props;
+  const noSingleTab = props.frontMatter.no_single_tab;
 
   return (
     <>
@@ -107,7 +113,11 @@ export default function HeroHeaderByPathname(props: {
 
       <Tabs>
         {tabs.map((tab, index) => {
-          return <Tab value={tab.href} label={tab.label} key={tab.docId} />;
+          if (tabs.length > 0 && !noSingleTab) {
+            return <Tab value={tab} label={tab} key={tab} />;
+          }
+
+          return <Fragment key={index}></Fragment>;
         })}
       </Tabs>
     </>

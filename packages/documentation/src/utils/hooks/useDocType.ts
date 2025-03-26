@@ -5,7 +5,6 @@ import { useDoc } from '@docusaurus/plugin-content-docs/client';
 
 export function useDocType():
   | 'default'
-  | 'component'
   | 'banner'
   | 'tabs'
   | 'tab-item'

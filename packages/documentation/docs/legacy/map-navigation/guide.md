@@ -1,5 +1,6 @@
 ---
 doc-type: 'tab-item'
+unlisted: true
 ---
 # Map navigation - Usage
 
