@@ -1,6 +1,7 @@
 ---
 doc-type: 'tab-item'
 ---
+
 # About and legal - Usage
 
 The About and legal component appears when users click on the "About and legal" icon (1) and overlays the current content. Closing this overlay brings users back to the original content.

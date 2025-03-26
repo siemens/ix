@@ -188,6 +188,20 @@ const sidebars: SidebarsConfig = {
           ],
         }),
         createTabItem({
+          id: 'components/content-header/index',
+          label: 'Content header',
+          items: [
+            {
+              id: 'components/content-header/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/content-header/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
           id: 'components/about-and-legal/index',
           label: 'About and legal',
           items: [
@@ -211,6 +225,20 @@ const sidebars: SidebarsConfig = {
             },
             {
               id: 'components/settings/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/popover-news/index',
+          label: 'Popover news',
+          items: [
+            {
+              id: 'components/popover-news/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/popover-news/code',
               label: 'Code',
             },
           ],
@@ -331,6 +359,20 @@ const sidebars: SidebarsConfig = {
             },
             {
               id: 'components/card-list/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/dropdown/index',
+          label: 'Dropdown',
+          items: [
+            {
+              id: 'components/dropdown/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/dropdown/code',
               label: 'Code',
             },
           ],
@@ -1040,7 +1082,20 @@ const sidebars: SidebarsConfig = {
   ],
   styles: [
     'styles/colors',
-    'styles/typography/index',
+    createTabItem({
+      id: 'styles/typography/index',
+      label: 'Typography',
+      items: [
+        {
+          id: 'styles/typography/guide',
+          label: 'Usage',
+        },
+        {
+          id: 'styles/typography/code',
+          label: 'Code',
+        },
+      ],
+    }),
     'styles/borders',
     'styles/shadows',
     'styles/animation',
