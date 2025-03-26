@@ -9,6 +9,8 @@ description: "Master the use of punctuation to improve the readability and compr
 ---
 
 import Guideline from '@site/src/components/Guideline';
+import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
+import {IxIcon} from '@siemens/ix-react';
 
 #
 
@@ -90,83 +92,34 @@ Always consider whether necessary
 
 - Numbers: Use No. as an abbreviation for number, no spacing between abbreviated No. and number: No.8
 
-:::::layout
-
-::::col
-[!do]
-:::item
-11am
-:::
-:::item
-Monday, January 12, 2021
-:::
-:::item
-€999.50
-:::
-:::item
-€2.5 million
-:::
-:::item
-$400,456.50
-:::
-:::item
-£320
-:::
-:::item
-30 mm
-:::
-:::item
-10 oz
-:::
-:::item
-10-40%
-:::
-:::item
-No.7
-:::
-:::item
-Number 7
-:::
-::::
-
-::::col
-[!dont]
-:::item
-11 a.m.
-:::
-:::item
-Monday, 12 January 2021
-:::
-:::item
-€999,50
-:::
-:::item
-€2,5 million
-:::
-:::item
-$400.456,50
-:::
-:::item
-320£
-:::
-:::item
-30 mms
-:::
-:::item
-10 oz.
-:::
-:::item
-10–40%
-:::
-:::item
-#7
-:::
-:::item
-Num 7
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>11am</Item>
+    <Item>Monday, January 12, 2021</Item>
+    <Item>€999.50</Item>
+    <Item>€2.5 million</Item>
+    <Item>$400,456.50</Item>
+    <Item>£320</Item>
+    <Item>30 mm</Item>
+    <Item>10 oz</Item>
+    <Item>10-40%</Item>
+    <Item>No.7</Item>
+    <Item>Number 7</Item>
+  </Do>
+  <Dont>
+    <Item>11 a.m.</Item>
+    <Item>Monday, 12 January 2021</Item>
+    <Item>€999,50</Item>
+    <Item>€2,5 million</Item>
+    <Item>$400.456,50</Item>
+    <Item>320£</Item>
+    <Item>30 mms</Item>
+    <Item>10 oz.</Item>
+    <Item>10–40%</Item>
+    <Item>#7</Item>
+    <Item>Num 7</Item>
+  </Dont>
+</Layout>
 
 ## Spacing
 
@@ -180,41 +133,20 @@ Num 7
 
 - Add a space before unit of measurement
 
-:::::layout
-
-::::col
-[!do]
-:::item
-50%
-:::
-:::item
-11am
-:::
-:::item
-Tuesday: no data
-:::
-:::item
-Browse…
-:::
-::::
-
-::::col
-[!dont]
-:::item
-50 %
-:::
-:::item
-11 am
-:::
-:::item
-Tuesday: no data
-:::
-:::item
-Browse …
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>50%</Item>
+    <Item>11am</Item>
+    <Item>Tuesday: no data</Item>
+    <Item>Browse…</Item>
+  </Do>
+  <Dont>
+    <Item>50 %</Item>
+    <Item>11 am</Item>
+    <Item>Tuesday: no data</Item>
+    <Item>Browse …</Item>
+  </Dont>
+</Layout>
 
 ## Lists
 
@@ -228,30 +160,25 @@ Browse …
 
 - Make lists parallel, i.e. all items / bullets have the same look, length, feel, punctuation, capitalization
 
-:::::layout
-
-::::col
-[!do]
-:::item
-Activate comments within your smartphone to
-<ul>
-<li> Write comments</li>
-<li> Respond to comments</li>
-<li> Approve work orders</li>
-</ul>
-:::
-::::
-
-::::col
-[!dont]
-:::item
-Activate comments within your smartphone to
-<ul>
-<li>Write comments</li>
-<li>Respond to comments</li>
-<li>Approve work orders by adding your fingerprint to your user management section in your smartphone.</li>
-</ul>
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>
+      Activate comments within your smartphone to
+      <ul>
+        <li> Write comments</li>
+        <li> Respond to comments</li>
+        <li> Approve work orders</li>
+      </ul>
+    </Item>
+  </Do>
+  <Dont>
+    <Item>
+      Activate comments within your smartphone to
+      <ul>
+        <li>Write comments</li>
+        <li>Respond to comments</li>
+        <li>Approve work orders by adding your fingerprint to your user management section in your smartphone.</li>
+      </ul>
+    </Item>
+  </Dont>
+</Layout>

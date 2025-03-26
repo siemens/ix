@@ -9,6 +9,7 @@ description: "Discover the importance of proper grammar and vocabulary in UX wri
 ---
 
 import Guideline from '@site/src/components/Guideline';
+import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 #
 
@@ -18,73 +19,35 @@ import Guideline from '@site/src/components/Guideline';
 
 - Only use simple verb forms in the past or future when necessary
 
-:::::layout
-
-::::col
-[!do]
-:::item
-click, browse, upload
-:::
-:::item
-file loads, file loaded
-:::
-::::
-
-::::col
-[!dont]
-:::item
-clicking, being clicked, was clicking
-:::
-:::item
-file is going to be loaded, file has been loaded
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>click, browse, upload</Item>
+    <Item>file loads, file loaded</Item>
+  </Do>
+  <Dont>
+    <Item>clicking, being clicked, was clicking</Item>
+    <Item>file is going to be loaded, file has been loaded</Item>
+  </Dont>
+</Layout>
 
 ## Active voice
 
-:::::layout
-
-::::col
-[!do]
-:::item
-Configuration file opens.
-:::
-:::item
-Admin provides read-only access.
-:::
-:::item
-Measure performance.
-:::
-:::item
-Click submit.
-:::
-:::item
-Calculate the data.
-:::
-::::
-
-::::col
-[!dont]
-:::item
-The configuration file is opened.
-:::
-:::item
-Read-only access is provided by Admin.
-:::
-:::item
-Performance is measured.
-:::
-:::item
-Submit is clicked by user.
-:::
-:::item
-The data is calculated by application.
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>Configuration file opens.</Item>
+    <Item>Admin provides read-only access.</Item>
+    <Item>Measure performance.</Item>
+    <Item>Click submit.</Item>
+    <Item>Calculate the data.</Item>
+  </Do>
+  <Dont>
+    <Item>The configuration file is opened.</Item>
+    <Item>Read-only access is provided by Admin.</Item>
+    <Item>Performance is measured.</Item>
+    <Item>Submit is clicked by user.</Item>
+    <Item>The data is calculated by application.</Item>
+  </Dont>
+</Layout>
 
 ## UI terminology
 
@@ -94,29 +57,16 @@ The data is calculated by application.
 
 - Basic terminology: checkbox, drop-down, field, icon, menu, link, radio button, window
 
-:::::layout
-
-::::col
-[!do]
-:::item
-click
-:::
-:::item
-hover
-:::
-::::
-
-::::col
-[!dont]
-:::item
-press
-:::
-:::item
-mouse over
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>click</Item>
+    <Item>hover</Item>
+  </Do>
+  <Dont>
+    <Item>press</Item>
+    <Item>mouse over</Item>
+  </Dont>
+</Layout>
 
 ## Idioms and phrasal verbs
 
@@ -126,41 +76,20 @@ mouse over
 
 - Avoid cultural references
 
-:::::layout
-
-::::col
-[!do]
-:::item
-remove
-:::
-:::item
-calculate
-:::
-:::item
-continue
-:::
-:::item
-mobile device
-:::
-::::
-
-::::col
-[!dont]
-:::item
-get rid of
-:::
-:::item
-add up
-:::
-:::item
-carry on
-:::
-:::item
-Apple, Android, iOS, smartphone
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>remove</Item>
+    <Item>calculate</Item>
+    <Item>continue</Item>
+    <Item>mobile device</Item>
+  </Do>
+  <Dont>
+    <Item>get rid of</Item>
+    <Item>add up</Item>
+    <Item>carry on</Item>
+    <Item>Apple, Android, iOS, smartphone</Item>
+  </Dont>
+</Layout>
 
 ## Jargon, buzz words and terms
 
@@ -182,41 +111,20 @@ Apple, Android, iOS, smartphone
 
 - Never make up your own acronyms: https://www.acronymfinder.com/
 
-:::::layout
-
-::::col
-[!do]
-:::item
-light emitting diodes (LEDs)
-:::
-:::item
-APS
-:::
-:::item
-EU
-:::
-:::item
-I/O component, I/O list, I/O module
-:::
-::::
-
-::::col
-[!dont]
-:::item
-Light Emitting Diodes (LEDS)
-:::
-:::item
-A.P.S.
-:::
-:::item
-E.U.
-:::
-:::item
-IO component, i/o list, I-O module
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>light emitting diodes (LEDs)</Item>
+    <Item>APS</Item>
+    <Item>EU</Item>
+    <Item>I/O component, I/O list, I/O module</Item>
+  </Do>
+  <Dont>
+    <Item>Light Emitting Diodes (LEDS)</Item>
+    <Item>A.P.S.</Item>
+    <Item>E.U.</Item>
+    <Item>IO component, i/o list, I-O module</Item>
+  </Dont>
+</Layout>
 
 ## Time based vocabulary: Last, latest and recent
 
@@ -226,32 +134,15 @@ IO component, i/o list, I-O module
 
 - Recent is more time focused and is similar to latest. It means that it happened a short time ago.
 
-:::::layout
-
-::::col
-[!do]
-:::item
-Latest update
-:::
-:::item
-Latest summary
-:::
-:::item
-Recent events
-:::
-::::
-
-::::col
-[!dont]
-:::item
-Last update
-:::
-:::item
-Last summary
-:::
-:::item
-Last events
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>Latest update</Item>
+    <Item>Latest summary</Item>
+    <Item>Recent events</Item>
+  </Do>
+  <Dont>
+    <Item>Last update</Item>
+    <Item>Last summary</Item>
+    <Item>Last events</Item>
+  </Dont>
+</Layout>

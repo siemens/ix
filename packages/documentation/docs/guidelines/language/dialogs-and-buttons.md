@@ -9,6 +9,7 @@ description: 'Discover guidelines for writing dialogs and button labels to ensur
 ---
 
 import Guideline from '@site/src/components/Guideline';
+import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 #
 
@@ -26,35 +27,18 @@ import Guideline from '@site/src/components/Guideline';
 
 - Only use ‘OK’ as an option if you cannot find an appropriate verb
 
-:::::layout
-
-::::col
-[!do]
-:::item
-Title: Add user  / Buttons: Cancel, Add
-:::
-:::item
-Title: Delete file  / Buttons: Cancel, Delete
-:::
-:::item
-Title: Edit details  / Buttons: Cancel, Save
-:::
-::::
-
-::::col
-[!dont]
-:::item
-Title: Add user  / Buttons: Cancel, OK
-:::
-:::item
-Title: Are you sure  / Buttons: Cancel, Delete
-:::
-:::item
-Title: Edit details  / Buttons: Cancel, Edit
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>Title: Add user  / Buttons: Cancel, Add</Item>
+    <Item>Title: Delete file  / Buttons: Cancel, Delete</Item>
+    <Item>Title: Edit details  / Buttons: Cancel, Save</Item>
+  </Do>
+  <Dont>
+    <Item>Title: Add user  / Buttons: Cancel, OK</Item>
+    <Item>Title: Are you sure  / Buttons: Cancel, Delete</Item>
+    <Item>Title: Edit details  / Buttons: Cancel, Edit</Item>
+  </Dont>
+</Layout>
 
 ## Primary and secondary actions
 
@@ -62,20 +46,11 @@ Title: Edit details  / Buttons: Cancel, Edit
 
 - Primary actions can either be positive (Send, Save) or negative (Delete)
 
-:::::layout
-
-::::col
-[!do]
-:::item
-Cancel, Save
-:::
-::::
-
-::::col
-[!dont]
-:::item
-Save, Cancel
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>Cancel, Save</Item>
+  </Do>
+  <Dont>
+    <Item>Save, Cancel</Item>
+  </Dont>
+</Layout>

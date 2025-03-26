@@ -9,6 +9,7 @@ description: 'Get tips for naming common app functions clearly and effectively. 
 ---
 
 import Guideline from '@site/src/components/Guideline';
+import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 #
 
@@ -20,22 +21,13 @@ import Guideline from '@site/src/components/Guideline';
 
 - Cockpit
 
-:::::layout
-
-::::col
-[!dont]
-:::item
-Console
-:::
-:::item
-Dash
-:::
-:::item
-Control panel
-:::
-::::
-
-:::::
+<Layout>
+  <Dont>
+    <Item>Console</Item>
+    <Item>Dash</Item>
+    <Item>Control panel</Item>
+  </Dont>
+</Layout>
 
 ## Analytics
 
@@ -43,19 +35,12 @@ Control panel
 
 - Anomaly detection
 
-:::::layout
-
-::::col
-[!dont]
-:::item
-Assessment
-:::
-:::item
-Examination
-:::
-::::
-
-:::::
+<Layout>
+  <Dont>
+    <Item>Assessment</Item>
+    <Item>Examination</Item>
+  </Dont>
+</Layout>
 
 ## Monitoring and scheduling
 
@@ -67,16 +52,11 @@ Examination
 
 - Remove from watchlist
 
-:::::layout
-
-::::col
-[!dont]
-:::item
-Watch list
-:::
-::::
-
-:::::
+<Layout>
+  <Dont>
+    <Item>Watch list</Item>
+  </Dont>
+</Layout>
 
 ## Detail view
 
@@ -86,19 +66,12 @@ Watch list
 
 - Details
 
-:::::layout
-
-::::col
-[!dont]
-:::item
-Facts
-:::
-:::item
-Specifics
-:::
-::::
-
-:::::
+<Layout>
+  <Dont>
+    <Item>Facts</Item>
+    <Item>Specifics</Item>
+  </Dont>
+</Layout>
 
 ### Asset properties
 
@@ -142,16 +115,11 @@ Specifics
 
 - Drag files here or select files
 
-:::::layout
-
-::::col
-[!dont]
-:::item
-Drag and drop here or browse
-:::
-::::
-
-:::::
+<Layout>
+  <Dont>
+    <Item>Drag and drop here or browse</Item>
+  </Dont>
+</Layout>
 
 ## Comments
 
@@ -163,16 +131,11 @@ Drag and drop here or browse
 
 - Write your comments here
 
-:::::layout
-
-::::col
-[!dont]
-:::item
-Write a comment
-:::
-::::
-
-:::::
+<Layout>
+  <Dont>
+    <Item>Write a comment</Item>
+  </Dont>
+</Layout>
 
 ## Grid and list actions
 
@@ -196,22 +159,13 @@ Write a comment
 
 - Notify me when X occurs
 
-:::::layout
-
-::::col
-[!dont]
-:::item
-Error
-:::
-:::item
-Issue
-:::
-:::item
-Problem
-:::
-::::
-
-:::::
+<Layout>
+  <Dont>
+    <Item>Error</Item>
+    <Item>Issue</Item>
+    <Item>Problem</Item>
+  </Dont>
+</Layout>
 
 ## Event types
 
@@ -239,25 +193,14 @@ Problem
 
 - Detected
 
-:::::layout
-
-::::col
-[!dont]
-:::item
-Unacklowedged
-:::
-:::item
-Unack.
-:::
-:::item
-Unackn.
-:::
-:::item
-Unacknl.
-:::
-::::
-
-:::::
+<Layout>
+  <Dont>
+    <Item>Unacklowedged</Item>
+    <Item>Unack.</Item>
+    <Item>Unackn.</Item>
+    <Item>Unacknl.</Item>
+  </Dont>
+</Layout>
 
 ## Event actions
 

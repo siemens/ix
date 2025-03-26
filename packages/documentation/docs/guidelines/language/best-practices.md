@@ -9,6 +9,7 @@ description: 'Familiarize yourself with general best practices for UX writing to
 ---
 
 import Guideline from '@site/src/components/Guideline';
+import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 #
 
@@ -20,41 +21,20 @@ import Guideline from '@site/src/components/Guideline';
 
 - Confirmation messages: Use the same verb as the transitional text
 
-:::::layout
-
-::::col
-[!do]
-:::item
-Updating user roles…
-:::
-:::item
-Submitting log files…
-:::
-:::item
-Saving project… > Project saved
-:::
-:::item
-Training models… > Models trained
-:::
-::::
-
-::::col
-[!dont]
-:::item
-Getting ready…
-:::
-:::item
-Chopping fruit…
-:::
-:::item
-Saving project… > Project uploaded
-:::
-:::item
-Training models… > Training done
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>Updating user roles…</Item>
+    <Item>Submitting log files…</Item>
+    <Item>Saving project… > Project saved</Item>
+    <Item>Training models… > Models trained</Item>
+  </Do>
+  <Dont>
+    <Item>Getting ready…</Item>
+    <Item>Chopping fruit…</Item>
+    <Item>Saving project… > Project uploaded</Item>
+    <Item>Training models… > Training done</Item>
+  </Dont>
+</Layout>
 
 ## Error messages
 
@@ -68,32 +48,17 @@ Training models… > Training done
 
 - Use … to show an action is required, i.e. fill this in …
 
-:::::layout
-
-::::col
-[!do]
-:::item
-System error: You’re offline. Check your connection and try again.
-:::
-:::item
-File error: We cannot upload this file. Try uploading again.
-:::
-:::item
-Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.
-:::
-::::
-
-::::col
-[!dont]
-:::item
-What did you do!?
-:::
-:::item
-The email address you entered does not match the required format. Please enter your email address using the standard format.
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>System error: You’re offline. Check your connection and try again.</Item>
+    <Item>File error: We cannot upload this file. Try uploading again.</Item>
+    <Item>Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.</Item>
+  </Do>
+  <Dont>
+    <Item>What did you do!?</Item>
+    <Item>The email address you entered does not match the required format. Please enter your email address using the standard format.</Item>
+  </Dont>
+</Layout>
 
 ## Empty-state text
 
@@ -107,35 +72,18 @@ The email address you entered does not match the required format. Please enter y
 
 - Use wording to show users how to resolve the empty state, e.g. with an action, click, etc.
 
-:::::layout
-
-::::col
-[!do]
-:::item
-Allocate users in User management.
-:::
-:::item
-To show rows, select a project.
-:::
-:::item
-To save a project, select Save in Project detail list.
-:::
-::::
-
-::::col
-[!dont]
-:::item
-No allocated users.
-:::
-:::item
-No rows to show.
-:::
-:::item
-No projects saved.
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>Allocate users in User management.</Item>
+    <Item>To show rows, select a project.</Item>
+    <Item>To save a project, select Save in Project detail list.</Item>
+  </Do>
+  <Dont>
+    <Item>No allocated users.</Item>
+    <Item>No rows to show.</Item>
+    <Item>No projects saved.</Item>
+  </Dont>
+</Layout>
 
 ## Restoring behavior of items
 
@@ -147,26 +95,13 @@ No projects saved.
 
 - Do not use Delete and Remove as synonym
 
-:::::layout
-
-::::col
-[!do]
-:::item
-Create a chart and delete a chart
-:::
-:::item
-Add a sensor to a chart and remove a sensor from chart
-:::
-::::
-
-::::col
-[!dont]
-:::item
-Create a chart and remove it
-:::
-:::item
-Add a sensor and delete the sensor
-:::
-::::
-
-:::::
+<Layout>
+  <Do>
+    <Item>Create a chart and delete a chart</Item>
+    <Item>Add a sensor to a chart and remove a sensor from chart</Item>
+  </Do>
+  <Dont>
+    <Item>Create a chart and remove it</Item>
+    <Item>Add a sensor and delete the sensor</Item>
+  </Dont>
+</Layout>
