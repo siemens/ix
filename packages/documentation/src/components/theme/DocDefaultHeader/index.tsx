@@ -24,36 +24,6 @@ function Separator() {
   );
 }
 
-function Tab(props: { label: string; value: string }) {
-  const location = useLocation();
-  const currentTab = useSearchParams('current-tabs');
-  const history = useHistory();
-
-  const [isActive, setIsActive] = useState(false);
-
-  const onNavigate = useCallback(() => {
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set('current-tabs', props.value);
-    location.search = searchParams.toString();
-    history.push(location);
-  }, [props.value, location]);
-
-  useEffect(() => {
-    setIsActive(props.value === currentTab);
-  }, [location, currentTab]);
-
-  return (
-    <div
-      className={clsx(styles.Tab, {
-        [styles['Tab--active']]: isActive,
-      })}
-      onClick={onNavigate}
-    >
-      {props.label}
-    </div>
-  );
-}
-
 export default function DocDefaultHeader(props: {
   id: string;
   title: string;
