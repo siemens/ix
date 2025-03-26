@@ -122,7 +122,7 @@ Action: (Ok button)
 :::::layout
 
 ::::col
-[!do-gradient]
+[!do]
 :::item
 Access Point 2 is connected.
 :::

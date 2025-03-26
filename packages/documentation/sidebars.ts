@@ -86,6 +86,7 @@ const sidebars: SidebarsConfig = {
     },
   ],
   components: [
+    'components/overview',
     {
       type: 'category',
       label: 'Application frame',
@@ -95,6 +96,7 @@ const sidebars: SidebarsConfig = {
         'components/application/index',
         'components/application-header/index',
         'components/application-menu/index',
+        'components/avatar/index',
         'components/content/index',
         'components/about-and-legal/index',
         'components/settings/index',
@@ -173,7 +175,6 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Buttons and actions',
       items: [
-        'components/avatar/index',
         'components/button/index',
         // TODO (button-group is part of button) 'components/button/index',
         'components/dropdown-button/index',
@@ -214,7 +215,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Charts',
       items: [
-        'components/overview/index',
+        'components/charts-overview/index',
         'components/line-chart/index',
         'components/bar-chart/index',
         'components/gauge-chart/index',

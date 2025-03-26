@@ -1,7 +1,5 @@
 ## Guidelines
 
-Effective form layouts play a crucial role in usability. Well-structured forms include fieldsets, considering the hierarchy of information, and understanding how to strike the right balance between aesthetics and functionality.
-
 ![Form layout examples](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3046-516&t=kneyH2DQ9aKpFhdv-4)
 
 1. Small form (modal)
