@@ -1,3 +1,11 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 function createTabItem(item: {
@@ -327,7 +335,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/blind/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/blind/code',
@@ -341,7 +349,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/card/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/card/code',
@@ -355,7 +363,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/card-list/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/card-list/code',
@@ -423,7 +431,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/layout-grid/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/layout-grid/code',
@@ -448,7 +456,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/panes/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/panes/code',
@@ -479,7 +487,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/forms-field/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/forms-field/code',
@@ -493,7 +501,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/forms-layout/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/forms-layout/code',
@@ -507,7 +515,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/forms-validation/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/forms-validation/code',
@@ -529,7 +537,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/category-filter/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/category-filter/code',
@@ -543,7 +551,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/checkbox/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/checkbox/code',
@@ -557,7 +565,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/custom-field/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/custom-field/code',
@@ -581,7 +589,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/input-date/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/input-date/code',
@@ -625,7 +633,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/input-number/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/input-number/code',
@@ -639,7 +647,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/radio/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/radio/code',
@@ -653,7 +661,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/select/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/select/code',
@@ -677,7 +685,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/input/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/input/code',
@@ -691,7 +699,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/textarea/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/textarea/code',
@@ -715,7 +723,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/toggle/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/toggle/code',
@@ -746,7 +754,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/button/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/button/code',
@@ -760,7 +768,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/dropdown-button/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/dropdown-button/code',
@@ -774,7 +782,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/icon-button/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/icon-button/code',
@@ -788,7 +796,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/link-button/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/link-button/code',
@@ -802,7 +810,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/split-button/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/split-button/code',
@@ -816,7 +824,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/toggle-button/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/toggle-button/code',
@@ -830,7 +838,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/chip/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/chip/code',
@@ -871,7 +879,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/pill/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/pill/code',
@@ -895,7 +903,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'components/toast/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'components/toast/code',
@@ -997,7 +1005,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'legacy/basic-navigation/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'legacy/basic-navigation/code',
@@ -1011,7 +1019,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               id: 'legacy/map-navigation/guide',
-              label: 'Guide',
+              label: 'Usage',
             },
             {
               id: 'legacy/map-navigation/code',
