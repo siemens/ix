@@ -20,16 +20,22 @@ import Guideline from '@site/src/components/Guideline';
 
 - Cockpit
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Console
+:::
+:::item
 Dash
+:::
+:::item
 Control panel
 :::
-
 ::::
+
+:::::
 
 ## Analytics
 
@@ -37,15 +43,19 @@ Control panel
 
 - Anomaly detection
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Assessment
+:::
+:::item
 Examination
 :::
-
 ::::
+
+:::::
 
 ## Monitoring and scheduling
 
@@ -57,14 +67,16 @@ Examination
 
 - Remove from watchlist
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Watch list
 :::
-
 ::::
+
+:::::
 
 ## Detail view
 
@@ -74,15 +86,19 @@ Watch list
 
 - Details
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Facts
+:::
+:::item
 Specifics
 :::
-
 ::::
+
+:::::
 
 ### Asset properties
 
@@ -126,14 +142,16 @@ Specifics
 
 - Drag files here or select files
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Drag and drop here or browse
 :::
-
 ::::
+
+:::::
 
 ## Comments
 
@@ -145,14 +163,16 @@ Drag and drop here or browse
 
 - Write your comments here
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Write a comment
 :::
-
 ::::
+
+:::::
 
 ## Grid and list actions
 
@@ -176,16 +196,22 @@ Write a comment
 
 - Notify me when X occurs
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Error
+:::
+:::item
 Issue
+:::
+:::item
 Problem
 :::
-
 ::::
+
+:::::
 
 ## Event types
 
@@ -213,17 +239,25 @@ Problem
 
 - Detected
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Unacklowedged
+:::
+:::item
 Unack.
+:::
+:::item
 Unackn.
+:::
+:::item
 Unacknl.
 :::
-
 ::::
+
+:::::
 
 ## Event actions
 

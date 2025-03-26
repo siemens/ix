@@ -18,13 +18,15 @@
   grid-column: span 2;
 }
 
-.item {
+.entry {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 0.75rem;
 
   p {
     margin: 0;
+    display: flex;
+    align-items: center;
   }
 }
 

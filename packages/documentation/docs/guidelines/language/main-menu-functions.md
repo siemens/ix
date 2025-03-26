@@ -20,15 +20,19 @@ import Guideline from '@site/src/components/Guideline';
 
 - Forgot password?
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Sign in / Sign up
+:::
+:::item
 Login (as it is a noun, not a verb)
 :::
-
 ::::
+
+:::::
 
 ## User management
 
@@ -52,17 +56,25 @@ Login (as it is a noun, not a verb)
 
 - Edit account
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 id / identification
+:::
+:::item
 E-mail
+:::
+:::item
 Add a user / Delete a user / Add permission
+:::
+:::item
 Surname / Initial name / Given name
 :::
-
 ::::
+
+:::::
 
 ## Roles
 
@@ -110,14 +122,16 @@ Surname / Initial name / Given name
 
 - Expired licenses
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 licence
 :::
-
 ::::
+
+:::::
 
 ## About & legal information
 
@@ -145,14 +159,16 @@ licence
 
 - © Siemens AG 20XX
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 V1
 :::
-
 ::::
+
+:::::
 
 ## Service & Support
 
@@ -164,15 +180,19 @@ V1
 
 - FAQ
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 Documentation
+:::
+:::item
 User manual
 :::
-
 ::::
+
+:::::
 
 ## Workspace
 
@@ -182,15 +202,19 @@ User manual
 
 - KPIs
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!dont]
+:::item
 KPI's settings
+:::
+:::item
 KPIS settings
 :::
-
 ::::
+
+:::::
 
 ## Resetting
 

@@ -38,27 +38,47 @@ import Guideline from '@site/src/components/Guideline';
 
 - Avoid using negative contractions as they can appear too informal
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 their, them, theirs, salesperson
+:::
+:::item
 Welcome to this application
+:::
+:::item
 X appears when detail view has selected events
+:::
+:::item
 cannot, will not
+:::
+:::item
 you’ll, we’ve
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 his, hers, him, salesman
+:::
+:::item
 Hey there!
+:::
+:::item
 X doesn’t appear if detail view has no selected events
+:::
+:::item
 can’t, won’t
+:::
+:::item
 you will, we have
 :::
-
 ::::
+
+:::::
 
 ## Length
 
@@ -82,60 +102,124 @@ you will, we have
 
 - Capitalize named app functions and UI elements: Go to Settings, Allocate users in User management, Press Ok
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Go to Settings
+:::
+:::item
 Press OK
+:::
+:::item
 Log in
+:::
+:::item
 For more information, see Siemens Industry Online Support.
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 Go To Settings
+:::
+:::item
 Press Ok
+:::
+:::item
 LOG IN
+:::
+:::item
 For more information, see Siemens industry online support.
 :::
-
 ::::
+
+:::::
 
 ## Common UX wording mistakes
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 time zone
+:::
+:::item
 log file
+:::
+:::item
 log in (as an action)
+:::
+:::item
 login (as a noun)
+:::
+:::item
 equipment
+:::
+:::item
 feedback
+:::
+:::item
 training
+:::
+:::item
 current
+:::
+:::item
 avoid "shall"
+:::
+:::item
 Siemens has
+:::
+:::item
 34 million / 35 billion
+:::
+:::item
 34 million
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 timezone
+:::
+:::item
 logfile
+:::
+:::item
 login
+:::
+:::item
 log in
+:::
+:::item
 equipments
+:::
+:::item
 feedbacks
+:::
+:::item
 trainings
+:::
+:::item
 actual
+:::
+:::item
 user shall manage users
+:::
+:::item
 Siemens have
+:::
+:::item
 34’ / 35“
+:::
+:::item
 34 millions
 :::
-
 ::::
+
+:::::

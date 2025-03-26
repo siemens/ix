@@ -99,7 +99,7 @@ const config: Config = {
             }),
           ],
           admonitions: {
-            keywords: ['layout', 'col'],
+            keywords: ['layout', 'col', 'item'],
             extendDefaults: true,
           },
 

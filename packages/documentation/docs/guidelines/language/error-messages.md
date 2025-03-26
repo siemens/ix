@@ -46,61 +46,99 @@ import Guideline from '@site/src/components/Guideline';
 
 - An error message alerts user of a problem that exists and must be addressed
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 System error: You’re offline. Check your connection and try again.
+:::
+:::item
 File error: We cannot upload this file. Try uploading again.
+:::
+:::item
 Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 What did you do!?
+:::
+:::item
 The email address you entered does not match the required format. Please enter your email address using the standard format.
+:::
+:::item
 You have failed to delete the device.
+:::
+:::item
 Error 404
+:::
+:::item
 Value out of range.
+:::
+:::item
 File not found.
-Title: Input error
+:::
+:::item
+Title: Input error:::
+:::item
+
 Explanation: Input error detected.
+:::
+:::item
 Action: Try again.
 :::
-
 ::::
+
+:::::
 
 ## Warning messages
 
 - A warning message alerts users of a condition that may cause a problem in the future
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Title: You have not saved all documents
+:::
+:::item
 Explanation: You have to save all documents
+:::
+:::item
 Action: (Ok button)
 :::
-
 ::::
+
+:::::
 
 ## Notifications
 
 - Notifications are informative and no actions are required from the user
 
-::::layout
+:::::layout
 
-:::col
-[!do]
+::::col
+[!do-gradient]
+:::item
 Access Point 2 is connected.
+:::
+:::item
 Changes are saved automatically.
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 Access Point connection failed. Try again.
+:::
+:::item
 No rows to show.
 :::
-
 ::::
+
+:::::

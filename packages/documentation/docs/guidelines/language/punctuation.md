@@ -90,39 +90,83 @@ Always consider whether necessary
 
 - Numbers: Use No. as an abbreviation for number, no spacing between abbreviated No. and number: No.8
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 11am
+:::
+:::item
 Monday, January 12, 2021
+:::
+:::item
 €999.50
+:::
+:::item
 €2.5 million
+:::
+:::item
 $400,456.50
+:::
+:::item
 £320
+:::
+:::item
 30 mm
+:::
+:::item
 10 oz
+:::
+:::item
 10-40%
+:::
+:::item
 No.7
+:::
+:::item
 Number 7
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 11 a.m.
+:::
+:::item
 Monday, 12 January 2021
+:::
+:::item
 €999,50
+:::
+:::item
 €2,5 million
+:::
+:::item
 $400.456,50
+:::
+:::item
 320£
+:::
+:::item
 30 mms
+:::
+:::item
 10 oz.
+:::
+:::item
 10–40%
+:::
+:::item
 #7
+:::
+:::item
 Num 7
 :::
-
 ::::
+
+:::::
 
 ## Spacing
 
@@ -136,25 +180,41 @@ Num 7
 
 - Add a space before unit of measurement
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 50%
+:::
+:::item
 11am
+:::
+:::item
 Tuesday: no data
+:::
+:::item
 Browse…
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 50 %
+:::
+:::item
 11 am
+:::
+:::item
 Tuesday: no data
+:::
+:::item
 Browse …
 :::
-
 ::::
+
+:::::
 
 ## Lists
 
@@ -168,24 +228,30 @@ Browse …
 
 - Make lists parallel, i.e. all items / bullets have the same look, length, feel, punctuation, capitalization
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Activate comments within your smartphone to
-Write comments
-Respond to comments
-Approve work orders
+<ul>
+<li> Write comments</li>
+<li> Respond to comments</li>
+<li> Approve work orders</li>
+</ul>
 :::
-
-:::col
-[!dont]
-Activate comments within your smartphone to
-Write comments
-Respond to comments
-Approve work orders by adding your fingerprint to your user management section in your smartphone
-:::
-
 ::::
 
+::::col
+[!dont]
+:::item
+Activate comments within your smartphone to
+<ul>
+<li>Write comments</li>
+<li>Respond to comments</li>
+<li>Approve work orders by adding your fingerprint to your user management section in your smartphone.</li>
+</ul>
+:::
+::::
 
+:::::

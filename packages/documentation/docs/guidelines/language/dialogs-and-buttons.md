@@ -26,23 +26,35 @@ import Guideline from '@site/src/components/Guideline';
 
 - Only use ‘OK’ as an option if you cannot find an appropriate verb
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Title: Add user  / Buttons: Cancel, Add
+:::
+:::item
 Title: Delete file  / Buttons: Cancel, Delete
+:::
+:::item
 Title: Edit details  / Buttons: Cancel, Save
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 Title: Add user  / Buttons: Cancel, OK
+:::
+:::item
 Title: Are you sure  / Buttons: Cancel, Delete
+:::
+:::item
 Title: Edit details  / Buttons: Cancel, Edit
 :::
-
 ::::
+
+:::::
 
 ## Primary and secondary actions
 
@@ -50,16 +62,20 @@ Title: Edit details  / Buttons: Cancel, Edit
 
 - Primary actions can either be positive (Send, Save) or negative (Delete)
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Cancel, Save
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 Save, Cancel
 :::
-
 ::::
+
+:::::

@@ -18,45 +18,73 @@ import Guideline from '@site/src/components/Guideline';
 
 - Only use simple verb forms in the past or future when necessary
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 click, browse, upload
+:::
+:::item
 file loads, file loaded
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 clicking, being clicked, was clicking
+:::
+:::item
 file is going to be loaded, file has been loaded
 :::
-
 ::::
+
+:::::
 
 ## Active voice
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Configuration file opens.
+:::
+:::item
 Admin provides read-only access.
+:::
+:::item
 Measure performance.
+:::
+:::item
 Click submit.
+:::
+:::item
 Calculate the data.
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 The configuration file is opened.
+:::
+:::item
 Read-only access is provided by Admin.
+:::
+:::item
 Performance is measured.
+:::
+:::item
 Submit is clicked by user.
+:::
+:::item
 The data is calculated by application.
 :::
-
 ::::
+
+:::::
 
 ## UI terminology
 
@@ -66,21 +94,29 @@ The data is calculated by application.
 
 - Basic terminology: checkbox, drop-down, field, icon, menu, link, radio button, window
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 click
+:::
+:::item
 hover
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 press
+:::
+:::item
 mouse over
 :::
-
 ::::
+
+:::::
 
 ## Idioms and phrasal verbs
 
@@ -90,25 +126,41 @@ mouse over
 
 - Avoid cultural references
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 remove
+:::
+:::item
 calculate
+:::
+:::item
 continue
+:::
+:::item
 mobile device
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 get rid of
+:::
+:::item
 add up
+:::
+:::item
 carry on
+:::
+:::item
 Apple, Android, iOS, smartphone
 :::
-
 ::::
+
+:::::
 
 ## Jargon, buzz words and terms
 
@@ -130,25 +182,42 @@ Apple, Android, iOS, smartphone
 
 - Never make up your own acronyms: https://www.acronymfinder.com/
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 light emitting diodes (LEDs)
+:::
+:::item
 APS
+:::
+:::item
 EU
+:::
+:::item
 I/O component, I/O list, I/O module
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 Light Emitting Diodes (LEDS)
+:::
+:::item
 A.P.S.
+:::
+:::item
 E.U.
+:::
+:::item
 IO component, i/o list, I-O module
 :::
-
 ::::
+
+:::::
+
 ## Time based vocabulary: Last, latest and recent
 
 - Last implies nothing else will follow. It's the last, and after this it is finished. No more are coming.
@@ -157,20 +226,32 @@ IO component, i/o list, I-O module
 
 - Recent is more time focused and is similar to latest. It means that it happened a short time ago.
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Latest update
+:::
+:::item
 Latest summary
+:::
+:::item
 Recent events
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 Last update
+:::
+:::item
 Last summary
+:::
+:::item
 Last events
 :::
-
 ::::
+
+:::::

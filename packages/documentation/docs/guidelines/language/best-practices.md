@@ -20,25 +20,41 @@ import Guideline from '@site/src/components/Guideline';
 
 - Confirmation messages: Use the same verb as the transitional text
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Updating user roles…
+:::
+:::item
 Submitting log files…
+:::
+:::item
 Saving project… > Project saved
+:::
+:::item
 Training models… > Models trained
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 Getting ready…
+:::
+:::item
 Chopping fruit…
+:::
+:::item
 Saving project… > Project uploaded
+:::
+:::item
 Training models… > Training done
 :::
-
 ::::
+
+:::::
 
 ## Error messages
 
@@ -52,22 +68,32 @@ Training models… > Training done
 
 - Use … to show an action is required, i.e. fill this in …
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 System error: You’re offline. Check your connection and try again.
+:::
+:::item
 File error: We cannot upload this file. Try uploading again.
+:::
+:::item
 Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 What did you do!?
+:::
+:::item
 The email address you entered does not match the required format. Please enter your email address using the standard format.
 :::
-
 ::::
+
+:::::
 
 ## Empty-state text
 
@@ -81,23 +107,35 @@ The email address you entered does not match the required format. Please enter y
 
 - Use wording to show users how to resolve the empty state, e.g. with an action, click, etc.
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Allocate users in User management.
+:::
+:::item
 To show rows, select a project.
+:::
+:::item
 To save a project, select Save in Project detail list.
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 No allocated users.
+:::
+:::item
 No rows to show.
+:::
+:::item
 No projects saved.
 :::
-
 ::::
+
+:::::
 
 ## Restoring behavior of items
 
@@ -109,18 +147,26 @@ No projects saved.
 
 - Do not use Delete and Remove as synonym
 
-::::layout
+:::::layout
 
-:::col
+::::col
 [!do]
+:::item
 Create a chart and delete a chart
+:::
+:::item
 Add a sensor to a chart and remove a sensor from chart
 :::
+::::
 
-:::col
+::::col
 [!dont]
+:::item
 Create a chart and remove it
+:::
+:::item
 Add a sensor and delete the sensor
 :::
-
 ::::
+
+:::::

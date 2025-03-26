@@ -3,57 +3,45 @@ import styles from './styles.module.css';
 import { iconCancelled, iconSuccess } from '@siemens/ix-icons/icons';
 import { IxIcon } from '@siemens/ix-react';
 
-interface LayoutProps {
-  readonly children: ReactNode;
+interface ComponentProps {
+  children: ReactNode;
 }
 
-export function Layout({ children }: LayoutProps): JSX.Element {
-  return <div className={`${styles.layout}`}>{children}</div>;
+interface IconConfig {
+  icon: string | null;
+  iconColor: string | null;
 }
 
-const ICON_CONFIG: Record<string, { icon: string; iconColor: string }> = {
+const ICON_CONFIG: Record<string, IconConfig> = {
   do: { icon: iconSuccess, iconColor: 'color-success' },
   dont: { icon: iconCancelled, iconColor: 'color-alarm' },
-  doGradient: { icon: iconSuccess, iconColor: 'color-success' },
-  dontGradient: { icon: iconCancelled, iconColor: 'color-alarm' },
+  'do-gradient': { icon: iconSuccess, iconColor: 'color-success' },
+  'dont-gradient': { icon: iconCancelled, iconColor: 'color-alarm' },
   default: { icon: null, iconColor: null },
 };
 
-interface ColProps {
-  readonly children: ReactElement | ReactElement[];
+export function Layout(props: ComponentProps): ReactElement {
+  return React.createElement('div', { className: styles.layout }, props.children);
 }
 
-export function Col({ children }: ColProps): JSX.Element {
-  const fragmentElements = React.Children.toArray(children);
+export function Item(props: ComponentProps): ReactElement {
+  return React.createElement('div', { className: styles.item }, props.children);
+}
 
-  const processContent = (content: any): string[] => {
-    if (!content) return [];
-
-    if (typeof content === 'string') {
-      return content.split('\n').filter((line) => line.trim());
-    }
-
-    if (Array.isArray(content)) {
-      return content.flatMap(processContent);
-    }
-
-    if (content.props?.children) {
-      return processContent(content.props.children);
-    }
-
-    return [];
-  };
-
-  const contentItems = processContent(fragmentElements);
-
+export function Col(props: ComponentProps): ReactElement {
+  let fragmentElements: ReactNode[] = React.isValidElement(props.children) && props.children.props?.children
+    ? React.Children.toArray(props.children.props.children)
+    : React.Children.toArray(props.children);
   const variantRegex = /\[!(do|dont|info)(-gradient)?]/;
   let variant: string | undefined = undefined;
 
-  const displayItems = contentItems.filter((item) => {
-    const match = variantRegex.exec(item);
-    if (match) {
-      variant = match[1] + (match[2] || '');
-      return false;
+  fragmentElements = fragmentElements.filter((element) => {
+    if (React.isValidElement(element)) {
+      const match = variantRegex.exec(element.props.children);
+      if (match) {
+        variant = match[1] + (match[2] || '');
+        return false;
+      }
     }
     return true;
   });
@@ -63,14 +51,14 @@ export function Col({ children }: ColProps): JSX.Element {
 
   return (
     <div className={`${styles.col} ${variantClassName}`}>
-      {displayItems.map((item) => (
-        <div key={item} className={styles.item}>
-          {iconProps && (
-            <IxIcon name={iconProps.icon} color={iconProps.iconColor} size="24" />
-          )}
-          <p>{item}</p>
-        </div>
-      ))}
+      {fragmentElements.map((el) => {
+        return (
+          <div className={styles.entry}>
+            <IxIcon name={iconProps.icon} color={iconProps.iconColor} size="24"  />
+            {el}
+          </div>
+        );
+      })}
     </div>
   );
 }
