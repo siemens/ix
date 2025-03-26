@@ -1,5 +1,31 @@
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
+function createTabItem(item: {
+  id: string;
+  label: string;
+  items: {
+    id: string;
+    label: string;
+  }[];
+}): any {
+  return {
+    type: 'category',
+    label: item.label,
+    link: {
+      type: 'doc',
+      id: item.id,
+    },
+    collapsed: false,
+    collapsible: false,
+    items: item.items.map((child) => ({
+      type: 'doc',
+      id: child.id,
+      className: 'display-none',
+      label: child.label,
+    })),
+  };
+}
+
 /**
  * Creating a sidebar enables you to:
  - create an ordered group of docs
@@ -90,16 +116,133 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Application frame',
-      // link: { type: 'doc', id: 'components/overview' },
-      // link: { type: 'generated-index' },
       items: [
-        'components/application/index',
-        'components/application-header/index',
-        'components/application-menu/index',
-        'components/avatar/index',
-        'components/content/index',
-        'components/about-and-legal/index',
-        'components/settings/index',
+        createTabItem({
+          id: 'components/application/index',
+          label: 'Application',
+          items: [
+            {
+              id: 'components/application/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/application/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/application-header/index',
+          label: 'Application header',
+          items: [
+            {
+              id: 'components/application-header/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/application-header/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/application-menu/index',
+          label: 'Application menu',
+          items: [
+            {
+              id: 'components/application-menu/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/application-menu/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/avatar/index',
+          label: 'Avatar',
+          items: [
+            {
+              id: 'components/avatar/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/avatar/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/content/index',
+          label: 'Content',
+          items: [
+            {
+              id: 'components/content/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/content/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/content-header/index',
+          label: 'Content header',
+          items: [
+            {
+              id: 'components/content-header/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/content-header/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/about-and-legal/index',
+          label: 'About and legal',
+          items: [
+            {
+              id: 'components/about-and-legal/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/about-and-legal/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/settings/index',
+          label: 'Settings',
+          items: [
+            {
+              id: 'components/settings/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/settings/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/popover-news/index',
+          label: 'Popover news',
+          items: [
+            {
+              id: 'components/popover-news/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/popover-news/code',
+              label: 'Code',
+            },
+          ],
+        }),
       ],
       collapsed: false,
     },
@@ -107,12 +250,70 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Navigation and hierarchy',
       items: [
-        'components/breadcrumb/index',
-        'components/group/index',
-        'components/pagination/index',
-        'components/tabs/index',
-        'components/tree/index',
-        'components/workflow/index',
+        createTabItem({
+          id: 'components/breadcrumb/index',
+          label: 'Breadcrumb',
+          items: [
+            {
+              id: 'components/breadcrumb/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/breadcrumb/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/group/index',
+          label: 'Group',
+          items: [
+            {
+              id: 'components/group/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/pagination/index',
+          label: 'Pagination',
+          items: [
+            {
+              id: 'components/pagination/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/tabs/index',
+          label: 'Tabs',
+          items: [
+            {
+              id: 'components/tabs/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/tree/index',
+          label: 'Tree',
+          items: [
+            {
+              id: 'components/tree/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/workflow/index',
+          label: 'Workflow',
+          items: [
+            {
+              id: 'components/workflow/code',
+              label: 'Code',
+            },
+          ],
+        }),
       ],
       collapsed: false,
     },
@@ -120,19 +321,151 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Containers and layout',
       items: [
-        //TODO (not exist) 'components/action-card/index',
-        'components/blind/index',
-        'components/card/index',
-        'components/card-list/index',
-        'components/flip/index',
-        'components/event-list/index',
-        'components/drawer/index',
-        'components/layout-auto/index',
-        'components/layout-grid/index',
-        'components/modal/index',
+        createTabItem({
+          id: 'components/blind/index',
+          label: 'Blind',
+          items: [
+            {
+              id: 'components/blind/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/blind/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/card/index',
+          label: 'Card',
+          items: [
+            {
+              id: 'components/card/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/card/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/card-list/index',
+          label: 'Card list',
+          items: [
+            {
+              id: 'components/card-list/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/card-list/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/dropdown/index',
+          label: 'Dropdown',
+          items: [
+            {
+              id: 'components/dropdown/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/dropdown/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/flip/index',
+          label: 'Flip',
+          items: [
+            {
+              id: 'components/flip/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/event-list/index',
+          label: 'Event list',
+          items: [
+            {
+              id: 'components/event-list/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/drawer/index',
+          label: 'Drawer',
+          items: [
+            {
+              id: 'components/drawer/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/layout-auto/index',
+          label: 'Layout auto',
+          items: [
+            {
+              id: 'components/layout-auto/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/layout-grid/index',
+          label: 'Layout grid',
+          items: [
+            {
+              id: 'components/layout-grid/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/layout-grid/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/modal/index',
+          label: 'Modal',
+          items: [
+            {
+              id: 'components/modal/code',
+              label: 'Code',
+            },
+          ],
+        }),
         'components/panes/index',
-        //TODO (not exist) 'components/push-card/index',
-        'components/tile/index',
+        createTabItem({
+          id: 'components/panes/index',
+          label: 'Panes',
+          items: [
+            {
+              id: 'components/panes/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/panes/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/tile/index',
+          label: 'Tile',
+          items: [
+            {
+              id: 'components/tile/code',
+              label: 'Code',
+            },
+          ],
+        }),
       ],
       collapsed: false,
     },
@@ -140,9 +473,48 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Forms',
       items: [
-        'components/forms-field/index',
-        'components/forms-layout/index',
-        'components/forms-validation/index',
+        createTabItem({
+          id: 'components/forms-field/index',
+          label: 'Forms field',
+          items: [
+            {
+              id: 'components/forms-field/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/forms-field/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/forms-layout/index',
+          label: 'Forms layout',
+          items: [
+            {
+              id: 'components/forms-layout/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/forms-layout/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/forms-validation/index',
+          label: 'Forms validation',
+          items: [
+            {
+              id: 'components/forms-validation/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/forms-validation/code',
+              label: 'Code',
+            },
+          ],
+        }),
         'components/forms-behavior/index',
       ],
       collapsed: false,
@@ -151,23 +523,216 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Input fields and selections',
       items: [
-        'components/category-filter/index',
-        'components/checkbox/index',
-        'components/custom-field/index',
-        'components/date-dropdown/index',
-        'components/input-date/index',
-        'components/date-picker/index',
-        'components/date-time-picker/index',
-        'components/expanding-search/index',
-        'components/input-number/index',
-        'components/radio/index',
-        'components/select/index',
-        'components/slider/index',
-        'components/input/index',
-        'components/textarea/index',
-        'components/time-picker/index',
-        'components/toggle/index',
-        'components/upload/index',
+        createTabItem({
+          id: 'components/category-filter/index',
+          label: 'Category filter',
+          items: [
+            {
+              id: 'components/category-filter/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/category-filter/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/checkbox/index',
+          label: 'Checkbox',
+          items: [
+            {
+              id: 'components/checkbox/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/checkbox/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/custom-field/index',
+          label: 'Custom field',
+          items: [
+            {
+              id: 'components/custom-field/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/custom-field/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/date-dropdown/index',
+          label: 'Date dropdown',
+          items: [
+            {
+              id: 'components/date-dropdown/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/input-date/index',
+          label: 'Date input',
+          items: [
+            {
+              id: 'components/input-date/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/input-date/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/date-picker/index',
+          label: 'Date picker',
+          items: [
+            {
+              id: 'components/date-picker/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/date-time-picker/index',
+          label: 'Datetime picker',
+          items: [
+            {
+              id: 'components/date-time-picker/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/expanding-search/index',
+          label: 'Expanding search',
+          items: [
+            {
+              id: 'components/expanding-search/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/input-number/index',
+          label: 'Number input',
+          items: [
+            {
+              id: 'components/input-number/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/input-number/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/radio/index',
+          label: 'Radio',
+          items: [
+            {
+              id: 'components/radio/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/radio/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/select/index',
+          label: 'Select',
+          items: [
+            {
+              id: 'components/select/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/select/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/slider/index',
+          label: 'Slider',
+          items: [
+            {
+              id: 'components/slider/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/input/index',
+          label: 'Input',
+          items: [
+            {
+              id: 'components/input/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/input/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/textarea/index',
+          label: 'Textarea',
+          items: [
+            {
+              id: 'components/textarea/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/textarea/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/time-picker/index',
+          label: 'Time picker',
+          items: [
+            {
+              id: 'components/time-picker/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/toggle/index',
+          label: 'Toggle',
+          items: [
+            {
+              id: 'components/toggle/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/toggle/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/upload/index',
+          label: 'Upload',
+          items: [
+            {
+              id: 'components/upload/code',
+              label: 'Code',
+            },
+          ],
+        }),
       ],
       collapsed: false,
     },
@@ -175,14 +740,104 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Buttons and actions',
       items: [
-        'components/button/index',
-        // TODO (button-group is part of button) 'components/button/index',
-        'components/dropdown-button/index',
-        'components/icon-button/index',
-        'components/link-button/index',
-        'components/split-button/index',
-        'components/toggle-button/index',
-        'components/chip/index',
+        createTabItem({
+          id: 'components/button/index',
+          label: 'Button',
+          items: [
+            {
+              id: 'components/button/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/button/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/dropdown-button/index',
+          label: 'Dropdown button',
+          items: [
+            {
+              id: 'components/dropdown-button/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/dropdown-button/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/icon-button/index',
+          label: 'Icon button',
+          items: [
+            {
+              id: 'components/icon-button/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/icon-button/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/link-button/index',
+          label: 'Link button',
+          items: [
+            {
+              id: 'components/link-button/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/link-button/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/split-button/index',
+          label: 'Split button',
+          items: [
+            {
+              id: 'components/split-button/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/split-button/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/toggle-button/index',
+          label: 'Toggle button',
+          items: [
+            {
+              id: 'components/toggle-button/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/toggle-button/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/chip/index',
+          label: 'Chip',
+          items: [
+            {
+              id: 'components/chip/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/chip/code',
+              label: 'Code',
+            },
+          ],
+        }),
       ],
       collapsed: false,
     },
@@ -190,12 +845,74 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'System feedback and status',
       items: [
-        'components/empty-state/index',
-        'components/messagebar/index',
-        'components/pill/index',
-        'components/spinner/index',
-        'components/toast/index',
-        'components/tooltip/index',
+        createTabItem({
+          id: 'components/empty-state/index',
+          label: 'Empty state',
+          items: [
+            {
+              id: 'components/empty-state/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/messagebar/index',
+          label: 'Message bar',
+          items: [
+            {
+              id: 'components/messagebar/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/pill/index',
+          label: 'Pill',
+          items: [
+            {
+              id: 'components/pill/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/pill/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/spinner/index',
+          label: 'Spinner',
+          items: [
+            {
+              id: 'components/spinner/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/toast/index',
+          label: 'Toast',
+          items: [
+            {
+              id: 'components/toast/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'components/toast/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/tooltip/index',
+          label: 'Tooltip',
+          items: [
+            {
+              id: 'components/tooltip/code',
+              label: 'Code',
+            },
+          ],
+        }),
       ],
       collapsed: false,
     },
@@ -203,11 +920,56 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Data display',
       items: [
-        'components/grid/index',
-        'components/html-grid/index',
-        'components/key-value/index',
-        'components/key-value-list/index',
-        'components/kpi/index',
+        createTabItem({
+          id: 'components/grid/index',
+          label: 'Data grid',
+          items: [
+            {
+              id: 'components/grid/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/html-grid/index',
+          label: 'HTML grid',
+          items: [
+            {
+              id: 'components/html-grid/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/key-value/index',
+          label: 'Key value',
+          items: [
+            {
+              id: 'components/key-value/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/key-value-list/index',
+          label: 'Key value list',
+          items: [
+            {
+              id: 'components/key-value-list/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'components/kpi/index',
+          label: 'KPI',
+          items: [
+            {
+              id: 'components/kpi/code',
+              label: 'Code',
+            },
+          ],
+        }),
       ],
       collapsed: false,
     },
@@ -229,8 +991,34 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Deprecated',
       items: [
-        'legacy/basic-navigation/index',
-        'legacy/map-navigation/index',
+        createTabItem({
+          id: 'legacy/basic-navigation/index',
+          label: 'Basic navigation',
+          items: [
+            {
+              id: 'legacy/basic-navigation/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'legacy/basic-navigation/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
+          id: 'legacy/map-navigation/index',
+          label: 'Map navigation',
+          items: [
+            {
+              id: 'legacy/map-navigation/guide',
+              label: 'Guide',
+            },
+            {
+              id: 'legacy/map-navigation/code',
+              label: 'Code',
+            },
+          ],
+        }),
         'legacy/checkbox',
         'legacy/input',
         'legacy/radiobutton',
@@ -294,7 +1082,20 @@ const sidebars: SidebarsConfig = {
   ],
   styles: [
     'styles/colors',
-    'styles/typography/index',
+    createTabItem({
+      id: 'styles/typography/index',
+      label: 'Typography',
+      items: [
+        {
+          id: 'styles/typography/guide',
+          label: 'Usage',
+        },
+        {
+          id: 'styles/typography/code',
+          label: 'Code',
+        },
+      ],
+    }),
     'styles/borders',
     'styles/shadows',
     'styles/animation',

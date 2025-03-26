@@ -20,22 +20,21 @@ declare global {
 }
 
 export default function Root({ children }) {
-  const { pathname, hash, search } = useLocation();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const path = `${pathname}${search}#${hash}`;
     window.ste_statistic = window.ste_statistic || [];
     window.ste_statistic.push({
       action: 'page.ready',
       data: {
         page: {
-          path,
+          path: pathname,
           country: 'WW',
           language: 'en',
         },
       },
     });
-  }, [pathname, hash, search]);
+  }, [pathname]);
 
   useLayoutEffect(() => {
     const isAlreadyLoaded = document.head.querySelector(

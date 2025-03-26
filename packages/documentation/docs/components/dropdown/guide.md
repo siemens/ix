@@ -1,4 +1,7 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# Dropdown - Usage
 
 Dropdown containers allow users to select one option from a list. Selecting one of the items in the dropdown performs the action. 
 
@@ -14,7 +17,7 @@ Dropdown containers allow users to select one option from a list. Selecting one 
 8. Icon
 9. Label
 
-### Options
+## Options
 
 - **Header:** Add a header for the dropdown container. This allows users to better understand which elements are in the dropdown.
 - **Quick actions:** Add a quick action bar. Add 3 to 5 actions/items to the quick actions. We typically use quick actions to access common functions such as cut, copy and paste.
@@ -35,7 +38,7 @@ Dropdown containers allow users to select one option from a list. Selecting one 
 
 ![Dropdown Examples](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2372-2696&mode=design&t=OVHeXvLZYLkP2CzN-4)
 
-### Behavior in context
+## Behavior in context
 
 - **Text truncation:** The labels of the items and the header only consist of one line. A truncation only occurs if there is not enough space on the screen.
 - **Scrollbar:** A dropdown is provided with a scrollbar when the dropdown takes up 50% of the screen.
@@ -44,13 +47,13 @@ Dropdown containers allow users to select one option from a list. Selecting one 
 
 ![Dropdown in Context](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2463-3302&t=QaiBJKNOwHMdBuk2-4)
 
-### States
+## States
 
 Dropdown items have five states: Default, hover, active, disabled and focused. When a submenu is in an active state, the submenu displays an additional dropdown with selectable options.
 
 ![Item States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2343-42235&mode=design&t=OVHeXvLZYLkP2CzN-4)
 
-### Dos and Don’ts
+## Dos and Don’ts
 
 - Do structure dropdown items coherently with submenus, quick actions and separators
 - Do use dropdowns to showcase related actions
@@ -59,7 +62,7 @@ Dropdown items have five states: Default, hover, active, disabled and focused. W
 - Don’t use too many dropdown items - we recommend a maximum of seven
 - Don’t insert the [date picker](../date-dropdown) instead)
 
-### Related
+## Related
 
 - [Dropdown button](../dropdown-button)
 - [Split button](../split-button)

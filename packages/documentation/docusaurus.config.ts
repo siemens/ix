@@ -135,6 +135,8 @@ const config: Config = {
         },
       };
     },
+    // TODO: Active search plugin and style it!
+    // '@cmfcmf/docusaurus-search-local'
   ],
 
   headTags: [
