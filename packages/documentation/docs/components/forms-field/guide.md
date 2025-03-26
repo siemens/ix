@@ -1,4 +1,7 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# Forms field - Usage
 
 ![Field](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2781-323&t=pKzFQBhaXmjTsR8P-4)
 
@@ -10,7 +13,7 @@
 
 **Note:** In this chapter, we describe the default field component. For details about [custom fields](../forms-layout) chapter.
 
-### Options
+## Options
 
 - **Label:** Add a label for the field that provides context to your users.
 - **Required:** The asterisk states whether user input is required on the field before submitting the form.
@@ -19,13 +22,13 @@
 - **Show text as tooltip:** Display validation feedback either below the input field or as tooltip when the user hovers or focuses on the form field. Use a different text for the individual validation states that apply (see [validation](../forms-validation)).
 - **Counter:** Use a counter to show the number of characters entered into the field and the maximum number of characters allowed. We typically use it for [text input](../textarea) fields.
 
-### Behavior in context
+## Behavior in context
 
 - **Interaction:** See [validation](../forms-validation).
 - **Behavior of a field as part of a form:** See [behavior](../forms-validation).
 - **Text truncation:** Labels, feedback and helper texts are not truncated but break into multiple lines if they exceed the field's width.
 
-### States
+## States
 
 Interaction states: Default, hover, active, disabled, readonly, focus.
 
@@ -35,7 +38,7 @@ When a feedback tooltip is chosen over a message, the field shows a tooltip when
 
 **Note:** There are also several validation states (default, valid, info, warning, invalid) that are described in [validation](../forms-validation).
 
-### Dos and Don’ts
+## Dos and Don’ts
 
 - Do use a label for every field
 - Do use a counter for fields with a character limit
@@ -43,7 +46,7 @@ When a feedback tooltip is chosen over a message, the field shows a tooltip when
 - Don’t use helper text as a replacement for clear labels
 - Don’t mix different variants of feedback text and tooltips
 
-### Related
+## Related
 
 - [Validation](../forms-validation)
 - [Behavior](../forms-behavior)
