@@ -8,6 +8,7 @@
       "dependsOn": ["^build"],
       "outputs": [
         "components/**",
+        "hydrate/**",
         "dist/**",
         "dist-css/**",
         "build/**",

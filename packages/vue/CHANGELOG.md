@@ -1,5 +1,16 @@
 # @siemens/ix-vue
 
+## 3.0.0-alpha.2
+
+### Major Changes
+
+- [#1644](https://github.com/siemens/ix/pull/1644) [`221e9e7d1490524dff5b7358557ee29c49119952`](https://github.com/siemens/ix/commit/221e9e7d1490524dff5b7358557ee29c49119952) Thanks [@danielleroux](https://github.com/danielleroux)! - Convert package to type="module"
+
+### Patch Changes
+
+- Updated dependencies [[`b66381a68f94df878605a290a52c84d31fa45bf1`](https://github.com/siemens/ix/commit/b66381a68f94df878605a290a52c84d31fa45bf1), [`23402fc1ab914b7b6ca73f938b12c66dd1fd5120`](https://github.com/siemens/ix/commit/23402fc1ab914b7b6ca73f938b12c66dd1fd5120)]:
+  - @siemens/ix@3.0.0-alpha.2
+
 ## 3.0.0-alpha.1
 
 ### Patch Changes

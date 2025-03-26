@@ -1,6 +1,6 @@
 ## Guidelines
 
-The About and legal component is an overlay we typically use to show application information, application versions, license terms, legal regulations, copyright information and other legal content. It appears when users click on the "About and legal" icon (1) and overlays the current content. Closing this overlay brings users back to the original content.
+The About and legal component appears when users click on the "About and legal" icon (1) and overlays the current content. Closing this overlay brings users back to the original content.
 
 ![About and legal overlay](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1029-79866&mode=design&t=Ntzn8IlSOlPey8s5-11)
 
