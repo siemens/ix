@@ -317,13 +317,13 @@ export class Tabs {
     if (!tabsWrapper) return;
 
     if (this.isTouchOnlyDevice()) {
-      this.setupTouchEvents(tabsWrapper as HTMLElement);
+      this.setupTouchEvents(tabsWrapper as Element);
     } else {
-      this.setupWheelEvent(tabsWrapper as HTMLElement);
+      this.setupWheelEvent(tabsWrapper as Element);
     }
   }
 
-  private setupWheelEvent(tabsWrapper: HTMLElement) {
+  private setupWheelEvent(tabsWrapper: Element) {
     tabsWrapper.addEventListener(
       'wheel',
       this.handleWheelScroll as EventListener,
@@ -340,7 +340,7 @@ export class Tabs {
     this.move(scrollAmount, true);
   };
 
-  private setupTouchEvents(tabsWrapper: HTMLElement) {
+  private setupTouchEvents(tabsWrapper: Element) {
     tabsWrapper.addEventListener(
       'touchstart',
       this.handleTouchStart as EventListener,
