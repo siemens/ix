@@ -8,6 +8,8 @@ jobs:
   comment-workflow:
     if: ${{ github.repository == 'siemens/ix' }}
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
 
       # Useful if we try to also integrate other labels
