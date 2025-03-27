@@ -1,6 +1,6 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ModalService } from '@siemens/ix-angular';
-import { NgForm } from '@angular/forms';  // Import NgForm for form handling
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-example',
@@ -30,7 +30,6 @@ export default class ModalFormIxButtonSubmit {
         );
     }
 
-    // Form submission logic
     onSubmit(form: NgForm): void {
         if (form.valid) {
             console.log(form)

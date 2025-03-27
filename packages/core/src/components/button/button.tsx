@@ -58,10 +58,14 @@ export class Button implements IxButtonComponent {
    *
    * @since 2.0.0
    */
-
-  @Prop() form?: string;
-
   @Prop() loading: boolean = false;
+
+  /**
+   * Form id
+   *
+   * @since 3.0.0
+   */
+  @Prop() form?: string;
 
   /**
    * Icon name
@@ -79,7 +83,6 @@ export class Button implements IxButtonComponent {
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
-
   submitButtonElement?: HTMLButtonElement;
 
   @Listen('click', { capture: true })
@@ -128,29 +131,13 @@ export class Button implements IxButtonComponent {
 
   dispatchFormEvents() {
     if (
-      this.disabled ||
-      this.loading ||
-      this.type !== 'submit' ||
-      !this.submitButtonElement
+      this.type === 'submit' &&
+      this.submitButtonElement &&
+      !this.disabled &&
+      !this.loading
     ) {
-      return;
-    }
-
-    const formElement = this.form
-      ? (document.getElementById(this.form) as HTMLFormElement | null)
-      : null;
-
-    if (!formElement) {
       this.submitButtonElement.click();
-      console.warn('No form found to submit.');
-      return;
     }
-
-    const submitEvent = new Event('submit', {
-      bubbles: true,
-      cancelable: true,
-    });
-    formElement.dispatchEvent(submitEvent);
   }
 
   setFocus() {

@@ -1519,11 +1519,11 @@
           "mutable": false,
           "attr": "form",
           "reflectToAttr": false,
-          "docs": "Loading button",
+          "docs": "Form id",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.0.0"
+              "text": "3.0.0"
             }
           ],
           "values": [
@@ -1600,8 +1600,13 @@
           "mutable": false,
           "attr": "loading",
           "reflectToAttr": false,
-          "docs": "Annotate with",
-          "docsTags": [],
+          "docs": "Loading button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
