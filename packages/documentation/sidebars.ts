@@ -65,6 +65,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Migration',
       items: [
+        'home/migration/3_0_0/index',
         'home/migration/2_0_0/index',
         'home/migration/core-ui',
         'home/migration/uxt',
