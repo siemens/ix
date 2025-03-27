@@ -7,7 +7,7 @@ no_single_tab: true
 description: 'In this subchapter, we explore the key aspects of responsive and adaptive design to ensure your applications provide an optimal user experience across various devices. Learn how to handle different viewport sizes, touch interactions, and device-specific features to create a seamless and user-friendly mobile experience.'
 ---
 
-# 
+#
 
 ## Responsive and adaptive design
 
@@ -39,4 +39,4 @@ Some devices have unique characteristics that need to be considered when designi
 - Rounded corners
 - Different screen sizes and resolutions
 
-When you design and develop an app, we recommend to define target devices. Consider the specific features of the devices in your design and development process, so that all relevant parts of the user interface are visible and accessible. Use the [safe areas](#define-safe-areas) to ensure that the content is displayed correctly.
+When you design and develop an app, we recommend to define target devices. Consider the specific features of the devices in your design and development process, so that all relevant parts of the user interface are visible and accessible. Use the [safe areas](./mobile-app-dev.md#define-safe-areas) to ensure that the content is displayed correctly.
