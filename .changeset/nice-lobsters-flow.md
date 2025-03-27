@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-Button inside __ix-upload__ component is know selectable via keyboard navigation
+Fix button inside __ix-upload__ component to be selectable via keyboard navigation.
