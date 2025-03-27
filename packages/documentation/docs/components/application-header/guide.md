@@ -39,7 +39,7 @@ We typically use the slot for:
 
 ## Avatar
 
-With the new modular application frame we moved the avatar from the navigation menu to the application header. This ensures the avatar has security-relevant information available at all breakpoints. Nonetheless, if you still use the [basic navigation](../map-navigation), the avatar is still in the navigation menu for compatibility reasons.
+With the new modular application frame we moved the avatar from the navigation menu to the application header. This ensures the avatar has security-relevant information available at all breakpoints. Nonetheless, if you still use the [basic navigation](../../legacy/map-navigation), the avatar is still in the navigation menu for compatibility reasons.
 
 ![Avatar and avatar dropdown](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1635-60462&mode=design&t=UPXhDWuRHtygtfFI-11)
 
