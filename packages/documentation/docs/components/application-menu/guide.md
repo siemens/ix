@@ -7,7 +7,7 @@ The navigation menu is an essential part of your application. It offers a way to
 ![Navigation menu collapsed and expanded](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=990-122297&mode=design&t=JbZngO5IAS8hvpTb-11)
 
 1. Expand/collapse icon button: Expands and collapses the navigation menu.
-2. [Avatar button](#avatar-button,): Shows the logged-in user and provides access to user-related actions (optional)  
+2. [Avatar button](#avatar-button): Shows the logged-in user and provides access to user-related actions (optional)  
    **Please note:** Only basic navigation and map navigation still use the avatar at this position. The new [application](../application-header).
 3. Navigation section: Navigates through the main parts of an application.
 4. [Bottom section](#bottom-section): Hosts infrastructural actions and additional content but does not navigate away from the selected main part.
