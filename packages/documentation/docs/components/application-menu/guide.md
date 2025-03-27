@@ -1,4 +1,6 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
 
 The navigation menu is an essential part of your application. It offers a way to directly navigate to the main application parts and it can give your users access to legal and version information, and access to settings.
 
@@ -10,21 +12,21 @@ The navigation menu is an essential part of your application. It offers a way to
 3. Navigation section: Navigates through the main parts of an application.
 4. [Bottom section](#bottom-section): Hosts infrastructural actions and additional content but does not navigate away from the selected main part.
 
-### Avatar button
+## Avatar button
 
 The avatar button is optional. It shows information about the logged-in user. When collapsed it shows only the avatar, and when expanded it shows additional user information. A dropdown menu with user-related actions appears when selecting (note the available actions are specific to each application). The log out item is available by default.  
 **Please note:** Only basic navigation and map navigation still use the avatar in the navigation menu. The new [application](../application-header).
 
 ![Avatar dropdown menu](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-70909&mode=design&t=Ch2wsi2EtQ3sPBpS-11)
 
-### Avatar button options
+## Avatar button options
 
 - **top:** Defines the first line of the additional user information. We typically use this to show primary user information (first and last name or username), depending on the available information. Overflows are clipped with an ellipsis (...).
 - **bottom:** Defines the second line of additional user information, used to show secondary information, for example user role. Overflows are clipped with an ellipsis (...).
 - **initials:** Shows avatar with initials.
 - **image:** Shows avatar with images.
 
-### Menu item and menu category
+## Menu item and menu category
 
 Menu items represent the main parts of an application. They have an icon for quick visual identification. When the navigation menu is expanded, the full name of the item is visible.
 
@@ -50,11 +52,11 @@ Second level items with icons in collapsed (9) and expanded (10) navigation menu
 
 We usually don’t use icons on the second navigation level as in most cases it won’t add any value for users. But it is allowed to use icons if it helps users to better understand and recognize the items. Don’t mix items with and without icon within a category.
 
-### Options of menu items and menu category
+## Options of menu items and menu category
 
 - **Notifications:** Displays a number at the top right corner of the icon (2).
 
-### Bottom section
+## Bottom section
 
 Items in this section do not navigate away from the current content. They either toggle states, e.g. light and dark mode, or open a layer over the current content. This means users do not lose their current workflow by interacting with these items.
 
@@ -68,7 +70,7 @@ Items in this section do not navigate away from the current content. They either
 
 <br></br>
 
-### Navigation menu options
+## Navigation menu options
 
 - **enableSettings `default: true`:** Shows the settings icon (gear wheel) in the bottom section, it opens the [settings](../settings) overlay and the content can be freely defined.
 - **enableToggleTheme `default: false`:** Shows the theme toggle icon, offers an easy and direct way to toggle between light and dark themes. We don’t typically use this when dedicated theme settings are available elsewhere, e.g. in the settings overlay.
@@ -78,7 +80,7 @@ See the code tab for more information and other options available.
 
 <br></br>
 
-### Behavior
+## Behavior
 
 ![Navigation menu overflow behavior](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-68267&mode=design&t=RG8M7S3eIKxiDqv5-11)
 
@@ -88,7 +90,7 @@ See the code tab for more information and other options available.
 
 <br></br>
 
-### Dos and Don’ts
+## Dos and Don’ts
 
 - Do use icons in second-level navigation items when it helps users to better understand and recognize them
 - Don’t mix menu items with and without icons within a second-level navigation category

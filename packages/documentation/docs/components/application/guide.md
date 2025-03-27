@@ -1,8 +1,12 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+
+# Application - Usage
 
 Application is a technical and infrastructural component without a direct visual appearance. It lays out the top level app elements like [header](../content). Furthermore, it controls the breakpoint handling and the theming of an application.
 
-### Application switch
+## Application switch
 
 ![Application switch and modal](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1665-19417&mode=design&t=I0iEEuzKJJPK4Sum-11)
 
@@ -20,11 +24,11 @@ Clicking the current application closes the modal. Clicking another application 
 We typically avoid opening the same application in multiple browser tabs. Instead, we recommend switching to the browser tab where the application is already open. Nonetheless, be aware this does not work under all circumstances and some browsers cannot support this feature.
 <br></br>
 
-### Options
+## Options
 
 - **forceBreakpoint:** Forces a specific breakpoint "lg", "md" or "sm". This can be used to force a specific application behavior that ignores the current browser viewport width.
 
-### Behavior
+## Behavior
 
 The application component automatically adapts, by default, to three breakpoints and changes the application layout accordingly:
 

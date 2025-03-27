@@ -1,4 +1,7 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# Toast - Usage
 
 Toasts are UI elements where an event causes a small text field to appear on screen. Toasts are informative, last for a few seconds only, and take up a very small part of the screen to avoid interrupting the workflow. They usually follow an action performed by the user and provide information about the success or failure of that action. We typically use toasts for immediate feedback or tips on actions that a user performs, e.g. successful deletion.
 
@@ -11,7 +14,7 @@ Toasts are UI elements where an event causes a small text field to appear on scr
 5. Message
 6. Close action
 
-### Options
+## Options
 
 - **Toast types:** There are four preset toast types and one custom type:
   - Info: Provides users with additional information about the performed action.
@@ -26,7 +29,7 @@ Toasts are UI elements where an event causes a small text field to appear on scr
 
 ![Toast types](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2552-64766&t=VfiuoHWd1VYl1GYb-4)
 
-### Behavior in context
+## Behavior in context
 
 - **Auto closure:** Toasts should only be displayed on the screen for a few seconds. A progress bar is displayed to visualize the time left until the toast disappears. We typically leave the toast on the screen from 3 to 8 seconds.
 - **Manual closure:** Toasts can be closed manually at any time. It's also possible to suppress the automatic closing so that the user has to actively close the toast. We normally use a purely manual closure of the toast if the workflow is continued by using the toast, e.g. downloading files.
@@ -35,7 +38,7 @@ Toasts are UI elements where an event causes a small text field to appear on scr
 
 ![Toast in Context](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2589-2697&t=Ysb6WohsxOfZv2ls-4)
 
-### Dos and Don’ts
+## Dos and Don’ts
 
 - Do use toasts to provide contextual tips and shortcuts for users
 - Do use toasts to instantly inform a user about the outcome of an action
@@ -44,7 +47,7 @@ Toasts are UI elements where an event causes a small text field to appear on scr
 - Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work (use a [modal](../messagebar) instead)
 - Don’t edit or reuse icons or icon colors from the four predefined toast types when creating custom toasts
 
-### Related
+## Related
 
 - [Modal](../modal)
 - [Message bar](../messagebar)
