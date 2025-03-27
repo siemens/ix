@@ -79,24 +79,35 @@ export class EventList {
 
   private onMutation(mutationRecords: Array<MutationRecord>) {
     this.triggerFadeOut().then(() => {
-      if (typeof this.itemHeight === 'number') {
-        const height = convertToRemString(this.itemHeight);
-
-        mutationRecords
-          .filter((mutation) => mutation.type === 'childList')
-          .forEach((mutation) =>
-            mutation.addedNodes.forEach((item) => {
-              const itemHtml = item as HTMLElement;
-
-              this.setCustomHeight(itemHtml, height);
-            })
-          );
+      if (!Number.isNaN(Number(this.itemHeight))) {
+        const height = convertToRemString(this.itemHeight as number);
+        const eventListItems = this.findEventListItems(mutationRecords);
+        eventListItems.forEach((item) => this.setCustomHeight(item, height));
       }
 
       this.handleChevron(this.chevron);
-
       this.triggerFadeIn();
     });
+  }
+
+  private findEventListItems(mutationRecords: MutationRecord[]): HTMLElement[] {
+    const eventListItems: HTMLElement[] = [];
+
+    mutationRecords.forEach((mutation) => {
+      if (mutation.type !== 'childList') {
+        return;
+      }
+
+      mutation.addedNodes.forEach((node) => {
+        const element = node as HTMLElement;
+
+        if (element.tagName === 'IX-EVENT-LIST-ITEM') {
+          eventListItems.push(element);
+        }
+      });
+    });
+
+    return eventListItems;
   }
 
   private setCustomHeight(item: HTMLElement, height: string) {
