@@ -74,7 +74,6 @@ test('should dynamically add an item and verify all list items have correct heig
   page,
 }) => {
   const itemHeight = 60;
-  const remInPixel = 16;
 
   await mount(`
     <ix-event-list item-height="${itemHeight}">
@@ -98,25 +97,13 @@ test('should dynamically add an item and verify all list items have correct heig
   const eventListItems = page.locator('ix-event-list-item');
   await expect(eventListItems).toHaveCount(5);
 
-  await page.waitForFunction(() => {
-    const allItems = document.querySelectorAll('ix-event-list-item');
-    const lastItemComputedStyle = getComputedStyle(
-      allItems[allItems.length - 1]
-    );
-    return (
-      lastItemComputedStyle.getPropertyValue('--event-list-item-height') !== ''
-    );
-  });
+  await page.waitForTimeout(500);
 
   const heights = await eventListItems.evaluateAll((items) =>
-    items.map((item) =>
-      getComputedStyle(item).getPropertyValue('--event-list-item-height')
-    )
+    items.map((item) => (item instanceof HTMLElement ? item.offsetHeight : 0))
   );
 
-  const expectedHeightInRem = `${itemHeight / remInPixel}rem`;
-
   heights.forEach((height) => {
-    expect(height.trim()).toBe(expectedHeightInRem);
+    expect(height).toBe(itemHeight);
   });
 });
