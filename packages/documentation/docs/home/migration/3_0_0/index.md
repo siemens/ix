@@ -31,7 +31,7 @@ Figma libraries for v2.0.0 are in the **Archive** project (find the link in the 
 We have also prepared a video showing the process in our internal Siemens learning world [here](https://mylearningworld.siemens.com/web/es/app/knowledge-board/lex_auth_0142543970762915841020).
 :::
 
-## Removed package `@siemens/ix-icons` from `@siemens/ix` base library
+## Changed loading of icons from package `@siemens/ix-icons`
 
 Prior to version 3.0.0 of `@siemens/ix-icons` the entire icon set was loaded into the client by default, which caused unnecessary usage of bandwidth and memory.
 
@@ -164,7 +164,7 @@ Therefore, this approach is **NOT recommended**.
 
 ## Changed props to `@internal`
 
-The following component members marked as internal by comment have been changed to annotated as `@internal`:
+The following component members previously marked as internal by comment have been changed to annotated as `@internal`:
 
 - `ix-menu`: `enableMapExpand`
 - `ix-menu-about`: `show`
@@ -247,7 +247,7 @@ We changed the default width of the `input` element from `width: 100%` to `width
 #### ix-icon-button
 
 - Replaced `color` attribute with `iconColor`.
-- Removed size `32`.
+- Removed option `32` from attribute `size`.
 
 #### ix-menu
 
@@ -276,7 +276,7 @@ We changed the default width of the `input` element from `width: 100%` to `width
 
 #### ix-select-item
 
-- Replaced `value` attribute type with `string`.
+- Changed type of attribute `value` to `string`.
 
 #### ix-time-picker
 

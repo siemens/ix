@@ -27,5 +27,5 @@ Our **Figma library** contains all designed components, styles, and blueprints r
 - The Figma library is maintained within the Siemens AG Global account.
 - Siemens employees can use the self-service to obtain a Figma license. For guest access please contact us.
 - The **Figma library** brand library contains Siemens specific brand elements and is only accessible to Siemens employees and business partners. [Get more information here](https://siemens-ix.code.siemens.io/ix-brand-theme/)
-- For the Figma classic theme library (open source) please [contact us](./../support/contact-us.md).
-- We use Figma variables to provide you with a seamless and customizable experience when working with our themes. For detailed instructions on how to modify theme variables and select themes using the Figma library, please visit the [Theme Switching](./../theming/usage-designers.md) page.
+- For the classic theme **Figma library** (open source) please [contact us](./../support/contact-us.md).
+- We use Figma variables to provide you with a seamless and customizable experience when working with our themes. For detailed instructions on how to modify theme variables and select themes using the **Figma library**, please visit the [Theme Switching](./../theming/usage-designers.md) page.
