@@ -1,4 +1,7 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# Content - Usage
 
 ![application content](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1759-25130&mode=design&t=UPXhDWuRHtygtfFI-11)
 

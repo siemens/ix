@@ -1,4 +1,7 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# Date input - Usage
 
 The date input component is typically used in forms, filters and scheduling tools to ensure consistent and accurate date entries. By standardizing date input, it helps maintain data integrity and improves the user experience in applications requiring precise date information.
 
@@ -16,7 +19,7 @@ The date input component is typically used in forms, filters and scheduling tool
 10. Indicator for current day
 11. Indicator for selected day
 
-### Options
+## Options
 
 - **Label**: See [form field](../forms-field).
 - **Required**: See [form field](../forms-field).
@@ -27,7 +30,7 @@ The date input component is typically used in forms, filters and scheduling tool
 - **Error message**: Feedback text when date is not parsable. We typically use this to inform users that the entered date format is incorrect and guide them to enter a valid date.
 - **Format**: Specify the date format, default ‘yyyy/LL/dd’ to ensure that dates are entered in a consistent and recognizable format.
 
-### Behavior in context
+## Behavior in context
 
 - **Interaction**:
   - Click or focus opens the date picker.
@@ -42,13 +45,13 @@ The date input component is typically used in forms, filters and scheduling tool
 - **Overflow**: The input field should be wide enough to display the full date without truncation.
 - **Alignment**: Date inputs are always aligned to the left.
 
-### States
+## States
 
 Date input has five states: Default, hover, disabled, read-only and focused.
 
 ![Date input states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3989-2545&t=ADQCetGKOEH1WG2r-4)
 
-### Dos and Don’ts
+## Dos and Don’ts
 
 - Do use consistent date formats throughout the application to avoid confusion
 - Do use separate inputs for start and end dates to simplify date ranges
@@ -57,7 +60,7 @@ Date input has five states: Default, hover, disabled, read-only and focused.
 - Don't use ambiguous formats like 09/08/2006 without giving clear context
 - Don't allow free text without validation or formatting guidance
 
-### Related
+## Related
 
 - [Date dropdown](../date-dropdown)
 - [Date picker](../date-picker)

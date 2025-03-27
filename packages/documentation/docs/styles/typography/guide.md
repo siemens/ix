@@ -1,6 +1,13 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# Typography - Usage
 
-### Headings
+:::info
+🚧 Under construction. We're working hard to bring you this page! Stay tuned for updates as we continue to build and improve our documentation. Thank you for your patience and understanding.🚧
+:::
+
+## Headings
 
 Use headings from H1 to H6 for headlines to organize content and indicate the hierarchy of information.
 
@@ -11,7 +18,7 @@ Use headings from H1 to H6 for headlines to organize content and indicate the hi
 - h5
 - h6
 
-### Body text
+## Body text
 
 Use body text for content that includes multiple lines, paragraphs, and messages to ensure readability and a comfortable reading experience.
 
@@ -20,7 +27,7 @@ Use body text for content that includes multiple lines, paragraphs, and messages
 - body-sm
 - body-lg
 
-### Label
+## Label
 
 Use label for texts labels or single line texts in components.
 
@@ -29,7 +36,7 @@ Use label for texts labels or single line texts in components.
 - label-sm
 - label-lg
 
-### Display
+## Display
 
 Use display text for large number/text displays, single-line, like KPI values on cards.
 
@@ -40,7 +47,7 @@ Use display text for large number/text displays, single-line, like KPI values on
 - display-xl
 - display-xxl
 
-### Code
+## Code
 
 Use code text for code snippets, code keywords, code editor etc.
 
