@@ -671,3 +671,77 @@ test('should be 100% when dropdown-max-width is greater than the viewport width'
 
   expect(box?.width).toBe(pageWidth);
 });
+
+test('should not show add icon when spaces are entered at the start of input', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-select editable>
+    <ix-select-item label="Item 1" value="1"></ix-select-item>
+    <ix-select-item label="Item 2" value="2"></ix-select-item>
+  </ix-select>`);
+
+  const select = page.locator('ix-select');
+  const input = select.locator('input');
+
+  await input.fill('  Item 1');
+
+  const addItem = select.locator('.add-item');
+  await expect(addItem).toHaveCount(0);
+});
+
+test('should not show add icon when only spaces are entered in input', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-select editable>
+    <ix-select-item label="Item 1" value="1"></ix-select-item>
+    <ix-select-item label="Item 2" value="2"></ix-select-item>
+  </ix-select>`);
+
+  const select = page.locator('ix-select');
+  const input = select.locator('input');
+
+  await input.fill('    ');
+
+  const addItem = select.locator('.add-item');
+  await expect(addItem).toHaveCount(0);
+});
+
+test('should trim the value before saving', async ({ mount, page }) => {
+  await mount(`<ix-select editable>
+    <ix-select-item label="Item 1" value="1"></ix-select-item>
+    <ix-select-item label="Item 7" value="7"></ix-select-item>
+  </ix-select>`);
+
+  const select = page.locator('ix-select');
+  const input = select.locator('Input');
+
+  await input.fill('   Item 7   ');
+  await input.press('Enter');
+
+  await expect(input).toHaveValue('Item 7');
+});
+
+test('should preserve spaces within input and show add icon', async ({
+  mount,
+  page,
+}) => {
+  const itemText = 'Item      1';
+  await mount(`<ix-select editable></ix-select>`);
+  const select = page.locator('ix-select');
+  const itemAdded = select.evaluate((elm) => {
+    return new Promise<number>((resolve) => {
+      elm.addEventListener('addItem', (e: Event) =>
+        resolve((e as CustomEvent).detail)
+      );
+    });
+  });
+  const input = page.locator('input');
+  await input.focus();
+  await input.fill(itemText);
+  await page.keyboard.press('Enter');
+
+  await expect(select).toHaveClass(/hydrated/);
+  expect(await itemAdded).toBe(itemText);
+});
