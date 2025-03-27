@@ -261,7 +261,6 @@ export class Upload {
           {this.renderUploadState()}
           <div>
             <input
-
               aria-label={ariaLabel}
               aria-disabled={disabled}
               multiple={this.multiple}
