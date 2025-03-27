@@ -35,7 +35,7 @@ We have also prepared a video showing the process in our internal Siemens learni
 
 Prior to version 3.0.0 of `@siemens/ix-icons` the entire icon set was loaded into the client by default, which caused unnecessary usage of bandwidth and memory.
 
-Starting with version 3.0.0, icons can now be loaded individually, providing significant performance optimizations. To enable individual icon loading, the `@siemens/ix-icons` package now requires manual bootstrapping.
+Starting with version 3.0.0, icons can now be loaded individually, providing significant performance optimization. To enable individual icon loading, the `@siemens/ix-icons` package now requires manual bootstrapping.
 
 Please refer to the [`@siemens/ix-icons`](https://github.com/siemens/ix-icons) repository for detailed installation instructions. For usage with one of the framework wrappers (`@siemens/ix-angular`, `@siemens/ix-react` and `@siemens/ix-vue`) read the respective section below.
 
@@ -43,13 +43,13 @@ Please refer to the [`@siemens/ix-icons`](https://github.com/siemens/ix-icons) r
 
 Icon imports by name (e.g. `<IxIcon name="star" />`) are no longer supported by default.
 
-To import the icon use the following statement:
+To import the icon, use the following statement:
 
 ```ts
 import { iconStar } from '@siemens/ix-icons/icons';
 ```
 
-Use the icon as attribute like this:
+Use the icon as an attribute like this:
 
 ```html
 React:
@@ -59,7 +59,7 @@ Vue:
 <IxIcon :name="iconStar" />
 ```
 
-If you want to use the "legacy" style (`<IxIcon name="star" />`), you'll need to do some additional setup tasks.
+If you want to use the "legacy" style (`<IxIcon name="star" />`), there are some additional setup tasks.
 
 Create a copy task to ensure that all icons from the `@siemens/ix-icons` package are available as a static resource. Below is an example of a vite configuration (build only) example:
 
@@ -102,7 +102,7 @@ Then you can reference iX icons by name anywhere in your application.
 <ix-icon name="star"></ix-icon>
 ```
 
-To load individual icons you can also use the `addIcons` function during runtime.
+To load individual icons, you can also use the `addIcons` function during runtime.
 
 ```js
 import { addIcons } from @siemens/ix-icons;
@@ -123,7 +123,7 @@ addIcons({ iconStar, iconStarFilled });
 
 ### Custom asset path for icons
 
-In order to be able to load custom icons, we need to configure the domain of the asset path. This can either be done via `meta`-tag or with the `setAssetPath`-function.
+To be able to load custom icons, configure the domain of the asset path. This can either be done via `meta`-tag or with the `setAssetPath`-function.
 
 #### With `meta`-tag
 
@@ -141,11 +141,11 @@ In order to be able to load custom icons, we need to configure the domain of the
 <IxIcon name="star"></IxIcon>
 ```
 
-Above code will fetch the SVG from `https://some-resource-domain/star.svg`.
+The code above fetches the SVG from `https://some-resource-domain/star.svg`.
 
 #### With `setAssetPath`-function
 
-Make sure to call the `setAssetPath`-function before using the `IxIcon` component (e.g. in the main file).
+Note: Call the `setAssetPath`-function before using the `IxIcon` component, e.g. in the main file.
 
 ```ts
 import { setAssetPath } from '@siemens/ix-icons/components';
@@ -157,14 +157,14 @@ setAssetPath('https://some-resource-domain');
 <IxIcon name="star"></IxIcon>
 ```
 
-Above code will fetch the SVG from `https://some-resource-domain/star.svg`
+The code above fetches the SVG from `https://some-resource-domain/star.svg`
 
-This will preload all icons without including the SVGs as assets, which results in a larger bundle size.
-Therefore, this approach is **NOT recommended**.
+This preloads all icons without including the SVGs as assets, which results in a larger bundle size.
+Note: This approach is **NOT recommended**.
 
 ## Changed props to `@internal`
 
-The following component members marked as internal by comment have been changed to annotated as `@internal`:
+The following component members, marked as internal by comment, have been changed to annotated as `@internal`:
 
 - `ix-menu`: `enableMapExpand`
 - `ix-menu-about`: `show`
@@ -174,23 +174,22 @@ The following component members marked as internal by comment have been changed 
 
 ## Removed `Bootstrap` as a `peerDependency`
 
-We are removing Bootstrap as a dependency to reduce the overall bundle size as well as to become more independent from third party CSS frameworks.
-Of course you can still use Bootstrap together with @siemens/ix, but you need to add it to you project manually.
+We have removed Bootstrap as a dependency to reduce the overall bundle size and to become more independent from third-party CSS frameworks. You can still use Bootstrap together with @siemens/ix, but you need to add it to you project manually.
 
 ### HTML table classes `.table` and `.table-striped` are not based on Bootstrap anymore
 
-Siemens Industrial Experience still offers CSS classes to style HTML tables, but the names have changed:
+CSS classes are still offered to style HTML tables, but the names have changed:
 
 - The class `.table` is now `.ix-table`.
 - The class `.table-striped` is now `.ix-table-striped`.
 
-Please note that they are not based on Bootstrap anymore. If your tables rely on additional Bootstrap functionality (e.g. hoverable rows), you have to install Bootstrap on your own.
+Note: They are not based on Bootstrap anymore. If your tables rely on additional Bootstrap functionality, e.g. hoverable rows, please install Bootstrap yourself.
 
 ## Added namespacing of standard HTML elements
 
-We decided to add the prefix `ix-` to our global styles of standard HTML elements like `input`, `textarea` and `label`.
+The prefix `ix-` has been added to our global styles of standard HTML elements like `input`, `textarea` and `label`.
 
-This ensures that you can use other CSS libraries alongside iX to prevent class collisions. To ensure that your styles are not broken after you update to v3, you have to provide the class `ix-form-control` to `input` and `textarea`.
+This ensures that you can use other CSS libraries alongside Industrial Experience to prevent class collisions. To ensure that your styles are not broken after you update to v3, you have to provide the class `ix-form-control` to `input` and `textarea`.
 
 The standard `label` element needs the `ix-form-label` class.
 
@@ -214,7 +213,7 @@ to
 
 ### Changed `input` width value
 
-We changed the default width of the `input` element from `width: 100%` to `width: auto`
+The default width of the `input` element has been changed from `width: 100%` to `width: auto`
 
 ## Component updates
 
@@ -224,7 +223,7 @@ We changed the default width of the `input` element from `width: 100%` to `width
 
 #### ix-card
 
-- Replaced  `insight` and `notification` variants have been with `outline` and `filled`.
+- Replaced  `insight` and `notification` variants with `outline` and `filled`.
 
 #### ix-chip
 
