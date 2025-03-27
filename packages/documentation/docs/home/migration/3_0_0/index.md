@@ -222,7 +222,7 @@ We changed the default width of the `input` element from `width: 100%` to `width
 
 #### ix-card
 
-- Replaced `insight` and `notification` variants have been with `outline` and `filled`.
+- Replaced `insight` and `notification` variants with `outline` and `filled`.
 
 #### ix-chip
 
