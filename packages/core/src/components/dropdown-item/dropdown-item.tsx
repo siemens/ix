@@ -118,7 +118,7 @@ export class DropdownItem implements DropdownItemWrapper {
             <ix-icon class="dropdown-item-icon" name={this.icon}></ix-icon>
           ) : null}
           <div class="dropdown-item-text">
-            <pre>{this.label}</pre>
+            {this.label}
             <slot></slot>
           </div>
           {this.isSubMenu ? (

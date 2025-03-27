@@ -723,7 +723,10 @@ test('should trim the value before saving', async ({ mount, page }) => {
   await expect(input).toHaveValue('Item 7');
 });
 
-test('should preserve spaces within input and show add icon', async ({ mount, page }) => {
+test('should preserve spaces within input and show add icon', async ({
+  mount,
+  page,
+}) => {
   const itemText = 'Item      1';
   await mount(`<ix-select editable></ix-select>`);
   const select = page.locator('ix-select');
