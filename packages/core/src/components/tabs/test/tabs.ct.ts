@@ -162,7 +162,7 @@ test('should scroll selected tab into view', async ({ mount, page }) => {
   await expect(lastTab).not.toBeInViewport();
 });
 
-test.only('should scroll tabs with mouse wheel', async ({ mount, page }) => {
+test('should scroll tabs with mouse wheel', async ({ mount, page }) => {
   await mount(`
     <ix-tabs>
       <ix-tab-item>Item 1</ix-tab-item>
@@ -190,7 +190,7 @@ test.describe('Touch-only devices', () => {
     hasTouch: true,
   });
 
-  test.only('should scroll tabs using JavaScript', async ({ mount, page }) => {
+  test('should scroll tabs using JavaScript', async ({ mount, page }) => {
     await mount(`
       <ix-tabs>
         <ix-tab-item>Item 1</ix-tab-item>
