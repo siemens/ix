@@ -31,7 +31,7 @@
 
 :root {
   --default-content-padding-top: 5.5rem;
-  --default-content-padding-left: calc(1rem + 4vw);
+  --default-content-padding-left: 4rem;
   --default-content-padding: var(--default-content-padding-top)
     var(--default-content-padding-left);
 }
@@ -44,7 +44,7 @@
 
 :root[data-ix-theme],
 #__docusaurus.theme-classic-dark,
-#__docusaurus.theme-classic-dark {
+#__docusaurus.theme-classic-light {
   --ifm-color-primary: var(--theme-color-dynamic);
   --ifm-code-font-size: 95%;
   --ifm-toc-border-color: var(--theme-color-x-weak-bdr);
@@ -52,12 +52,16 @@
   --ifm-menu-color-active: var(--theme-color-dynamic);
   --ifm-footer-background-color: var(--theme-color-1);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-menu-color-active: var(--theme-color-dynamic);
+  --ifm-menu-color: var(--theme-color-std-text);
 }
 
 [data-ix-theme='brand'][data-ix-variant='dark'],
 #__docusaurus.theme-classic-dark {
   --ix-docs-hero-background: var(--theme-color-1);
   --ix-docs-hero-tab-active: var(--theme-color-1);
+  --ifm-menu-color: var(--theme-color-soft-text);
 }
 
 [data-ix-theme='brand'][data-ix-variant='light'],

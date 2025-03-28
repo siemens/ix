@@ -11,6 +11,10 @@
     --ifm-navbar-height: 0;
   }
 
+  .theme-doc-sidebar-item-link.theme-doc-sidebar-item-link-level-1 {
+    margin-bottom: 2rem;
+  }
+
   .theme-doc-sidebar-item-category:not(
       .theme-doc-sidebar-item-category-level-2
     ):not(:last-child) {

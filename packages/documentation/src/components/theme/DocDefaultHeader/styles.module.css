@@ -116,3 +116,7 @@
   flex-direction: row;
   gap: 0.5rem;
 }
+
+.Description {
+  max-width: 56rem;
+}

@@ -13,6 +13,7 @@
 .Row {
   display: grid;
   grid-template-columns: 80% 20%;
+  max-width: 1200px;
 }
 
 .toc {

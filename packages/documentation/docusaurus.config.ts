@@ -122,9 +122,19 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
   plugins: [
     'docusaurus-plugin-sass',
+    // [
+    //   '@docusaurus/plugin-client-redirects',
+    //   {
+    //     redirects: [
+    //       {
+    //         to: '/docs/migration/uxt',
+    //         from: '/docs/home/migration/uxt',
+    //       },
+    //     ]
+    //   }
+    // ],
     async function tailwindCSSConfigPlugin() {
       return {
         name: 'docusaurus-tailwindcss',
