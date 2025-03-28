@@ -57,7 +57,7 @@ var loadModule = (cmpMeta, hostRef, hmrVersionId) => {
         return __vitePreload(() => import(
           /* webpackMode: "lazy" */
           "./ix-icon.entry.a42f05b7.js"
-        ), true ? ["./ix-icon.entry.a42f05b7.js","./icon-1f00a566.0101a9c3.js","./global.23f98c2e.js","./global.2d4b91bd.css"] : void 0, import.meta.url).then(processMod, consoleError);
+        ), true ? ["./ix-icon.entry.a42f05b7.js","./icon-1f00a566.0101a9c3.js","./global.23f98c2e.js","./global.aa0eadc7.css"] : void 0, import.meta.url).then(processMod, consoleError);
     }
   }
   return __vitePreload(() => import(
