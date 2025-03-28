@@ -51,9 +51,8 @@ Always consider whether necessary
 <div class="mb-2">
 `'` Single quotation mark for possession: Customer’s role (single), customers’ roles (plural)
 </div>
-
 <div class="mb-2">
-`  ` No quotation mark or brackets for plurals: PDFs
+<code style={{ whiteSpace: 'pre' }}> </code> No quotation mark or brackets for plurals: PDFs
 </div>
 
 <div class="mb-2">
