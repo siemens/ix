@@ -49,6 +49,6 @@ Interactive items can take one of four states: Default, hover, active and focuse
 ## Related
 
 - [Dropdown](../dropdown)
-- [Basic navigation](../basic-navigation)
-- [Map navigation](../map-navigation)
+- [Basic navigation](../../legacy/basic-navigation)
+- [Map navigation](../../legacy/map-navigation)
 - [Workflow](../workflow)
