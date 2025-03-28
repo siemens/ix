@@ -3,6 +3,10 @@
  */
 
 #__docusaurus {
+  [class*='toggleButton'] {
+    color: var(--theme-color-soft-text);
+  }
+
   .navbar {
     border-bottom: 1px solid var(--theme-color-x-weak-bdr);
     .navbar__inner {

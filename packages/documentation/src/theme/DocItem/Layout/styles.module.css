@@ -19,13 +19,13 @@
   max-width: 14rem;
 }
 
-.docContent h1:first-of-type {
+.docContent header h1:first-child {
   display: none;
 }
 
-.docContentComponent h2:first-of-type {
+/* .docContentComponent h2:first-of-type {
   display: none;
-}
+} */
 
 @media (max-width: 997px) {
   .docItemContainer {
