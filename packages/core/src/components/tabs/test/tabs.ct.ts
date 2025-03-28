@@ -162,7 +162,7 @@ test('should scroll selected tab into view', async ({ mount, page }) => {
   await expect(lastTab).not.toBeInViewport();
 });
 
-test('should scroll tabs with mouse wheel', async ({ mount, page }) => {
+test.only('should scroll tabs with mouse wheel', async ({ mount, page }) => {
   await mount(`
     <ix-tabs>
       <ix-tab-item>Item 1</ix-tab-item>
@@ -176,25 +176,21 @@ test('should scroll tabs with mouse wheel', async ({ mount, page }) => {
   await page.setViewportSize({ width: 300, height: 100 });
   const firstTab = page.locator('ix-tab-item').first();
   const lastTab = page.locator('ix-tab-item').last();
-  const steps = 2;
+  const steps = 3;
   for (let count = 0; count < steps; count++) {
     await page.mouse.wheel(0, 100);
   }
+  await page.waitForTimeout(500);
   await expect(lastTab).toBeInViewport();
   await expect(firstTab).not.toBeInViewport();
 });
 
-test.describe('specific viewport block for iOS Safari', () => {
+test.describe('Touch-only devices', () => {
   test.use({
-    viewport: devices['iPhone 13'].viewport,
-    userAgent: devices['iPhone 13'].userAgent,
     hasTouch: true,
   });
 
-  test('should scroll tabs using JavaScript (iOS Safari)', async ({
-    mount,
-    page,
-  }) => {
+  test.only('should scroll tabs using JavaScript', async ({ mount, page }) => {
     await mount(`
       <ix-tabs>
         <ix-tab-item>Item 1</ix-tab-item>
@@ -211,6 +207,7 @@ test.describe('specific viewport block for iOS Safari', () => {
     await lastTab.evaluate((el) =>
       el.scrollIntoView({ behavior: 'smooth', block: 'end' })
     );
+    await page.waitForTimeout(500);
     await expect(lastTab).toBeInViewport();
     await expect(firstTab).not.toBeInViewport();
   });

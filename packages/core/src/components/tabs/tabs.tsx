@@ -316,9 +316,8 @@ export class Tabs {
     const tabsWrapper = this.getTabsWrapper();
     if (!tabsWrapper) return;
 
-    if (this.isTouchOnlyDevice()) {
-      this.setupTouchEvents(tabsWrapper as Element);
-    } else {
+    this.setupTouchEvents(tabsWrapper as Element);
+    if (!this.isTouchOnlyDevice()) {
       this.setupWheelEvent(tabsWrapper as Element);
     }
   }
@@ -369,17 +368,7 @@ export class Tabs {
   };
 
   private isTouchOnlyDevice(): boolean {
-    const ua = window.navigator.userAgent;
-    const isIOS = /iPhone|iPad|iPod/.test(ua);
-
-    const isStandalone =
-      'standalone' in window.navigator &&
-      (window.navigator as ExtendedNavigator).standalone;
-    const isWebView = isIOS && !isStandalone && !/Safari/.test(ua);
-
-    const isMobileSafari = isIOS && !isWebView;
-
-    return isMobileSafari || isWebView;
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   }
 
   disconnectedCallback() {
