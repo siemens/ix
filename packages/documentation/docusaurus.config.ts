@@ -122,10 +122,20 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
   plugins: [
     'docusaurus-plugin-sass',
-    async function tailwindCSSConfigPlugin(context, options) {
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/docs/migration/uxt',
+            to: '/docs/home/migration/uxt',
+          },
+        ]
+      }
+    ],
+    async function tailwindCSSConfigPlugin() {
       return {
         name: 'docusaurus-tailwindcss',
         configurePostCss(postcssOptions) {
@@ -135,8 +145,7 @@ const config: Config = {
         },
       };
     },
-    // TODO: Active search plugin and style it!
-    // '@cmfcmf/docusaurus-search-local'
+    '@cmfcmf/docusaurus-search-local'
   ],
 
   headTags: [
@@ -221,9 +230,8 @@ const config: Config = {
           value: versionDeployment
         },
         {
-          type: 'html',
+          type: 'search',
           position: 'right',
-          value: '<div class="separator" aria-hidden></div>',
         },
         {
           type: 'custom-nav-link',
@@ -236,6 +244,11 @@ const config: Config = {
           position: 'right',
           label: 'Starter app',
           value: '/docs/home/getting-started/starter-app',
+        },
+        {
+          type: 'html',
+          position: 'right',
+          value: '<div class="separator" aria-hidden></div>',
         },
         {
           type: 'html',

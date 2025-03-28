@@ -23,7 +23,8 @@ function createTabItem(item: {
       type: 'doc',
       id: item.id,
     },
-    collapsed: false,
+    className: 'category-tabs',
+    collapsed: true,
     collapsible: false,
     items: item.items.map((child) => ({
       type: 'doc',
@@ -59,11 +60,11 @@ const sidebars: SidebarsConfig = {
         'home/getting-started/designers',
         'home/getting-started/starter-app',
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
-      label: 'Migration',
+      label: 'Migration and upgrade',
       items: [
         'home/migration/3_0_0/index',
         'home/migration/2_0_0/index',
@@ -82,13 +83,13 @@ const sidebars: SidebarsConfig = {
         'home/installation/vue',
         'home/installation/blazor',
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
       label: 'Theme',
       items: ['home/theming/usage-developers', 'home/theming/usage-designers'],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -98,7 +99,7 @@ const sidebars: SidebarsConfig = {
         'home/releases/release-version',
         'home/releases/changelog',
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -117,7 +118,7 @@ const sidebars: SidebarsConfig = {
           label: 'Contribution',
         },
       ],
-      collapsed: false,
+      collapsed: true,
     },
   ],
   components: [
@@ -253,7 +254,7 @@ const sidebars: SidebarsConfig = {
           ],
         }),
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -324,7 +325,7 @@ const sidebars: SidebarsConfig = {
           ],
         }),
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -476,7 +477,7 @@ const sidebars: SidebarsConfig = {
           ],
         }),
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -526,7 +527,7 @@ const sidebars: SidebarsConfig = {
         }),
         'components/forms-behavior/index',
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -743,7 +744,7 @@ const sidebars: SidebarsConfig = {
           ],
         }),
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -848,7 +849,7 @@ const sidebars: SidebarsConfig = {
           ],
         }),
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -923,7 +924,7 @@ const sidebars: SidebarsConfig = {
           ],
         }),
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -980,7 +981,7 @@ const sidebars: SidebarsConfig = {
           ],
         }),
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -994,7 +995,7 @@ const sidebars: SidebarsConfig = {
         'components/3d/index',
         'components/special-chart/index',
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -1047,7 +1048,7 @@ const sidebars: SidebarsConfig = {
         'guidelines/mobile/mobile-app-dev',
         'guidelines/mobile/mobile-ux',
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -1058,7 +1059,7 @@ const sidebars: SidebarsConfig = {
           dirName: 'guidelines/conversational-design',
         },
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -1069,7 +1070,7 @@ const sidebars: SidebarsConfig = {
           dirName: 'guidelines/language',
         },
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
@@ -1080,7 +1081,7 @@ const sidebars: SidebarsConfig = {
           dirName: 'guidelines/cli',
         },
       ],
-      collapsed: false,
+      collapsed: true,
     },
   ],
   icons: [

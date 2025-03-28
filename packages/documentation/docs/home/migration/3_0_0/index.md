@@ -1,11 +1,12 @@
 ---
-sidebar_title: Updating to v3
-title: Updating to v3
+sidebar_position: 0
+sidebar_title: Upgrade to v3
+title: Upgrade to v3
+doc-type: 'banner'
+description: 'Welcome to the migration guide for upgrading from Siemens Industrial Experience design system v2 to v3. This guide introduces all major changes.'
 ---
 
-# Updating to v3.0.0
-
-Welcome to the migration guide for upgrading from Siemens Industrial Experience design system v2 to v3. Find a list of all breaking changes [here](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md#v300).
+# Upgrade to v3.0.0
 
 ## Removed light and foundation Figma libraries
 
@@ -28,7 +29,7 @@ Follow the instructions below to update your Figma files to the new iX Component
 Figma libraries for v2.0.0 are in the **Archive** project (find the link in the main library).
 
 :::info
-We have also prepared a video showing the process in our internal Siemens learning world [here](https://mylearningworld.siemens.com/web/es/app/knowledge-board/lex_auth_0142543970762915841020).
+We have also prepared a video showing the process in our internal Siemens learning world [here](https://mylearningworld.siemens.com/web/en/app/toc/lex_auth_014279158647750656628/overview).
 :::
 
 ## Changed loading of icons from package `@siemens/ix-icons`
@@ -288,4 +289,4 @@ We changed the default width of the `input` element from `width: 100%` to `width
 
 ## Questions ❓🙋‍♀️
 
-Check out the [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md) and if you have further questions or migration problems, [contact us on our forum](https://community.siemens.com/c/ix/).
+Check out the [Breaking Changes guide](https://github.com/siemens/ix/blob/release-3.0.0/BREAKING_CHANGES/v3.md) and if you have further questions or migration problems [contact us](./../../support/contact-us).

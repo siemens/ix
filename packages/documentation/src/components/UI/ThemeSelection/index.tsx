@@ -50,8 +50,8 @@ export function ThemeSelection(props: ThemeSelectionProps) {
     }
     return classicTheme;
   });
-  const ref = useRef<HTMLButtonElement>(null);
 
+  const [ref, setRef] = useState<HTMLButtonElement>(null);
   const displayTheme = toUppercase(theme);
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export function ThemeSelection(props: ThemeSelectionProps) {
 
   return (
     <>
-      <Button ref={ref}>
+      <Button ref={setRef}>
         {React.createElement('ix-icon', {
           name: iconPen,
         })}
@@ -69,8 +69,8 @@ export function ThemeSelection(props: ThemeSelectionProps) {
           name: iconChevronDownSmall,
         })}
       </Button>
-      {ref.current && (
-        <IxDropdown trigger={ref.current}>
+      {ref && (
+        <IxDropdown trigger={ref}>
           {availableThemes.map((theme) => (
             <IxDropdownItem key={theme} onClick={() => setTheme(theme)}>
               {toUppercase(theme)}

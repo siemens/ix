@@ -1,21 +1,21 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
+import { useColorMode } from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { iconOpenExternal } from '@siemens/ix-icons/icons';
+import { FrameworkTypes } from '@site/src/hooks/use-framework';
+import CodeBlock from '@theme/CodeBlock';
+import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import CodePreview, { CodePreviewFiles, SourceFiles } from '../CodePreview';
+import FrameworkSelection from '../UI/FrameworkSelection';
+import OpenStackblitz from '../UI/OpenStackblitz';
 import Pill from '../UI/Pill';
+import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './styles.module.css';
-import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
-import CodeBlock from '@theme/CodeBlock';
-import FrameworkSelection from '../UI/FrameworkSelection';
-import { FrameworkTypes } from '@site/src/hooks/use-framework';
-import OpenStackblitz from '../UI/OpenStackblitz';
-import clsx from 'clsx';
-import BrowserOnly from '@docusaurus/BrowserOnly';
-import { useColorMode } from '@docusaurus/theme-common';
+
 function PreviewActions(props: {
   colorModeLight: boolean;
   openExternalUrl: string;

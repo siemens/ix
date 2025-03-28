@@ -33,6 +33,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   padding-right: 0.5rem;
+  font-size: 2.5rem;
 }
 
 .Tabs {
@@ -114,4 +115,8 @@
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
+}
+
+.Description {
+  max-width: 56rem;
 }
