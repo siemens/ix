@@ -124,17 +124,17 @@ const config: Config = {
   ],
   plugins: [
     'docusaurus-plugin-sass',
-    // [
-    //   '@docusaurus/plugin-client-redirects',
-    //   {
-    //     redirects: [
-    //       {
-    //         to: '/docs/migration/uxt',
-    //         from: '/docs/home/migration/uxt',
-    //       },
-    //     ]
-    //   }
-    // ],
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/docs/migration/uxt',
+            to: '/docs/home/migration/uxt',
+          },
+        ]
+      }
+    ],
     async function tailwindCSSConfigPlugin() {
       return {
         name: 'docusaurus-tailwindcss',

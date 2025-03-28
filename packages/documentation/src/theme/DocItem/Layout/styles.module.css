@@ -24,10 +24,6 @@
   display: none;
 }
 
-/* .docContentComponent h2:first-of-type {
-  display: none;
-} */
-
 @media (max-width: 997px) {
   .docItemContainer {
     padding: 3rem 2rem;

@@ -23,6 +23,7 @@ function createTabItem(item: {
       type: 'doc',
       id: item.id,
     },
+    className: 'category-tabs',
     collapsed: true,
     collapsible: false,
     items: item.items.map((child) => ({
