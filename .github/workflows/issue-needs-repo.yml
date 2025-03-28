@@ -8,6 +8,8 @@ jobs:
   comment-issue:
     if: ${{ github.repository == 'siemens/ix' }}
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Needs reproduction comment created
         if: "contains(github.event.label.name, 'needs reproduction')"
