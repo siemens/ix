@@ -9,6 +9,7 @@ description: "Dive into the fundamental principles of UX writing, where you'll l
 ---
 
 import Guideline from '@site/src/components/Guideline';
+import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 #
 
@@ -38,33 +39,22 @@ import Guideline from '@site/src/components/Guideline';
 
 - Avoid using negative contractions as they can appear too informal
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='their, them, theirs, salesperson'></Guideline>
-<Guideline do={false} label='his, hers, him, salesman'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Welcome to this application'></Guideline>
-<Guideline do={false} label='Hey there!'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='X appears when detail view has selected events'></Guideline>
-<Guideline do={false} label='X doesn’t appear if detail view has no selected events'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='cannot, will not'></Guideline>
-<Guideline do={false} label='can’t, won’t'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='you’ll, we’ve'></Guideline>
-<Guideline do={false} label='you will, we have'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Do>
+    <Item>their, them, theirs, salesperson</Item>
+    <Item>Welcome to this application</Item>
+    <Item>X appears when detail view has selected events</Item>
+    <Item>cannot, will not</Item>
+    <Item>you’ll, we’ve</Item>
+  </Do>
+  <Dont>
+    <Item>his, hers, him, salesman</Item>
+    <Item>Hey there!</Item>
+    <Item>X doesn’t appear if detail view has no selected events</Item>
+    <Item>can’t, won’t</Item>
+    <Item>you will, we have</Item>
+  </Dont>
+</Layout>
 
 ## Length
 
@@ -88,90 +78,50 @@ import Guideline from '@site/src/components/Guideline';
 
 - Capitalize named app functions and UI elements: Go to Settings, Allocate users in User management, Press Ok
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Go to Settings'></Guideline>
-<Guideline do={false} label='Go To Settings'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Press OK'></Guideline>
-<Guideline do={false} label='Press Ok'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Log in'></Guideline>
-<Guideline do={false} label='LOG IN'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='For more information, see Siemens Industry Online Support.'></Guideline>
-<Guideline do={false} label='For more information, see Siemens industry online support.'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Do>
+    <Item>Go to Settings</Item>
+    <Item>Press OK</Item>
+    <Item>Log in</Item>
+    <Item>For more information, see Siemens Industry Online Support.</Item>
+  </Do>
+  <Dont>
+    <Item>Go To Settings</Item>
+    <Item>Press Ok</Item>
+    <Item>LOG IN</Item>
+    <Item>For more information, see Siemens industry online support.</Item>
+  </Dont>
+</Layout>
 
 ## Common UX wording mistakes
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='time zone'></Guideline>
-<Guideline do={false} label='timezone'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='log file'></Guideline>
-<Guideline do={false} label='logfile'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='log in (as an action)'></Guideline>
-<Guideline do={false} label='login'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='login (as a noun)'></Guideline>
-<Guideline do={false} label='log in'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='equipment'></Guideline>
-<Guideline do={false} label='equipments'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='feedback'></Guideline>
-<Guideline do={false} label='feedbacks'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='training'></Guideline>
-<Guideline do={false} label='trainings'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='current'></Guideline>
-<Guideline do={false} label='actual'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='avoid "shall"'></Guideline>
-<Guideline do={false} label='user shall manage users'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Siemens has'></Guideline>
-<Guideline do={false} label='Siemens have'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='34 million / 35 billion'></Guideline>
-<Guideline do={false} label='34’ / 35“'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='34 million'></Guideline>
-<Guideline do={false} label='34 millions'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Do>
+    <Item>time zone</Item>
+    <Item>log file</Item>
+    <Item>log in (as an action)</Item>
+    <Item>login (as a noun)</Item>
+    <Item>equipment</Item>
+    <Item>feedback</Item>
+    <Item>training</Item>
+    <Item>current</Item>
+    <Item>avoid "shall"</Item>
+    <Item>Siemens has</Item>
+    <Item>34 million / 35 billion</Item>
+    <Item>34 million</Item>
+  </Do>
+  <Dont>
+    <Item>timezone</Item>
+    <Item>logfile</Item>
+    <Item>login</Item>
+    <Item>log in</Item>
+    <Item>equipments</Item>
+    <Item>feedbacks</Item>
+    <Item>trainings</Item>
+    <Item>actual</Item>
+    <Item>user shall manage users</Item>
+    <Item>Siemens have</Item>
+    <Item>34’ / 35“</Item>
+    <Item>34 millions</Item>
+  </Dont>
+</Layout>

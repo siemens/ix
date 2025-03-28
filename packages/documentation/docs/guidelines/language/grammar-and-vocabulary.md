@@ -9,6 +9,7 @@ description: "Discover the importance of proper grammar and vocabulary in UX wri
 ---
 
 import Guideline from '@site/src/components/Guideline';
+import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 #
 
@@ -18,50 +19,35 @@ import Guideline from '@site/src/components/Guideline';
 
 - Only use simple verb forms in the past or future when necessary
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='click, browse, upload'></Guideline>
-<Guideline do={false} label='clicking, being clicked, was clicking'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='file loads, file loaded'></Guideline>
-<Guideline do={false} label='file is going to be loaded, file has been loaded'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Do>
+    <Item>click, browse, upload</Item>
+    <Item>file loads, file loaded</Item>
+  </Do>
+  <Dont>
+    <Item>clicking, being clicked, was clicking</Item>
+    <Item>file is going to be loaded, file has been loaded</Item>
+  </Dont>
+</Layout>
 
 ## Active voice
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='Configuration file opens.'></Guideline>
-<Guideline do={false} label='The configuration file is opened.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Admin provides read-only access.'></Guideline>
-<Guideline do={false} label='Read-only access is provided by Admin.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Measure performance.'></Guideline>
-<Guideline do={false} label='Performance is measured.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Click submit.'></Guideline>
-<Guideline do={false} label='Submit is clicked by user.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Calculate the data.'></Guideline>
-<Guideline do={false} label='The data is calculated by application.'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Do>
+    <Item>Configuration file opens.</Item>
+    <Item>Admin provides read-only access.</Item>
+    <Item>Measure performance.</Item>
+    <Item>Click submit.</Item>
+    <Item>Calculate the data.</Item>
+  </Do>
+  <Dont>
+    <Item>The configuration file is opened.</Item>
+    <Item>Read-only access is provided by Admin.</Item>
+    <Item>Performance is measured.</Item>
+    <Item>Submit is clicked by user.</Item>
+    <Item>The data is calculated by application.</Item>
+  </Dont>
+</Layout>
 
 ## UI terminology
 
@@ -71,19 +57,16 @@ import Guideline from '@site/src/components/Guideline';
 
 - Basic terminology: checkbox, drop-down, field, icon, menu, link, radio button, window
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='click'></Guideline>
-<Guideline do={false} label='press'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='hover'></Guideline>
-<Guideline do={false} label='mouse over'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Do>
+    <Item>click</Item>
+    <Item>hover</Item>
+  </Do>
+  <Dont>
+    <Item>press</Item>
+    <Item>mouse over</Item>
+  </Dont>
+</Layout>
 
 ## Idioms and phrasal verbs
 
@@ -93,29 +76,20 @@ import Guideline from '@site/src/components/Guideline';
 
 - Avoid cultural references
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='remove'></Guideline>
-<Guideline do={false} label='get rid of'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='calculate'></Guideline>
-<Guideline do={false} label='add up'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='continue'></Guideline>
-<Guideline do={false} label='carry on'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='mobile device'></Guideline>
-<Guideline do={false} label='Apple, Android, iOS, smartphone'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Do>
+    <Item>remove</Item>
+    <Item>calculate</Item>
+    <Item>continue</Item>
+    <Item>mobile device</Item>
+  </Do>
+  <Dont>
+    <Item>get rid of</Item>
+    <Item>add up</Item>
+    <Item>carry on</Item>
+    <Item>Apple, Android, iOS, smartphone</Item>
+  </Dont>
+</Layout>
 
 ## Jargon, buzz words and terms
 
@@ -137,29 +111,20 @@ import Guideline from '@site/src/components/Guideline';
 
 - Never make up your own acronyms: https://www.acronymfinder.com/
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='light emitting diodes (LEDs)'></Guideline>
-<Guideline do={false} label='Light Emitting Diodes (LEDS)'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='APS'></Guideline>
-<Guideline do={false} label='A.P.S.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='EU'></Guideline>
-<Guideline do={false} label='E.U.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='I/O component, I/O list, I/O module '></Guideline>
-<Guideline do={false} label='IO component, i/o list, I-O module'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Do>
+    <Item>light emitting diodes (LEDs)</Item>
+    <Item>APS</Item>
+    <Item>EU</Item>
+    <Item>I/O component, I/O list, I/O module</Item>
+  </Do>
+  <Dont>
+    <Item>Light Emitting Diodes (LEDS)</Item>
+    <Item>A.P.S.</Item>
+    <Item>E.U.</Item>
+    <Item>IO component, i/o list, I-O module</Item>
+  </Dont>
+</Layout>
 
 ## Time based vocabulary: Last, latest and recent
 
@@ -169,21 +134,15 @@ import Guideline from '@site/src/components/Guideline';
 
 - Recent is more time focused and is similar to latest. It means that it happened a short time ago.
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='Latest update'></Guideline>
-<Guideline do={false} label='Last update'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Latest summary'></Guideline>
-<Guideline do={false} label='Last summary'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Recent events'></Guideline>
-<Guideline do={false} label='Last events'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Do>
+    <Item>Latest update</Item>
+    <Item>Latest summary</Item>
+    <Item>Recent events</Item>
+  </Do>
+  <Dont>
+    <Item>Last update</Item>
+    <Item>Last summary</Item>
+    <Item>Last events</Item>
+  </Dont>
+</Layout>

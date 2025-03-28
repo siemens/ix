@@ -9,6 +9,7 @@ description: 'Discover guidelines for writing dialogs and button labels to ensur
 ---
 
 import Guideline from '@site/src/components/Guideline';
+import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 #
 
@@ -26,22 +27,18 @@ import Guideline from '@site/src/components/Guideline';
 
 - Only use ‘OK’ as an option if you cannot find an appropriate verb
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Title: Add user  / Buttons: Cancel, Add'></Guideline>
-<Guideline do={false} label='Title: Add user  / Buttons: Cancel, OK'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Title: Delete file  / Buttons: Cancel, Delete'></Guideline>
-<Guideline do={false} label='Title: Are you sure  / Buttons: Cancel, Delete'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Title: Edit details  / Buttons: Cancel, Save'></Guideline>
-<Guideline do={false} label='Title: Edit details  / Buttons: Cancel, Edit'></Guideline>
-</span>
-</div>
+<Layout>
+  <Do>
+    <Item>Title: Add user  / Buttons: Cancel, Add</Item>
+    <Item>Title: Delete file  / Buttons: Cancel, Delete</Item>
+    <Item>Title: Edit details  / Buttons: Cancel, Save</Item>
+  </Do>
+  <Dont>
+    <Item>Title: Add user  / Buttons: Cancel, OK</Item>
+    <Item>Title: Are you sure  / Buttons: Cancel, Delete</Item>
+    <Item>Title: Edit details  / Buttons: Cancel, Edit</Item>
+  </Dont>
+</Layout>
 
 ## Primary and secondary actions
 
@@ -49,9 +46,11 @@ import Guideline from '@site/src/components/Guideline';
 
 - Primary actions can either be positive (Send, Save) or negative (Delete)
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Cancel, Save'></Guideline>
-<Guideline do={false} label='Save, Cancel'></Guideline>
-</span>
-</div>
+<Layout>
+  <Do>
+    <Item>Cancel, Save</Item>
+  </Do>
+  <Dont>
+    <Item>Save, Cancel</Item>
+  </Dont>
+</Layout>

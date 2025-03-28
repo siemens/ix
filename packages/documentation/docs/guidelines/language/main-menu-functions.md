@@ -9,6 +9,7 @@ description: 'Explore best practices for writing main menu functions to ensure i
 ---
 
 import Guideline from '@site/src/components/Guideline';
+import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 #
 
@@ -20,14 +21,12 @@ import Guideline from '@site/src/components/Guideline';
 
 - Forgot password?
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do={false} label='Sign in / Sign up'></Guideline>
-<Guideline do={false} label='Login (as it is a noun, not a verb)'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Dont>
+    <Item>Sign in / Sign up</Item>
+    <Item>Login (as it is a noun, not a verb)</Item>
+  </Dont>
+</Layout>
 
 ## User management
 
@@ -51,22 +50,14 @@ import Guideline from '@site/src/components/Guideline';
 
 - Edit account
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do={false} label='id / identification'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='E-mail'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Add a user / Delete a user / Add permission'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Surname / Initial name / Given name'></Guideline>
-</span>
-
-</div>
+<Layout>
+  <Dont>
+    <Item>id / identification</Item>
+    <Item>E-mail</Item>
+    <Item>Add a user / Delete a user / Add permission</Item>
+    <Item>Surname / Initial name / Given name</Item>
+  </Dont>
+</Layout>
 
 ## Roles
 
@@ -114,9 +105,11 @@ import Guideline from '@site/src/components/Guideline';
 
 - Expired licenses
 
-<span class="m-2">
-<Guideline do={false} label='licence'></Guideline>
-</span>
+<Layout>
+  <Dont>
+    <Item>licence</Item>
+  </Dont>
+</Layout>
 
 ## About & legal information
 
@@ -144,9 +137,11 @@ import Guideline from '@site/src/components/Guideline';
 
 - © Siemens AG 20XX
 
-<span class="m-2">
-<Guideline do={false} label='V1'></Guideline>
-</span>
+<Layout>
+  <Dont>
+    <Item>V1</Item>
+  </Dont>
+</Layout>
 
 ## Service & Support
 
@@ -158,10 +153,12 @@ import Guideline from '@site/src/components/Guideline';
 
 - FAQ
 
-<span class="m-2">
-<Guideline do={false} label='Documentation'></Guideline>
-<Guideline do={false} label='User manual'></Guideline>
-</span>
+<Layout>
+  <Dont>
+    <Item>Documentation</Item>
+    <Item>User manual</Item>
+  </Dont>
+</Layout>
 
 ## Workspace
 
@@ -171,10 +168,12 @@ import Guideline from '@site/src/components/Guideline';
 
 - KPIs
 
-<span class="m-2">
-<Guideline do={false} label={"KPI's settings"}></Guideline>
-<Guideline do={false} label='KPIS settings'></Guideline>
-</span>
+<Layout>
+  <Dont>
+    <Item>KPI's settings</Item>
+    <Item>KPIS settings</Item>
+  </Dont>
+</Layout>
 
 ## Resetting
 
