@@ -357,12 +357,18 @@ export class Tabs {
   };
 
   private readonly handleTouchMove = (event: TouchEvent) => {
+    if (event.touches.length > 1) return;
+
     const moveX = event.touches[0].clientX - this.startTouchX;
+    const velocityFactor = 1.5;
+
     if (Math.abs(moveX) > 10) {
       event.preventDefault();
+
       requestAnimationFrame(() => {
-        this.move(moveX > 0 ? this.scrollAmount : -this.scrollAmount, true);
+        this.move(-moveX * velocityFactor, true);
       });
+
       this.startTouchX = event.touches[0].clientX;
     }
   };
