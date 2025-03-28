@@ -672,7 +672,7 @@ test('should be 100% when dropdown-max-width is greater than the viewport width'
   expect(box?.width).toBe(pageWidth);
 });
 
-test('click dropdown when allowclear used when using editable select', async ({
+test('dropdown can be opened after clearing select in editable mode', async ({
   mount,
   page,
 }) => {
