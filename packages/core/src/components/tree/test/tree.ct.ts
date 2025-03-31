@@ -61,10 +61,16 @@ const defaultModel = {
   },
 };
 
-const initializeTree = async (mount: Mount, page: Page) => {
+const initializeTree = async (
+  mount: Mount,
+  page: Page,
+  enableToggleOnItem?: boolean
+) => {
   await mount(`
       <div style=" height: 20rem; width: 100%;">
-        <ix-tree root="root"></ix-tree>
+        <ix-tree root="root" ${
+          enableToggleOnItem ? 'enable-toggle-on-item' : ''
+        }></ix-tree>
       </div>
     `);
   const tree = page.locator('ix-tree');
@@ -302,7 +308,10 @@ test('should expand and collapse but not select item when toggle icon is clicked
   );
 });
 
-test('should select item when it is clicked', async ({ mount, page }) => {
+test('should select but not toggle item when it is clicked', async ({
+  mount,
+  page,
+}) => {
   const tree = await initializeTree(mount, page);
   await expect(tree).toHaveClass(/hydrated/);
 
@@ -313,6 +322,24 @@ test('should select item when it is clicked', async ({ mount, page }) => {
 
   await sampleItem.click();
   await expect(sampleItem).toHaveClass(/selected/);
+
+  await expect(
+    tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 1',
+    })
+  ).not.toBeVisible();
+
+  await expect(
+    tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 2',
+    })
+  ).not.toBeVisible();
+
+  await expect(
+    tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 3',
+    })
+  ).not.toBeVisible();
 });
 
 test('should select item when icon-toggle-container is clicked without the toggle icon to be visible', async ({
@@ -364,6 +391,7 @@ test('item should stay selected when toggle icon is clicked', async ({
 
   await element2.click();
   await expect(element2).toHaveClass(/selected/);
+  await element2.locator('ix-icon').click();
   await expect(
     tree.locator('ix-tree-item', {
       hasText: 'Sample Child 4',
@@ -383,4 +411,63 @@ test('item should stay selected when toggle icon is clicked', async ({
       hasText: 'Sample Child 2',
     })
   ).toHaveClass(/selected/);
+});
+
+test('should select and toggle item when it is clicked and toggle on item is enabled', async ({
+  mount,
+  page,
+}) => {
+  const tree = await initializeTree(mount, page, true);
+  await expect(tree).toHaveClass(/hydrated/);
+
+  const sampleItem = tree.locator('ix-tree-item', {
+    hasText: 'Sample',
+    hasNotText: 'Child',
+  });
+
+  await sampleItem.click();
+  await expect(sampleItem).toHaveClass(/selected/);
+
+  await expect(
+    tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 1',
+    })
+  ).toBeVisible();
+
+  await expect(
+    tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 2',
+    })
+  ).toBeVisible();
+
+  await expect(
+    tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 3',
+    })
+  ).toBeVisible();
+
+  await tree
+    .locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    })
+    .click();
+
+  await expect(
+    tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 1',
+    })
+  ).not.toBeVisible();
+
+  await expect(
+    tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 2',
+    })
+  ).not.toBeVisible();
+
+  await expect(
+    tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 3',
+    })
+  ).not.toBeVisible();
 });
