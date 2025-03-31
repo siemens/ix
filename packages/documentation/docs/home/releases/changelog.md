@@ -2,6 +2,8 @@
 sidebar_title: Changelog
 hide_table_of_contents: true
 title: Changelog
+doc-type: 'banner'
+description: ''
 ---
 ## [@siemens/ix@3.0.0-alpha.1](https://github.com/siemens/ix/releases/tag/%40siemens/ix%403.0.0-alpha.1) (2025-03-21T08:45:28Z)
 ### Minor Changes

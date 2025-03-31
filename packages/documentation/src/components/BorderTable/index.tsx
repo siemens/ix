@@ -6,12 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import { useLocation } from '@docusaurus/router';
+import { useColorMode } from '@docusaurus/theme-common';
 import {
   iconChevronDownSmall,
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 import { IxIcon } from '@siemens/ix-react';
 import ApiTable, { AnchorHeader } from '@site/src/components/ApiTable';
+import clsx from 'clsx';
 import {
   createContext,
   forwardRef,
@@ -23,18 +27,14 @@ import {
   useRef,
   useState,
 } from 'react';
-import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import CopyButton from '../UI/CopyButton';
+import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
-import styles from './ColorTable.module.css';
-import clsx from 'clsx';
-import { useLocation } from '@docusaurus/router';
-import { useColorMode } from '@docusaurus/theme-common';
-import BrowserOnly from '@docusaurus/BrowserOnly';
+import styles from './BorderTable.module.css';
 
 function capitalizeFirstLetter(input: string): string {
   if (input.length === 0) return input;
-  return input.charAt(0).toUpperCase() + input.slice(1);
+  return input.charAt(0).toUpperCase() + input.slice(1).toLocaleLowerCase();
 }
 
 const ColorContainerFix = forwardRef<
@@ -74,27 +74,28 @@ const ColorContainerFix = forwardRef<
   return <div ref={themeContainerRef}>{children}</div>;
 });
 
-function ColorCircle({ color }) {
-  console.log(`var(--theme-${color})`);
+function BorderRect({ color }) {
   return (
-    <div className={styles.colorCircle}>
+    <div className={styles.borderCircle}>
       <ColorContainerFix>
         <div
-          className={styles.colorCircleInner}
-          style={{ backgroundColor: `var(--theme-${color})` }}
+          className={styles.borderCircleInner}
+          style={{ border: `var(${color})` }}
         ></div>
       </ColorContainerFix>
     </div>
   );
 }
 
-type Color = {
+type Border = {
   name: string;
-  hex: string;
+  width: string;
+  style: string;
+  color: string;
 };
 
-type ColorContextType = Color & {
-  children: (Color & { rawName: string })[];
+type BorderContextType = Border & {
+  children: (Border & { rawName: string })[];
 };
 
 type ThemeContextType = {
@@ -102,9 +103,11 @@ type ThemeContextType = {
   isDarkColor: boolean;
 };
 
-const ColorContext = createContext<ColorContextType>({
+const BorderContext = createContext<BorderContextType>({
   name: '',
-  hex: '',
+  width: '',
+  style: '',
+  color: '',
   children: [],
 });
 
@@ -113,7 +116,7 @@ const ThemeContext = createContext<ThemeContextType>({
   isDarkColor: true,
 });
 
-function BrowserOnlyColorTable({ children, colorName }) {
+function BrowserOnlyBorderTable({ children, borderName }) {
   const location = useLocation();
 
   const [theme, setTheme] = useState(useDefaultTheme());
@@ -122,11 +125,13 @@ function BrowserOnlyColorTable({ children, colorName }) {
   const [isDarkColor, setIsDarkColor] = useState(colorMode === 'dark');
 
   const [expanded, setExpanded] = useState(
-    location.hash === `#color-${colorName}`
+    location.hash === `#border-${borderName}`
   );
-  const [color, setColor] = useState<ColorContextType>({
+  const [border, setBorder] = useState<BorderContextType>({
     name: '',
-    hex: '',
+    width: '',
+    color: '',
+    style: '',
     children: [],
   });
 
@@ -147,7 +152,7 @@ function BrowserOnlyColorTable({ children, colorName }) {
   function getCustomCSSPropertyByPrefix(prefix: string): string[] {
     return Array.from(allCustomCSSProperties)
       .filter((property) => property !== prefix)
-      .filter((property) => property.startsWith(prefix + '--'));
+      .filter((property) => property.startsWith(prefix + '-'));
   }
 
   function getAllCustomCSSProperties(): Set<string> {
@@ -178,18 +183,28 @@ function BrowserOnlyColorTable({ children, colorName }) {
   }
 
   function generateColorChildren() {
-    const name = `--theme-${colorName}`;
+    const name = `--theme-${borderName}`;
 
-    const children = getCustomCSSPropertyByPrefix(name).map((childName) => {
-      const childHex = getCustomCSSValue(childName);
+    const [_, matchName] = /--theme-(.*)-bdr-(.*)/g.exec(name);
+    const children = [
+      ...getCustomCSSPropertyByPrefix(`--theme-${matchName}-bdr`),
+      ...getCustomCSSPropertyByPrefix(`--theme-${matchName}-dashed-bdr`),
+    ];
+
+    const transformChildren = children.map((childName) => {
+      const rawBorder = getCustomCSSValue(childName);
+      const [width, style, color] = rawBorder.split(' ');
+
       return {
         rawName: childName.substring('--theme-'.length),
         name: capitalizeFirstLetter(childName.substring(name.length + 2)),
-        hex: childHex,
-      };
+        color: color,
+        style: capitalizeFirstLetter(style),
+        width: `${parseFloat(width.replace('rem', '')) * 16}px`,
+      } as Border;
     });
 
-    return children;
+    return transformChildren;
   }
 
   useEffect(() => {
@@ -197,28 +212,31 @@ function BrowserOnlyColorTable({ children, colorName }) {
   }, [colorMode]);
 
   function getHexColors() {
-    const name = `--theme-${colorName}`;
-    const colorHex = getCustomCSSValue(name);
-    const children = generateColorChildren();
+    const name = `--theme-${borderName}`;
+    const [firstBorder] = getCustomCSSPropertyByPrefix(name);
+    const rawBorder = getCustomCSSValue(firstBorder);
+    const [width, style, color] = rawBorder.split(' ');
 
     return {
-      name: colorName,
-      hex: colorHex,
-      children: children,
-    };
+      name,
+      color,
+      style,
+      width,
+      children: generateColorChildren(),
+    } as BorderContextType;
   }
 
   const observerRef = useRef(
-    new MutationObserver(() => setColor(getHexColors()))
+    new MutationObserver(() => setBorder(getHexColors()))
   );
 
   useEffect(() => {
-    const children = generateColorChildren();
-    setColor({
+    const children = generateColorChildren() as any;
+    setBorder({
       ...getHexColors(),
       children: children,
     });
-  }, [colorName, themeRef.current]);
+  }, [borderName, themeRef.current]);
 
   useLayoutEffect(() => {
     const observer = observerRef.current;
@@ -231,7 +249,7 @@ function BrowserOnlyColorTable({ children, colorName }) {
     });
 
     setTimeout(() => {
-      setColor(getHexColors());
+      setBorder(getHexColors());
     }, 250);
 
     return () => {
@@ -245,19 +263,19 @@ function BrowserOnlyColorTable({ children, colorName }) {
   );
 
   return (
-    <ApiTable id={`color-${colorName}`}>
+    <ApiTable id={`border-${borderName}`}>
       <ThemeContext.Provider value={themeContext}>
-        <ColorContext.Provider value={color}>
+        <BorderContext.Provider value={border}>
           <ColorContainerFix ref={themeRef}></ColorContainerFix>
           <AnchorHeader
             noBottomBorder={!expanded}
             onClick={() => setExpanded(!expanded)}
-            anchorName={`color-${colorName}`}
-            anchorLabel="Direct link to the color"
+            anchorName={`border-${borderName}`}
+            anchorLabel="Direct link to the border"
             right={
               <>
                 <div className={styles.DesktopOnly}>
-                  <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
+                  <CopyButton text={`var(${borderName})`}></CopyButton>
                 </div>
                 <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
                 <ThemeVariantToggle
@@ -267,65 +285,68 @@ function BrowserOnlyColorTable({ children, colorName }) {
               </>
             }
           >
-            <div className={styles.colorRow}>
+            <div className={styles.borderRow}>
               <IxIcon
                 name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
               ></IxIcon>
-              <ColorCircle color={colorName}></ColorCircle>
-              <span className={styles.headColorName}>--theme-{colorName}</span>
+              <BorderRect color={border.name}></BorderRect>
+              <span className={styles.headColorName}>{border.name}</span>
             </div>
           </AnchorHeader>
 
           {expanded && children}
-        </ColorContext.Provider>
+        </BorderContext.Provider>
       </ThemeContext.Provider>
     </ApiTable>
   );
 }
 
 function Hex() {
-  const color = useContext(ColorContext);
+  const color = useContext(BorderContext);
   return (
     <ApiTable.Text name="Hex">
-      <code>{color.hex}</code>
+      <code>{color.width}</code>
     </ApiTable.Text>
   );
 }
 
-function Children() {
-  const color = useContext(ColorContext);
-  return color.children?.map((child) => (
-    <ColorTable.Text name={child.name} key={child.name + '_' + child.hex}>
-      <div className={clsx(styles.colorRow)}>
-        <div className={clsx(styles.colorColumn, styles.colorColumnChildName)}>
-          <ColorCircle color={child.rawName}></ColorCircle>
-          {child.rawName}
-          <CopyButton
-            className={clsx('ml-auto', styles.DesktopOnly)}
-            text={`var(--theme-${child.rawName})`}
-            label=""
-          ></CopyButton>
+function BorderStyle() {
+  const color = useContext(BorderContext);
+  return color.children
+    ?.map((child) => {
+      return {
+        ...child,
+        styleOverview: `${child.style} ${child.width}`,
+      };
+    })
+    .map((child) => (
+      <BorderTable.Text
+        name={child.styleOverview}
+        key={child.name + '_' + child.width}
+      >
+        <div className={clsx(styles.borderRow)}>
+          <div
+            className={clsx(styles.borderColumn, styles.borderColumnChildName)}
+          >
+            <BorderRect color={`--theme-${child.rawName}`}></BorderRect>
+            --theme-{child.rawName}
+            <CopyButton
+              className={clsx('ml-auto', styles.DesktopOnly)}
+              text={`var(--theme-${child.rawName})`}
+              label=""
+            ></CopyButton>
+          </div>
+          <div className={clsx(styles.borderColumn, styles.borderColumnHex)}>
+            <code>{child.color}</code>
+          </div>
         </div>
-        <div className={clsx(styles.colorColumn, styles.colorColumnHex)}>
-          <code>{child.hex}</code>
-        </div>
-      </div>
-    </ColorTable.Text>
-  ));
-}
-
-function ColorTableWithChildren({ colorName }) {
-  return (
-    <ColorTable colorName={colorName}>
-      <Hex></Hex>
-      <Children></Children>
-    </ColorTable>
-  );
+      </BorderTable.Text>
+    ));
 }
 
 function Text({ children, name }) {
   return (
-    <div className={styles.colorTextRow}>
+    <div className={styles.borderTextRow}>
       <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
         {name}
       </div>
@@ -334,22 +355,19 @@ function Text({ children, name }) {
   );
 }
 
-const ColorTable = ({ children, colorName }) => {
+const BorderTable = ({ borderName }) => {
   return (
     <BrowserOnly>
       {() => (
-        <BrowserOnlyColorTable colorName={colorName}>
-          {children}
-        </BrowserOnlyColorTable>
+        <BrowserOnlyBorderTable borderName={borderName}>
+          <BorderStyle />
+        </BrowserOnlyBorderTable>
       )}
     </BrowserOnly>
   );
 };
 
-ColorTable.Text = Text;
-ColorTable.Hex = Hex;
-ColorTable.Children = Children;
+BorderTable.Text = Text;
+BorderTable.Hex = Hex;
 
-ColorTable.WithChildren = ColorTableWithChildren;
-
-export default ColorTable;
+export default BorderTable;
