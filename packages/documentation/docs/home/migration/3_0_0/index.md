@@ -273,7 +273,7 @@ We changed the default width of the `input` element from `width: 100%` to `width
 #### ix-select
 
 - Replaced `selectedIndices` attribute with `value`.
-- Replaced `itemSelectionChange` event with `valueC**hange`.
+- Replaced `itemSelectionChange` event with `valueChange`.
 
 #### ix-select-item
 
