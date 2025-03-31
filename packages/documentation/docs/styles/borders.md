@@ -42,17 +42,11 @@ To access them the `var()` CSS function can be called with the border's name:
 <BorderTable borderName="contrast-bdr-1">
 </BorderTable>
 
-<!-- <BorderTable borderName="hard-bdr-1">
-</BorderTable> -->
-
 <BorderTable borderName="primary-bdr-1">
 </BorderTable>
 
 <BorderTable borderName="dynamic-bdr-1">
 </BorderTable>
-
-<!-- <BorderTable borderName="focus-bdr-1">
-</BorderTable> -->
 
 <BorderTable borderName="alarm-bdr-1">
 </BorderTable>
