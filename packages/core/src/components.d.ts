@@ -3137,6 +3137,11 @@ export namespace Components {
          */
         "context": TreeContext;
         /**
+          * Enable to toggle items by click on the item
+          * @since 3.0.0
+         */
+        "enableToggleOnItem"?: boolean;
+        /**
           * Tree model
          */
         "model": TreeModel<any>;
@@ -8520,6 +8525,11 @@ declare namespace LocalJSX {
           * Selection and collapsed state management
          */
         "context"?: TreeContext;
+        /**
+          * Enable to toggle items by click on the item
+          * @since 3.0.0
+         */
+        "enableToggleOnItem"?: boolean;
         /**
           * Tree model
          */

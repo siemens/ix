@@ -22860,6 +22860,37 @@
           "setter": false
         },
         {
+          "name": "enableToggleOnItem",
+          "type": "boolean | undefined",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "enable-toggle-on-item",
+          "reflectToAttr": false,
+          "docs": "Enable to toggle items by click on the item",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "model",
           "type": "{ [x: string]: TreeItem<any>; }",
           "complexType": {

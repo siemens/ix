@@ -64,6 +64,12 @@ export class Tree {
   @Prop({ mutable: true }) context: TreeContext = {};
 
   /**
+   * Enable to toggle items by click on the item
+   * @since 3.0.0
+   */
+  @Prop() enableToggleOnItem?: boolean;
+
+  /**
    * Context changed
    */
   @Event() contextChange!: EventEmitter<TreeContext>;
@@ -195,7 +201,7 @@ export class Tree {
               this.setContext(item.id, context);
             }
 
-            if (item.hasChildren) {
+            if (this.enableToggleOnItem && item.hasChildren) {
               const context = this.getContext(item.id);
               context.isExpanded = !context.isExpanded;
               this.nodeToggled.emit({
