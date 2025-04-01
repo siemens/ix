@@ -1,5 +1,6 @@
 ---
-"@siemens/ix-echarts": patch
+'@siemens/ix-echarts': major
 ---
 
-The __echarts__ theme names have been adapted to the default theme names
+- The **echarts** theme names have been adapted to the default theme names.
+- `convertThemeName` function is removed because not needed anymore after aligning echarts theme names

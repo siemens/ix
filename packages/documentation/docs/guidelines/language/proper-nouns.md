@@ -8,8 +8,6 @@ no_single_tab: true
 description: 'Learn the guidelines for using proper nouns correctly in your text. This subchapter will help you understand when and how to capitalize names, brands, and other specific terms to maintain consistency and professionalism.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
-
 #
 
 ## Capitalize proper nouns

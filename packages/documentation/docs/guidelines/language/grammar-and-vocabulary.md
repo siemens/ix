@@ -8,7 +8,7 @@ no_single_tab: true
 description: "Discover the importance of proper grammar and vocabulary in UX writing. This subchapter will guide you on how to use language effectively to create professional and easily understandable content."
 ---
 
-import Guideline from '@site/src/components/Guideline';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -18,50 +18,35 @@ import Guideline from '@site/src/components/Guideline';
 
 - Only use simple verb forms in the past or future when necessary
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='click, browse, upload'></Guideline>
-<Guideline do={false} label='clicking, being clicked, was clicking'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='file loads, file loaded'></Guideline>
-<Guideline do={false} label='file is going to be loaded, file has been loaded'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>click, browse, upload</DoAndDont.Item>
+    <DoAndDont.Item>file loads, file loaded</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>clicking, being clicked, was clicking</DoAndDont.Item>
+    <DoAndDont.Item>file is going to be loaded, file has been loaded</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Active voice
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='Configuration file opens.'></Guideline>
-<Guideline do={false} label='The configuration file is opened.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Admin provides read-only access.'></Guideline>
-<Guideline do={false} label='Read-only access is provided by Admin.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Measure performance.'></Guideline>
-<Guideline do={false} label='Performance is measured.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Click submit.'></Guideline>
-<Guideline do={false} label='Submit is clicked by user.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Calculate the data.'></Guideline>
-<Guideline do={false} label='The data is calculated by application.'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Configuration file opens.</DoAndDont.Item>
+    <DoAndDont.Item>Admin provides read-only access.</DoAndDont.Item>
+    <DoAndDont.Item>Measure performance.</DoAndDont.Item>
+    <DoAndDont.Item>Click submit.</DoAndDont.Item>
+    <DoAndDont.Item>Calculate the data.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>The configuration file is opened.</DoAndDont.Item>
+    <DoAndDont.Item>Read-only access is provided by Admin.</DoAndDont.Item>
+    <DoAndDont.Item>Performance is measured.</DoAndDont.Item>
+    <DoAndDont.Item>Submit is clicked by user.</DoAndDont.Item>
+    <DoAndDont.Item>The data is calculated by application.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## UI terminology
 
@@ -71,19 +56,16 @@ import Guideline from '@site/src/components/Guideline';
 
 - Basic terminology: checkbox, drop-down, field, icon, menu, link, radio button, window
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='click'></Guideline>
-<Guideline do={false} label='press'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='hover'></Guideline>
-<Guideline do={false} label='mouse over'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>click</DoAndDont.Item>
+    <DoAndDont.Item>hover</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>press</DoAndDont.Item>
+    <DoAndDont.Item>mouse over</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Idioms and phrasal verbs
 
@@ -93,29 +75,20 @@ import Guideline from '@site/src/components/Guideline';
 
 - Avoid cultural references
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='remove'></Guideline>
-<Guideline do={false} label='get rid of'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='calculate'></Guideline>
-<Guideline do={false} label='add up'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='continue'></Guideline>
-<Guideline do={false} label='carry on'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='mobile device'></Guideline>
-<Guideline do={false} label='Apple, Android, iOS, smartphone'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>remove</DoAndDont.Item>
+    <DoAndDont.Item>calculate</DoAndDont.Item>
+    <DoAndDont.Item>continue</DoAndDont.Item>
+    <DoAndDont.Item>mobile device</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>get rid of</DoAndDont.Item>
+    <DoAndDont.Item>add up</DoAndDont.Item>
+    <DoAndDont.Item>carry on</DoAndDont.Item>
+    <DoAndDont.Item>Apple, Android, iOS, smartphone</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Jargon, buzz words and terms
 
@@ -137,29 +110,20 @@ import Guideline from '@site/src/components/Guideline';
 
 - Never make up your own acronyms: https://www.acronymfinder.com/
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='light emitting diodes (LEDs)'></Guideline>
-<Guideline do={false} label='Light Emitting Diodes (LEDS)'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='APS'></Guideline>
-<Guideline do={false} label='A.P.S.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='EU'></Guideline>
-<Guideline do={false} label='E.U.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='I/O component, I/O list, I/O module '></Guideline>
-<Guideline do={false} label='IO component, i/o list, I-O module'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>light emitting diodes (LEDs)</DoAndDont.Item>
+    <DoAndDont.Item>APS</DoAndDont.Item>
+    <DoAndDont.Item>EU</DoAndDont.Item>
+    <DoAndDont.Item>I/O component, I/O list, I/O module</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Light Emitting Diodes (LEDS)</DoAndDont.Item>
+    <DoAndDont.Item>A.P.S.</DoAndDont.Item>
+    <DoAndDont.Item>E.U.</DoAndDont.Item>
+    <DoAndDont.Item>IO component, i/o list, I-O module</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Time based vocabulary: Last, latest and recent
 
@@ -169,21 +133,15 @@ import Guideline from '@site/src/components/Guideline';
 
 - Recent is more time focused and is similar to latest. It means that it happened a short time ago.
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='Latest update'></Guideline>
-<Guideline do={false} label='Last update'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Latest summary'></Guideline>
-<Guideline do={false} label='Last summary'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Recent events'></Guideline>
-<Guideline do={false} label='Last events'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Latest update</DoAndDont.Item>
+    <DoAndDont.Item>Latest summary</DoAndDont.Item>
+    <DoAndDont.Item>Recent events</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Last update</DoAndDont.Item>
+    <DoAndDont.Item>Last summary</DoAndDont.Item>
+    <DoAndDont.Item>Last events</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>

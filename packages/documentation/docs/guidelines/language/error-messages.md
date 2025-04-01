@@ -8,7 +8,7 @@ no_single_tab: true
 description: 'Learn how to write error messages, warnings, and notifications that are helpful and user-friendly. This subchapter provides strategies for communicating issues and alerts in a way that guides users towards solutions.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -46,47 +46,48 @@ import Guideline from '@site/src/components/Guideline';
 
 - An error message alerts user of a problem that exists and must be addressed
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='System error: You’re offline. Check your connection and try again.'></Guideline>
-<Guideline do label='File error: We cannot upload this file. Try uploading again.'></Guideline>
-<Guideline do label='Permission error: To carry out this task, you need more permissions. Contact admin to change permissions. '></Guideline>
-<Guideline do={false} label='What did you do!?'></Guideline>
-<Guideline do={false} label='The email address you entered does not match the required format. Please enter your email address using the standard format.'></Guideline>
-<Guideline do={false} label='You have failed to delete the device.'></Guideline>
-<Guideline do={false} label='Error 404'></Guideline>
-<Guideline do={false} label='Value out of range.'></Guideline>
-<Guideline do={false} label='File not found.'></Guideline>
-<Guideline do={false} label='Title: Input error'></Guideline>
-<Guideline do={false} label='Explanation: Input error detected.'></Guideline>
-<Guideline do={false} label='Action: Try again.'></Guideline>
-</span>
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>System error: You’re offline. Check your connection and try again.</DoAndDont.Item>
+    <DoAndDont.Item>File error: We cannot upload this file. Try uploading again.</DoAndDont.Item>
+    <DoAndDont.Item>Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>What did you do!?</DoAndDont.Item>
+    <DoAndDont.Item>The email address you entered does not match the required format. Please enter your email address using the standard format.</DoAndDont.Item>
+    <DoAndDont.Item>You have failed to delete the device.</DoAndDont.Item>
+    <DoAndDont.Item>Error 404</DoAndDont.Item>
+    <DoAndDont.Item>Value out of range.</DoAndDont.Item>
+    <DoAndDont.Item>File not found.</DoAndDont.Item>
+    <DoAndDont.Item>Title: Input error</DoAndDont.Item>
+    <DoAndDont.Item>Explanation: Input error detected.</DoAndDont.Item>
+    <DoAndDont.Item>Action: Try again.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Warning messages
 
 - A warning message alerts users of a condition that may cause a problem in the future
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Title: You have not saved all documents'></Guideline>
-<Guideline do label='Explanation: You have to save all documents'></Guideline>
-<Guideline do label='Action: (Ok button)'></Guideline>
-</span>
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Title: You have not saved all documents</DoAndDont.Item>
+    <DoAndDont.Item>Explanation: You have to save all documents</DoAndDont.Item>
+    <DoAndDont.Item>Action: (Ok button)</DoAndDont.Item>
+  </DoAndDont.Do>
+</DoAndDont>
 
 ## Notifications
 
 - Notifications are informative and no actions are required from the user
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Access Point 2 is connected.'></Guideline>
-<Guideline do={false} label='Access Point connection failed. Try again.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Changes are saved automatically.'></Guideline>
-<Guideline do={false} label='No rows to show.'></Guideline>
-</span>
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Access Point 2 is connected.</DoAndDont.Item>
+    <DoAndDont.Item>Changes are saved automatically.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Access Point connection failed. Try again.</DoAndDont.Item>
+    <DoAndDont.Item>No rows to show.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
