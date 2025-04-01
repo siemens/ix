@@ -36,7 +36,7 @@ const ICON_CONFIG: Record<string, IconConfig> = {
 };
 
 function Layout(props: LayoutProps) {
-  return <div className={`${styles.layout}`}>{props.children}</div>;
+  return <div className={styles.layout}>{props.children}</div>;
 }
 
 function Item(props: ItemProps) {
