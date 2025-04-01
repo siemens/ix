@@ -8,8 +8,7 @@ no_single_tab: true
 description: 'Familiarize yourself with general best practices for UX writing to maintain consistency and clarity across all your content. This section offers overarching guidelines that apply to various aspects of UX writing.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
-import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -21,20 +20,20 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Confirmation messages: Use the same verb as the transitional text
 
-<Layout>
-  <Do>
-    <Item>Updating user roles…</Item>
-    <Item>Submitting log files…</Item>
-    <Item>Saving project… > Project saved</Item>
-    <Item>Training models… > Models trained</Item>
-  </Do>
-  <Dont>
-    <Item>Getting ready…</Item>
-    <Item>Chopping fruit…</Item>
-    <Item>Saving project… > Project uploaded</Item>
-    <Item>Training models… > Training done</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Updating user roles…</DoAndDont.Item>
+    <DoAndDont.Item>Submitting log files…</DoAndDont.Item>
+    <DoAndDont.Item>Saving project… > Project saved</DoAndDont.Item>
+    <DoAndDont.Item>Training models… > Models trained</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Getting ready…</DoAndDont.Item>
+    <DoAndDont.Item>Chopping fruit…</DoAndDont.Item>
+    <DoAndDont.Item>Saving project… > Project uploaded</DoAndDont.Item>
+    <DoAndDont.Item>Training models… > Training done</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Error messages
 
@@ -48,17 +47,17 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Use … to show an action is required, i.e. fill this in …
 
-<Layout>
-  <Do>
-    <Item>System error: You’re offline. Check your connection and try again.</Item>
-    <Item>File error: We cannot upload this file. Try uploading again.</Item>
-    <Item>Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.</Item>
-  </Do>
-  <Dont>
-    <Item>What did you do!?</Item>
-    <Item>The email address you entered does not match the required format. Please enter your email address using the standard format.</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>System error: You’re offline. Check your connection and try again.</DoAndDont.Item>
+    <DoAndDont.Item>File error: We cannot upload this file. Try uploading again.</DoAndDont.Item>
+    <DoAndDont.Item>Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>What did you do!?</DoAndDont.Item>
+    <DoAndDont.Item>The email address you entered does not match the required format. Please enter your email address using the standard format.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Empty-state text
 
@@ -72,18 +71,18 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Use wording to show users how to resolve the empty state, e.g. with an action, click, etc.
 
-<Layout>
-  <Do>
-    <Item>Allocate users in User management.</Item>
-    <Item>To show rows, select a project.</Item>
-    <Item>To save a project, select Save in Project detail list.</Item>
-  </Do>
-  <Dont>
-    <Item>No allocated users.</Item>
-    <Item>No rows to show.</Item>
-    <Item>No projects saved.</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Allocate users in User management.</DoAndDont.Item>
+    <DoAndDont.Item>To show rows, select a project.</DoAndDont.Item>
+    <DoAndDont.Item>To save a project, select Save in Project detail list.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>No allocated users.</DoAndDont.Item>
+    <DoAndDont.Item>No rows to show.</DoAndDont.Item>
+    <DoAndDont.Item>No projects saved.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Restoring behavior of items
 
@@ -95,13 +94,13 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Do not use Delete and Remove as synonym
 
-<Layout>
-  <Do>
-    <Item>Create a chart and delete a chart</Item>
-    <Item>Add a sensor to a chart and remove a sensor from chart</Item>
-  </Do>
-  <Dont>
-    <Item>Create a chart and remove it</Item>
-    <Item>Add a sensor and delete the sensor</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Create a chart and delete a chart</DoAndDont.Item>
+    <DoAndDont.Item>Add a sensor to a chart and remove a sensor from chart</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Create a chart and remove it</DoAndDont.Item>
+    <DoAndDont.Item>Add a sensor and delete the sensor</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>

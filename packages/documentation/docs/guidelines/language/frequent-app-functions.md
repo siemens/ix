@@ -8,8 +8,7 @@ no_single_tab: true
 description: 'Get tips for naming common app functions clearly and effectively. This subchapter focuses on how to describe frequent actions and features in a way that users can quickly understand and use.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
-import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -21,13 +20,13 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Cockpit
 
-<Layout>
-  <Dont>
-    <Item>Console</Item>
-    <Item>Dash</Item>
-    <Item>Control panel</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Console</DoAndDont.Item>
+    <DoAndDont.Item>Dash</DoAndDont.Item>
+    <DoAndDont.Item>Control panel</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Analytics
 
@@ -35,12 +34,12 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Anomaly detection
 
-<Layout>
-  <Dont>
-    <Item>Assessment</Item>
-    <Item>Examination</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Assessment</DoAndDont.Item>
+    <DoAndDont.Item>Examination</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Monitoring and scheduling
 
@@ -52,11 +51,11 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Remove from watchlist
 
-<Layout>
-  <Dont>
-    <Item>Watch list</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Watch list</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Detail view
 
@@ -66,12 +65,12 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Details
 
-<Layout>
-  <Dont>
-    <Item>Facts</Item>
-    <Item>Specifics</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Facts</DoAndDont.Item>
+    <DoAndDont.Item>Specifics</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ### Asset properties
 
@@ -115,11 +114,11 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Drag files here or select files
 
-<Layout>
-  <Dont>
-    <Item>Drag and drop here or browse</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Drag and drop here or browse</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Comments
 
@@ -131,11 +130,11 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Write your comments here
 
-<Layout>
-  <Dont>
-    <Item>Write a comment</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Write a comment</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Grid and list actions
 
@@ -159,13 +158,13 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Notify me when X occurs
 
-<Layout>
-  <Dont>
-    <Item>Error</Item>
-    <Item>Issue</Item>
-    <Item>Problem</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Error</DoAndDont.Item>
+    <DoAndDont.Item>Issue</DoAndDont.Item>
+    <DoAndDont.Item>Problem</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Event types
 
@@ -193,14 +192,14 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Detected
 
-<Layout>
-  <Dont>
-    <Item>Unacklowedged</Item>
-    <Item>Unack.</Item>
-    <Item>Unackn.</Item>
-    <Item>Unacknl.</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Unacklowedged</DoAndDont.Item>
+    <DoAndDont.Item>Unack.</DoAndDont.Item>
+    <DoAndDont.Item>Unackn.</DoAndDont.Item>
+    <DoAndDont.Item>Unacknl.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Event actions
 

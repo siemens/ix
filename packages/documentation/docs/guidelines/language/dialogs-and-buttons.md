@@ -8,8 +8,7 @@ no_single_tab: true
 description: 'Discover guidelines for writing dialogs and button labels to ensure clear and actionable instructions. This section helps you create effective prompts and calls to action that enhance user interaction.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
-import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -27,18 +26,18 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Only use ‘OK’ as an option if you cannot find an appropriate verb
 
-<Layout>
-  <Do>
-    <Item>Title: Add user  / Buttons: Cancel, Add</Item>
-    <Item>Title: Delete file  / Buttons: Cancel, Delete</Item>
-    <Item>Title: Edit details  / Buttons: Cancel, Save</Item>
-  </Do>
-  <Dont>
-    <Item>Title: Add user  / Buttons: Cancel, OK</Item>
-    <Item>Title: Are you sure  / Buttons: Cancel, Delete</Item>
-    <Item>Title: Edit details  / Buttons: Cancel, Edit</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Title: Add user  / Buttons: Cancel, Add</DoAndDont.Item>
+    <DoAndDont.Item>Title: Delete file  / Buttons: Cancel, Delete</DoAndDont.Item>
+    <DoAndDont.Item>Title: Edit details  / Buttons: Cancel, Save</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Title: Add user  / Buttons: Cancel, OK</DoAndDont.Item>
+    <DoAndDont.Item>Title: Are you sure  / Buttons: Cancel, Delete</DoAndDont.Item>
+    <DoAndDont.Item>Title: Edit details  / Buttons: Cancel, Edit</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Primary and secondary actions
 
@@ -46,11 +45,11 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Primary actions can either be positive (Send, Save) or negative (Delete)
 
-<Layout>
-  <Do>
-    <Item>Cancel, Save</Item>
-  </Do>
-  <Dont>
-    <Item>Save, Cancel</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Cancel, Save</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Save, Cancel</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>

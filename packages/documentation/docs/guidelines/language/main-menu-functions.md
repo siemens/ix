@@ -8,8 +8,7 @@ no_single_tab: true
 description: 'Explore best practices for writing main menu functions to ensure intuitive navigation. This section provides tips on how to label and organize menu items so users can easily find what they need.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
-import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -21,12 +20,12 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Forgot password?
 
-<Layout>
-  <Dont>
-    <Item>Sign in / Sign up</Item>
-    <Item>Login (as it is a noun, not a verb)</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Sign in / Sign up</DoAndDont.Item>
+    <DoAndDont.Item>Login (as it is a noun, not a verb)</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## User management
 
@@ -50,14 +49,14 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Edit account
 
-<Layout>
-  <Dont>
-    <Item>id / identification</Item>
-    <Item>E-mail</Item>
-    <Item>Add a user / Delete a user / Add permission</Item>
-    <Item>Surname / Initial name / Given name</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>id / identification</DoAndDont.Item>
+    <DoAndDont.Item>E-mail</DoAndDont.Item>
+    <DoAndDont.Item>Add a user / Delete a user / Add permission</DoAndDont.Item>
+    <DoAndDont.Item>Surname / Initial name / Given name</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Roles
 
@@ -105,11 +104,11 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Expired licenses
 
-<Layout>
-  <Dont>
-    <Item>licence</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>licence</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## About & legal information
 
@@ -137,11 +136,11 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - © Siemens AG 20XX
 
-<Layout>
-  <Dont>
-    <Item>V1</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>V1</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Service & Support
 
@@ -153,12 +152,12 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - FAQ
 
-<Layout>
-  <Dont>
-    <Item>Documentation</Item>
-    <Item>User manual</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Documentation</DoAndDont.Item>
+    <DoAndDont.Item>User manual</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Workspace
 
@@ -168,12 +167,12 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - KPIs
 
-<Layout>
-  <Dont>
-    <Item>KPI's settings</Item>
-    <Item>KPIS settings</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>KPI's settings</DoAndDont.Item>
+    <DoAndDont.Item>KPIS settings</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Resetting
 

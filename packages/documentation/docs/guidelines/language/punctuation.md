@@ -5,12 +5,10 @@ title: Punctuation
 doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
-description: "Master the use of punctuation to improve the readability and comprehension of your text. This section covers the rules and best practices for using punctuation marks to ensure your writing is clear and precise."
+description: 'Master the use of punctuation to improve the readability and comprehension of your text. This section covers the rules and best practices for using punctuation marks to ensure your writing is clear and precise.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
-import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
-import {IxIcon} from '@siemens/ix-react';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -91,34 +89,34 @@ Always consider whether necessary
 
 - Numbers: Use No. as an abbreviation for number, no spacing between abbreviated No. and number: No.8
 
-<Layout>
-  <Do>
-    <Item>11am</Item>
-    <Item>Monday, January 12, 2021</Item>
-    <Item>€999.50</Item>
-    <Item>€2.5 million</Item>
-    <Item>$400,456.50</Item>
-    <Item>£320</Item>
-    <Item>30 mm</Item>
-    <Item>10 oz</Item>
-    <Item>10-40%</Item>
-    <Item>No.7</Item>
-    <Item>Number 7</Item>
-  </Do>
-  <Dont>
-    <Item>11 a.m.</Item>
-    <Item>Monday, 12 January 2021</Item>
-    <Item>€999,50</Item>
-    <Item>€2,5 million</Item>
-    <Item>$400.456,50</Item>
-    <Item>320£</Item>
-    <Item>30 mms</Item>
-    <Item>10 oz.</Item>
-    <Item>10–40%</Item>
-    <Item>#7</Item>
-    <Item>Num 7</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>11am</DoAndDont.Item>
+    <DoAndDont.Item>Monday, January 12, 2021</DoAndDont.Item>
+    <DoAndDont.Item>€999.50</DoAndDont.Item>
+    <DoAndDont.Item>€2.5 million</DoAndDont.Item>
+    <DoAndDont.Item>$400,456.50</DoAndDont.Item>
+    <DoAndDont.Item>£320</DoAndDont.Item>
+    <DoAndDont.Item>30 mm</DoAndDont.Item>
+    <DoAndDont.Item>10 oz</DoAndDont.Item>
+    <DoAndDont.Item>10-40%</DoAndDont.Item>
+    <DoAndDont.Item>No.7</DoAndDont.Item>
+    <DoAndDont.Item>Number 7</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>11 a.m.</DoAndDont.Item>
+    <DoAndDont.Item>Monday, 12 January 2021</DoAndDont.Item>
+    <DoAndDont.Item>€999,50</DoAndDont.Item>
+    <DoAndDont.Item>€2,5 million</DoAndDont.Item>
+    <DoAndDont.Item>$400.456,50</DoAndDont.Item>
+    <DoAndDont.Item>320£</DoAndDont.Item>
+    <DoAndDont.Item>30 mms</DoAndDont.Item>
+    <DoAndDont.Item>10 oz.</DoAndDont.Item>
+    <DoAndDont.Item>10–40%</DoAndDont.Item>
+    <DoAndDont.Item>#7</DoAndDont.Item>
+    <DoAndDont.Item>Num 7</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Spacing
 
@@ -132,20 +130,20 @@ Always consider whether necessary
 
 - Add a space before unit of measurement
 
-<Layout>
-  <Do>
-    <Item>50%</Item>
-    <Item>11am</Item>
-    <Item>Tuesday: no data</Item>
-    <Item>Browse…</Item>
-  </Do>
-  <Dont>
-    <Item>50 %</Item>
-    <Item>11 am</Item>
-    <Item>Tuesday: no data</Item>
-    <Item>Browse …</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>50%</DoAndDont.Item>
+    <DoAndDont.Item>11am</DoAndDont.Item>
+    <DoAndDont.Item>Tuesday: no data</DoAndDont.Item>
+    <DoAndDont.Item>Browse…</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>50 %</DoAndDont.Item>
+    <DoAndDont.Item>11 am</DoAndDont.Item>
+    <DoAndDont.Item>Tuesday: no data</DoAndDont.Item>
+    <DoAndDont.Item>Browse …</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Lists
 
@@ -159,25 +157,25 @@ Always consider whether necessary
 
 - Make lists parallel, i.e. all items / bullets have the same look, length, feel, punctuation, capitalization
 
-<Layout>
-  <Do>
-    <Item>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>
       Activate comments within your smartphone to
       <ul>
         <li> Write comments</li>
         <li> Respond to comments</li>
         <li> Approve work orders</li>
       </ul>
-    </Item>
-  </Do>
-  <Dont>
-    <Item>
+    </DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>
       Activate comments within your smartphone to
       <ul>
         <li>Write comments</li>
         <li>Respond to comments</li>
         <li>Approve work orders by adding your fingerprint to your user management section in your smartphone.</li>
       </ul>
-    </Item>
-  </Dont>
-</Layout>
+    </DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>

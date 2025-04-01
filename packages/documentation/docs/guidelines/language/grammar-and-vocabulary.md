@@ -8,8 +8,7 @@ no_single_tab: true
 description: "Discover the importance of proper grammar and vocabulary in UX writing. This subchapter will guide you on how to use language effectively to create professional and easily understandable content."
 ---
 
-import Guideline from '@site/src/components/Guideline';
-import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -19,35 +18,35 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Only use simple verb forms in the past or future when necessary
 
-<Layout>
-  <Do>
-    <Item>click, browse, upload</Item>
-    <Item>file loads, file loaded</Item>
-  </Do>
-  <Dont>
-    <Item>clicking, being clicked, was clicking</Item>
-    <Item>file is going to be loaded, file has been loaded</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>click, browse, upload</DoAndDont.Item>
+    <DoAndDont.Item>file loads, file loaded</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>clicking, being clicked, was clicking</DoAndDont.Item>
+    <DoAndDont.Item>file is going to be loaded, file has been loaded</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Active voice
 
-<Layout>
-  <Do>
-    <Item>Configuration file opens.</Item>
-    <Item>Admin provides read-only access.</Item>
-    <Item>Measure performance.</Item>
-    <Item>Click submit.</Item>
-    <Item>Calculate the data.</Item>
-  </Do>
-  <Dont>
-    <Item>The configuration file is opened.</Item>
-    <Item>Read-only access is provided by Admin.</Item>
-    <Item>Performance is measured.</Item>
-    <Item>Submit is clicked by user.</Item>
-    <Item>The data is calculated by application.</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Configuration file opens.</DoAndDont.Item>
+    <DoAndDont.Item>Admin provides read-only access.</DoAndDont.Item>
+    <DoAndDont.Item>Measure performance.</DoAndDont.Item>
+    <DoAndDont.Item>Click submit.</DoAndDont.Item>
+    <DoAndDont.Item>Calculate the data.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>The configuration file is opened.</DoAndDont.Item>
+    <DoAndDont.Item>Read-only access is provided by Admin.</DoAndDont.Item>
+    <DoAndDont.Item>Performance is measured.</DoAndDont.Item>
+    <DoAndDont.Item>Submit is clicked by user.</DoAndDont.Item>
+    <DoAndDont.Item>The data is calculated by application.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## UI terminology
 
@@ -57,16 +56,16 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Basic terminology: checkbox, drop-down, field, icon, menu, link, radio button, window
 
-<Layout>
-  <Do>
-    <Item>click</Item>
-    <Item>hover</Item>
-  </Do>
-  <Dont>
-    <Item>press</Item>
-    <Item>mouse over</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>click</DoAndDont.Item>
+    <DoAndDont.Item>hover</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>press</DoAndDont.Item>
+    <DoAndDont.Item>mouse over</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Idioms and phrasal verbs
 
@@ -76,20 +75,20 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Avoid cultural references
 
-<Layout>
-  <Do>
-    <Item>remove</Item>
-    <Item>calculate</Item>
-    <Item>continue</Item>
-    <Item>mobile device</Item>
-  </Do>
-  <Dont>
-    <Item>get rid of</Item>
-    <Item>add up</Item>
-    <Item>carry on</Item>
-    <Item>Apple, Android, iOS, smartphone</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>remove</DoAndDont.Item>
+    <DoAndDont.Item>calculate</DoAndDont.Item>
+    <DoAndDont.Item>continue</DoAndDont.Item>
+    <DoAndDont.Item>mobile device</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>get rid of</DoAndDont.Item>
+    <DoAndDont.Item>add up</DoAndDont.Item>
+    <DoAndDont.Item>carry on</DoAndDont.Item>
+    <DoAndDont.Item>Apple, Android, iOS, smartphone</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Jargon, buzz words and terms
 
@@ -111,20 +110,20 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Never make up your own acronyms: https://www.acronymfinder.com/
 
-<Layout>
-  <Do>
-    <Item>light emitting diodes (LEDs)</Item>
-    <Item>APS</Item>
-    <Item>EU</Item>
-    <Item>I/O component, I/O list, I/O module</Item>
-  </Do>
-  <Dont>
-    <Item>Light Emitting Diodes (LEDS)</Item>
-    <Item>A.P.S.</Item>
-    <Item>E.U.</Item>
-    <Item>IO component, i/o list, I-O module</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>light emitting diodes (LEDs)</DoAndDont.Item>
+    <DoAndDont.Item>APS</DoAndDont.Item>
+    <DoAndDont.Item>EU</DoAndDont.Item>
+    <DoAndDont.Item>I/O component, I/O list, I/O module</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Light Emitting Diodes (LEDS)</DoAndDont.Item>
+    <DoAndDont.Item>A.P.S.</DoAndDont.Item>
+    <DoAndDont.Item>E.U.</DoAndDont.Item>
+    <DoAndDont.Item>IO component, i/o list, I-O module</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Time based vocabulary: Last, latest and recent
 
@@ -134,15 +133,15 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - Recent is more time focused and is similar to latest. It means that it happened a short time ago.
 
-<Layout>
-  <Do>
-    <Item>Latest update</Item>
-    <Item>Latest summary</Item>
-    <Item>Recent events</Item>
-  </Do>
-  <Dont>
-    <Item>Last update</Item>
-    <Item>Last summary</Item>
-    <Item>Last events</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Latest update</DoAndDont.Item>
+    <DoAndDont.Item>Latest summary</DoAndDont.Item>
+    <DoAndDont.Item>Recent events</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Last update</DoAndDont.Item>
+    <DoAndDont.Item>Last summary</DoAndDont.Item>
+    <DoAndDont.Item>Last events</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>

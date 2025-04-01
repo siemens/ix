@@ -3,29 +3,29 @@ import styles from './styles.module.css';
 import { IxIcon } from '@siemens/ix-react';
 import { iconCancelled, iconSuccess } from '@siemens/ix-icons/icons';
 
-export type VariantType = 'do' | 'dont' | 'do-gradient' | 'dont-gradient' | undefined;
+export type VariantType = 'do' | 'dont' | 'do-gradient' | 'dont-gradient';
 
-export interface IconConfig {
+export type IconConfig = {
   readonly icon: string | null;
   readonly iconColor: string | null;
-}
+};
 
-export interface LayoutProps {
+export type LayoutProps = {
   readonly children: React.ReactNode;
-}
+};
 
-export interface ItemProps {
+export type ItemProps = {
   readonly children: React.ReactNode;
-}
+};
 
-export interface ColProps {
+export type ColProps = {
   readonly variant?: VariantType;
   readonly children: React.ReactNode;
-}
+};
 
-export interface VariantComponentProps {
+export type VariantComponentProps = {
   readonly children: React.ReactNode;
-}
+};
 
 const ICON_CONFIG: Record<string, IconConfig> = {
   do: { icon: iconSuccess, iconColor: 'color-success' },
@@ -35,23 +35,15 @@ const ICON_CONFIG: Record<string, IconConfig> = {
   default: { icon: null, iconColor: null },
 };
 
-export function Layout(props: LayoutProps) {
-  return (
-    <div className={`${styles.layout}`}>
-      {props.children}
-    </div>
-  );
+function Layout(props: LayoutProps) {
+  return <div className={`${styles.layout}`}>{props.children}</div>;
 }
 
-export function Item(props: ItemProps) {
-  return (
-    <div>
-      {props.children}
-    </div>
-  );
+function Item(props: ItemProps) {
+  return <div>{props.children}</div>;
 }
 
-export function Col(props: ColProps) {
+function Col(props: ColProps) {
   const { variant, children } = props;
 
   const variantClass = variant ? `${styles[variant]}` : '';
@@ -59,10 +51,14 @@ export function Col(props: ColProps) {
 
   return (
     <div className={`${styles.col} ${variantClass}`}>
-      {React.Children.map(children, child => (
+      {React.Children.map(children, (child) => (
         <div className={styles.entry}>
           {iconProps.icon && (
-            <IxIcon name={iconProps.icon} color={iconProps.iconColor} size="24" />
+            <IxIcon
+              name={iconProps.icon}
+              color={iconProps.iconColor}
+              size="24"
+            />
           )}
           {child}
         </div>
@@ -71,18 +67,26 @@ export function Col(props: ColProps) {
   );
 }
 
-export function Do(props: VariantComponentProps) {
+function Do(props: VariantComponentProps) {
   return <Col variant="do">{props.children}</Col>;
 }
 
-export function Dont(props: VariantComponentProps) {
+function Dont(props: VariantComponentProps) {
   return <Col variant="dont">{props.children}</Col>;
 }
 
-export function DoGradient(props: VariantComponentProps) {
+function DoGradient(props: VariantComponentProps) {
   return <Col variant="do-gradient">{props.children}</Col>;
 }
 
-export function DontGradient(props: VariantComponentProps) {
+function DontGradient(props: VariantComponentProps) {
   return <Col variant="dont-gradient">{props.children}</Col>;
 }
+
+Layout.Do = Do;
+Layout.Dont = Dont;
+Layout.DoGradient = DoGradient;
+Layout.DontGradient = DontGradient;
+Layout.Item = Item;
+
+export default Layout;

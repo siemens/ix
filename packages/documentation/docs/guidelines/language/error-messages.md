@@ -8,8 +8,7 @@ no_single_tab: true
 description: 'Learn how to write error messages, warnings, and notifications that are helpful and user-friendly. This subchapter provides strategies for communicating issues and alerts in a way that guides users towards solutions.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
-import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -47,48 +46,48 @@ import { Layout, Do, Dont, Item } from '@site/src/components/DosDontsStyling';
 
 - An error message alerts user of a problem that exists and must be addressed
 
-<Layout>
-  <Do>
-    <Item>System error: You’re offline. Check your connection and try again.</Item>
-    <Item>File error: We cannot upload this file. Try uploading again.</Item>
-    <Item>Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.</Item>
-  </Do>
-  <Dont>
-    <Item>What did you do!?</Item>
-    <Item>The email address you entered does not match the required format. Please enter your email address using the standard format.</Item>
-    <Item>You have failed to delete the device.</Item>
-    <Item>Error 404</Item>
-    <Item>Value out of range.</Item>
-    <Item>File not found.</Item>
-    <Item>Title: Input error</Item>
-    <Item>Explanation: Input error detected.</Item>
-    <Item>Action: Try again.</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>System error: You’re offline. Check your connection and try again.</DoAndDont.Item>
+    <DoAndDont.Item>File error: We cannot upload this file. Try uploading again.</DoAndDont.Item>
+    <DoAndDont.Item>Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>What did you do!?</DoAndDont.Item>
+    <DoAndDont.Item>The email address you entered does not match the required format. Please enter your email address using the standard format.</DoAndDont.Item>
+    <DoAndDont.Item>You have failed to delete the device.</DoAndDont.Item>
+    <DoAndDont.Item>Error 404</DoAndDont.Item>
+    <DoAndDont.Item>Value out of range.</DoAndDont.Item>
+    <DoAndDont.Item>File not found.</DoAndDont.Item>
+    <DoAndDont.Item>Title: Input error</DoAndDont.Item>
+    <DoAndDont.Item>Explanation: Input error detected.</DoAndDont.Item>
+    <DoAndDont.Item>Action: Try again.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Warning messages
 
 - A warning message alerts users of a condition that may cause a problem in the future
 
-<Layout>
-  <Do>
-    <Item>Title: You have not saved all documents</Item>
-    <Item>Explanation: You have to save all documents</Item>
-    <Item>Action: (Ok button)</Item>
-  </Do>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Title: You have not saved all documents</DoAndDont.Item>
+    <DoAndDont.Item>Explanation: You have to save all documents</DoAndDont.Item>
+    <DoAndDont.Item>Action: (Ok button)</DoAndDont.Item>
+  </DoAndDont.Do>
+</DoAndDont>
 
 ## Notifications
 
 - Notifications are informative and no actions are required from the user
 
-<Layout>
-  <Do>
-    <Item>Access Point 2 is connected.</Item>
-    <Item>Changes are saved automatically.</Item>
-  </Do>
-  <Dont>
-    <Item>Access Point connection failed. Try again.</Item>
-    <Item>No rows to show.</Item>
-  </Dont>
-</Layout>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Access Point 2 is connected.</DoAndDont.Item>
+    <DoAndDont.Item>Changes are saved automatically.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Access Point connection failed. Try again.</DoAndDont.Item>
+    <DoAndDont.Item>No rows to show.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
