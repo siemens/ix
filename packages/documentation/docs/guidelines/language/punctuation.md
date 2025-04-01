@@ -5,10 +5,10 @@ title: Punctuation
 doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
-description: "Master the use of punctuation to improve the readability and comprehension of your text. This section covers the rules and best practices for using punctuation marks to ensure your writing is clear and precise."
+description: 'Master the use of punctuation to improve the readability and comprehension of your text. This section covers the rules and best practices for using punctuation marks to ensure your writing is clear and precise.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -49,9 +49,8 @@ Always consider whether necessary
 <div class="mb-2">
 `'` Single quotation mark for possession: Customer’s role (single), customers’ roles (plural)
 </div>
-
 <div class="mb-2">
-`  ` No quotation mark or brackets for plurals: PDFs
+<code style={{ whiteSpace: 'pre' }}> </code> No quotation mark or brackets for plurals: PDFs
 </div>
 
 <div class="mb-2">
@@ -90,64 +89,34 @@ Always consider whether necessary
 
 - Numbers: Use No. as an abbreviation for number, no spacing between abbreviated No. and number: No.8
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='11am'></Guideline>
-<Guideline do={false} label='11 a.m.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Monday, January 12, 2021'></Guideline>
-<Guideline do={false} label='Monday, 12 January 2021'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='€999.50'></Guideline>
-<Guideline do={false} label='€999,50'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='€2.5 million'></Guideline>
-<Guideline do={false} label='€2,5 million'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='$400,456.50'></Guideline>
-<Guideline do={false} label='$400.456,50'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='£320'></Guideline>
-<Guideline do={false} label='320£'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='30 mm'></Guideline>
-<Guideline do={false} label='30 mms'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='10 oz'></Guideline>
-<Guideline do={false} label='10 oz.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='10-40%'></Guideline>
-<Guideline do={false} label='10–40%'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='No.7'></Guideline>
-<Guideline do={false} label='#7'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Number 7'></Guideline>
-<Guideline do={false} label='Num 7'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>11am</DoAndDont.Item>
+    <DoAndDont.Item>Monday, January 12, 2021</DoAndDont.Item>
+    <DoAndDont.Item>€999.50</DoAndDont.Item>
+    <DoAndDont.Item>€2.5 million</DoAndDont.Item>
+    <DoAndDont.Item>$400,456.50</DoAndDont.Item>
+    <DoAndDont.Item>£320</DoAndDont.Item>
+    <DoAndDont.Item>30 mm</DoAndDont.Item>
+    <DoAndDont.Item>10 oz</DoAndDont.Item>
+    <DoAndDont.Item>10-40%</DoAndDont.Item>
+    <DoAndDont.Item>No.7</DoAndDont.Item>
+    <DoAndDont.Item>Number 7</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>11 a.m.</DoAndDont.Item>
+    <DoAndDont.Item>Monday, 12 January 2021</DoAndDont.Item>
+    <DoAndDont.Item>€999,50</DoAndDont.Item>
+    <DoAndDont.Item>€2,5 million</DoAndDont.Item>
+    <DoAndDont.Item>$400.456,50</DoAndDont.Item>
+    <DoAndDont.Item>320£</DoAndDont.Item>
+    <DoAndDont.Item>30 mms</DoAndDont.Item>
+    <DoAndDont.Item>10 oz.</DoAndDont.Item>
+    <DoAndDont.Item>10–40%</DoAndDont.Item>
+    <DoAndDont.Item>#7</DoAndDont.Item>
+    <DoAndDont.Item>Num 7</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Spacing
 
@@ -161,29 +130,20 @@ Always consider whether necessary
 
 - Add a space before unit of measurement
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='50%'></Guideline>
-<Guideline do={false} label='50 %'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='11am'></Guideline>
-<Guideline do={false} label='11 am'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Tuesday: no data'></Guideline>
-<Guideline do={false} label='Tuesday: no data'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Browse…'></Guideline>
-<Guideline do={false} label='Browse …'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>50%</DoAndDont.Item>
+    <DoAndDont.Item>11am</DoAndDont.Item>
+    <DoAndDont.Item>Tuesday: no data</DoAndDont.Item>
+    <DoAndDont.Item>Browse…</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>50 %</DoAndDont.Item>
+    <DoAndDont.Item>11 am</DoAndDont.Item>
+    <DoAndDont.Item>Tuesday: no data</DoAndDont.Item>
+    <DoAndDont.Item>Browse …</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Lists
 
@@ -197,23 +157,25 @@ Always consider whether necessary
 
 - Make lists parallel, i.e. all items / bullets have the same look, length, feel, punctuation, capitalization
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do label='Activate comments within your smartphone to
-'></Guideline>
-<ul>
-<li> Write comments</li>
-<li> Respond to comments</li>
-<li> Approve work orders</li>
-</ul>
-
-<Guideline do={false} label='Activate comments within your smartphone to'></Guideline>
-
-<ul>
-<li>Write comments</li>
-<li>Respond to comments</li>
-<li>Approve work orders by adding your fingerprint to your user management section in your smartphone.</li>
-</ul>
-</span>
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>
+      Activate comments within your smartphone to
+      <ul>
+        <li> Write comments</li>
+        <li> Respond to comments</li>
+        <li> Approve work orders</li>
+      </ul>
+    </DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>
+      Activate comments within your smartphone to
+      <ul>
+        <li>Write comments</li>
+        <li>Respond to comments</li>
+        <li>Approve work orders by adding your fingerprint to your user management section in your smartphone.</li>
+      </ul>
+    </DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>

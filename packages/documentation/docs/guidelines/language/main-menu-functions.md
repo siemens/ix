@@ -8,7 +8,7 @@ no_single_tab: true
 description: 'Explore best practices for writing main menu functions to ensure intuitive navigation. This section provides tips on how to label and organize menu items so users can easily find what they need.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -20,14 +20,12 @@ import Guideline from '@site/src/components/Guideline';
 
 - Forgot password?
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do={false} label='Sign in / Sign up'></Guideline>
-<Guideline do={false} label='Login (as it is a noun, not a verb)'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Sign in / Sign up</DoAndDont.Item>
+    <DoAndDont.Item>Login (as it is a noun, not a verb)</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## User management
 
@@ -51,22 +49,14 @@ import Guideline from '@site/src/components/Guideline';
 
 - Edit account
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do={false} label='id / identification'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='E-mail'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Add a user / Delete a user / Add permission'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Surname / Initial name / Given name'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>id / identification</DoAndDont.Item>
+    <DoAndDont.Item>E-mail</DoAndDont.Item>
+    <DoAndDont.Item>Add a user / Delete a user / Add permission</DoAndDont.Item>
+    <DoAndDont.Item>Surname / Initial name / Given name</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Roles
 
@@ -114,9 +104,11 @@ import Guideline from '@site/src/components/Guideline';
 
 - Expired licenses
 
-<span class="m-2">
-<Guideline do={false} label='licence'></Guideline>
-</span>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>licence</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## About & legal information
 
@@ -144,9 +136,11 @@ import Guideline from '@site/src/components/Guideline';
 
 - © Siemens AG 20XX
 
-<span class="m-2">
-<Guideline do={false} label='V1'></Guideline>
-</span>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>V1</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Service & Support
 
@@ -158,10 +152,12 @@ import Guideline from '@site/src/components/Guideline';
 
 - FAQ
 
-<span class="m-2">
-<Guideline do={false} label='Documentation'></Guideline>
-<Guideline do={false} label='User manual'></Guideline>
-</span>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Documentation</DoAndDont.Item>
+    <DoAndDont.Item>User manual</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Workspace
 
@@ -171,10 +167,12 @@ import Guideline from '@site/src/components/Guideline';
 
 - KPIs
 
-<span class="m-2">
-<Guideline do={false} label={"KPI's settings"}></Guideline>
-<Guideline do={false} label='KPIS settings'></Guideline>
-</span>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>KPI's settings</DoAndDont.Item>
+    <DoAndDont.Item>KPIS settings</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Resetting
 

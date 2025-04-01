@@ -8,7 +8,7 @@ no_single_tab: true
 description: 'Familiarize yourself with general best practices for UX writing to maintain consistency and clarity across all your content. This section offers overarching guidelines that apply to various aspects of UX writing.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -20,28 +20,20 @@ import Guideline from '@site/src/components/Guideline';
 
 - Confirmation messages: Use the same verb as the transitional text
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Updating user roles…'></Guideline>
-<Guideline do={false} label='Getting ready…'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Submitting log files…'></Guideline>
-<Guideline do={false} label='Chopping fruit…'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Saving project… > Project saved'></Guideline>
-<Guideline do={false} label='Saving project… > Project uploaded'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Training models… > Models trained'></Guideline>
-<Guideline do={false} label='Training models… > Training done'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Updating user roles…</DoAndDont.Item>
+    <DoAndDont.Item>Submitting log files…</DoAndDont.Item>
+    <DoAndDont.Item>Saving project… > Project saved</DoAndDont.Item>
+    <DoAndDont.Item>Training models… > Models trained</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Getting ready…</DoAndDont.Item>
+    <DoAndDont.Item>Chopping fruit…</DoAndDont.Item>
+    <DoAndDont.Item>Saving project… > Project uploaded</DoAndDont.Item>
+    <DoAndDont.Item>Training models… > Training done</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Error messages
 
@@ -55,15 +47,17 @@ import Guideline from '@site/src/components/Guideline';
 
 - Use … to show an action is required, i.e. fill this in …
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='System error: You’re offline. Check your connection and try again.'></Guideline>
-<Guideline do label='File error: We cannot upload this file. Try uploading again.'></Guideline>
-<Guideline do label='Permission error: To carry out this task, you need more permissions. Contact admin to change permissions. '></Guideline>
-<Guideline do={false} label='What did you do!?'></Guideline>
-<Guideline do={false} label='The email address you entered does not match the required format. Please enter your email address using the standard format.'></Guideline>
-</span>
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>System error: You’re offline. Check your connection and try again.</DoAndDont.Item>
+    <DoAndDont.Item>File error: We cannot upload this file. Try uploading again.</DoAndDont.Item>
+    <DoAndDont.Item>Permission error: To carry out this task, you need more permissions. Contact admin to change permissions.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>What did you do!?</DoAndDont.Item>
+    <DoAndDont.Item>The email address you entered does not match the required format. Please enter your email address using the standard format.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Empty-state text
 
@@ -77,23 +71,18 @@ import Guideline from '@site/src/components/Guideline';
 
 - Use wording to show users how to resolve the empty state, e.g. with an action, click, etc.
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Allocate users in User management.'></Guideline>
-<Guideline do={false} label='No allocated users.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='To show rows, select a project.'></Guideline>
-<Guideline do={false} label='No rows to show.'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='To save a project, select Save in Project detail list.'></Guideline>
-<Guideline do={false} label='No projects saved.'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Allocate users in User management.</DoAndDont.Item>
+    <DoAndDont.Item>To show rows, select a project.</DoAndDont.Item>
+    <DoAndDont.Item>To save a project, select Save in Project detail list.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>No allocated users.</DoAndDont.Item>
+    <DoAndDont.Item>No rows to show.</DoAndDont.Item>
+    <DoAndDont.Item>No projects saved.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Restoring behavior of items
 
@@ -105,14 +94,13 @@ import Guideline from '@site/src/components/Guideline';
 
 - Do not use Delete and Remove as synonym
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Create a chart and delete a chart'></Guideline>
-<Guideline do={false} label='Create a chart and remove it'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Add a sensor to a chart and remove a sensor from chart'></Guideline>
-<Guideline do={false} label='Add a sensor and delete the sensor'></Guideline>
-</span>
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Create a chart and delete a chart</DoAndDont.Item>
+    <DoAndDont.Item>Add a sensor to a chart and remove a sensor from chart</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Create a chart and remove it</DoAndDont.Item>
+    <DoAndDont.Item>Add a sensor and delete the sensor</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>

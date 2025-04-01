@@ -8,7 +8,7 @@ no_single_tab: true
 description: 'Discover guidelines for writing dialogs and button labels to ensure clear and actionable instructions. This section helps you create effective prompts and calls to action that enhance user interaction.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -26,22 +26,18 @@ import Guideline from '@site/src/components/Guideline';
 
 - Only use ‘OK’ as an option if you cannot find an appropriate verb
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Title: Add user  / Buttons: Cancel, Add'></Guideline>
-<Guideline do={false} label='Title: Add user  / Buttons: Cancel, OK'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Title: Delete file  / Buttons: Cancel, Delete'></Guideline>
-<Guideline do={false} label='Title: Are you sure  / Buttons: Cancel, Delete'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Title: Edit details  / Buttons: Cancel, Save'></Guideline>
-<Guideline do={false} label='Title: Edit details  / Buttons: Cancel, Edit'></Guideline>
-</span>
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Title: Add user  / Buttons: Cancel, Add</DoAndDont.Item>
+    <DoAndDont.Item>Title: Delete file  / Buttons: Cancel, Delete</DoAndDont.Item>
+    <DoAndDont.Item>Title: Edit details  / Buttons: Cancel, Save</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Title: Add user  / Buttons: Cancel, OK</DoAndDont.Item>
+    <DoAndDont.Item>Title: Are you sure  / Buttons: Cancel, Delete</DoAndDont.Item>
+    <DoAndDont.Item>Title: Edit details  / Buttons: Cancel, Edit</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Primary and secondary actions
 
@@ -49,9 +45,11 @@ import Guideline from '@site/src/components/Guideline';
 
 - Primary actions can either be positive (Send, Save) or negative (Delete)
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Cancel, Save'></Guideline>
-<Guideline do={false} label='Save, Cancel'></Guideline>
-</span>
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Cancel, Save</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Save, Cancel</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
