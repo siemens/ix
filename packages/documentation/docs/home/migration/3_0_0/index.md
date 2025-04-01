@@ -287,6 +287,37 @@ We changed the default width of the `input` element from `width: 100%` to `width
 
 - Replaced `color` attribute with `textColor`.
 
+## `@siemens/ix-echarts`
+
+### Theme names changed
+
+- From `brand-light` to `theme-brand-light`
+- From `brand-dark` to `theme-brand-dark`
+- From `classic-light` to `theme-classic-light`
+- From `classic-dark` to `theme-classic-dark`
+
+e.g
+
+From:
+
+```javascript
+import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+
+const myEChart = echarts.init(element, convertThemeName(theme));
+```
+
+To:
+
+```javascript
+import { registerTheme } from '@siemens/ix-echarts';
+
+const myEChart = echarts.init(element, theme);
+```
+
+### Utility function `convertThemeName` is removed from `@siemens/ix-echarts`
+
+Utility function `convertThemeName` has be removed, because not needed anymore after aligning echarts names with ix css theme names.
+
 ## Questions ❓🙋‍♀️
 
 Check out the [Breaking Changes guide](https://github.com/siemens/ix/blob/release-3.0.0/BREAKING_CHANGES/v3.md) and if you have further questions or migration problems [contact us](./../../support/contact-us).
