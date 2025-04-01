@@ -672,6 +672,34 @@ test('should be 100% when dropdown-max-width is greater than the viewport width'
   expect(box?.width).toBe(pageWidth);
 });
 
+test('dropdown can be opened after clearing select in editable mode', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select editable allow-clear>
+      <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+      <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+    </ix-select>
+`);
+
+  const selectElement = page.locator('ix-select');
+  await expect(selectElement).toHaveClass(/hydrated/);
+  await page.locator('[data-select-dropdown]').click();
+
+  await page.locator('ix-select-item').nth(1).click();
+  await expect(selectElement.locator('input')).toHaveValue('Item 2');
+
+  const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
+  await expect(clearButton).toBeVisible();
+  await clearButton.click();
+
+  await page.locator('[data-select-dropdown]').click();
+  const dropdown = selectElement.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+});
+
 test('should not show add icon when spaces are entered at the start of input', async ({
   mount,
   page,
