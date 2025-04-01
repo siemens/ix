@@ -296,7 +296,9 @@ We changed the default width of the `input` element from `width: 100%` to `width
 - From `classic-light` to `theme-classic-light`
 - From `classic-dark` to `theme-classic-dark`
 
-e.g
+### Utility function `convertThemeName` war removed from `@siemens/ix-echarts`
+
+The `convertThemeName` utility function has been removed, because it was not needed anymore after aligning the echarts theme names with iX CSS theme names.
 
 From:
 
@@ -313,10 +315,6 @@ import { registerTheme } from '@siemens/ix-echarts';
 
 const myEChart = echarts.init(element, theme);
 ```
-
-### Utility function `convertThemeName` is removed from `@siemens/ix-echarts`
-
-Utility function `convertThemeName` has be removed, because not needed anymore after aligning echarts names with ix css theme names.
 
 ## Questions ❓🙋‍♀️
 
