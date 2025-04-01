@@ -18,14 +18,6 @@
 
   display: block;
   position: relative;
-
-  --theme-color-alarm-contrast-text: var(--theme-color-alarm--contrast);
-  --theme-color-critical-contrast-text: var(--theme-color-critical--contrast);
-  --theme-color-info-contrast-text: var(--theme-color-info--contrast);
-  --theme-color-neutral-contrast-text: var(--theme-color-neutral--contrast);
-  --theme-color-primary-contrast-text: var(--theme-color-primary--contrast);
-  --theme-color-success-contrast-text: var(--theme-color-success--contrast);
-  --theme-color-warning-contrast-text: var(--theme-color-warning--contrast);
 }
 
 :host(.text-xs) {

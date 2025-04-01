@@ -93,6 +93,14 @@ export class IxTypography {
    */
   @Prop() textDecoration: TextDecoration = 'none';
 
+  private static getTextColor(color: TypographyColors) {
+    if (color.startsWith('inv-') || !color.endsWith('-contrast')) {
+      return `var(--theme-color-${color}-text)`;
+    }
+
+    return `var(--theme-color-${color.replace('-', '--')})`;
+  }
+
   render() {
     let typographyClass: Record<string, boolean> = {};
     typographyClass[`typography-${this.format ?? 'body'}`] = true;
@@ -107,7 +115,7 @@ export class IxTypography {
 
     if (this.textColor) {
       style = {
-        color: `var(--theme-color-${this.textColor}-text)`,
+        color: IxTypography.getTextColor(this.textColor),
       };
     }
 
