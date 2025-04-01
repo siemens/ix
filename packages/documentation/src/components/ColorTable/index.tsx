@@ -75,7 +75,6 @@ const ColorContainerFix = forwardRef<
 });
 
 function ColorCircle({ color }) {
-  console.log(`var(--theme-${color})`);
   return (
     <div className={styles.colorCircle}>
       <ColorContainerFix>
