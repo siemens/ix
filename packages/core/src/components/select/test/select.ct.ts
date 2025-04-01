@@ -755,21 +755,18 @@ test('should preserve spaces within input and show add icon', async ({
   mount,
   page,
 }) => {
-  const itemText = 'Item      1';
-  await mount(`<ix-select editable></ix-select>`);
-  const select = page.locator('ix-select');
-  const itemAdded = select.evaluate((elm) => {
-    return new Promise<number>((resolve) => {
-      elm.addEventListener('addItem', (e: Event) =>
-        resolve((e as CustomEvent).detail)
-      );
-    });
-  });
-  const input = page.locator('input');
-  await input.focus();
-  await input.fill(itemText);
-  await page.keyboard.press('Enter');
+  await mount(`<ix-select editable>
+    <ix-select-item label="Item 1" value="1"></ix-select-item>
+    <ix-select-item label="Item 7" value="7"></ix-select-item>
+  </ix-select>`);
 
-  await expect(select).toHaveClass(/hydrated/);
-  expect(await itemAdded).toBe(itemText);
+  const select = page.locator('ix-select');
+  const input = select.locator('input');
+
+  const itemText = 'Item     1';
+  await input.fill(itemText);
+
+  const addItem = select.locator('.add-item');
+  await expect(addItem).toHaveCount(1);
+  await expect(input).toHaveValue(itemText);
 });
