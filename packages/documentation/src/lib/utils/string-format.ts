@@ -20,14 +20,16 @@ export function fromKebabCaseToCamelCase(str: string): string {
   return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
 }
 
-export function capitalizeFirstLetter(
+export function capitalize(
   input: string,
-  capitalizeOnlyFirstLetter = false
+  firstLetterOnly = false
 ): string {
-  if (input.length === 0) return input;
-
-  if (capitalizeOnlyFirstLetter) {
-    return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+  if (!input) {
+    return input;
   }
-  return input.charAt(0).toUpperCase() + input.slice(1);
+
+  const firstLetter = input[0].toUpperCase();
+  const tail = firstLetterOnly ? input.slice(1) : input.slice(1).toLowerCase();
+
+  return firstLetter + tail;
 }
