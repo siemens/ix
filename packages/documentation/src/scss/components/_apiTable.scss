@@ -15,4 +15,9 @@
     background-color: var(--theme-color-1);
     color: var(--theme-color-std-text);
   }
+
+  code {
+    --ifm-code-background: var(--theme-color-0);
+    border: none;
+  }
 }
