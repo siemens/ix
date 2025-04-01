@@ -275,6 +275,7 @@ export class Upload {
               disabled={disabled}
             />
             <ix-button
+              aria-disabled={disabled}
               outline
               onClick={() => this.inputElement.click()}
               disabled={disabled}
