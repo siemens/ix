@@ -16,6 +16,7 @@
   justify-content: center;
   color: var(--theme-color-soft-text);
   gap: 0.25rem;
+  white-space: nowrap;
 }
 
 .Button:hover {

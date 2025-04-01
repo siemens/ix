@@ -1,5 +1,16 @@
 # @siemens/ix-angular
 
+## 3.0.0-alpha.3
+
+### Major Changes
+
+- [#1805](https://github.com/siemens/ix/pull/1805) [`e638ef08fbe34ad0e1dc153cff5a136d69492cd0`](https://github.com/siemens/ix/commit/e638ef08fbe34ad0e1dc153cff5a136d69492cd0) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(angular): change angular compiler version to v18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @siemens/ix@3.0.0-alpha.3
+
 ## 3.0.0-alpha.2
 
 ### Patch Changes

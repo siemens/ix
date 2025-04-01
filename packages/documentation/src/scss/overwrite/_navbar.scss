@@ -3,6 +3,10 @@
  */
 
 #__docusaurus {
+  [class*='toggleButton'] {
+    color: var(--theme-color-soft-text);
+  }
+
   .navbar {
     border-bottom: 1px solid var(--theme-color-x-weak-bdr);
     .navbar__inner {
@@ -17,18 +21,29 @@
     padding: 0 2rem;
   }
 
-  .navbar {
-    .navbar__item.navbar__link {
-      position: relative;
+  @media screen and (max-width: 1150px) {
+    .navbar__logo {
+      display: none;
     }
-    .navbar__item.navbar__link.navbar__link--active::after {
-      content: '';
+    .navbar__inner {
+      padding-left: 0px !important;
+    }
+  }
+
+  @media screen and (max-width: 996px) {
+    .navbar__logo {
       display: block;
-      position: absolute;
-      height: 2px;
-      width: calc(100% - 1.5rem);
-      background: var(--theme-color-dynamic);
-      top: 2.8125rem;
+    }
+
+    .navbar__inner {
+      padding-left: 2rem !important;
+    }
+
+    .navbar__items--right {
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      min-width: 10rem;
     }
   }
 

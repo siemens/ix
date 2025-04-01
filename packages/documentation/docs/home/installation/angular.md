@@ -17,8 +17,8 @@ Both `@angular/core` and `@angular/forms` are peer dependencies which means they
 
 ```json
 "peerDependencies": {
-  "@angular/core": ">=17.3.0",
-  "@angular/forms": ">=17.3.0",
+  "@angular/core": ">=18.2.13",
+  "@angular/forms": ">=18.2.13",
 }
 ```
 
