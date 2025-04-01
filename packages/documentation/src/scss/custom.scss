@@ -55,6 +55,7 @@
 
   --ifm-menu-color-active: var(--theme-color-dynamic);
   --ifm-menu-color: var(--theme-color-std-text);
+  --ifm-link-color: var(--theme-color-dynamic);
 }
 
 [data-ix-theme='brand'][data-ix-variant='dark'],
@@ -114,4 +115,8 @@ ix-dropdown {
 
 .display-none {
   display: none;
+}
+
+.dropdown-button {
+  padding-right: 0 !important;
 }

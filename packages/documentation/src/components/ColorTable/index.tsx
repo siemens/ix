@@ -245,41 +245,44 @@ function BrowserOnlyColorTable({ children, colorName }) {
   );
 
   return (
-    <ApiTable id={`color-${colorName}`}>
-      <ThemeContext.Provider value={themeContext}>
-        <ColorContext.Provider value={color}>
-          <ColorContainerFix ref={themeRef}></ColorContainerFix>
-          <AnchorHeader
-            noBottomBorder={!expanded}
-            onClick={() => setExpanded(!expanded)}
-            anchorName={`color-${colorName}`}
-            anchorLabel="Direct link to the color"
-            right={
-              <>
-                <div className={styles.DesktopOnly}>
-                  <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
-                </div>
-                <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
-                <ThemeVariantToggle
-                  onChangeColorMode={() => changeColorMode()}
-                  isLight={!isDarkColor}
-                />
-              </>
-            }
-          >
-            <div className={styles.colorRow}>
-              <IxIcon
-                name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
-              ></IxIcon>
-              <ColorCircle color={colorName}></ColorCircle>
-              <span className={styles.headColorName}>--theme-{colorName}</span>
-            </div>
-          </AnchorHeader>
+    <ThemeContext.Provider value={themeContext}>
+      <ColorContext.Provider value={color}>
+        <ColorContainerFix ref={themeRef}>
+          <ApiTable id={`color-${colorName}`}>
+            <AnchorHeader
+              noBottomBorder={!expanded}
+              onClick={() => setExpanded(!expanded)}
+              anchorName={`color-${colorName}`}
+              anchorLabel="Direct link to the color"
+              right={
+                <>
+                  <div className={styles.DesktopOnly}>
+                    <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
+                  </div>
+                  <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
+                  <ThemeVariantToggle
+                    onChangeColorMode={() => changeColorMode()}
+                    isLight={!isDarkColor}
+                  />
+                </>
+              }
+            >
+              <div className={styles.colorRow}>
+                <IxIcon
+                  name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
+                ></IxIcon>
+                <ColorCircle color={colorName}></ColorCircle>
+                <span className={styles.headColorName}>
+                  --theme-{colorName}
+                </span>
+              </div>
+            </AnchorHeader>
 
-          {expanded && children}
-        </ColorContext.Provider>
-      </ThemeContext.Provider>
-    </ApiTable>
+            {expanded && children}
+          </ApiTable>
+        </ColorContainerFix>
+      </ColorContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 
@@ -325,7 +328,7 @@ function ColorTableWithChildren({ colorName }) {
 
 function Text({ children, name }) {
   return (
-    <div className={styles.colorTextRow}>
+    <div className={clsx(styles.colorTextRow, 'api-row')}>
       <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
         {name}
       </div>

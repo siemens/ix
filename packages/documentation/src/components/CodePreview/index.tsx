@@ -1,21 +1,13 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
+import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import CodeBlock from '@theme/CodeBlock';
-import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
-import Pill from '../UI/Pill';
-import styles from './styles.module.css';
-import {
-  IxDropdown,
-  IxDropdownButton,
-  IxDropdownItem,
-} from '@siemens/ix-react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button from '../UI/Button';
-import React from 'react';
-import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
+import styles from './styles.module.css';
 
 export async function docusaurusFetch(url: string) {
   const response = await fetch(url);
@@ -68,7 +60,6 @@ export type CodePreviewProps = {
 };
 
 export default function CodePreview(props: CodePreviewProps) {
-  // const [selectedFramework, setSelectedFramework] = useState('angular');
   const { selectedFramework } = props;
   const [selectedFile, setSelectedFile] = useState<string>('');
   const [SourceCode, setSourceCode] = useState<React.FC>(() => () => (

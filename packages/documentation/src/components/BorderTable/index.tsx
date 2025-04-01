@@ -263,41 +263,42 @@ function BrowserOnlyBorderTable({ children, borderName }) {
   );
 
   return (
-    <ApiTable id={`border-${borderName}`}>
-      <ThemeContext.Provider value={themeContext}>
-        <BorderContext.Provider value={border}>
-          <ColorContainerFix ref={themeRef}></ColorContainerFix>
-          <AnchorHeader
-            noBottomBorder={!expanded}
-            onClick={() => setExpanded(!expanded)}
-            anchorName={`border-${borderName}`}
-            anchorLabel="Direct link to the border"
-            right={
-              <>
-                <div className={styles.DesktopOnly}>
-                  <CopyButton text={`var(${borderName})`}></CopyButton>
-                </div>
-                <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
-                <ThemeVariantToggle
-                  onChangeColorMode={() => changeColorMode()}
-                  isLight={!isDarkColor}
-                />
-              </>
-            }
-          >
-            <div className={styles.borderRow}>
-              <IxIcon
-                name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
-              ></IxIcon>
-              <BorderRect color={border.name}></BorderRect>
-              <span className={styles.headColorName}>{border.name}</span>
-            </div>
-          </AnchorHeader>
+    <ThemeContext.Provider value={themeContext}>
+      <BorderContext.Provider value={border}>
+        <ColorContainerFix ref={themeRef}>
+          <ApiTable id={`border-${borderName}`}>
+            <AnchorHeader
+              noBottomBorder={!expanded}
+              onClick={() => setExpanded(!expanded)}
+              anchorName={`border-${borderName}`}
+              anchorLabel="Direct link to the border"
+              right={
+                <>
+                  <div className={styles.DesktopOnly}>
+                    <CopyButton text={`var(${borderName})`}></CopyButton>
+                  </div>
+                  <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
+                  <ThemeVariantToggle
+                    onChangeColorMode={() => changeColorMode()}
+                    isLight={!isDarkColor}
+                  />
+                </>
+              }
+            >
+              <div className={styles.borderRow}>
+                <IxIcon
+                  name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
+                ></IxIcon>
+                <BorderRect color={border.name}></BorderRect>
+                <span className={styles.headColorName}>{border.name}</span>
+              </div>
+            </AnchorHeader>
 
-          {expanded && children}
-        </BorderContext.Provider>
-      </ThemeContext.Provider>
-    </ApiTable>
+            {expanded && children}
+          </ApiTable>
+        </ColorContainerFix>
+      </BorderContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 
@@ -346,7 +347,7 @@ function BorderStyle() {
 
 function Text({ children, name }) {
   return (
-    <div className={styles.borderTextRow}>
+    <div className={clsx(styles.borderTextRow, 'api-row')}>
       <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
         {name}
       </div>

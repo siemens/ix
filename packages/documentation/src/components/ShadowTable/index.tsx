@@ -104,33 +104,34 @@ function BrowserOnlyBorderTable({ shadowName }) {
   );
 
   return (
-    <ApiTable id={`shadow-${shadowName}`}>
-      <ThemeContext.Provider value={themeContext}>
-        <ColorContainerFix ref={themeRef}></ColorContainerFix>
-        <AnchorHeader
-          noBottomBorder={true}
-          anchorName={`shadow-${shadowName}`}
-          anchorLabel="Direct link to the border"
-          right={
-            <>
-              <div className={styles.DesktopOnly}>
-                <CopyButton text={`var(--theme-${shadowName})`}></CopyButton>
-              </div>
-              <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
-              <ThemeVariantToggle
-                onChangeColorMode={() => changeColorMode()}
-                isLight={!isDarkColor}
-              />
-            </>
-          }
-        >
-          <div className={styles.shadowRow}>
-            <BoxShadowRect boxShadow={shadowName}></BoxShadowRect>
-            <span className={styles.headColorName}>--theme-{shadowName}</span>
-          </div>
-        </AnchorHeader>
-      </ThemeContext.Provider>
-    </ApiTable>
+    <ThemeContext.Provider value={themeContext}>
+      <ColorContainerFix ref={themeRef}>
+        <ApiTable id={`shadow-${shadowName}`}>
+          <AnchorHeader
+            noBottomBorder={true}
+            anchorName={`shadow-${shadowName}`}
+            anchorLabel="Direct link to the border"
+            right={
+              <>
+                <div className={styles.DesktopOnly}>
+                  <CopyButton text={`var(--theme-${shadowName})`}></CopyButton>
+                </div>
+                <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
+                <ThemeVariantToggle
+                  onChangeColorMode={() => changeColorMode()}
+                  isLight={!isDarkColor}
+                />
+              </>
+            }
+          >
+            <div className={styles.shadowRow}>
+              <BoxShadowRect boxShadow={shadowName}></BoxShadowRect>
+              <span className={styles.headColorName}>--theme-{shadowName}</span>
+            </div>
+          </AnchorHeader>
+        </ApiTable>
+      </ColorContainerFix>
+    </ThemeContext.Provider>
   );
 }
 
