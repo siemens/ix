@@ -30,13 +30,6 @@ export async function docusaurusFetch(url: string) {
   return text;
 }
 
-function stripComments(code: string) {
-  return code
-    .replace(/\/\*[^]*?\*\//g, '')
-    .replace(/<!--[^]*?-->/g, '')
-    .trim();
-}
-
 export type CodePreviewFiles = {
   angular?: Record<string, string>;
   react?: Record<string, string>;
