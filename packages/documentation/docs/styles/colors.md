@@ -55,7 +55,7 @@ Use “background colors” on non-interactive backgrounds like screen areas. Ba
 
 ## Component interaction colors
 
-Component & interaction colors are used on interactive elements that often come with hover, active and selected states like buttons, toggle buttons, switch, cards, etc.Primary color is equal to brand color, often used for primary buttons or selected elements. “alt” means alternative and is used rarely, e.g. in date picker component to distinguish between selection start/end and the days in the range between.
+Component & interaction colors are used on interactive elements that often come with hover, active and selected states like buttons, toggle buttons, switches, cards, etc. Primary color is equal to brand color, often used for primary buttons or selected elements. “alt” means alternative and is used rarely, e.g. in date picker component to distinguish between selection start/end and the days in the range between.
 
 <ColorTable.WithChildren colorName="color-primary">
 </ColorTable.WithChildren>
