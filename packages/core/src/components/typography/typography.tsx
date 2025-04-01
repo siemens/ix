@@ -26,15 +26,22 @@ export type TypographyVariants =
   | 'display-large';
 
 export type TypographyColors =
+  | 'alarm'
+  | 'alarm-contrast'
   | 'contrast'
-  | 'std'
-  | 'soft'
-  | 'weak'
+  | 'critical-contrast'
+  | 'info-contrast'
   | 'inv-contrast'
-  | 'inv-std'
   | 'inv-soft'
+  | 'inv-std'
   | 'inv-weak'
-  | 'alarm';
+  | 'neutral-contrast'
+  | 'primary-contrast'
+  | 'soft'
+  | 'std'
+  | 'success-contrast'
+  | 'warning-contrast'
+  | 'weak';
 
 type TypographyFormatLabel = 'label' | 'label-xs' | 'label-sm' | 'label-lg';
 type TypographyFormatBody = 'body' | 'body-xs' | 'body-sm' | 'body-lg';
