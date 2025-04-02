@@ -7,25 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconLocation } from '@siemens/ix-icons/icons';
 import { IxKeyValue, IxKeyValueList } from '@siemens/ix-react';
 
 export default () => {
   return (
     <IxKeyValueList>
       <IxKeyValue
-        icon="location"
+        icon={iconLocation}
         label="Label"
         labelPosition="left"
         value="Value"
       ></IxKeyValue>
       <IxKeyValue
-        icon="location"
+        icon={iconLocation}
         label="Label"
         labelPosition="left"
         value="Value"
       ></IxKeyValue>
       <IxKeyValue
-        icon="location"
+        icon={iconLocation}
         label="Label"
         labelPosition="left"
         value="Value"

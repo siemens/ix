@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Page } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 import { dismissModal, ModalInstance, showModal } from './../../utils/modal';
 
 declare global {
@@ -52,7 +52,7 @@ async function createToggleExample(page: Page) {
   });
 }
 
-test('closes on Escape key down', async ({ mount, page }) => {
+regressionTest('closes on Escape key down', async ({ mount, page }) => {
   await mount(``);
   await setupModalEnvironment(page);
   await page.waitForTimeout(1000);
@@ -75,54 +75,57 @@ test('closes on Escape key down', async ({ mount, page }) => {
   await expect(dialog).not.toBeVisible();
 });
 
-test.describe('closeOnBackdropClick = true', () => {
-  test('should close modal on backdrop click', async ({ mount, page }) => {
-    await mount(`
+regressionTest.describe('closeOnBackdropClick = true', () => {
+  regressionTest(
+    'should close modal on backdrop click',
+    async ({ mount, page }) => {
+      await mount(`
       <ix-button>Some background noise</ix-button>
     `);
 
-    await setupModalEnvironment(page);
-    await createToggleExample(page);
+      await setupModalEnvironment(page);
+      await createToggleExample(page);
 
-    // needed to skip fade out / in animation
-    await page.waitForTimeout(500);
+      // needed to skip fade out / in animation
+      await page.waitForTimeout(500);
 
-    const toggle = page.locator('#toggle');
-    await expect(toggle).toBeVisible();
+      const toggle = page.locator('#toggle');
+      await expect(toggle).toBeVisible();
 
-    await page.mouse.click(20, 20);
+      await page.mouse.click(20, 20);
 
-    // needed to skip fade out / in animation
-    await page.waitForTimeout(500);
-    await expect(page.locator('ix-modal dialog')).not.toBeVisible();
-  });
+      // needed to skip fade out / in animation
+      await page.waitForTimeout(500);
+      await expect(page.locator('ix-modal dialog')).not.toBeVisible();
+    }
+  );
 
-  test('should stay open after interacting with input elements', async ({
-    mount,
-    page,
-  }) => {
-    await mount(`
+  regressionTest(
+    'should stay open after interacting with input elements',
+    async ({ mount, page }) => {
+      await mount(`
       <ix-button>Some background noise</ix-button>
     `);
 
-    await setupModalEnvironment(page);
-    await createToggleExample(page);
+      await setupModalEnvironment(page);
+      await createToggleExample(page);
 
-    // needed to skip fade out / in animation
-    await page.waitForTimeout(500);
+      // needed to skip fade out / in animation
+      await page.waitForTimeout(500);
 
-    const toggle = page.locator('#toggle');
-    await expect(toggle).toBeVisible();
+      const toggle = page.locator('#toggle');
+      await expect(toggle).toBeVisible();
 
-    await toggle.locator('input').press('Space');
+      await toggle.locator('input').press('Space');
 
-    // needed to skip fade out / in animation
-    await page.waitForTimeout(500);
-    await expect(page.locator('ix-modal dialog')).toBeVisible();
-  });
+      // needed to skip fade out / in animation
+      await page.waitForTimeout(500);
+      await expect(page.locator('ix-modal dialog')).toBeVisible();
+    }
+  );
 });
 
-test('emits one event on close', async ({ mount, page }) => {
+regressionTest('emits one event on close', async ({ mount, page }) => {
   await mount(``);
 
   await setupModalEnvironment(page);
@@ -162,7 +165,7 @@ test('emits one event on close', async ({ mount, page }) => {
   expect(await page.evaluate(() => window.__counter)).toBe(1);
 });
 
-test('button receives focus on load', async ({ mount, page }) => {
+regressionTest('button receives focus on load', async ({ mount, page }) => {
   await mount('');
   await setupModalEnvironment(page);
   await page.waitForTimeout(100);

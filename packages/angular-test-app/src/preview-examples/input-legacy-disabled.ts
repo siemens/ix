@@ -12,12 +12,13 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <form class="needs-validation m-2">
+    <form class="needs-validation">
       <input
         value="Some example text"
         placeholder="Enter text here"
         type="text"
         disabled
+        class="ix-form-control"
       />
     </form>
   `,

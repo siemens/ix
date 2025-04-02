@@ -13,43 +13,45 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconPrint } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconPrint,
+      });
+    </script>
   </head>
   <body>
     <ix-icon-button icon="print"></ix-icon-button>
     <ix-icon-button icon="print" size="12"></ix-icon-button>
     <ix-icon-button icon="print" size="16"></ix-icon-button>
     <ix-icon-button icon="print" size="24"></ix-icon-button>
-    <ix-icon-button icon="print" size="32"></ix-icon-button>
 
     <ix-icon-button outline icon="print"></ix-icon-button>
     <ix-icon-button outline icon="print" size="12"></ix-icon-button>
     <ix-icon-button outline icon="print" size="16"></ix-icon-button>
     <ix-icon-button outline icon="print" size="24"></ix-icon-button>
-    <ix-icon-button outline icon="print" size="32"></ix-icon-button>
 
     <ix-icon-button ghost icon="print"></ix-icon-button>
     <ix-icon-button ghost icon="print" size="12"></ix-icon-button>
     <ix-icon-button ghost icon="print" size="16"></ix-icon-button>
     <ix-icon-button ghost icon="print" size="24"></ix-icon-button>
-    <ix-icon-button ghost icon="print" size="32"></ix-icon-button>
 
     <ix-icon-button oval icon="print"></ix-icon-button>
     <ix-icon-button oval icon="print" size="12"></ix-icon-button>
     <ix-icon-button oval icon="print" size="16"></ix-icon-button>
     <ix-icon-button oval icon="print" size="24"></ix-icon-button>
-    <ix-icon-button oval icon="print" size="32"></ix-icon-button>
 
     <ix-icon-button oval outline icon="print"></ix-icon-button>
     <ix-icon-button oval outline icon="print" size="12"></ix-icon-button>
     <ix-icon-button oval outline icon="print" size="16"></ix-icon-button>
     <ix-icon-button oval outline icon="print" size="24"></ix-icon-button>
-    <ix-icon-button oval outline icon="print" size="32"></ix-icon-button>
 
     <ix-icon-button oval ghost icon="print"></ix-icon-button>
     <ix-icon-button oval ghost icon="print" size="12"></ix-icon-button>
     <ix-icon-button oval ghost icon="print" size="16"></ix-icon-button>
     <ix-icon-button oval ghost icon="print" size="24"></ix-icon-button>
-    <ix-icon-button oval ghost icon="print" size="32"></ix-icon-button>
 
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>

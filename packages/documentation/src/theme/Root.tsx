@@ -9,7 +9,6 @@
 
 import { useLocation } from '@docusaurus/router';
 import React, { useEffect, useLayoutEffect } from 'react';
-import { useTheme } from '../utils/hooks/useTheme';
 
 declare global {
   interface Window {
@@ -22,7 +21,6 @@ declare global {
 
 export default function Root({ children }) {
   const { pathname } = useLocation();
-  const theme = useTheme();
 
   useEffect(() => {
     window.ste_statistic = window.ste_statistic || [];

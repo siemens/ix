@@ -8,7 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
@@ -16,10 +16,10 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-special-toolbox.html',
-  styleUrls: ["./echarts-special-toolbox.css"],
+  styleUrls: ['./echarts-special-toolbox.css'],
 })
 export default class EchartsSpecialToolbox implements OnInit {
-  theme = convertThemeName(themeSwitcher.getCurrentTheme());
+  theme = themeSwitcher.getCurrentTheme();
 
   options: EChartsOption = {
     toolbox: {
@@ -57,7 +57,7 @@ export default class EchartsSpecialToolbox implements OnInit {
     registerTheme(echarts);
 
     themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = convertThemeName(theme);
+      this.theme = theme;
     });
   }
 }

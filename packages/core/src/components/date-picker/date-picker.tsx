@@ -21,7 +21,6 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
-
 import { DateTime, Info } from 'luxon';
 import { OnListener } from '../utils/listener';
 import { IxDatePickerComponent } from './date-picker-component';
@@ -33,8 +32,8 @@ import {
 } from '@siemens/ix-icons/icons';
 
 export type DateChangeEvent = {
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
 };
 
 interface CalendarWeek {
@@ -131,14 +130,6 @@ export class DatePicker implements IxDatePickerComponent {
   @Prop() maxDate = '';
 
   /**
-   * Text of the button that confirms date selection.
-   *
-   * @since 1.1.0
-   * @deprecated since 2.1.0. Use `i18nDone`
-   */
-  @Prop() textSelectDate = '';
-
-  /**
    * Text of date select button
    *
    * @since 2.1.0
@@ -172,20 +163,6 @@ export class DatePicker implements IxDatePickerComponent {
    */
   @Prop() showWeekNumbers = false;
 
-  /**
-   * @deprecated Not supported since 2.0.0.
-   */
-  @Prop() individual: boolean = true;
-
-  /**
-   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
-   * This combination can be configured over the delimiter
-   *
-   * @since 1.1.0
-   * @deprecated Not used anymore see `this.dateChange`
-   */
-  @Prop() eventDelimiter = ' - ';
-
   /** @internal */
   @Prop() standaloneAppearance = true;
 
@@ -214,13 +191,6 @@ export class DatePicker implements IxDatePickerComponent {
    * @since 1.1.0
    */
   @Event() dateSelect!: EventEmitter<DateChangeEvent>;
-
-  /**
-   * Date selection confirmed via button action
-   *
-   * @deprecated NOT getting dispatched after 2.0.0. Use `dateSelect`.
-   */
-  @Event() done!: EventEmitter<string>;
 
   /**
    * Get the currently selected date-range.
@@ -412,8 +382,7 @@ export class DatePicker implements IxDatePickerComponent {
 
   private async onDone() {
     const date = await this.getCurrentDate();
-    // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-    this.dateSelect.emit(date as DateChangeEvent);
+    this.dateSelect.emit(date);
   }
 
   private calculateCalendar() {
@@ -607,11 +576,9 @@ export class DatePicker implements IxDatePickerComponent {
 
   private onDateChange() {
     this.getCurrentDate().then((date) => {
-      // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-      this.dateChange.emit(date as DateChangeEvent);
+      this.dateChange.emit(date);
       if (this.range) {
-        // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-        this.dateRangeChange.emit(date as DateChangeEvent);
+        this.dateRangeChange.emit(date);
       }
     });
   }
@@ -872,9 +839,7 @@ export class DatePicker implements IxDatePickerComponent {
               hidden: !this.range || !this.standaloneAppearance,
             }}
           >
-            <ix-button onClick={() => this.onDone()}>
-              {this.textSelectDate || this.i18nDone}
-            </ix-button>
+            <ix-button onClick={() => this.onDone()}>{this.i18nDone}</ix-button>
           </div>
         </ix-date-time-card>
       </Host>

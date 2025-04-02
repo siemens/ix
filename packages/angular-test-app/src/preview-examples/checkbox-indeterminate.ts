@@ -13,8 +13,13 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <div>
-      <input type="checkbox" id="checkbox_01" [indeterminate]="true" />
-      <label for="checkbox_01">Simple checkbox</label>
+      <input
+        class="ix-form-control"
+        type="checkbox"
+        id="checkbox_01"
+        [indeterminate]="true"
+      />
+      <label class="ix-form-label" for="checkbox_01">Simple checkbox</label>
     </div>
   `,
 })

@@ -14,6 +14,13 @@ LICENSE file in the root directory of this source tree.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blind variants example</title>
     <link rel="stylesheet" href="./blind-variants.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconBulb } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconBulb,
+      });
+    </script>
   </head>
   <body>
     <ix-blind icon="bulb" label="Insight" sublabel="sublabel">

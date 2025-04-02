@@ -13,13 +13,25 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Application app switch example</title>
-    <link rel="stylesheet" href="./application-app-switch.css" />
   </head>
   <body>
     <ix-application>
       <ix-application-header name="Calculator App">
         <placeholder-logo slot="logo"></placeholder-logo>
+
+        <ix-dropdown-button variant="secondary" label="Select config" ghost>
+          <ix-dropdown-item label="Config 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Config 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Config 3"></ix-dropdown-item>
+        </ix-dropdown-button>
+
+        <ix-avatar>
+          <ix-dropdown-item label="Action 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Action 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Action 3"></ix-dropdown-item>
+        </ix-avatar>
       </ix-application-header>
+
       <ix-menu>
         <ix-menu-item>Item 1</ix-menu-item>
         <ix-menu-item>Item 2</ix-menu-item>

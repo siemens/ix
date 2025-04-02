@@ -1,0 +1,76 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
+ */
+.themeFrame {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 15rem;
+  background-color: var(--theme-color-3);
+  border-radius: 0.1875rem;
+  border: 1px solid var(--theme-color-x-weak-bdr);
+
+  margin-bottom: 1rem;
+}
+
+.themeFrame.embedded {
+  border: none;
+  margin-bottom: 0px;
+}
+
+.frameTools {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+
+  width: 5.3125rem;
+  height: 2.8125rem;
+  flex-shrink: 0;
+
+  border-radius: 1.125rem 0rem 0rem 0rem;
+  background: var(--theme-color-4);
+
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.frameContent {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.toolButton {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  background-color: var(--theme-color-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toolButtonLight {
+  background-color: var(--theme-color-3);
+}
+
+.toolButton:hover {
+  background-color: var(--theme-color-1--hover);
+}
+
+.toolButtonLight:hover {
+  background-color: var(--theme-color-ghost--hover);
+}
+
+.toolButton:active {
+  background-color: var(--theme-color-1--active);
+}
+
+.toolButtonLight:active {
+  background-color: var(--theme-color-ghost--active);
+}

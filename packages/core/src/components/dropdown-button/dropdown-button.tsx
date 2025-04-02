@@ -10,6 +10,7 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
 
 export type DropdownButtonVariant = ButtonVariant;
@@ -112,7 +113,7 @@ export class DropdownButton {
                   ></ix-icon>
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
-                <ix-icon name={'chevron-down-small'} size="24"></ix-icon>
+                <ix-icon name={iconChevronDownSmall} size="24"></ix-icon>
               </div>
             </ix-button>
           ) : (

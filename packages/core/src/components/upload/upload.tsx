@@ -19,6 +19,7 @@ import {
   State,
 } from '@stencil/core';
 import { UploadFileState } from './upload-file-state';
+import { iconError, iconSuccess } from '@siemens/ix-icons/icons';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
@@ -210,14 +211,14 @@ export class Upload {
       case UploadFileState.UPLOAD_FAILED:
         return (
           <span class="state">
-            <ix-icon name="error" class="icon-error"></ix-icon>
+            <ix-icon name={iconError} class="icon-error"></ix-icon>
             <span class="upload-text">{this.uploadFailedText}</span>
           </span>
         );
       case UploadFileState.UPLOAD_SUCCESSED:
         return (
           <span class="state">
-            <ix-icon name="success" class="icon-success"></ix-icon>
+            <ix-icon name={iconSuccess} class="icon-success"></ix-icon>
             <span class="upload-text">{this.uploadSuccessText}</span>
           </span>
         );
@@ -267,6 +268,7 @@ export class Upload {
               type="file"
               class="upload-browser"
               id="upload-browser"
+              tabindex="-1"
               onChange={(e) => {
                 this.fileChangeEvent(e);
               }}
@@ -274,7 +276,7 @@ export class Upload {
               disabled={disabled}
             />
             <ix-button
-              tabindex="-1"
+              aria-disabled={disabled}
               outline
               onClick={() => this.inputElement.click()}
               disabled={disabled}
