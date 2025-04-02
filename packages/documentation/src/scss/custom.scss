@@ -42,6 +42,8 @@
   --default-content-padding-left: 4rem;
   --default-content-padding: var(--default-content-padding-top)
     var(--default-content-padding-left);
+
+  --ifm-list-item-margin: 0.5rem;
 }
 
 :root[data-ix-theme],
@@ -112,6 +114,22 @@ ix-dropdown {
   }
 }
 
+.DesktopOnly {
+  display: inherit;
+}
+
+@media screen and (max-width: 700px) {
+  .DesktopOnly {
+    display: none;
+  }
+}
+
 .display-none {
   display: none;
+}
+
+.markdown li,
+p {
+  line-height: 145%;
+  margin-bottom: 0.5rem;
 }

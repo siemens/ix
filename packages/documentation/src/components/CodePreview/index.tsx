@@ -1,27 +1,19 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
+import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import CodeBlock from '@theme/CodeBlock';
-import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
-import Pill from '../UI/Pill';
-import styles from './styles.module.css';
-import {
-  IxDropdown,
-  IxDropdownButton,
-  IxDropdownItem,
-} from '@siemens/ix-react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button from '../UI/Button';
-import React from 'react';
-import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
+import styles from './styles.module.css';
 
 export async function docusaurusFetch(url: string) {
   const response = await fetch(url);
 
   if (!response.ok) {
-    throw `Error fetching code from ${url}`;
+    throw new Error(`Error fetching code from ${url}`);
   }
 
   const text = await response.text();
@@ -32,17 +24,10 @@ export async function docusaurusFetch(url: string) {
     text?.includes('<div id="__docusaurus"></div>') ||
     text?.includes('Page Not Found')
   ) {
-    throw `Error fetching code from ${url}`;
+    throw new Error(`Error fetching code from ${url}`);
   }
 
   return text;
-}
-
-function stripComments(code: string) {
-  return code
-    .replace(/\/\*[^]*?\*\//g, '')
-    .replace(/<!--[^]*?-->/g, '')
-    .trim();
 }
 
 export type CodePreviewFiles = {
@@ -67,17 +52,16 @@ export type CodePreviewProps = {
   onShowSource: (source: React.FC) => void;
 };
 
-export default function CodePreview(props: CodePreviewProps) {
-  // const [selectedFramework, setSelectedFramework] = useState('angular');
+export default function CodePreview(props: Readonly<CodePreviewProps>) {
   const { selectedFramework } = props;
   const [selectedFile, setSelectedFile] = useState<string>('');
   const [SourceCode, setSourceCode] = useState<React.FC>(() => () => (
-    <CodeBlock children={['Test']}></CodeBlock>
+    <CodeBlock>Test</CodeBlock>
   ));
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (props.files && props.files[selectedFramework]) {
+    if (props.files?.[selectedFramework]) {
       const file = Object.keys(props.files[selectedFramework])[0];
       setSelectedFile(file);
       setSourceCode(() => props.source[selectedFramework][file]);
@@ -90,7 +74,7 @@ export default function CodePreview(props: CodePreviewProps) {
 
   return (
     <div className={styles.CodePreview}>
-      {props.source && props.source[selectedFramework] && (
+      {props.source?.[selectedFramework] && (
         <>
           <Button ref={ref}>
             {selectedFile}

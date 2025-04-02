@@ -17,6 +17,8 @@
   color: var(--theme-color-soft-text);
   gap: 0.25rem;
   white-space: nowrap;
+
+  cursor: pointer;
 }
 
 .Button:hover {
@@ -29,4 +31,10 @@
 
 .Button:focus-visible {
   outline: 1px solid var(--theme-color-focus-bdr);
+}
+
+@media screen and (max-width: 1000px) {
+  .Button {
+    font-size: 0px !important;
+  }
 }

@@ -16,47 +16,55 @@ import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './styles.module.css';
 
-function PreviewActions(props: {
-  colorModeLight: boolean;
-  openExternalUrl: string;
-  onChangeColorMode: () => void;
-  onChangeTheme: (theme: string) => void;
-}) {
+function PreviewActions(
+  props: Readonly<{
+    colorModeLight: boolean;
+    openExternalUrl: string;
+    onChangeColorMode: () => void;
+    onChangeTheme: (theme: string) => void;
+  }>
+) {
   return (
     <>
       <a
         href={props.openExternalUrl}
         target="_blank"
-        className="flex gap-1 text-[var(--theme-color-soft-text)]"
+        className="flex gap-1 text-[var(--theme-color-soft-text)] flex-nowrap text-nowrap"
       >
         {React.createElement('ix-icon', {
           name: iconOpenExternal,
         })}
         Full preview
       </a>
-      <ThemeSelection onThemeChange={props.onChangeTheme} />
-      <ThemeVariantToggle
-        isLight={props.colorModeLight}
-        onChangeColorMode={props.onChangeColorMode}
-      />
+      <div className="DesktopOnly">
+        <ThemeSelection onThemeChange={props.onChangeTheme} />
+        <ThemeVariantToggle
+          isLight={props.colorModeLight}
+          onChangeColorMode={props.onChangeColorMode}
+        />
+      </div>
     </>
   );
 }
 
-function CodeActions(props: {
-  mount: string;
-  hideFrameworkSelection: boolean;
-  framework: FrameworkTypes;
-  files: Record<string, string>;
-  onFrameworkChange: (framework: FrameworkTypes) => void;
-}) {
+function CodeActions(
+  props: Readonly<{
+    mount: string;
+    hideFrameworkSelection: boolean;
+    framework: FrameworkTypes;
+    files: Record<string, string>;
+    onFrameworkChange: (framework: FrameworkTypes) => void;
+  }>
+) {
   return (
     <>
-      <OpenStackblitz
-        framework={props.framework}
-        files={props.files}
-        mount={props.mount}
-      />
+      <div className="DesktopOnly">
+        <OpenStackblitz
+          framework={props.framework}
+          files={props.files}
+          mount={props.mount}
+        />
+      </div>
       {!props.hideFrameworkSelection && (
         <FrameworkSelection onFrameworkChange={props.onFrameworkChange} />
       )}
@@ -64,14 +72,16 @@ function CodeActions(props: {
   );
 }
 
-export default function Playground(props: {
-  name: string;
-  files: CodePreviewFiles;
-  source: SourceFiles;
-  height?: string;
-  noPreview?: boolean;
-  onlyFramework?: FrameworkTypes;
-}) {
+export default function Playground(
+  props: Readonly<{
+    name: string;
+    files: CodePreviewFiles;
+    source: SourceFiles;
+    height?: string;
+    noPreview?: boolean;
+    onlyFramework?: FrameworkTypes;
+  }>
+) {
   const defaultTheme = useDefaultTheme();
   const { colorMode } = useColorMode();
   const [isDark, setIsDark] = useState(colorMode === 'dark');
@@ -86,7 +96,7 @@ export default function Playground(props: {
     props.onlyFramework ?? 'angular'
   );
   const [SourceCode, setSourceCode] = useState<React.FC>(() => () => (
-    <CodeBlock children={['Nothing to see here 🥸']}></CodeBlock>
+    <CodeBlock>Nothing to see here 🥸</CodeBlock>
   ));
 
   useEffect(() => {
@@ -108,35 +118,37 @@ export default function Playground(props: {
           </>
         )}
 
-        {!isPreview && (
-          <CodePreview
-            selectedFramework={framework}
-            name={props.name}
-            files={props.files}
-            source={props.source}
-            onShowSource={(source) => {
-              setSourceCode(() => source);
-            }}
-          ></CodePreview>
-        )}
-
-        <div className={styles.toolbar__actions}>
-          {isPreview ? (
-            <PreviewActions
-              colorModeLight={!isDark}
-              openExternalUrl={iframeSrc}
-              onChangeColorMode={() => setIsDark(!isDark)}
-              onChangeTheme={setTheme}
-            />
-          ) : (
-            <CodeActions
-              mount={props.name}
-              hideFrameworkSelection={!!props.onlyFramework}
-              onFrameworkChange={setFramework}
-              framework={framework}
-              files={props.files[framework]}
-            />
+        <div className={styles.toolbar__right}>
+          {!isPreview && (
+            <CodePreview
+              selectedFramework={framework}
+              name={props.name}
+              files={props.files}
+              source={props.source}
+              onShowSource={(source) => {
+                setSourceCode(() => source);
+              }}
+            ></CodePreview>
           )}
+
+          <div className={styles.toolbar__actions}>
+            {isPreview ? (
+              <PreviewActions
+                colorModeLight={!isDark}
+                openExternalUrl={iframeSrc}
+                onChangeColorMode={() => setIsDark(!isDark)}
+                onChangeTheme={setTheme}
+              />
+            ) : (
+              <CodeActions
+                mount={props.name}
+                hideFrameworkSelection={!!props.onlyFramework}
+                onFrameworkChange={setFramework}
+                framework={framework}
+                files={props.files[framework]}
+              />
+            )}
+          </div>
         </div>
       </div>
       <div
@@ -146,7 +158,11 @@ export default function Playground(props: {
         style={{ ['--preview-height']: props.height } as any}
       >
         {isPreview ? (
-          <iframe src={iframeSrc} className={styles.iframe}></iframe>
+          <iframe
+            title={`Preview for ${props.name}`}
+            src={iframeSrc}
+            className={styles.iframe}
+          ></iframe>
         ) : (
           <SourceCode />
         )}

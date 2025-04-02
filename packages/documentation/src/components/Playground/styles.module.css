@@ -9,6 +9,7 @@
   width: 100%;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  overflow: auto;
 }
 
 .toolbar {
@@ -45,6 +46,12 @@
   align-items: center;
 }
 
+@media screen and (max-width: 700px) {
+  .toolbar__actions {
+    margin-left: 0px;
+  }
+}
+
 .spacer {
   height: 1.5rem;
   width: 2px;
@@ -57,4 +64,11 @@
   height: 100%;
   border: none;
   overflow: auto;
+}
+
+.toolbar__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
