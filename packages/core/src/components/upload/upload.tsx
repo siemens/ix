@@ -267,6 +267,7 @@ export class Upload {
               type="file"
               class="upload-browser"
               id="upload-browser"
+              tabindex="-1"
               onChange={(e) => {
                 this.fileChangeEvent(e);
               }}
@@ -274,7 +275,7 @@ export class Upload {
               disabled={disabled}
             />
             <ix-button
-              tabindex="-1"
+              aria-disabled={disabled}
               outline
               onClick={() => this.inputElement.click()}
               disabled={disabled}
