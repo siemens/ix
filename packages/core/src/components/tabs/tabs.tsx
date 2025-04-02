@@ -21,10 +21,6 @@ import {
 } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
-interface ExtendedNavigator extends Navigator {
-  standalone?: boolean;
-}
-
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',
@@ -323,54 +319,71 @@ export class Tabs {
   }
 
   private setupWheelEvent(tabsWrapper: Element) {
-    tabsWrapper.addEventListener(
-      'wheel',
-      this.handleWheelScroll as EventListener,
-      { passive: false }
-    );
+    tabsWrapper.addEventListener('wheel', this.handleWheelScroll, {
+      passive: false,
+    });
   }
 
-  private readonly handleWheelScroll = (event: WheelEvent) => {
-    if (!event.deltaY) return;
-
+  private readonly handleWheelScroll = (event: Event) => {
+    const wheelEvent = event as WheelEvent;
+    if (!wheelEvent.deltaY) return;
     event.preventDefault();
-    const scrollAmount =
-      event.deltaY > 0 ? -this.scrollAmount : this.scrollAmount;
-    this.move(scrollAmount, true);
+
+    const mouseThreshold = 100;
+    const mouseVelocityFactor = 0.2;
+    const touchpadVelocityFactor = 1.5;
+
+    const isMouseWheel = Math.abs(wheelEvent.deltaY) > mouseThreshold;
+    const velocityFactor = isMouseWheel
+      ? mouseVelocityFactor
+      : touchpadVelocityFactor;
+    const scrollAmount = -wheelEvent.deltaY * velocityFactor;
+
+    requestAnimationFrame(() => {
+      this.move(scrollAmount, true);
+    });
   };
 
   private setupTouchEvents(tabsWrapper: Element) {
-    tabsWrapper.addEventListener(
-      'touchstart',
-      this.handleTouchStart as EventListener,
-      { passive: true }
-    );
-    tabsWrapper.addEventListener(
-      'touchmove',
-      this.handleTouchMove as EventListener,
-      { passive: false }
-    );
+    tabsWrapper.addEventListener('touchstart', this.handleTouchStart, {
+      passive: true,
+    });
+    tabsWrapper.addEventListener('touchmove', this.handleTouchMove, {
+      passive: false,
+    });
   }
 
-  private readonly handleTouchStart = (event: TouchEvent) => {
-    this.startTouchX = event.touches[0].clientX;
+  private readonly handleTouchStart = (event: Event) => {
+    const touchEvent = event as TouchEvent;
+    this.startTouchX = touchEvent.touches[0].clientX;
   };
 
-  private readonly handleTouchMove = (event: TouchEvent) => {
-    if (event.touches.length > 1) return;
+  private readonly handleTouchMove = (event: Event) => {
+    const touchEvent = event as TouchEvent;
+    if (touchEvent.touches.length > 1) return;
 
-    const moveX = event.touches[0].clientX - this.startTouchX;
-    const velocityFactor = 1.5;
+    const touchX = touchEvent.touches[0].clientX;
+    const moveX = touchX - this.startTouchX;
 
-    if (Math.abs(moveX) > 10) {
-      event.preventDefault();
+    const minVelocity = 1;
+    const maxVelocity = 3;
+    const smoothnessFactor = 50;
+    const minMoveThreshold = 5;
 
-      requestAnimationFrame(() => {
-        this.move(-moveX * velocityFactor, true);
-      });
+    if (Math.abs(moveX) < minMoveThreshold) return;
 
-      this.startTouchX = event.touches[0].clientX;
-    }
+    event.preventDefault();
+
+    const velocityFactor = Math.max(
+      minVelocity,
+      Math.min(maxVelocity, Math.abs(moveX) / smoothnessFactor)
+    );
+
+    requestAnimationFrame(() => {
+      this.move(-moveX * velocityFactor, true);
+    });
+
+    this.startTouchX = touchX;
   };
 
   private isTouchOnlyDevice(): boolean {
@@ -382,18 +395,9 @@ export class Tabs {
 
     const tabsWrapper = this.getTabsWrapper();
     if (tabsWrapper) {
-      tabsWrapper.removeEventListener(
-        'wheel',
-        this.handleWheelScroll as EventListener
-      );
-      tabsWrapper.removeEventListener(
-        'touchstart',
-        this.handleTouchStart as EventListener
-      );
-      tabsWrapper.removeEventListener(
-        'touchmove',
-        this.handleTouchMove as EventListener
-      );
+      tabsWrapper.removeEventListener('wheel', this.handleWheelScroll);
+      tabsWrapper.removeEventListener('touchstart', this.handleTouchStart);
+      tabsWrapper.removeEventListener('touchmove', this.handleTouchMove);
     }
   }
 
