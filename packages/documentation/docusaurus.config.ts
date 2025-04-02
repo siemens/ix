@@ -1,9 +1,9 @@
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
-import { themes as prismThemes } from 'prism-react-renderer';
 import figmaPlugin from 'figma-plugin';
 import path from 'path';
-import versionDeployment from './version-deployment.json' with { type: 'json '};
+import { themes as prismThemes } from 'prism-react-renderer';
+import versionDeployment from './version-deployment.json' with { type: 'json ' };
 
 function getAnnouncementBarConfig() {
   const latestVersion = versionDeployment.versions.find(version => version.id === versionDeployment.currentVersion);
@@ -145,7 +145,7 @@ const config: Config = {
         },
       };
     },
-    '@cmfcmf/docusaurus-search-local'
+    '@cmfcmf/docusaurus-search-local',
   ],
 
   headTags: [
