@@ -428,46 +428,16 @@ test('should select and toggle item when it is clicked and toggle on item is ena
   await sampleItem.click();
   await expect(sampleItem).toHaveClass(/selected/);
 
-  await expect(
-    tree.locator('ix-tree-item', {
-      hasText: 'Sample Child 1',
-    })
-  ).toBeVisible();
+ const items = tree.locator('ix-tree-item', {
+    hasText: 'Sample Child ',
+  });
+  await expect(items.nth(0)).toBeVisible();
+  await expect(items.nth(1)).toBeVisible();
+  await expect(items.nth(2)).toBeVisible();
 
-  await expect(
-    tree.locator('ix-tree-item', {
-      hasText: 'Sample Child 2',
-    })
-  ).toBeVisible();
+  sampleItem.click();
 
-  await expect(
-    tree.locator('ix-tree-item', {
-      hasText: 'Sample Child 3',
-    })
-  ).toBeVisible();
-
-  await tree
-    .locator('ix-tree-item', {
-      hasText: 'Sample',
-      hasNotText: 'Child',
-    })
-    .click();
-
-  await expect(
-    tree.locator('ix-tree-item', {
-      hasText: 'Sample Child 1',
-    })
-  ).not.toBeVisible();
-
-  await expect(
-    tree.locator('ix-tree-item', {
-      hasText: 'Sample Child 2',
-    })
-  ).not.toBeVisible();
-
-  await expect(
-    tree.locator('ix-tree-item', {
-      hasText: 'Sample Child 3',
-    })
-  ).not.toBeVisible();
+  await expect(items.nth(0)).not.toBeVisible();
+  await expect(items.nth(1)).not.toBeVisible();
+  await expect(items.nth(2)).not.toBeVisible();
 });
