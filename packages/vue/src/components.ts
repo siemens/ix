@@ -1199,7 +1199,7 @@ export const IxTree = /*@__PURE__*/ defineContainer<JSX.IxTree>('ix-tree', defin
   'model',
   'renderItem',
   'context',
-  'enableToggleOnItem',
+  'toggleOnItemClick',
   'contextChange',
   'nodeToggled',
   'nodeClicked',

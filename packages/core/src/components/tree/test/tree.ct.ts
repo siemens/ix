@@ -64,12 +64,12 @@ const defaultModel = {
 const initializeTree = async (
   mount: Mount,
   page: Page,
-  enableToggleOnItem?: boolean
+  toggleOnItemClick?: boolean
 ) => {
   await mount(`
       <div style=" height: 20rem; width: 100%;">
         <ix-tree root="root" ${
-          enableToggleOnItem ? 'enable-toggle-on-item' : ''
+          toggleOnItemClick ? 'toggle-on-item-click' : ''
         }></ix-tree>
       </div>
     `);
@@ -428,7 +428,7 @@ test('should select and toggle item when it is clicked and toggle on item is ena
   await sampleItem.click();
   await expect(sampleItem).toHaveClass(/selected/);
 
- const items = tree.locator('ix-tree-item', {
+  const items = tree.locator('ix-tree-item', {
     hasText: 'Sample Child ',
   });
   await expect(items.nth(0)).toBeVisible();

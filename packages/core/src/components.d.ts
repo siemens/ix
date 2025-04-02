@@ -3137,11 +3137,6 @@ export namespace Components {
          */
         "context": TreeContext;
         /**
-          * Enable to toggle items by click on the item
-          * @since 3.0.0
-         */
-        "enableToggleOnItem"?: boolean;
-        /**
           * Tree model
          */
         "model": TreeModel<any>;
@@ -3159,6 +3154,11 @@ export namespace Components {
           * Initial root element will not be rendered
          */
         "root": string;
+        /**
+          * Enable to toggle items by click on the item
+          * @since 3.0.0
+         */
+        "toggleOnItemClick"?: boolean;
     }
     interface IxTreeItem {
         /**
@@ -8526,11 +8526,6 @@ declare namespace LocalJSX {
          */
         "context"?: TreeContext;
         /**
-          * Enable to toggle items by click on the item
-          * @since 3.0.0
-         */
-        "enableToggleOnItem"?: boolean;
-        /**
           * Tree model
          */
         "model"?: TreeModel<any>;
@@ -8566,6 +8561,11 @@ declare namespace LocalJSX {
           * Initial root element will not be rendered
          */
         "root": string;
+        /**
+          * Enable to toggle items by click on the item
+          * @since 3.0.0
+         */
+        "toggleOnItemClick"?: boolean;
     }
     interface IxTreeItem {
         /**
