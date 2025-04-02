@@ -95,9 +95,9 @@ test('should dynamically add an item and verify all list items have correct heig
   });
 
   const eventListItems = page.locator('ix-event-list-item');
+  const lastItem = eventListItems.last();
   await expect(eventListItems).toHaveCount(5);
-
-  await page.waitForTimeout(500);
+  await expect(lastItem).toHaveJSProperty('offsetHeight', itemHeight);
 
   const heights = await eventListItems.evaluateAll((items) =>
     items.map((item) => (item instanceof HTMLElement ? item.offsetHeight : 0))
