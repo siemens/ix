@@ -8,7 +8,7 @@
  */
 import { expect, Locator, Page } from '@playwright/test';
 import { Mount, regressionTest } from '@utils/test';
-import { TreeItem } from '../tree-model';
+import { TreeContext, TreeItem, TreeModel } from '../tree-model';
 
 const defaultModel = {
   root: {
@@ -229,3 +229,87 @@ regressionTest('dropdown trigger', async ({ mount, page }) => {
   await item2.click();
   await expect(dropdown2).toBeVisible();
 });
+
+regressionTest(
+  'Detach tree, re-attach, and verify virtual scrolling functionality',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+
+    let treeElement: HTMLIxTreeElement | undefined;
+
+    await tree.evaluate((element: HTMLIxTreeElement) => {
+      treeElement = element;
+      const initializeTreeContext = (
+        model: TreeModel<unknown>
+      ): TreeContext => {
+        const context: TreeContext = {};
+
+        Object.keys(model).forEach((id) => {
+          context[id] = {
+            isExpanded: model[id].hasChildren,
+            isSelected: false,
+          };
+        });
+
+        return context;
+      };
+
+      element.context = initializeTreeContext(element.model);
+
+      new Array(10).fill(0).forEach((_, index) => {
+        const id = `Item-${index}`;
+        treeElement!.model[id] = {
+          id,
+          data: {
+            name: id,
+          },
+          hasChildren: false,
+          children: [],
+        };
+
+        treeElement?.model.root.children.push(id);
+      });
+
+      const parent = element.parentElement;
+      if (parent) {
+        parent.removeChild(element);
+      }
+    });
+
+    await expect(tree).not.toBeVisible();
+
+    await page.evaluate(() => {
+      const newDiv = document.createElement('div');
+      newDiv.id = 'new-container';
+      newDiv.style.height = 'inherit';
+
+      document.querySelector('#mount > div')?.appendChild(newDiv);
+
+      if (treeElement !== undefined) {
+        newDiv.appendChild(treeElement);
+      }
+    });
+
+    await page.waitForSelector('ix-tree');
+
+    const newContainer = page.locator('#new-container');
+    const reattachedTree = newContainer.locator('ix-tree');
+
+    await expect(newContainer).toBeVisible();
+    await expect(reattachedTree).toBeVisible();
+
+    await reattachedTree.evaluate((element: HTMLIxTreeElement) => {
+      element.scrollTo({ top: element.scrollHeight, behavior: 'instant' });
+    });
+
+    const lastItem = reattachedTree.locator('ix-tree-item').last();
+    await expect(lastItem).toBeVisible();
+
+    await reattachedTree.evaluate((element: HTMLIxTreeElement) => {
+      element.scrollTo({ top: 0, behavior: 'instant' });
+    });
+
+    const firstItem = reattachedTree.locator('ix-tree-item').first();
+    await expect(firstItem).toBeVisible();
+  }
+);

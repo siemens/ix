@@ -75,13 +75,17 @@ export class DatePicker implements IxDatePickerComponent {
 
   @Watch('from')
   watchFromPropHandler(newValue: string) {
-    this.currFromDate = newValue
-      ? DateTime.fromFormat(newValue, this.format)
-      : undefined;
+    if (!newValue) {
+      this.currFromDate = undefined;
 
-    if (this.currFromDate?.isValid) {
-      this.selectedYear = this.currFromDate.year;
-      this.selectedMonth = this.currFromDate.month - 1;
+      return;
+    }
+
+    const date = this.parseDateString(newValue);
+
+    if (date) {
+      this.currFromDate = date;
+      this.updateSelectedYearMonth(date);
     }
   }
 
@@ -95,13 +99,17 @@ export class DatePicker implements IxDatePickerComponent {
 
   @Watch('to')
   watchToPropHandler(newValue: string) {
-    this.currToDate = newValue
-      ? DateTime.fromFormat(newValue, this.format)
-      : undefined;
+    if (!newValue) {
+      this.currToDate = undefined;
 
-    if (this.currToDate?.isValid) {
-      this.selectedYear = this.currToDate.year;
-      this.selectedMonth = this.currToDate.month - 1;
+      return;
+    }
+
+    const date = this.parseDateString(newValue);
+
+    if (date) {
+      this.currToDate = date;
+      this.updateSelectedYearMonth(date);
     }
   }
 
@@ -278,6 +286,23 @@ export class DatePicker implements IxDatePickerComponent {
 
   private getDateTimeNow() {
     return DateTime.fromISO(this.today);
+  }
+
+  private parseDateString(dateString: string): DateTime | undefined {
+    const date = DateTime.fromFormat(dateString, this.format);
+
+    if (!date.isValid) {
+      console.error(date.invalidExplanation);
+
+      return undefined;
+    }
+
+    return date;
+  }
+
+  private updateSelectedYearMonth(date: DateTime) {
+    this.selectedYear = date.year;
+    this.selectedMonth = date.month - 1;
   }
 
   onDayBlur() {
