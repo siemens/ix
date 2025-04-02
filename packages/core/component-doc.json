@@ -21804,10 +21804,10 @@
         },
         {
           "name": "textColor",
-          "type": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
+          "type": "\"alarm\" | \"alarm-contrast\" | \"contrast\" | \"critical-contrast\" | \"info-contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"neutral-contrast\" | \"primary-contrast\" | \"soft\" | \"std\" | \"success-contrast\" | \"warning-contrast\" | \"weak\"",
           "complexType": {
             "original": "TypographyColors",
-            "resolved": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
+            "resolved": "\"alarm\" | \"alarm-contrast\" | \"contrast\" | \"critical-contrast\" | \"info-contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"neutral-contrast\" | \"primary-contrast\" | \"soft\" | \"std\" | \"success-contrast\" | \"warning-contrast\" | \"weak\"",
             "references": {
               "TypographyColors": {
                 "location": "local",
@@ -21827,7 +21827,19 @@
               "type": "string"
             },
             {
+              "value": "alarm-contrast",
+              "type": "string"
+            },
+            {
               "value": "contrast",
+              "type": "string"
+            },
+            {
+              "value": "critical-contrast",
+              "type": "string"
+            },
+            {
+              "value": "info-contrast",
               "type": "string"
             },
             {
@@ -21847,11 +21859,27 @@
               "type": "string"
             },
             {
+              "value": "neutral-contrast",
+              "type": "string"
+            },
+            {
+              "value": "primary-contrast",
+              "type": "string"
+            },
+            {
               "value": "soft",
               "type": "string"
             },
             {
               "value": "std",
+              "type": "string"
+            },
+            {
+              "value": "success-contrast",
+              "type": "string"
+            },
+            {
+              "value": "warning-contrast",
               "type": "string"
             },
             {
@@ -22888,7 +22916,7 @@
       "path": "src/components/typography/typography.tsx"
     },
     "src/components/typography/typography.tsx::TypographyColors": {
-      "declaration": "export type TypographyColors =\n  | 'contrast'\n  | 'std'\n  | 'soft'\n  | 'weak'\n  | 'inv-contrast'\n  | 'inv-std'\n  | 'inv-soft'\n  | 'inv-weak'\n  | 'alarm';",
+      "declaration": "export type TypographyColors =\n  | 'alarm'\n  | 'alarm-contrast'\n  | 'contrast'\n  | 'critical-contrast'\n  | 'info-contrast'\n  | 'inv-contrast'\n  | 'inv-soft'\n  | 'inv-std'\n  | 'inv-weak'\n  | 'neutral-contrast'\n  | 'primary-contrast'\n  | 'soft'\n  | 'std'\n  | 'success-contrast'\n  | 'warning-contrast'\n  | 'weak';",
       "docstring": "",
       "path": "src/components/typography/typography.tsx"
     },
