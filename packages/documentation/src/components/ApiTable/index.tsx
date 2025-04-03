@@ -44,7 +44,12 @@ function ApiTable({ children, id }) {
   );
 }
 
-function PropertyHeader({ children, name, type, singleFramework }: ApiTableProps) {
+function PropertyHeader({
+  children,
+  name,
+  type,
+  singleFramework,
+}: ApiTableProps) {
   const { framework } = useFramework();
 
   let propertyName = name;
@@ -98,7 +103,7 @@ function SlotHeader({ children, name }: ApiTableProps) {
 
 function Text({ children, name }: ApiTableProps) {
   return (
-    <div className={styles.ApiTableText}>
+    <div className={clsx(styles.ApiTableText, 'api-row')}>
       <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
         {name}
       </div>
@@ -130,21 +135,33 @@ export function AnchorHeader({
   anchorLabel,
   noBottomBorder,
   onClick,
+  className,
+  leftClassName,
+  rightClassName,
 }: {
   readonly children: React.ReactNode;
   readonly right?: React.ReactNode;
   readonly anchorName: string;
   readonly anchorLabel: string;
+  readonly className?: string;
+  readonly leftClassName?: string;
+  readonly rightClassName?: string;
   readonly noBottomBorder?: boolean;
   readonly onClick?: () => void;
 }) {
   return (
     <div
-      className={clsx(styles.AnchorHeader, {
-        [styles.NoButtonBorder]: noBottomBorder,
-      })}
+      className={clsx(
+        styles.AnchorHeader,
+        {
+          [styles.NoButtonBorder]: noBottomBorder,
+        },
+        className
+      )}
     >
-      <div className="flex items-center font-bold w-full">
+      <div
+        className={clsx('flex items-center font-bold w-full', leftClassName)}
+      >
         <button
           onClick={onClick}
           className={clsx('all-unset', styles.AnchorButton)}
@@ -159,7 +176,9 @@ export function AnchorHeader({
           ></a>
         </button>
       </div>
-      <div className="flex items-center ml-auto gap-2">{right}</div>
+      <div className={clsx('flex items-center ml-auto gap-2', rightClassName)}>
+        {right}
+      </div>
     </div>
   );
 }
