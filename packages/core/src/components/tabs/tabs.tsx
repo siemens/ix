@@ -70,6 +70,7 @@ export class Tabs {
 
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
+  private startTouchX = 0;
 
   private clickAction: {
     timeout: NodeJS.Timeout | null;
@@ -297,6 +298,8 @@ export class Tabs {
   }
 
   componentDidLoad() {
+    this.setupEventListeners();
+
     const tabs = this.getTabs();
     tabs.forEach((element) => {
       element.addEventListener('mousedown', (event) =>
@@ -305,8 +308,97 @@ export class Tabs {
     });
   }
 
+  private setupEventListeners() {
+    const tabsWrapper = this.getTabsWrapper();
+    if (!tabsWrapper) return;
+
+    this.setupTouchEvents(tabsWrapper as Element);
+    if (!this.isTouchOnlyDevice()) {
+      this.setupWheelEvent(tabsWrapper as Element);
+    }
+  }
+
+  private setupWheelEvent(tabsWrapper: Element) {
+    tabsWrapper.addEventListener('wheel', this.handleWheelScroll, {
+      passive: false,
+    });
+  }
+
+  private readonly handleWheelScroll = (event: Event) => {
+    const wheelEvent = event as WheelEvent;
+    if (!wheelEvent.deltaY) return;
+    event.preventDefault();
+
+    const mouseThreshold = 100;
+    const mouseVelocityFactor = 0.2;
+    const touchpadVelocityFactor = 1.5;
+
+    const isMouseWheel = Math.abs(wheelEvent.deltaY) > mouseThreshold;
+    const velocityFactor = isMouseWheel
+      ? mouseVelocityFactor
+      : touchpadVelocityFactor;
+    const scrollAmount = -wheelEvent.deltaY * velocityFactor;
+
+    requestAnimationFrame(() => {
+      this.move(scrollAmount, true);
+    });
+  };
+
+  private setupTouchEvents(tabsWrapper: Element) {
+    tabsWrapper.addEventListener('touchstart', this.handleTouchStart, {
+      passive: true,
+    });
+    tabsWrapper.addEventListener('touchmove', this.handleTouchMove, {
+      passive: false,
+    });
+  }
+
+  private readonly handleTouchStart = (event: Event) => {
+    const touchEvent = event as TouchEvent;
+    this.startTouchX = touchEvent.touches[0].clientX;
+  };
+
+  private readonly handleTouchMove = (event: Event) => {
+    const touchEvent = event as TouchEvent;
+    if (touchEvent.touches.length > 1) return;
+
+    const touchX = touchEvent.touches[0].clientX;
+    const moveX = touchX - this.startTouchX;
+
+    const minVelocity = 1;
+    const maxVelocity = 3;
+    const smoothnessFactor = 50;
+    const minMoveThreshold = 5;
+
+    if (Math.abs(moveX) < minMoveThreshold) return;
+
+    event.preventDefault();
+
+    const velocityFactor = Math.max(
+      minVelocity,
+      Math.min(maxVelocity, Math.abs(moveX) / smoothnessFactor)
+    );
+
+    requestAnimationFrame(() => {
+      this.move(-moveX * velocityFactor, true);
+    });
+
+    this.startTouchX = touchX;
+  };
+
+  private isTouchOnlyDevice(): boolean {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  }
+
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
+
+    const tabsWrapper = this.getTabsWrapper();
+    if (tabsWrapper) {
+      tabsWrapper.removeEventListener('wheel', this.handleWheelScroll);
+      tabsWrapper.removeEventListener('touchstart', this.handleTouchStart);
+      tabsWrapper.removeEventListener('touchmove', this.handleTouchMove);
+    }
   }
 
   @Listen('tabClick')
