@@ -61,16 +61,10 @@ const defaultModel = {
   },
 };
 
-const initializeTree = async (
-  mount: Mount,
-  page: Page,
-  toggleOnItemClick?: boolean
-) => {
+const initializeTree = async (mount: Mount, page: Page) => {
   await mount(`
       <div style=" height: 20rem; width: 100%;">
-        <ix-tree root="root" ${
-          toggleOnItemClick ? 'toggle-on-item-click' : ''
-        }></ix-tree>
+        <ix-tree root="root"></ix-tree>
       </div>
     `);
   const tree = page.locator('ix-tree');
@@ -441,7 +435,10 @@ regressionTest(
 regressionTest(
   'should select and toggle item when it is clicked and toggle on item is enabled',
   async ({ mount, page }) => {
-    const tree = await initializeTree(mount, page, true);
+    const tree = await initializeTree(mount, page);
+    await tree.evaluate((treeElement: HTMLIxTreeElement) => {
+      treeElement.setAttribute('toggle-on-item-click', 'true');
+    });
     await expect(tree).toHaveClass(/hydrated/);
 
     const sampleItem = tree.locator('ix-tree-item', {
