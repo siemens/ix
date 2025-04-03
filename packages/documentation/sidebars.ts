@@ -54,6 +54,7 @@ const sidebars: SidebarsConfig = {
     'home/overview',
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
       label: 'Getting started',
       items: [
         'home/getting-started/developers',
@@ -64,6 +65,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
       label: 'Migration and upgrade',
       items: [
         'home/migration/3_0_0/index',
@@ -75,6 +77,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
       label: 'Installation',
       items: [
         'home/installation/angular',
@@ -87,12 +90,16 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Theme',
       items: ['home/theming/usage-developers', 'home/theming/usage-designers'],
       collapsed: true,
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Releases',
       items: [
         'home/releases/roadmap',
@@ -103,6 +110,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Support',
       items: [
         'home/support/contact-us',
@@ -125,6 +134,8 @@ const sidebars: SidebarsConfig = {
     'components/overview',
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Application frame',
       items: [
         createTabItem({
@@ -258,6 +269,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Navigation and hierarchy',
       items: [
         createTabItem({
@@ -329,6 +342,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Containers and layout',
       items: [
         createTabItem({
@@ -481,6 +496,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Forms',
       items: [
         createTabItem({
@@ -531,6 +548,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Input fields and selections',
       items: [
         createTabItem({
@@ -748,6 +767,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Buttons and actions',
       items: [
         createTabItem({
@@ -853,6 +874,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'System feedback and status',
       items: [
         createTabItem({
@@ -928,6 +951,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Data display',
       items: [
         createTabItem({
@@ -985,6 +1010,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Charts',
       items: [
         'components/charts-overview/index',
@@ -999,6 +1026,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Deprecated',
       items: [
         createTabItem({
@@ -1043,6 +1072,8 @@ const sidebars: SidebarsConfig = {
     'guidelines/accessibility',
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Responsive design',
       items: [
         'guidelines/mobile/mobile-app-dev',
@@ -1052,6 +1083,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'Conversational design',
       items: [
         {
@@ -1063,6 +1096,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'UX Writing',
       items: [
         {
@@ -1074,6 +1109,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      className: 'doc-sidebar-item-bold',
+
       label: 'CLI',
       items: [
         {

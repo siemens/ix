@@ -38,7 +38,7 @@ function FrameworkSelection(props: {
   }, [framework]);
   return (
     <>
-      <Button ref={ref}>
+      <Button ref={ref} className={'dropdown-button'}>
         {React.createElement('ix-icon', {
           name: iconCode,
         })}
