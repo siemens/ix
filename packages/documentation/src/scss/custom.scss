@@ -59,6 +59,7 @@
   --ifm-menu-color-active: var(--theme-color-dynamic);
   --ifm-menu-color: var(--theme-color-std-text);
   --ifm-background-color: var(--theme-color-1);
+  --ifm-link-color: var(--theme-color-dynamic);
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
@@ -132,4 +133,8 @@ ix-dropdown {
 p {
   line-height: 145%;
   margin-bottom: 0.5rem;
+}
+
+.dropdown-button {
+  padding-right: 0 !important;
 }

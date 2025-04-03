@@ -19,3 +19,17 @@ export function fromKebabCaseToCamelCase(str: string): string {
 
   return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
 }
+
+export function capitalize(
+  input: string,
+  firstLetterOnly = false
+): string {
+  if (!input) {
+    return input;
+  }
+
+  const firstLetter = input[0].toUpperCase();
+  const tail = firstLetterOnly ? input.slice(1) : input.slice(1).toLowerCase();
+
+  return firstLetter + tail;
+}

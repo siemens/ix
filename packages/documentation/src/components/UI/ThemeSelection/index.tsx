@@ -60,7 +60,7 @@ export function ThemeSelection(props: ThemeSelectionProps) {
 
   return (
     <>
-      <Button ref={setRef}>
+      <Button ref={setRef} className="dropdown-button">
         {React.createElement('ix-icon', {
           name: iconPen,
         })}

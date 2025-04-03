@@ -13,16 +13,12 @@
 
   $paddingBetweenSidebarItems: 1rem;
 
-  .theme-doc-sidebar-item-link-level-1 .menu__link {
+  .doc-sidebar-item-bold:not(.category-tabs) {
     font-weight: 700 !important;
   }
 
-  .theme-doc-sidebar-item-category:not(.category-tabs) {
-    font-weight: 700;
-  }
-
-  .theme-doc-sidebar-item-category.category-tabs {
-    font-weight: 400;
+  .category-tabs {
+    font-weight: 400 !important;
   }
 
   .theme-doc-sidebar-item-link.theme-doc-sidebar-item-link-level-1 {
