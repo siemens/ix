@@ -32,8 +32,8 @@ import FrameworkSelection from '../UI/FrameworkSelection';
 import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import styles from './TypographyTable.module.css';
 import CodeBlock from '@theme/CodeBlock';
-import { capitalizeFirstLetter } from '@site/src/lib/utils/string-format';
 import CopyButton from '../UI/CopyButton';
+import { capitalize } from '@site/src/lib/utils/string-format';
 
 const ColorContainerFix = forwardRef<
   HTMLDivElement,
@@ -183,7 +183,7 @@ function BrowserOnlyTypographyTable({ children, typographyName }) {
     const [_, fontWeight, fontSize, lineHeight, fontFamily] =
       /(\d*)\s(.*REM)\/(.*)%\s(.*)/g.exec(getCustomCSSValue(name));
 
-    const displayName = capitalizeFirstLetter(typographyName, true);
+    const displayName = capitalize(typographyName, true);
 
     return {
       displayName,
