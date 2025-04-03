@@ -8,9 +8,9 @@
  */
 #__docusaurus {
   .aa-DetachedSearchButton {
-    --aa-primary-color-rgb: var(--theme-color-soft-text);
+    --aa-primary-color-rgb: var(--theme-color-std-text);
     background-color: transparent;
-    color: var(--theme-color-soft-text);
+    color: var(--theme-color-std-text);
     padding: 0 1rem 0 0.5rem;
     width: 7rem;
     max-width: 12.5rem;
@@ -30,6 +30,10 @@
     width: 1.5rem;
     margin-right: 0.25rem;
   }
+
+  .aa-DetachedSearchButtonPlaceholder {
+    color: var(--theme-color-soft-text);
+  }
 }
 
 .aa-DetachedContainer.aa-DetachedContainer--modal {
@@ -38,11 +42,15 @@
 
 .aa-Form {
   background-color: transparent !important;
-  --aa-primary-color-rgb: var(--theme-color-soft-text);
-  color: var(--theme-color-soft-text);
+  --aa-primary-color-rgb: var(--theme-color-std-text);
+  color: var(--theme-color-std-text);
 
   .aa-InputWrapperPrefix {
-    background-color: transparent;
+    background-color: var(--theme-input--background);
+  }
+
+  .aa-Input {
+    background-color: var(--theme-input--background);
   }
 
   .aa-Input::placeholder {
@@ -53,11 +61,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--theme-color-soft-text);
+    color: var(--theme-color-std-text);
   }
 
   .aa-ClearButton {
-    color: var(--theme-color-soft-text);
+    color: var(--theme-color-std-text);
   }
 }
 

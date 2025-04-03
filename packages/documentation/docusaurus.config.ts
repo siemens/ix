@@ -223,7 +223,6 @@ const config: Config = {
           position: 'left',
           label: 'Styles',
         },
-        // { to: '/blog', label: 'Blog', position: 'left' },
         {
           type: 'custom-version-selection',
           position: 'right',
@@ -233,6 +232,7 @@ const config: Config = {
           type: 'search',
           position: 'right',
         },
+        { to: '/blog', label: 'Blog', position: 'right' },
         {
           type: 'custom-nav-link',
           position: 'right',

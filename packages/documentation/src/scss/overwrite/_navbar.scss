@@ -4,7 +4,24 @@
 
 #__docusaurus {
   [class*='toggleButton'] {
-    color: var(--theme-color-soft-text);
+    color: var(--theme-color-std-text);
+  }
+
+  .navbar__items:not(.navbar__items--right) {
+    .navbar__link--active {
+      position: relative;
+    }
+    .navbar__link--active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: calc(100% + 0.6rem);
+      height: 2px;
+      width: 100%;
+      background-color: var(--theme-color-dynamic);
+    }
   }
 
   .navbar {
@@ -21,7 +38,7 @@
     padding: 0 2rem;
   }
 
-  @media screen and (max-width: 1150px) {
+  @media screen and (max-width: 1210px) {
     .navbar__logo {
       display: none;
     }
@@ -83,12 +100,12 @@
   .icon-link-github::before {
     mask-image: url('../../static/logos/github-mark.svg');
     width: 1.25rem;
-    color: var(--theme-color-soft-text);
+    color: var(--theme-color-std-text);
   }
 
   .separator {
     width: 1px;
     height: 1.75rem;
-    background: var(--theme-color-x-weak-bdr);
+    background: var(--theme-color-weak-bdr);
   }
 }
