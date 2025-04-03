@@ -21394,6 +21394,34 @@
           "required": true,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "toggleOnItemClick",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "toggle-on-item-click",
+          "reflectToAttr": false,
+          "docs": "Enable to toggle items by click on the item",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],

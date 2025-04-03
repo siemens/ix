@@ -313,3 +313,153 @@ regressionTest(
     await expect(firstItem).toBeVisible();
   }
 );
+
+regressionTest(
+  'should expand and collapse but not select item when toggle icon is clicked twice',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    await expect(tree).toHaveClass(/hydrated/);
+
+    const sampleItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+
+    const iconElement = sampleItem.locator('ix-icon');
+    await expect(iconElement).not.toHaveClass(/icon-toggle-down/);
+    await iconElement.click();
+
+    const items = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child ',
+    });
+
+    await expect(items.nth(0)).toBeVisible();
+    await expect(items.nth(1)).toBeVisible();
+    await expect(items.nth(2)).toBeVisible();
+
+    await expect(sampleItem).not.toHaveClass(/selected/);
+    await expect(iconElement).toHaveClass(/icon-toggle-down/);
+
+    await iconElement.click();
+
+    await expect(items.nth(0)).not.toBeVisible();
+    await expect(items.nth(1)).not.toBeVisible();
+    await expect(items.nth(2)).not.toBeVisible();
+
+    await expect(sampleItem).not.toHaveClass(/selected/);
+    await expect(iconElement).not.toHaveClass(/icon-toggle-down/);
+  }
+);
+
+regressionTest(
+  'should select but not toggle item when it is clicked',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    await expect(tree).toHaveClass(/hydrated/);
+
+    const sampleItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+
+    await sampleItem.click();
+    await expect(sampleItem).toHaveClass(/selected/);
+
+    const items = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child ',
+    });
+
+    await expect(items.nth(0)).not.toBeVisible();
+    await expect(items.nth(1)).not.toBeVisible();
+    await expect(items.nth(2)).not.toBeVisible();
+  }
+);
+
+regressionTest(
+  'should select item when icon-toggle-container is clicked without the toggle icon to be visible',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    await expect(tree).toHaveClass(/hydrated/);
+
+    await tree
+      .locator('ix-tree-item', {
+        hasText: 'Sample',
+        hasNotText: 'Child',
+      })
+      .locator('ix-icon')
+      .click();
+
+    const element1 = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 1',
+    });
+    await expect(element1).not.toHaveClass(/selected/);
+    await element1.locator('.icon-toggle-container').click();
+    await expect(element1).toHaveClass(/selected/);
+  }
+);
+
+regressionTest(
+  'item should stay selected when toggle icon is clicked',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    await expect(tree).toHaveClass(/hydrated/);
+
+    await tree
+      .locator('ix-tree-item', {
+        hasText: 'Sample',
+        hasNotText: 'Child',
+      })
+      .locator('ix-icon')
+      .click();
+
+    const element2 = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 2',
+    });
+
+    await element2.click();
+    await expect(element2).toHaveClass(/selected/);
+    await element2.locator('ix-icon').click();
+
+    const element4 = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 4',
+    });
+    await expect(element4).toBeVisible();
+
+    await element2.locator('ix-icon').click();
+
+    await expect(element4).not.toBeVisible();
+    await expect(element2).toHaveClass(/selected/);
+  }
+);
+
+regressionTest(
+  'should select and toggle item when it is clicked and toggle on item is enabled',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    await tree.evaluate((treeElement: HTMLIxTreeElement) => {
+      treeElement.setAttribute('toggle-on-item-click', 'true');
+    });
+    await expect(tree).toHaveClass(/hydrated/);
+
+    const sampleItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+
+    await sampleItem.click();
+    await expect(sampleItem).toHaveClass(/selected/);
+
+    const items = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child ',
+    });
+    await expect(items.nth(0)).toBeVisible();
+    await expect(items.nth(1)).toBeVisible();
+    await expect(items.nth(2)).toBeVisible();
+
+    sampleItem.click();
+
+    await expect(items.nth(0)).not.toBeVisible();
+    await expect(items.nth(1)).not.toBeVisible();
+    await expect(items.nth(2)).not.toBeVisible();
+  }
+);

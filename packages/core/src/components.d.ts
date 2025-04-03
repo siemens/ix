@@ -3040,6 +3040,11 @@ export namespace Components {
           * Initial root element will not be rendered
          */
         "root": string;
+        /**
+          * Enable to toggle items by click on the item
+          * @since 3.0.0
+         */
+        "toggleOnItemClick"?: boolean;
     }
     interface IxTreeItem {
         /**
@@ -8274,6 +8279,11 @@ declare namespace LocalJSX {
           * Initial root element will not be rendered
          */
         "root": string;
+        /**
+          * Enable to toggle items by click on the item
+          * @since 3.0.0
+         */
+        "toggleOnItemClick"?: boolean;
     }
     interface IxTreeItem {
         /**
