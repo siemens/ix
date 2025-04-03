@@ -1,64 +1,65 @@
-:host {
-  display: inline-block;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: var(--theme-z-index-tooltip);
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
+.dialog {
+  margin: 0;
+  padding: 0;
+  border: none;
   max-width: 18.25rem;
   width: max-content;
-
-  opacity: 0;
-  visibility: collapse !important;
+  background-color: transparent;
   overflow-wrap: break-word;
+  box-shadow: none;
+  overflow: visible;
+}
 
+.tooltip-container {
+  display: block;
+  position: relative;
+  width: auto;
+  height: 100%;
+  background: var(--theme-tootlip--background);
+  color: var(--theme-color-std-text);
+  padding: 0.375rem 0.75rem 0.375rem 0.875rem;
+
+  box-shadow: var(--theme-shadow-4);
   border-radius: 0.25rem;
+}
 
-  .tooltip-title {
-    display: flex;
-    align-items: center;
+.content-wrapper {
+  overflow: auto;
+}
 
-    ::slotted(ix-icon) {
-      margin-right: 0.35rem;
-    }
-  }
+.tooltip-title {
+  display: flex;
+  align-items: center;
 
-  .tooltip-container {
-    display: block;
-    position: relative;
-    width:  auto;
-    height: 100%;
-    background: var(--theme-tootlip--background);
-    color: var(--theme-color-std-text);
-    padding: 0.375rem 0.75rem 0.375rem 0.875rem;
-
-    box-shadow: var(--theme-shadow-4);
-    border-radius: inherit;
+  ::slotted(ix-icon) {
+    margin-right: 0.35rem;
   }
 }
 
-:host(.visible) {
-  opacity: 1;
-  visibility: visible !important;
+.arrow,
+.arrow::before {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: inherit;
 }
 
-:host(.visible) {
-  .arrow,
-  .arrow::before {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: inherit;
-  }
+.arrow {
+  visibility: hidden;
+}
 
-  .arrow {
-    visibility: hidden;
-  }
-
-  .arrow::before {
-    visibility: visible;
-    content: '';
-    transform: rotate(45deg);
-    background-color: var(--theme-tootlip--background);
-  }
+.arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+  background-color: var(--theme-tootlip--background);
 }

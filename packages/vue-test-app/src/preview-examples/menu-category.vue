@@ -8,6 +8,7 @@
 -->
 
 <script setup lang="ts">
+import { iconGlobe, iconHome, iconRocket } from '@siemens/ix-icons/icons';
 import {
   IxApplication,
   IxMenu,
@@ -16,16 +17,14 @@ import {
 } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./menu-category.css"></style>
-
 <template>
   <IxApplication>
     <IxMenu>
-      <IxMenuItem home icon="home"> Home </IxMenuItem>
-      <IxMenuItem icon="globe">Normal Tab</IxMenuItem>
-      <IxMenuCategory label="Top level Category" icon="rocket">
-        <IxMenuItem icon="globe">Nested Tab</IxMenuItem>
-        <IxMenuItem icon="globe">Nested Tab</IxMenuItem>
+      <IxMenuItem home :icon="iconHome"> Home </IxMenuItem>
+      <IxMenuItem :icon="iconGlobe">Normal Tab</IxMenuItem>
+      <IxMenuCategory label="Top level Category" :icon="iconRocket">
+        <IxMenuItem :icon="iconGlobe">Nested Tab</IxMenuItem>
+        <IxMenuItem :icon="iconGlobe">Nested Tab</IxMenuItem>
       </IxMenuCategory>
     </IxMenu>
   </IxApplication>

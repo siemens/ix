@@ -7,10 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { iconRocket } from '@siemens/ix-icons/icons';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
-  await mount(`<ix-icon-button icon="rocket">Content</ix-icon-button>`);
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(`<ix-icon-button icon="rocket">Content</ix-icon-button>`, {
+    icons: { iconRocket },
+  });
 
   const button = page.locator('ix-icon-button');
   await expect(button).toHaveClass(/hydrated/);
@@ -19,8 +22,10 @@ test('renders', async ({ mount, page }) => {
   await expect(button.locator('ix-icon')).toBeVisible();
 });
 
-test('show spinner while loading', async ({ mount, page }) => {
-  await mount(`<ix-icon-button icon="rocket"></ix-icon-button>`);
+regressionTest('show spinner while loading', async ({ mount, page }) => {
+  await mount(`<ix-icon-button icon="rocket"></ix-icon-button>`, {
+    icons: { iconRocket },
+  });
   const button = page.locator('ix-icon-button');
 
   await expect(button.locator('ix-spinner')).not.toBeVisible();

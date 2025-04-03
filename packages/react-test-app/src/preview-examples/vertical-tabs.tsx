@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconGlobe, iconHome, iconStar } from '@siemens/ix-icons/icons';
 import './vertical-tabs.scoped.css';
 
 import { IxMenu, IxMenuItem } from '@siemens/ix-react';
@@ -14,15 +15,15 @@ import { IxMenu, IxMenuItem } from '@siemens/ix-react';
 export default () => {
   return (
     <IxMenu>
-      <IxMenuItem home tab-icon="home">
+      <IxMenuItem home tab-icon={iconHome}>
         Home
       </IxMenuItem>
-      <IxMenuItem tab-icon="globe"> Normal Tab </IxMenuItem>
-      <IxMenuItem tab-icon="star" disabled>
+      <IxMenuItem tab-icon={iconGlobe}> Normal Tab </IxMenuItem>
+      <IxMenuItem tab-icon={iconStar} disabled>
         Disabled Tab
       </IxMenuItem>
-      <IxMenuItem tab-icon="star"> With other Icon </IxMenuItem>
-      <IxMenuItem tab-icon="globe" style={{ display: 'none' }}>
+      <IxMenuItem tab-icon={iconStar}> With other Icon </IxMenuItem>
+      <IxMenuItem tab-icon={iconGlobe} style={{ display: 'none' }}>
         Should not be visible
       </IxMenuItem>
     </IxMenu>

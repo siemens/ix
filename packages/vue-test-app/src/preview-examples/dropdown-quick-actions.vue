@@ -9,6 +9,13 @@
 
 <script setup lang="ts">
 import {
+  iconBulb,
+  iconCut,
+  iconDocument,
+  iconStar,
+  iconTrashcan,
+} from '@siemens/ix-icons/icons';
+import {
   IxButton,
   IxDivider,
   IxDropdown,
@@ -23,16 +30,16 @@ import {
     <IxButton id="iconTriggerId">Open</IxButton>
     <IxDropdown trigger="iconTriggerId">
       <IxDropdownQuickActions>
-        <IxIconButton icon="cut" ghost></IxIconButton>
-        <IxIconButton icon="bulb" ghost></IxIconButton>
-        <IxIconButton icon="trashcan" ghost></IxIconButton>
+        <IxIconButton :icon="iconCut" ghost></IxIconButton>
+        <IxIconButton :icon="iconBulb" ghost></IxIconButton>
+        <IxIconButton :icon="iconTrashcan" ghost></IxIconButton>
       </IxDropdownQuickActions>
 
       <IxDivider></IxDivider>
 
-      <IxDropdownItem icon="star" label="Item 1"></IxDropdownItem>
-      <IxDropdownItem icon="document" label="Item 2"></IxDropdownItem>
-      <IxDropdownItem icon="bulb" label="Item 3"></IxDropdownItem>
+      <IxDropdownItem :icon="iconStar" label="Item 1"></IxDropdownItem>
+      <IxDropdownItem :icon="iconDocument" label="Item 2"></IxDropdownItem>
+      <IxDropdownItem :icon="iconBulb" label="Item 3"></IxDropdownItem>
     </IxDropdown>
   </div>
 </template>

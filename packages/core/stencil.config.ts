@@ -17,6 +17,32 @@ import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
 import { storybookOutputTarget } from './scripts/build/storybook';
 
+const corePackageName = '@siemens/ix';
+
+function getAngularConfig() {
+  const excludeComponents = ['ix-tree', 'ix-icon'];
+  const config = [
+    angularOutputTarget({
+      componentCorePackage: corePackageName,
+      directivesProxyFile: '../angular/src/components.ts',
+      directivesArrayFile: '../angular/src/declare-components.ts',
+      excludeComponents,
+      outputType: 'component',
+      valueAccessorConfigs: [
+        /** Value accessors should not be generated */
+      ],
+    }),
+    angularOutputTarget({
+      componentCorePackage: corePackageName,
+      directivesProxyFile: '../angular/standalone/src/components.ts',
+      excludeComponents,
+      outputType: 'standalone',
+    }),
+  ];
+
+  return config;
+}
+
 export const config: Config = {
   tsconfig: 'tsconfig.lib.json',
   globalScript: './src/setup.ts',
@@ -46,7 +72,7 @@ export const config: Config = {
       dist: '../storybook-docs/.storybook/define-custom-elements.ts',
     }),
     vueOutputTarget({
-      componentCorePackage: '@siemens/ix',
+      componentCorePackage: corePackageName,
       proxiesFile: '../vue/src/components.ts',
       includeImportCustomElements: true,
       includePolyfills: false,
@@ -71,22 +97,13 @@ export const config: Config = {
         },
       ],
     }),
-    angularOutputTarget({
-      componentCorePackage: '@siemens/ix',
-      directivesProxyFile: '../angular/src/components.ts',
-      directivesArrayFile: '../angular/src/declare-components.ts',
-      excludeComponents: ['ix-tree', 'ix-icon'],
-      valueAccessorConfigs: [
-        /** Value accessors should not be generated */
-      ],
-    }),
+    ...getAngularConfig(),
     reactOutputTarget({
-      componentCorePackage: '@siemens/ix',
-      proxiesFile: '../react/src/components.ts',
-      includeImportCustomElements: true,
-      includePolyfills: false,
-      includeDefineCustomElements: false,
+      stencilPackageName: corePackageName,
+      outDir: '../react/src',
       excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
+      hydrateModule: '@siemens/ix/hydrate',
+      serializeShadowRoot: { scoped: [], default: 'declarative-shadow-dom' },
     }),
     {
       type: 'dist',
@@ -104,6 +121,7 @@ export const config: Config = {
       ],
       externalRuntime: false,
       includeGlobalScripts: false,
+      externalRuntime: false,
     },
     {
       type: 'docs-custom',
@@ -116,6 +134,7 @@ export const config: Config = {
     },
     {
       type: 'dist-hydrate-script',
+      dir: './hydrate',
     },
   ],
 };

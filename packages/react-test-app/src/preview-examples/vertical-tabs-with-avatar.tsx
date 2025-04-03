@@ -7,6 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  iconGlobe,
+  iconHome,
+  iconStar,
+  iconUserProfile,
+} from '@siemens/ix-icons/icons';
 import './vertical-tabs-with-avatar.scoped.css';
 
 import {
@@ -25,20 +31,18 @@ export default () => {
         image="https://ui-avatars.com/api/?name=John+Doe"
       >
         <IxMenuAvatarItem
-          icon="user-profile"
+          icon={iconUserProfile}
           label="User profile..."
         ></IxMenuAvatarItem>
       </IxMenuAvatar>
-      <IxMenuItem home tab-icon="home">
-        {' '}
-        Home{' '}
+      <IxMenuItem home tab-icon={iconHome}>
+        Home
       </IxMenuItem>
-      <IxMenuItem tab-icon="globe"> Normal Tab </IxMenuItem>
-      <IxMenuItem tab-icon="star" disabled>
-        {' '}
-        Disabled Tab{' '}
+      <IxMenuItem tab-icon={iconGlobe}> Normal Tab </IxMenuItem>
+      <IxMenuItem tab-icon={iconStar} disabled>
+        Disabled Tab
       </IxMenuItem>
-      <IxMenuItem tab-icon="star"> With other Icon </IxMenuItem>
+      <IxMenuItem tab-icon={iconStar}> With other Icon </IxMenuItem>
     </IxMenu>
   );
 };

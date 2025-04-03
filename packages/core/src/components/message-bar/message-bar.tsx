@@ -18,15 +18,18 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 import { NotificationColor } from '../utils/notification-color';
+import {
+  iconClose,
+  iconError,
+  iconInfo,
+  iconNotification,
+  iconSuccess,
+  iconWarning,
+  iconWarningRhomb,
+} from '@siemens/ix-icons/icons';
 
 interface MessageTypeConfig {
-  icon?:
-    | 'error'
-    | 'warning'
-    | 'info'
-    | 'success'
-    | 'notification'
-    | 'warning-rhomb';
+  icon?: string;
   color: NotificationColor;
 }
 
@@ -65,14 +68,7 @@ export class MessageBar {
    */
   @Event() closeAnimationCompleted!: EventEmitter;
 
-  @State() icon?:
-    | 'error'
-    | 'warning'
-    | 'info'
-    | 'success'
-    | 'notification'
-    | 'warning-rhomb';
-
+  @State() icon?: string;
   @State() color?: NotificationColor;
 
   private static readonly duration = 300;
@@ -80,14 +76,14 @@ export class MessageBar {
     string,
     MessageTypeConfig
   > = {
-    alarm: { icon: 'error', color: 'color-alarm' },
-    danger: { icon: 'error', color: 'color-alarm' },
-    critical: { icon: 'warning-rhomb', color: 'color-critical' },
-    warning: { icon: 'warning', color: 'color-warning' },
-    success: { icon: 'success', color: 'color-success' },
-    info: { icon: 'info', color: 'color-info' },
-    neutral: { icon: 'notification', color: 'color-neutral' },
-    primary: { icon: 'notification', color: 'color-primary' },
+    alarm: { icon: iconError, color: 'color-alarm' },
+    danger: { icon: iconError, color: 'color-alarm' },
+    critical: { icon: iconWarningRhomb, color: 'color-critical' },
+    warning: { icon: iconWarning, color: 'color-warning' },
+    success: { icon: iconSuccess, color: 'color-success' },
+    info: { icon: iconInfo, color: 'color-info' },
+    neutral: { icon: iconNotification, color: 'color-neutral' },
+    primary: { icon: iconNotification, color: 'color-primary' },
   };
 
   private divElement?: HTMLElement;
@@ -131,7 +127,7 @@ export class MessageBar {
           </div>
           {this.dismissible ? (
             <ix-icon-button
-              icon={'close'}
+              icon={iconClose}
               size="24"
               ghost={true}
               onClick={() => {

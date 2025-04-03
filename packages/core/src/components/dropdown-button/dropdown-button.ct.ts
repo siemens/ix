@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
   <ix-dropdown-button label="Open">
     <ix-dropdown-item label="Test"></ix-dropdown-item>
@@ -24,7 +24,7 @@ test('renders', async ({ mount, page }) => {
   await expect(item).not.toBeVisible();
 });
 
-test('close behavior - outside', async ({ mount, page }) => {
+regressionTest('close behavior - outside', async ({ mount, page }) => {
   await mount(`
   <ix-dropdown-button close-behavior="outside" label="Open">
     <ix-dropdown-item label="Test"></ix-dropdown-item>
@@ -39,7 +39,7 @@ test('close behavior - outside', async ({ mount, page }) => {
   await expect(item).toBeVisible();
 });
 
-test('submenu', async ({ mount, page }) => {
+regressionTest('submenu', async ({ mount, page }) => {
   await mount(`
     <ix-dropdown-button close-behavior="outside" label="Open">
       <ix-dropdown-item label="Test" id="submenu"></ix-dropdown-item>

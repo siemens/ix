@@ -1,0 +1,90 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map navigation migration example</title>
+    <link rel="stylesheet" href="./map-navigation-migration.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconBulb } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconBulb,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-application class="application">
+      <ix-application-header name="My Application">
+        <div class="placeholder-logo" slot="logo"></div>
+
+        <!--{KEEP} Compare context menu -->
+        <ix-dropdown-button variant="secondary" label="Select config" ghost>
+          <ix-dropdown-item label="Config 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Config 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Config 3"></ix-dropdown-item>
+        </ix-dropdown-button>
+      </ix-application-header>
+
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+      </ix-menu>
+
+      <!--{KEEP} Compare overlay -->
+      <ix-pane
+        id="overlay"
+        class="overlay"
+        composition="right"
+        heading="Custom overlay"
+        icon="bulb"
+        size="320px"
+        variant="floating"
+        hide-on-collapse
+        expanded="false"
+      >
+        Overlay content
+      </ix-pane>
+
+      <ix-pane-layout>
+        <!--{KEEP} Compare sidebar -->
+        <ix-pane slot="left" heading="Navigation title" size="320px" expanded>
+          Sidebar content
+        </ix-pane>
+
+        <ix-content class="content">
+          <ix-content-header slot="header" header-title="My Content Page">
+          </ix-content-header>
+
+          <ix-button id="btn-open-overlay">Open overlay</ix-button>
+        </ix-content>
+      </ix-pane-layout>
+    </ix-application>
+
+    <script type="module">
+      const overlay = document.getElementById('overlay');
+      const buttonOpenOverlay = document.getElementById('btn-open-overlay');
+
+      let expanded = overlay.getAttribute('expanded') === 'true';
+
+      overlay.addEventListener('expandedChanged', (e) => {
+        expanded = e.detail.expanded;
+      });
+      buttonOpenOverlay.addEventListener('click', () => {
+        expanded = !expanded;
+        overlay.setAttribute('expanded', expanded);
+      });
+    </script>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

@@ -19,6 +19,7 @@ import {
 import classNames from 'classnames';
 import { useState } from 'react';
 import styles from './Demo.module.css';
+import { iconAdd } from '@siemens/ix-icons/icons';
 
 function EmptyExample() {
   return (
@@ -26,7 +27,7 @@ function EmptyExample() {
       <IxEmptyState
         header="No elements available"
         subHeader="Create an element first"
-        icon="add"
+        icon={iconAdd}
         action="Create element"
       ></IxEmptyState>
     </div>

@@ -8,7 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
@@ -16,12 +16,19 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-bar-simple.html',
-  styleUrls: ["./echarts-bar-simple.css"],
+  styleUrls: ['./echarts-bar-simple.css'],
 })
 export default class EchartsBarSimple implements OnInit {
-  theme = convertThemeName(themeSwitcher.getCurrentTheme());
+  theme = themeSwitcher.getCurrentTheme();
   data = {
-    products: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E', 'Product F'],
+    products: [
+      'Product A',
+      'Product B',
+      'Product C',
+      'Product D',
+      'Product E',
+      'Product F',
+    ],
     sales: [10.3, 9.2, 7.3, 6.4, 6.2, 4.4],
   };
 
@@ -50,7 +57,7 @@ export default class EchartsBarSimple implements OnInit {
     registerTheme(echarts);
 
     themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = convertThemeName(theme);
+      this.theme = theme;
     });
   }
 }

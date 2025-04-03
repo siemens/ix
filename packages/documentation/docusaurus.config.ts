@@ -1,84 +1,9 @@
-/*
- * SPDX-FileCopyrightText: 2024 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 import type * as Preset from '@docusaurus/preset-classic';
-import type { Config, PluginConfig } from '@docusaurus/types';
+import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 import figmaPlugin from 'figma-plugin';
 import path from 'path';
-import fs from 'fs';
 import versionDeployment from './version-deployment.json' with { type: 'json '};
-
-type DocContext = 'prod' | 'dev' | (string & {});
-
-let withBrandTheme = false;
-
-const libCss = [
-  require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'),
-  require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-dark.css'),
-  require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-light.css'),
-];
-
-const useFastStart = !!process.env.FAST_START;
-const playgroundVersion = process.env.PLAYGROUND_VERSION || 'latest';
-const docsContext: DocContext = process.env.DOCS_CONTEXT || 'prod';
-const docsContextValue: string | undefined = process.env.DOCS_CONTEXT_VALUE;
-
-const plugins: PluginConfig[] = [
-  'docusaurus-plugin-sass',
-  [
-    '@docusaurus/plugin-client-redirects',
-    {
-      redirects: [
-        {
-          to: '/docs/controls/forms/forms-validation',
-          from: '/docs/controls/validation',
-        },
-      ]
-    }
-  ]
-]
-
-if (useFastStart) {
-  console.warn('🚧 🚧 🚧 🚧 🚧 🚧');
-  console.warn('🚧 🚧 🚧 🚧 🚧 🚧');
-  console.warn('Fast start enabled');
-  console.warn('No figma plugin enabled');
-  console.warn('No search plugin enabled');
-  console.warn('🚧 🚧 🚧 🚧 🚧 🚧');
-  console.warn('🚧 🚧 🚧 🚧 🚧 🚧');
-}
-
-if (!useFastStart) {
-  plugins.push([
-    require.resolve('docusaurus-lunr-search'),
-    {
-      languages: ['en'],
-      excludeRoutes: ['**/installation/CHANGELOG', '**/auto-generated/**/*'],
-    },
-  ],)
-}
-
-console.log('Playground version:', playgroundVersion)
-
-checkDocsContext();
-
-function checkDocsContext() {
-  if (docsContext === 'dev') {
-    const devLabel = docsContextValue ?? 'Development'
-    versionDeployment.versions.unshift({
-      id: 'dev',
-      href: '#',
-      label: devLabel
-    });
-    versionDeployment.currentVersion = 'dev';
-  }
-}
 
 function getAnnouncementBarConfig() {
   const latestVersion = versionDeployment.versions.find(version => version.id === versionDeployment.currentVersion);
@@ -95,44 +20,28 @@ function getAnnouncementBarConfig() {
   }
 }
 
-if (!process.env.CI) {
-  try {
-    // Check if theme is existing inside node_modes
-    const path = require.resolve(
-      '@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css'
-    );
-    console.log('Found optionalDependency @siemens/ix-brand-theme.');
-    libCss.push(path);
-    withBrandTheme = true;
-  } catch (e) {
-    console.warn('optionalDependency @siemens/ix-brand-theme not found!');
-  }
-} else {
-  const themeCssFile = path.join(
-    __dirname,
-    '.build-temp',
-    'package',
-    'dist',
-    'ix-brand-theme',
-    'ix-brand-theme.css'
-  );
+const customCss = [
+  './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
+  './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css',
+  './src/scss/custom.scss',
+  './node_modules/@siemens/ix/scss/_common-variables.scss',
+];
 
-  if (fs.existsSync(themeCssFile)) {
-    libCss.push(themeCssFile);
-    withBrandTheme = true;
-    console.log('Found optionalDependency @siemens/ix-brand-theme.');
-  } else {
-    console.warn('optionalDependency @siemens/ix-brand-theme not found!');
-  }
+let withBrandTheme = false;
+
+try {
+  const path = require.resolve(
+    '@siemens/ix-corporate-theme/dist/css/corporate-theme.css'
+  );
+  console.log('Found optionalDependency @siemens/ix-corporate-theme.');
+  customCss.push(path);
+  withBrandTheme = true;
+} catch (e) {
+  console.warn('optionalDependency @siemens/ix-corporate-theme not found!');
 }
 
-const customCss = [
-  ...libCss,
-  require.resolve('./src/css/custom.scss'),
-  require.resolve('./src/css/search.scss'),
-  require.resolve('./src/css/api-table.scss'),
-  require.resolve('./src/css/cards.scss'),
-];
+const brokenLinks = !process.env.CI ? 'throw' : 'warn';
+console.log('Broken link:', brokenLinks);
 
 const baseUrl = process.env.BASE_URL || '/';
 
@@ -141,24 +50,45 @@ console.log('Using BASE_URL', baseUrl);
 const config: Config = {
   title: 'Siemens Industrial Experience',
   tagline: 'Siemens Industrial Experience',
-  url: 'https://ix.siemens.io',
-  baseUrl: baseUrl,
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
-  organizationName: 'Siemens AG',
-  projectName: 'ix',
-  themes: ['@docusaurus/theme-live-codeblock'],
+
+  // Set the production url of your site here
+  url: 'https://ix.siemens.io',
+  // Set the /<baseUrl>/ pathname under which your site is served
+  // For GitHub pages deployment, it is often '/<projectName>/'
+  baseUrl: baseUrl,
+
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
+  organizationName: 'siemens', // Usually your GitHub org/user name.
+  projectName: 'Siemens Industrial Experience', // Usually your repo name.
+
+  onBrokenLinks: brokenLinks,
+  onBrokenMarkdownLinks: brokenLinks,
+  onBrokenAnchors: brokenLinks,
+
+  // Even if you don't use internationalization, you can use this field to set
+  // useful metadata like html lang. For example, if your site is Chinese, you
+  // may want to replace "en" with "zh-Hans".
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+
+  customFields: {
+    withBrandTheme,
+  },
+
   presets: [
     [
-      '@docusaurus/preset-classic',
+      'classic',
       {
-        debug: false,
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: './sidebars.ts',
           // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
+            'https://github.com/siemens/ix/tree/main/packages/documentation',
           remarkPlugins: [
             figmaPlugin({
               baseUrl: `${baseUrl}figma`,
@@ -168,6 +98,23 @@ const config: Config = {
               rimraf: true,
             }),
           ],
+
+          exclude: ['**/autogenerated/**'],
+        },
+        blog: {
+          showReadingTime: true,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/siemens/ix/tree/main/packages/documentation/',
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
           customCss,
@@ -175,11 +122,48 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-  customFields: {
-    withBrandTheme,
-    versionDeployment,
-    playgroundVersion
-  },
+  plugins: [
+    'docusaurus-plugin-sass',
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/docs/migration/uxt',
+            to: '/docs/home/migration/uxt',
+          },
+        ]
+      }
+    ],
+    async function tailwindCSSConfigPlugin() {
+      return {
+        name: 'docusaurus-tailwindcss',
+        configurePostCss(postcssOptions) {
+          postcssOptions.plugins.push(require('tailwindcss'));
+          postcssOptions.plugins.push(require('autoprefixer'));
+          return postcssOptions;
+        },
+      };
+    },
+    '@cmfcmf/docusaurus-search-local'
+  ],
+
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'module',
+        src: 'https://cdn.jsdelivr.net/npm/@siemens/ix-icons@3.0.0-alpha.0/dist/ix-icons/ix-icons.esm.js',
+      },
+    },
+    {
+      tagName: 'script',
+      attributes: {
+        nomodule: 'true',
+        src: 'https://cdn.jsdelivr.net/npm/@siemens/ix-icons@3.0.0-alpha.0/dist/ix-icons/ix-icons.js',
+      },
+    },
+  ],
   themeConfig: {
     ...getAnnouncementBarConfig(),
     metadata: [
@@ -195,17 +179,87 @@ const config: Config = {
       },
     ],
     colorMode: {
-      disableSwitch: true,
+      defaultMode: 'dark',
     },
+    // Replace with your project's social card
+    image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Siemens Industrial Experience',
+      hideOnScroll: false,
       logo: {
         alt: 'Siemens AG',
-        src: 'img/logo.svg',
+        src: `logos/siemens-dark.svg`,
+        srcDark: `logos/siemens.svg`,
+        height: 24,
+        href: '/',
       },
-      items: [],
+      items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'home',
+          position: 'left',
+          label: 'Home',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'guidelines',
+          position: 'left',
+          label: 'Guidelines',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'components',
+          position: 'left',
+          label: 'Components',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'icons',
+          position: 'left',
+          label: 'Icons',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'styles',
+          position: 'left',
+          label: 'Styles',
+        },
+        // { to: '/blog', label: 'Blog', position: 'left' },
+        {
+          type: 'custom-version-selection',
+          position: 'right',
+          value: versionDeployment
+        },
+        {
+          type: 'search',
+          position: 'right',
+        },
+        {
+          type: 'custom-nav-link',
+          position: 'right',
+          label: 'Support',
+          value: '/docs/home/support/contact-us',
+        },
+        {
+          type: 'custom-nav-link',
+          position: 'right',
+          label: 'Starter app',
+          value: '/docs/home/getting-started/starter-app',
+        },
+        {
+          type: 'html',
+          position: 'right',
+          value: '<div class="separator" aria-hidden></div>',
+        },
+        {
+          type: 'html',
+          position: 'right',
+          value:
+            '<a href="https://github.com/siemens/ix" target="_blank" class="icon-link icon-link-github" alt="Rounded avatar"></a>',
+        },
+      ],
     },
     footer: {
+      style: 'dark',
       copyright: `© Siemens 1996 - ${new Date().getFullYear()}`,
       links: [
         {
@@ -253,7 +307,7 @@ const config: Config = {
             },
             {
               label: 'Contact us',
-              to: 'docs/contact-us',
+              to: 'docs/home/support/contact-us',
             },
           ],
         },
@@ -268,11 +322,10 @@ const config: Config = {
       ],
     },
     prism: {
-      theme: prismThemes.dracula,
+      theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
-  plugins: plugins,
 };
 
-module.exports = config;
+export default config;

@@ -9,7 +9,6 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import { CardVariant } from '../card/card';
-import { TypographyColors } from '../typography/typography';
 
 export type PushCardVariant = CardVariant;
 
@@ -25,7 +24,7 @@ export class PushCard {
   /**
    * Card icon
    */
-  @Prop() icon: string | undefined = undefined;
+  @Prop() icon?: string;
 
   /**
    * Card KPI value
@@ -44,9 +43,8 @@ export class PushCard {
 
   /**
    * Card variant
-   * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
    */
-  @Prop() variant: PushCardVariant = 'insight';
+  @Prop() variant: PushCardVariant = 'outline';
 
   /**
    * Collapse the card
@@ -55,11 +53,6 @@ export class PushCard {
   @Prop() collapse: boolean = true;
 
   render() {
-    const color: TypographyColors | undefined =
-      this.variant === 'insight' || this.variant === 'notification'
-        ? 'std'
-        : undefined;
-
     return (
       <Host>
         <ix-card variant={this.variant}>
@@ -71,10 +64,8 @@ export class PushCard {
               <span class={'notification'}>{this.notification ?? 0}</span>
               <slot name="title-action"></slot>
             </ix-card-title>
-            <ix-typography color={color} format="h4">
-              {this.heading}
-            </ix-typography>
-            <ix-typography color={color}>{this.subheading}</ix-typography>
+            <ix-typography format="h4">{this.heading}</ix-typography>
+            <ix-typography>{this.subheading}</ix-typography>
           </ix-card-content>
           <ix-card-accordion collapse={this.collapse}>
             <slot></slot>

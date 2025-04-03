@@ -1,5 +1,15 @@
 # @siemens/ix-echarts
 
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1238](https://github.com/siemens/ix/pull/1238) [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3) Thanks [@danielleroux](https://github.com/danielleroux)! - feat: reduce bundle size in combination with icons
+
+### Patch Changes
+
+- [#1630](https://github.com/siemens/ix/pull/1630) [`72021acc858698116e5a02d98b486c9d88269616`](https://github.com/siemens/ix/commit/72021acc858698116e5a02d98b486c9d88269616) Thanks [@jul-lam](https://github.com/jul-lam)! - The **echarts** theme names have been adapted to the default theme names
+
 ## 2.3.1
 
 ### Patch Changes

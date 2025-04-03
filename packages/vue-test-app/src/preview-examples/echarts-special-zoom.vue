@@ -9,11 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {
-  convertThemeName,
-  getComputedCSSProperty,
-  registerTheme,
-} from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts/core';
@@ -21,7 +17,6 @@ import * as charts from 'echarts/charts';
 import * as components from 'echarts/components';
 import * as renderer from 'echarts/renderers';
 import { EChartsOption } from 'echarts';
-import { OrdinalRawValue } from 'echarts/types/src/util/types';
 
 echarts.use([
   components.TooltipComponent,
@@ -36,16 +31,16 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(convertThemeName(themeSwitcher.getCurrentTheme()));
+const theme = ref(themeSwitcher.getCurrentTheme());
 
 themeSwitcher.themeChanged.on((newTheme: string) => {
-  theme.value = convertThemeName(newTheme);
+  theme.value = newTheme;
 });
 
 //create some random data
 let base = +new Date(1968, 9, 3);
 const oneDay = 24 * 3600 * 1000;
-const date: OrdinalRawValue[] = [];
+const date: (string | number)[] = [];
 
 const data: number[] = [0];
 

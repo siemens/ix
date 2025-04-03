@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconBulb } from '@siemens/ix-icons/icons';
 import './blind-variants.scoped.css';
 
 import { IxBlind } from '@siemens/ix-react';
@@ -14,22 +15,27 @@ import { IxBlind } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxBlind icon="bulb" label="Insight" sublabel="sublabel">
+      <IxBlind icon={iconBulb} label="Insight" sublabel="sublabel">
         <div>Insight content</div>
       </IxBlind>
       <IxBlind
         variant="outline"
-        icon="bulb"
+        icon={iconBulb}
         label="Outline"
         sublabel="sublabel"
       >
         <div>Outline content</div>
       </IxBlind>
-      <IxBlind icon="bulb" variant={'alarm'} label="Alarm" sublabel="sublabel">
+      <IxBlind
+        icon={iconBulb}
+        variant={'alarm'}
+        label="Alarm"
+        sublabel="sublabel"
+      >
         <div>Alarm content</div>
       </IxBlind>
       <IxBlind
-        icon="bulb"
+        icon={iconBulb}
         variant={'critical'}
         label="Critical"
         sublabel="sublabel"
@@ -37,18 +43,23 @@ export default () => {
         <div>Critical content</div>
       </IxBlind>
       <IxBlind
-        icon="bulb"
+        icon={iconBulb}
         variant={'warning'}
         label="Warning"
         sublabel="sublabel"
       >
         <div>Warning content</div>
       </IxBlind>
-      <IxBlind icon="bulb" variant={'info'} label="Info" sublabel="sublabel">
+      <IxBlind
+        icon={iconBulb}
+        variant={'info'}
+        label="Info"
+        sublabel="sublabel"
+      >
         <div>Info content</div>
       </IxBlind>
       <IxBlind
-        icon="bulb"
+        icon={iconBulb}
         variant={'success'}
         label="Success"
         sublabel="sublabel"
@@ -56,7 +67,7 @@ export default () => {
         <div>Success content</div>
       </IxBlind>
       <IxBlind
-        icon="bulb"
+        icon={iconBulb}
         variant={'neutral'}
         label="Neutral"
         sublabel="sublabel"

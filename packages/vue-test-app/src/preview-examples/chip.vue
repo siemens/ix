@@ -8,6 +8,7 @@
 -->
 
 <script setup lang="ts">
+import { iconPrint } from '@siemens/ix-icons/icons';
 import { IxChip } from '@siemens/ix-vue';
 </script>
 
@@ -16,20 +17,20 @@ import { IxChip } from '@siemens/ix-vue';
 <template>
   <div class="chip">
     <IxChip closable outline>Primary</IxChip>
-    <IxChip icon="print" tooltip-text="Custom tooltip text">
+    <IxChip :icon="iconPrint" tooltip-text="Custom tooltip text">
       Primary with icon
     </IxChip>
-    <IxChip icon="print" tooltip-text closable>Primary</IxChip>
+    <IxChip :icon="iconPrint" tooltip-text closable>Primary</IxChip>
 
     <IxChip variant="critical" closable outline>Alarm</IxChip>
-    <IxChip variant="alarm" icon="print">Alarm with icon</IxChip>
-    <IxChip variant="alarm" icon="print" closable>Alarm</IxChip>
-    <IxChip variant="warning" icon="print" closable>Alarm</IxChip>
+    <IxChip variant="alarm" :icon="iconPrint">Alarm with icon</IxChip>
+    <IxChip variant="alarm" :icon="iconPrint" closable>Alarm</IxChip>
+    <IxChip variant="warning" :icon="iconPrint" closable>Alarm</IxChip>
     <IxChip
       background="purple"
       chip-color="green"
       variant="custom"
-      icon="print"
+      :icon="iconPrint"
       closable
     >
       Custom

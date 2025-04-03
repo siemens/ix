@@ -8,7 +8,7 @@ import fs from 'fs-extra';
 
 function copyAdditionalThemeIfPresent() {
   try {
-    const additionalTheme = import.meta.resolve('@siemens/ix-brand-theme');
+    const additionalTheme = import.meta.resolve('@siemens/ix-corporate-theme');
     const basePath = path.join(
       additionalTheme.replace('file://', ''),
       '..',
@@ -18,15 +18,12 @@ function copyAdditionalThemeIfPresent() {
       __dirname,
       'public',
       'additional-theme',
-      'ix-brand-theme'
+      'ix-corporate-theme'
     );
     const distPath = path.join(basePath, 'dist');
-    const loaderPath = path.join(basePath, 'loader');
 
     fs.ensureDirSync(targetPath);
-
     fs.copySync(distPath, path.join(targetPath, 'dist'));
-    fs.copySync(loaderPath, path.join(targetPath, 'loader'));
 
     return true;
   } catch (e) {

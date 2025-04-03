@@ -16,12 +16,15 @@
   "updateInternalDependencies": "patch",
   "ignore": [
     "angular-test-app",
+    "angular-standalone-test-app",
     "react-test-app",
     "vue-test-app",
     "html-test-app",
     "ionic-test-app",
+    "nextjs-test-app",
     "figma-plugin",
     "documentation",
-    "storybook-docs"
+    "storybook-docs",
+    "vitest-react"
   ]
 }

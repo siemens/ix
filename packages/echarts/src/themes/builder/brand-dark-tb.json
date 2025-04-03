@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "themeName": "brand-dark",
+  "themeName": "theme-brand-dark",
   "theme": {
     "seriesCnt": 3,
     "backgroundColor": "transparent",
