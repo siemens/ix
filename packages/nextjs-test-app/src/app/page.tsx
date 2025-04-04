@@ -1,3 +1,4 @@
+'use server';
 import styles from './page.module.css';
 import { IxBlind, IxButton } from '@siemens/ix-react';
 
