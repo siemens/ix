@@ -1509,6 +1509,37 @@
           "setter": false
         },
         {
+          "name": "form",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "form",
+          "reflectToAttr": false,
+          "docs": "Form id",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "ghost",
           "type": "boolean",
           "complexType": {
