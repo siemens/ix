@@ -10,16 +10,15 @@
   "dependencies": {
     "@siemens/ix-react": "workspace:*",
     "@siemens/ix": "workspace:*",
-    "html-react-parser": "^5.1.18",
-    "next": "^15",
-    "react-dom": "^19",
-    "react": "^19"
+    "next": "^15.2.4",
+    "react-dom": "^19.1.0",
+    "react": "^19.1.0"
   },
   "devDependencies": {
-    "@stencil/ssr": "0.0.1-dev.11741888614.1fd07d67",
+    "@stencil/ssr": "^0.1.0",
     "@types/node": "^20",
-    "@types/react-dom": "^19",
-    "@types/react": "^19",
+    "@types/react-dom": "^19.1.1",
+    "@types/react": "^19.1.0",
     "typescript": "^5"
   }
 }

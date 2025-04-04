@@ -16,7 +16,6 @@ export default stencilSSR({
   from: '@siemens/ix-react',
   hydrateModule: import('@siemens/ix/hydrate'),
   serializeShadowRoot: {
-    scoped: [],
     default: 'declarative-shadow-dom',
   },
 })(nextConfig);

@@ -121,7 +121,6 @@ export const config: Config = {
       ],
       externalRuntime: false,
       includeGlobalScripts: false,
-      externalRuntime: false,
     },
     {
       type: 'docs-custom',

@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.28.2",
+    "version": "4.29.0",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -238,6 +238,7 @@
             }
           },
           "mutable": false,
+          "attr": "app-switch-config",
           "reflectToAttr": false,
           "docs": "Define application switch configuration",
           "docsTags": [],
@@ -266,6 +267,7 @@
             }
           },
           "mutable": false,
+          "attr": "breakpoints",
           "reflectToAttr": false,
           "docs": "Supported layouts",
           "docsTags": [],
@@ -772,6 +774,7 @@
             }
           },
           "mutable": false,
+          "attr": "breakpoints",
           "reflectToAttr": false,
           "docs": "Supported layouts",
           "docsTags": [
@@ -1175,6 +1178,7 @@
             "references": {}
           },
           "mutable": false,
+          "attr": "next-items",
           "reflectToAttr": false,
           "docs": "Items will be accessible through a dropdown",
           "docsTags": [],
@@ -2246,6 +2250,7 @@
             "references": {}
           },
           "mutable": false,
+          "attr": "categories",
           "reflectToAttr": false,
           "docs": "Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
           "docsTags": [],
@@ -2298,6 +2303,7 @@
             }
           },
           "mutable": false,
+          "attr": "filter-state",
           "reflectToAttr": false,
           "docs": "A set of search criteria to populate the component with.",
           "docsTags": [],
@@ -2415,6 +2421,7 @@
             "references": {}
           },
           "mutable": false,
+          "attr": "non-selectable-categories",
           "reflectToAttr": false,
           "docs": "In certain use cases some categories may not be available for selection anymore.\nTo allow proper display of set filters with these categories this ID to label mapping can be populated.\n\nConfiguration object hash used to supply labels to the filter chips in the input field.\nEach ID maps to a string representing the label to display.",
           "docsTags": [],
@@ -2546,6 +2553,7 @@
             "references": {}
           },
           "mutable": false,
+          "attr": "suggestions",
           "reflectToAttr": false,
           "docs": "A list of strings that will be supplied as type-ahead suggestions not tied to any categories.",
           "docsTags": [],
@@ -4291,6 +4299,7 @@
             }
           },
           "mutable": false,
+          "attr": "date-range-options",
           "reflectToAttr": false,
           "docs": "An array of predefined date range options for the date picker.\nEach option is an object with a label describing the range and a function\nthat returns the start and end dates of the range as a DateRangeOption object.\n\nExample format:\n  {\n    id: 'some unique id',\n    label: 'Name of the range',\n    from: undefined, to: '2023/03/29'\n  },\n  // ... other predefined date range options ...",
           "docsTags": [],
@@ -11243,6 +11252,7 @@
             "references": {}
           },
           "mutable": false,
+          "attr": "layout",
           "reflectToAttr": false,
           "docs": "Defines the layout of the form.",
           "docsTags": [],
@@ -14095,6 +14105,7 @@
             }
           },
           "mutable": false,
+          "attr": "before-dismiss",
           "reflectToAttr": false,
           "docs": "Is called before the modal is dismissed.\n\n- Return `true` to proceed in dismissing the modal\n- Return `false` to abort in dismissing the modal",
           "docsTags": [],
@@ -17933,6 +17944,7 @@
             }
           },
           "mutable": false,
+          "attr": "marker",
           "reflectToAttr": false,
           "docs": "Define tick marker on the slider. Marker has to be within slider min/max",
           "docsTags": [],
@@ -21284,6 +21296,7 @@
             }
           },
           "mutable": true,
+          "attr": "context",
           "reflectToAttr": false,
           "docs": "Selection and collapsed state management",
           "docsTags": [],
@@ -21313,6 +21326,7 @@
             }
           },
           "mutable": false,
+          "attr": "model",
           "reflectToAttr": false,
           "docs": "Tree model",
           "docsTags": [],
@@ -21359,6 +21373,7 @@
             }
           },
           "mutable": false,
+          "attr": "render-item",
           "reflectToAttr": false,
           "docs": "Render function of tree items",
           "docsTags": [],
@@ -21541,6 +21556,7 @@
             }
           },
           "mutable": false,
+          "attr": "context",
           "reflectToAttr": false,
           "docs": "Context",
           "docsTags": [],
@@ -23013,10 +23029,10 @@
       "docstring": "",
       "path": "src/components.d.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.28.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "../../node_modules/.pnpm/@stencil+core@4.29.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.28.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "../../node_modules/.pnpm/@stencil+core@4.29.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",
