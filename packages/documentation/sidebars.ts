@@ -51,7 +51,11 @@ const sidebars: SidebarsConfig = {
 
   // But you can create a sidebar manually
   home: [
-    'home/overview',
+    {
+      type: 'doc',
+      id: 'home/overview',
+      className: 'doc-sidebar-item-bold',
+    },
     {
       type: 'category',
       className: 'doc-sidebar-item-bold',

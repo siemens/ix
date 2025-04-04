@@ -319,7 +319,7 @@ function TypographyStyle() {
               styles.typographyColumnChildName
             )}
           >
-            <IxTypography format={'code'}>{typography.fontFamily}</IxTypography>
+            <code>{typography.fontFamily}</code>
           </div>
         </div>
       </TypographyTable.Text>
@@ -332,7 +332,7 @@ function TypographyStyle() {
               styles.typographyColumnChildName
             )}
           >
-            <IxTypography format={'code'}>{typography.fontSize}</IxTypography>
+            <code>{typography.fontSize}</code>
           </div>
         </div>
       </TypographyTable.Text>
@@ -345,9 +345,7 @@ function TypographyStyle() {
               styles.typographyColumnChildName
             )}
           >
-            <IxTypography format={'code'}>
-              {typography.lineHeight}%
-            </IxTypography>
+            <code>{typography.lineHeight}%</code>
           </div>
         </div>
       </TypographyTable.Text>
@@ -360,7 +358,7 @@ function TypographyStyle() {
               styles.typographyColumnChildName
             )}
           >
-            <IxTypography format={'code'}>{typography.fontWeight}</IxTypography>
+            <code>{typography.fontWeight}</code>
           </div>
         </div>
       </TypographyTable.Text>

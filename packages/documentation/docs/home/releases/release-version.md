@@ -8,7 +8,7 @@ no_single_tab: true
 description: 'Our Siemens Industrial Experience design team strive to provide a stable and reliable system that is constantly evolving to meet your needs. This section describes our practices for new features and changes, deprecating and removing outdated features, and our long-term support for older versions.'
 ---
 
-# 
+#
 
 ## Versioning
 
@@ -45,4 +45,5 @@ We recommend always following the active release. When a version moves from the 
 
 | Version | Status | Released     |
 | ------- | :----: | ------------ |
-| v2.0.0  | Active | Sep 27, 2023 |
+| v3.0.0  | Active | Mai 01, 2025 |
+| v2.0.0  |  LTS   | Sep 27, 2023 |

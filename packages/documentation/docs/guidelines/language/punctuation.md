@@ -18,58 +18,58 @@ Always consider whether necessary
 
 `!` Exclamation mark for high-level warnings only!
 
-<div class="mb-2">
+<div className="mb-2">
 `!` Exclamation mark for high-level warnings only!
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `?` Question mark only if necessary
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `:` Use colons: especially to introduce lists
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `.` Full stops at the end of all full sentences
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `.` Full stops before all file extensions: .csv .txt .zip
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `.` Consistent use of full stops throughout the application
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `…` Ellipsis only for transitional text: Upload… 
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `'` Single quotation mark for possession: Customer’s role (single), customers’ roles (plural)
 </div>
-<div class="mb-2">
+<div className="mb-2">
 <code style={{ whiteSpace: 'pre' }}> </code> No quotation mark or brackets for plurals: PDFs
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `&` Avoid ampersands unless in a product or company name: Siemens & Halske AG
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `*` Avoid asterisks in applications
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `(` Avoid brackets ( ) and [ ]
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `;` Avoid semi-colons
 </div>
 
-<div class="mb-2">
+<div className="mb-2">
 `:` Avoid and remove colons whenever possible, for example Username instead of Username:
 </div>
 

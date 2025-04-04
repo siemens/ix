@@ -14,11 +14,13 @@ import { openStackBlitz } from '@site/src/lib/stackblitz';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
-export default function OpenStackblitz(props: {
-  mount: string;
-  framework: FrameworkTypes;
-  files: Record<string, string>;
-}) {
+export default function OpenStackblitz(
+  props: Readonly<{
+    mount: string;
+    framework: FrameworkTypes;
+    files: Record<string, string>;
+  }>
+) {
   const baseUrl = useBaseUrl('/demo/v2/');
 
   return (
@@ -36,7 +38,7 @@ export default function OpenStackblitz(props: {
           }}
         >
           {React.createElement('ix-icon', { name: iconElectricalEnergyFilled })}
-          Open Stackblitz
+          <span className="ButtonText">Open Stackblitz</span>
         </Button>
       )}
     </BrowserOnly>

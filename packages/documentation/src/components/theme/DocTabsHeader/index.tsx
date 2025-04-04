@@ -26,7 +26,7 @@ function Tabs({ children }) {
   );
 }
 
-function Tab(props: { label: string; value: string }) {
+function Tab(props: Readonly<{ label: string; value: string }>) {
   const location = useLocation();
   const history = useHistory();
 
@@ -37,7 +37,7 @@ function Tab(props: { label: string; value: string }) {
   return (
     <button
       className={clsx('all-unset', styles.Tab, {
-        [styles['Tab--active']]: location.pathname === props.value,
+        [styles['Tab--active']]: location.pathname.includes(props.value),
       })}
       onClick={onNavigate}
     >
@@ -46,13 +46,15 @@ function Tab(props: { label: string; value: string }) {
   );
 }
 
-export default function DocTabsHeader(props: {
-  id: string;
-  title: string;
-  description: string;
-  tabs: PropSidebarItemLink[];
-  frontMatter: any;
-}) {
+export default function DocTabsHeader(
+  props: Readonly<{
+    id: string;
+    title: string;
+    description: string;
+    tabs: PropSidebarItemLink[];
+    frontMatter: any;
+  }>
+) {
   const { description, tabs, title, frontMatter, id } = props;
 
   return (

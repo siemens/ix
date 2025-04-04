@@ -14,16 +14,16 @@ import Button from '../Button';
 export default function ThemeVariantToggle({
   isLight,
   onChangeColorMode,
-}: {
+}: Readonly<{
   isLight?: boolean;
   onChangeColorMode: () => void;
-}) {
+}>) {
   return (
     <Button onClick={onChangeColorMode}>
       {React.createElement('ix-icon', {
         name: isLight ? iconSun : iconMoon,
       })}
-      {isLight ? 'Light' : 'Dark'}
+      <span className="ButtonText">{isLight ? 'Light' : 'Dark'}</span>
     </Button>
   );
 }

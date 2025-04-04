@@ -24,7 +24,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={onClick}
         ref={ref}
       >
-        {children}
+        <div className={clsx(styles.ButtonText, 'ButtonText')}>{children}</div>
       </button>
     );
   }

@@ -17,7 +17,9 @@
   }
 
   code {
-    --ifm-code-background: var(--theme-color-0);
+    --ifm-code-background: var(--theme-color-5);
+    padding: 2px 4px;
+    color: var(--theme-color-std-text);
     border: none;
   }
 }

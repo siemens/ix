@@ -67,7 +67,6 @@
       var(--theme-color-dynamic) 100%
     )
     1;
-  /* border-bottom: 1px solid var(--theme-color-dynamic); */
   border-bottom-width: 1px;
   border-bottom-style: solid;
   position: absolute;
@@ -87,6 +86,7 @@
   min-width: 11rem;
   height: 2.875rem;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .Tab:focus-visible {

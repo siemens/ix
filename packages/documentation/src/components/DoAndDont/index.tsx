@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './DoAndDont.module.css';
 import { IxIcon } from '@siemens/ix-react';
 import { iconCancelled, iconSuccess } from '@siemens/ix-icons/icons';
+import clsx from 'clsx';
 
 export type VariantType = 'do' | 'dont' | 'do-gradient' | 'dont-gradient';
 
@@ -46,11 +47,10 @@ function Item(props: ItemProps) {
 function Col(props: ColProps) {
   const { variant, children } = props;
 
-  const variantClass = variant ? `${styles[variant]}` : '';
   const iconProps = variant ? ICON_CONFIG[variant] : ICON_CONFIG.default;
 
   return (
-    <div className={`${styles.col} ${variantClass}`}>
+    <div className={clsx(styles.col, styles[variant])}>
       {React.Children.map(children, (child) => (
         <div className={styles.entry}>
           {iconProps.icon && (

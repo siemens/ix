@@ -64,7 +64,7 @@ export function ThemeSelection(props: ThemeSelectionProps) {
         {React.createElement('ix-icon', {
           name: iconPen,
         })}
-        {displayTheme}
+        <span className="ButtonText">{displayTheme}</span>
         {React.createElement('ix-icon', {
           name: iconChevronDownSmall,
         })}
