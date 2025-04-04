@@ -86,5 +86,5 @@ test('renders with required label', async ({ mount, page }) => {
   await expect(customFieldElement).toHaveClass(/hydrated/);
   await expect(fieldLabel).toHaveClass(/hydrated/);
   await expect(typography).toHaveClass(/typography-label/);
-  await expect(fieldLabel.filter({ hasText: 'Label *' })).toHaveText('Label *');
+  await expect(fieldLabel.filter({ hasText: 'Label*' })).toHaveText('Label*');
 });
