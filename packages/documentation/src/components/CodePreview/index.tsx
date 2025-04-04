@@ -76,8 +76,8 @@ export default function CodePreview(props: Readonly<CodePreviewProps>) {
     <div className={styles.CodePreview}>
       {props.source?.[selectedFramework] && (
         <>
-          <Button ref={ref}>
-            {selectedFile}
+          <Button ref={ref} className={styles.sourceFileButton}>
+            <span className={styles.sourceFileName}>{selectedFile}</span>
             {React.createElement('ix-icon', {
               name: iconChevronDownSmall,
             })}

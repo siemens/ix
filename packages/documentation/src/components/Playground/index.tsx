@@ -29,20 +29,18 @@ function PreviewActions(
       <a
         href={props.openExternalUrl}
         target="_blank"
-        className="flex gap-1 text-[var(--theme-color-soft-text)] flex-nowrap text-nowrap"
+        className="flex gap-1 text-[var(--theme-color-soft-text)] flex-nowrap text-nowrap pr-2"
       >
         {React.createElement('ix-icon', {
           name: iconOpenExternal,
         })}
-        Full preview
+        <span className="ButtonText">Full preview</span>
       </a>
-      <div className="DesktopOnly">
-        <ThemeSelection onThemeChange={props.onChangeTheme} />
-        <ThemeVariantToggle
-          isLight={props.colorModeLight}
-          onChangeColorMode={props.onChangeColorMode}
-        />
-      </div>
+      <ThemeSelection onThemeChange={props.onChangeTheme} />
+      <ThemeVariantToggle
+        isLight={props.colorModeLight}
+        onChangeColorMode={props.onChangeColorMode}
+      />
     </>
   );
 }

@@ -18,8 +18,7 @@
   }
 
   .aa-DetachedSearchButton:focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: 2px;
+    outline: none;
   }
 
   .aa-DetachedSearchButton:hover {
@@ -45,12 +44,15 @@
   --aa-primary-color-rgb: var(--theme-color-std-text);
   color: var(--theme-color-std-text);
 
+  .aa-InputWrapperSuffix,
   .aa-InputWrapperPrefix {
     background-color: var(--theme-input--background);
+    box-shadow: none;
   }
 
   .aa-Input {
     background-color: var(--theme-input--background);
+    box-shadow: none;
   }
 
   .aa-Input::placeholder {

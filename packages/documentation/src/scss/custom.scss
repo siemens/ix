@@ -142,6 +142,12 @@ ix-dropdown {
   }
 }
 
+@media screen and (max-width: 1240px) {
+  .ButtonText {
+    display: none;
+  }
+}
+
 .display-none {
   display: none;
 }
@@ -149,6 +155,10 @@ ix-dropdown {
 .dropdown-button {
   padding-right: 0 !important;
 }
+
+/**
+  * Custom styles for the Blog
+  */
 
 .blog-wrapper .margin-bottom--xl {
   margin: 0rem 1rem 5rem !important;

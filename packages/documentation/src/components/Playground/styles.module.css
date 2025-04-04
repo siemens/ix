@@ -3,13 +3,13 @@
  */
 
 .playground {
-  display: grid;
-  grid-template-rows: 3rem 1fr;
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .toolbar {
@@ -39,17 +39,13 @@
 }
 
 .toolbar__actions {
-  margin-left: auto;
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
+  position: relative;
   align-items: center;
-}
-
-@media screen and (max-width: 700px) {
-  .toolbar__actions {
-    margin-left: 0px;
-  }
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .spacer {
@@ -71,4 +67,5 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+  overflow: hidden;
 }
