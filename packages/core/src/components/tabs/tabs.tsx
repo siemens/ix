@@ -351,6 +351,9 @@ export class Tabs {
     tabsWrapper.addEventListener('touchmove', this.handleTouchMove, {
       passive: false,
     });
+    tabsWrapper.addEventListener('touchend', this.handleTouchEnd, {
+      passive: true,
+    });
   }
 
   private readonly handleTouchStart = (event: Event) => {
@@ -362,29 +365,17 @@ export class Tabs {
     const touchEvent = event as TouchEvent;
     if (touchEvent.touches.length > 1) return;
 
-    const touchX = touchEvent.touches[0].clientX;
-    const deltaX = touchX - this.startTouchX;
-
-    const minMoveThreshold = 2;
-    if (Math.abs(deltaX) < minMoveThreshold) return;
+    const currentX = touchEvent.touches[0].clientX;
+    const deltaX = currentX - this.startTouchX;
 
     event.preventDefault();
 
-    const tabsWrapper = this.getTabsWrapper();
-    if (!tabsWrapper) return;
+    const newScroll = this.scrollActionAmount + deltaX;
+    this.move(newScroll, false);
+  };
 
-    const baseVelocity = 1;
-    const maxVelocity = 3;
-    const velocityFactor = Math.max(
-      baseVelocity,
-      Math.min(maxVelocity, Math.abs(deltaX) / 50)
-    );
-
-    const newScrollAmount = this.currentScrollAmount - deltaX * velocityFactor;
-    (tabsWrapper as HTMLElement).style.transform = `translateX(${newScrollAmount}px)`;
-
-    this.scrollActionAmount = newScrollAmount;
-    this.startTouchX = touchX;
+  private readonly handleTouchEnd = () => {
+    this.currentScrollAmount = this.scrollActionAmount;
   };
 
   private isTouchOnlyDevice(): boolean {
