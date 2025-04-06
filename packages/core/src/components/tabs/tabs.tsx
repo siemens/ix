@@ -312,9 +312,9 @@ export class Tabs {
     const tabsWrapper = this.getTabsWrapper();
     if (!tabsWrapper) return;
 
-    this.setupTouchEvents(tabsWrapper as Element);
+    this.setupTouchEvents(tabsWrapper);
     if (!this.isTouchOnlyDevice()) {
-      this.setupWheelEvent(tabsWrapper as Element);
+      this.setupWheelEvent(tabsWrapper);
     }
   }
 
@@ -363,31 +363,36 @@ export class Tabs {
     if (touchEvent.touches.length > 1) return;
 
     const touchX = touchEvent.touches[0].clientX;
-    const moveX = touchX - this.startTouchX;
+    const deltaX = touchX - this.startTouchX;
 
-    const minVelocity = 1;
-    const maxVelocity = 3;
-    const smoothnessFactor = 50;
-    const minMoveThreshold = 5;
-
-    if (Math.abs(moveX) < minMoveThreshold) return;
+    const minMoveThreshold = 2;
+    if (Math.abs(deltaX) < minMoveThreshold) return;
 
     event.preventDefault();
 
+    const tabsWrapper = this.getTabsWrapper();
+    if (!tabsWrapper) return;
+
+    const baseVelocity = 1;
+    const maxVelocity = 3;
     const velocityFactor = Math.max(
-      minVelocity,
-      Math.min(maxVelocity, Math.abs(moveX) / smoothnessFactor)
+      baseVelocity,
+      Math.min(maxVelocity, Math.abs(deltaX) / 50)
     );
 
-    requestAnimationFrame(() => {
-      this.move(-moveX * velocityFactor, true);
-    });
+    const newScrollAmount = this.currentScrollAmount - deltaX * velocityFactor;
+    (tabsWrapper as HTMLElement).style.transform = `translateX(${newScrollAmount}px)`;
 
+    this.scrollActionAmount = newScrollAmount;
     this.startTouchX = touchX;
   };
 
   private isTouchOnlyDevice(): boolean {
-    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    return (
+      'ontouchstart' in window &&
+      navigator.maxTouchPoints > 0 &&
+      !window.matchMedia('(pointer:fine)').matches
+    );
   }
 
   disconnectedCallback() {
