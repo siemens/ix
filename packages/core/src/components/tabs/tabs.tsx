@@ -365,13 +365,15 @@ export class Tabs {
     const touchEvent = event as TouchEvent;
     if (touchEvent.touches.length > 1) return;
 
-    const currentX = touchEvent.touches[0].clientX;
-    const deltaX = currentX - this.startTouchX;
+    const touchX = touchEvent.touches[0].clientX;
+    const moveX = touchX - this.startTouchX;
+
+    if (Math.abs(moveX) < 3) return;
 
     event.preventDefault();
+    this.move(moveX, false);
 
-    const newScroll = this.scrollActionAmount + deltaX;
-    this.move(newScroll, false);
+    this.startTouchX = touchX;
   };
 
   private readonly handleTouchEnd = () => {
