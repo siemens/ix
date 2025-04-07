@@ -334,10 +334,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   updateFormInternalValue(value: string | string[]) {
     if (Array.isArray(value)) {
       this.formInternals.setFormValue(value.join(','));
-      return;
+    } else {
+      this.formInternals.setFormValue(value);
     }
-
-    this.formInternals.setFormValue(value);
   }
 
   /** @internal */
