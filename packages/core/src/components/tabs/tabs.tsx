@@ -363,31 +363,27 @@ export class Tabs {
 
   private readonly handleTouchMove = (event: Event) => {
     const touchEvent = event as TouchEvent;
-    if (touchEvent.touches.length > 1) return;
+    if (touchEvent.touches.length !== 1) return;
 
     const currentX = touchEvent.touches[0].clientX;
     const deltaX = currentX - this.startTouchX;
-
-    event.preventDefault();
+    this.startTouchX = currentX;
 
     const tabsWrapper = this.getTabsWrapper();
     if (!(tabsWrapper instanceof HTMLElement)) return;
 
-    const wrapperWidth = tabsWrapper.getBoundingClientRect().width;
-    const scrollWidth = tabsWrapper.scrollWidth;
-
-    const currentOffset = this.scrollActionAmount;
-    let newOffset = currentOffset + deltaX;
-
     const maxOffset = 0;
-    const minOffset = wrapperWidth - scrollWidth;
-    newOffset = Math.min(maxOffset, Math.max(minOffset, newOffset));
+    const minOffset = tabsWrapper.clientWidth - tabsWrapper.scrollWidth;
+    const newOffset = Math.min(
+      maxOffset,
+      Math.max(minOffset, this.scrollActionAmount + deltaX)
+    );
 
+    touchEvent.preventDefault();
     tabsWrapper.style.transition = 'none';
     tabsWrapper.style.transform = `translateX(${newOffset}px)`;
 
     this.scrollActionAmount = newOffset;
-    this.startTouchX = currentX;
   };
 
   private readonly handleTouchEnd = () => {
@@ -410,6 +406,7 @@ export class Tabs {
       tabsWrapper.removeEventListener('wheel', this.handleWheelScroll);
       tabsWrapper.removeEventListener('touchstart', this.handleTouchStart);
       tabsWrapper.removeEventListener('touchmove', this.handleTouchMove);
+      tabsWrapper.removeEventListener('touchend', this.handleTouchEnd);
     }
   }
 
