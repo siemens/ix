@@ -13,7 +13,7 @@ export async function docusaurusFetch(url: string) {
   const response = await fetch(url);
 
   if (!response.ok) {
-    throw `Error fetching code from ${url}`;
+    throw new Error(`Error fetching code from ${url}`);
   }
 
   const text = await response.text();
@@ -24,7 +24,7 @@ export async function docusaurusFetch(url: string) {
     text?.includes('<div id="__docusaurus"></div>') ||
     text?.includes('Page Not Found')
   ) {
-    throw `Error fetching code from ${url}`;
+    throw new Error(`Error fetching code from ${url}`);
   }
 
   return text;
@@ -52,16 +52,16 @@ export type CodePreviewProps = {
   onShowSource: (source: React.FC) => void;
 };
 
-export default function CodePreview(props: CodePreviewProps) {
+export default function CodePreview(props: Readonly<CodePreviewProps>) {
   const { selectedFramework } = props;
   const [selectedFile, setSelectedFile] = useState<string>('');
   const [SourceCode, setSourceCode] = useState<React.FC>(() => () => (
-    <CodeBlock children={['Test']}></CodeBlock>
+    <CodeBlock>Test</CodeBlock>
   ));
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (props.files && props.files[selectedFramework]) {
+    if (props.files?.[selectedFramework]) {
       const file = Object.keys(props.files[selectedFramework])[0];
       setSelectedFile(file);
       setSourceCode(() => props.source[selectedFramework][file]);
@@ -74,10 +74,10 @@ export default function CodePreview(props: CodePreviewProps) {
 
   return (
     <div className={styles.CodePreview}>
-      {props.source && props.source[selectedFramework] && (
+      {props.source?.[selectedFramework] && (
         <>
-          <Button ref={ref}>
-            {selectedFile}
+          <Button ref={ref} className={styles.sourceFileButton}>
+            <span className={styles.sourceFileName}>{selectedFile}</span>
             {React.createElement('ix-icon', {
               name: iconChevronDownSmall,
             })}

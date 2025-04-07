@@ -12,6 +12,8 @@
   flex-direction: row;
   width: 100%;
   flex-wrap: nowrap;
+
+  cursor: pointer;
 }
 
 .AnchorButton:focus-visible {
