@@ -365,15 +365,29 @@ export class Tabs {
     const touchEvent = event as TouchEvent;
     if (touchEvent.touches.length > 1) return;
 
-    const touchX = touchEvent.touches[0].clientX;
-    const moveX = touchX - this.startTouchX;
-
-    if (Math.abs(moveX) < 3) return;
+    const currentX = touchEvent.touches[0].clientX;
+    const deltaX = currentX - this.startTouchX;
 
     event.preventDefault();
-    this.move(moveX, false);
 
-    this.startTouchX = touchX;
+    const tabsWrapper = this.getTabsWrapper();
+    if (!(tabsWrapper instanceof HTMLElement)) return;
+
+    const wrapperWidth = tabsWrapper.getBoundingClientRect().width;
+    const scrollWidth = tabsWrapper.scrollWidth;
+
+    const currentOffset = this.scrollActionAmount;
+    let newOffset = currentOffset + deltaX;
+
+    const maxOffset = 0;
+    const minOffset = wrapperWidth - scrollWidth;
+    newOffset = Math.min(maxOffset, Math.max(minOffset, newOffset));
+
+    tabsWrapper.style.transition = 'none';
+    tabsWrapper.style.transform = `translateX(${newOffset}px)`;
+
+    this.scrollActionAmount = newOffset;
+    this.startTouchX = currentX;
   };
 
   private readonly handleTouchEnd = () => {
