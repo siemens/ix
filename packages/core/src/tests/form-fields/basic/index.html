@@ -17,6 +17,7 @@ SPDX-License-Identifier: MIT
   <body>
     <h1>Empty</h1>
     <ix-custom-field
+      required
       data-field="native-input-field"
       label="Native Input Field"
       helper-text="Helper text"
@@ -27,70 +28,71 @@ SPDX-License-Identifier: MIT
     >
       <input data-field />
     </ix-custom-field>
-      <ix-input
-        data-field="input"
-        label="Text Field"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      ></ix-input>
-      <ix-number-input
-        data-field="number-input"
-        label="Number Field"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      ></ix-number-input>
-      <ix-textarea
-        data-field="text-area"
-        label="Text Area"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      ></ix-textarea>
-      <ix-date-input
-        data-field="date-input"
-        label="Date Field"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      ></ix-date-input>
-      <ix-select
-        data-field="select"
-        label="Select"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      >
-        <ix-select-item label="Item 1" value="0"></ix-select-item>
-        <ix-select-item label="Item 2" value="2"></ix-select-item>
-        <ix-select-item label="Item 3" value="3"></ix-select-item>
-      </ix-select>
-        <ix-radio-group
-        data-field="radio-group"
-        label="Radio Group"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-        direction="row"
-      >
-        <ix-radio label="Label 1" value="0"></ix-radio>
-        <ix-radio label="Label 2" value="1" checked></ix-radio>
-        <ix-radio label="Label 3" value="2"></ix-radio>
-      </ix-radio-group>
-      <ix-checkbox-group
+    <ix-input
+      required
+      data-field="input"
+      label="Text Field"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    ></ix-input>
+    <ix-number-input
+      data-field="number-input"
+      label="Number Field"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    ></ix-number-input>
+    <ix-textarea
+      data-field="text-area"
+      label="Text Area"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    ></ix-textarea>
+    <ix-date-input
+      data-field="date-input"
+      label="Date Field"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    ></ix-date-input>
+    <ix-select
+      data-field="select"
+      label="Select"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    >
+      <ix-select-item label="Item 1" value="0"></ix-select-item>
+      <ix-select-item label="Item 2" value="2"></ix-select-item>
+      <ix-select-item label="Item 3" value="3"></ix-select-item>
+    </ix-select>
+    <ix-radio-group
+      data-field="radio-group"
+      label="Radio Group"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+      direction="row"
+    >
+      <ix-radio label="Label 1" value="0"></ix-radio>
+      <ix-radio label="Label 2" value="1" checked></ix-radio>
+      <ix-radio label="Label 3" value="2"></ix-radio>
+    </ix-radio-group>
+    <ix-checkbox-group
       data-field="checkbox-group"
       label="Checkbox Group"
       helper-text="Helper text"
@@ -107,6 +109,7 @@ SPDX-License-Identifier: MIT
 
     <h1>With value</h1>
     <ix-custom-field
+      required
       data-field="native-input-field"
       label="Native Input Field"
       helper-text="Helper text"
@@ -118,6 +121,7 @@ SPDX-License-Identifier: MIT
       <input data-field value="some input" />
     </ix-custom-field>
     <ix-input
+      required
       data-field="input"
       label="Text Field"
       value="Value"
