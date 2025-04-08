@@ -137,7 +137,9 @@ export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplic
     properties: {
         theme: 'theme',
         themeSystemAppearance: 'theme-system-appearance',
-        forceBreakpoint: 'force-breakpoint'
+        forceBreakpoint: 'force-breakpoint',
+        breakpoints: 'breakpoints',
+        appSwitchConfig: 'app-switch-config'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -179,7 +181,8 @@ export const IxBasicNavigation: StencilReactComponent<IxBasicNavigationElement, 
     properties: {
         applicationName: 'application-name',
         hideHeader: 'hide-header',
-        forceBreakpoint: 'force-breakpoint'
+        forceBreakpoint: 'force-breakpoint',
+        breakpoints: 'breakpoints'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -209,6 +212,7 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
     tagName: 'ix-breadcrumb',
     properties: {
         visibleItemCount: 'visible-item-count',
+        nextItems: 'next-items',
         ghost: 'ghost',
         ariaLabelPreviousButton: 'aria-label-previous-button'
     },
@@ -329,7 +333,11 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
     properties: {
         disabled: 'disabled',
         readonly: 'readonly',
+        filterState: 'filter-state',
         placeholder: 'placeholder',
+        categories: 'categories',
+        nonSelectableCategories: 'non-selectable-categories',
+        suggestions: 'suggestions',
         icon: 'icon',
         hideIcon: 'hide-icon',
         staticOperator: 'static-operator',
@@ -472,6 +480,7 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
         loading: 'loading',
         showWeekNumbers: 'show-week-numbers',
         customRangeAllowed: 'custom-range-allowed',
+        dateRangeOptions: 'date-range-options',
         locale: 'locale',
         weekStartIndex: 'week-start-index',
         i18nCustomItem: 'i18n-custom-item',
@@ -613,6 +622,8 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         placement: 'placement',
         positioningStrategy: 'positioning-strategy',
         header: 'header',
+        offset: 'offset',
+        overwriteDropdownStyle: 'overwrite-dropdown-style',
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
         suppressOverflowBehavior: 'suppress-overflow-behavior'
@@ -741,6 +752,7 @@ export const IxFieldLabel: StencilReactComponent<IxFieldLabelElement, IxFieldLab
     properties: {
         required: 'required',
         htmlFor: 'html-for',
+        controlRef: 'control-ref',
         isInvalid: 'is-invalid'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
@@ -967,7 +979,7 @@ export type IxLayoutAutoEvents = NonNullable<unknown>;
 
 export const IxLayoutAuto: StencilReactComponent<IxLayoutAutoElement, IxLayoutAutoEvents> = /*@__PURE__*/ createComponent<IxLayoutAutoElement, IxLayoutAutoEvents>({
     tagName: 'ix-layout-auto',
-    properties: {},
+    properties: { layout: 'layout' },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
 });
@@ -1215,6 +1227,7 @@ export const IxModal: StencilReactComponent<IxModalElement, IxModalEvents> = /*@
         animation: 'animation',
         backdrop: 'backdrop',
         closeOnBackdropClick: 'close-on-backdrop-click',
+        beforeDismiss: 'before-dismiss',
         centered: 'centered',
         closeOnEscape: 'close-on-escape'
     },
@@ -1482,6 +1495,7 @@ export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents> = 
         min: 'min',
         max: 'max',
         value: 'value',
+        marker: 'marker',
         trace: 'trace',
         traceReference: 'trace-reference',
         disabled: 'disabled',
