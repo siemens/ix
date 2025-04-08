@@ -35,12 +35,16 @@ $font-family: 'Siemens Sans', Arial, Helvetica, sans-serif;
   background-color: #ffffff;
   --ifm-font-color-base: var(--theme-color-std-text);
   --ifm-heading-color: var(--theme-color-std-text);
+  --ifm-navbar-link-hover-color: var(--theme-color-dynamic);
+  --ifm-menu-color-active: var(--theme-color-dynamic);
 }
 
 [data-theme='dark'] #__docusaurus {
   background-color: #000028;
   --ifm-font-color-base: var(--theme-color-std-text);
   --ifm-heading-color: var(--theme-color-std-text);
+  --ifm-navbar-link-hover-color: var(--theme-color-dynamic);
+  --ifm-menu-color-active: var(--theme-color-dynamic);
 }
 
 :root {
