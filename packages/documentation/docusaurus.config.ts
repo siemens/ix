@@ -20,6 +20,18 @@ function getAnnouncementBarConfig() {
   }
 }
 
+function getFontHeadTag(fontStyle: string) {
+  return {
+    tagName: 'link',
+    attributes: {
+      rel: 'preload',
+      href: `https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_${fontStyle}.ttf`,
+      as: 'font',
+      type: 'font/ttf',
+      crossorigin: 'anonymous',
+    },
+  };
+}
 const customCss = [
   './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
   './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css',
@@ -163,46 +175,10 @@ const config: Config = {
         src: 'https://cdn.jsdelivr.net/npm/@siemens/ix-icons@3.0.0-alpha.0/dist/ix-icons/ix-icons.js',
       },
     },
-    {
-      tagName: 'link',
-      attributes: {
-        rel: 'preload',
-        href: 'https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_Bold.ttf',
-        as: 'font',
-        type: 'font/ttf',
-        crossorigin: 'anonymous',
-      },
-    },
-    {
-      tagName: 'link',
-      attributes: {
-        rel: 'preload',
-        href: 'https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_BoldItalic.ttf',
-        as: 'font',
-        type: 'font/ttf',
-        crossorigin: 'anonymous',
-      },
-    },
-    {
-      tagName: 'link',
-      attributes: {
-        rel: 'preload',
-        href: 'https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_Italic.ttf',
-        as: 'font',
-        type: 'font/ttf',
-        crossorigin: 'anonymous',
-      },
-    },
-    {
-      tagName: 'link',
-      attributes: {
-        rel: 'preload',
-        href: 'https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_Roman.ttf',
-        as: 'font',
-        type: 'font/ttf',
-        crossorigin: 'anonymous',
-      },
-    },
+    getFontHeadTag('Bold'),
+    getFontHeadTag('BoldItalic'),
+    getFontHeadTag('Italic'),
+    getFontHeadTag('Roman'),
   ],
   themeConfig: {
     ...getAnnouncementBarConfig(),
