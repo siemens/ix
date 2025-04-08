@@ -68,3 +68,42 @@ test('check if items still clickable', async ({ mount, page }) => {
 
   clickCountHandle.dispose();
 });
+
+test('should dynamically add an item and verify all list items have correct height', async ({
+  mount,
+  page,
+}) => {
+  const itemHeight = 60;
+
+  await mount(`
+    <ix-event-list item-height="${itemHeight}">
+      <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Text 2</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
+    </ix-event-list>
+  `);
+
+  await page.evaluate(() => {
+    const eventListItem = document.createElement('ix-event-list-item');
+    eventListItem.textContent = 'Newly added item';
+
+    const eventList = document.querySelector('ix-event-list');
+    if (eventList) {
+      eventList.appendChild(eventListItem);
+    }
+  });
+
+  const eventListItems = page.locator('ix-event-list-item');
+  const lastItem = eventListItems.last();
+  await expect(eventListItems).toHaveCount(5);
+  await expect(lastItem).toHaveJSProperty('offsetHeight', itemHeight);
+
+  const heights = await eventListItems.evaluateAll((items) =>
+    items.map((item) => (item instanceof HTMLElement ? item.offsetHeight : 0))
+  );
+
+  heights.forEach((height) => {
+    expect(height).toBe(itemHeight);
+  });
+});

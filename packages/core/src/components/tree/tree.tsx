@@ -291,6 +291,12 @@ export class Tree {
     }
   }
 
+  connectedCallback() {
+    if (this.hasFirstRender) {
+      this.initList();
+    }
+  }
+
   disconnectedCallback() {
     this.hyperlist?.destroy();
     this.observer?.disconnect();
