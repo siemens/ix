@@ -11,14 +11,14 @@ import { useLocalStorage } from './use-localStorage';
 
 export const usePlaygroundTheme = () => {
   const [playgroundTheme, setPlaygroundTheme] = useLocalStorage<
-    'brand' | 'classic' | ({} & string)
+    'brand' | 'classic' | (string & Record<never, never>)
   >('docusaurus.playground.theme', 'brand');
   return { playgroundTheme, setPlaygroundTheme };
 };
 
 export const usePlaygroundThemeVariant = () => {
   const [playgroundThemeVariant, setPlaygroundThemeVariant] = useLocalStorage<
-    'light' | 'dark' | ({} & string)
+    'light' | 'dark' | (string & Record<never, never>)
   >('docusaurus.playground.theme.variant', 'dark');
   return { playgroundThemeVariant, setPlaygroundThemeVariant };
 };
