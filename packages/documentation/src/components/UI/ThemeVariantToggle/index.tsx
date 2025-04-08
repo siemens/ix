@@ -10,20 +10,26 @@
 import { iconMoon, iconSun } from '@siemens/ix-icons/icons';
 import React from 'react';
 import Button from '../Button';
+import { usePlaygroundThemeVariant } from '@site/src/hooks/use-playground-theme';
 
-export default function ThemeVariantToggle({
-  isLight,
-  onChangeColorMode,
-}: Readonly<{
-  isLight?: boolean;
-  onChangeColorMode: () => void;
-}>) {
+export default function ThemeVariantToggle() {
+  const { playgroundThemeVariant, setPlaygroundThemeVariant } =
+    usePlaygroundThemeVariant();
+
   return (
-    <Button onClick={onChangeColorMode}>
+    <Button
+      onClick={() => {
+        setPlaygroundThemeVariant(
+          playgroundThemeVariant === 'light' ? 'dark' : 'light'
+        );
+      }}
+    >
       {React.createElement('ix-icon', {
-        name: isLight ? iconSun : iconMoon,
+        name: playgroundThemeVariant === 'light' ? iconSun : iconMoon,
       })}
-      <span className="ButtonText">{isLight ? 'Light' : 'Dark'}</span>
+      <span className="ButtonText">
+        {playgroundThemeVariant === 'light' ? 'Light' : 'Dark'}
+      </span>
     </Button>
   );
 }

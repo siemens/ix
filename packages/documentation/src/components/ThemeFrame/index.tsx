@@ -8,11 +8,11 @@ export default function ThemeFrame({
   children,
   embedded,
   height,
-}: {
+}: Readonly<{
   children: React.ReactNode;
   embedded?: boolean;
   height?: string;
-}) {
+}>) {
   return (
     <div
       className={clsx(styles.themeFrame, {

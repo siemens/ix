@@ -1,10 +1,10 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import { useColorMode } from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { iconOpenExternal } from '@siemens/ix-icons/icons';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
+import { usePlaygroundThemeVariant } from '@site/src/hooks/use-playground-theme';
 import CodeBlock from '@theme/CodeBlock';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
@@ -18,9 +18,7 @@ import styles from './styles.module.css';
 
 function PreviewActions(
   props: Readonly<{
-    colorModeLight: boolean;
     openExternalUrl: string;
-    onChangeColorMode: () => void;
     onChangeTheme: (theme: string) => void;
   }>
 ) {
@@ -37,10 +35,7 @@ function PreviewActions(
         <span className="ButtonText">Full preview</span>
       </a>
       <ThemeSelection onThemeChange={props.onChangeTheme} />
-      <ThemeVariantToggle
-        isLight={props.colorModeLight}
-        onChangeColorMode={props.onChangeColorMode}
-      />
+      <ThemeVariantToggle />
     </>
   );
 }
@@ -81,8 +76,8 @@ export default function Playground(
   }>
 ) {
   const defaultTheme = useDefaultTheme();
-  const { colorMode } = useColorMode();
-  const [isDark, setIsDark] = useState(colorMode === 'dark');
+  const { playgroundThemeVariant } = usePlaygroundThemeVariant();
+  const [isDark, setIsDark] = useState(playgroundThemeVariant === 'dark');
   const [isPreview, setIsPreview] = useState(!props.noPreview);
   const [theme, setTheme] = useState(defaultTheme);
   const iframeSrc = useBaseUrl(
@@ -98,8 +93,8 @@ export default function Playground(
   ));
 
   useEffect(() => {
-    setIsDark(colorMode === 'dark');
-  }, [colorMode]);
+    setIsDark(playgroundThemeVariant === 'dark');
+  }, [playgroundThemeVariant]);
 
   return (
     <div className={styles.playground}>
@@ -132,9 +127,7 @@ export default function Playground(
           <div className={styles.toolbar__actions}>
             {isPreview ? (
               <PreviewActions
-                colorModeLight={!isDark}
                 openExternalUrl={iframeSrc}
-                onChangeColorMode={() => setIsDark(!isDark)}
                 onChangeTheme={setTheme}
               />
             ) : (

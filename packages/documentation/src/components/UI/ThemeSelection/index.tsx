@@ -6,13 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { useEffect, useRef, useState } from 'react';
-import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
-import Button from '../Button';
-import { iconChevronDownSmall, iconPen } from '@siemens/ix-icons/icons';
-import React from 'react';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { iconChevronDownSmall, iconPen } from '@siemens/ix-icons/icons';
+import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
+import React, { useEffect, useState } from 'react';
+import Button from '../Button';
+import { usePlaygroundTheme } from '@site/src/hooks/use-playground-theme';
 
 const brandTheme = 'brand';
 const classicTheme = 'classic';
@@ -33,7 +33,9 @@ type ThemeSelectionProps = {
   onThemeChange?: (theme: string) => void;
 };
 
-export function ThemeSelection(props: ThemeSelectionProps) {
+export function ThemeSelection(props: Readonly<ThemeSelectionProps>) {
+  const { playgroundTheme: theme, setPlaygroundTheme: setTheme } =
+    usePlaygroundTheme();
   const context = useDocusaurusContext();
   const [availableThemes] = useState(() => {
     const themes = [classicTheme];
@@ -42,13 +44,6 @@ export function ThemeSelection(props: ThemeSelectionProps) {
     }
 
     return themes;
-  });
-
-  const [theme, setTheme] = useState(() => {
-    if (context.siteConfig.customFields.withBrandTheme) {
-      return brandTheme;
-    }
-    return classicTheme;
   });
 
   const [ref, setRef] = useState<HTMLButtonElement>(null);
