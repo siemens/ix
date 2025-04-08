@@ -10,7 +10,7 @@ description: 'Blazor is a framework for building interactive web applications us
 
 #
 
-:::caution Experimental disclaimer
+:::warning Experimental disclaimer
 
 There is no guarantee that the core functionality is fully covered by the Blazor library.
 Bug reports, feature or support requests related to the Blazor library can only be handled within the [Blazor repository](https://github.com/yagizhanNY/siemens-ix-blazor).
