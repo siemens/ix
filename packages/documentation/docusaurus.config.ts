@@ -163,6 +163,46 @@ const config: Config = {
         src: 'https://cdn.jsdelivr.net/npm/@siemens/ix-icons@3.0.0-alpha.0/dist/ix-icons/ix-icons.js',
       },
     },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preload',
+        href: 'https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_Bold.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preload',
+        href: 'https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_BoldItalic.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preload',
+        href: 'https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_Italic.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preload',
+        href: 'https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_Roman.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossorigin: 'anonymous',
+      },
+    },
   ],
   themeConfig: {
     ...getAnnouncementBarConfig(),
