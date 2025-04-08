@@ -81,3 +81,57 @@ test('should prevent click navigation', async ({ mount, page }) => {
   await expect(firstStepDiv).toHaveClass(/selected/);
   await expect(lastStepDiv).not.toHaveClass(/selected/);
 });
+
+
+test('should be clickable with button click', async ({ mount, page }) => {
+  await mount(`
+    <div>
+    <ix-workflow-steps clickable vertical>
+      <ix-workflow-step id="step1" status='open'>Step 1</ix-workflow-step>
+      <ix-workflow-step status='success'>Step 2</ix-workflow-step>
+      <ix-workflow-step status='error'>Step 3</ix-workflow-step>
+    </ix-workflow-steps>
+
+    <ix-button id="toggle-button">Toggle Step 1</ix-button>
+
+     <script>
+        const button = document.getElementById('toggle-button');
+        const step1 = document.getElementById('step1');
+        button.addEventListener('click', () => {
+          const currentStatus = step1.getAttribute('status');
+          step1.setAttribute('status', currentStatus === 'open' ? 'error' : 'open');
+        });
+      </script>
+    </div>
+  `);
+  const workflowSteps = page.locator('ix-workflow-steps');
+  
+  const lastStep = workflowSteps.locator('ix-workflow-step').nth(0);
+  const selectedDiv = lastStep.locator('.step');
+  await lastStep.click();
+
+  await expect(workflowSteps).toHaveClass(/hydrated/);
+  await expect(selectedDiv).toHaveClass(/selected/);
+
+  await page.evaluate(() => {
+    const button = document.getElementById('toggle-button');
+    const step1 = document.getElementById('step1');
+
+    button?.addEventListener('click', () => {
+      const currentStatus = step1?.getAttribute('status');
+      step1?.setAttribute('status', currentStatus === 'open' ? 'error' : 'open');
+    });
+  });
+
+  // ✅ Click toggle button and assert status changes
+  const toggleBtn = page.locator('#toggle-button');
+  const step1 = page.locator('#step1');
+
+  await page.screenshot({ path: 'debug.png', fullPage: true });
+  await toggleBtn.click();
+  await expect(step1).toHaveAttribute('status', 'error');
+  await page.screenshot({ path: 'debug1.png', fullPage: true });
+  await toggleBtn.click();
+  await page.screenshot({ path: 'debug2.png', fullPage: true });
+  await expect(step1).toHaveAttribute('status', 'open');
+});
