@@ -132,7 +132,7 @@ test('required', async ({ mount, page }) => {
   await expect(dateInputElement).toHaveAttribute('required');
 
   await expect(dateInputElement.locator('ix-field-label')).toHaveText(
-    'MyLabel *'
+    'MyLabel*'
   );
 
   await input.focus();
