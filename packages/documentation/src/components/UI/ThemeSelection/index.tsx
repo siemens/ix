@@ -13,8 +13,10 @@ import {
   iconDrawingDocument,
 } from '@siemens/ix-icons/icons';
 import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
+import { usePlaygroundTheme } from '@site/src/hooks/use-playground-theme';
 import React, { useEffect, useState } from 'react';
 import Button from '../Button';
+import styles from './ThemeSelection.module.css';
 
 const brandTheme = 'brand';
 const classicTheme = 'classic';
@@ -35,7 +37,9 @@ type ThemeSelectionProps = {
   onThemeChange?: (theme: string) => void;
 };
 
-export function ThemeSelection(props: ThemeSelectionProps) {
+export function ThemeSelection(props: Readonly<ThemeSelectionProps>) {
+  const { playgroundTheme: activeTheme, setPlaygroundTheme: setTheme } =
+    usePlaygroundTheme();
   const context = useDocusaurusContext();
   const [availableThemes] = useState(() => {
     const themes = [classicTheme];
@@ -46,19 +50,12 @@ export function ThemeSelection(props: ThemeSelectionProps) {
     return themes;
   });
 
-  const [theme, setTheme] = useState(() => {
-    if (context.siteConfig.customFields.withBrandTheme) {
-      return brandTheme;
-    }
-    return classicTheme;
-  });
-
   const [ref, setRef] = useState<HTMLButtonElement>(null);
-  const displayTheme = toUppercase(theme);
+  const displayTheme = toUppercase(activeTheme);
 
   useEffect(() => {
-    props.onThemeChange?.(theme);
-  }, [theme]);
+    props.onThemeChange?.(activeTheme);
+  }, [activeTheme]);
 
   return (
     <>
@@ -76,7 +73,12 @@ export function ThemeSelection(props: ThemeSelectionProps) {
       {ref && (
         <IxDropdown trigger={ref}>
           {availableThemes.map((theme) => (
-            <IxDropdownItem key={theme} onClick={() => setTheme(theme)}>
+            <IxDropdownItem
+              key={theme}
+              onClick={() => setTheme(theme)}
+              className={styles.DropdownItem}
+              checked={activeTheme === theme}
+            >
               {toUppercase(theme)}
             </IxDropdownItem>
           ))}

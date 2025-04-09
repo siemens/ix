@@ -15,18 +15,18 @@ import DocItemContent from '@theme-original/DocItem/Content';
 import DocItemFooter from '@theme-original/DocItem/Footer';
 import Layout from '@theme-original/DocItem/Layout';
 import DocItemPaginator from '@theme-original/DocItem/Paginator';
+import ContentVisibility from '@theme/ContentVisibility';
 import type LayoutType from '@theme/DocItem/Layout';
 import DocItemTOCDesktop from '@theme/DocItem/TOC/Desktop';
 import DocItemTOCMobile from '@theme/DocItem/TOC/Mobile';
+import DocVersionBanner from '@theme/DocVersionBanner';
 import clsx from 'clsx';
 import { useEffect } from 'react';
 import styles from './styles.module.css';
-import ContentVisibility from '@theme/ContentVisibility';
-import DocVersionBanner from '@theme/DocVersionBanner';
 
 type Props = WrapperProps<typeof LayoutType>;
 
-export default function LayoutWrapper(props: Props): JSX.Element {
+export default function LayoutWrapper(props: Readonly<Props>): JSX.Element {
   const docType = useDocType();
 
   if (docType === 'banner') {

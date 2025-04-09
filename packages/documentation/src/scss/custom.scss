@@ -33,6 +33,11 @@ $font-family: 'Siemens Sans', Arial, Helvetica, sans-serif;
 
 [data-theme='light'] #__docusaurus {
   background-color: #ffffff;
+
+  .navbar {
+    background-color: #ffffff;
+  }
+
   --ifm-font-color-base: var(--theme-color-std-text);
   --ifm-heading-color: var(--theme-color-std-text);
   --ifm-navbar-link-hover-color: var(--theme-color-dynamic);
@@ -41,6 +46,11 @@ $font-family: 'Siemens Sans', Arial, Helvetica, sans-serif;
 
 [data-theme='dark'] #__docusaurus {
   background-color: #000028;
+
+  .navbar {
+    background-color: #000028;
+  }
+
   --ifm-font-color-base: var(--theme-color-std-text);
   --ifm-heading-color: var(--theme-color-std-text);
   --ifm-navbar-link-hover-color: var(--theme-color-dynamic);

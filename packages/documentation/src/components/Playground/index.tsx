@@ -1,13 +1,13 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import { useColorMode } from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { iconOpenExternal } from '@siemens/ix-icons/icons';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
+import { usePlaygroundThemeVariant } from '@site/src/hooks/use-playground-theme';
 import CodeBlock from '@theme/CodeBlock';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import CodePreview, { CodePreviewFiles, SourceFiles } from '../CodePreview';
 import FrameworkSelection from '../UI/FrameworkSelection';
 import OpenStackblitz from '../UI/OpenStackblitz';
@@ -15,12 +15,37 @@ import Pill from '../UI/Pill';
 import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './styles.module.css';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import { PlaygroundContext } from '@site/src/context/playground-context';
+
+const ColorContainerFix = ({ children }) => {
+  const { theme, variant } = useContext(PlaygroundContext);
+  const themeContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const themeContainer = themeContainerRef.current;
+    if (!themeContainer) {
+      return;
+    }
+
+    if (theme === 'brand') {
+      themeContainer.classList.remove('color-table-classic-dark');
+      themeContainer.classList.remove('color-table-classic-light');
+      themeContainer.setAttribute('data-ix-theme', 'brand');
+      themeContainer.setAttribute('data-ix-variant', variant);
+    } else {
+      themeContainer.removeAttribute('data-ix-theme');
+      themeContainer.removeAttribute('data-ix-variant');
+      themeContainer.className = `color-table-${theme}-${variant}`;
+    }
+  }, [theme, variant]);
+
+  return <div ref={themeContainerRef}>{children}</div>;
+};
 
 function PreviewActions(
   props: Readonly<{
-    colorModeLight: boolean;
     openExternalUrl: string;
-    onChangeColorMode: () => void;
     onChangeTheme: (theme: string) => void;
   }>
 ) {
@@ -41,10 +66,7 @@ function PreviewActions(
         <span className="ButtonText">Full preview</span>
       </a>
       <ThemeSelection onThemeChange={props.onChangeTheme} />
-      <ThemeVariantToggle
-        isLight={props.colorModeLight}
-        onChangeColorMode={props.onChangeColorMode}
-      />
+      <ThemeVariantToggle />
     </>
   );
 }
@@ -74,19 +96,19 @@ function CodeActions(
   );
 }
 
-export default function Playground(
-  props: Readonly<{
-    name: string;
-    files: CodePreviewFiles;
-    source: SourceFiles;
-    height?: string;
-    noPreview?: boolean;
-    onlyFramework?: FrameworkTypes;
-  }>
-) {
+export type PlaygroundProps = Readonly<{
+  name: string;
+  files: CodePreviewFiles;
+  source: SourceFiles;
+  height?: string;
+  noPreview?: boolean;
+  onlyFramework?: FrameworkTypes;
+}>;
+
+function Playground(props: PlaygroundProps) {
   const defaultTheme = useDefaultTheme();
-  const { colorMode } = useColorMode();
-  const [isDark, setIsDark] = useState(colorMode === 'dark');
+  const { playgroundThemeVariant } = usePlaygroundThemeVariant();
+  const [isDark, setIsDark] = useState(playgroundThemeVariant === 'dark');
   const [isPreview, setIsPreview] = useState(!props.noPreview);
   const [theme, setTheme] = useState(defaultTheme);
   const iframeSrc = useBaseUrl(
@@ -102,8 +124,8 @@ export default function Playground(
   ));
 
   useEffect(() => {
-    setIsDark(colorMode === 'dark');
-  }, [colorMode]);
+    setIsDark(playgroundThemeVariant === 'dark');
+  }, [playgroundThemeVariant]);
 
   return (
     <div className={styles.playground}>
@@ -136,9 +158,7 @@ export default function Playground(
           <div className={styles.toolbar__actions}>
             {isPreview ? (
               <PreviewActions
-                colorModeLight={!isDark}
                 openExternalUrl={iframeSrc}
-                onChangeColorMode={() => setIsDark(!isDark)}
                 onChangeTheme={setTheme}
               />
             ) : (
@@ -170,5 +190,17 @@ export default function Playground(
         )}
       </div>
     </div>
+  );
+}
+
+export default function (props: PlaygroundProps) {
+  return (
+    <BrowserOnly>
+      {() => (
+        <ColorContainerFix>
+          <Playground {...props} />
+        </ColorContainerFix>
+      )}
+    </BrowserOnly>
   );
 }

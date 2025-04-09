@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import { useColorMode } from '@docusaurus/theme-common';
 import ApiTable, { AnchorHeader } from '@site/src/components/ApiTable';
+import { usePlaygroundThemeVariant } from '@site/src/hooks/use-playground-theme';
 import {
   createContext,
   forwardRef,
@@ -85,18 +85,16 @@ const ThemeContext = createContext<ThemeContextType>({
 
 function BrowserOnlyBorderTable({ shadowName }) {
   const [theme, setTheme] = useState(useDefaultTheme());
-  const { colorMode } = useColorMode();
-
-  const [isDarkColor, setIsDarkColor] = useState(colorMode === 'dark');
+  const { playgroundThemeVariant } = usePlaygroundThemeVariant();
+  const [isDarkColor, setIsDarkColor] = useState(
+    playgroundThemeVariant === 'dark'
+  );
 
   const themeRef = useRef<HTMLDivElement>();
-  function changeColorMode() {
-    setIsDarkColor(!isDarkColor);
-  }
 
   useEffect(() => {
-    setIsDarkColor(colorMode === 'dark');
-  }, [colorMode]);
+    setIsDarkColor(playgroundThemeVariant === 'dark');
+  }, [playgroundThemeVariant]);
 
   const themeContext = useMemo(
     () => ({ currentTheme: theme, isDarkColor }),
@@ -117,10 +115,7 @@ function BrowserOnlyBorderTable({ shadowName }) {
                   <CopyButton text={`var(--theme-${shadowName})`}></CopyButton>
                 </div>
                 <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
-                <ThemeVariantToggle
-                  onChangeColorMode={() => changeColorMode()}
-                  isLight={!isDarkColor}
-                />
+                <ThemeVariantToggle />
               </>
             }
           >

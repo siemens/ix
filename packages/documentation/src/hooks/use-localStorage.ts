@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 export function useLocalStorage<T>(
   key: string,
   initialValue: T
-): [T, (value: T) => void] {
+): [T, (value: T) => void, boolean] {
   // Get the initial value from local storage or use the provided initial value
   const [storedValue, setStoredValue] = useState(() => {
     try {
@@ -58,5 +58,5 @@ export function useLocalStorage<T>(
     };
   }, [key]);
 
-  return [storedValue, setValue];
+  return [storedValue, setValue, !!window.localStorage.getItem(key)];
 }

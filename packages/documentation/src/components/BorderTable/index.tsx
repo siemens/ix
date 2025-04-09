@@ -8,13 +8,13 @@
  */
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import { useLocation } from '@docusaurus/router';
-import { useColorMode } from '@docusaurus/theme-common';
 import {
   iconChevronDownSmall,
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 import { IxIcon } from '@siemens/ix-react';
 import ApiTable, { AnchorHeader } from '@site/src/components/ApiTable';
+import { usePlaygroundThemeVariant } from '@site/src/hooks/use-playground-theme';
 import clsx from 'clsx';
 import {
   createContext,
@@ -120,9 +120,10 @@ function BrowserOnlyBorderTable({ children, borderName }) {
   const location = useLocation();
 
   const [theme, setTheme] = useState(useDefaultTheme());
-  const { colorMode } = useColorMode();
-
-  const [isDarkColor, setIsDarkColor] = useState(colorMode === 'dark');
+  const { playgroundThemeVariant } = usePlaygroundThemeVariant();
+  const [isDarkColor, setIsDarkColor] = useState(
+    playgroundThemeVariant === 'dark'
+  );
 
   const [expanded, setExpanded] = useState(
     location.hash === `#border-${borderName}`
@@ -178,10 +179,6 @@ function BrowserOnlyBorderTable({ children, borderName }) {
     []
   );
 
-  function changeColorMode() {
-    setIsDarkColor(!isDarkColor);
-  }
-
   function generateColorChildren() {
     const name = `--theme-${borderName}`;
 
@@ -208,8 +205,8 @@ function BrowserOnlyBorderTable({ children, borderName }) {
   }
 
   useEffect(() => {
-    setIsDarkColor(colorMode === 'dark');
-  }, [colorMode]);
+    setIsDarkColor(playgroundThemeVariant === 'dark');
+  }, [playgroundThemeVariant]);
 
   function getHexColors() {
     const name = `--theme-${borderName}`;
@@ -278,10 +275,7 @@ function BrowserOnlyBorderTable({ children, borderName }) {
                     <CopyButton text={`var(${borderName})`}></CopyButton>
                   </div>
                   <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
-                  <ThemeVariantToggle
-                    onChangeColorMode={() => changeColorMode()}
-                    isLight={!isDarkColor}
-                  />
+                  <ThemeVariantToggle />
                 </>
               }
             >
