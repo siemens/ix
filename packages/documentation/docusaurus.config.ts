@@ -80,21 +80,6 @@ function checkDocsContext() {
   }
 }
 
-function getAnnouncementBarConfig() {
-  const latestVersion = versionDeployment.versions.find(version => version.id === versionDeployment.currentVersion);
-
-  if (versionDeployment.currentVersion !== versionDeployment.latestVersion) {
-    return {
-      announcementBar: {
-        content:
-          `<span style="font-size: 1rem">You are viewing the documentation for version ${latestVersion?.label}. To access the documentation for the latest release please visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a>.</span>`,
-        isCloseable: false,
-        backgroundColor: 'var(--theme-color-warning)',
-      },
-    };
-  }
-}
-
 if (!process.env.CI) {
   try {
     // Check if theme is existing inside node_modes
@@ -181,7 +166,12 @@ const config: Config = {
     playgroundVersion
   },
   themeConfig: {
-    ...getAnnouncementBarConfig(),
+    announcementBar: {
+        content:
+          `<span style="font-size: 1rem">🎉 V3.0.0-alpha is here. <a href="https://ix.siemens.io/version-alpha/blog/v3-alpha">Discover and provide feedback</a>.</span>`,
+        isCloseable: false,
+        backgroundColor: '#FFF',
+    },
     metadata: [
       {
         name: 'keywords',
