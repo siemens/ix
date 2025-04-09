@@ -82,7 +82,7 @@ test('should prevent click navigation', async ({ mount, page }) => {
   await expect(lastStepDiv).not.toHaveClass(/selected/);
 });
 
-test.only('Workflow status when in open is updating properly after updating of the status', async ({
+test('Workflow status when in open is updating properly after updating of the status', async ({
   mount,
   page,
 }) => {
