@@ -1,0 +1,53 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs example</title>
+    <link rel="stylesheet" href="./tabs.css" />
+  </head>
+  <body>
+    <div class="tabs">
+      <ix-tabs>
+        <ix-tab-item data-tab-id="0">Tab 1</ix-tab-item>
+        <ix-tab-item data-tab-id="1">Tab 2</ix-tab-item>
+        <ix-tab-item data-tab-id="2">Tab 3</ix-tab-item>
+      </ix-tabs>
+      <div data-tab-content="0" class="show">Content Tab 1</div>
+      <div data-tab-content="1">Content Tab 2</div>
+      <div data-tab-content="2">Content Tab 3</div>
+    </div>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-tabs');
+        const tabs = document.querySelectorAll('ix-tab-item[data-tab-id]');
+
+        function registerClickListener(tab) {
+          tab.addEventListener('click', (tabContent) => {
+            const contentList = document.querySelectorAll('[data-tab-content]');
+            contentList.forEach((content) => {
+              if (content.dataset.tabContent === tab.dataset.tabId) {
+                content.classList.add('show');
+              } else {
+                content.classList.remove('show');
+              }
+            });
+          });
+        }
+
+        tabs.forEach(registerClickListener);
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+$isLegacyModeActive: false !default;
+
+@if not $isLegacyModeActive {
+  @warn "experimental: You are using the experimental brand theme. See https://code.siemens.com/siemens-ix/ix-brand-theme/-/blob/update-brand-theme-structure/packages/corporate-theme-alternative/readme.md#-installation-experimental"
+}
+
+@function getLegacyMode() {
+  @return $isLegacyModeActive;
+}
+
+@mixin theme-selector($colorSchema: light dark, $legacyVariant: "dark") {
+  @if not getLegacyMode() {
+    :root,
+    :host {
+      color-scheme: $colorSchema;
+    }
+  }
+
+  @if getLegacyMode() {
+    :root {
+      .theme-brand-#{$legacyVariant} {
+         @content;
+      }
+    }
+  } @else {
+    [data-ix-theme='brand'] {
+      @content;
+    }
+  }
+}
+
+@mixin match-variant($variant: "dark") {
+  @if not getLegacyMode() {
+    &,
+    &[data-ix-variant='#{$variant}'],
+    [data-ix-variant='#{$variant}'] {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

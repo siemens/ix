@@ -1,0 +1,43 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings example</title>
+  </head>
+  <body>
+    <ix-application>
+      <ix-application-header>
+        <div class="placeholder-logo" slot="logo"></div>
+      </ix-application-header>
+      <ix-menu>
+        <ix-menu-settings>
+          <ix-menu-settings-item
+            label="Example Setting 1"
+          ></ix-menu-settings-item>
+          <ix-menu-settings-item
+            label="Example Setting 2"
+          ></ix-menu-settings-item>
+        </ix-menu-settings>
+      </ix-menu>
+    </ix-application>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-menu');
+        const menu = document.querySelector('ix-menu');
+        await menu.toggleSettings(true);
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tree custom example</title>
+    <script>
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconStar, iconCut, iconPrint } from '@siemens/ix-icons/icons';
+
+      addIcons({ iconStar, iconCut, iconPrint });
+    </script>
+  </head>
+  <body>
+    <div style="height: 8rem; width: 100%">
+      <ix-button id="expand" ghost style="margin-bottom: 2rem"
+        >Expand Tree</ix-button
+      >
+      <ix-tree root="root" id="tree"></ix-tree>
+    </div>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-tree');
+        const tree = document.getElementById('tree');
+
+        const expandButton = document.getElementById('expand');
+        expandButton.addEventListener('click', () => {
+          tree.context = {
+            sample: {
+              isExpanded: true,
+              isSelected: false,
+            },
+            'sample-child-2': {
+              isSelected: true,
+              isExpanded: false,
+            },
+          };
+        });
+
+        tree.renderItem = (index, item, dataList, context, update) => {
+          const el = document.createElement('ix-tree-item');
+          el.hasChildren = item.hasChildren;
+          el.context = context[item.id];
+
+          const div = document.createElement('div');
+          div.style.display = 'flex';
+
+          const name = document.createElement('span');
+          const icon = document.createElement('ix-icon');
+          icon.name = item.data.icon;
+          icon.style.marginRight = '0.5rem';
+
+          div.appendChild(icon);
+          div.appendChild(name);
+
+          name.innerText = item.data.name;
+
+          el.appendChild(div);
+
+          update((updateTreeItem) => {
+            name.innerText = updateTreeItem.data.name;
+          });
+
+          return el;
+        };
+
+        tree.model = {
+          root: {
+            id: 'root',
+            data: null,
+            hasChildren: true,
+            children: ['sample'],
+          },
+          sample: {
+            id: 'sample',
+            data: {
+              name: 'Sample',
+              icon: 'star',
+            },
+            hasChildren: true,
+            children: ['sample-child-1', 'sample-child-2'],
+          },
+          'sample-child-1': {
+            id: 'sample-child-1',
+            data: {
+              name: 'Sample Child 1',
+              icon: 'cut',
+            },
+            hasChildren: false,
+            children: [],
+          },
+          'sample-child-2': {
+            id: 'sample-child-2',
+            data: {
+              name: 'Sample Child 2',
+              icon: 'print',
+            },
+            hasChildren: false,
+            children: [],
+          },
+        };
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

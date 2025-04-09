@@ -1,0 +1,53 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Category filter example</title>
+    <script type="module" crossorigin src="../assets/global.bff64ac3.js"></script>
+    <script type="module" crossorigin src="../assets/init.d54797f5.js"></script>
+    <link rel="stylesheet" href="../assets/global.2d4b91bd.css">
+  </head>
+  <body>
+    <ix-category-filter placeholder="Filter by"></ix-category-filter>
+
+    <script>
+      const repeatCategories = false;
+      const filterState = {
+        tokens: ['Custom filter text'],
+        categories: [
+          {
+            id: 'ID_1',
+            value: 'IBM',
+            operator: 'Not equal',
+          },
+        ],
+      };
+      const categories = {
+        ID_1: {
+          label: 'Vendor',
+          options: ['Apple', 'MS', 'Siemens'],
+        },
+        ID_2: {
+          label: 'Product',
+          options: ['iPhone X', 'Windows', 'APS'],
+        },
+      };
+
+      const categoryFilter = document.querySelector('ix-category-filter');
+      categoryFilter.repeatCategories = repeatCategories;
+      categoryFilter.filterState = filterState;
+      categoryFilter.categories = categories;
+    </script>
+    
+  </body>
+</html>

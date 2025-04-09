@@ -1,0 +1,33 @@
+@use "./light/color" as as_light_color;
+@use "./light/boxShadow" as as_light_boxShadow;
+@use "./light/fontFamilies" as as_light_fontFamilies;
+@use "./light/fontWeights" as as_light_fontWeights;
+@use "./light/typography" as as_light_typography;
+@use "./light/borderRadius" as as_light_borderRadius;
+@use "./light/sizing" as as_light_sizing;
+@use "./light/fontSizes" as as_light_fontSizes;
+@use "./light/lineHeights" as as_light_lineHeights;
+@use "./light/other" as as_light_other;
+@use "./light/spacing" as as_light_spacing;
+@use "./light/borderWidth" as as_light_borderWidth;
+@use "./light/border" as as_light_border;
+@use "./light/letterSpacing" as as_light_letterSpacing;
+
+@use './utils' as util;
+
+@include util.theme-selector($colorSchema: only light) {
+  @include as_light_color.color;
+  @include as_light_boxShadow.boxShadow;
+  @include as_light_fontFamilies.fontFamilies;
+  @include as_light_fontWeights.fontWeights;
+  @include as_light_typography.typography;
+  @include as_light_borderRadius.borderRadius;
+  @include as_light_sizing.sizing;
+  @include as_light_fontSizes.fontSizes;
+  @include as_light_lineHeights.lineHeights;
+  @include as_light_other.other;
+  @include as_light_spacing.spacing;
+  @include as_light_borderWidth.borderWidth;
+  @include as_light_border.border;
+  @include as_light_letterSpacing.letterSpacing;
+}
