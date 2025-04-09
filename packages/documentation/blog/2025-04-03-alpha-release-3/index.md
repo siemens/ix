@@ -36,7 +36,7 @@ Your feedback on the new version, documentation redesign, and change log is cruc
 **Key changes:**
 
 - **Minimum Angular version:** The minimum supported Angular version has been updated to version 18.
-- **Support standalone components:** We now support Angular standalone components out of the box.
+- **Standalone components:** We now support Angular standalone components out of the box.
 
 **Example:**
 
@@ -66,8 +66,8 @@ To avoid style collisions with other CSS frameworks or libraries, a prefix has b
 
 **Key changes**:
 
-- **Input and textarea**: Global styling has been prevented. To use legacy styling, add `class="ix-form-control"` to input or textarea.
-- **Label**: Global styling has been prevented. To use legacy styling, add `class="ix-form-label"` to label.
+- **Input and textarea**: Global styling has been removed. To use legacy styling, add `class="ix-form-control"` to input or textarea.
+- **Label**: Global styling has been removed. To use legacy styling, add `class="ix-form-label"` to label.
 - **Table**: New global classes `.ix-table` and `.ix-table-striped` have been added to display a simple HTML table. These changes aim to enhance compatibility and prevent conflicts in styling across different frameworks and libraries.
 
 # Bootstrap is removed from our dependencies
