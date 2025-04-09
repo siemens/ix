@@ -9,7 +9,7 @@ import {
 } from '@docusaurus/theme-common/internal';
 import { DocsPreferredVersionContextProvider } from '@docusaurus/plugin-content-docs/client';
 import type { Props } from '@theme/Layout/Provider';
-import { PlaygroundProvider } from '../../DocsRoot';
+import { PlaygroundProvider } from '@site/src/context/playground-context';
 
 const Provider = composeProviders([
   ColorModeProvider,
@@ -21,6 +21,8 @@ const Provider = composeProviders([
   PlaygroundProvider,
 ]);
 
-export default function LayoutProvider({ children }: Props): ReactNode {
+export default function LayoutProvider({
+  children,
+}: Readonly<Props>): ReactNode {
   return <Provider>{children}</Provider>;
 }

@@ -7,7 +7,7 @@ import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import { usePlaygroundThemeVariant } from '@site/src/hooks/use-playground-theme';
 import CodeBlock from '@theme/CodeBlock';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import CodePreview, { CodePreviewFiles, SourceFiles } from '../CodePreview';
 import FrameworkSelection from '../UI/FrameworkSelection';
 import OpenStackblitz from '../UI/OpenStackblitz';
@@ -16,6 +16,32 @@ import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './styles.module.css';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import { PlaygroundContext } from '@site/src/context/playground-context';
+
+const ColorContainerFix = ({ children }) => {
+  const { theme, variant } = useContext(PlaygroundContext);
+  const themeContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const themeContainer = themeContainerRef.current;
+    if (!themeContainer) {
+      return;
+    }
+
+    if (theme === 'brand') {
+      themeContainer.classList.remove('color-table-classic-dark');
+      themeContainer.classList.remove('color-table-classic-light');
+      themeContainer.setAttribute('data-ix-theme', 'brand');
+      themeContainer.setAttribute('data-ix-variant', variant);
+    } else {
+      themeContainer.removeAttribute('data-ix-theme');
+      themeContainer.removeAttribute('data-ix-variant');
+      themeContainer.className = `color-table-${theme}-${variant}`;
+    }
+  }, [theme, variant]);
+
+  return <div ref={themeContainerRef}>{children}</div>;
+};
 
 function PreviewActions(
   props: Readonly<{
@@ -164,5 +190,13 @@ function Playground(props: PlaygroundProps) {
 }
 
 export default function (props: PlaygroundProps) {
-  return <BrowserOnly>{() => <Playground {...props} />}</BrowserOnly>;
+  return (
+    <BrowserOnly>
+      {() => (
+        <ColorContainerFix>
+          <Playground {...props} />
+        </ColorContainerFix>
+      )}
+    </BrowserOnly>
+  );
 }

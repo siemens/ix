@@ -8,7 +8,7 @@
  */
 
 import { useContext } from 'react';
-import { PlaygroundContext } from '../theme/DocsRoot';
+import { PlaygroundContext } from '../context/playground-context';
 
 export const usePlaygroundTheme = () => {
   const context = useContext(PlaygroundContext);

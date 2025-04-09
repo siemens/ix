@@ -1,10 +1,16 @@
-import type { WrapperProps } from '@docusaurus/types';
-import { useLocalStorage } from '@site/src/hooks/use-localStorage';
-import DocsRoot from '@theme-original/DocsRoot';
-import type DocsRootType from '@theme/DocsRoot';
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import { createStorageSlot } from '@docusaurus/theme-common/internal';
 import { createContext, useCallback, useEffect, useState } from 'react';
 
-type Props = WrapperProps<typeof DocsRootType>;
+const variantStorage = createStorageSlot('docusaurus.playground.theme.variant');
+const themeStorage = createStorageSlot('docusaurus.playground.theme');
 
 export const PlaygroundContext = createContext<{
   variant: string;
@@ -22,7 +28,7 @@ function useContextValue() {
       ...prev,
       variant: variant,
     }));
-    setPlaygroundThemeVariant(variant);
+    variantStorage.set(variant);
   }, []);
 
   const cbOnThemeChange = useCallback((theme: string) => {
@@ -30,7 +36,7 @@ function useContextValue() {
       ...prev,
       theme: theme,
     }));
-    setPlaygroundTheme(theme);
+    themeStorage.set(theme);
   }, []);
 
   const [context, setContext] = useState({
@@ -40,21 +46,26 @@ function useContextValue() {
     onThemeChange: cbOnThemeChange,
   });
 
-  const [playgroundTheme, setPlaygroundTheme] = useLocalStorage<
-    'brand' | 'classic' | (string & Record<never, never>)
-  >('docusaurus.playground.theme', 'brand');
-
-  const [playgroundThemeVariant, setPlaygroundThemeVariant] = useLocalStorage<
-    'light' | 'dark' | (string & Record<never, never>)
-  >('docusaurus.playground.theme.variant', 'dark');
-
   useEffect(() => {
     setContext((prev) => ({
       ...prev,
-      variant: playgroundThemeVariant,
-      theme: playgroundTheme,
+      variant: variantStorage.get() || 'dark',
+      theme: themeStorage.get() || 'brand',
     }));
-  }, [playgroundThemeVariant, playgroundTheme]);
+
+    variantStorage.listen(() => {
+      setContext((prev) => ({
+        ...prev,
+        variant: variantStorage.get() || 'dark',
+      }));
+    });
+    themeStorage.listen(() => {
+      setContext((prev) => ({
+        ...prev,
+        theme: themeStorage.get() || 'brand',
+      }));
+    });
+  }, []);
 
   return context;
 }
@@ -67,7 +78,3 @@ export const PlaygroundProvider = ({ children }) => {
     </PlaygroundContext.Provider>
   );
 };
-
-export default function DocsRootWrapper(props: Readonly<Props>): JSX.Element {
-  return <DocsRoot {...props} />;
-}
