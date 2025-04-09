@@ -470,7 +470,6 @@ const sidebars: SidebarsConfig = {
             },
           ],
         }),
-        'components/panes/index',
         createTabItem({
           id: 'components/panes/index',
           label: 'Panes',

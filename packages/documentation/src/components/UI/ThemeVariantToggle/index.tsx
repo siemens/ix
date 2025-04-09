@@ -27,6 +27,7 @@ function ThemeVariantToggle() {
     >
       {React.createElement('ix-icon', {
         name: playgroundThemeVariant === 'light' ? iconSun : iconMoon,
+        size: '16',
       })}
       <span className="ButtonText">
         {playgroundThemeVariant === 'light' ? 'Light' : 'Dark'}

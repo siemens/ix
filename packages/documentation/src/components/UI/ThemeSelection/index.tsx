@@ -8,11 +8,14 @@
  */
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { iconChevronDownSmall, iconPen } from '@siemens/ix-icons/icons';
+import {
+  iconChevronDownSmall,
+  iconDrawingDocument,
+} from '@siemens/ix-icons/icons';
 import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
+import { usePlaygroundTheme } from '@site/src/hooks/use-playground-theme';
 import React, { useEffect, useState } from 'react';
 import Button from '../Button';
-import { usePlaygroundTheme } from '@site/src/hooks/use-playground-theme';
 import styles from './ThemeSelection.module.css';
 
 const brandTheme = 'brand';
@@ -58,11 +61,13 @@ export function ThemeSelection(props: Readonly<ThemeSelectionProps>) {
     <>
       <Button ref={setRef} className="dropdown-button">
         {React.createElement('ix-icon', {
-          name: iconPen,
+          name: iconDrawingDocument,
+          size: '16',
         })}
         <span className="ButtonText">{displayTheme}</span>
         {React.createElement('ix-icon', {
           name: iconChevronDownSmall,
+          size: '16',
         })}
       </Button>
       {ref && (

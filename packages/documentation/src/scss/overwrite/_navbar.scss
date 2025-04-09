@@ -8,9 +8,14 @@
   }
 
   .navbar__items:not(.navbar__items--right) {
+    .navbar__link {
+      font-weight: var(--ifm-font-weight-bold);
+    }
+
     .navbar__link--active {
       position: relative;
     }
+
     .navbar__link--active::after {
       content: '';
       position: absolute;

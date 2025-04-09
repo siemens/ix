@@ -13,11 +13,11 @@ export default function Pill({
   children,
   active,
   onClick,
-}: {
+}: Readonly<{
   children: React.ReactNode;
   active?: boolean;
   onClick: () => void;
-}) {
+}>) {
   return (
     <button
       onClick={onClick}
