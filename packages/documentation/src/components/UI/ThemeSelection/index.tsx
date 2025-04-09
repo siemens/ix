@@ -13,6 +13,7 @@ import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import React, { useEffect, useState } from 'react';
 import Button from '../Button';
 import { usePlaygroundTheme } from '@site/src/hooks/use-playground-theme';
+import styles from './ThemeSelection.module.css';
 
 const brandTheme = 'brand';
 const classicTheme = 'classic';
@@ -34,7 +35,7 @@ type ThemeSelectionProps = {
 };
 
 export function ThemeSelection(props: Readonly<ThemeSelectionProps>) {
-  const { playgroundTheme: theme, setPlaygroundTheme: setTheme } =
+  const { playgroundTheme: activeTheme, setPlaygroundTheme: setTheme } =
     usePlaygroundTheme();
   const context = useDocusaurusContext();
   const [availableThemes] = useState(() => {
@@ -47,11 +48,11 @@ export function ThemeSelection(props: Readonly<ThemeSelectionProps>) {
   });
 
   const [ref, setRef] = useState<HTMLButtonElement>(null);
-  const displayTheme = toUppercase(theme);
+  const displayTheme = toUppercase(activeTheme);
 
   useEffect(() => {
-    props.onThemeChange?.(theme);
-  }, [theme]);
+    props.onThemeChange?.(activeTheme);
+  }, [activeTheme]);
 
   return (
     <>
@@ -67,7 +68,12 @@ export function ThemeSelection(props: Readonly<ThemeSelectionProps>) {
       {ref && (
         <IxDropdown trigger={ref}>
           {availableThemes.map((theme) => (
-            <IxDropdownItem key={theme} onClick={() => setTheme(theme)}>
+            <IxDropdownItem
+              key={theme}
+              onClick={() => setTheme(theme)}
+              className={styles.DropdownItem}
+              checked={activeTheme === theme}
+            >
               {toUppercase(theme)}
             </IxDropdownItem>
           ))}
