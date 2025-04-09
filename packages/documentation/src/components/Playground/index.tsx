@@ -15,6 +15,7 @@ import Pill from '../UI/Pill';
 import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './styles.module.css';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 function PreviewActions(
   props: Readonly<{
@@ -65,16 +66,16 @@ function CodeActions(
   );
 }
 
-export default function Playground(
-  props: Readonly<{
-    name: string;
-    files: CodePreviewFiles;
-    source: SourceFiles;
-    height?: string;
-    noPreview?: boolean;
-    onlyFramework?: FrameworkTypes;
-  }>
-) {
+export type PlaygroundProps = Readonly<{
+  name: string;
+  files: CodePreviewFiles;
+  source: SourceFiles;
+  height?: string;
+  noPreview?: boolean;
+  onlyFramework?: FrameworkTypes;
+}>;
+
+function Playground(props: PlaygroundProps) {
   const defaultTheme = useDefaultTheme();
   const { playgroundThemeVariant } = usePlaygroundThemeVariant();
   const [isDark, setIsDark] = useState(playgroundThemeVariant === 'dark');
@@ -160,4 +161,8 @@ export default function Playground(
       </div>
     </div>
   );
+}
+
+export default function (props: PlaygroundProps) {
+  return <BrowserOnly>{() => <Playground {...props} />}</BrowserOnly>;
 }

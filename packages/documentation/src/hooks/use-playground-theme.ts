@@ -7,18 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { useLocalStorage } from './use-localStorage';
+import { useContext } from 'react';
+import { PlaygroundContext } from '../theme/DocsRoot';
 
 export const usePlaygroundTheme = () => {
-  const [playgroundTheme, setPlaygroundTheme] = useLocalStorage<
-    'brand' | 'classic' | (string & Record<never, never>)
-  >('docusaurus.playground.theme', 'brand');
-  return { playgroundTheme, setPlaygroundTheme };
+  const context = useContext(PlaygroundContext);
+
+  return {
+    playgroundTheme: context.theme,
+    setPlaygroundTheme: (theme: string) => context.onThemeChange?.(theme),
+  };
 };
 
 export const usePlaygroundThemeVariant = () => {
-  const [playgroundThemeVariant, setPlaygroundThemeVariant] = useLocalStorage<
-    'light' | 'dark' | (string & Record<never, never>)
-  >('docusaurus.playground.theme.variant', 'dark');
-  return { playgroundThemeVariant, setPlaygroundThemeVariant };
+  const context = useContext(PlaygroundContext);
+
+  return {
+    playgroundThemeVariant: context.variant,
+    setPlaygroundThemeVariant: (variant: string) =>
+      context.onVariantChange?.(variant),
+  };
 };

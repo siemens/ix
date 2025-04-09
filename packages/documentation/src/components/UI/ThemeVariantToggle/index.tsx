@@ -11,8 +11,9 @@ import { iconMoon, iconSun } from '@siemens/ix-icons/icons';
 import React from 'react';
 import Button from '../Button';
 import { usePlaygroundThemeVariant } from '@site/src/hooks/use-playground-theme';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
-export default function ThemeVariantToggle() {
+function ThemeVariantToggle() {
   const { playgroundThemeVariant, setPlaygroundThemeVariant } =
     usePlaygroundThemeVariant();
 
@@ -33,3 +34,7 @@ export default function ThemeVariantToggle() {
     </Button>
   );
 }
+
+export default () => {
+  return <BrowserOnly>{() => <ThemeVariantToggle />}</BrowserOnly>;
+};

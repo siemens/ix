@@ -8,7 +8,7 @@
  */
 
 import { useLocation } from '@docusaurus/router';
-import React, { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
 declare global {
   interface Window {
