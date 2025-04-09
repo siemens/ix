@@ -37,7 +37,10 @@ export default function OpenStackblitz(
             });
           }}
         >
-          {React.createElement('ix-icon', { name: iconElectricalEnergyFilled })}
+          {React.createElement('ix-icon', {
+            name: iconElectricalEnergyFilled,
+            size: '16',
+          })}
           <span className="ButtonText">Open Stackblitz</span>
         </Button>
       )}
