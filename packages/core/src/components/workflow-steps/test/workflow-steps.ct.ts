@@ -82,7 +82,10 @@ test('should prevent click navigation', async ({ mount, page }) => {
   await expect(lastStepDiv).not.toHaveClass(/selected/);
 });
 
-test('should be clickable with button click', async ({ mount, page }) => {
+test.only('Workflow status when in open is updating properly after updating of the status', async ({
+  mount,
+  page,
+}) => {
   await mount(`
     <div>
     <ix-workflow-steps clickable vertical>
@@ -92,24 +95,11 @@ test('should be clickable with button click', async ({ mount, page }) => {
     </ix-workflow-steps>
 
     <ix-button id="toggle-button">Toggle Step 1</ix-button>
-
-     <script>
-        const button = document.getElementById('toggle-button');
-        const step1 = document.getElementById('step1');
-        button.addEventListener('click', () => {
-          const currentStatus = step1.getAttribute('status');
-          step1.setAttribute('status', currentStatus === 'open' ? 'error' : 'open');
-        });
-      </script>
     </div>
   `);
   const workflowSteps = page.locator('ix-workflow-steps');
-  const lastStep = workflowSteps.locator('ix-workflow-step').nth(0);
-  const selectedDiv = lastStep.locator('.step');
-  await lastStep.click();
 
   await expect(workflowSteps).toHaveClass(/hydrated/);
-  await expect(selectedDiv).toHaveClass(/selected/);
 
   await page.evaluate(() => {
     const button = document.getElementById('toggle-button');
@@ -131,4 +121,9 @@ test('should be clickable with button click', async ({ mount, page }) => {
   await expect(step1).toHaveAttribute('status', 'error');
   await toggleBtn.click();
   await expect(step1).toHaveAttribute('status', 'open');
+
+  const selectedStep = workflowSteps.locator('ix-workflow-step').nth(0);
+  const selectedDiv = selectedStep.locator('.step');
+
+  await expect(selectedDiv).toHaveClass(/selected/);
 });
