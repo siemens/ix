@@ -19,6 +19,15 @@
   white-space: nowrap;
   cursor: pointer;
   overflow: hidden;
+  font-size: 0.75rem;
+
+  ix-icon:first-of-type {
+    margin-right: 0.25rem;
+  }
+
+  ix-icon:last-of-type {
+    margin-left: 0.25rem;
+  }
 }
 
 .ButtonText {

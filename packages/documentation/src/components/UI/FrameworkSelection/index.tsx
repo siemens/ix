@@ -39,12 +39,14 @@ function FrameworkSelection(
       <Button ref={setRef} className={'dropdown-button'}>
         {React.createElement('ix-icon', {
           name: iconCode,
+          size: '16',
         })}
         <span className="ButtonText">
           {getDisplayNameFrameworkTypes(framework)}
         </span>
         {React.createElement('ix-icon', {
           name: iconChevronDownSmall,
+          size: '16',
         })}
       </Button>
       {ref && (

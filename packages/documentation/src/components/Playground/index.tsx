@@ -29,10 +29,14 @@ function PreviewActions(
       <a
         href={props.openExternalUrl}
         target="_blank"
-        className="flex gap-1 text-[var(--theme-color-soft-text)] flex-nowrap text-nowrap pr-2"
+        className={clsx(
+          'flex gap-1 text-[var(--theme-color-soft-text)] flex-nowrap text-nowrap pr-2',
+          styles.openExternal
+        )}
       >
         {React.createElement('ix-icon', {
           name: iconOpenExternal,
+          size: '16',
         })}
         <span className="ButtonText">Full preview</span>
       </a>

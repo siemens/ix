@@ -59,8 +59,10 @@ $font-family: 'Siemens Sans', Arial, Helvetica, sans-serif;
   --ifm-list-paragraph-margin: 0rem;
 
   font-family: $font-family;
+  --ifm-font-color-base: var(--theme-color-std-text);
   --ifm-heading-font-family: $font-family;
   --ifm-heading-font-weight: var(--ifm-font-weight-bold);
+  --ifm-navbar-link-color: var(--theme-color-std-text);
 }
 
 .markdown li,
