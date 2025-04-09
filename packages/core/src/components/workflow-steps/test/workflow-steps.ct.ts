@@ -82,7 +82,7 @@ test('should prevent click navigation', async ({ mount, page }) => {
   await expect(lastStepDiv).not.toHaveClass(/selected/);
 });
 
-test.only('Workflow status when in open is updating properly after updating of the status', async ({
+test('Workflow status when in open is updating properly after updating of the status', async ({
   mount,
   page,
 }) => {
@@ -93,49 +93,33 @@ test.only('Workflow status when in open is updating properly after updating of t
       <ix-workflow-step status='success'>Step 2</ix-workflow-step>
       <ix-workflow-step status='error'>Step 3</ix-workflow-step>
     </ix-workflow-steps>
-
-    <ix-button id="toggle-button">Toggle Step 1</ix-button>
     </div>
   `);
   const workflowSteps = page.locator('ix-workflow-steps');
   const selectedStep = workflowSteps.locator('ix-workflow-step').nth(0);
-  const selectedDiv = selectedStep.locator('.step');
-
+  const selectedStepIcon = selectedStep.locator('ix-icon').nth(1);
   await expect(workflowSteps).toHaveClass(/hydrated/);
-  await expect(selectedDiv).toHaveClass(/selected/);
-
+  await expect(selectedStepIcon).toHaveAttribute(
+    'style',
+    'color: var(--theme-workflow-step-icon-default--color--selected);'
+  );
   await page.evaluate(() => {
-    const button = document.getElementById('toggle-button');
     const step1 = document.getElementById('step1');
-
-    button?.addEventListener('click', () => {
-      const currentStatus = step1?.getAttribute('status');
-      step1?.setAttribute(
-        'status',
-        currentStatus === 'open' ? 'error' : 'open'
-      );
-    });
+    step1?.setAttribute('status', 'error');
   });
 
-  const toggleBtn = page.locator('#toggle-button');
-  const step1 = page.locator('#step1');
-  await toggleBtn.click();
-  await expect(step1).toHaveAttribute('status', 'error');
-
-  const icon = page.locator('#step1 ix-icon').nth(1);
-  await expect(icon).toHaveAttribute(
+  await expect(selectedStepIcon).toHaveAttribute(
     'style',
     'color: var(--theme-color-alarm);'
   );
 
-  await toggleBtn.click();
-  await expect(step1).toHaveAttribute('status', 'open');
+  await page.evaluate(() => {
+    const step1 = document.getElementById('step1');
+    step1?.setAttribute('status', 'open');
+  });
 
-  const icon1 = page.locator('#step1 ix-icon').nth(1);
-  await expect(icon1).toHaveAttribute(
+  await expect(selectedStepIcon).toHaveAttribute(
     'style',
     'color: var(--theme-workflow-step-icon-default--color--selected);'
   );
-
-  await expect(selectedDiv).toHaveClass(/selected/);
 });
