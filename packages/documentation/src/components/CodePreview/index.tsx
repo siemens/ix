@@ -80,6 +80,7 @@ export default function CodePreview(props: Readonly<CodePreviewProps>) {
             <span className={styles.sourceFileName}>{selectedFile}</span>
             {React.createElement('ix-icon', {
               name: iconChevronDownSmall,
+              size: '16',
             })}
           </Button>
           {ref.current && (

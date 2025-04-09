@@ -144,7 +144,7 @@ Status color are made to represent the different statuses. We support the follow
   All colors are available for interaction states “hover” and “active”, each status color has a matching “contrast” color for placing text and icons on such a colored background.
   Each status color has furthermore a semi-transparent color that can be used on more subtle colored backgrounds.
 
-:::note
+:::info
 Please note:
 Don’t use status colors for texts as they would not meet the minimum required contrast in some constellations. Use the color for icons or on status indictors or backgrounds instead.
 There is a special alarm text color that can be used for texts, see “text colors”.

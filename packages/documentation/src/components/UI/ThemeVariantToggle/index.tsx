@@ -22,6 +22,7 @@ export default function ThemeVariantToggle({
     <Button onClick={onChangeColorMode}>
       {React.createElement('ix-icon', {
         name: isLight ? iconSun : iconMoon,
+        size: '16',
       })}
       <span className="ButtonText">{isLight ? 'Light' : 'Dark'}</span>
     </Button>
