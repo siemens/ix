@@ -61,7 +61,7 @@ export class Button implements IxButtonComponent {
   @Prop() loading: boolean = false;
 
   /**
-   * Form id
+   * Provide a form element id to automatically submit the from if the button is pressed. Only possible with type="submit"
    *
    * @since 3.0.0
    */
