@@ -98,8 +98,11 @@ test.only('Workflow status when in open is updating properly after updating of t
     </div>
   `);
   const workflowSteps = page.locator('ix-workflow-steps');
+  const selectedStep = workflowSteps.locator('ix-workflow-step').nth(0);
+  const selectedDiv = selectedStep.locator('.step');
 
   await expect(workflowSteps).toHaveClass(/hydrated/);
+  await expect(selectedDiv).toHaveClass(/selected/);
 
   await page.evaluate(() => {
     const button = document.getElementById('toggle-button');
@@ -114,16 +117,25 @@ test.only('Workflow status when in open is updating properly after updating of t
     });
   });
 
-  // ✅ Click toggle button and assert status changes
   const toggleBtn = page.locator('#toggle-button');
   const step1 = page.locator('#step1');
   await toggleBtn.click();
   await expect(step1).toHaveAttribute('status', 'error');
+
+  const icon = page.locator('#step1 ix-icon').nth(1);
+  await expect(icon).toHaveAttribute(
+    'style',
+    'color: var(--theme-color-alarm);'
+  );
+
   await toggleBtn.click();
   await expect(step1).toHaveAttribute('status', 'open');
 
-  const selectedStep = workflowSteps.locator('ix-workflow-step').nth(0);
-  const selectedDiv = selectedStep.locator('.step');
+  const icon1 = page.locator('#step1 ix-icon').nth(1);
+  await expect(icon1).toHaveAttribute(
+    'style',
+    'color: var(--theme-workflow-step-icon-default--color--selected);'
+  );
 
   await expect(selectedDiv).toHaveClass(/selected/);
 });
