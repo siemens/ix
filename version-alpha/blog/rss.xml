@@ -4,84 +4,89 @@
         <title>Siemens Industrial Experience Blog</title>
         <link>https://ix.siemens.io/version-alpha/blog</link>
         <description>Siemens Industrial Experience Blog</description>
-        <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 03 Apr 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Welcome]]></title>
-            <link>https://ix.siemens.io/version-alpha/blog/welcome</link>
-            <guid>https://ix.siemens.io/version-alpha/blog/welcome</guid>
-            <pubDate>Thu, 26 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Docusaurus blogging features are powered by the blog plugin.]]></description>
-            <content:encoded><![CDATA[<p><a href="https://docusaurus.io/docs/blog" target="_blank" rel="noopener noreferrer">Docusaurus blogging features</a> are powered by the <a href="https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog" target="_blank" rel="noopener noreferrer">blog plugin</a>.</p>
-<p>Here are a few tips you might find useful.</p>
-<p>Simply add Markdown files (or folders) to the <code>blog</code> directory.</p>
-<p>Regular blog authors can be added to <code>authors.yml</code>.</p>
-<p>The blog post date can be extracted from filenames, such as:</p>
+            <title><![CDATA[Release V3.0.0-alpha]]></title>
+            <link>https://ix.siemens.io/version-alpha/blog/v3-alpha</link>
+            <guid>https://ix.siemens.io/version-alpha/blog/v3-alpha</guid>
+            <pubDate>Thu, 03 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[banner]]></description>
+            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="banner" src="https://ix.siemens.io/version-alpha/assets/images/intro-c9d067d0c4349e53480310fdbfd999d5.png" width="1792" height="720" class="img_XSsm"></p>
+<p>Are you ready to be among the first to experience V3.0.0?</p>
+<p>We are seeking early adopters to test our alpha release and provide valuable feedback.</p>
+<p>As we prepare for the official launch of Industrial Experience V3.0.0, your insights will help us refine the code, documentation, and migration guide.</p>
+<p>Your participation not only benefits us but also the entire community eagerly awaiting this major update.</p>
+<h1>How to start?</h1>
 <ul>
-<li><code>2019-05-30-welcome.md</code></li>
-<li><code>2019-05-30-welcome/index.md</code></li>
+<li>Install <code>@siemens/ix</code> (<code>@siemens/ix-angular</code>, <code>@siemens/ix-react</code>, <code>@siemens/ix-vue</code>) via the <code>alpha</code> tag</li>
+<li>Get an exclusive preview of our revamped documentation <a href="https://ix.siemens.io/version-alpha/" target="_blank" rel="noopener noreferrer">here</a></li>
 </ul>
-<p>A blog post folder can be convenient to co-locate blog post images:</p>
-<p><img decoding="async" loading="lazy" alt="Docusaurus Plushie" src="https://ix.siemens.io/version-alpha/assets/images/docusaurus-plushie-banner-a60f7593abca1e3eef26a9afa244e4fb.jpeg" width="1500" height="500" class="img_lPai"></p>
-<p>The blog supports tags as well!</p>
-<p><strong>And if you don't want a blog</strong>: just delete this directory, and use <code>blog: false</code> in your Docusaurus config.</p>]]></content:encoded>
-            <category>Facebook</category>
-            <category>Hello</category>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[MDX Blog Post]]></title>
-            <link>https://ix.siemens.io/version-alpha/blog/mdx-blog-post</link>
-            <guid>https://ix.siemens.io/version-alpha/blog/mdx-blog-post</guid>
-            <pubDate>Sun, 01 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Blog posts support Docusaurus Markdown features, such as MDX.]]></description>
-            <content:encoded><![CDATA[<p>Blog posts support <a href="https://docusaurus.io/docs/markdown-features" target="_blank" rel="noopener noreferrer">Docusaurus Markdown features</a>, such as <a href="https://mdxjs.com/" target="_blank" rel="noopener noreferrer">MDX</a>.</p>
-<div class="theme-admonition theme-admonition-tip admonition_zWKX alert alert--success"><div class="admonitionHeading_cCEr"><span class="admonitionIcon_Bcu7"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_ZV4R"><p>Use the power of React to create interactive blog posts.</p></div></div>
-<!-- -->
-<p>For example, use JSX to create an interactive button:</p>
-<div class="language-js codeBlockContainer__uh2 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_q9Vk"><pre tabindex="0" class="prism-code language-js codeBlock_OdUk thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_CAhq"><span class="token-line" style="color:#F8F8F2"><span class="token operator">&lt;</span><span class="token plain">button onClick</span><span class="token operator">=</span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"> </span><span class="token arrow operator">=&gt;</span><span class="token plain"> </span><span class="token function" style="color:rgb(80, 250, 123)">alert</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token string" style="color:rgb(255, 121, 198)">'button clicked!'</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token operator">&gt;</span><span class="token maybe-class-name">Click</span><span class="token plain"> me</span><span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span><span class="token plain">button</span><span class="token operator">&gt;</span><br></span></code></pre><div class="buttonGroup_H7cM"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_vnmd" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_w71F"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_WJFT"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<button>Click me!</button>]]></content:encoded>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[Long Blog Post]]></title>
-            <link>https://ix.siemens.io/version-alpha/blog/long-blog-post</link>
-            <guid>https://ix.siemens.io/version-alpha/blog/long-blog-post</guid>
-            <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[This is the summary of a very long blog post,]]></description>
-            <content:encoded><![CDATA[<p>This is the summary of a very long blog post,</p>
-<p>Use a <code>&lt;!--</code> <code>truncate</code> <code>--&gt;</code> comment to limit blog post size in the list view.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hello</category>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[First Blog Post]]></title>
-            <link>https://ix.siemens.io/version-alpha/blog/first-blog-post</link>
-            <guid>https://ix.siemens.io/version-alpha/blog/first-blog-post</guid>
-            <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Lorem ipsum dolor sit amet...]]></description>
-            <content:encoded><![CDATA[<p>Lorem ipsum dolor sit amet...</p>
-<p>...consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hola</category>
-            <category>Docusaurus</category>
+<p>Access the comprehensive migration guide to smoothly transition to the new version <a href="https://ix.siemens.io/version-alpha/docs/home/migration/3_0_0/" target="_blank" rel="noopener noreferrer">here</a></p>
+<p>Your feedback on the new version, documentation redesign, and change log is crucial.</p>
+<h1>Update Angular version and support standalone components</h1>
+<p><img decoding="async" loading="lazy" alt="Angular standalone" src="https://ix.siemens.io/version-alpha/assets/images/angular-112d38f614b17d22b4abbcfde23f3eeb.png" width="1792" height="720" class="img_XSsm"></p>
+<p><strong>Exciting updates</strong> have been made to our Angular support, enhancing compatibility and ease of use for developers.</p>
+<p><strong>Key changes:</strong></p>
+<ul>
+<li><strong>Minimum Angular version:</strong> The minimum supported Angular version has been updated to version 18.</li>
+<li><strong>Standalone components:</strong> We now support Angular standalone components out of the box.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="language-typescript codeBlockContainer_t47B theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_StdV"><pre tabindex="0" class="prism-code language-typescript codeBlock_t0yl thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_LUDQ"><span class="token-line" style="color:#F8F8F2"><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">import</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"> Component </span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">from</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">'@angular/core'</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">import</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"> IxButton </span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">from</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">'@siemens/ix-angular/standalone'</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"></span><span class="token decorator at operator">@</span><span class="token decorator function" style="color:rgb(80, 250, 123)">Component</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  standalone</span><span class="token operator">:</span><span class="token plain"> </span><span class="token boolean">true</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  selector</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">'app-example'</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  imports</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">[</span><span class="token plain">IxButton</span><span class="token punctuation" style="color:rgb(248, 248, 242)">]</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  template</span><span class="token operator">:</span><span class="token plain"> </span><span class="token template-string template-punctuation string" style="color:rgb(255, 121, 198)">`</span><span class="token template-string string" style="color:rgb(255, 121, 198)"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token template-string string" style="color:rgb(255, 121, 198)">    &lt;ix-button&gt;Button&lt;/ix-button&gt;</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token template-string string" style="color:rgb(255, 121, 198)">    &lt;ix-button disabled&gt;Button&lt;/ix-button&gt;</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token template-string string" style="color:rgb(255, 121, 198)">  </span><span class="token template-string template-punctuation string" style="color:rgb(255, 121, 198)">`</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"></span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">export</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">default</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">class</span><span class="token plain"> </span><span class="token class-name">Buttons</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><br></span></code></pre><div class="buttonGroup_WzJ1"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_HOex" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_Bw_I"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_zghw"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Standalone components offer a more straightforward approach to developing Angular applications. By utilizing standalone components, directives, and pipes, developers can enhance the authoring experience and minimize reliance on NgModules.</p>
+<h1>Global CSS Changes</h1>
+<p><img decoding="async" loading="lazy" alt="global style changes" src="https://ix.siemens.io/version-alpha/assets/images/css-ad0d94283ad2762220aed32dd065107e.png" width="1792" height="720" class="img_XSsm"></p>
+<p>To avoid style collisions with other CSS frameworks or libraries, a prefix has been added to some global styles such as table, input, and label.</p>
+<p><strong>Key changes</strong>:</p>
+<ul>
+<li><strong>Input and textarea</strong>: Global styling has been removed. To use legacy styling, add <code>class="ix-form-control"</code> to input or textarea.</li>
+<li><strong>Label</strong>: Global styling has been removed. To use legacy styling, add <code>class="ix-form-label"</code> to label.</li>
+<li><strong>Table</strong>: New global classes <code>.ix-table</code> and <code>.ix-table-striped</code> have been added to display a simple HTML table. These changes aim to enhance compatibility and prevent conflicts in styling across different frameworks and libraries.</li>
+</ul>
+<h1>Bootstrap is removed from our dependencies</h1>
+<p><img decoding="async" loading="lazy" alt="remove bootstrap" src="https://ix.siemens.io/version-alpha/assets/images/bootstrap-0a81e39767ec5ae727cdc28ce654bf32.png" width="1792" height="720" class="img_XSsm"></p>
+<p>The CSS framework Bootstrap has been removed from our main style file, marking a significant change in our approach to styling.</p>
+<p><strong>Key changes:</strong></p>
+<ul>
+<li><strong>Bootstrap removal:</strong> The third-party CSS framework Bootstrap has been completely removed from our style file.</li>
+</ul>
+<p><strong>Why this is beneficial:</strong></p>
+<ul>
+<li><strong>Reduced dependency:</strong> Removing Bootstrap reduces dependency on third-party frameworks, leading to fewer compatibility issues and conflicts with other libraries.</li>
+<li><strong>Improved performance:</strong> Without the additional overhead of Bootstrap, the overall performance and loading times of our applications can improve.</li>
+<li><strong>Customization and control:</strong> This change allows for greater customization and control over the styling, enabling more tailored and specific design choices that align with our unique requirements.</li>
+</ul>
+<h1>Input validation enhancements</h1>
+<p><img decoding="async" loading="lazy" alt="input validation" src="https://ix.siemens.io/version-alpha/assets/images/input-validation-ef5409701f01c7819151a5989235dc61.png" width="1792" height="720" class="img_XSsm"></p>
+<p>Input elements have been updated to improve user experience by preventing required validation errors from appearing without any user interaction.</p>
+<p><strong>Key changes:</strong></p>
+<ul>
+<li><strong>Input elements affected:</strong> ix-input, ix-number-input, ix-date-input, ix-select, and ix-textarea will no longer show required validation errors unless there has been user interaction.</li>
+<li><strong>Programmatic validation:</strong> If the class <code>ix-invalid</code> is applied programmatically, an error message will still be shown even without user interaction.</li>
+</ul>
+<h1>Date picker enhancements</h1>
+<p><img decoding="async" loading="lazy" alt="date picker" src="https://ix.siemens.io/version-alpha/assets/images/picker-87e5e9a7ce60984bfe55fe78a0d10049.png" width="1792" height="720" class="img_XSsm"></p>
+<p>Week numbers are now hidden by default in several date-related components, enhancing the user interface and simplifying the display.</p>
+<h1>Documentation redesign</h1>
+<p><img decoding="async" loading="lazy" alt="documentation redesign" src="https://ix.siemens.io/version-alpha/assets/images/documentation-c41ac47d3a81b0b82e1688348ef6c644.png" width="1792" height="720" class="img_XSsm"></p>
+<p>In response to valuable user feedback, we are unveiling the redesigned documentation for our design system. Last year, we sent out a comprehensive survey to our users. They provided insights that have shaped this transformation. Our goal is to enhance usability and accessibility, ensuring that our documentation meets the needs of our diverse user base.</p>
+<p><strong>Key changes:</strong></p>
+<ul>
+<li><strong>Horizontal navigation in the header:</strong> One of the most significant changes is the introduction of horizontal navigation in the header. Previously, users had to navigate deep within the main navigation to find components and icons, which were the most sought-after elements. The new horizontal navigation prominently features main categories, allowing users to access these critical sections quickly and efficiently.</li>
+<li><strong>Quick access to essential resources:</strong> We have added quick access links to the header. Users can now effortlessly reach the starter app, support resources, and our GitHub repository. This change ensures that essential tools and information are always within easy reach, reducing the time spent searching for these resources.</li>
+<li><strong>Versioning of documentation:</strong> We understand the importance of maintaining access to previous versions of our documentation. Users can now switch between different versions, making it easier to reference older documentation and track changes over time. This feature is particularly useful for teams working with legacy systems or those who need to compare updates.</li>
+<li><strong>Clustering components:</strong> In the past, components were listed alphabetically, which could be cumbersome for users looking for related items. We have now clustered components based on their functionality and usage. This logical grouping helps users find what they need more intuitively, enhancing the overall efficiency of the documentation.</li>
+<li><strong>Preview and code snippet:</strong> For the component pages, we have integrated the preview and code snippet sections. This allows users to easily switch between viewing a component in different themes and accessing the corresponding code for various frameworks.</li>
+<li><strong>Property table:</strong> Component and style pages now use the same property table for a better overview and consistent behavior.</li>
+</ul>
+<p>The redesign of our documentation is a direct result of listening to our users and understanding their needs. We believe these changes will significantly improve the user experience, making our design system easier to navigate. We are committed to continuous improvement and have exciting upcoming topics already planned. We welcome any further feedback to ensure our documentation remains a valuable resource for all users.</p>
+<p>Please reach out to us at <a href="mailto:team.ix.industry@siemens.com" target="_blank" rel="noopener noreferrer">team.ix.industry@siemens.com</a> and tell us about your migration experience.
+If you encounter any issues, we are here to support you every step of the way.</p>
+<p>🙏 We greatly appreciate your contributions.</p>]]></content:encoded>
+            <category>Release</category>
         </item>
     </channel>
 </rss>
