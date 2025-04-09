@@ -4,15 +4,15 @@ authors: [danielleroux]
 tags: [release]
 ---
 
-# Release 3.0.0 alpha
+# Release V3.0.0-alpha
 
 ![banner](./intro.png)
 
-Are you ready to be among the first to experience 3.0.0?
+Are you ready to be among the first to experience V3.0.0?
 
 We are seeking early adopters to test our alpha release and provide valuable feedback.
 
-As we prepare for the official launch of Industrial Experience 3.0.0, your insights will help us refine the code, documentation, and migration guide.
+As we prepare for the official launch of Industrial Experience V3.0.0, your insights will help us refine the code, documentation, and migration guide.
 
 Your participation not only benefits us but also the entire community eagerly awaiting this major update.
 
@@ -95,7 +95,7 @@ Input elements have been updated to improve user experience by preventing requir
 **Key changes:**
 
 - **Input elements affected:** ix-input, ix-number-input, ix-date-input, ix-select, and ix-textarea will no longer show required validation errors unless there has been user interaction.
-- **Programmatic validation:** If the class ix-invalid is applied programmatically, an error message will still be shown even without user interaction.
+- **Programmatic validation:** If the class `ix-invalid` is applied programmatically, an error message will still be shown even without user interaction.
 
 # Date picker enhancements
 
@@ -103,29 +103,22 @@ Input elements have been updated to improve user experience by preventing requir
 
 Week numbers are now hidden by default in several date-related components, enhancing the user interface and simplifying the display.
 
-**Key changes:**
-
-**ix-date-picker**: Week numbers are hidden by default. To show them, set `showWeekNumbers` to true.
-**ix-datetime-picker**: Week numbers are hidden by default. To show them, set `showWeekNumbers` to true.
-**ix-date-dropdown**: Week numbers are hidden by default. To show them, set `showWeekNumbers` to true.
-**ix-date-input**: Week numbers are hidden by default. To show them, set `showWeekNumbers` to true.
-
 # Documentation redesign
 
 ![documentation redesign](./documentation.png)
 
-In response to valuable user feedback, we are unveiling the redesigned documentation for our design system. Last year, over 30 users participated in a comprehensive survey, providing insights that have shaped this transformation. Our goal is to enhance usability and accessibility, ensuring that our documentation meets the needs of our diverse user base.
+In response to valuable user feedback, we are unveiling the redesigned documentation for our design system. Last year, we sent out a comprehensive survey to our users. They provided insights that have shaped this transformation. Our goal is to enhance usability and accessibility, ensuring that our documentation meets the needs of our diverse user base.
 
-**Key changes**
+**Key changes:**
 
 - **Horizontal navigation in the header:** One of the most significant changes is the introduction of horizontal navigation in the header. Previously, users had to navigate deep within the main navigation to find components and icons, which were the most sought-after elements. The new horizontal navigation prominently features main categories, allowing users to access these critical sections quickly and efficiently.
 - **Quick access to essential resources:** We have added quick access links to the header. Users can now effortlessly reach the starter app, support resources, and our GitHub repository. This change ensures that essential tools and information are always within easy reach, reducing the time spent searching for these resources.
 - **Versioning of documentation:** We understand the importance of maintaining access to previous versions of our documentation. Users can now switch between different versions, making it easier to reference older documentation and track changes over time. This feature is particularly useful for teams working with legacy systems or those who need to compare updates.
 - **Clustering components:** In the past, components were listed alphabetically, which could be cumbersome for users looking for related items. We have now clustered components based on their functionality and usage. This logical grouping helps users find what they need more intuitively, enhancing the overall efficiency of the documentation.
-- **Preview and code snippet:** For the component pages, we have integrated the preview and code snippet sections. This allows users to easily switch between viewing a component in different themes and accessing the corresponding code for various frameworks. Here you can see the example live:
+- **Preview and code snippet:** For the component pages, we have integrated the preview and code snippet sections. This allows users to easily switch between viewing a component in different themes and accessing the corresponding code for various frameworks.
 - **Property table:** Component and style pages now use the same property table for a better overview and consistent behavior.
 
-The redesign of our documentation is a direct result of listening to our users and understanding their needs. We believe these changes will significantly improve the user experience, making our design system more accessible and easier to navigate. We are committed to continuous improvement and have exciting upcoming topics already planned. We welcome any further feedback to ensure our documentation remains a valuable resource for all users.
+The redesign of our documentation is a direct result of listening to our users and understanding their needs. We believe these changes will significantly improve the user experience, making our design system easier to navigate. We are committed to continuous improvement and have exciting upcoming topics already planned. We welcome any further feedback to ensure our documentation remains a valuable resource for all users.
 
 Please reach out to us at [team.ix.industry@siemens.com](mailto:team.ix.industry@siemens.com) and tell us about your migration experience.
 If you encounter any issues, we are here to support you every step of the way.
