@@ -5,6 +5,7 @@ import {
   IxModalHeader,
   IxModalContent,
   IxModalFooter,
+  IxInput,
 } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
@@ -22,7 +23,7 @@ const dismiss = () => {
 };
 
 const submitForm = (event: Event) => {
-  event.preventDefault(); 
+  event.preventDefault();
   console.log('Form submitted successfully');
   close();
 };
@@ -33,12 +34,17 @@ const submitForm = (event: Event) => {
 
   <IxDialog ref="modalRef" v-if="show">
     <IxModalHeader @closeClick="dismiss">Create Resource</IxModalHeader>
-    
+
     <IxModalContent>
       <form id="create-resource-form" @submit="submitForm">
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" name="name"/>
+          <IxInput
+            label="Name"
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+          ></IxInput>
         </div>
       </form>
     </IxModalContent>
