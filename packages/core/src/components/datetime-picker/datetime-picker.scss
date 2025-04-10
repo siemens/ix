@@ -19,6 +19,11 @@
   position: relative;
   width: min-content;
 
+  ix-layout-grid {
+    border-radius: 0.25rem;
+    box-shadow: var(--theme-shadow-4);
+  }
+
   .no-padding {
     padding: 0;
   }
