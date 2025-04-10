@@ -285,7 +285,7 @@ We changed the default width of the `input` element from `width: 100%` to `width
 
 #### ix-tree
 
-Fix typo of `isExpanded` of `nodeToggled`-event.
+Fix typo in parameter `isExpanded` of `nodeToggled`-event.
 
 Before:
 
