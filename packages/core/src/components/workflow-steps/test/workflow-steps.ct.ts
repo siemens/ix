@@ -81,3 +81,45 @@ test('should prevent click navigation', async ({ mount, page }) => {
   await expect(firstStepDiv).toHaveClass(/selected/);
   await expect(lastStepDiv).not.toHaveClass(/selected/);
 });
+
+test('Workflow status when in open is updating properly after updating of the status', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <div>
+    <ix-workflow-steps clickable vertical>
+      <ix-workflow-step id="step1" status='open'>Step 1</ix-workflow-step>
+      <ix-workflow-step status='success'>Step 2</ix-workflow-step>
+      <ix-workflow-step status='error'>Step 3</ix-workflow-step>
+    </ix-workflow-steps>
+    </div>
+  `);
+  const workflowSteps = page.locator('ix-workflow-steps');
+  const selectedStep = workflowSteps.locator('ix-workflow-step').nth(0);
+  const selectedStepIcon = selectedStep.locator('ix-icon').nth(1);
+  await expect(workflowSteps).toHaveClass(/hydrated/);
+  await expect(selectedStepIcon).toHaveAttribute(
+    'style',
+    'color: var(--theme-workflow-step-icon-default--color--selected);'
+  );
+  await page.evaluate(() => {
+    const step1 = document.getElementById('step1');
+    step1?.setAttribute('status', 'error');
+  });
+
+  await expect(selectedStepIcon).toHaveAttribute(
+    'style',
+    'color: var(--theme-color-alarm);'
+  );
+
+  await page.evaluate(() => {
+    const step1 = document.getElementById('step1');
+    step1?.setAttribute('status', 'open');
+  });
+
+  await expect(selectedStepIcon).toHaveAttribute(
+    'style',
+    'color: var(--theme-workflow-step-icon-default--color--selected);'
+  );
+});
