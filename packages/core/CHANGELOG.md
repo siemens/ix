@@ -1,5 +1,38 @@
 # @siemens/ix
 
+## 3.0.0-alpha.4
+
+### Minor Changes
+
+- [#1803](https://github.com/siemens/ix/pull/1803) [`278d51b7597afadd7fa765187e3cf9e8cd5385c6`](https://github.com/siemens/ix/commit/278d51b7597afadd7fa765187e3cf9e8cd5385c6) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - **ix-tree**: Fix a bug where an event was not emitted when clicking tree items.
+  **ix-tree**: Introduce a new attribute to enable tree items to be toggled on click.
+
+  Fixes #1633.
+
+- [#1814](https://github.com/siemens/ix/pull/1814) [`bc33e84a3ad378470dbbdff8dd85877c21355bae`](https://github.com/siemens/ix/commit/bc33e84a3ad378470dbbdff8dd85877c21355bae) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add additional color `alarm-contrast`, `critical-contrast`, `warning-contrast`, `success-contrast`, `info-contrast`, `neutral-contrast` and `primary-contrast` to **ix-typography**
+
+### Patch Changes
+
+- [#1798](https://github.com/siemens/ix/pull/1798) [`40e8c510e15dba741601b3b19b6025c024e170ef`](https://github.com/siemens/ix/commit/40e8c510e15dba741601b3b19b6025c024e170ef) Thanks [@lzeiml](https://github.com/lzeiml)! - If an invalid date string is passed to the **ix-date-picker**, a console error will be thrown and the string will not be used.
+
+- [#1791](https://github.com/siemens/ix/pull/1791) [`838c19239ac8a85e2d644696cc1fd3a67f5509d5`](https://github.com/siemens/ix/commit/838c19239ac8a85e2d644696cc1fd3a67f5509d5) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **ix-tree**: Init hyperlist after re-attaching tree to DOM.
+
+  Fixes #1703.
+
+- [#1821](https://github.com/siemens/ix/pull/1821) [`d0c4c9df8b269fc0206ffdce1c6c7ec4013028b6`](https://github.com/siemens/ix/commit/d0c4c9df8b269fc0206ffdce1c6c7ec4013028b6) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Remove space before required asterisk in **ix-field-label**.
+
+  Fixes #1634.
+
+- [#1790](https://github.com/siemens/ix/pull/1790) [`ff816a840b609491e1a647d64f6bad489ad214f0`](https://github.com/siemens/ix/commit/ff816a840b609491e1a647d64f6bad489ad214f0) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - **ix-select**: Allow re-opening of dropdown after clearing the select in `editable` mode.
+
+  Fixes #1770.
+
+- [#1797](https://github.com/siemens/ix/pull/1797) [`df00884a5b65c7047ddc3506b8eaac66819c4ceb`](https://github.com/siemens/ix/commit/df00884a5b65c7047ddc3506b8eaac66819c4ceb) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Fix button inside **ix-upload** component to be selectable via keyboard navigation.
+
+- [#1768](https://github.com/siemens/ix/pull/1768) [`8002d9a68ef8a5279d43726ecad28e85ad0ac53a`](https://github.com/siemens/ix/commit/8002d9a68ef8a5279d43726ecad28e85ad0ac53a) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - **ix-event-list**: Set custom height for dynamically created `ix-event-list-item`s.
+
+  Fixes #1684.
+
 ## 3.0.0-alpha.3
 
 ## 3.0.0-alpha.2

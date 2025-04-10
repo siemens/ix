@@ -1,5 +1,11 @@
 # @siemens/ix-echarts
 
+## 3.0.0-alpha.1
+
+### Patch Changes
+
+- [#1642](https://github.com/siemens/ix/pull/1642) [`241a5ea96cbcf07c3f9684f630ac308902449e1b`](https://github.com/siemens/ix/commit/241a5ea96cbcf07c3f9684f630ac308902449e1b) Thanks [@danielleroux](https://github.com/danielleroux)! - Added missing dist folder to deployment
+
 ## 3.0.0-alpha.0
 
 ### Major Changes
