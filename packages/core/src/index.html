@@ -16,8 +16,70 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
     <script type="module" src="./build/siemens-ix.esm.js"></script>
     <script nomodule src="./build/siemens-ix.js"></script>
-
     <link rel="stylesheet" href="./build/siemens-ix.css" />
   </head>
-  <body style="margin: 0px; height: 100vh"></body>
+  <body style="margin: 0px; height: 100vh">
+    <div style="height: 20rem; width: 100%">
+      <ix-tree root="root" id="tree" toggle-on-item-click></ix-tree>
+    </div>
+
+    <script type="module">
+      import { defineCustomElement } from './node_modules/@siemens/ix-icons/components/ix-icon.js';
+      defineCustomElement();
+
+      (async function () {
+        await window.customElements.whenDefined('ix-tree');
+        const tree = document.getElementById('tree');
+
+        tree.model = {
+          root: {
+            id: 'root',
+            data: null,
+            hasChildren: true,
+            children: ['sample'],
+          },
+          sample: {
+            id: 'sample',
+            data: {
+              name: 'Sample',
+            },
+            hasChildren: true,
+            children: ['sample-child-1', 'sample-child-2'],
+          },
+          'sample-child-1': {
+            id: 'sample-child-1',
+            data: {
+              name: 'Sample Child 1',
+            },
+            hasChildren: false,
+            children: [],
+          },
+          'sample-child-2': {
+            id: 'sample-child-2',
+            data: {
+              name: 'Sample Child 2',
+            },
+            hasChildren: true,
+            children: ['sample-child-3', 'sample-child-4'],
+          },
+          'sample-child-3': {
+            id: 'sample-child-3',
+            data: {
+              name: 'Sample Child 3',
+            },
+            hasChildren: false,
+            children: [],
+          },
+          'sample-child-4': {
+            id: 'sample-child-4',
+            data: {
+              name: 'Sample Child 4',
+            },
+            hasChildren: false,
+            children: [],
+          },
+        };
+      })();
+    </script>
+  </body>
 </html>
