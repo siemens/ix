@@ -187,7 +187,7 @@ Siemens Industrial Experience still offers CSS classes to style HTML tables, but
 
 Please note that they are not based on Bootstrap anymore. If your tables rely on additional Bootstrap functionality (e.g. hoverable rows), you have to install Bootstrap on your own.
 
-### Button group are not based on Bootstrap anymore
+### Button group is not based on Bootstrap anymore
 
 We replaced the bootstrap button group `.btn-group` with `.ix-button-group`.
 
