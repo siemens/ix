@@ -52,9 +52,7 @@ try {
   console.warn('optionalDependency @siemens/ix-corporate-theme not found!');
 }
 
-const brokenLinks = !process.env.CI ? 'throw' : 'warn';
-console.log('Broken link:', brokenLinks);
-
+const brokenLinks = 'throw';
 const baseUrl = process.env.BASE_URL || '/';
 
 console.log('Using BASE_URL', baseUrl);

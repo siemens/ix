@@ -20,30 +20,40 @@
 
 .entry {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 0.75rem;
-
-  p {
-    margin: 0;
-    display: flex;
-    align-items: center;
-  }
 }
 
-.do, .do-gradient {
+.entry p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.do,
+.do-gradient {
   border-top: 3px solid var(--theme-color-success);
 }
 
-.dont, .dont-gradient {
+.dont,
+.dont-gradient {
   border-top: 3px solid var(--theme-color-alarm);
 }
 
 .do-gradient {
-  background: linear-gradient(180deg, var(--theme-color-2) 25%, transparent 70.5%);
+  background: linear-gradient(
+    180deg,
+    var(--theme-color-2) 25%,
+    transparent 70.5%
+  );
 }
 
 .dont-gradient {
-  background: linear-gradient(180deg, var(--theme-color-2) 25%, transparent 70.5%);
+  background: linear-gradient(
+    180deg,
+    var(--theme-color-2) 25%,
+    transparent 70.5%
+  );
 }
 
 @media (max-width: 1280px) {
