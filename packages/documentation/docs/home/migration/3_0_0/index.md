@@ -283,6 +283,22 @@ We changed the default width of the `input` element from `width: 100%` to `width
 
 - Removed `individual` and `showTimeReference` attributes.
 
+#### ix-tree
+
+Fix typo of `isExpanded` of `nodeToggled`-event.
+
+Before:
+
+```
+type NodeToggleEventPayload = { id: string; isExpaned: boolean };
+```
+
+After:
+
+```
+type NodeToggleEventPayload = { id: string; isExpanded: boolean };
+```
+
 #### ix-typography
 
 - Replaced `color` attribute with `textColor`.

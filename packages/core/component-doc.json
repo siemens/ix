@@ -21496,11 +21496,11 @@
         },
         {
           "event": "nodeToggled",
-          "detail": "{ id: string; isExpaned: boolean; }",
+          "detail": "{ id: string; isExpanded: boolean; }",
           "bubbles": true,
           "complexType": {
-            "original": "{ id: string; isExpaned: boolean }",
-            "resolved": "{ id: string; isExpaned: boolean; }",
+            "original": "{ id: string; isExpanded: boolean }",
+            "resolved": "{ id: string; isExpanded: boolean; }",
             "references": {}
           },
           "cancelable": true,

@@ -79,7 +79,7 @@ export class Tree {
    * Node toggled event
    * @since 1.5.0
    */
-  @Event() nodeToggled!: EventEmitter<{ id: string; isExpaned: boolean }>;
+  @Event() nodeToggled!: EventEmitter<{ id: string; isExpanded: boolean }>;
 
   /**
    * Node clicked event
@@ -309,7 +309,7 @@ export class Tree {
 
     const context = this.getContext(id);
     context.isExpanded = !context.isExpanded;
-    this.nodeToggled.emit({ id, isExpaned: context.isExpanded });
+    this.nodeToggled.emit({ id, isExpanded: context.isExpanded });
     this.setContext(id, context);
   }
 
@@ -346,7 +346,7 @@ export class Tree {
       context.isExpanded = !context.isExpanded;
       this.nodeToggled.emit({
         id: id,
-        isExpaned: context.isExpanded,
+        isExpanded: context.isExpanded,
       });
       this.setContext(id, context);
     }
