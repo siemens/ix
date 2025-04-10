@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import SiteMetadata from '@theme-original/SiteMetadata';
 import type SiteMetadataType from '@theme/SiteMetadata';
 import type { WrapperProps } from '@docusaurus/types';
