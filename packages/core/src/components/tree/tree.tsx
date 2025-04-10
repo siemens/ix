@@ -307,6 +307,11 @@ export class Tree {
       return;
     }
 
+    const item = this.model[id];
+    if (!item.hasChildren) {
+      return;
+    }
+
     const context = this.getContext(id);
     context.isExpanded = !context.isExpanded;
     this.nodeToggled.emit({ id, isExpanded: context.isExpanded });
