@@ -23,6 +23,7 @@
     "@siemens/ix-icons": "3.0.0-alpha.1",
     "@stackblitz/sdk": "^1.11.0",
     "prism-react-renderer": "^2.3.0",
+    "prismjs": "^1.30.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
