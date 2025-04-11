@@ -6,20 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import {
-  iconChevronDownSmall,
-  iconCode,
-  iconShield,
-} from '@siemens/ix-icons/icons';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import { iconChevronDownSmall, iconCode } from '@siemens/ix-icons/icons';
 import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import {
   FrameworkTypes,
   getDisplayNameFrameworkTypes,
   useFramework,
 } from '@site/src/hooks/use-framework';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button';
-import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export default function (props: {
   onFrameworkChange?: (framework: FrameworkTypes) => void;
@@ -27,28 +23,34 @@ export default function (props: {
   return <BrowserOnly>{() => <FrameworkSelection {...props} />}</BrowserOnly>;
 }
 
-function FrameworkSelection(props: {
-  onFrameworkChange?: (framework: FrameworkTypes) => void;
-}) {
+function FrameworkSelection(
+  props: Readonly<{
+    onFrameworkChange?: (framework: FrameworkTypes) => void;
+  }>
+) {
   const { framework, setFramework } = useFramework();
-  const ref = useRef<HTMLButtonElement>(null);
+  const [ref, setRef] = useState<HTMLButtonElement>(null);
 
   useEffect(() => {
     props.onFrameworkChange && props.onFrameworkChange(framework);
   }, [framework]);
   return (
     <>
-      <Button ref={ref}>
+      <Button ref={setRef} className={'dropdown-button'}>
         {React.createElement('ix-icon', {
           name: iconCode,
+          size: '16',
         })}
-        {getDisplayNameFrameworkTypes(framework)}{' '}
+        <span className="ButtonText">
+          {getDisplayNameFrameworkTypes(framework)}
+        </span>
         {React.createElement('ix-icon', {
           name: iconChevronDownSmall,
+          size: '16',
         })}
       </Button>
-      {ref.current && (
-        <IxDropdown trigger={ref.current}>
+      {ref && (
+        <IxDropdown trigger={ref}>
           <IxDropdownItem onClick={() => setFramework('angular')}>
             Angular
           </IxDropdownItem>

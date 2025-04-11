@@ -8,8 +8,9 @@ jobs:
   comment-workflow:
     if: ${{ github.repository == 'siemens/ix' }}
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
-
       # Useful if we try to also integrate other labels
       # - name: Find comments
       #   id: find_comments
@@ -39,7 +40,7 @@ jobs:
 
       - name: Jira Ticket created
         if: "contains(github.event.label.name, 'Workflow: Issue created')"
-        uses: actions-cool/issues-helper@375963b92b795c7b979927c580dd6f2a65ebcf28
+        uses: actions-cool/issues-helper@a610082f8ac0cf03e357eb8dd0d5e2ba075e017e
         with:
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}

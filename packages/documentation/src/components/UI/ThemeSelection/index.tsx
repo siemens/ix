@@ -6,13 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { useEffect, useRef, useState } from 'react';
-import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
-import Button from '../Button';
-import { iconChevronDownSmall, iconPen } from '@siemens/ix-icons/icons';
-import React from 'react';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import {
+  iconChevronDownSmall,
+  iconDrawingDocument,
+} from '@siemens/ix-icons/icons';
+import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
+import { usePlaygroundTheme } from '@site/src/hooks/use-playground-theme';
+import React, { useEffect, useState } from 'react';
+import Button from '../Button';
+import styles from './ThemeSelection.module.css';
 
 const brandTheme = 'brand';
 const classicTheme = 'classic';
@@ -33,7 +37,9 @@ type ThemeSelectionProps = {
   onThemeChange?: (theme: string) => void;
 };
 
-export function ThemeSelection(props: ThemeSelectionProps) {
+export function ThemeSelection(props: Readonly<ThemeSelectionProps>) {
+  const { playgroundTheme: activeTheme, setPlaygroundTheme: setTheme } =
+    usePlaygroundTheme();
   const context = useDocusaurusContext();
   const [availableThemes] = useState(() => {
     const themes = [classicTheme];
@@ -44,35 +50,35 @@ export function ThemeSelection(props: ThemeSelectionProps) {
     return themes;
   });
 
-  const [theme, setTheme] = useState(() => {
-    if (context.siteConfig.customFields.withBrandTheme) {
-      return brandTheme;
-    }
-    return classicTheme;
-  });
-  const ref = useRef<HTMLButtonElement>(null);
-
-  const displayTheme = toUppercase(theme);
+  const [ref, setRef] = useState<HTMLButtonElement>(null);
+  const displayTheme = toUppercase(activeTheme);
 
   useEffect(() => {
-    props.onThemeChange?.(theme);
-  }, [theme]);
+    props.onThemeChange?.(activeTheme);
+  }, [activeTheme]);
 
   return (
     <>
-      <Button ref={ref}>
+      <Button ref={setRef} className="dropdown-button">
         {React.createElement('ix-icon', {
-          name: iconPen,
+          name: iconDrawingDocument,
+          size: '16',
         })}
-        {displayTheme}
+        <span className="ButtonText">{displayTheme}</span>
         {React.createElement('ix-icon', {
           name: iconChevronDownSmall,
+          size: '16',
         })}
       </Button>
-      {ref.current && (
-        <IxDropdown trigger={ref.current}>
+      {ref && (
+        <IxDropdown trigger={ref}>
           {availableThemes.map((theme) => (
-            <IxDropdownItem key={theme} onClick={() => setTheme(theme)}>
+            <IxDropdownItem
+              key={theme}
+              onClick={() => setTheme(theme)}
+              className={styles.DropdownItem}
+              checked={activeTheme === theme}
+            >
               {toUppercase(theme)}
             </IxDropdownItem>
           ))}

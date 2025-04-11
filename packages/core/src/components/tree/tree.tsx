@@ -64,6 +64,12 @@ export class Tree {
   @Prop({ mutable: true }) context: TreeContext = {};
 
   /**
+   * Enable to toggle items by click on the item
+   * @since 3.0.0
+   */
+  @Prop() toggleOnItemClick?: boolean;
+
+  /**
    * Context changed
    */
   @Event() contextChange!: EventEmitter<TreeContext>;
@@ -182,18 +188,29 @@ export class Tree {
             const treePath = path.slice(0, treeIndex);
             const hasTrigger = dropdownController.pathIncludesTrigger(treePath);
 
-            if (event.defaultPrevented) {
-              return;
-            }
-
             if (hasTrigger) {
               return;
             }
 
-            Object.values(this.context).forEach((c) => (c.isSelected = false));
-            const context = this.getContext(item.id);
-            context.isSelected = true;
-            this.setContext(item.id, context);
+            if (!event.defaultPrevented) {
+              Object.values(this.context).forEach(
+                (c) => (c.isSelected = false)
+              );
+              const context = this.getContext(item.id);
+              context.isSelected = true;
+              this.setContext(item.id, context);
+            }
+
+            if (this.toggleOnItemClick && item.hasChildren) {
+              const context = this.getContext(item.id);
+              context.isExpanded = !context.isExpanded;
+              this.nodeToggled.emit({
+                id: item.id,
+                isExpaned: context.isExpanded,
+              });
+              this.setContext(item.id, context);
+            }
+
             this.nodeClicked.emit(item.id);
           };
           el.addEventListener('toggle', (event) => {
@@ -287,6 +304,12 @@ export class Tree {
     if (this.isListInitialized()) {
       this.refreshList();
     } else {
+      this.initList();
+    }
+  }
+
+  connectedCallback() {
+    if (this.hasFirstRender) {
       this.initList();
     }
   }

@@ -1,19 +1,19 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
+import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import CodeBlock from '@theme/CodeBlock';
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import Pill from '../UI/Pill';
+import React, { useEffect, useRef, useState } from 'react';
+import Button from '../UI/Button';
 import styles from './styles.module.css';
 
 export async function docusaurusFetch(url: string) {
   const response = await fetch(url);
 
   if (!response.ok) {
-    throw `Error fetching code from ${url}`;
+    throw new Error(`Error fetching code from ${url}`);
   }
 
   const text = await response.text();
@@ -24,42 +24,10 @@ export async function docusaurusFetch(url: string) {
     text?.includes('<div id="__docusaurus"></div>') ||
     text?.includes('Page Not Found')
   ) {
-    throw `Error fetching code from ${url}`;
+    throw new Error(`Error fetching code from ${url}`);
   }
 
   return text;
-}
-
-function stripComments(code: string) {
-  return code
-    .replace(/\/\*[^]*?\*\//g, '')
-    .replace(/<!--[^]*?-->/g, '')
-    .trim();
-}
-
-function LazyCodeBlock(props: { framework: string; file: string }) {
-  const url = useBaseUrl(`usage/${props.file}`);
-  const [source, setSource] = useState('');
-  const [fileExtension, setFileExtension] = useState('ts');
-
-  useEffect(() => {
-    props.file && setFileExtension(props.file.split('.').pop() || 'ts');
-    docusaurusFetch(url)
-      .then((source) => setSource(stripComments(source)))
-      .catch(() => setSource('no source file yet 🙀'));
-  }, [props.framework, props.file]);
-
-  return (
-    <CodeBlock
-      className={clsx(
-        'ixCodePreview',
-        styles.code,
-        `language-${fileExtension}`
-      )}
-    >
-      {source}
-    </CodeBlock>
-  );
 }
 
 export type CodePreviewFiles = {
@@ -84,16 +52,16 @@ export type CodePreviewProps = {
   onShowSource: (source: React.FC) => void;
 };
 
-export default function CodePreview(props: CodePreviewProps) {
-  // const [selectedFramework, setSelectedFramework] = useState('angular');
+export default function CodePreview(props: Readonly<CodePreviewProps>) {
   const { selectedFramework } = props;
   const [selectedFile, setSelectedFile] = useState<string>('');
   const [SourceCode, setSourceCode] = useState<React.FC>(() => () => (
-    <CodeBlock children={['Test']}></CodeBlock>
+    <CodeBlock>Test</CodeBlock>
   ));
+  const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (props.files && props.files[selectedFramework]) {
+    if (props.files?.[selectedFramework]) {
       const file = Object.keys(props.files[selectedFramework])[0];
       setSelectedFile(file);
       setSourceCode(() => props.source[selectedFramework][file]);
@@ -106,22 +74,35 @@ export default function CodePreview(props: CodePreviewProps) {
 
   return (
     <div className={styles.CodePreview}>
-      {props.source && props.source[selectedFramework] && (
+      {props.source?.[selectedFramework] && (
         <>
-          {Object.keys(props.source[selectedFramework]).map((name) => {
-            return (
-              <Pill
-                key={name}
-                active={selectedFile === name}
-                onClick={() => {
-                  setSelectedFile(name);
-                  setSourceCode(() => props.source[selectedFramework][name]);
-                }}
-              >
-                {name}
-              </Pill>
-            );
-          })}
+          <Button ref={ref} className={styles.sourceFileButton}>
+            <span className={styles.sourceFileName}>{selectedFile}</span>
+            {React.createElement('ix-icon', {
+              name: iconChevronDownSmall,
+              size: '16',
+            })}
+          </Button>
+          {ref.current && (
+            <IxDropdown trigger={ref.current}>
+              {Object.keys(props.source[selectedFramework]).map((name) => {
+                return (
+                  <IxDropdownItem
+                    key={name}
+                    checked={selectedFile === name}
+                    onClick={() => {
+                      setSelectedFile(name);
+                      setSourceCode(
+                        () => props.source[selectedFramework][name]
+                      );
+                    }}
+                  >
+                    {name}
+                  </IxDropdownItem>
+                );
+              })}
+            </IxDropdown>
+          )}
         </>
       )}
     </div>

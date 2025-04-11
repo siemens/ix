@@ -23,9 +23,8 @@
     flex-direction: column;
 
     &.standaloneAppearance {
-      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1),
-        0 12px 18px 0 rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
+      box-shadow: var(--theme-shadow-4);
+      border-radius: 0.25rem;
     }
 
     &.rounded {

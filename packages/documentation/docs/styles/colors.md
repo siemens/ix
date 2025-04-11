@@ -6,12 +6,12 @@ hide_table_of_contents: false
 doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
-description: "The color palette in our design system provides a comprehensive guide to the use of colors, ensuring consistency and accessibility across all components, from background and text colors to chart series and status indicators."
+description: 'The color palette in our design system provides a comprehensive guide to the use of colors, ensuring consistency and accessibility across all components, from background and text colors to chart series and status indicators.'
 ---
 
 import ColorTable from '@site/src/components/ColorTable';
 
-# 
+#
 
 All colors are provided as custom properties.
 To access them the `var()` CSS function can be called with the color's name:
@@ -55,7 +55,7 @@ Use “background colors” on non-interactive backgrounds like screen areas. Ba
 
 ## Component interaction colors
 
-Component & interaction colors are used on interactive elements that often come with hover, active and selected states like buttons, toggle buttons, switch, cards, etc. Primary color is equal to brand color, often used for primary buttons or selected elements. “alt” means alternative and is used rarely, e.g. in date picker component to distinguish between selection start/end and the days in the range between.
+Component & interaction colors are used on interactive elements that often come with hover, active and selected states like buttons, toggle buttons, switches, cards, etc. Primary color is equal to brand color, often used for primary buttons or selected elements. “alt” means alternative and is used rarely, e.g. in date picker component to distinguish between selection start/end and the days in the range between.
 
 <ColorTable.WithChildren colorName="color-primary">
 </ColorTable.WithChildren>
@@ -144,7 +144,7 @@ Status color are made to represent the different statuses. We support the follow
   All colors are available for interaction states “hover” and “active”, each status color has a matching “contrast” color for placing text and icons on such a colored background.
   Each status color has furthermore a semi-transparent color that can be used on more subtle colored backgrounds.
 
-:::note
+:::info
 Please note:
 Don’t use status colors for texts as they would not meet the minimum required contrast in some constellations. Use the color for icons or on status indictors or backgrounds instead.
 There is a special alarm text color that can be used for texts, see “text colors”.

@@ -1,4 +1,7 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# Button - Usage
 
 Buttons initiate actions, apply actions to selected objects and activate/deactivate functions. We typically use buttons to trigger an immediate action, and you can place them within dialogs, forms, modal windows and other containers.
 
@@ -7,7 +10,7 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 1. Button label
 2. Button icon
 
-### Variants
+## Variants
 
 - **Primary button:** In our applications, we most often use the primary button variant.
 - **Secondary button:** The secondary button variant has a grayscale appearance to distinguish it from the primary button.
@@ -15,7 +18,7 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 
 **Note:** Please be aware that the terms _primary_ and _secondary_ are not used in accordance to common UX terminology for primary, secondary and ghost button.
 
-### Options
+## Options
 
 - **Default:** Use for the most important or most-likely next action within the user interface. These are typically actions that advance the user through a process, such as "Submit", "Save" or "Add". We use these sparingly and recommend only one per layout. These are typically called _primary_ buttons in UX.
 - **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These could include actions like "Cancel", "Reset" or "Advanced Options". These are typically called _secondary_ buttons in UX.
@@ -25,7 +28,7 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 - **Loading:** A loading spinner is displayed on the button. The spinner replaces an icon when available.
 - **Type:** A submit button is available. Submit buttons are typically used in forms and trigger a submit event. Apply this type to make a submit button more accessible.
 
-### Behavior in context
+## Behavior in context
 
 - **Interaction:** Buttons can be triggered by pressing anywhere within the button container. When buttons are focused, they can be triggered by pressing `Space`.
 - **Text truncation:** Button labels are not truncated. All text on buttons is one line only.
@@ -34,13 +37,13 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 - **Cluster buttons:** Buttons can be clustered in groups based on their relationship. A cluster can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons, and we typically cluster buttons if actions/functions are related but not excluding each other. Otherwise, consider using a `button group`.
 - **Button width:** Button width depends on its content. In addition, buttons have a default minimum width of 5rem to lay out common combinations such as "OK" and "Cancel" more harmoniously with equal widths. The minimum width is customizable to accommodate other combinations.
 
-### States
+## States
 
 Buttons have six states: Default, hover, active, disabled, loading and focused. In a disabled state, buttons are visually displayed but don’t offer any user interaction.
 
 ![Button states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
 
-### Dos and Don’ts
+## Dos and Don’ts
 
 - Do use short button labels to allow users to quickly scan, understand and remember them (follow our writing style guide for more support)
 - Do use only one primary (default) button in one visual unit for a clear and singular focus on the main call to action
@@ -52,7 +55,7 @@ Buttons have six states: Default, hover, active, disabled, loading and focused. 
 - Don’t rely on standard buttons when many actions/functions are necessary (use dropdown, split or menu buttons or move some functionality to a panel or a dialog)
 - Don’t use buttons for navigation
 
-### Related
+## Related
 
 - [Dropdown button](../dropdown-button)
 - [Split button](../split-button)

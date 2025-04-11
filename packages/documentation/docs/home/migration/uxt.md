@@ -3,8 +3,6 @@ sidebar_position: 2
 sidebar_label: Migration from UXT 2.7.0
 title: Migration from UXT 2.7.0
 doc-type: 'banner'
-component-tabs: ['']
-no_single_tab: true
 description: 'For a quick and easy migration without changing your code base, the iX-UXT CSS Theme is prepared for app developers using the CSS from UXT (User Experience Toolkit, formerly named MindSphere Design System).'
 ---
 
@@ -20,8 +18,7 @@ For the full experience, please use the Siemens Industrial Experience components
 
 ## Usage
 
-1. When using UXT below v2.7.0, download the [CSS theme](./uxt/uxt-ix-css.css) and import it into your project.  
-   _If you are using UXT v2.7.0 or higher, it is already part of the UXT CSS._
+1. Download the [Brand CSS theme](https://code.siemens.com/siemens-ix/ix-brand-theme/uxt) and import it into your project. Note that it's available exclusively for Siemens AG products. For non Siemens AG products please [contact us](./../support/contact-us.md).
 2. Apply the class `.ix` to the `.uxt-defaults` element.
 3. Depending if you want to use the dark or light theme, add `.uxt-ix-theme-dark` or `.uxt-ix-theme-light` to your `body` element.
 
@@ -78,27 +75,27 @@ If you're facing any other problems, please raise an issue in GitHub [raising an
 
 As some of the components are named differently in Industrial Experience, please consult this list of the most important component name differences to help make your migration easier:
 
-| **User Experience Toolkit**                      | **Industrial Experience**                                                                               |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| App bar                                          | [Nav menu](/docs/components/application-menu)                                                           |
-| Badge                                            | [Pill](/docs/components/pill), [chip](/docs/components/chip)                                            |
-| Busy indicator                                   | [Spinner](/docs/components/spinner)                                                                     |
+| **User Experience Toolkit**                      | **Industrial Experience**                                                                        |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| App bar                                          | [Nav menu](/docs/components/application-menu)                                                    |
+| Badge                                            | [Pill](/docs/components/pill), [chip](/docs/components/chip)                                     |
+| Busy indicator                                   | [Spinner](/docs/components/spinner)                                                              |
 | Button<br/>- primary<br/>- secondary<br/>- ghost | [Button](/docs/components/button)<br/>- primary filled<br/>- primary outline<br/>- primary ghost |
-| Card grid                                        | [Layout grid](/docs/components/layout-grid)                                                             |
-| Container                                        | [Card](/docs/components/card)                                                                           |
-| Dialog                                           | [Modal](/docs/components/modal)                                                                         |
-| Dropzone                                         | [Upload](/docs/components/upload)                                                                       |
-| List                                             | [Event list](/docs/components/event-list)                                                               |
-| Stepper                                          | [Workflow](/docs/components/workflow)                                                                   |
-| Menu                                             | [Dropdown button](/docs/components/dropdown-button)                                             |
-| Message                                          | [Message bar](/docs/components/messagebar)                                                              |
-| Notification                                     | [Toast](/docs/components/toast)                                                                         |
-| Pager                                            | [Pagination](/docs/components/pagination)                                                               |
-| Popover                                          | [Tooltip](/docs/components/tooltip), [dropdown](/docs/components/dropdown)                              |
-| Switch                                           | [Toggle](/docs/components/toggle)                                                                       |
-| Context region                                   | [Pane](/docs/components/panes) (inline right)                                                           |
-| Item region                                      | [Pane](/docs/components/panes) (floating right)                                                         |
-| Leading region                                   | [Pane](/docs/components/panes) (inline left)                                                            |
+| Card grid                                        | [Layout grid](/docs/components/layout-grid)                                                      |
+| Container                                        | [Card](/docs/components/card)                                                                    |
+| Dialog                                           | [Modal](/docs/components/modal)                                                                  |
+| Dropzone                                         | [Upload](/docs/components/upload)                                                                |
+| List                                             | [Event list](/docs/components/event-list)                                                        |
+| Stepper                                          | [Workflow](/docs/components/workflow)                                                            |
+| Menu                                             | [Dropdown button](/docs/components/dropdown-button)                                              |
+| Message                                          | [Message bar](/docs/components/messagebar)                                                       |
+| Notification                                     | [Toast](/docs/components/toast)                                                                  |
+| Pager                                            | [Pagination](/docs/components/pagination)                                                        |
+| Popover                                          | [Tooltip](/docs/components/tooltip), [dropdown](/docs/components/dropdown)                       |
+| Switch                                           | [Toggle](/docs/components/toggle)                                                                |
+| Context region                                   | [Pane](/docs/components/panes) (inline right)                                                    |
+| Item region                                      | [Pane](/docs/components/panes) (floating right)                                                  |
+| Leading region                                   | [Pane](/docs/components/panes) (inline left)                                                     |
 
 ## System icons
 

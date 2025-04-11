@@ -1,4 +1,7 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# Application header - Usage
 
 ![Application header with different options](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1634-56424&mode=design&t=4XzscFw57dE7McUX-11)
 
@@ -8,20 +11,20 @@
 4. [Slot](#slot) for additional elements (optional)
 5. [Avatar](#avatar) (optional)
 
-### Application switch
+## Application switch
 
 Use the application switch (see [application](../application)) to allow users to navigate across applications. When clicking the application switch (1), a modal with a list of available applications opens.
 
-### Brand logo
+## Brand logo
 
 Provide the brand logo (2) as SVG. The logo must be monochromatic and cannot contain strokes as it is colored during runtime depending on your chosen theme.
 For Siemens applications, only the Siemens logo with the brand theme is allowed.
 
-### Application name
+## Application name
 
 The application name (3) shows the official name of the application. It can be extended with additional information by using the pipe character "|" and 2 spaces before and after to separate both.
 
-### Slot
+## Slot
 
 ![Examples of slot usages](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1679-19526&mode=design&t=UPXhDWuRHtygtfFI-11)
 
@@ -34,9 +37,9 @@ We typically use the slot for:
 - Important contextual information users should be aware of (like local times in remote access use cases)
 - Access to application-wide actions like global search
 
-### Avatar
+## Avatar
 
-With the new modular application frame we moved the avatar from the navigation menu to the application header. This ensures the avatar has security-relevant information available at all breakpoints. Nonetheless, if you still use the [basic navigation](../map-navigation), the avatar is still in the navigation menu for compatibility reasons.
+With the new modular application frame we moved the avatar from the navigation menu to the application header. This ensures the avatar has security-relevant information available at all breakpoints. Nonetheless, if you still use the [basic navigation](../../legacy/map-navigation), the avatar is still in the navigation menu for compatibility reasons.
 
 ![Avatar and avatar dropdown](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1635-60462&mode=design&t=UPXhDWuRHtygtfFI-11)
 
@@ -56,11 +59,11 @@ If your application can be used without being logged in to, you can offer access
 - Show a log in button in the [slot for additional elements](#slot) and hide the avatar.
 - Show the avatar with a placeholder image and show text in the user information section.
 
-### Options
+## Options
 
 If the application is hosted inside a framework that comes with its own header, you can omit the entire application header to avoid having two headers on top of each other. The framework’s header then provides the brand identity, the application name and other information.
 
-### Behavior
+## Behavior
 
 The header automatically adapts the breakpoints defined in the [application](../application).
 
@@ -81,7 +84,7 @@ At breakpoints "lg" and "md" the application header behaves identically. At brea
 - The brand logo disappears.
 - The slot for additional elements (if used) moves to the overflow dropdown that opens on click on the overflow icon (13).
 
-### Dos and Don’ts
+## Dos and Don’ts
 
 - Do align other slot usages for Siemens applications with our team to keep a consistent look and feel
 - Do use the avatar dropdown for actions related to the current logged in user

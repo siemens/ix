@@ -1,4 +1,7 @@
-## Guidelines
+---
+doc-type: 'tab-item'
+---
+# Split button - Usage
 
 Split buttons consist of two parts: a button labeled with text and/or an icon on the left and a dropdown button labeled with an icon on the right. We typically use split buttons when a default action is available but more options need to be offered. Split buttons group similar or related actions.
 
@@ -12,7 +15,7 @@ Split buttons consist of two parts: a button labeled with text and/or an icon on
 
 All the variants, options and states of the ix button and the ix dropdown button components apply to the split button. We've listed additional or deviating specifications here.
 
-### Options
+## Options
 
 - **Disabled:** The disabled option can be applied to the complete component. There is no option to disable each part of the split button independently.
 - **Label:** Set a label for the button component (left side). We typically use short labels that contain a verb.
@@ -26,21 +29,21 @@ All the variants, options and states of the ix button and the ix dropdown button
 - **SplitIcon:** We typically use a chevron icon on the dropdown button, but a custom icon can be set. A common alternative to the chevron is the "more-menu" icon.
 - The options **loading** and **type** are not available for split buttons.
 
-### Behavior in context
+## Behavior in context
 
 - **Interaction:** When users press an option from the dropdown list, the action is triggered. Typically the label of the button on the left side stays static. Be aware that updating the left side with the last triggered action may lead to layout changes (e.g. button width) and requires updating the dropdown by adding the action that was removed from the button face.
 
-### States
+## States
 
 Split buttons have five states: Default, hover, active, disabled and focused. States are applied to left and the right part of the split button independently except for the disabled state. The visual appearance and the behavior of the states is the same as the ix button and the ix dropdown button.
 
-### Dos and Don’ts
+## Dos and Don’ts
 
 - Do use split buttons when there is a frequent or most-important action
 - Don't use split buttons for unrelated actions
 - Don't duplicate the default option in the dropdown
 
-### Related
+## Related
 
 - [Button](../button)
 - [Dropdown](../dropdown)

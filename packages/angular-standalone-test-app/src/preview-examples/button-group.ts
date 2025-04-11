@@ -15,7 +15,7 @@ import { IxButton } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxButton],
   template: `
-    <div class="btn-group">
+    <div class="ix-button-group">
       <ix-button outline> Left </ix-button>
       <ix-button>Middle</ix-button>
       <ix-button outline> Right </ix-button>

@@ -8,7 +8,7 @@ no_single_tab: true
 description: "Dive into the fundamental principles of UX writing, where you'll learn how to create text that enhances user experience by being clear, concise, and user-friendly. This section lays the groundwork for all your UX writing endeavors."
 ---
 
-import Guideline from '@site/src/components/Guideline';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -38,33 +38,22 @@ import Guideline from '@site/src/components/Guideline';
 
 - Avoid using negative contractions as they can appear too informal
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='their, them, theirs, salesperson'></Guideline>
-<Guideline do={false} label='his, hers, him, salesman'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Welcome to this application'></Guideline>
-<Guideline do={false} label='Hey there!'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='X appears when detail view has selected events'></Guideline>
-<Guideline do={false} label='X doesn’t appear if detail view has no selected events'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='cannot, will not'></Guideline>
-<Guideline do={false} label='can’t, won’t'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='you’ll, we’ve'></Guideline>
-<Guideline do={false} label='you will, we have'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>their, them, theirs, salesperson</DoAndDont.Item>
+    <DoAndDont.Item>Welcome to this application</DoAndDont.Item>
+    <DoAndDont.Item>X appears when detail view has selected events</DoAndDont.Item>
+    <DoAndDont.Item>cannot, will not</DoAndDont.Item>
+    <DoAndDont.Item>you’ll, we’ve</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>his, hers, him, salesman</DoAndDont.Item>
+    <DoAndDont.Item>Hey there!</DoAndDont.Item>
+    <DoAndDont.Item>X doesn’t appear if detail view has no selected events</DoAndDont.Item>
+    <DoAndDont.Item>can’t, won’t</DoAndDont.Item>
+    <DoAndDont.Item>you will, we have</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Length
 
@@ -88,90 +77,50 @@ import Guideline from '@site/src/components/Guideline';
 
 - Capitalize named app functions and UI elements: Go to Settings, Allocate users in User management, Press Ok
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='Go to Settings'></Guideline>
-<Guideline do={false} label='Go To Settings'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Press OK'></Guideline>
-<Guideline do={false} label='Press Ok'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Log in'></Guideline>
-<Guideline do={false} label='LOG IN'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='For more information, see Siemens Industry Online Support.'></Guideline>
-<Guideline do={false} label='For more information, see Siemens industry online support.'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>Go to Settings</DoAndDont.Item>
+    <DoAndDont.Item>Press OK</DoAndDont.Item>
+    <DoAndDont.Item>Log in</DoAndDont.Item>
+    <DoAndDont.Item>For more information, see Siemens Industry Online Support.</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Go To Settings</DoAndDont.Item>
+    <DoAndDont.Item>Press Ok</DoAndDont.Item>
+    <DoAndDont.Item>LOG IN</DoAndDont.Item>
+    <DoAndDont.Item>For more information, see Siemens industry online support.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Common UX wording mistakes
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='time zone'></Guideline>
-<Guideline do={false} label='timezone'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='log file'></Guideline>
-<Guideline do={false} label='logfile'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='log in (as an action)'></Guideline>
-<Guideline do={false} label='login'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='login (as a noun)'></Guideline>
-<Guideline do={false} label='log in'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='equipment'></Guideline>
-<Guideline do={false} label='equipments'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='feedback'></Guideline>
-<Guideline do={false} label='feedbacks'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='training'></Guideline>
-<Guideline do={false} label='trainings'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='current'></Guideline>
-<Guideline do={false} label='actual'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='avoid "shall"'></Guideline>
-<Guideline do={false} label='user shall manage users'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='Siemens has'></Guideline>
-<Guideline do={false} label='Siemens have'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='34 million / 35 billion'></Guideline>
-<Guideline do={false} label='34’ / 35“'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='34 million'></Guideline>
-<Guideline do={false} label='34 millions'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Do>
+    <DoAndDont.Item>time zone</DoAndDont.Item>
+    <DoAndDont.Item>log file</DoAndDont.Item>
+    <DoAndDont.Item>log in (as an action)</DoAndDont.Item>
+    <DoAndDont.Item>login (as a noun)</DoAndDont.Item>
+    <DoAndDont.Item>equipment</DoAndDont.Item>
+    <DoAndDont.Item>feedback</DoAndDont.Item>
+    <DoAndDont.Item>training</DoAndDont.Item>
+    <DoAndDont.Item>current</DoAndDont.Item>
+    <DoAndDont.Item>avoid "shall"</DoAndDont.Item>
+    <DoAndDont.Item>Siemens has</DoAndDont.Item>
+    <DoAndDont.Item>34 million / 35 billion</DoAndDont.Item>
+    <DoAndDont.Item>34 million</DoAndDont.Item>
+  </DoAndDont.Do>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>timezone</DoAndDont.Item>
+    <DoAndDont.Item>logfile</DoAndDont.Item>
+    <DoAndDont.Item>login</DoAndDont.Item>
+    <DoAndDont.Item>log in</DoAndDont.Item>
+    <DoAndDont.Item>equipments</DoAndDont.Item>
+    <DoAndDont.Item>feedbacks</DoAndDont.Item>
+    <DoAndDont.Item>trainings</DoAndDont.Item>
+    <DoAndDont.Item>actual</DoAndDont.Item>
+    <DoAndDont.Item>user shall manage users</DoAndDont.Item>
+    <DoAndDont.Item>Siemens have</DoAndDont.Item>
+    <DoAndDont.Item>34’ / 35“</DoAndDont.Item>
+    <DoAndDont.Item>34 millions</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>

@@ -190,7 +190,7 @@ export class FormFieldLabel implements IxComponent {
             format="label"
           >
             <slot></slot>
-            {this.required && <span>&nbsp;*</span>}
+            {this.required && <span>*</span>}
           </ix-typography>
         </label>
       </Host>

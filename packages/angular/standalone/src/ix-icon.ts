@@ -15,7 +15,7 @@ import {
   ElementRef,
   NgZone,
 } from '@angular/core';
-import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/components/ix-icon';
+import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/components/ix-icon.js';
 import { ProxyCmp } from './angular-component-lib/utils';
 
 @ProxyCmp({

@@ -1,9 +1,9 @@
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
-import { themes as prismThemes } from 'prism-react-renderer';
 import figmaPlugin from 'figma-plugin';
 import path from 'path';
-import versionDeployment from './version-deployment.json' with { type: 'json '};
+import { themes as prismThemes } from 'prism-react-renderer';
+import versionDeployment from './version-deployment.json' with { type: 'json ' };
 
 function getAnnouncementBarConfig() {
   const latestVersion = versionDeployment.versions.find(version => version.id === versionDeployment.currentVersion);
@@ -20,6 +20,18 @@ function getAnnouncementBarConfig() {
   }
 }
 
+function getFontHeadTag(fontStyle: string) {
+  return {
+    tagName: 'link',
+    attributes: {
+      rel: 'preload',
+      href: `https://cdn.c2comms.cloud/fonts/global/2.0/SiemensSans_Global_${fontStyle}.ttf`,
+      as: 'font',
+      type: 'font/ttf',
+      crossorigin: 'anonymous',
+    },
+  };
+}
 const customCss = [
   './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
   './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css',
@@ -40,9 +52,7 @@ try {
   console.warn('optionalDependency @siemens/ix-corporate-theme not found!');
 }
 
-const brokenLinks = !process.env.CI ? 'throw' : 'warn';
-console.log('Broken link:', brokenLinks);
-
+const brokenLinks = 'throw';
 const baseUrl = process.env.BASE_URL || '/';
 
 console.log('Using BASE_URL', baseUrl);
@@ -122,10 +132,20 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
   plugins: [
     'docusaurus-plugin-sass',
-    async function tailwindCSSConfigPlugin(context, options) {
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/docs/migration/uxt',
+            to: '/docs/home/migration/uxt',
+          },
+        ]
+      }
+    ],
+    async function tailwindCSSConfigPlugin() {
       return {
         name: 'docusaurus-tailwindcss',
         configurePostCss(postcssOptions) {
@@ -135,6 +155,7 @@ const config: Config = {
         },
       };
     },
+    '@cmfcmf/docusaurus-search-local',
   ],
 
   headTags: [
@@ -152,6 +173,10 @@ const config: Config = {
         src: 'https://cdn.jsdelivr.net/npm/@siemens/ix-icons@3.0.0-alpha.0/dist/ix-icons/ix-icons.js',
       },
     },
+    getFontHeadTag('Bold'),
+    getFontHeadTag('BoldItalic'),
+    getFontHeadTag('Italic'),
+    getFontHeadTag('Roman'),
   ],
   themeConfig: {
     ...getAnnouncementBarConfig(),
@@ -212,17 +237,16 @@ const config: Config = {
           position: 'left',
           label: 'Styles',
         },
-        // { to: '/blog', label: 'Blog', position: 'left' },
         {
           type: 'custom-version-selection',
           position: 'right',
           value: versionDeployment
         },
         {
-          type: 'html',
+          type: 'search',
           position: 'right',
-          value: '<div class="separator" aria-hidden></div>',
         },
+        { to: '/blog', label: 'Blog', position: 'right' },
         {
           type: 'custom-nav-link',
           position: 'right',
@@ -234,6 +258,11 @@ const config: Config = {
           position: 'right',
           label: 'Starter app',
           value: '/docs/home/getting-started/starter-app',
+        },
+        {
+          type: 'html',
+          position: 'right',
+          value: '<div class="separator" aria-hidden></div>',
         },
         {
           type: 'html',

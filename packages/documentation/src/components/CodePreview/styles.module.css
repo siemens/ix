@@ -3,13 +3,23 @@
  */
 .CodePreview {
   display: flex;
+  position: relative;
   flex-direction: row;
 
   flex-wrap: nowrap;
-  position: relative;
   border-top: none;
 
   gap: 0.25rem;
+  overflow: hidden;
+
+  margin-right: auto;
+}
+
+.sourceFileName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .toolbar {

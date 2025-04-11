@@ -6,12 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import { useLocation } from '@docusaurus/router';
 import {
   iconChevronDownSmall,
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 import { IxIcon } from '@siemens/ix-react';
 import ApiTable, { AnchorHeader } from '@site/src/components/ApiTable';
+import { usePlaygroundThemeVariant } from '@site/src/hooks/use-playground-theme';
+import clsx from 'clsx';
 import {
   createContext,
   forwardRef,
@@ -23,15 +27,10 @@ import {
   useRef,
   useState,
 } from 'react';
-import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import CopyButton from '../UI/CopyButton';
+import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './ColorTable.module.css';
-import clsx from 'clsx';
-import { useLocation } from '@docusaurus/router';
-import { useColorMode } from '@docusaurus/theme-common';
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
-import BrowserOnly from '@docusaurus/BrowserOnly';
 
 function capitalizeFirstLetter(input: string): string {
   if (input.length === 0) return input;
@@ -117,9 +116,11 @@ function BrowserOnlyColorTable({ children, colorName }) {
   const location = useLocation();
 
   const [theme, setTheme] = useState(useDefaultTheme());
-  const { colorMode } = useColorMode();
 
-  const [isDarkColor, setIsDarkColor] = useState(colorMode === 'dark');
+  const { playgroundThemeVariant } = usePlaygroundThemeVariant();
+  const [isDarkColor, setIsDarkColor] = useState(
+    playgroundThemeVariant === 'dark'
+  );
 
   const [expanded, setExpanded] = useState(
     location.hash === `#color-${colorName}`
@@ -173,10 +174,6 @@ function BrowserOnlyColorTable({ children, colorName }) {
     []
   );
 
-  function changeColorMode() {
-    setIsDarkColor(!isDarkColor);
-  }
-
   function generateColorChildren() {
     const name = `--theme-${colorName}`;
 
@@ -193,8 +190,8 @@ function BrowserOnlyColorTable({ children, colorName }) {
   }
 
   useEffect(() => {
-    setIsDarkColor(colorMode === 'dark');
-  }, [colorMode]);
+    setIsDarkColor(playgroundThemeVariant === 'dark');
+  }, [playgroundThemeVariant]);
 
   function getHexColors() {
     const name = `--theme-${colorName}`;
@@ -245,41 +242,41 @@ function BrowserOnlyColorTable({ children, colorName }) {
   );
 
   return (
-    <ApiTable id={`color-${colorName}`}>
-      <ThemeContext.Provider value={themeContext}>
-        <ColorContext.Provider value={color}>
-          <ColorContainerFix ref={themeRef}></ColorContainerFix>
-          <AnchorHeader
-            noBottomBorder={!expanded}
-            onClick={() => setExpanded(!expanded)}
-            anchorName={`color-${colorName}`}
-            anchorLabel="Direct link to the color"
-            right={
-              <>
-                <div className={styles.DesktopOnly}>
-                  <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
-                </div>
-                <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
-                <ThemeVariantToggle
-                  onChangeColorMode={() => changeColorMode()}
-                  isLight={!isDarkColor}
-                />
-              </>
-            }
-          >
-            <div className={styles.colorRow}>
-              <IxIcon
-                name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
-              ></IxIcon>
-              <ColorCircle color={colorName}></ColorCircle>
-              <span className={styles.headColorName}>--theme-{colorName}</span>
-            </div>
-          </AnchorHeader>
+    <ThemeContext.Provider value={themeContext}>
+      <ColorContext.Provider value={color}>
+        <ColorContainerFix ref={themeRef}>
+          <ApiTable id={`color-${colorName}`}>
+            <AnchorHeader
+              noBottomBorder={!expanded}
+              onClick={() => setExpanded(!expanded)}
+              anchorName={`color-${colorName}`}
+              anchorLabel="Direct link to the color"
+              right={
+                <>
+                  <div className={styles.DesktopOnly}>
+                    <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
+                  </div>
+                  <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
+                  <ThemeVariantToggle />
+                </>
+              }
+            >
+              <div className={styles.colorRow}>
+                <IxIcon
+                  name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
+                ></IxIcon>
+                <ColorCircle color={colorName}></ColorCircle>
+                <span className={styles.headColorName}>
+                  --theme-{colorName}
+                </span>
+              </div>
+            </AnchorHeader>
 
-          {expanded && children}
-        </ColorContext.Provider>
-      </ThemeContext.Provider>
-    </ApiTable>
+            {expanded && children}
+          </ApiTable>
+        </ColorContainerFix>
+      </ColorContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 
@@ -325,7 +322,7 @@ function ColorTableWithChildren({ colorName }) {
 
 function Text({ children, name }) {
   return (
-    <div className={styles.colorTextRow}>
+    <div className={clsx(styles.colorTextRow, 'api-row')}>
       <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
         {name}
       </div>

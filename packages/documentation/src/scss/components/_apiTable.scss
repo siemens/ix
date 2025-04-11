@@ -10,4 +10,16 @@
   p {
     margin: 0 !important;
   }
+
+  .api-row {
+    background-color: var(--theme-color-1);
+    color: var(--theme-color-std-text);
+  }
+
+  code {
+    --ifm-code-background: var(--theme-color-5);
+    padding: 2px 4px;
+    color: var(--theme-color-std-text);
+    border: none;
+  }
 }

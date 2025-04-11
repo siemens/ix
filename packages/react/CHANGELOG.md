@@ -1,5 +1,36 @@
 # @siemens/ix-react
 
+## 3.0.0-alpha.4
+
+### Patch Changes
+
+- Updated dependencies [[`40e8c510e15dba741601b3b19b6025c024e170ef`](https://github.com/siemens/ix/commit/40e8c510e15dba741601b3b19b6025c024e170ef), [`838c19239ac8a85e2d644696cc1fd3a67f5509d5`](https://github.com/siemens/ix/commit/838c19239ac8a85e2d644696cc1fd3a67f5509d5), [`d0c4c9df8b269fc0206ffdce1c6c7ec4013028b6`](https://github.com/siemens/ix/commit/d0c4c9df8b269fc0206ffdce1c6c7ec4013028b6), [`278d51b7597afadd7fa765187e3cf9e8cd5385c6`](https://github.com/siemens/ix/commit/278d51b7597afadd7fa765187e3cf9e8cd5385c6), [`ff816a840b609491e1a647d64f6bad489ad214f0`](https://github.com/siemens/ix/commit/ff816a840b609491e1a647d64f6bad489ad214f0), [`df00884a5b65c7047ddc3506b8eaac66819c4ceb`](https://github.com/siemens/ix/commit/df00884a5b65c7047ddc3506b8eaac66819c4ceb), [`bc33e84a3ad378470dbbdff8dd85877c21355bae`](https://github.com/siemens/ix/commit/bc33e84a3ad378470dbbdff8dd85877c21355bae), [`8002d9a68ef8a5279d43726ecad28e85ad0ac53a`](https://github.com/siemens/ix/commit/8002d9a68ef8a5279d43726ecad28e85ad0ac53a)]:
+  - @siemens/ix@3.0.0-alpha.4
+
+## 3.0.0-alpha.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @siemens/ix@3.0.0-alpha.3
+
+## 3.0.0-alpha.2
+
+### Major Changes
+
+- [#1644](https://github.com/siemens/ix/pull/1644) [`2660cc3877629aaf218bd427799013e87db572c7`](https://github.com/siemens/ix/commit/2660cc3877629aaf218bd427799013e87db572c7) Thanks [@danielleroux](https://github.com/danielleroux)! - - Add `nextjs@15` support (**experimental**).
+
+  - Introduced support for `server-side` components.
+
+- [#1644](https://github.com/siemens/ix/pull/1644) [`221e9e7d1490524dff5b7358557ee29c49119952`](https://github.com/siemens/ix/commit/221e9e7d1490524dff5b7358557ee29c49119952) Thanks [@danielleroux](https://github.com/danielleroux)! - Convert package to type="module"
+
+- [#1644](https://github.com/siemens/ix/pull/1644) [`2660cc3877629aaf218bd427799013e87db572c7`](https://github.com/siemens/ix/commit/2660cc3877629aaf218bd427799013e87db572c7) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `react@19` support
+
+### Patch Changes
+
+- Updated dependencies [[`b66381a68f94df878605a290a52c84d31fa45bf1`](https://github.com/siemens/ix/commit/b66381a68f94df878605a290a52c84d31fa45bf1), [`23402fc1ab914b7b6ca73f938b12c66dd1fd5120`](https://github.com/siemens/ix/commit/23402fc1ab914b7b6ca73f938b12c66dd1fd5120)]:
+  - @siemens/ix@3.0.0-alpha.2
+
 ## 3.0.0-alpha.1
 
 ### Patch Changes

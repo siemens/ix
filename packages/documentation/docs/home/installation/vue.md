@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 #
 
-:::caution Experimental disclaimer
+:::warning Experimental disclaimer
 
 There is no guarantee that the core functionality is fully covered by the Vue wrappers.
 Bug reports and feature requests related to Vue can only be handled with low priority.

@@ -12,18 +12,19 @@ import clsx from 'clsx';
 
 type ButtonProps = {
   children: React.ReactNode;
+  className?: string;
   onClick?: () => void;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, onClick }: ButtonProps, ref) => {
+  ({ children, onClick, className }: ButtonProps, ref) => {
     return (
       <button
-        className={clsx('all-unset', styles.Button)}
+        className={clsx('all-unset', styles.Button, className)}
         onClick={onClick}
         ref={ref}
       >
-        {children}
+        <div className={clsx(styles.ButtonText, 'ButtonText')}>{children}</div>
       </button>
     );
   }

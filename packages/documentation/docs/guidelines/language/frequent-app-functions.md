@@ -8,7 +8,7 @@ no_single_tab: true
 description: 'Get tips for naming common app functions clearly and effectively. This subchapter focuses on how to describe frequent actions and features in a way that users can quickly understand and use.'
 ---
 
-import Guideline from '@site/src/components/Guideline';
+import DoAndDont from '@site/src/components/DoAndDont';
 
 #
 
@@ -20,19 +20,13 @@ import Guideline from '@site/src/components/Guideline';
 
 - Cockpit
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do={false} label='Console'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Dash'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Control panel'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Console</DoAndDont.Item>
+    <DoAndDont.Item>Dash</DoAndDont.Item>
+    <DoAndDont.Item>Control panel</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Analytics
 
@@ -40,16 +34,12 @@ import Guideline from '@site/src/components/Guideline';
 
 - Anomaly detection
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do={false} label='Assessment'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Examination'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Assessment</DoAndDont.Item>
+    <DoAndDont.Item>Examination</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Monitoring and scheduling
 
@@ -61,13 +51,11 @@ import Guideline from '@site/src/components/Guideline';
 
 - Remove from watchlist
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do={false} label='Watch list'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Watch list</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Detail view
 
@@ -77,16 +65,12 @@ import Guideline from '@site/src/components/Guideline';
 
 - Details
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do={false} label='Facts'></Guideline>
-</span>
-<span class="m-2">
-<Guideline do={false} label='Specifics'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Facts</DoAndDont.Item>
+    <DoAndDont.Item>Specifics</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ### Asset properties
 
@@ -130,13 +114,11 @@ import Guideline from '@site/src/components/Guideline';
 
 - Drag files here or select files
 
-<div class="d-flex flex-wrap">
-
-<span class="m-2">
-<Guideline do={false} label='Drag and drop here or browse'></Guideline>
-</span>
-
-</div>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Drag and drop here or browse</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Comments
 
@@ -148,9 +130,11 @@ import Guideline from '@site/src/components/Guideline';
 
 - Write your comments here
 
-<span class="m-2">
-<Guideline do={false} label='Write a comment'></Guideline>
-</span>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Write a comment</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Grid and list actions
 
@@ -174,11 +158,13 @@ import Guideline from '@site/src/components/Guideline';
 
 - Notify me when X occurs
 
-<span class="m-2">
-<Guideline do={false} label='Error'></Guideline>
-<Guideline do={false} label='Issue'></Guideline>
-<Guideline do={false} label='Problem'></Guideline>
-</span>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Error</DoAndDont.Item>
+    <DoAndDont.Item>Issue</DoAndDont.Item>
+    <DoAndDont.Item>Problem</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Event types
 
@@ -206,12 +192,14 @@ import Guideline from '@site/src/components/Guideline';
 
 - Detected
 
-<span class="m-2">
-<Guideline do={false} label='Unacklowedged'></Guideline>
-<Guideline do={false} label='Unack.'></Guideline>
-<Guideline do={false} label='Unackn.'></Guideline>
-<Guideline do={false} label='Unacknl.'></Guideline>
-</span>
+<DoAndDont>
+  <DoAndDont.Dont>
+    <DoAndDont.Item>Unacklowedged</DoAndDont.Item>
+    <DoAndDont.Item>Unack.</DoAndDont.Item>
+    <DoAndDont.Item>Unackn.</DoAndDont.Item>
+    <DoAndDont.Item>Unacknl.</DoAndDont.Item>
+  </DoAndDont.Dont>
+</DoAndDont>
 
 ## Event actions
 

@@ -172,6 +172,32 @@ regressionTest.describe('date picker tests single', () => {
       expect(await eventPromise).toBeTruthy();
     }
   );
+
+  regressionTest(
+    'keeps previous date and throws console error when invalid date string is provided',
+    async ({ page }) => {
+      const datePicker = await page.locator('ix-date-picker');
+
+      const errors: string[] = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') {
+          errors.push(message.text());
+        }
+      });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('from', 'Aug 6, 2014');
+      });
+
+      expect((await getDateObj(page))[0]).toEqual({
+        from: '2023/09/05',
+        to: undefined,
+      });
+      expect(errors).toContain(
+        `the input "Aug 6, 2014" can't be parsed as format yyyy/LL/dd`
+      );
+    }
+  );
 });
 
 regressionTest.describe('date picker tests range', () => {

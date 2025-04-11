@@ -13,9 +13,30 @@
   height: 1.5rem;
   padding: 0.15rem 0.25rem;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   color: var(--theme-color-soft-text);
   gap: 0.25rem;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 0.875rem;
+
+  ix-icon:first-of-type {
+    margin-right: 0.25rem;
+  }
+
+  ix-icon:last-of-type {
+    margin-left: 0.25rem;
+  }
+}
+
+.ButtonText {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .Button:hover {

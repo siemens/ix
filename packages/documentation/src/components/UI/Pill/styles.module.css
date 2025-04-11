@@ -16,6 +16,8 @@
   color: var(--theme-color-soft-text);
 
   white-space: nowrap;
+
+  font-size: 0.875rem;
 }
 
 .pill:hover {
