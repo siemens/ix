@@ -70,6 +70,7 @@ export class Tabs {
 
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
+  private startTouchX = 0;
 
   private clickAction: {
     timeout: NodeJS.Timeout | null;
@@ -297,6 +298,8 @@ export class Tabs {
   }
 
   componentDidLoad() {
+    this.setupEventListeners();
+
     const tabs = this.getTabs();
     tabs.forEach((element) => {
       element.addEventListener('mousedown', (event) =>
@@ -305,8 +308,110 @@ export class Tabs {
     });
   }
 
+  private setupEventListeners() {
+    const tabsWrapper = this.getTabsWrapper();
+    if (!tabsWrapper) return;
+
+    this.setupTouchEvents(tabsWrapper);
+    if (!this.isTouchOnlyDevice()) {
+      this.setupWheelEvent(tabsWrapper);
+    }
+  }
+
+  private setupWheelEvent(tabsWrapper: Element) {
+    tabsWrapper.addEventListener('wheel', this.handleWheelScroll, {
+      passive: false,
+    });
+  }
+
+  private readonly handleWheelScroll = (event: Event) => {
+    const wheelEvent = event as WheelEvent;
+    const { deltaX, deltaY } = wheelEvent;
+  
+    if (!deltaX && !deltaY) return;
+  
+    event.preventDefault();
+  
+    const mouseScrollThreshold = 100;
+    const mouseScrollFactor = 0.2;
+    const touchpadScrollFactor = 1;
+  
+    const isMouse = Math.abs(deltaY) > mouseScrollThreshold;
+    const velocity = isMouse ? mouseScrollFactor : touchpadScrollFactor;
+  
+    const delta = -(deltaX || deltaY);
+    const scrollDistance = delta * velocity;
+  
+    requestAnimationFrame(() => {
+      this.move(scrollDistance, isMouse);
+      this.currentScrollAmount = this.scrollActionAmount;
+    });
+  };
+
+  private setupTouchEvents(tabsWrapper: Element) {
+    tabsWrapper.addEventListener('touchstart', this.handleTouchStart, {
+      passive: true,
+    });
+    tabsWrapper.addEventListener('touchmove', this.handleTouchMove, {
+      passive: false,
+    });
+    tabsWrapper.addEventListener('touchend', this.handleTouchEnd, {
+      passive: true,
+    });
+  }
+
+  private readonly handleTouchStart = (event: Event) => {
+    const touchEvent = event as TouchEvent;
+    this.startTouchX = touchEvent.touches[0].clientX;
+  };
+
+  private readonly handleTouchMove = (event: Event) => {
+    const touchEvent = event as TouchEvent;
+    if (touchEvent.touches.length !== 1) return;
+
+    const currentX = touchEvent.touches[0].clientX;
+    const deltaX = currentX - this.startTouchX;
+    this.startTouchX = currentX;
+
+    const tabsWrapper = this.getTabsWrapper();
+    if (!(tabsWrapper instanceof HTMLElement)) return;
+
+    const maxOffset = 0;
+    const minOffset = tabsWrapper.clientWidth - tabsWrapper.scrollWidth;
+    const newOffset = Math.min(
+      maxOffset,
+      Math.max(minOffset, this.scrollActionAmount + deltaX)
+    );
+
+    touchEvent.preventDefault();
+    tabsWrapper.style.transition = 'none';
+    tabsWrapper.style.transform = `translateX(${newOffset}px)`;
+
+    this.scrollActionAmount = newOffset;
+  };
+
+  private readonly handleTouchEnd = () => {
+    this.currentScrollAmount = this.scrollActionAmount;
+  };
+
+  private isTouchOnlyDevice(): boolean {
+    return (
+      'ontouchstart' in window &&
+      navigator.maxTouchPoints > 0 &&
+      !window.matchMedia('(pointer:fine)').matches
+    );
+  }
+
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
+
+    const tabsWrapper = this.getTabsWrapper();
+    if (tabsWrapper) {
+      tabsWrapper.removeEventListener('wheel', this.handleWheelScroll);
+      tabsWrapper.removeEventListener('touchstart', this.handleTouchStart);
+      tabsWrapper.removeEventListener('touchmove', this.handleTouchMove);
+      tabsWrapper.removeEventListener('touchend', this.handleTouchEnd);
+    }
   }
 
   @Listen('tabClick')
