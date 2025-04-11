@@ -326,21 +326,25 @@ export class Tabs {
 
   private readonly handleWheelScroll = (event: Event) => {
     const wheelEvent = event as WheelEvent;
-    if (!wheelEvent.deltaY) return;
+    const { deltaX, deltaY } = wheelEvent;
+  
+    if (!deltaX && !deltaY) return;
+  
     event.preventDefault();
-
-    const mouseThreshold = 100;
-    const mouseVelocityFactor = 0.2;
-    const touchpadVelocityFactor = 1.5;
-
-    const isMouseWheel = Math.abs(wheelEvent.deltaY) > mouseThreshold;
-    const velocityFactor = isMouseWheel
-      ? mouseVelocityFactor
-      : touchpadVelocityFactor;
-    const scrollAmount = -wheelEvent.deltaY * velocityFactor;
-
+  
+    const mouseScrollThreshold = 100;
+    const mouseScrollFactor = 0.2;
+    const touchpadScrollFactor = 1;
+  
+    const isMouse = Math.abs(deltaY) > mouseScrollThreshold;
+    const velocity = isMouse ? mouseScrollFactor : touchpadScrollFactor;
+  
+    const delta = -(deltaX || deltaY);
+    const scrollDistance = delta * velocity;
+  
     requestAnimationFrame(() => {
-      this.move(scrollAmount, true);
+      this.move(scrollDistance, isMouse);
+      this.currentScrollAmount = this.scrollActionAmount;
     });
   };
 
