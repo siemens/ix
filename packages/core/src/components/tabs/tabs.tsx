@@ -327,21 +327,21 @@ export class Tabs {
   private readonly handleWheelScroll = (event: Event) => {
     const wheelEvent = event as WheelEvent;
     const { deltaX, deltaY } = wheelEvent;
-  
+
     if (!deltaX && !deltaY) return;
-  
+
     event.preventDefault();
-  
+
     const mouseScrollThreshold = 100;
     const mouseScrollFactor = 0.2;
     const touchpadScrollFactor = 1;
-  
+
     const isMouse = Math.abs(deltaY) > mouseScrollThreshold;
     const velocity = isMouse ? mouseScrollFactor : touchpadScrollFactor;
-  
+
     const delta = -(deltaX || deltaY);
     const scrollDistance = delta * velocity;
-  
+
     requestAnimationFrame(() => {
       this.move(scrollDistance, isMouse);
       this.currentScrollAmount = this.scrollActionAmount;

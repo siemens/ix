@@ -180,8 +180,34 @@ test('should scroll tabs with mouse wheel', async ({ mount, page }) => {
   for (let count = 0; count < steps; count++) {
     await page.mouse.wheel(0, 100);
   }
-  await expect(lastTab).toBeInViewport();
   await expect(firstTab).not.toBeInViewport();
+  await expect(lastTab).toBeInViewport();
+});
+
+test('should scroll tabs with simulated touchpad scroll', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-tabs>
+      <ix-tab-item>Item 1</ix-tab-item>
+      <ix-tab-item>Item 2</ix-tab-item>
+      <ix-tab-item>Item 3</ix-tab-item>
+      <ix-tab-item>Item 4</ix-tab-item>
+      <ix-tab-item>Item 5</ix-tab-item>
+      <ix-tab-item>Item 6</ix-tab-item>
+    </ix-tabs>
+  `);
+  await page.setViewportSize({ width: 300, height: 100 });
+  const firstTab = page.locator('ix-tab-item').first();
+  const lastTab = page.locator('ix-tab-item').last();
+  const steps = 20;
+  for (let count = 0; count < steps; count++) {
+    await page.mouse.wheel(10, 0);
+  }
+
+  await expect(firstTab).not.toBeInViewport();
+  await expect(lastTab).toBeInViewport();
 });
 
 test.describe('Touch-only devices', () => {
@@ -206,7 +232,7 @@ test.describe('Touch-only devices', () => {
     await lastTab.evaluate((el) =>
       el.scrollIntoView({ behavior: 'smooth', block: 'end' })
     );
-    await expect(lastTab).toBeInViewport();
     await expect(firstTab).not.toBeInViewport();
+    await expect(lastTab).toBeInViewport();
   });
 });
