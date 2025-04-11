@@ -4871,7 +4871,7 @@ declare global {
     };
     interface HTMLIxTreeElementEventMap {
         "contextChange": TreeContext;
-        "nodeToggled": { id: string; isExpaned: boolean };
+        "nodeToggled": { id: string; isExpanded: boolean };
         "nodeClicked": string;
         "nodeRemoved": any;
     }
@@ -8264,7 +8264,7 @@ declare namespace LocalJSX {
           * Node toggled event
           * @since 1.5.0
          */
-        "onNodeToggled"?: (event: IxTreeCustomEvent<{ id: string; isExpaned: boolean }>) => void;
+        "onNodeToggled"?: (event: IxTreeCustomEvent<{ id: string; isExpanded: boolean }>) => void;
         /**
           * Render function of tree items
          */
