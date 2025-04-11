@@ -20,6 +20,10 @@ import {
   Watch,
 } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-tabs',
@@ -330,7 +334,7 @@ export class Tabs {
       <Host>
         {this.showArrowPrevious && (
           <div class="arrow" onClick={() => this.move(this.scrollAmount, true)}>
-            <ix-icon name={'chevron-left-small'}></ix-icon>
+            <ix-icon name={iconChevronLeftSmall}></ix-icon>
           </div>
         )}
         <div
@@ -351,7 +355,7 @@ export class Tabs {
             class="arrow right"
             onClick={() => this.move(-this.scrollAmount, true)}
           >
-            <ix-icon name={'chevron-right-small'}></ix-icon>
+            <ix-icon name={iconChevronRightSmall}></ix-icon>
           </div>
         )}
       </Host>

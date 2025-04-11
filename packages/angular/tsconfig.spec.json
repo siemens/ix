@@ -13,5 +13,10 @@
     "module": "CommonJs",
     "types": ["jest"]
   },
-  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
+    "common/src/**/*.spec.ts",
+    "common/src/**/*.d.ts"
+  ]
 }

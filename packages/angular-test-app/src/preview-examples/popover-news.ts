@@ -12,6 +12,5 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './popover-news.html',
-  styleUrls: ['./popover-news.css'],
 })
 export default class PopoverNews {}

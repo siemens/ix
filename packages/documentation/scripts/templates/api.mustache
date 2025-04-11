@@ -1,0 +1,23 @@
+import {SinceTag, DeprecatedTag} from '@site/src/components/UI/Tags';
+import FrameworkSelection from '@site/src/components/UI/FrameworkSelection';
+import ApiTable from '@site/src/components/ApiTable';
+
+## API for {{ tag }}{{#singleFramework}} ({{{ framework }}}){{/singleFramework}}
+
+{{#hasProps}}
+### Properties
+
+{{{ properties }}}
+{{/hasProps}}
+
+{{#hasEvents}}
+### Events
+
+{{{ events }}}
+{{/hasEvents}}
+
+{{#hasSlots}}
+### Slot
+
+{{{ slots }}}
+{{/hasSlots}}

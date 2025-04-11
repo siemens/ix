@@ -8,10 +8,10 @@
  */
 
 import type { ECharts } from 'echarts';
-import brandDarkProject from './themes/brand-dark';
-import brandLightProject from './themes/brand-light';
-import classicDarkProject from './themes/classic-dark';
-import classicLightProject from './themes/classic-light';
+import brandDark from './themes/brand-dark';
+import brandLight from './themes/brand-light';
+import classicDark from './themes/classic-dark';
+import classicLight from './themes/classic-light';
 
 declare global {
   interface Window {
@@ -19,19 +19,14 @@ declare global {
   }
 }
 
-export default function registerEChartsThemes(echartsInstance?: any) {
+export default function registerTheme(echartsInstance?: any) {
   const echarts = echartsInstance ?? window.echarts;
 
   if (!echarts) {
     throw Error('echarts not found');
   }
 
-  [
-    classicDarkProject,
-    classicLightProject,
-    brandDarkProject,
-    brandLightProject,
-  ].forEach((themeBundle) => {
+  [classicDark, classicLight, brandDark, brandLight].forEach((themeBundle) => {
     echarts.registerTheme(themeBundle.themeName, themeBundle.theme);
   });
 }

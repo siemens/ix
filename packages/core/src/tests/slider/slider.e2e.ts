@@ -7,9 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { iconRocket } from '@siemens/ix-icons/icons';
+import { regressionTest } from '@utils/test';
 
-test('should show reference value', async ({ page, mount }) => {
+regressionTest('should show reference value', async ({ page, mount }) => {
   await mount(`
     <div id='slider-container'>
       <ix-slider
@@ -65,7 +66,7 @@ test('should show reference value', async ({ page, mount }) => {
   ).toMatchSnapshot();
 });
 
-test('should render marker', async ({ page, mount }) => {
+regressionTest('should render marker', async ({ page, mount }) => {
   await mount(`
     <ix-slider
       style="width: 20rem"
@@ -85,7 +86,7 @@ test('should render marker', async ({ page, mount }) => {
   expect(await page.locator('ix-slider').screenshot()).toMatchSnapshot();
 });
 
-test('should show float steps', async ({ page, mount }) => {
+regressionTest('should show float steps', async ({ page, mount }) => {
   await mount(`
     <ix-slider
       style="width: 20rem"
@@ -106,8 +107,10 @@ test('should show float steps', async ({ page, mount }) => {
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
-test('should render with min-max changes', async ({ page, mount }) => {
-  await mount(`
+regressionTest(
+  'should render with min-max changes',
+  async ({ page, mount }) => {
+    await mount(`
     <div id='slider-container'>
 
       <ix-slider
@@ -129,27 +132,29 @@ test('should render with min-max changes', async ({ page, mount }) => {
     </div>
   `);
 
-  const slider1 = page.locator('ix-slider').nth(0);
-  const slider2 = page.locator('ix-slider').nth(1);
+    const slider1 = page.locator('ix-slider').nth(0);
+    const slider2 = page.locator('ix-slider').nth(1);
 
-  await expect(slider1).toHaveClass(/hydrated/);
-  await expect(slider2).toHaveClass(/hydrated/);
+    await expect(slider1).toHaveClass(/hydrated/);
+    await expect(slider2).toHaveClass(/hydrated/);
 
-  await slider1.evaluate((elm: HTMLIxSliderElement) => {
-    elm.marker = [700, 800, 900];
-  });
+    await slider1.evaluate((elm: HTMLIxSliderElement) => {
+      elm.marker = [700, 800, 900];
+    });
 
-  await slider2.evaluate((elm: HTMLIxSliderElement) => {
-    elm.marker = [-50, 25];
-  });
+    await slider2.evaluate((elm: HTMLIxSliderElement) => {
+      elm.marker = [-50, 25];
+    });
 
-  expect(
-    await page.locator('#slider-container').screenshot()
-  ).toMatchSnapshot();
-});
+    expect(
+      await page.locator('#slider-container').screenshot()
+    ).toMatchSnapshot();
+  }
+);
 
-test('should render with label', async ({ page, mount }) => {
-  await mount(`
+regressionTest('should render with label', async ({ page, mount }) => {
+  await mount(
+    `
     <div id='slider-container'>
 
       <ix-slider
@@ -169,7 +174,13 @@ test('should render with label', async ({ page, mount }) => {
       </ix-slider>
 
     </div>
-  `);
+  `,
+    {
+      icons: {
+        iconRocket,
+      },
+    }
+  );
 
   const slider1 = page.locator('ix-slider').nth(0);
   const slider2 = page.locator('ix-slider').nth(1);
@@ -182,7 +193,7 @@ test('should render with label', async ({ page, mount }) => {
   ).toMatchSnapshot();
 });
 
-test('should render with error', async ({ page, mount }) => {
+regressionTest('should render with error', async ({ page, mount }) => {
   await mount(`
     <div id='slider-container'>
 

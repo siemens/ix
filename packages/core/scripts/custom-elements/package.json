@@ -4,5 +4,6 @@
   "main": "./index.js",
   "types": "./custom-elements.d.ts",
   "private": true,
-  "sideEffects": false
+  "sideEffects": false,
+  "type": "module"
 }

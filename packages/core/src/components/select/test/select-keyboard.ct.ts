@@ -54,7 +54,7 @@ function selectController(select: Locator) {
       let selector = 'ix-select-item';
 
       if (onlyVisible) {
-        selector += ':not(.d-none)';
+        selector += ':not(.display-none)';
       }
 
       await dropdownVisible();
@@ -97,6 +97,8 @@ function selectController(select: Locator) {
     },
   };
 }
+
+test.describe.configure({ mode: 'serial' });
 
 test.describe('arrow key navigation', () => {
   test.describe('ArrowDown', () => {

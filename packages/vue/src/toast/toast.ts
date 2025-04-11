@@ -14,7 +14,7 @@ import {
 } from '@siemens/ix';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
-import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/dist/components/ix-icon';
+import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/components/ix-icon.js';
 
 export type ToastConfig = {
   message: string | HTMLElement;

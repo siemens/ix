@@ -49,13 +49,7 @@ export class TreeItem {
           selected: !!this.context?.isSelected,
         }}
       >
-        <div
-          class="icon-toggle-container"
-          onClick={(e) => {
-            e.preventDefault();
-            this.toggle.emit();
-          }}
-        >
+        <div class="icon-toggle-container">
           {this.hasChildren ? (
             <ix-icon
               name={iconChevronRight}
@@ -66,6 +60,11 @@ export class TreeItem {
               color={`color-${
                 this.context?.isExpanded ? 'primary' : 'std-text'
               }`}
+              onClick={(e: Event) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggle.emit();
+              }}
             />
           ) : null}
         </div>

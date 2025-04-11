@@ -8,7 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
@@ -19,7 +19,7 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./echarts-empty-state.css'],
 })
 export default class EchartsLineSimple implements OnInit {
-  theme = convertThemeName(themeSwitcher.getCurrentTheme());
+  theme = themeSwitcher.getCurrentTheme();
   data = {
     weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     value: [],
@@ -45,7 +45,7 @@ export default class EchartsLineSimple implements OnInit {
     registerTheme(echarts);
 
     themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = convertThemeName(theme);
+      this.theme = theme;
     });
   }
 }
