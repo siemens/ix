@@ -203,7 +203,7 @@ test('should scroll tabs with simulated touchpad scroll', async ({
   const lastTab = page.locator('ix-tab-item').last();
   const steps = 20;
   for (let count = 0; count < steps; count++) {
-    await page.mouse.wheel(10, 0);
+    await page.mouse.wheel(0, 10);
   }
 
   await expect(firstTab).not.toBeInViewport();
