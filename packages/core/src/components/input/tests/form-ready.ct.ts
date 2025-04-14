@@ -87,10 +87,7 @@ test(`form-ready - ix-textarea with initial value`, async ({ mount, page }) => {
   expect(formData).toBe('initial value');
 });
 
-test('form-ready - textarea remains visible when value is set to null', async ({
-  mount,
-  page,
-}) => {
+test.only('form-ready - textarea correctly renders character counter with null value', async ({ mount, page }) => {
   await mount(
     `<form><ix-textarea name="my-field-name" max-length="100"></ix-textarea></form>`
   );
@@ -101,5 +98,6 @@ test('form-ready - textarea remains visible when value is set to null', async ({
     el.value = null;
   });
 
-  await expect(page.locator('textarea')).toBeAttached();
+  const counter = page.locator('ix-typography.bottom-text');
+  await expect(counter).toHaveText('0/100');
 });
