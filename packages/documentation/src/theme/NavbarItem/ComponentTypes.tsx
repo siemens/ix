@@ -10,6 +10,7 @@ import NavLink from '@site/src/components/theme/NavLink';
 import SearchNavbarItem from '@theme/NavbarItem/SearchNavbarItem';
 import type { ComponentTypesObject } from '@theme/NavbarItem/ComponentTypes';
 import VersionSelection from '@site/src/components/theme/VersionSelection';
+import NewsPill from '@site/src/components/theme/NewsPill';
 
 const ComponentTypes: ComponentTypesObject = {
   default: DefaultNavbarItem,
@@ -23,6 +24,7 @@ const ComponentTypes: ComponentTypesObject = {
   docsVersionDropdown: DocsVersionDropdownNavbarItem,
   'custom-nav-link': NavLink,
   'custom-version-selection': VersionSelection,
+  'custom-news-pill': NewsPill,
 };
 
 export default ComponentTypes;
