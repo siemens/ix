@@ -10775,6 +10775,32 @@
           "parameters": [],
           "docs": "Returns the native input element used in the text field.",
           "docsTags": []
+        },
+        {
+          "name": "getValidityState",
+          "returns": {
+            "type": "Promise<ValidityState>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<ValidityState>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            },
+            "return": "Promise<ValidityState>"
+          },
+          "signature": "getValidityState() => Promise<ValidityState>",
+          "parameters": [],
+          "docs": "Returns the validity state of the input field.",
+          "docsTags": []
         }
       ],
       "events": [

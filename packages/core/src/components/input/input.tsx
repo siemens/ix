@@ -239,6 +239,14 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   /**
+   * Returns the validity state of the input field.
+   */
+  @Method()
+  getValidityState(): Promise<ValidityState> {
+    return Promise.resolve(this.inputRef.current.validity);
+  }
+
+  /**
    * Focuses the input field
    */
   @Method()

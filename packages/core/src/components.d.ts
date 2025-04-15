@@ -1561,6 +1561,10 @@ export namespace Components {
           * Returns the native input element used in the text field.
          */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
+        /**
+          * Returns the validity state of the input field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the text field.
