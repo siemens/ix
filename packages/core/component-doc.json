@@ -1519,7 +1519,7 @@
           "mutable": false,
           "attr": "form",
           "reflectToAttr": false,
-          "docs": "Form id",
+          "docs": "Provide a form element id to automatically submit the from if the button is pressed. Only possible with type=\"submit\"",
           "docsTags": [
             {
               "name": "since",

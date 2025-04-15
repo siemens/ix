@@ -30,18 +30,11 @@ function CustomModal() {
           id="create-resource-form"
           onSubmit={(e) => {
             e.preventDefault();
-            console.log('Form submitted successfully');
             close();
           }}
         >
-          <div className="form-group">
-            <IxInput
-              label="Name"
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-            ></IxInput>
+          <div>
+            <IxInput label="Name" type="text" id="name" name="name"></IxInput>
           </div>
         </form>
       </IxModalContent>

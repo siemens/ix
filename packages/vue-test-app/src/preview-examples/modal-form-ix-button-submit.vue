@@ -24,7 +24,6 @@ const dismiss = () => {
 
 const submitForm = (event: Event) => {
   event.preventDefault();
-  console.log('Form submitted successfully');
   close();
 };
 </script>
@@ -37,14 +36,8 @@ const submitForm = (event: Event) => {
 
     <IxModalContent>
       <form id="create-resource-form" @submit="submitForm">
-        <div class="form-group">
-          <IxInput
-            label="Name"
-            type="text"
-            class="form-control"
-            id="name"
-            name="name"
-          ></IxInput>
+        <div>
+          <IxInput label="Name" type="text" id="name" name="name"></IxInput>
         </div>
       </form>
     </IxModalContent>
