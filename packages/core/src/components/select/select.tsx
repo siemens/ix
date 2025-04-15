@@ -346,10 +346,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   async updateFormInternalValue(value: string | string[]) {
     if (Array.isArray(value)) {
       this.formInternals.setFormValue(value.join(','));
-      return;
+    } else {
+      this.formInternals.setFormValue(value);
     }
-
-    this.formInternals.setFormValue(value);
   }
 
   /** @internal */
@@ -580,15 +579,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     if (this.isMultipleMode) {
       return;
     }
-
-    const trimmedInput = this.inputFilterText.trim();
     const itemLabel = (el as HTMLIxSelectItemElement)?.label;
-    const item = this.itemExists(trimmedInput);
+    const item = this.itemExists(this.inputFilterText);
 
     if (item) {
       this.itemClick(item.value);
     } else if (this.editable && !this.itemExists(itemLabel)) {
-      const defaultPrevented = this.emitAddItem(trimmedInput);
+      const defaultPrevented = this.emitAddItem(this.inputFilterText);
       if (defaultPrevented) {
         return;
       }
@@ -716,7 +713,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private filterItemsWithTypeahead() {
-    this.inputFilterText = this.inputElement?.value ?? '';
+    this.inputFilterText = this.inputElement?.value.trim() ?? '';
 
     if (this.isSingleMode && this.inputFilterText === this.selectedLabels[0]) {
       return;
@@ -941,6 +938,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                   !this.readonly &&
                   (this.selectedLabels?.length || this.inputFilterText) ? (
                     <ix-icon-button
+                      key="clear"
                       class="clear"
                       icon={'clear'}
                       ghost
@@ -956,6 +954,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                   {this.disabled || this.readonly ? null : (
                     <ix-icon-button
                       data-select-dropdown
+                      key="dropdown"
                       class={{ 'dropdown-visible': this.dropdownShow }}
                       icon="chevron-down-small"
                       ghost

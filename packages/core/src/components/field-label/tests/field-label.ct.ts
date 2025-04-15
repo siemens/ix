@@ -24,7 +24,7 @@ test('renders', async ({ mount, page }) => {
 test('required', async ({ mount, page }) => {
   await mount(`<ix-field-label required>MyLabel</ix-field-label>`);
   const labelElement = page.locator('ix-field-label');
-  await expect(labelElement).toHaveText('MyLabel *');
+  await expect(labelElement).toHaveText('MyLabel*');
 });
 
 test('focus native input by label click', async ({ mount, page }) => {
