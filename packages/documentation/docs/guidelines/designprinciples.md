@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: Design principles
 title: Design principles
 doc-type: 'banner'
-description: 'Elevating user experience with Industrial Experience design principlesIn the fast-paced world of industrial technology, design principles serve as the cornerstone of innovation, guiding us to create seamlessand intuitive applications. They provide designers and developers with a robust framework to make informed design decisions, ensuring each product aligns with our standards and brand identity.'
+description: 'Elevating user experience with Industrial Experience design principles. In the fast-paced world of industrial technology, design principles serve as the cornerstone of innovation, guiding us to create seamlessand intuitive applications. They provide designers and developers with a robust framework to make informed design decisions, ensuring each product aligns with our standards and brand identity.'
 ---
 
 # 
