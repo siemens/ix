@@ -13,7 +13,7 @@ export default class ModalFormIxButtonSubmit {
   constructor(private readonly modalService: ModalService) {}
 
   async openModal() {
-    const instance = await this.modalService.open({
+    await this.modalService.open({
       content: this.customModalRef,
       data: 'Some data',
     });
