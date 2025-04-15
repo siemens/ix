@@ -10,19 +10,19 @@
 import {
   AttachInternals,
   Component,
+  Element,
   Event,
   EventEmitter,
+  Fragment,
+  h,
   Host,
+  Method,
   Prop,
   Watch,
-  h,
-  Element,
-  Method,
-  Fragment,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @since 2.6.0

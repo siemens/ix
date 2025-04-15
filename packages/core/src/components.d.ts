@@ -482,6 +482,7 @@ export namespace Components {
           * Alignment of the checkboxes in the group
          */
         "direction": 'row' | 'column';
+        "hasValidValue": () => Promise<boolean>;
         /**
           * Optional helper text displayed below the checkbox group
          */
@@ -494,10 +495,12 @@ export namespace Components {
           * Error text for the checkbox group
          */
         "invalidText"?: string;
+        "isTouched": () => Promise<boolean>;
         /**
           * Label for the checkbox group
          */
         "label"?: string;
+        "required": boolean;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */
@@ -5578,6 +5581,7 @@ declare namespace LocalJSX {
           * Label for the checkbox group
          */
         "label"?: string;
+        "required"?: boolean;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */

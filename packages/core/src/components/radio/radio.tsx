@@ -120,8 +120,8 @@ export class Radio implements IxFormComponent<string> {
   }
 
   connectedCallback(): void {
-    const parent = this.hostElement.parentElement;
-    if (parent && parent.tagName.toLowerCase() === 'ix-radio-group') {
+    const parent = this.hostElement.closest('ix-radio-group');
+    if (parent) {
       this.classMutationObserver = createClassMutationObserver(parent, () => {
         this.hostElement.classList.toggle(
           'ix-invalid--required',

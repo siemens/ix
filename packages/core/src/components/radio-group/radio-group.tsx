@@ -103,7 +103,7 @@ export class RadiobuttonGroup
   @State() isWarning = false;
 
   private touched = false;
-  private readonly fakeRef = makeRef<HTMLIxRadioGroupElement>();
+  private readonly groupRef = makeRef<HTMLIxRadioGroupElement>();
 
   private readonly observer = new MutationObserver(() => {
     this.ensureOnlyLastRadioChecked();
@@ -216,7 +216,7 @@ export class RadiobuttonGroup
 
   render() {
     return (
-      <Host onIxBlur={() => (this.touched = true)} ref={this.fakeRef}>
+      <Host onIxBlur={() => (this.touched = true)} ref={this.groupRef}>
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}
@@ -229,7 +229,7 @@ export class RadiobuttonGroup
           isInfo={this.isInfo}
           isWarning={this.isWarning}
           isInvalid={this.isInvalid}
-          controlRef={this.fakeRef}
+          controlRef={this.groupRef}
         >
           <div
             class={{

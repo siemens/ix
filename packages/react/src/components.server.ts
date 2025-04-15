@@ -383,7 +383,8 @@ export const IxCheckboxGroup: StencilReactComponent<IxCheckboxGroupElement, IxCh
         infoText: 'info-text',
         validText: 'valid-text',
         warningText: 'warning-text',
-        showTextAsTooltip: 'show-text-as-tooltip'
+        showTextAsTooltip: 'show-text-as-tooltip',
+        required: 'required'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
