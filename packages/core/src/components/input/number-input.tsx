@@ -216,8 +216,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   /** @internal */
   @Method()
-  hasValidValue(): Promise<boolean> {
-    return Promise.resolve(!!this.value);
+  async hasValidValue(): Promise<boolean> {
+    const nativeInput = await this.getNativeInputElement();
+    if (nativeInput.value === '') {
+      return Promise.resolve(false);
+    }
+
+    return Promise.resolve(
+      this.value !== null && this.value !== undefined && !isNaN(this.value)
+    );
   }
 
   /**
