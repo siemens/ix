@@ -46,10 +46,11 @@ test.describe('validation', () => {
       mount,
       page,
     }) => {
-      await mount('<ix-number-input required value="0"></ix-number-input>');
+      await mount('<ix-number-input required></ix-number-input>');
 
       const ixInput = page.locator('ix-number-input');
       const shadowDomInput = ixInput.locator('input');
+
       await shadowDomInput.fill('0');
       await shadowDomInput.blur();
 
@@ -69,6 +70,24 @@ test.describe('validation', () => {
       await shadowDomInput.blur();
       await expect(ixInput).toHaveClass(/ix-invalid--required/);
     });
+
+    // Current component test not working inside playwright environment.
+    // Tested step feature manual or via storybook
+    test.fixme('increment by step', async ({ mount, page }) => {
+      await mount(
+        '<ix-number-input show-stepper-buttons step="3" value="5"></ix-number-input>'
+      );
+
+      const ixInput = page.locator('ix-number-input');
+      const shadowDomInput = ixInput.locator('input');
+      await expect(shadowDomInput).toHaveAttribute('step', '3');
+      await expect(ixInput).toHaveAttribute('value', '5');
+
+      const buttonPlus = ixInput.getByLabel('increment number');
+      await buttonPlus.click();
+
+      await expect(ixInput).toHaveAttribute('value', '8');
+    });
   });
 });
 
@@ -84,7 +103,7 @@ test.describe('prevent initial require validation', async () => {
     'ix-textarea',
   ].forEach((selector) => {
     test(selector, async ({ mount, page }) => {
-      await mount(`<${selector} required></${selector}>`);
+      await mount(`<${selector} required value=""></${selector}>`);
 
       const inputComponent = page.locator(selector);
       const input = inputComponent.locator(

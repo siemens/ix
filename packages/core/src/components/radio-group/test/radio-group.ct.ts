@@ -29,6 +29,28 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(radioOption3).toHaveClass(/hydrated/);
 });
 
+regressionTest('required', async ({ mount, page }) => {
+  await mount(
+    `
+      <ix-radio-group label="example">
+        <ix-radio label="Option 1" value="option1"></ix-radio>
+        <ix-radio label="Option 2" value="option2" required></ix-radio>
+        <ix-radio label="Option 3" value="option3"></ix-radio>
+      </ix-radio-group>
+    `
+  );
+  const radioGroupElement = page.locator('ix-radio-group');
+  await expect(radioGroupElement).toHaveClass(/hydrated/);
+  await expect(radioGroupElement).toHaveText(/example\*/);
+
+  const radioOption1 = page.locator('ix-radio').nth(0);
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+
+  await expect(radioGroupElement).toHaveClass(/ix-invalid--required/);
+  await expect(radioOption1).toHaveClass(/ix-invalid--required/);
+});
+
 regressionTest('initial checked', async ({ mount, page }) => {
   await mount(
     `

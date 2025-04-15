@@ -2859,6 +2859,20 @@
           "docsTags": []
         },
         {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the checkbox is blurred",
+          "docsTags": []
+        },
+        {
           "event": "valueChange",
           "detail": "string",
           "bubbles": true,
@@ -15032,6 +15046,37 @@
           "setter": false
         },
         {
+          "name": "step",
+          "type": "number | string",
+          "complexType": {
+            "original": "string | number",
+            "resolved": "number | string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "step",
+          "reflectToAttr": false,
+          "docs": "Step value to increment or decrement the input value",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "validText",
           "type": "string",
           "complexType": {
@@ -16562,6 +16607,35 @@
           "setter": false
         },
         {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Requires the radio component and its group to be checked for the form to be submittable",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "value",
           "type": "string",
           "complexType": {
@@ -16599,6 +16673,20 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event emitted when the checked state of the radio changes",
+          "docsTags": []
+        },
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the radio is focused",
           "docsTags": []
         },
         {
@@ -20845,6 +20933,20 @@
           "cancelable": true,
           "composed": true,
           "docs": "An event will be dispatched each time the slide-toggle changes its value.",
+          "docsTags": []
+        },
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "An event will be dispatched each time the toggle is blurred.",
           "docsTags": []
         }
       ],

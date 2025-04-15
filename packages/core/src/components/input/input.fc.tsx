@@ -72,6 +72,7 @@ export function InputElement(
     minLength?: string | number;
     max?: string | number;
     min?: string | number;
+    step?: string | number;
     pattern?: string;
     type: string;
     isInvalid: boolean;
@@ -92,6 +93,7 @@ export function InputElement(
       autoComplete="off"
       readOnly={props.readonly}
       disabled={props.disabled}
+      step={props.step}
       min={props.min}
       max={props.max}
       maxLength={props.maxLength ? Number(props.maxLength) : undefined}
