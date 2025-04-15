@@ -87,7 +87,10 @@ test(`form-ready - ix-textarea with initial value`, async ({ mount, page }) => {
   expect(formData).toBe('initial value');
 });
 
-test('form-ready - textarea correctly renders character counter with null value', async ({ mount, page }) => {
+test('form-ready - textarea correctly renders character counter with null value', async ({
+  mount,
+  page,
+}) => {
   await mount(
     `<form><ix-textarea name="my-field-name" max-length="100"></ix-textarea></form>`
   );
