@@ -161,3 +161,78 @@ test('should scroll selected tab into view', async ({ mount, page }) => {
   await expect(clickedTab).toBeInViewport();
   await expect(lastTab).not.toBeInViewport();
 });
+
+test('should scroll tabs with mouse wheel', async ({ mount, page }) => {
+  await mount(`
+    <ix-tabs>
+      <ix-tab-item>Item 1</ix-tab-item>
+      <ix-tab-item>Item 2</ix-tab-item>
+      <ix-tab-item>Item 3</ix-tab-item>
+      <ix-tab-item>Item 4</ix-tab-item>
+      <ix-tab-item>Item 5</ix-tab-item>
+      <ix-tab-item>Item 6</ix-tab-item>
+    </ix-tabs>
+  `);
+  await page.setViewportSize({ width: 300, height: 100 });
+  const firstTab = page.locator('ix-tab-item').first();
+  const lastTab = page.locator('ix-tab-item').last();
+  const steps = 5;
+  for (let count = 0; count < steps; count++) {
+    await page.mouse.wheel(0, 100);
+  }
+  await expect(firstTab).not.toBeInViewport();
+  await expect(lastTab).toBeInViewport();
+});
+
+test('should scroll tabs with simulated touchpad scroll', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-tabs>
+      <ix-tab-item>Item 1</ix-tab-item>
+      <ix-tab-item>Item 2</ix-tab-item>
+      <ix-tab-item>Item 3</ix-tab-item>
+      <ix-tab-item>Item 4</ix-tab-item>
+      <ix-tab-item>Item 5</ix-tab-item>
+      <ix-tab-item>Item 6</ix-tab-item>
+    </ix-tabs>
+  `);
+  await page.setViewportSize({ width: 300, height: 100 });
+  const firstTab = page.locator('ix-tab-item').first();
+  const lastTab = page.locator('ix-tab-item').last();
+  const steps = 20;
+  for (let count = 0; count < steps; count++) {
+    await page.mouse.wheel(0, 10);
+  }
+
+  await expect(firstTab).not.toBeInViewport();
+  await expect(lastTab).toBeInViewport();
+});
+
+test.describe('Touch-only devices', () => {
+  test.use({
+    hasTouch: true,
+  });
+
+  test('should scroll tabs using JavaScript', async ({ mount, page }) => {
+    await mount(`
+      <ix-tabs>
+        <ix-tab-item>Item 1</ix-tab-item>
+        <ix-tab-item>Item 2</ix-tab-item>
+        <ix-tab-item>Item 3</ix-tab-item>
+        <ix-tab-item>Item 4</ix-tab-item>
+        <ix-tab-item>Item 5</ix-tab-item>
+        <ix-tab-item>Item 6</ix-tab-item>
+      </ix-tabs>
+    `);
+    await page.setViewportSize({ width: 300, height: 100 });
+    const firstTab = page.locator('ix-tab-item').first();
+    const lastTab = page.locator('ix-tab-item').last();
+    await lastTab.evaluate((el) =>
+      el.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    );
+    await expect(firstTab).not.toBeInViewport();
+    await expect(lastTab).toBeInViewport();
+  });
+});
