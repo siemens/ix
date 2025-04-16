@@ -86,3 +86,21 @@ test(`form-ready - ix-textarea with initial value`, async ({ mount, page }) => {
   const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('initial value');
 });
+
+test('form-ready - textarea correctly renders character counter with null value', async ({
+  mount,
+  page,
+}) => {
+  await mount(
+    `<form><ix-textarea name="my-field-name" max-length="100"></ix-textarea></form>`
+  );
+
+  await page.evaluate(() => {
+    const el = document.querySelector('ix-textarea');
+    // @ts-ignore
+    el.value = null;
+  });
+
+  const counter = page.locator('ix-typography.bottom-text');
+  await expect(counter).toHaveText('0/100');
+});
