@@ -79,25 +79,21 @@ export class WorkflowStep {
 
   @Watch('selected')
   selectedHandler() {
-    const selectedStyle = this.selected ? '--selected' : '';
-
-    if (this.status === 'open') {
-      this.iconName = this.selected ? 'circle-dot' : 'circle';
-      this.iconColor = `workflow-step-icon-default--color${selectedStyle}`;
-    }
-
-    if (this.status === 'done' && !this.disabled) {
-      this.iconColor = `workflow-step-icon-done--color${selectedStyle}`;
-    }
+    this.setWorkflowStepStyles();
   }
 
   @Watch('disabled')
   @Watch('status')
   watchPropHandler() {
+    this.setWorkflowStepStyles();
+  }
+
+  setWorkflowStepStyles() {
+    const selectedStyle = this.selected ? '--selected' : '';
     switch (this.status) {
       case 'open':
-        this.iconName = 'circle';
-        this.iconColor = 'workflow-step-icon-default--color';
+        this.iconName = this.selected ? 'circle-dot' : 'circle';
+        this.iconColor = `workflow-step-icon-default--color${selectedStyle}`;
         break;
       case 'success':
         this.iconName = 'success';
@@ -105,7 +101,7 @@ export class WorkflowStep {
         break;
       case 'done':
         this.iconName = 'circle-filled';
-        this.iconColor = 'workflow-step-icon-done--color';
+        this.iconColor = `workflow-step-icon-done--color${selectedStyle}`;
         break;
       case 'warning':
         this.iconName = 'warning';
@@ -115,7 +111,6 @@ export class WorkflowStep {
         this.iconName = 'error';
         this.iconColor = 'color-alarm';
         break;
-
       default:
         this.iconName = 'circle';
         break;

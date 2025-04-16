@@ -37,6 +37,20 @@ regressionTest.describe('workflow-steps', () => {
       stepItem.disabled = true;
     });
 
+    const workflowSteps2 = page.locator('#workflow-steps-2');
+    const stepItemLocator1 = workflowSteps2.locator('ix-workflow-step').nth(0);
+    await stepItemLocator1.evaluate((stepItem: any) => {
+      stepItem.status = 'error';
+      stepItem.status = 'open';
+    });
+
+    const workflowSteps3 = page.locator('#workflow-steps-3');
+    const stepItemLocator2 = workflowSteps3.locator('ix-workflow-step').nth(0);
+    await stepItemLocator2.evaluate((stepItem: any) => {
+      stepItem.status = 'open';
+      stepItem.status = 'done';
+    });
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
