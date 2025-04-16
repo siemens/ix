@@ -223,6 +223,7 @@ import InputWithSlots from './preview-examples/input-with-slots';
 import NumberInputWithSlots from './preview-examples/number-input-with-slots';
 import DateInput from './preview-examples/date-input';
 import DateInputWithSlots from './preview-examples/date-input-with-slots';
+import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -544,6 +545,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<SelecValidation />}
         />
         <Route path="/preview/modal-sizes" element={<ModalSizes />} />
+
+        <Route path="/preview/modal-form-ix-button-submit" element={<ModalFormIxButtonSubmit />} />
+
         <Route path="/preview/modal" element={<Modal />} />
         <Route
           path="/preview/pagination-advanced"

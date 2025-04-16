@@ -272,6 +272,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Provide a form element id to automatically submit the from if the button is pressed. Only possible with type="submit"
+          * @since 3.0.0
+         */
+        "form"?: string;
+        /**
           * Button with no background or outline
          */
         "ghost": boolean;
@@ -5427,6 +5432,11 @@ declare namespace LocalJSX {
           * Disable the button
          */
         "disabled"?: boolean;
+        /**
+          * Provide a form element id to automatically submit the from if the button is pressed. Only possible with type="submit"
+          * @since 3.0.0
+         */
+        "form"?: string;
         /**
           * Button with no background or outline
          */

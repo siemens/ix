@@ -191,6 +191,7 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
   'disabled',
   'type',
   'loading',
+  'form',
   'icon',
   'alignment',
   'iconSize'
