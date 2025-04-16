@@ -76,32 +76,24 @@ export class WorkflowStep {
   @Event() selectedChanged!: EventEmitter<HTMLIxWorkflowStepElement>;
 
   private customIconSlot: boolean = false;
-  private get selectedStyle(): string {
-    return this.selected ? '--selected' : '';
-  }
-
-  private setOpenIcon() {
-    this.iconName = this.selected ? 'circle-dot' : 'circle';
-    this.iconColor = `workflow-step-icon-default--color${this.selectedStyle}`;
-  }
 
   @Watch('selected')
   selectedHandler() {
-    if (this.status === 'open') {
-      this.setOpenIcon();
-    }
-
-    if (this.status === 'done' && !this.disabled) {
-      this.iconColor = `workflow-step-icon-done--color${this.selectedStyle}`;
-    }
+    this.setWorkflowStepStyles();
   }
 
   @Watch('disabled')
   @Watch('status')
   watchPropHandler() {
+    this.setWorkflowStepStyles();
+  }
+
+  setWorkflowStepStyles() {
+    const selectedStyle = this.selected ? '--selected' : '';
     switch (this.status) {
       case 'open':
-        this.setOpenIcon();
+        this.iconName = this.selected ? 'circle-dot' : 'circle';
+        this.iconColor = `workflow-step-icon-default--color${selectedStyle}`;
         break;
       case 'success':
         this.iconName = 'success';
@@ -109,7 +101,7 @@ export class WorkflowStep {
         break;
       case 'done':
         this.iconName = 'circle-filled';
-        this.iconColor = `workflow-step-icon-done--color${this.selectedStyle}`;
+        this.iconColor = `workflow-step-icon-done--color${selectedStyle}`;
         break;
       case 'warning':
         this.iconName = 'warning';
@@ -119,7 +111,6 @@ export class WorkflowStep {
         this.iconName = 'error';
         this.iconColor = 'color-alarm';
         break;
-
       default:
         this.iconName = 'circle';
         break;
