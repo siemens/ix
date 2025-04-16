@@ -54,7 +54,7 @@ export class TimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() format: string = 'tt';
+  @Prop() format: string = 'TT';
 
   /**
    * Corner style
@@ -197,11 +197,13 @@ export class TimePicker {
       return;
     }
 
-    this._timeRef = this.format.includes('a')
-      ? (DateTime.fromFormat(this.time, this.format).toFormat('a') as
-          | 'AM'
-          | 'PM')
-      : undefined;
+    const uses12HourFormat = this.isFormat12Hour(this.format);
+
+    if (uses12HourFormat) {
+      this._timeRef = this._time.hour >= 12 ? 'PM' : 'AM';
+    } else {
+      this._timeRef = undefined;
+    }
 
     this.formatTime();
     this.generateNumberArrays();
@@ -267,7 +269,35 @@ export class TimePicker {
   }
 
   changeTimeReference(timeRef: 'AM' | 'PM') {
+    if (!this._time) return;
+
+    const oldTimeRef = this._timeRef;
     this._timeRef = timeRef;
+
+    if (oldTimeRef !== timeRef) {
+      const currentHour = this._time.hour;
+
+      if (timeRef === 'PM' && currentHour < 12) {
+        this._time = this._time.plus({ hours: 12 });
+      } else if (timeRef === 'AM' && currentHour >= 12) {
+        this._time = this._time.minus({ hours: 12 });
+      }
+    }
+  }
+
+  private isFormat12Hour(format: string): boolean {
+    const morningTime = DateTime.fromObject({ hour: 9 }); // 9 AM
+    const afternoonTime = DateTime.fromObject({ hour: 15 }); // 3 PM
+
+    const morningFormatted = morningTime.toFormat(format);
+    const afternoonFormatted = afternoonTime.toFormat(format);
+
+    const hourDigitsOnly = (str: string) => str.replace(/\d+/g, 'X');
+
+    return (
+      hourDigitsOnly(morningFormatted) !== hourDigitsOnly(afternoonFormatted) ||
+      /[ta]/i.test(format)
+    );
   }
 
   private generateNumberArrays() {
