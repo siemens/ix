@@ -2154,7 +2154,7 @@ export declare interface IxRadio extends Components.IxRadio {
    */
   valueChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Event emitted when the radio is focused
+   * Event emitted when the radio is blurred
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
 }

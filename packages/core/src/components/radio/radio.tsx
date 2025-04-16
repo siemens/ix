@@ -84,7 +84,7 @@ export class Radio implements IxFormComponent<string> {
   @Event() valueChange!: EventEmitter<string>;
 
   /**
-   * Event emitted when the radio is focused
+   * Event emitted when the radio is blurred
    */
   @Event() ixBlur: EventEmitter<void>;
 

@@ -16686,7 +16686,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event emitted when the radio is focused",
+          "docs": "Event emitted when the radio is blurred",
           "docsTags": []
         },
         {

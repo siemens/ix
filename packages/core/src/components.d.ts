@@ -7605,7 +7605,7 @@ declare namespace LocalJSX {
          */
         "onCheckedChange"?: (event: IxRadioCustomEvent<boolean>) => void;
         /**
-          * Event emitted when the radio is focused
+          * Event emitted when the radio is blurred
          */
         "onIxBlur"?: (event: IxRadioCustomEvent<void>) => void;
         /**

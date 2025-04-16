@@ -107,7 +107,7 @@ export class RadiobuttonGroup
 
   private readonly observer = new MutationObserver(() => {
     this.ensureOnlyLastRadioChecked();
-    this.checkRequiredOfRadioComponent();
+    this.hasNestedRequiredRadio();
   });
 
   private get radiobuttonElements() {
@@ -126,7 +126,7 @@ export class RadiobuttonGroup
   componentWillLoad(): void | Promise<void> {
     this.selectInitialValue();
     this.ensureOnlyLastRadioChecked();
-    this.checkRequiredOfRadioComponent();
+    this.hasNestedRequiredRadio();
   }
 
   disconnectedCallback(): void {
@@ -156,7 +156,7 @@ export class RadiobuttonGroup
     });
   }
 
-  private checkRequiredOfRadioComponent() {
+  private hasNestedRequiredRadio() {
     this.required = this.radiobuttonElements.some(
       (radiobutton) => radiobutton.required
     );
