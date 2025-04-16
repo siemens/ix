@@ -33,9 +33,7 @@ function CustomModal() {
             close();
           }}
         >
-          <div>
-            <IxInput label="Name" type="text" id="name" name="name"></IxInput>
-          </div>
+          <IxInput label="Name" type="text" id="name" name="name"></IxInput>
         </form>
       </IxModalContent>
       <IxModalFooter>

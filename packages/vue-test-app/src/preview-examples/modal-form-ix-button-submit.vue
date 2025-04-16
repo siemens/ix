@@ -36,9 +36,7 @@ const submitForm = (event: Event) => {
 
     <IxModalContent>
       <form id="create-resource-form" @submit="submitForm">
-        <div>
-          <IxInput label="Name" type="text" id="name" name="name"></IxInput>
-        </div>
+        <IxInput label="Name" type="text" id="name" name="name"></IxInput>
       </form>
     </IxModalContent>
 

@@ -13,18 +13,14 @@
       <form
         id="create-resource-form"
         #formRef="ngForm"
-        class="form"
         (ngSubmit)="onSubmit(formRef)"
       >
-        <div>
-          <ix-input label="Name:" type="text" name="name" ngModel></ix-input>
-        </div>
+        <ix-input label="Name:" type="text" name="name" ngModel></ix-input>
       </form>
     </ix-modal-content>
     <ix-modal-footer>
       <ix-button
         outline
-        class="dismiss-modal"
         (click)="modal.dismiss('dismiss')"
         (keydown.enter)="modal.dismiss('dismiss')"
         (keydown.space)="modal.dismiss('dismiss')"
