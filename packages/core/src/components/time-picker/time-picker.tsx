@@ -121,10 +121,12 @@ export class TimePicker {
 
   @Watch('time')
   watchTimePropHandler(newValue: string) {
-    this._time = DateTime.fromFormat(newValue, this.format);
-    if (!this._time.isValid) {
+    const timeFormat = DateTime.fromFormat(newValue, this.format);
+    if (!timeFormat.isValid) {
       throw new Error('Format is not supported or not correct');
     }
+
+    this._time = DateTime.fromFormat(newValue, this.format);
   }
 
   /**
@@ -242,6 +244,10 @@ export class TimePicker {
   @Watch('_time')
   onTimeChange() {
     this.formatTime();
+
+    if (!this._time) {
+      return;
+    }
 
     this.timeChange.emit(this._time!.toFormat(this.format));
 
