@@ -12,7 +12,6 @@ import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import Link from '@docusaurus/Link';
 
 export default function NewsPill({ label, value }) {
-  console.log(value);
   return (
     <Link to={value} className={styles.NoTextDecoration}>
       <div className={styles.NewsPill}>
