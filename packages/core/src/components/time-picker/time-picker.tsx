@@ -9,6 +9,7 @@
 
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   h,
@@ -20,25 +21,23 @@ import {
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
-import {
-  iconChevronDown,
-  iconChevronDownSmall,
-  iconChevronUp,
-  iconChevronUpSmall,
-} from '@siemens/ix-icons/icons';
 
 export type TimePickerCorners = DateTimeCardCorners;
 
+type TimePickerDescriptorUnit = 'hour' | 'minute' | 'second' | 'millisecond';
+
 interface TimePickerDescriptor {
-  unit: 'hour' | 'minute' | 'second';
-  placeholder: string;
+  unit: TimePickerDescriptorUnit;
+  header: string;
   hidden: boolean;
+  numberArray: number[];
 }
 
 interface TimeOutputFormat {
   hour: string;
   minute: string;
   second: string;
+  millisecond: string;
 }
 
 @Component({
@@ -47,13 +46,15 @@ interface TimeOutputFormat {
   shadow: true,
 })
 export class TimePicker {
+  @Element() hostElement!: HTMLIxTimePickerElement;
+
   /**
    * Format of time string
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    *
    * @since 1.1.0
    */
-  @Prop() format: string = 'TT';
+  @Prop() format: string = 'tt';
 
   /**
    * Corner style
@@ -84,6 +85,31 @@ export class TimePicker {
    * Show seconds input
    */
   @Prop() showSeconds = true;
+
+  /**
+   * Show milliseconds input
+   */
+  @Prop() showMilliseconds = true;
+
+  /**
+   * Interval for hour selection
+   */
+  @Prop() hourInterval: number = 1;
+
+  /**
+   * Interval for minute selection
+   */
+  @Prop() minuteInterval: number = 1;
+
+  /**
+   * Interval for second selection
+   */
+  @Prop() secondInterval: number = 1;
+
+  /**
+   * Interval for millisecond selection
+   */
+  @Prop() millisecondInterval: number = 100;
 
   /**
    * Select time with format string
@@ -120,7 +146,7 @@ export class TimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() textSelectTime = 'Done';
+  @Prop() textSelectTime = 'Confirm';
 
   /**
    * Text for top label
@@ -145,9 +171,21 @@ export class TimePicker {
    */
   @Event() timeChange!: EventEmitter<string>;
 
+  /**
+   * Get the current time based on the wanted format
+   */
+  @Method()
+  async getCurrentTime() {
+    return this._time?.toFormat(this.format);
+  }
+
   @State() private _time?: DateTime;
-  @State() private _timeRef?: 'AM' | 'PM';
-  @State() private _formattedTime?: TimeOutputFormat;
+  @State() private _timeRef?: 'AM' | 'PM' | undefined;
+  @State() private _formattedTime!: TimeOutputFormat;
+  @State() private _hourNumbers: number[] = [];
+  @State() private _minuteNumbers: number[] = [];
+  @State() private _secondNumbers: number[] = [];
+  @State() private _millisecondsNumbers: number[] = [];
 
   componentWillLoad() {
     this._time = DateTime.fromFormat(this.time, this.format);
@@ -164,10 +202,23 @@ export class TimePicker {
           | 'AM'
           | 'PM')
       : undefined;
+
     this.formatTime();
+    this.generateNumberArrays();
   }
 
-  @Watch('_time')
+  componentDidLoad() {
+    // Scroll to the selected time
+    for (const key in this._formattedTime) {
+      const unitKey = key as keyof TimeOutputFormat;
+
+      this.elementListScrollToTop(
+        unitKey as TimePickerDescriptorUnit,
+        Number(this._formattedTime[unitKey])
+      );
+    }
+  }
+
   formatTime() {
     if (!this._time) {
       return;
@@ -182,16 +233,22 @@ export class TimePicker {
       hour: hour,
       minute: minute,
       second: second,
+      millisecond: this._time.toFormat('SSS'),
     };
   }
 
   @Watch('_time')
-  onInternalTimeChange() {
-    this.timeChange.emit(this._time?.toFormat(this.format));
-    if (this._timeRef) this._timeRef = this._time?.toFormat('a') as 'AM' | 'PM';
+  onTimeChange() {
+    this.formatTime();
+
+    this.timeChange.emit(this._time!.toFormat(this.format));
+
+    if (this._timeRef) {
+      this._timeRef = this._time!.toFormat('a') as 'AM' | 'PM';
+    }
   }
 
-  timeUpdate(unit: 'hour' | 'minute' | 'second', value: number): number {
+  timeUpdate(unit: TimePickerDescriptorUnit, value: number): number {
     let maxValue = DateTime.now().endOf('day').get(unit);
 
     if (this._timeRef === 'PM' && unit === 'hour') value += 12;
@@ -209,40 +266,106 @@ export class TimePicker {
     return value;
   }
 
-  changeTimeReference() {
-    this._timeRef = this._timeRef === 'AM' ? 'PM' : 'AM';
-
-    if (!this._time?.toFormat('a').includes(this._timeRef)) {
-      this._time = this._time?.plus({
-        hour: 12,
-      });
-    }
+  changeTimeReference(timeRef: 'AM' | 'PM') {
+    this._timeRef = timeRef;
   }
 
-  /**
-   * Get the current time based on the wanted format
-   */
-  @Method()
-  async getCurrentTime() {
-    return this._time?.toFormat(this.format);
+  private generateNumberArrays() {
+    if (this._timeRef !== undefined) {
+      this._hourNumbers = Array.from(
+        { length: 12 / this.hourInterval },
+        (_, i) => i * this.hourInterval + 1
+      ).filter((hour) => hour <= 12);
+
+      if (!this._hourNumbers.includes(12)) {
+        this._hourNumbers.push(12);
+      }
+    } else {
+      this._hourNumbers = Array.from(
+        { length: 24 / this.hourInterval },
+        (_, i) => i * this.hourInterval
+      );
+    }
+
+    this._minuteNumbers = Array.from(
+      { length: 60 / this.minuteInterval },
+      (_, i) => i * this.minuteInterval
+    );
+    this._secondNumbers = Array.from(
+      { length: 60 / this.secondInterval },
+      (_, i) => i * this.secondInterval
+    );
+    this._millisecondsNumbers = Array.from(
+      { length: 1000 / this.millisecondInterval },
+      (_, i) => i * this.millisecondInterval
+    );
+  }
+
+  private isSelected(unit: TimePickerDescriptorUnit, number: number): boolean {
+    return this._formattedTime![unit] === String(number);
+  }
+
+  private select(unit: TimePickerDescriptorUnit, number: number) {
+    this._formattedTime = {
+      ...this._formattedTime,
+      [unit]: String(number),
+    };
+
+    this.timeUpdate(unit, number);
+    this.elementListScrollToTop(unit, number);
+  }
+
+  private elementListScrollToTop(
+    unit: TimePickerDescriptorUnit,
+    number: number
+  ) {
+    const elementList = this.hostElement.shadowRoot?.querySelector(
+      `[data-element-list-id="${unit}"]`
+    ) as HTMLDivElement;
+
+    const elementContainer = this.hostElement.shadowRoot?.querySelector(
+      `[data-element-container-id="${unit}-${number}"]`
+    ) as HTMLDivElement;
+
+    if (elementList && elementContainer) {
+      const elementListHeight = elementList.clientHeight;
+      const elementContainerHeight = elementContainer.clientHeight;
+
+      const scrollPosition =
+        elementContainer.offsetTop -
+        elementListHeight / 2 +
+        elementContainerHeight / 2 -
+        77;
+
+      elementList.scrollTop = scrollPosition;
+    }
   }
 
   render() {
     let timepickerInformation: TimePickerDescriptor[] = [
       {
         unit: 'hour',
-        placeholder: 'HH',
+        header: 'hr',
         hidden: !this.showHour,
+        numberArray: this._hourNumbers,
       },
       {
         unit: 'minute',
-        placeholder: 'MM',
+        header: 'min',
         hidden: !this.showMinutes,
+        numberArray: this._minuteNumbers,
       },
       {
         unit: 'second',
-        placeholder: 'SS',
+        header: 'sec',
         hidden: !this.showSeconds,
+        numberArray: this._secondNumbers,
+      },
+      {
+        unit: 'millisecond',
+        header: 'ms',
+        hidden: !this.showMilliseconds,
+        numberArray: this._millisecondsNumbers,
       },
     ];
 
@@ -263,59 +386,29 @@ export class TimePicker {
             {timepickerInformation.map((descriptor, index: number) => (
               <div class="flex">
                 <div class={{ columns: true, hidden: descriptor.hidden }}>
-                  <ix-icon-button
-                    size="16"
-                    onClick={() =>
-                      (this._time = this._time?.plus({
-                        [descriptor.unit]: 1,
-                      }))
-                    }
-                    ghost
-                    icon={iconChevronUpSmall}
-                    variant="primary"
-                    class="arrows"
-                  ></ix-icon-button>
-
-                  <input
-                    class="form-control"
-                    name={descriptor.unit}
-                    type="number"
-                    placeholder={descriptor.placeholder}
-                    value={
-                      this._formattedTime
-                        ? this._formattedTime[descriptor.unit]
-                        : ''
-                    }
-                    onKeyDown={(e) => {
-                      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
-
-                      const value = e.key === 'ArrowUp' ? 1 : -1;
-                      this._time = this._time?.plus({
-                        [descriptor.unit]: value,
-                      });
-                      e.preventDefault();
-                    }}
-                    onChange={(e: any) => {
-                      let inputElement = e.target as HTMLInputElement;
-                      inputElement.value = this.timeUpdate(
-                        descriptor.unit,
-                        +inputElement.value
-                      ).toString();
-                    }}
-                  ></input>
-
-                  <ix-icon-button
-                    size="16"
-                    onClick={() =>
-                      (this._time = this._time?.minus({
-                        [descriptor.unit]: 1,
-                      }))
-                    }
-                    ghost
-                    icon={iconChevronDownSmall}
-                    variant="primary"
-                    class="arrows"
-                  ></ix-icon-button>
+                  <div class="column-header">{descriptor.header}</div>
+                  <div
+                    data-element-list-id={descriptor.unit}
+                    class="element-list"
+                  >
+                    {descriptor.numberArray.map((number) => (
+                      <div
+                        data-element-container-id={`${descriptor.unit}-${number}`}
+                        class={{
+                          selected: this.isSelected(descriptor.unit, number),
+                          'element-container': true,
+                        }}
+                        onClick={() => this.select(descriptor.unit, number)}
+                      >
+                        {descriptor.unit === 'millisecond'
+                          ? number.toString().padStart(3, '0')
+                          : number < 10
+                          ? `0${number}`
+                          : number}
+                      </div>
+                    ))}
+                    <div class="element-list-padding"></div>
+                  </div>
                 </div>
 
                 {index !== timepickerInformation.length - 1 && (
@@ -325,7 +418,10 @@ export class TimePicker {
                       hidden: descriptor.hidden,
                     }}
                   >
-                    :
+                    {index + 1 < timepickerInformation.length &&
+                    timepickerInformation[index + 1].unit === 'millisecond'
+                      ? '.'
+                      : ':'}
                   </div>
                 )}
               </div>
@@ -338,23 +434,26 @@ export class TimePicker {
                 hidden: this._timeRef === undefined,
               }}
             >
-              <ix-icon-button
-                size="16"
-                onClick={() => this.changeTimeReference()}
-                ghost
-                icon={iconChevronUp}
-                variant="primary"
-                class="arrows"
-              ></ix-icon-button>
-              <div class="time-reference">{this._timeRef}</div>
-              <ix-icon-button
-                size="16"
-                onClick={() => this.changeTimeReference()}
-                ghost
-                icon={iconChevronDown}
-                variant="primary"
-                class="arrows"
-              ></ix-icon-button>
+              <div class="element-list element-list--time-refs">
+                <div
+                  class={{
+                    'element-container': true,
+                    selected: this._timeRef === 'AM',
+                  }}
+                  onClick={() => this.changeTimeReference('AM')}
+                >
+                  AM
+                </div>
+                <div
+                  class={{
+                    'element-container': true,
+                    selected: this._timeRef === 'PM',
+                  }}
+                  onClick={() => this.changeTimeReference('PM')}
+                >
+                  PM
+                </div>
+              </div>
             </div>
           </div>
           <div

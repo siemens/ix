@@ -6298,7 +6298,6 @@
         "ix-time-picker": [
           "ix-date-time-card",
           "ix-typography",
-          "ix-icon-button",
           "ix-button"
         ]
       },
@@ -10200,7 +10199,6 @@
         "ix-pane",
         "ix-select",
         "ix-split-button",
-        "ix-time-picker",
         "ix-toast"
       ],
       "dependencies": [
@@ -10292,9 +10290,6 @@
           "ix-icon-button"
         ],
         "ix-split-button": [
-          "ix-icon-button"
-        ],
-        "ix-time-picker": [
           "ix-icon-button"
         ],
         "ix-toast": [
@@ -21235,18 +21230,13 @@
       "dependencies": [
         "ix-date-time-card",
         "ix-typography",
-        "ix-icon-button",
         "ix-button"
       ],
       "dependencyGraph": {
         "ix-time-picker": [
           "ix-date-time-card",
           "ix-typography",
-          "ix-icon-button",
           "ix-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
         ],
         "ix-button": [
           "ix-spinner"
@@ -21317,10 +21307,34 @@
               "text": "1.1.0"
             }
           ],
-          "default": "'TT'",
+          "default": "'tta'",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hourInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hour-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for hour selection",
+          "docsTags": [],
+          "default": "1",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -21359,6 +21373,78 @@
           "setter": false
         },
         {
+          "name": "millisecondInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "millisecond-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for millisecond selection",
+          "docsTags": [],
+          "default": "100",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "minuteInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "minute-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for minute selection",
+          "docsTags": [],
+          "default": "1",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "secondInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "second-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for second selection",
+          "docsTags": [],
+          "default": "1",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "showHour",
           "type": "boolean",
           "complexType": {
@@ -21370,6 +21456,30 @@
           "attr": "show-hour",
           "reflectToAttr": false,
           "docs": "Show hour input",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "showMilliseconds",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-milliseconds",
+          "reflectToAttr": false,
+          "docs": "Show milliseconds input",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -21509,7 +21619,7 @@
               "text": "1.1.0"
             }
           ],
-          "default": "'Done'",
+          "default": "'Confirm'",
           "values": [
             {
               "type": "string"
@@ -24335,6 +24445,29 @@
           "passive": false
         }
       ]
+    },
+    {
+      "dirPath": "src/components/time-input",
+      "filePath": "src/components/time-input/time-input.tsx",
+      "fileName": "time-input.tsx",
+      "readmePath": "src/components/time-input/readme.md",
+      "usagesDir": "src/components/time-input/usage",
+      "tag": "time-input",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
     }
   ],
   "typeLibrary": {

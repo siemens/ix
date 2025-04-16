@@ -96,6 +96,7 @@ import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/i
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
 import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
+import { defineCustomElement as defineIxTimeInput } from '@siemens/ix/components/ix-time-input.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
@@ -1118,6 +1119,38 @@ export const IxTile = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defin
 ]);
 
 
+export const IxTimeInput = /*@__PURE__*/ defineContainer<JSX.IxTimeInput>('ix-time-input', defineIxTimeInput, [
+  'name',
+  'placeholder',
+  'value',
+  'locale',
+  'format',
+  'required',
+  'helperText',
+  'label',
+  'invalidText',
+  'readonly',
+  'disabled',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
+  'i18nErrorTimeUnparsable',
+  'showHour',
+  'showMinutes',
+  'showSeconds',
+  'showMilliseconds',
+  'hourInterval',
+  'minuteInterval',
+  'secondInterval',
+  'millisecondInterval',
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur'
+]);
+
+
 export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', defineIxTimePicker, [
   'format',
   'corners',
@@ -1126,6 +1159,11 @@ export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-
   'showHour',
   'showMinutes',
   'showSeconds',
+  'showMilliseconds',
+  'hourInterval',
+  'minuteInterval',
+  'secondInterval',
+  'millisecondInterval',
   'time',
   'showTimeReference',
   'timeReference',

@@ -46,14 +46,84 @@
     height: $large-control-height;
   }
 
-  .flex {
-    display: flex;
-  }
-
   .clock {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+
+    .flex {
+      display: flex;
+      height: 100%;
+      align-items: start;
+
+      .columns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        .column-header {
+          height: 40px;
+          width: 40px;
+          line-height: 40px;
+          text-align: center;
+          color: var(--theme-color-soft-text);
+        }
+      }
+
+      .column-seperator {
+        display: flex;
+        align-items: center;
+        margin: 0 $tiny-space;
+        min-height: 100%;
+        margin-top: 48.5px;
+      }
+    }
+
+    .element-list {
+      list-style-type: none;
+      overflow: auto;
+      max-height: 250px;
+
+      &--time-refs {
+        padding-top: 40px;
+      }
+
+      .element-container {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: var(--theme-color-primary);
+
+        &:hover {
+          background-color: var(--theme-datepicker-day--background--hover);
+        }
+      }
+
+      .selected {
+        background-color: var(--theme-color-component-9);
+        color: var(--theme-color-primary--contrast);
+
+        &:hover {
+          background-color: var(
+            --theme-datepicker-day--background--selected-hover
+          );
+        }
+      }
+
+      .element-list-padding {
+        width: 40px;
+        height: 210px;
+        min-height: 210px;
+      }
+    }
+
+    div.element-list::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   input,
@@ -79,19 +149,6 @@
 
   .form-control[type='number'] {
     text-align: center;
-  }
-
-  .columns {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  .column-seperator {
-    display: flex;
-    align-items: center;
-    margin: 0 $tiny-space;
   }
 
   .button {
