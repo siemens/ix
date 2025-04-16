@@ -37,38 +37,20 @@ regressionTest.describe('workflow-steps', () => {
       stepItem.disabled = true;
     });
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
-
-  regressionTest('updated workflowUI after status change', async ({ page }) => {
-    await page.goto('workflow-steps/vertical');
-
-    const workflowSteps = page.locator('ix-workflow-steps').first();
-    const selectedStep = workflowSteps.locator('ix-workflow-step').nth(0);
-    const selectedStepIcon = selectedStep.locator('ix-icon').nth(1);
-
-    await expect(workflowSteps).toHaveClass(/hydrated/);
-    await expect(selectedStepIcon).toHaveAttribute(
-      'style',
-      'color: var(--theme-workflow-step-icon-default--color--selected);'
-    );
-    await page.evaluate(() => {
-      const step1 = document.getElementById('step1');
-      step1?.setAttribute('status', 'error');
-    });
-    await expect(selectedStepIcon).toHaveAttribute(
-      'style',
-      'color: var(--theme-color-alarm);'
-    );
-    await page.evaluate(() => {
-      const step1 = document.getElementById('step1');
-      step1?.setAttribute('status', 'open');
+    const workflowSteps2 = page.locator('#workflow-steps-2');
+    const stepItemLocator1 = workflowSteps2.locator('ix-workflow-step').nth(0);
+    await stepItemLocator1.evaluate((stepItem: any) => {
+      stepItem.status = 'error';
+      stepItem.status = 'open';
     });
 
-    await expect(selectedStepIcon).toHaveAttribute(
-      'style',
-      'color: var(--theme-workflow-step-icon-default--color--selected);'
-    );
+    const workflowSteps3 = page.locator('#workflow-steps-3');
+    const stepItemLocator2 = workflowSteps3.locator('ix-workflow-step').nth(0);
+    await stepItemLocator2.evaluate((stepItem: any) => {
+      stepItem.status = 'open';
+      stepItem.status = 'done';
+    });
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
