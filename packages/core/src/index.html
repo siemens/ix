@@ -1,9 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2024 Siemens AG
-
 SPDX-License-Identifier: MIT
 -->
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
@@ -14,32 +12,11 @@ SPDX-License-Identifier: MIT
     />
     <meta name="ix:legacy-icons" content="false" />
     <title>Stencil Component Starter</title>
-    <script type="module" src="../build/siemens-ix.esm.js"></script>
-    <script nomodule src="../build/siemens-ix.js"></script>
+    <script type="module" src="../www/build/siemens-ix.esm.js"></script>
+    <script nomodule src="../www/build/siemens-ix.js"></script>
 
-    <link rel="stylesheet" href="../build/siemens-ix.css" />
+    <link rel="stylesheet" href="../www/build/siemens-ix.css" />
   </head>
 
-  <body style="margin: 0px; height: 100vh; padding: 10px">
-    <!-- <ix-time-picker></ix-time-picker> -->
-    <!-- <ix-time-input></ix-time-input> -->
-    <ix-time-picker id="myTimePicker"></ix-time-picker>
-
-    <script>
-      // Wait for DOM to be fully loaded
-      document.addEventListener('DOMContentLoaded', () => {
-        // Get the time picker element
-        const timePicker = document.getElementById('myTimePicker');
-
-        // Add event listener for timeChange event
-        timePicker.addEventListener('timeChange', (event) => {
-          console.log('Time changed:', event.detail);
-        });
-
-        timePicker.addEventListener('timeSelect', (event) => {
-          console.log('Time selected:', event.detail);
-        });
-      });
-    </script>
-  </body>
+  <body style="margin: 0px; height: 100vh"></body>
 </html>
