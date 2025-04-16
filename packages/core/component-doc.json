@@ -22380,12 +22380,17 @@
         {
           "name": "slot",
           "text": "tooltip-message - Custom tooltip message with html support"
+        },
+        {
+          "name": "deprecated",
+          "text": "Will be removed with 4.0.0"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
+      "deprecation": "Will be removed with 4.0.0",
       "props": [
         {
           "name": "message",
