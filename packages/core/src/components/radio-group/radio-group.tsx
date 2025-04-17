@@ -25,10 +25,6 @@ import {
   IxFormValidationState,
 } from '../utils/input';
 
-/**
- * @since 2.6.0
- * @form-ready 2.6.0
- */
 @Component({
   tag: 'ix-radio-group',
   styleUrl: 'radio-group.scss',

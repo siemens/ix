@@ -12,9 +12,6 @@ import { CardVariant } from '../card/card';
 
 export type PushCardVariant = CardVariant;
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-push-card',
   styleUrl: 'push-card.scss',
@@ -48,7 +45,6 @@ export class PushCard {
 
   /**
    * Collapse the card
-   * @since 2.1.0
    */
   @Prop() collapse: boolean = true;
 

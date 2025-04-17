@@ -16,12 +16,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -212,12 +207,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -484,12 +474,7 @@
           "attr": "show-menu",
           "reflectToAttr": false,
           "docs": "Controls the visibility of the menu toggle button based on the context of the application header.\n\nWhen the application header is utilized outside the application frame, the menu toggle button is displayed.\nConversely, if the header is within the application frame, this property is ineffective.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -516,12 +501,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event emitted when the menu toggle button is clicked",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.5.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "openAppSwitch",
@@ -535,12 +515,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event emitted when the app switch button is clicked",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "3.0.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -563,12 +538,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-avatar"
@@ -603,12 +573,7 @@
           "attr": "extra",
           "reflectToAttr": false,
           "docs": "Optional description text that will be displayed underneath the username.\nNote: Only working if avatar is part of the ix-application-header",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -677,12 +642,7 @@
           "attr": "username",
           "reflectToAttr": false,
           "docs": "If set an info card displaying the username will be placed inside the dropdown.\nNote: Only working if avatar is part of the ix-application-header",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -929,12 +889,7 @@
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Optional icon to be displayed next to the header label",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -980,12 +935,7 @@
           "attr": "sublabel",
           "reflectToAttr": false,
           "docs": "Secondary label inside blind header",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -1014,12 +964,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Blind variant",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'filled'",
           "values": [
             {
@@ -1128,12 +1073,7 @@
           "attr": "aria-label-previous-button",
           "reflectToAttr": false,
           "docs": "Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list\nwith conditionally hidden previous items",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'previous'",
           "values": [
             {
@@ -1486,12 +1426,7 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1574,12 +1509,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.3.0 - variant danger"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -1624,12 +1554,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
@@ -1660,13 +1585,8 @@
           "mutable": false,
           "attr": "selected",
           "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docs": "Show card in selected state",
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1759,12 +1679,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-push-card"
@@ -1788,12 +1703,7 @@
           "attr": "collapse",
           "reflectToAttr": false,
           "docs": "Collapse the card",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1823,12 +1733,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
@@ -1865,12 +1770,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -1932,12 +1832,7 @@
           "attr": "hide-show-all",
           "reflectToAttr": false,
           "docs": "Hide the show all button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.2.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2178,10 +2073,6 @@
         {
           "name": "slot",
           "text": "title-actions - Place additional actions inside title"
-        },
-        {
-          "name": "since",
-          "text": "1.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -2525,12 +2416,7 @@
           "attr": "static-operator",
           "reflectToAttr": false,
           "docs": "If set categories will always be filtered via the respective logical operator.\nToggling of the operator will not be available to the user.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.2.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "LogicalFilterOperator.EQUAL"
@@ -2655,10 +2541,6 @@
       "usage": {},
       "docs": "",
       "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        },
         {
           "name": "form-ready",
           "text": "2.6.0"
@@ -2889,10 +2771,6 @@
       "usage": {},
       "docs": "",
       "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        },
         {
           "name": "form-ready",
           "text": "2.6.0"
@@ -3390,12 +3268,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Fire event if close button is clicked",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -3413,12 +3286,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
@@ -3773,10 +3641,6 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.1.0"
-        },
-        {
           "name": "slot",
           "text": "header - Display content at the top of the content page"
         }
@@ -3964,12 +3828,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -4195,12 +4054,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -4326,12 +4180,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disable the button that opens the dropdown containing the date picker.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.3.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -4528,12 +4377,7 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Locale identifier (e.g. 'en' or 'de').",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -4744,12 +4588,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -4829,10 +4668,6 @@
       "usage": {},
       "docs": "",
       "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        },
         {
           "name": "form-ready",
           "text": "2.6.0"
@@ -5062,12 +4897,7 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Locale identifier (e.g. 'en' or 'de').",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -5520,12 +5350,7 @@
           "attr": "from",
           "reflectToAttr": false,
           "docs": "The selected starting date. If the date-picker-rework is not in range mode this is the selected date.\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -5548,12 +5373,7 @@
           "attr": "i18n-done",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -5577,12 +5397,7 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Locale identifier (e.g. 'en' or 'de').",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -5605,12 +5420,7 @@
           "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -5634,12 +5444,7 @@
           "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -5716,12 +5521,7 @@
           "attr": "to",
           "reflectToAttr": false,
           "docs": "The selected end date. If the the date-picker-rework is not in range mode this property has no impact.\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -5744,12 +5544,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -5805,12 +5600,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Triggers if the date selection changes.\nNote: Since 2.0.0 `dateChange` does not dispatch detail property as `string`",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "dateRangeChange",
@@ -5830,12 +5620,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Triggers if the date selection changes.\nOnly triggered if date-picker-rework is in range mode.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "dateSelect",
@@ -5855,12 +5640,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Date selection confirmed via button action",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -5930,12 +5710,7 @@
           "attr": "date-format",
           "reflectToAttr": false,
           "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
             {
@@ -5959,12 +5734,7 @@
           "attr": "from",
           "reflectToAttr": false,
           "docs": "The selected starting date. If the picker is not in range mode this is the selected date.\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -5987,12 +5757,7 @@
           "attr": "i18n-done",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -6045,12 +5810,7 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6073,12 +5833,7 @@
           "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6101,12 +5856,7 @@
           "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6229,10 +5979,6 @@
             {
               "name": "see",
               "text": "{ this.timeFormat}"
-            },
-            {
-              "name": "since",
-              "text": "1.1.0"
             }
           ],
           "default": "false",
@@ -6287,12 +6033,7 @@
           "attr": "time",
           "reflectToAttr": false,
           "docs": "Select time with format string",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6315,12 +6056,7 @@
           "attr": "time-format",
           "reflectToAttr": false,
           "docs": "Time format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'HH:mm:ss'",
           "values": [
             {
@@ -6372,12 +6108,7 @@
           "attr": "to",
           "reflectToAttr": false,
           "docs": "The selected end date. If the the picker is not in range mode this property has no impact.\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6400,12 +6131,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -6438,12 +6164,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Date change",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "dateSelect",
@@ -6463,12 +6184,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Datetime selection event is fired after confirm button is pressed",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "timeChange",
@@ -6481,13 +6197,8 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "\nTime change",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ]
+          "docs": "Time change",
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -6505,12 +6216,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.4.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-avatar",
@@ -7073,12 +6779,7 @@
           "attr": "suppress-automatic-placement",
           "reflectToAttr": false,
           "docs": "Suppress the automatic placement of the dropdown.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -7188,12 +6889,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.3.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -7227,12 +6923,7 @@
           "attr": "close-behavior",
           "reflectToAttr": false,
           "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'both'",
           "values": [
             {
@@ -7392,12 +7083,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Placement of the dropdown",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "value": "bottom-end",
@@ -7494,12 +7180,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -7720,12 +7401,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.4.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -7748,12 +7424,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -8234,12 +7905,7 @@
           "attr": "full-width",
           "reflectToAttr": false,
           "docs": "If true the search field will fill all available horizontal space of it's parent container when expanded.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.6.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8583,12 +8249,7 @@
           "attr": "readonly",
           "reflectToAttr": false,
           "docs": "If true the filter chip will be in readonly mode",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8660,12 +8321,7 @@
           "attr": "height",
           "reflectToAttr": false,
           "docs": "Height interpreted as REM",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "15.125",
           "values": [
             {
@@ -8763,12 +8419,7 @@
           "attr": "width",
           "reflectToAttr": false,
           "docs": "Width interpreted as REM",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "16",
           "values": [
             {
@@ -9667,12 +9318,7 @@
           "attr": "a11y-label",
           "reflectToAttr": false,
           "docs": "Accessibility label for the icon button\nWill be set as aria-label on the nested HTML button element",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -9789,12 +9435,7 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -9934,12 +9575,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.3.0 - variant danger"
-            }
-          ],
+          "docsTags": [],
           "default": "'secondary'",
           "values": [
             {
@@ -9978,12 +9614,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -10244,10 +9875,6 @@
       "usage": {},
       "docs": "",
       "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        },
         {
           "name": "form-ready",
           "text": "2.6.0"
@@ -10883,10 +10510,6 @@
         {
           "name": "slot",
           "text": "custom-value - Optional custom value at key value instead of text value"
-        },
-        {
-          "name": "since",
-          "text": "1.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -11021,12 +10644,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -11232,12 +10850,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -11285,12 +10898,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
@@ -11409,12 +11017,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -11780,10 +11383,6 @@
             {
               "name": "param",
               "text": "show new visibility state"
-            },
-            {
-              "name": "since",
-              "text": "1.6.0"
             }
           ]
         }
@@ -12360,12 +11959,7 @@
           "attr": "start-expanded",
           "reflectToAttr": false,
           "docs": "If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.2.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -13118,12 +12712,7 @@
           "attr": "image",
           "reflectToAttr": false,
           "docs": "Display a avatar image",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.4.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -13146,12 +12735,7 @@
           "attr": "initials",
           "reflectToAttr": false,
           "docs": "Display the initials of the user. Will be overwritten by image",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.4.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -13174,12 +12758,7 @@
           "attr": "show-logout-button",
           "reflectToAttr": false,
           "docs": "Control the visibility of the logout button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -13348,12 +12927,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -13638,12 +13212,7 @@
           "attr": "label",
           "reflectToAttr": false,
           "docs": "Label of the menu item. Will also be used as tooltip text",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.2.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -14158,12 +13727,7 @@
           "attr": "close-on-backdrop-click",
           "reflectToAttr": false,
           "docs": "Dismiss modal on backdrop click",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -14217,12 +13781,7 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Modal size",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'360'",
           "values": [
             {
@@ -14409,12 +13968,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-application-switch-modal"
@@ -14443,12 +13997,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -14471,12 +14020,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-application-switch-modal"
@@ -14607,10 +14151,6 @@
       "usage": {},
       "docs": "",
       "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        },
         {
           "name": "form-ready",
           "text": "2.6.0"
@@ -15199,12 +14739,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.5.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -15491,12 +15026,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -15831,12 +15361,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -16193,12 +15718,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -16230,12 +15750,7 @@
           "attr": "collapse",
           "reflectToAttr": false,
           "docs": "Collapse the card",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -16422,10 +15937,6 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.6.0"
-        },
-        {
           "name": "form-ready",
           "text": "2.6.0"
         }
@@ -16606,10 +16117,6 @@
       "usage": {},
       "docs": "",
       "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        },
         {
           "name": "form-ready",
           "text": "2.6.0"
@@ -16889,12 +16396,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
@@ -17039,12 +16541,7 @@
           "attr": "dropdown-max-width",
           "reflectToAttr": false,
           "docs": "The maximum width of the dropdown element with value and unit (e.g. \"200px\" or \"12.5rem\").\nBy default the maximum width of the dropdown element is set to 100%.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.7.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17067,12 +16564,7 @@
           "attr": "dropdown-width",
           "reflectToAttr": false,
           "docs": "The width of the dropdown element with value and unit (e.g. \"200px\" or \"12.5rem\").",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.7.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17119,12 +16611,7 @@
           "attr": "helper-text",
           "reflectToAttr": false,
           "docs": "Helper text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17147,12 +16634,7 @@
           "attr": "hide-list-header",
           "reflectToAttr": false,
           "docs": "Hide list header",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -17176,12 +16658,7 @@
           "attr": "i-1-8n-no-matches",
           "reflectToAttr": false,
           "docs": "Information inside of dropdown if no items where found with current filter text",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'No matches'",
           "values": [
             {
@@ -17277,12 +16754,7 @@
           "attr": "info-text",
           "reflectToAttr": false,
           "docs": "Info text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17305,12 +16777,7 @@
           "attr": "invalid-text",
           "reflectToAttr": false,
           "docs": "Error text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17333,12 +16800,7 @@
           "attr": "label",
           "reflectToAttr": false,
           "docs": "Label for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17390,12 +16852,7 @@
           "attr": "name",
           "reflectToAttr": true,
           "docs": "A string that represents the element's name attribute,\ncontaining a name that identifies the element when submitting the form.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17442,12 +16899,7 @@
           "attr": "required",
           "reflectToAttr": true,
           "docs": "A Boolean attribute indicating that an option with a non-empty string value must be selected",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -17471,12 +16923,7 @@
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
           "docs": "Show helper, error, info, warning text as tooltip",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "boolean"
@@ -17499,12 +16946,7 @@
           "attr": "valid-text",
           "reflectToAttr": false,
           "docs": "Valid text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17527,12 +16969,7 @@
           "attr": "value",
           "reflectToAttr": false,
           "docs": "Current selected value.\nThis corresponds to the value property of ix-select-items",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "[]",
           "values": [
             {
@@ -17559,12 +16996,7 @@
           "attr": "warning-text",
           "reflectToAttr": false,
           "docs": "Warning text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17653,12 +17085,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event dispatched whenever the text input changes.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "ixBlur",
@@ -17686,12 +17113,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Value changed",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -17850,10 +17272,6 @@
       "usage": {},
       "docs": "",
       "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        },
         {
           "name": "slot",
           "text": "label-start - Element will be displayed at the start of the slider"
@@ -18333,12 +17751,7 @@
           "attr": "close-behavior",
           "reflectToAttr": false,
           "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.3.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'both'",
           "values": [
             {
@@ -18877,12 +18290,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Emitted when the tab is clicked.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -19061,12 +18469,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "`selected` property changed",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -19097,10 +18500,6 @@
       "usage": {},
       "docs": "",
       "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        },
         {
           "name": "form-ready",
           "text": "2.6.0"
@@ -19870,12 +19269,7 @@
           "attr": "format",
           "reflectToAttr": false,
           "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'TT'",
           "values": [
             {
@@ -19995,12 +19389,7 @@
           "attr": "text-select-time",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -20024,12 +19413,7 @@
           "attr": "text-time",
           "reflectToAttr": false,
           "docs": "Text for top label",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'Time'",
           "values": [
             {
@@ -20053,12 +19437,7 @@
           "attr": "time",
           "reflectToAttr": false,
           "docs": "Select time with format string\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "DateTime.now().toFormat(this.format)",
           "values": [
             {
@@ -20837,12 +20216,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -21077,10 +20451,6 @@
         {
           "name": "slot",
           "text": "title-content - Content of tooltip title"
-        },
-        {
-          "name": "since",
-          "text": "1.4.0"
         }
       ],
       "encapsulation": "shadow",
@@ -21189,12 +20559,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Initial placement of the tooltip.\nIf the selected placement doesn't have enough space, the tooltip will be repositioned to another location.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'top'",
           "values": [
             {
@@ -21473,12 +20838,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Node clicked event",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "nodeRemoved",
@@ -21506,12 +20866,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Node toggled event",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -21670,12 +21025,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
@@ -22470,12 +21820,7 @@
           "attr": "suppress-automatic-placement",
           "reflectToAttr": false,
           "docs": "Suppress the automatic placement of the dropdown.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {

@@ -73,11 +73,11 @@ export class IxApplicationHeader {
 
 export declare interface IxApplicationHeader extends Components.IxApplicationHeader {
   /**
-   * Event emitted when the menu toggle button is clicked @since 2.5.0
+   * Event emitted when the menu toggle button is clicked
    */
   menuToggle: EventEmitter<CustomEvent<boolean>>;
   /**
-   * Event emitted when the app switch button is clicked @since 3.0.0
+   * Event emitted when the app switch button is clicked
    */
   openAppSwitch: EventEmitter<CustomEvent<void>>;
 }
@@ -472,7 +472,7 @@ export class IxChip {
 
 export declare interface IxChip extends Components.IxChip {
   /**
-   * Fire event if close button is clicked @since 1.5.0
+   * Fire event if close button is clicked
    */
   closeChip: EventEmitter<CustomEvent<any>>;
 }
@@ -666,16 +666,16 @@ import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/i
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
    * Triggers if the date selection changes.
-Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` @since 2.1.0
+Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Triggers if the date selection changes.
-Only triggered if date-picker-rework is in range mode. @since 2.1.0
+Only triggered if date-picker-rework is in range mode.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Date selection confirmed via button action @since 1.1.0
+   * Date selection confirmed via button action
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
 }
@@ -706,16 +706,15 @@ import type { DateTimeSelectEvent as IIxDatetimePickerDateTimeSelectEvent } from
 
 export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   /**
-   * 
-Time change @since 1.1.0
+   * Time change
    */
   timeChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Date change @since 1.1.0
+   * Date change
    */
   dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
-   * Datetime selection event is fired after confirm button is pressed @since 1.1.0
+   * Datetime selection event is fired after confirm button is pressed
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
 }
@@ -2224,11 +2223,11 @@ export class IxSelect {
 
 export declare interface IxSelect extends Components.IxSelect {
   /**
-   * Value changed @since 2.0.0
+   * Value changed
    */
   valueChange: EventEmitter<CustomEvent<string | string[]>>;
   /**
-   * Event dispatched whenever the text input changes. @since 2.0.0
+   * Event dispatched whenever the text input changes.
    */
   inputChange: EventEmitter<CustomEvent<string>>;
   /**
@@ -2370,7 +2369,7 @@ import type { TabClickDetail as IIxTabItemTabClickDetail } from '@siemens/ix';
 
 export declare interface IxTabItem extends Components.IxTabItem {
   /**
-   * Emitted when the tab is clicked. @since 2.0.0
+   * Emitted when the tab is clicked.
    */
   tabClick: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
 }
@@ -2398,7 +2397,7 @@ export class IxTabs {
 
 export declare interface IxTabs extends Components.IxTabs {
   /**
-   * `selected` property changed @since 2.0.0
+   * `selected` property changed
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
 }

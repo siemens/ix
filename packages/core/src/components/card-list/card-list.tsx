@@ -56,9 +56,6 @@ function CardListTitle(props: {
   );
 }
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-card-list',
   styleUrl: 'card-list.scss',
@@ -99,8 +96,6 @@ export class CardList {
 
   /**
    * Hide the show all button
-   *
-   * @since 2.2.0
    */
   @Prop() hideShowAll = false;
 

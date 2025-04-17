@@ -39,15 +39,11 @@ export class MenuAvatar {
 
   /**
    * Display a avatar image
-   *
-   * @since 1.4.0
    */
   @Prop() image?: string;
 
   /**
    * Display the initials of the user. Will be overwritten by image
-   *
-   * @since 1.4.0
    */
   @Prop() initials?: string;
 
@@ -58,13 +54,11 @@ export class MenuAvatar {
 
   /**
    *  Control the visibility of the logout button
-   *  @since 2.1.0
    */
   @Prop() showLogoutButton: boolean = true;
 
   /**
    * Control the visibility of the dropdown menu
-   * @since 2.1.0
    */
   @State() showContextMenu: boolean = false;
 
