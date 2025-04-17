@@ -116,13 +116,18 @@ export class TimePicker {
 
   @Watch('time')
   watchTimePropHandler(newValue: string) {
+    // if (!newValue) {
+    //   this._time = undefined;
+    //   return;
+    // }
+
     const timeFormat = DateTime.fromFormat(newValue, this.format);
     if (!timeFormat.isValid) {
       throw new Error('Format is not supported or not correct');
     }
 
     this._time = DateTime.fromFormat(newValue, this.format);
-    this.updateScrollPositions();
+    // this.updateScrollPositions();
   }
 
   /**
@@ -162,6 +167,18 @@ export class TimePicker {
     return this._time?.toFormat(this.format);
   }
 
+  /**
+   * @internal
+   *
+   * Used to update the scroll positions of the time picker elements when opening through time input
+   */
+  @Method()
+  async updateScrollPositionsMethod(): Promise<void> {
+    this.updateScrollPositions();
+
+    return Promise.resolve();
+  }
+
   @State() private _time?: DateTime;
   @State() private _timeRef?: 'AM' | 'PM' | undefined;
   @State() private _formattedTime!: TimeOutputFormat;
@@ -188,7 +205,7 @@ export class TimePicker {
       this._timeRef = undefined;
     }
 
-    this.formatTime();
+    this._formattedTime = this.getFormattedTime();
     this.generateNumberArrays();
   }
 
@@ -196,33 +213,29 @@ export class TimePicker {
     this.updateScrollPositions();
   }
 
-  formatTime() {
+  getFormattedTime(): TimeOutputFormat {
     if (!this._time) {
       return;
     }
 
-    const [hour, minute, second] = this._time
-      .toFormat(this.format)
-      .split(' ')[0]
-      .split(':');
-
-    this._formattedTime = {
-      hour: hour,
-      minute: minute,
-      second: second,
-      millisecond: this._time.toFormat('SSS'),
+    return {
+      hour: this._time.toFormat('h'),
+      minute: this._time.toFormat('m'),
+      second: this._time.toFormat('s'),
+      millisecond: this._time.toFormat('S'),
     };
   }
 
   @Watch('_time')
   onTimeChange() {
-    this.formatTime();
+    const formattedTimeOld = this._formattedTime;
+    this._formattedTime = this.getFormattedTime();
+
+    this.updateScrollPositionsValueChangeBased(formattedTimeOld);
 
     if (!this._time) {
       return;
     }
-
-    // this.timeChange.emit(this._time!.toFormat(this.format));
 
     if (this._timeRef) {
       this._timeRef = this._time!.toFormat('a') as 'AM' | 'PM';
@@ -347,7 +360,7 @@ export class TimePicker {
         elementContainer.offsetTop -
         elementListHeight / 2 +
         elementContainerHeight / 2 -
-        77;
+        9;
 
       elementList.scrollTop = scrollPosition;
     }
@@ -361,6 +374,21 @@ export class TimePicker {
         unitKey as TimePickerDescriptorUnit,
         Number(this._formattedTime[unitKey])
       );
+    }
+  }
+
+  private updateScrollPositionsValueChangeBased(
+    formattedTimeOld: TimeOutputFormat
+  ) {
+    for (const key in this._formattedTime) {
+      const unitKey = key as keyof TimeOutputFormat;
+
+      if (this._formattedTime[unitKey] !== formattedTimeOld[unitKey]) {
+        this.elementListScrollToTop(
+          unitKey as TimePickerDescriptorUnit,
+          Number(this._formattedTime[unitKey])
+        );
+      }
     }
   }
 
@@ -482,7 +510,6 @@ export class TimePicker {
           <div
             class={{
               button: true,
-              hidden: !this.standaloneAppearance,
               standalone: true,
             }}
           >

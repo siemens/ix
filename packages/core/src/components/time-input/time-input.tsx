@@ -536,6 +536,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
             onTimeChange={(event) => {
               this.onInput(event.detail);
             }}
+            onTimeSelect={() => {
+              this.show = false;
+            }}
           ></ix-time-picker>
         </ix-dropdown>
       </Host>
