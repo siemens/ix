@@ -20,7 +20,11 @@ import {
   Element,
 } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
-import { IxFormComponent } from '../utils/input';
+import {
+  ClassMutationObserver,
+  createClassMutationObserver,
+  IxFormComponent,
+} from '../utils/input';
 import { a11yBoolean } from '../utils/a11y';
 
 /**
@@ -63,6 +67,13 @@ export class Radio implements IxFormComponent<string> {
   @Prop({ reflect: true, mutable: true }) checked: boolean = false;
 
   /**
+   * Requires the radio component and its group to be checked for the form to be submittable
+   *
+   * @since 3.0.0
+   */
+  @Prop({ reflect: true }) required: boolean = false;
+
+  /**
    * Event emitted when the checked state of the radio changes
    */
   @Event() checkedChange!: EventEmitter<boolean>;
@@ -73,9 +84,11 @@ export class Radio implements IxFormComponent<string> {
   @Event() valueChange!: EventEmitter<string>;
 
   /**
-   * Single radio cannot be required
-   * */
-  required = false;
+   * Event emitted when the radio is blurred
+   */
+  @Event() ixBlur: EventEmitter<void>;
+
+  private classMutationObserver?: ClassMutationObserver;
 
   private readonly inputRef = makeRef<HTMLInputElement>((radiobuttonRef) => {
     radiobuttonRef.checked = this.checked;
@@ -104,6 +117,24 @@ export class Radio implements IxFormComponent<string> {
   @Watch('value')
   onValueChange() {
     this.valueChange.emit(this.value);
+  }
+
+  connectedCallback(): void {
+    const parent = this.hostElement.closest('ix-radio-group');
+    if (parent) {
+      this.classMutationObserver = createClassMutationObserver(parent, () => {
+        this.hostElement.classList.toggle(
+          'ix-invalid--required',
+          parent.classList.contains('ix-invalid--required')
+        );
+      });
+    }
+  }
+
+  disconnectedCallback(): void {
+    if (this.classMutationObserver) {
+      this.classMutationObserver.destroy();
+    }
   }
 
   componentWillLoad() {
@@ -140,12 +171,15 @@ export class Radio implements IxFormComponent<string> {
           disabled: this.disabled,
           checked: this.checked,
         }}
+        onBlur={() => this.ixBlur.emit()}
       >
         <label>
           <input
             aria-checked={a11yBoolean(this.checked)}
+            required={this.required}
             disabled={this.disabled}
             checked={this.checked}
+            name={this.name}
             ref={this.inputRef}
             type="radio"
             onChange={() => {

@@ -1,4 +1,12 @@
-import { Component, Element, Host, Prop, State, h } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Host,
+  Method,
+  Prop,
+  State,
+  h,
+} from '@stencil/core';
 import {
   FieldWrapperInterface,
   HookValidationLifecycle,
@@ -6,6 +14,7 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { IxComponent } from '../utils/internal';
+import { makeRef } from '../utils/make-ref';
 
 /**
  * @since 2.6.0
@@ -58,10 +67,49 @@ export class CheckboxGroup
    */
   @Prop() showTextAsTooltip = false;
 
+  /**
+   * @internal
+   */
+  @Prop() required = false;
+
   @State() isInvalid = false;
   @State() isInfo = false;
   @State() isValid = false;
   @State() isWarning = false;
+
+  private touched = false;
+  private readonly groupRef = makeRef<HTMLIxCheckboxGroupElement>();
+
+  get checkboxElements(): HTMLIxCheckboxElement[] {
+    return Array.from(this.hostElement.querySelectorAll('ix-checkbox'));
+  }
+
+  private readonly observer = new MutationObserver(() => {
+    this.checkForRequiredCheckbox();
+  });
+
+  private checkForRequiredCheckbox() {
+    this.required = this.checkboxElements.some((checkbox) => checkbox.required);
+  }
+
+  connectedCallback(): void {
+    this.observer.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['checked', 'required'],
+    });
+  }
+
+  componentWillLoad(): void | Promise<void> {
+    this.checkForRequiredCheckbox();
+  }
+
+  disconnectedCallback(): void {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
 
   @HookValidationLifecycle({
     includeChildren: true,
@@ -79,9 +127,27 @@ export class CheckboxGroup
     this.isWarning = isWarning;
   }
 
+  /**
+   * @internal
+   */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
+  }
+
+  /**
+   * @internal
+   */
+  @Method()
+  hasValidValue(): Promise<boolean> {
+    return Promise.resolve(
+      this.checkboxElements.some((checkbox) => checkbox.checked)
+    );
+  }
+
   render() {
     return (
-      <Host>
+      <Host ref={this.groupRef} onIxBlur={() => (this.touched = true)}>
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}
@@ -94,6 +160,7 @@ export class CheckboxGroup
           isInfo={this.isInfo}
           isValid={this.isValid}
           isWarning={this.isWarning}
+          controlRef={this.groupRef}
         >
           <div
             class={{

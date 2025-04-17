@@ -455,6 +455,7 @@ export namespace Components {
           * Indeterminate state of the checkbox component
          */
         "indeterminate": boolean;
+        "isTouched": () => Promise<boolean>;
         /**
           * Label for the checkbox component
          */
@@ -481,6 +482,7 @@ export namespace Components {
           * Alignment of the checkboxes in the group
          */
         "direction": 'row' | 'column';
+        "hasValidValue": () => Promise<boolean>;
         /**
           * Optional helper text displayed below the checkbox group
          */
@@ -493,10 +495,12 @@ export namespace Components {
           * Error text for the checkbox group
          */
         "invalidText"?: string;
+        "isTouched": () => Promise<boolean>;
         /**
           * Label for the checkbox group
          */
         "label"?: string;
+        "required": boolean;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */
@@ -1561,6 +1565,10 @@ export namespace Components {
           * Returns the native input element used in the text field.
          */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
+        /**
+          * Returns the validity state of the input field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the text field.
@@ -2175,6 +2183,11 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Step value to increment or decrement the input value
+          * @since 3.0.0
+         */
+        "step"?: string | number;
+        /**
           * The valid text for the input field
          */
         "validText"?: string;
@@ -2378,6 +2391,11 @@ export namespace Components {
          */
         "name"?: string;
         /**
+          * Requires the radio component and its group to be checked for the form to be submittable
+          * @since 3.0.0
+         */
+        "required": boolean;
+        /**
           * Value of the radio component
          */
         "value"?: string;
@@ -2391,6 +2409,7 @@ export namespace Components {
           * Alignment of the radio buttons in the group
          */
         "direction": 'column' | 'row';
+        "hasValidValue": () => Promise<boolean>;
         /**
           * Show text below the field component
          */
@@ -2403,10 +2422,15 @@ export namespace Components {
           * Error text for the field component
          */
         "invalidText"?: string;
+        "isTouched": () => Promise<boolean>;
         /**
           * Label for the field component
          */
         "label"?: string;
+        /**
+          * Required state of the checkbox component
+         */
+        "required"?: boolean;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */
@@ -2932,6 +2956,7 @@ export namespace Components {
           * If true the control is in indeterminate state
          */
         "indeterminate": boolean;
+        "isTouched": () => Promise<boolean>;
         /**
           * Name of the checkbox component
          */
@@ -3653,6 +3678,7 @@ declare global {
     interface HTMLIxCheckboxElementEventMap {
         "checkedChange": boolean;
         "valueChange": string;
+        "ixBlur": void;
     }
     /**
      * @since 2.6.0
@@ -4586,6 +4612,7 @@ declare global {
     interface HTMLIxRadioElementEventMap {
         "checkedChange": boolean;
         "valueChange": string;
+        "ixBlur": void;
     }
     /**
      * @since 2.6.0
@@ -4825,6 +4852,7 @@ declare global {
     interface HTMLIxToggleElementEventMap {
         "checkedChange": boolean;
         "valueChange": string;
+        "ixBlur": void;
     }
     /**
      * @form-ready 2.6.0
@@ -5518,6 +5546,10 @@ declare namespace LocalJSX {
          */
         "onCheckedChange"?: (event: IxCheckboxCustomEvent<boolean>) => void;
         /**
+          * Event emitted when the checkbox is blurred
+         */
+        "onIxBlur"?: (event: IxCheckboxCustomEvent<void>) => void;
+        /**
           * Event emitted when the value of the checkbox changes
          */
         "onValueChange"?: (event: IxCheckboxCustomEvent<string>) => void;
@@ -5555,6 +5587,7 @@ declare namespace LocalJSX {
           * Label for the checkbox group
          */
         "label"?: string;
+        "required"?: boolean;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */
@@ -7346,6 +7379,11 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Step value to increment or decrement the input value
+          * @since 3.0.0
+         */
+        "step"?: string | number;
+        /**
           * The valid text for the input field
          */
         "validText"?: string;
@@ -7573,9 +7611,18 @@ declare namespace LocalJSX {
          */
         "onCheckedChange"?: (event: IxRadioCustomEvent<boolean>) => void;
         /**
+          * Event emitted when the radio is blurred
+         */
+        "onIxBlur"?: (event: IxRadioCustomEvent<void>) => void;
+        /**
           * Event emitted when the value of the radio changes
          */
         "onValueChange"?: (event: IxRadioCustomEvent<string>) => void;
+        /**
+          * Requires the radio component and its group to be checked for the form to be submittable
+          * @since 3.0.0
+         */
+        "required"?: boolean;
         /**
           * Value of the radio component
          */
@@ -7610,6 +7657,10 @@ declare namespace LocalJSX {
           * Event emitted when the value of the radiobutton group changes
          */
         "onValueChange"?: (event: IxRadioGroupCustomEvent<string>) => void;
+        /**
+          * Required state of the checkbox component
+         */
+        "required"?: boolean;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */
@@ -8160,6 +8211,10 @@ declare namespace LocalJSX {
           * An event will be dispatched each time the slide-toggle changes its value.
          */
         "onCheckedChange"?: (event: IxToggleCustomEvent<boolean>) => void;
+        /**
+          * An event will be dispatched each time the toggle is blurred.
+         */
+        "onIxBlur"?: (event: IxToggleCustomEvent<void>) => void;
         "onValueChange"?: (event: IxToggleCustomEvent<string>) => void;
         /**
           * Required state of the checkbox component.  If true, checkbox needs to be checked to be valid
