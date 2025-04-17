@@ -16,9 +16,6 @@ import {
 } from '../utils/input';
 import { IxComponent } from '../utils/internal';
 
-/**
- * @since 2.6.0
- */
 @Component({
   tag: 'ix-custom-field',
   styleUrl: 'custom-field.scss',

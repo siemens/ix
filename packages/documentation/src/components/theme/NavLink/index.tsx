@@ -10,7 +10,7 @@ import Link from '@docusaurus/Link';
 
 export default function NavLink({ value, label }) {
   return (
-    <Link className="navbar__item nav-link" to={value}>
+    <Link className="navbar__item nav-link custom-link" to={value}>
       {label}
     </Link>
   );

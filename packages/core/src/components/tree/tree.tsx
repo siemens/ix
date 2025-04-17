@@ -14,6 +14,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Prop,
   Watch,
 } from '@stencil/core';
@@ -76,13 +77,11 @@ export class Tree {
 
   /**
    * Node toggled event
-   * @since 1.5.0
    */
-  @Event() nodeToggled!: EventEmitter<{ id: string; isExpaned: boolean }>;
+  @Event() nodeToggled!: EventEmitter<{ id: string; isExpanded: boolean }>;
 
   /**
    * Node clicked event
-   * @since 1.5.0
    */
   @Event() nodeClicked!: EventEmitter<string>;
 
@@ -93,9 +92,7 @@ export class Tree {
 
   private hyperlist?: VirtualList;
 
-  private toggleListener = new Map<HTMLElement, Function>();
-  private itemClickListener = new Map<HTMLElement, Function>();
-  private updates = new Map<string, UpdateCallback>();
+  private readonly updates = new Map<string, UpdateCallback>();
   private observer!: MutationObserver;
   private hasFirstRender = false;
 
@@ -105,25 +102,6 @@ export class Tree {
 
   private getVirtualizerOptions(): VirtualListConfig {
     const list = this.buildTreeList(this.model[this.root]);
-
-    let setToggleListener = (
-      item: TreeItemVisual<any>,
-      el: HTMLElement,
-      index: number
-    ) => {
-      if (item.hasChildren && !this.toggleListener.has(el)) {
-        const toggleCallback = (e: Event) => {
-          e.preventDefault();
-          e.stopPropagation();
-          const context = this.getContext(list[index].id);
-          context.isExpanded = !context.isExpanded;
-          this.nodeToggled.emit({ id: item.id, isExpaned: context.isExpanded });
-          this.setContext(item.id, context);
-        };
-        el.addEventListener('toggle', toggleCallback);
-        this.toggleListener.set(el, toggleCallback);
-      }
-    };
 
     return {
       width: '100%',
@@ -142,8 +120,6 @@ export class Tree {
         if (renderedTreeItem) {
           renderedTreeItem.hasChildren = item.hasChildren;
           renderedTreeItem.context = { ...context };
-
-          setToggleListener(item, renderedTreeItem, index);
 
           if (this.updates.has(item.id)) {
             const doUpdate = this.updates.get(item.id);
@@ -180,47 +156,6 @@ export class Tree {
         el.setAttribute('data-tree-node-id', item.id);
         el.style.paddingRight = '1rem';
         this.updatePadding(el, item);
-
-        if (!this.itemClickListener.has(el)) {
-          const itemClickCallback = (event: Event) => {
-            const path = event.composedPath();
-            const treeIndex = path.indexOf(this.hostElement);
-            const treePath = path.slice(0, treeIndex);
-            const hasTrigger = dropdownController.pathIncludesTrigger(treePath);
-
-            if (hasTrigger) {
-              return;
-            }
-
-            if (!event.defaultPrevented) {
-              Object.values(this.context).forEach(
-                (c) => (c.isSelected = false)
-              );
-              const context = this.getContext(item.id);
-              context.isSelected = true;
-              this.setContext(item.id, context);
-            }
-
-            if (this.toggleOnItemClick && item.hasChildren) {
-              const context = this.getContext(item.id);
-              context.isExpanded = !context.isExpanded;
-              this.nodeToggled.emit({
-                id: item.id,
-                isExpaned: context.isExpanded,
-              });
-              this.setContext(item.id, context);
-            }
-
-            this.nodeClicked.emit(item.id);
-          };
-          el.addEventListener('toggle', (event) => {
-            event.preventDefault();
-          });
-          el.addEventListener('click', itemClickCallback);
-          this.itemClickListener.set(el, itemClickCallback);
-        }
-
-        setToggleListener(item, el, index);
 
         return el;
       },
@@ -355,9 +290,76 @@ export class Tree {
     this.hyperlist = new VirtualList(this.hostElement, config);
   }
 
+  @Listen('toggle')
+  onToggle(event: CustomEvent) {
+    const { target } = event;
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const id = target.getAttribute('data-tree-node-id');
+    if (!id) {
+      return;
+    }
+
+    const item = this.model[id];
+    if (!item.hasChildren) {
+      return;
+    }
+
+    const context = this.getContext(id);
+    context.isExpanded = !context.isExpanded;
+    this.nodeToggled.emit({ id, isExpanded: context.isExpanded });
+    this.setContext(id, context);
+  }
+
+  onTreeItemClick(event: Event) {
+    const { target } = event;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const id = target.getAttribute('data-tree-node-id');
+    if (!id) {
+      return;
+    }
+
+    const item = this.model[id];
+    const path = event.composedPath();
+    const treeIndex = path.indexOf(this.hostElement);
+    const treePath = path.slice(0, treeIndex);
+    const hasTrigger = dropdownController.pathIncludesTrigger(treePath);
+
+    if (hasTrigger) {
+      return;
+    }
+
+    if (!event.defaultPrevented) {
+      Object.values(this.context).forEach((c) => (c.isSelected = false));
+      const context = this.getContext(id);
+      context.isSelected = true;
+      this.setContext(id, context);
+    }
+
+    if (this.toggleOnItemClick && item.hasChildren) {
+      const context = this.getContext(id);
+      context.isExpanded = !context.isExpanded;
+      this.nodeToggled.emit({
+        id: id,
+        isExpanded: context.isExpanded,
+      });
+      this.setContext(id, context);
+    }
+
+    this.nodeClicked.emit(id);
+  }
+
   render() {
     return (
-      <Host>
+      <Host onClick={(event: Event) => this.onTreeItemClick(event)}>
         <slot></slot>
       </Host>
     );

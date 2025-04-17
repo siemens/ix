@@ -53,15 +53,11 @@ export class ApplicationHeader {
    *
    * When the application header is utilized outside the application frame, the menu toggle button is displayed.
    * Conversely, if the header is within the application frame, this property is ineffective.
-   *
-   * @since 2.5.0
    */
   @Prop({ mutable: true }) showMenu?: boolean = false;
 
   /**
    * Event emitted when the menu toggle button is clicked
-   *
-   * @since 2.5.0
    */
   @Event() menuToggle!: EventEmitter<boolean>;
 

@@ -33,7 +33,6 @@ export class FilterChip {
 
   /**
    * If true the filter chip will be in readonly mode
-   * @since 2.0.0
    */
   @Prop() readonly = false;
 

@@ -88,9 +88,6 @@ function UserInfo(props: {
   );
 }
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-avatar',
   styleUrl: 'avatar.scss',
@@ -114,16 +111,12 @@ export class Avatar {
   /**
    * If set an info card displaying the username will be placed inside the dropdown.
    * Note: Only working if avatar is part of the ix-application-header
-   *
-   * @since 2.1.0
    */
   @Prop() username?: string;
 
   /**
    * Optional description text that will be displayed underneath the username.
    * Note: Only working if avatar is part of the ix-application-header
-   *
-   * @since 2.1.0
    */
   @Prop() extra?: string;
 

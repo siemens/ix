@@ -314,7 +314,8 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
 
 export type IxCheckboxEvents = {
     onCheckedChange: EventName<CustomEvent<boolean>>,
-    onValueChange: EventName<CustomEvent<string>>
+    onValueChange: EventName<CustomEvent<string>>,
+    onIxBlur: EventName<CustomEvent<void>>
 };
 
 export const IxCheckbox: StencilReactComponent<IxCheckboxElement, IxCheckboxEvents> = /*@__PURE__*/ createComponent<IxCheckboxElement, IxCheckboxEvents>({
@@ -324,7 +325,8 @@ export const IxCheckbox: StencilReactComponent<IxCheckboxElement, IxCheckboxEven
     react: React,
     events: {
         onCheckedChange: 'checkedChange',
-        onValueChange: 'valueChange'
+        onValueChange: 'valueChange',
+        onIxBlur: 'ixBlur'
     } as IxCheckboxEvents,
     defineCustomElement: defineIxCheckbox
 });
@@ -1127,7 +1129,8 @@ export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEven
 
 export type IxRadioEvents = {
     onCheckedChange: EventName<CustomEvent<boolean>>,
-    onValueChange: EventName<CustomEvent<string>>
+    onValueChange: EventName<CustomEvent<string>>,
+    onIxBlur: EventName<CustomEvent<void>>
 };
 
 export const IxRadio: StencilReactComponent<IxRadioElement, IxRadioEvents> = /*@__PURE__*/ createComponent<IxRadioElement, IxRadioEvents>({
@@ -1137,7 +1140,8 @@ export const IxRadio: StencilReactComponent<IxRadioElement, IxRadioEvents> = /*@
     react: React,
     events: {
         onCheckedChange: 'checkedChange',
-        onValueChange: 'valueChange'
+        onValueChange: 'valueChange',
+        onIxBlur: 'ixBlur'
     } as IxRadioEvents,
     defineCustomElement: defineIxRadio
 });
@@ -1320,14 +1324,20 @@ export const IxToastContainer: StencilReactComponent<IxToastContainerElement, Ix
     defineCustomElement: defineIxToastContainer
 });
 
-export type IxToggleEvents = { onCheckedChange: EventName<CustomEvent<boolean>> };
+export type IxToggleEvents = {
+    onCheckedChange: EventName<CustomEvent<boolean>>,
+    onIxBlur: EventName<CustomEvent<void>>
+};
 
 export const IxToggle: StencilReactComponent<IxToggleElement, IxToggleEvents> = /*@__PURE__*/ createComponent<IxToggleElement, IxToggleEvents>({
     tagName: 'ix-toggle',
     elementClass: IxToggleElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onCheckedChange: 'checkedChange' } as IxToggleEvents,
+    events: {
+        onCheckedChange: 'checkedChange',
+        onIxBlur: 'ixBlur'
+    } as IxToggleEvents,
     defineCustomElement: defineIxToggle
 });
 

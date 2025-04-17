@@ -180,7 +180,7 @@ export class IxApplicationHeader {
 
 export declare interface IxApplicationHeader extends Components.IxApplicationHeader {
   /**
-   * Event emitted when the menu toggle button is clicked @since 2.5.0
+   * Event emitted when the menu toggle button is clicked
    */
   menuToggle: EventEmitter<CustomEvent<boolean>>;
   /**
@@ -544,7 +544,7 @@ export class IxCheckbox {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['checkedChange', 'valueChange']);
+    proxyOutputs(this, this.el, ['checkedChange', 'valueChange', 'ixBlur']);
   }
 }
 
@@ -558,6 +558,10 @@ export declare interface IxCheckbox extends Components.IxCheckbox {
    * Event emitted when the value of the checkbox changes
    */
   valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the checkbox is blurred
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -609,7 +613,7 @@ export class IxChip {
 
 export declare interface IxChip extends Components.IxChip {
   /**
-   * Fire event if close button is clicked @since 1.5.0
+   * Fire event if close button is clicked
    */
   closeChip: EventEmitter<CustomEvent<any>>;
 }
@@ -817,16 +821,16 @@ import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/i
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
    * Triggers if the date selection changes.
-Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` @since 2.1.0
+Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Triggers if the date selection changes.
-Only triggered if date-picker-rework is in range mode. @since 2.1.0
+Only triggered if date-picker-rework is in range mode.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Date selection confirmed via button action @since 1.1.0
+   * Date selection confirmed via button action
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
 }
@@ -859,16 +863,15 @@ import type { DateTimeSelectEvent as IIxDatetimePickerDateTimeSelectEvent } from
 
 export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   /**
-   * 
-Time change @since 1.1.0
+   * Time change
    */
   timeChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Date change @since 1.1.0
+   * Date change
    */
   dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
-   * Datetime selection event is fired after confirm button is pressed @since 1.1.0
+   * Datetime selection event is fired after confirm button is pressed
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
 }
@@ -1451,7 +1454,7 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
 @ProxyCmp({
   defineCustomElementFn: defineIxInput,
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'getValidityState', 'focusInput']
 })
 @Component({
   selector: 'ix-input',
@@ -2192,7 +2195,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 
 @ProxyCmp({
   defineCustomElementFn: defineIxNumberInput,
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2200,7 +2203,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'validText', 'value', 'warningText'],
   standalone: true
 })
 export class IxNumberInput {
@@ -2379,14 +2382,14 @@ export declare interface IxPushCard extends Components.IxPushCard {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxRadio,
-  inputs: ['checked', 'disabled', 'label', 'name', 'value']
+  inputs: ['checked', 'disabled', 'label', 'name', 'required', 'value']
 })
 @Component({
   selector: 'ix-radio',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'label', 'name', 'value'],
+  inputs: ['checked', 'disabled', 'label', 'name', 'required', 'value'],
   standalone: true
 })
 export class IxRadio {
@@ -2394,7 +2397,7 @@ export class IxRadio {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['checkedChange', 'valueChange']);
+    proxyOutputs(this, this.el, ['checkedChange', 'valueChange', 'ixBlur']);
   }
 }
 
@@ -2408,6 +2411,10 @@ export declare interface IxRadio extends Components.IxRadio {
    * Event emitted when the value of the radio changes
    */
   valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the radio is blurred
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -2489,11 +2496,11 @@ export class IxSelect {
 
 export declare interface IxSelect extends Components.IxSelect {
   /**
-   * Value changed @since 2.0.0
+   * Value changed
    */
   valueChange: EventEmitter<CustomEvent<string | string[]>>;
   /**
-   * Event dispatched whenever the text input changes. @since 2.0.0
+   * Event dispatched whenever the text input changes.
    */
   inputChange: EventEmitter<CustomEvent<string>>;
   /**
@@ -2645,7 +2652,7 @@ import type { TabClickDetail as IIxTabItemTabClickDetail } from '@siemens/ix/com
 
 export declare interface IxTabItem extends Components.IxTabItem {
   /**
-   * Emitted when the tab is clicked. @since 2.0.0
+   * Emitted when the tab is clicked.
    */
   tabClick: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
 }
@@ -2675,7 +2682,7 @@ export class IxTabs {
 
 export declare interface IxTabs extends Components.IxTabs {
   /**
-   * `selected` property changed @since 2.0.0
+   * `selected` property changed
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
 }
@@ -2851,7 +2858,7 @@ export class IxToggle {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['checkedChange']);
+    proxyOutputs(this, this.el, ['checkedChange', 'ixBlur']);
   }
 }
 
@@ -2861,6 +2868,10 @@ export declare interface IxToggle extends Components.IxToggle {
    * An event will be dispatched each time the slide-toggle changes its value.
    */
   checkedChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * An event will be dispatched each time the toggle is blurred.
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
 }
 
 

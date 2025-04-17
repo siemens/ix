@@ -352,7 +352,8 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
 
 export type IxCheckboxEvents = {
     onCheckedChange: EventName<CustomEvent<boolean>>,
-    onValueChange: EventName<CustomEvent<string>>
+    onValueChange: EventName<CustomEvent<string>>,
+    onIxBlur: EventName<CustomEvent<void>>
 };
 
 export const IxCheckbox: StencilReactComponent<IxCheckboxElement, IxCheckboxEvents> = /*@__PURE__*/ createComponent<IxCheckboxElement, IxCheckboxEvents>({
@@ -382,7 +383,8 @@ export const IxCheckboxGroup: StencilReactComponent<IxCheckboxGroupElement, IxCh
         infoText: 'info-text',
         validText: 'valid-text',
         warningText: 'warning-text',
-        showTextAsTooltip: 'show-text-as-tooltip'
+        showTextAsTooltip: 'show-text-as-tooltip',
+        required: 'required'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -1292,7 +1294,8 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         min: 'min',
         max: 'max',
         allowedCharactersPattern: 'allowed-characters-pattern',
-        showStepperButtons: 'show-stepper-buttons'
+        showStepperButtons: 'show-stepper-buttons',
+        step: 'step'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -1391,7 +1394,8 @@ export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEven
 
 export type IxRadioEvents = {
     onCheckedChange: EventName<CustomEvent<boolean>>,
-    onValueChange: EventName<CustomEvent<string>>
+    onValueChange: EventName<CustomEvent<string>>,
+    onIxBlur: EventName<CustomEvent<void>>
 };
 
 export const IxRadio: StencilReactComponent<IxRadioElement, IxRadioEvents> = /*@__PURE__*/ createComponent<IxRadioElement, IxRadioEvents>({
@@ -1401,7 +1405,8 @@ export const IxRadio: StencilReactComponent<IxRadioElement, IxRadioEvents> = /*@
         value: 'value',
         label: 'label',
         disabled: 'disabled',
-        checked: 'checked'
+        checked: 'checked',
+        required: 'required'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -1420,7 +1425,8 @@ export const IxRadioGroup: StencilReactComponent<IxRadioGroupElement, IxRadioGro
         warningText: 'warning-text',
         validText: 'valid-text',
         showTextAsTooltip: 'show-text-as-tooltip',
-        direction: 'direction'
+        direction: 'direction',
+        required: 'required'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -1665,7 +1671,10 @@ export const IxToastContainer: StencilReactComponent<IxToastContainerElement, Ix
     serializeShadowRoot
 });
 
-export type IxToggleEvents = { onCheckedChange: EventName<CustomEvent<boolean>> };
+export type IxToggleEvents = {
+    onCheckedChange: EventName<CustomEvent<boolean>>,
+    onIxBlur: EventName<CustomEvent<void>>
+};
 
 export const IxToggle: StencilReactComponent<IxToggleElement, IxToggleEvents> = /*@__PURE__*/ createComponent<IxToggleElement, IxToggleEvents>({
     tagName: 'ix-toggle',

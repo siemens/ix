@@ -17,7 +17,7 @@ const pkgRoot = path.join(__dirname, '..');
 const __tgzFile = path.join(pkgRoot, '.build.tmp', 'theme.tgz');
 const __buildTemp = path.join(__tgzFile, '..');
 
-const version = '0.1.0';
+const version = '0.1.1';
 const token = process.env.CSC;
 const ci = process.env.CI;
 

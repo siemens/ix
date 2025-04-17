@@ -125,8 +125,6 @@ export class CategoryFilter {
   /**
    * If set categories will always be filtered via the respective logical operator.
    * Toggling of the operator will not be available to the user.
-   *
-   * @since 2.2.0
    */
   @Prop() staticOperator?: LogicalFilterOperator;
 

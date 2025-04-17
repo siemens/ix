@@ -52,9 +52,6 @@ export type BorderlessChangedEvent = {
   borderless: boolean;
 };
 
-/**
- * @since 2.1.0
- */
 @Component({
   tag: 'ix-pane',
   styleUrl: 'pane.scss',

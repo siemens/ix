@@ -168,6 +168,12 @@ ix-dropdown {
   }
 }
 
+@media screen and (max-width: 1100px) {
+  .custom-link {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 1240px) {
   .ButtonText {
     display: none;

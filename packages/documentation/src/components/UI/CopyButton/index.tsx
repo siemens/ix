@@ -49,6 +49,7 @@ const CopyButton = ({
       >
         {React.createElement('ix-icon', {
           name: iconCopy,
+          size: '16',
         })}
         {label ?? 'Copy'}
       </Button>

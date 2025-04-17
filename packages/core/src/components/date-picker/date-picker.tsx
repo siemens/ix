@@ -68,8 +68,6 @@ export class DatePicker implements IxDatePickerComponent {
   /**
    * The selected starting date. If the date-picker-rework is not in range mode this is the selected date.
    * Format has to match the `format` property.
-   *
-   * @since 1.1.0
    */
   @Prop() from: string | undefined;
 
@@ -92,8 +90,6 @@ export class DatePicker implements IxDatePickerComponent {
   /**
    * The selected end date. If the the date-picker-rework is not in range mode this property has no impact.
    * Format has to match the `format` property.
-   *
-   * @since 1.1.0
    */
   @Prop() to: string | undefined;
 
@@ -116,38 +112,28 @@ export class DatePicker implements IxDatePickerComponent {
   /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() minDate = '';
 
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() maxDate = '';
 
   /**
    * Text of date select button
-   *
-   * @since 2.1.0
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-   *
-   * @since 2.1.0
    */
   @Prop() weekStartIndex = 0;
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
-   *
-   * @since 2.1.0
    */
   @Prop() locale?: string;
 
@@ -172,23 +158,17 @@ export class DatePicker implements IxDatePickerComponent {
   /**
    * Triggers if the date selection changes.
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
-   *
-   * @since 2.1.0
    */
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
   /**
    * Triggers if the date selection changes.
    * Only triggered if date-picker-rework is in range mode.
-   *
-   * @since 2.1.0
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
    * Date selection confirmed via button action
-   *
-   * @since 1.1.0
    */
   @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 
