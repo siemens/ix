@@ -28,7 +28,7 @@ const colors = [
 ];
 
 export default {
-  themeName: 'brand-dark',
+  themeName: 'theme-brand-dark',
   theme: {
     color: colors,
     backgroundColor: 'rgba(0,0,0,0)',

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconClose } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -65,7 +66,7 @@ export class MapNavigationOverlay {
       opacity: [0, 1],
       easing: 'easeOutSine',
       begin: () => {
-        this.hostElement.classList.remove('d-none');
+        this.hostElement.classList.remove('display-none');
       },
     });
   }
@@ -80,7 +81,7 @@ export class MapNavigationOverlay {
       easing: 'easeInSine',
       complete: () => {
         this.closeClick.emit();
-        this.hostElement.classList.add('d-none');
+        this.hostElement.classList.add('display-none');
       },
     });
   }
@@ -92,7 +93,7 @@ export class MapNavigationOverlay {
           <div
             class={{
               'color-indicator': true,
-              'd-none': (this.iconColor ?? this.color) === undefined,
+              'display-none': (this.iconColor ?? this.color) === undefined,
             }}
             style={{
               'background-color':
@@ -110,7 +111,7 @@ export class MapNavigationOverlay {
           <ix-icon-button
             class="overlay-close"
             ghost
-            icon={'close'}
+            icon={iconClose}
             size="24"
             onClick={() => this.closeOverlay()}
           ></ix-icon-button>

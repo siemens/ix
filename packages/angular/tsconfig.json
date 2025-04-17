@@ -27,13 +27,16 @@
     "pretty": true,
     "removeComments": false,
     "importHelpers": true,
-    "rootDir": "src",
+    "rootDir": "./",
     "strictPropertyInitialization": false,
     "target": "es2015",
     "baseUrl": ".",
     "plugins": [],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@siemens/ix-angular/common": ["common/src/index.ts"]
+    }
   },
   "exclude": ["node_modules"],
-  "files": ["src/index.ts"]
+  "files": ["src/index.ts", "common/src/index.ts", "standalone/src/index.ts"]
 }

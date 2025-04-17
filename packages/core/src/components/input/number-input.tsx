@@ -146,6 +146,13 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop() showStepperButtons?: boolean;
 
   /**
+   * Step value to increment or decrement the input value
+   *
+   * @since 3.0.0
+   */
+  @Prop() step?: string | number;
+
+  /**
    * Event emitted when the value of the input field changes
    */
   @Event() valueChange!: EventEmitter<number>;
@@ -216,8 +223,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   /** @internal */
   @Method()
-  hasValidValue(): Promise<boolean> {
-    return Promise.resolve(!!this.value);
+  async hasValidValue(): Promise<boolean> {
+    const nativeInput = await this.getNativeInputElement();
+    if (nativeInput.value === '') {
+      return Promise.resolve(false);
+    }
+
+    return Promise.resolve(
+      this.value !== null && this.value !== undefined && !isNaN(this.value)
+    );
   }
 
   /**
@@ -287,6 +301,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
               id={this.numberInputId}
               readonly={this.readonly}
               disabled={this.disabled}
+              step={this.step}
               min={this.min}
               max={this.max}
               pattern={this.pattern}
@@ -321,6 +336,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   icon={iconMinus}
                   size="16"
                   class="number-stepper-button step-minus"
+                  aria-label="decrement number"
                   onClick={() => {
                     if (!this.inputRef.current) {
                       return;
@@ -338,6 +354,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   icon={iconPlus}
                   size="16"
                   class="number-stepper-button step-plus"
+                  aria-label="increment number"
                   onClick={() => {
                     if (!this.inputRef.current) {
                       return;

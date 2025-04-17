@@ -18,6 +18,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { closestPassShadow } from '../utils/shadow-dom';
+import { iconClose } from '@siemens/ix-icons/icons';
 
 /**
  * @since 2.0.0
@@ -97,7 +98,7 @@ export class ModalHeader {
             class="modal-close"
             onClick={(event) => this.onCloseClick(event)}
             ghost
-            icon="close"
+            icon={iconClose}
           ></ix-icon-button>
         ) : null}
       </Host>

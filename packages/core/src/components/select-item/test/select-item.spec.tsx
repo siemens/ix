@@ -12,14 +12,15 @@ import { DropdownItem } from '../../dropdown-item/dropdown-item';
 import { SelectItem } from '../select-item';
 
 describe('select-item', () => {
-  it('should throw exception if value is missing', (done) => {
-    newSpecPage({
+  it('should throw exception if value is missing', async () => {
+    global.console = { warn: jest.fn() } as any;
+    await newSpecPage({
       components: [SelectItem],
       html: '<ix-select-item></ix-select-item>',
-    }).catch((e: Error) => {
-      expect(e.message).toBe('ix-select-item must have a `value` property');
-      done();
     });
+    expect(console.warn).toHaveBeenCalledWith(
+      'ix-select-item must have a `value` property'
+    );
   });
 
   it('should pass through click event from dropdown item', async () => {

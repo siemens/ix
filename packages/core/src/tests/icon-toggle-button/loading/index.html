@@ -18,61 +18,137 @@ SPDX-License-Identifier: MIT
         margin: 0 0.25rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconCheckboxes } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconCheckboxes,
+      });
+    </script>
   </head>
   <body>
-    <ix-icon-toggle-button outline size="12" icon="checkboxes" loading></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline size="12" icon="checkboxes" pressed loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button outline size="12" icon="checkboxes" disabled loading>
-    </ix-icon-toggle-button>
+    <div>
+      <ix-icon-toggle-button
+        outline
+        size="12"
+        icon="checkboxes"
+        loading
+      ></ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        outline
+        size="12"
+        icon="checkboxes"
+        pressed
+        loading
+      >
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        outline
+        size="12"
+        icon="checkboxes"
+        disabled
+        loading
+      >
+      </ix-icon-toggle-button>
 
-    <ix-icon-toggle-button outline size="16" icon="checkboxes" loading></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline size="16" icon="checkboxes" pressed loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button outline size="16" icon="checkboxes" disabled loading>
-    </ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        outline
+        size="16"
+        icon="checkboxes"
+        loading
+      ></ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        outline
+        size="16"
+        icon="checkboxes"
+        pressed
+        loading
+      >
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        outline
+        size="16"
+        icon="checkboxes"
+        disabled
+        loading
+      >
+      </ix-icon-toggle-button>
 
-    <ix-icon-toggle-button outline icon="checkboxes" loading></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline icon="checkboxes" pressed loading></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline icon="checkboxes" disabled loading></ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        outline
+        icon="checkboxes"
+        loading
+      ></ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        outline
+        icon="checkboxes"
+        pressed
+        loading
+      ></ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        outline
+        icon="checkboxes"
+        disabled
+        loading
+      ></ix-icon-toggle-button>
 
-    <ix-icon-toggle-button ghost icon="checkboxes" loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button ghost pressed icon="checkboxes" loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button ghost disabled icon="checkboxes" loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button icon="checkboxes" loading></ix-icon-toggle-button>
-    <ix-icon-toggle-button pressed icon="checkboxes" loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button disabled icon="checkboxes" loading>
-    </ix-icon-toggle-button>
-  </div>
+      <ix-icon-toggle-button ghost icon="checkboxes" loading>
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button ghost pressed icon="checkboxes" loading>
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button ghost disabled icon="checkboxes" loading>
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button icon="checkboxes" loading></ix-icon-toggle-button>
+      <ix-icon-toggle-button pressed icon="checkboxes" loading>
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button disabled icon="checkboxes" loading>
+      </ix-icon-toggle-button>
+    </div>
 
-  <div>
-    <ix-icon-toggle-button variant="primary" outline icon="checkboxes" loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button variant="primary" outline pressed icon="checkboxes" loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button variant="primary" outline disabled icon="checkboxes" loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button variant="primary" ghost icon="checkboxes" loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      variant="primary"
-      ghost
-      pressed
-      icon="checkboxes"
-      loading>
-    </ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      variant="primary"
-      ghost
-      disabled
-      icon="checkboxes"
-      loading>
-    </ix-icon-toggle-button>
-  </div>
+    <div>
+      <ix-icon-toggle-button
+        variant="primary"
+        outline
+        icon="checkboxes"
+        loading
+      >
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        variant="primary"
+        outline
+        pressed
+        icon="checkboxes"
+        loading
+      >
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        variant="primary"
+        outline
+        disabled
+        icon="checkboxes"
+        loading
+      >
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button variant="primary" ghost icon="checkboxes" loading>
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        variant="primary"
+        ghost
+        pressed
+        icon="checkboxes"
+        loading
+      >
+      </ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        variant="primary"
+        ghost
+        disabled
+        icon="checkboxes"
+        loading
+      >
+      </ix-icon-toggle-button>
+    </div>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>
 </html>

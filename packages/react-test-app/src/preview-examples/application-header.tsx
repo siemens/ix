@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconCheckboxes } from '@siemens/ix-icons/icons';
 import {
   IxApplicationHeader,
   IxAvatar,
@@ -20,9 +21,9 @@ export default () => {
     <IxApplicationHeader name="My Application">
       <div className="placeholder-logo" slot="logo"></div>
 
-      <IxIconButton ghost icon="checkboxes"></IxIconButton>
-      <IxIconButton ghost icon="checkboxes"></IxIconButton>
-      <IxIconButton ghost icon="checkboxes"></IxIconButton>
+      <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
+      <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
+      <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
 
       <IxDropdownButton variant="secondary" label="Select config" ghost>
         <IxDropdownItem label="Config 1"></IxDropdownItem>

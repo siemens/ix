@@ -16,10 +16,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import 'jest';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
       <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
@@ -33,7 +33,7 @@ test('renders', async ({ mount, page }) => {
   await expect(eventList).toHaveClass(/hydrated/);
 });
 
-test('check if items still clickable', async ({ mount, page }) => {
+regressionTest('check if items still clickable', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
       <ix-event-list-item color="color-primary" selected>Text 1</ix-event-list-item>
@@ -69,13 +69,12 @@ test('check if items still clickable', async ({ mount, page }) => {
   clickCountHandle.dispose();
 });
 
-test('should dynamically add an item and verify all list items have correct height', async ({
-  mount,
-  page,
-}) => {
-  const itemHeight = 60;
+regressionTest(
+  'should dynamically add an item and verify all list items have correct height',
+  async ({ mount, page }) => {
+    const itemHeight = 60;
 
-  await mount(`
+    await mount(`
     <ix-event-list item-height="${itemHeight}">
       <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
       <ix-event-list-item color="color-primary">Text 2</ix-event-list-item>
@@ -84,26 +83,27 @@ test('should dynamically add an item and verify all list items have correct heig
     </ix-event-list>
   `);
 
-  await page.evaluate(() => {
-    const eventListItem = document.createElement('ix-event-list-item');
-    eventListItem.textContent = 'Newly added item';
+    await page.evaluate(() => {
+      const eventListItem = document.createElement('ix-event-list-item');
+      eventListItem.textContent = 'Newly added item';
 
-    const eventList = document.querySelector('ix-event-list');
-    if (eventList) {
-      eventList.appendChild(eventListItem);
-    }
-  });
+      const eventList = document.querySelector('ix-event-list');
+      if (eventList) {
+        eventList.appendChild(eventListItem);
+      }
+    });
 
-  const eventListItems = page.locator('ix-event-list-item');
-  const lastItem = eventListItems.last();
-  await expect(eventListItems).toHaveCount(5);
-  await expect(lastItem).toHaveJSProperty('offsetHeight', itemHeight);
+    const eventListItems = page.locator('ix-event-list-item');
+    const lastItem = eventListItems.last();
+    await expect(eventListItems).toHaveCount(5);
+    await expect(lastItem).toHaveJSProperty('offsetHeight', itemHeight);
 
-  const heights = await eventListItems.evaluateAll((items) =>
-    items.map((item) => (item instanceof HTMLElement ? item.offsetHeight : 0))
-  );
+    const heights = await eventListItems.evaluateAll((items) =>
+      items.map((item) => (item instanceof HTMLElement ? item.offsetHeight : 0))
+    );
 
-  heights.forEach((height) => {
-    expect(height).toBe(itemHeight);
-  });
-});
+    heights.forEach((height) => {
+      expect(height).toBe(itemHeight);
+    });
+  }
+);

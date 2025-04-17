@@ -8,11 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import {
-  convertThemeName,
-  registerTheme,
-  getComputedCSSProperty,
-} from '@siemens/ix-echarts';
+import { registerTheme, getComputedCSSProperty } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
@@ -20,10 +16,10 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-line-advanced.html',
-  styleUrls: ["./echarts-line-advanced.css"],
+  styleUrls: ['./echarts-line-advanced.css'],
 })
 export default class EchartsLineAdvanced implements OnInit {
-  theme = convertThemeName(themeSwitcher.getCurrentTheme());
+  theme = themeSwitcher.getCurrentTheme();
 
   dates = Array.from({ length: 2025 - 2013 }, (_, i) => (2013 + i).toString());
 
@@ -76,7 +72,7 @@ export default class EchartsLineAdvanced implements OnInit {
     registerTheme(echarts);
 
     themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = convertThemeName(theme);
+      this.theme = theme;
     });
   }
 }

@@ -8,16 +8,18 @@
  */
 
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { iconStar } from '@siemens/ix-icons/icons';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane></ix-pane>`);
   const pane = page.locator('ix-pane');
   await expect(pane).toHaveClass(/hydrated/);
 });
 
-test('expanded', async ({ mount, page }) => {
-  await mount(`
+regressionTest('expanded', async ({ mount, page }) => {
+  await mount(
+    `
     <ix-pane
       heading="LEFT"
       composition="left"
@@ -26,14 +28,19 @@ test('expanded', async ({ mount, page }) => {
     >
       <h1>Test Heading</h1>
     </ix-pane>
-  `);
+  `,
+    {
+      icons: { iconStar },
+    }
+  );
 
   const title = page.locator('h1');
   await expect(title).toBeVisible();
 });
 
-test('prevent pane expansion', async ({ mount, page }) => {
-  await mount(`
+regressionTest('prevent pane expansion', async ({ mount, page }) => {
+  await mount(
+    `
     <ix-pane
       heading="LEFT"
       composition="left"
@@ -43,7 +50,11 @@ test('prevent pane expansion', async ({ mount, page }) => {
     >
       <h1>Test Heading</h1>
     </ix-pane>
-  `);
+  `,
+    {
+      icons: { iconStar },
+    }
+  );
 
   const pane = page.locator('ix-pane');
 

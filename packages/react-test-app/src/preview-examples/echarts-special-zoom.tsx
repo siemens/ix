@@ -10,34 +10,27 @@
 import './echarts-special-zoom.scoped.css';
 
 import { useEffect, useState } from 'react';
-import {
-  convertThemeName,
-  getComputedCSSProperty,
-  registerTheme,
-} from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
-import type { OrdinalRawValue } from 'echarts/types/src/util/types.js';
 
 export default function EchartsSpecialZoom() {
   registerTheme(echarts);
 
-  const [theme, setTheme] = useState(
-    convertThemeName(themeSwitcher.getCurrentTheme())
-  );
+  const [theme, setTheme] = useState(themeSwitcher.getCurrentTheme());
 
   useEffect(() => {
     themeSwitcher.themeChanged.on((theme: string) => {
-      setTheme(convertThemeName(theme));
+      setTheme(theme);
     });
   }, []);
 
   //create some random data
   let base = +new Date(1968, 9, 3);
   const oneDay = 24 * 3600 * 1000;
-  const date: OrdinalRawValue[] = [];
+  const date: (string | number)[] = [];
 
   const data: number[] = [0];
 
