@@ -1,0 +1,10 @@
+import "./global.1f5cc68d.js";
+import { a as addIcons } from "./icon-1f00a566.21c66130.js";
+import "./init.d2f0b7c3.js";
+import { n as iconDocument, w as iconChevronDownSmall, o as iconCut, f as iconBulb } from "./index.8ef77ba3.js";
+addIcons({
+  iconDocument,
+  iconChevronDownSmall,
+  iconCut,
+  iconBulb
+});

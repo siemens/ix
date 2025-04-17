@@ -50,7 +50,7 @@ npm install @siemens-ix/corporate-theme
 Import the theme CSS in your application:
 
 ```css
-@import '@siemens-ix/corporate-theme/css/brand-theme.css';
+@import '@siemens-ix/corporate-theme/dist/css/brand-theme.css';
 ```
 
 Import the corporate library (e.g in the `main.ts`). This ensures that assets like the Siemens logo will be provided to the `iX`-library.
@@ -94,7 +94,7 @@ npm install @siemens-ix/corporate-theme
 Import the theme CSS in your application:
 
 ```css
-@import '@siemens-ix/corporate-theme/css/corporate-theme.css';
+@import '@siemens-ix/corporate-theme/dist/css/corporate-theme.css';
 ```
 
 Import the corporate library (e.g in the `main.ts`). This will ensure that assets, such as the Siemens logo are available in the `iX`-library.

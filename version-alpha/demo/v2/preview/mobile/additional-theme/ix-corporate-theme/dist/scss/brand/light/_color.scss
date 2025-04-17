@@ -2,7 +2,7 @@
 
 @mixin color {
   @include util.match-variant("light") {
-      --theme-color-ghost: #00000000;
+      --theme-color-ghost: #00002800;
       --theme-color-ghost--hover: #bdbdae26;
       --theme-color-ghost--active: #8f8f7526;
       --theme-color-ghost--selected: #00ffb92e;
@@ -48,7 +48,7 @@
       --theme-color-component-9: #0b6165;
       --theme-color-component-9--hover: #005d66;
       --theme-color-component-9--active: #00464d;
-      --theme-color-component-9--disabled: #0051594d;
+      --theme-color-component-9--disabled: #0B61654d;
       --theme-color-component-10: #005159bf;
       --theme-color-component-10--hover: #005d66bf;
       --theme-color-component-10--active: #00464dbf;
@@ -69,7 +69,7 @@
       --theme-color-soft-bdr: #00002833;
       --theme-color-weak-bdr: #23233c26;
       --theme-color-x-weak-bdr: #bdbdae33;
-      --theme-color-focus-bdr: #199fff;
+      --theme-color-focus-bdr: #1491EB;
       --theme-color-contrast-bdr: #000028;
       --theme-color-hard-bdr: #4c4c68;
       --theme-color-alarm: #d72339;
@@ -119,6 +119,8 @@
       --theme-color-lightbox: #ffffffa6;
       --theme-color-backdrop: #ffffffd9;
       --theme-color-backdrop-3: #e8e8e3d9;
+      --theme-color-gradient-effect-1: #007993;
+      --theme-color-gradient-effect-2: #005159;
       --theme-color-logo: #009999;
       --theme-color-logo-login: #009999;
       --theme-chart-1: #1a747d;

@@ -1,0 +1,8 @@
+import "./global.1f5cc68d.js";
+import { a as addIcons } from "./icon-1f00a566.21c66130.js";
+import "./init.d2f0b7c3.js";
+import { c as iconCheckboxes } from "./index.8ef77ba3.js";
+const iconToggleButtonSecondary = "";
+addIcons({
+  iconCheckboxes
+});
