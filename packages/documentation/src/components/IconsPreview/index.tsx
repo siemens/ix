@@ -69,20 +69,81 @@ function getColumnCount(width: number) {
   }
 }
 
-const Icons: React.FC = () => {
-  const [iconFilter, setIconFilter] = useState<string>();
-  const [showRegularIcons, setShowRegularIcons] = useState<boolean>(true);
-  const [showFilledIcons, setShowFilledIcons] = useState<boolean>(true);
-  const [icons] = useState<string[]>(ICON_LIST.icons);
-  const [iconList, setIconList] = useState<string[]>(ICON_LIST.icons);
-  const [selectedIcon, setSelectedIcon] = useState<string | null>();
+const IconTiles: React.FC<{ columnCount: number; iconList: string[] }> = (
+  props
+) => {
   const [framework, setFramework] = useState<FrameworkTypes>('angular');
-  const [columnCount, setColumnCount] = useState<number>(
-    getColumnCount(window.innerWidth)
-  );
-  const filterInputRef = useRef<HTMLIxInputElement>(null);
-  const iconDetailsRef = useRef<HTMLDivElement>(null);
+  const IconDetails = React.forwardRef<
+    HTMLDivElement,
+    { iconName: string; columnCount: number }
+  >(function (props, ref) {
+    const tooltipRef = useRef<HTMLIxTooltipElement>(null);
+    const codeBlockContainerRef = useRef<HTMLDivElement>(null);
 
+    async function copyToClipboard(text: string) {
+      await navigator.clipboard.writeText(text);
+      tooltipRef.current?.showTooltip(codeBlockContainerRef.current);
+      setTimeout(() => {
+        tooltipRef.current?.hideTooltip();
+      }, 750);
+    }
+
+    function getWidth() {
+      const tileWidth = 128;
+      const tileMargin = 16;
+      return (
+        tileWidth * props.columnCount + tileMargin * (props.columnCount - 1)
+      );
+    }
+
+    return (
+      <div
+        ref={ref}
+        style={{ width: getWidth() }}
+        className={styles.Icon__Details}
+      >
+        <IxIcon name={props.iconName} size="32" />
+        <div className={styles.Icon__FlexContent}>
+          <IxTypography format="h3">{props.iconName}</IxTypography>
+          <div
+            ref={codeBlockContainerRef}
+            className={clsx(
+              styles.Icon__CodeContainer,
+              'code-block-no-copy',
+              'code-block-no-wrap'
+            )}
+            onClick={() => {
+              copyToClipboard(getIconCode(props.iconName, framework));
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                copyToClipboard(getIconCode(props.iconName, framework));
+              }
+            }}
+          >
+            <CodeBlock className={styles.Icon__Code} language="html">
+              {getIconCode(props.iconName, framework)}
+            </CodeBlock>
+            <IxTooltip ref={tooltipRef}>
+              <div className={styles.TooltipSuccess}>
+                <IxIcon
+                  name={iconSuccess}
+                  color="color-success"
+                  size="16"
+                ></IxIcon>
+                Copied
+              </div>
+            </IxTooltip>
+          </div>
+        </div>
+        <div className={styles.FrameworkSelectionContainer}>
+          <FrameworkSelection onFrameworkChange={(fw) => setFramework(fw)} />
+        </div>
+      </div>
+    );
+  });
+
+  const iconDetailsRef = useRef<HTMLDivElement>(null);
   const handleIconClick = useCallback((icon: string) => {
     setSelectedIcon((prev) => (prev === icon ? null : icon));
     setTimeout(() => {
@@ -92,6 +153,86 @@ const Icons: React.FC = () => {
       });
     }, 0);
   }, []);
+
+  window.addEventListener('keydown', (e) => {
+    if (
+      e.key === 'Escape' &&
+      iconDetailsRef.current?.contains(document.activeElement)
+    ) {
+      setSelectedIcon(null);
+    }
+  });
+
+  const [selectedIcon, setSelectedIcon] = useState<string | null>();
+  const iconRows = useMemo(() => {
+    const rows = [];
+    for (let i = 0; i < props.iconList.length; i += props.columnCount) {
+      rows.push(props.iconList.slice(i, i + props.columnCount));
+    }
+    return rows;
+  }, [props.iconList, props.columnCount]);
+
+  return (
+    <div className={clsx(styles.Icons)}>
+      {iconRows.map((row, rowIndex) => (
+        <div key={rowIndex}>
+          <div className={styles.Icon__Row}>
+            {row.map((icon) => (
+              <div
+                className={clsx(
+                  styles.Icon__Container,
+                  props.columnCount > 2 &&
+                    row.includes(selectedIcon) &&
+                    styles.Icon__ContainerDetails
+                )}
+              >
+                <div
+                  key={icon}
+                  className={clsx(styles.Icon__Tile, {
+                    [styles.Selected]: selectedIcon === icon,
+                  })}
+                  onClick={() => handleIconClick(icon)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleIconClick(icon);
+                    }
+                  }}
+                >
+                  {React.createElement('ix-icon', {
+                    name: icon,
+                  })}
+                  <div className={styles.Icon__Name}>
+                    <IxTypography tabIndex={0} format="body">
+                      {icon}
+                    </IxTypography>
+                  </div>
+                </div>
+                {selectedIcon === icon && props.columnCount > 2 && (
+                  <IconDetails
+                    ref={iconDetailsRef}
+                    iconName={selectedIcon}
+                    columnCount={props.columnCount}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const Icons: React.FC = () => {
+  const [iconFilter, setIconFilter] = useState<string>();
+  const [showRegularIcons, setShowRegularIcons] = useState<boolean>(true);
+  const [showFilledIcons, setShowFilledIcons] = useState<boolean>(true);
+  const [icons] = useState<string[]>(ICON_LIST.icons);
+  const [iconList, setIconList] = useState<string[]>(ICON_LIST.icons);
+  const [columnCount, setColumnCount] = useState<number>(
+    getColumnCount(window.innerWidth)
+  );
+  const filterInputRef = useRef<HTMLIxInputElement>(null);
 
   const filteredIcons = useMemo(() => {
     return icons.filter((icon) => {
@@ -110,14 +251,6 @@ const Icons: React.FC = () => {
     setIconList(filteredIcons);
   }, [filteredIcons]);
 
-  const iconRows = useMemo(() => {
-    const rows = [];
-    for (let i = 0; i < iconList.length; i += columnCount) {
-      rows.push(iconList.slice(i, i + columnCount));
-    }
-    return rows;
-  }, [iconList, columnCount]);
-
   useEffect(() => {
     const handleResize = debounce(() => {
       const width = window.innerWidth;
@@ -130,82 +263,6 @@ const Icons: React.FC = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [columnCount]);
-
-  window.addEventListener('keydown', (e) => {
-    if (
-      e.key === 'Escape' &&
-      iconDetailsRef.current?.contains(document.activeElement)
-    ) {
-      setSelectedIcon(null);
-    }
-  });
-
-  const IconDetails = React.forwardRef<HTMLDivElement, { iconName: string }>(
-    function (props, ref) {
-      const tooltipRef = useRef<HTMLIxTooltipElement>(null);
-      const codeBlockContainerRef = useRef<HTMLDivElement>(null);
-
-      async function copyToClipboard(text: string) {
-        await navigator.clipboard.writeText(text);
-        tooltipRef.current?.showTooltip(codeBlockContainerRef.current);
-        setTimeout(() => {
-          tooltipRef.current?.hideTooltip();
-        }, 750);
-      }
-
-      function getWidth() {
-        const tileWidth = 128;
-        const tileMargin = 16;
-        return tileWidth * columnCount + tileMargin * (columnCount - 1);
-      }
-
-      return (
-        <div
-          ref={ref}
-          style={{ width: getWidth() }}
-          className={styles.Icon__Details}
-        >
-          <IxIcon name={props.iconName} size="32" />
-          <div className={styles.Icon__FlexContent}>
-            <IxTypography format="h3">{props.iconName}</IxTypography>
-            <div
-              ref={codeBlockContainerRef}
-              className={clsx(
-                styles.Icon__CodeContainer,
-                'code-block-no-copy',
-                'code-block-no-wrap'
-              )}
-              onClick={() => {
-                copyToClipboard(getIconCode(props.iconName, framework));
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  copyToClipboard(getIconCode(props.iconName, framework));
-                }
-              }}
-            >
-              <CodeBlock className={styles.Icon__Code} language="html">
-                {getIconCode(props.iconName, framework)}
-              </CodeBlock>
-              <IxTooltip ref={tooltipRef}>
-                <div className={styles.TooltipSuccess}>
-                  <IxIcon
-                    name={iconSuccess}
-                    color="color-success"
-                    size="16"
-                  ></IxIcon>
-                  Copied
-                </div>
-              </IxTooltip>
-            </div>
-          </div>
-          <div className={styles.FrameworkSelectionContainer}>
-            <FrameworkSelection onFrameworkChange={(fw) => setFramework(fw)} />
-          </div>
-        </div>
-      );
-    }
-  );
 
   return (
     <div className={styles.IconsPreview}>
@@ -255,49 +312,8 @@ const Icons: React.FC = () => {
           }}
         ></IxCheckbox>
       </div>
-      <div className={clsx(styles.Icons)}>
-        {iconRows.map((row, rowIndex) => (
-          <div key={rowIndex}>
-            <div className={styles.Icon__Row}>
-              {row.map((icon) => (
-                <div
-                  className={clsx(
-                    styles.Icon__Container,
-                    columnCount > 2 &&
-                      row.includes(selectedIcon) &&
-                      styles.Icon__ContainerDetails
-                  )}
-                >
-                  <div
-                    key={icon}
-                    className={clsx(styles.Icon__Tile, {
-                      [styles.Selected]: selectedIcon === icon,
-                    })}
-                    onClick={() => handleIconClick(icon)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        handleIconClick(icon);
-                      }
-                    }}
-                  >
-                    {React.createElement('ix-icon', {
-                      name: icon,
-                    })}
-                    <div className={styles.Icon__Name}>
-                      <IxTypography tabIndex={0} format="body">
-                        {icon}
-                      </IxTypography>
-                    </div>
-                  </div>
-                  {selectedIcon === icon && columnCount > 2 && (
-                    <IconDetails ref={iconDetailsRef} iconName={selectedIcon} />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+
+      <IconTiles columnCount={columnCount} iconList={iconList} />
 
       {iconList.length === 0 && (
         <div className={styles.Search__NoResults}>
