@@ -127,6 +127,7 @@ export class TimePicker {
     }
 
     this._time = DateTime.fromFormat(newValue, this.format);
+    this.updateScrollPositions();
   }
 
   /**
@@ -212,15 +213,7 @@ export class TimePicker {
   }
 
   componentDidLoad() {
-    // Scroll to the selected time
-    for (const key in this._formattedTime) {
-      const unitKey = key as keyof TimeOutputFormat;
-
-      this.elementListScrollToTop(
-        unitKey as TimePickerDescriptorUnit,
-        Number(this._formattedTime[unitKey])
-      );
-    }
+    this.updateScrollPositions();
   }
 
   formatTime() {
@@ -249,7 +242,7 @@ export class TimePicker {
       return;
     }
 
-    this.timeChange.emit(this._time!.toFormat(this.format));
+    // this.timeChange.emit(this._time!.toFormat(this.format));
 
     if (this._timeRef) {
       this._timeRef = this._time!.toFormat('a') as 'AM' | 'PM';
@@ -289,6 +282,8 @@ export class TimePicker {
         this._time = this._time.minus({ hours: 12 });
       }
     }
+
+    this.timeChange.emit(this._time!.toFormat(this.format));
   }
 
   private isFormat12Hour(format: string): boolean {
@@ -349,6 +344,7 @@ export class TimePicker {
 
     this.timeUpdate(unit, number);
     this.elementListScrollToTop(unit, number);
+    this.timeChange.emit(this._time!.toFormat(this.format));
   }
 
   private elementListScrollToTop(
@@ -374,6 +370,17 @@ export class TimePicker {
         77;
 
       elementList.scrollTop = scrollPosition;
+    }
+  }
+
+  private updateScrollPositions() {
+    for (const key in this._formattedTime) {
+      const unitKey = key as keyof TimeOutputFormat;
+
+      this.elementListScrollToTop(
+        unitKey as TimePickerDescriptorUnit,
+        Number(this._formattedTime[unitKey])
+      );
     }
   }
 
