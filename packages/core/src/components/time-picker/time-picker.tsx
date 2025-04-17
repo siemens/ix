@@ -231,7 +231,7 @@ export class TimePicker {
     const formattedTimeOld = this._formattedTime;
     this._formattedTime = this.getFormattedTime();
 
-    this.updateScrollPositionsValueChangeBased(formattedTimeOld);
+    this.updateScrollPositions(formattedTimeOld);
 
     if (!this._time) {
       return;
@@ -366,24 +366,20 @@ export class TimePicker {
     }
   }
 
-  private updateScrollPositions() {
-    for (const key in this._formattedTime) {
-      const unitKey = key as keyof TimeOutputFormat;
-
-      this.elementListScrollToTop(
-        unitKey as TimePickerDescriptorUnit,
-        Number(this._formattedTime[unitKey])
-      );
-    }
-  }
-
-  private updateScrollPositionsValueChangeBased(
-    formattedTimeOld: TimeOutputFormat
+  /**
+   * Updates all scroll positions of the time picker elements
+   * Updates only the elements that have changed if `formattedTimeOld` is provided
+   */
+  private updateScrollPositions(
+    formattedTimeOld: TimeOutputFormat | undefined = undefined
   ) {
     for (const key in this._formattedTime) {
       const unitKey = key as keyof TimeOutputFormat;
 
-      if (this._formattedTime[unitKey] !== formattedTimeOld[unitKey]) {
+      if (
+        !formattedTimeOld ||
+        this._formattedTime[unitKey] !== formattedTimeOld[unitKey]
+      ) {
         this.elementListScrollToTop(
           unitKey as TimePickerDescriptorUnit,
           Number(this._formattedTime[unitKey])
