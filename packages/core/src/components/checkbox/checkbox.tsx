@@ -24,6 +24,9 @@ import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 
+/**
+ * @form-ready
+ */
 @Component({
   tag: 'ix-checkbox',
   styleUrl: 'checkbox.scss',

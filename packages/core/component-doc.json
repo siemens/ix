@@ -2545,7 +2545,11 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -2784,7 +2788,11 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -4677,6 +4685,9 @@
       "usage": {},
       "docs": "",
       "docsTags": [
+        {
+          "name": "form-ready"
+        },
         {
           "name": "slot",
           "text": "start - Element will be displayed at the start of the input"
@@ -9881,6 +9892,9 @@
       "docs": "",
       "docsTags": [
         {
+          "name": "form-ready"
+        },
+        {
           "name": "slot",
           "text": "start - Element will be displayed at the start of the input"
         },
@@ -14179,6 +14193,9 @@
       "docs": "",
       "docsTags": [
         {
+          "name": "form-ready"
+        },
+        {
           "name": "slot",
           "text": "start - Element will be displayed at the start of the input"
         },
@@ -15989,7 +16006,11 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -16208,7 +16229,11 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -16516,7 +16541,11 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-pagination"
@@ -18581,7 +18610,11 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -20004,7 +20037,11 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [

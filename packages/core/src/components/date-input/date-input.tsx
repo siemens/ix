@@ -44,6 +44,8 @@ export type DateInputValidityState = {
 };
 
 /**
+ * @form-ready
+ *
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */

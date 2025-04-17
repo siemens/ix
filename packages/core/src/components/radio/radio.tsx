@@ -27,6 +27,9 @@ import {
 } from '../utils/input';
 import { a11yBoolean } from '../utils/a11y';
 
+/**
+ * @form-ready
+ */
 @Component({
   tag: 'ix-radio',
   styleUrl: 'radio.scss',

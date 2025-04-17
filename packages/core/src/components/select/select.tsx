@@ -39,6 +39,9 @@ import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
 
+/**
+ * @form-ready
+ */
 @Component({
   tag: 'ix-select',
   styleUrl: 'select.scss',

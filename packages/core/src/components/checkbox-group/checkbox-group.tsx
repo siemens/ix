@@ -16,6 +16,9 @@ import {
 import { IxComponent } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
 
+/**
+ * @form-ready
+ */
 @Component({
   tag: 'ix-checkbox-group',
   styleUrl: 'checkbox-group.scss',

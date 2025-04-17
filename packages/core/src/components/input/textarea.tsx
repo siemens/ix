@@ -34,6 +34,9 @@ export type TextareaResizeBehavior =
   | 'vertical'
   | 'none';
 
+/**
+ * @form-ready
+ */
 @Component({
   tag: 'ix-textarea',
   styleUrl: 'textarea.scss',
