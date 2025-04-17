@@ -1,5 +1,12 @@
 # @siemens/ix-angular
 
+## 3.0.0-alpha.5
+
+### Patch Changes
+
+- Updated dependencies [[`c7456367e276c31a9eb6c7cea8270857b5810360`](https://github.com/siemens/ix/commit/c7456367e276c31a9eb6c7cea8270857b5810360), [`009519637b668f74f8abae7bd682c67045d2876f`](https://github.com/siemens/ix/commit/009519637b668f74f8abae7bd682c67045d2876f), [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b), [`74ddf7d9931d3e7d123d34f42718a47b98de42a9`](https://github.com/siemens/ix/commit/74ddf7d9931d3e7d123d34f42718a47b98de42a9), [`c7ce5be2cf5707b980d484e60dcc7dfa1814656b`](https://github.com/siemens/ix/commit/c7ce5be2cf5707b980d484e60dcc7dfa1814656b), [`e4a8d713614c2a5f4850d26a81655756ad48e76d`](https://github.com/siemens/ix/commit/e4a8d713614c2a5f4850d26a81655756ad48e76d), [`5cec43bb4c627642721d65bb60a3c00a94072c80`](https://github.com/siemens/ix/commit/5cec43bb4c627642721d65bb60a3c00a94072c80), [`00b3988f7955d97080653544daf94fbd215ca0fb`](https://github.com/siemens/ix/commit/00b3988f7955d97080653544daf94fbd215ca0fb), [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b), [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b), [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b), [`5cec43bb4c627642721d65bb60a3c00a94072c80`](https://github.com/siemens/ix/commit/5cec43bb4c627642721d65bb60a3c00a94072c80)]:
+  - @siemens/ix@3.0.0-alpha.5
+
 ## 3.0.0-alpha.4
 
 ### Patch Changes

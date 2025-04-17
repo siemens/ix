@@ -1,5 +1,41 @@
 # @siemens/ix
 
+## 3.0.0-alpha.5
+
+### Major Changes
+
+- [#1817](https://github.com/siemens/ix/pull/1817) [`e4a8d713614c2a5f4850d26a81655756ad48e76d`](https://github.com/siemens/ix/commit/e4a8d713614c2a5f4850d26a81655756ad48e76d) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - **ix-content**: add padding to right side of content area
+
+- [#1831](https://github.com/siemens/ix/pull/1831) [`5cec43bb4c627642721d65bb60a3c00a94072c80`](https://github.com/siemens/ix/commit/5cec43bb4c627642721d65bb60a3c00a94072c80) Thanks [@danielleroux](https://github.com/danielleroux)! - **ix-tree**: Fix typo of `isExpanded` of `nodeToggled`-event.
+
+- [#1830](https://github.com/siemens/ix/pull/1830) [`00b3988f7955d97080653544daf94fbd215ca0fb`](https://github.com/siemens/ix/commit/00b3988f7955d97080653544daf94fbd215ca0fb) Thanks [@danielleroux](https://github.com/danielleroux)! - Replace button group class `.btn-group` with `.ix-button-group`
+
+### Minor Changes
+
+- [#1836](https://github.com/siemens/ix/pull/1836) [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b) Thanks [@danielleroux](https://github.com/danielleroux)! - Introduce `required` property for **ix-radio**. To make the **ix-radio-group** required at least one **ix-radio** must be `required`
+
+### Patch Changes
+
+- [#1818](https://github.com/siemens/ix/pull/1818) [`c7456367e276c31a9eb6c7cea8270857b5810360`](https://github.com/siemens/ix/commit/c7456367e276c31a9eb6c7cea8270857b5810360) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add drop shadow to **ix-datetime-picker**.
+
+  Fixes #1299.
+
+- [#1828](https://github.com/siemens/ix/pull/1828) [`009519637b668f74f8abae7bd682c67045d2876f`](https://github.com/siemens/ix/commit/009519637b668f74f8abae7bd682c67045d2876f) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Handle `null` gracefully in **ix-textarea**.
+
+  Fixes #1789.
+
+- [#1836](https://github.com/siemens/ix/pull/1836) [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent required **ix-number-input** from becoming invalid if value is zero
+
+- [#1840](https://github.com/siemens/ix/pull/1840) [`74ddf7d9931d3e7d123d34f42718a47b98de42a9`](https://github.com/siemens/ix/commit/74ddf7d9931d3e7d123d34f42718a47b98de42a9) Thanks [@danielleroux](https://github.com/danielleroux)! - Align colors of **ix-toggle-button** (primary only) with the latest figma specs
+
+- [#1838](https://github.com/siemens/ix/pull/1838) [`c7ce5be2cf5707b980d484e60dcc7dfa1814656b`](https://github.com/siemens/ix/commit/c7ce5be2cf5707b980d484e60dcc7dfa1814656b) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `z-index` to **ix-validation-tooltip** to prevent overlapping labels
+
+- [#1836](https://github.com/siemens/ix/pull/1836) [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b) Thanks [@danielleroux](https://github.com/danielleroux)! - min-length of **ix-input** is now working as expected
+
+- [#1836](https://github.com/siemens/ix/pull/1836) [`9c4127cb14bd075c7e134e7c10673b51df2b993b`](https://github.com/siemens/ix/commit/9c4127cb14bd075c7e134e7c10673b51df2b993b) Thanks [@danielleroux](https://github.com/danielleroux)! - Show `required` validation error only after first interaction (pointer/focus) with **ix-checkbox**, **ix-radio** and **ix-toggle**
+
+- [#1831](https://github.com/siemens/ix/pull/1831) [`5cec43bb4c627642721d65bb60a3c00a94072c80`](https://github.com/siemens/ix/commit/5cec43bb4c627642721d65bb60a3c00a94072c80) Thanks [@danielleroux](https://github.com/danielleroux)! - Avoid leaking event listener of **ix-tree**
+
 ## 3.0.0-alpha.4
 
 ### Minor Changes
