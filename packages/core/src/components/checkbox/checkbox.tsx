@@ -10,19 +10,19 @@
 import {
   AttachInternals,
   Component,
+  Element,
   Event,
   EventEmitter,
+  Fragment,
+  h,
   Host,
+  Method,
   Prop,
   Watch,
-  h,
-  Element,
-  Method,
-  Fragment,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-checkbox',
@@ -82,6 +82,13 @@ export class Checkbox implements IxFormComponent<string> {
    */
   @Event() valueChange!: EventEmitter<string>;
 
+  /**
+   * Event emitted when the checkbox is blurred
+   */
+  @Event() ixBlur!: EventEmitter<void>;
+
+  private touched = false;
+
   private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
     checkboxRef.checked = this.checked;
   });
@@ -93,6 +100,7 @@ export class Checkbox implements IxFormComponent<string> {
 
   @Watch('checked')
   onCheckedChange() {
+    this.touched = true;
     this.updateFormInternalValue();
   }
 
@@ -123,6 +131,12 @@ export class Checkbox implements IxFormComponent<string> {
   @Method()
   getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return Promise.resolve(this.formInternals.form);
+  }
+
+  /** @internal */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
   }
 
   @HookValidationLifecycle()
@@ -174,10 +188,13 @@ export class Checkbox implements IxFormComponent<string> {
           checked: this.checked,
           indeterminate: this.indeterminate,
         }}
+        onFocus={() => (this.touched = true)}
+        onBlur={() => this.ixBlur.emit()}
       >
         <label>
           <input
             aria-checked={a11yBoolean(this.checked)}
+            required={this.required}
             disabled={this.disabled}
             checked={this.checked}
             ref={this.inputRef}

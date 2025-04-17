@@ -1072,6 +1072,7 @@ const sidebars: SidebarsConfig = {
 
   guidelines: [
     'guidelines/overview',
+    'guidelines/designprinciples',
     'guidelines/accessibility',
     {
       type: 'category',

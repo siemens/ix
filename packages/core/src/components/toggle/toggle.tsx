@@ -20,7 +20,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
-import { IxFormComponent } from '../utils/input';
+import { IxFormComponent, HookValidationLifecycle } from '../utils/input';
 
 @Component({
   tag: 'ix-toggle',
@@ -93,6 +93,13 @@ export class Toggle implements IxFormComponent<string> {
   /** @internal */
   @Event() valueChange!: EventEmitter<string>;
 
+  /**
+   * An event will be dispatched each time the toggle is blurred.
+   */
+  @Event() ixBlur!: EventEmitter<void>;
+
+  private touched = false;
+
   onCheckedChange(newChecked: boolean) {
     if (this.disabled) {
       return;
@@ -129,6 +136,7 @@ export class Toggle implements IxFormComponent<string> {
 
   @Watch('checked')
   watchCheckedChange() {
+    this.touched = true;
     this.updateFormInternalValue();
   }
 
@@ -142,6 +150,17 @@ export class Toggle implements IxFormComponent<string> {
   @Method()
   getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return Promise.resolve(this.formInternals.form);
+  }
+
+  /** @internal */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
+  }
+
+  @HookValidationLifecycle()
+  updateClassMappings() {
+    /** This function is intentionally empty */
   }
 
   render() {
@@ -159,6 +178,8 @@ export class Toggle implements IxFormComponent<string> {
         class={{
           disabled: this.disabled,
         }}
+        onBlur={() => this.ixBlur.emit()}
+        onFocus={() => (this.touched = true)}
       >
         <label class="wrapper">
           <button

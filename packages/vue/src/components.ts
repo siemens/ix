@@ -261,7 +261,8 @@ export const IxCheckbox = /*@__PURE__*/ defineContainer<JSX.IxCheckbox, JSX.IxCh
   'indeterminate',
   'required',
   'checkedChange',
-  'valueChange'
+  'valueChange',
+  'ixBlur'
 ],
 'checked', 'checkedChange');
 
@@ -274,7 +275,8 @@ export const IxCheckboxGroup = /*@__PURE__*/ defineContainer<JSX.IxCheckboxGroup
   'infoText',
   'validText',
   'warningText',
-  'showTextAsTooltip'
+  'showTextAsTooltip',
+  'required'
 ]);
 
 
@@ -867,6 +869,7 @@ export const IxNumberInput = /*@__PURE__*/ defineContainer<JSX.IxNumberInput, JS
   'max',
   'allowedCharactersPattern',
   'showStepperButtons',
+  'step',
   'valueChange',
   'validityStateChange',
   'ixBlur'
@@ -941,8 +944,10 @@ export const IxRadio = /*@__PURE__*/ defineContainer<JSX.IxRadio>('ix-radio', de
   'label',
   'disabled',
   'checked',
+  'required',
   'checkedChange',
-  'valueChange'
+  'valueChange',
+  'ixBlur'
 ]);
 
 
@@ -956,6 +961,7 @@ export const IxRadioGroup = /*@__PURE__*/ defineContainer<JSX.IxRadioGroup>('ix-
   'validText',
   'showTextAsTooltip',
   'direction',
+  'required',
   'valueChange'
 ]);
 
@@ -1140,7 +1146,8 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
   'hideText',
   'required',
   'checkedChange',
-  'valueChange'
+  'valueChange',
+  'ixBlur'
 ]);
 
 

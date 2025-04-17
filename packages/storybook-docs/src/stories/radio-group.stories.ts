@@ -6,10 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
-import { genericRender, makeArgTypes } from './utils/generic-render';
 import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/web-components';
+import { genericRender } from './utils/generic-render';
 
 type Element = Components.IxRadio & {
   defaultSlot: string;
@@ -32,10 +32,7 @@ const radioRender = (args: Element) => {
 };
 
 const radioGroupRender = (args: GroupElement) => {
-  const container = genericRender('ix-radio-group', args);
-  const radioGroup = container.querySelector(
-    'ix-radio-group'
-  ) as HTMLIxRadioGroupElement;
+  const radioGroup = document.createElement('ix-radio-group');
   radioGroup.setAttribute('label', args.label || 'Group');
 
   const radio1 = document.createElement('ix-radio');
@@ -51,20 +48,14 @@ const radioGroupRender = (args: GroupElement) => {
 
   radioGroup.appendChild(radio1);
   radioGroup.appendChild(radio2);
-  container.appendChild(radioGroup);
 
-  return container;
+  return radioGroup;
 };
 
 const meta = {
-  title: 'Example/Radio',
+  title: 'Example/Radio/Group',
   tags: [],
   render: (args) => radioRender(args),
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-radio', {
-    validation: {
-      control: { type: 'select' },
-    },
-  }),
   parameters: {
     design: {
       type: 'figma',
@@ -74,20 +65,21 @@ const meta = {
 } satisfies Meta<Element>;
 
 export default meta;
-type Story = StoryObj<Element>;
+type Story = StoryObj<GroupElement>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
+  render: (args) => radioGroupRender(args),
   args: {
-    disabled: false,
-    label: 'Radio',
-    required: true,
+    label: 'Radio Group',
   },
+  argTypes: {},
 };
 
-export const Disabled: Story = {
+export const Required: Story = {
+  render: (args) => radioGroupRender(args),
   args: {
-    disabled: true,
-    label: 'Radio',
+    label: 'Radio Group',
+    required: true,
   },
+  argTypes: {},
 };

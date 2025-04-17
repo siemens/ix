@@ -1,0 +1,40 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+.NewsPill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1875rem 0.625rem;
+  gap: 0.25rem;
+
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--theme-color-gradient-effect-2, rgba(0, 204, 204, 0.75)) 0%,
+    var(--theme-color-gradient-effect-1, rgba(0, 255, 185, 0.75)) 100%
+  );
+
+  color: var(--theme-color-primary--contrast);
+  cursor: pointer;
+
+  text-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 1415px) {
+  .NewsPill {
+    display: none;
+  }
+}
+
+.NoTextDecoration {
+  text-decoration: none !important;
+}
