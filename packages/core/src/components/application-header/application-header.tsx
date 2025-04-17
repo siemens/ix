@@ -63,6 +63,8 @@ export class ApplicationHeader {
 
   /**
    * Event emitted when the app switch button is clicked
+   *
+   * @since 3.0.0
    */
   @Event() openAppSwitch!: EventEmitter<void>;
 
