@@ -27,10 +27,6 @@ import {
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 
-/**
- * @since 2.6.0
- * @form-ready 2.6.0
- */
 @Component({
   tag: 'ix-radio-group',
   styleUrl: 'radio-group.scss',

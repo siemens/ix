@@ -23,9 +23,6 @@ import {
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
-/**
- * @since 1.5.0
- */
 @Component({
   tag: 'ix-pagination',
   styleUrl: 'pagination.scss',

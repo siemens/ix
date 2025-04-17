@@ -98,9 +98,6 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
-    /**
-     * @since 1.6.0
-     */
     interface IxActionCard {
         /**
           * Card heading
@@ -123,9 +120,6 @@ export namespace Components {
          */
         "variant": ActionCardVariant;
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxApplication {
         /**
           * Define application switch configuration
@@ -155,7 +149,6 @@ export namespace Components {
         "name"?: string;
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
-          * @since 2.5.0
          */
         "showMenu"?: boolean;
     }
@@ -164,13 +157,9 @@ export namespace Components {
     interface IxApplicationSwitchModal {
         "config"?: AppSwitchConfiguration;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxAvatar {
         /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
-          * @since 2.1.0
          */
         "extra"?: string;
         /**
@@ -183,7 +172,6 @@ export namespace Components {
         "initials"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
-          * @since 2.1.0
          */
         "username"?: string;
     }
@@ -213,7 +201,6 @@ export namespace Components {
         "collapsed": boolean;
         /**
           * Optional icon to be displayed next to the header label
-          * @since 1.5.0
          */
         "icon"?: string;
         /**
@@ -222,19 +209,16 @@ export namespace Components {
         "label"?: string;
         /**
           * Secondary label inside blind header
-          * @since 2.0.0
          */
         "sublabel"?: string;
         /**
           * Blind variant
-          * @since 2.0.0
          */
         "variant": BlindVariant;
     }
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @since 2.0.0
          */
         "ariaLabelPreviousButton": string;
         /**
@@ -281,7 +265,6 @@ export namespace Components {
         "iconSize": '12' | '16' | '24';
         /**
           * Loading button
-          * @since 2.0.0
          */
         "loading": boolean;
         /**
@@ -294,16 +277,12 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Button variant
-          * @since 2.3.0 - variant danger
          */
         "variant": ButtonVariant;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCard {
         /**
-          * @since 2.1.0
+          * Show card in selected state
          */
         "selected": boolean;
         /**
@@ -311,24 +290,14 @@ export namespace Components {
          */
         "variant": CardVariant;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCardAccordion {
         /**
           * Collapse the card
-          * @since 2.1.0
          */
         "collapse": boolean;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCardContent {
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCardList {
         /**
           * Collapse the list
@@ -336,7 +305,6 @@ export namespace Components {
         "collapse": boolean;
         /**
           * Hide the show all button
-          * @since 2.2.0
          */
         "hideShowAll": boolean;
         /**
@@ -368,9 +336,6 @@ export namespace Components {
          */
         "suppressOverflowHandling": boolean;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCardTitle {
     }
     interface IxCategoryFilter {
@@ -427,7 +392,6 @@ export namespace Components {
         "repeatCategories": boolean;
         /**
           * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
-          * @since 2.2.0
          */
         "staticOperator"?: LogicalFilterOperator;
         /**
@@ -436,10 +400,6 @@ export namespace Components {
         "suggestions"?: string[];
         "tmpDisableScrollIntoView": boolean;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxCheckbox {
         /**
           * Checked state of the checkbox component
@@ -473,10 +433,6 @@ export namespace Components {
          */
         "value": string;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxCheckboxGroup {
         /**
           * Alignment of the checkboxes in the group
@@ -556,9 +512,6 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxCol {
         /**
           * Size of the column
@@ -577,9 +530,6 @@ export namespace Components {
          */
         "sizeSm"?: ColumnSize;
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxContent {
     }
     interface IxContentHeader {
@@ -612,9 +562,6 @@ export namespace Components {
          */
         "itemName": string;
     }
-    /**
-     * @since 2.6.0
-     */
     interface IxCustomField {
         /**
           * Show text below the field component which show additional information
@@ -649,9 +596,6 @@ export namespace Components {
          */
         "warningText"?: string;
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxDateDropdown {
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
@@ -667,7 +611,6 @@ export namespace Components {
         "dateRangeOptions": DateDropdownOption[];
         /**
           * Disable the button that opens the dropdown containing the date picker.
-          * @since 2.3.0
          */
         "disabled": boolean;
         /**
@@ -705,7 +648,6 @@ export namespace Components {
         "loading": boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 2.6.0
          */
         "locale"?: string;
         /**
@@ -740,14 +682,9 @@ export namespace Components {
         "variant": ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.6.0
          */
         "weekStartIndex": number;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxDateInput {
         /**
           * disabled attribute
@@ -794,7 +731,6 @@ export namespace Components {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 2.6.0
          */
         "locale"?: string;
         /**
@@ -846,7 +782,6 @@ export namespace Components {
         "format": string;
         /**
           * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "from": string | undefined;
         /**
@@ -855,22 +790,18 @@ export namespace Components {
         "getCurrentDate": () => Promise<{ from: string; to: string; }>;
         /**
           * Text of date select button
-          * @since 2.1.0
          */
         "i18nDone": string;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 2.1.0
          */
         "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "maxDate": string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "minDate": string;
         /**
@@ -885,13 +816,11 @@ export namespace Components {
         "standaloneAppearance": boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "to": string | undefined;
         "today": string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.1.0
          */
         "weekStartIndex": number;
     }
@@ -909,17 +838,14 @@ export namespace Components {
     interface IxDatetimePicker {
         /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 1.1.0
          */
         "dateFormat": string;
         /**
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "from"?: string;
         /**
           * Text of date select button
-          * @since 2.1.0
          */
         "i18nDone": string;
         /**
@@ -929,17 +855,14 @@ export namespace Components {
         "i18nTime": string;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 2.1.0
          */
         "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "minDate"?: string;
         /**
@@ -961,7 +884,6 @@ export namespace Components {
         /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
-          * @since 1.1.0
          */
         "showTimeReference": boolean;
         /**
@@ -971,12 +893,10 @@ export namespace Components {
         "showWeekNumbers": boolean;
         /**
           * Select time with format string
-          * @since 1.1.0
          */
         "time"?: string;
         /**
           * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 1.1.0
          */
         "timeFormat": string;
         /**
@@ -985,18 +905,13 @@ export namespace Components {
         "timeReference"?: 'AM' | 'PM';
         /**
           * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "to"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.1.0
          */
         "weekStartIndex": number;
     }
-    /**
-     * @since 1.4.0
-     */
     interface IxDivider {
     }
     interface IxDrawer {
@@ -1072,7 +987,6 @@ export namespace Components {
         "show": boolean;
         /**
           * Suppress the automatic placement of the dropdown.
-          * @since 2.0.0
          */
         "suppressAutomaticPlacement": boolean;
         "suppressOverflowBehavior": boolean;
@@ -1085,13 +999,9 @@ export namespace Components {
          */
         "updatePosition": () => Promise<void>;
     }
-    /**
-     * @since 1.3.0
-     */
     interface IxDropdownButton {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-          * @since 2.1.0
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
@@ -1116,7 +1026,6 @@ export namespace Components {
         "outline": boolean;
         /**
           * Placement of the dropdown
-          * @since 2.0.0
          */
         "placement"?: AlignedPlacement;
         /**
@@ -1124,9 +1033,6 @@ export namespace Components {
          */
         "variant": DropdownButtonVariant;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxDropdownHeader {
         /**
           * Display name of the header
@@ -1159,14 +1065,8 @@ export namespace Components {
         "label"?: string;
         "suppressChecked": boolean;
     }
-    /**
-     * @since 1.4.0
-     */
     interface IxDropdownQuickActions {
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxEmptyState {
         /**
           * Optional empty state action
@@ -1229,7 +1129,6 @@ export namespace Components {
     interface IxExpandingSearch {
         /**
           * If true the search field will fill all available horizontal space of it's parent container when expanded.
-          * @since 1.6.0
          */
         "fullWidth": boolean;
         /**
@@ -1338,14 +1237,12 @@ export namespace Components {
         "disabled": boolean;
         /**
           * If true the filter chip will be in readonly mode
-          * @since 2.0.0
          */
         "readonly": boolean;
     }
     interface IxFlipTile {
         /**
           * Height interpreted as REM
-          * @since 1.5.0
          */
         "height": number | 'auto';
         /**
@@ -1359,7 +1256,6 @@ export namespace Components {
         "state"?: FlipTileState;
         /**
           * Width interpreted as REM
-          * @since 1.5.0
          */
         "width": number | 'auto';
     }
@@ -1460,7 +1356,6 @@ export namespace Components {
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
-          * @since 2.1.0
          */
         "a11yLabel"?: string;
         /**
@@ -1481,7 +1376,6 @@ export namespace Components {
         "iconColor"?: string;
         /**
           * Loading button
-          * @since 2.0.0
          */
         "loading": boolean;
         /**
@@ -1502,13 +1396,9 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Variant of button
-          * @since 2.3.0 - variant danger
          */
         "variant": IconButtonVariant;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxIconToggleButton {
         /**
           * Disable the button
@@ -1543,10 +1433,6 @@ export namespace Components {
          */
         "variant": ButtonVariant1;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxInput {
         /**
           * The allowed characters pattern for the text field.
@@ -1640,14 +1526,11 @@ export namespace Components {
         "warningText"?: string;
     }
     /**
-     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * @deprecated Will be removed with 4.0.0
      * Use the 'ix-input' component instead
      */
     interface IxInputGroup {
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxKeyValue {
         /**
           * Optional key value icon
@@ -1666,9 +1549,6 @@ export namespace Components {
          */
         "value"?: string;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxKeyValueList {
         /**
           * Optional striped key value list style
@@ -1682,9 +1562,6 @@ export namespace Components {
         "unit"?: string;
         "value"?: string | number;
     }
-    /**
-     * @since 2.6.0
-     */
     interface IxLayoutAuto {
         /**
           * Defines the layout of the form.
@@ -1694,9 +1571,6 @@ export namespace Components {
     columns: number;
   }[];
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxLayoutGrid {
         /**
           * Overwrite the default number of columns. Choose between 2 and 12 columns.
@@ -1711,9 +1585,6 @@ export namespace Components {
          */
         "noMargin": boolean;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxLinkButton {
         /**
           * Disable the link button
@@ -1758,7 +1629,6 @@ export namespace Components {
         /**
           * Change the visibility of the sidebar
           * @param show new visibility state
-          * @since 1.6.0
          */
         "toggleSidebar": (show?: boolean) => Promise<void>;
     }
@@ -1826,7 +1696,6 @@ export namespace Components {
         "showSettings": boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
-          * @since 2.2.0
          */
         "startExpanded": boolean;
         /**
@@ -1898,17 +1767,14 @@ export namespace Components {
         "i18nLogout": string;
         /**
           * Display a avatar image
-          * @since 1.4.0
          */
         "image"?: string;
         /**
           * Display the initials of the user. Will be overwritten by image
-          * @since 1.4.0
          */
         "initials"?: string;
         /**
           * Control the visibility of the logout button
-          * @since 2.1.0
          */
         "showLogoutButton": boolean;
         /**
@@ -1927,9 +1793,6 @@ export namespace Components {
          */
         "label"?: string;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxMenuCategory {
         /**
           * Icon of the category
@@ -1987,7 +1850,6 @@ export namespace Components {
         "isCategory": boolean;
         /**
           * Label of the menu item. Will also be used as tooltip text
-          * @since 2.2.0
          */
         "label"?: string;
         /**
@@ -2053,7 +1915,6 @@ export namespace Components {
         "closeModal": <T = any>(reason: T) => Promise<void>;
         /**
           * Dismiss modal on backdrop click
-          * @since 2.0.0
          */
         "closeOnBackdropClick": boolean;
         /**
@@ -2070,23 +1931,13 @@ export namespace Components {
         "showModal": () => Promise<void>;
         /**
           * Modal size
-          * @since 2.0.0
          */
         "size": IxModalSize;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxModalContent {
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxModalFooter {
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxModalHeader {
         /**
           * Hide the close button
@@ -2103,10 +1954,6 @@ export namespace Components {
     }
     interface IxModalLoading {
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxNumberInput {
         /**
           * The allowed characters pattern for the input field
@@ -2200,9 +2047,6 @@ export namespace Components {
          */
         "warningText"?: string;
     }
-    /**
-     * @since 1.5.0
-     */
     interface IxPagination {
         /**
           * Advanced mode
@@ -2237,9 +2081,6 @@ export namespace Components {
          */
         "showItemCount": boolean;
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxPane {
         /**
           * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
@@ -2282,9 +2123,6 @@ export namespace Components {
          */
         "variant": 'floating' | 'inline';
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxPaneLayout {
         /**
           * Set the default border state for all panes in the layout
@@ -2337,13 +2175,9 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxPushCard {
         /**
           * Collapse the card
-          * @since 2.1.0
          */
         "collapse": boolean;
         /**
@@ -2367,10 +2201,6 @@ export namespace Components {
          */
         "variant": PushCardVariant;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxRadio {
         /**
           * Checked state of the radio component
@@ -2400,10 +2230,6 @@ export namespace Components {
          */
         "value"?: string;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxRadioGroup {
         /**
           * Alignment of the radio buttons in the group
@@ -2448,14 +2274,8 @@ export namespace Components {
          */
         "warningText"?: string;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxRow {
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxSelect {
         /**
           * Show clear button
@@ -2467,12 +2287,10 @@ export namespace Components {
         "disabled": boolean;
         /**
           * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
-          * @since 2.7.0
          */
         "dropdownMaxWidth"?: string;
         /**
           * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
-          * @since 2.7.0
          */
         "dropdownWidth"?: string;
         /**
@@ -2491,17 +2309,14 @@ export namespace Components {
         "hasValidValue": () => Promise<boolean>;
         /**
           * Helper text for the select component
-          * @since 2.6.0
          */
         "helperText"?: string;
         /**
           * Hide list header
-          * @since 1.5.0
          */
         "hideListHeader": boolean;
         /**
           * Information inside of dropdown if no items where found with current filter text
-          * @since 1.5.0
          */
         "i18nNoMatches": string;
         /**
@@ -2518,12 +2333,10 @@ export namespace Components {
         "i18nSelectListHeader": string;
         /**
           * Info text for the select component
-          * @since 2.6.0
          */
         "infoText"?: string;
         /**
           * Error text for the select component
-          * @since 2.6.0
          */
         "invalidText"?: string;
         /**
@@ -2532,7 +2345,6 @@ export namespace Components {
         "isTouched": () => Promise<boolean>;
         /**
           * Label for the select component
-          * @since 2.6.0
          */
         "label"?: string;
         /**
@@ -2541,7 +2353,6 @@ export namespace Components {
         "mode": 'single' | 'multiple';
         /**
           * A string that represents the element's name attribute, containing a name that identifies the element when submitting the form.
-          * @since 2.6.0
          */
         "name"?: string;
         /**
@@ -2550,27 +2361,22 @@ export namespace Components {
         "readonly": boolean;
         /**
           * A Boolean attribute indicating that an option with a non-empty string value must be selected
-          * @since 2.6.0
          */
         "required": boolean;
         /**
           * Show helper, error, info, warning text as tooltip
-          * @since 2.6.0
          */
         "showTextAsTooltip"?: boolean;
         /**
           * Valid text for the select component
-          * @since 2.6.0
          */
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @since 2.0.0
          */
         "value": string | string[];
         /**
           * Warning text for the select component
-          * @since 2.6.0
          */
         "warningText"?: string;
     }
@@ -2594,9 +2400,6 @@ export namespace Components {
          */
         "value": string;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxSlider {
         /**
           * Show control as disabled
@@ -2650,7 +2453,6 @@ export namespace Components {
     interface IxSplitButton {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-          * @since 2.3.0
          */
         "closeBehavior": CloseBehavior;
         /**
@@ -2742,10 +2544,6 @@ export namespace Components {
          */
         "small": boolean;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxTextarea {
         /**
           * Determines if the textarea field is disabled.
@@ -2855,7 +2653,6 @@ export namespace Components {
         "corners": TimePickerCorners;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 1.1.0
          */
         "format": string;
         /**
@@ -2880,17 +2677,14 @@ export namespace Components {
         "standaloneAppearance": boolean;
         /**
           * Text of date select button
-          * @since 1.1.0
          */
         "textSelectTime": string;
         /**
           * Text for top label
-          * @since 2.1.0
          */
         "textTime": string;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @since 1.1.0
          */
         "time": string;
         /**
@@ -2934,9 +2728,6 @@ export namespace Components {
          */
         "showToast": (config: ToastConfig) => Promise<ShowToastResult>;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxToggle {
         /**
           * Whether the slide-toggle element is checked or not.
@@ -2982,9 +2773,6 @@ export namespace Components {
          */
         "value": string;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxToggleButton {
         /**
           * Disable the button
@@ -3015,9 +2803,6 @@ export namespace Components {
          */
         "variant": ButtonVariant1;
     }
-    /**
-     * @since 1.4.0
-     */
     interface IxTooltip {
         "animationFrame": boolean;
         /**
@@ -3032,7 +2817,6 @@ export namespace Components {
         "interactive": boolean;
         /**
           * Initial placement of the tooltip. If the selected placement doesn't have enough space, the tooltip will be repositioned to another location.
-          * @since 1.5.0
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
         "showDelay": number;
@@ -3085,9 +2869,6 @@ export namespace Components {
          */
         "text"?: string;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxTypography {
         /**
           * Display text bold
@@ -3171,7 +2952,6 @@ export namespace Components {
         "placement": Side;
         /**
           * Suppress the automatic placement of the dropdown.
-          * @since 2.0.0
          */
         "suppressAutomaticPlacement": boolean;
     }
@@ -3461,18 +3241,12 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxActionCardElement extends Components.IxActionCard, HTMLStencilElement {
     }
     var HTMLIxActionCardElement: {
         prototype: HTMLIxActionCardElement;
         new (): HTMLIxActionCardElement;
     };
-    /**
-     * @since 2.1.0
-     */
     interface HTMLIxApplicationElement extends Components.IxApplication, HTMLStencilElement {
     }
     var HTMLIxApplicationElement: {
@@ -3509,9 +3283,6 @@ declare global {
         prototype: HTMLIxApplicationSwitchModalElement;
         new (): HTMLIxApplicationSwitchModalElement;
     };
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxAvatarElement extends Components.IxAvatar, HTMLStencilElement {
     }
     var HTMLIxAvatarElement: {
@@ -3582,9 +3353,6 @@ declare global {
         prototype: HTMLIxButtonElement;
         new (): HTMLIxButtonElement;
     };
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxCardElement extends Components.IxCard, HTMLStencilElement {
     }
     var HTMLIxCardElement: {
@@ -3594,9 +3362,6 @@ declare global {
     interface HTMLIxCardAccordionElementEventMap {
         "accordionExpand": CardAccordionExpandChangeEvent;
     }
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxCardAccordionElement extends Components.IxCardAccordion, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCardAccordionElementEventMap>(type: K, listener: (this: HTMLIxCardAccordionElement, ev: IxCardAccordionCustomEvent<HTMLIxCardAccordionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3611,9 +3376,6 @@ declare global {
         prototype: HTMLIxCardAccordionElement;
         new (): HTMLIxCardAccordionElement;
     };
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxCardContentElement extends Components.IxCardContent, HTMLStencilElement {
     }
     var HTMLIxCardContentElement: {
@@ -3629,9 +3391,6 @@ declare global {
     nativeEvent: MouseEvent;
   };
     }
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCardListElementEventMap>(type: K, listener: (this: HTMLIxCardListElement, ev: IxCardListCustomEvent<HTMLIxCardListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3646,9 +3405,6 @@ declare global {
         prototype: HTMLIxCardListElement;
         new (): HTMLIxCardListElement;
     };
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxCardTitleElement extends Components.IxCardTitle, HTMLStencilElement {
     }
     var HTMLIxCardTitleElement: {
@@ -3680,10 +3436,6 @@ declare global {
         "valueChange": string;
         "ixBlur": void;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface HTMLIxCheckboxElement extends Components.IxCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3698,10 +3450,6 @@ declare global {
         prototype: HTMLIxCheckboxElement;
         new (): HTMLIxCheckboxElement;
     };
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface HTMLIxCheckboxGroupElement extends Components.IxCheckboxGroup, HTMLStencilElement {
     }
     var HTMLIxCheckboxGroupElement: {
@@ -3725,18 +3473,12 @@ declare global {
         prototype: HTMLIxChipElement;
         new (): HTMLIxChipElement;
     };
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxColElement extends Components.IxCol, HTMLStencilElement {
     }
     var HTMLIxColElement: {
         prototype: HTMLIxColElement;
         new (): HTMLIxColElement;
     };
-    /**
-     * @since 2.1.0
-     */
     interface HTMLIxContentElement extends Components.IxContent, HTMLStencilElement {
     }
     var HTMLIxContentElement: {
@@ -3772,9 +3514,6 @@ declare global {
         prototype: HTMLIxCssGridItemElement;
         new (): HTMLIxCssGridItemElement;
     };
-    /**
-     * @since 2.6.0
-     */
     interface HTMLIxCustomFieldElement extends Components.IxCustomField, HTMLStencilElement {
     }
     var HTMLIxCustomFieldElement: {
@@ -3784,9 +3523,6 @@ declare global {
     interface HTMLIxDateDropdownElementEventMap {
         "dateRangeChange": DateRangeChangeEvent;
     }
-    /**
-     * @since 2.1.0
-     */
     interface HTMLIxDateDropdownElement extends Components.IxDateDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDateDropdownElementEventMap>(type: K, listener: (this: HTMLIxDateDropdownElement, ev: IxDateDropdownCustomEvent<HTMLIxDateDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3807,10 +3543,6 @@ declare global {
         "ixFocus": void;
         "ixBlur": void;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface HTMLIxDateInputElement extends Components.IxDateInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDateInputElementEventMap>(type: K, listener: (this: HTMLIxDateInputElement, ev: IxDateInputCustomEvent<HTMLIxDateInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3869,9 +3601,6 @@ declare global {
         prototype: HTMLIxDatetimePickerElement;
         new (): HTMLIxDatetimePickerElement;
     };
-    /**
-     * @since 1.4.0
-     */
     interface HTMLIxDividerElement extends Components.IxDivider, HTMLStencilElement {
     }
     var HTMLIxDividerElement: {
@@ -3913,18 +3642,12 @@ declare global {
         prototype: HTMLIxDropdownElement;
         new (): HTMLIxDropdownElement;
     };
-    /**
-     * @since 1.3.0
-     */
     interface HTMLIxDropdownButtonElement extends Components.IxDropdownButton, HTMLStencilElement {
     }
     var HTMLIxDropdownButtonElement: {
         prototype: HTMLIxDropdownButtonElement;
         new (): HTMLIxDropdownButtonElement;
     };
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxDropdownHeaderElement extends Components.IxDropdownHeader, HTMLStencilElement {
     }
     var HTMLIxDropdownHeaderElement: {
@@ -3948,9 +3671,6 @@ declare global {
         prototype: HTMLIxDropdownItemElement;
         new (): HTMLIxDropdownItemElement;
     };
-    /**
-     * @since 1.4.0
-     */
     interface HTMLIxDropdownQuickActionsElement extends Components.IxDropdownQuickActions, HTMLStencilElement {
     }
     var HTMLIxDropdownQuickActionsElement: {
@@ -3960,9 +3680,6 @@ declare global {
     interface HTMLIxEmptyStateElementEventMap {
         "actionClick": void;
     }
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxEmptyStateElement extends Components.IxEmptyState, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxEmptyStateElementEventMap>(type: K, listener: (this: HTMLIxEmptyStateElement, ev: IxEmptyStateCustomEvent<HTMLIxEmptyStateElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4126,9 +3843,6 @@ declare global {
     interface HTMLIxIconToggleButtonElementEventMap {
         "pressedChange": boolean;
     }
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxIconToggleButtonElement extends Components.IxIconToggleButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxIconToggleButtonElementEventMap>(type: K, listener: (this: HTMLIxIconToggleButtonElement, ev: IxIconToggleButtonCustomEvent<HTMLIxIconToggleButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4148,10 +3862,6 @@ declare global {
         "validityStateChange": ValidityState;
         "ixBlur": void;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface HTMLIxInputElement extends Components.IxInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxInputElementEventMap>(type: K, listener: (this: HTMLIxInputElement, ev: IxInputCustomEvent<HTMLIxInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4167,7 +3877,7 @@ declare global {
         new (): HTMLIxInputElement;
     };
     /**
-     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * @deprecated Will be removed with 4.0.0
      * Use the 'ix-input' component instead
      */
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
@@ -4176,18 +3886,12 @@ declare global {
         prototype: HTMLIxInputGroupElement;
         new (): HTMLIxInputGroupElement;
     };
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxKeyValueElement extends Components.IxKeyValue, HTMLStencilElement {
     }
     var HTMLIxKeyValueElement: {
         prototype: HTMLIxKeyValueElement;
         new (): HTMLIxKeyValueElement;
     };
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxKeyValueListElement extends Components.IxKeyValueList, HTMLStencilElement {
     }
     var HTMLIxKeyValueListElement: {
@@ -4200,27 +3904,18 @@ declare global {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
     };
-    /**
-     * @since 2.6.0
-     */
     interface HTMLIxLayoutAutoElement extends Components.IxLayoutAuto, HTMLStencilElement {
     }
     var HTMLIxLayoutAutoElement: {
         prototype: HTMLIxLayoutAutoElement;
         new (): HTMLIxLayoutAutoElement;
     };
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxLayoutGridElement extends Components.IxLayoutGrid, HTMLStencilElement {
     }
     var HTMLIxLayoutGridElement: {
         prototype: HTMLIxLayoutGridElement;
         new (): HTMLIxLayoutGridElement;
     };
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxLinkButtonElement extends Components.IxLinkButton, HTMLStencilElement {
     }
     var HTMLIxLinkButtonElement: {
@@ -4373,9 +4068,6 @@ declare global {
     interface HTMLIxMenuCategoryElementEventMap {
         "closeOtherCategories": any;
     }
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuCategoryElementEventMap>(type: K, listener: (this: HTMLIxMenuCategoryElement, ev: IxMenuCategoryCustomEvent<HTMLIxMenuCategoryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4473,18 +4165,12 @@ declare global {
         prototype: HTMLIxModalElement;
         new (): HTMLIxModalElement;
     };
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxModalContentElement extends Components.IxModalContent, HTMLStencilElement {
     }
     var HTMLIxModalContentElement: {
         prototype: HTMLIxModalContentElement;
         new (): HTMLIxModalContentElement;
     };
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxModalFooterElement extends Components.IxModalFooter, HTMLStencilElement {
     }
     var HTMLIxModalFooterElement: {
@@ -4494,9 +4180,6 @@ declare global {
     interface HTMLIxModalHeaderElementEventMap {
         "closeClick": MouseEvent;
     }
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxModalHeaderElement extends Components.IxModalHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxModalHeaderElementEventMap>(type: K, listener: (this: HTMLIxModalHeaderElement, ev: IxModalHeaderCustomEvent<HTMLIxModalHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4522,10 +4205,6 @@ declare global {
         "validityStateChange": ValidityState;
         "ixBlur": void;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface HTMLIxNumberInputElement extends Components.IxNumberInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxNumberInputElementEventMap>(type: K, listener: (this: HTMLIxNumberInputElement, ev: IxNumberInputCustomEvent<HTMLIxNumberInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4544,9 +4223,6 @@ declare global {
         "pageSelected": number;
         "itemCountChanged": number;
     }
-    /**
-     * @since 1.5.0
-     */
     interface HTMLIxPaginationElement extends Components.IxPagination, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxPaginationElementEventMap>(type: K, listener: (this: HTMLIxPaginationElement, ev: IxPaginationCustomEvent<HTMLIxPaginationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4568,9 +4244,6 @@ declare global {
         "hideOnCollapseChanged": HideOnCollapseChangedEvent;
         "slotChanged": SlotChangedEvent;
     }
-    /**
-     * @since 2.1.0
-     */
     interface HTMLIxPaneElement extends Components.IxPane, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxPaneElementEventMap>(type: K, listener: (this: HTMLIxPaneElement, ev: IxPaneCustomEvent<HTMLIxPaneElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4585,9 +4258,6 @@ declare global {
         prototype: HTMLIxPaneElement;
         new (): HTMLIxPaneElement;
     };
-    /**
-     * @since 2.1.0
-     */
     interface HTMLIxPaneLayoutElement extends Components.IxPaneLayout, HTMLStencilElement {
     }
     var HTMLIxPaneLayoutElement: {
@@ -4600,9 +4270,6 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
-    /**
-     * @since 1.6.0
-     */
     interface HTMLIxPushCardElement extends Components.IxPushCard, HTMLStencilElement {
     }
     var HTMLIxPushCardElement: {
@@ -4614,10 +4281,6 @@ declare global {
         "valueChange": string;
         "ixBlur": void;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface HTMLIxRadioElement extends Components.IxRadio, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4635,10 +4298,6 @@ declare global {
     interface HTMLIxRadioGroupElementEventMap {
         "valueChange": string;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface HTMLIxRadioGroupElement extends Components.IxRadioGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4653,9 +4312,6 @@ declare global {
         prototype: HTMLIxRadioGroupElement;
         new (): HTMLIxRadioGroupElement;
     };
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxRowElement extends Components.IxRow, HTMLStencilElement {
     }
     var HTMLIxRowElement: {
@@ -4668,9 +4324,6 @@ declare global {
         "addItem": string;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSelectElementEventMap>(type: K, listener: (this: HTMLIxSelectElement, ev: IxSelectCustomEvent<HTMLIxSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4705,9 +4358,6 @@ declare global {
     interface HTMLIxSliderElementEventMap {
         "valueChange": number;
     }
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSliderElementEventMap>(type: K, listener: (this: HTMLIxSliderElement, ev: IxSliderCustomEvent<HTMLIxSliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4784,10 +4434,6 @@ declare global {
         "validityStateChange": ValidityState;
         "ixBlur": void;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface HTMLIxTextareaElement extends Components.IxTextarea, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTextareaElementEventMap>(type: K, listener: (this: HTMLIxTextareaElement, ev: IxTextareaCustomEvent<HTMLIxTextareaElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4854,9 +4500,6 @@ declare global {
         "valueChange": string;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxToggleElement extends Components.IxToggle, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxToggleElementEventMap>(type: K, listener: (this: HTMLIxToggleElement, ev: IxToggleCustomEvent<HTMLIxToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4874,9 +4517,6 @@ declare global {
     interface HTMLIxToggleButtonElementEventMap {
         "pressedChange": boolean;
     }
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxToggleButtonElement extends Components.IxToggleButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxToggleButtonElementEventMap>(type: K, listener: (this: HTMLIxToggleButtonElement, ev: IxToggleButtonCustomEvent<HTMLIxToggleButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4891,9 +4531,6 @@ declare global {
         prototype: HTMLIxToggleButtonElement;
         new (): HTMLIxToggleButtonElement;
     };
-    /**
-     * @since 1.4.0
-     */
     interface HTMLIxTooltipElement extends Components.IxTooltip, HTMLStencilElement {
     }
     var HTMLIxTooltipElement: {
@@ -4938,9 +4575,6 @@ declare global {
         prototype: HTMLIxTreeItemElement;
         new (): HTMLIxTreeItemElement;
     };
-    /**
-     * @since 2.0.0
-     */
     interface HTMLIxTypographyElement extends Components.IxTypography, HTMLStencilElement {
     }
     var HTMLIxTypographyElement: {
@@ -5122,9 +4756,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    /**
-     * @since 1.6.0
-     */
     interface IxActionCard {
         /**
           * Card heading
@@ -5147,9 +4778,6 @@ declare namespace LocalJSX {
          */
         "variant"?: ActionCardVariant;
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxApplication {
         /**
           * Define application switch configuration
@@ -5179,7 +4807,6 @@ declare namespace LocalJSX {
         "name"?: string;
         /**
           * Event emitted when the menu toggle button is clicked
-          * @since 2.5.0
          */
         "onMenuToggle"?: (event: IxApplicationHeaderCustomEvent<boolean>) => void;
         /**
@@ -5189,7 +4816,6 @@ declare namespace LocalJSX {
         "onOpenAppSwitch"?: (event: IxApplicationHeaderCustomEvent<void>) => void;
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
-          * @since 2.5.0
          */
         "showMenu"?: boolean;
     }
@@ -5198,13 +4824,9 @@ declare namespace LocalJSX {
     interface IxApplicationSwitchModal {
         "config"?: AppSwitchConfiguration;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxAvatar {
         /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
-          * @since 2.1.0
          */
         "extra"?: string;
         /**
@@ -5217,7 +4839,6 @@ declare namespace LocalJSX {
         "initials"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
-          * @since 2.1.0
          */
         "username"?: string;
     }
@@ -5247,7 +4868,6 @@ declare namespace LocalJSX {
         "collapsed"?: boolean;
         /**
           * Optional icon to be displayed next to the header label
-          * @since 1.5.0
          */
         "icon"?: string;
         /**
@@ -5260,19 +4880,16 @@ declare namespace LocalJSX {
         "onCollapsedChange"?: (event: IxBlindCustomEvent<boolean>) => void;
         /**
           * Secondary label inside blind header
-          * @since 2.0.0
          */
         "sublabel"?: string;
         /**
           * Blind variant
-          * @since 2.0.0
          */
         "variant"?: BlindVariant;
     }
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @since 2.0.0
          */
         "ariaLabelPreviousButton"?: string;
         /**
@@ -5328,7 +4945,6 @@ declare namespace LocalJSX {
         "iconSize"?: '12' | '16' | '24';
         /**
           * Loading button
-          * @since 2.0.0
          */
         "loading"?: boolean;
         /**
@@ -5341,16 +4957,12 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Button variant
-          * @since 2.3.0 - variant danger
          */
         "variant"?: ButtonVariant;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCard {
         /**
-          * @since 2.1.0
+          * Show card in selected state
          */
         "selected"?: boolean;
         /**
@@ -5358,25 +4970,15 @@ declare namespace LocalJSX {
          */
         "variant"?: CardVariant;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCardAccordion {
         /**
           * Collapse the card
-          * @since 2.1.0
          */
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCardContent {
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCardList {
         /**
           * Collapse the list
@@ -5384,7 +4986,6 @@ declare namespace LocalJSX {
         "collapse"?: boolean;
         /**
           * Hide the show all button
-          * @since 2.2.0
          */
         "hideShowAll"?: boolean;
         /**
@@ -5432,9 +5033,6 @@ declare namespace LocalJSX {
          */
         "suppressOverflowHandling"?: boolean;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxCardTitle {
     }
     interface IxCategoryFilter {
@@ -5507,7 +5105,6 @@ declare namespace LocalJSX {
         "repeatCategories"?: boolean;
         /**
           * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
-          * @since 2.2.0
          */
         "staticOperator"?: LogicalFilterOperator;
         /**
@@ -5516,10 +5113,6 @@ declare namespace LocalJSX {
         "suggestions"?: string[];
         "tmpDisableScrollIntoView"?: boolean;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxCheckbox {
         /**
           * Checked state of the checkbox component
@@ -5562,10 +5155,6 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxCheckboxGroup {
         /**
           * Alignment of the checkboxes in the group
@@ -5624,7 +5213,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Fire event if close button is clicked
-          * @since 1.5.0
          */
         "onCloseChip"?: (event: IxChipCustomEvent<any>) => void;
         /**
@@ -5648,9 +5236,6 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxCol {
         /**
           * Size of the column
@@ -5669,9 +5254,6 @@ declare namespace LocalJSX {
          */
         "sizeSm"?: ColumnSize;
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxContent {
     }
     interface IxContentHeader {
@@ -5708,9 +5290,6 @@ declare namespace LocalJSX {
          */
         "itemName": string;
     }
-    /**
-     * @since 2.6.0
-     */
     interface IxCustomField {
         /**
           * Show text below the field component which show additional information
@@ -5745,9 +5324,6 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxDateDropdown {
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
@@ -5763,7 +5339,6 @@ declare namespace LocalJSX {
         "dateRangeOptions"?: DateDropdownOption[];
         /**
           * Disable the button that opens the dropdown containing the date picker.
-          * @since 2.3.0
          */
         "disabled"?: boolean;
         /**
@@ -5797,7 +5372,6 @@ declare namespace LocalJSX {
         "loading"?: boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 2.6.0
          */
         "locale"?: string;
         /**
@@ -5836,14 +5410,9 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.6.0
          */
         "weekStartIndex"?: number;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxDateInput {
         /**
           * disabled attribute
@@ -5875,7 +5444,6 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 2.6.0
          */
         "locale"?: string;
         /**
@@ -5937,42 +5505,34 @@ declare namespace LocalJSX {
         "format"?: string;
         /**
           * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "from"?: string | undefined;
         /**
           * Text of date select button
-          * @since 2.1.0
          */
         "i18nDone"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 2.1.0
          */
         "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "minDate"?: string;
         /**
           * Triggers if the date selection changes. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
-          * @since 2.1.0
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Triggers if the date selection changes. Only triggered if date-picker-rework is in range mode.
-          * @since 2.1.0
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date selection confirmed via button action
-          * @since 1.1.0
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
@@ -5987,13 +5547,11 @@ declare namespace LocalJSX {
         "standaloneAppearance"?: boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "to"?: string | undefined;
         "today"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.1.0
          */
         "weekStartIndex"?: number;
     }
@@ -6011,17 +5569,14 @@ declare namespace LocalJSX {
     interface IxDatetimePicker {
         /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 1.1.0
          */
         "dateFormat"?: string;
         /**
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "from"?: string;
         /**
           * Text of date select button
-          * @since 2.1.0
          */
         "i18nDone"?: string;
         /**
@@ -6031,32 +5586,26 @@ declare namespace LocalJSX {
         "i18nTime"?: string;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 2.1.0
          */
         "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "minDate"?: string;
         /**
           * Date change
-          * @since 1.1.0
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
           * Datetime selection event is fired after confirm button is pressed
-          * @since 1.1.0
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
           * Time change
-          * @since 1.1.0
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
@@ -6078,7 +5627,6 @@ declare namespace LocalJSX {
         /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
-          * @since 1.1.0
          */
         "showTimeReference"?: boolean;
         /**
@@ -6088,12 +5636,10 @@ declare namespace LocalJSX {
         "showWeekNumbers"?: boolean;
         /**
           * Select time with format string
-          * @since 1.1.0
          */
         "time"?: string;
         /**
           * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 1.1.0
          */
         "timeFormat"?: string;
         /**
@@ -6102,18 +5648,13 @@ declare namespace LocalJSX {
         "timeReference"?: 'AM' | 'PM';
         /**
           * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "to"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.1.0
          */
         "weekStartIndex"?: number;
     }
-    /**
-     * @since 1.4.0
-     */
     interface IxDivider {
     }
     interface IxDrawer {
@@ -6195,7 +5736,6 @@ declare namespace LocalJSX {
         "show"?: boolean;
         /**
           * Suppress the automatic placement of the dropdown.
-          * @since 2.0.0
          */
         "suppressAutomaticPlacement"?: boolean;
         "suppressOverflowBehavior"?: boolean;
@@ -6204,13 +5744,9 @@ declare namespace LocalJSX {
          */
         "trigger"?: ElementReference;
     }
-    /**
-     * @since 1.3.0
-     */
     interface IxDropdownButton {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-          * @since 2.1.0
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
@@ -6235,7 +5771,6 @@ declare namespace LocalJSX {
         "outline"?: boolean;
         /**
           * Placement of the dropdown
-          * @since 2.0.0
          */
         "placement"?: AlignedPlacement;
         /**
@@ -6243,9 +5778,6 @@ declare namespace LocalJSX {
          */
         "variant"?: DropdownButtonVariant;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxDropdownHeader {
         /**
           * Display name of the header
@@ -6277,14 +5809,8 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
         "suppressChecked"?: boolean;
     }
-    /**
-     * @since 1.4.0
-     */
     interface IxDropdownQuickActions {
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxEmptyState {
         /**
           * Optional empty state action
@@ -6355,7 +5881,6 @@ declare namespace LocalJSX {
     interface IxExpandingSearch {
         /**
           * If true the search field will fill all available horizontal space of it's parent container when expanded.
-          * @since 1.6.0
          */
         "fullWidth"?: boolean;
         /**
@@ -6472,14 +5997,12 @@ declare namespace LocalJSX {
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
         /**
           * If true the filter chip will be in readonly mode
-          * @since 2.0.0
          */
         "readonly"?: boolean;
     }
     interface IxFlipTile {
         /**
           * Height interpreted as REM
-          * @since 1.5.0
          */
         "height"?: number | 'auto';
         /**
@@ -6498,7 +6021,6 @@ declare namespace LocalJSX {
         "state"?: FlipTileState;
         /**
           * Width interpreted as REM
-          * @since 1.5.0
          */
         "width"?: number | 'auto';
     }
@@ -6615,7 +6137,6 @@ declare namespace LocalJSX {
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
-          * @since 2.1.0
          */
         "a11yLabel"?: string;
         /**
@@ -6636,7 +6157,6 @@ declare namespace LocalJSX {
         "iconColor"?: string;
         /**
           * Loading button
-          * @since 2.0.0
          */
         "loading"?: boolean;
         /**
@@ -6657,13 +6177,9 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Variant of button
-          * @since 2.3.0 - variant danger
          */
         "variant"?: IconButtonVariant;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxIconToggleButton {
         /**
           * Disable the button
@@ -6702,10 +6218,6 @@ declare namespace LocalJSX {
          */
         "variant"?: ButtonVariant1;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxInput {
         /**
           * The allowed characters pattern for the text field.
@@ -6793,14 +6305,11 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     /**
-     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * @deprecated Will be removed with 4.0.0
      * Use the 'ix-input' component instead
      */
     interface IxInputGroup {
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxKeyValue {
         /**
           * Optional key value icon
@@ -6819,9 +6328,6 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxKeyValueList {
         /**
           * Optional striped key value list style
@@ -6835,9 +6341,6 @@ declare namespace LocalJSX {
         "unit"?: string;
         "value"?: string | number;
     }
-    /**
-     * @since 2.6.0
-     */
     interface IxLayoutAuto {
         /**
           * Defines the layout of the form.
@@ -6847,9 +6350,6 @@ declare namespace LocalJSX {
     columns: number;
   }[];
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxLayoutGrid {
         /**
           * Overwrite the default number of columns. Choose between 2 and 12 columns.
@@ -6864,9 +6364,6 @@ declare namespace LocalJSX {
          */
         "noMargin"?: boolean;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxLinkButton {
         /**
           * Disable the link button
@@ -6994,7 +6491,6 @@ declare namespace LocalJSX {
         "showSettings"?: boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
-          * @since 2.2.0
          */
         "startExpanded"?: boolean;
     }
@@ -7067,12 +6563,10 @@ declare namespace LocalJSX {
         "i18nLogout"?: string;
         /**
           * Display a avatar image
-          * @since 1.4.0
          */
         "image"?: string;
         /**
           * Display the initials of the user. Will be overwritten by image
-          * @since 1.4.0
          */
         "initials"?: string;
         /**
@@ -7081,7 +6575,6 @@ declare namespace LocalJSX {
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
         /**
           * Control the visibility of the logout button
-          * @since 2.1.0
          */
         "showLogoutButton"?: boolean;
         /**
@@ -7103,9 +6596,6 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxMenuCategory {
         /**
           * Icon of the category
@@ -7164,7 +6654,6 @@ declare namespace LocalJSX {
         "isCategory"?: boolean;
         /**
           * Label of the menu item. Will also be used as tooltip text
-          * @since 2.2.0
          */
         "label"?: string;
         /**
@@ -7247,7 +6736,6 @@ declare namespace LocalJSX {
         "centered"?: boolean;
         /**
           * Dismiss modal on backdrop click
-          * @since 2.0.0
          */
         "closeOnBackdropClick"?: boolean;
         /**
@@ -7264,23 +6752,13 @@ declare namespace LocalJSX {
         "onDialogDismiss"?: (event: IxModalCustomEvent<any>) => void;
         /**
           * Modal size
-          * @since 2.0.0
          */
         "size"?: IxModalSize;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxModalContent {
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxModalFooter {
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxModalHeader {
         /**
           * Hide the close button
@@ -7301,10 +6779,6 @@ declare namespace LocalJSX {
     }
     interface IxModalLoading {
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxNumberInput {
         /**
           * The allowed characters pattern for the input field
@@ -7396,9 +6870,6 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
-    /**
-     * @since 1.5.0
-     */
     interface IxPagination {
         /**
           * Advanced mode
@@ -7441,9 +6912,6 @@ declare namespace LocalJSX {
          */
         "showItemCount"?: boolean;
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxPane {
         /**
           * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
@@ -7500,9 +6968,6 @@ declare namespace LocalJSX {
          */
         "variant"?: 'floating' | 'inline';
     }
-    /**
-     * @since 2.1.0
-     */
     interface IxPaneLayout {
         /**
           * Set the default border state for all panes in the layout
@@ -7555,13 +7020,9 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
-    /**
-     * @since 1.6.0
-     */
     interface IxPushCard {
         /**
           * Collapse the card
-          * @since 2.1.0
          */
         "collapse"?: boolean;
         /**
@@ -7585,10 +7046,6 @@ declare namespace LocalJSX {
          */
         "variant"?: PushCardVariant;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxRadio {
         /**
           * Checked state of the radio component
@@ -7628,10 +7085,6 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxRadioGroup {
         /**
           * Alignment of the radio buttons in the group
@@ -7678,14 +7131,8 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxRow {
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxSelect {
         /**
           * Show clear button
@@ -7697,12 +7144,10 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
-          * @since 2.7.0
          */
         "dropdownMaxWidth"?: string;
         /**
           * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
-          * @since 2.7.0
          */
         "dropdownWidth"?: string;
         /**
@@ -7711,17 +7156,14 @@ declare namespace LocalJSX {
         "editable"?: boolean;
         /**
           * Helper text for the select component
-          * @since 2.6.0
          */
         "helperText"?: string;
         /**
           * Hide list header
-          * @since 1.5.0
          */
         "hideListHeader"?: boolean;
         /**
           * Information inside of dropdown if no items where found with current filter text
-          * @since 1.5.0
          */
         "i18nNoMatches"?: string;
         /**
@@ -7738,17 +7180,14 @@ declare namespace LocalJSX {
         "i18nSelectListHeader"?: string;
         /**
           * Info text for the select component
-          * @since 2.6.0
          */
         "infoText"?: string;
         /**
           * Error text for the select component
-          * @since 2.6.0
          */
         "invalidText"?: string;
         /**
           * Label for the select component
-          * @since 2.6.0
          */
         "label"?: string;
         /**
@@ -7757,7 +7196,6 @@ declare namespace LocalJSX {
         "mode"?: 'single' | 'multiple';
         /**
           * A string that represents the element's name attribute, containing a name that identifies the element when submitting the form.
-          * @since 2.6.0
          */
         "name"?: string;
         /**
@@ -7766,7 +7204,6 @@ declare namespace LocalJSX {
         "onAddItem"?: (event: IxSelectCustomEvent<string>) => void;
         /**
           * Event dispatched whenever the text input changes.
-          * @since 2.0.0
          */
         "onInputChange"?: (event: IxSelectCustomEvent<string>) => void;
         /**
@@ -7775,7 +7212,6 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxSelectCustomEvent<void>) => void;
         /**
           * Value changed
-          * @since 2.0.0
          */
         "onValueChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
         /**
@@ -7784,27 +7220,22 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         /**
           * A Boolean attribute indicating that an option with a non-empty string value must be selected
-          * @since 2.6.0
          */
         "required"?: boolean;
         /**
           * Show helper, error, info, warning text as tooltip
-          * @since 2.6.0
          */
         "showTextAsTooltip"?: boolean;
         /**
           * Valid text for the select component
-          * @since 2.6.0
          */
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @since 2.0.0
          */
         "value"?: string | string[];
         /**
           * Warning text for the select component
-          * @since 2.6.0
          */
         "warningText"?: string;
     }
@@ -7827,9 +7258,6 @@ declare namespace LocalJSX {
          */
         "value": string;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxSlider {
         /**
           * Show control as disabled
@@ -7884,7 +7312,6 @@ declare namespace LocalJSX {
     interface IxSplitButton {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-          * @since 2.3.0
          */
         "closeBehavior"?: CloseBehavior;
         /**
@@ -7943,7 +7370,6 @@ declare namespace LocalJSX {
         "layout"?: 'auto' | 'stretched';
         /**
           * Emitted when the tab is clicked.
-          * @since 2.0.0
          */
         "onTabClick"?: (event: IxTabItemCustomEvent<TabClickDetail>) => void;
         /**
@@ -7970,7 +7396,6 @@ declare namespace LocalJSX {
         "layout"?: 'auto' | 'stretched';
         /**
           * `selected` property changed
-          * @since 2.0.0
          */
         "onSelectedChange"?: (event: IxTabsCustomEvent<number>) => void;
         /**
@@ -7990,10 +7415,6 @@ declare namespace LocalJSX {
          */
         "small"?: boolean;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
     interface IxTextarea {
         /**
           * Determines if the textarea field is disabled.
@@ -8101,7 +7522,6 @@ declare namespace LocalJSX {
         "corners"?: TimePickerCorners;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 1.1.0
          */
         "format"?: string;
         /**
@@ -8130,17 +7550,14 @@ declare namespace LocalJSX {
         "standaloneAppearance"?: boolean;
         /**
           * Text of date select button
-          * @since 1.1.0
          */
         "textSelectTime"?: string;
         /**
           * Text for top label
-          * @since 2.1.0
          */
         "textTime"?: string;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @since 1.1.0
          */
         "time"?: string;
         /**
@@ -8183,9 +7600,6 @@ declare namespace LocalJSX {
         "containerId"?: string;
         "position"?: 'bottom-right' | 'top-right';
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxToggle {
         /**
           * Whether the slide-toggle element is checked or not.
@@ -8237,9 +7651,6 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxToggleButton {
         /**
           * Disable the button
@@ -8274,9 +7685,6 @@ declare namespace LocalJSX {
          */
         "variant"?: ButtonVariant1;
     }
-    /**
-     * @since 1.4.0
-     */
     interface IxTooltip {
         "animationFrame"?: boolean;
         /**
@@ -8290,7 +7698,6 @@ declare namespace LocalJSX {
         "interactive"?: boolean;
         /**
           * Initial placement of the tooltip. If the selected placement doesn't have enough space, the tooltip will be repositioned to another location.
-          * @since 1.5.0
          */
         "placement"?: 'top' | 'right' | 'bottom' | 'left';
         "showDelay"?: number;
@@ -8314,7 +7721,6 @@ declare namespace LocalJSX {
         "onContextChange"?: (event: IxTreeCustomEvent<TreeContext>) => void;
         /**
           * Node clicked event
-          * @since 1.5.0
          */
         "onNodeClicked"?: (event: IxTreeCustomEvent<string>) => void;
         /**
@@ -8323,7 +7729,6 @@ declare namespace LocalJSX {
         "onNodeRemoved"?: (event: IxTreeCustomEvent<any>) => void;
         /**
           * Node toggled event
-          * @since 1.5.0
          */
         "onNodeToggled"?: (event: IxTreeCustomEvent<{ id: string; isExpanded: boolean }>) => void;
         /**
@@ -8368,9 +7773,6 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
-    /**
-     * @since 2.0.0
-     */
     interface IxTypography {
         /**
           * Display text bold
@@ -8453,7 +7855,6 @@ declare namespace LocalJSX {
         "placement"?: Side;
         /**
           * Suppress the automatic placement of the dropdown.
-          * @since 2.0.0
          */
         "suppressAutomaticPlacement"?: boolean;
     }
@@ -8620,107 +8021,44 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            /**
-             * @since 1.6.0
-             */
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
-            /**
-             * @since 2.1.0
-             */
             "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
             "ix-application-switch-modal": LocalJSX.IxApplicationSwitchModal & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
-            /**
-             * @since 1.6.0
-             */
             "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
-            /**
-             * @since 1.6.0
-             */
             "ix-card-accordion": LocalJSX.IxCardAccordion & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
-            /**
-             * @since 1.6.0
-             */
             "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
-            /**
-             * @since 1.6.0
-             */
             "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
-            /**
-             * @since 1.6.0
-             */
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
-            /**
-             * @since 2.6.0
-             * @form-ready 2.6.0
-             */
             "ix-checkbox": LocalJSX.IxCheckbox & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
-            /**
-             * @since 2.6.0
-             * @form-ready 2.6.0
-             */
             "ix-checkbox-group": LocalJSX.IxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-col": LocalJSX.IxCol & JSXBase.HTMLAttributes<HTMLIxColElement>;
-            /**
-             * @since 2.1.0
-             */
             "ix-content": LocalJSX.IxContent & JSXBase.HTMLAttributes<HTMLIxContentElement>;
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
-            /**
-             * @since 2.6.0
-             */
             "ix-custom-field": LocalJSX.IxCustomField & JSXBase.HTMLAttributes<HTMLIxCustomFieldElement>;
-            /**
-             * @since 2.1.0
-             */
             "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
-            /**
-             * @since 2.6.0
-             * @form-ready 2.6.0
-             */
             "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
-            /**
-             * @since 1.4.0
-             */
             "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
-            /**
-             * @since 1.3.0
-             */
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-dropdown-header": LocalJSX.IxDropdownHeader & JSXBase.HTMLAttributes<HTMLIxDropdownHeaderElement>;
             "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
-            /**
-             * @since 1.4.0
-             */
             "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
-            /**
-             * @since 1.6.0
-             */
             "ix-empty-state": LocalJSX.IxEmptyState & JSXBase.HTMLAttributes<HTMLIxEmptyStateElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
@@ -8735,40 +8073,18 @@ declare module "@stencil/core" {
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-helper-text": LocalJSX.IxHelperText & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
-            /**
-             * @since 2.6.0
-             * @form-ready 2.6.0
-             */
             "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
             /**
-             * @deprecated since 3.0.0. Will be removed with 4.0.0.
+             * @deprecated Will be removed with 4.0.0
              * Use the 'ix-input' component instead
              */
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
-            /**
-             * @since 1.6.0
-             */
             "ix-key-value": LocalJSX.IxKeyValue & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
-            /**
-             * @since 1.6.0
-             */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
-            /**
-             * @since 2.6.0
-             */
             "ix-layout-auto": LocalJSX.IxLayoutAuto & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-layout-grid": LocalJSX.IxLayoutGrid & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
@@ -8778,9 +8094,6 @@ declare module "@stencil/core" {
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
             "ix-menu-expand-icon": LocalJSX.IxMenuExpandIcon & JSXBase.HTMLAttributes<HTMLIxMenuExpandIconElement>;
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
@@ -8788,94 +8101,36 @@ declare module "@stencil/core" {
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
             "ix-message-bar": LocalJSX.IxMessageBar & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-modal-content": LocalJSX.IxModalContent & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-modal-footer": LocalJSX.IxModalFooter & JSXBase.HTMLAttributes<HTMLIxModalFooterElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-modal-header": LocalJSX.IxModalHeader & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
             "ix-modal-loading": LocalJSX.IxModalLoading & JSXBase.HTMLAttributes<HTMLIxModalLoadingElement>;
-            /**
-             * @since 2.6.0
-             * @form-ready 2.6.0
-             */
             "ix-number-input": LocalJSX.IxNumberInput & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
-            /**
-             * @since 1.5.0
-             */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
-            /**
-             * @since 2.1.0
-             */
             "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
-            /**
-             * @since 2.1.0
-             */
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
-            /**
-             * @since 1.6.0
-             */
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
-            /**
-             * @since 2.6.0
-             * @form-ready 2.6.0
-             */
             "ix-radio": LocalJSX.IxRadio & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
-            /**
-             * @since 2.6.0
-             * @form-ready 2.6.0
-             */
             "ix-radio-group": LocalJSX.IxRadioGroup & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
-            /**
-             * @since 2.6.0
-             * @form-ready 2.6.0
-             */
             "ix-textarea": LocalJSX.IxTextarea & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-toggle-button": LocalJSX.IxToggleButton & JSXBase.HTMLAttributes<HTMLIxToggleButtonElement>;
-            /**
-             * @since 1.4.0
-             */
             "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
-            /**
-             * @since 2.0.0
-             */
             "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             /**

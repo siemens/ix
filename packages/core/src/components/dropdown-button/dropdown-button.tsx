@@ -15,9 +15,6 @@ import { makeRef } from '../utils/make-ref';
 
 export type DropdownButtonVariant = ButtonVariant;
 
-/**
- * @since 1.3.0
- */
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
@@ -58,14 +55,11 @@ export class DropdownButton {
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-   * @since 2.1.0
    */
   @Prop() closeBehavior: 'inside' | 'outside' | 'both' | boolean = 'both';
 
   /**
    * Placement of the dropdown
-   *
-   * @since 2.0.0
    */
   @Prop() placement?: AlignedPlacement;
 

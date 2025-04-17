@@ -45,8 +45,6 @@ let tooltipInstance = 0;
 /**
  * @slot title-icon - Icon of tooltip title
  * @slot title-content - Content of tooltip title
- *
- * @since 1.4.0
  */
 @Component({
   tag: 'ix-tooltip',
@@ -72,7 +70,6 @@ export class Tooltip {
   /**
    * Initial placement of the tooltip.
    * If the selected placement doesn't have enough space, the tooltip will be repositioned to another location.
-   * @since 1.5.0
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 

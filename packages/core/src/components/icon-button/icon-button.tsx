@@ -26,14 +26,11 @@ export class IconButton {
   /**
    * Accessibility label for the icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 2.1.0
    */
   @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
   /**
    * Variant of button
-   * @since 2.3.0 - variant danger
    */
   @Prop() variant: IconButtonVariant = 'secondary';
 
@@ -80,8 +77,6 @@ export class IconButton {
 
   /**
    * Loading button
-   *
-   * @since 2.0.0
    */
   @Prop() loading = false;
 

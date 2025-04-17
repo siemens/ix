@@ -45,19 +45,16 @@ export class Blind {
 
   /**
    * Secondary label inside blind header
-   * @since 2.0.0
    */
   @Prop() sublabel?: string;
 
   /**
    * Optional icon to be displayed next to the header label
-   * @since 1.5.0
    */
   @Prop() icon?: string;
 
   /**
    * Blind variant
-   * @since 2.0.0
    */
   @Prop() variant: BlindVariant = 'filled';
 

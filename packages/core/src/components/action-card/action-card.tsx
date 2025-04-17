@@ -12,9 +12,6 @@ import { CardVariant } from '../card/card';
 
 export type ActionCardVariant = CardVariant;
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-action-card',
   styleUrl: 'action-card.scss',

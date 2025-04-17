@@ -64,9 +64,6 @@ export type TypographyFormat =
 
 export type TextDecoration = 'none' | 'underline' | 'line-through';
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-typography',
   styleUrl: 'typography.scss',
