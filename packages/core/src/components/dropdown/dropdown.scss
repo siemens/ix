@@ -32,7 +32,7 @@
   }
 }
 
-$dropdown-offset: 3.125rem;
+$dropdown-offset: 3rem;
 
 :host(.overflow) {
   max-height: calc(50vh - $dropdown-offset); 
