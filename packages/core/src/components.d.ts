@@ -400,9 +400,6 @@ export namespace Components {
         "suggestions"?: string[];
         "tmpDisableScrollIntoView": boolean;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxCheckbox {
         /**
           * Checked state of the checkbox component
@@ -436,9 +433,6 @@ export namespace Components {
          */
         "value": string;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxCheckboxGroup {
         /**
           * Alignment of the checkboxes in the group
@@ -691,9 +685,6 @@ export namespace Components {
          */
         "weekStartIndex": number;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxDateInput {
         /**
           * disabled attribute
@@ -1442,9 +1433,6 @@ export namespace Components {
          */
         "variant": ButtonVariant1;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxInput {
         /**
           * The allowed characters pattern for the text field.
@@ -1538,7 +1526,7 @@ export namespace Components {
         "warningText"?: string;
     }
     /**
-     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * @deprecated Will be removed with 4.0.0
      * Use the 'ix-input' component instead
      */
     interface IxInputGroup {
@@ -1966,9 +1954,6 @@ export namespace Components {
     }
     interface IxModalLoading {
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxNumberInput {
         /**
           * The allowed characters pattern for the input field
@@ -2216,9 +2201,6 @@ export namespace Components {
          */
         "variant": PushCardVariant;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxRadio {
         /**
           * Checked state of the radio component
@@ -2248,9 +2230,6 @@ export namespace Components {
          */
         "value"?: string;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxRadioGroup {
         /**
           * Alignment of the radio buttons in the group
@@ -2297,9 +2276,6 @@ export namespace Components {
     }
     interface IxRow {
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxSelect {
         /**
           * Show clear button
@@ -2568,9 +2544,6 @@ export namespace Components {
          */
         "small": boolean;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxTextarea {
         /**
           * Determines if the textarea field is disabled.
@@ -2755,9 +2728,6 @@ export namespace Components {
          */
         "showToast": (config: ToastConfig) => Promise<ShowToastResult>;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxToggle {
         /**
           * Whether the slide-toggle element is checked or not.
@@ -3466,9 +3436,6 @@ declare global {
         "valueChange": string;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxCheckboxElement extends Components.IxCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3483,9 +3450,6 @@ declare global {
         prototype: HTMLIxCheckboxElement;
         new (): HTMLIxCheckboxElement;
     };
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxCheckboxGroupElement extends Components.IxCheckboxGroup, HTMLStencilElement {
     }
     var HTMLIxCheckboxGroupElement: {
@@ -3579,9 +3543,6 @@ declare global {
         "ixFocus": void;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxDateInputElement extends Components.IxDateInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDateInputElementEventMap>(type: K, listener: (this: HTMLIxDateInputElement, ev: IxDateInputCustomEvent<HTMLIxDateInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3901,9 +3862,6 @@ declare global {
         "validityStateChange": ValidityState;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxInputElement extends Components.IxInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxInputElementEventMap>(type: K, listener: (this: HTMLIxInputElement, ev: IxInputCustomEvent<HTMLIxInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3919,7 +3877,7 @@ declare global {
         new (): HTMLIxInputElement;
     };
     /**
-     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * @deprecated Will be removed with 4.0.0
      * Use the 'ix-input' component instead
      */
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
@@ -4247,9 +4205,6 @@ declare global {
         "validityStateChange": ValidityState;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxNumberInputElement extends Components.IxNumberInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxNumberInputElementEventMap>(type: K, listener: (this: HTMLIxNumberInputElement, ev: IxNumberInputCustomEvent<HTMLIxNumberInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4326,9 +4281,6 @@ declare global {
         "valueChange": string;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxRadioElement extends Components.IxRadio, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4346,9 +4298,6 @@ declare global {
     interface HTMLIxRadioGroupElementEventMap {
         "valueChange": string;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxRadioGroupElement extends Components.IxRadioGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4375,9 +4324,6 @@ declare global {
         "addItem": string;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSelectElementEventMap>(type: K, listener: (this: HTMLIxSelectElement, ev: IxSelectCustomEvent<HTMLIxSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4488,9 +4434,6 @@ declare global {
         "validityStateChange": ValidityState;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxTextareaElement extends Components.IxTextarea, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTextareaElementEventMap>(type: K, listener: (this: HTMLIxTextareaElement, ev: IxTextareaCustomEvent<HTMLIxTextareaElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4557,9 +4500,6 @@ declare global {
         "valueChange": string;
         "ixBlur": void;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface HTMLIxToggleElement extends Components.IxToggle, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxToggleElementEventMap>(type: K, listener: (this: HTMLIxToggleElement, ev: IxToggleCustomEvent<HTMLIxToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4871,6 +4811,7 @@ declare namespace LocalJSX {
         "onMenuToggle"?: (event: IxApplicationHeaderCustomEvent<boolean>) => void;
         /**
           * Event emitted when the app switch button is clicked
+          * @since 3.0.0
          */
         "onOpenAppSwitch"?: (event: IxApplicationHeaderCustomEvent<void>) => void;
         /**
@@ -5172,9 +5113,6 @@ declare namespace LocalJSX {
         "suggestions"?: string[];
         "tmpDisableScrollIntoView"?: boolean;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxCheckbox {
         /**
           * Checked state of the checkbox component
@@ -5217,9 +5155,6 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxCheckboxGroup {
         /**
           * Alignment of the checkboxes in the group
@@ -5478,9 +5413,6 @@ declare namespace LocalJSX {
          */
         "weekStartIndex"?: number;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxDateInput {
         /**
           * disabled attribute
@@ -6286,9 +6218,6 @@ declare namespace LocalJSX {
          */
         "variant"?: ButtonVariant1;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxInput {
         /**
           * The allowed characters pattern for the text field.
@@ -6376,7 +6305,7 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     /**
-     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * @deprecated Will be removed with 4.0.0
      * Use the 'ix-input' component instead
      */
     interface IxInputGroup {
@@ -6850,9 +6779,6 @@ declare namespace LocalJSX {
     }
     interface IxModalLoading {
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxNumberInput {
         /**
           * The allowed characters pattern for the input field
@@ -7120,9 +7046,6 @@ declare namespace LocalJSX {
          */
         "variant"?: PushCardVariant;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxRadio {
         /**
           * Checked state of the radio component
@@ -7162,9 +7085,6 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxRadioGroup {
         /**
           * Alignment of the radio buttons in the group
@@ -7213,9 +7133,6 @@ declare namespace LocalJSX {
     }
     interface IxRow {
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxSelect {
         /**
           * Show clear button
@@ -7498,9 +7415,6 @@ declare namespace LocalJSX {
          */
         "small"?: boolean;
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxTextarea {
         /**
           * Determines if the textarea field is disabled.
@@ -7686,9 +7600,6 @@ declare namespace LocalJSX {
         "containerId"?: string;
         "position"?: 'bottom-right' | 'top-right';
     }
-    /**
-     * @form-ready 2.6.0
-     */
     interface IxToggle {
         /**
           * Whether the slide-toggle element is checked or not.
@@ -8127,13 +8038,7 @@ declare module "@stencil/core" {
             "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-checkbox": LocalJSX.IxCheckbox & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-checkbox-group": LocalJSX.IxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-col": LocalJSX.IxCol & JSXBase.HTMLAttributes<HTMLIxColElement>;
@@ -8143,9 +8048,6 @@ declare module "@stencil/core" {
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
             "ix-custom-field": LocalJSX.IxCustomField & JSXBase.HTMLAttributes<HTMLIxCustomFieldElement>;
             "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
@@ -8172,12 +8074,9 @@ declare module "@stencil/core" {
             "ix-helper-text": LocalJSX.IxHelperText & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
             /**
-             * @deprecated since 3.0.0. Will be removed with 4.0.0.
+             * @deprecated Will be removed with 4.0.0
              * Use the 'ix-input' component instead
              */
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
@@ -8206,27 +8105,15 @@ declare module "@stencil/core" {
             "ix-modal-footer": LocalJSX.IxModalFooter & JSXBase.HTMLAttributes<HTMLIxModalFooterElement>;
             "ix-modal-header": LocalJSX.IxModalHeader & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
             "ix-modal-loading": LocalJSX.IxModalLoading & JSXBase.HTMLAttributes<HTMLIxModalLoadingElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-number-input": LocalJSX.IxNumberInput & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-radio": LocalJSX.IxRadio & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-radio-group": LocalJSX.IxRadioGroup & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
@@ -8234,17 +8121,11 @@ declare module "@stencil/core" {
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-textarea": LocalJSX.IxTextarea & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
-            /**
-             * @form-ready 2.6.0
-             */
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
             "ix-toggle-button": LocalJSX.IxToggleButton & JSXBase.HTMLAttributes<HTMLIxToggleButtonElement>;
             "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;

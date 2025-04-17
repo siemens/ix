@@ -184,7 +184,7 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
    */
   menuToggle: EventEmitter<CustomEvent<boolean>>;
   /**
-   * Event emitted when the app switch button is clicked
+   * Event emitted when the app switch button is clicked @since 3.0.0
    */
   openAppSwitch: EventEmitter<CustomEvent<void>>;
 }

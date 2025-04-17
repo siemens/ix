@@ -515,7 +515,12 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event emitted when the app switch button is clicked",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -2540,12 +2545,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -2784,12 +2784,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -4682,10 +4677,6 @@
       "usage": {},
       "docs": "",
       "docsTags": [
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
-        },
         {
           "name": "slot",
           "text": "start - Element will be displayed at the start of the input"
@@ -9890,10 +9881,6 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "form-ready",
-          "text": "2.6.0"
-        },
-        {
           "name": "slot",
           "text": "start - Element will be displayed at the start of the input"
         },
@@ -10520,14 +10507,14 @@
       "docsTags": [
         {
           "name": "deprecated",
-          "text": "since 3.0.0. Will be removed with 4.0.0.\nUse the 'ix-input' component instead"
+          "text": "Will be removed with 4.0.0\nUse the 'ix-input' component instead"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
-      "deprecation": "since 3.0.0. Will be removed with 4.0.0.\nUse the 'ix-input' component instead",
+      "deprecation": "Will be removed with 4.0.0\nUse the 'ix-input' component instead",
       "props": [],
       "methods": [],
       "events": [],
@@ -14192,10 +14179,6 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "form-ready",
-          "text": "2.6.0"
-        },
-        {
           "name": "slot",
           "text": "start - Element will be displayed at the start of the input"
         },
@@ -16006,12 +15989,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -16230,12 +16208,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -16543,12 +16516,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-pagination"
@@ -18613,12 +18581,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -20041,12 +20004,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
