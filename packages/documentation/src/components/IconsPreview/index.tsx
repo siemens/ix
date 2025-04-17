@@ -325,7 +325,7 @@ const Icons: React.FC = () => {
           <div className={styles.Search__NoIconsFound}>No icons found</div>
           <div className={styles.Search__AdaptOrRequest}>
             Adapt the filter<br></br> or open an icon request in{' '}
-            <a target="_blank" href="http://github.com/siemens/ix-icons/issues">
+            <a target="_blank" href="https://github.com/siemens/ix-icons/issues">
               GitHub
             </a>
             .
