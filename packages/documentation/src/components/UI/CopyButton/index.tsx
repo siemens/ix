@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { iconCopy } from '@siemens/ix-icons/icons';
-import { IxTooltip } from '@siemens/ix-react';
+import { iconCopy, iconSuccess } from '@siemens/ix-icons/icons';
+import { IxIcon, IxTooltip } from '@siemens/ix-react';
 import React, { useRef } from 'react';
 import Button from '../Button';
 import clsx from 'clsx';
@@ -63,7 +63,12 @@ const CopyButton = ({
           {preview}
         </IxTooltip>
       )}
-      <IxTooltip ref={tooltipRef}>✅ Copied to clipboard</IxTooltip>
+      <IxTooltip ref={tooltipRef}>
+        <div className={styles.TooltipSuccess}>
+          <IxIcon name={iconSuccess} color="color-success" size="16"></IxIcon>
+          Copied
+        </div>
+      </IxTooltip>
     </div>
   );
 };

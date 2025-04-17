@@ -16,6 +16,11 @@
   max-width: 1200px;
 }
 
+.RowHideToc {
+  grid-template-columns: 100%;
+  max-width: none;
+}
+
 .toc {
   max-width: 14rem;
 }

@@ -1126,9 +1126,16 @@ const sidebars: SidebarsConfig = {
   ],
   icons: [
     'icons/icon-library',
-    'icons/icon-usage',
-    'icons/design-new-icons',
-    'icons/developing-with-icons',
+    {
+      type: 'category',
+      className: 'doc-sidebar-item-bold',
+      label: 'Icon guidelines',
+      items: [
+        'icons/icon-usage',
+        'icons/design-new-icons',
+        'icons/developing-with-icons',
+      ],
+    },
   ],
   styles: [
     'styles/colors',
