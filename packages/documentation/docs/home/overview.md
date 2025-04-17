@@ -15,8 +15,6 @@ import GitHubIcon from '@site/static/img/github.svg';
 import BlazorIcon from '@site/static/img/blazor.svg';
 import './card-with-icon.css';
 
-## Guiding principles
-
 <GuidingPrinciples></GuidingPrinciples>
 
 ## Resources & assets
