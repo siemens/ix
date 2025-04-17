@@ -7,8 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  iconContextMenu,
+  iconPen,
+  iconTrashcan,
+} from '@siemens/ix-icons/icons';
 import { IxContentHeader, IxIconButton } from '@siemens/ix-react';
-
 
 export default () => {
   return (
@@ -17,13 +21,13 @@ export default () => {
       header-title="Content title"
       header-subtitle="Subtitle"
     >
-      <IxIconButton icon="pen" ghost variant="primary">
+      <IxIconButton icon={iconPen} ghost variant="primary">
         Button1
       </IxIconButton>
-      <IxIconButton icon="trashcan" ghost variant="primary">
+      <IxIconButton icon={iconTrashcan} ghost variant="primary">
         Button2
       </IxIconButton>
-      <IxIconButton icon="context-menu" ghost variant="primary">
+      <IxIconButton icon={iconContextMenu} ghost variant="primary">
         Button3
       </IxIconButton>
     </IxContentHeader>

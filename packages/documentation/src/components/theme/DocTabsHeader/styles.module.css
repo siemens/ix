@@ -1,0 +1,127 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
+ */
+.componentHeroHeader {
+  height: fit-content;
+  width: 100%;
+  background-color: var(--ix-docs-hero-background);
+
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  padding: var(--default-content-padding);
+  padding-top: 0;
+  padding-bottom: var(--ifm-paragraph-margin-bottom);
+  margin: 0;
+
+  z-index: 1;
+}
+
+.sticky_h1 {
+  background-color: var(--ix-docs-hero-background);
+  padding-left: var(--default-content-padding-left);
+  padding-top: 2rem;
+  position: sticky;
+  top: 3rem;
+  z-index: 2;
+  margin: 0;
+  padding-bottom: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.Tabs {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  gap: 1rem;
+
+  position: sticky;
+  top: 8.5rem;
+  padding-top: 0.5rem;
+  padding-left: var(--default-content-padding-left);
+  padding-right: var(--default-content-padding-left);
+  z-index: 2;
+  background-color: var(--ix-docs-hero-background);
+
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.Scrolled {
+  box-shadow: 0px 10px 30px -10px var(--theme-color-shadow-1);
+}
+
+.Tabs::before {
+  content: '';
+  border-image: linear-gradient(
+      to right,
+      var(--theme-color-x-weak-bdr) 0%,
+      var(--theme-color-dynamic) 15%,
+      var(--theme-color-dynamic) 100%
+    )
+    1;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  z-index: 0;
+}
+
+.Tab {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid transparent;
+  z-index: 2;
+  min-width: 11rem;
+  height: 2.875rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.Tab:focus-visible {
+  outline: 1px solid var(--theme-color-focus-bdr);
+}
+
+.Tab:not(.Tab--active):hover {
+  background-color: var(--theme-color-1--hover);
+  border-bottom: 1px solid var(--theme-color-dynamic);
+}
+
+.Tab:not(.Tab--active):active {
+  background-color: var(--theme-color-1--active);
+  border-bottom: 1px solid var(--theme-color-dynamic);
+}
+
+.Tab--active {
+  border: 1px solid var(--theme-color-dynamic);
+  border-bottom: 1px solid var(--ix-docs-hero-tab-active);
+  background-color: var(--ix-docs-hero-tab-active);
+  color: var(--theme-color-dynamic);
+}
+
+.Tags {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.Tags {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.Description {
+  max-width: 56rem;
+}

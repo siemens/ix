@@ -1,0 +1,47 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+.AnchorButton {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: nowrap;
+
+  cursor: pointer;
+}
+
+.AnchorButton:focus-visible {
+  outline: 1px solid var(--theme-color-focus-bdr);
+}
+
+.AnchorHeader {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: nowrap;
+  padding: 1rem;
+  border-bottom: 1px solid var(--theme-color-soft-bdr);
+  background-color: var(--theme-color-2);
+  color: var(--theme-color-std-text);
+}
+
+.AnchorHeader.NoButtonBorder {
+  border-bottom: none;
+}
+
+.ApiTableText {
+  display: grid;
+  grid-template-columns: minmax(100px, 20%) 1fr;
+  border-bottom: 1px solid var(--theme-color-soft-bdr);
+}
+
+.ApiTableText:last-child {
+  border-bottom: none;
+}

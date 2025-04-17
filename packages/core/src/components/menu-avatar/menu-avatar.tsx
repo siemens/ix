@@ -17,6 +17,7 @@ import {
   State,
 } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
+import { iconLogOut } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-menu-avatar',
@@ -38,15 +39,11 @@ export class MenuAvatar {
 
   /**
    * Display a avatar image
-   *
-   * @since 1.4.0
    */
   @Prop() image?: string;
 
   /**
    * Display the initials of the user. Will be overwritten by image
-   *
-   * @since 1.4.0
    */
   @Prop() initials?: string;
 
@@ -57,13 +54,11 @@ export class MenuAvatar {
 
   /**
    *  Control the visibility of the logout button
-   *  @since 2.1.0
    */
   @Prop() showLogoutButton: boolean = true;
 
   /**
    * Control the visibility of the dropdown menu
-   * @since 2.1.0
    */
   @State() showContextMenu: boolean = false;
 
@@ -115,7 +110,7 @@ export class MenuAvatar {
           {this.showLogoutButton ? (
             <ix-menu-avatar-item
               label={this.i18nLogout}
-              icon={'log-out'}
+              icon={iconLogOut}
               onClick={(e) => {
                 this.logoutClick.emit(e);
               }}

@@ -10,7 +10,11 @@
 import './form-validation.scoped.css';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
+import {
+  iconBezierCurve,
+  iconLocation,
+  iconStar,
+} from '@siemens/ix-icons/icons';
 import {
   IxButton,
   IxCheckbox,
@@ -146,7 +150,7 @@ export default function FormValidation() {
           {...register('room-size')}
         >
           <IxIcon slot="start" name={iconBezierCurve} size="16"></IxIcon>
-          <IxTypography slot="end" color="weak" className='padding-right'>
+          <IxTypography slot="end" color="weak" className="padding-right">
             m<sup>2</sup>
           </IxTypography>
         </IxNumberInput>
@@ -207,11 +211,7 @@ export default function FormValidation() {
           {...register('comment')}
         ></IxTextarea>
 
-        <IxInput
-          type="email"
-          label="Email"
-          {...register('email')}
-        ></IxInput>
+        <IxInput type="email" label="Email" {...register('email')}></IxInput>
 
         {/* Implement custom form component */}
         <IxCustomField label="Upload" invalidText="You need to upload a file">
@@ -235,7 +235,7 @@ export default function FormValidation() {
           <IxIconButton
             outline
             variant="primary"
-            icon="star"
+            icon={iconStar}
             onClick={() => uploadRef.current?.click()}
           ></IxIconButton>
         </IxCustomField>

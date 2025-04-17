@@ -10,26 +10,28 @@ import { h, FunctionalComponent } from '@stencil/core';
 import { MakeRef } from '../utils/make-ref';
 import { A11yAttributes } from '../utils/a11y';
 
-export function TextareaElement(props: {
-  resizeBehavior: 'both' | 'horizontal' | 'vertical' | 'none';
-  textareaHeight?: string;
-  textareaWidth?: string;
-  textareaRows?: number;
-  textareaCols?: number;
-  disabled: boolean;
-  readonly: boolean;
-  maxLength?: number;
-  minLength?: number;
-  isInvalid: boolean;
-  required: boolean;
-  value: string;
-  placeholder?: string;
-  textAreaRef: (el: HTMLTextAreaElement | undefined) => void;
-  valueChange: (value: string) => void;
-  updateFormInternalValue: (value: string) => void;
-  onBlur: () => void;
-  ariaAttributes?: A11yAttributes;
-}) {
+export function TextareaElement(
+  props: Readonly<{
+    resizeBehavior: 'both' | 'horizontal' | 'vertical' | 'none';
+    textareaHeight?: string;
+    textareaWidth?: string;
+    textareaRows?: number;
+    textareaCols?: number;
+    disabled: boolean;
+    readonly: boolean;
+    maxLength?: number;
+    minLength?: number;
+    isInvalid: boolean;
+    required: boolean;
+    value: string;
+    placeholder?: string;
+    textAreaRef: (el: HTMLTextAreaElement | undefined) => void;
+    valueChange: (value: string) => void;
+    updateFormInternalValue: (value: string) => void;
+    onBlur: () => void;
+    ariaAttributes?: A11yAttributes;
+  }>
+) {
   return (
     <textarea
       readOnly={props.readonly}
@@ -61,37 +63,41 @@ export function TextareaElement(props: {
   );
 }
 
-export function InputElement(props: {
-  id: string;
-  disabled: boolean;
-  readonly: boolean;
-  maxLength?: string | number;
-  minLength?: string | number;
-  max?: string | number;
-  min?: string | number;
-  pattern?: string;
-  type: string;
-  isInvalid: boolean;
-  required: boolean;
-  value: string | number;
-  placeholder?: string;
-  inputRef: (el: HTMLInputElement | undefined) => void;
-  onKeyPress: (event: KeyboardEvent) => void;
-  valueChange: (value: string) => void;
-  updateFormInternalValue: (value: string) => void;
-  onBlur: () => void;
-  ariaAttributes?: A11yAttributes;
-}) {
+export function InputElement(
+  props: Readonly<{
+    id: string;
+    disabled: boolean;
+    readonly: boolean;
+    maxLength?: string | number;
+    minLength?: string | number;
+    max?: string | number;
+    min?: string | number;
+    step?: string | number;
+    pattern?: string;
+    type: string;
+    isInvalid: boolean;
+    required: boolean;
+    value: string | number;
+    placeholder?: string;
+    inputRef: (el: HTMLInputElement | undefined) => void;
+    onKeyPress: (event: KeyboardEvent) => void;
+    valueChange: (value: string) => void;
+    updateFormInternalValue: (value: string) => void;
+    onBlur: () => void;
+    ariaAttributes?: A11yAttributes;
+  }>
+) {
   return (
     <input
       id={props.id}
       autoComplete="off"
       readOnly={props.readonly}
       disabled={props.disabled}
+      step={props.step}
       min={props.min}
       max={props.max}
       maxLength={props.maxLength ? Number(props.maxLength) : undefined}
-      minLength={props.maxLength ? Number(props.minLength) : undefined}
+      minLength={props.minLength ? Number(props.minLength) : undefined}
       ref={props.inputRef}
       pattern={props.pattern}
       type={props.type}

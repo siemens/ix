@@ -28,7 +28,7 @@ const colors = [
 ];
 
 export default {
-  themeName: 'brand-light',
+  themeName: 'theme-brand-light',
   theme: {
     color: colors,
     backgroundColor: 'rgba(0,0,0,0)',

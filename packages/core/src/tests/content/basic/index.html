@@ -13,10 +13,23 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconContextMenu } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconContextMenu,
+      });
+    </script>
   </head>
   <body>
     <ix-content style="height: 200px">
       <ix-content-header slot="header" header-title="My Content Page">
+        <ix-icon-button
+          variant="primary"
+          icon="context-menu"
+          ghost
+        ></ix-icon-button>
       </ix-content-header>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
       eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam

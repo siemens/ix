@@ -8,10 +8,13 @@
  */
 import { test } from '@utils/test';
 import { expect } from '@playwright/test';
+import { iconStar } from '@siemens/ix-icons/icons';
 
 test.describe('Pill', () => {
   test('dynamic gap behavior', async ({ mount, page }) => {
-    await mount('<ix-pill icon="star">Dynamic gap</ix-pill>');
+    await mount('<ix-pill icon="star">Dynamic gap</ix-pill>', {
+      icons: { iconStar },
+    });
     const pill = page.locator('ix-pill');
     const innerContainer = pill.locator('.container');
 
@@ -35,7 +38,8 @@ test.describe('tooltip', () => {
     await pill.hover();
 
     await expect(pill).not.toHaveAttribute('tooltip-text');
-    await expect(pill.locator('ix-tooltip')).not.toBeVisible();
+    const tooltip = pill.locator('ix-tooltip');
+    await expect(tooltip).not.toBeAttached();
   });
 
   test('should display the component text content when tooltip-text attribute is an empty string', async ({
@@ -48,7 +52,7 @@ test.describe('tooltip', () => {
 
     await expect(pill).toHaveAttribute('tooltip-text', '');
     const tooltip = pill.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveClass(/visible/);
     await expect(tooltip).toHaveText('Text content');
   });
 
@@ -62,7 +66,7 @@ test.describe('tooltip', () => {
 
     await expect(pill).toHaveAttribute('tooltip-text', undefined);
     const tooltip = pill.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveClass(/visible/);
     await expect(tooltip).toHaveText('Text content');
   });
 
@@ -78,7 +82,7 @@ test.describe('tooltip', () => {
 
     await expect(pill).toHaveAttribute('tooltip-text', 'custom tooltip text');
     const tooltip = pill.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveClass(/visible/);
     await expect(tooltip).toHaveText('custom tooltip text');
   });
 });

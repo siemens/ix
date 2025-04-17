@@ -71,6 +71,8 @@ export interface IxFormComponent<T = string> extends IxComponent {
   disabled: boolean;
 
   valueChange: EventEmitter<T>;
+  ixBlur: EventEmitter<void>;
+
   updateFormInternalValue(value: T): void | Promise<void>;
   hasValidValue(): Promise<boolean>;
   getValidityState?(): Promise<ValidityState>;
@@ -86,8 +88,6 @@ export interface IxInputFieldComponent<T = string>
   placeholder?: string;
   // Annotate as @Prop()
   readonly: boolean;
-
-  ixBlur: EventEmitter<void>;
 
   // Annotate as @Method()
   getNativeInputElement(): Promise<HTMLInputElement | HTMLTextAreaElement>;

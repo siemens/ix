@@ -27,9 +27,6 @@ export type ColumnSize =
   | '12'
   | 'auto';
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-col',
   styleUrl: 'col.scss',

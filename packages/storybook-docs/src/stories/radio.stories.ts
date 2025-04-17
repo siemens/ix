@@ -21,6 +21,7 @@ type Element = Components.IxRadio & {
 type GroupElement = Components.IxRadioGroup & {
   label: string;
   defaultSlot: string;
+  required: boolean;
 };
 
 const radioRender = (args: Element) => {
@@ -39,12 +40,13 @@ const radioGroupRender = (args: GroupElement) => {
 
   const radio1 = document.createElement('ix-radio');
   radio1.setAttribute('label', 'Radio 1');
-  radio1.setAttribute('name', 'radio1');
+  radio1.setAttribute('name', 'a-group');
   radio1.addEventListener('checkedChange', action('radio1Change'));
+  radio1.required = args.required;
 
   const radio2 = document.createElement('ix-radio');
   radio2.setAttribute('label', 'Radio 2');
-  radio2.setAttribute('name', 'radio2');
+  radio2.setAttribute('name', 'a-group');
   radio2.addEventListener('checkedChange', action('radio2Change'));
 
   radioGroup.appendChild(radio1);
@@ -73,13 +75,13 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<Element>;
-type GroupStory = StoryObj<GroupElement>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   args: {
     disabled: false,
     label: 'Radio',
+    required: true,
   },
 };
 
@@ -87,12 +89,5 @@ export const Disabled: Story = {
   args: {
     disabled: true,
     label: 'Radio',
-  },
-};
-
-export const Group: GroupStory = {
-  render: (args) => radioGroupRender(args),
-  args: {
-    label: 'Radio Group',
   },
 };

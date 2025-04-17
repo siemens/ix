@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>
@@ -29,7 +29,29 @@ test('renders', async ({ mount, page }) => {
   await expect(radioOption3).toHaveClass(/hydrated/);
 });
 
-test('initial checked', async ({ mount, page }) => {
+regressionTest('required', async ({ mount, page }) => {
+  await mount(
+    `
+      <ix-radio-group label="example">
+        <ix-radio label="Option 1" value="option1"></ix-radio>
+        <ix-radio label="Option 2" value="option2" required></ix-radio>
+        <ix-radio label="Option 3" value="option3"></ix-radio>
+      </ix-radio-group>
+    `
+  );
+  const radioGroupElement = page.locator('ix-radio-group');
+  await expect(radioGroupElement).toHaveClass(/hydrated/);
+  await expect(radioGroupElement).toHaveText(/example\*/);
+
+  const radioOption1 = page.locator('ix-radio').nth(0);
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+
+  await expect(radioGroupElement).toHaveClass(/ix-invalid--required/);
+  await expect(radioOption1).toHaveClass(/ix-invalid--required/);
+});
+
+regressionTest('initial checked', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>
@@ -51,7 +73,7 @@ test('initial checked', async ({ mount, page }) => {
   await expect(radioOption2.locator('.checkmark')).toBeVisible();
 });
 
-test('change checked', async ({ mount, page }) => {
+regressionTest('change checked', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>
@@ -79,7 +101,7 @@ test('change checked', async ({ mount, page }) => {
   await expect(radioOption3).toHaveAttribute('checked');
 });
 
-test('emit group changed change', async ({ mount, page }) => {
+regressionTest('emit group changed change', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>
@@ -107,7 +129,7 @@ test('emit group changed change', async ({ mount, page }) => {
   expect(await onValueChange).toEqual('option3');
 });
 
-test('disabled', async ({ mount, page }) => {
+regressionTest('disabled', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>

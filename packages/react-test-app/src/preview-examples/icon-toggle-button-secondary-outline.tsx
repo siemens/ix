@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconCheckboxes } from '@siemens/ix-icons/icons';
 import './icon-toggle-button-secondary-outline.scoped.css';
 
 import { IxIconToggleButton } from '@siemens/ix-react';
@@ -14,60 +15,60 @@ import { IxIconToggleButton } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxIconToggleButton outline icon="checkboxes"></IxIconToggleButton>
+      <IxIconToggleButton outline icon={iconCheckboxes}></IxIconToggleButton>
       <IxIconToggleButton
         outline
         pressed
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
       <IxIconToggleButton
         outline
         disabled
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
       <IxIconToggleButton
         outline
         disabled
         loading
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
 
       <IxIconToggleButton
         size="16"
         outline
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
       <IxIconToggleButton
         size="16"
         pressed
         outline
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
       <IxIconToggleButton
         size="16"
         disabled
         loading
         outline
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
 
       <IxIconToggleButton
         size="12"
         outline
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
       <IxIconToggleButton
         size="12"
         pressed
         outline
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
       <IxIconToggleButton
         size="12"
         disabled
         loading
         outline
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
     </>
   );

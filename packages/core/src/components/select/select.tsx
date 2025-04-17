@@ -8,6 +8,11 @@
  */
 
 import {
+  iconChevronDownSmall,
+  iconClear,
+  iconPlus,
+} from '@siemens/ix-icons/icons';
+import {
   AttachInternals,
   Component,
   Element,
@@ -35,7 +40,7 @@ import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 /**
- * @form-ready 2.6.0
+ * @form-ready
  */
 @Component({
   tag: 'ix-select',
@@ -50,78 +55,52 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   /**
    * A string that represents the element's name attribute,
    * containing a name that identifies the element when submitting the form.
-   *
-   * @since 2.6.0
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
    * A Boolean attribute indicating that an option with a non-empty string value must be selected
-   *
-   * @since 2.6.0
    */
   @Prop({ reflect: true }) required: boolean = false;
 
   /**
    * Label for the select component
-   *
-   * @since 2.6.0
    */
   @Prop() label?: string;
 
   /**
    * Warning text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() warningText?: string;
 
   /**
    * Info text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() infoText?: string;
 
   /**
    * Error text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() invalidText?: string;
 
   /**
    * Valid text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() validText?: string;
 
   /**
    * Helper text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() helperText?: string;
 
   /**
    * Show helper, error, info, warning text as tooltip
-   *
-   * @since 2.6.0
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * Indices of selected items.
-   * This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
-   * @deprecated since 2.0.0. Use the `value` property instead.
-   */
-  @Prop({ mutable: true }) selectedIndices?: string | string[];
-
-  /**
    * Current selected value.
    * This corresponds to the value property of ix-select-items
-   * @since 2.0.0
    */
   @Prop({ mutable: true }) value: string | string[] = [];
 
@@ -167,50 +146,32 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   /**
    * Information inside of dropdown if no items where found with current filter text
-   *
-   * @since 1.5.0
    */
   @Prop() i18nNoMatches = 'No matches';
 
   /**
    * Hide list header
-   *
-   * @since 1.5.0
    */
   @Prop() hideListHeader = false;
 
   /**
    * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
-   *
-   * @since 2.7.0
    */
   @Prop() dropdownWidth?: string;
 
   /**
    * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
    * By default the maximum width of the dropdown element is set to 100%.
-   *
-   * @since 2.7.0
-   *
    */
   @Prop() dropdownMaxWidth?: string;
 
   /**
    * Value changed
-   * @since 2.0.0
    */
   @Event() valueChange!: EventEmitter<string | string[]>;
 
   /**
-   * Item selection changed
-   * @deprecated since 2.0.0. Use `valueChange` instead.
-   */
-  @Event() itemSelectionChange!: EventEmitter<string[]>;
-
-  /**
    * Event dispatched whenever the text input changes.
-   *
-   * @since 2.0.0
    */
   @Event() inputChange!: EventEmitter<string>;
 
@@ -263,7 +224,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   get visibleNonShadowItems() {
     return this.nonShadowItems.filter(
-      (item) => !item.classList.contains('d-none')
+      (item) => !item.classList.contains('display-none')
     );
   }
 
@@ -275,7 +236,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   get visibleShadowItems() {
     return this.shadowItems.filter(
-      (item) => !item.classList.contains('d-none')
+      (item) => !item.classList.contains('display-none')
     );
   }
 
@@ -284,7 +245,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   get visibleItems() {
-    return this.items.filter((item) => !item.classList.contains('d-none'));
+    return this.items.filter(
+      (item) => !item.classList.contains('display-none')
+    );
   }
 
   get selectedItems() {
@@ -304,18 +267,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   get isEveryDropdownItemHidden() {
-    return this.items.every((item) => item.classList.contains('d-none'));
-  }
-
-  @Watch('selectedIndices')
-  watchSelectedIndices(value: string | string[]) {
-    this.value = value;
-    this.updateSelection();
+    return this.items.every((item) => item.classList.contains('display-none'));
   }
 
   @Watch('value')
   watchValue(value: string | string[]) {
-    this.selectedIndices = value;
+    this.value = value;
     this.updateSelection();
   }
 
@@ -343,7 +300,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.itemClick(newId);
   }
 
-  async updateFormInternalValue(value: string | string[]) {
+  updateFormInternalValue(value: string | string[]) {
     if (Array.isArray(value)) {
       this.formInternals.setFormValue(value.join(','));
     } else {
@@ -477,12 +434,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       return true;
     }
 
-    if (!value) {
-      this.itemSelectionChange.emit([]);
-    } else {
-      this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
-    }
-
     this.updateFormInternalValue(value);
     return false;
   }
@@ -495,10 +446,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   componentWillLoad() {
-    if (this.selectedIndices && !this.value) {
-      this.value = this.selectedIndices;
-    }
-
     this.updateSelection();
     this.updateFormInternalValue(this.value);
   }
@@ -721,13 +668,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     if (this.inputFilterText) {
       this.items.forEach((item) => {
-        item.classList.remove('d-none');
+        item.classList.remove('display-none');
         if (
           !item.label
             ?.toLowerCase()
             .includes(this.inputFilterText.toLowerCase())
         ) {
-          item.classList.add('d-none');
+          item.classList.add('display-none');
         }
       });
     } else {
@@ -743,7 +690,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   private removeHiddenFromItems() {
     this.items.forEach((item) => {
-      item.classList.remove('d-none');
+      item.classList.remove('display-none');
     });
   }
 
@@ -940,7 +887,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     <ix-icon-button
                       key="clear"
                       class="clear"
-                      icon={'clear'}
+                      icon={iconClear}
                       ghost
                       oval
                       size="16"
@@ -956,7 +903,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       data-select-dropdown
                       key="dropdown"
                       class={{ 'dropdown-visible': this.dropdownShow }}
-                      icon="chevron-down-small"
+                      icon={iconChevronDownSmall}
                       ghost
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
@@ -973,7 +920,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           show={this.dropdownShow}
           closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
           class={{
-            'd-none': this.disabled || this.readonly,
+            'display-none': this.disabled || this.readonly,
           }}
           anchor={this.dropdownAnchorRef.waitForCurrent()}
           trigger={this.dropdownWrapperRef.waitForCurrent()}
@@ -1016,14 +963,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               this.updateSelection();
             }}
           ></slot>
-          <div
-            ref={(ref) => (this.customItemsContainerElement = ref!)}
-            class="d-contents"
-          ></div>
+          <div ref={(ref) => (this.customItemsContainerElement = ref!)}></div>
           {this.isAddItemVisible() ? (
             <ix-dropdown-item
               data-testid="add-item"
-              icon={'plus'}
+              icon={iconPlus}
               class={{
                 'add-item': true,
               }}

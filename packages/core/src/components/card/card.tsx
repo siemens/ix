@@ -1,9 +1,6 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 
-//TODO(IX-1601): Remove insight, notification in 3.0
 export type CardVariant =
-  | 'insight'
-  | 'notification'
   | 'alarm'
   | 'critical'
   | 'warning'
@@ -14,9 +11,6 @@ export type CardVariant =
   | 'outline'
   | 'filled';
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-card',
   styleUrl: 'card.scss',
@@ -27,12 +21,11 @@ export class Card {
 
   /**
    * Card variant
-   * @deprecated variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.
    */
-  @Prop() variant: CardVariant = 'insight';
+  @Prop() variant: CardVariant = 'outline';
 
   /**
-   * @since 2.1.0
+   * Show card in selected state
    */
   @Prop() selected: boolean = false;
 

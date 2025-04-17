@@ -35,3 +35,12 @@ export const Required: Story = {
     required: true,
   },
 };
+
+export const MinLength: Story = {
+  args: {
+    label: 'MinLength',
+    minLength: 3,
+    maxLength: 5,
+    value: '1234567',
+  },
+};

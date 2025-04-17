@@ -20,9 +20,6 @@ import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
 import { a11yBoolean } from '../utils/a11y';
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-toggle-button',
   shadow: true,

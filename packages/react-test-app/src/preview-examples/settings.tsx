@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './settings.scoped.css';
-
 import {
   IxApplication,
   IxApplicationHeader,

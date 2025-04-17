@@ -10,13 +10,11 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
 
 export type DropdownButtonVariant = ButtonVariant;
 
-/**
- * @since 1.3.0
- */
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
@@ -57,14 +55,11 @@ export class DropdownButton {
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-   * @since 2.1.0
    */
   @Prop() closeBehavior: 'inside' | 'outside' | 'both' | boolean = 'both';
 
   /**
    * Placement of the dropdown
-   *
-   * @since 2.0.0
    */
   @Prop() placement?: AlignedPlacement;
 
@@ -112,7 +107,7 @@ export class DropdownButton {
                   ></ix-icon>
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
-                <ix-icon name={'chevron-down-small'} size="24"></ix-icon>
+                <ix-icon name={iconChevronDownSmall} size="24"></ix-icon>
               </div>
             </ix-button>
           ) : (

@@ -1,3 +1,5 @@
+'use client';
+
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *

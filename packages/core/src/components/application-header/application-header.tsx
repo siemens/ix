@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { iconApps, iconMoreMenu } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -53,15 +53,11 @@ export class ApplicationHeader {
    *
    * When the application header is utilized outside the application frame, the menu toggle button is displayed.
    * Conversely, if the header is within the application frame, this property is ineffective.
-   *
-   * @since 2.5.0
    */
   @Prop({ mutable: true }) showMenu?: boolean = false;
 
   /**
    * Event emitted when the menu toggle button is clicked
-   *
-   * @since 2.5.0
    */
   @Event() menuToggle!: EventEmitter<boolean>;
 
@@ -259,7 +255,7 @@ export class ApplicationHeader {
         {showApplicationSwitch && (
           <ix-icon-button
             onClick={() => this.showAppSwitch()}
-            icon="apps"
+            icon={iconApps}
             ghost
             class="app-switch"
           ></ix-icon-button>
@@ -279,7 +275,8 @@ export class ApplicationHeader {
                   ['context-menu-visible']: this.hasSlottedElements,
                 }}
                 data-context-menu
-                icon="more-menu"
+                data-testid="show-more"
+                icon={iconMoreMenu}
                 ghost
               ></ix-icon-button>
               <ix-dropdown

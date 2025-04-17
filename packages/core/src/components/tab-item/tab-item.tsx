@@ -61,8 +61,6 @@ export class TabItem {
 
   /**
    * Emitted when the tab is clicked.
-   *
-   * @since 2.0.0
    */
   @Event() tabClick!: EventEmitter<TabClickDetail>;
 

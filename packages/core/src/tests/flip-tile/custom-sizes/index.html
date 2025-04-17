@@ -13,21 +13,36 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
-  </head>
-  <body>
-    <div
-      style="
+    <style>
+      .container {
         display: 'flex';
         justify-content: 'center';
         position: 'relative';
         margin-top: '2rem';
-      "
-    >
+      }
+
+      .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconInfo } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconInfo,
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
       <ix-flip-tile width="14" height="12">
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div class="d-flex align-items-center">
+          <div class="content">
             <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
@@ -36,7 +51,7 @@ SPDX-License-Identifier: MIT
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div class="d-flex align-items-center">
+          <div class="content">
             <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
@@ -45,7 +60,7 @@ SPDX-License-Identifier: MIT
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div class="d-flex align-items-center">
+          <div class="content">
             <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>

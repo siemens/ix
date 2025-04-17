@@ -41,9 +41,8 @@ export class SelectItem implements DropdownItemWrapper {
    * The value of the item.
    * Important: The select component uses string values to handle selection and will call toString() on this value.
    * Therefor a string should be passed to value to prevent unexpected behavior.
-   * @deprecated will be changed to type string with next major release (3.0.0)
    */
-  @Prop({ reflect: true }) value!: any;
+  @Prop({ reflect: true }) value!: string;
 
   /**
    * Flag indicating whether the item is selected
@@ -86,7 +85,7 @@ export class SelectItem implements DropdownItemWrapper {
 
   componentDidRender() {
     if (this.value === undefined || this.value === null) {
-      throw Error('ix-select-item must have a `value` property');
+      console.warn('ix-select-item must have a `value` property');
     }
     this.componentLoaded = true;
   }

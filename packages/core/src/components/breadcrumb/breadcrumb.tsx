@@ -58,8 +58,6 @@ export class Breadcrumb {
   /**
    * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list
    * with conditionally hidden previous items
-   *
-   * @since 2.0.0
    */
   @Prop() ariaLabelPreviousButton = 'previous';
 

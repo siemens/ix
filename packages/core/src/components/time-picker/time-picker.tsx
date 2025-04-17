@@ -50,8 +50,6 @@ export class TimePicker {
   /**
    * Format of time string
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-   *
-   * @since 1.1.0
    */
   @Prop() format: string = 'TT';
 
@@ -64,11 +62,6 @@ export class TimePicker {
    * Controls the visual presentation and styling of the component when it is displayed as a standalone element
    */
   @Prop() standaloneAppearance: boolean = true;
-
-  /**
-   * @deprecated Not supported since 2.0.0.
-   */
-  @Prop() individual: boolean = true;
 
   /**
    * Show hour input
@@ -88,8 +81,6 @@ export class TimePicker {
   /**
    * Select time with format string
    * Format has to match the `format` property.
-   *
-   * @since 1.1.0
    */
   @Prop() time: string = DateTime.now().toFormat(this.format);
 
@@ -102,30 +93,17 @@ export class TimePicker {
   }
 
   /**
-   * Show time reference input
-   *
-   * @since 1.1.0 time reference is default aligned with format tt
-   * @deprecated Since 2.0.0 time reference will be displayed depending on format.
-   */
-  // eslint-disable-next-line @stencil-community/strict-mutable
-  @Prop({ mutable: true }) showTimeReference?: boolean = undefined;
-
-  /**
    * Set time reference
    */
   @Prop() timeReference: 'AM' | 'PM' | undefined;
 
   /**
    * Text of date select button
-   *
-   * @since 1.1.0
    */
   @Prop() textSelectTime = 'Done';
 
   /**
    * Text for top label
-   *
-   * @since 2.1.0
    */
   @Prop() textTime: string = 'Time';
 
@@ -133,12 +111,6 @@ export class TimePicker {
    * Time event
    */
   @Event() timeSelect!: EventEmitter<string>;
-
-  /**
-   * Time event
-   * @deprecated Will be removed in 3.0.0. Use `time-select` event.
-   */
-  @Event() done!: EventEmitter<string>;
 
   /**
    * Time change event
@@ -277,7 +249,7 @@ export class TimePicker {
                   ></ix-icon-button>
 
                   <input
-                    class="form-control"
+                    class="ix-form-control"
                     name={descriptor.unit}
                     type="number"
                     placeholder={descriptor.placeholder}
@@ -367,7 +339,6 @@ export class TimePicker {
             <ix-button
               onClick={() => {
                 this.timeSelect.emit(this._time?.toFormat(this.format));
-                this.done.emit(this._time?.toFormat(this.format));
               }}
             >
               {this.textSelectTime}

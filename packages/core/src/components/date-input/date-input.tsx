@@ -44,8 +44,8 @@ export type DateInputValidityState = {
 };
 
 /**
- * @since 2.6.0
- * @form-ready 2.6.0
+ * @form-ready
+ *
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */
@@ -55,7 +55,7 @@ export type DateInputValidityState = {
   shadow: true,
   formAssociated: true,
 })
-export class DateInput implements IxInputFieldComponent<string> {
+export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Element() hostElement!: HTMLIxDateInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -72,12 +72,10 @@ export class DateInput implements IxInputFieldComponent<string> {
   /**
    * value of the input element
    */
-  @Prop({ reflect: true, mutable: true }) value: string = '';
+  @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
-   *
-   * @since 2.6.0
    */
   @Prop() locale?: string;
 
@@ -153,7 +151,7 @@ export class DateInput implements IxInputFieldComponent<string> {
   /**
    * Input change event.
    */
-  @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
+  @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
 
   /**
    * Validation state change event.
@@ -188,7 +186,7 @@ export class DateInput implements IxInputFieldComponent<string> {
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  updateFormInternalValue(value: string): void {
+  updateFormInternalValue(value: string | undefined): void {
     this.formInternals.setFormValue(value);
     this.value = value;
   }
@@ -247,7 +245,7 @@ export class DateInput implements IxInputFieldComponent<string> {
     return Promise.resolve(this.formInternals.form);
   }
 
-  async onInput(value: string) {
+  async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
       this.valueChange.emit(value);
@@ -337,7 +335,7 @@ export class DateInput implements IxInputFieldComponent<string> {
           required={this.required}
           ref={this.inputElementRef}
           type="text"
-          value={this.value}
+          value={this.value ?? ''}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
             this.onInput(target.value);

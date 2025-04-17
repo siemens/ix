@@ -20,6 +20,7 @@ import {
 } from '@stencil/core';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { OnListener } from '../utils/listener';
+import { makeRef } from '../utils/make-ref';
 
 export type SliderMarker = Array<number>;
 
@@ -34,8 +35,6 @@ function between(min: number, value: number, max: number) {
 }
 
 /**
- * @since 2.0.0
- *
  * @slot label-start - Element will be displayed at the start of the slider
  * @slot label-end - Element will be displayed at the end of the slider
  */
@@ -107,12 +106,15 @@ export class Slider {
 
   private a11yAttributes?: A11yAttributes;
 
+  private readonly thumbRef = makeRef<HTMLDivElement>();
+  private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
+
   get tooltip() {
-    return this.hostElement.shadowRoot?.querySelector('ix-tooltip');
+    return this.tooltipRef.current;
   }
 
   get pseudoThumb() {
-    return this.hostElement.shadowRoot?.querySelector('.thumb') as HTMLElement;
+    return this.thumbRef.current;
   }
 
   get slider() {
@@ -218,6 +220,7 @@ export class Slider {
         <div class="slider">
           <div class="track">
             <div
+              ref={this.thumbRef}
               class="thumb"
               style={{
                 left: `calc(${valueInPercentage} * 100% - 8px)`,
@@ -287,10 +290,12 @@ export class Slider {
           />
 
           <ix-tooltip
+            ref={this.tooltipRef}
             class={{
               'hide-tooltip': !this.showTooltip,
             }}
             animationFrame={true}
+            for={this.thumbRef.waitForCurrent()}
           >
             {this.rangeInput}
           </ix-tooltip>
@@ -304,7 +309,7 @@ export class Slider {
           </div>
         </div>
         {this.error ? (
-          <ix-typography class={'label-error'} color="alarm">
+          <ix-typography class={'label-error'} textColor="alarm">
             {this.error}
           </ix-typography>
         ) : null}

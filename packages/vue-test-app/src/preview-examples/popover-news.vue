@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import {
-IxApplication,
+  IxApplication,
   IxApplicationHeader,
   IxBasicNavigation,
   IxMenu,
@@ -18,8 +18,6 @@ IxApplication,
   IxMenuAboutNews,
 } from '@siemens/ix-vue';
 </script>
-
-<style scoped src="./popover-news.css"></style>
 
 <template>
   <IxApplication>

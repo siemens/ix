@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconStar } from '@siemens/ix-icons/icons';
 import './button-text-icon.scoped.css';
 
 import { IxButton } from '@siemens/ix-react';
@@ -14,14 +15,14 @@ import { IxButton } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxButton icon="star">Button</IxButton>
-      <IxButton variant="secondary" icon="star">
+      <IxButton icon={iconStar}>Button</IxButton>
+      <IxButton variant="secondary" icon={iconStar}>
         Button
       </IxButton>
-      <IxButton outline icon="star">
+      <IxButton outline icon={iconStar}>
         Button
       </IxButton>
-      <IxButton ghost icon="star">
+      <IxButton ghost icon={iconStar}>
         Button
       </IxButton>
     </>

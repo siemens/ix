@@ -72,3 +72,12 @@ export const Required: Story = {
     label: 'Required',
   },
 };
+
+export const Step: Story = {
+  args: {
+    label: 'Stepper',
+    showStepperButtons: true,
+    step: 3,
+    max: 10,
+  },
+};

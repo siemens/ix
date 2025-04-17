@@ -11,7 +11,7 @@ import { Component, Element, h, Host, State } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
 
 /**
- * @deprecated since 3.0.0. Will be removed with 4.0.0.
+ * @deprecated Will be removed with 4.0.0
  * Use the 'ix-input' component instead
  */
 @Component({
@@ -97,7 +97,7 @@ export class InputGroup {
       }
     } else {
       console.warn(
-        'You used the ix-input-group without an input tag, e.g. <input class="form-control" />'
+        'You used the ix-input-group without an input tag, e.g. <input class="ix-form-control" />'
       );
     }
   }

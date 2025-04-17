@@ -8,23 +8,19 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import {
-  convertThemeName,
-  getComputedCSSProperty,
-  registerTheme,
-} from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
-import * as echarts from 'echarts/core';
-import 'echarts-gl';
 import { EChartsOption } from 'echarts';
+import * as echarts from 'echarts';
+/* import 'echarts-gl'; */
 
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-special-3d.html',
-  styleUrls: ["./echarts-special-3d.css"],
+  styleUrls: ['./echarts-special-3d.css'],
 })
 export default class EchartsSpecial3d implements OnInit {
-  theme = convertThemeName(themeSwitcher.getCurrentTheme());
+  theme = themeSwitcher.getCurrentTheme();
 
   gridConfig() {
     return {
@@ -41,7 +37,7 @@ export default class EchartsSpecial3d implements OnInit {
       },
       axisLabel: {
         color: getComputedCSSProperty('color-std-text'),
-      }
+      },
     };
   }
 
@@ -86,7 +82,7 @@ export default class EchartsSpecial3d implements OnInit {
     registerTheme(echarts);
 
     themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = convertThemeName(theme);
+      this.theme = theme;
     });
   }
 }

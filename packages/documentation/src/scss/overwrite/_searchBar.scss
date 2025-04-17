@@ -1,0 +1,81 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+#__docusaurus {
+  .aa-DetachedSearchButton {
+    --aa-primary-color-rgb: var(--theme-color-std-text);
+    background-color: transparent;
+    color: var(--theme-color-std-text);
+    padding: 0 1rem 0 0.5rem;
+    width: 7rem;
+    max-width: 12.5rem;
+    border-radius: 6px;
+  }
+
+  .aa-DetachedSearchButton:focus-visible {
+    outline: none;
+  }
+
+  .aa-DetachedSearchButton:hover {
+    background-color: var(--theme-color-1);
+  }
+
+  .aa-DetachedSearchButtonIcon {
+    width: 1.5rem;
+    margin-right: 0.25rem;
+  }
+
+  .aa-DetachedSearchButtonPlaceholder {
+    color: var(--theme-color-soft-text);
+  }
+}
+
+.aa-DetachedContainer.aa-DetachedContainer--modal {
+  background-color: var(--theme-color-1);
+}
+
+.aa-Form {
+  background-color: transparent !important;
+  --aa-primary-color-rgb: var(--theme-color-std-text);
+  color: var(--theme-color-std-text);
+
+  .aa-InputWrapperSuffix,
+  .aa-InputWrapperPrefix {
+    background-color: var(--theme-input--background);
+    box-shadow: none;
+  }
+
+  .aa-Input {
+    background-color: var(--theme-input--background);
+    box-shadow: none;
+  }
+
+  .aa-Input::placeholder {
+    color: var(--theme-color-soft-text);
+  }
+
+  .aa-SubmitButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--theme-color-std-text);
+  }
+
+  .aa-ClearButton {
+    color: var(--theme-color-std-text);
+  }
+}
+
+.aa-Panel,
+.aa-PanelLayout {
+  background-color: var(--theme-color-1);
+
+  .aa-Item {
+    padding: 0.75rem;
+  }
+}

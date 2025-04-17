@@ -8,11 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import {
-  convertThemeName,
-  getComputedCSSProperty,
-  registerTheme,
-} from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
@@ -20,10 +16,10 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-progress-circle.html',
-  styleUrls: ["./echarts-progress-circle.css"],
+  styleUrls: ['./echarts-progress-circle.css'],
 })
 export default class EchartsProgressCircle implements OnInit {
-  theme = convertThemeName(themeSwitcher.getCurrentTheme());
+  theme = themeSwitcher.getCurrentTheme();
 
   value = 60;
 
@@ -36,9 +32,7 @@ export default class EchartsProgressCircle implements OnInit {
           show: true,
           lineStyle: {
             width: 15,
-            color: [
-              [1, getComputedCSSProperty('color-neutral-40')],
-            ],
+            color: [[1, getComputedCSSProperty('color-neutral-40')]],
           },
         },
         axisTick: {
@@ -99,7 +93,7 @@ export default class EchartsProgressCircle implements OnInit {
     registerTheme(echarts);
 
     themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = convertThemeName(theme);
+      this.theme = theme;
     });
   }
 }

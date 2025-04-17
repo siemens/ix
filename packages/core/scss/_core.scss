@@ -10,6 +10,7 @@
 /* Import global stylings for Web Components */
 @import './../src/components/toast/styles/toast-container';
 
+/* Legacy typography will be removed in 4.0.0 */
 @import './legacy/mixins/fonts';
 @import './legacy/fonts';
 
@@ -17,22 +18,22 @@
 @import './common-variables';
 @import 'z-index';
 
-/* Components */
-@import 'legacy/components/modal';
-@import 'legacy/components/buttons';
-@import 'legacy/components/button-group';
-@import 'legacy/components/dropdown';
-@import 'legacy/components/forms';
-@import './components/form/input';
+/* Global legacy style components  */
+@import 'legacy/components/input';
+@import 'legacy/components/checkboxes';
+@import 'legacy/components/radiobuttons';
+@import 'legacy/fonts';
+
+/* Global style components */
 @import './components/links';
-@import './components/checkboxes';
-@import './components/radiobuttons';
 @import './components/shadows';
 @import './components/input-group';
 @import './components/table';
 @import './components/fonts';
+@import './components/button-group';
 
 @import 'mixins/scrollbar';
+@import './normalize';
 
 :root {
   --animate-duration: #{$default-time};
@@ -55,10 +56,4 @@ body {
 
 body:not(.disable-scrollbar) {
   @include scrollbar();
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
 }

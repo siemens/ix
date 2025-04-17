@@ -23,6 +23,8 @@ type Position = { x: number; y: number };
 
 /**
  * @slot tooltip-message - Custom tooltip message with html support
+ *
+ * @deprecated Will be removed with 4.0.0
  */
 @Component({
   tag: 'ix-validation-tooltip',
@@ -44,8 +46,6 @@ export class ValidationTooltip {
 
   /**
    * Suppress the automatic placement of the dropdown.
-   *
-   * @since 2.0.0
    */
   @Prop() suppressAutomaticPlacement = false;
 

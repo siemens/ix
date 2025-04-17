@@ -19,8 +19,7 @@ const meta = {
       }
     };
 
-    return html`
-      <ix-drawer
+    return html` <ix-drawer
         .closeOnClickOutside=${args.closeOnClickOutside}
         ?fullHeight=${true}
         .show=${args.show}
@@ -56,7 +55,6 @@ const meta = {
 } satisfies Meta<Element>;
 
 export default meta;
-
 type Story = StoryObj<Element>;
 
 export const Default: Story = {

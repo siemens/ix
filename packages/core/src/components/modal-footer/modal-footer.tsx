@@ -9,9 +9,6 @@
 
 import { Component, h, Host } from '@stencil/core';
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-modal-footer',
   styleUrl: 'modal-footer.scss',

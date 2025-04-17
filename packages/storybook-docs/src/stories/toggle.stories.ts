@@ -102,3 +102,9 @@ export const Overflow: Story = {
     return container;
   },
 };
+
+export const Required: Story = {
+  args: {
+    required: true,
+  },
+};

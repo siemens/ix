@@ -8,15 +8,14 @@
 -->
 
 <script setup lang="ts">
+import { iconGlobe, iconHome } from '@siemens/ix-icons/icons';
 import { IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./menu-with-bottom-tabs.css"></style>
-
 <template>
   <IxMenu>
-    <IxMenuItem home-tab tab-icon="home"> Home </IxMenuItem>
-    <IxMenuItem tab-icon="globe" slot="bottom">
+    <IxMenuItem home-tab :tab-icon="iconHome"> Home </IxMenuItem>
+    <IxMenuItem :tab-icon="iconGlobe" slot="bottom">
       &nbsp; Bottom Tab&nbsp;
     </IxMenuItem>
   </IxMenu>

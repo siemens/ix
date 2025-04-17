@@ -18,31 +18,35 @@ SPDX-License-Identifier: MIT
         margin: 0 0.25rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconPrint } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconPrint,
+      });
+    </script>
   </head>
   <body>
     <ix-icon-button loading icon="print"></ix-icon-button>
     <ix-icon-button loading icon="print" size="12"></ix-icon-button>
     <ix-icon-button loading icon="print" size="16"></ix-icon-button>
     <ix-icon-button loading icon="print" size="24"></ix-icon-button>
-    <ix-icon-button loading icon="print" size="32"></ix-icon-button>
 
     <ix-icon-button loading outline icon="print"></ix-icon-button>
     <ix-icon-button loading outline icon="print" size="12"></ix-icon-button>
     <ix-icon-button loading outline icon="print" size="16"></ix-icon-button>
     <ix-icon-button loading outline icon="print" size="24"></ix-icon-button>
-    <ix-icon-button loading outline icon="print" size="32"></ix-icon-button>
 
     <ix-icon-button loading ghost icon="print"></ix-icon-button>
     <ix-icon-button loading ghost icon="print" size="12"></ix-icon-button>
     <ix-icon-button loading ghost icon="print" size="16"></ix-icon-button>
     <ix-icon-button loading ghost icon="print" size="24"></ix-icon-button>
-    <ix-icon-button loading ghost icon="print" size="32"></ix-icon-button>
 
     <ix-icon-button loading oval icon="print"></ix-icon-button>
     <ix-icon-button loading oval icon="print" size="12"></ix-icon-button>
     <ix-icon-button loading oval icon="print" size="16"></ix-icon-button>
     <ix-icon-button loading oval icon="print" size="24"></ix-icon-button>
-    <ix-icon-button loading oval icon="print" size="32"></ix-icon-button>
 
     <ix-icon-button loading oval outline icon="print"></ix-icon-button>
     <ix-icon-button
