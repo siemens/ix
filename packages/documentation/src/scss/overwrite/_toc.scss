@@ -13,4 +13,15 @@
     top: 16rem;
     margin-top: 4rem;
   }
+
+  .table-of-contents__link--active {
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 2px;
+      height: 1.5rem;
+      background-color: var(--theme-color-dynamic);
+    }
+  }
 }

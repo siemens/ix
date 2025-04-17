@@ -238,6 +238,12 @@ const config: Config = {
           label: 'Styles',
         },
         {
+          type: 'custom-news-pill',
+          position: 'left',
+          label: 'Release 3.0 is here',
+          value: '/blog/v3-alpha',
+        },
+        {
           type: 'custom-version-selection',
           position: 'right',
           value: versionDeployment
