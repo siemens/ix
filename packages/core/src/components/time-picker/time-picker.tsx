@@ -116,18 +116,12 @@ export class TimePicker {
 
   @Watch('time')
   watchTimePropHandler(newValue: string) {
-    // if (!newValue) {
-    //   this._time = undefined;
-    //   return;
-    // }
-
     const timeFormat = DateTime.fromFormat(newValue, this.format);
     if (!timeFormat.isValid) {
       throw new Error('Format is not supported or not correct');
     }
 
     this._time = DateTime.fromFormat(newValue, this.format);
-    // this.updateScrollPositions();
   }
 
   /**
@@ -167,25 +161,32 @@ export class TimePicker {
     return this._time?.toFormat(this.format);
   }
 
-  /**
-   * @internal
-   *
-   * Used to update the scroll positions of the time picker elements when opening through time input
-   */
-  @Method()
-  async updateScrollPositionsMethod(): Promise<void> {
-    this.updateScrollPositions();
+  @State() private _time?: DateTime;
+  @Watch('_time')
+  onTimeChange() {
+    const formattedTimeOld = this._formattedTime;
+    this._formattedTime = this.getFormattedTime();
 
-    return Promise.resolve();
+    this.updateScrollPositions(formattedTimeOld);
+
+    if (!this._time) {
+      return;
+    }
+
+    if (this._timeRef) {
+      this._timeRef = this._time!.toFormat('a') as 'AM' | 'PM';
+    }
   }
 
-  @State() private _time?: DateTime;
   @State() private _timeRef?: 'AM' | 'PM' | undefined;
   @State() private _formattedTime!: TimeOutputFormat;
   @State() private _hourNumbers: number[] = [];
   @State() private _minuteNumbers: number[] = [];
   @State() private _secondNumbers: number[] = [];
   @State() private _millisecondsNumbers: number[] = [];
+
+  private visibilityObserver?: MutationObserver;
+  private hasUpdatedScrollPositions = false;
 
   componentWillLoad() {
     this._time = DateTime.fromFormat(this.time, this.format);
@@ -211,9 +212,67 @@ export class TimePicker {
 
   componentDidLoad() {
     this.updateScrollPositions();
+    this.setupVisibilityObserver();
   }
 
-  getFormattedTime(): TimeOutputFormat {
+  disconnectedCallback() {
+    if (this.visibilityObserver) {
+      this.visibilityObserver.disconnect();
+      this.visibilityObserver = undefined;
+    }
+  }
+
+  private setupVisibilityObserver() {
+    let dropdownElement: Element | null = this.hostElement;
+    while (dropdownElement && dropdownElement.tagName !== 'IX-DROPDOWN') {
+      dropdownElement = dropdownElement.parentElement;
+    }
+
+    if (!dropdownElement) {
+      return;
+    }
+
+    this.visibilityObserver = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'attributes') {
+          const dropdown = mutation.target as HTMLElement;
+
+          // Check if the dropdown is now visible (has the 'show' class)
+          if (dropdown.classList.contains('show')) {
+            // Check if elements are fully rendered by looking at their dimensions
+            const elementsReady = this.areElementsRendered();
+
+            if (elementsReady && !this.hasUpdatedScrollPositions) {
+              this.updateScrollPositions();
+              this.hasUpdatedScrollPositions = true;
+            }
+          } else {
+            this.hasUpdatedScrollPositions = false;
+          }
+        }
+      }
+    });
+
+    this.visibilityObserver.observe(dropdownElement, {
+      attributes: true,
+      attributeFilter: ['class', 'style'],
+    });
+  }
+
+  private areElementsRendered(): boolean {
+    const elementLists =
+      this.hostElement.shadowRoot?.querySelectorAll('.element-list');
+
+    if (!elementLists || elementLists.length === 0) {
+      return false;
+    }
+
+    return Array.from(elementLists).some(
+      (list) => (list as HTMLElement).offsetHeight > 0
+    );
+  }
+
+  private getFormattedTime(): TimeOutputFormat {
     if (!this._time) {
       return;
     }
@@ -226,23 +285,7 @@ export class TimePicker {
     };
   }
 
-  @Watch('_time')
-  onTimeChange() {
-    const formattedTimeOld = this._formattedTime;
-    this._formattedTime = this.getFormattedTime();
-
-    this.updateScrollPositions(formattedTimeOld);
-
-    if (!this._time) {
-      return;
-    }
-
-    if (this._timeRef) {
-      this._timeRef = this._time!.toFormat('a') as 'AM' | 'PM';
-    }
-  }
-
-  timeUpdate(unit: TimePickerDescriptorUnit, value: number): number {
+  private timeUpdate(unit: TimePickerDescriptorUnit, value: number): number {
     let maxValue = DateTime.now().endOf('day').get(unit);
 
     if (this._timeRef === 'PM' && unit === 'hour') value += 12;
@@ -260,7 +303,7 @@ export class TimePicker {
     return value;
   }
 
-  changeTimeReference(timeRef: 'AM' | 'PM') {
+  private changeTimeReference(timeRef: 'AM' | 'PM') {
     if (!this._time) return;
 
     const oldTimeRef = this._timeRef;

@@ -161,7 +161,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /**
    * Show milliseconds input
    */
-  @Prop() showMilliseconds = false;
+  @Prop() showMilliseconds = true;
 
   /**
    * Interval for hour selection

@@ -3037,7 +3037,6 @@ export namespace Components {
           * Set time reference
          */
         "timeReference": 'AM' | 'PM' | undefined;
-        "updateScrollPositionsMethod": () => Promise<void>;
     }
     interface IxToast {
         /**
