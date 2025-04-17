@@ -9,3 +9,9 @@
 .CopyButton {
   padding-right: 0.25rem;
 }
+
+.TooltipSuccess {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}

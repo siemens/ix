@@ -14,4 +14,10 @@
       display: none;
     }
   }
+
+  .code-block-no-wrap {
+    .theme-code-block [class*='buttonGroup'] button[title='Toggle word wrap'] {
+      display: none;
+    }
+  }
 }
