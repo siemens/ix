@@ -44,7 +44,7 @@
     .toast-icon {
       display: flex;
       align-items: flex-start;
-      margin: 0.125rem 0.5rem 0px 0px;
+      margin: $default-space;
     }
 
     .toast-content {
@@ -55,7 +55,7 @@
 
       .toast-title {
         @include text-default-title-single;
-        margin: 0.25rem 0px 0px 0px;
+        margin: 0.25rem 0px;
       }
 
       .toast-message {
@@ -76,16 +76,12 @@
     pointer-events: all;
     margin-left: auto;
     margin-right: 0px;
-    opacity: 0.6;
-    &:hover {
-      opacity: 1;
-    }
   }
 
   .toast-progress-bar {
     position: absolute;
     bottom: 0;
-    height: 0.125rem;
+    height: $tiny-space;
     width: 100%;
     background-color: var(--theme-toast-timer-value--background);
     transform-origin: left;
