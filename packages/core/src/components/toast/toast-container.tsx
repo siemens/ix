@@ -52,6 +52,7 @@ export class ToastContainer {
     if (!document.getElementById(this.containerId)) {
       const toastContainer = document.createElement('div');
       toastContainer.id = this.containerId;
+      toastContainer.setAttribute('data-testid', this.containerId);
       toastContainer.classList.add(this.containerClass);
       toastContainer.classList.add(
         `${this.PREFIX_POSITION_CLASS}${this.position}`

@@ -9,7 +9,12 @@
 import { defineCustomElement as defineToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 import { defineCustomElement as defineToast } from '@siemens/ix/components/ix-toast.js';
 
-import { toast, ToastConfig as IxToastConfig } from '@siemens/ix';
+import {
+  toast,
+  ToastConfig as IxToastConfig,
+  setToastPosition as ixSetToastPosition,
+  ToastPosition,
+} from '@siemens/ix';
 import ReactDOMClient from 'react-dom/client';
 
 export type ToastConfig = {
@@ -43,4 +48,9 @@ export async function showToast(
   });
 
   return toastInstance;
+}
+
+export function setToastPosition(position: ToastPosition) {
+  defineToastContainer();
+  ixSetToastPosition(position);
 }

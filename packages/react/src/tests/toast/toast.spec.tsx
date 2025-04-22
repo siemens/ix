@@ -34,4 +34,16 @@ describe(`toast`, () => {
 
     expect(icon.name).toEqual('star');
   });
+
+  it(`position`, async () => {
+    render(<Content />);
+
+    await customElements.whenDefined('ix-toast-container');
+
+    const toastContainer = (await screen.findByShadowTestId(
+      'toast-container'
+    )) as HTMLDivElement;
+
+    expect(toastContainer).toHaveClass('toast-container--top-right');
+  });
 });
