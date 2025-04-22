@@ -755,18 +755,10 @@ test('scroll to last item and select', async ({ mount, page }) => {
 
   await page.locator('#trigger').click();
 
-  const dropdown = page.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
-
-  await page.evaluate(() => {
-    const dropdown = document.querySelector('ix-dropdown');
-    const lastItem = dropdown?.querySelector('ix-dropdown-item:last-child');
-    if (lastItem) {
-      lastItem.scrollIntoView();
-    }
-  });
-
   const lastItem = page.locator('ix-dropdown-item').last();
+  await lastItem.evaluate((item) => {
+    item.scrollIntoView();
+  });
   await expect(lastItem).toBeVisible();
 });
 
@@ -785,41 +777,9 @@ test('scroll to last item with button at center', async ({ mount, page }) => {
 
   await page.locator('#trigger').click();
 
-  const dropdown = page.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
-
-  await page.evaluate(() => {
-    const dropdown = document.querySelector('ix-dropdown');
-    const lastItem = dropdown?.querySelector('ix-dropdown-item:last-child');
-    if (lastItem) {
-      lastItem.scrollIntoView();
-    }
-  });
-
   const lastItem = page.locator('ix-dropdown-item').last();
+  await lastItem.evaluate((item) => {
+    item.scrollIntoView();
+  });
   await expect(lastItem).toBeVisible();
-
-  const dropdownPosition = await dropdown.evaluate((el) => {
-    const rect = el.getBoundingClientRect();
-    return { top: rect.top, bottom: rect.bottom };
-  });
-  console.log(
-    `Dropdown Position: Top=${dropdownPosition.top}, Bottom=${dropdownPosition.bottom}`
-  );
-
-  const triggerPosition = await page.locator('#trigger').evaluate((el) => {
-    const rect = el.getBoundingClientRect();
-    return { top: rect.top, bottom: rect.bottom };
-  });
-  console.log(
-    `Trigger Position: Top=${triggerPosition.top}, Bottom=${triggerPosition.bottom}`
-  );
-
-  if (dropdownPosition.top >= triggerPosition.bottom) {
-    console.log('Dropdown appears BELOW the trigger button.');
-  } else if (dropdownPosition.bottom <= triggerPosition.top) {
-    console.log('Dropdown appears ABOVE the trigger button.');
-  } else {
-    console.log('Dropdown overlaps with the trigger button.');
-  }
 });
