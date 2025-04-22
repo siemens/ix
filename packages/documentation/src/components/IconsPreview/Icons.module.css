@@ -135,7 +135,9 @@
   padding: calc(1rem - 1px);
 }
 
-.Icon__Details ix-typography {
+.Icon__Details .Icon__NameContainer {
+  display: flex;
+  justify-items: center;
   width: 50%;
   white-space: nowrap;
   overflow: hidden;

@@ -105,7 +105,11 @@ const IconTiles: React.FC<{ columnCount: number; iconList: string[] }> = (
       >
         <IxIcon name={props.iconName} size="32" />
         <div className={styles.Icon__FlexContent}>
-          <IxTypography format="h3">{props.iconName}</IxTypography>
+          <div className={styles.Icon__NameContainer}>
+            <IxTypography format="h3">{props.iconName}</IxTypography>
+            <a href={`#${props.iconName}`} className="hash-link"></a>
+          </div>
+
           <div
             ref={codeBlockContainerRef}
             className={clsx(
@@ -172,6 +176,13 @@ const IconTiles: React.FC<{ columnCount: number; iconList: string[] }> = (
     }
     return rows;
   }, [props.iconList, props.columnCount]);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      handleIconClick(hash);
+    }
+  }, []);
 
   return (
     <div className={clsx(styles.Icons)}>
@@ -265,8 +276,7 @@ const Icons: React.FC = () => {
 
   useEffect(() => {
     setColumnCount(getColumnCount(window.innerWidth));
-  }
-  , []);
+  }, []);
 
   return (
     <BrowserOnly>
