@@ -49,7 +49,7 @@ try {
   customCss.push(path);
   withBrandTheme = true;
 } catch (e) {
-  console.warn('optionalDependency @siemens/ix-corporate-theme not found!');
+  console.warn('optionalDependency @siemens-ix/corporate-theme not found!');
 }
 
 const brokenLinks = 'throw';

@@ -31,6 +31,7 @@ import FrameworkSelection from '../UI/FrameworkSelection';
 import CodeBlock from '@theme/CodeBlock';
 import { fromKebabCaseToCamelCase } from '@site/src/lib/utils/string-format';
 import { debounce } from '@site/src/lib/utils/debounce';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 function getIconCode(iconName: string, framework: FrameworkTypes) {
   const importedName = 'icon' + fromKebabCaseToCamelCase(iconName);
@@ -185,9 +186,9 @@ const IconTiles: React.FC<{ columnCount: number; iconList: string[] }> = (
                     row.includes(selectedIcon) &&
                     styles.Icon__ContainerDetails
                 )}
+                key={icon}
               >
                 <div
-                  key={icon}
                   className={clsx(styles.Icon__Tile, {
                     [styles.Selected]: selectedIcon === icon,
                   })}
@@ -229,9 +230,7 @@ const Icons: React.FC = () => {
   const [showFilledIcons, setShowFilledIcons] = useState<boolean>(true);
   const [icons] = useState<string[]>(ICON_LIST.icons);
   const [iconList, setIconList] = useState<string[]>(ICON_LIST.icons);
-  const [columnCount, setColumnCount] = useState<number>(
-    getColumnCount(window.innerWidth)
-  );
+  const [columnCount, setColumnCount] = useState<number>(2);
   const filterInputRef = useRef<HTMLIxInputElement>(null);
 
   const filteredIcons = useMemo(() => {
@@ -264,75 +263,87 @@ const Icons: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [columnCount]);
 
+  useEffect(() => {
+    setColumnCount(getColumnCount(window.innerWidth));
+  }
+  , []);
+
   return (
-    <div className={styles.IconsPreview}>
-      <div className={clsx(styles.Search)}>
-        <IxInput
-          ref={filterInputRef}
-          placeholder="Search Icon"
-          onInput={(e) =>
-            setIconFilter(
-              (e.target as HTMLInputElement).value.toLocaleLowerCase()
-            )
-          }
-        >
-          <IxIcon
-            name={iconSearch}
-            color="color-dynamic"
-            slot="start"
-            size="16"
-          ></IxIcon>
-          {iconFilter && (
-            <IxIconButton
-              ghost
-              oval
-              iconColor="color-soft-text"
-              icon={iconClear}
-              slot="end"
-              size="16"
-              onClick={() => {
-                setIconFilter('');
-                filterInputRef.current.value = '';
+    <BrowserOnly>
+      {() => (
+        <div className={styles.IconsPreview}>
+          <div className={clsx(styles.Search)}>
+            <IxInput
+              ref={filterInputRef}
+              placeholder="Search Icon"
+              onInput={(e) =>
+                setIconFilter(
+                  (e.target as HTMLInputElement).value.toLocaleLowerCase()
+                )
+              }
+            >
+              <IxIcon
+                name={iconSearch}
+                color="color-dynamic"
+                slot="start"
+                size="16"
+              ></IxIcon>
+              {iconFilter && (
+                <IxIconButton
+                  ghost
+                  oval
+                  iconColor="color-soft-text"
+                  icon={iconClear}
+                  slot="end"
+                  size="16"
+                  onClick={() => {
+                    setIconFilter('');
+                    filterInputRef.current.value = '';
+                  }}
+                ></IxIconButton>
+              )}
+            </IxInput>
+            <IxCheckbox
+              checked={showRegularIcons}
+              label="Show regular icons"
+              onCheckedChange={(e) => {
+                setShowRegularIcons(e.detail);
               }}
-            ></IxIconButton>
-          )}
-        </IxInput>
-        <IxCheckbox
-          checked={showRegularIcons}
-          label="Show regular icons"
-          onCheckedChange={(e) => {
-            setShowRegularIcons(e.detail);
-          }}
-        ></IxCheckbox>
-        <IxCheckbox
-          checked={showFilledIcons}
-          label="Show filled icons"
-          onCheckedChange={(e) => {
-            setShowFilledIcons(e.detail);
-          }}
-        ></IxCheckbox>
-      </div>
-
-      <IconTiles columnCount={columnCount} iconList={iconList} />
-
-      {iconList.length === 0 && (
-        <div className={styles.Search__NoResults}>
-          <IxIcon
-            className={styles.Search__NoResultsIcon}
-            name="search"
-            color="color-soft-text"
-          ></IxIcon>
-          <div className={styles.Search__NoIconsFound}>No icons found</div>
-          <div className={styles.Search__AdaptOrRequest}>
-            Adapt the filter<br></br> or open an icon request in{' '}
-            <a target="_blank" href="https://github.com/siemens/ix-icons/issues">
-              GitHub
-            </a>
-            .
+            ></IxCheckbox>
+            <IxCheckbox
+              checked={showFilledIcons}
+              label="Show filled icons"
+              onCheckedChange={(e) => {
+                setShowFilledIcons(e.detail);
+              }}
+            ></IxCheckbox>
           </div>
+
+          <IconTiles columnCount={columnCount} iconList={iconList} />
+
+          {iconList.length === 0 && (
+            <div className={styles.Search__NoResults}>
+              <IxIcon
+                className={styles.Search__NoResultsIcon}
+                name="search"
+                color="color-soft-text"
+              ></IxIcon>
+              <div className={styles.Search__NoIconsFound}>No icons found</div>
+              <div className={styles.Search__AdaptOrRequest}>
+                Adapt the filter<br></br> or open an icon request in{' '}
+                <a
+                  target="_blank"
+                  href="https://github.com/siemens/ix-icons/issues"
+                >
+                  GitHub
+                </a>
+                .
+              </div>
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </BrowserOnly>
   );
 };
 
