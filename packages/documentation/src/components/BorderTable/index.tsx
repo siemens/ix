@@ -320,9 +320,7 @@ function BorderStyle() {
         key={child.name + '_' + child.width}
       >
         <div className={clsx(styles.borderRow)}>
-          <div
-            className={clsx(styles.borderColumn, styles.borderColumnChildName)}
-          >
+          <div className={clsx(styles.borderColumn, 'column-w-100')}>
             <BorderRect color={`--theme-${child.rawName}`}></BorderRect>
             --theme-{child.rawName}
             <CopyButton
