@@ -95,6 +95,11 @@
         &:hover {
           background-color: var(--theme-datepicker-day--background--hover);
         }
+
+        &:focus {
+          outline: 1px solid var(--theme-color-focus-bdr);
+          outline-offset: -1px;
+        }
       }
 
       .selected {

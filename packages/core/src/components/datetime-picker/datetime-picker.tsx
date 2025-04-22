@@ -35,21 +35,6 @@ export class DatetimePicker
   @Prop() range = true;
 
   /**
-   * Show hour input
-   */
-  @Prop() showHour = true;
-
-  /**
-   * Show minutes input
-   */
-  @Prop() showMinutes = true;
-
-  /**
-   * Show seconds input
-   */
-  @Prop() showSeconds = true;
-
-  /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
    *
@@ -234,9 +219,6 @@ export class DatetimePicker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
                 standaloneAppearance={false}
-                showHour={this.showHour}
-                showMinutes={this.showMinutes}
-                showSeconds={this.showSeconds}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
                 textTime={this.i18nTime}

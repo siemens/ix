@@ -949,18 +949,6 @@ export namespace Components {
          */
         "range": boolean;
         /**
-          * Show hour input
-         */
-        "showHour": boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes": boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds": boolean;
-        /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
           * @since 1.1.0
@@ -2936,22 +2924,6 @@ export namespace Components {
          */
         "secondInterval": number;
         /**
-          * Show hour input
-         */
-        "showHour": boolean;
-        /**
-          * Show milliseconds input
-         */
-        "showMilliseconds": boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes": boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds": boolean;
-        /**
           * show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
@@ -2999,22 +2971,6 @@ export namespace Components {
          */
         "secondInterval": number;
         /**
-          * Show hour input
-         */
-        "showHour": boolean;
-        /**
-          * Show milliseconds input
-         */
-        "showMilliseconds": boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes": boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds": boolean;
-        /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
         "standaloneAppearance": boolean;
@@ -3033,10 +2989,6 @@ export namespace Components {
           * @since 1.1.0
          */
         "time": string;
-        /**
-          * Set time reference
-         */
-        "timeReference": 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**
@@ -6233,18 +6185,6 @@ declare namespace LocalJSX {
          */
         "range"?: boolean;
         /**
-          * Show hour input
-         */
-        "showHour"?: boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes"?: boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds"?: boolean;
-        /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
           * @since 1.1.0
@@ -8344,22 +8284,6 @@ declare namespace LocalJSX {
          */
         "secondInterval"?: number;
         /**
-          * Show hour input
-         */
-        "showHour"?: boolean;
-        /**
-          * Show milliseconds input
-         */
-        "showMilliseconds"?: boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes"?: boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds"?: boolean;
-        /**
           * show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
@@ -8411,22 +8335,6 @@ declare namespace LocalJSX {
          */
         "secondInterval"?: number;
         /**
-          * Show hour input
-         */
-        "showHour"?: boolean;
-        /**
-          * Show milliseconds input
-         */
-        "showMilliseconds"?: boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes"?: boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds"?: boolean;
-        /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
         "standaloneAppearance"?: boolean;
@@ -8445,10 +8353,6 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "time"?: string;
-        /**
-          * Set time reference
-         */
-        "timeReference"?: 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**

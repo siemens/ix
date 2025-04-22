@@ -144,26 +144,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
     'Time is not valid';
 
   /**
-   * Show hour input
-   */
-  @Prop() showHour = true;
-
-  /**
-   * Show minutes input
-   */
-  @Prop() showMinutes = true;
-
-  /**
-   * Show seconds input
-   */
-  @Prop() showSeconds = true;
-
-  /**
-   * Show milliseconds input
-   */
-  @Prop() showMilliseconds = true;
-
-  /**
    * Interval for hour selection
    */
   @Prop() hourInterval: number = 1;
@@ -525,10 +505,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
             ref={this.timePickerRef}
             format={this.format}
             time={this.time ?? ''}
-            showHour={this.showHour}
-            showMinutes={this.showMinutes}
-            showSeconds={this.showSeconds}
-            showMilliseconds={this.showMilliseconds}
             hourInterval={this.hourInterval}
             minuteInterval={this.minuteInterval}
             secondInterval={this.secondInterval}
