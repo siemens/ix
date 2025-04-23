@@ -42,7 +42,6 @@ export function getToastContainer() {
 
 export function setToastPosition(position: ToastPosition) {
   const container = getToastContainer();
-  container.position = position;
   container.setAttribute('position', position);
 }
 
