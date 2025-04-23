@@ -12,7 +12,7 @@ concurrency: deploy-gh-pages-${{ github.ref }}
 
 jobs:
   deploy-gh-pages:
-    if: ${{ inputs.confirm_deployment == true && github.repository == 'siemens/ix' }}
+    if: ${{ inputs.confirm_deployment == true && github.repository == 'siemens/ix' && startsWith(github.ref, 'refs/heads/release/docs') == true }}
     permissions:
       contents: write
     runs-on: ubuntu-latest
