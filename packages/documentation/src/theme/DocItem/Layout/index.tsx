@@ -83,7 +83,12 @@ export function BannerDocItemLayout({ children }: Props): JSX.Element {
         tabs={[]}
         frontMatter={{ ...metadata.frontMatter, no_single_tab: false }}
       />
-      <div className={styles.Row}>
+      <div
+        className={clsx(
+          styles.Row,
+          metadata.frontMatter.hide_table_of_contents && styles.RowHideToc
+        )}
+      >
         <div className={styles.docItemContainer}>
           <ContentVisibility metadata={metadata} />
           <DocVersionBanner />

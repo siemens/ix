@@ -373,7 +373,7 @@ async function downloadAdditionalTheme() {
 
     const renameTarget = path.join(
       __previewHtmlAdditionalTheme,
-      'ix-corporate-theme'
+      'corporate-theme'
     );
     if (fs.existsSync(renameTarget)) {
       rimrafSync(renameTarget);
@@ -383,13 +383,13 @@ async function downloadAdditionalTheme() {
     // Copy the theme to the mobile preview
     fs.copySync(
       renameTarget,
-      path.join(__previewMobileAdditionalTheme, 'ix-corporate-theme')
+      path.join(__previewMobileAdditionalTheme, 'corporate-theme')
     );
 
     // This step is necessary to make the theme available during the build process of the documentation
     fs.copySync(
       renameTarget,
-      path.join(__node_modules, '@siemens', 'ix-corporate-theme')
+      path.join(__node_modules, '@siemens', 'corporate-theme')
     );
   } catch (e: any) {
     console.timeLog('Download additional theme', e.message);

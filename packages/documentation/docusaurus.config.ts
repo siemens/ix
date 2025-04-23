@@ -43,13 +43,13 @@ let withBrandTheme = false;
 
 try {
   const path = require.resolve(
-    '@siemens/ix-corporate-theme/dist/css/corporate-theme.css'
+    '@siemens-ix/corporate-theme/dist/css/corporate-theme.css'
   );
-  console.log('Found optionalDependency @siemens/ix-corporate-theme.');
+  console.log('Found optionalDependency @siemens-ix/corporate-theme.');
   customCss.push(path);
   withBrandTheme = true;
 } catch (e) {
-  console.warn('optionalDependency @siemens/ix-corporate-theme not found!');
+  console.warn('optionalDependency @siemens-ix/corporate-theme not found!');
 }
 
 const brokenLinks = 'throw';
