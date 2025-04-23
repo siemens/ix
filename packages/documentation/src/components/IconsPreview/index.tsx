@@ -285,7 +285,7 @@ const Icons: React.FC = () => {
           <div className={clsx(styles.Search)}>
             <IxInput
               ref={filterInputRef}
-              placeholder="Icon"
+              placeholder="Search icon"
               onInput={(e) =>
                 setIconFilter(
                   (e.target as HTMLInputElement).value.toLocaleLowerCase()
