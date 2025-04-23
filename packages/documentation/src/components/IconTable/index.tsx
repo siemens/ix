@@ -10,14 +10,16 @@ import React from 'react';
 import { IxIcon } from '@siemens/ix-react';
 import styles from './styles.module.css';
 
-const IconTable: React.FC<{ data: { icon: string; color?: string; name: string; description: string }[] }> = ({ data }) => {
+const IconTable: React.FC<{
+  data: { icon: string; color?: string; name: string; description: string }[];
+}> = ({ data }) => {
   return (
     <table className={styles.IconTable}>
       <tbody>
-        {data.map((item, index) => (
-          <tr key={index}>
+        {data.map((item) => (
+          <tr key={item.name}>
             <td className={styles.IconCell}>
-              <IxIcon name={item.icon} color={item.color || 'color-std-text'} />
+              <IxIcon name={item.icon} color={item.color ?? 'color-std-text'} />
             </td>
             <td className={styles.NameCell}>{item.name}</td>
             <td>{item.description}</td>
