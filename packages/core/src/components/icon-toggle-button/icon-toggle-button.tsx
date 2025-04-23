@@ -53,6 +53,14 @@ export class IconToggleButton {
   @Prop() icon?: string;
 
   /**
+   * Button in oval shape
+   *
+   * @since 3.0.0
+   *
+   */
+  @Prop() oval: boolean = false;
+
+  /**
    * Show button as pressed
    */
   @Prop() pressed = false;
@@ -128,7 +136,7 @@ export class IconToggleButton {
       outline: this.outline,
       ghost: this.ghost,
       iconOnly: true,
-      iconOval: false,
+      iconOval: this.oval,
       selected: this.pressed,
       disabled: this.disabled || this.loading,
       icon: this.icon,
