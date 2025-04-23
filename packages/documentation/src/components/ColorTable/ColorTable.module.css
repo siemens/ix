@@ -1,0 +1,91 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.colorCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 2rem;
+  max-height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 100px;
+  border-width: 0.125rem;
+  border-color: var(--theme-color-soft-bdr);
+  border-style: solid;
+  overflow: hidden;
+}
+
+.colorCircleInner {
+  width: 29px;
+  height: 29px;
+}
+
+.colorRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.headColorName {
+  padding-left: 0.5rem;
+}
+
+.colorChildRow {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.colorColumn {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: auto;
+  height: 100%;
+
+  padding-right: 1rem;
+  border-right: 1px solid var(--theme-color-soft-bdr);
+}
+
+.colorColumnChildName {
+  padding-left: 1rem;
+  width: 100%;
+}
+
+.colorColumnHex {
+  display: flex;
+  justify-content: flex-end;
+  border-right: none;
+  min-width: 7rem;
+}
+
+.colorTextRow {
+  display: grid;
+  grid-template-columns: minmax(100px, 20%) 1fr;
+  border: 0;
+  border-bottom: 1px solid var(--theme-color-soft-bdr);
+}
+
+.colorTextRow:last-child {
+  border-bottom: 0;
+}
+
+.DesktopOnly {
+  display: inherit;
+}
+
+@media screen and (max-width: 700px) {
+  .DesktopOnly {
+    display: none;
+  }
+}

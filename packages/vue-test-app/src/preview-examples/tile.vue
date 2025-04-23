@@ -8,6 +8,10 @@
 -->
 
 <script setup lang="ts">
+import {
+  iconChevronRightSmall,
+  iconContextMenu,
+} from '@siemens/ix-icons/icons';
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
 </script>
 
@@ -17,18 +21,15 @@ import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
   <div className="example">
     <IxTile size="small">92.8 °C</IxTile>
 
-    <IxTile size="medium" className="mr-1">
+    <IxTile size="medium">
       <div slot="header">Tile header</div>
       <div className="text-l">92.8 °C</div>
     </IxTile>
 
     <IxTile size="big">
-      <div
-        className="d-flex flex-grow-1 align-items-center justify-content-between"
-        slot="header"
-      >
+      <div className="tile-header" slot="header">
         Tile header
-        <IxIconButton ghost icon="context-menu"></IxIconButton>
+        <IxIconButton ghost :icon="iconContextMenu"></IxIconButton>
       </div>
       <div slot="subheader">Temperature</div>
       <div
@@ -42,12 +43,9 @@ import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
       >
         <span>92.8 °C</span>
       </div>
-      <div
-        className="d-flex h-100 align-items-center justify-content-end"
-        slot="footer"
-      >
+      <div className="tile-footer" slot="footer">
         <IxButton ghost slot="footer">
-          <IxIcon name="chevron-right-small"></IxIcon>Details
+          <IxIcon :name="iconChevronRightSmall"></IxIcon>Details
         </IxButton>
       </div>
     </IxTile>

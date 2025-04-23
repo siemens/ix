@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "themeName": "classic-light",
+  "themeName": "theme-classic-light",
   "theme": {
     "seriesCnt": 3,
     "backgroundColor": "rgba(0,0,0,0)",

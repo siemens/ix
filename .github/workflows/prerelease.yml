@@ -68,10 +68,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --filter \!documentation
+
       - name: Publish to npm + GitHub
         id: changesets
-        # Only publish if we're still in pre mode and the last commit was
-        # from an automatically created Version Packages PR
+        # Only publish if we're still in pre mode and the last commit was from an automatically created Version Packages PR
         if: steps.check_files.outputs.files_exists == 'true' && startsWith(github.event.head_commit.message, 'Version Packages')
         uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc
         with:

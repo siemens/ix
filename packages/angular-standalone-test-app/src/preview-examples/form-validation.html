@@ -1,0 +1,152 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<form
+  class="form-validation-example"
+  [formGroup]="exampleForm"
+  (ngSubmit)="submit()"
+>
+  <ix-layout-auto>
+    <ix-input label="Name" formControlName="name"></ix-input>
+    <ix-input label="Last Name" formControlName="last-name"></ix-input>
+    <ix-input label="Address" data-colspan="2" formControlName="address">
+      <ix-icon slot="start" name="location" size="16"></ix-icon>
+    </ix-input>
+
+    <ix-radio-group label="Booking option">
+      <ix-radio
+        label="Option 1"
+        value="1"
+        formControlName="booking-option"
+      ></ix-radio>
+      <ix-radio
+        label="Option 2"
+        value="2"
+        formControlName="booking-option"
+      ></ix-radio>
+      <ix-radio
+        label="Option 3"
+        value="3"
+        formControlName="booking-option"
+      ></ix-radio>
+    </ix-radio-group>
+
+    <ix-number-input
+      label="Preferred room size"
+      formControlName="room-size"
+      class="ix-info"
+      infoText="You can adjust the room size"
+    >
+      <ix-icon slot="start" name="bezier-curve" size="16"></ix-icon>
+      <ix-typography slot="end" color="weak" class="padding-right">
+        m<sup>2</sup>
+      </ix-typography>
+    </ix-number-input>
+
+    <ix-select
+      label="Travel option"
+      data-colspan="2"
+      formControlName="travel-option"
+    >
+      <ix-select-item value="1" label="Option 1"></ix-select-item>
+      <ix-select-item value="2" label="Option 2"></ix-select-item>
+      <ix-select-item value="3" label="Option 3"></ix-select-item>
+    </ix-select>
+
+    <ix-number-input
+      formControlName="thresholdLimitA"
+      label="Threshold limit A"
+      data-colspan="1"
+      helperText="Max threshold is 5"
+      [invalidText]="thresholdLimitAErrorText"
+    ></ix-number-input>
+
+    <ix-number-input
+      formControlName="thresholdLimitB"
+      label="Threshold limit B"
+      data-colspan="1"
+      showStepperButtons
+      [class.ix-warning]="thresholdLimitBWarning"
+      warningText="A threshold greater than 5 is not recommended"
+    ></ix-number-input>
+
+    <ix-date-input
+      formControlName="begin"
+      label="Begin"
+      i18nErrorDateUnparsable="Please enter a valid date"
+      invalidText="ERROR!"
+    >
+      <ix-icon slot="start" name="calendar" size="16"></ix-icon>
+    </ix-date-input>
+    <ix-date-input
+      formControlName="end"
+      label="End"
+      [invalidText]="beginErrorText"
+    >
+      <ix-icon slot="end" name="calendar" size="16"></ix-icon>
+    </ix-date-input>
+
+    <ix-textarea
+      max-length="100"
+      formControlName="comment"
+      label="Comment"
+      data-colspan="2"
+      textareaHeight="10rem"
+      helperText="Let us know if you have any special requests or comments. We will do our best to accommodate you."
+    ></ix-textarea>
+
+    <ix-input type="email" label="Email" formControlName="email"></ix-input>
+
+    <!-- Implement custom form component -->
+    <ix-custom-field label="Upload" invalidText="You need to upload a file">
+      <ix-input
+        type="text"
+        readonly
+        style="width: 100%"
+        formControlName="uploadPath"
+      ></ix-input>
+      <input
+        #upload
+        type="file"
+        style="display: none"
+        (change)="onFileSelected($event)"
+        formControlName="upload"
+      />
+      <ix-icon-button
+        outline
+        variant="primary"
+        icon="star"
+        (click)="upload.click()"
+      ></ix-icon-button>
+    </ix-custom-field>
+
+    <ix-input
+      type="password"
+      label="PIN"
+      formControlName="pin"
+      helperText="Only numbers between 1 and 4 is allowed"
+      allowedCharactersPattern="[1-4]"
+      maxLength="4"
+    ></ix-input>
+    <ix-input
+      type="password"
+      label="PIN"
+      helperText="Confirm password"
+      allowedCharactersPattern="[1-4]"
+      maxLength="4"
+    ></ix-input>
+
+    <ix-checkbox
+      label="I agree everything"
+      formControlName="agreed"
+      data-colspan="2"
+    ></ix-checkbox>
+    <ix-button type="submit" data-colspan="1"> Submit </ix-button>
+  </ix-layout-auto>
+</form>

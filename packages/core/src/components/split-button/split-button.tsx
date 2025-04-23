@@ -19,6 +19,7 @@ import {
 } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
 
 export type SplitButtonVariant = ButtonVariant;
@@ -38,7 +39,6 @@ export class SplitButton {
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-   * @since 2.3.0
    */
   @Prop() closeBehavior: CloseBehavior = 'both';
 
@@ -60,12 +60,12 @@ export class SplitButton {
   /**
    * Button icon
    */
-  @Prop() icon = '';
+  @Prop() icon?: string;
 
   /**
    * Icon of the button on the right
    */
-  @Prop() splitIcon = 'context-menu';
+  @Prop() splitIcon?: string;
 
   /**
    * Disabled
@@ -129,7 +129,7 @@ export class SplitButton {
             {...buttonAttributes}
             ref={(r) => (this.triggerElement = r)}
             class={'anchor'}
-            icon={this.splitIcon}
+            icon={this.splitIcon ?? iconContextMenu}
           ></ix-icon-button>
         </div>
 

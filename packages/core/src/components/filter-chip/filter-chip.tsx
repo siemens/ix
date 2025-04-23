@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconCloseSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -32,7 +33,6 @@ export class FilterChip {
 
   /**
    * If true the filter chip will be in readonly mode
-   * @since 2.0.0
    */
   @Prop() readonly = false;
 
@@ -60,7 +60,7 @@ export class FilterChip {
           <ix-icon-button
             ghost
             oval
-            icon={'close-small'}
+            icon={iconCloseSmall}
             size="16"
             tabindex={this.disabled ? -1 : 0}
             variant="primary"

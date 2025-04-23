@@ -10,6 +10,7 @@ import {
   State,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { iconChevronDown, iconMoreMenu } from '@siemens/ix-icons/icons';
 
 function CardListTitle(props: {
   label?: string;
@@ -28,9 +29,9 @@ function CardListTitle(props: {
     <div class="CardList_Title">
       <ix-icon-button
         ghost
-        icon={'chevron-down'}
+        icon={iconChevronDown}
         onClick={props.onClick}
-        color="color-primary"
+        iconColor="color-primary"
         class={{
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,
@@ -55,9 +56,6 @@ function CardListTitle(props: {
   );
 }
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-card-list',
   styleUrl: 'card-list.scss',
@@ -98,8 +96,6 @@ export class CardList {
 
   /**
    * Hide the show all button
-   *
-   * @since 2.2.0
    */
   @Prop() hideShowAll = false;
 
@@ -165,10 +161,10 @@ export class CardList {
     childElements.forEach((element, index) => {
       if (element instanceof HTMLElement) {
         if (index > this.maxVisibleCards - 1) {
-          element.classList.add('d-none');
+          element.classList.add('display-none');
           return;
         }
-        element.classList.remove('d-none');
+        element.classList.remove('display-none');
       }
     });
     this.hasOverflowingElements = childElements.length > this.maxVisibleCards;
@@ -329,7 +325,7 @@ export class CardList {
                 <ix-card-content>
                   <div class="Show__All__Card__Content">
                     <ix-icon
-                      name={'more-menu'}
+                      name={iconMoreMenu}
                       size={'32'}
                       class={'Show__All__Card__Icon'}
                     ></ix-icon>

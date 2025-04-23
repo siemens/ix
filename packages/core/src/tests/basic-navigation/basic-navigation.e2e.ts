@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, test, viewPorts } from '@utils/test';
+import { regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('basic navigation large', () => {
   regressionTest('basic', async ({ page }) => {
@@ -157,7 +157,7 @@ regressionTest.describe('basic navigation mobile', () => {
     ).toMatchSnapshot();
   });
 
-  test('mobile expanded overlay', async ({ page, mount }) => {
+  regressionTest('mobile expanded overlay', async ({ page, mount }) => {
     // await page.goto('basic-navigation/mobile');
     await mount(
       `

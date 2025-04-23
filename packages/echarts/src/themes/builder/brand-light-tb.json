@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "themeName": "brand-light",
+  "themeName": "theme-brand-light",
   "theme": {
     "seriesCnt": 3,
     "backgroundColor": "rgba(0,0,0,0)",

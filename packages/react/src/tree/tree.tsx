@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
@@ -8,29 +8,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type { JSX, TreeContext, UpdateCallback } from '@siemens/ix';
+import { type TreeContext, UpdateCallback } from '@siemens/ix';
 import React, { useCallback, useRef } from 'react';
-import ReactDOM from 'react-dom/client';
-import { createReactComponent } from '../react-component-lib';
-import { StyleReactProps } from '../react-component-lib/interfaces';
+import ReactDOM, { Root } from 'react-dom/client';
+import InternalIxTree from './internal-tree';
 
-import { defineCustomElement as defineIxTree } from '@siemens/ix/components/ix-tree.js';
+type ExtractProps<TComponentOrTProps> =
+  TComponentOrTProps extends React.ComponentType<infer TProps>
+    ? TProps
+    : TComponentOrTProps;
 
-// eslint-disable-next-line no-inline-comments
-export const InternalIxTree = /*@__PURE__*/ createReactComponent<
-  JSX.IxTree,
-  HTMLIxTreeElement
->('ix-tree', undefined, undefined, defineIxTree);
+type IxTreeProps = ExtractProps<typeof InternalIxTree> & {
+  renderItem?: (data: any) => React.ReactNode;
+};
 
-export const IxTree = (
-  props: Omit<JSX.IxTree, 'renderItem'> &
-    Omit<React.HTMLAttributes<HTMLIxTreeElement>, 'style'> &
-    StyleReactProps &
-    React.RefAttributes<HTMLIxTreeElement> & {
-      renderItem?: (data: any) => React.ReactNode;
-    }
-) => {
-  const cachedRootNodes = useRef<Map<HTMLElement, ReactDOM.Root>>(new Map());
+export const IxTree = (props: IxTreeProps) => {
+  const cachedRootNodes = useRef<Map<HTMLElement, Root>>(new Map());
 
   const renderItem = useCallback(
     (
@@ -80,3 +73,5 @@ export const IxTree = (
     ></InternalIxTree>
   );
 };
+
+export default IxTree;

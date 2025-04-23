@@ -147,3 +147,7 @@ $CardList__Title__Height: 1.5rem;
     margin-top: auto;
   }
 }
+
+::slotted(.display-none) {
+  display: none !important;
+}
