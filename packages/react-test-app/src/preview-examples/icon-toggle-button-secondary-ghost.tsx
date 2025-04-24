@@ -10,28 +10,58 @@
 import { iconCheckboxes } from '@siemens/ix-icons/icons';
 import './icon-toggle-button-secondary-ghost.scoped.css';
 
-import { IxIconToggleButton } from '@siemens/ix-react';
+import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-react';
 
 export default () => {
   return (
     <>
-      <IxIconToggleButton ghost icon={iconCheckboxes}></IxIconToggleButton>
-      <IxIconToggleButton
-        pressed
-        ghost
-        icon={iconCheckboxes}
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        disabled
-        ghost
-        icon={iconCheckboxes}
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        disabled
-        loading
-        ghost
-        icon={iconCheckboxes}
-      ></IxIconToggleButton>
+      <IxLayoutGrid>
+        <IxRow>
+          <IxIconToggleButton ghost icon={iconCheckboxes}></IxIconToggleButton>
+          <IxIconToggleButton
+            pressed
+            ghost
+            icon={iconCheckboxes}
+          ></IxIconToggleButton>
+          <IxIconToggleButton
+            disabled
+            ghost
+            icon={iconCheckboxes}
+          ></IxIconToggleButton>
+          <IxIconToggleButton
+            disabled
+            loading
+            ghost
+            icon={iconCheckboxes}
+          ></IxIconToggleButton>
+        </IxRow>
+        <IxRow>
+          <IxIconToggleButton
+            ghost
+            icon={iconCheckboxes}
+            oval
+          ></IxIconToggleButton>
+          <IxIconToggleButton
+            pressed
+            ghost
+            icon={iconCheckboxes}
+            oval
+          ></IxIconToggleButton>
+          <IxIconToggleButton
+            disabled
+            ghost
+            icon={iconCheckboxes}
+            oval
+          ></IxIconToggleButton>
+          <IxIconToggleButton
+            disabled
+            loading
+            ghost
+            icon={iconCheckboxes}
+            oval
+          ></IxIconToggleButton>
+        </IxRow>
+      </IxLayoutGrid>
     </>
   );
 };
