@@ -1,0 +1,129 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts empty state example</title>
+    <link rel="stylesheet" href="./echarts-empty-state.css" />
+    <!-- External resources -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <!-- External resources -->
+
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconInfo } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconInfo,
+      });
+    </script>
+  </head>
+  <body class="theme-classic-dark">
+    <div class="echarts">
+      <div id="empty-state-container" class="empty-state-container">
+        <ix-empty-state
+          class="empty-state"
+          header="No elements available"
+          sub-header="Failed to retrieve data"
+          icon="info"
+          action="Try again"
+        ></ix-empty-state>
+      </div>
+      <div class="echarts" id="main"></div>
+    </div>
+
+    <script type="module">
+      import { registerTheme } from '@siemens/ix-echarts';
+      import { themeSwitcher } from '@siemens/ix';
+
+      function initChart(theme, options) {
+        var myChart = echarts.init(document.querySelector('#main'), theme);
+        myChart.setOption(options);
+
+        return myChart;
+      }
+
+      function toggleOverlay() {
+        const overlay = document.getElementById('empty-state-container');
+        if (overlay.style.display === 'block') {
+          overlay.style.display = 'none';
+        } else {
+          overlay.style.display = 'block';
+        }
+      }
+
+      async function loadData(chart) {
+        toggleOverlay();
+        chart.showLoading({
+          text: 'Loading...',
+          textStyle: {
+            fontSize: 30,
+          },
+        });
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        chart.hideLoading();
+        toggleOverlay();
+      }
+
+      const data = {
+        weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        value: [],
+      };
+
+      const options = {
+        xAxis: {
+          type: 'category',
+          data: data.weekdays,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            data: data.value,
+            type: 'line',
+          },
+        ],
+      };
+
+      const overlay = document.getElementById('empty-state-container');
+      if (data.value.length === 0) {
+        overlay.style.display = 'block';
+      } else {
+        overlay.style.display = 'none';
+      }
+
+      registerTheme(echarts);
+
+      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+
+      themeSwitcher.themeChanged.on((theme) => {
+        myChart.dispose();
+        myChart = initChart(theme, options);
+      });
+
+      (async function () {
+        await window.customElements.whenDefined('ix-empty-state');
+        const emptyState = document.querySelector('ix-empty-state');
+
+        emptyState.addEventListener('actionClick', (event) =>
+          loadData(myChart)
+        );
+      })();
+
+      window.onresize = function () {
+        myChart.resize();
+      };
+    </script>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

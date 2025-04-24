@@ -1,0 +1,96 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts circle example</title>
+    <link rel="stylesheet" href="./echarts-circle.css" />
+    <!-- External resources -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <!-- External resources -->
+  </head>
+  <body class="theme-classic-dark">
+    <div id="main" class="echarts"></div>
+
+    <script type="module">
+      import {
+        getComputedCSSProperty,
+        registerTheme,
+      } from '@siemens/ix-echarts';
+      import { themeSwitcher } from '@siemens/ix';
+
+      function initChart(theme, options) {
+        var myChart = echarts.init(document.querySelector('#main'), theme);
+        myChart.setOption(options);
+
+        return myChart;
+      }
+
+      const data = [
+        { value: 72.17, name: 'Windows' },
+        { value: 15.42, name: 'macOS' },
+        { value: 4.03, name: 'Linux' },
+        { value: 2.27, name: 'Chrome OS' },
+        { value: 6.11, name: 'Other' },
+      ];
+
+      const options = {
+        tooltip: {
+          trigger: 'item',
+        },
+        legend: {
+          icon: 'rect',
+          bottom: '0',
+          left: '0',
+        },
+        series: [
+          {
+            name: 'OS Share',
+            type: 'pie',
+            radius: ['60%', '90%'],
+            label: {
+              show: true,
+              color: getComputedCSSProperty('color-neutral'),
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: 25,
+                fontWeight: 'bold',
+              },
+            },
+            labelLine: {
+              show: true,
+            },
+            data: data,
+          },
+        ],
+      };
+
+      // providing echarts is in this case optional
+      registerTheme(echarts);
+
+      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+
+      themeSwitcher.themeChanged.on((theme) => {
+        myChart.dispose();
+        myChart = initChart(theme, options);
+      });
+
+      window.onresize = function () {
+        myChart.resize();
+      };
+    </script>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

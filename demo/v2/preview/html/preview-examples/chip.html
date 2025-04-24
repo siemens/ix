@@ -1,0 +1,57 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chip example</title>
+    
+    
+    <script type="module" crossorigin src="../assets/chip.58add2d1.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.1f5cc68d.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.7333a9d9.js">
+    <link rel="modulepreload" crossorigin href="../assets/icon-1ecd1404.5b53651d.js">
+    <link rel="modulepreload" crossorigin href="../assets/index.4b950771.js">
+    <link rel="stylesheet" href="../assets/global.82e3a8d1.css">
+    <link rel="stylesheet" href="../assets/chip.2e8b85cb.css">
+  </head>
+  <body>
+    <div class="chip">
+      <ix-chip closable outline>Primary</ix-chip>
+      <ix-chip icon="print" tooltip-text="Custom tooltip text">
+        Primary with icon
+      </ix-chip>
+      <ix-chip icon="print" tooltip-text style="width: 10rem" closable>
+        Primary
+      </ix-chip>
+
+      <ix-chip variant="critical" closable outline>Alarm</ix-chip>
+      <ix-chip variant="alarm" icon="print">Alarm with icon</ix-chip>
+      <ix-chip variant="alarm" icon="print" style="width: 10rem" closable>
+        Alarm
+      </ix-chip>
+      <ix-chip variant="warning" icon="print" style="width: 10rem" closable>
+        Alarm
+      </ix-chip>
+      <ix-chip
+        background="purple"
+        chip-color="green"
+        variant="custom"
+        icon="print"
+        style="width: 10rem"
+        closable
+      >
+        Custom
+      </ix-chip>
+    </div>
+    
+  </body>
+</html>

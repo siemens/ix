@@ -1,0 +1,45 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Empty state compact example</title>
+    
+    <script type="module" crossorigin src="../assets/empty-state-compact.ec09dbc6.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.1f5cc68d.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.7333a9d9.js">
+    <link rel="modulepreload" crossorigin href="../assets/icon-1ecd1404.5b53651d.js">
+    <link rel="modulepreload" crossorigin href="../assets/index.4b950771.js">
+    <link rel="stylesheet" href="../assets/global.82e3a8d1.css">
+  </head>
+  <body>
+    <ix-empty-state
+      layout="compact"
+      header="No elements available"
+      sub-header="Create an element first"
+      icon="add"
+      action="Create element"
+    ></ix-empty-state>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-empty-state');
+        const emptyState = document.querySelector('ix-empty-state');
+
+        emptyState.addEventListener('actionClick', (event) =>
+          console.log(event)
+        );
+      })();
+    </script>
+    
+  </body>
+</html>

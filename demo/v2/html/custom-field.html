@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom field example</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconOpenFile } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconOpenFile,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-custom-field helper-text="Choose file">
+      <ix-input value="No file chosen" readonly></ix-input>
+      <ix-icon-button
+        icon="open-file"
+        variant="primary"
+        outline
+      ></ix-icon-button>
+      <input id="file-upload" type="file" style="display: none" />
+    </ix-custom-field>
+
+    <script type="module" src="./init.js"></script>
+    <script>
+      document.querySelector('ix-icon-button').addEventListener('click', () => {
+        document.querySelector('#file-upload').click();
+      });
+      document.querySelector('#file-upload').addEventListener('input', (e) => {
+        const fileName = e.target.files[0]?.name;
+        document.querySelector('ix-input').value = fileName || 'No file chosen';
+      });
+    </script>
+  </body>
+</html>

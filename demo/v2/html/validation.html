@@ -1,0 +1,88 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validation example</title>
+  </head>
+  <body>
+    <form class="needs-validation" novalidate>
+      <ix-layout-grid>
+        <ix-row>
+          <ix-col size="4">
+            <label class="ix-form-label" for="validationCustom01"
+              >First name</label
+            >
+            <input
+              class="ix-form-control"
+              type="text"
+              id="validationCustom01"
+              value=""
+              required
+            />
+            <div class="invalid-feedback">Please choose a first name.</div>
+            <div class="valid-feedback">Looks good!</div>
+          </ix-col>
+        </ix-row>
+        <ix-row>
+          <ix-col size="4">
+            <ix-validation-tooltip message="Cannot be empty!">
+              <label class="ix-form-label" for="validationCustom02"
+                >Last name</label
+              >
+              <input
+                class="ix-form-control"
+                type="text"
+                id="validationCustom02"
+                value=""
+                required
+              />
+            </ix-validation-tooltip>
+          </ix-col>
+        </ix-row>
+        <ix-row>
+          <ix-col size="4">
+            <label class="ix-form-label" for="validationCustomUsername">
+              Username
+            </label>
+            <input
+              class="ix-form-control"
+              type="text"
+              id="validationCustomUsername"
+              aria-describedby="inputGroupPrepend"
+              required
+              minlength="4"
+            />
+            <div class="invalid-feedback">Please choose a username.</div>
+          </ix-col>
+        </ix-row>
+        <ix-row>
+          <ix-col>
+            <ix-button type="submit">Submit form</ix-button>
+          </ix-col>
+        </ix-row>
+      </ix-layout-grid>
+    </form>
+
+    <script>
+      (async () => {
+        await window.customElements.whenDefined('ix-validation-tooltip');
+        const forms = document.querySelector('form');
+        forms.addEventListener('submit', (event) => {
+          event.preventDefault();
+          forms.classList.add('was-validated');
+        });
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

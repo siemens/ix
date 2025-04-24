@@ -1,0 +1,50 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button loading example</title>
+    
+    
+    <script type="module" crossorigin src="../assets/button-loading.7bae84b1.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.1f5cc68d.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.7333a9d9.js">
+    <link rel="modulepreload" crossorigin href="../assets/icon-1ecd1404.5b53651d.js">
+    <link rel="modulepreload" crossorigin href="../assets/index.4b950771.js">
+    <link rel="stylesheet" href="../assets/global.82e3a8d1.css">
+    <link rel="stylesheet" href="../assets/button-loading.052797cd.css">
+  </head>
+  <body>
+    <script>
+      function toggle(obj) {
+        obj.loading = true;
+
+        setTimeout(() => {
+          obj.loading = false;
+        }, 2500);
+      }
+    </script>
+    <ix-button onclick="toggle(this)" outline> Button </ix-button>
+
+    <ix-button onclick="toggle(this)" outline> Button </ix-button>
+
+    <ix-button onclick="toggle(this)" icon="star" outline> Button </ix-button>
+
+    <ix-icon-button onclick="toggle(this)" icon="star" outline>
+    </ix-icon-button>
+
+    <ix-button loading outline> Button </ix-button>
+
+    <ix-icon-button loading icon="star" outline></ix-icon-button>
+    
+  </body>
+</html>

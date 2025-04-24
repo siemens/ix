@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[8121],{68070:e=>{e.exports=JSON.parse('{"tags":[{"label":"Release","permalink":"/blog/tags/release","description":"Blog posts about new Industrial Experience design system releases","count":1}]}')}}]);

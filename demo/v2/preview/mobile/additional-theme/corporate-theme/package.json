@@ -1,0 +1,39 @@
+{
+  "name": "@siemens-ix/corporate-theme",
+  "version": "0.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://code.siemens.com/api/v4/projects/249177/packages/npm/"
+  },
+  "license": "LicenseRef-SISL-1.4",
+  "devDependencies": {
+    "@playwright/test": "^1.48.1",
+    "@siemens/ix": "^2.5.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.7.7",
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "fs-extra": "^11.2.0",
+    "postcss": "^8.4.47",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-preserve-directives": "^0.4.0",
+    "sass": "^1.80.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.9",
+    "vite-plugin-dts": "^4.2.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "pnpm build:lib && pnpm build:css",
+    "build:lib": "tsc && vite build",
+    "build:css": "tsx ./scripts/build-css.ts",
+    "preview": "vite preview",
+    "visual-regression": "playwright test",
+    "playwright-install": "playwright install chromium"
+  }
+}

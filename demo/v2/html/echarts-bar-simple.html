@@ -1,0 +1,85 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts bar simple example</title>
+    <link rel="stylesheet" href="./echarts-bar-simple.css" />
+    <!-- External resources -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <!-- External resources -->
+  </head>
+  <body class="theme-classic-dark">
+    <div id="main" class="echarts"></div>
+
+    <script type="module">
+      import { registerTheme } from '@siemens/ix-echarts';
+      import { themeSwitcher } from '@siemens/ix';
+
+      function initChart(theme, options) {
+        var myChart = echarts.init(document.querySelector('#main'), theme);
+        myChart.setOption(options);
+
+        return myChart;
+      }
+
+      const data = {
+        products: [
+          'Product A',
+          'Product B',
+          'Product C',
+          'Product D',
+          'Product E',
+          'Product F',
+        ],
+        sales: [10.3, 9.2, 7.3, 6.4, 6.2, 4.4],
+      };
+
+      const options = {
+        xAxis: {
+          data: data.products,
+          name: 'Product',
+          nameLocation: 'end',
+        },
+        yAxis: {
+          name: 'Number of sold products \n (in Mio)',
+          nameLocation: 'end',
+        },
+        legend: {
+          show: true,
+        },
+        series: [
+          {
+            data: data.sales,
+            type: 'bar',
+          },
+        ],
+      };
+
+      // providing echarts is in this case optional
+      registerTheme(echarts);
+
+      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+
+      themeSwitcher.themeChanged.on((theme) => {
+        myChart.dispose();
+        myChart = initChart(theme, options);
+      });
+
+      window.onresize = function () {
+        myChart.resize();
+      };
+    </script>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
