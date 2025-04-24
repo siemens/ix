@@ -144,6 +144,18 @@
   text-overflow: ellipsis;
 }
 
+.Icon__Details .Icon__NameContainer [class*='hash-link'] {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  padding-left: 0;
+  outline: none;
+}
+
+.Icon__Details .Icon__NameContainer [class*='hash-link']:focus-visible {
+  border: 1px solid var(--theme-color-focus-bdr);
+}
+
 .Icon__Details [class*='prism-code'] {
   scrollbar-width: none;
 }
