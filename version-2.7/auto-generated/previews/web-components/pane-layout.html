@@ -1,0 +1,67 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pane layout example</title>
+  </head>
+  <body>
+    <ix-pane-layout
+      id="pane-layout"
+      variant="floating"
+      layout="full-horizontal"
+      borderless
+    >
+      <ix-pane heading="Pane Left" slot="left" size="33%">
+        <p>This is the left pane.</p>
+      </ix-pane>
+      <ix-pane heading="Pane Top" slot="top" size="33%">
+        <p>This is the top pane.</p>
+      </ix-pane>
+      <ix-pane heading="Pane Right" slot="right" size="33%">
+        <p>This is the right pane.</p>
+      </ix-pane>
+      <ix-pane heading="Pane Bottom" slot="bottom" size="33%">
+        <p>This is the bottom pane.</p>
+      </ix-pane>
+
+      <div slot="content">
+        <ix-button id="toggle-variant" style="margin: 2.5rem">
+          Toggle Variant
+        </ix-button>
+        <ix-button id="toggle-layout" style="margin: 2.5rem">
+          Toggle Layout
+        </ix-button>
+      </div>
+    </ix-pane-layout>
+
+    <script>
+      const paneLayout = document.getElementById('pane-layout');
+      const buttonVariant = document.getElementById('toggle-variant');
+      const buttonLayout = document.getElementById('toggle-layout');
+
+      buttonVariant.addEventListener('click', () => {
+        const isInline = paneLayout.variant === 'inline';
+
+        paneLayout.variant = isInline ? 'floating' : 'inline';
+        paneLayout.borderless = isInline;
+      });
+      buttonLayout.addEventListener('click', () => {
+        paneLayout.layout =
+          paneLayout.layout === 'full-horizontal'
+            ? 'full-vertical'
+            : 'full-horizontal';
+      });
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

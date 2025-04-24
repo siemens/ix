@@ -1,0 +1,1 @@
+{"file":"app-globals-3a1e7e63.js","mappings":";;AAAY,MAAC,aAAa,GAAG,MAAM;;;;","names":[],"sources":["@stencil/core/internal/app-globals"],"sourcesContent":["export const globalScripts = () => {};\n"],"version":3}
