@@ -39,7 +39,6 @@ export class SplitButton {
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-   * @since 2.3.0
    */
   @Prop() closeBehavior: CloseBehavior = 'both';
 

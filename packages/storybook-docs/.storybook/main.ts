@@ -22,6 +22,22 @@ function copyAdditionalThemeIfPresent() {
   }
 }
 
+function copyIconAssets() {
+  const iconAssetsPath = path.join(
+    __dirname,
+    '..',
+    'node_modules',
+    '@siemens',
+    'ix-icons',
+    'svg'
+  );
+  const targetPath = path.join(__dirname, '..', 'public', 'svg');
+
+  fs.copy(iconAssetsPath, targetPath);
+}
+
+copyIconAssets();
+
 const hasAdditionalTheme = copyAdditionalThemeIfPresent();
 
 /**
@@ -46,6 +62,7 @@ const config: StorybookConfig = {
     name: getAbsolutePath('@storybook/web-components-vite'),
     options: {},
   },
+  staticDirs: ['../public'],
   async viteFinal(config) {
     config.plugins!.push({
       name: 'vite-plugin-load-ix-brand-theme',

@@ -9,9 +9,6 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-key-value-list',
   styleUrl: 'key-value-list.scss',

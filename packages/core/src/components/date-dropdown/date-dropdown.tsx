@@ -41,9 +41,6 @@ export type DateRangeChangeEvent = {
   to?: string;
 };
 
-/**
- * @since 2.1.0
- */
 @Component({
   tag: 'ix-date-dropdown',
   styleUrl: 'date-dropdown.scss',
@@ -58,8 +55,6 @@ export class DateDropdown
 
   /**
    * Disable the button that opens the dropdown containing the date picker.
-   *
-   * @since 2.3.0
    */
   @Prop() disabled = false;
 
@@ -184,16 +179,12 @@ export class DateDropdown
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
-   *
-   * @since 2.6.0
    */
   @Prop() locale?: string;
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-   *
-   * @since 2.6.0
    */
   @Prop() weekStartIndex = 0;
 

@@ -11,9 +11,6 @@ export type CardVariant =
   | 'outline'
   | 'filled';
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-card',
   styleUrl: 'card.scss',
@@ -28,7 +25,7 @@ export class Card {
   @Prop() variant: CardVariant = 'outline';
 
   /**
-   * @since 2.1.0
+   * Show card in selected state
    */
   @Prop() selected: boolean = false;
 

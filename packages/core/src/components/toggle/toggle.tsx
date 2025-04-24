@@ -23,8 +23,8 @@ import { a11yBoolean } from '../utils/a11y';
 import { IxFormComponent, HookValidationLifecycle } from '../utils/input';
 
 /**
- * @form-ready 2.6.0
- * */
+ * @form-ready
+ */
 @Component({
   tag: 'ix-toggle',
   styleUrl: 'toggle.scss',

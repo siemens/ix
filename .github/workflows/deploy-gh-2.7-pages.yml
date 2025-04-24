@@ -1,4 +1,4 @@
-name: Deploy GitHub Page (prod@alpha)
+name: Deploy GitHub Page (prod@2.7)
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ concurrency: deploy-gh-pages-${{ github.ref }}
 
 jobs:
   deploy-gh-pages:
-    if: ${{ inputs.confirm_deployment == true && github.repository == 'siemens/ix' && startsWith(github.ref, 'refs/heads/release-3.0.0') == true }}
+    if: ${{ inputs.confirm_deployment == true && github.repository == 'siemens/ix' && startsWith(github.ref, 'refs/heads/release/docs/v2.7.0') == true }}
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -28,11 +28,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           CSC: ${{ secrets.READ_CSC_TOKEN }}
-          BASE_URL: /version-alpha/
+          BASE_URL: /version-2.7/
 
       - name: Deploy GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8
         with:
           folder: ./packages/documentation/build
           clean-exclude: version-*
-          target-folder: version-alpha
+          target-folder: version-2.7

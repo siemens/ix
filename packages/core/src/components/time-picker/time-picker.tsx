@@ -59,8 +59,6 @@ export class TimePicker {
   /**
    * Format of time string
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-   *
-   * @since 1.1.0
    */
   @Prop() format: string = 'TT';
 
@@ -105,8 +103,6 @@ export class TimePicker {
   /**
    * Select time with format string
    * Format has to match the `format` property.
-   *
-   * @since 1.1.0
    */
   @Prop() time: string = DateTime.now().toFormat(this.format);
 
@@ -122,15 +118,11 @@ export class TimePicker {
 
   /**
    * Text of date select button
-   *
-   * @since 1.1.0
    */
   @Prop() textSelectTime = 'Confirm';
 
   /**
    * Text for top label
-   *
-   * @since 2.1.0
    */
   @Prop() textTime: string = 'Time';
 

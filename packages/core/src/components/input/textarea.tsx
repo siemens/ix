@@ -35,8 +35,7 @@ export type TextareaResizeBehavior =
   | 'none';
 
 /**
- * @since 2.6.0
- * @form-ready 2.6.0
+ * @form-ready
  */
 @Component({
   tag: 'ix-textarea',

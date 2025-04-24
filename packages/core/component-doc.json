@@ -16,25 +16,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-card",
-        "ix-card-content",
-        "ix-typography"
-      ],
+      "dependencies": ["ix-card", "ix-card-content", "ix-typography"],
       "dependencyGraph": {
-        "ix-action-card": [
-          "ix-card",
-          "ix-card-content",
-          "ix-typography"
-        ]
+        "ix-action-card": ["ix-card", "ix-card-content", "ix-typography"]
       },
       "props": [
         {
@@ -212,12 +199,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -417,10 +399,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-basic-navigation",
-        "ix-map-navigation"
-      ],
+      "dependents": ["ix-basic-navigation", "ix-map-navigation"],
       "dependencies": [
         "ix-menu-expand-icon",
         "ix-icon-button",
@@ -434,19 +413,10 @@
           "ix-typography",
           "ix-dropdown"
         ],
-        "ix-menu-expand-icon": [
-          "ix-icon-button",
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-basic-navigation": [
-          "ix-application-header"
-        ],
-        "ix-map-navigation": [
-          "ix-application-header"
-        ]
+        "ix-menu-expand-icon": ["ix-icon-button", "ix-spinner"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-basic-navigation": ["ix-application-header"],
+        "ix-map-navigation": ["ix-application-header"]
       },
       "props": [
         {
@@ -484,12 +454,7 @@
           "attr": "show-menu",
           "reflectToAttr": false,
           "docs": "Controls the visibility of the menu toggle button based on the context of the application header.\n\nWhen the application header is utilized outside the application frame, the menu toggle button is displayed.\nConversely, if the header is within the application frame, this property is ineffective.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -516,12 +481,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event emitted when the menu toggle button is clicked",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.5.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "openAppSwitch",
@@ -563,16 +523,9 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-menu-avatar"
-      ],
+      "dependents": ["ix-menu-avatar"],
       "dependencies": [
         "ix-dropdown",
         "ix-divider",
@@ -586,9 +539,7 @@
           "ix-typography",
           "ix-spinner"
         ],
-        "ix-menu-avatar": [
-          "ix-avatar"
-        ]
+        "ix-menu-avatar": ["ix-avatar"]
       },
       "props": [
         {
@@ -603,12 +554,7 @@
           "attr": "extra",
           "reflectToAttr": false,
           "docs": "Optional description text that will be displayed underneath the username.\nNote: Only working if avatar is part of the ix-application-header",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -677,12 +623,7 @@
           "attr": "username",
           "reflectToAttr": false,
           "docs": "If set an info card displaying the username will be placed inside the dropdown.\nNote: Only working if avatar is part of the ix-application-header",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -714,26 +655,17 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-application-header"
-      ],
+      "dependencies": ["ix-application-header"],
       "dependencyGraph": {
-        "ix-basic-navigation": [
-          "ix-application-header"
-        ],
+        "ix-basic-navigation": ["ix-application-header"],
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-typography",
           "ix-dropdown"
         ],
-        "ix-menu-expand-icon": [
-          "ix-icon-button",
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-menu-expand-icon": ["ix-icon-button", "ix-spinner"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -884,13 +816,9 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-typography"
-      ],
+      "dependencies": ["ix-typography"],
       "dependencyGraph": {
-        "ix-blind": [
-          "ix-typography"
-        ]
+        "ix-blind": ["ix-typography"]
       },
       "props": [
         {
@@ -929,12 +857,7 @@
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Optional icon to be displayed next to the header label",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -980,12 +903,7 @@
           "attr": "sublabel",
           "reflectToAttr": false,
           "docs": "Secondary label inside blind header",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -1014,12 +932,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Blind variant",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'filled'",
           "values": [
             {
@@ -1100,20 +1013,14 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-dropdown",
-        "ix-dropdown-item",
-        "ix-breadcrumb-item"
-      ],
+      "dependencies": ["ix-dropdown", "ix-dropdown-item", "ix-breadcrumb-item"],
       "dependencyGraph": {
         "ix-breadcrumb": [
           "ix-dropdown",
           "ix-dropdown-item",
           "ix-breadcrumb-item"
         ],
-        "ix-breadcrumb-item": [
-          "ix-spinner"
-        ]
+        "ix-breadcrumb-item": ["ix-spinner"]
       },
       "props": [
         {
@@ -1128,12 +1035,7 @@
           "attr": "aria-label-previous-button",
           "reflectToAttr": false,
           "docs": "Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list\nwith conditionally hidden previous items",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'previous'",
           "values": [
             {
@@ -1271,19 +1173,11 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-breadcrumb"
-      ],
-      "dependencies": [
-        "ix-spinner"
-      ],
+      "dependents": ["ix-breadcrumb"],
+      "dependencies": ["ix-spinner"],
       "dependencyGraph": {
-        "ix-breadcrumb-item": [
-          "ix-spinner"
-        ],
-        "ix-breadcrumb": [
-          "ix-breadcrumb-item"
-        ]
+        "ix-breadcrumb-item": ["ix-spinner"],
+        "ix-breadcrumb": ["ix-breadcrumb-item"]
       },
       "props": [
         {
@@ -1364,43 +1258,19 @@
         "ix-time-picker",
         "ix-upload"
       ],
-      "dependencies": [
-        "ix-spinner"
-      ],
+      "dependencies": ["ix-spinner"],
       "dependencyGraph": {
-        "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-card-list": [
-          "ix-button"
-        ],
-        "ix-date-dropdown": [
-          "ix-button"
-        ],
-        "ix-date-picker": [
-          "ix-button"
-        ],
-        "ix-datetime-picker": [
-          "ix-button"
-        ],
-        "ix-dropdown-button": [
-          "ix-button"
-        ],
-        "ix-empty-state": [
-          "ix-button"
-        ],
-        "ix-menu-about-news": [
-          "ix-button"
-        ],
-        "ix-split-button": [
-          "ix-button"
-        ],
-        "ix-time-picker": [
-          "ix-button"
-        ],
-        "ix-upload": [
-          "ix-button"
-        ]
+        "ix-button": ["ix-spinner"],
+        "ix-card-list": ["ix-button"],
+        "ix-date-dropdown": ["ix-button"],
+        "ix-date-picker": ["ix-button"],
+        "ix-datetime-picker": ["ix-button"],
+        "ix-dropdown-button": ["ix-button"],
+        "ix-empty-state": ["ix-button"],
+        "ix-menu-about-news": ["ix-button"],
+        "ix-split-button": ["ix-button"],
+        "ix-time-picker": ["ix-button"],
+        "ix-upload": ["ix-button"]
       },
       "props": [
         {
@@ -1486,12 +1356,7 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1574,12 +1439,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.3.0 - variant danger"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -1624,29 +1484,14 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-action-card",
-        "ix-card-list",
-        "ix-push-card"
-      ],
+      "dependents": ["ix-action-card", "ix-card-list", "ix-push-card"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-action-card": [
-          "ix-card"
-        ],
-        "ix-card-list": [
-          "ix-card"
-        ],
-        "ix-push-card": [
-          "ix-card"
-        ]
+        "ix-action-card": ["ix-card"],
+        "ix-card-list": ["ix-card"],
+        "ix-push-card": ["ix-card"]
       },
       "props": [
         {
@@ -1660,13 +1505,8 @@
           "mutable": false,
           "attr": "selected",
           "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docs": "Show card in selected state",
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1759,21 +1599,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-push-card"
-      ],
+      "dependents": ["ix-push-card"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-push-card": [
-          "ix-card-accordion"
-        ]
+        "ix-push-card": ["ix-card-accordion"]
       },
       "props": [
         {
@@ -1788,12 +1619,7 @@
           "attr": "collapse",
           "reflectToAttr": false,
           "docs": "Collapse the card",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1823,29 +1649,14 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-action-card",
-        "ix-card-list",
-        "ix-push-card"
-      ],
+      "dependents": ["ix-action-card", "ix-card-list", "ix-push-card"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-action-card": [
-          "ix-card-content"
-        ],
-        "ix-card-list": [
-          "ix-card-content"
-        ],
-        "ix-push-card": [
-          "ix-card-content"
-        ]
+        "ix-action-card": ["ix-card-content"],
+        "ix-card-list": ["ix-card-content"],
+        "ix-push-card": ["ix-card-content"]
       },
       "props": [],
       "methods": [],
@@ -1865,12 +1676,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -1888,12 +1694,8 @@
           "ix-typography",
           "ix-button"
         ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ]
+        "ix-icon-button": ["ix-spinner"],
+        "ix-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -1932,12 +1734,7 @@
           "attr": "hide-show-all",
           "reflectToAttr": false,
           "docs": "Hide the show all button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.2.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2178,21 +1975,13 @@
         {
           "name": "slot",
           "text": "title-actions - Place additional actions inside title"
-        },
-        {
-          "name": "since",
-          "text": "1.6.0"
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-push-card"
-      ],
+      "dependents": ["ix-push-card"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-push-card": [
-          "ix-card-title"
-        ]
+        "ix-push-card": ["ix-card-title"]
       },
       "props": [],
       "methods": [],
@@ -2233,12 +2022,8 @@
           "ix-dropdown",
           "ix-spinner"
         ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-filter-chip": [
-          "ix-icon-button"
-        ]
+        "ix-icon-button": ["ix-spinner"],
+        "ix-filter-chip": ["ix-icon-button"]
       },
       "props": [
         {
@@ -2525,12 +2310,7 @@
           "attr": "static-operator",
           "reflectToAttr": false,
           "docs": "If set categories will always be filtered via the respective logical operator.\nToggling of the operator will not be available to the user.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.2.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "LogicalFilterOperator.EQUAL"
@@ -2656,23 +2436,14 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.6.0"
-        },
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-typography"
-      ],
+      "dependencies": ["ix-typography"],
       "dependencyGraph": {
-        "ix-checkbox": [
-          "ix-typography"
-        ]
+        "ix-checkbox": ["ix-typography"]
       },
       "props": [
         {
@@ -2904,34 +2675,17 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.6.0"
-        },
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-field-wrapper"
-      ],
+      "dependencies": ["ix-field-wrapper"],
       "dependencyGraph": {
-        "ix-checkbox-group": [
-          "ix-field-wrapper"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-checkbox-group": ["ix-field-wrapper"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -3146,21 +2900,11 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-icon-button",
-        "ix-tooltip"
-      ],
+      "dependencies": ["ix-icon-button", "ix-tooltip"],
       "dependencyGraph": {
-        "ix-chip": [
-          "ix-icon-button",
-          "ix-tooltip"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-chip": ["ix-icon-button", "ix-tooltip"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -3404,12 +3148,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Fire event if close button is clicked",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -3427,25 +3166,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-date-dropdown",
-        "ix-datetime-picker"
-      ],
+      "dependents": ["ix-date-dropdown", "ix-datetime-picker"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-date-dropdown": [
-          "ix-col"
-        ],
-        "ix-datetime-picker": [
-          "ix-col"
-        ]
+        "ix-date-dropdown": ["ix-col"],
+        "ix-datetime-picker": ["ix-col"]
       },
       "props": [
         {
@@ -3787,10 +3514,6 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.1.0"
-        },
-        {
           "name": "slot",
           "text": "header - Display content at the top of the content page"
         }
@@ -3825,18 +3548,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-icon-button",
-        "ix-typography"
-      ],
+      "dependencies": ["ix-icon-button", "ix-typography"],
       "dependencyGraph": {
-        "ix-content-header": [
-          "ix-icon-button",
-          "ix-typography"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-content-header": ["ix-icon-button", "ix-typography"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -3978,32 +3693,15 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-field-wrapper"
-      ],
+      "dependencies": ["ix-field-wrapper"],
       "dependencyGraph": {
-        "ix-custom-field": [
-          "ix-field-wrapper"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-custom-field": ["ix-field-wrapper"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -4209,12 +3907,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -4236,18 +3929,14 @@
           "ix-dropdown-item",
           "ix-date-picker"
         ],
-        "ix-button": [
-          "ix-spinner"
-        ],
+        "ix-button": ["ix-spinner"],
         "ix-date-picker": [
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
         ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -4340,12 +4029,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disable the button that opens the dropdown containing the date picker.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.3.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -4542,12 +4226,7 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Locale identifier (e.g. 'en' or 'de').",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -4758,12 +4437,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -4844,12 +4518,7 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.6.0"
-        },
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         },
         {
           "name": "slot",
@@ -4875,29 +4544,17 @@
           "ix-dropdown",
           "ix-date-picker"
         ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"],
         "ix-date-picker": [
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
         ],
-        "ix-button": [
-          "ix-spinner"
-        ]
+        "ix-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -5076,12 +4733,7 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Locale identifier (e.g. 'en' or 'de').",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -5420,11 +5072,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-date-dropdown",
-        "ix-date-input",
-        "ix-datetime-picker"
-      ],
+      "dependents": ["ix-date-dropdown", "ix-date-input", "ix-datetime-picker"],
       "dependencies": [
         "ix-date-time-card",
         "ix-icon-button",
@@ -5438,21 +5086,11 @@
           "ix-button",
           "ix-dropdown"
         ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-date-dropdown": [
-          "ix-date-picker"
-        ],
-        "ix-date-input": [
-          "ix-date-picker"
-        ],
-        "ix-datetime-picker": [
-          "ix-date-picker"
-        ]
+        "ix-icon-button": ["ix-spinner"],
+        "ix-button": ["ix-spinner"],
+        "ix-date-dropdown": ["ix-date-picker"],
+        "ix-date-input": ["ix-date-picker"],
+        "ix-datetime-picker": ["ix-date-picker"]
       },
       "props": [
         {
@@ -5534,12 +5172,7 @@
           "attr": "from",
           "reflectToAttr": false,
           "docs": "The selected starting date. If the date-picker-rework is not in range mode this is the selected date.\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -5562,12 +5195,7 @@
           "attr": "i18n-done",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -5591,12 +5219,7 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Locale identifier (e.g. 'en' or 'de').",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -5619,12 +5242,7 @@
           "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -5648,12 +5266,7 @@
           "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -5730,12 +5343,7 @@
           "attr": "to",
           "reflectToAttr": false,
           "docs": "The selected end date. If the the date-picker-rework is not in range mode this property has no impact.\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -5758,12 +5366,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -5819,12 +5422,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Triggers if the date selection changes.\nNote: Since 2.0.0 `dateChange` does not dispatch detail property as `string`",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "dateRangeChange",
@@ -5844,12 +5442,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Triggers if the date selection changes.\nOnly triggered if date-picker-rework is in range mode.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "dateSelect",
@@ -5869,12 +5462,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Date selection confirmed via button action",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -5918,17 +5506,9 @@
           "ix-button",
           "ix-dropdown"
         ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-time-picker": [
-          "ix-date-time-card",
-          "ix-typography",
-          "ix-button"
-        ]
+        "ix-icon-button": ["ix-spinner"],
+        "ix-button": ["ix-spinner"],
+        "ix-time-picker": ["ix-date-time-card", "ix-typography", "ix-button"]
       },
       "props": [
         {
@@ -5943,12 +5523,7 @@
           "attr": "date-format",
           "reflectToAttr": false,
           "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
             {
@@ -5972,12 +5547,7 @@
           "attr": "from",
           "reflectToAttr": false,
           "docs": "The selected starting date. If the picker is not in range mode this is the selected date.\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6000,12 +5570,7 @@
           "attr": "i18n-done",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -6058,12 +5623,7 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6086,12 +5646,7 @@
           "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6114,12 +5669,7 @@
           "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6170,10 +5720,6 @@
             {
               "name": "see",
               "text": "{ this.timeFormat}"
-            },
-            {
-              "name": "since",
-              "text": "1.1.0"
             }
           ],
           "default": "false",
@@ -6228,12 +5774,7 @@
           "attr": "time",
           "reflectToAttr": false,
           "docs": "Select time with format string",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6256,12 +5797,7 @@
           "attr": "time-format",
           "reflectToAttr": false,
           "docs": "Time format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'HH:mm:ss'",
           "values": [
             {
@@ -6313,12 +5849,7 @@
           "attr": "to",
           "reflectToAttr": false,
           "docs": "The selected end date. If the the picker is not in range mode this property has no impact.\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -6341,12 +5872,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -6379,12 +5905,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Date change",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "dateSelect",
@@ -6404,12 +5925,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Datetime selection event is fired after confirm button is pressed",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "timeChange",
@@ -6422,13 +5938,8 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "\nTime change",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ]
+          "docs": "Time change",
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -6446,25 +5957,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.4.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-avatar",
-        "ix-menu-category"
-      ],
+      "dependents": ["ix-avatar", "ix-menu-category"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-avatar": [
-          "ix-divider"
-        ],
-        "ix-menu-category": [
-          "ix-divider"
-        ]
+        "ix-avatar": ["ix-divider"],
+        "ix-menu-category": ["ix-divider"]
       },
       "props": [],
       "methods": [],
@@ -6487,16 +5986,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-drawer": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-drawer": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -6753,45 +6246,19 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-application-header": [
-          "ix-dropdown"
-        ],
-        "ix-avatar": [
-          "ix-dropdown"
-        ],
-        "ix-breadcrumb": [
-          "ix-dropdown"
-        ],
-        "ix-category-filter": [
-          "ix-dropdown"
-        ],
-        "ix-date-dropdown": [
-          "ix-dropdown"
-        ],
-        "ix-date-input": [
-          "ix-dropdown"
-        ],
-        "ix-date-picker": [
-          "ix-dropdown"
-        ],
-        "ix-dropdown-button": [
-          "ix-dropdown"
-        ],
-        "ix-menu-avatar": [
-          "ix-dropdown"
-        ],
-        "ix-menu-category": [
-          "ix-dropdown"
-        ],
-        "ix-select": [
-          "ix-dropdown"
-        ],
-        "ix-split-button": [
-          "ix-dropdown"
-        ],
-        "ix-time-input": [
-          "ix-dropdown"
-        ]
+        "ix-application-header": ["ix-dropdown"],
+        "ix-avatar": ["ix-dropdown"],
+        "ix-breadcrumb": ["ix-dropdown"],
+        "ix-category-filter": ["ix-dropdown"],
+        "ix-date-dropdown": ["ix-dropdown"],
+        "ix-date-input": ["ix-dropdown"],
+        "ix-date-picker": ["ix-dropdown"],
+        "ix-dropdown-button": ["ix-dropdown"],
+        "ix-menu-avatar": ["ix-dropdown"],
+        "ix-menu-category": ["ix-dropdown"],
+        "ix-select": ["ix-dropdown"],
+        "ix-split-button": ["ix-dropdown"],
+        "ix-time-input": ["ix-dropdown"]
       },
       "props": [
         {
@@ -7018,12 +6485,7 @@
           "attr": "suppress-automatic-placement",
           "reflectToAttr": false,
           "docs": "Suppress the automatic placement of the dropdown.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -7133,31 +6595,14 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.3.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-button",
-        "ix-icon-button",
-        "ix-dropdown"
-      ],
+      "dependencies": ["ix-button", "ix-icon-button", "ix-dropdown"],
       "dependencyGraph": {
-        "ix-dropdown-button": [
-          "ix-button",
-          "ix-icon-button",
-          "ix-dropdown"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-dropdown-button": ["ix-button", "ix-icon-button", "ix-dropdown"],
+        "ix-button": ["ix-spinner"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -7172,12 +6617,7 @@
           "attr": "close-behavior",
           "reflectToAttr": false,
           "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'both'",
           "values": [
             {
@@ -7337,12 +6777,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Placement of the dropdown",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "value": "bottom-end",
@@ -7439,21 +6874,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-typography"
-      ],
+      "dependencies": ["ix-typography"],
       "dependencyGraph": {
-        "ix-dropdown-header": [
-          "ix-typography"
-        ]
+        "ix-dropdown-header": ["ix-typography"]
       },
       "props": [
         {
@@ -7509,24 +6935,12 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-breadcrumb": [
-          "ix-dropdown-item"
-        ],
-        "ix-date-dropdown": [
-          "ix-dropdown-item"
-        ],
-        "ix-menu-avatar-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-menu-category": [
-          "ix-dropdown-item"
-        ],
-        "ix-select": [
-          "ix-dropdown-item"
-        ],
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ]
+        "ix-breadcrumb": ["ix-dropdown-item"],
+        "ix-date-dropdown": ["ix-dropdown-item"],
+        "ix-menu-avatar-item": ["ix-dropdown-item"],
+        "ix-menu-category": ["ix-dropdown-item"],
+        "ix-select": ["ix-dropdown-item"],
+        "ix-select-item": ["ix-dropdown-item"]
       },
       "props": [
         {
@@ -7665,12 +7079,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.4.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -7693,26 +7102,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-typography",
-        "ix-button"
-      ],
+      "dependencies": ["ix-typography", "ix-button"],
       "dependencyGraph": {
-        "ix-empty-state": [
-          "ix-typography",
-          "ix-button"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ]
+        "ix-empty-state": ["ix-typography", "ix-button"],
+        "ix-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -8155,16 +7551,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-expanding-search": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-expanding-search": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -8179,12 +7569,7 @@
           "attr": "full-width",
           "reflectToAttr": false,
           "docs": "If true the search field will fill all available horizontal space of it's parent container when expanded.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.6.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8389,19 +7774,11 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-field-wrapper"
-      ],
-      "dependencies": [
-        "ix-typography"
-      ],
+      "dependents": ["ix-field-wrapper"],
+      "dependencies": ["ix-typography"],
       "dependencyGraph": {
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label"
-        ]
+        "ix-field-label": ["ix-typography"],
+        "ix-field-wrapper": ["ix-field-label"]
       },
       "props": [
         {
@@ -8470,26 +7847,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-category-filter",
-        "ix-select"
-      ],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependents": ["ix-category-filter", "ix-select"],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-filter-chip": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-category-filter": [
-          "ix-filter-chip"
-        ],
-        "ix-select": [
-          "ix-filter-chip"
-        ]
+        "ix-filter-chip": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-category-filter": ["ix-filter-chip"],
+        "ix-select": ["ix-filter-chip"]
       },
       "props": [
         {
@@ -8528,12 +7892,7 @@
           "attr": "readonly",
           "reflectToAttr": false,
           "docs": "If true the filter chip will be in readonly mode",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8581,16 +7940,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-flip-tile": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-flip-tile": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -8605,12 +7958,7 @@
           "attr": "height",
           "reflectToAttr": false,
           "docs": "Height interpreted as REM",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "15.125",
           "values": [
             {
@@ -8708,12 +8056,7 @@
           "attr": "width",
           "reflectToAttr": false,
           "docs": "Width interpreted as REM",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "16",
           "values": [
             {
@@ -8793,21 +8136,11 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-group-context-menu",
-        "ix-group-item"
-      ],
+      "dependencies": ["ix-group-context-menu", "ix-group-item"],
       "dependencyGraph": {
-        "ix-group": [
-          "ix-group-context-menu",
-          "ix-group-item"
-        ],
-        "ix-group-context-menu": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-group": ["ix-group-context-menu", "ix-group-item"],
+        "ix-group-context-menu": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -9044,22 +8377,12 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-group"
-      ],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependents": ["ix-group"],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-group-context-menu": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-group": [
-          "ix-group-context-menu"
-        ]
+        "ix-group-context-menu": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-group": ["ix-group-context-menu"]
       },
       "props": [],
       "methods": [],
@@ -9081,14 +8404,10 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-group"
-      ],
+      "dependents": ["ix-group"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-group": [
-          "ix-group-item"
-        ]
+        "ix-group": ["ix-group-item"]
       },
       "props": [
         {
@@ -9302,13 +8621,9 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-typography"
-      ],
+      "dependencies": ["ix-typography"],
       "dependencyGraph": {
-        "ix-helper-text": [
-          "ix-typography"
-        ]
+        "ix-helper-text": ["ix-typography"]
       },
       "props": [
         {
@@ -9501,103 +8816,39 @@
         "ix-time-input",
         "ix-toast"
       ],
-      "dependencies": [
-        "ix-spinner"
-      ],
+      "dependencies": ["ix-spinner"],
       "dependencyGraph": {
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-application-header": [
-          "ix-icon-button"
-        ],
-        "ix-card-list": [
-          "ix-icon-button"
-        ],
-        "ix-category-filter": [
-          "ix-icon-button"
-        ],
-        "ix-chip": [
-          "ix-icon-button"
-        ],
-        "ix-content-header": [
-          "ix-icon-button"
-        ],
-        "ix-date-input": [
-          "ix-icon-button"
-        ],
-        "ix-date-picker": [
-          "ix-icon-button"
-        ],
-        "ix-drawer": [
-          "ix-icon-button"
-        ],
-        "ix-dropdown-button": [
-          "ix-icon-button"
-        ],
-        "ix-expanding-search": [
-          "ix-icon-button"
-        ],
-        "ix-filter-chip": [
-          "ix-icon-button"
-        ],
-        "ix-flip-tile": [
-          "ix-icon-button"
-        ],
-        "ix-group-context-menu": [
-          "ix-icon-button"
-        ],
-        "ix-input": [
-          "ix-icon-button"
-        ],
-        "ix-map-navigation": [
-          "ix-icon-button"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon-button"
-        ],
-        "ix-menu": [
-          "ix-icon-button"
-        ],
-        "ix-menu-about": [
-          "ix-icon-button"
-        ],
-        "ix-menu-about-news": [
-          "ix-icon-button"
-        ],
-        "ix-menu-expand-icon": [
-          "ix-icon-button"
-        ],
-        "ix-menu-settings": [
-          "ix-icon-button"
-        ],
-        "ix-message-bar": [
-          "ix-icon-button"
-        ],
-        "ix-modal-header": [
-          "ix-icon-button"
-        ],
-        "ix-number-input": [
-          "ix-icon-button"
-        ],
-        "ix-pagination": [
-          "ix-icon-button"
-        ],
-        "ix-pane": [
-          "ix-icon-button"
-        ],
-        "ix-select": [
-          "ix-icon-button"
-        ],
-        "ix-split-button": [
-          "ix-icon-button"
-        ],
-        "ix-time-input": [
-          "ix-icon-button"
-        ],
-        "ix-toast": [
-          "ix-icon-button"
-        ]
+        "ix-icon-button": ["ix-spinner"],
+        "ix-application-header": ["ix-icon-button"],
+        "ix-card-list": ["ix-icon-button"],
+        "ix-category-filter": ["ix-icon-button"],
+        "ix-chip": ["ix-icon-button"],
+        "ix-content-header": ["ix-icon-button"],
+        "ix-date-input": ["ix-icon-button"],
+        "ix-date-picker": ["ix-icon-button"],
+        "ix-drawer": ["ix-icon-button"],
+        "ix-dropdown-button": ["ix-icon-button"],
+        "ix-expanding-search": ["ix-icon-button"],
+        "ix-filter-chip": ["ix-icon-button"],
+        "ix-flip-tile": ["ix-icon-button"],
+        "ix-group-context-menu": ["ix-icon-button"],
+        "ix-input": ["ix-icon-button"],
+        "ix-map-navigation": ["ix-icon-button"],
+        "ix-map-navigation-overlay": ["ix-icon-button"],
+        "ix-menu": ["ix-icon-button"],
+        "ix-menu-about": ["ix-icon-button"],
+        "ix-menu-about-news": ["ix-icon-button"],
+        "ix-menu-expand-icon": ["ix-icon-button"],
+        "ix-menu-settings": ["ix-icon-button"],
+        "ix-message-bar": ["ix-icon-button"],
+        "ix-modal-header": ["ix-icon-button"],
+        "ix-number-input": ["ix-icon-button"],
+        "ix-pagination": ["ix-icon-button"],
+        "ix-pane": ["ix-icon-button"],
+        "ix-select": ["ix-icon-button"],
+        "ix-split-button": ["ix-icon-button"],
+        "ix-time-input": ["ix-icon-button"],
+        "ix-toast": ["ix-icon-button"]
       },
       "props": [
         {
@@ -9612,12 +8863,7 @@
           "attr": "a11y-label",
           "reflectToAttr": false,
           "docs": "Accessibility label for the icon button\nWill be set as aria-label on the nested HTML button element",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -9734,12 +8980,7 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -9879,12 +9120,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.3.0 - variant danger"
-            }
-          ],
+          "docsTags": [],
           "default": "'secondary'",
           "values": [
             {
@@ -9923,21 +9159,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-spinner"
-      ],
+      "dependencies": ["ix-spinner"],
       "dependencyGraph": {
-        "ix-icon-toggle-button": [
-          "ix-spinner"
-        ]
+        "ix-icon-toggle-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -10190,12 +9417,7 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.6.0"
-        },
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         },
         {
           "name": "slot",
@@ -10208,31 +9430,13 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-field-wrapper",
-        "ix-icon-button",
-        "ix-typography"
-      ],
+      "dependencies": ["ix-field-wrapper", "ix-icon-button", "ix-typography"],
       "dependencyGraph": {
-        "ix-input": [
-          "ix-field-wrapper",
-          "ix-icon-button",
-          "ix-typography"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-input": ["ix-field-wrapper", "ix-icon-button", "ix-typography"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -10824,14 +10028,14 @@
       "docsTags": [
         {
           "name": "deprecated",
-          "text": "since 3.0.0. Will be removed with 4.0.0.\nUse the 'ix-input' component instead"
+          "text": "Will be removed with 4.0.0\nUse the 'ix-input' component instead"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
-      "deprecation": "since 3.0.0. Will be removed with 4.0.0.\nUse the 'ix-input' component instead",
+      "deprecation": "Will be removed with 4.0.0\nUse the 'ix-input' component instead",
       "props": [],
       "methods": [],
       "events": [],
@@ -10854,10 +10058,6 @@
         {
           "name": "slot",
           "text": "custom-value - Optional custom value at key value instead of text value"
-        },
-        {
-          "name": "since",
-          "text": "1.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -10992,12 +10192,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -11203,12 +10398,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -11256,25 +10446,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-date-dropdown",
-        "ix-datetime-picker"
-      ],
+      "dependents": ["ix-date-dropdown", "ix-datetime-picker"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-date-dropdown": [
-          "ix-layout-grid"
-        ],
-        "ix-datetime-picker": [
-          "ix-layout-grid"
-        ]
+        "ix-date-dropdown": ["ix-layout-grid"],
+        "ix-datetime-picker": ["ix-layout-grid"]
       },
       "props": [
         {
@@ -11380,12 +10558,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -11507,22 +10680,15 @@
           "ix-application-header",
           "ix-icon-button"
         ],
-        "ix-map-navigation-overlay": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
+        "ix-map-navigation-overlay": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"],
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-typography",
           "ix-dropdown"
         ],
-        "ix-menu-expand-icon": [
-          "ix-icon-button",
-          "ix-spinner"
-        ]
+        "ix-menu-expand-icon": ["ix-icon-button", "ix-spinner"]
       },
       "props": [
         {
@@ -11751,10 +10917,6 @@
             {
               "name": "param",
               "text": "show new visibility state"
-            },
-            {
-              "name": "since",
-              "text": "1.6.0"
             }
           ]
         }
@@ -11806,22 +10968,12 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-map-navigation"
-      ],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependents": ["ix-map-navigation"],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-map-navigation-overlay": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-map-navigation": [
-          "ix-map-navigation-overlay"
-        ]
+        "ix-map-navigation-overlay": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-map-navigation": ["ix-map-navigation-overlay"]
       },
       "props": [
         {
@@ -11958,30 +11110,13 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-menu-expand-icon",
-        "ix-icon-button",
-        "ix-menu-item"
-      ],
+      "dependencies": ["ix-menu-expand-icon", "ix-icon-button", "ix-menu-item"],
       "dependencyGraph": {
-        "ix-menu": [
-          "ix-menu-expand-icon",
-          "ix-icon-button",
-          "ix-menu-item"
-        ],
-        "ix-menu-expand-icon": [
-          "ix-icon-button",
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-menu-item": [
-          "ix-tooltip"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-menu": ["ix-menu-expand-icon", "ix-icon-button", "ix-menu-item"],
+        "ix-menu-expand-icon": ["ix-icon-button", "ix-spinner"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-menu-item": ["ix-tooltip"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -12331,12 +11466,7 @@
           "attr": "start-expanded",
           "reflectToAttr": false,
           "docs": "If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.2.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -12624,20 +11754,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-tab-item",
-        "ix-icon-button",
-        "ix-tabs"
-      ],
+      "dependencies": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
       "dependencyGraph": {
-        "ix-menu-about": [
-          "ix-tab-item",
-          "ix-icon-button",
-          "ix-tabs"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-menu-about": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -12816,23 +11936,11 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-typography",
-        "ix-icon-button",
-        "ix-button"
-      ],
+      "dependencies": ["ix-typography", "ix-icon-button", "ix-button"],
       "dependencyGraph": {
-        "ix-menu-about-news": [
-          "ix-typography",
-          "ix-icon-button",
-          "ix-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ]
+        "ix-menu-about-news": ["ix-typography", "ix-icon-button", "ix-button"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -13008,26 +12116,16 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-avatar",
-        "ix-dropdown",
-        "ix-menu-avatar-item"
-      ],
+      "dependencies": ["ix-avatar", "ix-dropdown", "ix-menu-avatar-item"],
       "dependencyGraph": {
-        "ix-menu-avatar": [
-          "ix-avatar",
-          "ix-dropdown",
-          "ix-menu-avatar-item"
-        ],
+        "ix-menu-avatar": ["ix-avatar", "ix-dropdown", "ix-menu-avatar-item"],
         "ix-avatar": [
           "ix-dropdown",
           "ix-divider",
           "ix-typography",
           "ix-spinner"
         ],
-        "ix-menu-avatar-item": [
-          "ix-dropdown-item"
-        ]
+        "ix-menu-avatar-item": ["ix-dropdown-item"]
       },
       "props": [
         {
@@ -13089,12 +12187,7 @@
           "attr": "image",
           "reflectToAttr": false,
           "docs": "Display a avatar image",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.4.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -13117,12 +12210,7 @@
           "attr": "initials",
           "reflectToAttr": false,
           "docs": "Display the initials of the user. Will be overwritten by image",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.4.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -13145,12 +12233,7 @@
           "attr": "show-logout-button",
           "reflectToAttr": false,
           "docs": "Control the visibility of the logout button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -13220,19 +12303,11 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-menu-avatar"
-      ],
-      "dependencies": [
-        "ix-dropdown-item"
-      ],
+      "dependents": ["ix-menu-avatar"],
+      "dependencies": ["ix-dropdown-item"],
       "dependencyGraph": {
-        "ix-menu-avatar-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-menu-avatar": [
-          "ix-menu-avatar-item"
-        ]
+        "ix-menu-avatar-item": ["ix-dropdown-item"],
+        "ix-menu-avatar": ["ix-menu-avatar-item"]
       },
       "props": [
         {
@@ -13319,12 +12394,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -13342,12 +12412,8 @@
           "ix-typography",
           "ix-divider"
         ],
-        "ix-menu-item": [
-          "ix-tooltip"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-menu-item": ["ix-tooltip"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -13451,26 +12517,13 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-menu",
-        "ix-menu-category"
-      ],
-      "dependencies": [
-        "ix-tooltip"
-      ],
+      "dependents": ["ix-menu", "ix-menu-category"],
+      "dependencies": ["ix-tooltip"],
       "dependencyGraph": {
-        "ix-menu-item": [
-          "ix-tooltip"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ],
-        "ix-menu": [
-          "ix-menu-item"
-        ],
-        "ix-menu-category": [
-          "ix-menu-item"
-        ]
+        "ix-menu-item": ["ix-tooltip"],
+        "ix-tooltip": ["ix-typography"],
+        "ix-menu": ["ix-menu-item"],
+        "ix-menu-category": ["ix-menu-item"]
       },
       "props": [
         {
@@ -13609,12 +12662,7 @@
           "attr": "label",
           "reflectToAttr": false,
           "docs": "Label of the menu item. Will also be used as tooltip text",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.2.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -13674,20 +12722,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-tab-item",
-        "ix-icon-button",
-        "ix-tabs"
-      ],
+      "dependencies": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
       "dependencyGraph": {
-        "ix-menu-settings": [
-          "ix-tab-item",
-          "ix-icon-button",
-          "ix-tabs"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-menu-settings": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -13866,16 +12904,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-message-bar": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-message-bar": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -14129,12 +13161,7 @@
           "attr": "close-on-backdrop-click",
           "reflectToAttr": false,
           "docs": "Dismiss modal on backdrop click",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -14188,12 +13215,7 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Modal size",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'360'",
           "values": [
             {
@@ -14380,21 +13402,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-application-switch-modal"
-      ],
+      "dependents": ["ix-application-switch-modal"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-application-switch-modal": [
-          "ix-modal-content"
-        ]
+        "ix-application-switch-modal": ["ix-modal-content"]
       },
       "props": [],
       "methods": [],
@@ -14414,12 +13427,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -14442,31 +13450,14 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-application-switch-modal"
-      ],
-      "dependencies": [
-        "ix-typography",
-        "ix-icon-button"
-      ],
+      "dependents": ["ix-application-switch-modal"],
+      "dependencies": ["ix-typography", "ix-icon-button"],
       "dependencyGraph": {
-        "ix-modal-header": [
-          "ix-typography",
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-application-switch-modal": [
-          "ix-modal-header"
-        ]
+        "ix-modal-header": ["ix-typography", "ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-application-switch-modal": ["ix-modal-header"]
       },
       "props": [
         {
@@ -14579,12 +13570,7 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.6.0"
-        },
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         },
         {
           "name": "slot",
@@ -14597,29 +13583,13 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-field-wrapper",
-        "ix-icon-button"
-      ],
+      "dependencies": ["ix-field-wrapper", "ix-icon-button"],
       "dependencyGraph": {
-        "ix-number-input": [
-          "ix-field-wrapper",
-          "ix-icon-button"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-number-input": ["ix-field-wrapper", "ix-icon-button"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -15201,12 +14171,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.5.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -15224,9 +14189,7 @@
           "ix-select-item",
           "ix-spinner"
         ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
+        "ix-icon-button": ["ix-spinner"],
         "ix-select": [
           "ix-select-item",
           "ix-field-wrapper",
@@ -15235,23 +14198,11 @@
           "ix-dropdown",
           "ix-dropdown-item"
         ],
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ],
-        "ix-filter-chip": [
-          "ix-icon-button"
-        ]
+        "ix-select-item": ["ix-dropdown-item"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"],
+        "ix-filter-chip": ["ix-icon-button"]
       },
       "props": [
         {
@@ -15493,26 +14444,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-icon-button",
-        "ix-typography"
-      ],
+      "dependencies": ["ix-icon-button", "ix-typography"],
       "dependencyGraph": {
-        "ix-pane": [
-          "ix-icon-button",
-          "ix-typography"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-pane": ["ix-icon-button", "ix-typography"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -15833,12 +14771,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -15963,16 +14896,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-tooltip"
-      ],
+      "dependencies": ["ix-tooltip"],
       "dependencyGraph": {
-        "ix-pill": [
-          "ix-tooltip"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-pill": ["ix-tooltip"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -16195,12 +15122,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "1.6.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -16232,12 +15154,7 @@
           "attr": "collapse",
           "reflectToAttr": false,
           "docs": "Collapse the card",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -16424,23 +15341,14 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.6.0"
-        },
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-typography"
-      ],
+      "dependencies": ["ix-typography"],
       "dependencyGraph": {
-        "ix-radio": [
-          "ix-typography"
-        ]
+        "ix-radio": ["ix-typography"]
       },
       "props": [
         {
@@ -16652,34 +15560,17 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.6.0"
-        },
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-field-wrapper"
-      ],
+      "dependencies": ["ix-field-wrapper"],
       "dependencyGraph": {
-        "ix-radio-group": [
-          "ix-field-wrapper"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-radio-group": ["ix-field-wrapper"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -16934,25 +15825,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-date-dropdown",
-        "ix-datetime-picker"
-      ],
+      "dependents": ["ix-date-dropdown", "ix-datetime-picker"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-date-dropdown": [
-          "ix-row"
-        ],
-        "ix-datetime-picker": [
-          "ix-row"
-        ]
+        "ix-date-dropdown": ["ix-row"],
+        "ix-datetime-picker": ["ix-row"]
       },
       "props": [],
       "methods": [],
@@ -16974,14 +15853,11 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-pagination"
-      ],
+      "dependents": ["ix-pagination"],
       "dependencies": [
         "ix-select-item",
         "ix-field-wrapper",
@@ -16999,29 +15875,13 @@
           "ix-dropdown",
           "ix-dropdown-item"
         ],
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ],
-        "ix-filter-chip": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-pagination": [
-          "ix-select"
-        ]
+        "ix-select-item": ["ix-dropdown-item"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"],
+        "ix-filter-chip": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-pagination": ["ix-select"]
       },
       "props": [
         {
@@ -17084,12 +15944,7 @@
           "attr": "dropdown-max-width",
           "reflectToAttr": false,
           "docs": "The maximum width of the dropdown element with value and unit (e.g. \"200px\" or \"12.5rem\").\nBy default the maximum width of the dropdown element is set to 100%.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.7.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17112,12 +15967,7 @@
           "attr": "dropdown-width",
           "reflectToAttr": false,
           "docs": "The width of the dropdown element with value and unit (e.g. \"200px\" or \"12.5rem\").",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.7.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17164,12 +16014,7 @@
           "attr": "helper-text",
           "reflectToAttr": false,
           "docs": "Helper text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17192,12 +16037,7 @@
           "attr": "hide-list-header",
           "reflectToAttr": false,
           "docs": "Hide list header",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -17221,12 +16061,7 @@
           "attr": "i-1-8n-no-matches",
           "reflectToAttr": false,
           "docs": "Information inside of dropdown if no items where found with current filter text",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'No matches'",
           "values": [
             {
@@ -17322,12 +16157,7 @@
           "attr": "info-text",
           "reflectToAttr": false,
           "docs": "Info text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17350,12 +16180,7 @@
           "attr": "invalid-text",
           "reflectToAttr": false,
           "docs": "Error text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17378,12 +16203,7 @@
           "attr": "label",
           "reflectToAttr": false,
           "docs": "Label for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17435,12 +16255,7 @@
           "attr": "name",
           "reflectToAttr": true,
           "docs": "A string that represents the element's name attribute,\ncontaining a name that identifies the element when submitting the form.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17487,12 +16302,7 @@
           "attr": "required",
           "reflectToAttr": true,
           "docs": "A Boolean attribute indicating that an option with a non-empty string value must be selected",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -17516,12 +16326,7 @@
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
           "docs": "Show helper, error, info, warning text as tooltip",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "boolean"
@@ -17544,12 +16349,7 @@
           "attr": "valid-text",
           "reflectToAttr": false,
           "docs": "Valid text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17572,12 +16372,7 @@
           "attr": "value",
           "reflectToAttr": false,
           "docs": "Current selected value.\nThis corresponds to the value property of ix-select-items",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "[]",
           "values": [
             {
@@ -17604,12 +16399,7 @@
           "attr": "warning-text",
           "reflectToAttr": false,
           "docs": "Warning text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -17698,12 +16488,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event dispatched whenever the text input changes.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "ixBlur",
@@ -17731,12 +16516,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Value changed",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -17772,23 +16552,12 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-pagination",
-        "ix-select"
-      ],
-      "dependencies": [
-        "ix-dropdown-item"
-      ],
+      "dependents": ["ix-pagination", "ix-select"],
+      "dependencies": ["ix-dropdown-item"],
       "dependencyGraph": {
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-pagination": [
-          "ix-select-item"
-        ],
-        "ix-select": [
-          "ix-select-item"
-        ]
+        "ix-select-item": ["ix-dropdown-item"],
+        "ix-pagination": ["ix-select-item"],
+        "ix-select": ["ix-select-item"]
       },
       "props": [
         {
@@ -17896,10 +16665,6 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.0.0"
-        },
-        {
           "name": "slot",
           "text": "label-start - Element will be displayed at the start of the slider"
         },
@@ -17910,18 +16675,10 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-tooltip",
-        "ix-typography"
-      ],
+      "dependencies": ["ix-tooltip", "ix-typography"],
       "dependencyGraph": {
-        "ix-slider": [
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-slider": ["ix-tooltip", "ix-typography"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -18212,42 +16969,18 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-application-switch-modal": [
-          "ix-spinner"
-        ],
-        "ix-avatar": [
-          "ix-spinner"
-        ],
-        "ix-breadcrumb-item": [
-          "ix-spinner"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-category-filter": [
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-icon-toggle-button": [
-          "ix-spinner"
-        ],
-        "ix-menu-expand-icon": [
-          "ix-spinner"
-        ],
-        "ix-modal-loading": [
-          "ix-spinner"
-        ],
-        "ix-pagination": [
-          "ix-spinner"
-        ],
-        "ix-toggle-button": [
-          "ix-spinner"
-        ],
-        "ix-upload": [
-          "ix-spinner"
-        ]
+        "ix-application-switch-modal": ["ix-spinner"],
+        "ix-avatar": ["ix-spinner"],
+        "ix-breadcrumb-item": ["ix-spinner"],
+        "ix-button": ["ix-spinner"],
+        "ix-category-filter": ["ix-spinner"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-icon-toggle-button": ["ix-spinner"],
+        "ix-menu-expand-icon": ["ix-spinner"],
+        "ix-modal-loading": ["ix-spinner"],
+        "ix-pagination": ["ix-spinner"],
+        "ix-toggle-button": ["ix-spinner"],
+        "ix-upload": ["ix-spinner"]
       },
       "props": [
         {
@@ -18341,23 +17074,11 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-button",
-        "ix-icon-button",
-        "ix-dropdown"
-      ],
+      "dependencies": ["ix-button", "ix-icon-button", "ix-dropdown"],
       "dependencyGraph": {
-        "ix-split-button": [
-          "ix-button",
-          "ix-icon-button",
-          "ix-dropdown"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-split-button": ["ix-button", "ix-icon-button", "ix-dropdown"],
+        "ix-button": ["ix-spinner"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -18378,12 +17099,7 @@
           "attr": "close-behavior",
           "reflectToAttr": false,
           "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.3.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'both'",
           "values": [
             {
@@ -18686,18 +17402,11 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-menu-about",
-        "ix-menu-settings"
-      ],
+      "dependents": ["ix-menu-about", "ix-menu-settings"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-menu-about": [
-          "ix-tab-item"
-        ],
-        "ix-menu-settings": [
-          "ix-tab-item"
-        ]
+        "ix-menu-about": ["ix-tab-item"],
+        "ix-menu-settings": ["ix-tab-item"]
       },
       "props": [
         {
@@ -18922,12 +17631,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Emitted when the tab is clicked.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -18947,18 +17651,11 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-menu-about",
-        "ix-menu-settings"
-      ],
+      "dependents": ["ix-menu-about", "ix-menu-settings"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-menu-about": [
-          "ix-tabs"
-        ],
-        "ix-menu-settings": [
-          "ix-tabs"
-        ]
+        "ix-menu-about": ["ix-tabs"],
+        "ix-menu-settings": ["ix-tabs"]
       },
       "props": [
         {
@@ -19106,12 +17803,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "`selected` property changed",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -19143,36 +17835,17 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "since",
-          "text": "2.6.0"
-        },
-        {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-field-wrapper",
-        "ix-typography"
-      ],
+      "dependencies": ["ix-field-wrapper", "ix-typography"],
       "dependencyGraph": {
-        "ix-textarea": [
-          "ix-field-wrapper",
-          "ix-typography"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-textarea": ["ix-field-wrapper", "ix-typography"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -19864,28 +18537,12 @@
           "ix-dropdown",
           "ix-time-picker"
         ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ],
-        "ix-time-picker": [
-          "ix-date-time-card",
-          "ix-typography",
-          "ix-button"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ]
+        "ix-icon-button": ["ix-spinner"],
+        "ix-field-wrapper": ["ix-field-label", "ix-tooltip", "ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"],
+        "ix-time-picker": ["ix-date-time-card", "ix-typography", "ix-button"],
+        "ix-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -20475,30 +19132,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-datetime-picker",
-        "ix-time-input"
-      ],
-      "dependencies": [
-        "ix-date-time-card",
-        "ix-typography",
-        "ix-button"
-      ],
+      "dependents": ["ix-datetime-picker", "ix-time-input"],
+      "dependencies": ["ix-date-time-card", "ix-typography", "ix-button"],
       "dependencyGraph": {
-        "ix-time-picker": [
-          "ix-date-time-card",
-          "ix-typography",
-          "ix-button"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-datetime-picker": [
-          "ix-time-picker"
-        ],
-        "ix-time-input": [
-          "ix-time-picker"
-        ]
+        "ix-time-picker": ["ix-date-time-card", "ix-typography", "ix-button"],
+        "ix-button": ["ix-spinner"],
+        "ix-datetime-picker": ["ix-time-picker"],
+        "ix-time-input": ["ix-time-picker"]
       },
       "props": [
         {
@@ -20556,12 +19196,7 @@
           "attr": "format",
           "reflectToAttr": false,
           "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'TT'",
           "values": [
             {
@@ -20725,12 +19360,7 @@
           "attr": "text-select-time",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'Confirm'",
           "values": [
             {
@@ -20754,12 +19384,7 @@
           "attr": "text-time",
           "reflectToAttr": false,
           "docs": "Text for top label",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'Time'",
           "values": [
             {
@@ -20783,12 +19408,7 @@
           "attr": "time",
           "reflectToAttr": false,
           "docs": "Select time with format string\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "DateTime.now().toFormat(this.format)",
           "values": [
             {
@@ -20872,22 +19492,12 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-toast-container"
-      ],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependents": ["ix-toast-container"],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-toast": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-toast-container": [
-          "ix-toast"
-        ]
+        "ix-toast": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"],
+        "ix-toast-container": ["ix-toast"]
       },
       "props": [
         {
@@ -21086,19 +19696,11 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-toast"
-      ],
+      "dependencies": ["ix-toast"],
       "dependencyGraph": {
-        "ix-toast-container": [
-          "ix-toast"
-        ],
-        "ix-toast": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
+        "ix-toast-container": ["ix-toast"],
+        "ix-toast": ["ix-icon-button"],
+        "ix-icon-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -21252,19 +19854,14 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "form-ready",
-          "text": "2.6.0"
+          "name": "form-ready"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-typography"
-      ],
+      "dependencies": ["ix-typography"],
       "dependencyGraph": {
-        "ix-toggle": [
-          "ix-typography"
-        ]
+        "ix-toggle": ["ix-typography"]
       },
       "props": [
         {
@@ -21553,21 +20150,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-spinner"
-      ],
+      "dependencies": ["ix-spinner"],
       "dependencyGraph": {
-        "ix-toggle-button": [
-          "ix-spinner"
-        ]
+        "ix-toggle-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -21793,10 +20381,6 @@
         {
           "name": "slot",
           "text": "title-content - Content of tooltip title"
-        },
-        {
-          "name": "since",
-          "text": "1.4.0"
         }
       ],
       "encapsulation": "shadow",
@@ -21807,28 +20391,14 @@
         "ix-pill",
         "ix-slider"
       ],
-      "dependencies": [
-        "ix-typography"
-      ],
+      "dependencies": ["ix-typography"],
       "dependencyGraph": {
-        "ix-tooltip": [
-          "ix-typography"
-        ],
-        "ix-chip": [
-          "ix-tooltip"
-        ],
-        "ix-field-wrapper": [
-          "ix-tooltip"
-        ],
-        "ix-menu-item": [
-          "ix-tooltip"
-        ],
-        "ix-pill": [
-          "ix-tooltip"
-        ],
-        "ix-slider": [
-          "ix-tooltip"
-        ]
+        "ix-tooltip": ["ix-typography"],
+        "ix-chip": ["ix-tooltip"],
+        "ix-field-wrapper": ["ix-tooltip"],
+        "ix-menu-item": ["ix-tooltip"],
+        "ix-pill": ["ix-tooltip"],
+        "ix-slider": ["ix-tooltip"]
       },
       "props": [
         {
@@ -21905,12 +20475,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Initial placement of the tooltip.\nIf the selected placement doesn't have enough space, the tooltip will be repositioned to another location.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'top'",
           "values": [
             {
@@ -21988,13 +20553,9 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-tree-item"
-      ],
+      "dependencies": ["ix-tree-item"],
       "dependencyGraph": {
-        "ix-tree": [
-          "ix-tree-item"
-        ]
+        "ix-tree": ["ix-tree-item"]
       },
       "props": [
         {
@@ -22189,12 +20750,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Node clicked event",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ]
+          "docsTags": []
         },
         {
           "event": "nodeRemoved",
@@ -22222,12 +20778,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "Node toggled event",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.5.0"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -22253,14 +20804,10 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-tree"
-      ],
+      "dependents": ["ix-tree"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-tree": [
-          "ix-tree-item"
-        ]
+        "ix-tree": ["ix-tree-item"]
       },
       "props": [
         {
@@ -22386,12 +20933,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
@@ -22423,84 +20965,32 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-action-card": [
-          "ix-typography"
-        ],
-        "ix-application-header": [
-          "ix-typography"
-        ],
-        "ix-application-switch-modal": [
-          "ix-typography"
-        ],
-        "ix-avatar": [
-          "ix-typography"
-        ],
-        "ix-blind": [
-          "ix-typography"
-        ],
-        "ix-card-list": [
-          "ix-typography"
-        ],
-        "ix-checkbox": [
-          "ix-typography"
-        ],
-        "ix-content-header": [
-          "ix-typography"
-        ],
-        "ix-dropdown-header": [
-          "ix-typography"
-        ],
-        "ix-empty-state": [
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-field-wrapper": [
-          "ix-typography"
-        ],
-        "ix-helper-text": [
-          "ix-typography"
-        ],
-        "ix-input": [
-          "ix-typography"
-        ],
-        "ix-menu-about-news": [
-          "ix-typography"
-        ],
-        "ix-menu-category": [
-          "ix-typography"
-        ],
-        "ix-modal-header": [
-          "ix-typography"
-        ],
-        "ix-pagination": [
-          "ix-typography"
-        ],
-        "ix-pane": [
-          "ix-typography"
-        ],
-        "ix-push-card": [
-          "ix-typography"
-        ],
-        "ix-radio": [
-          "ix-typography"
-        ],
-        "ix-slider": [
-          "ix-typography"
-        ],
-        "ix-textarea": [
-          "ix-typography"
-        ],
-        "ix-time-picker": [
-          "ix-typography"
-        ],
-        "ix-toggle": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
+        "ix-action-card": ["ix-typography"],
+        "ix-application-header": ["ix-typography"],
+        "ix-application-switch-modal": ["ix-typography"],
+        "ix-avatar": ["ix-typography"],
+        "ix-blind": ["ix-typography"],
+        "ix-card-list": ["ix-typography"],
+        "ix-checkbox": ["ix-typography"],
+        "ix-content-header": ["ix-typography"],
+        "ix-dropdown-header": ["ix-typography"],
+        "ix-empty-state": ["ix-typography"],
+        "ix-field-label": ["ix-typography"],
+        "ix-field-wrapper": ["ix-typography"],
+        "ix-helper-text": ["ix-typography"],
+        "ix-input": ["ix-typography"],
+        "ix-menu-about-news": ["ix-typography"],
+        "ix-menu-category": ["ix-typography"],
+        "ix-modal-header": ["ix-typography"],
+        "ix-pagination": ["ix-typography"],
+        "ix-pane": ["ix-typography"],
+        "ix-push-card": ["ix-typography"],
+        "ix-radio": ["ix-typography"],
+        "ix-slider": ["ix-typography"],
+        "ix-textarea": ["ix-typography"],
+        "ix-time-picker": ["ix-typography"],
+        "ix-toggle": ["ix-typography"],
+        "ix-tooltip": ["ix-typography"]
       },
       "props": [
         {
@@ -22718,18 +21208,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-spinner",
-        "ix-button"
-      ],
+      "dependencies": ["ix-spinner", "ix-button"],
       "dependencyGraph": {
-        "ix-upload": [
-          "ix-spinner",
-          "ix-button"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ]
+        "ix-upload": ["ix-spinner", "ix-button"],
+        "ix-button": ["ix-spinner"]
       },
       "props": [
         {
@@ -23186,12 +21668,7 @@
           "attr": "suppress-automatic-placement",
           "reflectToAttr": false,
           "docs": "Suppress the automatic placement of the dropdown.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {

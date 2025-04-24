@@ -46,8 +46,6 @@ export class ValidationTooltip {
 
   /**
    * Suppress the automatic placement of the dropdown.
-   *
-   * @since 2.0.0
    */
   @Prop() suppressAutomaticPlacement = false;
 
