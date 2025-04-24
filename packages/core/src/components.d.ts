@@ -2664,7 +2664,7 @@ export namespace Components {
         "size": 'small' | 'medium' | 'big';
     }
     /**
-     * @since 3.0.0
+     * @since 3.1.0
      * @form-ready 3.0.0
      */
     interface IxTimeInput {
@@ -4618,7 +4618,7 @@ declare global {
         "ixBlur": void;
     }
     /**
-     * @since 3.0.0
+     * @since 3.1.0
      * @form-ready 3.0.0
      */
     interface HTMLIxTimeInputElement extends Components.IxTimeInput, HTMLStencilElement {
@@ -7716,7 +7716,7 @@ declare namespace LocalJSX {
         "size"?: 'small' | 'medium' | 'big';
     }
     /**
-     * @since 3.0.0
+     * @since 3.1.0
      * @form-ready 3.0.0
      */
     interface IxTimeInput {
@@ -8456,7 +8456,7 @@ declare module "@stencil/core" {
             "ix-textarea": LocalJSX.IxTextarea & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             /**
-             * @since 3.0.0
+             * @since 3.1.0
              * @form-ready 3.0.0
              */
             "ix-time-input": LocalJSX.IxTimeInput & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
