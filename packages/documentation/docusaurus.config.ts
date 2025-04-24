@@ -87,6 +87,7 @@ const config: Config = {
 
   customFields: {
     withBrandTheme,
+    playgroundVersion: '^3.0.0'
   },
 
   presets: [

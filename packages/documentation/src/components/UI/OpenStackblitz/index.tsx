@@ -13,6 +13,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import { openStackBlitz } from '@site/src/lib/stackblitz';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function OpenStackblitz(
   props: Readonly<{
@@ -21,6 +22,7 @@ export default function OpenStackblitz(
     files: Record<string, string>;
   }>
 ) {
+  const context = useDocusaurusContext();
   const baseUrl = useBaseUrl('/demo/v2/');
 
   return (
@@ -33,7 +35,9 @@ export default function OpenStackblitz(
               framework: props.framework,
               name: props.mount,
               sourcePath: props.files,
-              version: 'latest',
+              version:
+                (context.siteConfig.customFields.playgroundVersion as string) ??
+                'latest',
             });
           }}
         >
