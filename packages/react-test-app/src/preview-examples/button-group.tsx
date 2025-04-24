@@ -10,11 +10,9 @@
 import { IxButton } from '@siemens/ix-react';
 
 export default () => (
-  <>
-    <div className="btn-group">
-      <IxButton outline>Left</IxButton>
-      <IxButton>Middle</IxButton>
-      <IxButton outline>Right</IxButton>
-    </div>
-  </>
+  <div className="ix-button-group">
+    <IxButton outline>Left</IxButton>
+    <IxButton>Middle</IxButton>
+    <IxButton outline>Right</IxButton>
+  </div>
 );

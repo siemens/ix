@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconInfo } from '@siemens/ix-icons/icons';
 import './button-with-icon.scoped.css';
 
 import { IxIconButton } from '@siemens/ix-react';
@@ -15,26 +16,25 @@ export default () => {
   return (
     <>
       <div>
-        <IxIconButton icon="info" variant="primary"></IxIconButton>
-        <IxIconButton icon="info"></IxIconButton>
-        <IxIconButton icon="info" variant="danger"></IxIconButton>
-        <IxIconButton icon="info" outline></IxIconButton>
-        <IxIconButton icon="info" ghost></IxIconButton>
+        <IxIconButton icon={iconInfo} variant="primary"></IxIconButton>
+        <IxIconButton icon={iconInfo}></IxIconButton>
+        <IxIconButton icon={iconInfo} variant="danger"></IxIconButton>
+        <IxIconButton icon={iconInfo} outline></IxIconButton>
+        <IxIconButton icon={iconInfo} ghost></IxIconButton>
       </div>
 
       <div>
-        <IxIconButton icon="info" oval variant="primary"></IxIconButton>
-        <IxIconButton icon="info" oval></IxIconButton>
-        <IxIconButton icon="info" oval variant="danger"></IxIconButton>
-        <IxIconButton icon="info" oval outline></IxIconButton>
-        <IxIconButton icon="info" oval ghost></IxIconButton>
+        <IxIconButton icon={iconInfo} oval variant="primary"></IxIconButton>
+        <IxIconButton icon={iconInfo} oval></IxIconButton>
+        <IxIconButton icon={iconInfo} oval variant="danger"></IxIconButton>
+        <IxIconButton icon={iconInfo} oval outline></IxIconButton>
+        <IxIconButton icon={iconInfo} oval ghost></IxIconButton>
       </div>
 
       <div>
-        <IxIconButton icon="info" size="12"></IxIconButton>
-        <IxIconButton icon="info" size="16"></IxIconButton>
-        <IxIconButton icon="info" size="24"></IxIconButton>
-        <IxIconButton icon="info" size="32"></IxIconButton>
+        <IxIconButton icon={iconInfo} size="12"></IxIconButton>
+        <IxIconButton icon={iconInfo} size="16"></IxIconButton>
+        <IxIconButton icon={iconInfo} size="24"></IxIconButton>
       </div>
     </>
   );

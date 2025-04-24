@@ -13,6 +13,14 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconPrint } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconPrint,
+      });
+    </script>
   </head>
   <body>
     <div
@@ -49,7 +57,7 @@ SPDX-License-Identifier: MIT
       </ix-pill>
       <ix-pill
         background="purple"
-        color="green"
+        pill-color="green"
         variant="custom"
         icon="print"
         style="width: 10rem"
@@ -60,7 +68,7 @@ SPDX-License-Identifier: MIT
 
       <ix-pill
         background="purple"
-        color="green"
+        pill-color="green"
         variant="custom"
         icon="print"
         style="width: 10rem"
@@ -117,7 +125,7 @@ SPDX-License-Identifier: MIT
       <ix-pill
         align-left
         background="purple"
-        color="green"
+        pill-color="green"
         variant="custom"
         icon="print"
         style="width: 10rem"
@@ -129,7 +137,7 @@ SPDX-License-Identifier: MIT
       <ix-pill
         align-left
         background="purple"
-        color="green"
+        pill-color="green"
         variant="custom"
         icon="print"
         style="width: 10rem"

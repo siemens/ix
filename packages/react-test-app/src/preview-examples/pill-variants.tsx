@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconInfo } from '@siemens/ix-icons/icons';
 import './pill-variants.scoped.css';
 
 import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-react';
@@ -17,10 +18,10 @@ export default () => {
       <IxLayoutGrid>
         <IxRow>
           <IxCol>
-            <IxPill icon="info">Primary</IxPill>
+            <IxPill icon={iconInfo}>Primary</IxPill>
           </IxCol>
           <IxCol>
-            <IxPill icon="info" outline>
+            <IxPill icon={iconInfo} outline>
               Primary
             </IxPill>
           </IxCol>
@@ -28,12 +29,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="alarm" icon="info">
+            <IxPill variant="alarm" icon={iconInfo}>
               Alarm
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="alarm" icon="info" outline>
+            <IxPill variant="alarm" icon={iconInfo} outline>
               Alarm
             </IxPill>
           </IxCol>
@@ -41,12 +42,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="critical" icon="info">
+            <IxPill variant="critical" icon={iconInfo}>
               Critical
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="critical" icon="info" outline>
+            <IxPill variant="critical" icon={iconInfo} outline>
               Critical
             </IxPill>
           </IxCol>
@@ -54,12 +55,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="warning" icon="info">
+            <IxPill variant="warning" icon={iconInfo}>
               Warning
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="warning" icon="info" outline>
+            <IxPill variant="warning" icon={iconInfo} outline>
               Warning
             </IxPill>
           </IxCol>
@@ -67,12 +68,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="success" icon="info">
+            <IxPill variant="success" icon={iconInfo}>
               Success
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="success" icon="info" outline>
+            <IxPill variant="success" icon={iconInfo} outline>
               Success
             </IxPill>
           </IxCol>
@@ -80,12 +81,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="info" icon="info">
+            <IxPill variant="info" icon={iconInfo}>
               Info
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="info" icon="info" outline>
+            <IxPill variant="info" icon={iconInfo} outline>
               Info
             </IxPill>
           </IxCol>
@@ -93,12 +94,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="neutral" icon="info">
+            <IxPill variant="neutral" icon={iconInfo}>
               Neutral
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="neutral" icon="info" outline>
+            <IxPill variant="neutral" icon={iconInfo} outline>
               Neutral
             </IxPill>
           </IxCol>
@@ -110,7 +111,7 @@ export default () => {
               variant="custom"
               color="color-soft-text"
               background="purple"
-              icon="info"
+              icon={iconInfo}
             >
               Custom
             </IxPill>
@@ -120,7 +121,7 @@ export default () => {
               variant="custom"
               color="color-soft-text"
               background="purple"
-              icon="info"
+              icon={iconInfo}
               outline
             >
               Custom

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconStar } from '@siemens/ix-icons/icons';
 import './pill.scoped.css';
 
 import { IxPill } from '@siemens/ix-react';
@@ -24,12 +25,12 @@ export default () => {
       </IxPill>
       <IxPill className="styled">Label</IxPill>
 
-      <IxPill icon="star">Label</IxPill>
-      <IxPill icon="star"></IxPill>
-      <IxPill icon="star" className="styled">
+      <IxPill icon={iconStar}>Label</IxPill>
+      <IxPill icon={iconStar}></IxPill>
+      <IxPill icon={iconStar} className="styled">
         Label
       </IxPill>
-      <IxPill outline alignLeft icon="star" className="styled">
+      <IxPill outline alignLeft icon={iconStar} className="styled">
         Label
       </IxPill>
 
@@ -41,20 +42,26 @@ export default () => {
         Label
       </IxPill>
 
-      <IxPill variant="alarm" icon="star">
+      <IxPill variant="alarm" icon={iconStar}>
         Label
       </IxPill>
-      <IxPill variant="alarm" icon="star" className="styled">
+      <IxPill variant="alarm" icon={iconStar} className="styled">
         Label
       </IxPill>
-      <IxPill variant="alarm" outline alignLeft icon="star" className="styled">
+      <IxPill
+        variant="alarm"
+        outline
+        alignLeft
+        icon={iconStar}
+        className="styled"
+      >
         Label
       </IxPill>
 
-      <IxPill icon="star" className="styled-ellipsis-4">
+      <IxPill icon={iconStar} className="styled-ellipsis-4">
         Label
       </IxPill>
-      <IxPill outline icon="star" className="styled-ellipsis-4">
+      <IxPill outline icon={iconStar} className="styled-ellipsis-4">
         Label
       </IxPill>
       <IxPill className="styled-ellipsis-3">Label</IxPill>

@@ -98,3 +98,10 @@ export const Group: GroupStory = {
     label: 'Checkbox Group',
   },
 };
+
+export const Required: Story = {
+  args: {
+    label: 'Required',
+    required: true,
+  },
+};

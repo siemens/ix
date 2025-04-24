@@ -1,11 +1,16 @@
 {
-  "latestVersion": "v2",
-  "currentVersion": "v2",
+  "latestVersion": "v3",
+  "currentVersion": "v3",
   "versions": [
     {
-      "id": "v2",
+      "id": "v3",
       "href": "https://ix.siemens.io",
-      "label": "V2 (Active)"
+      "label": "V3.0.0"
+    },
+    {
+      "id": "v2",
+      "href": "https://ix.siemens.io/version-2.7",
+      "label": "V2.7.0 (LTS)"
     }
   ]
 }

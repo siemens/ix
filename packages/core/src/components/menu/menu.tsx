@@ -30,6 +30,14 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
+import {
+  iconApps,
+  iconCogwheel,
+  iconInfo,
+  iconLightDark,
+  iconNavigationLeft,
+  iconNavigationRight,
+} from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-menu',
@@ -59,9 +67,7 @@ export class Menu {
    */
   @Prop() enableSettings = true;
 
-  /**
-   * Internal
-   */
+  /** @internal */
   @Prop() enableMapExpand = false;
 
   /**
@@ -75,14 +81,6 @@ export class Menu {
   @Prop() applicationDescription = '';
 
   /**
-   * Maximum number of menu items to show in case enough vertical space is available.
-   * Extra menu items will be collapsed to 'show more' menu item.
-   *
-   * @deprecated - Has no effect on component. Will get removed with next major release (v3)
-   */
-  @Prop() maxVisibleMenuItems = 9;
-
-  /**
    * Accessibility i18n label for the burger menu of the sidebar
    */
   @Prop() i18nExpandSidebar = 'Expand sidebar';
@@ -94,8 +92,6 @@ export class Menu {
 
   /**
    *  If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
-   *
-   *  @since 2.2.0
    */
   @Prop() startExpanded = false;
 
@@ -545,7 +541,7 @@ export class Menu {
   }
 
   private getCollapseIcon() {
-    return this.mapExpand ? 'navigation-left' : 'navigation-right';
+    return this.mapExpand ? iconNavigationLeft : iconNavigationRight;
   }
 
   private isMenuItemClicked(event: Event) {
@@ -662,6 +658,7 @@ export class Menu {
                 class="menu-expand-icon"
                 ixAriaLabel={this.i18nExpandSidebar}
                 onClick={async () => this.toggleMenu()}
+                data-testid="expand-collapse-menu"
               ></ix-menu-expand-icon>
             )}
             {this.breakpoint === 'sm' &&
@@ -670,7 +667,7 @@ export class Menu {
                   onClick={() => {
                     this.showAppSwitch();
                   }}
-                  icon="apps"
+                  icon={iconApps}
                   ghost
                 ></ix-icon-button>
               )}
@@ -725,7 +722,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showSettings,
               }}
-              icon={'cogwheel'}
+              icon={iconCogwheel}
               onClick={async () => this.toggleSettings(!this.showSettings)}
               label={this.i18nSettings}
             ></ix-menu-item>
@@ -744,7 +741,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showAbout,
               }}
-              icon={'info'}
+              icon={iconInfo}
               onClick={async () => this.toggleAbout(!this.showAbout)}
               label={this.i18nLegal}
             ></ix-menu-item>
@@ -755,7 +752,7 @@ export class Menu {
               id="toggleTheme"
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
-              icon={'light-dark'}
+              icon={iconLightDark}
               label={this.i18nToggleTheme}
             ></ix-menu-item>
           ) : null}

@@ -1,0 +1,38 @@
+{
+  "name": "ix-angular-example",
+  "version": "0.1.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/compiler": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "@angular/platform-browser-dynamic": "^18.0.0",
+    "@angular/router": "^18.0.0",
+    "@siemens/ix": "<VERSION>",
+    "@siemens/ix-angular": "<VERSION>",
+    "@siemens/ix-aggrid": "<VERSION>",
+    "@siemens/ix-echarts": "<VERSION>",
+    "@siemens/ix-icons": "latest",
+    "ag-grid-angular": "^32.0.2",
+    "ag-grid-community": "^32.0.2",
+    "echarts": "5.4.3",
+    "echarts-gl": "^2.0.9",
+    "ngx-echarts": "^18.0.0",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.6.3",
+    "zone.js": "~0.14.8"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^18.0.0",
+    "@angular/cli": "^18.0.0",
+    "@angular/compiler-cli": "^18.0.0",
+    "typescript": "~5.4.5"
+  }
+}

@@ -12,6 +12,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { makeRef } from '../utils/make-ref';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
+import { iconDocument } from '@siemens/ix-icons/icons';
 
 /**
  * @slot menu-item-label Custom label
@@ -24,8 +25,6 @@ import { Disposable } from '../utils/typed-event';
 export class MenuItem {
   /**
    * Label of the menu item. Will also be used as tooltip text
-   *
-   * @since 2.2.0
    */
   @Prop() label?: string;
 
@@ -40,13 +39,6 @@ export class MenuItem {
    * Place tab on bottom
    */
   @Prop() bottom = false;
-
-  /**
-   * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
-   *
-   * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
-   */
-  @Prop({ mutable: true }) tabIcon?: string;
 
   /**
    * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
@@ -89,7 +81,6 @@ export class MenuItem {
       !!this.hostElement.closest('ix-menu-category');
 
     this.onIconChange();
-    this.onTabIconChange();
 
     this.menuExpanded = menuController.nativeElement?.expand || false;
     this.menuExpandedDisposer = menuController.expandChange.on(
@@ -125,23 +116,8 @@ export class MenuItem {
 
   @Watch('icon')
   onIconChange() {
-    if (
-      !this.isHostedInsideCategory &&
-      !this.hostElement.icon &&
-      !this.hostElement.tabIcon
-    ) {
-      this.icon = 'document';
-    }
-  }
-
-  @Watch('tabIcon')
-  onTabIconChange() {
-    if (
-      !this.isHostedInsideCategory &&
-      !this.hostElement.icon &&
-      !this.hostElement.tabIcon
-    ) {
-      this.tabIcon = 'document';
+    if (!this.isHostedInsideCategory && !this.hostElement.icon) {
+      this.icon = iconDocument;
     }
   }
 
@@ -174,12 +150,7 @@ export class MenuItem {
           tabIndex={this.disabled ? -1 : 0}
           ref={this.buttonRef}
         >
-          {(this.icon || this.tabIcon) && (
-            <ix-icon
-              class={'tab-icon'}
-              name={this.icon ?? this.tabIcon}
-            ></ix-icon>
-          )}
+          {this.icon && <ix-icon class={'tab-icon'} name={this.icon}></ix-icon>}
           {this.notifications ? (
             <div class="notification">
               <div class="pill">{this.notifications}</div>

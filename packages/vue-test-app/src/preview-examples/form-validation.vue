@@ -6,7 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
 -->
-
 <script lang="ts">
 import {
   IxCustomField,
@@ -24,7 +23,11 @@ import {
   IxLayoutAuto,
   IxInput,
 } from '@siemens/ix-vue';
-import { iconLocation, iconBezierCurve } from '@siemens/ix-icons/icons';
+import {
+  iconLocation,
+  iconBezierCurve,
+  iconStar,
+} from '@siemens/ix-icons/icons';
 import useValidate from '@vuelidate/core';
 import { required, helpers, email, sameAs } from '@vuelidate/validators';
 import { ref } from 'vue';
@@ -54,7 +57,7 @@ export default {
      */
     const v$ = useValidate();
     const uploadRef = ref<HTMLInputElement | null>(null);
-    return { v$, uploadRef };
+    return { v$, uploadRef, iconLocation, iconBezierCurve, iconStar };
   },
   methods: {
     async submitForm() {
@@ -161,7 +164,9 @@ export default {
         infoText="You can adjust the room size"
       >
         <IxIcon slot="start" :name="iconBezierCurve" size="16"></IxIcon>
-        <IxTypography slot="end" color="weak" className="padding-right"> m<sup>2</sup> </IxTypography>
+        <IxTypography slot="end" color="weak" className="padding-right">
+          m<sup>2</sup>
+        </IxTypography>
       </IxNumberInput>
 
       <IxSelect
@@ -252,7 +257,7 @@ export default {
         <IxIconButton
           outline
           variant="primary"
-          icon="star"
+          :icon="iconStar"
           @click="uploadRef?.click()"
         ></IxIconButton>
       </IxCustomField>
