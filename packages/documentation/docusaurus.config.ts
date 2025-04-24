@@ -25,7 +25,7 @@ const libCss = [
 ];
 
 const useFastStart = !!process.env.FAST_START;
-const playgroundVersion = process.env.PLAYGROUND_VERSION || 'latest';
+const playgroundVersion = '^2.7.0';
 const docsContext: DocContext = process.env.DOCS_CONTEXT || 'prod';
 const docsContextValue: string | undefined = process.env.DOCS_CONTEXT_VALUE;
 

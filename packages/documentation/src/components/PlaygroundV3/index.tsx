@@ -16,25 +16,17 @@ import {
 } from '@siemens/ix-react';
 import { useTheme } from '@site/src/utils/hooks/useTheme';
 import CodeBlock from '@theme/CodeBlock';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { openStackBlitz } from '../../utils/stackblitz';
 import Demo, { DemoProps } from '../Demo';
 import { getDisplay, TargetFramework } from '../PlaygroundV2/framework-types';
-import {
-  fetchSourceForAngular,
-  getAngularTestAppGithubPath,
-} from './angular-snippets';
-import {
-  fetchSourceForHtml,
-  getJavascriptTestAppGithubPath,
-} from './html-snippets';
-import './playground.css';
-import {
-  fetchSourceForReact,
-  getReactTestAppGithubPath,
-} from './react-snippets';
-import { fetchSourceForVue, getVueTestAppGithubPath } from './vue-snippets';
+import { fetchSourceForAngular } from './angular-snippets';
 import { docusaurusFetch } from './fetching';
-import { openStackBlitz } from '../../utils/stackblitz';
+import { fetchSourceForHtml } from './html-snippets';
+import './playground.css';
+import { fetchSourceForReact } from './react-snippets';
+import { fetchSourceForVue } from './vue-snippets';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 function EmptyCodeSnippet() {
   return (
@@ -211,6 +203,7 @@ function ToolbarButtons(props: {
 }) {
   const theme = useTheme();
   const baseUrl = useBaseUrl('/');
+  const context = useDocusaurusContext();
   const baseUrlAssets = useBaseUrl('/img');
   const stackblizAssetUrl = `${baseUrlAssets}/stackblitz.svg`;
   const iframe = useBaseUrl('/webcomponent-examples/dist/preview-examples');
@@ -240,7 +233,9 @@ function ToolbarButtons(props: {
                 name: props.deviantRootFileName
                   ? props.deviantRootFileName
                   : props.name,
-                version: 'latest',
+                version:
+                  (context.siteConfig.customFields
+                    .playgroundVersion as string) ?? 'latest',
               })
             }
             className="Stackblitz"
