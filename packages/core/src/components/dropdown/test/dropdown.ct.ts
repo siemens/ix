@@ -790,24 +790,28 @@ regressionTest('scroll to last item and select', async ({ mount, page }) => {
   await expect(lastItem).toBeVisible();
 });
 
-regressionTest('scroll to last item with button at center', async ({ mount, page }) => {
-  await mount(`
-    <body style="width: 100vw; height: 100vh;">
-    <div style="height:60vh"></div>
-    <ix-button id="trigger">Open</ix-button>
-    <ix-dropdown trigger="trigger">
-      ${Array.from(
-        { length: 20 },
-        (_, i) => `<ix-dropdown-item label="Item ${i}"></ix-dropdown-item>`
-      ).join('')}
-    </ix-dropdown>
-    </body>`);
+regressionTest(
+  'scroll to last item with button at center',
+  async ({ mount, page }) => {
+    await mount(`
+      <body style="width: 100vw; height: 100vh;">
+        <div style="height:60vh"></div>
+        <ix-button id="trigger">Open</ix-button>
+        <ix-dropdown trigger="trigger">
+          ${Array.from(
+            { length: 20 },
+            (_, i) => `<ix-dropdown-item label="Item ${i}"></ix-dropdown-item>`
+          ).join('')}
+        </ix-dropdown>
+      </body>
+    `);
 
-  await page.locator('#trigger').click();
+    await page.locator('#trigger').click();
 
-  const lastItem = page.locator('ix-dropdown-item').last();
-  await lastItem.evaluate((item) => {
-    item.scrollIntoView();
-  });
-  await expect(lastItem).toBeVisible();
-});
+    const lastItem = page.locator('ix-dropdown-item').last();
+    await lastItem.evaluate((item) => {
+      item.scrollIntoView();
+    });
+    await expect(lastItem).toBeVisible();
+  }
+);
