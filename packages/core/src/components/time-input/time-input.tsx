@@ -509,6 +509,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             minuteInterval={this.minuteInterval}
             secondInterval={this.secondInterval}
             millisecondInterval={this.millisecondInterval}
+            standaloneAppearance={false}
             onTimeChange={(event) => {
               this.onInput(event.detail);
             }}

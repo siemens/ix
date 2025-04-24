@@ -6155,78 +6155,6 @@
           "setter": false
         },
         {
-          "name": "showHour",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-hour",
-          "reflectToAttr": false,
-          "docs": "Show hour input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showMinutes",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-minutes",
-          "reflectToAttr": false,
-          "docs": "Show minutes input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showSeconds",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-seconds",
-          "reflectToAttr": false,
-          "docs": "Show seconds input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "showTimeReference",
           "type": "boolean",
           "complexType": {
@@ -20342,102 +20270,6 @@
           "setter": false
         },
         {
-          "name": "showHour",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-hour",
-          "reflectToAttr": false,
-          "docs": "Show hour input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showMilliseconds",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-milliseconds",
-          "reflectToAttr": false,
-          "docs": "Show milliseconds input",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showMinutes",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-minutes",
-          "reflectToAttr": false,
-          "docs": "Show minutes input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showSeconds",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-seconds",
-          "reflectToAttr": false,
-          "docs": "Show seconds input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "showTextAsTooltip",
           "type": "boolean",
           "complexType": {
@@ -20753,7 +20585,12 @@
           "attr": "hour-interval",
           "reflectToAttr": false,
           "docs": "Interval for hour selection",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.1.0"
+            }
+          ],
           "default": "1",
           "values": [
             {
@@ -20777,7 +20614,12 @@
           "attr": "millisecond-interval",
           "reflectToAttr": false,
           "docs": "Interval for millisecond selection",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.1.0"
+            }
+          ],
           "default": "100",
           "values": [
             {
@@ -20801,7 +20643,12 @@
           "attr": "minute-interval",
           "reflectToAttr": false,
           "docs": "Interval for minute selection",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.1.0"
+            }
+          ],
           "default": "1",
           "values": [
             {
@@ -20825,107 +20672,16 @@
           "attr": "second-interval",
           "reflectToAttr": false,
           "docs": "Interval for second selection",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.1.0"
+            }
+          ],
           "default": "1",
           "values": [
             {
               "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showHour",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-hour",
-          "reflectToAttr": false,
-          "docs": "Show hour input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showMilliseconds",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-milliseconds",
-          "reflectToAttr": false,
-          "docs": "Show milliseconds input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showMinutes",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-minutes",
-          "reflectToAttr": false,
-          "docs": "Show minutes input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showSeconds",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-seconds",
-          "reflectToAttr": false,
-          "docs": "Show seconds input",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -21036,34 +20792,6 @@
           "default": "DateTime.now().toFormat(this.format)",
           "values": [
             {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "timeReference",
-          "type": "\"AM\" | \"PM\"",
-          "complexType": {
-            "original": "'AM' | 'PM' | undefined",
-            "resolved": "\"AM\" | \"PM\"",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "time-reference",
-          "reflectToAttr": false,
-          "docs": "Set time reference",
-          "docsTags": [],
-          "values": [
-            {
-              "value": "AM",
-              "type": "string"
-            },
-            {
-              "value": "PM",
               "type": "string"
             }
           ],

@@ -76,21 +76,29 @@ export class TimePicker {
 
   /**
    * Interval for hour selection
+   *
+   * @since 3.1.0
    */
   @Prop() hourInterval: number = 1;
 
   /**
    * Interval for minute selection
+   *
+   * @since 3.1.0
    */
   @Prop() minuteInterval: number = 1;
 
   /**
    * Interval for second selection
+   *
+   * @since 3.1.0
    */
   @Prop() secondInterval: number = 1;
 
   /**
    * Interval for millisecond selection
+   *
+   * @since 3.1.0
    */
   @Prop() millisecondInterval: number = 100;
 
@@ -393,7 +401,10 @@ export class TimePicker {
     }
 
     return {
-      hour: this._time.toFormat('h'),
+      hour:
+        this.timeRef !== undefined
+          ? this._time.toFormat('h')
+          : this._time.toFormat('H'),
       minute: this._time.toFormat('m'),
       second: this._time.toFormat('s'),
       millisecond: this._time.toFormat('S'),
@@ -403,8 +414,16 @@ export class TimePicker {
   private timeUpdate(unit: TimePickerDescriptorUnit, value: number): number {
     let maxValue = DateTime.now().endOf('day').get(unit);
 
-    if (this.timeRef === 'PM' && unit === 'hour') value += 12;
-    if (this.timeRef === 'AM' && unit === 'hour') maxValue = 12;
+    if (unit === 'hour') {
+      if (this.timeRef === 'PM') {
+        // 12 PM should remain 12, other PM hours add 12
+        value = value === 12 ? 12 : value + 12;
+      } else if (this.timeRef === 'AM') {
+        // 12 AM should be 0, other AM hours remain as is
+        value = value === 12 ? 0 : value;
+        maxValue = 12;
+      }
+    }
 
     if (value > maxValue) {
       value = maxValue;
@@ -606,10 +625,7 @@ export class TimePicker {
   render() {
     return (
       <Host>
-        <ix-date-time-card
-          standaloneAppearance={this.standaloneAppearance}
-          corners={this.corners}
-        >
+        <ix-date-time-card standaloneAppearance={this.standaloneAppearance}>
           <div class="header" slot="header">
             <ix-typography format="h5">{this.textTime || 'Time'}</ix-typography>
           </div>
