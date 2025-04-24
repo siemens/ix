@@ -214,7 +214,7 @@ regressionTest.describe('time picker tests', () => {
         .evaluate((container) => {
           const selectedElement = container.querySelector(
             '[data-element-container-id="hour-6"]'
-          );
+          ) as HTMLElement;
           const containerHeight = container.clientHeight;
           const elementHeight = selectedElement.clientHeight;
 

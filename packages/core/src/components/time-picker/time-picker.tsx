@@ -617,7 +617,10 @@ export class TimePicker {
   render() {
     return (
       <Host>
-        <ix-date-time-card standaloneAppearance={this.standaloneAppearance}>
+        <ix-date-time-card
+          standaloneAppearance={this.standaloneAppearance}
+          corners={this.corners}
+        >
           <div class="header" slot="header">
             <ix-typography format="h5">{this.textTime || 'Time'}</ix-typography>
           </div>
