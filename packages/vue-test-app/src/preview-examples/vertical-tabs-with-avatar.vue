@@ -9,6 +9,12 @@
 
 <script setup lang="ts">
 import {
+  iconGlobe,
+  iconHome,
+  iconStar,
+  iconUserProfile,
+} from '@siemens/ix-icons/icons';
+import {
   IxMenu,
   IxMenuAvatar,
   IxMenuAvatarItem,
@@ -22,15 +28,15 @@ import {
   <IxMenu>
     <IxMenuAvatar top="john.doe@company.com" bottom="Administrator">
       <IxMenuAvatarItem
-        icon="user-profile"
+        :icon="iconUserProfile"
         label="User profile..."
       ></IxMenuAvatarItem>
     </IxMenuAvatar>
-    <IxMenuItem home-tab tab-icon="home"> &nbsp; Home&nbsp; </IxMenuItem>
-    <IxMenuItem tab-icon="globe"> Normal Tab </IxMenuItem>
-    <IxMenuItem tab-icon="star" disabled>
+    <IxMenuItem home-tab :tab-icon="iconHome"> &nbsp; Home&nbsp; </IxMenuItem>
+    <IxMenuItem :tab-icon="iconGlobe"> Normal Tab </IxMenuItem>
+    <IxMenuItem :tab-icon="iconStar" disabled>
       &nbsp; Disabled Tab&nbsp;
     </IxMenuItem>
-    <IxMenuItem tab-icon="star"> With other Icon </IxMenuItem>
+    <IxMenuItem :tab-icon="iconStar"> With other Icon </IxMenuItem>
   </IxMenu>
 </template>

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -19,7 +19,7 @@ regressionTest.describe('menu-settings', () => {
 
     //Click is needed otherwise tab item is still hovered
     await page.getByText('First Label - ').click();
-    await expect(settings.locator('ix-tooltip')).toBeVisible();
+    await expect(settings.locator('ix-tooltip')).not.toHaveClass(/visible/);
 
     await expect(page).toHaveScreenshot({
       animations: 'disabled',
@@ -33,7 +33,7 @@ regressionTest.describe('menu-settings', () => {
     await page.waitForTimeout(500);
 
     await page.getByText('First Content').click();
-    await expect(settings.locator('ix-tooltip')).toBeVisible();
+    await expect(settings.locator('ix-tooltip')).not.toHaveClass(/visible/);
 
     await expect(page).toHaveScreenshot({
       animations: 'disabled',
@@ -49,7 +49,7 @@ regressionTest.describe('menu-settings', () => {
     await page.getByText('First Content').click();
     await page.getByText('Changed Label').click();
 
-    await expect(settings.locator('ix-tooltip')).toBeVisible();
+    await expect(settings.locator('ix-tooltip')).not.toHaveClass(/visible/);
 
     await expect(page).toHaveScreenshot({
       animations: 'disabled',

@@ -1,25 +1,18 @@
 import React from 'react';
 import clsx from 'clsx';
-import { translate } from '@docusaurus/Translate';
-import { useThemeConfig } from '@docusaurus/theme-common';
+import {translate} from '@docusaurus/Translate';
+import {useThemeConfig} from '@docusaurus/theme-common';
 import Link from '@docusaurus/Link';
 import useBrokenLinks from '@docusaurus/useBrokenLinks';
-import type { Props } from '@theme/Heading';
+import type {Props} from '@theme/Heading';
 
 import styles from './styles.module.css';
-import { useLocation } from '@docusaurus/router';
-import { docsTabQueryString } from '@site/src/components/LinkableDocsTabs';
 
-export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
-  const location = useLocation();
+export default function Heading({as: As, id, ...props}: Props): JSX.Element {
   const brokenLinks = useBrokenLinks();
   const {
-    navbar: { hideOnScroll },
+    navbar: {hideOnScroll},
   } = useThemeConfig();
-
-  const searchParams = new URLSearchParams(location.search);
-  const currentTab = searchParams.get(docsTabQueryString);
-
   // H1 headings do not need an id because they don't appear in the TOC.
   if (As === 'h1' || !id) {
     return <As {...props} id={undefined} />;
@@ -35,14 +28,8 @@ export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
     },
     {
       heading: typeof props.children === 'string' ? props.children : id,
-    }
+    },
   );
-
-  let link = `#${id}`;
-
-  if (currentTab === 'development' || currentTab === 'guidelines') {
-    link = `?${docsTabQueryString}=${currentTab}${link}`;
-  }
 
   return (
     <As
@@ -52,17 +39,15 @@ export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
         hideOnScroll
           ? styles.anchorWithHideOnScrollNavbar
           : styles.anchorWithStickyNavbar,
-        props.className
+        props.className,
       )}
-      id={id}
-    >
+      id={id}>
       {props.children}
       <Link
         className="hash-link"
-        to={link}
+        to={`#${id}`}
         aria-label={anchorTitle}
-        title={anchorTitle}
-      >
+        title={anchorTitle}>
         &#8203;
       </Link>
     </As>

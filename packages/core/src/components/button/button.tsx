@@ -21,7 +21,6 @@ export type ButtonVariant = 'danger' | 'primary' | 'secondary';
 export class Button implements IxButtonComponent {
   /**
    * Button variant
-   * @since 2.3.0 - variant danger
    */
   @Prop() variant: ButtonVariant = 'primary';
 
@@ -47,8 +46,6 @@ export class Button implements IxButtonComponent {
 
   /**
    * Loading button
-   *
-   * @since 2.0.0
    */
   @Prop() loading: boolean = false;
 

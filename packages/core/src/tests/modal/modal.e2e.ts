@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 import { IxModalSize } from 'src/components';
 
 regressionTest.describe('modal', () => {
@@ -55,7 +55,7 @@ regressionTest.describe('modal', () => {
   });
 });
 
-test('modal with dropdown', async ({ mount, page }) => {
+regressionTest('modal with dropdown', async ({ mount, page }) => {
   await mount(`
   <ix-modal>
     <ix-modal-header
@@ -105,7 +105,7 @@ const screenWidths: IxModalSize[] = [
   `full-screen`,
 ];
 screenWidths.forEach((size) => {
-  test(`modal size ${size}`, async ({ page, mount }) => {
+  regressionTest(`modal size ${size}`, async ({ page, mount }) => {
     await page.setViewportSize({
       height: 1080,
       width: 1920,
@@ -129,7 +129,7 @@ screenWidths.forEach((size) => {
   });
 });
 
-test('modal should show centered', async ({ mount, page }) => {
+regressionTest('modal should show centered', async ({ mount, page }) => {
   await mount(`
   <ix-modal centered>
     <div style="height: 500px">Some content</div>

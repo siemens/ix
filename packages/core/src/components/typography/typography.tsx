@@ -26,15 +26,22 @@ export type TypographyVariants =
   | 'display-large';
 
 export type TypographyColors =
+  | 'alarm'
+  | 'alarm-contrast'
   | 'contrast'
-  | 'std'
-  | 'soft'
-  | 'weak'
+  | 'critical-contrast'
+  | 'info-contrast'
   | 'inv-contrast'
-  | 'inv-std'
   | 'inv-soft'
+  | 'inv-std'
   | 'inv-weak'
-  | 'alarm';
+  | 'neutral-contrast'
+  | 'primary-contrast'
+  | 'soft'
+  | 'std'
+  | 'success-contrast'
+  | 'warning-contrast'
+  | 'weak';
 
 type TypographyFormatLabel = 'label' | 'label-xs' | 'label-sm' | 'label-lg';
 type TypographyFormatBody = 'body' | 'body-xs' | 'body-sm' | 'body-lg';
@@ -57,9 +64,6 @@ export type TypographyFormat =
 
 export type TextDecoration = 'none' | 'underline' | 'line-through';
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-typography',
   styleUrl: 'typography.scss',
@@ -70,14 +74,6 @@ export class IxTypography {
    * Text format
    */
   @Prop() format?: TypographyFormat;
-
-  /**
-   * Text color based on theme variables
-   *
-   * @deprecated since 2.1.0 use property `text-color`
-   */
-  // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color?: TypographyColors;
 
   /**
    * Text color based on theme variables
@@ -94,6 +90,14 @@ export class IxTypography {
    */
   @Prop() textDecoration: TextDecoration = 'none';
 
+  private static getTextColor(color: TypographyColors) {
+    if (color.startsWith('inv-') || !color.endsWith('-contrast')) {
+      return `var(--theme-color-${color}-text)`;
+    }
+
+    return `var(--theme-color-${color.replace('-', '--')})`;
+  }
+
   render() {
     let typographyClass: Record<string, boolean> = {};
     typographyClass[`typography-${this.format ?? 'body'}`] = true;
@@ -106,15 +110,9 @@ export class IxTypography {
 
     let style = {};
 
-    if (this.color) {
-      style = {
-        color: `var(--theme-color-${this.color}-text)`,
-      };
-    }
-
     if (this.textColor) {
       style = {
-        color: `var(--theme-color-${this.textColor}-text)`,
+        color: IxTypography.getTextColor(this.textColor),
       };
     }
 

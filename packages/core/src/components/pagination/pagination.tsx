@@ -18,10 +18,11 @@ import {
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yBoolean } from '../utils/a11y';
+import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
 
-/**
- * @since 1.5.0
- */
 @Component({
   tag: 'ix-pagination',
   styleUrl: 'pagination.scss',
@@ -39,9 +40,6 @@ export class Pagination {
     loading: false,
     selected: false,
     type: 'button',
-    extraClasses: {
-      ['w-auto']: true,
-    },
   };
 
   private readonly maxCountPages = 7;
@@ -219,7 +217,7 @@ export class Pagination {
         <ix-icon-button
           disabled={!this.count || this.selectedPage === 0}
           ghost
-          icon={'chevron-left-small'}
+          icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
         ></ix-icon-button>
 
@@ -227,7 +225,7 @@ export class Pagination {
           <div class="advanced-pagination">
             <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
-              class="form-control page-selection"
+              class="ix-form-control page-selection"
               type="number"
               min="1"
               max={this.count}
@@ -253,7 +251,7 @@ export class Pagination {
         <ix-icon-button
           disabled={!this.count || this.selectedPage === this.count - 1}
           ghost
-          icon={'chevron-right-small'}
+          icon={iconChevronRightSmall}
           onClick={() => this.increase()}
         ></ix-icon-button>
 

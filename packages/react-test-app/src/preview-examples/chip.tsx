@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconPrint } from '@siemens/ix-icons/icons';
 import './chip.scoped.css';
 
 import { IxChip } from '@siemens/ix-react';
@@ -17,30 +18,30 @@ export default () => {
       <IxChip closable outline>
         Primary
       </IxChip>
-      <IxChip icon="print" tooltipText="Custom tooltip text">
+      <IxChip icon={iconPrint} tooltipText="Custom tooltip text">
         Primary with icon
       </IxChip>
-      <IxChip icon="print" tooltipText closable>
+      <IxChip icon={iconPrint} tooltipText closable>
         Primary
       </IxChip>
 
       <IxChip variant="critical" closable outline>
         Alarm
       </IxChip>
-      <IxChip variant="alarm" icon="print">
+      <IxChip variant="alarm" icon={iconPrint}>
         Alarm with icon
       </IxChip>
-      <IxChip variant="alarm" icon="print" closable>
+      <IxChip variant="alarm" icon={iconPrint} closable>
         Alarm
       </IxChip>
-      <IxChip variant="warning" icon="print" closable>
+      <IxChip variant="warning" icon={iconPrint} closable>
         Alarm
       </IxChip>
       <IxChip
         background="purple"
         chip-color="green"
         variant="custom"
-        icon="print"
+        icon={iconPrint}
         closable
       >
         Custom

@@ -22,8 +22,6 @@ const menu = ref<HTMLIxMenuElement>();
 watch(menu, () => menu.value?.toggleAbout(true));
 </script>
 
-<style scoped src="./about-and-legal.css"></style>
-
 <template>
   <IxApplication>
     <IxApplicationHeader>

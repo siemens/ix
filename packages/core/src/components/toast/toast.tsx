@@ -18,6 +18,13 @@ import {
   State,
 } from '@stencil/core';
 import { ToastType } from './toast-utils';
+import {
+  iconClose,
+  iconError,
+  iconInfo,
+  iconSuccess,
+  iconWarning,
+} from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-toast',
@@ -82,7 +89,7 @@ export class Toast {
         return (
           <ix-icon
             data-testid="toast-icon"
-            name={'info'}
+            name={iconInfo}
             size="24"
             color="color-std-text"
           />
@@ -92,7 +99,7 @@ export class Toast {
         return (
           <ix-icon
             data-testid="toast-icon"
-            name={'error'}
+            name={iconError}
             size="24"
             color="color-alarm"
           />
@@ -102,7 +109,7 @@ export class Toast {
         return (
           <ix-icon
             data-testid="toast-icon"
-            name={'success'}
+            name={iconSuccess}
             size="24"
             color="color-success"
           />
@@ -112,7 +119,7 @@ export class Toast {
         return (
           <ix-icon
             data-testid="toast-icon"
-            name={'warning'}
+            name={iconWarning}
             size="24"
             color="color-warning"
           />
@@ -168,7 +175,7 @@ export class Toast {
           </div>
           <div class="toast-close">
             <ix-icon-button
-              icon={'close'}
+              icon={iconClose}
               size="24"
               ghost
               onClick={() => this.closeToast.emit()}

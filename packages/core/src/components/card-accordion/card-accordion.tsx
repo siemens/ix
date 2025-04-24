@@ -1,3 +1,4 @@
+import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -20,9 +21,6 @@ export type CardAccordionExpandChangeEvent = {
   nativeEvent: Event;
 };
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-card-accordion',
   styleUrl: 'card-accordion.scss',
@@ -31,7 +29,6 @@ export type CardAccordionExpandChangeEvent = {
 export class CardAccordion {
   /**
    * Collapse the card
-   * @since 2.1.0
    */
   @Prop() collapse = false;
 
@@ -95,7 +92,7 @@ export class CardAccordion {
           aria-controls={getAriaControlsId()}
         >
           <ix-icon
-            name={'chevron-right-small'}
+            name={iconChevronRightSmall}
             class={{
               'expand-icon': true,
               show: this.expandContent,

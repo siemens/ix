@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @import '@siemens/ix/scss/mixins/fonts';
+@import '@siemens/ix/scss/mixins/input';
 
 [class*='ag-theme-ix'] {
   @include typography-body;
@@ -54,8 +55,8 @@
         position: absolute;
         inset: 0;
         background-color: var(--theme-checkbox-checked--background);
-        mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=="),
-        url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMy42NTYyNSA4LjE1NjI1TDguNDM3NSAxMi45Mzc1TDE0LjYyNSAzLjkzNzUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==");
+        mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=='),
+          url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMy42NTYyNSA4LjE1NjI1TDguNDM3NSAxMi45Mzc1TDE0LjYyNSAzLjkzNzUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==');
         mask-composite: subtract;
         mask-repeat: no-repeat;
         mask-position: center;
@@ -116,6 +117,8 @@
       overflow: inherit !important;
       position: inherit !important;
       white-space: inherit !important;
+
+      @include element-input;
     }
   }
 

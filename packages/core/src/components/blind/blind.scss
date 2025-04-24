@@ -13,7 +13,7 @@
 @import 'mixins/text-truncation';
 @import 'mixins/shadow-dom/component';
 
-@mixin blind($variant: 'insight') {
+@mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
     @if $variant == 'outline' {
       border: solid
@@ -28,7 +28,7 @@
         background-color: var(--theme-color-#{$variant});
       }
 
-      @if $variant == 'insight' or $variant == 'outline' {
+      @if $variant == 'filled' or $variant == 'outline' {
         @include ghost-hover-pressed;
       } @else {
         @include hover {
@@ -41,7 +41,7 @@
       }
     }
 
-    @if $variant == 'insight' or $variant == 'outline' {
+    @if $variant == 'filled' or $variant == 'outline' {
       .blind-header-title-label {
         color: var(--theme-color-std-text);
       }
@@ -199,9 +199,8 @@ $blind-variants: (
   alarm,
   critical,
   info,
-  insight,
   neutral,
-  notification,
+  filled,
   success,
   warning,
   primary,

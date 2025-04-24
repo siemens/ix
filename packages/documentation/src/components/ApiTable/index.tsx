@@ -1,97 +1,184 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from 'react';
-import { ApiTableDeprecatedTag, ApiTableSinceTag } from '../ApiTableTag';
-import './ApiTable.css';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import { useFramework } from '@site/src/hooks/use-framework';
+import clsx from 'clsx';
+import FrameworkSelection from '../UI/FrameworkSelection';
+import styles from './ApiTable.module.css';
 
-export type ApiTableTagType = 'since' | 'deprecated';
-
-export type ApiTableTag = {
-  type: ApiTableTagType;
-  message: string;
+export type ApiTableProps = {
+  readonly children?: React.ReactNode;
+  readonly name: string;
+  readonly type?: 'event' | 'property' | 'slot';
+  readonly singleFramework?: boolean;
 };
 
-export type ApiTableEntry = {
-  name: string;
-  description: string;
-  definition: ApiTableEntryDefinition;
-  tags?: ApiTableTag[];
+const toKebabCase = (str: string) => {
+  return str
+    .split('')
+    .map((letter, idx) => {
+      return letter.toUpperCase() === letter
+        ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
+        : letter;
+    })
+    .join('');
 };
 
-export type ApiTableEntryDefinition = {
-  name: string;
-  value: string;
-}[];
-
-function ApiTableRow(props: { attribute: ApiTableEntry }) {
+function ApiTable({ children, id }) {
   return (
-    <div className="row with--border">
-      <div className="col-sm-6">
-        <div className="ApiTable__Name">
-          {props?.attribute?.name}
-          {props?.attribute?.tags
-            ?.filter((tag) => tag.type === 'since')
-            .map((tag) => (
-              <ApiTableSinceTag
-                message={tag.message}
-                key={`Tag_Since_${props?.attribute?.name}`}
-              />
-            ))}
-          {props?.attribute?.tags
-            ?.filter((tag) => tag.type === 'deprecated')
-            .map((tag) => (
-              <ApiTableDeprecatedTag
-                message={tag.message}
-                key={`Tag_Deprecated_${props?.attribute?.name}`}
-              />
-            ))}
-        </div>
-      </div>
-      <div className="col-sm-6">
-        <div className="ApiTable__Content">
-          <span className="Attribute__Description">
-            {props?.attribute?.description}
-          </span>
-          <div className="container-fluid">
-            {props?.attribute?.definition
-              ?.filter((attribute) => attribute.value !== undefined)
-              .map((attribute) => (
-                <div className="row Attribute" key={attribute.name}>
-                  <div className="col-auto Attribute__Name">
-                    {attribute.name}:
-                  </div>
-                  <code className="col-auto Attribute__Value">
-                    {attribute.value}
-                  </code>
-                </div>
-              ))}
+    <BrowserOnly>
+      {() => (
+        <div className="api-table container ml-0 mb-8" id={id}>
+          <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
+            {children}
           </div>
         </div>
+      )}
+    </BrowserOnly>
+  );
+}
+
+function PropertyHeader({
+  children,
+  name,
+  type,
+  singleFramework,
+}: ApiTableProps) {
+  const { framework } = useFramework();
+
+  let propertyName = name;
+
+  if (framework === 'vue' || framework === 'angular' || framework === 'html') {
+    propertyName = toKebabCase(name);
+  }
+
+  return (
+    <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)] anchor">
+      <div className="flex items-center font-bold">
+        {propertyName}
+        <a
+          href={`#${type ?? 'property'}-${name}`}
+          className="hash-link"
+          aria-label={`Direct link to ${name}`}
+          title={`Direct link to ${name}`}
+        ></a>
+      </div>
+      <div className="flex items-center ml-auto gap-2">
+        {children}
+        {singleFramework ? '' : <FrameworkSelection />}
       </div>
     </div>
   );
 }
 
-function ApiTable(props: { attributes: ApiTableEntry[] }) {
+function EventHeader({ children, name }: ApiTableProps) {
+  const { framework } = useFramework();
+
+  let eventName = name;
+
+  if (framework === 'react') {
+    eventName = `on${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+  }
+
   return (
-    <div className="container-fluid ApiTable">
-      <div className="row with--border">
-        <div className="col-sm-6 ApiTable__Headline">Name</div>
-        <div className="col-sm-6 ApiTable__Headline">
-          Description and specifications
-        </div>
+    <PropertyHeader name={eventName} type="event">
+      {children}
+    </PropertyHeader>
+  );
+}
+
+function SlotHeader({ children, name }: ApiTableProps) {
+  return (
+    <PropertyHeader name={name} type="slot">
+      {children}
+    </PropertyHeader>
+  );
+}
+
+function Text({ children, name }: ApiTableProps) {
+  return (
+    <div className={clsx(styles.ApiTableText, 'api-row')}>
+      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
+        {name}
       </div>
-      {props?.attributes?.map((attribute) => (
-        <ApiTableRow attribute={attribute} key={attribute.name} />
-      ))}
+      <div className="w-auto p-4">{children}</div>
     </div>
   );
 }
+
+function Code({ children, name }: ApiTableProps) {
+  return (
+    <Text name={name}>
+      <code className="p-1">{children}</code>
+    </Text>
+  );
+}
+
+ApiTable.PropertyHeader = PropertyHeader;
+ApiTable.EventHeader = EventHeader;
+ApiTable.SlotHeader = SlotHeader;
+ApiTable.Text = Text;
+ApiTable.Code = Code;
 
 export default ApiTable;
+
+export function AnchorHeader({
+  children,
+  right,
+  anchorName,
+  anchorLabel,
+  noBottomBorder,
+  onClick,
+  className,
+  leftClassName,
+  rightClassName,
+}: {
+  readonly children: React.ReactNode;
+  readonly right?: React.ReactNode;
+  readonly anchorName: string;
+  readonly anchorLabel: string;
+  readonly className?: string;
+  readonly leftClassName?: string;
+  readonly rightClassName?: string;
+  readonly noBottomBorder?: boolean;
+  readonly onClick?: () => void;
+}) {
+  return (
+    <div
+      className={clsx(
+        styles.AnchorHeader,
+        {
+          [styles.NoButtonBorder]: noBottomBorder,
+        },
+        className
+      )}
+    >
+      <div
+        className={clsx('flex items-center font-bold w-full', leftClassName)}
+      >
+        <button
+          onClick={onClick}
+          className={clsx('all-unset', styles.AnchorButton)}
+          tabIndex={0}
+        >
+          {children}
+          <a
+            href={`#${anchorName}`}
+            className="hash-link"
+            aria-label={anchorLabel}
+            title={anchorLabel}
+          ></a>
+        </button>
+      </div>
+      <div className={clsx('flex items-center ml-auto gap-2', rightClassName)}>
+        {right}
+      </div>
+    </div>
+  );
+}

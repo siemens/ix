@@ -11,6 +11,8 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 import path from 'path';
 
+const __dirname = path.resolve();
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv

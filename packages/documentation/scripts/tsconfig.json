@@ -1,23 +1,4 @@
 {
-  "compilerOptions": {
-    "lib": ["es2022"],
-
-    "module": "node16",
-    "target": "es2022",
-
-    "strict": true,
-
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-
-    "skipLibCheck": true,
-    "moduleResolution": "node16",
-
-    "jsx": "react",
-
-    "baseUrl": ".",
-    "paths": {
-      "@site/*": ["./../*"]
-    }
-  }
+  "extends": "../tsconfig.json",
+  "include": ["./**/*.ts"]
 }

@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './menu-category.scoped.css';
-
+import { iconGlobe, iconHome, iconRocket } from '@siemens/ix-icons/icons';
 import {
   IxApplication,
   IxMenu,
@@ -20,13 +19,13 @@ export default () => {
   return (
     <IxApplication>
       <IxMenu>
-        <IxMenuItem home icon="home">
+        <IxMenuItem home icon={iconHome}>
           Home
         </IxMenuItem>
-        <IxMenuItem icon="globe">Normal Tab</IxMenuItem>
-        <IxMenuCategory label="Top level Category" icon="rocket">
-          <IxMenuItem icon="globe">Nested Tab</IxMenuItem>
-          <IxMenuItem icon="globe">Nested Tab</IxMenuItem>
+        <IxMenuItem icon={iconGlobe}>Normal Tab</IxMenuItem>
+        <IxMenuCategory label="Top level Category" icon={iconRocket}>
+          <IxMenuItem icon={iconGlobe}>Nested Tab</IxMenuItem>
+          <IxMenuItem icon={iconGlobe}>Nested Tab</IxMenuItem>
         </IxMenuCategory>
       </IxMenu>
     </IxApplication>

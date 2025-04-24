@@ -1,0 +1,21 @@
+{{#events}}
+<ApiTable id="event-{{event}}">
+  <ApiTable.EventHeader name="{{event}}">
+    {{#docsTags}}
+      {{{ rTag }}}
+    {{/docsTags}}
+  </ApiTable.EventHeader>
+
+  <ApiTable.Text name="Description">
+    { `{{ docs }}` }
+  </ApiTable.Text>
+
+  <ApiTable.Code name="Event">
+    {`{{{ event }}}`}
+  </ApiTable.Code>
+
+  <ApiTable.Code name="Detail">
+    {`{{{ detail }}}`}
+  </ApiTable.Code>
+</ApiTable>
+{{/events}}

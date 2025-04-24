@@ -9,7 +9,9 @@
 
 @import 'common-variables';
 @import 'mixins/shadow-dom/component';
-@import 'components/form/input';
+@import 'mixins/input';
+
+@include form;
 
 :host {
   @include ix-component;
@@ -77,7 +79,7 @@
     }
   }
 
-  .form-control[type='number'] {
+  .ix-form-control[type='number'] {
     text-align: center;
   }
 

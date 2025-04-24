@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Page } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 const DATE_PICKER_REWORK_SELECTOR = 'ix-date-picker';
 const getDateObj = async (page: Page) => {
@@ -16,13 +16,13 @@ const getDateObj = async (page: Page) => {
   });
 };
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker></ix-date-picker>`);
   const datePicker = page.locator(DATE_PICKER_REWORK_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
-test('translation', async ({ mount, page }) => {
+regressionTest('translation', async ({ mount, page }) => {
   await mount(`<ix-date-picker from="2023/01/01"></ix-date-picker>`);
 
   await page.$eval(
@@ -36,14 +36,14 @@ test('translation', async ({ mount, page }) => {
   await expect(header).toHaveCount(1);
 });
 
-test.describe('date picker tests single', () => {
-  test.beforeEach(async ({ mount }) => {
+regressionTest.describe('date picker tests single', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(
       `<ix-date-picker min-date="2024/10/10" from="2024/10/10" range="false"></ix-date-picker>`
     );
   });
 
-  test('select disabled date with enter', async ({ page }) => {
+  regressionTest('select disabled date with enter', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     await page.getByText(/^9$/).focus();
@@ -55,7 +55,7 @@ test.describe('date picker tests single', () => {
     });
   });
 
-  test('select disabled date with click', async ({ page }) => {
+  regressionTest('select disabled date with click', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     await page.getByText(/^9$/).click({ force: true });
@@ -67,14 +67,14 @@ test.describe('date picker tests single', () => {
   });
 });
 
-test.describe('date picker tests single', () => {
-  test.beforeEach(async ({ mount }) => {
+regressionTest.describe('date picker tests single', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(
       `<ix-date-picker from="2023/09/05" range="false"></ix-date-picker>`
     );
   });
 
-  test('date is selected', async ({ page }) => {
+  regressionTest('date is selected', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     expect((await getDateObj(page))[0]).toEqual({
@@ -83,7 +83,7 @@ test.describe('date picker tests single', () => {
     });
   });
 
-  test('select different date', async ({ page }) => {
+  regressionTest('select different date', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
     await page.getByText(/^19$/).click();
 
@@ -93,7 +93,7 @@ test.describe('date picker tests single', () => {
     });
   });
 
-  test('select different date in next month', async ({ page }) => {
+  regressionTest('select different date in next month', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     await page.locator('ix-icon-button').nth(1).click();
@@ -105,99 +105,109 @@ test.describe('date picker tests single', () => {
     });
   });
 
-  test('select different date in previous month', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
+  regressionTest(
+    'select different date in previous month',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
 
-    await page.locator('ix-icon-button').nth(0).click();
-    await page
-      .locator('.calendar-item:not(.week-number)')
-      .getByText(/^31$/)
-      .nth(0)
-      .click();
+      await page.locator('ix-icon-button').nth(0).click();
+      await page
+        .locator('.calendar-item:not(.week-number)')
+        .getByText(/^31$/)
+        .nth(0)
+        .click();
 
-    expect((await getDateObj(page))[0]).toEqual({
-      from: '2023/08/31',
-      to: undefined,
-    });
-  });
-
-  test('select different date from specific month', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
-
-    await page
-      .locator('ix-button')
-      .filter({ hasText: /^September 2023$/ })
-      .locator('span')
-      .click();
-
-    await page
-      .locator('div')
-      .filter({ hasText: /^2021$/ })
-      .first()
-      .click();
-
-    await page
-      .locator('div')
-      .filter({ hasText: /^January 2021$/ })
-      .first()
-      .click();
-
-    await page.getByText(/^1$/).nth(0).click();
-
-    expect((await getDateObj(page))[0]).toEqual({
-      from: '2021/01/01',
-      to: undefined,
-    });
-  });
-
-  test('select different date fires dateChange event', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
-
-    const eventPromise = page.evaluate(() => {
-      return new Promise((f) => {
-        document.addEventListener('dateChange', (data) => f(data));
+      expect((await getDateObj(page))[0]).toEqual({
+        from: '2023/08/31',
+        to: undefined,
       });
-    });
+    }
+  );
 
-    await page.getByText(/^19$/).click();
+  regressionTest(
+    'select different date from specific month',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
 
-    expect(await eventPromise).toBeTruthy();
-  });
+      await page
+        .locator('ix-button')
+        .filter({ hasText: /^September 2023$/ })
+        .locator('span')
+        .click();
 
-  test('keeps previous date and throws console error when invalid date string is provided', async ({
-    page,
-  }) => {
-    const datePicker = await page.locator('ix-date-picker');
+      await page
+        .locator('div')
+        .filter({ hasText: /^2021$/ })
+        .first()
+        .click();
 
-    const errors: string[] = [];
-    page.on('console', (message) => {
-      if (message.type() === 'error') {
-        errors.push(message.text());
-      }
-    });
+      await page
+        .locator('div')
+        .filter({ hasText: /^January 2021$/ })
+        .first()
+        .click();
 
-    await datePicker.evaluate((element: HTMLElement) => {
-      element.setAttribute('from', 'Aug 6, 2014');
-    });
+      await page.getByText(/^1$/).nth(0).click();
 
-    expect((await getDateObj(page))[0]).toEqual({
-      from: '2023/09/05',
-      to: undefined,
-    });
-    expect(errors).toContain(
-      `the input "Aug 6, 2014" can't be parsed as format yyyy/LL/dd`
-    );
-  });
+      expect((await getDateObj(page))[0]).toEqual({
+        from: '2021/01/01',
+        to: undefined,
+      });
+    }
+  );
+
+  regressionTest(
+    'select different date fires dateChange event',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
+
+      const eventPromise = page.evaluate(() => {
+        return new Promise((f) => {
+          document.addEventListener('dateChange', (data) => f(data));
+        });
+      });
+
+      await page.getByText(/^19$/).click();
+
+      expect(await eventPromise).toBeTruthy();
+    }
+  );
+
+  regressionTest(
+    'keeps previous date and throws console error when invalid date string is provided',
+    async ({ page }) => {
+      const datePicker = await page.locator('ix-date-picker');
+
+      const errors: string[] = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') {
+          errors.push(message.text());
+        }
+      });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('from', 'Aug 6, 2014');
+      });
+
+      expect((await getDateObj(page))[0]).toEqual({
+        from: '2023/09/05',
+        to: undefined,
+      });
+      expect(errors).toContain(
+        `the input "Aug 6, 2014" can't be parsed as format yyyy/LL/dd`
+      );
+    }
+  );
 });
 
-test.describe('date picker tests range', () => {
-  test.beforeEach(async ({ mount }) => {
+regressionTest.describe('date picker tests range', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(
       `<ix-date-picker from="2023/09/05" to="2023/09/10"></ix-date-picker>`
     );
   });
 
-  test('range is selected', async ({ page }) => {
+  regressionTest('range is selected', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     expect((await getDateObj(page))[0]).toEqual({
@@ -206,7 +216,7 @@ test.describe('date picker tests range', () => {
     });
   });
 
-  test('select different range', async ({ page }) => {
+  regressionTest('select different range', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     await page.getByText(/^12$/).click();
@@ -218,7 +228,34 @@ test.describe('date picker tests range', () => {
     });
   });
 
-  test('select range spanning over 2 months', async ({ page }) => {
+  regressionTest.describe('date picker range undefined values test', () => {
+    regressionTest(
+      'dateSelect event with undefined from and to values',
+      async ({ mount, page }) => {
+        await mount(`<ix-date-picker range="true"></ix-date-picker>`);
+
+        await page.waitForSelector('ix-date-time-card');
+
+        const dateSelectEventPromise = page.evaluate(() => {
+          return new Promise((resolve) => {
+            document.addEventListener('dateSelect', (event) => {
+              resolve((event as CustomEvent).detail);
+            });
+          });
+        });
+
+        await page.getByText('Done').click();
+
+        const eventDetail = await dateSelectEventPromise;
+        expect(eventDetail).toEqual({
+          from: undefined,
+          to: undefined,
+        });
+      }
+    );
+  });
+
+  regressionTest('select range spanning over 2 months', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     await page.getByText(/^28$/).click();
@@ -231,30 +268,31 @@ test.describe('date picker tests range', () => {
     });
   });
 
-  test('select different range fires dateChange and dateRangeChange event', async ({
-    page,
-  }) => {
-    await page.waitForSelector('ix-date-time-card');
+  regressionTest(
+    'select different range fires dateChange and dateRangeChange event',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
 
-    const dateChangeEventPromise = page.evaluate(() => {
-      return new Promise((f) => {
-        document.addEventListener('dateChange', (data) => f(data));
+      const dateChangeEventPromise = page.evaluate(() => {
+        return new Promise((f) => {
+          document.addEventListener('dateChange', (data) => f(data));
+        });
       });
-    });
-    const dateRangeChangeEventPromise = page.evaluate(() => {
-      return new Promise((f) => {
-        document.addEventListener('dateRangeChange', (data) => f(data));
+      const dateRangeChangeEventPromise = page.evaluate(() => {
+        return new Promise((f) => {
+          document.addEventListener('dateRangeChange', (data) => f(data));
+        });
       });
-    });
 
-    await page.getByText(/^12$/).click();
-    await page.getByText(/^17$/).click();
+      await page.getByText(/^12$/).click();
+      await page.getByText(/^17$/).click();
 
-    expect(await dateChangeEventPromise).toBeTruthy();
-    expect(await dateRangeChangeEventPromise).toBeTruthy();
-  });
+      expect(await dateChangeEventPromise).toBeTruthy();
+      expect(await dateRangeChangeEventPromise).toBeTruthy();
+    }
+  );
 
-  test('done click fires dateSelect event', async ({ page }) => {
+  regressionTest('done click fires dateSelect event', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     const dateSelectEventPromise = page.evaluate(() => {
