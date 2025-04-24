@@ -771,7 +771,7 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
   );
 });
 
-test('scroll to last item and select', async ({ mount, page }) => {
+regressionTest('scroll to last item and select', async ({ mount, page }) => {
   await mount(`
     <ix-button id="trigger">Open</ix-button>
     <ix-dropdown trigger="trigger">
@@ -790,7 +790,7 @@ test('scroll to last item and select', async ({ mount, page }) => {
   await expect(lastItem).toBeVisible();
 });
 
-test('scroll to last item with button at center', async ({ mount, page }) => {
+regressionTest('scroll to last item with button at center', async ({ mount, page }) => {
   await mount(`
     <body style="width: 100vw; height: 100vh;">
     <div style="height:60vh"></div>
