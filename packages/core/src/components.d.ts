@@ -1528,7 +1528,7 @@ export namespace Components {
         "outline": boolean;
         /**
           * Button in oval shape
-          * @since 3.0.0
+          * @since 3.1.0
          */
         "oval": boolean;
         /**
@@ -6657,7 +6657,7 @@ declare namespace LocalJSX {
         "outline"?: boolean;
         /**
           * Button in oval shape
-          * @since 3.0.0
+          * @since 3.1.0
          */
         "oval"?: boolean;
         /**
