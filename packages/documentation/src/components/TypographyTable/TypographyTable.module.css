@@ -75,6 +75,8 @@
   grid-template-columns: minmax(100px, 20%) 1fr;
   border: 0;
   border-bottom: 1px solid var(--theme-color-soft-bdr);
+}
+.typographyTextRow [class*='w-auto'] {
   overflow: auto;
 }
 
