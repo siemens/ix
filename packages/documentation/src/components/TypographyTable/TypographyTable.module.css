@@ -76,6 +76,7 @@
   border: 0;
   border-bottom: 1px solid var(--theme-color-soft-bdr);
 }
+
 .typographyTextRow [class*='w-auto'] {
   overflow: auto;
 }

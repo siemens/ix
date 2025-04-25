@@ -16,4 +16,14 @@
   main > div[class*='padding-top'] {
     padding-top: 0rem !important;
   }
+
+  @media screen and (min-width: 997px) {
+    main > .container {
+      max-width: 75rem;
+    }
+
+    main {
+      justify-content: center;
+    }
+  }
 }
