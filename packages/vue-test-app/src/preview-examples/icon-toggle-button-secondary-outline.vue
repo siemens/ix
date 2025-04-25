@@ -50,6 +50,12 @@ import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
         outline
         size="16"
         disabled
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="16"
+        disabled
         loading
         :icon="iconCheckboxes"
       ></IxIconToggleButton>
@@ -63,6 +69,12 @@ import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
         outline
         size="12"
         pressed
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="12"
+        disabled
         :icon="iconCheckboxes"
       ></IxIconToggleButton>
       <IxIconToggleButton
@@ -116,6 +128,13 @@ import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
         outline
         size="16"
         disabled
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="16"
+        disabled
         loading
         :icon="iconCheckboxes"
         oval
@@ -131,6 +150,13 @@ import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
         outline
         size="12"
         pressed
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="12"
+        disabled
         :icon="iconCheckboxes"
         oval
       ></IxIconToggleButton>

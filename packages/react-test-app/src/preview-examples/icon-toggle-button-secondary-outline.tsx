@@ -51,6 +51,12 @@ export default () => {
           ></IxIconToggleButton>
           <IxIconToggleButton
             size="16"
+            outline
+            disabled
+            icon={iconCheckboxes}
+          ></IxIconToggleButton>
+          <IxIconToggleButton
+            size="16"
             disabled
             loading
             outline
@@ -66,6 +72,12 @@ export default () => {
             size="12"
             pressed
             outline
+            icon={iconCheckboxes}
+          ></IxIconToggleButton>
+          <IxIconToggleButton
+            size="12"
+            outline
+            disabled
             icon={iconCheckboxes}
           ></IxIconToggleButton>
           <IxIconToggleButton
@@ -117,6 +129,13 @@ export default () => {
           ></IxIconToggleButton>
           <IxIconToggleButton
             size="16"
+            outline
+            disabled
+            icon={iconCheckboxes}
+            oval
+          ></IxIconToggleButton>
+          <IxIconToggleButton
+            size="16"
             disabled
             loading
             outline
@@ -134,6 +153,13 @@ export default () => {
             size="12"
             pressed
             outline
+            icon={iconCheckboxes}
+            oval
+          ></IxIconToggleButton>
+          <IxIconToggleButton
+            size="12"
+            outline
+            disabled
             icon={iconCheckboxes}
             oval
           ></IxIconToggleButton>
