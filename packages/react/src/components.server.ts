@@ -247,6 +247,7 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = 
         disabled: 'disabled',
         type: 'type',
         loading: 'loading',
+        form: 'form',
         icon: 'icon',
         alignment: 'alignment',
         iconSize: 'icon-size'

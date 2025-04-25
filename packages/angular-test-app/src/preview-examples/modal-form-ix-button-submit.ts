@@ -3,8 +3,8 @@ import { ModalService } from '@siemens/ix-angular';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-example',
-  templateUrl: 'modal-form-ix-button-submit.html',
+  selector: 'app-modal-form-ix-button-submit',
+  templateUrl: './modal-form-ix-button-submit.html',
 })
 export default class ModalFormIxButtonSubmit {
   @ViewChild('customModal', { read: TemplateRef })
