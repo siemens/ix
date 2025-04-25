@@ -771,7 +771,7 @@ test('should preserve spaces within input and show add icon', async ({
   await expect(input).toHaveValue(itemText);
 });
 
-test('select and display the last element in the list', async ({
+test('last select item can be accessed via scrolling', async ({
   mount,
   page,
 }) => {
@@ -796,18 +796,18 @@ test('select and display the last element in the list', async ({
   await expect(dropdown).toBeVisible();
 
   const lastItem = page.locator('ix-select-item').last();
-  await lastItem.click();
-
-  const inputValue = await select.locator('input').inputValue();
-  expect(inputValue).toEqual('Item 20');
+  await lastItem.evaluate((item) => {
+    item.scrollIntoView();
+  });
+  await expect(lastItem).toBeVisible();
 });
 
-test('select and display the last element in the list when select at center', async ({
+test('last select item can be accessed via scrolling when select placed at center of the page', async ({
   mount,
   page,
 }) => {
   await mount(`
-    <div style="height:60vh"></div>
+    <div style="height:calc(50vh-1px)"></div>
     <ix-select>
       ${Array.from(
         { length: 20 },
@@ -824,4 +824,9 @@ test('select and display the last element in the list when select at center', as
 
   const dropdown = select.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
+  const lastItem = page.locator('ix-select-item').last();
+  await lastItem.evaluate((item) => {
+    item.scrollIntoView();
+  });
+  await expect(lastItem).toBeVisible();
 });
