@@ -13,7 +13,6 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Application breakpoints example</title>
-    <link rel="stylesheet" href="./application-breakpoints.css" />
   </head>
   <body>
     <ix-application application-name="Application name">
@@ -32,21 +31,42 @@ LICENSE file in the root directory of this source tree.
           <ix-dropdown-item label="Action 3"></ix-dropdown-item>
         </ix-avatar>
       </ix-application-header>
+
       <ix-menu>
         <ix-menu-item>Item 1</ix-menu-item>
         <ix-menu-item>Item 2</ix-menu-item>
       </ix-menu>
+
       <ix-content>
         <ix-content-header slot="header" header-title="Choose breakpoint">
         </ix-content-header>
-        <input id="small" type="radio" name="layout" value="sm" />
-        <label for="small">Small</label>
+        <input
+          class="ix-form-control"
+          id="small"
+          type="radio"
+          name="layout"
+          value="sm"
+        />
+        <label class="ix-form-label" for="small">Small</label>
 
-        <input id="medium" type="radio" name="layout" value="md" checked />
-        <label for="medium">Medium</label>
+        <input
+          class="ix-form-control"
+          id="medium"
+          type="radio"
+          name="layout"
+          value="md"
+          checked
+        />
+        <label class="ix-form-label" for="medium">Medium</label>
 
-        <input id="large" type="radio" name="layout" value="lg" />
-        <label for="large">Large</label>
+        <input
+          class="ix-form-control"
+          id="large"
+          type="radio"
+          name="layout"
+          value="lg"
+        />
+        <label class="ix-form-label" for="large">Large</label>
       </ix-content>
     </ix-application>
 

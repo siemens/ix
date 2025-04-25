@@ -21,6 +21,7 @@ import {
 import anime from 'animejs';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { useContextProvider } from '../utils/context';
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-map-navigation',
@@ -108,7 +109,6 @@ export class MapNavigation {
    * Change the visibility of the sidebar
    *
    * @param show new visibility state
-   * @since 1.6.0
    */
   @Method()
   async toggleSidebar(show?: boolean) {
@@ -136,7 +136,7 @@ export class MapNavigation {
       opacity: [1, 0],
       easing: 'easeInSine',
       complete: () => {
-        this.sidebar.classList.add('d-none');
+        this.sidebar.classList.add('display-none');
       },
     });
   }
@@ -149,7 +149,7 @@ export class MapNavigation {
       opacity: [0, 1],
       easing: 'easeOutSine',
       begin: () => {
-        this.sidebar.classList.remove('d-none');
+        this.sidebar.classList.remove('display-none');
       },
     });
   }
@@ -178,7 +178,7 @@ export class MapNavigation {
       opacity: [0, 1],
       easing: 'easeOutSine',
       begin: () => {
-        this.overlay.classList.remove('d-none');
+        this.overlay.classList.remove('display-none');
       },
     });
 
@@ -210,7 +210,7 @@ export class MapNavigation {
           return;
         }
         this.overlay.firstChild?.remove();
-        this.overlay.classList.add('d-none');
+        this.overlay.classList.add('display-none');
       },
     });
   }
@@ -244,7 +244,7 @@ export class MapNavigation {
                   ''
                 ) : (
                   <ix-icon-button
-                    icon={'context-menu'}
+                    icon={iconContextMenu}
                     ghost
                     size="24"
                     variant="secondary"

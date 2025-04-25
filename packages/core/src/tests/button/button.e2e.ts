@@ -58,4 +58,9 @@ regressionTest.describe('button: basic', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('group', async ({ page }) => {
+    await page.goto('button/button-group');
+    expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
+  });
 });

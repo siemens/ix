@@ -1,0 +1,197 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+@use './overwrite/doc-sidebar';
+@use './overwrite/navbar';
+@use './overwrite/doc-generated-index-page';
+@use './overwrite/doc-markdown';
+@use './overwrite/code-block';
+@use './overwrite/toc';
+@use './overwrite/doc-footer';
+@use './overwrite/container';
+@use './overwrite/table';
+@use './overwrite/admonition';
+@use './overwrite/footer';
+@use './overwrite/announcement-bar';
+@use './overwrite/searchBar';
+@use './components/docsLayoutWrapper';
+@use './components/apiTable';
+@use './components/navLink';
+@use './components/input';
+
+@use './../../node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css';
+@use './../../node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$font-family: 'Siemens Sans', Arial, Helvetica, sans-serif;
+
+[data-theme='light'] #__docusaurus {
+  background-color: #ffffff;
+
+  --ifm-font-color-base: var(--theme-color-std-text);
+  --ifm-heading-color: var(--theme-color-std-text);
+  --ifm-navbar-link-hover-color: var(--theme-color-dynamic);
+  --ifm-menu-color-active: var(--theme-color-dynamic);
+
+  .navbar {
+    background-color: #ffffff;
+  }
+}
+
+[data-theme='dark'] #__docusaurus {
+  background-color: #000028;
+
+  --ifm-font-color-base: var(--theme-color-std-text);
+  --ifm-heading-color: var(--theme-color-std-text);
+  --ifm-navbar-link-hover-color: var(--theme-color-dynamic);
+  --ifm-menu-color-active: var(--theme-color-dynamic);
+
+  .navbar {
+    background-color: #000028;
+  }
+}
+
+:root {
+  --default-content-padding-top: 5.5rem;
+  --default-content-padding-left: 4rem;
+  --default-content-padding: var(--default-content-padding-top)
+    var(--default-content-padding-left);
+
+  --ix-documentation-line-height: 200%;
+
+  --ifm-list-item-margin: 1rem;
+  --ifm-list-paragraph-margin: 0rem;
+
+  font-family: $font-family;
+  --ifm-font-color-base: var(--theme-color-std-text);
+  --ifm-heading-font-family: $font-family;
+  --ifm-heading-font-weight: var(--ifm-font-weight-bold);
+  --ifm-navbar-link-color: var(--theme-color-std-text);
+}
+
+.markdown li,
+p {
+  line-height: var(--ix-documentation-line-height);
+}
+
+.markdown li,
+.markdown li p {
+  --ifm-paragraph-margin-bottom: 0rem;
+  line-height: 150%;
+}
+
+.markdown h2:first-of-type {
+  margin-top: 0;
+}
+
+:root[data-ix-theme],
+#__docusaurus.theme-classic-dark,
+#__docusaurus.theme-classic-light {
+  --ifm-color-primary: var(--theme-color-dynamic);
+  --ifm-code-font-size: 95%;
+  --ifm-toc-border-color: var(--theme-color-x-weak-bdr);
+  --ifm-spacing-horizontal: 0rem;
+  --ifm-footer-background-color: var(--theme-color-1);
+  --ifm-navbar-background-color: var(--theme-color-1);
+  --ifm-menu-color-active: var(--theme-color-dynamic);
+  --ifm-menu-color: var(--theme-color-std-text);
+  --ifm-background-color: var(--theme-color-1);
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-link-color: var(--theme-color-dynamic);
+}
+
+[data-ix-theme='brand'][data-ix-variant='dark'],
+#__docusaurus.theme-classic-dark {
+  --ix-docs-hero-background: var(--ifm-background-color);
+  --ix-docs-hero-tab-active: var(--ifm-background-color);
+}
+
+[data-ix-theme='brand'][data-ix-variant='light'],
+#__docusaurus.theme-classic-light {
+  --ix-docs-hero-background: var(--ifm-background-color);
+  --ix-docs-hero-tab-active: var(--ifm-background-color);
+  --ifm-menu-color-active: var(--theme-color-primary);
+}
+
+.color-table-classic-dark {
+  @extend .theme-classic-dark;
+}
+
+.color-table-classic-light {
+  @extend .theme-classic-light;
+}
+
+.anchor {
+  scroll-margin-top: 15rem !important;
+}
+
+ix-tooltip {
+  // Increase z-index to make sure it is displayed on top of the sidebar
+  z-index: 9999;
+}
+
+ix-dropdown {
+  // Increase z-index to make sure it is displayed on top of the sidebar
+  z-index: 9999;
+}
+
+.all-unset {
+  all: unset;
+}
+
+@media (pointer: fine) {
+  .thin-scrollbar {
+    scrollbar-width: thin;
+  }
+
+  @supports not (-moz-appearance: none) {
+    .thin-scrollbar {
+      scrollbar-width: auto;
+    }
+  }
+}
+
+.DesktopOnly {
+  display: inherit;
+}
+
+@media screen and (max-width: 700px) {
+  .DesktopOnly {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .custom-link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .ButtonText {
+    display: none;
+  }
+}
+
+.display-none {
+  display: none;
+}
+
+.dropdown-button {
+  padding-right: 0 !important;
+}
+
+/**
+  * Custom styles for the Blog
+  */
+
+.blog-wrapper .margin-bottom--xl {
+  margin: 0rem 1rem 5rem !important;
+}

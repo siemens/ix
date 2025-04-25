@@ -17,6 +17,7 @@ import {
   State,
   h,
   Watch,
+  Method,
 } from '@stencil/core';
 import {
   ValidationResults,
@@ -24,10 +25,10 @@ import {
   FieldWrapperInterface,
   IxFormValidationState,
 } from '../utils/input';
+import { makeRef } from '../utils/make-ref';
 
 /**
- * @since 2.6.0
- * @form-ready 2.6.0
+ * @form-ready
  */
 @Component({
   tag: 'ix-radio-group',
@@ -84,6 +85,13 @@ export class RadiobuttonGroup
   @Prop() direction: 'column' | 'row' = 'column';
 
   /**
+   * Required state of the checkbox component
+   *
+   * @internal
+   */
+  @Prop() required?: boolean = false;
+
+  /**
    * Event emitted when the value of the radiobutton group changes
    */
   @Event() valueChange!: EventEmitter<string>;
@@ -93,8 +101,12 @@ export class RadiobuttonGroup
   @State() isInfo = false;
   @State() isWarning = false;
 
+  private touched = false;
+  private readonly groupRef = makeRef<HTMLIxRadioGroupElement>();
+
   private readonly observer = new MutationObserver(() => {
     this.ensureOnlyLastRadioChecked();
+    this.hasNestedRequiredRadio();
   });
 
   private get radiobuttonElements() {
@@ -106,13 +118,14 @@ export class RadiobuttonGroup
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['checked'],
+      attributeFilter: ['checked', 'required'],
     });
   }
 
   componentWillLoad(): void | Promise<void> {
     this.selectInitialValue();
     this.ensureOnlyLastRadioChecked();
+    this.hasNestedRequiredRadio();
   }
 
   disconnectedCallback(): void {
@@ -142,8 +155,15 @@ export class RadiobuttonGroup
     });
   }
 
+  private hasNestedRequiredRadio() {
+    this.required = this.radiobuttonElements.some(
+      (radiobutton) => radiobutton.required
+    );
+  }
+
   @Watch('value')
   onValueChangeHandler(newValue: string) {
+    this.touched = true;
     this.radiobuttonElements.forEach((radiobutton) => {
       radiobutton.checked = radiobutton.value === newValue;
     });
@@ -164,16 +184,38 @@ export class RadiobuttonGroup
   @HookValidationLifecycle({
     includeChildren: true,
   })
-  onClassField({ isInvalid, isInfo, isValid, isWarning }: ValidationResults) {
-    this.isInvalid = isInvalid;
+  onClassField({
+    isInvalid,
+    isInfo,
+    isValid,
+    isWarning,
+    isInvalidByRequired,
+  }: ValidationResults) {
+    this.isInvalid = isInvalid || isInvalidByRequired;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
   }
 
+  /** @internal */
+  @Method()
+  hasValidValue(): Promise<boolean> {
+    return Promise.resolve(
+      !!Array.from(this.hostElement.querySelectorAll('ix-radio')).find(
+        (radio) => radio.checked
+      )
+    );
+  }
+
+  /** @internal */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
+  }
+
   render() {
     return (
-      <Host>
+      <Host onIxBlur={() => (this.touched = true)} ref={this.groupRef}>
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}
@@ -186,6 +228,7 @@ export class RadiobuttonGroup
           isInfo={this.isInfo}
           isWarning={this.isWarning}
           isInvalid={this.isInvalid}
+          controlRef={this.groupRef}
         >
           <div
             class={{

@@ -16,6 +16,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 import AboutAndLegal from './preview-examples/about-and-legal';
 import ActionCard from './preview-examples/action-card';
+import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
 import Application from './preview-examples/application';
 import ApplicationAppSwitch from './preview-examples/application-app-switch';
@@ -25,6 +26,7 @@ import Avatar from './preview-examples/avatar';
 import AvatarImage from './preview-examples/avatar-image';
 import AvatarInitials from './preview-examples/avatar-initials';
 import BasicNavigation from './preview-examples/basic-navigation';
+import BasicNavigationMigration from './preview-examples/basic-navigation-migration';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header';
 import Blind from './preview-examples/blind';
 import BlindHeaderActions from './preview-examples/blind-header-actions';
@@ -50,12 +52,14 @@ import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
 import Content from './preview-examples/content';
-import CustomField from './preview-examples/custom-field';
-import CustomFieldValidation from './preview-examples/custom-field-validation';
 import ContentHeader from './preview-examples/content-header';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
+import CustomField from './preview-examples/custom-field';
+import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
+import DateInput from './preview-examples/date-input';
+import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import Datepicker from './preview-examples/datepicker';
 import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
@@ -75,9 +79,9 @@ import EchartsBarSimple from './preview-examples/echarts-bar-simple';
 import EchartsCircle from './preview-examples/echarts-circle';
 import EchartsEmptyState from './preview-examples/echarts-empty-state';
 import EchartsGauge from './preview-examples/echarts-gauge';
-import EchartsLineSimple from './preview-examples/echarts-line-simple';
 import EchartsLineAdvanced from './preview-examples/echarts-line-advanced';
 import EchartsLineMultipleYAxis from './preview-examples/echarts-line-multiple-y-axis';
+import EchartsLineSimple from './preview-examples/echarts-line-simple';
 import EchartsPie from './preview-examples/echarts-pie';
 import EchartsProgressArc from './preview-examples/echarts-progress-arc';
 import EchartsProgressCircle from './preview-examples/echarts-progress-circle';
@@ -96,7 +100,11 @@ import FlipTile from './preview-examples/flip-tile';
 import FormCheckbox from './preview-examples/form-checkbox';
 import FormCheckboxDisabled from './preview-examples/form-checkbox-disabled';
 import FormCheckboxGroup from './preview-examples/form-checkbox-group';
+import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-group-indeterminate';
 import FormCheckboxValidation from './preview-examples/form-checkbox-validation';
+import FormLayoutAuto from './preview-examples/form-layout-auto';
+import FormLayoutGrid from './preview-examples/form-layout-grid';
+import FormValidation from './preview-examples/form-validation';
 import Grid from './preview-examples/grid';
 import GridPadding from './preview-examples/grid-padding';
 import GridSize from './preview-examples/grid-size';
@@ -109,6 +117,9 @@ import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-butto
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary';
 import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost';
 import IconToggleButtonSecondaryOutline from './preview-examples/icon-toggle-button-secondary-outline';
+import Input from './preview-examples/input';
+import InputDisabled from './preview-examples/input-disabled';
+import InputLabel from './preview-examples/input-label';
 import InputLegacy from './preview-examples/input-legacy';
 import InputLegacyDisabled from './preview-examples/input-legacy-disabled';
 import InputLegacyLabels from './preview-examples/input-legacy-labels';
@@ -116,6 +127,11 @@ import InputLegacyReadonly from './preview-examples/input-legacy-readonly';
 import InputLegacySearch from './preview-examples/input-legacy-search';
 import InputLegacyTypes from './preview-examples/input-legacy-types';
 import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon';
+import InputPattern from './preview-examples/input-pattern';
+import InputReadonly from './preview-examples/input-readonly';
+import InputTypes from './preview-examples/input-types';
+import InputValidation from './preview-examples/input-validation';
+import InputWithSlots from './preview-examples/input-with-slots';
 import KeyValue from './preview-examples/key-value';
 import KeyValueList from './preview-examples/key-value-list';
 import KeyValueListStriped from './preview-examples/key-value-list-striped';
@@ -125,10 +141,13 @@ import KeyValueWithCustomValue from './preview-examples/key-value-with-custom-va
 import KeyValueWithIcon from './preview-examples/key-value-with-icon';
 import KeyValueWithLabelLeft from './preview-examples/key-value-with-label-left';
 import Kpi from './preview-examples/kpi';
+import LayoutAuto from './preview-examples/layout-auto';
+import LayoutAutoCustom from './preview-examples/layout-auto-custom';
 import LinkButton from './preview-examples/link-button';
 import LinkButtonDisabled from './preview-examples/link-button-disabled';
 import Loading from './preview-examples/loading';
 import MapNavigation from './preview-examples/map-navigation';
+import MapNavigationMigration from './preview-examples/map-navigation-migration';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay';
 import MenuCategory from './preview-examples/menu-category';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs';
@@ -143,6 +162,7 @@ import NumberInputLabel from './preview-examples/number-input-label';
 import NumberInputReadonly from './preview-examples/number-input-readonly';
 import NumberInputStepperButton from './preview-examples/number-input-stepper-button';
 import NumberInputValidation from './preview-examples/number-input-validation';
+import NumberInputWithSlots from './preview-examples/number-input-with-slots';
 import Pagination from './preview-examples/pagination';
 import PaginationAdvanced from './preview-examples/pagination-advanced';
 import Pane from './preview-examples/pane';
@@ -151,8 +171,8 @@ import Pill from './preview-examples/pill';
 import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
 import PushCard from './preview-examples/push-card';
-import RadioButton from './preview-examples/radio-button';
 import Radio from './preview-examples/radio';
+import RadioButton from './preview-examples/radio-button';
 import RadioDisabled from './preview-examples/radio-disabled';
 import RadioGroup from './preview-examples/radio-group';
 import RadioValidation from './preview-examples/radio-validation';
@@ -171,21 +191,14 @@ import SplitButton from './preview-examples/split-button';
 import SplitButtonIcons from './preview-examples/split-button-icons';
 import Tabs from './preview-examples/tabs';
 import TabsRounded from './preview-examples/tabs-rounded';
+import Textarea from './preview-examples/textarea';
+import TextareaDisabled from './preview-examples/textarea-disabled';
 import TextareaLegacy from './preview-examples/textarea-legacy';
 import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled';
 import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly';
-import Textarea from './preview-examples/textarea';
-import TextareaDisabled from './preview-examples/textarea-disabled';
 import TextareaReadonly from './preview-examples/textarea-readonly';
 import TextareaRowCols from './preview-examples/textarea-rows-cols';
 import TextareaValidation from './preview-examples/textarea-validation';
-import Input from './preview-examples/input';
-import InputDisabled from './preview-examples/input-disabled';
-import InputLabel from './preview-examples/input-label';
-import InputPattern from './preview-examples/input-pattern';
-import InputReadonly from './preview-examples/input-readonly';
-import InputTypes from './preview-examples/input-types';
-import InputValidation from './preview-examples/input-validation';
 import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
 import Timepicker from './preview-examples/timepicker';
@@ -207,22 +220,12 @@ import Tree from './preview-examples/tree';
 import TreeCustom from './preview-examples/tree-custom';
 import Upload from './preview-examples/upload';
 import Validation from './preview-examples/validation';
+import ValidationSelect from './preview-examples/validation-select';
 import VerticalTabs from './preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar';
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
-import ValidationSelect from './preview-examples/validation-select';
-import FormValidation from './preview-examples/form-validation';
-import LayoutAuto from './preview-examples/layout-auto';
-import LayoutAutoCustom from './preview-examples/layout-auto-custom';
-import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-group-indeterminate';
-import FormLayoutAuto from './preview-examples/form-layout-auto';
-import FormLayoutGrid from './preview-examples/form-layout-grid';
-import InputWithSlots from './preview-examples/input-with-slots';
-import NumberInputWithSlots from './preview-examples/number-input-with-slots';
-import DateInput from './preview-examples/date-input';
-import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -235,6 +238,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/grid" element={<Grid />} />
         <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
         <Route path="/preview/action-card" element={<ActionCard />} />
+        <Route path="/preview/add-icons" element={<AddIcons />} />
         <Route path="/preview/aggrid" element={<AgGrid />} />
         <Route path="/preview/application" element={<Application />} />
         <Route
@@ -257,6 +261,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<BasicNavigationWithoutHeader />}
         />
         <Route path="/preview/basic-navigation" element={<BasicNavigation />} />
+        <Route
+          path="/preview/basic-navigation-migration"
+          element={<BasicNavigationMigration />}
+        />
         <Route
           path="/preview/blind-header-actions"
           element={<BlindHeaderActions />}
@@ -524,6 +532,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<MapNavigationOverlay />}
         />
         <Route path="/preview/map-navigation" element={<MapNavigation />} />
+        <Route
+          path="/preview/map-navigation-migration"
+          element={<MapNavigationMigration />}
+        />
         <Route path="/preview/menu-category" element={<MenuCategory />} />
         <Route
           path="/preview/menu-with-bottom-tabs"
@@ -531,7 +543,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/message" element={<Message />} />
         <Route path="/preview/message-bar" element={<MessageBar />} />
-        <Route path="/preview/message-bar-removal" element={<MessageBarRemoval />} />
+        <Route
+          path="/preview/message-bar-removal"
+          element={<MessageBarRemoval />}
+        />
         <Route path="/preview/radio-button" element={<RadioButton />} />
         <Route path="/preview/radio" element={<Radio />} />
         <Route path="/preview/radio-disabled" element={<RadioDisabled />} />
@@ -546,7 +561,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/modal-sizes" element={<ModalSizes />} />
 
-        <Route path="/preview/modal-form-ix-button-submit" element={<ModalFormIxButtonSubmit />} />
+        <Route
+          path="/preview/modal-form-ix-button-submit"
+          element={<ModalFormIxButtonSubmit />}
+        />
 
         <Route path="/preview/modal" element={<Modal />} />
         <Route

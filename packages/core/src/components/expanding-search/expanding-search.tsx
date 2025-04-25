@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 import {
   Component,
   Event,
@@ -30,7 +31,7 @@ export class ExpandingSearch
   /**
    * Search icon
    */
-  @Prop() icon = 'search';
+  @Prop() icon?: string;
 
   /**
    * Placeholder text
@@ -44,7 +45,6 @@ export class ExpandingSearch
 
   /**
    * If true the search field will fill all available horizontal space of it's parent container when expanded.
-   * @since 1.6.0
    */
   @Prop() fullWidth = false;
 
@@ -126,7 +126,7 @@ export class ExpandingSearch
       >
         <ix-icon-button
           size={this.expanded ? '16' : '24'}
-          icon={this.icon}
+          icon={this.icon ?? iconSearch}
           variant={this.expanded ? 'primary' : this.variant}
           ghost={this.ghost || this.expanded}
           outline={this.outline && !this.expanded}
@@ -152,7 +152,7 @@ export class ExpandingSearch
         >
           <input
             class={{
-              'form-control': true,
+              'ix-form-control': true,
               input: this.expanded,
               'disable-pointer': !this.expanded,
               'opacity-before': !this.expanded,
@@ -175,7 +175,7 @@ export class ExpandingSearch
           {this.isFieldChanged ? (
             <ix-icon-button
               class="btn-clear"
-              icon={'clear'}
+              icon={iconClear}
               ghost={true}
               size="16"
               data-testid="clear-button"

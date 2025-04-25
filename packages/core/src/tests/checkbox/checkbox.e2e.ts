@@ -20,4 +20,9 @@ regressionTest.describe('checkbox', () => {
     await page.goto('checkbox/indeterminate');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('overflow', async ({ page }) => {
+    await page.goto('checkbox/long-text');
+    expect(await page.screenshot()).toMatchSnapshot();
+  });
 });
