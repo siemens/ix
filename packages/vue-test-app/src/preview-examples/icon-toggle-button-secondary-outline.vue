@@ -9,61 +9,139 @@
 
 <script setup lang="ts">
 import { iconCheckboxes } from '@siemens/ix-icons/icons';
-import { IxIconToggleButton } from '@siemens/ix-vue';
+import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
 </script>
 
 <style scoped src="./icon-toggle-button-secondary-outline.css"></style>
 
 <template>
-  <IxIconToggleButton outline :icon="iconCheckboxes"></IxIconToggleButton>
-  <IxIconToggleButton outline :icon="iconCheckboxes"></IxIconToggleButton>
-  <IxIconToggleButton
-    outline
-    disabled
-    :icon="iconCheckboxes"
-  ></IxIconToggleButton>
-  <IxIconToggleButton
-    outline
-    disabled
-    loading
-    :icon="iconCheckboxes"
-  ></IxIconToggleButton>
+  <IxLayoutGrid>
+    <IxRow>
+      <IxIconToggleButton outline :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        :icon="iconCheckboxes"
+        pressed
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        disabled
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        disabled
+        loading
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
 
-  <IxIconToggleButton
-    outline
-    size="16"
-    :icon="iconCheckboxes"
-  ></IxIconToggleButton>
-  <IxIconToggleButton
-    outline
-    size="16"
-    pressed
-    :icon="iconCheckboxes"
-  ></IxIconToggleButton>
-  <IxIconToggleButton
-    outline
-    size="16"
-    disabled
-    loading
-    :icon="iconCheckboxes"
-  ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="16"
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="16"
+        pressed
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="16"
+        disabled
+        loading
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
 
-  <IxIconToggleButton
-    outline
-    size="12"
-    :icon="iconCheckboxes"
-  ></IxIconToggleButton>
-  <IxIconToggleButton
-    outline
-    size="12"
-    pressed
-    :icon="iconCheckboxes"
-  ></IxIconToggleButton>
-  <IxIconToggleButton
-    outline
-    size="12"
-    disabled
-    loading
-    :icon="iconCheckboxes"
-  ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="12"
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="12"
+        pressed
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="12"
+        disabled
+        loading
+        :icon="iconCheckboxes"
+      ></IxIconToggleButton>
+    </IxRow>
+    <IxRow>
+      <IxIconToggleButton
+        outline
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        :icon="iconCheckboxes"
+        pressed
+        oval
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        disabled
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        disabled
+        loading
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+
+      <IxIconToggleButton
+        outline
+        size="16"
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="16"
+        pressed
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="16"
+        disabled
+        loading
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+
+      <IxIconToggleButton
+        outline
+        size="12"
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="12"
+        pressed
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        size="12"
+        disabled
+        loading
+        :icon="iconCheckboxes"
+        oval
+      ></IxIconToggleButton>
+    </IxRow>
+  </IxLayoutGrid>
 </template>
