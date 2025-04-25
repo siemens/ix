@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -20,32 +20,37 @@
 }
 
 .Icons {
-  display: flex;
-  flex-wrap: wrap;
   height: fit-content;
   overflow: auto;
   margin-top: 1rem;
+}
+
+.Icon__Row {
+  display: flex;
+  position: relative;
 }
 
 .Icon__Tile {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   border: var(--theme-std-bdr-1);
   border-radius: 4px;
 
-  width: 10rem;
+  width: 8rem;
   height: 5rem;
 
   margin: 0.5rem;
+  padding: calc(1rem - 1px);
 
   cursor: pointer;
 }
 
 .Icon__Tile.Selected {
   border: var(--theme-primary-bdr-1);
+  background-color: var(--theme-color-2);
 }
 
 .Icon__Tile:hover {
@@ -53,12 +58,21 @@
   transform: scale(1.1);
 }
 
+.Icon__Name,
+.Icon__Name ix-typography {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
 .Search {
   display: flex;
   position: relative;
   align-items: center;
+  gap: 1rem;
   margin-left: 0.5rem;
-  width: 40%;
   height: auto;
 }
 
@@ -66,7 +80,127 @@
   margin-right: 0.5rem;
 }
 
-.Hide__Input {
-  border: none !important;
+.Search__NoResults {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 0.5rem;
+  margin-block-start: 1.5rem;
+}
+
+.Search__NoResultsIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.Search__NoIconsFound {
+  font-size: 1.5rem;
+}
+
+.Search__AdaptOrRequest {
+  color: var(--theme-color-soft-text);
   text-align: center;
+}
+
+.Search__NoResults a,
+.Search__NoResults a:hover {
+  text-decoration: underline;
+  color: var(--theme-color-soft-text);
+}
+
+.Icon__ContainerDetails {
+  height: 190px;
+}
+
+.Icon__Details {
+  position: absolute;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+
+  background-color: var(--theme-color-2);
+  border: var(--theme-std-bdr-1);
+  border-radius: 4px;
+
+  width: 100%;
+  height: 5rem;
+  min-height: 5rem;
+
+  margin: 0.5rem;
+  padding: calc(1rem - 1px);
+}
+
+.Icon__Details .Icon__NameContainer {
+  display: flex;
+  justify-items: center;
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Icon__Details .Icon__NameContainer [class*='hash-link'] {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  padding-left: 0;
+  outline: none;
+}
+
+.Icon__Details .Icon__NameContainer [class*='hash-link']:focus-visible {
+  border: 1px solid var(--theme-color-focus-bdr);
+}
+
+.Icon__Details [class*='prism-code'] {
+  scrollbar-width: none;
+}
+
+ix-typography:focus-visible,
+.Icon__Code [class*='prism-code']:focus-visible [class*='token-line'] {
+  background-color: var(--theme-color-info-40);
+  outline: none;
+}
+
+.Icon__FlexContent {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex-grow: 1;
+  gap: 0.5rem;
+}
+
+.Icon__Code[class*='codeBlockContainer'],
+.Icon__Code [class*='prism-code'] {
+  background-color: transparent !important;
+  margin-bottom: unset;
+  box-shadow: unset;
+}
+
+.Icon__CodeContainer {
+  width: 50%;
+}
+
+.Icon__Code [class*='prism-code'] {
+  cursor: pointer;
+}
+
+.Icon__Code [class*='prism-code']:focus-visible {
+  outline: none;
+}
+
+.TooltipSuccess {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+@media (max-width: 1280px) {
+  .FrameworkSelectionContainer {
+    display: none;
+  }
 }

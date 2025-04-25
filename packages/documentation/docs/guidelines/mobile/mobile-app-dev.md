@@ -10,7 +10,8 @@ description: 'Use Siemens Industrial Experience to create mobile applications jo
 import DevicePreview from '@site/src/components/DevicePreview';
 import mobileGif from './mobile.gif';
 
-# 
+#
+
 <br/>
 
 <table className="table-no-border">
@@ -35,14 +36,12 @@ import mobileGif from './mobile.gif';
 
 ## Mobile app development
 
-<p>
-  <DevicePreview image={mobileGif}
-    style={{
-      float: 'right',
-      margin: '0',
-      marginLeft: '2rem'
-    }} />
-</p>
+<DevicePreview image={mobileGif}
+style={{
+  float: 'right',
+  margin: '0',
+  marginLeft: '2rem'
+}} />
 
 <br/>
 There are different ways to create applications for mobile devices:

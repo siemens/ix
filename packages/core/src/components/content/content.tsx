@@ -11,7 +11,6 @@ import { Component, Element, h, Host, State } from '@stencil/core';
 import { hasSlottedElements } from '../utils/shadow-dom';
 
 /**
- * @since 2.1.0
  * @slot header - Display content at the top of the content page
  */
 @Component({

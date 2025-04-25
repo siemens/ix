@@ -21,9 +21,6 @@ export type CardAccordionExpandChangeEvent = {
   nativeEvent: Event;
 };
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-card-accordion',
   styleUrl: 'card-accordion.scss',
@@ -32,7 +29,6 @@ export type CardAccordionExpandChangeEvent = {
 export class CardAccordion {
   /**
    * Collapse the card
-   * @since 2.1.0
    */
   @Prop() collapse = false;
 

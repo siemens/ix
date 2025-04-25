@@ -37,13 +37,11 @@ export class FlipTile {
 
   /**
    * Height interpreted as REM
-   * @since 1.5.0
    */
   @Prop() height: number | 'auto' = 15.125;
 
   /**
    * Width interpreted as REM
-   * @since 1.5.0
    */
   @Prop() width: number | 'auto' = 16;
 

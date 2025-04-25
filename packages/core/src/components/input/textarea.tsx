@@ -35,8 +35,7 @@ export type TextareaResizeBehavior =
   | 'none';
 
 /**
- * @since 2.6.0
- * @form-ready 2.6.0
+ * @form-ready
  */
 @Component({
   tag: 'ix-textarea',
@@ -253,7 +252,7 @@ export class Textarea implements IxInputFieldComponent<string> {
               slot="bottom-right"
               textColor="soft"
             >
-              {this.value.length}/{this.maxLength}
+              {(this.value || '').length}/{this.maxLength}
             </ix-typography>
           )}
           <div class="input-wrapper">

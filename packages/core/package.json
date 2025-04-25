@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "3.0.0-alpha.4",
+  "version": "3.0.0",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "type": "module",
@@ -86,7 +86,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@siemens/ix-icons": "3.0.0-alpha.1",
+    "@siemens/ix-icons": "^3.0.0",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "^0.10.2",
@@ -124,7 +124,7 @@
     "typescript": "~5.4.5"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "3.0.0-alpha.1"
+    "@siemens/ix-icons": "^3.0.0"
   },
   "config": {
     "commitizen": {

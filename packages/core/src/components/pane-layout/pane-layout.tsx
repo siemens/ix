@@ -22,9 +22,6 @@ import { Composition } from '../pane/pane';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
-/**
- * @since 2.1.0
- */
 @Component({
   tag: 'ix-pane-layout',
   styleUrl: 'pane-layout.scss',

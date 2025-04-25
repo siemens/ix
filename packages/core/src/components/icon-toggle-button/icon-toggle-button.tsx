@@ -22,9 +22,6 @@ import { ButtonVariant } from '../button/button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
 import { a11yBoolean } from '../utils/a11y';
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-icon-toggle-button',
   shadow: true,

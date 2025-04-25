@@ -109,7 +109,6 @@ export class MapNavigation {
    * Change the visibility of the sidebar
    *
    * @param show new visibility state
-   * @since 1.6.0
    */
   @Method()
   async toggleSidebar(show?: boolean) {

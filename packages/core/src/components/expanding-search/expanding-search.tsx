@@ -45,7 +45,6 @@ export class ExpandingSearch
 
   /**
    * If true the search field will fill all available horizontal space of it's parent container when expanded.
-   * @since 1.6.0
    */
   @Prop() fullWidth = false;
 

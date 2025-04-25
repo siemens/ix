@@ -1,5 +1,18 @@
 # @siemens/ix-echarts
 
+## 3.0.0
+
+### Major Changes
+
+- [#1238](https://github.com/siemens/ix/pull/1238) [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3) Thanks [@danielleroux](https://github.com/danielleroux)! - feat: reduce bundle size in combination with icons
+
+- [#1630](https://github.com/siemens/ix/pull/1630) [`72021acc858698116e5a02d98b486c9d88269616`](https://github.com/siemens/ix/commit/72021acc858698116e5a02d98b486c9d88269616) Thanks [@jul-lam](https://github.com/jul-lam)! - - The **echarts** theme names have been adapted to the default theme names.
+  - `convertThemeName` function is removed because not needed anymore after aligning echarts theme names
+
+### Patch Changes
+
+- [#1642](https://github.com/siemens/ix/pull/1642) [`241a5ea96cbcf07c3f9684f630ac308902449e1b`](https://github.com/siemens/ix/commit/241a5ea96cbcf07c3f9684f630ac308902449e1b) Thanks [@danielleroux](https://github.com/danielleroux)! - Added missing dist folder to deployment
+
 ## 3.0.0-alpha.1
 
 ### Patch Changes

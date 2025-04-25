@@ -42,8 +42,7 @@ import {
 let inputIds = 0;
 
 /**
- * @since 2.6.0
- * @form-ready 2.6.0
+ * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */
@@ -236,6 +235,14 @@ export class Input implements IxInputFieldComponent<string> {
   @Method()
   getNativeInputElement() {
     return this.inputRef.waitForCurrent();
+  }
+
+  /**
+   * Returns the validity state of the input field.
+   */
+  @Method()
+  getValidityState(): Promise<ValidityState> {
+    return Promise.resolve(this.inputRef.current.validity);
   }
 
   /**

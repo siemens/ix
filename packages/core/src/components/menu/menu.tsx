@@ -92,8 +92,6 @@ export class Menu {
 
   /**
    *  If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
-   *
-   *  @since 2.2.0
    */
   @Prop() startExpanded = false;
 

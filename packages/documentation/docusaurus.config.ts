@@ -43,13 +43,13 @@ let withBrandTheme = false;
 
 try {
   const path = require.resolve(
-    '@siemens/ix-corporate-theme/dist/css/corporate-theme.css'
+    '@siemens-ix/corporate-theme/dist/css/corporate-theme.css'
   );
-  console.log('Found optionalDependency @siemens/ix-corporate-theme.');
+  console.log('Found optionalDependency @siemens-ix/corporate-theme.');
   customCss.push(path);
   withBrandTheme = true;
 } catch (e) {
-  console.warn('optionalDependency @siemens/ix-corporate-theme not found!');
+  console.warn('optionalDependency @siemens-ix/corporate-theme not found!');
 }
 
 const brokenLinks = 'throw';
@@ -87,6 +87,7 @@ const config: Config = {
 
   customFields: {
     withBrandTheme,
+    playgroundVersion: '^3.0.0'
   },
 
   presets: [
@@ -236,6 +237,12 @@ const config: Config = {
           sidebarId: 'styles',
           position: 'left',
           label: 'Styles',
+        },
+        {
+          type: 'custom-news-pill',
+          position: 'left',
+          label: 'Release 3.0 is here',
+          value: '/blog/v3-alpha',
         },
         {
           type: 'custom-version-selection',

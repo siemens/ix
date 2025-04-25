@@ -13,8 +13,6 @@ export type KeyValueLabelPosition = 'top' | 'left';
 
 /**
  * @slot custom-value - Optional custom value at key value instead of text value
- *
- * @since 1.6.0
  */
 @Component({
   tag: 'ix-key-value',

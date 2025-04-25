@@ -10,7 +10,10 @@ description: 'Our guidelines section provides comprehensive information to help 
 
 # 
 
-![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4993-26&t=Ao9TQLHByFIqV01t-4)
+![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5109-312&t=J27iSZ4gEcgMGpEV-4)
+
+## Design principles
+Elevating user experience with Industrial Experience design principles. In the fast-paced world of industrial technology, design principles serve as the cornerstone of innovation, guiding us to create seamless and intuitive applications. They provide designers and developers with a robust framework to make informed design decisions, ensuring each product aligns with our standards and brand identity. [Read more](./designprinciples)
 
 ## Accessibility
 

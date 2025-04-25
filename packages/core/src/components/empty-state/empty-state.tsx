@@ -11,9 +11,6 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 export type EmptyStateLayout = 'large' | 'compact' | 'compactBreak';
 
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-empty-state',
   styleUrl: 'empty-state.scss',

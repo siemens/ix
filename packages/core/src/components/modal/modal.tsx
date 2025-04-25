@@ -39,8 +39,6 @@ export class Modal {
 
   /**
    * Modal size
-   *
-   * @since 2.0.0
    */
   @Prop() size: IxModalSize = '360';
 
@@ -56,8 +54,6 @@ export class Modal {
 
   /**
    * Dismiss modal on backdrop click
-   *
-   * @since 2.0.0
    */
   @Prop() closeOnBackdropClick = false;
 

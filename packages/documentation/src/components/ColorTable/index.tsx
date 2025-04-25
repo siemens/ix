@@ -294,7 +294,7 @@ function Children() {
   return color.children?.map((child) => (
     <ColorTable.Text name={child.name} key={child.name + '_' + child.hex}>
       <div className={clsx(styles.colorRow)}>
-        <div className={clsx(styles.colorColumn, styles.colorColumnChildName)}>
+        <div className={clsx(styles.colorColumn, 'column-w-100')}>
           <ColorCircle color={child.rawName}></ColorCircle>
           {child.rawName}
           <CopyButton

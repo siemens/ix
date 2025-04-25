@@ -40,7 +40,7 @@ import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 /**
- * @form-ready 2.6.0
+ * @form-ready
  */
 @Component({
   tag: 'ix-select',
@@ -55,71 +55,52 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   /**
    * A string that represents the element's name attribute,
    * containing a name that identifies the element when submitting the form.
-   *
-   * @since 2.6.0
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
    * A Boolean attribute indicating that an option with a non-empty string value must be selected
-   *
-   * @since 2.6.0
    */
   @Prop({ reflect: true }) required: boolean = false;
 
   /**
    * Label for the select component
-   *
-   * @since 2.6.0
    */
   @Prop() label?: string;
 
   /**
    * Warning text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() warningText?: string;
 
   /**
    * Info text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() infoText?: string;
 
   /**
    * Error text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() invalidText?: string;
 
   /**
    * Valid text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() validText?: string;
 
   /**
    * Helper text for the select component
-   *
-   * @since 2.6.0
    **/
   @Prop() helperText?: string;
 
   /**
    * Show helper, error, info, warning text as tooltip
-   *
-   * @since 2.6.0
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
    * Current selected value.
    * This corresponds to the value property of ix-select-items
-   * @since 2.0.0
    */
   @Prop({ mutable: true }) value: string | string[] = [];
 
@@ -165,44 +146,32 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   /**
    * Information inside of dropdown if no items where found with current filter text
-   *
-   * @since 1.5.0
    */
   @Prop() i18nNoMatches = 'No matches';
 
   /**
    * Hide list header
-   *
-   * @since 1.5.0
    */
   @Prop() hideListHeader = false;
 
   /**
    * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
-   *
-   * @since 2.7.0
    */
   @Prop() dropdownWidth?: string;
 
   /**
    * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
    * By default the maximum width of the dropdown element is set to 100%.
-   *
-   * @since 2.7.0
-   *
    */
   @Prop() dropdownMaxWidth?: string;
 
   /**
    * Value changed
-   * @since 2.0.0
    */
   @Event() valueChange!: EventEmitter<string | string[]>;
 
   /**
    * Event dispatched whenever the text input changes.
-   *
-   * @since 2.0.0
    */
   @Event() inputChange!: EventEmitter<string>;
 
