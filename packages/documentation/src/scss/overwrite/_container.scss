@@ -7,6 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 #__docusaurus {
+  // Disable search highlighting
+  mark {
+    background-color: unset;
+    color: var(--theme-color-std-text)
+  }
+
   main > .container {
     margin: 0;
     max-width: none;
