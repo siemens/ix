@@ -1,16 +1,14 @@
-<!--
+/*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
--->
+ */
 
-<script setup lang="ts">
-import { IxTimePicker } from '@siemens/ix-vue';
-</script>
+import { IxTimeInput } from '@siemens/ix-react';
 
-<template>
-  <IxTimePicker />
-</template>
+export default () => {
+  return <IxTimeInput disabled></IxTimeInput>;
+};

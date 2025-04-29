@@ -1,6 +1,7 @@
 ---
 doc-type: 'tab-item'
 ---
+
 # Date input - Usage
 
 The date input component is typically used in forms, filters and scheduling tools to ensure consistent and accurate date entries. By standardizing date input, it helps maintain data integrity and improves the user experience in applications requiring precise date information.
@@ -40,7 +41,7 @@ The date input component is typically used in forms, filters and scheduling tool
   - Escape key closes the date picker.
 - **Validation**:
   - Use feedback text for validation types valid, info, warning and invalid.
-  - Invalid feedback automatically provided if entered date in not parsable.
+  - Invalid feedback automatically provided if entered date is not parsable.
   - Refer to the [validation](../forms-validation) chapter for detailed guidelines.
 - **Overflow**: The input field should be wide enough to display the full date without truncation.
 - **Alignment**: Date inputs are always aligned to the left.

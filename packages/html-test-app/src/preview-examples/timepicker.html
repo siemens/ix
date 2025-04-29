@@ -13,53 +13,9 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Timepicker example</title>
-    <style>
-      .flex-container {
-        display: flex;
-        gap: 20px;
-        width: 800px;
-        align-items: start;
-      }
-
-      .flex-column {
-        flex: 1;
-      }
-    </style>
   </head>
   <body>
-    <div class="flex-container">
-      <div class="flex-column">
-        Default
-        <ix-time-picker></ix-time-picker>
-      </div>
-      <div class="flex-column">
-        Format "hh:mm:ss.SSS" <br />
-        Time "10:10:10.100"
-        <ix-time-picker
-          format="hh:mm:ss.SSS"
-          time="10:10:10.100"
-        ></ix-time-picker>
-      </div>
-      <div class="flex-column">
-        Format "hh:mm"
-        <ix-time-picker format="hh:mm"></ix-time-picker>
-      </div>
-      <div class="flex-column">
-        Format "hh:mm:ss a"
-        <ix-time-picker format="hh:mm:ss a"></ix-time-picker>
-      </div>
-      <div class="flex-column">
-        Format "hh:mm:ss.SSS" <br />
-        Custom Intervals
-        <ix-time-picker
-          format="hh:mm:ss.SSS"
-          millisecond-interval="50"
-          second-interval="5"
-          minute-interval="15"
-          time="10:30:10.150"
-        ></ix-time-picker>
-      </div>
-    </div>
+    <ix-time-picker></ix-time-picker>
     <script type="module" src="./init.js"></script>
   </body>
 </html>

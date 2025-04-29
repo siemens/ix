@@ -8,9 +8,13 @@
 -->
 
 <script setup lang="ts">
-import { IxTimePicker } from '@siemens/ix-vue';
+import { IxTimeInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxTimePicker />
+  <IxTimeInput
+    label="Time"
+    name="time"
+    helper-text="Some helper text"
+  ></IxTimeInput>
 </template>

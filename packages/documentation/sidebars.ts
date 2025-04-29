@@ -732,6 +732,20 @@ const sidebars: SidebarsConfig = {
           ],
         }),
         createTabItem({
+          id: 'components/input-time/index',
+          label: 'Time input',
+          items: [
+            {
+              id: 'components/input-time/guide',
+              label: 'Usage',
+            },
+            {
+              id: 'components/input-time/code',
+              label: 'Code',
+            },
+          ],
+        }),
+        createTabItem({
           id: 'components/time-picker/index',
           label: 'Time picker',
           items: [

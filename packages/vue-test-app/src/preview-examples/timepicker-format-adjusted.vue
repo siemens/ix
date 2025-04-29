@@ -12,5 +12,5 @@ import { IxTimePicker } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxTimePicker />
+  <IxTimePicker format="hh:mm:ss.SSS" time="01:01:01.100" />
 </template>

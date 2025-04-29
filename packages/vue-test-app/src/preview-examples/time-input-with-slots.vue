@@ -8,9 +8,13 @@
 -->
 
 <script setup lang="ts">
-import { IxTimePicker } from '@siemens/ix-vue';
+import { iconBulb } from '@siemens/ix-icons/icons';
+import { IxTimeInput, IxIcon, IxTypography } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxTimePicker />
+  <IxTimeInput>
+    <IxIcon :name="iconBulb" slot="start" size="16"></IxIcon>
+    <IxTypography slot="end">Slot</IxTypography>
+  </IxTimeInput>
 </template>
