@@ -41,10 +41,13 @@ $menu-link-active-offset: 0.25rem;
     background-color: var(--theme-color-ghost--active) !important;
   }
   .menu__link--active {
-    border-inline-start: solid $menu-link-active-offset var(--ifm-menu-color-active);
-    padding-inline-start: calc(var(--ifm-menu-link-padding-horizontal) - $menu-link-active-offset);
-  }
+    border-inline-start: solid $menu-link-active-offset
+      var(--ifm-menu-color-active);
 
+    padding-inline-start: calc(
+      var(--ifm-menu-link-padding-horizontal) - $menu-link-active-offset
+    );
+  }
 
   .category-tabs:last-child {
     margin-bottom: $paddingBetweenSidebarItems !important;
