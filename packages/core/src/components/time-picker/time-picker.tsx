@@ -387,31 +387,36 @@ export class TimePicker {
       return;
     }
 
-    this.visibilityObserver = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        if (mutation.type === 'attributes') {
-          const dropdown = mutation.target as HTMLElement;
-
-          // Check if the dropdown is now visible (has the 'show' class)
-          if (dropdown.classList.contains('show')) {
-            // Check if elements are fully rendered by looking at their dimensions
-            const elementsReady = this.areElementsRendered();
-
-            if (elementsReady && !this.hasUpdatedScrollPositions) {
-              this.updateScrollPositions();
-              this.hasUpdatedScrollPositions = true;
-            }
-          } else {
-            this.hasUpdatedScrollPositions = false;
-          }
-        }
-      }
-    });
+    this.visibilityObserver = new MutationObserver((mutations) =>
+      this.mutationObserverCallback(mutations)
+    );
 
     this.visibilityObserver.observe(dropdownElement, {
       attributes: true,
       attributeFilter: ['class', 'style'],
     });
+  }
+
+  private mutationObserverCallback(mutations: MutationRecord[]) {
+    for (const mutation of mutations) {
+      if (mutation.type !== 'attributes') {
+        this.hasUpdatedScrollPositions = false;
+        continue;
+      }
+
+      const dropdown = mutation.target as HTMLElement;
+      if (!dropdown.classList.contains('show')) {
+        continue;
+      }
+
+      const elementsReady = this.areElementsRendered();
+      if (!elementsReady || this.hasUpdatedScrollPositions) {
+        continue;
+      }
+
+      this.updateScrollPositions();
+      this.hasUpdatedScrollPositions = true;
+    }
   }
 
   private areElementsRendered(): boolean {
