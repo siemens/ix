@@ -60,7 +60,7 @@ console.log('Using BASE_URL', baseUrl);
 const config: Config = {
   title: 'Siemens Industrial Experience',
   tagline: 'Siemens Industrial Experience',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   // Set the production url of your site here
   url: 'https://ix.siemens.io',
