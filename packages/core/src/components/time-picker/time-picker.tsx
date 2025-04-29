@@ -73,6 +73,27 @@ export class TimePicker {
   @Prop() standaloneAppearance: boolean = true;
 
   /**
+   * Show hour input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+   */
+  @Prop() showHour = true;
+
+  /**
+   * Show minutes input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+   */
+  @Prop() showMinutes = true;
+
+  /**
+   * Show seconds input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+   */
+  @Prop() showSeconds = true;
+
+  /**
    * Interval for hour selection
    *
    * @since 3.1.0
@@ -115,6 +136,13 @@ export class TimePicker {
 
     this._time = DateTime.fromFormat(newValue, this.format);
   }
+
+  /**
+   * Set time reference
+   *
+   * @deprecated This is determined by the currently set time
+   */
+  @Prop() timeReference: 'AM' | 'PM';
 
   /**
    * Text of date select button
@@ -516,19 +544,21 @@ export class TimePicker {
       {
         unit: 'hour',
         header: 'hr',
-        hidden: !LUXON_FORMAT_PATTERNS.hours.test(this.format),
+        hidden: !LUXON_FORMAT_PATTERNS.hours.test(this.format) && this.showHour,
         numberArray: hourNumbers,
       },
       {
         unit: 'minute',
         header: 'min',
-        hidden: !LUXON_FORMAT_PATTERNS.minutes.test(this.format),
+        hidden:
+          !LUXON_FORMAT_PATTERNS.minutes.test(this.format) && this.showMinutes,
         numberArray: minuteNumbers,
       },
       {
         unit: 'second',
         header: 'sec',
-        hidden: !LUXON_FORMAT_PATTERNS.seconds.test(this.format),
+        hidden:
+          !LUXON_FORMAT_PATTERNS.seconds.test(this.format) && this.showSeconds,
         numberArray: secondNumbers,
       },
       {

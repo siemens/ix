@@ -2799,6 +2799,21 @@ export namespace Components {
          */
         "secondInterval": number;
         /**
+          * Show hour input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showHour": boolean;
+        /**
+          * Show minutes input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showMinutes": boolean;
+        /**
+          * Show seconds input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showSeconds": boolean;
+        /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
         "standaloneAppearance": boolean;
@@ -2814,6 +2829,11 @@ export namespace Components {
           * Select time with format string Format has to match the `format` property.
          */
         "time": string;
+        /**
+          * Set time reference
+          * @deprecated This is determined by the currently set time
+         */
+        "timeReference": 'AM' | 'PM';
     }
     interface IxToast {
         /**
@@ -7850,6 +7870,21 @@ declare namespace LocalJSX {
          */
         "secondInterval"?: number;
         /**
+          * Show hour input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showHour"?: boolean;
+        /**
+          * Show minutes input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showMinutes"?: boolean;
+        /**
+          * Show seconds input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showSeconds"?: boolean;
+        /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
         "standaloneAppearance"?: boolean;
@@ -7865,6 +7900,11 @@ declare namespace LocalJSX {
           * Select time with format string Format has to match the `format` property.
          */
         "time"?: string;
+        /**
+          * Set time reference
+          * @deprecated This is determined by the currently set time
+         */
+        "timeReference"?: 'AM' | 'PM';
     }
     interface IxToast {
         /**

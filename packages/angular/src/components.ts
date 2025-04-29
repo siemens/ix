@@ -2506,7 +2506,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
 
 
 @ProxyCmp({
-  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time'],
+  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
   methods: ['getCurrentTime']
 })
 @Component({
@@ -2514,7 +2514,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time'],
+  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
 })
 export class IxTimePicker {
   protected el: HTMLIxTimePickerElement;
