@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,9 +8,12 @@
  */
 
 import { Component } from '@angular/core';
+import { IxTimePicker } from '@siemens/ix-angular/standalone';
 
 @Component({
+  standalone: true,
   selector: 'app-example',
+  imports: [IxTimePicker],
   template: `
     <ix-time-picker
       format="hh:mm:ss a"
