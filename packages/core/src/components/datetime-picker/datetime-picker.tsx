@@ -35,6 +35,27 @@ export class DatetimePicker
   @Prop() range = true;
 
   /**
+   * Show hour input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+   */
+  @Prop() showHour = true;
+
+  /**
+   * Show minutes input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+   */
+  @Prop() showMinutes = true;
+
+  /**
+   * Show seconds input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+   */
+  @Prop() showSeconds = true;
+
+  /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
    */
@@ -194,6 +215,9 @@ export class DatetimePicker
                 format={this.timeFormat}
                 textTime={this.i18nTime}
                 time={this.time}
+                showHour={this.showHour}
+                showMinutes={this.showMinutes}
+                showSeconds={this.showSeconds}
               ></ix-time-picker>
               <div class="btn-select-date-container">
                 <ix-button

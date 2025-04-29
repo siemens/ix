@@ -42,10 +42,14 @@ interface TimeOutputFormat {
 }
 
 const LUXON_FORMAT_PATTERNS = {
-  hours: /\b[HhK]\b|HH|hh|KK|H{3,4}|h{3,4}|K{1,2}|t|tt|ttt|tttt|T|TT|TTT|TTTT/, // h, hh, H, HH and various time formats that include hours
-  minutes: /\bm\b|mm|t|tt|ttt|tttt|T|TT|TTT|TTTT/, // m, mm and time formats that include minutes
-  seconds: /\bs\b|ss|t|tt|ttt|tttt|T|TT|TTT|TTTT/, // s, ss and time formats that include seconds
-  milliseconds: /\bS\b|SSS|u|uu|uuu|x|X/, // S, SSS (milliseconds), u/uu/uuu (fractional seconds), x/X (timestamps)
+  // h, hh, H, HH and various time formats that include hours
+  hours: /\b[HhK]\b|HH|hh|KK|H{3,4}|h{3,4}|K{1,2}|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
+  // m, mm and time formats that include minutes
+  minutes: /\bm\b|mm|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
+  // s, ss and time formats that include seconds
+  seconds: /\bs\b|ss|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
+  // S, SSS (milliseconds), u/uu/uuu (fractional seconds), x/X (timestamps)
+  milliseconds: /\bS\b|SSS|u|uu|uuu|x|X/,
 };
 
 @Component({
@@ -142,7 +146,7 @@ export class TimePicker {
    *
    * @deprecated This is determined by the currently set time
    */
-  @Prop() timeReference: 'AM' | 'PM';
+  @Prop() timeReference: 'AM' | 'PM' | undefined;
 
   /**
    * Text of date select button
@@ -232,14 +236,22 @@ export class TimePicker {
 
     let newValue = this.focusedValue;
     let shouldPreventDefault = true;
-    const newValueInterval =
-      this.focusedUnit === 'hour'
-        ? this.hourInterval
-        : this.focusedUnit === 'minute'
-        ? this.minuteInterval
-        : this.focusedUnit === 'second'
-        ? this.secondInterval
-        : this.millisecondInterval;
+    let newValueInterval;
+
+    switch (this.focusedUnit) {
+      case 'hour':
+        newValueInterval = this.hourInterval;
+        break;
+      case 'minute':
+        newValueInterval = this.minuteInterval;
+        break;
+      case 'second':
+        newValueInterval = this.secondInterval;
+        break;
+      case 'millisecond':
+        newValueInterval = this.millisecondInterval;
+        break;
+    }
 
     switch (event.key) {
       case 'Tab':
