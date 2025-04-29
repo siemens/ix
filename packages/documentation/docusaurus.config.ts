@@ -196,8 +196,7 @@ const config: Config = {
     colorMode: {
       defaultMode: 'dark',
     },
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/ix-social-card.svg',
     navbar: {
       hideOnScroll: false,
       logo: {
