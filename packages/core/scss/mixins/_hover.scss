@@ -12,7 +12,7 @@
     cursor: pointer;
 
     &:hover,
-    &:hover {
+    &.hover {
       @content;
     }
   }
