@@ -196,7 +196,7 @@ const config: Config = {
     colorMode: {
       defaultMode: 'dark',
     },
-    image: 'img/ix-social-card.svg',
+    image: 'img/ix-social-card.png',
     navbar: {
       hideOnScroll: false,
       logo: {
