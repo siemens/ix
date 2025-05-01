@@ -55,9 +55,6 @@
     "typescript": "^5.5.4"
   },
   "pnpm": {
-    "patchedDependencies": {
-      "@stencil/vue-output-target@0.8.8": "patches/@stencil__vue-output-target@0.8.8.patch"
-    },
     "overrides": {
       "cheerio": "1.0.0-rc.12"
     }
