@@ -4,7 +4,7 @@
 import type { PropSidebarItemLink } from '@docusaurus/plugin-content-docs';
 import { useHistory, useLocation } from '@docusaurus/router';
 import { useScrollPosition } from '@docusaurus/theme-common/internal';
-import { DeprecatedTag, RedirectTag } from '@site/src/components/UI/Tags';
+import { DeprecatedTag, FormReady, RedirectTag } from '@site/src/components/UI/Tags';
 import clsx from 'clsx';
 import { useCallback, useState } from 'react';
 import styles from './styles.module.css';
@@ -72,7 +72,6 @@ export default function DocTabsHeader(
 
       {description && (
         <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
-          <p className={styles.Description}>{description}</p>
           <div className={styles.Tags}>
             {frontMatter.deprecated &&
               Array.from(frontMatter.deprecated) &&
@@ -98,7 +97,9 @@ export default function DocTabsHeader(
                   }
                 }
               )}
+              {frontMatter.formReady && (<FormReady />)}
           </div>
+          <p className={styles.Description}>{description}</p>
         </div>
       )}
 
