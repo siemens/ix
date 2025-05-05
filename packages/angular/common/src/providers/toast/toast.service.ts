@@ -27,7 +27,7 @@ export class ToastService {
     return getToastContainer().position;
   }
 
-  async show(config: ToastConfig) {
+  public async show(config: ToastConfig) {
     if (
       typeof config.message === 'string' &&
       !(config.action instanceof TemplateRef)

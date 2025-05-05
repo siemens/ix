@@ -36,9 +36,9 @@ export class ToastService {
     }
 
     const context: {
-      close: (() => void) | null
+      close: (() => void) | null;
     } = {
-      close: null
+      close: null,
     };
 
     let node: HTMLElement | string | undefined = config.message as string;
