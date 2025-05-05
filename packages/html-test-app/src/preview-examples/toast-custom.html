@@ -13,17 +13,25 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Toast custom example</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconUndo } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconUndo,
+      });
+    </script>
   </head>
   <body>
     <ix-toast-container></ix-toast-container>
 
     <ix-button id="toastButton">Trigger toast</ix-button>
 
-    <template id="custom-toast">
-      <div>
-        <div>Custom toast message</div>
-        <ix-button>Action</ix-button>
-      </div>
+    <template id="custom-toast-message">
+      <div>This message is from template</div>
+    </template>
+
+    <template id="custom-toast-action">
+      <ix-button ghost icon="undo">Undo</ix-button>
     </template>
 
     <script type="module">
@@ -34,13 +42,52 @@ LICENSE file in the root directory of this source tree.
         document
           .getElementById('toastButton')
           .addEventListener('click', async () => {
-            const customModal = document.createElement('div');
-            const template = document.getElementById('custom-toast');
-            const templateContent = template.content;
-            customModal.appendChild(templateContent);
+            const customModalAction = document.createElement('div');
+            const templateAction = document.getElementById(
+              'custom-toast-action'
+            );
+            const templateContentAction =
+              templateAction.content.cloneNode(true);
+            customModalAction.appendChild(templateContentAction);
 
             const instance = await toast({
+              title: 'Toast headline',
+              message: 'Toast message text',
+              action: customModalAction,
+              type: 'success',
+            });
+
+            customModal
+              .querySelector('ix-button')
+              .addEventListener('click', () => {
+                instance.close();
+              });
+          });
+      })();
+
+      (async function () {
+        await window.customElements.whenDefined('ix-toast-container');
+        document
+          .getElementById('toastButton')
+          .addEventListener('click', async () => {
+            const customModal = document.createElement('div');
+            const template = document.getElementById('custom-toast-message');
+            const templateContent = template.content.cloneNode(true);
+            customModal.appendChild(templateContent);
+
+            const customModalAction = document.createElement('div');
+            const templateAction = document.getElementById(
+              'custom-toast-action'
+            );
+            const templateContentAction =
+              templateAction.content.cloneNode(true);
+            customModalAction.appendChild(templateContentAction);
+
+            const instance = await toast({
+              title: 'Toast headline',
               message: customModal,
+              action: customModalAction,
+              type: 'success',
             });
 
             customModal
