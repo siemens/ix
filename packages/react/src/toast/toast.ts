@@ -14,17 +14,18 @@ import { toast, ToastConfig as IxToastConfig } from '@siemens/ix';
 import ReactDOMClient from 'react-dom/client';
 
 export type ToastConfig = {
-  message: string | React.ReactNode;
+  message?: string | React.ReactNode;
+  action?: React.ReactNode;
 };
 
 export async function showToast(
-  config: Omit<IxToastConfig, 'message'> & ToastConfig
+  config: Omit<IxToastConfig, 'message' | 'action'> & ToastConfig
 ) {
   // Define custom element, otherwise dynamic creation of toast container will fail
   defineToast();
   defineToastContainer();
 
-  if (typeof config.message === 'string') {
+  if (typeof config.message === 'string' && !config.action) {
     const toastInstance = await toast(config as IxToastConfig);
     return toastInstance;
   }
@@ -34,13 +35,20 @@ export async function showToast(
   const root = ReactDOMClient.createRoot(toastContainer);
   root.render(node);
 
+  const nodeAction = config.action as React.ReactNode;
+  const toastContainerAction = document.createElement('DIV');
+  const rootAction = ReactDOMClient.createRoot(toastContainerAction);  
+  rootAction.render(nodeAction);
+
   const toastInstance = await toast({
     ...config,
     message: toastContainer,
+    action: toastContainerAction,
   });
 
   toastInstance.onClose.once(() => {
     root.unmount();
+    rootAction.unmount();
   });
 
   return toastInstance;

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import {
   getToastContainer,
   toast,
@@ -28,34 +28,51 @@ export class ToastService {
   }
 
   async show(config: ToastConfig) {
-    if (typeof config.message === 'string') {
+    if (
+      typeof config.message === 'string' &&
+      !(config.action instanceof TemplateRef)
+    ) {
       return toast(config as IxToastConfig);
     }
 
     const context: {
-      close: (() => void) | null;
+      close: (() => void) | null
     } = {
-      close: null,
+      close: null
     };
 
-    const embeddedView = config.message.createEmbeddedView({
-      $implicit: context,
-    });
+    let node: HTMLElement | string | undefined = undefined;
+    let embeddedView: any;
+    let embeddedViewAction: any;
+    let nodeAction: HTMLElement | undefined = undefined;
 
-    const node: HTMLElement = embeddedView.rootNodes[0];
+    if (config.message instanceof TemplateRef) {
+      embeddedView = config.message.createEmbeddedView({ $implicit: context });
+      node = embeddedView.rootNodes[0];
+      embeddedView.detectChanges();
+    }
+    
+    if (config.action instanceof TemplateRef) {
+      embeddedViewAction = config.action.createEmbeddedView({
+        $implicit: context,
+      });
+      nodeAction = embeddedViewAction.rootNodes[0];
+      embeddedViewAction.detectChanges();
+    }
+
     const instance = await toast({
       ...config,
       message: node,
+      action: nodeAction,
     });
 
     context.close = () => {
       instance.close();
     };
 
-    embeddedView.detectChanges();
-
     instance.onClose.once(() => {
-      embeddedView.destroy();
+      embeddedView?.destroy();
+      embeddedViewAction?.destroy();
     });
 
     return instance;

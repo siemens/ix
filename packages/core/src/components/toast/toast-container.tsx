@@ -103,8 +103,13 @@ export class ToastContainer {
 
     if (typeof config.message === 'string') {
       toast.innerText = config.message;
-    } else {
+    } else if (config.message instanceof HTMLElement) {
       toast.appendChild(config.message);
+    }
+
+    if (config.action && config.action instanceof HTMLElement) {
+      config.action.slot = 'action';
+      toast.appendChild(config.action);
     }
 
     (await this.hostContainer).appendChild(toast);
