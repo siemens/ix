@@ -13,7 +13,7 @@ import { ToastService } from '@siemens/ix-angular';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button (click)="showBothToasts()">Show Both Toasts</ix-button>
+    <ix-button (click)="showBothToasts()">Trigger toast</ix-button>
     <ng-template #customToastMessage let-toast>
       <div>This message is from template</div>
     </ng-template>
