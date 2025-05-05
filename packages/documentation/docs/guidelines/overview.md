@@ -17,7 +17,7 @@ Elevating user experience with Industrial Experience design principles. In the f
 
 ## Accessibility
 
-Accessibility ensures that digital products are usable by everyone, including people with disabilities. It is crucial for creating inclusive solutions that meet diverse needs and comply with standards like WCAG, enhancing the overall user experience. Learn how to make your designs accessible to all users. [Read more](./accessibility)
+Accessibility ensures that digital products are usable by everyone, including people with disabilities. It is crucial for creating inclusive solutions that meet diverse needs and comply with standards like WCAG, enhancing the overall user experience. Learn how to make your designs accessible to all users. [Read more](./accessibility/overview)
 
 ## Responsive design
 
