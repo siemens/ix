@@ -2,4 +2,6 @@
 '@siemens/ix-vue': patch
 ---
 
-fix vue events
+Fix triggering of events
+
+Fixes #1395
