@@ -166,6 +166,11 @@ export class Input implements IxInputFieldComponent<string> {
   @State() isInfo = false;
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
+  @State() hasHelperContent = false;
+  @State() hasWarningContent = false;
+  @State() hasValidContent = false;
+  @State() hasInvalidContent = false;
+  @State() hasInfoContent = false;
 
   @State() inputType = 'text';
 
@@ -176,6 +181,39 @@ export class Input implements IxInputFieldComponent<string> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  private helperSlotRef = makeRef<HTMLSlotElement>();
+  private warningSlotRef = makeRef<HTMLSlotElement>();
+  private validSlotRef = makeRef<HTMLSlotElement>();
+  private invalidSlotRef = makeRef<HTMLSlotElement>();
+  private infoSlotRef = makeRef<HTMLSlotElement>();
+
+  componentDidLoad() {
+    this.updateSlotContent();
+  }
+
+  private updateSlotContent() {
+    if (this.helperSlotRef.current) {
+      this.hasHelperContent =
+        this.helperSlotRef.current.assignedElements().length > 0;
+    }
+    if (this.warningSlotRef.current) {
+      this.hasWarningContent =
+        this.warningSlotRef.current.assignedElements().length > 0;
+    }
+    if (this.validSlotRef.current) {
+      this.hasValidContent =
+        this.validSlotRef.current.assignedElements().length > 0;
+    }
+    if (this.invalidSlotRef.current) {
+      this.hasInvalidContent =
+        this.invalidSlotRef.current.assignedElements().length > 0;
+    }
+    if (this.infoSlotRef.current) {
+      this.hasInfoContent =
+        this.infoSlotRef.current.assignedElements().length > 0;
+    }
+  }
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -286,6 +324,11 @@ export class Input implements IxInputFieldComponent<string> {
           isInfo={this.isInfo}
           isWarning={this.isWarning}
           controlRef={this.inputRef}
+          hasHelperContent={this.hasHelperContent}
+          hasWarningContent={this.hasWarningContent}
+          hasValidContent={this.hasValidContent}
+          hasInvalidContent={this.hasInvalidContent}
+          hasInfoContent={this.hasInfoContent}
         >
           <div class="input-wrapper">
             <SlotStart
@@ -341,6 +384,11 @@ export class Input implements IxInputFieldComponent<string> {
               ></ix-icon-button>
             </SlotEnd>
           </div>
+          <slot name="helper" slot="helper" ref={this.helperSlotRef}></slot>
+          <slot name="warning" slot="warning" ref={this.warningSlotRef}></slot>
+          <slot name="valid" slot="valid" ref={this.validSlotRef}></slot>
+          <slot name="invalid" slot="invalid" ref={this.invalidSlotRef}></slot>
+          <slot name="info" slot="info" ref={this.infoSlotRef}></slot>
           {!!this.maxLength && this.maxLength > 0 && (
             <ix-typography
               class="bottom-text"

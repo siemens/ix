@@ -93,6 +93,11 @@ export class FieldWrapper implements FieldWrapperInterface {
     | MakeRef<HTMLInputElement>
     | MakeRef<HTMLTextAreaElement>;
 
+  @Prop() hasHelperContent: boolean = false;
+  @Prop() hasWarningContent: boolean = false;
+  @Prop() hasValidContent: boolean = false;
+  @Prop() hasInvalidContent: boolean = false;
+  @Prop() hasInfoContent: boolean = false;
   private readonly slotRef = makeRef<HTMLDivElement>();
 
   render() {
@@ -106,6 +111,21 @@ export class FieldWrapper implements FieldWrapperInterface {
       isInfo: this.isInfo,
       infoText: this.infoText,
       helperText: this.helperText,
+    };
+    const renderStatusSlot = () => {
+      let statusSlot = null;
+      if (this.isValid && this.hasValidContent) {
+        statusSlot = <slot name="valid"></slot>;
+      } else if (this.isInvalid && this.hasInvalidContent) {
+        statusSlot = <slot name="invalid"></slot>;
+      } else if (this.isWarning && this.hasWarningContent) {
+        statusSlot = <slot name="warning"></slot>;
+      } else if (this.isInfo && this.hasInfoContent) {
+        statusSlot = <slot name="info"></slot>;
+      } else if (this.hasHelperContent) {
+        statusSlot = <slot name="helper"></slot>;
+      }
+      return statusSlot;
     };
     return (
       <Host>
@@ -130,7 +150,10 @@ export class FieldWrapper implements FieldWrapperInterface {
           <slot></slot>
         </div>
         <div class={'field-bottom'}>
-          {!this.showTextAsTooltip && renderHelperText(textOptions)}
+          <div class="bottom-left">
+            {!this.showTextAsTooltip && renderHelperText(textOptions)}
+            {!this.showTextAsTooltip && renderStatusSlot()}
+          </div>
           <div class="bottom-right">
             <slot name="bottom-right"></slot>
           </div>
@@ -143,6 +166,7 @@ export class FieldWrapper implements FieldWrapperInterface {
             placement="bottom"
           >
             {renderHelperText(textOptions)}
+            {renderStatusSlot()}
           </ix-tooltip>
         )}
       </Host>
