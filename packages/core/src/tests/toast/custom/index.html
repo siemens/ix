@@ -1,0 +1,124 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Toast Custom Action Test</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconUndo, iconBulb } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconUndo,
+        iconBulb,
+      });
+    </script>
+    <style>
+      .ghost-button {
+        background: none;
+        border: none;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        display: flex;
+        align-items: center;
+      }
+
+    </style>
+  </head>
+  <body>
+    <ix-toast-container></ix-toast-container>
+
+    <script>
+      (async () => {
+        await window.customElements.whenDefined('ix-toast-container');
+        const toastContainer = document.querySelector('ix-toast-container');
+
+        const createActionButton = (label, icon = null, ghost = false) => {
+          const btn = document.createElement('button');
+          if (ghost) {
+            btn.className = 'ghost-button';
+          }
+          if (icon) {
+            const iconElement = document.createElement('ix-icon');
+            iconElement.setAttribute('name', icon);
+            iconElement.className = 'icon';
+            btn.appendChild(iconElement);
+          }
+          btn.appendChild(document.createTextNode(label));
+          return btn;
+        };
+
+        const toast = {};
+        toast.info = (config) => {
+          toastContainer.showToast({
+            ...config,
+            autoClose: false,
+            type: 'info',
+          });
+        };
+        toast.error = (config) => {
+          toastContainer.showToast({
+            ...config,
+            autoClose: false,
+            type: 'error',
+          });
+        };
+        toast.success = (config) => {
+          toastContainer.showToast({
+            ...config,
+            autoClose: false,
+            type: 'success',
+          });
+        };
+        toast.warning = (config) => {
+          toastContainer.showToast({
+            ...config,
+            autoClose: false,
+            type: 'warning',
+          });
+        };
+
+        toast.info({
+          title: 'Toast headline',
+          action: createActionButton('Undo'),
+        });
+
+        toast.error({
+          title: 'Toast headline',
+          message: 'Toast message text',
+        });
+
+        toast.success({
+          message: 'Toast message text',
+          action: createActionButton('Undo'),
+        });
+
+        toast.warning({
+          title: 'Toast headline',
+          message: 'Toast message text',
+          action: createActionButton('Undo'),
+        });
+
+        toast.info({
+          title: 'Toast headline',
+          message: 'Toast message text',
+          icon: 'bulb',
+          action: createActionButton('Undo', 'undo', true),
+        });
+      })();
+    </script>
+
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

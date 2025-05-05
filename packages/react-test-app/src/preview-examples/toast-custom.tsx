@@ -11,7 +11,11 @@ import { IxButton, showToast } from '@siemens/ix-react';
 import { iconUndo } from '@siemens/ix-icons/icons';
 
 function CustomToastMessage() {
+<<<<<<< HEAD
   return <div>This message is from template</div>;
+=======
+  return <div>Toast message text from function</div>;
+>>>>>>> 718c4c1596134bddee7f22c76a8aa3d31d425e7d
 }
 
 function CustomToastAction() {

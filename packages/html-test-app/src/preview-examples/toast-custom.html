@@ -43,11 +43,8 @@ LICENSE file in the root directory of this source tree.
           .getElementById('toastButton')
           .addEventListener('click', async () => {
             const customModalAction = document.createElement('div');
-            const templateAction = document.getElementById(
-              'custom-toast-action'
-            );
-            const templateContentAction =
-              templateAction.content.cloneNode(true);
+            const templateAction = document.getElementById('custom-toast-action');
+            const templateContentAction = templateAction.content.cloneNode(true);
             customModalAction.appendChild(templateContentAction);
 
             const instance = await toast({

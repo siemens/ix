@@ -114,6 +114,11 @@ export class ToastContainer {
       toast.appendChild(config.action);
     }
 
+    if (config.action && config.action instanceof HTMLElement) {
+      config.action.slot = 'action';
+      toast.appendChild(config.action);
+    }
+
     (await this.hostContainer).appendChild(toast);
 
     return {

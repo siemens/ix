@@ -36,9 +36,9 @@ export class ToastService {
     }
 
     const context: {
-      close: (() => void) | null;
+      close: (() => void) | null
     } = {
-      close: null,
+      close: null
     };
 
     let node: HTMLElement | string | undefined = config.message as string;
@@ -51,7 +51,6 @@ export class ToastService {
       node = embeddedView.rootNodes[0];
       embeddedView.detectChanges();
     }
-
     if (config.action instanceof TemplateRef) {
       embeddedViewAction = config.action.createEmbeddedView({
         $implicit: context,
