@@ -48,11 +48,6 @@ export async function showToast(
     rootAction.render(config.action);
   }
 
-  const nodeAction = config.action as React.ReactNode;
-  const toastContainerAction = document.createElement('DIV');
-  const rootAction = ReactDOMClient.createRoot(toastContainerAction);  
-  rootAction.render(nodeAction);
-
   const toastInstance = await toast({
     ...config,
     message: toastContainer,
