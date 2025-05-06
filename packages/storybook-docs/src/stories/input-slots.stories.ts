@@ -11,44 +11,14 @@ import { makeArgTypes } from './utils/generic-render';
 type Element = Components.IxInput;
 
 interface InputWithSlots extends Element {
-  helperSlot?: string;
-  validSlot?: string;
-  invalidSlot?: string;
-  warningSlot?: string;
-  infoSlot?: string;
   class?: string;
 }
 
 const meta = {
   title: 'Example/Input/Slots',
   tags: [],
-  render: (args) => html`
-    <ix-input
-      label=${args.label}
-      value=${args.value}
-      required=${args.required}
-      .helperText=${args.helperText}
-      .validText=${args.validText}
-      .invalidText=${args.invalidText}
-      .infoText=${args.infoText}
-      .warningText=${args.warningText}
-      .showTextAsTooltip=${args.showTextAsTooltip}
-      class=${args.class ?? ''}
-    >
-      ${args.helperSlot ? html`<div slot="helper">${args.helperSlot}</div>` : ''}
-      ${args.validSlot ? html`<div slot="valid">${args.validSlot}</div>` : ''}
-      ${args.invalidSlot ? html`<div slot="invalid">${args.invalidSlot}</div>` : ''}
-      ${args.warningSlot ? html`<div slot="warning">${args.warningSlot}</div>` : ''}
-      ${args.infoSlot ? html`<div slot="info">${args.infoSlot}</div>` : ''}
-    </ix-input>
-  `,
   argTypes: {
     ...makeArgTypes<Partial<ArgTypes<Element>>>('ix-input', {}),
-    helperSlot: { control: 'text' },
-    validSlot: { control: 'text' },
-    invalidSlot: { control: 'text' },
-    warningSlot: { control: 'text' },
-    infoSlot: { control: 'text' },
   },
   parameters: {
     design: {
@@ -61,13 +31,57 @@ const meta = {
 export default meta;
 type Story = StoryObj<InputWithSlots>;
 
+export const AllSlots: Story = {
+  args: {
+    label: 'All Slots',
+    required: true,
+    class: 'ix-valid',
+    validText: 'Valid text content',
+    invalidText: 'Invalid text content',
+    warningText: 'Warning text content',
+    infoText: 'Info text content',
+    helperText: 'Helper text content',
+    showTextAsTooltip: false,
+  },
+  render: (args) => html`
+    <ix-input
+      label=${args.label}
+      required=${args.required}
+      class=${args.class}
+      .validText=${args.validText}
+      .invalidText=${args.invalidText}
+      .warningText=${args.warningText}
+      .infoText=${args.infoText}
+      .helperText=${args.helperText}
+      .showTextAsTooltip=${args.showTextAsTooltip}
+    >
+      <div slot="valid">Valid slot content</div>
+      <div slot="invalid">Invalid slot content</div>
+      <div slot="warning">Warning slot content</div>
+      <div slot="info">Info slot content</div>
+      <div slot="helper">Helper slot content</div>
+    </ix-input>
+  `
+};
+
+
 export const Helper: Story = {
   args: {
     label: 'Required',
     required: true,
     helperText: 'Helper text content',
-    helperSlot: 'Helper slot content'
+    showTextAsTooltip: true,
   },
+  render: (args) => html`
+    <ix-input
+      label=${args.label}
+      required=${args.required}
+      .helperText=${args.helperText}
+      .showTextAsTooltip=${args.showTextAsTooltip}
+    >
+      <div slot="helper">Helper slot content</div>
+    </ix-input>
+  `
 };
 
 export const Valid: Story = {
@@ -75,8 +89,16 @@ export const Valid: Story = {
     label: 'Valid Input',
     class: 'ix-valid',
     validText: 'Valid text content',
-    validSlot: 'Valid slot content'
   },
+  render: (args) => html`
+    <ix-input
+      label=${args.label}
+      class=${args.class}
+      .validText=${args.validText}
+    >
+      <div slot="valid">Valid slot content</div>
+    </ix-input>
+  `
 };
 
 export const Invalid: Story = {
@@ -85,8 +107,17 @@ export const Invalid: Story = {
     required: true,
     class: 'ix-invalid',
     invalidText: 'Invalid text content',
-    invalidSlot: 'Invalid slot content'
   },
+  render: (args) => html`
+    <ix-input
+      label=${args.label}
+      required=${args.required}
+      class=${args.class}
+      .invalidText=${args.invalidText}
+    >
+      <div slot="invalid">Invalid slot content</div>
+    </ix-input>
+  `
 };
 
 export const Warning: Story = {
@@ -94,8 +125,16 @@ export const Warning: Story = {
     label: 'Warning Input',
     class: 'ix-warning',
     warningText: 'Warning text content',
-    warningSlot: 'Warning slot content'
   },
+  render: (args) => html`
+    <ix-input
+      label=${args.label}
+      class=${args.class}
+      .warningText=${args.warningText}
+    >
+      <div slot="warning">Warning slot content</div>
+    </ix-input>
+  `
 };
 
 export const Info: Story = {
@@ -103,15 +142,97 @@ export const Info: Story = {
     label: 'Info Input',
     class: 'ix-info',
     infoText: 'Info text content',
-    infoSlot: 'Info slot content'
   },
+  render: (args) => html`
+    <ix-input
+      label=${args.label}
+      class=${args.class}
+      .infoText=${args.infoText}
+    >
+      <div slot="info">Info slot content</div>
+    </ix-input>
+  `
 };
 
-export const SlotInTooltip: Story = {
+
+export const PasswordExample: Story = {
   args: {
-    label: 'Tooltip Input',
-    helperText: 'Helper text content',
-    showTextAsTooltip: true,
-    helperSlot: 'Helper slot content'
+    label: 'Password',
+    type: 'password',
+    required: true,
+    maxLength: 20,
   },
+  render: (args) => {
+    const handleInput = (e: Event) => {
+      const input = e.target as HTMLInputElement;
+      const password = input.value;
+      const helperElement = input.parentElement?.querySelector('[slot="helper"]');
+
+      if (helperElement) {
+        const hasMinLength = password.length >= 8;
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+
+        helperElement.innerHTML = `
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div>
+              <span style="color: ${hasMinLength ? '#00cc00' : '#ff0000'}">
+                ${hasMinLength ? '✓' : '✗'}
+              </span>
+              Minimum length: ${password.length}/8 characters
+            </div>
+            <div>
+              <span style="color: ${hasSpecialChar ? '#00cc00' : '#ff0000'}">
+                ${hasSpecialChar ? '✓' : '✗'}
+              </span>
+              Minimum 1 special character
+            </div>
+            <div>
+              <span style="color: ${hasUpperCase ? '#00cc00' : '#ff0000'}">
+                ${hasUpperCase ? '✓' : '✗'}
+              </span>
+              Minimum 1 upper case character
+            </div>
+            <div>
+              <span style="color: ${hasNumber ? '#00cc00' : '#ff0000'}">
+                ${hasNumber ? '✓' : '✗'}
+              </span>
+              Minimum 1 number
+            </div>
+          </div>`;
+      }
+    };
+
+    return html`
+      <ix-input
+        label=${args.label}
+        type="password"
+        required=${args.required}
+        @input=${handleInput}
+        .maxLength=${args.maxLength}
+      >
+        <div slot="helper">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div>
+              <span style="color: #ff0000">✗</span>
+              Minimum length: 0/8 characters
+            </div>
+            <div>
+              <span style="color: #ff0000">✗</span>
+              Minimum 1 special character
+            </div>
+            <div>
+              <span style="color: #ff0000">✗</span>
+              Minimum 1 upper case character
+            </div>
+            <div>
+              <span style="color: #ff0000">✗</span>
+              Minimum 1 number
+            </div>
+          </div>
+        </div>
+      </ix-input>
+    `;
+  }
 };
