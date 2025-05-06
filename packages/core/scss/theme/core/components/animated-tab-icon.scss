@@ -1,0 +1,7 @@
+@mixin setVars {
+  --theme-animated-tab-icon--color: var(--theme-color-std-text);
+  --theme-animated-tab-icon--color--hover: var(--theme-color-std-text);
+  --theme-animated-tab-icon--color--active: var(--theme-color-std-text);
+  --theme-animated-tab-icon--color--selected: var(--theme-color-std-text);
+  --theme-animated-tab-icon--color--disabled: var(--theme-color-weak-text);
+}

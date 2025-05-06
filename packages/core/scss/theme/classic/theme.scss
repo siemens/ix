@@ -1,0 +1,61 @@
+@use "./dark/variables" as as_dark_variables;
+@use "./light/variables" as as_light_variables;
+
+@mixin theme-only-dark {
+  :root,
+  :host {
+    color-scheme: dark;
+    @include as_dark_variables.setVars();
+  }
+
+  body[class*='theme-classic'],
+  [data-ix-theme='classic'] {
+    @include as_dark_variables.setVars();
+  }
+}
+
+@mixin theme-only-light {
+  :root,
+  :host {
+    color-scheme: light;
+  }
+
+  body[class*='theme-classic'],
+  [data-ix-theme='classic'] {
+    @include as_light_variables.setVars();
+  }
+}
+
+@mixin theme {
+  :root,
+  :host {
+    color-scheme: light dark;
+  }
+
+  body[class*='theme-classic'],
+  [data-ix-theme='classic'] {
+    @include as_dark_variables.setVars();
+
+    body[class*='theme-classic-dark'],
+    [data-ix-color-schema='dark'],
+    &[data-ix-color-schema='dark'] {
+      @include as_dark_variables.setVars();
+    }
+
+    body[class*='theme-classic-light'],
+    [data-ix-color-schema='light'],
+    &[data-ix-color-schema='light'] {
+      @include as_light_variables.setVars();
+    }
+  }
+
+  [data-ix-theme='classic'][data-ix-color-schema='system'] {
+    @media (prefers-color-scheme: dark) {
+      @include as_dark_variables.setVars();
+    }
+
+    @media (prefers-color-scheme: light) {
+      @include as_light_variables.setVars();
+    }
+  }
+}

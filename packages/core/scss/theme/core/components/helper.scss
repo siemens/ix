@@ -1,0 +1,7 @@
+@mixin setVars {
+  --theme-helper--color: var(--theme-color-soft-text);
+  --theme-helper--color--invalid: var(--theme-color-alarm-text);
+  --theme-helper--color--valid: var(--theme-color-std-text);
+  --theme-helper--color--warning: var(--theme-color-std-text);
+  --theme-helper--color--info: var(--theme-color-std-text);
+}

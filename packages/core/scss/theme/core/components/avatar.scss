@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-avatar--background: var(--theme-color-component-3);
+  --theme-avatar--color: var(--theme-color-std-text);
+}

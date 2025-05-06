@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-input-error--background: var(--theme-color-component-error);
+  --theme-input-error--border-color: var(--theme-color-alarm);
+}

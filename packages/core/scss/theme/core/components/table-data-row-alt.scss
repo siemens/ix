@@ -1,0 +1,9 @@
+@mixin setVars {
+  --theme-table-data-row-alt--background: var(--theme-color-ghost-alt);
+  --theme-table-data-row-alt--background--hover: var(--theme-color-ghost-alt--hover);
+  --theme-table-data-row-alt--background--active: var(--theme-color-ghost-alt--active);
+  --theme-table-data-row-alt--background--selected: var(--theme-color-ghost-alt--selected);
+  --theme-table-data-row-alt--background--disabled: var(--theme-color-ghost-alt);
+  --theme-table-data-row-alt--background--selected-hover: var(--theme-color-ghost-alt--selected-hover);
+  --theme-table-data-row-alt--background--selected-active: var(--theme-color-ghost-alt--selected-active);
+}

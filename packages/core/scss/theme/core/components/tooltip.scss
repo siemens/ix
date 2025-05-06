@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-tooltip--border-color: var(--theme-color-0);
+  --theme-tooltip--color: var(--theme-color-std-text);
+}

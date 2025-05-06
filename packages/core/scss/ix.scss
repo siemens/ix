@@ -6,17 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use './theme/classic/theme' as ix;
+@use './theme/classic/dark/variables' as ixDark;
 
-/* Include 3rd party libraries */
+@use './core';
 
-/* Default Theme */
-@import './theme/classic-dark';
-@import './theme/classic-light';
+@include ix.theme;
 
-/* Core Style */
-@import './core';
-
-/* Load embedded theme */
-body:not([class*='theme-']) {
-  @extend .theme-classic-dark;
+html:not([data-ix-theme]) body:not([data-ix-theme]) {
+  @include ixDark.setVars();
 }
