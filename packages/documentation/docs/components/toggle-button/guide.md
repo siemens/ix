@@ -14,6 +14,7 @@ Variants, options and states of the ix button and the ix icon button components 
 - **Pressed:** Toggle buttons can take a pressed (active) state. To improve accessibility, this state is set via the pressed option so it can be read by screen readers.
 - The options **type** and **color** are not available for toggle buttons.
 - For the primary variant, one of the options **outline** or **ghost** has to be set.
+- **Oval:** The shape of icon toggle buttons can be adjusted from square to oval.
 
 ## Behavior in context
 
