@@ -839,14 +839,14 @@ Only triggered if date-picker-rework is in range mode.
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDatetimePicker,
-  inputs: ['dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showTimeReference', 'showWeekNumbers', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
+  inputs: ['dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'showWeekNumbers', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showTimeReference', 'showWeekNumbers', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
+  inputs: ['dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'showWeekNumbers', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
   standalone: true
 })
 export class IxDatetimePicker {
@@ -2754,7 +2754,7 @@ export declare interface IxTile extends Components.IxTile {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTimeInput,
-  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'textHourColumnHeader', 'textMillisecondColumnHeader', 'textMinuteColumnHeader', 'textSecondColumnHeader', 'textSelectTime', 'textTime', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2762,7 +2762,7 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'textHourColumnHeader', 'textMillisecondColumnHeader', 'textMinuteColumnHeader', 'textSecondColumnHeader', 'textSelectTime', 'textTime', 'validText', 'value', 'warningText'],
   standalone: true
 })
 export class IxTimeInput {
@@ -2791,7 +2791,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTimePicker,
-  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textHourColumnHeader', 'textMillisecondColumnHeader', 'textMinuteColumnHeader', 'textSecondColumnHeader', 'textSelectTime', 'textTime', 'time', 'timeReference'],
   methods: ['getCurrentTime']
 })
 @Component({
@@ -2799,7 +2799,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textHourColumnHeader', 'textMillisecondColumnHeader', 'textMinuteColumnHeader', 'textSecondColumnHeader', 'textSelectTime', 'textTime', 'time', 'timeReference'],
   standalone: true
 })
 export class IxTimePicker {

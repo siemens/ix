@@ -52,6 +52,11 @@ const LUXON_FORMAT_PATTERNS = {
   milliseconds: /\bS\b|SSS|u|uu|uuu|x|X/,
 };
 
+const HOUR_INTERVAL_DEFAULT = 1;
+const MINUTE_INTERVAL_DEFAULT = 1;
+const SECOND_INTERVAL_DEFAULT = 1;
+const MILLISECOND_INTERVAL_DEFAULT = 100;
+
 @Component({
   tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',
@@ -102,28 +107,65 @@ export class TimePicker {
    *
    * @since 3.1.0
    */
-  @Prop() hourInterval: number = 1;
+  @Prop({ mutable: true }) hourInterval: number = HOUR_INTERVAL_DEFAULT;
+  @Watch('hourInterval')
+  watchHourIntervalPropHandler(newValue: number) {
+    if (this.timeRef && newValue >= 0 && newValue <= 12) {
+      return;
+    }
+
+    if (!this.timeRef && newValue >= 0 && newValue <= 23) {
+      return;
+    }
+
+    this.hourInterval = HOUR_INTERVAL_DEFAULT;
+  }
 
   /**
    * Interval for minute selection
    *
    * @since 3.1.0
    */
-  @Prop() minuteInterval: number = 1;
+  @Prop({ mutable: true }) minuteInterval: number = MINUTE_INTERVAL_DEFAULT;
+  @Watch('minuteInterval')
+  watchMinuteIntervalPropHandler(newValue: number) {
+    if (newValue >= 0 && newValue <= 59) {
+      return;
+    }
+
+    this.minuteInterval = MINUTE_INTERVAL_DEFAULT;
+  }
 
   /**
    * Interval for second selection
    *
    * @since 3.1.0
    */
-  @Prop() secondInterval: number = 1;
+  @Prop({ mutable: true }) secondInterval: number = SECOND_INTERVAL_DEFAULT;
+  @Watch('secondInterval')
+  watchSecondIntervalPropHandler(newValue: number) {
+    if (newValue >= 0 && newValue <= 59) {
+      return;
+    }
+
+    this.secondInterval = SECOND_INTERVAL_DEFAULT;
+  }
 
   /**
    * Interval for millisecond selection
    *
    * @since 3.1.0
    */
-  @Prop() millisecondInterval: number = 100;
+  @Prop({ mutable: true }) millisecondInterval: number =
+    MILLISECOND_INTERVAL_DEFAULT;
+  @Watch('millisecondInterval')
+  watchMillisecondIntervalPropHandler(newValue: number) {
+    if (newValue >= 0 && newValue <= 999) {
+      return;
+    }
+
+    this.millisecondInterval = MILLISECOND_INTERVAL_DEFAULT;
+  }
 
   /**
    * Select time with format string
@@ -149,7 +191,7 @@ export class TimePicker {
   @Prop() timeReference: 'AM' | 'PM' | undefined;
 
   /**
-   * Text of date select button
+   * Text of time select button
    */
   @Prop() textSelectTime = 'Confirm';
 
@@ -157,6 +199,26 @@ export class TimePicker {
    * Text for top label
    */
   @Prop() textTime: string = 'Time';
+
+  /**
+   * Text for hour column header
+   */
+  @Prop() textHourColumnHeader: string = 'hr';
+
+  /**
+   * Text for minute column header
+   */
+  @Prop() textMinuteColumnHeader: string = 'min';
+
+  /**
+   * Text for second column header
+   */
+  @Prop() textSecondColumnHeader: string = 'sec';
+
+  /**
+   * Text for millisecond column header
+   */
+  @Prop() textMillisecondColumnHeader: string = 'ms';
 
   /**
    * Time event
@@ -191,7 +253,6 @@ export class TimePicker {
   @State() private isUnitFocused: boolean = false;
   @State() private focusedUnit: TimePickerDescriptorUnit = 'hour';
   @State() private focusedValue: number = 0;
-  @State() private ampmFocus: 'AM' | 'PM' | undefined;
 
   private visibilityObserver?: MutationObserver;
   private hasUpdatedScrollPositions = false;
@@ -214,6 +275,11 @@ export class TimePicker {
       this._time.millisecond;
     this.formattedTime = this.getFormattedTime();
     this.setTimePickerDescriptors();
+
+    this.watchHourIntervalPropHandler(this.hourInterval);
+    this.watchMinuteIntervalPropHandler(this.minuteInterval);
+    this.watchSecondIntervalPropHandler(this.secondInterval);
+    this.watchMillisecondIntervalPropHandler(this.millisecondInterval);
   }
 
   componentDidLoad() {
@@ -230,7 +296,7 @@ export class TimePicker {
 
   @OnListener<TimePicker>('keydown')
   handleKeyDown(event: KeyboardEvent) {
-    if (!this.isUnitFocused && !this.ampmFocus) {
+    if (!this.isUnitFocused) {
       return;
     }
 
@@ -260,21 +326,11 @@ export class TimePicker {
         break;
 
       case 'ArrowUp':
-        if (this.ampmFocus) {
-          this.handleAmpmFocus(this.ampmFocus === 'AM' ? 'PM' : 'AM');
-          break;
-        }
-
         newValue -= newValueInterval;
         this.updateFocusedValue(newValue);
         break;
 
       case 'ArrowDown':
-        if (this.ampmFocus) {
-          this.handleAmpmFocus(this.ampmFocus === 'AM' ? 'PM' : 'AM');
-          break;
-        }
-
         newValue += newValueInterval;
         this.updateFocusedValue(newValue);
         break;
@@ -289,11 +345,6 @@ export class TimePicker {
 
       case 'Enter':
       case ' ':
-        if (this.ampmFocus) {
-          this.changeTimeReference(this.ampmFocus);
-          break;
-        }
-
         this.select(this.focusedUnit, this.focusedValue);
         break;
 
@@ -341,9 +392,7 @@ export class TimePicker {
     const currentUnitIndex = this.timePickerDescriptors.findIndex(
       (d) => d.unit === this.focusedUnit
     );
-    const newUnitIndex = !this.ampmFocus
-      ? currentUnitIndex + direction
-      : currentUnitIndex;
+    const newUnitIndex = currentUnitIndex + direction;
 
     // Check if new index is within bounds
     if (newUnitIndex >= 0 && newUnitIndex < this.timePickerDescriptors.length) {
@@ -353,27 +402,6 @@ export class TimePicker {
 
       this.focusedUnit = newUnit;
       this.updateFocusedValue(selectedValue);
-      this.ampmFocus = undefined;
-    } else if (
-      direction > 0 &&
-      this.timeRef !== undefined &&
-      newUnitIndex === this.timePickerDescriptors.length
-    ) {
-      // If moving right and we have AM/PM, focus that
-      this.handleAmpmFocus(this.timeRef);
-    }
-  }
-
-  private handleAmpmFocus(element: 'AM' | 'PM') {
-    this.ampmFocus = element;
-
-    const ampmContainer = this.hostElement.shadowRoot?.querySelector(
-      `[data-am-pm-id="${element}"]`
-    ) as HTMLDivElement;
-
-    if (ampmContainer) {
-      ampmContainer.setAttribute('tabindex', '0');
-      ampmContainer.focus();
     }
   }
 
@@ -494,22 +522,22 @@ export class TimePicker {
   }
 
   private isFormat12Hour(format: string): boolean {
-    const morningTime = DateTime.fromObject({ hour: 9 });
-    const afternoonTime = DateTime.fromObject({ hour: 15 });
+    // Remove any text that's inside quotes (literal text in Luxon format strings)
+    let cleanFormat = '';
+    let inQuote = false;
 
-    const morningFormatted = morningTime.toFormat(format);
-    const afternoonFormatted = afternoonTime.toFormat(format);
+    for (let i = 0; i < format.length; i++) {
+      const char = format[i];
+      if (char === "'") {
+        inQuote = !inQuote;
+      } else if (!inQuote) {
+        cleanFormat += char;
+      }
+    }
 
-    // replace all digits with 'X' to compare the format without the actual numbers
-    const hourDigitsOnly = (str: string) => str.replace(/\d+/g, 'X');
-
-    // formatted strings are different --> 12 hour format
-    // formatted strings are the same --> 24 hour format
-    // if the format contains 't' or 'a' it is also 12 hour format
-    return (
-      hourDigitsOnly(morningFormatted) !== hourDigitsOnly(afternoonFormatted) ||
-      /[ta]/i.test(format)
-    );
+    // Check for specific 12-hour format tokens
+    // Case-sensitive matching to distinguish between 'h' and 'H'
+    return /h|a|t/.test(cleanFormat);
   }
 
   private setTimeRef() {
@@ -560,27 +588,27 @@ export class TimePicker {
     this.timePickerDescriptors = [
       {
         unit: 'hour',
-        header: 'hr',
+        header: this.textHourColumnHeader,
         hidden: !LUXON_FORMAT_PATTERNS.hours.test(this.format) && this.showHour,
         numberArray: hourNumbers,
       },
       {
         unit: 'minute',
-        header: 'min',
+        header: this.textMinuteColumnHeader,
         hidden:
           !LUXON_FORMAT_PATTERNS.minutes.test(this.format) && this.showMinutes,
         numberArray: minuteNumbers,
       },
       {
         unit: 'second',
-        header: 'sec',
+        header: this.textSecondColumnHeader,
         hidden:
           !LUXON_FORMAT_PATTERNS.seconds.test(this.format) && this.showSeconds,
         numberArray: secondNumbers,
       },
       {
         unit: 'millisecond',
-        header: 'ms',
+        header: this.textMillisecondColumnHeader,
         hidden: !LUXON_FORMAT_PATTERNS.milliseconds.test(this.format),
         numberArray: millisecondsNumbers,
       },
@@ -633,7 +661,7 @@ export class TimePicker {
         elementContainer.offsetTop -
         elementListHeight / 2 +
         elementContainerHeight / 2 -
-        9;
+        13;
 
       elementList.scrollTop = scrollPosition;
     }
@@ -661,12 +689,33 @@ export class TimePicker {
     }
   }
 
+  private formatUnitValue(
+    unit: TimePickerDescriptorUnit,
+    value: number
+  ): string {
+    if (unit === 'millisecond') {
+      return value.toString().padStart(3, '0');
+    }
+
+    return value < 10 ? `0${value}` : value.toString();
+  }
+
+  private getColumnSeparator(currentIndex: number): string {
+    if (currentIndex + 1 < this.timePickerDescriptors.length) {
+      const nextUnit = this.timePickerDescriptors[currentIndex + 1].unit;
+      return nextUnit === 'millisecond' ? '.' : ':';
+    }
+
+    return ':';
+  }
+
   render() {
     return (
       <Host>
         <ix-date-time-card
           standaloneAppearance={this.standaloneAppearance}
           corners={this.corners}
+          hasFooter={true}
         >
           <div class="header" slot="header">
             <ix-typography format="h5">{this.textTime || 'Time'}</ix-typography>
@@ -675,14 +724,16 @@ export class TimePicker {
             {this.timePickerDescriptors.map((descriptor, index: number) => (
               <div class="flex">
                 <div class={{ columns: true, hidden: descriptor.hidden }}>
-                  <div class="column-header">{descriptor.header}</div>
+                  <div class="column-header" title={descriptor.header}>
+                    {descriptor.header}
+                  </div>
                   <div
                     data-element-list-id={descriptor.unit}
                     class="element-list"
                     tabIndex={-1}
                   >
                     {descriptor.numberArray.map((number) => (
-                      <div
+                      <button
                         data-element-container-id={`${descriptor.unit}-${number}`}
                         class={{
                           selected: this.isSelected(descriptor.unit, number),
@@ -704,12 +755,8 @@ export class TimePicker {
                         role="button"
                         aria-label={`${descriptor.header}: ${number}`}
                       >
-                        {descriptor.unit === 'millisecond'
-                          ? number.toString().padStart(3, '0')
-                          : number < 10
-                          ? `0${number}`
-                          : number}
-                      </div>
+                        {this.formatUnitValue(descriptor.unit, number)}
+                      </button>
                     ))}
                     <div class="element-list-padding"></div>
                   </div>
@@ -722,56 +769,40 @@ export class TimePicker {
                       hidden: descriptor.hidden,
                     }}
                   >
-                    {index + 1 < this.timePickerDescriptors.length &&
-                    this.timePickerDescriptors[index + 1].unit === 'millisecond'
-                      ? '.'
-                      : ':'}
+                    {this.getColumnSeparator(index)}
                   </div>
                 )}
               </div>
             ))}
-
-            <div
-              class={{
-                columns: true,
-                'default-space': true,
-                hidden: this.timeRef === undefined,
-              }}
-            >
-              <div class="element-list element-list--time-refs">
-                <div
-                  data-am-pm-id="AM"
-                  class={{
-                    'element-container': true,
-                    selected: this.timeRef === 'AM',
-                  }}
-                  onClick={() => this.changeTimeReference('AM')}
-                  tabIndex={this.ampmFocus === 'AM' ? 0 : -1}
-                >
-                  AM
-                </div>
-                <div
-                  data-am-pm-id="PM"
-                  class={{
-                    'element-container': true,
-                    selected: this.timeRef === 'PM',
-                  }}
-                  onClick={() => this.changeTimeReference('PM')}
-                  tabIndex={this.ampmFocus === 'PM' ? 0 : -1}
-                >
-                  PM
-                </div>
-              </div>
-            </div>
           </div>
+
           <div
             class={{
-              button: true,
-              standalone: true,
+              footer: true,
+              'footer--compact': this.timePickerDescriptors.length <= 2,
             }}
+            slot="footer"
           >
+            {this.timeRef && (
+              <div class="time-ref-buttons">
+                <button
+                  class={{ selected: this.timeRef === 'AM' }}
+                  onClick={() => this.changeTimeReference('AM')}
+                >
+                  AM
+                </button>
+                <button
+                  class={{ selected: this.timeRef === 'PM' }}
+                  onClick={() => this.changeTimeReference('PM')}
+                >
+                  PM
+                </button>
+              </div>
+            )}
             <ix-button
+              class="confirm-button"
               onClick={() => {
+                console.log(this._time?.toFormat(this.format));
                 this.timeSelect.emit(this._time?.toFormat(this.format));
               }}
             >

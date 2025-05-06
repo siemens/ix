@@ -840,6 +840,7 @@ export namespace Components {
           * Set corners style
          */
         "corners": DateTimeCardCorners1;
+        "hasFooter": boolean;
         /**
           * set styles
          */
@@ -880,6 +881,21 @@ export namespace Components {
           * If true a date-range can be selected (from/to).
          */
         "range": boolean;
+        /**
+          * Show hour input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showHour": boolean;
+        /**
+          * Show minutes input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showMinutes": boolean;
+        /**
+          * Show seconds input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showSeconds": boolean;
         /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
@@ -2753,6 +2769,30 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Text for time-picker hour column header
+         */
+        "textHourColumnHeader": string;
+        /**
+          * Text for time-picker millisecond column header
+         */
+        "textMillisecondColumnHeader": string;
+        /**
+          * Text for time-picker minute column header
+         */
+        "textMinuteColumnHeader": string;
+        /**
+          * Text for time-picker second column header
+         */
+        "textSecondColumnHeader": string;
+        /**
+          * Text of time-picker time select button
+         */
+        "textSelectTime": string;
+        /**
+          * Text for time-picker top label
+         */
+        "textTime": string;
+        /**
           * valid text below the input field
          */
         "validText"?: string;
@@ -2818,7 +2858,23 @@ export namespace Components {
          */
         "standaloneAppearance": boolean;
         /**
-          * Text of date select button
+          * Text for hour column header
+         */
+        "textHourColumnHeader": string;
+        /**
+          * Text for millisecond column header
+         */
+        "textMillisecondColumnHeader": string;
+        /**
+          * Text for minute column header
+         */
+        "textMinuteColumnHeader": string;
+        /**
+          * Text for second column header
+         */
+        "textSecondColumnHeader": string;
+        /**
+          * Text of time select button
          */
         "textSelectTime": string;
         /**
@@ -2833,7 +2889,7 @@ export namespace Components {
           * Set time reference
           * @deprecated This is determined by the currently set time
          */
-        "timeReference": 'AM' | 'PM';
+        "timeReference": 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**
@@ -5774,6 +5830,7 @@ declare namespace LocalJSX {
           * Set corners style
          */
         "corners"?: DateTimeCardCorners1;
+        "hasFooter"?: boolean;
         /**
           * set styles
          */
@@ -5826,6 +5883,21 @@ declare namespace LocalJSX {
           * If true a date-range can be selected (from/to).
          */
         "range"?: boolean;
+        /**
+          * Show hour input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showHour"?: boolean;
+        /**
+          * Show minutes input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showMinutes"?: boolean;
+        /**
+          * Show seconds input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
+         */
+        "showSeconds"?: boolean;
         /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
@@ -7820,6 +7892,30 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Text for time-picker hour column header
+         */
+        "textHourColumnHeader"?: string;
+        /**
+          * Text for time-picker millisecond column header
+         */
+        "textMillisecondColumnHeader"?: string;
+        /**
+          * Text for time-picker minute column header
+         */
+        "textMinuteColumnHeader"?: string;
+        /**
+          * Text for time-picker second column header
+         */
+        "textSecondColumnHeader"?: string;
+        /**
+          * Text of time-picker time select button
+         */
+        "textSelectTime"?: string;
+        /**
+          * Text for time-picker top label
+         */
+        "textTime"?: string;
+        /**
           * valid text below the input field
          */
         "validText"?: string;
@@ -7889,7 +7985,23 @@ declare namespace LocalJSX {
          */
         "standaloneAppearance"?: boolean;
         /**
-          * Text of date select button
+          * Text for hour column header
+         */
+        "textHourColumnHeader"?: string;
+        /**
+          * Text for millisecond column header
+         */
+        "textMillisecondColumnHeader"?: string;
+        /**
+          * Text for minute column header
+         */
+        "textMinuteColumnHeader"?: string;
+        /**
+          * Text for second column header
+         */
+        "textSecondColumnHeader"?: string;
+        /**
+          * Text of time select button
          */
         "textSelectTime"?: string;
         /**
@@ -7904,7 +8016,7 @@ declare namespace LocalJSX {
           * Set time reference
           * @deprecated This is determined by the currently set time
          */
-        "timeReference"?: 'AM' | 'PM';
+        "timeReference"?: 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**

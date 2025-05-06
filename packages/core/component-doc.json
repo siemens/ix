@@ -1306,6 +1306,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-split-button",
+        "ix-time-input",
         "ix-time-picker",
         "ix-upload"
       ],
@@ -1338,6 +1339,9 @@
           "ix-button"
         ],
         "ix-split-button": [
+          "ix-button"
+        ],
+        "ix-time-input": [
           "ix-button"
         ],
         "ix-time-picker": [
@@ -5896,6 +5900,96 @@
           "docs": "If true a date-range can be selected (from/to).",
           "docsTags": [],
           "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "showHour",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-hour",
+          "reflectToAttr": false,
+          "docs": "Show hour input",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
+            }
+          ],
+          "default": "true",
+          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "showMinutes",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-minutes",
+          "reflectToAttr": false,
+          "docs": "Show minutes input",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
+            }
+          ],
+          "default": "true",
+          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "showSeconds",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-seconds",
+          "reflectToAttr": false,
+          "docs": "Show seconds input",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
+            }
+          ],
+          "default": "true",
+          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
           "values": [
             {
               "type": "boolean"
@@ -19250,14 +19344,16 @@
         "ix-icon-button",
         "ix-field-wrapper",
         "ix-dropdown",
-        "ix-time-picker"
+        "ix-time-picker",
+        "ix-button"
       ],
       "dependencyGraph": {
         "ix-time-input": [
           "ix-icon-button",
           "ix-field-wrapper",
           "ix-dropdown",
-          "ix-time-picker"
+          "ix-time-picker",
+          "ix-button"
         ],
         "ix-icon-button": [
           "ix-spinner"
@@ -19683,6 +19779,30 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textSelectTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-select-time",
+          "reflectToAttr": false,
+          "docs": "Text of time select button",
+          "docsTags": [],
+          "default": "'Confirm'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -20194,6 +20314,102 @@
           "setter": false
         },
         {
+          "name": "textHourColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-hour-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for hour column header",
+          "docsTags": [],
+          "default": "'hr'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textMillisecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-millisecond-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for millisecond column header",
+          "docsTags": [],
+          "default": "'ms'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textMinuteColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-minute-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for minute column header",
+          "docsTags": [],
+          "default": "'min'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textSecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-second-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for second column header",
+          "docsTags": [],
+          "default": "'sec'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "textSelectTime",
           "type": "string",
           "complexType": {
@@ -20204,7 +20420,7 @@
           "mutable": false,
           "attr": "text-select-time",
           "reflectToAttr": false,
-          "docs": "Text of date select button",
+          "docs": "Text of time select button",
           "docsTags": [],
           "default": "'Confirm'",
           "values": [
@@ -20269,7 +20485,7 @@
           "name": "timeReference",
           "type": "\"AM\" | \"PM\"",
           "complexType": {
-            "original": "'AM' | 'PM'",
+            "original": "'AM' | 'PM' | undefined",
             "resolved": "\"AM\" | \"PM\"",
             "references": {}
           },

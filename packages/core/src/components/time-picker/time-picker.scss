@@ -37,6 +37,10 @@
     box-shadow: none;
   }
 
+  .hidden {
+    display: none;
+  }
+
   .header {
     display: flex;
     align-items: center;
@@ -59,6 +63,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+        margin-top: 1px;
 
         .column-header {
           height: 40px;
@@ -66,6 +71,9 @@
           line-height: 40px;
           text-align: center;
           color: var(--theme-color-soft-text);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
         }
       }
 
@@ -74,7 +82,7 @@
         align-items: center;
         margin: 0 $tiny-space;
         min-height: 100%;
-        margin-top: 48.5px;
+        margin-top: 51.5px;
       }
     }
 
@@ -83,13 +91,14 @@
       overflow: auto;
       max-height: 250px;
 
-      &--time-refs {
-        padding-top: 40px;
+      button {
+        all: unset;
       }
 
       .element-container {
         width: 40px;
         height: 40px;
+        margin: 3px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -102,7 +111,7 @@
 
         &:focus {
           outline: 1px solid var(--theme-color-focus-bdr);
-          outline-offset: -1px;
+          outline-offset: 1px;
         }
       }
 
@@ -154,12 +163,57 @@
     text-align: center;
   }
 
-  .button {
+  .footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
 
-    &.standalone {
-      padding-top: 0.5rem;
+    .confirm-button {
+      margin-left: auto;
+    }
+
+    &--compact {
+      flex-direction: column;
+      align-items: center;
+
+      .confirm-button {
+        margin-left: initial;
+      }
+    }
+
+    .time-ref-buttons {
+      button {
+        all: unset;
+        width: 42px;
+        height: 30px;
+        text-align: center;
+        border: 1px solid var(--theme-color-primary);
+        color: var(--theme-color-primary);
+        background-color: var(--theme-color-secondary);
+        font-weight: 700;
+
+        &:focus {
+          outline: 1px solid var(--theme-color-focus-bdr);
+          outline-offset: 1px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: var(--theme-color-secondary-hover);
+          border-color: var(--theme-btn-primary--background--hover);
+        }
+
+        &.selected {
+          color: var(--theme-color-secondary);
+          background-color: var(--theme-btn-primary--background);
+
+          &:hover {
+            background-color: var(--theme-btn-primary--background--hover);
+            border-color: var(--theme-btn-primary--background--hover);
+          }
+        }
+      }
     }
   }
 

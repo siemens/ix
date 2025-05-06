@@ -400,6 +400,9 @@ export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-
 
 export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePicker>('ix-datetime-picker', defineIxDatetimePicker, [
   'range',
+  'showHour',
+  'showMinutes',
+  'showSeconds',
   'minDate',
   'maxDate',
   'dateFormat',
@@ -1119,6 +1122,12 @@ export const IxTimeInput = /*@__PURE__*/ defineContainer<JSX.IxTimeInput>('ix-ti
   'minuteInterval',
   'secondInterval',
   'millisecondInterval',
+  'textSelectTime',
+  'textTime',
+  'textHourColumnHeader',
+  'textMinuteColumnHeader',
+  'textSecondColumnHeader',
+  'textMillisecondColumnHeader',
   'valueChange',
   'validityStateChange',
   'ixFocus',
@@ -1141,6 +1150,10 @@ export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-
   'timeReference',
   'textSelectTime',
   'textTime',
+  'textHourColumnHeader',
+  'textMinuteColumnHeader',
+  'textSecondColumnHeader',
+  'textMillisecondColumnHeader',
   'timeSelect',
   'timeChange'
 ]);

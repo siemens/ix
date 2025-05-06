@@ -562,6 +562,9 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
     tagName: 'ix-datetime-picker',
     properties: {
         range: 'range',
+        showHour: 'show-hour',
+        showMinutes: 'show-minutes',
+        showSeconds: 'show-seconds',
         minDate: 'min-date',
         maxDate: 'max-date',
         dateFormat: 'date-format',
@@ -1644,7 +1647,13 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         hourInterval: 'hour-interval',
         minuteInterval: 'minute-interval',
         secondInterval: 'second-interval',
-        millisecondInterval: 'millisecond-interval'
+        millisecondInterval: 'millisecond-interval',
+        textSelectTime: 'text-select-time',
+        textTime: 'text-time',
+        textHourColumnHeader: 'text-hour-column-header',
+        textMinuteColumnHeader: 'text-minute-column-header',
+        textSecondColumnHeader: 'text-second-column-header',
+        textMillisecondColumnHeader: 'text-millisecond-column-header'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -1671,7 +1680,11 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
         time: 'time',
         timeReference: 'time-reference',
         textSelectTime: 'text-select-time',
-        textTime: 'text-time'
+        textTime: 'text-time',
+        textHourColumnHeader: 'text-hour-column-header',
+        textMinuteColumnHeader: 'text-minute-column-header',
+        textSecondColumnHeader: 'text-second-column-header',
+        textMillisecondColumnHeader: 'text-millisecond-column-header'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
