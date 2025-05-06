@@ -35,7 +35,6 @@ type Story = StoryObj<InputWithSlots>;
 export const AllSlots: Story = {
   args: {
     label: 'All Slots',
-    required: true,
     class: 'ix-valid',
     validText: 'Valid text content',
     invalidText: 'Invalid text content',
@@ -47,7 +46,6 @@ export const AllSlots: Story = {
   render: (args) => html`
     <ix-input
       label=${args.label}
-      required=${args.required}
       class=${args.class}
       .validText=${args.validText}
       .invalidText=${args.invalidText}
@@ -69,9 +67,9 @@ export const PasswordExample: Story = {
   args: {
     label: 'Password',
     type: 'password',
-    required: true,
     maxLength: 20,
-    showTextAsTooltip: true,
+    showTextAsTooltip: false,
+    helperText: 'Password Instructions',
   },
   render: (args) => {
     class PasswordValidator extends LitElement {
@@ -108,7 +106,7 @@ export const PasswordExample: Story = {
           <div style="display: flex; flex-direction: column; gap: 8px;">
             ${validationItem(
               this.state.hasMinLength,
-              `Minimum length: ${this.state.length}/8 characters`
+              `Minimum length 8 characters`
             )}
             ${validationItem(
               this.state.hasSpecialChar,
@@ -143,10 +141,10 @@ export const PasswordExample: Story = {
       <ix-input
         label=${args.label}
         type="password"
-        required=${args.required}
         @input=${handleInput}
         .maxLength=${args.maxLength}
         .showTextAsTooltip=${args.showTextAsTooltip}
+        .helperText=${args.helperText}
       >
         <password-validator slot="helper"></password-validator>
       </ix-input>
