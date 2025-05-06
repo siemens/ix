@@ -27,6 +27,30 @@ export class ToastService {
     return getToastContainer().position;
   }
 
+  private createViewFromTemplate(
+    template: TemplateRef<any> | string | undefined,
+    context: any
+  ) {
+    if (template === undefined) {
+      return {
+        node: '',
+        embeddedView: undefined,
+      };
+    }
+    if (!(template instanceof TemplateRef)) {
+      return {
+        node: template as string,
+        embeddedView: undefined,
+      };
+    }
+
+    const embeddedView = template.createEmbeddedView({ $implicit: context });
+    const node = embeddedView.rootNodes[0];
+    embeddedView.detectChanges();
+
+    return { node, embeddedView };
+  }
+
   public async show(config: ToastConfig) {
     if (
       typeof config.message === 'string' &&
@@ -41,29 +65,13 @@ export class ToastService {
       close: null,
     };
 
-    let node: HTMLElement | string | undefined = config.message as string;
-    let embeddedView: any;
-    let embeddedViewAction: any;
-    let nodeAction: HTMLElement | undefined;
-
-    if (config.message instanceof TemplateRef) {
-      embeddedView = config.message.createEmbeddedView({ $implicit: context });
-      node = embeddedView.rootNodes[0];
-      embeddedView.detectChanges();
-    }
-
-    if (config.action instanceof TemplateRef) {
-      embeddedViewAction = config.action.createEmbeddedView({
-        $implicit: context,
-      });
-      nodeAction = embeddedViewAction.rootNodes[0];
-      embeddedViewAction.detectChanges();
-    }
+    const messageResult = this.createViewFromTemplate(config.message, context);
+    const actionResult = this.createViewFromTemplate(config.action, context);
 
     const instance = await toast({
       ...config,
-      message: node,
-      action: nodeAction,
+      message: messageResult.node,
+      action: actionResult.node,
     });
 
     context.close = () => {
@@ -71,8 +79,8 @@ export class ToastService {
     };
 
     instance.onClose.once(() => {
-      embeddedView?.destroy();
-      embeddedViewAction?.destroy();
+      messageResult.embeddedView?.destroy();
+      actionResult.embeddedView?.destroy();
     });
 
     return instance;
