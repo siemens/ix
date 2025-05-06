@@ -135,7 +135,7 @@ export class FieldWrapper implements FieldWrapperInterface {
         this.hasInvalidContent ||
         this.hasInfoContent
       );
-    }
+    };
 
     return (
       <Host>
@@ -169,16 +169,17 @@ export class FieldWrapper implements FieldWrapperInterface {
           </div>
         </div>
 
-        {this.showTextAsTooltip === true &&  (hasAnyText(textOptions) || hasAnySlotContent()) && (
-          <ix-tooltip
-            for={this.slotRef.waitForCurrent()}
-            showDelay={500}
-            placement="bottom"
-          >
-            {renderHelperText(textOptions)}
-            {renderStatusSlot()}
-          </ix-tooltip>
-        )}
+        {this.showTextAsTooltip === true &&
+          (hasAnyText(textOptions) || hasAnySlotContent()) && (
+            <ix-tooltip
+              for={this.slotRef.waitForCurrent()}
+              showDelay={500}
+              placement="bottom"
+            >
+              {renderHelperText(textOptions)}
+              {renderStatusSlot()}
+            </ix-tooltip>
+          )}
       </Host>
     );
   }
