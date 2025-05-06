@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Toast Custom Action Test</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@siemens/ix-icons/dist/ix-icons.css"
+    />
+    <style>
+      .ghost-button {
+        background: none;
+        border: none;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        display: flex;
+        align-items: center;
+      }
+      .ghost-button .icon {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <ix-toast-container></ix-toast-container>
+    <script>
+      (async () => {
+        await window.customElements.whenDefined('ix-toast-container');
+        const toastContainer = document.querySelector('ix-toast-container');
+
+        const createActionButton = (label, icon = null, ghost = false) => {
+          const btn = document.createElement('button');
+          if (ghost) {
+            btn.className = 'ghost-button';
+          }
+          if (icon) {
+            const iconElement = document.createElement('ix-icon');
+            iconElement.setAttribute('name', icon);
+            iconElement.className = 'icon';
+            btn.appendChild(iconElement);
+          }
+          btn.appendChild(document.createTextNode(label));
+          return btn;
+        };
+
+        toastContainer.showToast({
+          title: 'Toast headline',
+          action: createActionButton('Undo'),
+          type: 'info',
+          autoClose: false,
+        });
+
+        toastContainer.showToast({
+          title: 'Toast headline',
+          message: 'Toast message text',
+          type: 'error',
+          autoClose: false,
+        });
+
+        toastContainer.showToast({
+          message: 'Toast message text',
+          action: createActionButton('Undo'),
+          type: 'success',
+          autoClose: false,
+        });
+
+        toastContainer.showToast({
+          title: 'Toast headline',
+          message: 'Toast message text',
+          action: createActionButton('Undo'),
+          type: 'warning',
+          autoClose: false,
+        });
+
+        toastContainer.showToast({
+          title: 'Toast headline',
+          message: 'Toast message text',
+          icon: 'bulb',
+          action: createActionButton('Undo', 'undo', true),
+          type: 'info',
+          autoClose: false,
+        });
+      })();
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>
