@@ -127,6 +127,16 @@ export class FieldWrapper implements FieldWrapperInterface {
       }
       return statusSlot;
     };
+    const hasAnySlotContent = () => {
+      return (
+        this.hasHelperContent ||
+        this.hasWarningContent ||
+        this.hasValidContent ||
+        this.hasInvalidContent ||
+        this.hasInfoContent
+      );
+    }
+
     return (
       <Host>
         {this.label && (
@@ -159,7 +169,7 @@ export class FieldWrapper implements FieldWrapperInterface {
           </div>
         </div>
 
-        {this.showTextAsTooltip === true && hasAnyText(textOptions) && (
+        {this.showTextAsTooltip === true &&  (hasAnyText(textOptions) || hasAnySlotContent()) && (
           <ix-tooltip
             for={this.slotRef.waitForCurrent()}
             showDelay={500}
