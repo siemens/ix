@@ -15,6 +15,8 @@ export function CategoryButton(
   props: React.PropsWithChildren<{
     title: string;
     link: string;
+    buttonWidth?: string;
+    imageWidth?: string;
   }>
 ) {
   return (
@@ -24,10 +26,16 @@ export function CategoryButton(
       onClick={() => {
         window.location.href = props.link;
       }}
+      style={{
+        width: props.buttonWidth,
+      }}
     >
       <div className={styles.CategoryButton__Content}>
         <div className={styles.CategoryButton__Title}>{props.title}</div>
-        <div className={styles.CategoryButton__Image}>
+        <div
+          className={styles.CategoryButton__Image}
+          style={{ width: props.imageWidth }}
+        >
           {props.children}
         </div>
       </div>
