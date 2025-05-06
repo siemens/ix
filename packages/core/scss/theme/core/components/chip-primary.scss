@@ -1,0 +1,8 @@
+@mixin setVars {
+  --theme-chip-primary--background: var(--theme-color-primary);
+  --theme-chip-primary--background--hover: var(--theme-color-primary--hover);
+  --theme-chip-primary--background--active: var(--theme-color-primary--active);
+  --theme-chip-primary--color: var(--theme-color-primary--contrast);
+  --theme-chip-primary--color--hover: var(--theme-color-primary--contrast);
+  --theme-chip-primary--color--active: var(--theme-color-primary--contrast);
+}

@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-input-gripper--color: var(--theme-color-weak-text);
+  --theme-input-gripper--color--hover: var(--theme-color-weak-text);
+  --theme-input-gripper--color--focus: var(--theme-color-weak-text);
+}

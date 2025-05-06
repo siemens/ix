@@ -1,0 +1,8 @@
+@mixin setVars {
+  --theme-menu-btn--color: var(--theme-color-std-text);
+  --theme-menu-btn--color--hover: var(--theme-color-std-text);
+  --theme-menu-btn--color--active: var(--theme-color-std-text);
+  --theme-menu-btn--background: var(--theme-color-ghost);
+  --theme-menu-btn--background--hover: var(--theme-color-ghost--hover);
+  --theme-menu-btn--background--active: var(--theme-color-ghost--active);
+}

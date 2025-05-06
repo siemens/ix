@@ -18,5 +18,50 @@ SPDX-License-Identifier: MIT
     <script nomodule src="./build/siemens-ix.js"></script>
     <link rel="stylesheet" href="./build/siemens-ix.css" />
   </head>
-  <body style="margin: 0px; height: 100vh"></body>
+  <body style="margin: 0px; height: 100vh">
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- Only for testing remove before merging  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <h1>root</h1>
+    <div style="background-color: var(--theme-color-2); padding: 5rem">
+      color 2
+    </div>
+    <div
+      style="
+        background-color: var(--theme-app-header--background);
+        padding: 5rem;
+      "
+    >
+      app header
+    </div>
+    <ix-application-header name="Example"></ix-application-header>
+
+    <h1>child</h1>
+    <div
+      style="
+        border: 2px dotted red;
+        padding: 2rem;
+        background-color: var(--theme-color-1);
+      "
+      data-ix-color-schema="light"
+    >
+      <div style="background-color: var(--theme-color-2); padding: 5rem">
+        color 2
+      </div>
+      <div
+        style="
+          background-color: var(--theme-app-header--background);
+          padding: 5rem;
+        "
+      >
+        app header
+      </div>
+      <ix-application-header name="Example"></ix-application-header>
+    </div>
+  </body>
 </html>

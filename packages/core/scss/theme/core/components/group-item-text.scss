@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-group-item-text--color: var(--theme-color-std-text);
+  --theme-group-item-text--color--disabled: var(--theme-color-weak-text);
+}

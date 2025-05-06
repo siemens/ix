@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-slider-track-marker--background: var(--theme-color-8);
+  --theme-slider-track-marker--background--disabled: var(--theme-color-5);
+}

@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-tile--box-shadow: none;
+  --theme-tile--border-radius: var(--theme-default-border-radius);
+}

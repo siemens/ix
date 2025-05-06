@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-modal--background: var(--theme-color-2);
+  --theme-modal--border-color: var(--theme-color-0);
+  --theme-modal--box-shadow: var(--theme-shadow-4);
+}

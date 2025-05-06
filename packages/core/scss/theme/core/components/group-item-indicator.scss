@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-group-item-indicator--background: var(--theme-color-0);
+  --theme-group-item-indicator--background--selected: var(--theme-color-dynamic);
+  --theme-group-item-indicator--background--subselected: var(--theme-color-dynamic);
+}

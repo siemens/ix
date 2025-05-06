@@ -1,0 +1,7 @@
+@mixin setVars {
+  --theme-nav-item-secondary-icon--color: var(--theme-color-std-text);
+  --theme-nav-item-secondary-icon--color--hover: var(--theme-color-std-text);
+  --theme-nav-item-secondary-icon--color--active: var(--theme-color-std-text);
+  --theme-nav-item-secondary-icon--color--selected: var(--theme-color-std-text);
+  --theme-nav-item-secondary-icon--color--disabled: var(--theme-color-weak-text);
+}

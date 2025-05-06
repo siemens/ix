@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-scrollbar-thumb--background: var(--theme-color-5);
+  --theme-scrollbar-thumb--background--hover: var(--theme-color-7);
+}
