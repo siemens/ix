@@ -5,7 +5,7 @@ doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true
 description: 'Designed to work seamlessly with Figma, our design system offers a streamlined workflow for UX designers and is kept in sync with the implementation. The documentation provides integrated information for both designers and developers, fostering a collaborative and efficient approach to app design.'
-hide_table_of_contents: true
+hide_table_of_contents: false
 ---
 
 #

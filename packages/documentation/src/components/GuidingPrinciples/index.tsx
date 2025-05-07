@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -9,6 +9,7 @@
 import React from 'react';
 import './GuidingPrincipleCard.scss';
 import './GuidingPrinciples.scss';
+import { IxTypography } from '@siemens/ix-react';
 
 function GuidingPrincipleCard(
   props: React.PropsWithChildren<{ name: string; description: string }>
@@ -18,10 +19,8 @@ function GuidingPrincipleCard(
     <div className="GuidingPrincipleCard">
       <div className="GuidingPrincipleCard__Image">{props.children}</div>
 
-      <div className="GuidingPrincipleCard__Name text-h2">{name}</div>
-      <div className="GuidingPrincipleCard__Description text-l">
-        {description}
-      </div>
+      <IxTypography format="h2">{name}</IxTypography>
+      <div className="GuidingPrincipleCard__Description">{description}</div>
     </div>
   );
 }
