@@ -1,90 +1,86 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
       name="viewport"
-      content="width=device-width, minimum-scale=1.0, maximum-scale=5.0"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
-    <title>Toast Custom Action Test</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@siemens/ix-icons/dist/ix-icons.css"
-    />
-    <style>
-      .ghost-button {
-        background: none;
-        border: none;
-        color: inherit;
-        font: inherit;
-        cursor: pointer;
-        outline: inherit;
-        display: flex;
-        align-items: center;
-      }
-      .ghost-button .icon {
-        margin-right: 5px;
-      }
-    </style>
+    <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconUndo } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconUndo,
+      });
+    </script>
   </head>
   <body>
     <ix-toast-container></ix-toast-container>
+
+    <template id="basic-undo">
+      <ix-button>Undo</ix-button>
+    </template>
+
+    <template id="ghost-undo">
+      <ix-button ghost icon="undo">Undo</ix-button>
+    </template>
+
     <script>
       (async () => {
         await window.customElements.whenDefined('ix-toast-container');
         const toastContainer = document.querySelector('ix-toast-container');
 
-        const createActionButton = (label, icon = null, ghost = false) => {
-          const btn = document.createElement('button');
-          if (ghost) {
-            btn.className = 'ghost-button';
-          }
-          if (icon) {
-            const iconElement = document.createElement('ix-icon');
-            iconElement.setAttribute('name', icon);
-            iconElement.className = 'icon';
-            btn.appendChild(iconElement);
-          }
-          btn.appendChild(document.createTextNode(label));
-          return btn;
-        };
+        function createActionFromTemplate(templateId) {
+          const customAction = document.createElement('div');
+          const template = document.getElementById(templateId);
+          const templateContent = template.content.cloneNode(true);
+          customAction.appendChild(templateContent);
+          return customAction;
+        }
 
         toastContainer.showToast({
           title: 'Toast headline',
-          action: createActionButton('Undo'),
+          action: createActionFromTemplate('basic-undo'),
+          autoClose: false,
           type: 'info',
-          autoClose: false,
-        });
-
-        toastContainer.showToast({
-          title: 'Toast headline',
-          message: 'Toast message text',
-          type: 'error',
-          autoClose: false,
         });
 
         toastContainer.showToast({
           message: 'Toast message text',
-          action: createActionButton('Undo'),
+          action: createActionFromTemplate('ghost-undo'),
+          autoClose: false,
           type: 'success',
-          autoClose: false,
         });
 
         toastContainer.showToast({
           title: 'Toast headline',
           message: 'Toast message text',
-          action: createActionButton('Undo'),
+          autoClose: false,
+          type: 'error',
+        });
+
+        toastContainer.showToast({
+          title: 'Toast headline',
+          message: 'Toast message text',
+          action: createActionFromTemplate('ghost-undo'),
+          autoClose: false,
           type: 'warning',
-          autoClose: false,
         });
 
         toastContainer.showToast({
           title: 'Toast headline',
           message: 'Toast message text',
-          icon: 'bulb',
-          action: createActionButton('Undo', 'undo', true),
-          type: 'info',
+          action: createActionFromTemplate('basic-undo'),
           autoClose: false,
+          type: 'success',
         });
       })();
     </script>
