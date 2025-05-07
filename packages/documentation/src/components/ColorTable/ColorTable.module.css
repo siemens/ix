@@ -64,9 +64,15 @@
 
 .colorColumnHex {
   display: flex;
-  justify-content: flex-end;
   border-right: none;
-  min-width: 7rem;
+  min-width: 8.35rem;
+  padding-inline-start: 0.5rem;
+}
+
+.colorColumnHex code {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .colorTextRow {
