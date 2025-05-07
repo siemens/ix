@@ -118,8 +118,8 @@ function Homepage() {
           <div className={styles.introduction_content}>
             <div className={styles.logo}>
               <svg
-                width="70"
-                height="70"
+                width="120"
+                height="120"
                 viewBox="0 0 70 70"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg">
