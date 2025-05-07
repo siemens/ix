@@ -8,37 +8,75 @@
  */
 
 import { Component } from '@angular/core';
-import { IxIconToggleButton } from '@siemens/ix-angular/standalone';
+import {
+  IxIconToggleButton,
+  IxLayoutGrid,
+  IxRow,
+} from '@siemens/ix-angular/standalone';
 
 @Component({
   standalone: true,
   selector: 'app-example',
-  imports: [IxIconToggleButton],
+  imports: [IxIconToggleButton, IxLayoutGrid, IxRow],
   template: `
-    <ix-icon-toggle-button
-      variant="primary"
-      outline
-      icon="checkboxes"
-    ></ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      variant="primary"
-      outline
-      pressed
-      icon="checkboxes"
-    ></ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      variant="primary"
-      outline
-      disabled
-      icon="checkboxes"
-    ></ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      variant="primary"
-      outline
-      disabled
-      loading
-      icon="checkboxes"
-    ></ix-icon-toggle-button>
+    <ix-layout-grid>
+      <ix-row>
+        <ix-icon-toggle-button
+          variant="primary"
+          outline
+          icon="checkboxes"
+        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button
+          variant="primary"
+          outline
+          pressed
+          icon="checkboxes"
+        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button
+          variant="primary"
+          outline
+          disabled
+          icon="checkboxes"
+        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button
+          variant="primary"
+          outline
+          disabled
+          loading
+          icon="checkboxes"
+        ></ix-icon-toggle-button>
+      </ix-row>
+      <ix-row>
+        <ix-icon-toggle-button
+          variant="primary"
+          outline
+          icon="checkboxes"
+          oval
+        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button
+          variant="primary"
+          outline
+          pressed
+          icon="checkboxes"
+          oval
+        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button
+          variant="primary"
+          outline
+          disabled
+          icon="checkboxes"
+          oval
+        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button
+          variant="primary"
+          outline
+          disabled
+          loading
+          icon="checkboxes"
+          oval
+        ></ix-icon-toggle-button>
+      </ix-row>
+    </ix-layout-grid>
   `,
   styleUrls: ['./icon-toggle-button-primary-outline.css'],
 })
