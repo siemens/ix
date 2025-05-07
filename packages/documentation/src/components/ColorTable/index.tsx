@@ -142,7 +142,7 @@ function BrowserOnlyColorTable({ children, colorName }) {
     const computedStyle = getComputedStyle(themeContainer);
     const colorHex = computedStyle.getPropertyValue(name);
 
-    return colorHex.toUpperCase();
+    return formatHex(colorHex.toUpperCase());
   }
 
   function getCustomCSSPropertyByPrefix(prefix: string): string[] {
@@ -193,6 +193,29 @@ function BrowserOnlyColorTable({ children, colorName }) {
     setIsDarkColor(playgroundThemeVariant === 'dark');
   }, [playgroundThemeVariant]);
 
+  function formatHex(value: string) {
+    if (!value.startsWith('#')) {
+      return value;
+    }
+
+    const hex = value.replace('#', '');
+
+    if (hex.length === 3) {
+      // Expand shorthand hex (e.g., #abc -> #aabbcc)
+      return `#${hex.split('').map((char) => char + char).join('')}`;
+    }
+
+    if (hex.length === 8) {
+      // Handle 8-character hex (e.g., #rrggbbaa -> #rrggbb + alpha in percentage)
+      const color = hex.substring(0, 6);
+      const alphaHex = hex.substring(6);
+      const alphaPercentage = Math.round((parseInt(alphaHex, 16) / 255) * 100);
+      return alphaPercentage < 100 ? `#${color} ${alphaPercentage}%` : `#${color}`;
+    }
+
+    return value;
+  }
+
   function getHexColors() {
     const name = `--theme-${colorName}`;
     const colorHex = getCustomCSSValue(name);
@@ -200,7 +223,7 @@ function BrowserOnlyColorTable({ children, colorName }) {
 
     return {
       name: colorName,
-      hex: colorHex,
+      hex: formatHex(colorHex),
       children: children,
     };
   }
