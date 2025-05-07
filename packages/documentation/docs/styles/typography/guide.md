@@ -28,7 +28,7 @@ Use body text for content that includes multiple lines, paragraphs, and messages
 
 ## Label
 
-Use label for texts labels or single line texts in components.
+Use label for text labels or single line texts in components.
 
 <TypographyTable typographyName="label" />
 <TypographyTable typographyName="label-xs" />
