@@ -385,23 +385,10 @@ importers:
         version: 5.4.5
 
   packages/core:
-    dependencies:
+    devDependencies:
       '@floating-ui/dom':
         specifier: ^1.6.13
         version: 1.6.13
-      '@stencil/core':
-        specifier: ^4.29.0
-        version: 4.29.0
-      '@types/luxon':
-        specifier: ^3.4.2
-        version: 3.4.2
-      animejs:
-        specifier: ~3.2.2
-        version: 3.2.2
-      luxon:
-        specifier: ^3.4.4
-        version: 3.4.4
-    devDependencies:
       '@playwright/test':
         specifier: ^1.49.1
         version: 1.49.1
@@ -417,6 +404,9 @@ importers:
       '@stencil/angular-output-target':
         specifier: ^0.10.2
         version: 0.10.2(@stencil/core@4.29.0)
+      '@stencil/core':
+        specifier: ^4.29.0
+        version: 4.29.0
       '@stencil/react-output-target':
         specifier: ^1.0.2
         version: 1.0.2(@stencil/core@4.29.0)(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -441,6 +431,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.13
+      '@types/luxon':
+        specifier: ^3.4.2
+        version: 3.4.2
       '@types/mustache':
         specifier: ^4.2.5
         version: 4.2.5
@@ -456,6 +449,9 @@ importers:
       animate.css:
         specifier: ~4.1.1
         version: 4.1.1
+      animejs:
+        specifier: ~3.2.2
+        version: 3.2.2
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.48)
@@ -486,6 +482,9 @@ importers:
       jest-cli:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.16.5)(ts-node@10.9.2(@types/node@20.16.5)(typescript@5.4.5))
+      luxon:
+        specifier: ^3.4.4
+        version: 3.4.4
       mustache:
         specifier: ^4.2.0
         version: 4.2.0
