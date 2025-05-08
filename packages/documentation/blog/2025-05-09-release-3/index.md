@@ -14,7 +14,7 @@ After gathering feedback on our alpha release, we proudly present the official l
 
 # How to start?
 
-- Install `@siemens/ix` (`@siemens/ix-angular`, `@siemens/ix-react`, `@siemens/ix-vue`) via the `alpha` tag
+- Install `@siemens/ix` (`@siemens/ix-angular`, `@siemens/ix-react`, `@siemens/ix-vue`) via the `latest` tag
 - Access the comprehensive migration guide to smoothly transition to the new version [here](../../docs/home/migration/3_0_0).
 
 # What's new?
