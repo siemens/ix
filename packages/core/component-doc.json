@@ -1306,7 +1306,6 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-split-button",
-        "ix-time-input",
         "ix-time-picker",
         "ix-upload"
       ],
@@ -1339,9 +1338,6 @@
           "ix-button"
         ],
         "ix-split-button": [
-          "ix-button"
-        ],
-        "ix-time-input": [
           "ix-button"
         ],
         "ix-time-picker": [
@@ -19373,16 +19369,14 @@
         "ix-icon-button",
         "ix-field-wrapper",
         "ix-dropdown",
-        "ix-time-picker",
-        "ix-button"
+        "ix-time-picker"
       ],
       "dependencyGraph": {
         "ix-time-input": [
           "ix-icon-button",
           "ix-field-wrapper",
           "ix-dropdown",
-          "ix-time-picker",
-          "ix-button"
+          "ix-time-picker"
         ],
         "ix-icon-button": [
           "ix-spinner"
@@ -19813,6 +19807,102 @@
           "setter": false
         },
         {
+          "name": "textHourColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-hour-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker hour column header",
+          "docsTags": [],
+          "default": "'hr'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textMillisecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-millisecond-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker millisecond column header",
+          "docsTags": [],
+          "default": "'ms'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textMinuteColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-minute-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker minute column header",
+          "docsTags": [],
+          "default": "'min'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textSecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-second-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker second column header",
+          "docsTags": [],
+          "default": "'sec'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "textSelectTime",
           "type": "string",
           "complexType": {
@@ -19823,9 +19913,33 @@
           "mutable": false,
           "attr": "text-select-time",
           "reflectToAttr": false,
-          "docs": "Text of time select button",
+          "docs": "Text of time-picker time select button",
           "docsTags": [],
           "default": "'Confirm'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-time",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker top label",
+          "docsTags": [],
+          "default": "'Time'",
           "values": [
             {
               "type": "string"
@@ -20120,7 +20234,7 @@
             "resolved": "number",
             "references": {}
           },
-          "mutable": false,
+          "mutable": true,
           "attr": "hour-interval",
           "reflectToAttr": false,
           "docs": "Interval for hour selection",
@@ -20130,7 +20244,7 @@
               "text": "3.1.0"
             }
           ],
-          "default": "1",
+          "default": "HOUR_INTERVAL_DEFAULT",
           "values": [
             {
               "type": "number"
@@ -20149,7 +20263,7 @@
             "resolved": "number",
             "references": {}
           },
-          "mutable": false,
+          "mutable": true,
           "attr": "millisecond-interval",
           "reflectToAttr": false,
           "docs": "Interval for millisecond selection",
@@ -20159,7 +20273,7 @@
               "text": "3.1.0"
             }
           ],
-          "default": "100",
+          "default": "MILLISECOND_INTERVAL_DEFAULT",
           "values": [
             {
               "type": "number"
@@ -20178,7 +20292,7 @@
             "resolved": "number",
             "references": {}
           },
-          "mutable": false,
+          "mutable": true,
           "attr": "minute-interval",
           "reflectToAttr": false,
           "docs": "Interval for minute selection",
@@ -20188,7 +20302,7 @@
               "text": "3.1.0"
             }
           ],
-          "default": "1",
+          "default": "MINUTE_INTERVAL_DEFAULT",
           "values": [
             {
               "type": "number"
@@ -20207,7 +20321,7 @@
             "resolved": "number",
             "references": {}
           },
-          "mutable": false,
+          "mutable": true,
           "attr": "second-interval",
           "reflectToAttr": false,
           "docs": "Interval for second selection",
@@ -20217,7 +20331,7 @@
               "text": "3.1.0"
             }
           ],
-          "default": "1",
+          "default": "SECOND_INTERVAL_DEFAULT",
           "values": [
             {
               "type": "number"
