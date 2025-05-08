@@ -1186,11 +1186,6 @@ export namespace Components {
         "controlRef"?: | MakeRef<HTMLElement>
     | MakeRef<HTMLInputElement>
     | MakeRef<HTMLTextAreaElement>;
-        "hasHelperContent": boolean;
-        "hasInfoContent": boolean;
-        "hasInvalidContent": boolean;
-        "hasValidContent": boolean;
-        "hasWarningContent": boolean;
         /**
           * Show text below the field component
          */
@@ -6007,11 +6002,6 @@ declare namespace LocalJSX {
         "controlRef"?: | MakeRef<HTMLElement>
     | MakeRef<HTMLInputElement>
     | MakeRef<HTMLTextAreaElement>;
-        "hasHelperContent"?: boolean;
-        "hasInfoContent"?: boolean;
-        "hasInvalidContent"?: boolean;
-        "hasValidContent"?: boolean;
-        "hasWarningContent"?: boolean;
         /**
           * Show text below the field component
          */

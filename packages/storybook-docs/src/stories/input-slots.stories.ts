@@ -60,7 +60,7 @@ export const AllSlots: Story = {
       <div slot="info">Info slot content</div>
       <div slot="helper">Helper slot content</div>
     </ix-input>
-  `
+  `,
 };
 
 export const PasswordExample: Story = {
@@ -79,7 +79,7 @@ export const PasswordExample: Story = {
         hasMinLength: false,
         hasSpecialChar: false,
         hasUpperCase: false,
-        hasNumber: false
+        hasNumber: false,
       };
 
       updateState(password: string) {
@@ -88,7 +88,7 @@ export const PasswordExample: Story = {
           hasMinLength: password.length >= 8,
           hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
           hasUpperCase: /[A-Z]/.test(password),
-          hasNumber: /[0-9]/.test(password)
+          hasNumber: /\d/.test(password),
         };
       }
 
@@ -116,10 +116,7 @@ export const PasswordExample: Story = {
               this.state.hasUpperCase,
               'Minimum 1 upper case character'
             )}
-            ${validationItem(
-              this.state.hasNumber,
-              'Minimum 1 number'
-            )}
+            ${validationItem(this.state.hasNumber, 'Minimum 1 number')}
           </div>
         `;
       }
@@ -131,7 +128,9 @@ export const PasswordExample: Story = {
 
     const handleInput = (e: Event) => {
       const input = e.target as HTMLInputElement;
-      const validator = document.querySelector('password-validator') as PasswordValidator;
+      const validator = document.querySelector(
+        'password-validator'
+      ) as PasswordValidator;
       if (validator) {
         validator.updateState(input.value);
       }
@@ -149,5 +148,5 @@ export const PasswordExample: Story = {
         <password-validator slot="helper"></password-validator>
       </ix-input>
     `;
-  }
+  },
 };

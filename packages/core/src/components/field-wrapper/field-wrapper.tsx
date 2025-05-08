@@ -93,11 +93,6 @@ export class FieldWrapper implements FieldWrapperInterface {
     | MakeRef<HTMLInputElement>
     | MakeRef<HTMLTextAreaElement>;
 
-  @Prop() hasHelperContent: boolean = false;
-  @Prop() hasWarningContent: boolean = false;
-  @Prop() hasValidContent: boolean = false;
-  @Prop() hasInvalidContent: boolean = false;
-  @Prop() hasInfoContent: boolean = false;
   private readonly slotRef = makeRef<HTMLDivElement>();
 
   render() {
@@ -112,29 +107,51 @@ export class FieldWrapper implements FieldWrapperInterface {
       infoText: this.infoText,
       helperText: this.helperText,
     };
-    const renderStatusSlot = () => {
-      let statusSlot = null;
-      if (this.isValid && this.hasValidContent) {
-        statusSlot = <slot name="valid"></slot>;
-      } else if (this.isInvalid && this.hasInvalidContent) {
-        statusSlot = <slot name="invalid"></slot>;
-      } else if (this.isWarning && this.hasWarningContent) {
-        statusSlot = <slot name="warning"></slot>;
-      } else if (this.isInfo && this.hasInfoContent) {
-        statusSlot = <slot name="info"></slot>;
-      } else if (this.hasHelperContent) {
-        statusSlot = <slot name="helper"></slot>;
-      }
-      return statusSlot;
+    const hasSlotContent = (slotName: string) => {
+      const slot = this.hostElement.querySelector<HTMLSlotElement>(
+        `slot[name="${slotName}"]`
+      );
+      if (!slot) return false;
+
+      const elements = slot.assignedElements();
+      return elements.some((element) => {
+        if (element.textContent?.trim() || element.children.length > 0) {
+          return true;
+        }
+        if (element.tagName.includes('-')) {
+          return true;
+        }
+
+        return false;
+      });
     };
+
     const hasAnySlotContent = () => {
       return (
-        this.hasHelperContent ||
-        this.hasWarningContent ||
-        this.hasValidContent ||
-        this.hasInvalidContent ||
-        this.hasInfoContent
+        hasSlotContent('helper') ||
+        hasSlotContent('warning') ||
+        hasSlotContent('valid') ||
+        hasSlotContent('invalid') ||
+        hasSlotContent('info')
       );
+    };
+
+    const renderStatusSlot = () => {
+      let statusSlot = 'helper';
+
+      if (this.isValid && hasSlotContent('valid')) {
+        statusSlot = 'valid';
+      }
+      else if (this.isInvalid && hasSlotContent('invalid')) {
+        statusSlot = 'invalid';
+      }
+      else if (this.isWarning && hasSlotContent('warning')) {
+        statusSlot = 'warning';
+      }
+      else if (this.isInfo && hasSlotContent('info')) {
+        statusSlot = 'info';
+      }
+      return <slot name={statusSlot}></slot>;
     };
 
     return (
