@@ -1,6 +1,5 @@
 ---
-slug: v3
-authors: [danielleroux]
+authors: [felixleist]
 tags: [release]
 ---
 
