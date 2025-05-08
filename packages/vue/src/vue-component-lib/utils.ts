@@ -1,6 +1,15 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 // It's easier and safer for Volar to disable typechecking and let the return type inference do its job.
-import { defineComponent, getCurrentInstance, h, inject, ref, Ref, withDirectives } from 'vue';
+import {
+  defineComponent,
+  getCurrentInstance,
+  h,
+  inject,
+  ref,
+  Ref,
+  withDirectives,
+} from 'vue';
 
 export interface InputProps<T> {
   modelValue?: T;
@@ -71,129 +80,148 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
     defineCustomElement();
   }
 
-  const Container = defineComponent<Props & InputProps<VModelType>>((props, { attrs, slots, emit }) => {
-    let modelPropValue = props[modelProp];
-    const containerRef = ref<HTMLElement>();
-    const classes = new Set(getComponentClasses(attrs.class));
+  const Container = defineComponent<Props & InputProps<VModelType>>(
+    (props, { attrs, slots, emit }) => {
+      let modelPropValue = props[modelProp];
+      const containerRef = ref<HTMLElement>();
+      const classes = new Set(getComponentClasses(attrs.class));
 
-    /**
-     * This directive is responsible for updating any reactive
-     * reference associated with v-model on the component.
-     * This code must be run inside of the "created" callback.
-     * Since the following listener callbacks as well as any potential
-     * event callback defined in the developer's app are set on
-     * the same element, we need to make sure the following callbacks
-     * are set first so they fire first. If the developer's callback fires first
-     * then the reactive reference will not have been updated yet.
-     */
-    const vModelDirective = {
-      created: (el: HTMLElement) => {
-        const eventsNames = Array.isArray(modelUpdateEvent) ? modelUpdateEvent : [modelUpdateEvent];
-        eventsNames.forEach((eventName: string) => {
-          // Remove eventName.toLowerCase() from original 0.8.8 to not mutate event naming
-          el.addEventListener(eventName, (e: Event) => {
-            /**
-             * Only update the v-model binding if the event's target is the element we are
-             * listening on. For example, Component A could emit ionChange, but it could also
-             * have a descendant Component B that also emits ionChange. We only want to update
-             * the v-model for Component A when ionChange originates from that element and not
-             * when ionChange bubbles up from Component B.
-             */
-            if (e.target.tagName === el.tagName) {
-              modelPropValue = (e?.target as any)[modelProp];
-              emit(UPDATE_VALUE_EVENT, modelPropValue);
-            }
+      /**
+       * This directive is responsible for updating any reactive
+       * reference associated with v-model on the component.
+       * This code must be run inside of the "created" callback.
+       * Since the following listener callbacks as well as any potential
+       * event callback defined in the developer's app are set on
+       * the same element, we need to make sure the following callbacks
+       * are set first so they fire first. If the developer's callback fires first
+       * then the reactive reference will not have been updated yet.
+       */
+      const vModelDirective = {
+        created: (el: HTMLElement) => {
+          const eventsNames = Array.isArray(modelUpdateEvent)
+            ? modelUpdateEvent
+            : [modelUpdateEvent];
+          eventsNames.forEach((eventName: string) => {
+            // Remove eventName.toLowerCase() from original 0.8.8 to not mutate event naming
+            el.addEventListener(eventName, (e: Event) => {
+              /**
+               * Only update the v-model binding if the event's target is the element we are
+               * listening on. For example, Component A could emit ionChange, but it could also
+               * have a descendant Component B that also emits ionChange. We only want to update
+               * the v-model for Component A when ionChange originates from that element and not
+               * when ionChange bubbles up from Component B.
+               */
+              if (e.target.tagName === el.tagName) {
+                modelPropValue = (e?.target as any)[modelProp];
+                emit(UPDATE_VALUE_EVENT, modelPropValue);
+              }
+            });
           });
+        },
+      };
+
+      const currentInstance = getCurrentInstance();
+      const hasRouter = currentInstance?.appContext?.provides[NAV_MANAGER];
+      const navManager: NavManager | undefined = hasRouter
+        ? inject(NAV_MANAGER)
+        : undefined;
+      const handleRouterLink = (ev: Event) => {
+        const { routerLink } = props;
+        if (routerLink === EMPTY_PROP) return;
+
+        if (navManager !== undefined) {
+          const navigationPayload: any = { event: ev };
+          for (const key in props) {
+            const value = props[key];
+            if (
+              // eslint-disable-next-line no-prototype-builtins
+              props.hasOwnProperty(key) &&
+              key.startsWith(ROUTER_PROP_PREFIX) &&
+              value !== EMPTY_PROP
+            ) {
+              navigationPayload[key] = value;
+            }
+          }
+
+          navManager.navigate(navigationPayload);
+        } else {
+          console.warn(
+            'Tried to navigate, but no router was found. Make sure you have mounted Vue Router.'
+          );
+        }
+      };
+
+      return () => {
+        modelPropValue = props[modelProp];
+
+        getComponentClasses(attrs.class).forEach((value) => {
+          classes.add(value);
         });
-      },
-    };
 
-    const currentInstance = getCurrentInstance();
-    const hasRouter = currentInstance?.appContext?.provides[NAV_MANAGER];
-    const navManager: NavManager | undefined = hasRouter ? inject(NAV_MANAGER) : undefined;
-    const handleRouterLink = (ev: Event) => {
-      const { routerLink } = props;
-      if (routerLink === EMPTY_PROP) return;
+        const oldClick = props.onClick;
+        const handleClick = (ev: Event) => {
+          if (oldClick !== undefined) {
+            oldClick(ev);
+          }
+          if (!ev.defaultPrevented) {
+            handleRouterLink(ev);
+          }
+        };
 
-      if (navManager !== undefined) {
-        let navigationPayload: any = { event: ev };
+        let propsToAdd: any = {
+          ref: containerRef,
+          class: getElementClasses(containerRef, classes),
+          onClick: handleClick,
+        };
+
+        /**
+         * We can use Object.entries here
+         * to avoid the hasOwnProperty check,
+         * but that would require 2 iterations
+         * where as this only requires 1.
+         */
         for (const key in props) {
           const value = props[key];
-          if (props.hasOwnProperty(key) && key.startsWith(ROUTER_PROP_PREFIX) && value !== EMPTY_PROP) {
-            navigationPayload[key] = value;
+          if (
+            // eslint-disable-next-line no-prototype-builtins
+            (props.hasOwnProperty(key) && value !== EMPTY_PROP) ||
+            key.startsWith(ARIA_PROP_PREFIX)
+          ) {
+            propsToAdd[key] = value;
           }
         }
 
-        navManager.navigate(navigationPayload);
-      } else {
-        console.warn('Tried to navigate, but no router was found. Make sure you have mounted Vue Router.');
-      }
-    };
-
-    return () => {
-      modelPropValue = props[modelProp];
-
-      getComponentClasses(attrs.class).forEach((value) => {
-        classes.add(value);
-      });
-
-      const oldClick = props.onClick;
-      const handleClick = (ev: Event) => {
-        if (oldClick !== undefined) {
-          oldClick(ev);
+        if (modelProp) {
+          /**
+           * If form value property was set using v-model
+           * then we should use that value.
+           * Otherwise, check to see if form value property
+           * was set as a static value (i.e. no v-model).
+           */
+          if (props[MODEL_VALUE] !== EMPTY_PROP) {
+            propsToAdd = {
+              ...propsToAdd,
+              [modelProp]: props[MODEL_VALUE],
+            };
+          } else if (modelPropValue !== EMPTY_PROP) {
+            propsToAdd = {
+              ...propsToAdd,
+              [modelProp]: modelPropValue,
+            };
+          }
         }
-        if (!ev.defaultPrevented) {
-          handleRouterLink(ev);
-        }
-      };
 
-      let propsToAdd: any = {
-        ref: containerRef,
-        class: getElementClasses(containerRef, classes),
-        onClick: handleClick,
-      };
-
-      /**
-       * We can use Object.entries here
-       * to avoid the hasOwnProperty check,
-       * but that would require 2 iterations
-       * where as this only requires 1.
-       */
-      for (const key in props) {
-        const value = props[key];
-        if ((props.hasOwnProperty(key) && value !== EMPTY_PROP) || key.startsWith(ARIA_PROP_PREFIX)) {
-          propsToAdd[key] = value;
-        }
-      }
-
-      if (modelProp) {
         /**
-         * If form value property was set using v-model
-         * then we should use that value.
-         * Otherwise, check to see if form value property
-         * was set as a static value (i.e. no v-model).
+         * vModelDirective is only needed on components that support v-model.
+         * As a result, we conditionally call withDirectives with v-model components.
          */
-        if (props[MODEL_VALUE] !== EMPTY_PROP) {
-          propsToAdd = {
-            ...propsToAdd,
-            [modelProp]: props[MODEL_VALUE],
-          };
-        } else if (modelPropValue !== EMPTY_PROP) {
-          propsToAdd = {
-            ...propsToAdd,
-            [modelProp]: modelPropValue,
-          };
-        }
-      }
-
-      /**
-       * vModelDirective is only needed on components that support v-model.
-       * As a result, we conditionally call withDirectives with v-model components.
-       */
-      const node = h(name, propsToAdd, slots.default && slots.default());
-      return modelProp === undefined ? node : withDirectives(node, [[vModelDirective]]);
-    };
-  });
+        const node = h(name, propsToAdd, slots.default && slots.default());
+        return modelProp === undefined
+          ? node
+          : withDirectives(node, [[vModelDirective]]);
+      };
+    }
+  );
 
   if (typeof Container !== 'function') {
     Container.name = name;
