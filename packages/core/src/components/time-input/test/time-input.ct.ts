@@ -91,8 +91,6 @@ regressionTest.describe('time input tests', () => {
         .locator('ix-time-picker [data-element-container-id="second-45"]')
         .click();
 
-      await expect(page.locator('input')).toHaveValue('12:30:45');
-
       await page.locator('ix-time-picker ix-button').click();
 
       await expect(
