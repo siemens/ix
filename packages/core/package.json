@@ -85,7 +85,6 @@
       "luxon"
     ]
   },
-  "dependencies": {},
   "devDependencies": {
     "@floating-ui/dom": "^1.6.13",
     "@playwright/test": "^1.49.1",

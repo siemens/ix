@@ -1,0 +1,24 @@
+{
+  "name": "oss-clearing",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "tsx create-sbom.ts"
+  },
+  "devDependencies": {
+    "@cyclonedx/cyclonedx-library": "^8.0.0",
+    "@types/node": "^22.15.16",
+    "@types/fs-extra": "^11.0.4",
+    "fs-extra": "^11.3.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@siemens/ix": "3.0.0",
+    "@siemens/ix-react": "3.0.0",
+    "@siemens/ix-angular": "3.0.0",
+    "@siemens/ix-vue": "3.0.0",
+    "@siemens/ix-echarts": "3.0.0",
+    "@siemens/ix-aggrid": "3.0.0"
+  }
+}
