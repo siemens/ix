@@ -1671,6 +1671,7 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
         format: 'format',
         corners: 'corners',
         standaloneAppearance: 'standalone-appearance',
+        dateTimePickerAppearance: 'date-time-picker-appearance',
         showHour: 'show-hour',
         showMinutes: 'show-minutes',
         showSeconds: 'show-seconds',

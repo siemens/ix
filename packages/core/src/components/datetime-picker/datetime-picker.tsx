@@ -211,6 +211,7 @@ export class DatetimePicker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
                 standaloneAppearance={false}
+                dateTimePickerAppearance={true}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
                 textTime={this.i18nTime}

@@ -1294,6 +1294,7 @@ export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/
   'format',
   'corners',
   'standaloneAppearance',
+  'dateTimePickerAppearance',
   'showHour',
   'showMinutes',
   'showSeconds',

@@ -183,6 +183,10 @@
     }
 
     .time-ref-buttons {
+      &--datetime-picker-appearance {
+        margin-left: auto;
+      }
+
       button {
         all: unset;
         width: 42px;

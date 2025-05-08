@@ -2815,6 +2815,7 @@ export namespace Components {
           * Corner style
          */
         "corners": TimePickerCorners;
+        "dateTimePickerAppearance": boolean;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
@@ -7943,6 +7944,7 @@ declare namespace LocalJSX {
           * Corner style
          */
         "corners"?: TimePickerCorners;
+        "dateTimePickerAppearance"?: boolean;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */

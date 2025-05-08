@@ -82,6 +82,11 @@ export class TimePicker {
   @Prop() standaloneAppearance: boolean = true;
 
   /**
+   * @internal Temporary prop needed until datetime-picker is reworked for new design
+   */
+  @Prop() dateTimePickerAppearance: boolean = false;
+
+  /**
    * Show hour input
    *
    * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
@@ -784,14 +789,22 @@ export class TimePicker {
             slot="footer"
           >
             {this.timeRef && (
-              <div class="time-ref-buttons">
+              <div
+                class={{
+                  'time-ref-buttons': true,
+                  'time-ref-buttons--datetime-picker-appearance':
+                    this.dateTimePickerAppearance,
+                }}
+              >
                 <button
+                  data-am-pm-id="AM"
                   class={{ selected: this.timeRef === 'AM' }}
                   onClick={() => this.changeTimeReference('AM')}
                 >
                   AM
                 </button>
                 <button
+                  data-am-pm-id="PM"
                   class={{ selected: this.timeRef === 'PM' }}
                   onClick={() => this.changeTimeReference('PM')}
                 >
@@ -799,15 +812,17 @@ export class TimePicker {
                 </button>
               </div>
             )}
-            <ix-button
-              class="confirm-button"
-              onClick={() => {
-                console.log(this._time?.toFormat(this.format));
-                this.timeSelect.emit(this._time?.toFormat(this.format));
-              }}
-            >
-              {this.textSelectTime}
-            </ix-button>
+            {!this.dateTimePickerAppearance && (
+              <ix-button
+                class="confirm-button"
+                onClick={() => {
+                  console.log(this._time?.toFormat(this.format));
+                  this.timeSelect.emit(this._time?.toFormat(this.format));
+                }}
+              >
+                {this.textSelectTime}
+              </ix-button>
+            )}
           </div>
         </ix-date-time-card>
       </Host>

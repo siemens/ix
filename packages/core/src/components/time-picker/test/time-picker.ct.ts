@@ -177,8 +177,8 @@ regressionTest.describe('time picker tests', () => {
       await page.keyboard.press('Enter');
 
       // Change time ref
-      await page.keyboard.press('ArrowRight');
-      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Tab');
+      await page.keyboard.press('Tab');
       await page.keyboard.press('Enter');
 
       expect(await getTimeObjs(page)).toEqual(['09:10:11', '11:12:13 PM']);
