@@ -60,7 +60,7 @@ console.log('Using BASE_URL', baseUrl);
 const config: Config = {
   title: 'Siemens Industrial Experience',
   tagline: 'Siemens Industrial Experience',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   // Set the production url of your site here
   url: 'https://ix.siemens.io',
@@ -87,6 +87,7 @@ const config: Config = {
 
   customFields: {
     withBrandTheme,
+    playgroundVersion: '^3.0.0'
   },
 
   presets: [
@@ -195,8 +196,7 @@ const config: Config = {
     colorMode: {
       defaultMode: 'dark',
     },
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/ix-social-card.png',
     navbar: {
       hideOnScroll: false,
       logo: {

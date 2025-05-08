@@ -9787,6 +9787,35 @@
           "setter": false
         },
         {
+          "name": "oval",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "oval",
+          "reflectToAttr": false,
+          "docs": "Button in oval shape",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.1.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "pressed",
           "type": "boolean",
           "complexType": {

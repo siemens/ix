@@ -48,7 +48,7 @@ export function useSubPageHook() {
 }
 
 export default function QueryStringContent(props: QueryStringContentProps) {
-  const { componentTabs, hasQueryString, currentTab } = useSubPageHook();
+  const { componentTabs, currentTab } = useSubPageHook();
   const [mdxContent, setMDXContent] = useState<ReactNode | null>(() => {
     if (Array.isArray(props.children)) {
       return props.children[0];

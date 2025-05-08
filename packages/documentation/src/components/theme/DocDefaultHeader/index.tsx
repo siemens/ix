@@ -46,7 +46,6 @@ export default function DocDefaultHeader(props: {
 
       {description && (
         <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
-          <p className={styles.Description}>{description}</p>
           <div className={styles.Tags}>
             {frontMatter.deprecated &&
               Array.from(frontMatter.deprecated) &&
@@ -73,6 +72,7 @@ export default function DocDefaultHeader(props: {
                 }
               )}
           </div>
+          <p className={styles.Description}>{description}</p>
         </div>
       )}
 
