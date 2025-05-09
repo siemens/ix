@@ -10,6 +10,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
+import { IxApplicationContext } from "@siemens/ix-vue"
+
+
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
 import ActionCard from './preview-examples/action-card.vue';
@@ -456,6 +459,8 @@ const currentView = computed(() => {
 </script>
 
 <template>
-  <component :is="currentView"></component>
+  <IxApplicationContext>
+    <component :is="currentView"></component>
+  </IxApplicationContext>
 </template>
 import layoutAutoVue from './preview-examples/layout-auto.vue';

@@ -113,6 +113,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
 ## Vue
 
+`@siemens/ix-vue` provides a function that allows to open modal dialogs based on a `VNode`.
+
 <Playground
         name="modal" source={{vue: {
             'modal.vue': modal_vue_vue,
@@ -123,6 +125,33 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         height={props.height}
         onlyFramework="vue"
         ></Playground>
+
+:::info JSX/TSX support
+
+The example above is using TSX. To add JSX/TSX support in your Vue project, 
+please refer to the [Vue documentation](https://vuejs.org/guide/extras/render-function.html#jsx-tsx).
+It is not required to use JSX and as an alternative you can use 
+the [`h()`](https://vuejs.org/guide/extras/render-function.html#creating-vnodes) function to create the modal's VNode.
+
+:::        
+
+:::warning Use context
+
+It is required to provide the `IxApplicationContext` as part of your application in order to use the `showModal` function.
+
+:::
+
+```vue
+<script setup lang="ts">
+import { IxApplicationContext } from '@siemens/ix-vue';
+</script>
+
+<template>
+  <IxApplicationContext>
+    <!-- <App /> -->
+  </IxApplicationContext>
+</template>
+```
 
 ## Javascript
 
