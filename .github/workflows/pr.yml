@@ -61,7 +61,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Build
-        run: pnpm build --cache-dir=.turbo --filter \!documentation
+        run: pnpm build --cache-dir=.turbo
 
       - name: Lint
         run: pnpm lint
@@ -69,18 +69,11 @@ jobs:
       - name: Check for local development changes
         run: ./scripts/lint-build.sh
 
-  build-docs:
-    needs: [changes, build]
-    if: ${{ needs.changes.outputs.docs_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - uses: ./.github/workflows/actions/turbo
-
-      - name: Build
-        run: pnpm build --cache-dir=.turbo --filter documentation
+      - name: Documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-${{ github.run_attempt }}
+          path: ./packages/documentation/build
 
   visual-testing-core:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
