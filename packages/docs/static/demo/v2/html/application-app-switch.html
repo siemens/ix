@@ -1,0 +1,95 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application app switch example</title>
+  </head>
+  <body>
+    <ix-application>
+      <ix-application-header name="Calculator App">
+        <placeholder-logo slot="logo"></placeholder-logo>
+
+        <ix-dropdown-button variant="secondary" label="Select config" ghost>
+          <ix-dropdown-item label="Config 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Config 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Config 3"></ix-dropdown-item>
+        </ix-dropdown-button>
+
+        <ix-avatar>
+          <ix-dropdown-item label="Action 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Action 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Action 3"></ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+      </ix-menu>
+
+      <ix-content>
+        <ix-content-header slot="header" header-title="My Content Page">
+        </ix-content-header>
+      </ix-content>
+    </ix-application>
+
+    <script type="module">
+      const application = document.querySelector('ix-application');
+      application.appSwitchConfig = {
+        i18nAppSwitch: 'Switch to Application',
+        currentAppId: 'demo-app-2',
+        apps: [
+          {
+            id: 'demo-app-1',
+            name: 'Floor App',
+            iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
+            url: 'https://ix.siemens.io/',
+            description: 'Example description for Floor app',
+            target: '_self',
+          },
+          {
+            id: 'demo-app-2',
+            name: 'Calculator App',
+            iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
+            url: 'https://ix.siemens.io/',
+            description: 'Example description for Calculator app',
+            target: '_self',
+          },
+        ],
+      };
+    </script>
+
+    <script type="module">
+      import {
+        pulseOnElement,
+        waitForElement,
+        getElementPosition,
+      } from './utils.js';
+
+      pulseOnElement(() =>
+        document
+          .querySelector('ix-application-header')
+          .shadowRoot.querySelector('ix-icon-button.app-switch')
+      );
+    </script>
+
+    <script type="module">
+      (async () => {
+        await window.customElements.whenDefined('ix-application');
+        const menu = document.querySelector('ix-application');
+        menu.breakpoints = ['md'];
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

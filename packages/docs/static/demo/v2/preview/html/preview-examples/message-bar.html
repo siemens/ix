@@ -1,0 +1,36 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message bar example</title>
+    
+    <script type="module" crossorigin src="../assets/global.e92797ea.js"></script>
+    <script type="module" crossorigin src="../assets/init.14c20cd8.js"></script>
+    <link rel="stylesheet" href="../assets/global.cbfebfba.css">
+    <link rel="stylesheet" href="../assets/message-bar.b0a7857c.css">
+  </head>
+
+  <body>
+    <div class="message-bar">
+      <ix-message-bar dismissible="false">Message text</ix-message-bar>
+      <ix-message-bar dismissible="false" type="warning">Message text</ix-message-bar>
+      <ix-message-bar dismissible="false" type="danger">
+        <div class="message-bar-danger">
+          Message text
+          <ix-button>Action</ix-button>
+        </div>
+      </ix-message-bar>
+    </div>
+    
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event List Custom Item Height List</title>
+    <script type="module">
+      document.addEventListener('DOMContentLoaded', () => {
+        const eventList = document.querySelector('ix-event-list');
+        eventList.itemHeight = 60;
+      });
+    </script>
+    <script type="module" src="./init.js"></script>
+  </head>
+  <body>
+    <ix-event-list>
+      <ix-event-list-item color="color-primary">Test 1</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Test 2</ix-event-list-item>
+    </ix-event-list>
+  </body>
+</html>

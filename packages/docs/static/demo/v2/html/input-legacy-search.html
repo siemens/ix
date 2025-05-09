@@ -1,0 +1,65 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input legacy search example</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconClear,
+        iconSearch,
+      });
+    </script>
+  </head>
+  <body>
+    <form class="needs-validation">
+      <ix-input-group>
+        <span slot="input-start">
+          <ix-icon name="search" size="16"></ix-icon>
+        </span>
+        <input
+          class="ix-form-control"
+          onInput="toggleClear()"
+          id="input-string"
+          type="string"
+        />
+        <span slot="input-end">
+          <ix-icon-button
+            id="clear-button"
+            icon="clear"
+            ghost="{true}"
+            size="16"
+            onClick="{clearInput()}"
+          ></ix-icon-button>
+        </span>
+      </ix-input-group>
+    </form>
+
+    <script>
+      toggleClear();
+      function clearInput() {
+        document.getElementById('input-string').value = '';
+        toggleClear();
+      }
+
+      function toggleClear() {
+        const hasContent = document.getElementById('input-string').value !== '';
+        document.getElementById('clear-button').style.display = hasContent
+          ? 'block'
+          : 'none';
+      }
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

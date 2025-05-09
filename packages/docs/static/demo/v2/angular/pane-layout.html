@@ -1,0 +1,32 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-pane-layout [variant]="variant" [layout]="layout" [borderless]="borderless">
+  <ix-pane heading="Pane Left" slot="left" size="33%">
+    <p>This is the left pane.</p>
+  </ix-pane>
+  <ix-pane heading="Pane Top" slot="top" size="33%">
+    <p>This is the top pane.</p>
+  </ix-pane>
+  <ix-pane heading="Pane Right" slot="right" size="33%">
+    <p>This is the right pane.</p>
+  </ix-pane>
+  <ix-pane heading="Pane Bottom" slot="bottom" size="33%">
+    <p>This is the bottom pane.</p>
+  </ix-pane>
+
+  <div slot="content">
+    <ix-button (click)="toggleVariant()" style="margin: 2.5rem"
+      >Toggle Variant</ix-button
+    >
+    <ix-button (click)="toggleLayout()" style="margin: 2.5rem"
+      >Toggle Layout</ix-button
+    >
+  </div>
+</ix-pane-layout>

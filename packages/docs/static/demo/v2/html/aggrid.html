@@ -1,0 +1,88 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AG Grid example</title>
+  </head>
+  <body>
+    <div
+      style="height: 12rem; width: 100%"
+      id="grid-container"
+      class="ag-theme-alpine-dark ag-theme-ix"
+    ></div>
+
+    <script type="module">
+      import {
+        AllCommunityModule,
+        ModuleRegistry,
+        provideGlobalGridOptions,
+      } from 'ag-grid-community';
+      import * as agGrid from 'ag-grid-community';
+
+      // Register all community features
+      ModuleRegistry.registerModules([AllCommunityModule]);
+
+      // Mark all grids as using legacy themes
+      provideGlobalGridOptions({ theme: 'legacy' });
+
+      (async function () {
+        const container = document.querySelector('#grid-container');
+
+        const gridOptions = {
+          columnDefs: [
+            {
+              field: 'type',
+              headerName: 'Type',
+              resizable: true,
+              checkboxSelection: true,
+            },
+            {
+              field: 'status',
+              headerName: 'Status',
+              resizable: true,
+              sortable: true,
+              filter: true,
+            },
+            { field: 'hwVersion', headerName: 'HW version', resizable: true },
+          ],
+          rowData: [
+            {
+              type: 'Equipment',
+              status: 'Normal',
+              hwVersion: '2.0',
+              checked: false,
+            },
+            {
+              type: 'Positioner',
+              status: 'Maintenance',
+              hwVersion: '1.0',
+              checked: true,
+            },
+            {
+              type: 'Pressure sensor',
+              status: 'Unknown',
+              hwVersion: 'N/A',
+              checked: false,
+            },
+          ],
+          rowSelection: 'multiple',
+          suppressCellFocus: true,
+          checkboxSelection: true,
+        };
+
+        agGrid.createGrid(container, gridOptions);
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

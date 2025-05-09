@@ -1,0 +1,90 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme switcher example</title>
+    <link rel="stylesheet" href="./theme-switcher.css" />
+  </head>
+  <body>
+    <ix-layout-grid class="theme-switcher">
+      <ix-row>
+        <ix-col size="2">
+          <span>Light/Dark</span>
+        </ix-col>
+        <ix-col>
+          <ix-button id="toggle-mode">Toggle mode</ix-button>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col size="2">Theme</ix-col>
+        <ix-col>
+          <ix-select id="select-theme" placeholder="Select a theme">
+          </ix-select>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col size="2"></ix-col>
+        <ix-col>
+          <input class="ix-form-control" type="checkbox" id="system" />
+          <label class="ix-form-label" for="system">Use System</label>
+        </ix-col>
+      </ix-row>
+    </ix-layout-grid>
+
+    <script type="module">
+      import { themeSwitcher } from '@siemens/ix';
+
+      (async function () {
+        const themes = ['theme-classic-light', 'theme-classic-dark'];
+        let selectedTheme = themes[1];
+
+        setTimeout(() => {
+          themeSwitcher.setTheme(selectedTheme);
+        });
+
+        const toggleModeButton = document.getElementById('toggle-mode');
+        toggleModeButton.addEventListener('click', () => {
+          themeSwitcher.toggleMode();
+        });
+
+        const themeSelect = document.getElementById('select-theme');
+        themes.forEach((theme) => {
+          const item = document.createElement('ix-select-item');
+          item.label = theme;
+          item.value = theme;
+          themeSelect.appendChild(item);
+        });
+
+        themeSelect.value = selectedTheme;
+
+        themeSelect.addEventListener('valueChange', ({ detail: theme }) => {
+          themeSwitcher.setTheme(theme);
+          selectedTheme = theme;
+        });
+
+        const toggleSystem = document.getElementById('system');
+        toggleSystem.addEventListener('change', ({ target }) => {
+          if (target.checked) {
+            themeSwitcher.setVariant();
+            return;
+          }
+
+          themeSwitcher.setTheme(selectedTheme);
+        });
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

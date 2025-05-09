@@ -1,0 +1,49 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button with icon example</title>
+    <link rel="stylesheet" href="./button-with-icon.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconInfo } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconInfo,
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <ix-icon-button icon="info" variant="primary"></ix-icon-button>
+      <ix-icon-button icon="info"></ix-icon-button>
+      <ix-icon-button icon="info" variant="danger"></ix-icon-button>
+      <ix-icon-button icon="info" outline></ix-icon-button>
+      <ix-icon-button icon="info" ghost></ix-icon-button>
+    </div>
+
+    <div>
+      <ix-icon-button icon="info" oval variant="primary"></ix-icon-button>
+      <ix-icon-button icon="info" oval></ix-icon-button>
+      <ix-icon-button icon="info" oval variant="danger"></ix-icon-button>
+      <ix-icon-button icon="info" oval outline></ix-icon-button>
+      <ix-icon-button icon="info" oval ghost></ix-icon-button>
+    </div>
+
+    <div>
+      <ix-icon-button icon="info" size="12"></ix-icon-button>
+      <ix-icon-button icon="info" size="16"></ix-icon-button>
+      <ix-icon-button icon="info" size="24"></ix-icon-button>
+    </div>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

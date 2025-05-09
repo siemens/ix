@@ -1,0 +1,64 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input legacy search example</title>
+    
+    <script type="module" crossorigin src="../assets/input-legacy-search.032f0e9f.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.e92797ea.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.14c20cd8.js">
+    <link rel="modulepreload" crossorigin href="../assets/icon-1ecd1404.598f6189.js">
+    <link rel="modulepreload" crossorigin href="../assets/index.4b950771.js">
+    <link rel="stylesheet" href="../assets/global.cbfebfba.css">
+  </head>
+  <body>
+    <form class="needs-validation">
+      <ix-input-group>
+        <span slot="input-start">
+          <ix-icon name="search" size="16"></ix-icon>
+        </span>
+        <input
+          class="ix-form-control"
+          onInput="toggleClear()"
+          id="input-string"
+          type="string"
+        />
+        <span slot="input-end">
+          <ix-icon-button
+            id="clear-button"
+            icon="clear"
+            ghost="{true}"
+            size="16"
+            onClick="{clearInput()}"
+          ></ix-icon-button>
+        </span>
+      </ix-input-group>
+    </form>
+
+    <script>
+      toggleClear();
+      function clearInput() {
+        document.getElementById('input-string').value = '';
+        toggleClear();
+      }
+
+      function toggleClear() {
+        const hasContent = document.getElementById('input-string').value !== '';
+        document.getElementById('clear-button').style.display = hasContent
+          ? 'block'
+          : 'none';
+      }
+    </script>
+    
+  </body>
+</html>

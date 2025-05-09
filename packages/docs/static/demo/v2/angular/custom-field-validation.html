@@ -1,0 +1,51 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<div>
+  <ix-custom-field
+    helper-text="Add your first name here"
+    valid-text="Valid first name"
+    label="First name"
+  >
+    <input
+      id="first-name"
+      type="text"
+      class="ix-form-control ix-valid"
+      value="Jane"
+    />
+  </ix-custom-field>
+</div>
+
+<div>
+  <ix-custom-field info-text="Family name" label="Last name">
+    <input
+      id="last-name"
+      type="text"
+      class="ix-form-control ix-info"
+      value="Doe"
+    />
+  </ix-custom-field>
+</div>
+
+<div>
+  <ix-custom-field warning-Text="Not a valid email address" label="Email">
+    <input
+      id="email"
+      type="email"
+      class="ix-form-control ix-warning"
+      value="info@"
+    />
+  </ix-custom-field>
+</div>
+
+<div>
+  <ix-custom-field invalid-text="Required" label="Address">
+    <input id="address" type="text" class="ix-form-control ix-invalid" />
+  </ix-custom-field>
+</div>

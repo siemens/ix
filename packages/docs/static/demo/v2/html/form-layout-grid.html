@@ -1,0 +1,44 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avatar example</title>
+    <link rel="stylesheet" href="./form-layout-grid.css" />
+  </head>
+  <body>
+    <ix-layout-grid class="layout-grid-example">
+      <ix-row>
+        <ix-col size="2" size-sm="12">
+          <ix-field-label for="my-select-1">Example</ix-field-label>
+        </ix-col>
+        <ix-col>
+          <ix-select id="my-select-1"></ix-select>
+        </ix-col>
+      </ix-row>
+      <ix-row>
+        <ix-col size="2" size-sm="12">
+          <ix-field-label for="my-select-2">Example</ix-field-label>
+        </ix-col>
+        <ix-col>
+          <ix-input id="my-select-2"></ix-input>
+        </ix-col>
+      </ix-row>
+      <ix-row>
+        <ix-col size="12" size-sm="12">
+          <ix-button data-colspan="2">Submit</ix-button>
+        </ix-col>
+      </ix-row>
+    </ix-layout-grid>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic navigation example</title>
+    <link rel="stylesheet" href="./basic-navigation.css" />
+  </head>
+  <body>
+    <ix-basic-navigation application-name="Application name">
+      <div class="placeholder-logo" slot="logo"></div>
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+      </ix-menu>
+    </ix-basic-navigation>
+
+    <script type="module">
+      (async () => {
+        await window.customElements.whenDefined('ix-menu');
+        const menu = document.querySelector('ix-menu');
+        menu.breakpoints = ['medium'];
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

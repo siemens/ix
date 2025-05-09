@@ -1,0 +1,92 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flip tile example</title>
+    <link rel="stylesheet" href="./flip-tile.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconInfo } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconInfo,
+      });
+    </script>
+  </head>
+  <body>
+    <div class="flip-tile">
+      <ix-flip-tile>
+        <div slot="header">Flip header</div>
+
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="footer-date">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+
+      <ix-flip-tile state="primary">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="footer-date">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+
+      <ix-flip-tile state="info">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="footer-date">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+
+      <ix-flip-tile state="warning">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="footer-date">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+
+      <ix-flip-tile state="alarm">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="footer-date">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+    </div>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

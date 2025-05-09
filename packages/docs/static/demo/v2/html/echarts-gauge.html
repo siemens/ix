@@ -1,0 +1,165 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts gauge example</title>
+    <link rel="stylesheet" href="./echarts-gauge.css" />
+    <!-- External resources -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <!-- External resources -->
+  </head>
+  <body class="theme-classic-dark">
+    <div id="main" class="echarts"></div>
+
+    <script type="module">
+      import {
+        registerTheme,
+        getComputedCSSProperty,
+      } from '@siemens/ix-echarts';
+      import { themeSwitcher } from '@siemens/ix';
+
+      function initChart(theme, options) {
+        var myChart = echarts.init(document.querySelector('#main'), theme, {
+          renderer: 'svg',
+        });
+        myChart.setOption(options);
+
+        return myChart;
+      }
+
+      let dates = [];
+      for (let year = 2013; year < 2025; year++) {
+        dates.push(year.toString());
+      }
+
+      let value = 45.3;
+
+      function getGaugeColor(value) {
+        if (value > 60) return getComputedCSSProperty('color-success');
+        else if (value > 25) return getComputedCSSProperty('color-warning');
+        else {
+          return getComputedCSSProperty('color-alarm');
+        }
+      }
+
+      const options = {
+        series: [
+          {
+            id: '1',
+            type: 'gauge',
+            axisLine: {
+              show: true,
+              lineStyle: {
+                width: 18,
+                color: [[1, getComputedCSSProperty('color-neutral-40')]],
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            radius: '75%',
+            center: ['50%', '60%'],
+            startAngle: 180,
+            endAngle: 0,
+            splitNumber: 1,
+            splitLine: {
+              show: true,
+            },
+            axisLabel: {
+              show: true,
+              distance: 30,
+              fontSize: 16,
+            },
+            progress: {
+              show: true,
+              overlap: false,
+              width: 35,
+              itemStyle: {
+                borderMiterLimit: 16,
+                color: getGaugeColor(value),
+              },
+            },
+            pointer: {
+              show: false,
+            },
+            data: [
+              {
+                value: value,
+                title: {
+                  show: false,
+                },
+                detail: {
+                  show: true,
+                  offsetCenter: [0, -70],
+                  overflow: 'break',
+                  fontSize: '1.5rem',
+                  width: 250,
+                  lineHeight: 35,
+                  color: getComputedCSSProperty('color-soft-text'),
+                  formatter: '{value}Mbps \nNetwork Speed',
+                },
+                pointer: {
+                  show: false,
+                },
+              },
+            ],
+          },
+          {
+            id: '2',
+            type: 'gauge',
+            splitLine: {
+              show: false,
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              show: false,
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                width: 5,
+                color: [
+                  [0.25, getComputedCSSProperty('color-alarm')],
+                  [0.6, getComputedCSSProperty('color-warning')],
+                  [1, getComputedCSSProperty('color-success')],
+                ],
+              },
+            },
+            radius: '80%',
+            center: ['50%', '60%'],
+            startAngle: 180,
+            endAngle: 0,
+          },
+        ],
+      };
+
+      // providing echarts is in this case optional
+      registerTheme(echarts);
+
+      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+
+      themeSwitcher.themeChanged.on((theme) => {
+        myChart.dispose();
+        myChart = initChart(theme, options);
+      });
+
+      window.onresize = function () {
+        myChart.resize();
+      };
+    </script>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
