@@ -241,7 +241,7 @@ const config: Config = {
           type: 'custom-news-pill',
           position: 'left',
           label: 'Release 3.0 is here',
-          value: '/blog/v3-alpha',
+          value: '/blog/2025/05/09/release-3',
         },
         {
           type: 'custom-version-selection',
