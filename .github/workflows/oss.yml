@@ -18,7 +18,7 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
-      - name: Test
+      - name: Create SBOM
         run: pnpm --filter oss-clearing start
 
       - uses: actions/upload-artifact@v4
