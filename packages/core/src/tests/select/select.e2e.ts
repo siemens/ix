@@ -125,6 +125,14 @@ regressionTest.describe('select', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('centered overflow', async ({ page }) => {
+    await page.goto('select/centered-overflow');
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
+    const lastItem = await page.locator('.dropdown-item').last();
+    await lastItem.scrollIntoViewIfNeeded();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest.describe('disabled', () => {
     regressionTest('basic', async ({ page }) => {
       await page.goto('select/disabled');
