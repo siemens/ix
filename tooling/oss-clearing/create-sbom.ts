@@ -34,9 +34,7 @@ async function handleCoreLibraryDependencies(pnpmJson: any) {
       )
     ).toString()
   );
-  console.log(pkg);
   pnpmJson['dependencies'] = pnpmJson['devDependencies'];
-  console.log(pnpmJson);
   Object.keys(pnpmJson['dependencies']).forEach((key) => {
     if (!pkg['siemensix']['dependencies'].includes(key)) {
       delete pnpmJson['dependencies'][key];
@@ -217,11 +215,11 @@ async function createSBom(packageName: string) {
 async function main() {
   const packages = [
     '@siemens/ix',
-    // '@siemens/ix-react',
-    // '@siemens/ix-angular',
-    // '@siemens/ix-vue',
-    // '@siemens/ix-echarts',
-    // '@siemens/ix-aggrid',
+    '@siemens/ix-react',
+    '@siemens/ix-angular',
+    '@siemens/ix-vue',
+    '@siemens/ix-echarts',
+    '@siemens/ix-aggrid',
   ];
 
   const sbomPromises = packages.map(async (pkg) => {
