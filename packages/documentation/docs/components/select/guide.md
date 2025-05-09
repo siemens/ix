@@ -1,5 +1,6 @@
 ---
 doc-type: 'tab-item'
+formReady: true
 ---
 # Select - Usage
 

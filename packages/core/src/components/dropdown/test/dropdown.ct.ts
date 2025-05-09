@@ -770,3 +770,52 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
     Math.round(triggerRect.y + triggerRect.height)
   );
 });
+
+regressionTest(
+  'last dropdown item can be accessed via scrolling',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger">
+        ${Array.from(
+          { length: 20 },
+          (_, i) => `<ix-dropdown-item label="Item ${i}"></ix-dropdown-item>`
+        ).join('')}
+      </ix-dropdown>
+    `);
+
+    await page.locator('#trigger').click();
+
+    const lastItem = page.locator('ix-dropdown-item').last();
+    await lastItem.evaluate((item) => {
+      item.scrollIntoView();
+    });
+    await expect(lastItem).toBeVisible();
+  }
+);
+
+regressionTest(
+  'last dropdown item can be accessed, dropdown placed at center of page',
+  async ({ mount, page }) => {
+    await mount(`
+      <body style="width: 100vw; height: 100vh;">
+        <div style="height:calc(50vh-1px)"></div>
+        <ix-button id="trigger">Open</ix-button>
+        <ix-dropdown trigger="trigger">
+          ${Array.from(
+            { length: 20 },
+            (_, i) => `<ix-dropdown-item label="Item ${i}"></ix-dropdown-item>`
+          ).join('')}
+        </ix-dropdown>
+      </body>
+    `);
+
+    await page.locator('#trigger').click();
+
+    const lastItem = page.locator('ix-dropdown-item').last();
+    await lastItem.evaluate((item) => {
+      item.scrollIntoView();
+    });
+    await expect(lastItem).toBeVisible();
+  }
+);

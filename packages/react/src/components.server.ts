@@ -889,6 +889,7 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
         outline: 'outline',
         ghost: 'ghost',
         icon: 'icon',
+        oval: 'oval',
         pressed: 'pressed',
         size: 'size',
         disabled: 'disabled',
