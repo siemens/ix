@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal Form Example</title>
+  </head>
+  <body>
+    <ix-button>Show modal</ix-button>
+    <template id="modal-form-template">
+      <ix-modal-header>Create Resource</ix-modal-header>
+      <ix-modal-content>
+        <form id="create-resource-form">
+          <ix-input label="Name" type="text" id="name" name="name"></ix-input>
+        </form>
+      </ix-modal-content>
+      <ix-modal-footer>
+        <ix-button outline data-cancel>Cancel</ix-button>
+        <ix-button type="submit" form="create-resource-form">Submit</ix-button>
+      </ix-modal-footer>
+    </template>
+
+    <script type="module">
+      import { showModal, closeModal, dismissModal } from '@siemens/ix';
+
+      function createFormModal() {
+        const name = 'modal-form-example';
+        window.customElements.define(
+          name,
+          class extends HTMLElement {
+            isInitalRender = false;
+
+            connectedCallback() {
+              if (this.isInitalRender) {
+                return;
+              }
+
+              this.isInitalRender = true;
+              this.firstRender();
+            }
+
+            firstRender() {
+              const modalTemplate = document.getElementById(
+                'modal-form-template'
+              );
+              const template = modalTemplate.content.cloneNode(true);
+
+              const cancelButton = template.querySelector('[data-cancel]');
+              const form = template.querySelector('#create-resource-form');
+
+              cancelButton.addEventListener('click', () => {
+                dismissModal(this);
+              });
+
+              form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                closeModal(this);
+              });
+
+              this.append(template);
+            }
+          }
+        );
+
+        return name;
+      }
+
+      (async function () {
+        const formModalName = createFormModal();
+
+        await window.customElements.whenDefined('ix-button');
+        const button = document.querySelector('ix-button');
+
+        button.addEventListener('click', async () => {
+          const customModal = document.createElement(formModalName);
+
+          await showModal({
+            content: customModal,
+          });
+        });
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

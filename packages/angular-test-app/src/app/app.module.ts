@@ -240,6 +240,7 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
 
 @NgModule({
   declarations: [
@@ -383,6 +384,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ModalByInstanceContent,
     ModalByInstance,
     ModalByTemplate,
+    ModalFormIxButtonSubmit,
     ModalSizes,
     PaginationAdvanced,
     Pagination,
