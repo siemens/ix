@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "pnpm build.docs && docusaurus start",
     "build": "pnpm build.docs && docusaurus build",
-    "build.docs": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/build.ts",
+    "build.docs": "tsx --tsconfig ./tsconfig.node.json ./scripts/prepare-markdown.ts",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -62,7 +62,8 @@
     "tsx": "^4.15.4",
     "typedoc": "^0.27.9",
     "typescript": "~5.5.2",
-    "vue-test-app": "workspace:*"
+    "vue-test-app": "workspace:*",
+    "documentation": "workspace:*"
   },
   "browserslist": {
     "production": [

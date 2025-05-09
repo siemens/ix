@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/build.ts"
+    "build": "tsx --tsconfig ./tsconfig.json ./scripts/build.ts"
   },
   "dependencies": {},
   "devDependencies": {
