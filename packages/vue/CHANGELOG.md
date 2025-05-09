@@ -1,5 +1,20 @@
 # @siemens/ix-vue
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1856](https://github.com/siemens/ix/pull/1856) [`3a3814be041ac02df2ba4225d64b00b5ab5feb09`](https://github.com/siemens/ix/commit/3a3814be041ac02df2ba4225d64b00b5ab5feb09) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Add oval attribute to **ix-icon-toggle-button**.
+
+### Patch Changes
+
+- [#1861](https://github.com/siemens/ix/pull/1861) [`a32fcefdda7087207ecaa354c5ce62ca18063548`](https://github.com/siemens/ix/commit/a32fcefdda7087207ecaa354c5ce62ca18063548) Thanks [@tiagogviegas](https://github.com/tiagogviegas)! - Fix triggering of events
+
+  Fixes #1395
+
+- Updated dependencies [[`ec011a4b76b25916c04e918e20b448c2f87978f5`](https://github.com/siemens/ix/commit/ec011a4b76b25916c04e918e20b448c2f87978f5), [`3a3814be041ac02df2ba4225d64b00b5ab5feb09`](https://github.com/siemens/ix/commit/3a3814be041ac02df2ba4225d64b00b5ab5feb09)]:
+  - @siemens/ix@3.1.0
+
 ## 3.0.0
 
 ### Major Changes
