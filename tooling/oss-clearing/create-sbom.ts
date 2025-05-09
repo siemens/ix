@@ -12,8 +12,6 @@ import path from 'path';
 import { ensureDir, readFile, readFileSync, writeFile } from 'fs-extra';
 import { Component, HashDictionary } from '@cyclonedx/cyclonedx-library/Models';
 
-const PLACE_VERSION = 'REPLACE REQUEST WITH ACTUAL VERSION';
-
 function splitPkgName(dependencyName: string) {
   const hasScope = dependencyName.startsWith('@');
   const scope = hasScope ? dependencyName.split('/')[0] : '';
