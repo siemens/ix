@@ -25,6 +25,7 @@
     "figma-plugin",
     "documentation",
     "storybook-docs",
-    "vitest-react"
+    "vitest-react",
+    "oss-clearing"
   ]
 }

@@ -16,7 +16,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@siemens/ix": "~3.0.0"
+    "@siemens/ix": "~3.0.0",
+    "tslib": "^2.3.0"
   },
   "peerDependencies": {
     "@angular/core": ">=18",
