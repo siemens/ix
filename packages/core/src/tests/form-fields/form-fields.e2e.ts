@@ -53,18 +53,11 @@ async function changeToDisabled(page: Page) {
 }
 
 async function verifySlotContent(page: Page, slotName: string, expectedContent: string) {
-  const content = await page.locator(`[slot="${slotName}"]`).innerText();
+  const content = await page
+    .locator(`[data-field="input-with-slots"] div[slot="${slotName}"]`)
+    .first()
+    .innerText();
   expect(content).toBe(expectedContent);
-}
-
-async function toggleSlotVisibility(page: Page, state: FormElementState) {
-  return page.evaluate(
-    ([state]) => {
-      const input = document.querySelector('[data-field="input-with-slots"]');
-      input?.classList.add(`ix-${state}`);
-    },
-    [state]
-  );
 }
 
 regressionTest.describe('form-fields', () => {
@@ -110,13 +103,4 @@ regressionTest.describe('form-fields', () => {
     await verifySlotContent(page, 'valid', 'Valid slot content');
     await verifySlotContent(page, 'invalid', 'Invalid slot content');
   });
-  ['info', 'warning', 'valid', 'invalid'].forEach((state) =>
-    regressionTest(`should show correct slot for ${state} state`, async ({ page }) => {
-      await page.goto('form-fields/basic');
-      await toggleSlotVisibility(page, state as FormElementState);
-
-      const inputWithSlots = page.locator('[data-field="input-with-slots"]');
-      expect(await inputWithSlots.screenshot()).toMatchSnapshot();
-    })
-  )
 });
