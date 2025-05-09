@@ -140,7 +140,7 @@ async function createSBom(packageName: string) {
         component.licenses.add(lFac.makeFromString(dep.license));
         component.purl = purlFac.makeFromComponent(component);
 
-        if (repository && repository.url) {
+        if (repository?.url) {
           component.externalReferences.add(
             new CDX.Models.ExternalReference(
               repository.url,
@@ -165,7 +165,7 @@ async function createSBom(packageName: string) {
           );
         }
 
-        if (bugs && bugs.url) {
+        if (bugs?.url) {
           component.externalReferences.add(
             new CDX.Models.ExternalReference(
               bugs.url,
@@ -177,7 +177,7 @@ async function createSBom(packageName: string) {
           );
         }
 
-        if (dist && dist.tarball) {
+        if (dist?.tarball) {
           const hashes = new HashDictionary();
           hashes.set(CDX.Enums.HashAlgorithm['SHA-1'], dist.shasum);
 
