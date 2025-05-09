@@ -7,14 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 import * as CDX from '@cyclonedx/cyclonedx-library';
-import { readdir } from 'fs';
-import { spawn, spawnSync } from 'child_process';
-import path, { resolve } from 'path';
-import { ensureDir, readFile, writeFile } from 'fs-extra';
-import { HashDictionary } from '@cyclonedx/cyclonedx-library/Models';
+import { spawnSync } from 'child_process';
+import path from 'path';
+import { ensureDir, readFile, readFileSync, writeFile } from 'fs-extra';
+import { Component, HashDictionary } from '@cyclonedx/cyclonedx-library/Models';
 
-async function getPkg(pkgPath: string): Promise<any> {
-  return JSON.parse(await readFile(pkgPath, 'utf-8'));
+const PLACE_VERSION = 'REPLACE REQUEST WITH ACTUAL VERSION';
+
+function splitPkgName(dependencyName: string) {
+  const hasScope = dependencyName.startsWith('@');
+  const scope = hasScope ? dependencyName.split('/')[0] : '';
+  const name = hasScope ? dependencyName.split('/')[1] : dependencyName;
+  return { scope, name };
+}
+
+function getPkg(pkgPath: string) {
+  return JSON.parse(readFileSync(pkgPath, 'utf-8'));
 }
 
 async function handleCoreLibraryDependencies(pnpmJson: any) {
@@ -26,8 +34,9 @@ async function handleCoreLibraryDependencies(pnpmJson: any) {
       )
     ).toString()
   );
-
+  console.log(pkg);
   pnpmJson['dependencies'] = pnpmJson['devDependencies'];
+  console.log(pnpmJson);
   Object.keys(pnpmJson['dependencies']).forEach((key) => {
     if (!pkg['siemensix']['dependencies'].includes(key)) {
       delete pnpmJson['dependencies'][key];
@@ -53,48 +62,76 @@ async function resolveComponentData(
   });
 }
 
-async function resolveLinked(property: string, dependency: { path: string }) {
-  const pkg = await getPkg(path.join(dependency.path, 'package.json'));
+function resolveLinked(property: string, dependency: { path: string }) {
+  const pkg = getPkg(path.join(dependency.path, 'package.json'));
   return pkg[property];
 }
 
+class CustomPUrlFactory extends CDX.Factories.PackageUrlFactory {
+  constructor() {
+    super('npm');
+  }
+
+  makeFromComponent(component: Component, sort?: boolean): any {
+    const purl = super.makeFromComponent(component, sort);
+    if (component.version?.startsWith('link:')) {
+      component.version = component.version.substring('link:'.length);
+      return super.makeFromComponent(component, sort);
+    }
+    return purl;
+  }
+}
+
 async function createSBom(packageName: string) {
-  const { stdout } = spawnSync('npm', ['ls', '--json', '--long'], {
+  const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
     cwd: path.join(__dirname, 'node_modules', packageName),
   });
 
-  let npmJson = JSON.parse(stdout.toString());
+  let [npmJson] = JSON.parse(stdout.toString());
+
+  if (packageName === '@siemens/ix-angular') {
+    const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
+      cwd: path.join(npmJson.path, '..'),
+    });
+    const [npmJsonParent] = JSON.parse(stdout.toString());
+    npmJson = npmJsonParent;
+  }
+
   if (packageName === '@siemens/ix') {
     npmJson = await handleCoreLibraryDependencies(npmJson);
   }
 
   const lFac = new CDX.Factories.LicenseFactory();
-  const purlFac = new CDX.Factories.PackageUrlFactory('npm');
+  const purlFac = new CustomPUrlFactory();
 
   const bom = new CDX.Models.Bom();
 
+  const { name, scope } = splitPkgName(packageName);
+
   bom.metadata.component = new CDX.Models.Component(
     CDX.Enums.ComponentType.Library,
-    packageName
+    name
   );
+  bom.metadata.component.group = scope;
   bom.metadata.component.licenses.add(lFac.makeFromString('MIT'));
+  bom.metadata.component.version = npmJson.version;
 
   if (npmJson.dependencies) {
     await Promise.all(
       Object.keys(npmJson.dependencies).map(async (dependencyName) => {
         const dep = npmJson.dependencies[dependencyName];
 
-        const hasScope = dependencyName.startsWith('@');
-        const scope = hasScope ? dependencyName.split('/')[0] : '';
-        const name = hasScope ? dependencyName.split('/')[1] : dependencyName;
+        const { name, scope } = splitPkgName(dependencyName);
 
-        const { license, repository, homepage, bugs, dist } =
-          await resolveComponentData(dependencyName, dep.version);
+        if (dep.version.startsWith('link:')) {
+          const resolveVersion = await resolveLinked('version', dep);
+          dep.version = `link:${resolveVersion}`;
+        }
 
-        console.log(dep);
-        // if (dep.version.startsWith('link:')) {
-        //   dep.version = await resolveLinked('version', dep);
-        // }
+        const { repository, homepage, bugs, dist } = await resolveComponentData(
+          dependencyName,
+          dep.version
+        );
 
         const component = new CDX.Models.Component(
           CDX.Enums.ComponentType.Library,
@@ -179,22 +216,23 @@ async function createSBom(packageName: string) {
 
 async function main() {
   const packages = [
-    // '@siemens/ix',
+    '@siemens/ix',
     // '@siemens/ix-react',
-    '@siemens/ix-angular',
+    // '@siemens/ix-angular',
     // '@siemens/ix-vue',
     // '@siemens/ix-echarts',
     // '@siemens/ix-aggrid',
   ];
 
   const sbomPromises = packages.map(async (pkg) => {
-    const { version } = await getPkg(
+    const { version } = getPkg(
       path.join(__dirname, 'node_modules', pkg, 'package.json')
     );
+    const sbom = createSBom(pkg);
     return {
       pkg,
       version,
-      sbom: createSBom(pkg),
+      sbom,
     };
   });
   const sbomResults = await Promise.all(sbomPromises);
