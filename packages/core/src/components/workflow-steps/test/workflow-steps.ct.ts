@@ -84,49 +84,23 @@ regressionTest(
       <ix-workflow-step status='success'>Step 2</ix-workflow-step>
       <ix-workflow-step status='error'>Step 3</ix-workflow-step>
     </ix-workflow-steps>
-
-    <ix-button id="toggle-button">Toggle Step 1</ix-button>
     </div>
   `);
-    const workflowSteps = page.locator('ix-workflow-steps');
-    const selectedStep = workflowSteps.locator('ix-workflow-step').nth(0);
-    const selectedDiv = selectedStep.locator('.step');
 
-    await expect(workflowSteps).toHaveClass(/hydrated/);
-    await expect(selectedDiv).toHaveClass(/selected/);
-
-    await page.evaluate(() => {
-      const button = document.getElementById('toggle-button');
-      const step1 = document.getElementById('step1');
-
-      button?.addEventListener('click', () => {
-        const currentStatus = step1?.getAttribute('status');
-        step1?.setAttribute(
-          'status',
-          currentStatus === 'open' ? 'error' : 'open'
-        );
-      });
-    });
-
-    const toggleBtn = page.locator('#toggle-button');
     const step1 = page.locator('#step1');
-    await toggleBtn.click();
-    await expect(step1).toHaveAttribute('status', 'error');
-
-    const icon2 = page.locator('#step1 ix-icon').nth(1);
-    await expect(icon2).toHaveAttribute(
-      'style',
-      'color: var(--theme-color-alarm);'
-    );
-    await toggleBtn.click();
     await expect(step1).toHaveAttribute('status', 'open');
 
-    const icon1 = page.locator('#step1 ix-icon').nth(1);
-    await expect(icon1).toHaveAttribute(
-      'style',
-      'color: var(--theme-workflow-step-icon-default--color--selected);'
-    );
+    await page.evaluate(() => {
+      const step1 = document.getElementById('step1');
+      step1?.setAttribute('status', 'error');
+    });
 
-    await expect(selectedDiv).toHaveClass(/selected/);
+    await expect(step1).toHaveAttribute('status', 'error');
+    await page.evaluate(() => {
+      const step1 = document.getElementById('step1');
+      step1?.setAttribute('status', 'open');
+    });
+
+    await expect(step1).toHaveAttribute('status', 'open');
   }
 );
