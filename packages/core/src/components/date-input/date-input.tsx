@@ -165,7 +165,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Event() ixBlur!: EventEmitter<void>;
 
   @State() show = false;
-  @State() from: string | null = null;
+  @State() from?: string | null = null;
   @State() isInputInvalid = false;
   @State() isInvalid = false;
   @State() isValid = false;
@@ -187,7 +187,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string | undefined): void {
-    this.formInternals.setFormValue(value);
+    if (value) {
+      this.formInternals.setFormValue(value);
+    } else {
+      this.formInternals.setFormValue(null);
+    }
     this.value = value;
   }
 
