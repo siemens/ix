@@ -106,6 +106,21 @@ SPDX-License-Identifier: MIT
       <ix-checkbox label="Label 2" value="1" checked></ix-checkbox>
       <ix-checkbox label="Label 3" value="2"></ix-checkbox>
     </ix-checkbox-group>
+    <ix-input
+      data-field="input-with-slots"
+      label="Input with Slots"
+      helper-text="Helper text content"
+      valid-text="Valid text content"
+      invalid-text="Invalid text content"
+      info-text="Info text content"
+      warning-text="Warning text content"
+    >
+      <div slot="helper">Helper slot content</div>
+      <div slot="valid">Valid slot content</div>
+      <div slot="invalid">Invalid slot content</div>
+      <div slot="warning">Warning slot content</div>
+      <div slot="info">Info slot content</div>
+    </ix-input>
 
     <h1>With value</h1>
     <ix-custom-field
@@ -205,6 +220,22 @@ SPDX-License-Identifier: MIT
       <ix-checkbox label="Label 2" value="1" checked></ix-checkbox>
       <ix-checkbox label="Label 3" value="2"></ix-checkbox>
     </ix-checkbox-group>
+    <ix-input
+      data-field="input-with-slots"
+      label="Input with Slots"
+      value="some input"
+      helper-text="Helper text content"
+      valid-text="Valid text content"
+      invalid-text="Invalid text content"
+      info-text="Info text content"
+      warning-text="Warning text content"
+    >
+      <div slot="helper">Helper slot content</div>
+      <div slot="valid">Valid slot content</div>
+      <div slot="invalid">Invalid slot content</div>
+      <div slot="warning">Warning slot content</div>
+      <div slot="info">Info slot content</div>
+    </ix-input>
 
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>
