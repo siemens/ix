@@ -125,7 +125,7 @@ export class Slider {
 
   @Watch('showTooltip')
   onShowTooltipChange() {
-    if (this.showTooltip) {
+    if (this.showTooltip && this.pseudoThumb) {
       this.tooltip?.showTooltip(this.pseudoThumb);
       return;
     }
