@@ -4,3 +4,10 @@ danielleroux:
   image_url: https://github.com/danielleroux.png
   socials:
     github: danielleroux
+
+felixleist:
+  name: Felix Leist
+  title: Head of Siemens Industrial Experience
+  image_url: https://github.com/flxlst09.png
+  socials:
+    github: flxlst09
