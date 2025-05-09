@@ -542,7 +542,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/message" element={<Message />} />
         <Route path="/preview/message-bar" element={<MessageBar />} />
-        <Route path="/preview/message-bar-removal" element={<MessageBarRemoval />} />
+        <Route
+          path="/preview/message-bar-removal"
+          element={<MessageBarRemoval />}
+        />
         <Route path="/preview/radio-button" element={<RadioButton />} />
         <Route path="/preview/radio" element={<Radio />} />
         <Route path="/preview/radio-disabled" element={<RadioDisabled />} />

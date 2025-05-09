@@ -23,6 +23,9 @@ export class DateTimeCard {
   /** @internal */
   @Prop() standaloneAppearance?: boolean;
 
+  /** @internal */
+  @Prop() hasFooter: boolean = false;
+
   /**
    * set styles
    */
@@ -56,6 +59,15 @@ export class DateTimeCard {
           <div class="content">
             <slot></slot>
           </div>
+
+          {this.hasFooter && (
+            <div>
+              <div class="separator"></div>
+              <div class="footer">
+                <slot name="footer"></slot>
+              </div>
+            </div>
+          )}
         </div>
       </Host>
     );
