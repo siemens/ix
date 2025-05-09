@@ -25,3 +25,10 @@
 }
 
 @include chip-container;
+
+:host {
+  .container {
+    height: 100%;
+    justify-content: center;
+  }
+}
