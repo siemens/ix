@@ -8,12 +8,18 @@
  */
 
 import { IxButton, showToast } from '@siemens/ix-react';
+import { iconUndo } from '@siemens/ix-icons/icons';
 
-function CustomToast() {
+function CustomToastMessage() {
+  return <div>This message is from template</div>;
+}
+
+function CustomToastAction() {
   return (
     <div>
-      <div>Custom toast message</div>
-      <IxButton>Action</IxButton>
+      <IxButton ghost icon={iconUndo}>
+        Undo
+      </IxButton>
     </div>
   );
 }
@@ -24,7 +30,17 @@ export default () => {
       <IxButton
         onClick={() => {
           showToast({
-            message: <CustomToast></CustomToast>,
+            title: 'Toast headline',
+            message: 'Toast message text',
+            action: <CustomToastAction></CustomToastAction>,
+            type: 'success',
+          });
+
+          showToast({
+            title: 'Toast headline',
+            message: <CustomToastMessage></CustomToastMessage>,
+            action: <CustomToastAction></CustomToastAction>,
+            type: 'success',
           });
         }}
       >
