@@ -52,6 +52,14 @@ async function changeToDisabled(page: Page) {
   });
 }
 
+async function verifySlotContent(page: Page, slotName: string, expectedContent: string) {
+  const content = await page
+    .locator(`[data-field="input-with-slots"] div[slot="${slotName}"]`)
+    .first()
+    .innerText();
+  expect(content).toBe(expectedContent);
+}
+
 regressionTest.describe('form-fields', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('form-fields/basic');
@@ -86,4 +94,13 @@ regressionTest.describe('form-fields', () => {
       expect(await page.screenshot()).toMatchSnapshot();
     })
   );
+  regressionTest('should display correct slot content', async ({ page }) => {
+    await page.goto('form-fields/basic');
+
+    await verifySlotContent(page, 'helper', 'Helper slot content');
+    await verifySlotContent(page, 'info', 'Info slot content');
+    await verifySlotContent(page, 'warning', 'Warning slot content');
+    await verifySlotContent(page, 'valid', 'Valid slot content');
+    await verifySlotContent(page, 'invalid', 'Invalid slot content');
+  });
 });

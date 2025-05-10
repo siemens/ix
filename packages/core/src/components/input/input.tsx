@@ -167,6 +167,7 @@ export class Input implements IxInputFieldComponent<string> {
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
 
+
   @State() inputType = 'text';
 
   private readonly inputRef = makeRef<HTMLInputElement>();
@@ -176,6 +177,8 @@ export class Input implements IxInputFieldComponent<string> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -342,6 +345,11 @@ export class Input implements IxInputFieldComponent<string> {
               ></ix-icon-button>
             </SlotEnd>
           </div>
+          <slot name="helper" slot="helper" ></slot>
+          <slot name="warning" slot="warning" ></slot>
+          <slot name="valid" slot="valid" ></slot>
+          <slot name="invalid" slot="invalid"></slot>
+          <slot name="info" slot="info"></slot>
           {!!this.maxLength && this.maxLength > 0 && (
             <ix-typography
               class="bottom-text"
