@@ -35,7 +35,14 @@ export default () => {
             action: <CustomToastAction></CustomToastAction>,
             type: 'success',
           });
+        }}
+        style={{ marginRight: '0.5rem' }}
+      >
+        Trigger toast with custom message
+      </IxButton>
 
+      <IxButton
+        onClick={() => {
           showToast({
             title: 'Toast headline',
             message: <CustomToastMessage></CustomToastMessage>,
@@ -44,7 +51,7 @@ export default () => {
           });
         }}
       >
-        Trigger toast
+        Trigger toast with action button
       </IxButton>
     </>
   );
