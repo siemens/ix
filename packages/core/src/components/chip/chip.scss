@@ -18,6 +18,10 @@
   height: 2rem;
   max-height: 2rem;
   margin-left: $tiny-space;
+
+  .container {
+    justify-content: center;
+  }
 }
 
 :host(.inactive) {
@@ -25,10 +29,3 @@
 }
 
 @include chip-container;
-
-:host {
-  .container {
-    height: 100%;
-    justify-content: center;
-  }
-}
