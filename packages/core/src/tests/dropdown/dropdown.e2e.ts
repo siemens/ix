@@ -78,4 +78,11 @@ regressionTest.describe('dropdown', () => {
 
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('centered overflow', async ({ page }) => {
+    await page.goto('dropdown/centered-overflow');
+    const lastItem = await page.locator('.dropdown-item').last();
+    await lastItem.scrollIntoViewIfNeeded();
+    await expect(page).toHaveScreenshot();
+  });
 });
