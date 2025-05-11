@@ -53,7 +53,7 @@ LICENSE file in the root directory of this source tree.
             const templateContentAction = templateAction.content.cloneNode(true);
             customModalAction.appendChild(templateContentAction);
 
-            const instance = await toast({
+            await toast({
               title: 'Toast headline',
               message: 'Toast message text',
               action: customModalAction,
