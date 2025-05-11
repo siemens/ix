@@ -85,7 +85,7 @@ export class Radio implements IxFormComponent<string> {
   /**
    * Event emitted when the radio is blurred
    */
-  @Event() ixBlur: EventEmitter<void>;
+  @Event() ixBlur!: EventEmitter<void>;
 
   private classMutationObserver?: ClassMutationObserver;
 
