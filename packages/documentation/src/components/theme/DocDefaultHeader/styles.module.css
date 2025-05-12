@@ -109,14 +109,10 @@
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-}
-
-.Tags {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
+  margin-block-end: 1rem;
 }
 
 .Description {
   max-width: 56rem;
+  margin: 0;
 }

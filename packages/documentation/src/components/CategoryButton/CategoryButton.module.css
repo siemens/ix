@@ -1,0 +1,40 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.CategoryButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: auto;
+  width: 10rem;
+  margin-block-end: 1rem;
+}
+
+.CategoryButton__Content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 1rem;
+}
+
+.CategoryButton__Title {
+  height: 2.5rem;
+  white-space: break-spaces;
+  text-align: center;
+}
+
+.CategoryButton__Image {
+  width: 4rem;
+}
+
+.CategoryButton__Image p {
+  margin: unset;
+}
