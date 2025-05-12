@@ -27,8 +27,8 @@ export function hasAnyText({
   validText?: string;
   helperText?: string;
 }) {
-  return invalidText || warningText || infoText || validText || helperText;
-}
+  return (invalidText?.trim() || warningText?.trim() || infoText?.trim() ||
+  validText?.trim() || helperText?.trim());}
 
 export function renderHelperText({
   isInvalid,
@@ -51,17 +51,16 @@ export function renderHelperText({
   validText?: string;
   helperText?: string;
 }) {
-  if (isInvalid && invalidText !== undefined) {
+  if (isInvalid && invalidText?.trim() !== '') {
     return (
       <ix-typography textColor="alarm" class="bottom-text">
         <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
-
-        {invalidText}
+        {invalidText.trim()}
       </ix-typography>
     );
   }
 
-  if (isWarning && warningText !== undefined) {
+  if (isWarning && warningText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon
@@ -69,33 +68,33 @@ export function renderHelperText({
           name={iconWarning}
           size="16"
         ></ix-icon>
-        {warningText}
+        {warningText.trim()}
       </ix-typography>
     );
   }
 
-  if (isInfo && infoText !== undefined) {
+  if (isInfo && infoText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon info" name={iconInfo} size="16"></ix-icon>
-        {infoText}
+        {infoText.trim()}
       </ix-typography>
     );
   }
 
-  if (isValid && validText !== undefined) {
+  if (isValid && validText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon valid" name={iconSuccess} size="16"></ix-icon>
-        {validText}
+        {validText.trim()}
       </ix-typography>
     );
   }
 
   return (
-    helperText && (
+    helperText?.trim() && (
       <ix-typography class="bottom-text" textColor="soft">
-        {helperText}
+        {helperText.trim()}
       </ix-typography>
     )
   );
