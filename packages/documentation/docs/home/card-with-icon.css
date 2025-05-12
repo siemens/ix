@@ -17,3 +17,7 @@
 .Card_Icon path {
   fill: var(--theme-color-std-text);
 }
+
+.GuidingPrinciples {
+  margin-block-end: 2.5rem;
+}

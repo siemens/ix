@@ -54,7 +54,7 @@ Use the icon as attribute like this:
 
 ```html
 React:
-<IxIcon name="{iconStar}" />
+<IxIcon name={iconStar} />
 
 Vue:
 <IxIcon :name="iconStar" />

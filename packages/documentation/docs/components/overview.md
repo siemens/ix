@@ -8,13 +8,65 @@ no_single_tab: true
 description: 'Our design system clusters components into intuitive categories, making it easy to find the right tools for your app design. Explore each section to see how our components can enhance your projects.'
 ---
 
-# 
+import { IxLayoutGrid, IxRow } from '@siemens/ix-react';
+import { CategoryButton } from '@site/src/components/CategoryButton';
 
-![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4972-27679&t=adww7dTiIUsQfjBM-4)
+#
+
+<IxLayoutGrid style={{'margin-bottom': '3rem'}} no-margin>
+<IxRow style={{gap: '0.5rem', 'justify-content': 'center'}}>
+  <CategoryButton
+    title="Application frame"
+    link="#application-frame">
+    ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4975-28298)
+  </CategoryButton>
+  <CategoryButton
+    title="Navigation and hierarchy"
+    link="#navigation-and-hierarchy">
+    ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4975-28297)
+  </CategoryButton>
+  <CategoryButton
+    title="Containers and layouts"
+    link="#containers-and-layouts">
+    ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4975-28295)
+  </CategoryButton>
+  <CategoryButton
+    title="Forms"
+    link="#forms">
+    ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4975-28296)
+  </CategoryButton>
+  <CategoryButton
+    title="Input fields and selections"
+    link="#input-fields-and-selections">
+    ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4975-28294)
+  </CategoryButton>
+  <CategoryButton
+    title="Buttons and actions"
+    link="#buttons-and-actions">
+    ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4975-28323)
+  </CategoryButton>
+  <CategoryButton
+    title="System feedback and status"
+    link="#system-feedback-and-status">
+    ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4975-28432)
+  </CategoryButton>
+  <CategoryButton
+    title="Data display"
+    link="#data-display">
+    ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4980-28546)
+  </CategoryButton>
+  <CategoryButton
+    title="Charts"
+    link="#charts">
+    ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=4980-28545)
+  </CategoryButton>
+  </IxRow>
+</IxLayoutGrid>
+
 
 ## Application frame
 
-| Component | Description | 
+| Component | Description |
 | :----------------- | :------------ |
 | [Application](./application/index.mdx)  | Applications manage the layout and theming of top-level app elements, ensuring a cohesive user experience. |
 | [Application header](./application-header/index.mdx) | Application headers provide a structured area for key elements like brand logo, application name and user avatar. |
@@ -26,7 +78,7 @@ description: 'Our design system clusters components into intuitive categories, m
 
 ## Navigation and hierarchy
 
-| Component | Description | 
+| Component | Description |
 | :------- | :------------ |
 | [Breadcrumb](./breadcrumb/index.mdx) | Breadcrumbs provide a clear navigation path within an application. |
 | [Group](./group/index.mdx) | Groups are expandable containers for a list of selectable options. |
@@ -35,9 +87,9 @@ description: 'Our design system clusters components into intuitive categories, m
 | [Tree](./tree/index.mdx) | Trees display hierarchical data structures and allow users to navigate by expanding and collapsing nodes.  |
 | [Workflow](./workflow/index.mdx) | Workflows are a series of logical steps that guide users through a process.  |
 
-## Containers and layout
+## Containers and layouts
 
-| Component | Description | 
+| Component | Description |
 | :------- | :------------ |
 | [Blind](./blind/index.mdx) | Blinds enhance content organization by allowing users to toggle visibility through collapsing and expanding sections. |
 | [Card](./card/index.mdx) | Cards neatly organize and group related information about a specific subject. |
@@ -53,7 +105,7 @@ description: 'Our design system clusters components into intuitive categories, m
 
 ## Forms
 
-| Component | Description | 
+| Component | Description |
 | :----------------- | :------------ |
 | [Forms field](./forms-field/index.mdx) | A field is a form element when user input is needed. It's typically used with other form elements in a fieldset.  |
 | [Forms layout](./forms-layout/index.mdx) | Effective form layouts play a crucial role in usability. Well-structured forms include fieldsets, considering the hierarchy of information, and understanding how to strike the right balance between aesthetics and functionality.  |
@@ -62,7 +114,7 @@ description: 'Our design system clusters components into intuitive categories, m
 
 ## Input fields and selections
 
-| Component | Description | 
+| Component | Description |
 | :------- | :------------ |
 | [Category filter](./category-filter/index.mdx) | Category filters allow users to quickly narrow their search by selecting predefined categories.  |
 | [Checkbox](./checkbox/index.mdx) | Checkboxes are form controls that allow users to select none, one or more options.  |
@@ -84,7 +136,7 @@ description: 'Our design system clusters components into intuitive categories, m
 
 ## Buttons and actions
 
-| Component | Description | 
+| Component | Description |
 | :------- | :------------ |
 | [Button](./button/index.mdx) | Buttons facilitate user interactions by initiating actions and applying functions within an application.  |
 | [Dropdown button](./dropdown-button/index.mdx) | Dropdown buttons reveal a list of actions when selected.  |
@@ -96,7 +148,7 @@ description: 'Our design system clusters components into intuitive categories, m
 
 ## System feedback and status
 
-| Component | Description | 
+| Component | Description |
 | :------- | :------------ |
 | [Empty state](./empty-state/index.mdx) | Empty states inform users that there is no content to display.  |
 | [Message bar](./messagebar/index.mdx) | Message bars display important information to users, e.g. feedback, warnings or errors.  |
@@ -107,7 +159,7 @@ description: 'Our design system clusters components into intuitive categories, m
 
 ## Data display
 
-| Component | Description | 
+| Component | Description |
 | :------- | :------------ |
 | [Angular data grid](./grid/index.mdx) | The popular data grid library AG Grid is seamlessly integrated into our design system, allowing you to harness its powerful features while maintaining consistency with our styleguide.  |
 | [HTML table](./html-grid/index.mdx) | HTML tables are used to display tabular data in a structured way.  |
@@ -117,7 +169,7 @@ description: 'Our design system clusters components into intuitive categories, m
 
 ## Charts
 
-| Component | Description | 
+| Component | Description |
 | :------- | :------------ |
 | [Chart overview](./charts-overview/index.mdx) | Charts are essential tools for visualizing data, making complex information more accessible and easier to understand.  |
 | [Line chart](./line-chart/index.mdx) | Line charts display data as a series of data points connected by straight line segments. Line charts are commonly used to visualize trends over time or compare two variables. We typically use line charts to visualize continuous data.  |

@@ -7,11 +7,6 @@ settings:
 overrides:
   cheerio: 1.0.0-rc.12
 
-patchedDependencies:
-  '@stencil/vue-output-target@0.8.8':
-    hash: 5yvuqqkqemceot6njn3c7dgkpi
-    path: patches/@stencil__vue-output-target@0.8.8.patch
-
 importers:
 
   .:
@@ -429,8 +424,8 @@ importers:
         specifier: ^3.0.12
         version: 3.0.12(@stencil/core@4.29.0)
       '@stencil/vue-output-target':
-        specifier: 0.8.8
-        version: 0.8.8(patch_hash=5yvuqqkqemceot6njn3c7dgkpi)(@stencil/core@4.29.0)
+        specifier: 0.10.7
+        version: 0.10.7(@stencil/core@4.29.0)(vue@3.5.13(typescript@5.4.5))
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -1147,6 +1142,9 @@ importers:
       '@siemens/ix-icons':
         specifier: ^3.0.0
         version: 3.0.0
+      '@stencil/vue-output-target':
+        specifier: ^0.10.7
+        version: 0.10.7(@stencil/core@4.29.0)(vue@3.5.13(typescript@4.9.5))
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
@@ -5712,10 +5710,17 @@ packages:
       vite: ^6.x
       webpack: ^5.x
 
-  '@stencil/vue-output-target@0.8.8':
-    resolution: {integrity: sha512-xrpz92lmTuLgwY9CLgl2Q14+zBXfBuXiRS6uXFPfeaFo0pe+do8cZitOOQ8i8tcoCa/tAqgD9B9CD+yQehSIGg==}
+  '@stencil/vue-output-target@0.10.7':
+    resolution: {integrity: sha512-IYxDe+SLCkwhwsWRdynE31rTK1zN3hVwwojQ/V9lrN8Gnx4PTvrUQHiRno9jFo1dk+EaBZWX9gZSmXta0ZaZew==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
+      vue: ^3.4.38
+      vue-router: ^4.5.0
+    peerDependenciesMeta:
+      '@stencil/core':
+        optional: true
+      vue-router:
+        optional: true
 
   '@storybook/addon-a11y@8.4.2':
     resolution: {integrity: sha512-v6Tl+qr3Eslf06qmt2hq1ticYi7oRLIFosePQUOlW1+cgdIbV+r1IxsZ7creCDWX4kIMTbUFhbET9LTYGHem1A==}
@@ -22714,8 +22719,16 @@ snapshots:
       vite: 6.2.2(@types/node@20.16.5)(jiti@1.21.7)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.36.0)(tsx@4.19.3)(yaml@2.7.0)
       webpack: 5.96.1
 
-  '@stencil/vue-output-target@0.8.8(patch_hash=5yvuqqkqemceot6njn3c7dgkpi)(@stencil/core@4.29.0)':
+  '@stencil/vue-output-target@0.10.7(@stencil/core@4.29.0)(vue@3.5.13(typescript@4.9.5))':
     dependencies:
+      vue: 3.5.13(typescript@4.9.5)
+    optionalDependencies:
+      '@stencil/core': 4.29.0
+
+  '@stencil/vue-output-target@0.10.7(@stencil/core@4.29.0)(vue@3.5.13(typescript@5.4.5))':
+    dependencies:
+      vue: 3.5.13(typescript@5.4.5)
+    optionalDependencies:
       '@stencil/core': 4.29.0
 
   '@storybook/addon-a11y@8.4.2(storybook@8.4.2(prettier@3.4.2))':
@@ -24230,6 +24243,12 @@ snapshots:
       '@vue/compiler-ssr': 3.5.13
       '@vue/shared': 3.5.13
       vue: 3.5.13(typescript@4.9.5)
+
+  '@vue/server-renderer@3.5.13(vue@3.5.13(typescript@5.4.5))':
+    dependencies:
+      '@vue/compiler-ssr': 3.5.13
+      '@vue/shared': 3.5.13
+      vue: 3.5.13(typescript@5.4.5)
 
   '@vue/shared@3.3.7': {}
 
@@ -36485,6 +36504,16 @@ snapshots:
       '@vue/shared': 3.5.13
     optionalDependencies:
       typescript: 4.9.5
+
+  vue@3.5.13(typescript@5.4.5):
+    dependencies:
+      '@vue/compiler-dom': 3.5.13
+      '@vue/compiler-sfc': 3.5.13
+      '@vue/runtime-dom': 3.5.13
+      '@vue/server-renderer': 3.5.13(vue@3.5.13(typescript@5.4.5))
+      '@vue/shared': 3.5.13
+    optionalDependencies:
+      typescript: 5.4.5
 
   w3c-xmlserializer@4.0.0:
     dependencies:

@@ -28,6 +28,10 @@ export function convertDocsTagsToTSXElement(
       template = `<DeprecatedTag message={\`${escapedText}\`} />`;
     }
 
+    if (name === 'form-ready') {
+      template = `<FormReady message={\`${escapedText}\`} />`;
+    }
+
     if (template === '') {
       console.warn(`Unknown tag: ${name} within ${tagName}`);
     }
