@@ -1316,22 +1316,22 @@ importers:
   tooling/oss-clearing:
     dependencies:
       '@siemens/ix':
-        specifier: 3.0.0
-        version: 3.0.0(@siemens/ix-icons@3.0.0)
+        specifier: workspace:*
+        version: link:../../packages/core
       '@siemens/ix-aggrid':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:../../packages/aggrid
       '@siemens/ix-angular':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:../../packages/angular/dist
       '@siemens/ix-echarts':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:../../packages/echarts
       '@siemens/ix-react':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:../../packages/react
       '@siemens/ix-vue':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:../../packages/vue
     devDependencies:
       '@cyclonedx/cyclonedx-library':
@@ -5658,11 +5658,6 @@ packages:
   '@siemens/ix-icons@3.0.0':
     resolution: {integrity: sha512-eudP3wv/aUwfc/z7IRweRRPdpZTLew1fIhPfjkFSwZIoRMuzDt13zFoiyZ6taQvPpZgSgBJjUJXZJs714GRudw==}
     engines: {node: '>=18.x.x', pnpm: '>=9.x.x'}
-
-  '@siemens/ix@3.0.0':
-    resolution: {integrity: sha512-osVM3NYOxTuM6A3ncJpXrDLV1T+42JTTNmOfD+6tXWZo5n1zPEW7D77jBbKqGvatwgjBP/XGkNrCU0zIN92Zkg==}
-    peerDependencies:
-      '@siemens/ix-icons': ^3.0.0
 
   '@sigstore/bundle@2.3.2':
     resolution: {integrity: sha512-wueKWDk70QixNLB363yHc2D2ItTgYiMTdPwK8D9dKQMR3ZQ0c35IxP5xnwQ8cNLoCgCRcHf14kE+CLIvNX1zmA==}
@@ -22764,15 +22759,6 @@ snapshots:
   '@siemens/ix-icons@3.0.0':
     dependencies:
       '@stencil/core': 4.29.0
-
-  '@siemens/ix@3.0.0(@siemens/ix-icons@3.0.0)':
-    dependencies:
-      '@floating-ui/dom': 1.6.13
-      '@siemens/ix-icons': 3.0.0
-      '@stencil/core': 4.29.0
-      '@types/luxon': 3.4.2
-      animejs: 3.2.2
-      luxon: 3.4.4
 
   '@sigstore/bundle@2.3.2':
     dependencies:
