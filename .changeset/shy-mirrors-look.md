@@ -1,8 +1,8 @@
 ---
-"angular-standalone-test-app": patch
-"angular-test-app": patch
-"@siemens/ix-angular": patch
-"@siemens/core": minor
+'angular-standalone-test-app': minor
+'angular-test-app': minor
+'@siemens/ix-angular': minor
+'@siemens/ix': minor
 ---
 
 feat(core/time-picker): Rework ix-time-picker according to new design
