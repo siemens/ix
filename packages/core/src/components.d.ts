@@ -2686,7 +2686,7 @@ export namespace Components {
     }
     /**
      * @since 3.1.0
-     * @form-ready 3.0.0
+     * @form-ready 3.1.0
      */
     interface IxTimeInput {
         /**
@@ -4701,7 +4701,7 @@ declare global {
     }
     /**
      * @since 3.1.0
-     * @form-ready 3.0.0
+     * @form-ready 3.1.0
      */
     interface HTMLIxTimeInputElement extends Components.IxTimeInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTimeInputElementEventMap>(type: K, listener: (this: HTMLIxTimeInputElement, ev: IxTimeInputCustomEvent<HTMLIxTimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7820,7 +7820,7 @@ declare namespace LocalJSX {
     }
     /**
      * @since 3.1.0
-     * @form-ready 3.0.0
+     * @form-ready 3.1.0
      */
     interface IxTimeInput {
         /**
@@ -8621,7 +8621,7 @@ declare module "@stencil/core" {
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             /**
              * @since 3.1.0
-             * @form-ready 3.0.0
+             * @form-ready 3.1.0
              */
             "ix-time-input": LocalJSX.IxTimeInput & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;

@@ -133,8 +133,13 @@
       }
     }
 
-    div.element-list::-webkit-scrollbar {
-      display: none;
+    div.element-list {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 
