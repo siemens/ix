@@ -548,7 +548,7 @@ export class TimePicker {
     const uses12HourFormat = this.isFormat12Hour(this.format);
 
     if (uses12HourFormat) {
-      this.timeRef = this._time.hour >= 12 ? 'PM' : 'AM';
+      this.timeRef = this._time?.hour >= 12 ? 'PM' : 'AM';
     } else {
       this.timeRef = undefined;
     }
