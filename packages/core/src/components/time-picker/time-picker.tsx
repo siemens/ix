@@ -295,7 +295,6 @@ export class TimePicker {
   disconnectedCallback() {
     if (this.visibilityObserver) {
       this.visibilityObserver.disconnect();
-      this.visibilityObserver = undefined;
     }
   }
 
