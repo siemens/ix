@@ -798,7 +798,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
          */
@@ -2823,7 +2823,7 @@ export namespace Components {
         /**
           * Get the current time based on the wanted format
          */
-        "getCurrentTime": () => Promise<string>;
+        "getCurrentTime": () => Promise<string | undefined>;
         /**
           * Interval for hour selection
           * @since 3.1.0

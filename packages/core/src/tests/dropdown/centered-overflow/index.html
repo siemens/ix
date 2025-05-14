@@ -1,0 +1,56 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body style="width: 100vw; height: 100vh;">
+    
+    <div style="display: block; position: relative; width: 100rem; margin-top: calc(50vh - 1px)">
+      <ix-dropdown>
+        <ix-dropdown-item label="Test 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 2"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 3"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 4"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 5"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 6"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 7"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 8"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 9"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 10"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 11"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 12"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 13"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 14"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 15"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 16"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 17"></ix-dropdown-item>
+        <ix-dropdown-item label="Test 18"></ix-dropdown-item>
+        <ix-dropdown-item
+          id="last-element"
+          label="Should be visible!"
+        ></ix-dropdown-item>
+      </ix-dropdown>
+      <script type="module">
+        (async () => {
+          await window.customElements.whenDefined('ix-dropdown');
+          await window.customElements.whenDefined('ix-dropdown-item');
+
+          const dropdown = document.querySelector('ix-dropdown');
+          dropdown.show = true;
+        })();
+      </script>
+    </div>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>
