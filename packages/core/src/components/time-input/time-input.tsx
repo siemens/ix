@@ -46,7 +46,7 @@ export type TimeInputValidityState = {
 
 /**
  * @since 3.1.0
- * @form-ready 3.0.0
+ * @form-ready 3.1.0
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */
@@ -250,7 +250,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad(): void {
-    // Set default value if not provided
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
