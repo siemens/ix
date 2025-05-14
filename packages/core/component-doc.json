@@ -20130,10 +20130,10 @@
         },
         {
           "name": "helperText",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20144,6 +20144,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20201,10 +20204,10 @@
         },
         {
           "name": "infoText",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20215,6 +20218,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20224,10 +20230,10 @@
         },
         {
           "name": "invalidText",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20238,6 +20244,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20247,10 +20256,10 @@
         },
         {
           "name": "label",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20261,6 +20270,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20270,10 +20282,10 @@
         },
         {
           "name": "locale",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20289,6 +20301,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20346,10 +20361,10 @@
         },
         {
           "name": "name",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20360,6 +20375,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20369,10 +20387,10 @@
         },
         {
           "name": "placeholder",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20383,6 +20401,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20416,10 +20437,10 @@
         },
         {
           "name": "required",
-          "type": "boolean",
+          "type": "boolean | undefined",
           "complexType": {
             "original": "boolean",
-            "resolved": "boolean",
+            "resolved": "boolean | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20430,6 +20451,9 @@
           "values": [
             {
               "type": "boolean"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20463,10 +20487,10 @@
         },
         {
           "name": "showTextAsTooltip",
-          "type": "boolean",
+          "type": "boolean | undefined",
           "complexType": {
             "original": "boolean",
-            "resolved": "boolean",
+            "resolved": "boolean | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20477,6 +20501,9 @@
           "values": [
             {
               "type": "boolean"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20630,10 +20657,10 @@
         },
         {
           "name": "validText",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20644,6 +20671,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20677,10 +20707,10 @@
         },
         {
           "name": "warningText",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -20691,6 +20721,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -20752,11 +20785,11 @@
       "events": [
         {
           "event": "validityStateChange",
-          "detail": "{ patternMismatch: boolean; invalidReason?: string; }",
+          "detail": "{ patternMismatch: boolean; invalidReason?: string | undefined; }",
           "bubbles": true,
           "complexType": {
             "original": "TimeInputValidityState",
-            "resolved": "{ patternMismatch: boolean; invalidReason?: string; }",
+            "resolved": "{ patternMismatch: boolean; invalidReason?: string | undefined; }",
             "references": {
               "TimeInputValidityState": {
                 "location": "local",
