@@ -116,8 +116,8 @@
       }
 
       .selected {
-        background-color: var(--theme-color-component-9);
-        color: var(--theme-color-primary--contrast);
+        background-color: var(--theme-datepicker-day--background--selected);
+        color: var(--theme-datepicker-day--color--selected);
 
         &:hover {
           background-color: var(
@@ -204,7 +204,7 @@
 
         &:focus {
           outline: 1px solid var(--theme-color-focus-bdr);
-          outline-offset: 1px;
+          outline-offset: var(--theme-btn--focus--outline-offset);
         }
 
         &:hover {
