@@ -11,8 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <ix-time-picker format="hh:mm:ss.SSS" time="01:01:01.100"></ix-time-picker>
-  `,
+  templateUrl: './timepicker-format-adjusted.html',
 })
 export default class TimepickerFormatAdjusted {}

@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: ` <ix-time-picker></ix-time-picker> `,
+  templateUrl: './timepicker.html',
 })
 export default class Timepicker {}

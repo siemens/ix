@@ -11,14 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <ix-time-picker
-      format="hh:mm:ss a"
-      time="01:15:10 AM"
-      hourInterval="2"
-      minuteInterval="15"
-      secondInterval="10"
-    ></ix-time-picker>
-  `,
+  templateUrl: './timepicker-intervals.html',
 })
 export default class TimepickerIntervals {}
