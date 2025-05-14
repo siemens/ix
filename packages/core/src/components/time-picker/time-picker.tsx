@@ -253,7 +253,7 @@ export class TimePicker {
   }
 
   @State() private timeRef?: 'AM' | 'PM' | undefined;
-  @State() private formattedTime!: TimeOutputFormat;
+  @State() private formattedTime?: TimeOutputFormat;
   @State() private timePickerDescriptors: TimePickerDescriptor[] = [];
   @State() private isUnitFocused: boolean = false;
   @State() private focusedUnit: TimePickerDescriptorUnit = 'hour';
@@ -465,9 +465,9 @@ export class TimePicker {
     );
   }
 
-  private getFormattedTime(): TimeOutputFormat {
+  private getFormattedTime(): TimeOutputFormat | undefined {
     if (!this._time) {
-      return;
+      return undefined;
     }
 
     return {

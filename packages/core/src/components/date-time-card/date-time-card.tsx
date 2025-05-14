@@ -61,7 +61,7 @@ export class DateTimeCard {
           </div>
 
           {this.hasFooter && (
-            <div>
+            <div class="footer-container">
               <div class="separator"></div>
               <div class="footer">
                 <slot name="footer"></slot>

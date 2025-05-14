@@ -60,8 +60,12 @@
       justify-content: center;
     }
 
-    .footer {
-      padding: $default-space;
+    .footer-container {
+      width: 100%;
+
+      .footer {
+        padding: $default-space;
+      }
     }
   }
 }
