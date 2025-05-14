@@ -24,16 +24,24 @@ const customAction = ref<HTMLElement | null>(null);
         message: 'Toast message text',
         action: customAction!,
         type: 'success',
-      }),
-        showToast({
-          title: 'Toast headline',
-          message: customMessage!,
-          action: customAction!,
-          type: 'success',
-        })
+      })
+    "
+    style="margin-right: 0.5rem"
+  >
+    Trigger toast with custom message
+  </IxButton>
+
+  <IxButton
+    @click="
+      showToast({
+        title: 'Toast headline',
+        message: customMessage!,
+        action: customAction!,
+        type: 'success',
+      })
     "
   >
-    Trigger toast
+    Trigger toast with action button
   </IxButton>
   <template>
     <div ref="customMessage">This message is from template</div>

@@ -2,7 +2,7 @@
 sidebar_position: 1
 sidebar_label: Getting started
 title: Getting started with Conversational design
-hide_table_of_contents: true
+hide_table_of_contents: false
 doc-type: 'banner'
 component-tabs: ['']
 no_single_tab: true

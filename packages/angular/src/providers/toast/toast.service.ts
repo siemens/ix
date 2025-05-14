@@ -29,8 +29,7 @@ export class ToastService {
 
   async show(config: ToastConfig) {
     if (
-      typeof config.message === 'string' &&
-      !(config.action instanceof TemplateRef)
+      typeof config.message === 'string' && !config.action
     ) {
       return toast(config as IxToastConfig);
     }

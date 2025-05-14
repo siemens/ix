@@ -24,7 +24,13 @@ LICENSE file in the root directory of this source tree.
   <body>
     <ix-toast-container></ix-toast-container>
 
-    <ix-button id="toastButton">Trigger toast</ix-button>
+    <ix-button id="toastMessageButton">
+      Trigger toast with custom message
+    </ix-button>
+    
+    <ix-button id="toastActionButton">
+      Trigger toast with action button
+    </ix-button>
 
     <template id="custom-toast-message">
       <div>This message is from template</div>
@@ -40,32 +46,23 @@ LICENSE file in the root directory of this source tree.
       (async function () {
         await window.customElements.whenDefined('ix-toast-container');
         document
-          .getElementById('toastButton')
+          .getElementById('toastMessageButton')
           .addEventListener('click', async () => {
             const customModalAction = document.createElement('div');
             const templateAction = document.getElementById('custom-toast-action');
             const templateContentAction = templateAction.content.cloneNode(true);
             customModalAction.appendChild(templateContentAction);
 
-            const instance = await toast({
+            await toast({
               title: 'Toast headline',
               message: 'Toast message text',
               action: customModalAction,
               type: 'success',
             });
-
-            customModal
-              .querySelector('ix-button')
-              .addEventListener('click', () => {
-                instance.close();
-              });
           });
-      })();
-
-      (async function () {
-        await window.customElements.whenDefined('ix-toast-container');
+          
         document
-          .getElementById('toastButton')
+          .getElementById('toastActionButton')
           .addEventListener('click', async () => {
             const customModal = document.createElement('div');
             const template = document.getElementById('custom-toast-message');
@@ -73,11 +70,8 @@ LICENSE file in the root directory of this source tree.
             customModal.appendChild(templateContent);
 
             const customModalAction = document.createElement('div');
-            const templateAction = document.getElementById(
-              'custom-toast-action'
-            );
-            const templateContentAction =
-              templateAction.content.cloneNode(true);
+            const templateAction = document.getElementById('custom-toast-action');
+            const templateContentAction = templateAction.content.cloneNode(true);
             customModalAction.appendChild(templateContentAction);
 
             const instance = await toast({
@@ -96,5 +90,11 @@ LICENSE file in the root directory of this source tree.
       })();
     </script>
     <script type="module" src="./init.js"></script>
+
+    <style>
+      ix-button {
+        margin-right: 0.5rem;
+      }
+    </style>
   </body>
 </html>

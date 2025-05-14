@@ -13,7 +13,14 @@ import { ToastService } from '@siemens/ix-angular';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button (click)="showBothToasts()">Trigger toast</ix-button>
+    <ix-button (click)="showToastMessage()">
+      Trigger toast with custom message
+    </ix-button>
+    
+    <ix-button (click)="showToastMessageAction()">
+      Trigger toast with action button
+    </ix-button>
+
     <ng-template #customToastMessage let-toast>
       <div>This message is from template</div>
     </ng-template>
@@ -24,6 +31,11 @@ import { ToastService } from '@siemens/ix-angular';
       </div>
     </ng-template>
   `,
+  styles: [`
+    ix-button {
+      margin-right: 0.5rem;
+    }
+  `]
 })
 export default class ToastCustom {
   @ViewChild('customToastMessage', { read: TemplateRef })
@@ -52,12 +64,5 @@ export default class ToastCustom {
       type: 'success',
       autoClose: true,
     });
-  }
-
-  async showBothToasts() {
-    await this.showToastMessage();
-    setTimeout(() => {
-      this.showToastMessageAction();
-    }, 3);
   }
 }

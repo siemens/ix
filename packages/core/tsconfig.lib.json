@@ -18,7 +18,8 @@
     "baseUrl": ".",
     "paths": {
       "@utils/test": ["src/tests/utils/test"]
-    }
+    },
+    "strict": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "playwright.config.ts", "playwright-ct.config.ts"]
