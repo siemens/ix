@@ -88,7 +88,7 @@ regressionTest.describe('time picker tests', () => {
       const timeChangePromise = page.evaluate(() => {
         return new Promise((resolve) => {
           const timePicker = document.querySelector('ix-time-picker');
-          timePicker.addEventListener('timeChange', (event) => {
+          timePicker?.addEventListener('timeChange', (event) => {
             resolve(event.detail);
           });
         });

@@ -402,7 +402,7 @@ export class TimePicker {
     if (newUnitIndex >= 0 && newUnitIndex < this.timePickerDescriptors.length) {
       const newUnit = this.timePickerDescriptors[newUnitIndex].unit;
 
-      const selectedValue = Number(this.formattedTime[newUnit]);
+      const selectedValue = Number(this.formattedTime![newUnit]);
 
       this.focusedUnit = newUnit;
       this.updateFocusedValue(selectedValue);
@@ -636,7 +636,7 @@ export class TimePicker {
 
   private select(unit: TimePickerDescriptorUnit, number: number) {
     this.formattedTime = {
-      ...this.formattedTime,
+      ...this.formattedTime!,
       [unit]: String(number),
     };
 
