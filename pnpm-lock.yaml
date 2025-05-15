@@ -589,8 +589,8 @@ importers:
         specifier: 10.4.5
         version: 10.4.5(postcss@8.5.3)
       axios:
-        specifier: ^1.5.0
-        version: 1.7.9
+        specifier: ^1.8.2
+        version: 1.8.2
       clsx:
         specifier: ^2.1.0
         version: 2.1.1
@@ -709,8 +709,8 @@ importers:
   packages/figma-plugin:
     dependencies:
       axios:
-        specifier: ^1.7.2
-        version: 1.7.9
+        specifier: ^1.8.2
+        version: 1.8.2
       rimraf:
         specifier: ^5.0.9
         version: 5.0.10
@@ -7912,8 +7912,8 @@ packages:
   axios@0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
 
-  axios@1.7.9:
-    resolution: {integrity: sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw==}
+  axios@1.8.2:
+    resolution: {integrity: sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==}
 
   b4a@1.6.4:
     resolution: {integrity: sha512-fpWrvyVHEKyeEvbKZTVOeZF3VSKKWtJxFIxX/jaVPf+cLbGUSitjb49pHLqPV2BUNNZ0LcoeEGfE/YCpyDYHIw==}
@@ -10250,6 +10250,10 @@ packages:
 
   form-data@4.0.0:
     resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
+    engines: {node: '>= 6'}
+
+  form-data@4.0.2:
+    resolution: {integrity: sha512-hGfm/slu0ZabnNt4oaRZ6uREyfCj6P4fT/n6A1rGV+Z0VdGXjfOhVUpkn6qVQONHGIFwmveGXyDs75+nr6FM8w==}
     engines: {node: '>= 6'}
 
   format@0.2.2:
@@ -25630,14 +25634,14 @@ snapshots:
   axios@0.27.2(debug@4.3.4):
     dependencies:
       follow-redirects: 1.15.9(debug@4.3.4)
-      form-data: 4.0.0
+      form-data: 4.0.2
     transitivePeerDependencies:
       - debug
 
-  axios@1.7.9:
+  axios@1.8.2:
     dependencies:
       follow-redirects: 1.15.9(debug@4.3.4)
-      form-data: 4.0.0
+      form-data: 4.0.2
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -28872,6 +28876,13 @@ snapshots:
       combined-stream: 1.0.8
       mime-types: 2.1.35
 
+  form-data@4.0.2:
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      es-set-tostringtag: 2.1.0
+      mime-types: 2.1.35
+
   format@0.2.2: {}
 
   forwarded@0.2.0: {}
@@ -31011,7 +31022,7 @@ snapshots:
       decimal.js: 10.4.3
       domexception: 4.0.0
       escodegen: 2.1.0
-      form-data: 4.0.0
+      form-data: 4.0.2
       html-encoding-sniffer: 3.0.0
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
