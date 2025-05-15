@@ -1,6 +1,9 @@
 name: Build
 
 on:
+  pull_request:
+    branches:
+      - 'dependabot/*'
   push:
     branches:
       - 'main'
@@ -131,6 +134,20 @@ jobs:
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
+
+  unit-memlab:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Test
+        run: |
+          cd testing/performance-memlab
+          pnpm dlx puppeteer browsers install chrome@127.0.6533.88
+          pnpm test.memlab
 
   sbom:
     needs: [build]
