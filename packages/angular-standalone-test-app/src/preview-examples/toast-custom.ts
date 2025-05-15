@@ -49,13 +49,14 @@ export default class ToastCustom {
     this.toastService.show({
       title: 'Toast headline',
       message: 'Toast message text',
-      action: this.customToastActionRef,
       type: 'success',
     });
   }
 
   async showToastMessageAction() {
     this.toastService.show({
+      title: 'Toast headline',
+      message: this.customToastRef,
       action: this.customToastActionRef,
     });
   }

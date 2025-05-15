@@ -32,7 +32,6 @@ export default () => {
           showToast({
             title: 'Toast headline',
             message: 'Toast message text',
-            action: <CustomToastAction></CustomToastAction>,
             type: 'success',
           });
         }}
@@ -44,6 +43,8 @@ export default () => {
       <IxButton
         onClick={() => {
           showToast({
+            title: 'Toast headline',
+            message: <CustomToastMessage></CustomToastMessage>,
             action: <CustomToastAction></CustomToastAction>,
           });
         }}

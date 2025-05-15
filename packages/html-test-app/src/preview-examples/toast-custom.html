@@ -56,7 +56,6 @@ LICENSE file in the root directory of this source tree.
             await toast({
               title: 'Toast headline',
               message: 'Toast message text',
-              action: customModalAction,
               type: 'success',
             });
           });
@@ -75,6 +74,8 @@ LICENSE file in the root directory of this source tree.
             customModalAction.appendChild(templateContentAction);
 
             const instance = await toast({
+              title: 'Toast headline',
+              message: customModal,
               action: customModalAction,
             });
 
