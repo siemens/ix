@@ -3,7 +3,11 @@ name: Build
 on:
   pull_request:
     branches:
-      - 'dependabot/*'
+      - 'dependabot/**'
+    types:
+      - opened
+      - reopened
+      - synchronize
   push:
     branches:
       - 'main'
