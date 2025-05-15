@@ -12,8 +12,6 @@ import fs from 'fs-extra';
 import Mustache from 'mustache';
 import { fetchChangelog } from './utils/fetch-changelog';
 import componentDoc from '@siemens/ix/component-doc.json';
-import { downloadTheme } from './utils/download-theme';
-import { rimrafSync } from 'rimraf';
 import { convertDocsTagsToTSXElement } from './utils/docs-tags';
 import { generateTypeScriptDocs } from './typedoc-generator';
 
@@ -361,44 +359,6 @@ async function generateChangelog() {
   await fs.writeFile(__changelog, changelog);
 }
 
-async function downloadAdditionalTheme() {
-  console.time('Download additional theme');
-  try {
-    const unpackTarget = path.join(__previewHtmlAdditionalTheme, 'package');
-
-    if (fs.existsSync(unpackTarget)) {
-      rimrafSync(unpackTarget);
-    }
-
-    await downloadTheme(__previewHtmlAdditionalTheme);
-
-    const renameTarget = path.join(
-      __previewHtmlAdditionalTheme,
-      'corporate-theme'
-    );
-    if (fs.existsSync(renameTarget)) {
-      rimrafSync(renameTarget);
-    }
-    fs.renameSync(unpackTarget, renameTarget);
-
-    // Copy the theme to the mobile preview
-    fs.copySync(
-      renameTarget,
-      path.join(__previewMobileAdditionalTheme, 'corporate-theme')
-    );
-
-    // This step is necessary to make the theme available during the build process of the documentation
-    fs.copySync(
-      renameTarget,
-      path.join(__node_modules, '@siemens-ix', 'corporate-theme')
-    );
-  } catch (e: any) {
-    console.timeLog('Download additional theme', e.message);
-  } finally {
-    console.timeEnd('Download additional theme');
-  }
-}
-
 async function copyStorybook() {
   await fs.copy(__storybookStatic, __previewStorybook, { overwrite: true });
 }
@@ -461,7 +421,6 @@ async function copyStorybook() {
       generateChangelog(),
     ];
 
-    await downloadAdditionalTheme();
     await Promise.all([typeScriptDocsPromise, ...mainTasksPromise]);
   } catch (e: any) {
     console.error(e.message);
