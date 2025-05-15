@@ -126,7 +126,6 @@ regressionTest(
       window.isFormSubmitted = false;
       const form = document.getElementById('test-form');
       if (!form) {
-        console.warn('Warning: Form with ID "test-form" not found.');
         return;
       }
       form.addEventListener('submit', (e) => {
@@ -158,7 +157,6 @@ regressionTest(
       const form = document.getElementById('test-form');
 
       if (!form) {
-        console.warn('Warning: Form with ID "test-form" not found.');
         return;
       }
 
@@ -191,7 +189,6 @@ regressionTest(
       const form = document.getElementById('test-form');
 
       if (!form) {
-        console.warn('Warning: Form with ID "test-form" not found.');
         return;
       }
 
