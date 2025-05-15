@@ -15,6 +15,7 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { IxComponent } from '../utils/internal';
+import {renderFormStatusSlots} from '../utils/slot-utils';
 
 @Component({
   tag: 'ix-custom-field',
@@ -103,11 +104,7 @@ export class CustomField
           required={this.required}
         >
           <slot></slot>
-          <slot name="helper" slot="helper" ></slot>
-          <slot name="warning" slot="warning" ></slot>
-          <slot name="valid" slot="valid" ></slot>
-          <slot name="invalid" slot="invalid"></slot>
-          <slot name="info" slot="info"></slot>
+          {renderFormStatusSlots()}
         </ix-field-wrapper>
       </Host>
     );

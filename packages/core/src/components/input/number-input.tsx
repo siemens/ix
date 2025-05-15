@@ -36,6 +36,7 @@ import {
   mapValidationResult,
   onInputBlur,
 } from './input.util';
+import {renderFormStatusSlots} from '../utils/slot-utils';
 
 let numberInputIds = 0;
 
@@ -369,11 +370,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
               </div>
             </SlotEnd>
           </div>
-          <slot name="helper" slot="helper" ></slot>
-          <slot name="warning" slot="warning" ></slot>
-          <slot name="valid" slot="valid" ></slot>
-          <slot name="invalid" slot="invalid"></slot>
-          <slot name="info" slot="info"></slot>
+          {renderFormStatusSlots()}
         </ix-field-wrapper>
       </Host>
     );

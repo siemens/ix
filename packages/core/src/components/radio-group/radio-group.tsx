@@ -26,6 +26,7 @@ import {
   IxFormValidationState,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
+import {renderFormStatusSlots} from '../utils/slot-utils';
 
 /**
  * @form-ready
@@ -238,11 +239,7 @@ export class RadiobuttonGroup
           >
             <slot></slot>
           </div>
-          <slot name="helper" slot="helper" ></slot>
-          <slot name="warning" slot="warning" ></slot>
-          <slot name="valid" slot="valid" ></slot>
-          <slot name="invalid" slot="invalid"></slot>
-          <slot name="info" slot="info"></slot>
+          {renderFormStatusSlots()}
         </ix-field-wrapper>
       </Host>
     );

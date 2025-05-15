@@ -27,6 +27,7 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import { mapValidationResult, onInputBlur } from './input.util';
+import {renderFormStatusSlots} from '../utils/slot-utils';
 
 export type TextareaResizeBehavior =
   | 'both'
@@ -281,11 +282,7 @@ export class Textarea implements IxInputFieldComponent<string> {
               }}
             ></TextareaElement>
           </div>
-          <slot name="helper" slot="helper" ></slot>
-          <slot name="warning" slot="warning" ></slot>
-          <slot name="valid" slot="valid" ></slot>
-          <slot name="invalid" slot="invalid"></slot>
-          <slot name="info" slot="info"></slot>
+          {renderFormStatusSlots()}
         </ix-field-wrapper>
       </Host>
     );
