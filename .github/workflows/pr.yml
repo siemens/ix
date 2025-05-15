@@ -3,8 +3,8 @@ name: Pull Request
 on:
   pull_request:
     branches-ignore:
-      - changeset-release/main
-      - dependabot/*
+      - 'changeset-release/main'
+      - 'dependabot/**'
     types:
       - opened
       - reopened
