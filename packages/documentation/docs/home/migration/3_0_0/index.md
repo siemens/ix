@@ -176,7 +176,7 @@ The following component members previously marked as internal by comment have be
 ## Removed `Bootstrap` as a `peerDependency`
 
 We are removing Bootstrap as a dependency to reduce the overall bundle size as well as to become more independent from third party CSS frameworks.
-Of course you can still use Bootstrap together with @siemens/ix, but you need to add it to you project manually.
+Of course you can still use Bootstrap together with @siemens/ix, but you need to add it to your project manually.
 
 ### HTML table classes `.table` and `.table-striped` are not based on Bootstrap anymore
 
@@ -316,7 +316,7 @@ type NodeToggleEventPayload = { id: string; isExpanded: boolean };
 - From `classic-light` to `theme-classic-light`
 - From `classic-dark` to `theme-classic-dark`
 
-### Utility function `convertThemeName` war removed from `@siemens/ix-echarts`
+### Utility function `convertThemeName` was removed from `@siemens/ix-echarts`
 
 The `convertThemeName` utility function has been removed, because it was not needed anymore after aligning the echarts theme names with iX CSS theme names.
 
@@ -338,4 +338,4 @@ const myEChart = echarts.init(element, theme);
 
 ## Questions ❓🙋‍♀️
 
-Check out the [Breaking Changes guide](https://github.com/siemens/ix/blob/release-3.0.0/BREAKING_CHANGES/v3.md) and if you have further questions or migration problems [contact us](./../../support/contact-us).
+Check out the [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES/v3.md) and if you have further questions or migration problems [contact us](./../../support/contact-us).

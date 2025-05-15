@@ -78,7 +78,7 @@ export class CheckboxGroup
   @State() isWarning = false;
 
   private touched = false;
-  private readonly groupRef = makeRef<HTMLIxCheckboxGroupElement>();
+  private readonly groupRef = makeRef<HTMLElement>();
 
   get checkboxElements(): HTMLIxCheckboxElement[] {
     return Array.from(this.hostElement.querySelectorAll('ix-checkbox'));
