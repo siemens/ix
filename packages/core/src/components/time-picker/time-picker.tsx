@@ -57,6 +57,13 @@ const MINUTE_INTERVAL_DEFAULT = 1;
 const SECOND_INTERVAL_DEFAULT = 1;
 const MILLISECOND_INTERVAL_DEFAULT = 100;
 
+const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
+  hour: '',
+  minute: '',
+  second: '',
+  millisecond: '',
+};
+
 @Component({
   tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',
@@ -253,7 +260,7 @@ export class TimePicker {
   }
 
   @State() private timeRef?: 'AM' | 'PM' | undefined;
-  @State() private formattedTime?: TimeOutputFormat;
+  @State() private formattedTime: TimeOutputFormat = FORMATTED_TIME_EMPTY;
   @State() private timePickerDescriptors: TimePickerDescriptor[] = [];
   @State() private isUnitFocused: boolean = false;
   @State() private focusedUnit: TimePickerDescriptorUnit = 'hour';
@@ -402,7 +409,7 @@ export class TimePicker {
     if (newUnitIndex >= 0 && newUnitIndex < this.timePickerDescriptors.length) {
       const newUnit = this.timePickerDescriptors[newUnitIndex].unit;
 
-      const selectedValue = Number(this.formattedTime![newUnit]);
+      const selectedValue = Number(this.formattedTime[newUnit]);
 
       this.focusedUnit = newUnit;
       this.updateFocusedValue(selectedValue);
@@ -464,9 +471,9 @@ export class TimePicker {
     );
   }
 
-  private getFormattedTime(): TimeOutputFormat | undefined {
+  private getFormattedTime(): TimeOutputFormat {
     if (!this._time) {
-      return undefined;
+      return FORMATTED_TIME_EMPTY;
     }
 
     return {
