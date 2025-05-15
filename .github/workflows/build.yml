@@ -158,8 +158,8 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
-      - name: Test
-        run: pnpm --filter oss-clearing start
+      - name: Create SBOM
+        run: pnpm build --filter oss-clearing
 
       - uses: actions/upload-artifact@v4
         with:
