@@ -138,14 +138,15 @@ export class Pill implements IxComponent {
             'with-gap': !this.iconOnly,
           }}
         >
-          <ix-icon
-            class={{
-              'with-icon': true,
-              hidden: this.icon === undefined || this.icon === '',
-            }}
-            name={this.icon}
-            size={'16'}
-          />
+          {this.icon && (
+            <ix-icon
+              class={{
+                'with-icon': true,
+              }}
+              name={this.icon}
+              size={'16'}
+            />
+          )}
           <span class="slot-container">
             <slot onSlotchange={() => this.checkIfContentAvailable()}></slot>
           </span>
