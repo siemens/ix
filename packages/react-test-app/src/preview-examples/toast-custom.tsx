@@ -44,10 +44,7 @@ export default () => {
       <IxButton
         onClick={() => {
           showToast({
-            title: 'Toast headline',
-            message: <CustomToastMessage></CustomToastMessage>,
             action: <CustomToastAction></CustomToastAction>,
-            type: 'success',
           });
         }}
       >

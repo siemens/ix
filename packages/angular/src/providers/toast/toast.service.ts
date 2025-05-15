@@ -7,72 +7,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { ShowToastResult } from '@siemens/ix';
 import {
-  getToastContainer,
-  toast,
-  ToastConfig as IxToastConfig,
-} from '@siemens/ix';
-import { ToastConfig } from '@siemens/ix-angular/common';
+  ToastService as BaseToastService,
+  ToastConfig,
+} from '@siemens/ix-angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ToastService {
-  setPosition(position: 'bottom-right' | 'top-right') {
-    getToastContainer().position = position;
+export class ToastService extends BaseToastService {
+  constructor() {
+    super();
   }
 
-  getPosition() {
-    return getToastContainer().position;
+  public getPosition(): 'bottom-right' | 'top-right' {
+    return super.getPosition();
   }
 
-  async show(config: ToastConfig) {
-    if (
-      typeof config.message === 'string' && !config.action
-    ) {
-      return toast(config as IxToastConfig);
-    }
+  public setPosition(position: 'bottom-right' | 'top-right'): void {
+    super.setPosition(position);
+  }
 
-    const context: {
-      close: (() => void) | null;
-    } = {
-      close: null,
-    };
-
-    let node: HTMLElement | string | undefined = config.message as string;
-    let embeddedView: any;
-    let embeddedViewAction: any;
-    let nodeAction: HTMLElement | undefined;
-
-    if (config.message instanceof TemplateRef) {
-      embeddedView = config.message.createEmbeddedView({ $implicit: context });
-      node = embeddedView.rootNodes[0];
-      embeddedView.detectChanges();
-    }
-    if (config.action instanceof TemplateRef) {
-      embeddedViewAction = config.action.createEmbeddedView({
-        $implicit: context,
-      });
-      nodeAction = embeddedViewAction.rootNodes[0];
-      embeddedViewAction.detectChanges();
-    }
-
-    const instance = await toast({
-      ...config,
-      message: node,
-      action: nodeAction,
-    });
-
-    context.close = () => {
-      instance.close();
-    };
-
-    instance.onClose.once(() => {
-      embeddedView?.destroy();
-      embeddedViewAction?.destroy();
-    });
-
-    return instance;
+  public show(config: ToastConfig): Promise<ShowToastResult> {
+    return super.show(config);
   }
 }

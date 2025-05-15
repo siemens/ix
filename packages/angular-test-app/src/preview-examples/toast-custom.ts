@@ -52,17 +52,12 @@ export default class ToastCustom {
       message: 'Toast message text',
       action: this.customToastActionRef,
       type: 'success',
-      autoClose: true,
     });
   }
 
   async showToastMessageAction() {
     this.toastService.show({
-      title: 'Toast headline',
-      message: this.customToastRef,
       action: this.customToastActionRef,
-      type: 'success',
-      autoClose: true,
     });
   }
 }

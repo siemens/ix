@@ -1,4 +1,3 @@
-/* sonar-disable duplication */
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
@@ -33,7 +32,7 @@ export class ToastService {
       return toast(config as IxToastConfig);
     }
 
-    const contextData: {
+    const context: {
       close: (() => void) | null;
     } = {
       close: null,
@@ -46,34 +45,34 @@ export class ToastService {
 
     if (config.message instanceof TemplateRef) {
       embeddedView = config.message.createEmbeddedView({
-        $implicit: contextData,
+        $implicit: context,
       });
       node = embeddedView.rootNodes[0];
       embeddedView.detectChanges();
     }
     if (config.action instanceof TemplateRef) {
       embeddedViewAction = config.action.createEmbeddedView({
-        $implicit: contextData,
+        $implicit: context,
       });
       nodeAction = embeddedViewAction.rootNodes[0];
       embeddedViewAction.detectChanges();
     }
 
-    const toastInstance = await toast({
+    const instance = await toast({
       ...config,
       message: node,
       action: nodeAction,
     });
 
-    contextData.close = () => {
-      toastInstance.close();
+    context.close = () => {
+      instance.close();
     };
 
-    toastInstance.onClose.once(() => {
+    instance.onClose.once(() => {
       embeddedView?.destroy();
       embeddedViewAction?.destroy();
     });
 
-    return toastInstance;
+    return instance;
   }
 }

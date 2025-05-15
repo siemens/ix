@@ -34,10 +34,7 @@ const customAction = ref<HTMLElement | null>(null);
   <IxButton
     @click="
       showToast({
-        title: 'Toast headline',
-        message: customMessage!,
         action: customAction!,
-        type: 'success',
       })
     "
   >
