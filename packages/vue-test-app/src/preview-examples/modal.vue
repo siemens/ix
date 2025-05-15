@@ -8,37 +8,25 @@
 -->
 
 <script setup lang="ts">
-import {
-  HTMLRefElement,
-  IxButton,
-  IxModal,
-  IxModalHeader,
-  IxModalContent,
-  IxModalFooter,
-} from '@siemens/ix-vue';
-import { ref } from 'vue';
+import { IxButton, ModalInstance } from '@siemens/ix-vue';
+import { showModal } from '@siemens/ix-vue';
+import CustomModal from './modal-custom-content.vue';
 
-const modalRef = ref<HTMLRefElement<HTMLIxModalElement>>();
-const close = () => {
-  modalRef.value?.$el.closeModal('close payload!');
-  show.value = false;
-};
-const dismiss = () => {
-  modalRef.value?.$el.dismissModal('dismiss payload');
-  show.value = false;
-};
+async function showCustomModal() {
+  const modalInstance: ModalInstance = await showModal(CustomModal, {
+    title: 'Custom modal',
+  });
 
-const show = ref(false);
+  modalInstance.onClose.on((payload) => {
+    console.log('Closed with payload:', payload);
+  });
+
+  modalInstance.onDismiss.on((payload) => {
+    console.log('Dismissed with payload:', payload);
+  });
+}
 </script>
 
 <template>
-  <IxButton @click="show = true">Show modal</IxButton>
-  <IxDialog ref="modalRef" v-if="show">
-    <IxModalHeader onclose="dismiss()">Message headline</IxModalHeader>
-    <IxModalContent>Message text lorem ipsum</IxModalContent>
-    <IxModalFooter>
-      <IxButton outline @click="dismiss()"> Cancel </IxButton>
-      <IxButton @click="close()">OK</IxButton>
-    </IxModalFooter>
-  </IxDialog>
+  <IxButton @click="showCustomModal">Show modal</IxButton>
 </template>
