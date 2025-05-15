@@ -51,7 +51,7 @@ export function renderHelperText({
   validText?: string;
   helperText?: string;
 }) {
-  if (isInvalid && invalidText?.trim() !== '') {
+  if (isInvalid && invalidText !== undefined && invalidText?.trim() !== '')  {
     return (
       <ix-typography textColor="alarm" class="bottom-text">
         <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
@@ -61,7 +61,7 @@ export function renderHelperText({
     );
   }
 
-  if (isWarning && warningText?.trim() !== '') {
+  if (isWarning && warningText !== undefined && warningText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon
@@ -74,7 +74,7 @@ export function renderHelperText({
     );
   }
 
-  if (isInfo && infoText?.trim() !== '') {
+  if (isInfo && infoText !== undefined && infoText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon info" name={iconInfo} size="16"></ix-icon>
@@ -83,7 +83,7 @@ export function renderHelperText({
     );
   }
 
-  if (isValid && validText?.trim() !== '') {
+  if (isValid && validText !== undefined && validText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon valid" name={iconSuccess} size="16"></ix-icon>
@@ -93,7 +93,7 @@ export function renderHelperText({
   }
 
   return (
-    helperText?.trim() && (
+    helperText !== undefined && helperText?.trim() !=='' && (
       <ix-typography class="bottom-text" textColor="soft">
         {helperText.trim()}
       </ix-typography>
