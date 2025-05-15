@@ -238,7 +238,6 @@ regressionTest.describe('message utils', () => {
       await setupModalEnvironment(page);
       await page.evaluate(
         ([functionName]) => {
-          console.log(name);
           (window.showMessage as any)[functionName]('title', 'message', 'okay');
         },
         [name]
