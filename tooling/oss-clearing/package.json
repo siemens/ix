@@ -3,7 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "tsx create-sbom.ts"
+    "start": "tsx create-sbom.ts",
+    "build": "tsx create-sbom.ts"
   },
   "devDependencies": {
     "@cyclonedx/cyclonedx-library": "^8.0.0",
