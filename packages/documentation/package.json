@@ -7,9 +7,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@siemens/ix": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
     "@siemens/ix-react": "workspace:*",
+    "@siemens/ix": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/mustache": "^4.1.1",
     "@types/node": "^20.16.0",
@@ -27,6 +27,7 @@
     "octokit": "^3",
     "react-test-app": "workspace:*",
     "rimraf": "^6.0.1",
+    "storybook-docs": "workspace:*",
     "tar": "^7.4.3",
     "tsx": "^4.15.4",
     "typedoc": "^0.27.9",
