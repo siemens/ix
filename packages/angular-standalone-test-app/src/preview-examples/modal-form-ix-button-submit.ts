@@ -15,8 +15,8 @@ import {
   IxModalContent,
   IxModalFooter,
   IxInput,
+  ModalService
 } from '@siemens/ix-angular/standalone';
-import { ModalService } from '@siemens/ix-angular';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
