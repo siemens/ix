@@ -1,0 +1,8 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "addLabels": ["renovate"],
+  "extends": ["monorepo:turbo", "group:monorepos"],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 5,
+  "updateLockFiles": false
+}

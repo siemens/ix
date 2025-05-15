@@ -131,3 +131,21 @@ jobs:
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
+
+  sbom:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Test
+        run: pnpm --filter oss-clearing start
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom-${{ github.run_attempt }}
+          path: |
+            ./tooling/oss-clearing/sboms/
