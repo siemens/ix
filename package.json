@@ -37,7 +37,7 @@
     "ts-run": "tsx"
   },
   "dependencies": {
-    "commander": "^12.1.0",
+    "commander": "^13.1.0",
     "tslib": "^2.6.3"
   },
   "devDependencies": {
