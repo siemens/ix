@@ -18,6 +18,9 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
+      - name: Build
+        run: pnpm build
+
       - name: Create SBOM
         run: pnpm --filter oss-clearing start
 
