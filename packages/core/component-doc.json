@@ -1437,25 +1437,28 @@
         },
         {
           "name": "form",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
           "attr": "form",
           "reflectToAttr": false,
-          "docs": "Provide a form element id to automatically submit the from if the button is pressed. Only possible with type=\"submit\"",
+          "docs": "Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type=\"submit\".",
           "docsTags": [
             {
               "name": "since",
-              "text": "3.0.0"
+              "text": "3.1.0"
             }
           ],
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,

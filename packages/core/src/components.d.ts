@@ -255,8 +255,8 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Provide a form element id to automatically submit the from if the button is pressed. Only possible with type="submit"
-          * @since 3.0.0
+          * Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
+          * @since 3.1.0
          */
         "form"?: string;
         /**
@@ -5005,8 +5005,8 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Provide a form element id to automatically submit the from if the button is pressed. Only possible with type="submit"
-          * @since 3.0.0
+          * Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
+          * @since 3.1.0
          */
         "form"?: string;
         /**
