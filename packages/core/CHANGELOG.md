@@ -1,5 +1,30 @@
 # @siemens/ix
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1793](https://github.com/siemens/ix/pull/1793) [`826c656ab14e4e67aad0edf4e5dbacdb6add4e23`](https://github.com/siemens/ix/commit/826c656ab14e4e67aad0edf4e5dbacdb6add4e23) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Add `form` attribute to `ix-button` to support automatic form submit.
+
+  Fixes #1653
+
+- [#1856](https://github.com/siemens/ix/pull/1856) [`3a3814be041ac02df2ba4225d64b00b5ab5feb09`](https://github.com/siemens/ix/commit/3a3814be041ac02df2ba4225d64b00b5ab5feb09) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Add oval attribute to **ix-icon-toggle-button**.
+
+### Patch Changes
+
+- [#1887](https://github.com/siemens/ix/pull/1887) [`3aaaadbeb2c735d0e242be7f9a777437edfcbe2b`](https://github.com/siemens/ix/commit/3aaaadbeb2c735d0e242be7f9a777437edfcbe2b) Thanks [@tiagogviegas](https://github.com/tiagogviegas)! - skip render of ix-icon on `ix-pill` and `ix-chip` when `icon` is not set.
+
+  Fixes #1885
+  Fixes #1879
+
+- [#1874](https://github.com/siemens/ix/pull/1874) [`9346254f83af3316950a3681557939e74ba399e6`](https://github.com/siemens/ix/commit/9346254f83af3316950a3681557939e74ba399e6) Thanks [@danielleroux](https://github.com/danielleroux)! - Move falsy dependencies from "dependencies" to "devDependencies"
+
+- [#1762](https://github.com/siemens/ix/pull/1762) [`ec011a4b76b25916c04e918e20b448c2f87978f5`](https://github.com/siemens/ix/commit/ec011a4b76b25916c04e918e20b448c2f87978f5) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Ensure that all items can be reached via scrolling inside overflowing `ix-dropdown`. Fixes #1671
+
+- [#1888](https://github.com/siemens/ix/pull/1888) [`f99ca055f217ef87a10047ea3b48f4ecc1e2522b`](https://github.com/siemens/ix/commit/f99ca055f217ef87a10047ea3b48f4ecc1e2522b) Thanks [@danielleroux](https://github.com/danielleroux)! - Show correct icons within predefined message modals
+
+  Fixes #1886
+
 ## 3.0.0
 
 ### Major Changes
