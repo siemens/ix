@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-sidebar_label: Accessibility
+sidebar_label: Overview
 title: Accessibility
 doc-type: 'banner'
 component-tabs: ['']
