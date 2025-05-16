@@ -222,8 +222,9 @@ docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.50.0-no
 
 ### Modify and preview documentation
 
-1. Run `pnpm start --filter documentation` from within the `root` directory.
-2. Locate the docs to modify inside `/packages/documentation/docs/`.
+The documentation source is maintained in a separate repository: [siemens/ix-docs](https://github.com/siemens/ix-docs). This repository contains all relevant markdown files and Figma assets.
+
+If you need to update only the preview or code examples, you can do so by following the instructions in the next section.
 
 #### Preview and example code
 
@@ -235,20 +236,6 @@ docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.50.0-no
 These packages contain playground applications to explore and test the respective `ix` components.
 The preview source code for the documentation is also located inside the `x-test-app`'s. (`src/preview-examples`)
 These preview-examples will be translated to markdown files and get copied into `./packages/documentation/docs/auto-generated/previews`.
-
-#### Figma integration
-
-> You need to have access to the internal figma library
-
-To see all image references it is necessary to create a personal access token (https://www.figma.com/developers/api#access-tokens).
-
-Store the token as environment variable "FIGMA_API_TOKEN" or in the .env file inside project root.
-
-Serve documentation [locally](http://localhost:3000/siemens-ix/)
-
-```sh
-pnpm start --filter=documentation
-```
 
 ### Submit Pull Request
 
