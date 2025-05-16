@@ -16,8 +16,8 @@ import { IxMenu, IxMenuItem } from '@siemens/ix-angular/standalone';
   imports: [IxMenu, IxMenuItem],
   template: `
     <ix-menu>
-      <ix-menu-item home-tab icon="home"> Home </ix-menu-item>
-      <ix-menu-item icon="info" slot="bottom"> Bottom tab </ix-menu-item>
+      <ix-menu-item home-tab icon="home">Home</ix-menu-item>
+      <ix-menu-item icon="info" slot="bottom">Bottom tab</ix-menu-item>
     </ix-menu>
   `,
 })
