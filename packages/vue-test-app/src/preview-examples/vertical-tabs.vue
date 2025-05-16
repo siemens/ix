@@ -16,11 +16,11 @@ import { IxMenu, IxMenuItem } from '@siemens/ix-vue';
 
 <template>
   <IxMenu>
-    <IxMenuItem home-tab :tab-icon="iconHome"> Home </IxMenuItem>
-    <IxMenuItem :tab-icon="iconGlobe"> Normal Tab </IxMenuItem>
-    <IxMenuItem :tab-icon="iconStar" disabled> Disabled Tab </IxMenuItem>
-    <IxMenuItem :tab-icon="iconStar"> With other Icon </IxMenuItem>
-    <IxMenuItem :tab-icon="iconGlobe" style="display: none">
+    <IxMenuItem home-tab :icon="iconHome"> Home </IxMenuItem>
+    <IxMenuItem :icon="iconGlobe"> Normal Tab </IxMenuItem>
+    <IxMenuItem :icon="iconStar" disabled> Disabled Tab </IxMenuItem>
+    <IxMenuItem :icon="iconStar"> With other Icon </IxMenuItem>
+    <IxMenuItem :icon="iconGlobe" style="display: none">
       Should not be visible
     </IxMenuItem>
   </IxMenu>

@@ -32,11 +32,11 @@ import {
         label="User profile..."
       ></IxMenuAvatarItem>
     </IxMenuAvatar>
-    <IxMenuItem home-tab :tab-icon="iconHome"> &nbsp; Home&nbsp; </IxMenuItem>
-    <IxMenuItem :tab-icon="iconGlobe"> Normal Tab </IxMenuItem>
-    <IxMenuItem :tab-icon="iconStar" disabled>
+    <IxMenuItem home-tab :icon="iconHome"> &nbsp; Home&nbsp; </IxMenuItem>
+    <IxMenuItem :icon="iconGlobe"> Normal Tab </IxMenuItem>
+    <IxMenuItem :icon="iconStar" disabled>
       &nbsp; Disabled Tab&nbsp;
     </IxMenuItem>
-    <IxMenuItem :tab-icon="iconStar"> With other Icon </IxMenuItem>
+    <IxMenuItem :icon="iconStar"> With other Icon </IxMenuItem>
   </IxMenu>
 </template>

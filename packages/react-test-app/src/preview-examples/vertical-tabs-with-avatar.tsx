@@ -35,14 +35,14 @@ export default () => {
           label="User profile..."
         ></IxMenuAvatarItem>
       </IxMenuAvatar>
-      <IxMenuItem home tab-icon={iconHome}>
+      <IxMenuItem home icon={iconHome}>
         Home
       </IxMenuItem>
-      <IxMenuItem tab-icon={iconGlobe}> Normal Tab </IxMenuItem>
-      <IxMenuItem tab-icon={iconStar} disabled>
+      <IxMenuItem icon={iconGlobe}> Normal Tab </IxMenuItem>
+      <IxMenuItem icon={iconStar} disabled>
         Disabled Tab
       </IxMenuItem>
-      <IxMenuItem tab-icon={iconStar}> With other Icon </IxMenuItem>
+      <IxMenuItem icon={iconStar}> With other Icon </IxMenuItem>
     </IxMenu>
   );
 };
