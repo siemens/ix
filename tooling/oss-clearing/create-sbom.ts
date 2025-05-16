@@ -238,13 +238,12 @@ async function createSBom(packageName: string) {
 
 async function main() {
   const packages = [
-    // '@siemens/ix',
-    // '@siemens/ix-react',
-    // '@siemens/ix-angular',
-    // '@siemens/ix-vue',
-    // '@siemens/ix-echarts',
-    // '@siemens/ix-aggrid',
-    '@siemens/ix-icons',
+    '@siemens/ix',
+    '@siemens/ix-react',
+    '@siemens/ix-angular',
+    '@siemens/ix-vue',
+    '@siemens/ix-echarts',
+    '@siemens/ix-aggrid',
   ];
 
   const sbomPromises = packages.map(async (pkg) => {
