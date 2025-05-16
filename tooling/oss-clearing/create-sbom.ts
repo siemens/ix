@@ -23,6 +23,17 @@ function getPkg(pkgPath: string) {
   return JSON.parse(readFileSync(pkgPath, 'utf-8'));
 }
 
+function modifyDependenciesByIxMetaProperty(pnpmJson: any, pkg: any) {
+  pnpmJson['dependencies'] = pnpmJson['devDependencies'];
+  Object.keys(pnpmJson['dependencies']).forEach((key) => {
+    if (!pkg['siemensix']['dependencies'].includes(key)) {
+      delete pnpmJson['dependencies'][key];
+    }
+  });
+
+  return pnpmJson;
+}
+
 async function handleCoreLibraryDependencies(pnpmJson: any) {
   const pkg = JSON.parse(
     (
@@ -32,14 +43,25 @@ async function handleCoreLibraryDependencies(pnpmJson: any) {
       )
     ).toString()
   );
-  pnpmJson['dependencies'] = pnpmJson['devDependencies'];
-  Object.keys(pnpmJson['dependencies']).forEach((key) => {
-    if (!pkg['siemensix']['dependencies'].includes(key)) {
-      delete pnpmJson['dependencies'][key];
-    }
-  });
+  return modifyDependenciesByIxMetaProperty(pnpmJson, pkg);
+}
 
-  return pnpmJson;
+async function handleIconsLibraryDependencies(pnpmJson: any) {
+  const pkg = JSON.parse(
+    (
+      await readFile(
+        path.join(
+          __dirname,
+          'node_modules',
+          '@siemens',
+          'ix-icons',
+          'package.json'
+        ),
+        'utf-8'
+      )
+    ).toString()
+  );
+  return modifyDependenciesByIxMetaProperty(pnpmJson, pkg);
 }
 
 async function resolveComponentData(
@@ -95,6 +117,10 @@ async function createSBom(packageName: string) {
 
   if (packageName === '@siemens/ix') {
     npmJson = await handleCoreLibraryDependencies(npmJson);
+  }
+
+  if (packageName === '@siemens/ix-icons') {
+    npmJson = await handleIconsLibraryDependencies(npmJson);
   }
 
   const lFac = new CDX.Factories.LicenseFactory();
@@ -212,12 +238,13 @@ async function createSBom(packageName: string) {
 
 async function main() {
   const packages = [
-    '@siemens/ix',
-    '@siemens/ix-react',
-    '@siemens/ix-angular',
-    '@siemens/ix-vue',
-    '@siemens/ix-echarts',
-    '@siemens/ix-aggrid',
+    // '@siemens/ix',
+    // '@siemens/ix-react',
+    // '@siemens/ix-angular',
+    // '@siemens/ix-vue',
+    // '@siemens/ix-echarts',
+    // '@siemens/ix-aggrid',
+    '@siemens/ix-icons',
   ];
 
   const sbomPromises = packages.map(async (pkg) => {
