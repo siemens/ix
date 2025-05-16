@@ -77,6 +77,15 @@ export class TimePicker {
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    */
   @Prop() format: string = 'TT';
+  @Watch('format')
+  watchFormatIntervalPropHandler(newValue: string) {
+    if (!newValue) {
+      return;
+    }
+
+    this.initPicker();
+    this.updateScrollPositions();
+  }
 
   /**
    * Corner style
@@ -113,6 +122,13 @@ export class TimePicker {
    * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showSeconds = true;
+
+  /**
+   * Hides the header of the picker.
+   *
+   * @since 3.1.0
+   */
+  @Prop() hideHeader: boolean = false;
 
   /**
    * Interval for hour selection
@@ -255,6 +271,7 @@ export class TimePicker {
   onTimeChange() {
     const formattedTimeOld = this.formattedTime;
     this.formattedTime = this.getFormattedTime();
+    this.setTimeRef();
 
     this.updateScrollPositions(formattedTimeOld);
   }
@@ -270,23 +287,30 @@ export class TimePicker {
   private hasUpdatedScrollPositions = false;
 
   componentWillLoad() {
+    this.initPicker();
+  }
+
+  private initPicker() {
     this._time = DateTime.fromFormat(this.time, this.format);
 
     if (!this._time.isValid) {
       console.error(
         `Invalid time format. The configured format does not match the format of the passed time. ${this._time.invalidReason}: ${this._time.invalidExplanation}`
       );
-      return;
+
+      this._time = DateTime.now();
     }
 
     this.setTimeRef();
-    this.focusedValue =
-      this._time.hour ??
-      this._time.minute ??
-      this._time.second ??
-      this._time.millisecond;
     this.formattedTime = this.getFormattedTime();
     this.setTimePickerDescriptors();
+
+    this.focusedValue =
+      this._time?.hour ??
+      this._time?.minute ??
+      this._time?.second ??
+      this._time?.millisecond ??
+      this.timePickerDescriptors[0].numberArray[0];
 
     this.watchHourIntervalPropHandler(this.hourInterval);
     this.watchMinuteIntervalPropHandler(this.minuteInterval);
@@ -668,13 +692,20 @@ export class TimePicker {
       const elementListHeight = elementList.clientHeight;
       const elementContainerHeight = elementContainer.clientHeight;
 
+      // Offset which is used to adjust the scroll position to account for margins, elements being hidden, etc.
+      let scrollPositionOffset = 13;
+      if (this.hideHeader) {
+        // 74 --> height of the header container
+        scrollPositionOffset -= 74;
+      }
+
       const scrollPosition =
         elementContainer.offsetTop -
         elementListHeight / 2 +
         elementContainerHeight / 2 -
-        13;
+        scrollPositionOffset;
 
-      elementList.scrollTop = scrollPosition;
+      elementList.scrollTo({ top: scrollPosition, behavior: 'smooth' });
     }
   }
 
@@ -727,6 +758,7 @@ export class TimePicker {
           standaloneAppearance={this.standaloneAppearance}
           corners={this.corners}
           hasFooter={true}
+          hasHeader={!this.hideHeader}
         >
           <div class="header" slot="header">
             <ix-typography format="h5">{this.textTime || 'Time'}</ix-typography>
@@ -822,7 +854,6 @@ export class TimePicker {
               <ix-button
                 class="confirm-button"
                 onClick={() => {
-                  console.log(this._time?.toFormat(this.format));
                   this.timeSelect.emit(this._time?.toFormat(this.format));
                 }}
               >

@@ -840,7 +840,14 @@ export namespace Components {
           * Set corners style
          */
         "corners": DateTimeCardCorners1;
+        /**
+          * Display footer
+         */
         "hasFooter": boolean;
+        /**
+          * Display header
+         */
+        "hasHeader": boolean;
         /**
           * set styles
          */
@@ -2824,6 +2831,11 @@ export namespace Components {
           * Get the current time based on the wanted format
          */
         "getCurrentTime": () => Promise<string | undefined>;
+        /**
+          * Hides the header of the picker.
+          * @since 3.1.0
+         */
+        "hideHeader": boolean;
         /**
           * Interval for hour selection
           * @since 3.1.0
@@ -5836,7 +5848,14 @@ declare namespace LocalJSX {
           * Set corners style
          */
         "corners"?: DateTimeCardCorners1;
+        /**
+          * Display footer
+         */
         "hasFooter"?: boolean;
+        /**
+          * Display header
+         */
+        "hasHeader"?: boolean;
         /**
           * set styles
          */
@@ -7949,6 +7968,11 @@ declare namespace LocalJSX {
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format"?: string;
+        /**
+          * Hides the header of the picker.
+          * @since 3.1.0
+         */
+        "hideHeader"?: boolean;
         /**
           * Interval for hour selection
           * @since 3.1.0

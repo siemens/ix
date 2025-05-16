@@ -23,7 +23,14 @@ export class DateTimeCard {
   /** @internal */
   @Prop() standaloneAppearance?: boolean;
 
-  /** @internal */
+  /**
+   * Display header
+   */
+  @Prop() hasHeader: boolean = true;
+
+  /**
+   * Display footer
+   */
   @Prop() hasFooter: boolean = false;
 
   /**
@@ -50,11 +57,14 @@ export class DateTimeCard {
     return (
       <Host>
         <div class={this.cardClasses()}>
-          <div class="header">
-            <slot name="header"></slot>
-          </div>
-
-          <div class="separator"></div>
+          {this.hasHeader && (
+            <div class="header-container">
+              <div class="header">
+                <slot name="header"></slot>
+              </div>
+              <div class="separator"></div>
+            </div>
+          )}
 
           <div class="content">
             <slot></slot>

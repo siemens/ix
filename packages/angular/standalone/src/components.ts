@@ -2791,7 +2791,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTimePicker,
-  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textHourColumnHeader', 'textMillisecondColumnHeader', 'textMinuteColumnHeader', 'textSecondColumnHeader', 'textSelectTime', 'textTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'hideHeader', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textHourColumnHeader', 'textMillisecondColumnHeader', 'textMinuteColumnHeader', 'textSecondColumnHeader', 'textSelectTime', 'textTime', 'time', 'timeReference'],
   methods: ['getCurrentTime']
 })
 @Component({
@@ -2799,7 +2799,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textHourColumnHeader', 'textMillisecondColumnHeader', 'textMinuteColumnHeader', 'textSecondColumnHeader', 'textSelectTime', 'textTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'hideHeader', 'hourInterval', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textHourColumnHeader', 'textMillisecondColumnHeader', 'textMinuteColumnHeader', 'textSecondColumnHeader', 'textSelectTime', 'textTime', 'time', 'timeReference'],
   standalone: true
 })
 export class IxTimePicker {

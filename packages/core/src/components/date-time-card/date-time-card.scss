@@ -41,9 +41,13 @@
       height: 100%;
     }
 
-    .header {
-      padding: $default-space;
-      flex: 0 1 auto;
+    .header-container {
+      width: 100%;
+
+      .header {
+        padding: $default-space;
+        flex: 0 1 auto;
+      }
     }
 
     .separator {
