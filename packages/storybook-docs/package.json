@@ -34,7 +34,7 @@
     "@whitespace/storybook-addon-html": "^6.1.1",
     "axe-playwright": "^2.0.3",
     "fs-extra": "^11.2.0",
-    "start-server-and-test": "^1.14.0",
+    "start-server-and-test": "^2.0.12",
     "storybook": "^8.4.2",
     "typescript": "~5.6.2",
     "vite": "^4.5.14"

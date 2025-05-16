@@ -7,7 +7,7 @@
     "@siemens/ix": "workspace:*",
     "http-server": "^14.1.1",
     "memlab": "^1.1.56",
-    "start-server-and-test": "^1.14.0"
+    "start-server-and-test": "^2.0.12"
   },
   "scripts": {
     "test.memlab": "start-server-and-test host-root http://127.0.0.1:8080 test.run",

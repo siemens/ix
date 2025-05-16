@@ -124,7 +124,7 @@
     "puppeteer": "21.1.1",
     "rimraf": "^5.0.9",
     "sass": "^1.77.8",
-    "start-server-and-test": "^1.14.0",
+    "start-server-and-test": "^2.0.12",
     "tsx": "^4.19.3",
     "typescript": "~5.4.5"
   },
