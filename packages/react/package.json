@@ -49,7 +49,7 @@
     "eslint": "~8.21.0",
     "eslint-config-ix": "workspace:*",
     "eslint-plugin-react": "^7.35.0",
-    "happy-dom": "^14.12.3",
+    "happy-dom": "^17.4.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "react": "^18",
