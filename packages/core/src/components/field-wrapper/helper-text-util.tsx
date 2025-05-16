@@ -27,8 +27,14 @@ export function hasAnyText({
   validText?: string;
   helperText?: string;
 }) {
-  return (invalidText?.trim() || warningText?.trim() || infoText?.trim() ||
-  validText?.trim() || helperText?.trim());}
+  return (
+    invalidText?.trim() ||
+    warningText?.trim() ||
+    infoText?.trim() ||
+    validText?.trim() ||
+    helperText?.trim()
+  );
+}
 
 export function renderHelperText({
   isInvalid,
@@ -51,7 +57,7 @@ export function renderHelperText({
   validText?: string;
   helperText?: string;
 }) {
-  if (isInvalid && invalidText !== undefined && invalidText?.trim() !== '')  {
+  if (isInvalid && invalidText !== undefined && invalidText?.trim() !== '') {
     return (
       <ix-typography textColor="alarm" class="bottom-text">
         <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
@@ -93,7 +99,8 @@ export function renderHelperText({
   }
 
   return (
-    helperText !== undefined && helperText?.trim() !=='' && (
+    helperText !== undefined &&
+    helperText?.trim() !== '' && (
       <ix-typography class="bottom-text" textColor="soft">
         {helperText.trim()}
       </ix-typography>
