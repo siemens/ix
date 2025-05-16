@@ -43,6 +43,9 @@ export default () => {
         Disabled Tab
       </IxMenuItem>
       <IxMenuItem icon={iconStar}>With other icon</IxMenuItem>
+      <IxMenuItem icon={iconStar} style={{ display: 'none' }}>
+        Should not be visible
+      </IxMenuItem>
     </IxMenu>
   );
 };

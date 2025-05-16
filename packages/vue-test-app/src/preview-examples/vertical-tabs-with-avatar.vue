@@ -27,11 +27,17 @@ import {
 <template>
   <IxMenu>
     <IxMenuAvatar top="john.doe@company.com" bottom="Administrator">
-      <IxMenuAvatarItem :icon="iconUserProfile" label="User profile..."></IxMenuAvatarItem>
+      <IxMenuAvatarItem
+        :icon="iconUserProfile"
+        label="User profile..."
+      ></IxMenuAvatarItem>
     </IxMenuAvatar>
     <IxMenuItem home-tab :icon="iconHome">Home</IxMenuItem>
     <IxMenuItem :icon="iconGlobe">Normal tab</IxMenuItem>
     <IxMenuItem :icon="iconStar" disabled>Disabled tab</IxMenuItem>
     <IxMenuItem :icon="iconStar">With other icon</IxMenuItem>
+    <IxMenuItem :icon="iconStar" style="display: none"
+      >Should not be visible</IxMenuItem
+    >
   </IxMenu>
 </template>
