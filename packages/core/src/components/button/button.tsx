@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Listen, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Listen,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
 
@@ -50,6 +58,13 @@ export class Button implements IxButtonComponent {
   @Prop() loading: boolean = false;
 
   /**
+   * Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
+   *
+   * @since 3.1.0
+   */
+  @Prop() form?: string;
+
+  /**
    * Icon name
    */
   @Prop() icon?: string;
@@ -76,14 +91,29 @@ export class Button implements IxButtonComponent {
   }
 
   componentDidLoad() {
-    if (this.type === 'submit') {
-      const submitButton = document.createElement('button');
-      submitButton.style.display = 'none';
-      submitButton.type = 'submit';
-      submitButton.tabIndex = -1;
-      this.hostElement.appendChild(submitButton);
+    if (this.type !== 'submit') {
+      return;
+    }
+    const submitButton = document.createElement('button');
+    submitButton.style.display = 'none';
+    submitButton.type = 'submit';
+    submitButton.tabIndex = -1;
 
-      this.submitButtonElement = submitButton;
+    if (this.form) {
+      submitButton.setAttribute('form', this.form);
+    }
+    this.hostElement.appendChild(submitButton);
+    this.submitButtonElement = submitButton;
+  }
+
+  @Watch('form')
+  handleFormChange(newValue: string | undefined) {
+    if (this.submitButtonElement) {
+      if (newValue) {
+        this.submitButtonElement.setAttribute('form', newValue);
+      } else {
+        this.submitButtonElement.removeAttribute('form');
+      }
     }
   }
 
