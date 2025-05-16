@@ -28,7 +28,7 @@ const dismiss = () => {
 
 <template>
   <div ref="modalRef">
-    <IxModalHeader @closeClick="dismiss">Message headline</IxModalHeader>
+    <IxModalHeader @onClose="dismiss()">Message headline</IxModalHeader>
     <IxModalContent>Message text lorem ipsum</IxModalContent>
     <IxModalFooter>
       <IxButton outline @click="dismiss">Cancel</IxButton>

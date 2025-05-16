@@ -11,14 +11,17 @@
 import { ref } from 'vue';
 import { IxButton, closeModal } from '@siemens/ix-vue';
 
-defineProps<{
-  size: string
+const props = defineProps<{
+  size: {
+    type: string;
+    required: true;
+  }
 }>();
 
 const modalRef = ref<HTMLElement | null>(null);
 const getModal = (): HTMLIxModalElement | null => modalRef.value?.closest('ix-modal') ?? null;
 
-const handleClose = () => {
+const close = () => {
   const modal = getModal();
   if (modal) closeModal(modal, 'close payload');
 }
@@ -26,8 +29,8 @@ const handleClose = () => {
 
 <template>
   <div ref="modalRef">
-    <IxButton style="width: 100%" @click="handleClose">
-      Modal with size {{ size }}
+    <IxButton style="width: 100%" @click="close">
+      Modal with size {{ props.size }}
     </IxButton>
   </div>
 </template>
