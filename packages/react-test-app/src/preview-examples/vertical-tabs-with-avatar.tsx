@@ -38,7 +38,7 @@ export default () => {
       <IxMenuItem home icon={iconHome}>
         Home
       </IxMenuItem>
-      <IxMenuItem icon={iconGlobe}>Normal Tab</IxMenuItem>
+      <IxMenuItem icon={iconGlobe}>Normal tab</IxMenuItem>
       <IxMenuItem icon={iconStar} disabled>
         Disabled Tab
       </IxMenuItem>
