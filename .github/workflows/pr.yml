@@ -3,7 +3,7 @@ name: Pull Request
 on:
   pull_request:
     branches-ignore:
-      - changeset-release/main
+      - 'changeset-release/main'
     types:
       - opened
       - reopened
@@ -76,7 +76,7 @@ jobs:
           path: ./packages/documentation/build
 
   visual-testing-core:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -129,7 +129,7 @@ jobs:
           retention-days: 14
 
   visual-testing-aggrid:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -152,7 +152,7 @@ jobs:
           retention-days: 1
 
   visual-testing-echarts:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -175,7 +175,7 @@ jobs:
           retention-days: 1
 
   unit:
-    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -193,7 +193,7 @@ jobs:
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
 
   unit-memlab:
-    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' }}
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest

@@ -18,7 +18,7 @@
     "@types/tar": "^6.1.13",
     "angular-test-app": "workspace:*",
     "autoprefixer": "10.4.5",
-    "axios": "^1.5.0",
+    "axios": "^1.8.2",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.1",
     "html-test-app": "workspace:*",
