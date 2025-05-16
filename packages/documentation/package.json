@@ -43,7 +43,7 @@
     "@types/tar": "^6.1.13",
     "angular-test-app": "workspace:*",
     "autoprefixer": "10.4.5",
-    "axios": "^1.5.0",
+    "axios": "^1.8.2",
     "clsx": "^2.1.0",
     "docusaurus-plugin-sass": "^0.2.5",
     "figma-plugin": "workspace:*",
