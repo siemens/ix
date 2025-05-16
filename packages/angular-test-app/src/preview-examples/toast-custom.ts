@@ -49,7 +49,7 @@ export default class ToastCustom {
   async showToastMessage() {
     this.toastService.show({
       title: 'Toast headline',
-      message: 'Toast message text',
+      message: this.customToastRef,
       type: 'success',
     });
   }

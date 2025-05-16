@@ -21,7 +21,7 @@ const customAction = ref<HTMLElement | null>(null);
     @click="
       showToast({
         title: 'Toast headline',
-        message: 'Toast message text',
+        message: customMessage!,
         type: 'success',
       })
     "

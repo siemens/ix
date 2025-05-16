@@ -31,7 +31,7 @@ export default () => {
         onClick={() => {
           showToast({
             title: 'Toast headline',
-            message: 'Toast message text',
+            message: <CustomToastMessage></CustomToastMessage>,
             type: 'success',
           });
         }}
