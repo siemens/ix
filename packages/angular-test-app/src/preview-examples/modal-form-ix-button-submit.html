@@ -1,0 +1,33 @@
+<ix-button
+  (click)="openModal()"
+  (keydown.enter)="openModal()"
+  (keydown.space)="openModal()"
+>
+  Show modal
+</ix-button>
+
+<ng-template #customModal let-modal>
+  <ix-modal>
+    <ix-modal-header> Create Resource </ix-modal-header>
+    <ix-modal-content>
+      <form
+        id="create-resource-form"
+        #formRef="ngForm"
+        (ngSubmit)="onSubmit(formRef)"
+      >
+        <ix-input label="Name:" type="text" name="name" ngModel></ix-input>
+      </form>
+    </ix-modal-content>
+    <ix-modal-footer>
+      <ix-button
+        outline
+        (click)="modal.dismiss('dismiss')"
+        (keydown.enter)="modal.dismiss('dismiss')"
+        (keydown.space)="modal.dismiss('dismiss')"
+      >
+        Cancel
+      </ix-button>
+      <ix-button form="create-resource-form" type="submit"> Submit </ix-button>
+    </ix-modal-footer>
+  </ix-modal>
+</ng-template>
