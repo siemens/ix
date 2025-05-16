@@ -200,7 +200,8 @@ regressionTest.describe('time picker tests', () => {
 
       await firstPicker.locator('[data-element-container-id="hour-6"]').click();
 
-      await page.waitForTimeout(100);
+      // wait for scroll
+      await page.waitForTimeout(500);
 
       const newScrollTop = await firstPicker
         .locator('[data-element-list-id="hour"]')
