@@ -8,9 +8,57 @@ no_single_tab: true
 description: 'Our guidelines section provides comprehensive information to help you create user-friendly and consistent designs. This section covers various aspects of design, ensuring that your work meets high standards of accessibility, responsiveness, and usability.'
 ---
 
+import { IxLayoutGrid, IxRow } from '@siemens/ix-react';
+import { CategoryButton } from '@site/src/components/CategoryButton';
+
 # 
 
-![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5109-312&t=J27iSZ4gEcgMGpEV-4)
+<IxLayoutGrid style={{marginBottom: '3rem'}} no-margin>
+  <IxRow style={{gap: '0.5rem', justifyContent: 'center'}}>
+    <CategoryButton
+      buttonWidth="8rem"
+      imageWidth="5.5rem"
+      title="Design principles"
+      link="#design-principles">
+      ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5392-136)
+    </CategoryButton>
+    <CategoryButton
+      buttonWidth="8rem"
+      imageWidth="5.5rem"
+      title="Accessibility"
+      link="#accessibility">
+      ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5423-91)
+    </CategoryButton>
+    <CategoryButton
+      buttonWidth="8rem"
+      imageWidth="5.5rem"
+      title="Responsive design"
+      link="#responsive-design">
+      ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5392-139)
+    </CategoryButton>
+    <CategoryButton
+      buttonWidth="8rem"
+      imageWidth="5.5rem"
+      title="UX writing"
+      link="#ux-writing">
+      ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5392-142)
+    </CategoryButton>
+    <CategoryButton
+      buttonWidth="8rem"
+      imageWidth="5.5rem"
+      title="Conversational design"
+      link="#conversational-design">
+      ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5392-147)
+    </CategoryButton>
+    <CategoryButton
+      buttonWidth="8rem"
+      imageWidth="5.5rem"
+      title="CLI design"
+      link="#cli-design">
+      ![](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5392-148)
+    </CategoryButton>
+  </IxRow>
+</IxLayoutGrid>
 
 ## Design principles
 Elevating user experience with Industrial Experience design principles. In the fast-paced world of industrial technology, design principles serve as the cornerstone of innovation, guiding us to create seamless and intuitive applications. They provide designers and developers with a robust framework to make informed design decisions, ensuring each product aligns with our standards and brand identity. [Read more](./designprinciples)

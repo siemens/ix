@@ -60,7 +60,7 @@ console.log('Using BASE_URL', baseUrl);
 const config: Config = {
   title: 'Siemens Industrial Experience',
   tagline: 'Siemens Industrial Experience',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   // Set the production url of your site here
   url: 'https://ix.siemens.io',
@@ -196,8 +196,7 @@ const config: Config = {
     colorMode: {
       defaultMode: 'dark',
     },
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/ix-social-card.png',
     navbar: {
       hideOnScroll: false,
       logo: {
@@ -242,7 +241,7 @@ const config: Config = {
           type: 'custom-news-pill',
           position: 'left',
           label: 'Release 3.0 is here',
-          value: '/blog/v3-alpha',
+          value: '/blog/2025/05/09/release-3',
         },
         {
           type: 'custom-version-selection',
