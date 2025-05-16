@@ -50,6 +50,7 @@ export class DateTimeCard {
       rounded: this.corners === 'rounded',
       left: this.corners === 'left',
       right: this.corners === 'right',
+      straight: this.corners === 'straight',
     };
   }
 
