@@ -12,6 +12,7 @@
         "dist/**",
         "dist-css/**",
         "build/**",
+        "storybook-static/**",
         "www/**",
         "loader/**",
         "component-doc.json",

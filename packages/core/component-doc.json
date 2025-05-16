@@ -1436,6 +1436,37 @@
           "setter": false
         },
         {
+          "name": "form",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "form",
+          "reflectToAttr": false,
+          "docs": "Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type=\"submit\".",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "ghost",
           "type": "boolean",
           "complexType": {
