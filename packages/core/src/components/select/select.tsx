@@ -38,6 +38,7 @@ import {
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
+import {renderFormStatusSlots} from '../utils/slot-utils';
 
 /**
  * @form-ready
@@ -914,6 +915,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               </div>
             </div>
           </div>
+          {renderFormStatusSlots()}
         </ix-field-wrapper>
         <ix-dropdown
           ref={(ref) => (this.dropdownElement = ref!)}

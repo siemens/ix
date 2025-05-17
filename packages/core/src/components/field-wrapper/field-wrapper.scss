@@ -29,6 +29,11 @@
     margin-right: 0px;
   }
 
+  .field-bottom .bottom-left {
+    margin-left: 0px;
+    margin-right: auto;
+  }
+
   @include helper-text;
 
   .bottom-text {
