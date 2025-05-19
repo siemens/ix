@@ -1,0 +1,52 @@
+---
+doc-type: 'tab-item'
+---
+
+# Time picker - Usage
+
+Time pickers are primarily used within [time inputs](../input-time) but can also be utilized standalone in applications where direct time selection is required.
+
+![TODO Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2550-58743&t=LITgbzwcgm87dQXa-4)
+
+1. Time Picker container
+2. Time value
+3. Header
+4. Time format
+5. Interval settings
+6. Column headers
+
+## Options
+
+- **Value**: The selected time value.
+- **Format**: Choose whether you use hours, minutes, seconds and/or milliseconds as well as 12- or 24-hour format. We recommend to use a 24-hour format for universal readability (read more in the UX Writing guides <font color="#ff0000">TODO ADD LINK</font>).
+	- **Columns**: Hide hours, minutes, seconds and milliseconds columns when not needed.
+	- **Intervals**: Define an interval for every column to restrict allowed values and provide a faster selection. For example 2 hours, 15 minutes, 30 seconds, 100 milliseconds.
+- **Header**: Define a header text that conveys the context of the time selection. Hide it when there is already a related headline in your UI.
+- **Corners**: By default, the time picker shows rounded corners to be consistent with the [dropdown](../dropdown). Use straight, left or right corners to combine with other components.
+- **Standalone appearance**: Shows a flat design without a shadow. We typically use it for inline placement.
+
+## Behavior in context
+
+- **Interaction**: Users can navigate through the time picker using the keyboard. The following keys are supported:
+    - **Tab**: Navigate between areas of the time picker (header, body, footer).
+    - **Arrow keys or scroll**: Move through time options.
+    - **Enter or click**: Select the highlighted time.
+
+## States
+
+An individual time item of a time picker has five states: Default, hover, active, disabled and focused.
+
+![TODO Statuses](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2550-58743&t=LITgbzwcgm87dQXa-4)
+
+## Dos and Don’ts
+
+- Do use the time picker to ensure accurate time input.
+- Do provide clear instructions and labels for users.
+- Do ensure the time picker is accessible via keyboard.
+- Don’t clutter the time picker with unnecessary options.
+
+## Related
+
+- [Time input](../input-time)
+- [Date picker](../datepicker)
+- [Dropdown](../dropdown)
