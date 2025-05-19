@@ -1073,17 +1073,7 @@ const sidebars: SidebarsConfig = {
   guidelines: [
     'guidelines/overview',
     'guidelines/designprinciples',
-    {
-      type: 'category',
-      className: 'doc-sidebar-item-bold',
-
-      label: 'Accessibility',
-      items: [
-        'guidelines/accessibility/overview',
-        'guidelines/accessibility/guidelines',
-      ],
-      collapsed: true,
-    },
+    'guidelines/accessibility/overview',
     {
       type: 'category',
       className: 'doc-sidebar-item-bold',
