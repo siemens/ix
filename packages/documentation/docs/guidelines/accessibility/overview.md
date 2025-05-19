@@ -12,7 +12,7 @@ description: 'Accessibility ensures that digital products are usable by everyone
 
 ## Our commitment as a design system
 
-We are committed that our deliverables qualify for building solutions that are accessible for everyone. We strive to meet WCAG AA standards with providing perceivable, operable, and understandable components that follow our accessibility checklist.
+We are committed that our deliverables qualify for building solutions that are accessible for everyone. We strive to meet **WCAG AA standards** with providing perceivable, operable, and understandable components that follow our accessibility checklist.
 
 ## Ensuring accessibility in products
 
