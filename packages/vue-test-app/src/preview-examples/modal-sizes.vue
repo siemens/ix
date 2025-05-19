@@ -8,9 +8,8 @@
 -->
 
 <script setup lang="ts">
-import { IxButton } from '@siemens/ix-vue';
-import { showModal, type IxModalSize } from '@siemens/ix-vue';
-import ModalContent from './modal-size-content.vue';
+import { h, ref, defineComponent } from 'vue';
+import { IxButton, showModal, closeModal, type IxModalSize } from '@siemens/ix-vue';
 
 const sizes: IxModalSize[] = [
   '360',
@@ -22,21 +21,54 @@ const sizes: IxModalSize[] = [
   'full-screen',
 ];
 
+const ModalContent = defineComponent({
+  name: 'ModalContent',
+  props: {
+    size: String,
+  },
+  setup(props) {
+    const modalRef = ref<HTMLElement | null>(null);
+
+    const getModal = (): HTMLIxModalElement | null =>
+      modalRef.value?.closest('ix-modal') ?? null;
+
+    const close = () => {
+      const modal = getModal();
+      if (modal) {
+        closeModal(modal, 'close payload');
+      }
+    };
+
+    return () =>
+      h('div', { ref: modalRef }, [
+        h(
+          IxButton,
+          {
+            style: 'width: 100%',
+            onClick: close,
+          },
+          {
+            default: () => `Modal with size ${props.size}`,
+          }
+        ),
+      ]);
+  },
+});
+
 const open = (size: IxModalSize) => {
   showModal(ModalContent, {
     size,
     props: {
       size,
-    }
+    },
   });
-}
+};
 </script>
-
 <style scoped src="./modal-sizes.css"></style>
 
 <template>
   <div class="modal-sizes">
-    <IxButton v-for="size in sizes" :key="size" @click="open(size)">
+    <IxButton v-for="size in sizes" :key="size" @click="open(size as IxModalSize)">
       Show modal size {{ size }}
     </IxButton>
   </div>
