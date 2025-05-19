@@ -225,6 +225,7 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import VerticalTabs from './preview-examples/vertical-tabs.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
+import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.vue';
 
 const routes: any = {
   '/': App,
@@ -383,6 +384,7 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
+  '/preview/modal-form-ix-button-submit': ModalFormIxButtonSubmit,
   '/preview/number-input': NumberInput,
   '/preview/number-input-disabled': NumberInputDisabled,
   '/preview/number-input-label': NumberInputLabel,

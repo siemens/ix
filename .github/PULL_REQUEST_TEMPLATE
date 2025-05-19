@@ -22,7 +22,7 @@ A pull request can only be merged if all of these conditions are met (where appl
 - [ ] 🦮 Accessibility (a11y) features were implemented
 - [ ] 🗺️ Internationalization (i18n) - no hard coded strings
 - [ ] 📲 Responsiveness - components handle viewport changes and content overflow gracefully
-- [ ] 📄 Documentation was reviewed/updated (`pnpm run docs`)
+- [ ] 📄 Documentation was reviewed/updated [siemens/ix-docs](https://github.com/siemens/ix-docs)
 - [ ] 🧪 Unit tests were added/updated and pass (`pnpm test`)
 - [ ] 📸 Visual regression tests were added/updated and pass ([Guide](https://github.com/siemens/ix/blob/main/CONTRIBUTING.md#visual-regression-testing))
 - [ ] 🧐 Static code analysis passes (`pnpm lint`)
