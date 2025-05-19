@@ -84,3 +84,52 @@ regressionTest('show text by tooltip invalid', async ({ mount, page }) => {
   await expect(tooltip).toHaveClass(/visible/);
   await expect(tooltip).toContainText('invalid text');
 });
+
+regressionTest(
+  'should not create tooltip when helper text is empty',
+  async ({ mount, page }) => {
+    await mount(
+      `
+    <ix-field-wrapper helper-text=" " show-text-as-tooltip>
+      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+    </ix-field-wrapper>
+    `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    const tooltip = fieldWrapperElement.locator('ix-tooltip');
+    await expect(tooltip).toHaveCount(0);
+    await page.mouse.move(10, 10);
+    await page.waitForTimeout(100);
+    await expect(tooltip).toHaveCount(0);
+  }
+);
+
+regressionTest(
+  'should not create tooltip when helper text is set to null',
+  async ({ mount, page }) => {
+    await mount(
+      `
+    <ix-field-wrapper helper-text="initial helper" show-text-as-tooltip>
+      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+    </ix-field-wrapper>
+    `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await page.evaluate(() => {
+      const fieldWrapper = document.querySelector('ix-field-wrapper');
+      if (fieldWrapper) {
+        (fieldWrapper as any).helperText = null;
+      }
+    });
+    await page.waitForTimeout(100);
+    const tooltip = fieldWrapperElement.locator('ix-tooltip');
+    await expect(tooltip).not.toBeVisible();
+    await page.mouse.move(10, 10);
+    await page.waitForTimeout(100);
+    await expect(tooltip).not.toBeVisible();
+  }
+);
