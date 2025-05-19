@@ -7,6 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 #__docusaurus {
+  // Disable search highlighting
+  mark {
+    background-color: unset;
+    color: var(--theme-color-std-text)
+  }
+
   main > .container {
     margin: 0;
     max-width: none;
@@ -15,5 +21,15 @@
   main > div.container,
   main > div[class*='padding-top'] {
     padding-top: 0rem !important;
+  }
+
+  @media screen and (min-width: 997px) {
+    main > .container {
+      max-width: 75rem;
+    }
+
+    main {
+      justify-content: center;
+    }
   }
 }

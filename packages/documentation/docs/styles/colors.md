@@ -86,7 +86,7 @@ Component & interaction colors are used on interactive elements that often come 
 <ColorTable.WithChildren colorName="color-component-6">
 </ColorTable.WithChildren>
 
-Following ghost colors are used on elements with an invisible background but visible hover, active and selected states. “...-ghost-alt...” colors are used on alternating table grid patterns. These colors a semi-transparent and therefore work on most background colors.
+Following ghost colors are used on elements with an invisible background but visible hover, active and selected states. “...-ghost-alt...” colors are used on alternating table grid patterns. These colors are semi-transparent and therefore work on most background colors.
 
 <ColorTable.WithChildren colorName="color-ghost">
 </ColorTable.WithChildren>
@@ -131,9 +131,9 @@ Following colors are only used in very specific components like date picker cale
 <ColorTable.WithChildren colorName="color-component-11">
 </ColorTable.WithChildren>
 
-## Status color
+## Status colors
 
-Status color are made to represent the different statuses. We support the following states:
+Status colors are designed to represent different statuses. The following states are supported:
 
 - Alarm (error, invalid, danger)
 - Critical (status between alarm and warning)
@@ -141,8 +141,8 @@ Status color are made to represent the different statuses. We support the follow
 - Success (valid, ok, good)
 - Info (information)
 - Neutral
-  All colors are available for interaction states “hover” and “active”, each status color has a matching “contrast” color for placing text and icons on such a colored background.
-  Each status color has furthermore a semi-transparent color that can be used on more subtle colored backgrounds.
+
+All status colors are available for the interaction states “hover” and “active.” Each status color has a matching “contrast” color, which is suitable for placing text and icons on such colored backgrounds. Additionally, each status has a semi-transparent color variant that can be used for more subtle colored backgrounds.
 
 :::info
 Please note:
