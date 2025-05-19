@@ -3,38 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "pnpm build.docs && docusaurus start",
-    "build": "pnpm build.docs && docusaurus build",
-    "build.docs": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/build.ts",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "build": "tsx --tsconfig ./tsconfig.json ./scripts/build.ts"
   },
-  "dependencies": {
-    "@docusaurus/core": "3.7.0",
-    "@docusaurus/plugin-client-redirects": "^3.7.0",
-    "@docusaurus/preset-classic": "3.7.0",
-    "@mdx-js/react": "^3.0.0",
-    "@siemens/ix-icons": "^3.0.0",
-    "@stackblitz/sdk": "^1.11.0",
-    "prism-react-renderer": "^2.3.0",
-    "prismjs": "^1.30.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@cmfcmf/docusaurus-search-local": "^1.2.0",
-    "@docusaurus/module-type-aliases": "3.7.0",
-    "@docusaurus/tsconfig": "3.7.0",
-    "@docusaurus/types": "3.7.0",
-    "@siemens/ix": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
     "@siemens/ix-react": "workspace:*",
+    "@siemens/ix": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/mustache": "^4.1.1",
     "@types/node": "^20.16.0",
@@ -44,39 +19,19 @@
     "angular-test-app": "workspace:*",
     "autoprefixer": "10.4.5",
     "axios": "^1.8.2",
-    "clsx": "^2.1.0",
-    "docusaurus-plugin-sass": "^0.2.5",
-    "figma-plugin": "workspace:*",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.1",
     "html-test-app": "workspace:*",
     "ionic-test-app": "workspace:*",
-    "listr2": "^8.2.5",
     "mustache": "^4.2.0",
     "octokit": "^3",
-    "postcss": "^8.4.29",
     "react-test-app": "workspace:*",
     "rimraf": "^6.0.1",
-    "tailwindcss": "^3.4.12",
+    "storybook-docs": "workspace:*",
     "tar": "^7.4.3",
     "tsx": "^4.15.4",
     "typedoc": "^0.27.9",
     "typescript": "~5.5.2",
     "vue-test-app": "workspace:*"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 3 chrome version",
-      "last 3 firefox version",
-      "last 5 safari version"
-    ]
-  },
-  "engines": {
-    "node": ">=18.0"
   }
 }
