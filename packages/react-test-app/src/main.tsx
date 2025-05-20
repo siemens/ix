@@ -226,6 +226,7 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
+import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -559,6 +560,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<SelecValidation />}
         />
         <Route path="/preview/modal-sizes" element={<ModalSizes />} />
+
+        <Route
+          path="/preview/modal-form-ix-button-submit"
+          element={<ModalFormIxButtonSubmit />}
+        />
+
         <Route path="/preview/modal" element={<Modal />} />
         <Route
           path="/preview/pagination-advanced"

@@ -329,14 +329,14 @@ export declare interface IxBreadcrumbItem extends Components.IxBreadcrumbItem {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxButton,
-  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant']
+  inputs: ['disabled', 'form', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant']
 })
 @Component({
   selector: 'ix-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant'],
+  inputs: ['disabled', 'form', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant'],
   standalone: true
 })
 export class IxButton {
