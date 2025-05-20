@@ -54,7 +54,7 @@ regressionTest(
     await mount(
       `
     <ix-field-wrapper helper-text="Helper text">
-      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      Content
     </ix-field-wrapper>
     `
     );
@@ -74,6 +74,25 @@ regressionTest(
     await expect(helperTextElement).toHaveCount(0);
   }
 );
+
+regressionTest('doesnt render empty string text', async ({ mount, page }) => {
+  await mount(
+    `
+    <ix-field-wrapper helper-text="">
+      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+    </ix-field-wrapper>
+    `
+  );
+  const fieldWrapperElement = page.locator('ix-field-wrapper');
+  await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+  await page.waitForTimeout(100);
+  const helperTextElement = fieldWrapperElement
+    .locator('.field-bottom')
+    .locator('ix-typography.bottom-text')
+    .filter({ hasText: 'Helper text' });
+
+  await expect(helperTextElement).toHaveCount(0);
+});
 
 regressionTest('show text by tooltip', async ({ mount, page }) => {
   await mount(

@@ -54,7 +54,6 @@ regressionTest(`form-ready - ix-textarea`, async ({ mount, page }) => {
   expect(formData).toBe('Some longer text');
 });
 
-//
 regressionTest(
   `form-ready - ix-input with initial value`,
   async ({ mount, page }) => {
@@ -120,7 +119,7 @@ regressionTest(
     await mount(
       `<form><ix-input name="my-field-name" max-length="20"></ix-input></form>`
     );
-      await page.evaluate(() => {
+    await page.evaluate(() => {
       const el = document.querySelector('ix-input');
       // @ts-ignore
       el.value = null;
@@ -134,14 +133,9 @@ regressionTest(
   'form-ready - input correctly renders character counter with number value',
   async ({ mount, page }) => {
     await mount(
-      `<form><ix-input name="my-field-name" max-length="20"></ix-input></form>`
+      `<form><ix-input name="my-field-name" value="221" max-length="20"></ix-input></form>`
     );
-    await page.evaluate(() => {
-      const el = document.querySelector('ix-input');
-      // @ts-ignore
-      el.value = 221;
-    });
-    const counter = page.locator('ix-typography.bottom-text');
+    const counter = page.locator('ix-typography.bottom-text').first();
     await expect(counter).toHaveText('3/20');
   }
 );
@@ -150,14 +144,9 @@ regressionTest(
   'form-ready - input correctly renders character counter with a space',
   async ({ mount, page }) => {
     await mount(
-      `<form><ix-input name="my-field-name" max-length="20"></ix-input></form>`
+      `<form><ix-input name="my-field-name" value=" " max-length="20"></ix-input></form>`
     );
-      await page.evaluate(() => {
-      const el = document.querySelector('ix-input');
-      // @ts-ignore
-      el.value = " ";
-    });
-    const counter = page.locator('ix-typography.bottom-text');
+    const counter = page.locator('ix-typography.bottom-text').first();
     await expect(counter).toHaveText('1/20');
   }
 );
