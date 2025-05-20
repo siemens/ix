@@ -8,8 +8,7 @@
 -->
 
 <script setup lang="ts">
-import { IxButton, ModalInstance } from '@siemens/ix-vue';
-import { showModal } from '@siemens/ix-vue';
+import { IxButton, ModalInstance, showModal } from '@siemens/ix-vue';
 import CustomModal from './modal-custom-content.vue';
 
 async function showCustomModal() {

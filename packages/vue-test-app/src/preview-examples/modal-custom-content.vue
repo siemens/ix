@@ -9,8 +9,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { IxButton, IxModalHeader, IxModalContent, IxModalFooter } from '@siemens/ix-vue';
-import { closeModal, dismissModal } from '@siemens/ix-vue';
+import { IxButton, IxModalHeader, IxModalContent, IxModalFooter, closeModal, dismissModal } from '@siemens/ix-vue';
 
 const modalRef = ref<HTMLElement | null>(null);
 const getModal = (): HTMLIxModalElement | null => modalRef.value?.closest('ix-modal') ?? null;
