@@ -24,6 +24,10 @@
     box-shadow: var(--theme-shadow-4);
   }
 
+  ix-time-picker {
+    width: 100%;
+  }
+
   .no-padding {
     padding: 0;
   }
@@ -55,6 +59,10 @@
 
     .min-width {
       width: min-content;
+    }
+
+    ix-time-picker {
+      width: initial;
     }
   }
 
