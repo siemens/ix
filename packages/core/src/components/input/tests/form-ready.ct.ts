@@ -114,3 +114,50 @@ regressionTest(
     await expect(counter).toHaveText('0/100');
   }
 );
+regressionTest(
+  'form-ready - input correctly renders character counter with null value',
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-input name="my-field-name" max-length="20"></ix-input></form>`
+    );
+      await page.evaluate(() => {
+      const el = document.querySelector('ix-input');
+      // @ts-ignore
+      el.value = null;
+    });
+    const counter = page.locator('ix-typography.bottom-text');
+    await expect(counter).toHaveText('0/20');
+  }
+);
+
+regressionTest(
+  'form-ready - input correctly renders character counter with number value',
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-input name="my-field-name" max-length="20"></ix-input></form>`
+    );
+    await page.evaluate(() => {
+      const el = document.querySelector('ix-input');
+      // @ts-ignore
+      el.value = 221;
+    });
+    const counter = page.locator('ix-typography.bottom-text');
+    await expect(counter).toHaveText('3/20');
+  }
+);
+
+regressionTest(
+  'form-ready - input correctly renders character counter with a space',
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-input name="my-field-name" max-length="20"></ix-input></form>`
+    );
+      await page.evaluate(() => {
+      const el = document.querySelector('ix-input');
+      // @ts-ignore
+      el.value = " ";
+    });
+    const counter = page.locator('ix-typography.bottom-text');
+    await expect(counter).toHaveText('1/20');
+  }
+);
