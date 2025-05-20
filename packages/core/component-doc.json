@@ -20955,7 +20955,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.\nNote: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.",
           "docsTags": [],
           "default": "'TT'",
           "values": [

@@ -2829,7 +2829,7 @@ export namespace Components {
         "corners": TimePickerCorners;
         "dateTimePickerAppearance": boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
          */
         "format": string;
         /**
@@ -7975,7 +7975,7 @@ declare namespace LocalJSX {
         "corners"?: TimePickerCorners;
         "dateTimePickerAppearance"?: boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
          */
         "format"?: string;
         /**
