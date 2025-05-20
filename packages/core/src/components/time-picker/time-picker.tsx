@@ -43,13 +43,13 @@ interface TimeOutputFormat {
 
 const LUXON_FORMAT_PATTERNS = {
   // h, hh, H, HH and various time formats that include hours
-  hours: /\b[HhK]\b|HH|hh|KK|H{3,4}|h{3,4}|K{1,2}|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
+  hours: /\b[HhK]\b|HH|hh|H{3,4}|h{3,4}|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
   // m, mm and time formats that include minutes
-  minutes: /\bm\b|mm|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
+  minutes: /\bm\b|mm|tt|ttt|tttt|TT|TTT|TTTT/,
   // s, ss and time formats that include seconds
   seconds: /\bs\b|ss|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
   // S, SSS (milliseconds), u/uu/uuu (fractional seconds), x/X (timestamps)
-  milliseconds: /\bS\b|SSS|u|uu|uuu|x|X/,
+  milliseconds: /\bS\b|SSS|u|uu|uuu/,
 };
 
 const HOUR_INTERVAL_DEFAULT = 1;
@@ -75,6 +75,7 @@ export class TimePicker {
   /**
    * Format of time string
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
    */
   @Prop() format: string = 'TT';
   @Watch('format')
