@@ -2,6 +2,11 @@
 'angular-standalone-test-app': minor
 'angular-test-app': minor
 '@siemens/ix-angular': minor
+'html-test-app': minor
+'react-test-app': minor
+'@siemens/ix-react': minor
+'vue-test-app': minor
+'@siemens/ix-vue': minor
 '@siemens/ix': minor
 ---
 
