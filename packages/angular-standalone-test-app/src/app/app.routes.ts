@@ -910,6 +910,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'modal-form-ix-button-submit',
+        loadComponent: () =>
+          import('../preview-examples/modal-form-ix-button-submit').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'modal-sizes',
         loadComponent: () =>
           import('../preview-examples/modal-sizes').then((m) => m.default),
