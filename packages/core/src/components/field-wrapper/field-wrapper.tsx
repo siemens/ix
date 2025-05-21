@@ -118,10 +118,6 @@ export class FieldWrapper implements FieldWrapperInterface {
         if (element.textContent?.trim() || element.children.length > 0) {
           return true;
         }
-        if (element.tagName.includes('-')) {
-          return true;
-        }
-
         return false;
       });
     };
