@@ -22,6 +22,12 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-${{ github.run_attempt }}
+          path: ./packages/documentation/build
+
   visual-testing-core:
     needs: [build]
     timeout-minutes: 10
@@ -131,3 +137,35 @@ jobs:
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
+
+  unit-memlab:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Test
+        run: |
+          cd testing/performance-memlab
+          pnpm dlx puppeteer browsers install chrome@127.0.6533.88
+          pnpm test.memlab
+
+  sbom:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Create SBOM
+        run: pnpm build --filter oss-clearing
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom-${{ github.run_attempt }}
+          path: |
+            ./tooling/oss-clearing/sboms/

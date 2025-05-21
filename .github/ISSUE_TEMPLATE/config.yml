@@ -1,4 +1,8 @@
 contact_links:
+  - name: Bug report or feature request for the official iX documentation
+    url: https://github.com/siemens/ix-docs/issues
+    about: Please use this link to report bugs or request features related to the official iX documentation.
+
   - name: Support Question 🤔
     url: https://community.siemens.com/c/ix/
     about: This issue tracker is not for support questions. Please post your question to the Siemens Community Forum.
