@@ -103,7 +103,7 @@ export class RadiobuttonGroup
   @State() isWarning = false;
 
   private touched = false;
-  private readonly groupRef = makeRef<HTMLIxRadioGroupElement>();
+  private readonly groupRef = makeRef<HTMLElement>();
 
   private readonly observer = new MutationObserver(() => {
     this.ensureOnlyLastRadioChecked();
