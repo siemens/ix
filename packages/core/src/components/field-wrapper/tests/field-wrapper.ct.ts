@@ -85,7 +85,6 @@ regressionTest('doesnt render empty string text', async ({ mount, page }) => {
   );
   const fieldWrapperElement = page.locator('ix-field-wrapper');
   await expect(fieldWrapperElement).toHaveClass(/hydrated/);
-  await page.waitForTimeout(100);
   const helperTextElement = fieldWrapperElement
     .locator('.field-bottom')
     .locator('ix-typography.bottom-text')
