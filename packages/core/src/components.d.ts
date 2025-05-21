@@ -491,6 +491,11 @@ export namespace Components {
          */
         "background": string | undefined;
         /**
+          * Center the content of the chip. Set to false to disable centering.
+          * @since 3.2.0
+         */
+        "centerContent": boolean;
+        /**
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
         "chipColor": string | undefined;
@@ -5280,6 +5285,11 @@ declare namespace LocalJSX {
           * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background"?: string | undefined;
+        /**
+          * Center the content of the chip. Set to false to disable centering.
+          * @since 3.2.0
+         */
+        "centerContent"?: boolean;
         /**
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */

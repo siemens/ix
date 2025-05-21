@@ -82,6 +82,13 @@ export class Chip {
   @Prop() tooltipText: string | boolean = false;
 
   /**
+   * Center the content of the chip.
+   * Set to false to disable centering.
+   * @since 3.2.0
+   */
+  @Prop() centerContent = false;
+
+  /**
    * Fire event if close button is clicked
    */
   @Event() closeChip!: EventEmitter;
@@ -169,6 +176,7 @@ export class Chip {
             custom: this.variant === 'custom',
             closable: this.closable,
             icon: !!this.icon,
+            centerContent: this.centerContent === true,
           }}
         >
           {this.icon && (
