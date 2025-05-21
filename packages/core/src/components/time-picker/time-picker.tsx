@@ -43,7 +43,7 @@ interface TimeOutputFormat {
 
 const LUXON_FORMAT_PATTERNS = {
   // h, hh, H, HH and various time formats that include hours
-  hours: /\b[HhK]\b|HH|hh|H{3,4}|h{3,4}|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
+  hours: /\b[Hh]\b|HH|hh|H{3,4}|h{3,4}|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
   // m, mm and time formats that include minutes
   minutes: /\bm\b|mm|t|tt|ttt|tttt|T|TT|TTT|TTTT/,
   // s, ss and time formats that include seconds
