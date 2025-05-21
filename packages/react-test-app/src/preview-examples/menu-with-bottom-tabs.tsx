@@ -13,10 +13,10 @@ import { IxMenu, IxMenuItem } from '@siemens/ix-react';
 export default () => {
   return (
     <IxMenu>
-      <IxMenuItem home tab-icon={iconHome}>
+      <IxMenuItem home icon={iconHome}>
         Home
       </IxMenuItem>
-      <IxMenuItem tab-icon={iconGlobe} slot="bottom">
+      <IxMenuItem icon={iconGlobe} slot="bottom">
         Bottom Tab
       </IxMenuItem>
     </IxMenu>
