@@ -538,20 +538,22 @@ export class TimePicker {
     return value;
   }
 
-  private changeTimeReference(timeRef: 'AM' | 'PM') {
-    if (!this._time) return;
+  private changeTimeReference(newTimeRef: 'AM' | 'PM') {
+    if (!this._time) {
+      return;
+    }
 
-    const oldTimeRef = this.timeRef;
-    this.timeRef = timeRef;
+    if (this.timeRef === newTimeRef) {
+      return;
+    }
 
-    if (oldTimeRef !== timeRef) {
-      const currentHour = this._time.hour;
+    this.timeRef = newTimeRef;
+    const currentHour = this._time.hour;
 
-      if (timeRef === 'PM' && currentHour < 12) {
-        this._time = this._time.plus({ hours: 12 });
-      } else if (timeRef === 'AM' && currentHour >= 12) {
-        this._time = this._time.minus({ hours: 12 });
-      }
+    if (newTimeRef === 'PM' && currentHour < 12) {
+      this._time = this._time.plus({ hours: 12 });
+    } else if (newTimeRef === 'AM' && currentHour >= 12) {
+      this._time = this._time.minus({ hours: 12 });
     }
 
     this.timeChange.emit(this._time!.toFormat(this.format));
