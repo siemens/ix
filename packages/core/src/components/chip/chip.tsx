@@ -176,7 +176,7 @@ export class Chip {
             custom: this.variant === 'custom',
             closable: this.closable,
             icon: !!this.icon,
-            centerContent: this.centerContent === true,
+            centerContent: this.centerContent,
           }}
         >
           {this.icon && (
