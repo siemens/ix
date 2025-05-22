@@ -37,7 +37,7 @@ import {
   createClassMutationObserver,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import {renderFormStatusSlots} from '../utils/slot-utils';
+import { renderFormStatusSlots } from '../utils/slot-utils';
 
 export type DateInputValidityState = {
   patternMismatch: boolean;

@@ -38,7 +38,7 @@ import {
   mapValidationResult,
   onInputBlur,
 } from './input.util';
-import {renderFormStatusSlots} from '../utils/slot-utils';
+import { renderFormStatusSlots } from '../utils/slot-utils';
 
 let inputIds = 0;
 
@@ -168,7 +168,6 @@ export class Input implements IxInputFieldComponent<string> {
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
 
-
   @State() inputType = 'text';
 
   private readonly inputRef = makeRef<HTMLInputElement>();
@@ -178,8 +177,6 @@ export class Input implements IxInputFieldComponent<string> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
-
-
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {

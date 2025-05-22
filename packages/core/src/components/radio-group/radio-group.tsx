@@ -26,7 +26,7 @@ import {
   IxFormValidationState,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import {renderFormStatusSlots} from '../utils/slot-utils';
+import { renderFormStatusSlots } from '../utils/slot-utils';
 
 /**
  * @form-ready

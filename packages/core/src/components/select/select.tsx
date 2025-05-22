@@ -38,7 +38,7 @@ import {
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
-import {renderFormStatusSlots} from '../utils/slot-utils';
+import { renderFormStatusSlots } from '../utils/slot-utils';
 
 /**
  * @form-ready

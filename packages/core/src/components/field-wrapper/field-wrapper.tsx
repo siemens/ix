@@ -137,14 +137,11 @@ export class FieldWrapper implements FieldWrapperInterface {
 
       if (this.isValid && hasSlotContent('valid')) {
         statusSlot = 'valid';
-      }
-      else if (this.isInvalid && hasSlotContent('invalid')) {
+      } else if (this.isInvalid && hasSlotContent('invalid')) {
         statusSlot = 'invalid';
-      }
-      else if (this.isWarning && hasSlotContent('warning')) {
+      } else if (this.isWarning && hasSlotContent('warning')) {
         statusSlot = 'warning';
-      }
-      else if (this.isInfo && hasSlotContent('info')) {
+      } else if (this.isInfo && hasSlotContent('info')) {
         statusSlot = 'info';
       }
       return <slot name={statusSlot}></slot>;

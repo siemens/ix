@@ -41,6 +41,17 @@ async function changeToReadonly(page: Page) {
   });
 }
 
+async function changeToDisabled(page: Page) {
+  return page.evaluate(() => {
+    const elements = document.querySelectorAll(
+      '[data-field], ix-radio, ix-checkbox'
+    ) as NodeListOf<HTMLInputElement>;
+    Array.from(elements).forEach((element) => {
+      element.disabled = true;
+    });
+  });
+}
+
 regressionTest.describe('form-fields', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('form-fields/basic');
@@ -66,3 +77,13 @@ regressionTest.describe('form-fields', () => {
     })
   );
 });
+
+['info', 'warning', 'valid', 'invalid'].forEach((state) =>
+  regressionTest(`state ${state} with disabled`, async ({ page }) => {
+    await page.goto('form-fields/basic');
+
+    await changeToDisabled(page);
+    await changeState(page, state);
+    expect(await page.screenshot()).toMatchSnapshot();
+  })
+);
