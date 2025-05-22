@@ -10,6 +10,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { CardVariant } from 'src/components';
 
 let accordionControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
@@ -31,6 +32,9 @@ export class CardAccordion {
    * Collapse the card
    */
   @Prop() collapse = false;
+
+  @Prop() variant: CardVariant = 'outline';
+  
 
   @Element() hostElement!: HTMLIxCardAccordionElement;
 
@@ -96,6 +100,8 @@ export class CardAccordion {
             class={{
               'expand-icon': true,
               show: this.expandContent,
+              [`card-${this.variant}`]: true,
+
             }}
           ></ix-icon>
         </button>

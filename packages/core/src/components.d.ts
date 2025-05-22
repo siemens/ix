@@ -12,6 +12,7 @@ import { AppSwitchConfiguration } from "./components/utils/application-layout/co
 import { BlindVariant } from "./components/blind/blind";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
+import { CardVariant as CardVariant1, ElementReference as ElementReference1 } from "./components.d";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
@@ -46,7 +47,6 @@ import { TextareaResizeBehavior } from "./components/input/textarea";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
-import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
@@ -58,6 +58,7 @@ export { AppSwitchConfiguration } from "./components/utils/application-layout/co
 export { BlindVariant } from "./components/blind/blind";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
+export { CardVariant as CardVariant1, ElementReference as ElementReference1 } from "./components.d";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
@@ -92,7 +93,6 @@ export { TextareaResizeBehavior } from "./components/input/textarea";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
-export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
@@ -300,6 +300,7 @@ export namespace Components {
           * Collapse the card
          */
         "collapse": boolean;
+        "variant": CardVariant;
     }
     interface IxCardContent {
     }
@@ -5051,6 +5052,7 @@ declare namespace LocalJSX {
          */
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
+        "variant"?: CardVariant;
     }
     interface IxCardContent {
     }
