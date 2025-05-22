@@ -1,4 +1,4 @@
-@import "./field-wrapper.mixins.scss";
+@import './field-wrapper.mixins.scss';
 
 :host {
   display: flex;
@@ -27,6 +27,11 @@
   .field-bottom .bottom-right {
     margin-left: auto;
     margin-right: 0px;
+  }
+
+  .field-bottom .bottom-left {
+    margin-left: 0px;
+    margin-right: auto;
   }
 
   @include helper-text;

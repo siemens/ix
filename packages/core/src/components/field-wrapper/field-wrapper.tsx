@@ -107,6 +107,46 @@ export class FieldWrapper implements FieldWrapperInterface {
       infoText: this.infoText,
       helperText: this.helperText,
     };
+    const hasSlotContent = (slotName: string) => {
+      const slot = this.hostElement.querySelector<HTMLSlotElement>(
+        `slot[name="${slotName}"]`
+      );
+      if (!slot) return false;
+
+      const elements = slot.assignedElements();
+      return elements.some((element) => {
+        if (element.textContent?.trim() || element.children.length > 0) {
+          return true;
+        }
+        return false;
+      });
+    };
+
+    const hasAnySlotContent = () => {
+      return (
+        hasSlotContent('helper') ||
+        hasSlotContent('warning') ||
+        hasSlotContent('valid') ||
+        hasSlotContent('invalid') ||
+        hasSlotContent('info')
+      );
+    };
+
+    const renderStatusSlot = () => {
+      let statusSlot = 'helper';
+
+      if (this.isValid && hasSlotContent('valid')) {
+        statusSlot = 'valid';
+      } else if (this.isInvalid && hasSlotContent('invalid')) {
+        statusSlot = 'invalid';
+      } else if (this.isWarning && hasSlotContent('warning')) {
+        statusSlot = 'warning';
+      } else if (this.isInfo && hasSlotContent('info')) {
+        statusSlot = 'info';
+      }
+      return <slot name={statusSlot}></slot>;
+    };
+
     return (
       <Host>
         {this.label && (
@@ -130,21 +170,26 @@ export class FieldWrapper implements FieldWrapperInterface {
           <slot></slot>
         </div>
         <div class={'field-bottom'}>
-          {!this.showTextAsTooltip && renderHelperText(textOptions)}
+          <div class="bottom-left">
+            {!this.showTextAsTooltip && renderHelperText(textOptions)}
+            {!this.showTextAsTooltip && renderStatusSlot()}
+          </div>
           <div class="bottom-right">
             <slot name="bottom-right"></slot>
           </div>
         </div>
 
-        {this.showTextAsTooltip === true && hasAnyText(textOptions) && (
-          <ix-tooltip
-            for={this.slotRef.waitForCurrent()}
-            showDelay={500}
-            placement="bottom"
-          >
-            {renderHelperText(textOptions)}
-          </ix-tooltip>
-        )}
+        {this.showTextAsTooltip === true &&
+          (hasAnyText(textOptions) || hasAnySlotContent()) && (
+            <ix-tooltip
+              for={this.slotRef.waitForCurrent()}
+              showDelay={500}
+              placement="bottom"
+            >
+              {renderHelperText(textOptions)}
+              {renderStatusSlot()}
+            </ix-tooltip>
+          )}
       </Host>
     );
   }

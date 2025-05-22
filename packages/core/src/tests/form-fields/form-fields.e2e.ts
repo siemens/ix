@@ -76,14 +76,14 @@ regressionTest.describe('form-fields', () => {
       expect(await page.screenshot()).toMatchSnapshot();
     })
   );
-
-  ['info', 'warning', 'valid', 'invalid'].forEach((state) =>
-    regressionTest(`state ${state} with disabled`, async ({ page }) => {
-      await page.goto('form-fields/basic');
-
-      await changeToDisabled(page);
-      await changeState(page, state);
-      expect(await page.screenshot()).toMatchSnapshot();
-    })
-  );
 });
+
+['info', 'warning', 'valid', 'invalid'].forEach((state) =>
+  regressionTest(`state ${state} with disabled`, async ({ page }) => {
+    await page.goto('form-fields/basic');
+
+    await changeToDisabled(page);
+    await changeState(page, state);
+    expect(await page.screenshot()).toMatchSnapshot();
+  })
+);

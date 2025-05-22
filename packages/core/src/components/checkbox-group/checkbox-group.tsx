@@ -15,6 +15,7 @@ import {
 } from '../utils/input';
 import { IxComponent } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
+import { renderFormStatusSlots } from '../utils/slot-utils';
 
 /**
  * @form-ready
@@ -169,6 +170,7 @@ export class CheckboxGroup
           >
             <slot></slot>
           </div>
+          {renderFormStatusSlots()}
         </ix-field-wrapper>
       </Host>
     );
