@@ -48,17 +48,12 @@ $border-radius: 100px;
 
       .slot-container {
         text-align: center;
+         margin: 0 2rem;
       }
 
-      &.closable {
-        .slot-container {
-          flex: 0 1 auto;
-        }
-
-        .close-button-container {
-          position: absolute;
-          right: 0.25rem;
-        }
+      &.closable .close-button-container {
+        position: absolute;
+        right: 0.25rem;
       }
     }
   }
