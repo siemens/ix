@@ -215,6 +215,7 @@ export const IxCard: StencilVueComponent<JSX.IxCard> = /*@__PURE__*/ defineConta
 
 export const IxCardAccordion: StencilVueComponent<JSX.IxCardAccordion> = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', defineIxCardAccordion, [
   'collapse',
+  'variant',
   'accordionExpand'
 ], [
   'accordionExpand'

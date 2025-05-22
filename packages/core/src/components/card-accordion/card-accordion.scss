@@ -63,10 +63,18 @@
   .expand-icon {
     margin-left: 0.5rem;
     transition: var(--theme-default-time) transform ease-in-out;
+    &.card-outline,
+    &.card-filled {
+      color: var(--theme-color-soft-text);
+    }
   }
 
   .expand-icon.show {
     transform: rotate(90deg);
+    &.card-outline,
+    &.card-filled {
+      color: var(--theme-color-dynamic--active);
+    }
   }
 
   .expand-content {

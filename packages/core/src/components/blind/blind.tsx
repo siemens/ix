@@ -154,9 +154,10 @@ export class Blind {
               class="collapse-icon"
               name={iconChevronRightSmall}
               color={
-                this.variant === 'filled' || this.variant === 'outline'
-                  ? 'color-primary'
-                  : `color-${this.variant}--contrast`
+               this.collapsed?
+                this.variant === 'filled' || this.variant === 'outline'? 'color-primary' :`color-${this.variant}--contrast` 
+               :
+                this.variant === 'filled' || this.variant === 'outline' ?'color-dynamic': `color-${this.variant}--contrast`
               }
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
             ></ix-icon>
