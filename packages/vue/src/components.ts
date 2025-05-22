@@ -315,6 +315,7 @@ export const IxChip: StencilVueComponent<JSX.IxChip> = /*@__PURE__*/ defineConta
   'chipColor',
   'outline',
   'tooltipText',
+  'centerContent',
   'closeChip'
 ], [
   'closeChip'
