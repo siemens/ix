@@ -539,6 +539,9 @@ importers:
       '@types/tar':
         specifier: ^6.1.13
         version: 6.1.13
+      angular-standalone-test-app:
+        specifier: workspace:*
+        version: link:../angular-standalone-test-app
       angular-test-app:
         specifier: workspace:*
         version: link:../angular-test-app
