@@ -17,7 +17,8 @@
   right: 0;
   @include box-shadow(3);
 
-  display: block;
+  display: flex; // better than block + manual align
+  flex-direction: column;
   position: absolute;
   justify-content: flex-start;
   align-items: center;
@@ -27,6 +28,14 @@
   min-height: $large-space;
   background-color: var(--theme-color-1);
   border-radius: $default-border-radius;
+
+  // Added smooth transition for drawer appearance
+  transition: width 0.3s ease, opacity 0.3s ease;
+
+  // Accessibility: focus outline for keyboard navigation
+  &:focus-visible {
+    outline: 2px solid var(--theme-color-focus, #005fcc);
+  }
 
   .drawer-container {
     z-index: 100;
@@ -54,6 +63,8 @@
     height: 100%;
     width: 100%;
     overflow-y: auto;
+    padding: 1rem; // added default padding
+    box-sizing: border-box;
   }
 }
 

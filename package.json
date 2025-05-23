@@ -37,6 +37,7 @@
     "ts-run": "tsx"
   },
   "dependencies": {
+    "@siemens/ix-icons": "^3.0.0",
     "commander": "^13.1.0",
     "tslib": "^2.6.3"
   },
