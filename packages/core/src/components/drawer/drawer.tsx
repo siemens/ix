@@ -97,7 +97,7 @@ export class Drawer {
       if (!this.internalVisible && this.divElement) {
         this.animateDrawer('in', this.divElement);
         setTimeout(() => {
-          window.addEventListener('pointerdown', this.callback); // switched to pointer event
+          window.addEventListener('pointerdown', this.callback); 
         }, Drawer.duration);
       }
     } else {
@@ -118,7 +118,7 @@ export class Drawer {
     this.toggleDrawer(false);
   }
 
-  private clickedOutside(evt: PointerEvent) { // updated type
+  private clickedOutside(evt: PointerEvent) { 
     if (!this.closeOnClickOutside) return;
     const target = evt.target as HTMLElement;
     const closestElement = target.closest('#div-container');
@@ -179,8 +179,8 @@ export class Drawer {
         ref={(el) => (this.divElement = el as HTMLElement)}
         data-testid="container"
         id="div-container"
-        role="dialog" // added for accessibility
-        aria-modal="true" // added for accessibility
+        role="dialog" 
+        aria-modal="true" 
       >
         <div
           style={{

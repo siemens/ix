@@ -17,7 +17,7 @@
   right: 0;
   @include box-shadow(3);
 
-  display: flex; // better than block + manual align
+  display: flex; 
   flex-direction: column;
   position: absolute;
   justify-content: flex-start;
@@ -29,10 +29,10 @@
   background-color: var(--theme-color-1);
   border-radius: $default-border-radius;
 
-  // Added smooth transition for drawer appearance
+
   transition: width 0.3s ease, opacity 0.3s ease;
 
-  // Accessibility: focus outline for keyboard navigation
+ 
   &:focus-visible {
     outline: 2px solid var(--theme-color-focus, #005fcc);
   }
@@ -63,7 +63,7 @@
     height: 100%;
     width: 100%;
     overflow-y: auto;
-    padding: 1rem; // added default padding
+    padding: 1rem; 
     box-sizing: border-box;
   }
 }
