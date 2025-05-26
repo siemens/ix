@@ -247,4 +247,11 @@
   .ag-sticky-bottom {
     display: none;
   }
+
+  .ag-icon-tree-open {
+    color: var(--theme-color-primary);
+  }
+  .ag-icon-tree-closed {
+    color: var(--theme-color-std-text);
+  }
 }
