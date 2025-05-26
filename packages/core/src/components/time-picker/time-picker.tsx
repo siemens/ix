@@ -305,13 +305,7 @@ export class TimePicker {
     this.setTimeRef();
     this.formattedTime = this.getFormattedTime();
     this.setTimePickerDescriptors();
-
-    this.focusedValue =
-      this._time?.hour ??
-      this._time?.minute ??
-      this._time?.second ??
-      this._time?.millisecond ??
-      this.timePickerDescriptors[0].numberArray[0];
+    this.setInitialFocusedValue();
 
     this.watchHourIntervalPropHandler(this.hourInterval);
     this.watchMinuteIntervalPropHandler(this.minuteInterval);
@@ -439,6 +433,25 @@ export class TimePicker {
       this.focusedUnit = newUnit;
       this.updateFocusedValue(selectedValue);
     }
+  }
+
+  private setInitialFocusedValue() {
+    const firstVisibleDescriptor = this.timePickerDescriptors.find(
+      (descriptor) => !descriptor.hidden
+    );
+    if (!firstVisibleDescriptor) {
+      return;
+    }
+
+    const selectedValue = Number(
+      this.formattedTime[firstVisibleDescriptor.unit]
+    );
+    const isValidSelection =
+      firstVisibleDescriptor.numberArray.includes(selectedValue);
+
+    this.focusedValue = isValidSelection
+      ? selectedValue
+      : firstVisibleDescriptor.numberArray[0];
   }
 
   private setupVisibilityObserver() {
