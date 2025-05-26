@@ -57,8 +57,7 @@ export function renderHelperText({
     return (
       <ix-typography textColor="alarm" class="bottom-text">
         <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
-
-        {invalidText?.trim()}
+        {invalidText}
       </ix-typography>
     );
   }
@@ -71,7 +70,7 @@ export function renderHelperText({
           name={iconWarning}
           size="16"
         ></ix-icon>
-        {warningText?.trim()}
+        {warningText}
       </ix-typography>
     );
   }
@@ -80,7 +79,7 @@ export function renderHelperText({
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon info" name={iconInfo} size="16"></ix-icon>
-        {infoText?.trim()}
+        {infoText}
       </ix-typography>
     );
   }
@@ -89,7 +88,7 @@ export function renderHelperText({
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon valid" name={iconSuccess} size="16"></ix-icon>
-        {validText?.trim()}
+        {validText}
       </ix-typography>
     );
   }
@@ -97,7 +96,7 @@ export function renderHelperText({
   return (
     helperText?.trim() !== '' && (
       <ix-typography class="bottom-text" textColor="soft">
-        {helperText?.trim()}
+        {helperText}
       </ix-typography>
     )
   );
