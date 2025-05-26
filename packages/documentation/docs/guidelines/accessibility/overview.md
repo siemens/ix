@@ -30,7 +30,7 @@ The four main guiding principles of accessibility within WCAG are perceivable, o
 
 There are three levels of conformance:
 - Level A is the minimum level.
-- Level AA includes all Level A and AA requirements. As many organizations we strive to meet Level AA.
+- Level AA includes all Level A and AA requirements. **We strive to meet Level AA.**
 - Level AAA includes all Level A, AA, and AAA requirements.
 
 https://www.w3.org/WAI/fundamentals/accessibility-intro/
@@ -39,9 +39,9 @@ https://www.w3.org/WAI/fundamentals/accessibility-intro/
 
 > Information and user interface components must be presentable to users in ways they can perceive.
 
-### Provide text alternatives (ALT text)
+### Provide text alternatives
 
-To enhance accessibility in your applications, provide text alternatives for non-text content ([WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#text-alternatives)). This practice allows the content to be adapted into formats that support assistive technology, catering to the needs of users with different abilities.
+Provide text alternatives for non-text content. It allows content to be adapted into formats that support assistive technology e.g. screen readers ([WCAG reference 1.1](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#text-alternatives)).
 
 - Provide text alternatives for any non-text content, such as icons without text labels
 - Provide text content for videos
@@ -63,11 +63,11 @@ To enhance accessibility in your applications, provide text alternatives for non
 
 ### Create adaptable content
 
-Design and implement content that can be presented in various ways, such as a simpler layout, without losing information or structure. This flexibility allows users to access and understand content regardless of their specific needs or the devices they are using. [WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#adaptable)
+Design and implement content that can be presented in various ways, such as a simpler layout, without losing information or structure. This flexibility allows users to access and understand content regardless of their specific needs or the devices they are using ([WCAG reference 1.3](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#adaptable)). 
 
 - Ensure information is available in text or can be programmatically determined
 - Allow both landscape and portrait orientations
-- Provide cell tooltips to show context in data tables
+- Provide tooltips for data cells to show context in [tables](../../components/html-grid/index.mdx)
 - Designate regions like header, main and footer
 - Provide related inputs as form
 - Annotate reading order
@@ -78,7 +78,7 @@ Design and implement content that can be presented in various ways, such as a si
 
 ### Combine color and contrast
 
-In industrial software applications, color significantly enhances the visual communication of information. Nonetheless, it is essential to account for users with limited vision or color blindness. Use color combinations ([WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#distinguishable)) that meet accessibility standards for contrast to make it easier for users to see content, including separating foreground from background. 
+In industrial software applications, color significantly enhances the visual communication of information. Nonetheless, it is essential to account for users with limited vision or color blindness. Use color combinations ([WCAG reference 1.4](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#distinguishable)) that meet accessibility standards for contrast to make it easier for users to see content, including separating foreground from background. 
 
 #### Use text on background
 
@@ -91,6 +91,8 @@ In industrial software applications, color significantly enhances the visual com
 ![Text colors on background colors](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5402-18230&t=JzJxfVEhA9XmeCtN-4)
 
 #### Contrast components
+
+While the components in our design system are built to meet baseline contrast requirements, it's essential to evaluate contrast in the context of their implementation such as background colors or surrounding element.
 
 - Ensure component contrast for adjoining colors is 3:1
 - Ensure visual states for components meet 3:1 contrast with adjoining colors
@@ -106,7 +108,7 @@ In industrial software applications, color significantly enhances the visual com
 
 #### Use more than color
 
-- Ensure information conveyed by color is also available in text
+- Ensure information conveyed by color is available in text as well
 
 **Example**: The [message bar component](../../components/messagebar/index.mdx) uses color and an icon to indicate the severity level. To be compliant with WCAG, the text must match the severity level and be understandable without the color or the icon.
 
@@ -118,7 +120,7 @@ In industrial software applications, color significantly enhances the visual com
 
 ### Provide keyboard usage
 
-Every feature in your industrial software needs to be operable via a keyboard ([WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#keyboard-accessible)). This approach supports users who prefer or need to use keyboard controls, improving overall accessibility and usability. 
+Every feature in your industrial software needs to be operable via a keyboard ([WCAG reference 2.1](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#keyboard-accessible)). This approach supports users who prefer or need to use keyboard controls, improving overall accessibility and usability. 
 
 - Annotate tab order
 - Annotate keyboard interaction
@@ -135,7 +137,7 @@ Every feature in your industrial software needs to be operable via a keyboard ([
 
 ### Give enough time
 
-Ensure that users have sufficient time to read and interact with the content in your applications. This consideration is crucial for users working in dynamic environments where interruptions are common ([WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#enough-time))
+Ensure that users have sufficient time to read and interact with the content in your applications. This consideration is crucial for users working in dynamic environments where interruptions are common ([WCAG reference 2.2](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#enough-time)).
 
 - Avoid autoplay content
 - Avoid time limits or allow adjustment
@@ -146,7 +148,7 @@ Ensure that users have sufficient time to read and interact with the content in 
 
 ### Implement navigable aids
 
-Navigation aids help users find content and understand their location within your applications ([WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#navigable)). This includes features like breadcrumbs, search functionality, and clear labeling to enhance user experience and efficiency. 
+Navigation aids help users find content and understand their location within your applications ([WCAG reference 2.4](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#navigable)). This includes features like breadcrumbs, search functionality, and clear labeling to enhance user experience and efficiency. 
 
 - Use headings properly (`<h1>` ... `<h6>`)
 - Provide descriptive page titles
@@ -161,7 +163,7 @@ Navigation aids help users find content and understand their location within you
 
 ### Customize input modalities
 
-Enhance the usability of your applications by making it easier for users to operate functionality through various input methods. This includes supporting keyboard, mouse, touch, and voice inputs to accommodate different user preferences and working conditions ([WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?versions=2.2&currentsidebar=%23col_overview&showtechniques=246%2C111#input-modalities)).
+Enhance the usability of your applications by making it easier for users to operate functionality through various input methods. This includes supporting keyboard, mouse, touch, and voice inputs to accommodate different user preferences and working conditions ([WCAG reference 2.5](https://www.w3.org/WAI/WCAG22/quickref/?versions=2.2&currentsidebar=%23col_overview&showtechniques=246%2C111#input-modalities)).
 
 - Allow for simple pointer actions for all interactions
 - Ensure minimum target size of 24x24 pixels
@@ -178,7 +180,7 @@ Enhance the usability of your applications by making it easier for users to oper
 
 ### Ensure readability and comprehension
 
-Make text content easy to read and understand. Implement straightforward language, legible typography, and organized layout to improve user experience and accessibility ([WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?versions=2.2&currentsidebar=%23col_overview&showtechniques=111%2C241%2C246%2C247%2C322%2C331#readable)).
+Make text content easy to read and understand. Implement straightforward language, legible typography, and organized layout to improve user experience and accessibility ([WCAG reference 3.1](https://www.w3.org/WAI/WCAG22/quickref/?versions=2.2&currentsidebar=%23col_overview&showtechniques=111%2C241%2C246%2C247%2C322%2C331#readable)).
 
 - Specify the default language of the page in HTML
 - Use simple, clear language
@@ -190,7 +192,7 @@ Make text content easy to read and understand. Implement straightforward languag
 
 ### Be predictable
 
-Create consistent and intuitive applications that behave as users expect. Ensure navigation and interactions follow established patterns, helping users to interact with your application without unexpected behavior ([WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#predictable)).
+Create consistent and intuitive applications that behave as users expect. Ensure navigation and interactions follow established patterns, helping users to interact with your application without unexpected behavior ([WCAG reference 3.2](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#predictable)).
 
 - Provide clear error messages and correction options
 - Provide help mechanisms in the same location
@@ -204,7 +206,7 @@ Create consistent and intuitive applications that behave as users expect. Ensure
 
 ### Give input assistance
 
-Actively assist users in avoiding errors through preventive design and helpful guidance. When mistakes do occur, provide clear, constructive feedback and simple correction options to help users recover and complete their tasks successfully ([WCAG reference](https://www.w3.org/WAI/WCAG22/quickref/?versions=2.2&currentsidebar=%23col_overview#input-assistance)).
+Actively assist users in avoiding errors through preventive design and helpful guidance. When mistakes do occur, provide clear, constructive feedback and simple correction options to help users recover and complete their tasks successfully ([WCAG reference 3.3](https://www.w3.org/WAI/WCAG22/quickref/?versions=2.2&currentsidebar=%23col_overview#input-assistance)).
 
 - Provide labels for inputs
 - Indicate required fields and provide legends
@@ -221,7 +223,7 @@ Actively assist users in avoiding errors through preventive design and helpful g
 
 > Content must be robust enough that it can be interpreted by a wide variety of user agents,including assistive technologies.
 
-Build your application with clean, standards-compliant code that ensures compatibility with browsers, devices and assistive technologies.
+Build your application with clean, standards-compliant code that ensures compatibility with browsers, devices and assistive technologies ([WCAG reference 4.1](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#compatible)).
 
 - Use proper ARIA labels and roles
 - Make status messages programmatically available
