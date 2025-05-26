@@ -14,7 +14,7 @@
     "@capacitor/app": "6.0.2",
     "@capacitor/core": "6.1.1",
     "@capacitor/device": "^6.0.0",
-    "@capacitor/haptics": "6.0.2",
+    "@capacitor/haptics": "7.0.1",
     "@capacitor/ios": "6.1.1",
     "@capacitor/keyboard": "6.0.3",
     "@capacitor/screen-orientation": "^6.0.1",
