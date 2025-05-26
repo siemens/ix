@@ -72,7 +72,9 @@ export class Drawer {
   private divElement?: HTMLElement;
 
   @State() showContent = true;
-  @State() internalVisible = false; // Added for unified state control
+  // Added for unified state control
+  @State() internalVisible = false;
+
 
   @Watch('show')
   onShowChanged(newValue: boolean, oldValue?: boolean) {
@@ -97,7 +99,7 @@ export class Drawer {
       if (!this.internalVisible && this.divElement) {
         this.animateDrawer('in', this.divElement);
         setTimeout(() => {
-          window.addEventListener('pointerdown', this.callback); 
+          window.addEventListener('pointerdown', this.callback);
         }, Drawer.duration);
       }
     } else {
@@ -179,8 +181,8 @@ export class Drawer {
         ref={(el) => (this.divElement = el as HTMLElement)}
         data-testid="container"
         id="div-container"
-        role="dialog" 
-        aria-modal="true" 
+        role="dialog"
+        aria-modal="true"
       >
         <div
           style={{
