@@ -75,7 +75,6 @@ export class Drawer {
   // Added for unified state control
   @State() internalVisible = false;
 
-
   @Watch('show')
   onShowChanged(newValue: boolean, oldValue?: boolean) {
     if (newValue === oldValue) {
@@ -120,7 +119,7 @@ export class Drawer {
     this.toggleDrawer(false);
   }
 
-  private clickedOutside(evt: PointerEvent) { 
+  private clickedOutside(evt: PointerEvent) {
     if (!this.closeOnClickOutside) return;
     const target = evt.target as HTMLElement;
     const closestElement = target.closest('#div-container');
@@ -139,7 +138,6 @@ export class Drawer {
     return Math.min(Math.max(width, this.minWidth), this.maxWidth);
   }
 
-  // Unified animation method
   private animateDrawer(direction: 'in' | 'out', el: HTMLElement) {
     const targetWidth = `${this.getConstrainedWidth(
       this.width === 'auto' ? this.minWidth : this.width
