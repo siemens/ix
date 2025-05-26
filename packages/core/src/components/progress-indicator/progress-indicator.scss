@@ -12,7 +12,8 @@
 :host {
   display: block;
   position: relative;
-  width: fit-content;
+  width: 24rem;
+  height: fit-content;
 
   .progress-indicator {
     height: 100%;
@@ -57,6 +58,8 @@
     }
 
     &.error {
+      color: var(--theme-color-alarm-text);
+
       ix-icon {
         color: var(--theme-color-alarm);
       }
@@ -81,15 +84,15 @@
     }
 
     &.text-left {
-      text-align: left;
+      justify-content: flex-start;
     }
 
     &.text-right {
-      text-align: right;
+      justify-content: flex-end;
     }
 
     &.text-center {
-      text-align: center;
+      justify-content: center;
     }
   }
 

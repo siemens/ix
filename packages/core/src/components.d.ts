@@ -2216,6 +2216,14 @@ export namespace Components {
          */
         "max": number;
         /**
+          * The minimum value of the progress indicator.
+         */
+        "min": number;
+        /**
+          * Show the helper text as a tooltip
+         */
+        "showTextAsTooltip": boolean;
+        /**
           * The size of the progress indicator.
          */
         "size": ProgressIndicatorSize;
@@ -7176,6 +7184,14 @@ declare namespace LocalJSX {
           * The maximum value of the progress indicator.
          */
         "max"?: number;
+        /**
+          * The minimum value of the progress indicator.
+         */
+        "min"?: number;
+        /**
+          * Show the helper text as a tooltip
+         */
+        "showTextAsTooltip"?: boolean;
         /**
           * The size of the progress indicator.
          */

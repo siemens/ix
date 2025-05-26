@@ -1059,11 +1059,13 @@ export const IxProgressIndicator: StencilVueComponent<JSX.IxProgressIndicator> =
   'type',
   'size',
   'value',
+  'min',
   'max',
   'status',
   'label',
   'helperText',
-  'textAlignment'
+  'textAlignment',
+  'showTextAsTooltip'
 ]);
 
 

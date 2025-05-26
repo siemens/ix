@@ -1387,11 +1387,13 @@ export const IxProgressIndicator: StencilReactComponent<IxProgressIndicatorEleme
         type: 'type',
         size: 'size',
         value: 'value',
+        min: 'min',
         max: 'max',
         status: 'status',
         label: 'label',
         helperText: 'helper-text',
-        textAlignment: 'text-alignment'
+        textAlignment: 'text-alignment',
+        showTextAsTooltip: 'show-text-as-tooltip'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot

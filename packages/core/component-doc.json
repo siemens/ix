@@ -16390,10 +16390,15 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-typography"
+        "ix-typography",
+        "ix-tooltip"
       ],
       "dependencyGraph": {
         "ix-progress-indicator": [
+          "ix-typography",
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
           "ix-typography"
         ]
       },
@@ -16467,6 +16472,54 @@
           "values": [
             {
               "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "min",
+          "reflectToAttr": false,
+          "docs": "The minimum value of the progress indicator.",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Show the helper text as a tooltip",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -21622,6 +21675,7 @@
         "ix-field-wrapper",
         "ix-menu-item",
         "ix-pill",
+        "ix-progress-indicator",
         "ix-slider"
       ],
       "dependencies": [
@@ -21641,6 +21695,9 @@
           "ix-tooltip"
         ],
         "ix-pill": [
+          "ix-tooltip"
+        ],
+        "ix-progress-indicator": [
           "ix-tooltip"
         ],
         "ix-slider": [

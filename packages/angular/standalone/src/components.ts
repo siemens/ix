@@ -2359,14 +2359,14 @@ export declare interface IxPill extends Components.IxPill {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxProgressIndicator,
-  inputs: ['helperText', 'label', 'max', 'size', 'status', 'textAlignment', 'type', 'value']
+  inputs: ['helperText', 'label', 'max', 'min', 'showTextAsTooltip', 'size', 'status', 'textAlignment', 'type', 'value']
 })
 @Component({
   selector: 'ix-progress-indicator',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['helperText', 'label', 'max', 'size', 'status', 'textAlignment', 'type', 'value'],
+  inputs: ['helperText', 'label', 'max', 'min', 'showTextAsTooltip', 'size', 'status', 'textAlignment', 'type', 'value'],
   standalone: true
 })
 export class IxProgressIndicator {

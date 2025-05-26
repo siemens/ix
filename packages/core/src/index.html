@@ -23,135 +23,17 @@ SPDX-License-Identifier: MIT
       defineCustomElement();
     </script>
   </head>
-  <body style="margin: 0px; height: 100vh; padding: 5rem">
-    <ix-progress-indicator
-      type="circular"
-      max="100"
-      value="25"
-      size="xs"
-    ></ix-progress-indicator>
-    <h1>all sizes of progress-indicator</h1>
-
+  <body style="margin: 0px; height: 100vh; padding: 5rem; display: flex">
     <ix-progress-indicator
       type="circular"
       max="100"
       value="25"
       status="info"
       label="info"
-      helper-text="helper text"
-      size="xs"
-      ><ix-icon name="error"></ix-icon
-    ></ix-progress-indicator>
-    <ix-progress-indicator
-      type="circular"
-      max="100"
-      value="25"
-      status="info"
-      label="info"
-      helper-text="helper text"
-      size="sm"
-      ><ix-icon name="error"></ix-icon
-    ></ix-progress-indicator>
-    <ix-progress-indicator
-      type="circular"
-      max="100"
-      value="25"
-      status="info"
-      label="info"
-      helper-text="helper text"
       size="md"
-      ><ix-icon name="error"></ix-icon
-    ></ix-progress-indicator>
-    <ix-progress-indicator
-      type="circular"
-      max="100"
-      value="25"
-      status="info"
-      label="info"
-      helper-text="helper text"
-      size="lg"
-      ><ix-icon name="error"></ix-icon
-    ></ix-progress-indicator>
-    <ix-progress-indicator
-      type="circular"
-      max="100"
-      value="25"
-      status="info"
-      label="info"
-      helper-text="helper text"
-      size="xl"
-      ><ix-icon name="error"></ix-icon
-    ></ix-progress-indicator>
-
-    <h1>default</h1>
-    <ix-progress-indicator></ix-progress-indicator>
-
-    <h1>success</h1>
-    <ix-progress-indicator
-      max="100"
-      value="25"
-      status="success"
-      label="success"
-      helper-text="helper text"
-    ></ix-progress-indicator>
-    <h1>error</h1>
-    <ix-progress-indicator
-      max="100"
-      value="25"
-      status="error"
-      label="error"
-      size="xl"
+      helper-text="This is a helper text"
+      show-text-as-tooltip
     >
-      <span slot="helper-text">helper text</span>
     </ix-progress-indicator>
-    <h1>warning</h1>
-    <ix-progress-indicator
-      type="circular"
-      max="100"
-      value="25"
-      status="warning"
-      label="warning"
-      helper-text="helper text"
-      size="md"
-      ><ix-icon name="error"></ix-icon
-    ></ix-progress-indicator>
-    <h1>info</h1>
-    <ix-progress-indicator
-      type="circular"
-      max="100"
-      value="25"
-      status="info"
-      label="info"
-      helper-text="helper text"
-      >100%</ix-progress-indicator
-    >
-
-    <ix-progress-indicator
-      type="circular"
-      max="100"
-      value="25"
-      status="info"
-      label="info"
-      helper-text="helper text"
-      ><span
-        style="
-          text-align: center;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          font-size: 7px;
-        "
-      >
-        100%</span
-      >
-    </ix-progress-indicator>
-    <h1>paused</h1>
-    <ix-progress-indicator
-      max="100"
-      value="25"
-      status="paused"
-      label="paused"
-      helper-text="helper text"
-    ></ix-progress-indicator>
   </body>
 </html>

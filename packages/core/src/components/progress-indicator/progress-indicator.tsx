@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, Fragment, Host, Prop, h } from '@stencil/core';
+import { Component, Element, Fragment, Host, Prop, h } from '@stencil/core';
 import { LinearBar } from './linear';
 import {
   iconCirclePause,
@@ -16,6 +16,7 @@ import {
   iconWarning,
 } from '@siemens/ix-icons/icons';
 import { CircularProgress } from './circular';
+import { makeRef } from '../utils/make-ref';
 
 export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -25,6 +26,8 @@ export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   shadow: true,
 })
 export class ProgressIndicator {
+  @Element() hostElement!: HTMLIxProgressIndicatorElement;
+
   /**
    * The type of progress indicator to use.
    */
@@ -39,6 +42,11 @@ export class ProgressIndicator {
    * The value of the progress indicator.
    */
   @Prop() value: number = 0;
+
+  /**
+   * The minimum value of the progress indicator.
+   */
+  @Prop() min: number = 0;
 
   /**
    * The maximum value of the progress indicator.
@@ -72,6 +80,13 @@ export class ProgressIndicator {
    * Can be 'left', 'center', or 'right'.
    */
   @Prop() textAlignment: 'left' | 'center' | 'right' = 'left';
+
+  /**
+   * Show the helper text as a tooltip
+   */
+  @Prop() showTextAsTooltip: boolean = false;
+
+  private anchorRef = makeRef<Element>();
 
   private getHelperText() {
     let icon: string | null = null;
@@ -118,7 +133,10 @@ export class ProgressIndicator {
   }
 
   render() {
-    const normalizedValue = (this.value / this.max) * 100;
+    const normalizedValue =
+      ((this.value - this.min) / (this.max - this.min)) * 100;
+
+    const clampedValue = Math.max(0, Math.min(normalizedValue, 100));
 
     return (
       <Host
@@ -147,16 +165,35 @@ export class ProgressIndicator {
           <div class="progress-container">
             {this.type === 'linear' ? (
               <Fragment>
-                <LinearBar value={normalizedValue}></LinearBar>
+                <LinearBar
+                  value={clampedValue}
+                  referRef={this.anchorRef}
+                ></LinearBar>
                 <slot></slot>
               </Fragment>
             ) : (
-              <CircularProgress value={this.value} size={this.size}>
-                <slot> </slot>
-              </CircularProgress>
+              <Fragment>
+                <CircularProgress
+                  value={clampedValue}
+                  size={this.size}
+                  referRef={this.anchorRef}
+                >
+                  <slot></slot>
+                </CircularProgress>
+              </Fragment>
             )}
           </div>
-          {this.getHelperText()}
+          {this.showTextAsTooltip === true && this.helperText ? (
+            <ix-tooltip
+              for={this.anchorRef.waitForCurrent() as Promise<HTMLElement>}
+              showDelay={500}
+              placement="bottom"
+            >
+              {this.getHelperText()}
+            </ix-tooltip>
+          ) : (
+            this.getHelperText()
+          )}
         </div>
       </Host>
     );
