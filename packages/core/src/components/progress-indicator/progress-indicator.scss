@@ -1,0 +1,169 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use './linear' as linear;
+@use './circular' as circular;
+
+:host {
+  display: block;
+  position: relative;
+  width: fit-content;
+
+  .progress-indicator {
+    height: 100%;
+  }
+
+  .progress-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
+
+  .label {
+    margin: 0.25rem 0px;
+  }
+
+  .helper-text {
+    display: flex;
+    align-items: flex-start;
+    margin: 0.25rem 0px;
+    gap: 0.25rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    .text {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .helper-text {
+    ix-icon {
+      margin: 0.125rem;
+    }
+
+    &.success {
+      ix-icon {
+        color: var(--theme-color-success);
+      }
+    }
+
+    &.error {
+      ix-icon {
+        color: var(--theme-color-alarm);
+      }
+    }
+
+    &.info {
+      ix-icon {
+        color: var(--theme-color-info);
+      }
+    }
+
+    &.warning {
+      ix-icon {
+        color: var(--theme-color-warning);
+      }
+    }
+
+    &.paused {
+      ix-icon {
+        color: var(--theme-color-neutral);
+      }
+    }
+
+    &.text-left {
+      text-align: left;
+    }
+
+    &.text-right {
+      text-align: right;
+    }
+
+    &.text-center {
+      text-align: center;
+    }
+  }
+
+  .progress-indicator {
+    --ix-progress-indicator-color: var(--theme-color-success);
+
+    &.xs {
+      --ix-progress-indicator-height: 0.125rem;
+    }
+
+    &.sm {
+      --ix-progress-indicator-height: 0.25rem;
+    }
+
+    &.md {
+      --ix-progress-indicator-height: 0.5rem;
+    }
+
+    &.lg {
+      --ix-progress-indicator-height: 1rem;
+    }
+
+    &.xl {
+      --ix-progress-indicator-height: 1.5rem;
+    }
+
+    &.success {
+      --ix-progress-indicator-color: var(--theme-color-success);
+    }
+
+    &.error {
+      --ix-progress-indicator-color: var(--theme-color-alarm);
+    }
+
+    &.info {
+      --ix-progress-indicator-color: var(--theme-color-info);
+    }
+
+    &.warning {
+      --ix-progress-indicator-color: var(--theme-color-warning);
+    }
+
+    &.paused {
+      --ix-progress-indicator-color: var(--theme-color-neutral);
+    }
+  }
+}
+
+:host(.linear) {
+  .progress-indicator {
+    &.xs {
+      --ix-progress-indicator-height: 0.125rem;
+    }
+
+    &.sm {
+      --ix-progress-indicator-height: 0.25rem;
+    }
+
+    &.md {
+      --ix-progress-indicator-height: 0.5rem;
+    }
+
+    &.lg {
+      --ix-progress-indicator-height: 1rem;
+    }
+
+    &.xl {
+      --ix-progress-indicator-height: 1.5rem;
+    }
+  }
+
+  @include linear.linear;
+}
+
+:host(.circular) {
+  @include circular.circular;
+}

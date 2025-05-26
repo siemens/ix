@@ -86,6 +86,7 @@ import { IxPagination as IxPaginationElement } from "@siemens/ix/components/ix-p
 import { IxPaneLayout as IxPaneLayoutElement } from "@siemens/ix/components/ix-pane-layout.js";
 import { IxPane as IxPaneElement } from "@siemens/ix/components/ix-pane.js";
 import { IxPill as IxPillElement } from "@siemens/ix/components/ix-pill.js";
+import { IxProgressIndicator as IxProgressIndicatorElement } from "@siemens/ix/components/ix-progress-indicator.js";
 import { IxPushCard as IxPushCardElement } from "@siemens/ix/components/ix-push-card.js";
 import { IxRadioGroup as IxRadioGroupElement } from "@siemens/ix/components/ix-radio-group.js";
 import { IxRadio as IxRadioElement } from "@siemens/ix/components/ix-radio.js";
@@ -1373,6 +1374,24 @@ export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents> = /*@__P
         pillColor: 'pill-color',
         alignLeft: 'align-left',
         tooltipText: 'tooltip-text'
+    },
+    hydrateModule: import('@siemens/ix/hydrate'),
+    serializeShadowRoot
+});
+
+export type IxProgressIndicatorEvents = NonNullable<unknown>;
+
+export const IxProgressIndicator: StencilReactComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents> = /*@__PURE__*/ createComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents>({
+    tagName: 'ix-progress-indicator',
+    properties: {
+        type: 'type',
+        size: 'size',
+        value: 'value',
+        max: 'max',
+        status: 'status',
+        label: 'label',
+        helperText: 'helper-text',
+        textAlignment: 'text-alignment'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot

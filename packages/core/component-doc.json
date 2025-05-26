@@ -16377,6 +16377,290 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/progress-indicator",
+      "filePath": "src/components/progress-indicator/progress-indicator.tsx",
+      "fileName": "progress-indicator.tsx",
+      "readmePath": "src/components/progress-indicator/readme.md",
+      "usagesDir": "src/components/progress-indicator/usage",
+      "tag": "ix-progress-indicator",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-progress-indicator": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "helperText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "The helper text for the progress indicator.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "label",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "The label for the progress indicator.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "max",
+          "reflectToAttr": false,
+          "docs": "The maximum value of the progress indicator.",
+          "docsTags": [],
+          "default": "100",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "size",
+          "type": "\"lg\" | \"md\" | \"sm\" | \"xl\" | \"xs\"",
+          "complexType": {
+            "original": "ProgressIndicatorSize",
+            "resolved": "\"lg\" | \"md\" | \"sm\" | \"xl\" | \"xs\"",
+            "references": {
+              "ProgressIndicatorSize": {
+                "location": "local",
+                "path": "src/components/progress-indicator/progress-indicator.tsx",
+                "id": "src/components/progress-indicator/progress-indicator.tsx::ProgressIndicatorSize"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "The size of the progress indicator.",
+          "docsTags": [],
+          "default": "'md'",
+          "values": [
+            {
+              "value": "lg",
+              "type": "string"
+            },
+            {
+              "value": "md",
+              "type": "string"
+            },
+            {
+              "value": "sm",
+              "type": "string"
+            },
+            {
+              "value": "xl",
+              "type": "string"
+            },
+            {
+              "value": "xs",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "status",
+          "type": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
+          "complexType": {
+            "original": "| 'default'\n    | 'success'\n    | 'error'\n    | 'info'\n    | 'warning'\n    | 'paused'",
+            "resolved": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "status",
+          "reflectToAttr": false,
+          "docs": "The state of the progress indicator.\nThis is used to indicate the current state of the progress indicator.",
+          "docsTags": [],
+          "default": "'default'",
+          "values": [
+            {
+              "value": "default",
+              "type": "string"
+            },
+            {
+              "value": "error",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "paused",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textAlignment",
+          "type": "\"center\" | \"left\" | \"right\"",
+          "complexType": {
+            "original": "'left' | 'center' | 'right'",
+            "resolved": "\"center\" | \"left\" | \"right\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "The text alignment for the helper text.\nCan be 'left', 'center', or 'right'.",
+          "docsTags": [],
+          "default": "'left'",
+          "values": [
+            {
+              "value": "center",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "type",
+          "type": "\"circular\" | \"linear\"",
+          "complexType": {
+            "original": "'linear' | 'circular'",
+            "resolved": "\"circular\" | \"linear\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "The type of progress indicator to use.",
+          "docsTags": [],
+          "default": "'linear'",
+          "values": [
+            {
+              "value": "circular",
+              "type": "string"
+            },
+            {
+              "value": "linear",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "The value of the progress indicator.",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/push-card",
       "filePath": "src/components/push-card/push-card.tsx",
       "fileName": "push-card.tsx",
@@ -21944,6 +22228,7 @@
         "ix-modal-header",
         "ix-pagination",
         "ix-pane",
+        "ix-progress-indicator",
         "ix-push-card",
         "ix-radio",
         "ix-slider",
@@ -22009,6 +22294,9 @@
           "ix-typography"
         ],
         "ix-pane": [
+          "ix-typography"
+        ],
+        "ix-progress-indicator": [
           "ix-typography"
         ],
         "ix-push-card": [
@@ -23161,6 +23449,11 @@
       "declaration": "{\n  slot: string;\n  newSlot: string;\n}",
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/progress-indicator/progress-indicator.tsx::ProgressIndicatorSize": {
+      "declaration": "export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';",
+      "docstring": "",
+      "path": "src/components/progress-indicator/progress-indicator.tsx"
     },
     "src/components/push-card/push-card.tsx::PushCardVariant": {
       "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
