@@ -7,12 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use './theme/classic/theme' as ix;
-@use './theme/classic/dark/variables' as ixDark;
-
 @use './core';
 
 @include ix.theme;
-
-html:not([data-ix-theme]) body:not([data-ix-theme]) {
-  @include ixDark.setVars();
-}
