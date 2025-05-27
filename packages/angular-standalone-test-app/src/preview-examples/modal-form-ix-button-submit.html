@@ -1,0 +1,29 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-button (click)="openModal()"> Show modal </ix-button>
+
+<ng-template #customModal let-modal>
+  <ix-modal>
+    <ix-modal-header> Create Resource </ix-modal-header>
+    <ix-modal-content>
+      <form
+        id="create-resource-form"
+        #formRef="ngForm"
+        (ngSubmit)="onSubmit(formRef)"
+      >
+        <ix-input label="Name:" type="text" name="name" ngModel></ix-input>
+      </form>
+    </ix-modal-content>
+    <ix-modal-footer>
+      <ix-button outline (click)="modal.dismiss('dismiss')"> Cancel </ix-button>
+      <ix-button form="create-resource-form" type="submit"> Submit </ix-button>
+    </ix-modal-footer>
+  </ix-modal>
+</ng-template>
