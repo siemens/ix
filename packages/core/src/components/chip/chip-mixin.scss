@@ -33,18 +33,6 @@ $border-radius: 100px;
       margin-right: $tiny-space;
     }
 
-    &.outline {
-      @each $color in $predefined-chips {
-        &.#{$color} .with-icon {
-          color: var(--theme-color-#{$color});
-        }
-      }
-
-      &.custom .with-icon {
-        color: var(--background-color);
-      }
-    }
-
     .close-button-container {
       display: inline-flex;
       margin-left: auto;
@@ -60,6 +48,11 @@ $border-radius: 100px;
     &.outline {
       &.icon {
         padding-left: calc(0.75rem - 1px);
+        @each $color in $predefined-chips {
+          &.#{$color} .with-icon {
+            color: var(--theme-color-#{$color});
+          }
+        }
       }
       &:not(.icon) {
         padding-left: calc(0.5rem - 1px);
@@ -72,6 +65,9 @@ $border-radius: 100px;
       }
       &.icon:not(.closable) {
         padding-right: calc(0.75rem - 1px);
+      }
+      &.custom .with-icon {
+        color: var(--background-color);
       }
     }
 
