@@ -26,27 +26,37 @@
   }
 }
 
+@mixin schemas {
+    [data-ix-color-schema='dark'],
+    &[data-ix-color-schema='dark'] {
+      @include as_dark_variables.setVars();
+    }
+
+    [data-ix-color-schema='light'],
+    &[data-ix-color-schema='light'] {
+      @include as_light_variables.setVars();
+    }
+}
+
 @mixin theme {
   :root,
   :host {
     color-scheme: light dark;
   }
 
-  body[class*='theme-classic'],
   [data-ix-theme='classic'] {
     @include as_dark_variables.setVars();
+    @include schemas;
+  }
 
-    body[class*='theme-classic-dark'],
-    [data-ix-color-schema='dark'],
-    &[data-ix-color-schema='dark'] {
-      @include as_dark_variables.setVars();
-    }
+  body[class*='theme-classic-dark'] {
+    @include as_dark_variables.setVars();
+    @include schemas;
+  }
 
-    body[class*='theme-classic-light'],
-    [data-ix-color-schema='light'],
-    &[data-ix-color-schema='light'] {
-      @include as_light_variables.setVars();
-    }
+  body[class*='theme-classic-light'] {
+    @include as_light_variables.setVars();
+    @include schemas;
   }
 
   [data-ix-theme='classic'][data-ix-color-schema='system'] {
