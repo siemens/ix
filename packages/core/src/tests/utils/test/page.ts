@@ -30,9 +30,10 @@ export type Mount = (
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
   const originalScreenshot = page.screenshot.bind(page);
-  const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
+  const dataIxTheme = testInfo.project.metadata?.['data-ix-theme'] ?? 'classic';
+  const dataIxColorSchema = testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
   testInfo.annotations.push({
-    type: theme,
+    type: `${dataIxTheme} ${dataIxColorSchema}`,
   });
   page.goto = async (url: string, options) => {
     if (testInfo.componentTest === true) {
@@ -40,7 +41,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     }
 
     const response = await originalGoto(
-      `http://127.0.0.1:8080/src/tests/${url}?theme=${theme}`,
+      `http://127.0.0.1:8080/src/tests/${url}?data-ix-theme=${dataIxTheme}&data-ix-color-schema=${dataIxColorSchema}`,
       options
     );
 
@@ -182,12 +183,13 @@ export const regressionTest = testBase.extend<{
   },
   mount: async ({ page }, use, testInfo: TestInfo) => {
     testInfo.componentTest = true;
-    const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
+    const dataIxTheme = testInfo.project.metadata?.['data-ix-theme'] ?? 'classic';
+    const dataIxColorSchema = testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
     testInfo.annotations.push({
-      type: theme,
+      type: `${dataIxTheme} ${dataIxColorSchema}`,
     });
     await page.goto(
-      `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
+      `http://127.0.0.1:8080/src/tests/utils/ct/index.html?data-ix-theme=${dataIxTheme}&data-ix-color-schema=${dataIxColorSchema}`
     );
     await use((selector, config) => mountComponent(page, selector, config));
   },
