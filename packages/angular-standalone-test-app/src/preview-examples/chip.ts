@@ -29,8 +29,8 @@ import { IxChip } from '@siemens/ix-angular/standalone';
         Alarm
       </ix-chip>
       <ix-chip
-        background="purple"
-        chip-color="green"
+        background="magenta"
+        chip-color="black"
         variant="custom"
         icon="print"
         style="width: 10rem"

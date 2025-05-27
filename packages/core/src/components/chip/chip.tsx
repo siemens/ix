@@ -134,7 +134,9 @@ export class Chip {
     if (this.variant === 'custom') {
       customStyle = {
         color: this.chipColor,
-        [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
+        '--background-color': this.background,
+        [this.outline ? 'borderColor' : 'backgroundColor']:
+          'var(--background-color)',
       };
     }
 

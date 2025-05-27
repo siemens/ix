@@ -33,6 +33,18 @@ $border-radius: 100px;
       margin-right: $tiny-space;
     }
 
+    &.outline {
+      @each $color in $predefined-chips {
+        &.#{$color} .with-icon {
+          color: var(--theme-color-#{$color});
+        }
+      }
+
+      &.custom .with-icon {
+        color: var(--background-color);
+      }
+    }
+
     .close-button-container {
       display: inline-flex;
       margin-left: auto;
