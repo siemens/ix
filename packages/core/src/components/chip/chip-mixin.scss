@@ -49,8 +49,10 @@ $border-radius: 100px;
       &.icon {
         padding-left: calc(0.75rem - 1px);
         @each $color in $predefined-chips {
-          &.#{$color} .with-icon {
-            color: var(--theme-color-#{$color});
+          &.#{$color} {
+            .with-icon {
+              color: var(--theme-color-#{$color});
+            }
           }
         }
       }
@@ -67,7 +69,7 @@ $border-radius: 100px;
         padding-right: calc(0.75rem - 1px);
       }
       &.custom .with-icon {
-        color: var(--background-color);
+        color: var(--border-color);
       }
     }
 
