@@ -2,6 +2,6 @@
 "@siemens/ix": patch
 ---
 
-Apply __ix-toast__ position in production
+Ensure that the toast position is applied correctly, even if the custom component is not defined yet.
 
 Fixes: #1381
