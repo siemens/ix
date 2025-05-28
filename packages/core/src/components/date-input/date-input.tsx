@@ -340,6 +340,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           ref={this.inputElementRef}
           type="text"
           value={this.value ?? ''}
+          placeholder={this.placeholder}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
             this.onInput(target.value);

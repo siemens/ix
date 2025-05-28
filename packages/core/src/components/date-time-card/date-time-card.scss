@@ -41,9 +41,17 @@
       height: 100%;
     }
 
-    .header {
-      padding: $default-space;
-      flex: 0 1 auto;
+    &.straight {
+      border-radius: 0;
+    }
+
+    .header-container {
+      width: 100%;
+
+      .header {
+        padding: $default-space;
+        flex: 0 1 auto;
+      }
     }
 
     .separator {
@@ -58,6 +66,14 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+    }
+
+    .footer-container {
+      width: 100%;
+
+      .footer {
+        padding: $default-space;
+      }
     }
   }
 }
