@@ -8,7 +8,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ShowToastResult } from '@siemens/ix';
+import { ShowToastResult, ToastPosition } from '@siemens/ix';
 import {
   ToastService as BaseToastService,
   ToastConfig,
@@ -22,11 +22,11 @@ export class ToastService extends BaseToastService {
     super();
   }
 
-  public getPosition(): 'bottom-right' | 'top-right' {
+  public getPosition(): ToastPosition {
     return super.getPosition();
   }
 
-  public setPosition(position: 'bottom-right' | 'top-right'): void {
+  public setPosition(position: ToastPosition): void {
     super.setPosition(position);
   }
 
