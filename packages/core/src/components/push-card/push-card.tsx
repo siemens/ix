@@ -63,7 +63,7 @@ export class PushCard {
             <ix-typography format="h4">{this.heading}</ix-typography>
             <ix-typography>{this.subheading}</ix-typography>
           </ix-card-content>
-          <ix-card-accordion variant={this.variant} collapse={this.collapse}>
+          <ix-card-accordion collapse={this.collapse}>
             <slot></slot>
           </ix-card-accordion>
         </ix-card>

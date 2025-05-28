@@ -272,10 +272,7 @@ export type IxCardAccordionEvents = NonNullable<unknown>;
 
 export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCardAccordionEvents> = /*@__PURE__*/ createComponent<IxCardAccordionElement, IxCardAccordionEvents>({
     tagName: 'ix-card-accordion',
-    properties: {
-        collapse: 'collapse',
-        variant: 'variant'
-    },
+    properties: { collapse: 'collapse' },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
 });
