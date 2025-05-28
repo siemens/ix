@@ -42,6 +42,20 @@ $border-radius: 100px;
     .slot-container {
       @include ellipsis;
     }
+
+    &.centerContent {
+      justify-content: center;
+
+      .slot-container {
+        text-align: center;
+        padding-right: 1.2rem;
+      }
+
+      &.closable .close-button-container {
+        position: absolute;
+        right: 0.25rem;
+      }
+    }
   }
 
   .container {
