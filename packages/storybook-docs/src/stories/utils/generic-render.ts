@@ -10,6 +10,7 @@ import { icons } from '@siemens/ix-icons/dist/sample.json';
 import jsonFile from '@siemens/ix/component-doc.json';
 import { ArgTypes } from '@storybook/web-components';
 import type { JsonDocsProp } from '@stencil/core/internal';
+
 export function genericRender(selector: string, args: any) {
   const rootInner = document.createElement('div');
   rootInner.id = 'root-inner';
@@ -18,6 +19,11 @@ export function genericRender(selector: string, args: any) {
   if ('defaultSlot' in args) {
     element.textContent = args.defaultSlot;
     delete args.defaultSlot;
+  }
+
+  if (args['previewWidth']) {
+    element.style.width = `${args['previewWidth']}`;
+    delete args['previewWidth'];
   }
 
   Object.keys(args).forEach((key) => {
