@@ -139,14 +139,16 @@ export class TimePicker {
   @Prop({ mutable: true }) hourInterval: number = HOUR_INTERVAL_DEFAULT;
   @Watch('hourInterval')
   watchHourIntervalPropHandler(newValue: number) {
-    if (this.timeRef && newValue >= 0 && newValue <= 12) {
+    if (
+      Number.isInteger(newValue) &&
+      newValue >= 0 &&
+      newValue <= (this.timeRef ? 12 : 23)
+    ) {
+      this.setTimePickerDescriptors();
       return;
     }
 
-    if (!this.timeRef && newValue >= 0 && newValue <= 23) {
-      return;
-    }
-
+    this.printIntervalError('hour', newValue);
     this.hourInterval = HOUR_INTERVAL_DEFAULT;
   }
 
@@ -159,9 +161,11 @@ export class TimePicker {
   @Watch('minuteInterval')
   watchMinuteIntervalPropHandler(newValue: number) {
     if (newValue >= 0 && newValue <= 59) {
+      this.setTimePickerDescriptors();
       return;
     }
 
+    this.printIntervalError('minute', newValue);
     this.minuteInterval = MINUTE_INTERVAL_DEFAULT;
   }
 
@@ -174,9 +178,11 @@ export class TimePicker {
   @Watch('secondInterval')
   watchSecondIntervalPropHandler(newValue: number) {
     if (newValue >= 0 && newValue <= 59) {
+      this.setTimePickerDescriptors();
       return;
     }
 
+    this.printIntervalError('second', newValue);
     this.secondInterval = SECOND_INTERVAL_DEFAULT;
   }
 
@@ -190,10 +196,18 @@ export class TimePicker {
   @Watch('millisecondInterval')
   watchMillisecondIntervalPropHandler(newValue: number) {
     if (newValue >= 0 && newValue <= 999) {
+      this.setTimePickerDescriptors();
       return;
     }
 
+    this.printIntervalError('millisecond', newValue);
     this.millisecondInterval = MILLISECOND_INTERVAL_DEFAULT;
+  }
+
+  private printIntervalError(intervalName: string, value: number) {
+    console.error(
+      `Value ${value} is not valid for ${intervalName}-interval. Falling back to default.`
+    );
   }
 
   /**
@@ -303,7 +317,6 @@ export class TimePicker {
     }
 
     this.setTimeRef();
-    this.formattedTime = this.getFormattedTime();
     this.setTimePickerDescriptors();
     this.setInitialFocusedValue();
 
@@ -316,6 +329,18 @@ export class TimePicker {
   componentDidLoad() {
     this.updateScrollPositions();
     this.setupVisibilityObserver();
+  }
+
+  componentDidRender() {
+    if (this.isUnitFocused) {
+      const cellElement = this.hostElement.shadowRoot?.querySelector(
+        `[data-element-container-id="${this.focusedUnit}-${this.focusedValue}"]`
+      ) as HTMLButtonElement;
+
+      if (cellElement) {
+        cellElement.focus();
+      }
+    }
   }
 
   disconnectedCallback() {
@@ -407,15 +432,6 @@ export class TimePicker {
     }
 
     this.focusedValue = value;
-
-    const cellElement = this.hostElement.shadowRoot?.querySelector(
-      `[data-element-container-id="${this.focusedUnit}-${value}"]`
-    ) as HTMLDivElement;
-
-    if (cellElement) {
-      cellElement.setAttribute('tabindex', '0');
-      cellElement.focus();
-    }
   }
 
   private moveFocusToAdjacentUnit(direction: number) {
@@ -609,7 +625,7 @@ export class TimePicker {
 
     if (this.timeRef !== undefined) {
       hourNumbers = Array.from(
-        { length: 12 / this.hourInterval },
+        { length: Math.ceil(12 / this.hourInterval) },
         (_, i) => i * this.hourInterval + 1
       ).filter((hour) => hour <= 12);
 
@@ -618,21 +634,21 @@ export class TimePicker {
       }
     } else {
       hourNumbers = Array.from(
-        { length: 24 / this.hourInterval },
+        { length: Math.ceil(24 / this.hourInterval) },
         (_, i) => i * this.hourInterval
       );
     }
 
     minuteNumbers = Array.from(
-      { length: 60 / this.minuteInterval },
+      { length: Math.ceil(60 / this.minuteInterval) },
       (_, i) => i * this.minuteInterval
     );
     secondNumbers = Array.from(
-      { length: 60 / this.secondInterval },
+      { length: Math.ceil(60 / this.secondInterval) },
       (_, i) => i * this.secondInterval
     );
     millisecondsNumbers = Array.from(
-      { length: 1000 / this.millisecondInterval },
+      { length: Math.ceil(1000 / this.millisecondInterval) },
       (_, i) => i * this.millisecondInterval
     );
 
@@ -640,21 +656,22 @@ export class TimePicker {
       {
         unit: 'hour',
         header: this.textHourColumnHeader,
-        hidden: !LUXON_FORMAT_PATTERNS.hours.test(this.format) && this.showHour,
+        hidden:
+          !LUXON_FORMAT_PATTERNS.hours.test(this.format) || !this.showHour,
         numberArray: hourNumbers,
       },
       {
         unit: 'minute',
         header: this.textMinuteColumnHeader,
         hidden:
-          !LUXON_FORMAT_PATTERNS.minutes.test(this.format) && this.showMinutes,
+          !LUXON_FORMAT_PATTERNS.minutes.test(this.format) || !this.showMinutes,
         numberArray: minuteNumbers,
       },
       {
         unit: 'second',
         header: this.textSecondColumnHeader,
         hidden:
-          !LUXON_FORMAT_PATTERNS.seconds.test(this.format) && this.showSeconds,
+          !LUXON_FORMAT_PATTERNS.seconds.test(this.format) || !this.showSeconds,
         numberArray: secondNumbers,
       },
       {
@@ -767,6 +784,15 @@ export class TimePicker {
     return ':';
   }
 
+  getElementContainerTabIndex(
+    number: number,
+    descriptorUnit: TimePickerDescriptorUnit
+  ): string {
+    return number === this.focusedValue && descriptorUnit === this.focusedUnit
+      ? '0'
+      : '-1';
+  }
+
   render() {
     return (
       <Host>
@@ -805,12 +831,10 @@ export class TimePicker {
                           this.onUnitCellFocus();
                         }}
                         onBlur={() => this.onUnitCellBlur()}
-                        tabindex={
-                          number === this.focusedValue &&
-                          descriptor.unit === this.focusedUnit
-                            ? '0'
-                            : '-1'
-                        }
+                        tabindex={this.getElementContainerTabIndex(
+                          number,
+                          descriptor.unit
+                        )}
                         role="button"
                         aria-label={`${descriptor.header}: ${number}`}
                       >
