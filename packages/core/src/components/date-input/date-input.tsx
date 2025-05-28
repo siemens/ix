@@ -37,6 +37,7 @@ import {
   createClassMutationObserver,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
+import { renderFormStatusSlots } from '../utils/slot-utils';
 
 export type DateInputValidityState = {
   patternMismatch: boolean;
@@ -469,6 +470,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           controlRef={this.inputElementRef}
         >
           {this.renderInput()}
+          {renderFormStatusSlots()}
         </ix-field-wrapper>
         <ix-dropdown
           data-testid="date-dropdown"
