@@ -48,6 +48,13 @@ $border-radius: 100px;
     &.outline {
       &.icon {
         padding-left: calc(0.75rem - 1px);
+        @each $color in $predefined-chips {
+          &.#{$color} {
+            .with-icon {
+              color: var(--theme-color-#{$color});
+            }
+          }
+        }
       }
       &:not(.icon) {
         padding-left: calc(0.5rem - 1px);
@@ -60,6 +67,9 @@ $border-radius: 100px;
       }
       &.icon:not(.closable) {
         padding-right: calc(0.75rem - 1px);
+      }
+      &.custom .with-icon {
+        color: var(--border-color);
       }
     }
 
