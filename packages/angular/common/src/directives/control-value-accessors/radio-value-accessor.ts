@@ -7,13 +7,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Directive, HostListener, ElementRef, Injector } from '@angular/core';
+import { Directive, HostListener, ElementRef, Injector, AfterViewInit } from '@angular/core';
 import { ValueAccessor } from './value-accessor';
 
 @Directive()
-export class RadioValueAccessorBaseDirective extends ValueAccessor {
+export class RadioValueAccessorBaseDirective extends ValueAccessor implements AfterViewInit {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
+  }
+
+  override ngAfterViewInit() {
+    super.ngAfterViewInit();
+    this.handleRadioGroupValueChange()
+  }
+
+  private handleRadioGroupValueChange(): void {
+    const parentElement = this.elementRef.nativeElement.parentElement;
+    if (parentElement) {
+      parentElement.addEventListener('valueChange',
+        (event: CustomEvent) => {
+          this.lastValue = event.detail;
+        });
+    }
   }
 
   override writeValue(value: string): void {
