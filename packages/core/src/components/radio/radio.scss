@@ -13,55 +13,53 @@
   display: inline-block;
   position: relative;
 
-  label {
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    height: 24px;
-    margin: 0;
-    gap: 0;
-  }
-
   button {
     all: unset;
+ 
     display: inline-flex;
+    position: relative;
+ 
     align-items: center;
     justify-content: center;
-    position: relative;
-    width: 1.5rem;
-    height: 1.5rem;
-    min-width: 1.5rem;
-    min-height: 1.5rem;
-
-    .checkmark {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      margin: 0;
-      background-color: var(--theme-color-primary--contrast);
-    }
+ 
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 100px;
   }
-
-  ix-typography:not(:empty) {
-    margin-left: 0px;
-  }
-
-  ix-typography:empty {
-    margin-left: 0;
-    display: none;
-  }
-
   button:focus-visible {
     outline: 0.0625rem solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-radiobtn--focus--outline-offset);
+    
   }
 
-  input[type='radio'] {
+  input[type="radio"] {
     display: none;
   }
 
+  label {
+    display: flex;
+ 
+    justify-content: flex-start;
+    align-items: center;
+ 
+    width: 100%;
+    height: 100%;
+ 
+    padding: 0.125rem;
+  }
+
+  .checkmark {
+    border-radius: 100px;
+    background-color: var(--theme-color-primary--contrast);
+    width: 0.5rem;
+    height: 0.5rem;
+  }
 
 }
+
+  ix-typography {
+    margin-left: 0.5rem;
+  }
 
 @mixin radio-base() {
   :host {
