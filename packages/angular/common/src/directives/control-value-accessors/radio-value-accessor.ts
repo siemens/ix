@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Directive, HostListener, ElementRef, Injector, AfterViewInit } from '@angular/core';
+import { Directive, HostListener, ElementRef, Injector } from '@angular/core';
 import { ValueAccessor } from './value-accessor';
 
 @Directive()
-export class RadioValueAccessorBaseDirective extends ValueAccessor implements AfterViewInit {
+export class RadioValueAccessorBaseDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
   }
