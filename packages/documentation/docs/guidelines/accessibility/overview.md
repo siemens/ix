@@ -110,7 +110,7 @@ While the components in our design system are built to meet baseline contrast re
 
 - Ensure information conveyed by color is available in text as well
 
-**Example**: The [message bar component](../../components/messagebar/index.mdx) uses color and an icon to indicate the severity level. To be compliant with WCAG, the text must match the severity level and be understandable without the color or the icon.
+**Example**: The [message bar component](../../components/messagebar/index.mdx) uses color and an icon to indicate the severity level. To be compliant with WCAG, the text matches the severity level and is understandable without the color or the icon.
 
 ![Use of color and icon in message bars](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5402-18225&t=JzJxfVEhA9XmeCtN-4)
 
@@ -120,7 +120,7 @@ While the components in our design system are built to meet baseline contrast re
 
 ### Provide keyboard usage
 
-Every feature in your industrial software needs to be operable via a keyboard ([WCAG reference 2.1](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#keyboard-accessible)). This approach supports users who prefer or need to use keyboard controls, improving overall accessibility and usability. 
+Every feature in your industrial software needs to be operable via a keyboard ([WCAG reference 2.1](https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141%2C131#keyboard-accessible)). This approach supports users who prefer or need to use keyboard controls, and cannot rely on mouse or touch. 
 
 - Annotate tab order
 - Annotate keyboard interaction
@@ -186,7 +186,7 @@ Make text content easy to read and understand. Implement straightforward languag
 - Use simple, clear language
 - Provide definitions for complex terms
 
-**Example**: Our [writing guidelines](../../guidelines/language/basics.md) help make applications readable and understandable.
+**Tip**: Our [writing guidelines](../../guidelines/language/basics.md) help make applications readable and understandable.
 
 ![Wording example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Documentation-illustrations?node-id=5402-18180&t=JzJxfVEhA9XmeCtN-4)
 
