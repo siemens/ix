@@ -27,7 +27,9 @@ export function hasAnyText({
   validText?: string;
   helperText?: string;
 }) {
-  return invalidText || warningText || infoText || validText || helperText;
+  return [invalidText, warningText, infoText, validText, helperText]
+    .map((text) => text?.trim())
+    .find(Boolean);
 }
 
 export function renderHelperText({
@@ -51,17 +53,16 @@ export function renderHelperText({
   validText?: string;
   helperText?: string;
 }) {
-  if (isInvalid && invalidText !== undefined) {
+  if (isInvalid && invalidText?.trim() !== '') {
     return (
       <ix-typography textColor="alarm" class="bottom-text">
         <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
-
         {invalidText}
       </ix-typography>
     );
   }
 
-  if (isWarning && warningText !== undefined) {
+  if (isWarning && warningText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon
@@ -74,7 +75,7 @@ export function renderHelperText({
     );
   }
 
-  if (isInfo && infoText !== undefined) {
+  if (isInfo && infoText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon info" name={iconInfo} size="16"></ix-icon>
@@ -83,7 +84,7 @@ export function renderHelperText({
     );
   }
 
-  if (isValid && validText !== undefined) {
+  if (isValid && validText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon valid" name={iconSuccess} size="16"></ix-icon>
@@ -93,7 +94,7 @@ export function renderHelperText({
   }
 
   return (
-    helperText && (
+    helperText?.trim() !== '' && (
       <ix-typography class="bottom-text" textColor="soft">
         {helperText}
       </ix-typography>
