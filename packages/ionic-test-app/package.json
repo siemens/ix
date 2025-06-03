@@ -20,7 +20,7 @@
     "@capacitor/screen-orientation": "^6.0.1",
     "@capacitor/status-bar": "6.0.2",
     "@ionic/react": "^8.0.0",
-    "@ionic/react-router": "^8.0.0",
+    "@ionic/react-router": "^8.5.8",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-icons": "^3.0.0",
     "@siemens/ix-react": "workspace:*",
