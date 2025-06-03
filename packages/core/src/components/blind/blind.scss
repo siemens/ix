@@ -72,8 +72,8 @@
 
   .blind-header-wrapper {
     position: relative;
-    min-height: 3rem;
-    height: 3rem;
+    min-height: min-height: var(--ix-blind-min-height, 3rem);
+    height: min-height: var(--ix-blind-height, 3rem);
     overflow: hidden;
   }
 
@@ -111,8 +111,8 @@
     pointer-events: all;
 
     padding-left: 2.5rem;
-    min-height: 3rem;
-    height: 3rem;
+    min-height: min-height: var(--ix-blind-min-height, 3rem);
+    height: min-height: var(--ix-blind-height, 3rem);
     width: calc(100% - 2 * var(--theme-blind--border-thickness));
     border: solid var(--theme-blind--border-thickness) transparent;
     border-radius: var(--theme-blind--border-radius)
