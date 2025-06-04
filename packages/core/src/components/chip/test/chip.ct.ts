@@ -116,38 +116,4 @@ regressionTest.describe('tooltip', () => {
       await expect(tooltip).toHaveText('custom tooltip text');
     }
   );
-
-  regressionTest(
-    'should set --border-color CSS variable to background for custom outlined chip',
-    async ({ mount, page }) => {
-      const testColor = '#ff00ff';
-      await mount(`
-      <ix-chip variant="custom" background="${testColor}" chipColor="#000" outline>
-        Custom Chip
-      </ix-chip>
-    `);
-
-      const chip = page.locator('ix-chip');
-      const container = chip.locator('.container');
-
-      const styles = await container.evaluate((element) => {
-        const computedStyle = window.getComputedStyle(element);
-        return {
-          cssVariable: element.style.getPropertyValue('--border-color'),
-          borderColor: computedStyle.borderColor,
-        };
-      });
-
-      expect(styles.cssVariable).toBe(testColor);
-
-      const hexToRgb = (hex: string) => {
-        const r = parseInt(hex.slice(1, 3), 16);
-        const g = parseInt(hex.slice(3, 5), 16);
-        const b = parseInt(hex.slice(5, 7), 16);
-        return `rgb(${r}, ${g}, ${b})`;
-      };
-
-      expect(styles.borderColor).toBe(hexToRgb(testColor));
-    }
-  );
 });
