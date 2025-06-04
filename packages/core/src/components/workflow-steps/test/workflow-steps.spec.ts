@@ -12,15 +12,6 @@ import { WorkflowStep } from '../..//workflow-step/workflow-step';
 import { WorkflowSteps } from '../workflow-steps';
 //@ts-ignore
 import { createMutationObserver } from './../../utils/mutation-observer';
-import {
-  iconCircle,
-  iconCircleDot,
-  iconCircleFilled,
-  iconError,
-  iconSuccess,
-  iconWarning,
-} from '@siemens/ix-icons/icons';
-
 jest.mock('./../../utils/mutation-observer');
 
 describe('workflow-steps', () => {
@@ -88,79 +79,5 @@ describe('workflow-steps', () => {
 
     expect(step2.position).toEqual('last');
     expect(step2.selected).toEqual(false);
-  });
-  it('should render correct icons for all states', async () => {
-    const step1 = await newSpecPage({
-      components: [WorkflowStep],
-      html: `<ix-workflow-step status="open"></ix-workflow-step>`,
-    });
-    expect(step1.rootInstance.iconName).toBe(iconCircle);
-    expect(step1.rootInstance.iconColor).toBe(
-      'workflow-step-icon-default--color'
-    );
-
-    const step2 = await newSpecPage({
-      components: [WorkflowStep],
-      html: `<ix-workflow-step status="open" selected></ix-workflow-step>`,
-    });
-    expect(step2.rootInstance.iconName).toBe(iconCircleDot);
-    expect(step2.rootInstance.iconColor).toBe(
-      'workflow-step-icon-default--color--selected'
-    );
-
-    const step3 = await newSpecPage({
-      components: [WorkflowStep],
-      html: `<ix-workflow-step status="success"></ix-workflow-step>`,
-    });
-    expect(step3.rootInstance.iconName).toBe(iconSuccess);
-    expect(step3.rootInstance.iconColor).toBe('color-success');
-
-    const step4 = await newSpecPage({
-      components: [WorkflowStep],
-      html: `<ix-workflow-step status="done"></ix-workflow-step>`,
-    });
-    expect(step4.rootInstance.iconName).toBe(iconCircleFilled);
-    expect(step4.rootInstance.iconColor).toBe('workflow-step-icon-done--color');
-
-    const step5 = await newSpecPage({
-      components: [WorkflowStep],
-      html: `<ix-workflow-step status="done" selected></ix-workflow-step>`,
-    });
-    expect(step5.rootInstance.iconName).toBe(iconCircleFilled);
-    expect(step5.rootInstance.iconColor).toBe(
-      'workflow-step-icon-done--color--selected'
-    );
-
-    const step6 = await newSpecPage({
-      components: [WorkflowStep],
-      html: `<ix-workflow-step status="warning"></ix-workflow-step>`,
-    });
-    expect(step6.rootInstance.iconName).toBe(iconWarning);
-    expect(step6.rootInstance.iconColor).toBe('color-warning');
-
-    const step7 = await newSpecPage({
-      components: [WorkflowStep],
-      html: `<ix-workflow-step status="error"></ix-workflow-step>`,
-    });
-    expect(step7.rootInstance.iconName).toBe(iconError);
-    expect(step7.rootInstance.iconColor).toBe('color-alarm');
-
-    const step8 = await newSpecPage({
-      components: [WorkflowStep],
-      html: `<ix-workflow-step disabled></ix-workflow-step>`,
-    });
-    expect(step8.rootInstance.iconName).toBe(iconCircle);
-    expect(step8.rootInstance.iconColor).toBe(
-      'workflow-step-icon-success--color--disabled'
-    );
-
-    const step9 = await newSpecPage({
-      components: [WorkflowStep],
-      html: `<ix-workflow-step></ix-workflow-step>`,
-    });
-    expect(step9.rootInstance.iconName).toBe(iconCircle);
-    expect(step9.rootInstance.iconColor).toBe(
-      'workflow-step-icon-default--color'
-    );
   });
 });

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconCircleDot, iconError } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -75,32 +76,35 @@ regressionTest('should prevent click navigation', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'should toggle workflow step status between open and error on button click',
+  'should have the correct visuals after toggling state from open to error and back again to open',
   async ({ mount, page }) => {
     await mount(`
-    <div>
-    <ix-workflow-steps clickable vertical>
+      <ix-workflow-steps clickable vertical>
       <ix-workflow-step id="step1" status='open'>Step 1</ix-workflow-step>
       <ix-workflow-step status='success'>Step 2</ix-workflow-step>
       <ix-workflow-step status='error'>Step 3</ix-workflow-step>
-    </ix-workflow-steps>
-    </div>
-  `);
-
+      </ix-workflow-steps>
+    `);
+    const workflowSteps = page.locator('ix-workflow-steps');
+    const selectedStep = workflowSteps.locator('ix-workflow-step').nth(0);
+    const selectedDiv = selectedStep.locator('.step');
     const step1 = page.locator('#step1');
-    await expect(step1).toHaveAttribute('status', 'open');
-
-    await page.evaluate(() => {
-      const step1 = document.getElementById('step1');
-      step1?.setAttribute('status', 'error');
+    await expect(workflowSteps).toHaveClass(/hydrated/);
+    await expect(selectedDiv).toHaveClass(/selected/);
+    await step1.evaluate((el) => {
+      el.setAttribute('status', 'error');
     });
-
     await expect(step1).toHaveAttribute('status', 'error');
-    await page.evaluate(() => {
-      const step1 = document.getElementById('step1');
-      step1?.setAttribute('status', 'open');
+    let icon = await page.locator('#step1 ix-icon').nth(1);
+    let iconSvg = await icon.getAttribute('data-name');
+    expect(iconSvg).toContain(iconError);
+    await step1.evaluate((el) => {
+      el.setAttribute('status', 'open');
     });
-
     await expect(step1).toHaveAttribute('status', 'open');
+    icon = await page.locator('#step1 ix-icon').nth(1);
+    iconSvg = await icon.getAttribute('data-name');
+    expect(iconSvg).toContain(iconCircleDot);
+    await expect(selectedDiv).toHaveClass(/selected/);
   }
 );

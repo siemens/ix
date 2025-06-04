@@ -153,6 +153,7 @@ export class WorkflowStep {
         <ix-icon
           color={this.iconColor}
           name={this.iconName}
+          data-name={this.iconName}
           class="absolute"
           size="24"
         ></ix-icon>
