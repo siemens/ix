@@ -29,6 +29,13 @@ $border-radius: 100px;
       cursor: default;
     }
 
+    .content-wrapper {
+      display: inline-flex;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+    }
+
     .with-icon {
       margin-right: $tiny-space;
     }
@@ -44,16 +51,9 @@ $border-radius: 100px;
     }
 
     &.centerContent {
-      justify-content: center;
-
-      .slot-container {
+      .content-wrapper {
+        justify-content: center;
         text-align: center;
-        padding-right: 1.2rem;
-      }
-
-      &.closable .close-button-container {
-        position: absolute;
-        right: 0.25rem;
       }
     }
   }

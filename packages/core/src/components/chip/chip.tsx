@@ -179,18 +179,20 @@ export class Chip {
             centerContent: this.centerContent,
           }}
         >
-          {this.icon && (
-            <ix-icon
-              class={{
-                'with-icon': true,
-              }}
-              name={this.icon}
-              size={'24'}
-            />
-          )}
-          <span class="slot-container">
-            <slot></slot>
-          </span>
+          <div class="content-wrapper">
+            {this.icon && (
+              <ix-icon
+                class={{
+                  'with-icon': true,
+                }}
+                name={this.icon}
+                size={'24'}
+              />
+            )}
+            <span class="slot-container">
+              <slot></slot>
+            </span>
+          </div>
           {isInactive === false && this.closable ? this.getCloseButton() : null}
         </div>
         {this.getTooltip()}
