@@ -3243,6 +3243,35 @@
           "setter": false
         },
         {
+          "name": "centerContent",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "center-content",
+          "reflectToAttr": false,
+          "docs": "Center the content of the chip.\nSet to false to disable centering.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.2.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "chipColor",
           "type": "string | undefined",
           "complexType": {
