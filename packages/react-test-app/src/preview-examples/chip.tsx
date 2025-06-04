@@ -38,8 +38,8 @@ export default () => {
         Alarm
       </IxChip>
       <IxChip
-        background="purple"
-        chip-color="green"
+        background="magenta"
+        chip-color="black"
         variant="custom"
         icon={iconPrint}
         closable
