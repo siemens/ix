@@ -15,37 +15,41 @@
 
   button {
     all: unset;
- 
+
     display: inline-flex;
     position: relative;
- 
+
     align-items: center;
     justify-content: center;
- 
-    width: 1.15rem;
-    height: 1.15rem;
+
+    width: 1.125rem;
+    min-width: 1.125rem;
+    max-width: 1.125rem;
+    height: 1.125rem;
+    min-height: 1.125rem;
+    max-height: 1.125rem;
+    margin: 0.125rem;
+    border: 1px solid white;
     border-radius: 100px;
   }
+
   button:focus-visible {
     outline: 0.0625rem solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-radiobtn--focus--outline-offset);
-    
   }
 
-  input[type="radio"] {
+  input[type='radio'] {
     display: none;
   }
 
   label {
     display: flex;
- 
+
     justify-content: flex-start;
     align-items: center;
- 
+
     width: 100%;
     height: 100%;
- 
-    padding: 0.125rem;
   }
 
   .checkmark {
@@ -54,12 +58,7 @@
     width: 0.5rem;
     height: 0.5rem;
   }
-
 }
-
-  ix-typography {
-    margin-left: 0.5rem;
-  }
 
 @mixin radio-base() {
   :host {
@@ -133,7 +132,7 @@
   }
 
   ix-typography {
-    margin-top: 0.125rem;
+    margin: 0.125rem 0 0.125rem 0.375rem;
   }
 }
 
