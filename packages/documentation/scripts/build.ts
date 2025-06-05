@@ -15,7 +15,7 @@ import componentDoc from '@siemens/ix/component-doc.json';
 import { convertDocsTagsToTSXElement } from './utils/docs-tags';
 import { generateTypeScriptDocs } from './typedoc-generator';
 
-type OutputType = 'html' | 'react' | 'angular' | 'vue';
+type OutputType = 'html' | 'react' | 'angular' | 'angular_standalone' | 'vue';
 
 const version = 'v2';
 
@@ -40,6 +40,12 @@ const __reactTestApp = path.join(
 const __angularTestApp = path.join(
   __node_modules,
   'angular-test-app',
+  'src',
+  'preview-examples'
+);
+const __angularStandaloneTestApp = path.join(
+  __node_modules,
+  'angular-standalone-test-app',
   'src',
   'preview-examples'
 );
@@ -137,6 +143,7 @@ async function copyUsage() {
   generateSourceCodeMarkdown(__htmlTestApp, 'html');
   generateSourceCodeMarkdown(__reactTestApp, 'react');
   generateSourceCodeMarkdown(__angularTestApp, 'angular');
+  generateSourceCodeMarkdown(__angularStandaloneTestApp, 'angular_standalone');
   generateSourceCodeMarkdown(__vueTestApp, 'vue');
 }
 
@@ -160,6 +167,7 @@ async function generatePlaygroundMarkdown(extendedPlayground: string[] = []) {
   for (const file of [...demoFiles, ...extendedPlayground]) {
     const reactFiles: Record<string, string> = {};
     const angularFiles: Record<string, string> = {};
+    const angularStandaloneFiles: Record<string, string> = {};
     const vueFiles: Record<string, string> = {};
     const htmlFiles: Record<string, string> = {};
 
@@ -187,6 +195,20 @@ async function generatePlaygroundMarkdown(extendedPlayground: string[] = []) {
 
     if (fs.existsSync(path.join(__angularTestApp, `${name}.css`))) {
       angularFiles[`${name}.css`] = `angular/${name}.css`;
+    }
+
+    if (fs.existsSync(path.join(__angularStandaloneTestApp, `${name}.ts`))) {
+      angularStandaloneFiles[`${name}.ts`] = `angular_standalone/${name}.ts`;
+    }
+
+    if (fs.existsSync(path.join(__angularStandaloneTestApp, `${name}.html`))) {
+      angularStandaloneFiles[
+        `${name}.html`
+      ] = `angular_standalone/${name}.html`;
+    }
+
+    if (fs.existsSync(path.join(__angularStandaloneTestApp, `${name}.css`))) {
+      angularStandaloneFiles[`${name}.css`] = `angular_standalone/${name}.css`;
     }
 
     if (fs.existsSync(path.join(__vueTestApp, `${name}.vue`))) {
@@ -220,6 +242,7 @@ async function generatePlaygroundMarkdown(extendedPlayground: string[] = []) {
 
     collectMarkdownImports(reactFiles, 'react');
     collectMarkdownImports(angularFiles, 'angular');
+    collectMarkdownImports(angularStandaloneFiles, 'angular_standalone');
     collectMarkdownImports(vueFiles, 'vue');
     collectMarkdownImports(htmlFiles, 'html');
 
@@ -246,11 +269,16 @@ async function generatePlaygroundMarkdown(extendedPlayground: string[] = []) {
       isPreviewAvailable: !isPreviewAvailable,
       react: mapValues(reactFiles),
       angular: mapValues(angularFiles),
+      angular_standalone: mapValues(angularStandaloneFiles),
       vue: mapValues(vueFiles),
       html: mapValues(htmlFiles),
 
       reactMarkdown: mapMarkdownImports(reactFiles, 'react'),
       angularMarkdown: mapMarkdownImports(angularFiles, 'angular'),
+      angularStandaloneMarkdown: mapMarkdownImports(
+        angularStandaloneFiles,
+        'angular_standalone'
+      ),
       vueMarkdown: mapMarkdownImports(vueFiles, 'vue'),
       htmlMarkdown: mapMarkdownImports(htmlFiles, 'html'),
     };
