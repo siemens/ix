@@ -2920,7 +2920,7 @@ export namespace Components {
         "time": string;
         /**
           * Set time reference
-          * @deprecated This is determined by the currently set time
+          * @deprecated This is determined by the currently set time. Will be removed in 4.0.0.
          */
         "timeReference": 'AM' | 'PM' | undefined;
     }
@@ -8080,7 +8080,7 @@ declare namespace LocalJSX {
         "time"?: string;
         /**
           * Set time reference
-          * @deprecated This is determined by the currently set time
+          * @deprecated This is determined by the currently set time. Will be removed in 4.0.0.
          */
         "timeReference"?: 'AM' | 'PM' | undefined;
     }
