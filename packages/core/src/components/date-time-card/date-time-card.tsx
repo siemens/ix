@@ -24,6 +24,16 @@ export class DateTimeCard {
   @Prop() standaloneAppearance?: boolean;
 
   /**
+   * Hide header
+   */
+  @Prop() hideHeader: boolean = false;
+
+  /**
+   * Display footer
+   */
+  @Prop() hasFooter: boolean = false;
+
+  /**
    * set styles
    */
   @Prop() individual: boolean = true;
@@ -40,6 +50,7 @@ export class DateTimeCard {
       rounded: this.corners === 'rounded',
       left: this.corners === 'left',
       right: this.corners === 'right',
+      straight: this.corners === 'straight',
     };
   }
 
@@ -47,15 +58,27 @@ export class DateTimeCard {
     return (
       <Host>
         <div class={this.cardClasses()}>
-          <div class="header">
-            <slot name="header"></slot>
-          </div>
-
-          <div class="separator"></div>
+          {!this.hideHeader && (
+            <div class="header-container">
+              <div class="header">
+                <slot name="header"></slot>
+              </div>
+              <div class="separator"></div>
+            </div>
+          )}
 
           <div class="content">
             <slot></slot>
           </div>
+
+          {this.hasFooter && (
+            <div class="footer-container">
+              <div class="separator"></div>
+              <div class="footer">
+                <slot name="footer"></slot>
+              </div>
+            </div>
+          )}
         </div>
       </Host>
     );
