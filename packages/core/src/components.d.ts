@@ -2838,27 +2838,27 @@ export namespace Components {
         "getCurrentTime": () => Promise<string | undefined>;
         /**
           * Hides the header of the picker.
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "hideHeader": boolean;
         /**
           * Interval for hour selection
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "hourInterval": number;
         /**
           * Interval for millisecond selection
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "millisecondInterval": number;
         /**
           * Interval for minute selection
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "minuteInterval": number;
         /**
           * Interval for second selection
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "secondInterval": number;
         /**
@@ -7980,22 +7980,22 @@ declare namespace LocalJSX {
         "format"?: string;
         /**
           * Hides the header of the picker.
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "hideHeader"?: boolean;
         /**
           * Interval for hour selection
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "hourInterval"?: number;
         /**
           * Interval for millisecond selection
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "millisecondInterval"?: number;
         /**
           * Interval for minute selection
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "minuteInterval"?: number;
         /**
@@ -8008,7 +8008,7 @@ declare namespace LocalJSX {
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
           * Interval for second selection
-          * @since 3.1.0
+          * @since 3.2.0
          */
         "secondInterval"?: number;
         /**

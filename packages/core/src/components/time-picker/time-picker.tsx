@@ -127,14 +127,14 @@ export class TimePicker {
   /**
    * Hides the header of the picker.
    *
-   * @since 3.1.0
+   * @since 3.2.0
    */
   @Prop() hideHeader: boolean = false;
 
   /**
    * Interval for hour selection
    *
-   * @since 3.1.0
+   * @since 3.2.0
    */
   @Prop({ mutable: true }) hourInterval: number = HOUR_INTERVAL_DEFAULT;
   @Watch('hourInterval')
@@ -155,7 +155,7 @@ export class TimePicker {
   /**
    * Interval for minute selection
    *
-   * @since 3.1.0
+   * @since 3.2.0
    */
   @Prop({ mutable: true }) minuteInterval: number = MINUTE_INTERVAL_DEFAULT;
   @Watch('minuteInterval')
@@ -172,7 +172,7 @@ export class TimePicker {
   /**
    * Interval for second selection
    *
-   * @since 3.1.0
+   * @since 3.2.0
    */
   @Prop({ mutable: true }) secondInterval: number = SECOND_INTERVAL_DEFAULT;
   @Watch('secondInterval')
@@ -189,7 +189,7 @@ export class TimePicker {
   /**
    * Interval for millisecond selection
    *
-   * @since 3.1.0
+   * @since 3.2.0
    */
   @Prop({ mutable: true }) millisecondInterval: number =
     MILLISECOND_INTERVAL_DEFAULT;
