@@ -226,7 +226,7 @@ export class TimePicker {
       throw new Error('Format is not supported or not correct');
     }
 
-    this._time = DateTime.fromFormat(newValue, this.format);
+    this._time = timeFormat;
   }
 
   /**
