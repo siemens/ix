@@ -314,13 +314,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
     const time = DateTime.fromFormat(value, this.format);
     if (time.isValid) {
       this.isInputInvalid = false;
-      this.updateFormInternalValue(value);
     } else {
       this.isInputInvalid = true;
       this.invalidReason = time.invalidReason;
-      this.updateFormInternalValue(value);
     }
 
+    this.updateFormInternalValue(value);
     this.valueChange.emit(value);
   }
 
