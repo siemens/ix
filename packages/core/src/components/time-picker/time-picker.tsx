@@ -232,7 +232,7 @@ export class TimePicker {
   /**
    * Set time reference
    *
-   * @deprecated This is determined by the currently set time
+   * @deprecated This is determined by the currently set time. Will be removed in 4.0.0.
    */
   @Prop() timeReference: 'AM' | 'PM' | undefined;
 
