@@ -24,9 +24,9 @@ export class DateTimeCard {
   @Prop() standaloneAppearance?: boolean;
 
   /**
-   * Display header
+   * Hide header
    */
-  @Prop() hasHeader: boolean = true;
+  @Prop() hideHeader: boolean = false;
 
   /**
    * Display footer
@@ -58,7 +58,7 @@ export class DateTimeCard {
     return (
       <Host>
         <div class={this.cardClasses()}>
-          {this.hasHeader && (
+          {!this.hideHeader && (
             <div class="header-container">
               <div class="header">
                 <slot name="header"></slot>

@@ -800,7 +800,7 @@ export class TimePicker {
           standaloneAppearance={this.standaloneAppearance}
           corners={this.corners}
           hasFooter={true}
-          hasHeader={!this.hideHeader}
+          hideHeader={this.hideHeader}
         >
           <div class="header" slot="header">
             <ix-typography format="h5">{this.textTime || 'Time'}</ix-typography>

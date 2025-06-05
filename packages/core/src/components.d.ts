@@ -850,9 +850,9 @@ export namespace Components {
          */
         "hasFooter": boolean;
         /**
-          * Display header
+          * Hide header
          */
-        "hasHeader": boolean;
+        "hideHeader": boolean;
         /**
           * set styles
          */
@@ -5863,9 +5863,9 @@ declare namespace LocalJSX {
          */
         "hasFooter"?: boolean;
         /**
-          * Display header
+          * Hide header
          */
-        "hasHeader"?: boolean;
+        "hideHeader"?: boolean;
         /**
           * set styles
          */
