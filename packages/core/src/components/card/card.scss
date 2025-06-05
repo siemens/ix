@@ -51,6 +51,8 @@
 
 @mixin accordionChevronColorPrimary {
   ::slotted(ix-card-accordion) {
+    --chevron-collapsed-color: var(--theme-color-soft-text);
+    --chevron-expanded-color: var(--theme-color-dynamic--active);
     color: var(--theme-color-primary);
   }
 }

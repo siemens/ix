@@ -58,7 +58,7 @@ export class TreeItem {
                 ['icon-toggle-down']: !!this.context?.isExpanded,
               }}
               color={`color-${
-                this.context?.isExpanded ? 'primary' : 'std-text'
+                this.context?.isExpanded ? 'dynamic' : 'std-text'
               }`}
               onClick={(e: Event) => {
                 e.preventDefault();

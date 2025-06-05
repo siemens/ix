@@ -63,10 +63,12 @@
   .expand-icon {
     margin-left: 0.5rem;
     transition: var(--theme-default-time) transform ease-in-out;
+    color: var(--chevron-collapsed-color, currentColor);
   }
 
   .expand-icon.show {
     transform: rotate(90deg);
+    color: var(--chevron-expanded-color, currentColor);
   }
 
   .expand-content {
