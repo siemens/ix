@@ -167,32 +167,32 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /**
    * Text of time-picker time select button
    */
-  @Prop() textSelectTime: string = 'Confirm';
+  @Prop() i18nSelectTime: string = 'Confirm';
 
   /**
    * Text for time-picker top label
    */
-  @Prop() textTime: string = 'Time';
+  @Prop() i18nTime: string = 'Time';
 
   /**
    * Text for time-picker hour column header
    */
-  @Prop() textHourColumnHeader: string = 'hr';
+  @Prop() i18nHourColumnHeader: string = 'hr';
 
   /**
    * Text for time-picker minute column header
    */
-  @Prop() textMinuteColumnHeader: string = 'min';
+  @Prop() i18nMinuteColumnHeader: string = 'min';
 
   /**
    * Text for time-picker second column header
    */
-  @Prop() textSecondColumnHeader: string = 'sec';
+  @Prop() i18nSecondColumnHeader: string = 'sec';
 
   /**
    * Text for time-picker millisecond column header
    */
-  @Prop() textMillisecondColumnHeader: string = 'ms';
+  @Prop() i18nMillisecondColumnHeader: string = 'ms';
 
   /**
    * Input change event.
@@ -542,12 +542,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
             secondInterval={this.secondInterval}
             millisecondInterval={this.millisecondInterval}
             standaloneAppearance={false}
-            textSelectTime={this.textSelectTime}
-            textTime={this.textTime}
-            textHourColumnHeader={this.textHourColumnHeader}
-            textSecondColumnHeader={this.textSecondColumnHeader}
-            textMinuteColumnHeader={this.textMinuteColumnHeader}
-            textMillisecondColumnHeader={this.textMillisecondColumnHeader}
+            i18nConfirmTime={this.i18nSelectTime}
+            i18nHeader={this.i18nTime}
+            i18nHourColumnHeader={this.i18nHourColumnHeader}
+            i18nSecondColumnHeader={this.i18nSecondColumnHeader}
+            i18nMinuteColumnHeader={this.i18nMinuteColumnHeader}
+            i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
               this.onInput(event.detail);
 

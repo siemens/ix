@@ -57,6 +57,9 @@ const MINUTE_INTERVAL_DEFAULT = 1;
 const SECOND_INTERVAL_DEFAULT = 1;
 const MILLISECOND_INTERVAL_DEFAULT = 100;
 
+const CONFIRM_BUTTON_DEFAULT = 'Confirm';
+const HEADER_DEFAULT = 'Time';
+
 const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
   hour: '',
   minute: '',
@@ -235,33 +238,47 @@ export class TimePicker {
 
   /**
    * Text of time select button
+   *
+   * @deprecated Use `i18nConfirmTime` instead. Will be removed in 4.0.0.
    */
-  @Prop() textSelectTime = 'Confirm';
+  @Prop() textSelectTime = CONFIRM_BUTTON_DEFAULT;
+
+  /**
+   * Text of the time confirm button
+   */
+  @Prop() i18nConfirmTime = CONFIRM_BUTTON_DEFAULT;
 
   /**
    * Text for top label
+   *
+   * @deprecated Use `i18nHeader` instead. Will be removed in 4.0.0.
    */
-  @Prop() textTime: string = 'Time';
+  @Prop() textTime: string = HEADER_DEFAULT;
+
+  /**
+   * Text for top header
+   */
+  @Prop() i18nHeader: string = HEADER_DEFAULT;
 
   /**
    * Text for hour column header
    */
-  @Prop() textHourColumnHeader: string = 'hr';
+  @Prop() i18nHourColumnHeader: string = 'hr';
 
   /**
    * Text for minute column header
    */
-  @Prop() textMinuteColumnHeader: string = 'min';
+  @Prop() i18nMinuteColumnHeader: string = 'min';
 
   /**
    * Text for second column header
    */
-  @Prop() textSecondColumnHeader: string = 'sec';
+  @Prop() i18nSecondColumnHeader: string = 'sec';
 
   /**
    * Text for millisecond column header
    */
-  @Prop() textMillisecondColumnHeader: string = 'ms';
+  @Prop() i18nMillisecondColumnHeader: string = 'ms';
 
   /**
    * Time event
@@ -655,28 +672,28 @@ export class TimePicker {
     this.timePickerDescriptors = [
       {
         unit: 'hour',
-        header: this.textHourColumnHeader,
+        header: this.i18nHourColumnHeader,
         hidden:
           !LUXON_FORMAT_PATTERNS.hours.test(this.format) || !this.showHour,
         numberArray: hourNumbers,
       },
       {
         unit: 'minute',
-        header: this.textMinuteColumnHeader,
+        header: this.i18nMinuteColumnHeader,
         hidden:
           !LUXON_FORMAT_PATTERNS.minutes.test(this.format) || !this.showMinutes,
         numberArray: minuteNumbers,
       },
       {
         unit: 'second',
-        header: this.textSecondColumnHeader,
+        header: this.i18nSecondColumnHeader,
         hidden:
           !LUXON_FORMAT_PATTERNS.seconds.test(this.format) || !this.showSeconds,
         numberArray: secondNumbers,
       },
       {
         unit: 'millisecond',
-        header: this.textMillisecondColumnHeader,
+        header: this.i18nMillisecondColumnHeader,
         hidden: !LUXON_FORMAT_PATTERNS.milliseconds.test(this.format),
         numberArray: millisecondsNumbers,
       },
@@ -784,13 +801,37 @@ export class TimePicker {
     return ':';
   }
 
-  getElementContainerTabIndex(
+  private getElementContainerTabIndex(
     number: number,
     descriptorUnit: TimePickerDescriptorUnit
   ): string {
     return number === this.focusedValue && descriptorUnit === this.focusedUnit
       ? '0'
       : '-1';
+  }
+
+  private getConfirmButtonText(): string {
+    if (this.i18nConfirmTime !== CONFIRM_BUTTON_DEFAULT) {
+      return this.i18nConfirmTime;
+    }
+
+    if (this.textSelectTime !== CONFIRM_BUTTON_DEFAULT) {
+      return this.textSelectTime;
+    }
+
+    return this.i18nConfirmTime;
+  }
+
+  private getHeaderText(): string {
+    if (this.i18nHeader !== HEADER_DEFAULT) {
+      return this.i18nHeader;
+    }
+
+    if (this.textTime != HEADER_DEFAULT) {
+      return this.textTime;
+    }
+
+    return this.i18nHeader;
   }
 
   render() {
@@ -803,7 +844,7 @@ export class TimePicker {
           hideHeader={this.hideHeader}
         >
           <div class="header" slot="header">
-            <ix-typography format="h5">{this.textTime || 'Time'}</ix-typography>
+            <ix-typography format="h5">{this.getHeaderText()}</ix-typography>
           </div>
           <div class="clock">
             {this.timePickerDescriptors.map((descriptor, index: number) => (
@@ -897,7 +938,7 @@ export class TimePicker {
                   this.timeSelect.emit(this._time?.toFormat(this.format));
                 }}
               >
-                {this.textSelectTime}
+                {this.getConfirmButtonText()}
               </ix-button>
             )}
           </div>

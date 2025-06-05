@@ -2733,6 +2733,30 @@ export namespace Components {
          */
         "i18nErrorTimeUnparsable": string;
         /**
+          * Text for time-picker hour column header
+         */
+        "i18nHourColumnHeader": string;
+        /**
+          * Text for time-picker millisecond column header
+         */
+        "i18nMillisecondColumnHeader": string;
+        /**
+          * Text for time-picker minute column header
+         */
+        "i18nMinuteColumnHeader": string;
+        /**
+          * Text for time-picker second column header
+         */
+        "i18nSecondColumnHeader": string;
+        /**
+          * Text of time-picker time select button
+         */
+        "i18nSelectTime": string;
+        /**
+          * Text for time-picker top label
+         */
+        "i18nTime": string;
+        /**
           * Info text below the input field
          */
         "infoText"?: string;
@@ -2786,30 +2810,6 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Text for time-picker hour column header
-         */
-        "textHourColumnHeader": string;
-        /**
-          * Text for time-picker millisecond column header
-         */
-        "textMillisecondColumnHeader": string;
-        /**
-          * Text for time-picker minute column header
-         */
-        "textMinuteColumnHeader": string;
-        /**
-          * Text for time-picker second column header
-         */
-        "textSecondColumnHeader": string;
-        /**
-          * Text of time-picker time select button
-         */
-        "textSelectTime": string;
-        /**
-          * Text for time-picker top label
-         */
-        "textTime": string;
-        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -2847,6 +2847,30 @@ export namespace Components {
          */
         "hourInterval": number;
         /**
+          * Text of the time confirm button
+         */
+        "i18nConfirmTime": string;
+        /**
+          * Text for top header
+         */
+        "i18nHeader": string;
+        /**
+          * Text for hour column header
+         */
+        "i18nHourColumnHeader": string;
+        /**
+          * Text for millisecond column header
+         */
+        "i18nMillisecondColumnHeader": string;
+        /**
+          * Text for minute column header
+         */
+        "i18nMinuteColumnHeader": string;
+        /**
+          * Text for second column header
+         */
+        "i18nSecondColumnHeader": string;
+        /**
           * Interval for millisecond selection
           * @since 3.2.0
          */
@@ -2881,27 +2905,13 @@ export namespace Components {
          */
         "standaloneAppearance": boolean;
         /**
-          * Text for hour column header
-         */
-        "textHourColumnHeader": string;
-        /**
-          * Text for millisecond column header
-         */
-        "textMillisecondColumnHeader": string;
-        /**
-          * Text for minute column header
-         */
-        "textMinuteColumnHeader": string;
-        /**
-          * Text for second column header
-         */
-        "textSecondColumnHeader": string;
-        /**
           * Text of time select button
+          * @deprecated Use `i18nConfirmTime` instead. Will be removed in 4.0.0.
          */
         "textSelectTime": string;
         /**
           * Text for top label
+          * @deprecated Use `i18nHeader` instead. Will be removed in 4.0.0.
          */
         "textTime": string;
         /**
@@ -7873,6 +7883,30 @@ declare namespace LocalJSX {
          */
         "i18nErrorTimeUnparsable"?: string;
         /**
+          * Text for time-picker hour column header
+         */
+        "i18nHourColumnHeader"?: string;
+        /**
+          * Text for time-picker millisecond column header
+         */
+        "i18nMillisecondColumnHeader"?: string;
+        /**
+          * Text for time-picker minute column header
+         */
+        "i18nMinuteColumnHeader"?: string;
+        /**
+          * Text for time-picker second column header
+         */
+        "i18nSecondColumnHeader"?: string;
+        /**
+          * Text of time-picker time select button
+         */
+        "i18nSelectTime"?: string;
+        /**
+          * Text for time-picker top label
+         */
+        "i18nTime"?: string;
+        /**
           * Info text below the input field
          */
         "infoText"?: string;
@@ -7932,30 +7966,6 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Text for time-picker hour column header
-         */
-        "textHourColumnHeader"?: string;
-        /**
-          * Text for time-picker millisecond column header
-         */
-        "textMillisecondColumnHeader"?: string;
-        /**
-          * Text for time-picker minute column header
-         */
-        "textMinuteColumnHeader"?: string;
-        /**
-          * Text for time-picker second column header
-         */
-        "textSecondColumnHeader"?: string;
-        /**
-          * Text of time-picker time select button
-         */
-        "textSelectTime"?: string;
-        /**
-          * Text for time-picker top label
-         */
-        "textTime"?: string;
-        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -7988,6 +7998,30 @@ declare namespace LocalJSX {
           * @since 3.2.0
          */
         "hourInterval"?: number;
+        /**
+          * Text of the time confirm button
+         */
+        "i18nConfirmTime"?: string;
+        /**
+          * Text for top header
+         */
+        "i18nHeader"?: string;
+        /**
+          * Text for hour column header
+         */
+        "i18nHourColumnHeader"?: string;
+        /**
+          * Text for millisecond column header
+         */
+        "i18nMillisecondColumnHeader"?: string;
+        /**
+          * Text for minute column header
+         */
+        "i18nMinuteColumnHeader"?: string;
+        /**
+          * Text for second column header
+         */
+        "i18nSecondColumnHeader"?: string;
         /**
           * Interval for millisecond selection
           * @since 3.2.0
@@ -8031,27 +8065,13 @@ declare namespace LocalJSX {
          */
         "standaloneAppearance"?: boolean;
         /**
-          * Text for hour column header
-         */
-        "textHourColumnHeader"?: string;
-        /**
-          * Text for millisecond column header
-         */
-        "textMillisecondColumnHeader"?: string;
-        /**
-          * Text for minute column header
-         */
-        "textMinuteColumnHeader"?: string;
-        /**
-          * Text for second column header
-         */
-        "textSecondColumnHeader"?: string;
-        /**
           * Text of time select button
+          * @deprecated Use `i18nConfirmTime` instead. Will be removed in 4.0.0.
          */
         "textSelectTime"?: string;
         /**
           * Text for top label
+          * @deprecated Use `i18nHeader` instead. Will be removed in 4.0.0.
          */
         "textTime"?: string;
         /**

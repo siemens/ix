@@ -1650,12 +1650,12 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         minuteInterval: 'minute-interval',
         secondInterval: 'second-interval',
         millisecondInterval: 'millisecond-interval',
-        textSelectTime: 'text-select-time',
-        textTime: 'text-time',
-        textHourColumnHeader: 'text-hour-column-header',
-        textMinuteColumnHeader: 'text-minute-column-header',
-        textSecondColumnHeader: 'text-second-column-header',
-        textMillisecondColumnHeader: 'text-millisecond-column-header'
+        i18nSelectTime: 'i-1-8n-select-time',
+        i18nTime: 'i-1-8n-time',
+        i18nHourColumnHeader: 'i-1-8n-hour-column-header',
+        i18nMinuteColumnHeader: 'i-1-8n-minute-column-header',
+        i18nSecondColumnHeader: 'i-1-8n-second-column-header',
+        i18nMillisecondColumnHeader: 'i-1-8n-millisecond-column-header'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -1684,11 +1684,13 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
         time: 'time',
         timeReference: 'time-reference',
         textSelectTime: 'text-select-time',
+        i18nConfirmTime: 'i-1-8n-confirm-time',
         textTime: 'text-time',
-        textHourColumnHeader: 'text-hour-column-header',
-        textMinuteColumnHeader: 'text-minute-column-header',
-        textSecondColumnHeader: 'text-second-column-header',
-        textMillisecondColumnHeader: 'text-millisecond-column-header'
+        i18nHeader: 'i-1-8n-header',
+        i18nHourColumnHeader: 'i-1-8n-hour-column-header',
+        i18nMinuteColumnHeader: 'i-1-8n-minute-column-header',
+        i18nSecondColumnHeader: 'i-1-8n-second-column-header',
+        i18nMillisecondColumnHeader: 'i-1-8n-millisecond-column-header'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
