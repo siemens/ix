@@ -645,10 +645,6 @@ export class TimePicker {
         { length: Math.ceil(12 / this.hourInterval) },
         (_, i) => i * this.hourInterval + 1
       ).filter((hour) => hour <= 12);
-
-      if (!hourNumbers.includes(12)) {
-        hourNumbers.push(12);
-      }
     } else {
       hourNumbers = Array.from(
         { length: Math.ceil(24 / this.hourInterval) },
