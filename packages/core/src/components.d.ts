@@ -703,7 +703,7 @@ export namespace Components {
      */
     interface IxDateInput {
         /**
-          * disabled attribute
+          * Disabled attribute
          */
         "disabled": boolean;
         /**
@@ -722,19 +722,19 @@ export namespace Components {
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * helper text below the input field
+          * Helper text below the input field
          */
         "helperText"?: string;
         /**
-          * i18n string for the error message when the date is not parsable
+          * I18n string for the error message when the date is not parsable
          */
         "i18nErrorDateUnparsable": string;
         /**
-          * info text below the input field
+          * Info text below the input field
          */
         "infoText"?: string;
         /**
-          * error text below the input field
+          * Error text below the input field
          */
         "invalidText"?: string;
         /**
@@ -742,7 +742,7 @@ export namespace Components {
          */
         "isTouched": () => Promise<boolean>;
         /**
-          * label of the input field
+          * Label of the input field
          */
         "label"?: string;
         /**
@@ -750,23 +750,23 @@ export namespace Components {
          */
         "locale"?: string;
         /**
-          * name of the input element
+          * Name of the input element
          */
         "name"?: string;
         /**
-          * placeholder of the input element
+          * Placeholder of the input element
          */
         "placeholder"?: string;
         /**
-          * readonly attribute
+          * Readonly attribute
          */
         "readonly": boolean;
         /**
-          * required attribute
+          * Required attribute
          */
         "required"?: boolean;
         /**
-          * show text as tooltip
+          * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -775,15 +775,15 @@ export namespace Components {
          */
         "showWeekNumbers": boolean;
         /**
-          * valid text below the input field
+          * Valid text below the input field
          */
         "validText"?: string;
         /**
-          * value of the input element
+          * Value of the input element
          */
         "value"?: string;
         /**
-          * warning text below the input field
+          * Warning text below the input field
          */
         "warningText"?: string;
     }
@@ -2697,12 +2697,12 @@ export namespace Components {
         "size": 'small' | 'medium' | 'big';
     }
     /**
-     * @since 3.1.0
-     * @form-ready 3.1.0
+     * @since 3.2.0
+     * @form-ready 3.2.0
      */
     interface IxTimeInput {
         /**
-          * disabled attribute
+          * Disabled attribute
          */
         "disabled": boolean;
         /**
@@ -2721,7 +2721,7 @@ export namespace Components {
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * helper text below the input field
+          * Helper text below the input field
          */
         "helperText"?: string;
         /**
@@ -2729,15 +2729,15 @@ export namespace Components {
          */
         "hourInterval": number;
         /**
-          * i18n string for the error message when the time is not parsable
+          * I18n string for the error message when the time is not parsable
          */
         "i18nErrorTimeUnparsable": string;
         /**
-          * info text below the input field
+          * Info text below the input field
          */
         "infoText"?: string;
         /**
-          * error text below the input field
+          * Error text below the input field
          */
         "invalidText"?: string;
         /**
@@ -2745,12 +2745,12 @@ export namespace Components {
          */
         "isTouched": () => Promise<boolean>;
         /**
-          * label of the input field
+          * Label of the input field
          */
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 3.0.0
+          * @since 3.2.0
          */
         "locale"?: string;
         /**
@@ -2762,19 +2762,19 @@ export namespace Components {
          */
         "minuteInterval": number;
         /**
-          * name of the input element
+          * Name of the input element
          */
         "name"?: string;
         /**
-          * placeholder of the input element
+          * Placeholder of the input element
          */
         "placeholder"?: string;
         /**
-          * readonly attribute
+          * Readonly attribute
          */
         "readonly": boolean;
         /**
-          * required attribute
+          * Required attribute
          */
         "required"?: boolean;
         /**
@@ -2782,7 +2782,7 @@ export namespace Components {
          */
         "secondInterval": number;
         /**
-          * show text as tooltip
+          * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -2810,15 +2810,15 @@ export namespace Components {
          */
         "textTime": string;
         /**
-          * valid text below the input field
+          * Valid text below the input field
          */
         "validText"?: string;
         /**
-          * value of the input element
+          * Value of the input element
          */
         "value": string;
         /**
-          * warning text below the input field
+          * Warning text below the input field
          */
         "warningText"?: string;
     }
@@ -4717,8 +4717,8 @@ declare global {
         "ixBlur": void;
     }
     /**
-     * @since 3.1.0
-     * @form-ready 3.1.0
+     * @since 3.2.0
+     * @form-ready 3.2.0
      */
     interface HTMLIxTimeInputElement extends Components.IxTimeInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTimeInputElementEventMap>(type: K, listener: (this: HTMLIxTimeInputElement, ev: IxTimeInputCustomEvent<HTMLIxTimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5713,7 +5713,7 @@ declare namespace LocalJSX {
      */
     interface IxDateInput {
         /**
-          * disabled attribute
+          * Disabled attribute
          */
         "disabled"?: boolean;
         /**
@@ -5721,23 +5721,23 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * helper text below the input field
+          * Helper text below the input field
          */
         "helperText"?: string;
         /**
-          * i18n string for the error message when the date is not parsable
+          * I18n string for the error message when the date is not parsable
          */
         "i18nErrorDateUnparsable"?: string;
         /**
-          * info text below the input field
+          * Info text below the input field
          */
         "infoText"?: string;
         /**
-          * error text below the input field
+          * Error text below the input field
          */
         "invalidText"?: string;
         /**
-          * label of the input field
+          * Label of the input field
          */
         "label"?: string;
         /**
@@ -5745,7 +5745,7 @@ declare namespace LocalJSX {
          */
         "locale"?: string;
         /**
-          * name of the input element
+          * Name of the input element
          */
         "name"?: string;
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
@@ -5759,19 +5759,19 @@ declare namespace LocalJSX {
          */
         "onValueChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         /**
-          * placeholder of the input element
+          * Placeholder of the input element
          */
         "placeholder"?: string;
         /**
-          * readonly attribute
+          * Readonly attribute
          */
         "readonly"?: boolean;
         /**
-          * required attribute
+          * Required attribute
          */
         "required"?: boolean;
         /**
-          * show text as tooltip
+          * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -5780,15 +5780,15 @@ declare namespace LocalJSX {
          */
         "showWeekNumbers"?: boolean;
         /**
-          * valid text below the input field
+          * Valid text below the input field
          */
         "validText"?: string;
         /**
-          * value of the input element
+          * Value of the input element
          */
         "value"?: string;
         /**
-          * warning text below the input field
+          * Warning text below the input field
          */
         "warningText"?: string;
     }
@@ -7848,12 +7848,12 @@ declare namespace LocalJSX {
         "size"?: 'small' | 'medium' | 'big';
     }
     /**
-     * @since 3.1.0
-     * @form-ready 3.1.0
+     * @since 3.2.0
+     * @form-ready 3.2.0
      */
     interface IxTimeInput {
         /**
-          * disabled attribute
+          * Disabled attribute
          */
         "disabled"?: boolean;
         /**
@@ -7861,7 +7861,7 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * helper text below the input field
+          * Helper text below the input field
          */
         "helperText"?: string;
         /**
@@ -7869,24 +7869,24 @@ declare namespace LocalJSX {
          */
         "hourInterval"?: number;
         /**
-          * i18n string for the error message when the time is not parsable
+          * I18n string for the error message when the time is not parsable
          */
         "i18nErrorTimeUnparsable"?: string;
         /**
-          * info text below the input field
+          * Info text below the input field
          */
         "infoText"?: string;
         /**
-          * error text below the input field
+          * Error text below the input field
          */
         "invalidText"?: string;
         /**
-          * label of the input field
+          * Label of the input field
          */
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 3.0.0
+          * @since 3.2.0
          */
         "locale"?: string;
         /**
@@ -7898,7 +7898,7 @@ declare namespace LocalJSX {
          */
         "minuteInterval"?: number;
         /**
-          * name of the input element
+          * Name of the input element
          */
         "name"?: string;
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
@@ -7912,15 +7912,15 @@ declare namespace LocalJSX {
          */
         "onValueChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         /**
-          * placeholder of the input element
+          * Placeholder of the input element
          */
         "placeholder"?: string;
         /**
-          * readonly attribute
+          * Readonly attribute
          */
         "readonly"?: boolean;
         /**
-          * required attribute
+          * Required attribute
          */
         "required"?: boolean;
         /**
@@ -7928,7 +7928,7 @@ declare namespace LocalJSX {
          */
         "secondInterval"?: number;
         /**
-          * show text as tooltip
+          * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -7956,15 +7956,15 @@ declare namespace LocalJSX {
          */
         "textTime"?: string;
         /**
-          * valid text below the input field
+          * Valid text below the input field
          */
         "validText"?: string;
         /**
-          * value of the input element
+          * Value of the input element
          */
         "value"?: string;
         /**
-          * warning text below the input field
+          * Warning text below the input field
          */
         "warningText"?: string;
     }
@@ -8654,8 +8654,8 @@ declare module "@stencil/core" {
             "ix-textarea": LocalJSX.IxTextarea & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             /**
-             * @since 3.1.0
-             * @form-ready 3.1.0
+             * @since 3.2.0
+             * @form-ready 3.2.0
              */
             "ix-time-input": LocalJSX.IxTimeInput & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
