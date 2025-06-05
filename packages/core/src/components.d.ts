@@ -105,12 +105,10 @@ export namespace Components {
         "heading"?: string;
         /**
           * Card icon
-          * @default undefined
          */
         "icon": string | undefined;
         /**
           * Card selection
-          * @default false
          */
         "selected": boolean;
         /**
@@ -119,7 +117,6 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card variant
-          * @default 'outline'
          */
         "variant": ActionCardVariant;
     }
@@ -130,7 +127,6 @@ export namespace Components {
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
           * Supported layouts
-          * @default ['sm', 'md', 'lg']
          */
         "breakpoints": Breakpoint[];
         /**
@@ -143,7 +139,6 @@ export namespace Components {
         "theme"?: IxTheme;
         /**
           * Use the system appearance dark or light
-          * @default false
          */
         "themeSystemAppearance": boolean;
     }
@@ -154,7 +149,6 @@ export namespace Components {
         "name"?: string;
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
-          * @default false
          */
         "showMenu"?: boolean;
     }
@@ -189,7 +183,6 @@ export namespace Components {
         /**
           * Supported layouts
           * @example ['sm', 'md']
-          * @default ['sm', 'md', 'lg']
          */
         "breakpoints": Breakpoint[];
         /**
@@ -198,14 +191,12 @@ export namespace Components {
         "forceBreakpoint": Breakpoint | undefined;
         /**
           * Hide application header. Will disable responsive feature of basic navigation.
-          * @default false
          */
         "hideHeader": boolean;
     }
     interface IxBlind {
         /**
           * Collapsed state
-          * @default false
          */
         "collapsed": boolean;
         /**
@@ -222,66 +213,45 @@ export namespace Components {
         "sublabel"?: string;
         /**
           * Blind variant
-          * @default 'filled'
          */
         "variant": BlindVariant;
     }
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @default 'previous'
          */
         "ariaLabelPreviousButton": string;
         /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
-          * @default true
          */
         "ghost": boolean;
         /**
           * Items will be accessible through a dropdown
-          * @default []
          */
         "nextItems": string[];
         /**
           * Excess items will get hidden inside of dropdown
-          * @default 9
          */
         "visibleItemCount": number;
     }
     interface IxBreadcrumbItem {
-        /**
-          * @default true
-         */
         "ghost": boolean;
         /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
-        /**
-          * @default false
-         */
         "isDropdownTrigger": boolean;
         /**
           * Breadcrumb label
          */
         "label"?: string;
-        /**
-          * @default true
-         */
         "showChevron": boolean;
-        /**
-          * @default true
-         */
         "visible": boolean;
     }
     interface IxButton {
-        /**
-          * @default 'center'
-         */
         "alignment": 'center' | 'start';
         /**
           * Disable the button
-          * @default false
          */
         "disabled": boolean;
         /**
@@ -291,54 +261,43 @@ export namespace Components {
         "form"?: string;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost": boolean;
         /**
           * Icon name
          */
         "icon"?: string;
-        /**
-          * @default '24'
-         */
         "iconSize": '12' | '16' | '24';
         /**
           * Loading button
-          * @default false
          */
         "loading": boolean;
         /**
           * Outline button
-          * @default false
          */
         "outline": boolean;
         /**
           * Type of the button
-          * @default 'button'
          */
         "type": 'button' | 'submit';
         /**
           * Button variant
-          * @default 'primary'
          */
         "variant": ButtonVariant;
     }
     interface IxCard {
         /**
           * Show card in selected state
-          * @default false
          */
         "selected": boolean;
         /**
           * Card variant
-          * @default 'outline'
          */
         "variant": CardVariant;
     }
     interface IxCardAccordion {
         /**
           * Collapse the card
-          * @default false
          */
         "collapse": boolean;
     }
@@ -347,22 +306,18 @@ export namespace Components {
     interface IxCardList {
         /**
           * Collapse the list
-          * @default false
          */
         "collapse": boolean;
         /**
           * Hide the show all button
-          * @default false
          */
         "hideShowAll": boolean;
         /**
           * i18n More cards available
-          * @default 'There are more cards available'
          */
         "i18nMoreCards": string;
         /**
           * i18n Show all button
-          * @default 'Show all'
          */
         "i18nShowAll": string;
         /**
@@ -371,12 +326,10 @@ export namespace Components {
         "label"?: string;
         /**
           * List style
-          * @default 'stack'
          */
         "listStyle": 'stack' | 'scroll';
         /**
           * Maximal visible cards
-          * @default 12
          */
         "maxVisibleCards": number;
         /**
@@ -385,7 +338,6 @@ export namespace Components {
         "showAllCount"?: number;
         /**
           * Suppress the overflow handling of child elements
-          * @default false
          */
         "suppressOverflowHandling": boolean;
     }
@@ -403,7 +355,6 @@ export namespace Components {
   };
         /**
           * If true the filter will be in disabled state
-          * @default false
          */
         "disabled": boolean;
         /**
@@ -412,12 +363,10 @@ export namespace Components {
         "filterState"?: FilterState;
         /**
           * Allows to hide the icon inside the text input. Defaults to false
-          * @default false
          */
         "hideIcon": boolean;
         /**
           * i18n
-          * @default 'Filter by text'
          */
         "i18nPlainText": string;
         /**
@@ -426,12 +375,10 @@ export namespace Components {
         "icon"?: string;
         /**
           * i18n
-          * @default 'Categories'
          */
         "labelCategories": string;
         /**
           * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
-          * @default {}
          */
         "nonSelectableCategories"?: {
     [id: string]: string;
@@ -442,12 +389,10 @@ export namespace Components {
         "placeholder"?: string;
         /**
           * If true the filter will be in readonly mode
-          * @default false
          */
         "readonly": boolean;
         /**
           * If set to true, allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
-          * @default true
          */
         "repeatCategories": boolean;
         /**
@@ -458,9 +403,6 @@ export namespace Components {
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions"?: string[];
-        /**
-          * @default true
-         */
         "tmpDisableScrollIntoView": boolean;
     }
     /**
@@ -469,19 +411,16 @@ export namespace Components {
     interface IxCheckbox {
         /**
           * Checked state of the checkbox component
-          * @default false
          */
         "checked": boolean;
         /**
           * Disabled state of the checkbox component
-          * @default false
          */
         "disabled": boolean;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * Indeterminate state of the checkbox component
-          * @default false
          */
         "indeterminate": boolean;
         "isTouched": () => Promise<boolean>;
@@ -495,12 +434,10 @@ export namespace Components {
         "name"?: string;
         /**
           * Required state of the checkbox component.  If true, checkbox needs to be checked to be valid
-          * @default false
          */
         "required": boolean;
         /**
           * Value of the checkbox component
-          * @default 'on'
          */
         "value": string;
     }
@@ -510,7 +447,6 @@ export namespace Components {
     interface IxCheckboxGroup {
         /**
           * Alignment of the checkboxes in the group
-          * @default 'column'
          */
         "direction": 'row' | 'column';
         "hasValidValue": () => Promise<boolean>;
@@ -531,13 +467,9 @@ export namespace Components {
           * Label for the checkbox group
          */
         "label"?: string;
-        /**
-          * @default false
-         */
         "required": boolean;
         /**
           * Show helper, info, warning, error and valid text as tooltip
-          * @default false
          */
         "showTextAsTooltip": boolean;
         /**
@@ -552,7 +484,6 @@ export namespace Components {
     interface IxChip {
         /**
           * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
-          * @default true
          */
         "active": boolean;
         /**
@@ -565,7 +496,6 @@ export namespace Components {
         "chipColor": string | undefined;
         /**
           * Show close icon
-          * @default false
          */
         "closable": boolean;
         /**
@@ -574,18 +504,15 @@ export namespace Components {
         "icon"?: string;
         /**
           * Show chip with outline style
-          * @default false
          */
         "outline": boolean;
         /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
-          * @default false
          */
         "tooltipText": string | boolean;
         /**
           * Chip variant
-          * @default 'primary'
          */
         "variant": | 'primary'
     | 'alarm'
@@ -619,12 +546,10 @@ export namespace Components {
     interface IxContentHeader {
         /**
           * Display a back button
-          * @default false
          */
         "hasBackButton": boolean;
         /**
           * Subtitle of Header
-          * @default undefined
          */
         "headerSubtitle": string | undefined;
         /**
@@ -633,7 +558,6 @@ export namespace Components {
         "headerTitle"?: string;
         /**
           * Variant of content header
-          * @default 'primary'
          */
         "variant": ContentHeaderVariant;
     }
@@ -668,7 +592,6 @@ export namespace Components {
         "label"?: string;
         /**
           * A value is required or must be checked for the form to be submittable
-          * @default false
          */
         "required": boolean;
         /**
@@ -687,33 +610,27 @@ export namespace Components {
     interface IxDateDropdown {
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
-          * @default true
          */
         "customRangeAllowed": boolean;
         /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
-          * @default 'custom'
          */
         "dateRangeId": string;
         /**
           * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
-          * @default []
          */
         "dateRangeOptions": DateDropdownOption[];
         /**
           * Disable the button that opens the dropdown containing the date picker.
-          * @default false
          */
         "disabled": boolean;
         /**
           * Date format string. See
           * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @default 'yyyy/LL/dd'
          */
         "format": string;
         /**
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
-          * @default ''
          */
         "from": string;
         /**
@@ -722,27 +639,22 @@ export namespace Components {
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost": boolean;
         /**
           * Text for custom dropdown item. Will be used for translation.
-          * @default 'Custom...'
          */
         "i18nCustomItem": string;
         /**
           * Text for the done button. Will be used for translation.
-          * @default 'Done'
          */
         "i18nDone": string;
         /**
           * Text for the done button. Will be used for translation.
-          * @default 'No range set'
          */
         "i18nNoRange": string;
         /**
           * Loading button
-          * @default false
          */
         "loading": boolean;
         /**
@@ -751,47 +663,36 @@ export namespace Components {
         "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @default ''
          */
         "maxDate": string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @default ''
          */
         "minDate": string;
         /**
           * Outline button
-          * @default false
          */
         "outline": boolean;
         /**
           * If true a range of dates can be selected.
-          * @default true
          */
         "range": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
-          * @default false
          */
         "showWeekNumbers": boolean;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @default ''
          */
         "to": string;
-        /**
-          * @default DateTime.now().toISO()
-         */
         "today": string;
         /**
           * Button variant
-          * @default 'primary'
          */
         "variant": ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @default 0
          */
         "weekStartIndex": number;
     }
@@ -801,7 +702,6 @@ export namespace Components {
     interface IxDateInput {
         /**
           * disabled attribute
-          * @default false
          */
         "disabled": boolean;
         /**
@@ -810,7 +710,6 @@ export namespace Components {
         "focusInput": () => Promise<void>;
         /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'yyyy/LL/dd'
          */
         "format": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
@@ -826,7 +725,6 @@ export namespace Components {
         "helperText"?: string;
         /**
           * i18n string for the error message when the date is not parsable
-          * @default 'Date is not valid'
          */
         "i18nErrorDateUnparsable": string;
         /**
@@ -859,7 +757,6 @@ export namespace Components {
         "placeholder"?: string;
         /**
           * readonly attribute
-          * @default false
          */
         "readonly": boolean;
         /**
@@ -873,7 +770,6 @@ export namespace Components {
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
-          * @default false
          */
         "showWeekNumbers": boolean;
         /**
@@ -882,7 +778,6 @@ export namespace Components {
         "validText"?: string;
         /**
           * value of the input element
-          * @default ''
          */
         "value"?: string;
         /**
@@ -893,12 +788,10 @@ export namespace Components {
     interface IxDatePicker {
         /**
           * Corner style
-          * @default 'rounded'
          */
         "corners": DateTimeCardCorners;
         /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'yyyy/LL/dd'
          */
         "format": string;
         /**
@@ -911,7 +804,6 @@ export namespace Components {
         "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
-          * @default 'Done'
          */
         "i18nDone": string;
         /**
@@ -920,52 +812,39 @@ export namespace Components {
         "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @default ''
          */
         "maxDate": string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @default ''
          */
         "minDate": string;
         /**
           * If true a date-range can be selected (from/to).
-          * @default true
          */
         "range": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
-          * @default false
          */
         "showWeekNumbers": boolean;
-        /**
-          * @default true
-         */
         "standaloneAppearance": boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
          */
         "to": string | undefined;
-        /**
-          * @default DateTime.now().toISO()
-         */
         "today": string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @default 0
          */
         "weekStartIndex": number;
     }
     interface IxDateTimeCard {
         /**
           * Set corners style
-          * @default 'rounded'
          */
         "corners": DateTimeCardCorners1;
         /**
           * set styles
-          * @default true
          */
         "individual": boolean;
         "standaloneAppearance"?: boolean;
@@ -973,7 +852,6 @@ export namespace Components {
     interface IxDatetimePicker {
         /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'yyyy/LL/dd'
          */
         "dateFormat": string;
         /**
@@ -982,13 +860,11 @@ export namespace Components {
         "from"?: string;
         /**
           * Text of date select button
-          * @default 'Done'
          */
         "i18nDone": string;
         /**
           * Top label of time picker
           * @since 3.0.0
-          * @default 'Time'
          */
         "i18nTime": string;
         /**
@@ -1005,34 +881,28 @@ export namespace Components {
         "minDate"?: string;
         /**
           * If true a date-range can be selected (from/to).
-          * @default true
          */
         "range": boolean;
         /**
           * Show hour input
-          * @default true
          */
         "showHour": boolean;
         /**
           * Show minutes input
-          * @default true
          */
         "showMinutes": boolean;
         /**
           * Show seconds input
-          * @default true
          */
         "showSeconds": boolean;
         /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
-          * @default false
          */
         "showTimeReference": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
-          * @default false
          */
         "showWeekNumbers": boolean;
         /**
@@ -1041,7 +911,6 @@ export namespace Components {
         "time"?: string;
         /**
           * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'HH:mm:ss'
          */
         "timeFormat": string;
         /**
@@ -1054,7 +923,6 @@ export namespace Components {
         "to"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @default 0
          */
         "weekStartIndex": number;
     }
@@ -1063,27 +931,22 @@ export namespace Components {
     interface IxDrawer {
         /**
           * Fired in case of an outside click during drawer showed state
-          * @default true
          */
         "closeOnClickOutside": boolean;
         /**
           * Render the drawer with maximum height
-          * @default false
          */
         "fullHeight": boolean;
         /**
           * Max width interpreted as REM
-          * @default 28
          */
         "maxWidth": number;
         /**
           * Min width interpreted as REM
-          * @default 16
          */
         "minWidth": number;
         /**
           * Show or hide the drawer
-          * @default false
          */
         "show": boolean;
         /**
@@ -1093,7 +956,6 @@ export namespace Components {
         "toggleDrawer": (show?: boolean) => Promise<void>;
         /**
           * Width interpreted as REM if not set to 'auto'
-          * @default this.minWidth
          */
         "width": number | 'auto';
     }
@@ -1104,21 +966,14 @@ export namespace Components {
         "anchor"?: ElementReference;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
-          * @default 'both'
          */
         "closeBehavior": CloseBehavior;
-        /**
-          * @default false
-         */
         "discoverAllSubmenus": boolean;
         "discoverSubmenu": () => Promise<void>;
         /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
-        /**
-          * @default false
-         */
         "ignoreRelatedSubmenu": boolean;
         /**
           * Move dropdown along main axis of alignment
@@ -1134,27 +989,20 @@ export namespace Components {
   }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * Placement of the dropdown
-          * @default 'bottom-start'
          */
         "placement": AlignedPlacement;
         /**
           * Position strategy
-          * @default 'fixed'
          */
         "positioningStrategy": 'absolute' | 'fixed';
         /**
           * Show dropdown
-          * @default false
          */
         "show": boolean;
         /**
           * Suppress the automatic placement of the dropdown.
-          * @default false
          */
         "suppressAutomaticPlacement": boolean;
-        /**
-          * @default false
-         */
         "suppressOverflowBehavior": boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
@@ -1168,17 +1016,14 @@ export namespace Components {
     interface IxDropdownButton {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-          * @default 'both'
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
-          * @default false
          */
         "disabled": boolean;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost": boolean;
         /**
@@ -1191,7 +1036,6 @@ export namespace Components {
         "label"?: string;
         /**
           * Outline button
-          * @default false
          */
         "outline": boolean;
         /**
@@ -1200,7 +1044,6 @@ export namespace Components {
         "placement"?: AlignedPlacement;
         /**
           * Button variant
-          * @default 'primary'
          */
         "variant": DropdownButtonVariant;
     }
@@ -1213,36 +1056,27 @@ export namespace Components {
     interface IxDropdownItem {
         /**
           * Whether the item is checked or not. If true a checkmark will mark the item as checked.
-          * @default false
          */
         "checked": boolean;
         /**
           * Disable item and remove event listeners
-          * @default false
          */
         "disabled": boolean;
         "emitItemClick": () => Promise<void>;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Display hover state
-          * @default false
          */
         "hover": boolean;
         /**
           * Icon of dropdown item
          */
         "icon"?: string;
-        /**
-          * @default false
-         */
         "isSubMenu": boolean;
         /**
           * Label of dropdown item
          */
         "label"?: string;
-        /**
-          * @default false
-         */
         "suppressChecked": boolean;
     }
     interface IxDropdownQuickActions {
@@ -1262,7 +1096,6 @@ export namespace Components {
         "icon"?: string;
         /**
           * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
-          * @default 'large'
          */
         "layout": EmptyStateLayout;
         /**
@@ -1273,34 +1106,28 @@ export namespace Components {
     interface IxEventList {
         /**
           * Animate state change transitions. Defaults to 'true'.
-          * @default true
          */
         "animated": boolean;
         /**
           * Display a chevron icon in list items. Defaults to 'false'
-          * @default false
          */
         "chevron": boolean;
         /**
           * Make event-list items more compact
-          * @default false
          */
         "compact": boolean;
         /**
           * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'.
-          * @default 'S'
          */
         "itemHeight": 'S' | 'L' | number;
     }
     interface IxEventListItem {
         /**
           * Show chevron on right side of the event list item
-          * @default false
          */
         "chevron": boolean;
         /**
           * Disable event list item
-          * @default false
          */
         "disabled": boolean;
         /**
@@ -1310,19 +1137,16 @@ export namespace Components {
         "itemColor"?: string;
         /**
           * Show event list item as selected
-          * @default false
          */
         "selected": boolean;
     }
     interface IxExpandingSearch {
         /**
           * If true the search field will fill all available horizontal space of it's parent container when expanded.
-          * @default false
          */
         "fullWidth": boolean;
         /**
           * Button with no background or outline
-          * @default true
          */
         "ghost": boolean;
         /**
@@ -1331,22 +1155,18 @@ export namespace Components {
         "icon"?: string;
         /**
           * Outline button
-          * @default false
          */
         "outline": boolean;
         /**
           * Placeholder text
-          * @default 'Enter text here'
          */
         "placeholder": string;
         /**
           * Default value
-          * @default ''
          */
         "value": string;
         /**
           * button variant
-          * @default 'primary'
          */
         "variant": ButtonVariant1;
     }
@@ -1358,9 +1178,6 @@ export namespace Components {
           * The id of the form element that the label is associated with
          */
         "htmlFor"?: string;
-        /**
-          * @default false
-         */
         "isInvalid": boolean;
         /**
           * A value is required or must be checked for the form to be submittable
@@ -1392,22 +1209,18 @@ export namespace Components {
         "invalidText"?: string;
         /**
           * Is the field component info
-          * @default false
          */
         "isInfo": boolean;
         /**
           * Is the field component invalid
-          * @default false
          */
         "isInvalid": boolean;
         /**
           * Is the field component valid
-          * @default false
          */
         "isValid": boolean;
         /**
           * Is the field component warning
-          * @default false
          */
         "isWarning": boolean;
         /**
@@ -1416,12 +1229,10 @@ export namespace Components {
         "label"?: string;
         /**
           * Show label as required
-          * @default false
          */
         "required": boolean;
         /**
           * Show helper, error, info, warning text as tooltip
-          * @default false
          */
         "showTextAsTooltip": boolean;
         /**
@@ -1436,25 +1247,21 @@ export namespace Components {
     interface IxFilterChip {
         /**
           * If true the filter chip will be in disabled state
-          * @default false
          */
         "disabled": boolean;
         /**
           * If true the filter chip will be in readonly mode
-          * @default false
          */
         "readonly": boolean;
     }
     interface IxFlipTile {
         /**
           * Height interpreted as REM
-          * @default 15.125
          */
         "height": number | 'auto';
         /**
           * Index of the currently visible content
           * @since 3.0.0
-          * @default 0
          */
         "index": number;
         /**
@@ -1463,26 +1270,22 @@ export namespace Components {
         "state"?: FlipTileState;
         /**
           * Width interpreted as REM
-          * @default 16
          */
         "width": number | 'auto';
     }
     interface IxFlipTileContent {
         /**
           * Controls the visibility of the content
-          * @default false
          */
         "contentVisible": boolean;
     }
     interface IxGroup {
         /**
           * Whether the group is collapsed or expanded. Defaults to true.
-          * @default true
          */
         "collapsed": boolean;
         /**
           * Expand the group if the header is clicked
-          * @default false
          */
         "expandOnHeaderClick": boolean;
         /**
@@ -1495,7 +1298,6 @@ export namespace Components {
         "index"?: number;
         /**
           * Whether the group is selected.
-          * @default false
          */
         "selected": boolean;
         /**
@@ -1504,7 +1306,6 @@ export namespace Components {
         "subHeader"?: string;
         /**
           * Prevent header from being selectable
-          * @default false
          */
         "suppressHeaderSelection": boolean;
     }
@@ -1513,7 +1314,6 @@ export namespace Components {
     interface IxGroupItem {
         /**
           * The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise.
-          * @default true
          */
         "focusable": boolean;
         /**
@@ -1530,12 +1330,10 @@ export namespace Components {
         "secondaryText"?: string;
         /**
           * Show selected state
-          * @default false
          */
         "selected": boolean;
         /**
           * Supress the selection of the group
-          * @default false
          */
         "suppressSelection": boolean;
         /**
@@ -1576,12 +1374,10 @@ export namespace Components {
         "a11yLabel"?: string;
         /**
           * Disabled
-          * @default false
          */
         "disabled": boolean;
         /**
           * Button invisible
-          * @default false
          */
         "ghost": boolean;
         /**
@@ -1594,44 +1390,36 @@ export namespace Components {
         "iconColor"?: string;
         /**
           * Loading button
-          * @default false
          */
         "loading": boolean;
         /**
           * Button outline
-          * @default false
          */
         "outline": boolean;
         /**
           * Button in oval shape
-          * @default false
          */
         "oval": boolean;
         /**
           * Size of icon in button
-          * @default '24'
          */
         "size": '24' | '16' | '12';
         /**
           * Type of the button
-          * @default 'button'
          */
         "type": 'button' | 'submit';
         /**
           * Variant of button
-          * @default 'secondary'
          */
         "variant": IconButtonVariant;
     }
     interface IxIconToggleButton {
         /**
           * Disable the button
-          * @default false
          */
         "disabled": boolean;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost": boolean;
         /**
@@ -1640,33 +1428,27 @@ export namespace Components {
         "icon"?: string;
         /**
           * Loading button
-          * @default false
          */
         "loading": boolean;
         /**
           * Outline button
-          * @default false
          */
         "outline": boolean;
         /**
           * Button in oval shape
           * @since 3.1.0
-          * @default false
          */
         "oval": boolean;
         /**
           * Show button as pressed
-          * @default false
          */
         "pressed": boolean;
         /**
           * Size of icon in button
-          * @default '24'
          */
         "size": '24' | '16' | '12';
         /**
           * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
-          * @default 'secondary'
          */
         "variant": ButtonVariant1;
     }
@@ -1680,7 +1462,6 @@ export namespace Components {
         "allowedCharactersPattern"?: string;
         /**
           * Specifies whether the text field is disabled.
-          * @default false
          */
         "disabled": boolean;
         /**
@@ -1739,12 +1520,10 @@ export namespace Components {
         "placeholder"?: string;
         /**
           * Specifies whether the text field is readonly.
-          * @default false
          */
         "readonly": boolean;
         /**
           * Specifies whether the text field is required.
-          * @default false
          */
         "required": boolean;
         /**
@@ -1753,7 +1532,6 @@ export namespace Components {
         "showTextAsTooltip"?: boolean;
         /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
-          * @default 'text'
          */
         "type": 'text' | 'email' | 'password' | 'tel' | 'url';
         /**
@@ -1762,7 +1540,6 @@ export namespace Components {
         "validText"?: string;
         /**
           * The value of the text field.
-          * @default ''
          */
         "value": string;
         /**
@@ -1787,7 +1564,6 @@ export namespace Components {
         "label": string;
         /**
           * Optional key value label position - 'top' or 'left'
-          * @default 'top'
          */
         "labelPosition": KeyValueLabelPosition;
         /**
@@ -1798,19 +1574,12 @@ export namespace Components {
     interface IxKeyValueList {
         /**
           * Optional striped key value list style
-          * @default false
          */
         "striped": boolean;
     }
     interface IxKpi {
         "label"?: string;
-        /**
-          * @default 'horizontal'
-         */
         "orientation": 'horizontal' | 'vertical';
-        /**
-          * @default 'neutral'
-         */
         "state": 'neutral' | 'warning' | 'alarm';
         "unit"?: string;
         "value"?: string | number;
@@ -1818,7 +1587,6 @@ export namespace Components {
     interface IxLayoutAuto {
         /**
           * Defines the layout of the form.
-          * @default [     { minWidth: '0', columns: 1 },     { minWidth: '48em', columns: 2 },   ]
          */
         "layout": {
     minWidth: string;
@@ -1828,29 +1596,24 @@ export namespace Components {
     interface IxLayoutGrid {
         /**
           * Overwrite the default number of columns. Choose between 2 and 12 columns.
-          * @default 12
          */
         "columns": number;
         /**
           * Grid gap
-          * @default '24'
          */
         "gap": '8' | '12' | '16' | '24';
         /**
           * The grid will not have any horizontal padding
-          * @default false
          */
         "noMargin": boolean;
     }
     interface IxLinkButton {
         /**
           * Disable the link button
-          * @default false
          */
         "disabled": boolean;
         /**
           * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
-          * @default '_self'
          */
         "target": '_self' | '_blank' | '_parent' | '_top';
         /**
@@ -1870,7 +1633,6 @@ export namespace Components {
         "closeOverlay": () => Promise<void>;
         /**
           * Hide the sidebar context menu button when set to true
-          * @default true
          */
         "hideContextMenu": boolean;
         /**
@@ -1914,75 +1676,48 @@ export namespace Components {
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
-          * @default ''
          */
         "applicationDescription": string;
         /**
           * Should only be set if you use ix-menu standalone
          */
         "applicationName"?: string;
-        /**
-          * @default false
-         */
         "enableMapExpand": boolean;
         /**
           * Is settings tab is visible
-          * @default true
          */
         "enableSettings": boolean;
         /**
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
-          * @default false
          */
         "enableToggleTheme": boolean;
         /**
           * Toggle the expand state of the menu
-          * @default false
          */
         "expand": boolean;
-        /**
-          * @default 'Collapse'
-         */
         "i18nCollapse": string;
-        /**
-          * @default ' Expand'
-         */
         "i18nExpand": string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
-          * @default 'Expand sidebar'
          */
         "i18nExpandSidebar": string;
-        /**
-          * @default 'About & legal information'
-         */
         "i18nLegal": string;
-        /**
-          * @default 'Settings'
-         */
         "i18nSettings": string;
-        /**
-          * @default 'Toggle theme'
-         */
         "i18nToggleTheme": string;
         /**
           * Menu stays pinned to the left
-          * @default false
          */
         "pinned": boolean;
         /**
           * Is about tab visible
-          * @default false
          */
         "showAbout": boolean;
         /**
           * Is settings tab visible
-          * @default false
          */
         "showSettings": boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
-          * @default false
          */
         "startExpanded": boolean;
         /**
@@ -2013,12 +1748,8 @@ export namespace Components {
         "activeTabLabel"?: string;
         /**
           * Content of the header
-          * @default 'About & legal information'
          */
         "label": string;
-        /**
-          * @default false
-         */
         "show": boolean;
     }
     interface IxMenuAboutItem {
@@ -2032,13 +1763,7 @@ export namespace Components {
           * Subtitle of the about news
          */
         "aboutItemLabel"?: string;
-        /**
-          * @default false
-         */
         "expanded": boolean;
-        /**
-          * @default 'Show more'
-         */
         "i18nShowMore": string;
         /**
           * Title of the about news
@@ -2046,12 +1771,10 @@ export namespace Components {
         "label"?: string;
         /**
           * Bottom offset
-          * @default 0
          */
         "offsetBottom": number;
         /**
           * Show about news
-          * @default false
          */
         "show": boolean;
     }
@@ -2062,7 +1785,6 @@ export namespace Components {
         "bottom"?: string;
         /**
           * Use for translation
-          * @default 'Logout'
          */
         "i18nLogout": string;
         /**
@@ -2075,7 +1797,6 @@ export namespace Components {
         "initials"?: string;
         /**
           * Control the visibility of the logout button
-          * @default true
          */
         "showLogoutButton": boolean;
         /**
@@ -2115,39 +1836,32 @@ export namespace Components {
         "breakpoint"?: Breakpoint;
         /**
           * Whether the menu expand icon displays the expanded state or not
-          * @default false
          */
         "expanded": boolean;
         /**
           * Accessibility label for the menu expand icon (MANDATORY)
-          * @default 'Expand'
          */
         "ixAriaLabel": string;
         /**
           * Display as pinned
-          * @default false
          */
         "pinned": boolean;
     }
     interface IxMenuItem {
         /**
           * State to display active
-          * @default false
          */
         "active": boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @default false
          */
         "bottom": boolean;
         /**
           * Disable tab and remove event handlers
-          * @default false
          */
         "disabled": boolean;
         /**
           * Move the Tab to a top position.
-          * @default false
          */
         "home": boolean;
         /**
@@ -2155,9 +1869,6 @@ export namespace Components {
           * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon"?: string;
-        /**
-          * @default false
-         */
         "isCategory": boolean;
         /**
           * Label of the menu item. Will also be used as tooltip text
@@ -2175,12 +1886,8 @@ export namespace Components {
         "activeTabLabel"?: string;
         /**
           * Label of first tab
-          * @default 'Settings'
          */
         "label": string;
-        /**
-          * @default false
-         */
         "show": boolean;
     }
     interface IxMenuSettingsItem {
@@ -2192,13 +1899,11 @@ export namespace Components {
     interface IxMessageBar {
         /**
           * If true, close button is enabled and alert can be dismissed by the user
-          * @default true
          */
         "dismissible": boolean;
         /**
           * Specifies the type of the alert.
           * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
-          * @default 'info'
          */
         "type": | 'alarm'
     | 'danger'
@@ -2212,12 +1917,10 @@ export namespace Components {
     interface IxModal {
         /**
           * Should the modal be animated
-          * @default true
          */
         "animation": boolean;
         /**
           * Show a backdrop behind the modal dialog
-          * @default true
          */
         "backdrop": boolean;
         /**
@@ -2226,7 +1929,6 @@ export namespace Components {
         "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
-          * @default false
          */
         "centered": boolean;
         /**
@@ -2235,12 +1937,10 @@ export namespace Components {
         "closeModal": <T = any>(reason: T) => Promise<void>;
         /**
           * Dismiss modal on backdrop click
-          * @default false
          */
         "closeOnBackdropClick": boolean;
         /**
           * If set to true the modal can be closed by pressing the Escape key
-          * @default true
          */
         "closeOnEscape": boolean;
         /**
@@ -2253,7 +1953,6 @@ export namespace Components {
         "showModal": () => Promise<void>;
         /**
           * Modal size
-          * @default '360'
          */
         "size": IxModalSize;
     }
@@ -2264,7 +1963,6 @@ export namespace Components {
     interface IxModalHeader {
         /**
           * Hide the close button
-          * @default false
          */
         "hideClose": boolean;
         /**
@@ -2288,7 +1986,6 @@ export namespace Components {
         "allowedCharactersPattern"?: string;
         /**
           * Disables the input field
-          * @default false
          */
         "disabled": boolean;
         /**
@@ -2343,12 +2040,10 @@ export namespace Components {
         "placeholder"?: string;
         /**
           * Indicates if the field is read-only
-          * @default false
          */
         "readonly": boolean;
         /**
           * Indicates if the field is required
-          * @default false
          */
         "required": boolean;
         /**
@@ -2370,7 +2065,6 @@ export namespace Components {
         "validText"?: string;
         /**
           * The value of the input field
-          * @default 0
          */
         "value": number;
         /**
@@ -2381,59 +2075,48 @@ export namespace Components {
     interface IxPagination {
         /**
           * Advanced mode
-          * @default false
          */
         "advanced": boolean;
         /**
           * Total number of pages
-          * @default 0
          */
         "count": number;
         /**
           * /**   i18n
-          * @default 'Items'
          */
         "i18nItems": string;
         /**
           * i18n
-          * @default 'of'
          */
         "i18nOf": string;
         /**
           * i18n
-          * @default 'Page'
          */
         "i18nPage": string;
         /**
           * Number of items shown at once. Can only be changed in advaced mode.
-          * @default 15
          */
         "itemCount": number;
         /**
           * Zero based index of currently selected page
-          * @default 0
          */
         "selectedPage": number;
         /**
           * Show item count in advanced mode
-          * @default true
          */
         "showItemCount": boolean;
     }
     interface IxPane {
         /**
           * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
-          * @default false
          */
         "borderless": boolean;
         /**
           * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
-          * @default 'top'
          */
         "composition": Composition;
         /**
           * State of the pane
-          * @default false
          */
         "expanded": boolean;
         /**
@@ -2442,24 +2125,16 @@ export namespace Components {
         "heading"?: string;
         /**
           * Define if the pane should have a collapsed state
-          * @default false
          */
         "hideOnCollapse": boolean;
         /**
           * Name of the icon
          */
         "icon"?: string;
-        /**
-          * @default false
-         */
         "ignoreLayoutSettings": boolean;
-        /**
-          * @default false
-         */
         "isMobile": boolean;
         /**
           * The maximum size of the sidebar, when it is expanded
-          * @default '240px'
          */
         "size": | '240px'
     | '320px'
@@ -2470,31 +2145,26 @@ export namespace Components {
     | '50%';
         /**
           * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
-          * @default 'inline'
          */
         "variant": 'floating' | 'inline';
     }
     interface IxPaneLayout {
         /**
           * Set the default border state for all panes in the layout
-          * @default false
          */
         "borderless": boolean;
         /**
           * Choose the layout of the panes. When set to 'full-vertical' the vertical panes (left, right) will get the full height. When set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.
-          * @default 'full-vertical'
          */
         "layout": 'full-vertical' | 'full-horizontal';
         /**
           * Set the default variant for all panes in the layout
-          * @default 'inline'
          */
         "variant": 'floating' | 'inline';
     }
     interface IxPill {
         /**
           * Align pill content left
-          * @default false
          */
         "alignLeft": boolean;
         /**
@@ -2507,7 +2177,6 @@ export namespace Components {
         "icon"?: string;
         /**
           * Show pill as outline
-          * @default false
          */
         "outline": boolean;
         /**
@@ -2517,12 +2186,10 @@ export namespace Components {
         /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
-          * @default false
          */
         "tooltipText": string | boolean;
         /**
           * Pill variant
-          * @default 'primary'
          */
         "variant": | 'primary'
     | 'alarm'
@@ -2536,7 +2203,6 @@ export namespace Components {
     interface IxPushCard {
         /**
           * Collapse the card
-          * @default true
          */
         "collapse": boolean;
         /**
@@ -2557,7 +2223,6 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card variant
-          * @default 'outline'
          */
         "variant": PushCardVariant;
     }
@@ -2567,12 +2232,10 @@ export namespace Components {
     interface IxRadio {
         /**
           * Checked state of the radio component
-          * @default false
          */
         "checked": boolean;
         /**
           * Disabled state of the radio component
-          * @default false
          */
         "disabled": boolean;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
@@ -2588,7 +2251,6 @@ export namespace Components {
         /**
           * Requires the radio component and its group to be checked for the form to be submittable
           * @since 3.0.0
-          * @default false
          */
         "required": boolean;
         /**
@@ -2602,7 +2264,6 @@ export namespace Components {
     interface IxRadioGroup {
         /**
           * Alignment of the radio buttons in the group
-          * @default 'column'
          */
         "direction": 'column' | 'row';
         "hasValidValue": () => Promise<boolean>;
@@ -2625,7 +2286,6 @@ export namespace Components {
         "label"?: string;
         /**
           * Required state of the checkbox component
-          * @default false
          */
         "required"?: boolean;
         /**
@@ -2653,12 +2313,10 @@ export namespace Components {
     interface IxSelect {
         /**
           * Show clear button
-          * @default false
          */
         "allowClear": boolean;
         /**
           * If true the select will be in disabled state
-          * @default false
          */
         "disabled": boolean;
         /**
@@ -2671,7 +2329,6 @@ export namespace Components {
         "dropdownWidth"?: string;
         /**
           * Select is extendable
-          * @default false
          */
         "editable": boolean;
         /**
@@ -2690,27 +2347,22 @@ export namespace Components {
         "helperText"?: string;
         /**
           * Hide list header
-          * @default false
          */
         "hideListHeader": boolean;
         /**
           * Information inside of dropdown if no items where found with current filter text
-          * @default 'No matches'
          */
         "i18nNoMatches": string;
         /**
           * Input field placeholder
-          * @default 'Select an option'
          */
         "i18nPlaceholder": string;
         /**
           * Input field placeholder for editable select
-          * @default 'Type of select option'
          */
         "i18nPlaceholderEditable": string;
         /**
           * Select list header
-          * @default 'Select an option'
          */
         "i18nSelectListHeader": string;
         /**
@@ -2731,7 +2383,6 @@ export namespace Components {
         "label"?: string;
         /**
           * Selection mode
-          * @default 'single'
          */
         "mode": 'single' | 'multiple';
         /**
@@ -2740,12 +2391,10 @@ export namespace Components {
         "name"?: string;
         /**
           * If true the select will be in readonly mode
-          * @default false
          */
         "readonly": boolean;
         /**
           * A Boolean attribute indicating that an option with a non-empty string value must be selected
-          * @default false
          */
         "required": boolean;
         /**
@@ -2758,7 +2407,6 @@ export namespace Components {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
          */
         "value": string | string[];
         /**
@@ -2768,9 +2416,6 @@ export namespace Components {
     }
     interface IxSelectItem {
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
-        /**
-          * @default false
-         */
         "hover": boolean;
         /**
           * Displayed name of the item
@@ -2782,7 +2427,6 @@ export namespace Components {
         "onItemClick": (event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>;
         /**
           * Flag indicating whether the item is selected
-          * @default false
          */
         "selected": boolean;
         /**
@@ -2793,7 +2437,6 @@ export namespace Components {
     interface IxSlider {
         /**
           * Show control as disabled
-          * @default false
          */
         "disabled": boolean;
         /**
@@ -2806,66 +2449,52 @@ export namespace Components {
         "marker"?: SliderMarker;
         /**
           * Maximum slider value
-          * @default 100
          */
         "max": number;
         /**
           * Minimum slider value
-          * @default 0
          */
         "min": number;
         /**
           * Legal number intervals
           * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
-          * @default 1
          */
         "step": number;
         /**
           * Show a trace line
-          * @default false
          */
         "trace": boolean;
         /**
           * Define the start point of the trace line
-          * @default 0
          */
         "traceReference": number;
         /**
           * Current value of the slider
-          * @default 0
          */
         "value": number;
     }
     interface IxSpinner {
-        /**
-          * @default false
-         */
         "hideTrack": boolean;
         /**
           * Size of spinner
-          * @default 'medium'
          */
         "size": 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
-          * @default 'secondary'
          */
         "variant": 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-          * @default 'both'
          */
         "closeBehavior": CloseBehavior;
         /**
           * Disabled
-          * @default false
          */
         "disabled": boolean;
         /**
           * Button invisible
-          * @default false
          */
         "ghost": boolean;
         /**
@@ -2878,12 +2507,10 @@ export namespace Components {
         "label"?: string;
         /**
           * Button outline variant
-          * @default false
          */
         "outline": boolean;
         /**
           * Placement of the dropdown
-          * @default 'bottom-start'
          */
         "placement": AlignedPlacement;
         /**
@@ -2892,7 +2519,6 @@ export namespace Components {
         "splitIcon"?: string;
         /**
           * Color variant of button
-          * @default 'primary'
          */
         "variant": SplitButtonVariant;
     }
@@ -2903,64 +2529,52 @@ export namespace Components {
         "counter"?: number;
         /**
           * Set disabled tab
-          * @default false
          */
         "disabled": boolean;
         /**
           * Set icon only tab
-          * @default false
          */
         "icon": boolean;
         /**
           * Set layout width style
-          * @default 'auto'
          */
         "layout": 'auto' | 'stretched';
         /**
           * Set selected placement
-          * @default 'bottom'
          */
         "placement": 'bottom' | 'top';
         /**
           * Set rounded tab
-          * @default false
          */
         "rounded": boolean;
         /**
           * Set selected tab
-          * @default false
          */
         "selected": boolean;
         /**
           * Set small size tab
-          * @default false
          */
         "small": boolean;
     }
     interface IxTabs {
         /**
           * Set layout width style
-          * @default 'auto'
          */
         "layout": 'auto' | 'stretched';
         /**
           * Set placement style
-          * @default 'bottom'
          */
         "placement": 'bottom' | 'top';
         /**
           * Set rounded tabs
-          * @default false
          */
         "rounded": boolean;
         /**
           * Set default selected tab by index
-          * @default 0
          */
         "selected": number;
         /**
           * Set tab items to small size
-          * @default false
          */
         "small": boolean;
     }
@@ -2970,7 +2584,6 @@ export namespace Components {
     interface IxTextarea {
         /**
           * Determines if the textarea field is disabled.
-          * @default false
          */
         "disabled": boolean;
         /**
@@ -3021,17 +2634,14 @@ export namespace Components {
         "placeholder"?: string;
         /**
           * Determines if the textarea field is readonly.
-          * @default false
          */
         "readonly": boolean;
         /**
           * Determines if the textarea field is required.
-          * @default false
          */
         "required": boolean;
         /**
           * Determines the resize behavior of the textarea field. Resizing can be enabled in one direction, both directions or completely disabled.
-          * @default 'both'
          */
         "resizeBehavior": TextareaResizeBehavior;
         /**
@@ -3060,7 +2670,6 @@ export namespace Components {
         "validText"?: string;
         /**
           * The value of the textarea field.
-          * @default ''
          */
         "value": string;
         /**
@@ -3071,19 +2680,16 @@ export namespace Components {
     interface IxTile {
         /**
           * Size of the tile - one of 'small', 'medium' or 'large'
-          * @default 'medium'
          */
         "size": 'small' | 'medium' | 'big';
     }
     interface IxTimePicker {
         /**
           * Corner style
-          * @default 'rounded'
          */
         "corners": TimePickerCorners;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'TT'
          */
         "format": string;
         /**
@@ -3092,37 +2698,30 @@ export namespace Components {
         "getCurrentTime": () => Promise<string | undefined>;
         /**
           * Show hour input
-          * @default true
          */
         "showHour": boolean;
         /**
           * Show minutes input
-          * @default true
          */
         "showMinutes": boolean;
         /**
           * Show seconds input
-          * @default true
          */
         "showSeconds": boolean;
         /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
-          * @default true
          */
         "standaloneAppearance": boolean;
         /**
           * Text of date select button
-          * @default 'Done'
          */
         "textSelectTime": string;
         /**
           * Text for top label
-          * @default 'Time'
          */
         "textTime": string;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
          */
         "time": string;
         /**
@@ -3133,12 +2732,10 @@ export namespace Components {
     interface IxToast {
         /**
           * Autoclose behavior
-          * @default true
          */
         "autoClose": boolean;
         /**
           * Autoclose title after delay
-          * @default 5000
          */
         "autoCloseDelay": number;
         /**
@@ -3155,22 +2752,12 @@ export namespace Components {
         "toastTitle"?: string;
         /**
           * Toast type
-          * @default 'info'
          */
         "type": ToastType;
     }
     interface IxToastContainer {
-        /**
-          * @default 'toast-container'
-         */
         "containerClass": string;
-        /**
-          * @default 'toast-container'
-         */
         "containerId": string;
-        /**
-          * @default 'bottom-right'
-         */
         "position": 'bottom-right' | 'top-right';
         /**
           * Display a toast message
@@ -3184,24 +2771,20 @@ export namespace Components {
     interface IxToggle {
         /**
           * Whether the slide-toggle element is checked or not.
-          * @default false
          */
         "checked": boolean;
         /**
           * Whether the slide-toggle element is disabled or not.
-          * @default false
          */
         "disabled": boolean;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * Hide `on` and `off` text
-          * @default false
          */
         "hideText": boolean;
         /**
           * If true the control is in indeterminate state
-          * @default false
          */
         "indeterminate": boolean;
         "isTouched": () => Promise<boolean>;
@@ -3211,39 +2794,32 @@ export namespace Components {
         "name"?: string;
         /**
           * Required state of the checkbox component.  If true, checkbox needs to be checked to be valid
-          * @default false
          */
         "required": boolean;
         /**
           * Text for indeterminate state
-          * @default 'Mixed'
          */
         "textIndeterminate": string;
         /**
           * Text for off state
-          * @default 'Off'
          */
         "textOff": string;
         /**
           * Text for on state
-          * @default 'On'
          */
         "textOn": string;
         /**
           * Value of the checkbox component
-          * @default 'on'
          */
         "value": string;
     }
     interface IxToggleButton {
         /**
           * Disable the button
-          * @default false
          */
         "disabled": boolean;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost": boolean;
         /**
@@ -3252,52 +2828,37 @@ export namespace Components {
         "icon"?: string;
         /**
           * Loading button
-          * @default false
          */
         "loading": boolean;
         /**
           * Outline button
-          * @default false
          */
         "outline": boolean;
         /**
           * Show button as pressed
-          * @default false
          */
         "pressed": boolean;
         /**
           * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
-          * @default 'secondary'
          */
         "variant": ButtonVariant1;
     }
     interface IxTooltip {
-        /**
-          * @default false
-         */
         "animationFrame": boolean;
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
         "for"?: ElementReference | ElementReference[];
-        /**
-          * @default 50
-         */
         "hideDelay": number;
         "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
-          * @default false
          */
         "interactive": boolean;
         /**
           * Initial placement of the tooltip. If the selected placement doesn't have enough space, the tooltip will be repositioned to another location.
-          * @default 'top'
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
-        /**
-          * @default 0
-         */
         "showDelay": number;
         "showTooltip": (anchorElement: Element) => Promise<void>;
         /**
@@ -3308,12 +2869,10 @@ export namespace Components {
     interface IxTree {
         /**
           * Selection and collapsed state management
-          * @default {}
          */
         "context": TreeContext;
         /**
           * Tree model
-          * @default {}
          */
         "model": TreeModel<any>;
         /**
@@ -3343,7 +2902,6 @@ export namespace Components {
         "context"?: TreeItemContext;
         /**
           * Has tree item children
-          * @default false
          */
         "hasChildren": boolean;
         /**
@@ -3354,7 +2912,6 @@ export namespace Components {
     interface IxTypography {
         /**
           * Display text bold
-          * @default false
          */
         "bold": boolean;
         /**
@@ -3367,7 +2924,6 @@ export namespace Components {
         "textColor"?: TypographyColors;
         /**
           * Text decoration
-          * @default 'none'
          */
         "textDecoration": TextDecoration;
     }
@@ -3378,37 +2934,30 @@ export namespace Components {
         "accept"?: string;
         /**
           * Disable all input events
-          * @default false
          */
         "disabled": boolean;
         /**
           * Text for disabled state
-          * @default 'File upload currently not possible.'
          */
         "i18nUploadDisabled": string;
         /**
           * Label for upload file button
-          * @default 'Upload file…'
          */
         "i18nUploadFile": string;
         /**
           * Will be used by state = UploadFileState.LOADING
-          * @default 'Checking files…'
          */
         "loadingText": string;
         /**
           * Whether the text should wrap to more than one line
-          * @default false
          */
         "multiline": boolean;
         /**
           * If multiple is true the user can drop or select multiple files
-          * @default false
          */
         "multiple": boolean;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
-          * @default '+ Drag files here or…'
          */
         "selectFileText": string;
         /**
@@ -3418,17 +2967,14 @@ export namespace Components {
         "setFilesToUpload": (obj: any) => Promise<void>;
         /**
           * After a file is uploaded you can set the upload component to a defined state
-          * @default UploadFileState.SELECT_FILE
          */
         "state": UploadFileState;
         /**
           * Will be used by state = UploadFileState.UPLOAD_FAILED
-          * @default 'Upload failed. Please try again.'
          */
         "uploadFailedText": string;
         /**
           * Will be used by state = UploadFileState.UPLOAD_SUCCESSED
-          * @default 'Upload successful'
          */
         "uploadSuccessText": string;
     }
@@ -3442,61 +2988,50 @@ export namespace Components {
         "message"?: string;
         /**
           * Placement of the tooltip
-          * @default 'top'
          */
         "placement": Side;
         /**
           * Suppress the automatic placement of the dropdown.
-          * @default false
          */
         "suppressAutomaticPlacement": boolean;
     }
     interface IxWorkflowStep {
         /**
           * Activate navigation click
-          * @default false
          */
         "clickable": boolean;
         /**
           * Set disabled
-          * @default false
          */
         "disabled": boolean;
         /**
           * Activate navigation click
-          * @default 'undefined'
          */
         "position": 'first' | 'last' | 'single' | 'undefined';
         /**
           * Set selected
-          * @default false
          */
         "selected": boolean;
         /**
           * Set status
-          * @default 'open'
          */
         "status": 'open' | 'success' | 'done' | 'warning' | 'error';
         /**
           * Select orientation
-          * @default false
          */
         "vertical": boolean;
     }
     interface IxWorkflowSteps {
         /**
           * Activate navigation click
-          * @default false
          */
         "clickable": boolean;
         /**
           * Activate navigation click
-          * @default 0
          */
         "selectedIndex": number;
         /**
           * Select orientation
-          * @default false
          */
         "vertical": boolean;
     }
@@ -5298,12 +4833,10 @@ declare namespace LocalJSX {
         "heading"?: string;
         /**
           * Card icon
-          * @default undefined
          */
         "icon"?: string | undefined;
         /**
           * Card selection
-          * @default false
          */
         "selected"?: boolean;
         /**
@@ -5312,7 +4845,6 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card variant
-          * @default 'outline'
          */
         "variant"?: ActionCardVariant;
     }
@@ -5323,7 +4855,6 @@ declare namespace LocalJSX {
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
           * Supported layouts
-          * @default ['sm', 'md', 'lg']
          */
         "breakpoints"?: Breakpoint[];
         /**
@@ -5336,7 +4867,6 @@ declare namespace LocalJSX {
         "theme"?: IxTheme;
         /**
           * Use the system appearance dark or light
-          * @default false
          */
         "themeSystemAppearance"?: boolean;
     }
@@ -5356,7 +4886,6 @@ declare namespace LocalJSX {
         "onOpenAppSwitch"?: (event: IxApplicationHeaderCustomEvent<void>) => void;
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
-          * @default false
          */
         "showMenu"?: boolean;
     }
@@ -5391,7 +4920,6 @@ declare namespace LocalJSX {
         /**
           * Supported layouts
           * @example ['sm', 'md']
-          * @default ['sm', 'md', 'lg']
          */
         "breakpoints"?: Breakpoint[];
         /**
@@ -5400,14 +4928,12 @@ declare namespace LocalJSX {
         "forceBreakpoint"?: Breakpoint | undefined;
         /**
           * Hide application header. Will disable responsive feature of basic navigation.
-          * @default false
          */
         "hideHeader"?: boolean;
     }
     interface IxBlind {
         /**
           * Collapsed state
-          * @default false
          */
         "collapsed"?: boolean;
         /**
@@ -5428,24 +4954,20 @@ declare namespace LocalJSX {
         "sublabel"?: string;
         /**
           * Blind variant
-          * @default 'filled'
          */
         "variant"?: BlindVariant;
     }
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @default 'previous'
          */
         "ariaLabelPreviousButton"?: string;
         /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
-          * @default true
          */
         "ghost"?: boolean;
         /**
           * Items will be accessible through a dropdown
-          * @default []
          */
         "nextItems"?: string[];
         /**
@@ -5458,45 +4980,28 @@ declare namespace LocalJSX {
         "onNextClick"?: (event: IxBreadcrumbCustomEvent<{ event: UIEvent; item: string }>) => void;
         /**
           * Excess items will get hidden inside of dropdown
-          * @default 9
          */
         "visibleItemCount"?: number;
     }
     interface IxBreadcrumbItem {
-        /**
-          * @default true
-         */
         "ghost"?: boolean;
         /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
-        /**
-          * @default false
-         */
         "isDropdownTrigger"?: boolean;
         /**
           * Breadcrumb label
          */
         "label"?: string;
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
-        /**
-          * @default true
-         */
         "showChevron"?: boolean;
-        /**
-          * @default true
-         */
         "visible"?: boolean;
     }
     interface IxButton {
-        /**
-          * @default 'center'
-         */
         "alignment"?: 'center' | 'start';
         /**
           * Disable the button
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -5506,54 +5011,43 @@ declare namespace LocalJSX {
         "form"?: string;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost"?: boolean;
         /**
           * Icon name
          */
         "icon"?: string;
-        /**
-          * @default '24'
-         */
         "iconSize"?: '12' | '16' | '24';
         /**
           * Loading button
-          * @default false
          */
         "loading"?: boolean;
         /**
           * Outline button
-          * @default false
          */
         "outline"?: boolean;
         /**
           * Type of the button
-          * @default 'button'
          */
         "type"?: 'button' | 'submit';
         /**
           * Button variant
-          * @default 'primary'
          */
         "variant"?: ButtonVariant;
     }
     interface IxCard {
         /**
           * Show card in selected state
-          * @default false
          */
         "selected"?: boolean;
         /**
           * Card variant
-          * @default 'outline'
          */
         "variant"?: CardVariant;
     }
     interface IxCardAccordion {
         /**
           * Collapse the card
-          * @default false
          */
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
@@ -5563,22 +5057,18 @@ declare namespace LocalJSX {
     interface IxCardList {
         /**
           * Collapse the list
-          * @default false
          */
         "collapse"?: boolean;
         /**
           * Hide the show all button
-          * @default false
          */
         "hideShowAll"?: boolean;
         /**
           * i18n More cards available
-          * @default 'There are more cards available'
          */
         "i18nMoreCards"?: string;
         /**
           * i18n Show all button
-          * @default 'Show all'
          */
         "i18nShowAll"?: string;
         /**
@@ -5587,12 +5077,10 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * List style
-          * @default 'stack'
          */
         "listStyle"?: 'stack' | 'scroll';
         /**
           * Maximal visible cards
-          * @default 12
          */
         "maxVisibleCards"?: number;
         /**
@@ -5617,7 +5105,6 @@ declare namespace LocalJSX {
         "showAllCount"?: number;
         /**
           * Suppress the overflow handling of child elements
-          * @default false
          */
         "suppressOverflowHandling"?: boolean;
     }
@@ -5635,7 +5122,6 @@ declare namespace LocalJSX {
   };
         /**
           * If true the filter will be in disabled state
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -5644,12 +5130,10 @@ declare namespace LocalJSX {
         "filterState"?: FilterState;
         /**
           * Allows to hide the icon inside the text input. Defaults to false
-          * @default false
          */
         "hideIcon"?: boolean;
         /**
           * i18n
-          * @default 'Filter by text'
          */
         "i18nPlainText"?: string;
         /**
@@ -5658,12 +5142,10 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * i18n
-          * @default 'Categories'
          */
         "labelCategories"?: string;
         /**
           * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
-          * @default {}
          */
         "nonSelectableCategories"?: {
     [id: string]: string;
@@ -5690,12 +5172,10 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         /**
           * If true the filter will be in readonly mode
-          * @default false
          */
         "readonly"?: boolean;
         /**
           * If set to true, allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
-          * @default true
          */
         "repeatCategories"?: boolean;
         /**
@@ -5706,9 +5186,6 @@ declare namespace LocalJSX {
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions"?: string[];
-        /**
-          * @default true
-         */
         "tmpDisableScrollIntoView"?: boolean;
     }
     /**
@@ -5717,17 +5194,14 @@ declare namespace LocalJSX {
     interface IxCheckbox {
         /**
           * Checked state of the checkbox component
-          * @default false
          */
         "checked"?: boolean;
         /**
           * Disabled state of the checkbox component
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Indeterminate state of the checkbox component
-          * @default false
          */
         "indeterminate"?: boolean;
         /**
@@ -5752,12 +5226,10 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxCheckboxCustomEvent<string>) => void;
         /**
           * Required state of the checkbox component.  If true, checkbox needs to be checked to be valid
-          * @default false
          */
         "required"?: boolean;
         /**
           * Value of the checkbox component
-          * @default 'on'
          */
         "value"?: string;
     }
@@ -5767,7 +5239,6 @@ declare namespace LocalJSX {
     interface IxCheckboxGroup {
         /**
           * Alignment of the checkboxes in the group
-          * @default 'column'
          */
         "direction"?: 'row' | 'column';
         /**
@@ -5786,13 +5257,9 @@ declare namespace LocalJSX {
           * Label for the checkbox group
          */
         "label"?: string;
-        /**
-          * @default false
-         */
         "required"?: boolean;
         /**
           * Show helper, info, warning, error and valid text as tooltip
-          * @default false
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -5807,7 +5274,6 @@ declare namespace LocalJSX {
     interface IxChip {
         /**
           * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
-          * @default true
          */
         "active"?: boolean;
         /**
@@ -5820,7 +5286,6 @@ declare namespace LocalJSX {
         "chipColor"?: string | undefined;
         /**
           * Show close icon
-          * @default false
          */
         "closable"?: boolean;
         /**
@@ -5833,18 +5298,15 @@ declare namespace LocalJSX {
         "onCloseChip"?: (event: IxChipCustomEvent<any>) => void;
         /**
           * Show chip with outline style
-          * @default false
          */
         "outline"?: boolean;
         /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
-          * @default false
          */
         "tooltipText"?: string | boolean;
         /**
           * Chip variant
-          * @default 'primary'
          */
         "variant"?: | 'primary'
     | 'alarm'
@@ -5878,12 +5340,10 @@ declare namespace LocalJSX {
     interface IxContentHeader {
         /**
           * Display a back button
-          * @default false
          */
         "hasBackButton"?: boolean;
         /**
           * Subtitle of Header
-          * @default undefined
          */
         "headerSubtitle"?: string | undefined;
         /**
@@ -5896,7 +5356,6 @@ declare namespace LocalJSX {
         "onBackButtonClick"?: (event: IxContentHeaderCustomEvent<void>) => void;
         /**
           * Variant of content header
-          * @default 'primary'
          */
         "variant"?: ContentHeaderVariant;
     }
@@ -5931,7 +5390,6 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * A value is required or must be checked for the form to be submittable
-          * @default false
          */
         "required"?: boolean;
         /**
@@ -5950,58 +5408,47 @@ declare namespace LocalJSX {
     interface IxDateDropdown {
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
-          * @default true
          */
         "customRangeAllowed"?: boolean;
         /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
-          * @default 'custom'
          */
         "dateRangeId"?: string;
         /**
           * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
-          * @default []
          */
         "dateRangeOptions"?: DateDropdownOption[];
         /**
           * Disable the button that opens the dropdown containing the date picker.
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Date format string. See
           * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @default 'yyyy/LL/dd'
          */
         "format"?: string;
         /**
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
-          * @default ''
          */
         "from"?: string;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost"?: boolean;
         /**
           * Text for custom dropdown item. Will be used for translation.
-          * @default 'Custom...'
          */
         "i18nCustomItem"?: string;
         /**
           * Text for the done button. Will be used for translation.
-          * @default 'Done'
          */
         "i18nDone"?: string;
         /**
           * Text for the done button. Will be used for translation.
-          * @default 'No range set'
          */
         "i18nNoRange"?: string;
         /**
           * Loading button
-          * @default false
          */
         "loading"?: boolean;
         /**
@@ -6010,12 +5457,10 @@ declare namespace LocalJSX {
         "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @default ''
          */
         "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @default ''
          */
         "minDate"?: string;
         /**
@@ -6024,37 +5469,28 @@ declare namespace LocalJSX {
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
           * Outline button
-          * @default false
          */
         "outline"?: boolean;
         /**
           * If true a range of dates can be selected.
-          * @default true
          */
         "range"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
-          * @default false
          */
         "showWeekNumbers"?: boolean;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @default ''
          */
         "to"?: string;
-        /**
-          * @default DateTime.now().toISO()
-         */
         "today"?: string;
         /**
           * Button variant
-          * @default 'primary'
          */
         "variant"?: ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @default 0
          */
         "weekStartIndex"?: number;
     }
@@ -6064,12 +5500,10 @@ declare namespace LocalJSX {
     interface IxDateInput {
         /**
           * disabled attribute
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'yyyy/LL/dd'
          */
         "format"?: string;
         /**
@@ -6078,7 +5512,6 @@ declare namespace LocalJSX {
         "helperText"?: string;
         /**
           * i18n string for the error message when the date is not parsable
-          * @default 'Date is not valid'
          */
         "i18nErrorDateUnparsable"?: string;
         /**
@@ -6117,7 +5550,6 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         /**
           * readonly attribute
-          * @default false
          */
         "readonly"?: boolean;
         /**
@@ -6131,7 +5563,6 @@ declare namespace LocalJSX {
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
-          * @default false
          */
         "showWeekNumbers"?: boolean;
         /**
@@ -6140,7 +5571,6 @@ declare namespace LocalJSX {
         "validText"?: string;
         /**
           * value of the input element
-          * @default ''
          */
         "value"?: string;
         /**
@@ -6151,12 +5581,10 @@ declare namespace LocalJSX {
     interface IxDatePicker {
         /**
           * Corner style
-          * @default 'rounded'
          */
         "corners"?: DateTimeCardCorners;
         /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'yyyy/LL/dd'
          */
         "format"?: string;
         /**
@@ -6165,7 +5593,6 @@ declare namespace LocalJSX {
         "from"?: string | undefined;
         /**
           * Text of date select button
-          * @default 'Done'
          */
         "i18nDone"?: string;
         /**
@@ -6174,12 +5601,10 @@ declare namespace LocalJSX {
         "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @default ''
          */
         "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @default ''
          */
         "minDate"?: string;
         /**
@@ -6196,42 +5621,31 @@ declare namespace LocalJSX {
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * If true a date-range can be selected (from/to).
-          * @default true
          */
         "range"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
-          * @default false
          */
         "showWeekNumbers"?: boolean;
-        /**
-          * @default true
-         */
         "standaloneAppearance"?: boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
          */
         "to"?: string | undefined;
-        /**
-          * @default DateTime.now().toISO()
-         */
         "today"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @default 0
          */
         "weekStartIndex"?: number;
     }
     interface IxDateTimeCard {
         /**
           * Set corners style
-          * @default 'rounded'
          */
         "corners"?: DateTimeCardCorners1;
         /**
           * set styles
-          * @default true
          */
         "individual"?: boolean;
         "standaloneAppearance"?: boolean;
@@ -6239,7 +5653,6 @@ declare namespace LocalJSX {
     interface IxDatetimePicker {
         /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'yyyy/LL/dd'
          */
         "dateFormat"?: string;
         /**
@@ -6248,13 +5661,11 @@ declare namespace LocalJSX {
         "from"?: string;
         /**
           * Text of date select button
-          * @default 'Done'
          */
         "i18nDone"?: string;
         /**
           * Top label of time picker
           * @since 3.0.0
-          * @default 'Time'
          */
         "i18nTime"?: string;
         /**
@@ -6283,34 +5694,28 @@ declare namespace LocalJSX {
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
           * If true a date-range can be selected (from/to).
-          * @default true
          */
         "range"?: boolean;
         /**
           * Show hour input
-          * @default true
          */
         "showHour"?: boolean;
         /**
           * Show minutes input
-          * @default true
          */
         "showMinutes"?: boolean;
         /**
           * Show seconds input
-          * @default true
          */
         "showSeconds"?: boolean;
         /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
-          * @default false
          */
         "showTimeReference"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
-          * @default false
          */
         "showWeekNumbers"?: boolean;
         /**
@@ -6319,7 +5724,6 @@ declare namespace LocalJSX {
         "time"?: string;
         /**
           * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'HH:mm:ss'
          */
         "timeFormat"?: string;
         /**
@@ -6332,7 +5736,6 @@ declare namespace LocalJSX {
         "to"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @default 0
          */
         "weekStartIndex"?: number;
     }
@@ -6341,22 +5744,18 @@ declare namespace LocalJSX {
     interface IxDrawer {
         /**
           * Fired in case of an outside click during drawer showed state
-          * @default true
          */
         "closeOnClickOutside"?: boolean;
         /**
           * Render the drawer with maximum height
-          * @default false
          */
         "fullHeight"?: boolean;
         /**
           * Max width interpreted as REM
-          * @default 28
          */
         "maxWidth"?: number;
         /**
           * Min width interpreted as REM
-          * @default 16
          */
         "minWidth"?: number;
         /**
@@ -6369,12 +5768,10 @@ declare namespace LocalJSX {
         "onOpen"?: (event: IxDrawerCustomEvent<any>) => void;
         /**
           * Show or hide the drawer
-          * @default false
          */
         "show"?: boolean;
         /**
           * Width interpreted as REM if not set to 'auto'
-          * @default this.minWidth
          */
         "width"?: number | 'auto';
     }
@@ -6385,20 +5782,13 @@ declare namespace LocalJSX {
         "anchor"?: ElementReference;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
-          * @default 'both'
          */
         "closeBehavior"?: CloseBehavior;
-        /**
-          * @default false
-         */
         "discoverAllSubmenus"?: boolean;
         /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
-        /**
-          * @default false
-         */
         "ignoreRelatedSubmenu"?: boolean;
         /**
           * Move dropdown along main axis of alignment
@@ -6418,27 +5808,20 @@ declare namespace LocalJSX {
   }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * Placement of the dropdown
-          * @default 'bottom-start'
          */
         "placement"?: AlignedPlacement;
         /**
           * Position strategy
-          * @default 'fixed'
          */
         "positioningStrategy"?: 'absolute' | 'fixed';
         /**
           * Show dropdown
-          * @default false
          */
         "show"?: boolean;
         /**
           * Suppress the automatic placement of the dropdown.
-          * @default false
          */
         "suppressAutomaticPlacement"?: boolean;
-        /**
-          * @default false
-         */
         "suppressOverflowBehavior"?: boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
@@ -6448,17 +5831,14 @@ declare namespace LocalJSX {
     interface IxDropdownButton {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-          * @default 'both'
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost"?: boolean;
         /**
@@ -6471,7 +5851,6 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Outline button
-          * @default false
          */
         "outline"?: boolean;
         /**
@@ -6480,7 +5859,6 @@ declare namespace LocalJSX {
         "placement"?: AlignedPlacement;
         /**
           * Button variant
-          * @default 'primary'
          */
         "variant"?: DropdownButtonVariant;
     }
@@ -6493,35 +5871,26 @@ declare namespace LocalJSX {
     interface IxDropdownItem {
         /**
           * Whether the item is checked or not. If true a checkmark will mark the item as checked.
-          * @default false
          */
         "checked"?: boolean;
         /**
           * Disable item and remove event listeners
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Display hover state
-          * @default false
          */
         "hover"?: boolean;
         /**
           * Icon of dropdown item
          */
         "icon"?: string;
-        /**
-          * @default false
-         */
         "isSubMenu"?: boolean;
         /**
           * Label of dropdown item
          */
         "label"?: string;
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
-        /**
-          * @default false
-         */
         "suppressChecked"?: boolean;
     }
     interface IxDropdownQuickActions {
@@ -6541,7 +5910,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
-          * @default 'large'
          */
         "layout"?: EmptyStateLayout;
         /**
@@ -6556,34 +5924,28 @@ declare namespace LocalJSX {
     interface IxEventList {
         /**
           * Animate state change transitions. Defaults to 'true'.
-          * @default true
          */
         "animated"?: boolean;
         /**
           * Display a chevron icon in list items. Defaults to 'false'
-          * @default false
          */
         "chevron"?: boolean;
         /**
           * Make event-list items more compact
-          * @default false
          */
         "compact"?: boolean;
         /**
           * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'.
-          * @default 'S'
          */
         "itemHeight"?: 'S' | 'L' | number;
     }
     interface IxEventListItem {
         /**
           * Show chevron on right side of the event list item
-          * @default false
          */
         "chevron"?: boolean;
         /**
           * Disable event list item
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -6597,19 +5959,16 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxEventListItemCustomEvent<any>) => void;
         /**
           * Show event list item as selected
-          * @default false
          */
         "selected"?: boolean;
     }
     interface IxExpandingSearch {
         /**
           * If true the search field will fill all available horizontal space of it's parent container when expanded.
-          * @default false
          */
         "fullWidth"?: boolean;
         /**
           * Button with no background or outline
-          * @default true
          */
         "ghost"?: boolean;
         /**
@@ -6622,22 +5981,18 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxExpandingSearchCustomEvent<string>) => void;
         /**
           * Outline button
-          * @default false
          */
         "outline"?: boolean;
         /**
           * Placeholder text
-          * @default 'Enter text here'
          */
         "placeholder"?: string;
         /**
           * Default value
-          * @default ''
          */
         "value"?: string;
         /**
           * button variant
-          * @default 'primary'
          */
         "variant"?: ButtonVariant1;
     }
@@ -6649,9 +6004,6 @@ declare namespace LocalJSX {
           * The id of the form element that the label is associated with
          */
         "htmlFor"?: string;
-        /**
-          * @default false
-         */
         "isInvalid"?: boolean;
         /**
           * A value is required or must be checked for the form to be submittable
@@ -6683,22 +6035,18 @@ declare namespace LocalJSX {
         "invalidText"?: string;
         /**
           * Is the field component info
-          * @default false
          */
         "isInfo"?: boolean;
         /**
           * Is the field component invalid
-          * @default false
          */
         "isInvalid"?: boolean;
         /**
           * Is the field component valid
-          * @default false
          */
         "isValid"?: boolean;
         /**
           * Is the field component warning
-          * @default false
          */
         "isWarning"?: boolean;
         /**
@@ -6707,12 +6055,10 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Show label as required
-          * @default false
          */
         "required"?: boolean;
         /**
           * Show helper, error, info, warning text as tooltip
-          * @default false
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -6727,7 +6073,6 @@ declare namespace LocalJSX {
     interface IxFilterChip {
         /**
           * If true the filter chip will be in disabled state
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -6736,20 +6081,17 @@ declare namespace LocalJSX {
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
         /**
           * If true the filter chip will be in readonly mode
-          * @default false
          */
         "readonly"?: boolean;
     }
     interface IxFlipTile {
         /**
           * Height interpreted as REM
-          * @default 15.125
          */
         "height"?: number | 'auto';
         /**
           * Index of the currently visible content
           * @since 3.0.0
-          * @default 0
          */
         "index"?: number;
         /**
@@ -6763,26 +6105,22 @@ declare namespace LocalJSX {
         "state"?: FlipTileState;
         /**
           * Width interpreted as REM
-          * @default 16
          */
         "width"?: number | 'auto';
     }
     interface IxFlipTileContent {
         /**
           * Controls the visibility of the content
-          * @default false
          */
         "contentVisible"?: boolean;
     }
     interface IxGroup {
         /**
           * Whether the group is collapsed or expanded. Defaults to true.
-          * @default true
          */
         "collapsed"?: boolean;
         /**
           * Expand the group if the header is clicked
-          * @default false
          */
         "expandOnHeaderClick"?: boolean;
         /**
@@ -6807,7 +6145,6 @@ declare namespace LocalJSX {
         "onSelectItem"?: (event: IxGroupCustomEvent<number>) => void;
         /**
           * Whether the group is selected.
-          * @default false
          */
         "selected"?: boolean;
         /**
@@ -6816,7 +6153,6 @@ declare namespace LocalJSX {
         "subHeader"?: string;
         /**
           * Prevent header from being selectable
-          * @default false
          */
         "suppressHeaderSelection"?: boolean;
     }
@@ -6825,7 +6161,6 @@ declare namespace LocalJSX {
     interface IxGroupItem {
         /**
           * The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise.
-          * @default true
          */
         "focusable"?: boolean;
         /**
@@ -6846,12 +6181,10 @@ declare namespace LocalJSX {
         "secondaryText"?: string;
         /**
           * Show selected state
-          * @default false
          */
         "selected"?: boolean;
         /**
           * Supress the selection of the group
-          * @default false
          */
         "suppressSelection"?: boolean;
         /**
@@ -6892,12 +6225,10 @@ declare namespace LocalJSX {
         "a11yLabel"?: string;
         /**
           * Disabled
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Button invisible
-          * @default false
          */
         "ghost"?: boolean;
         /**
@@ -6910,44 +6241,36 @@ declare namespace LocalJSX {
         "iconColor"?: string;
         /**
           * Loading button
-          * @default false
          */
         "loading"?: boolean;
         /**
           * Button outline
-          * @default false
          */
         "outline"?: boolean;
         /**
           * Button in oval shape
-          * @default false
          */
         "oval"?: boolean;
         /**
           * Size of icon in button
-          * @default '24'
          */
         "size"?: '24' | '16' | '12';
         /**
           * Type of the button
-          * @default 'button'
          */
         "type"?: 'button' | 'submit';
         /**
           * Variant of button
-          * @default 'secondary'
          */
         "variant"?: IconButtonVariant;
     }
     interface IxIconToggleButton {
         /**
           * Disable the button
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost"?: boolean;
         /**
@@ -6956,7 +6279,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Loading button
-          * @default false
          */
         "loading"?: boolean;
         /**
@@ -6965,28 +6287,23 @@ declare namespace LocalJSX {
         "onPressedChange"?: (event: IxIconToggleButtonCustomEvent<boolean>) => void;
         /**
           * Outline button
-          * @default false
          */
         "outline"?: boolean;
         /**
           * Button in oval shape
           * @since 3.1.0
-          * @default false
          */
         "oval"?: boolean;
         /**
           * Show button as pressed
-          * @default false
          */
         "pressed"?: boolean;
         /**
           * Size of icon in button
-          * @default '24'
          */
         "size"?: '24' | '16' | '12';
         /**
           * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
-          * @default 'secondary'
          */
         "variant"?: ButtonVariant1;
     }
@@ -7000,7 +6317,6 @@ declare namespace LocalJSX {
         "allowedCharactersPattern"?: string;
         /**
           * Specifies whether the text field is disabled.
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -7053,12 +6369,10 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         /**
           * Specifies whether the text field is readonly.
-          * @default false
          */
         "readonly"?: boolean;
         /**
           * Specifies whether the text field is required.
-          * @default false
          */
         "required"?: boolean;
         /**
@@ -7067,7 +6381,6 @@ declare namespace LocalJSX {
         "showTextAsTooltip"?: boolean;
         /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
-          * @default 'text'
          */
         "type"?: 'text' | 'email' | 'password' | 'tel' | 'url';
         /**
@@ -7076,7 +6389,6 @@ declare namespace LocalJSX {
         "validText"?: string;
         /**
           * The value of the text field.
-          * @default ''
          */
         "value"?: string;
         /**
@@ -7101,7 +6413,6 @@ declare namespace LocalJSX {
         "label": string;
         /**
           * Optional key value label position - 'top' or 'left'
-          * @default 'top'
          */
         "labelPosition"?: KeyValueLabelPosition;
         /**
@@ -7112,19 +6423,12 @@ declare namespace LocalJSX {
     interface IxKeyValueList {
         /**
           * Optional striped key value list style
-          * @default false
          */
         "striped"?: boolean;
     }
     interface IxKpi {
         "label"?: string;
-        /**
-          * @default 'horizontal'
-         */
         "orientation"?: 'horizontal' | 'vertical';
-        /**
-          * @default 'neutral'
-         */
         "state"?: 'neutral' | 'warning' | 'alarm';
         "unit"?: string;
         "value"?: string | number;
@@ -7132,7 +6436,6 @@ declare namespace LocalJSX {
     interface IxLayoutAuto {
         /**
           * Defines the layout of the form.
-          * @default [     { minWidth: '0', columns: 1 },     { minWidth: '48em', columns: 2 },   ]
          */
         "layout"?: {
     minWidth: string;
@@ -7142,29 +6445,24 @@ declare namespace LocalJSX {
     interface IxLayoutGrid {
         /**
           * Overwrite the default number of columns. Choose between 2 and 12 columns.
-          * @default 12
          */
         "columns"?: number;
         /**
           * Grid gap
-          * @default '24'
          */
         "gap"?: '8' | '12' | '16' | '24';
         /**
           * The grid will not have any horizontal padding
-          * @default false
          */
         "noMargin"?: boolean;
     }
     interface IxLinkButton {
         /**
           * Disable the link button
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
-          * @default '_self'
          */
         "target"?: '_self' | '_blank' | '_parent' | '_top';
         /**
@@ -7179,7 +6477,6 @@ declare namespace LocalJSX {
         "applicationName"?: string;
         /**
           * Hide the sidebar context menu button when set to true
-          * @default true
          */
         "hideContextMenu"?: boolean;
         /**
@@ -7221,56 +6518,33 @@ declare namespace LocalJSX {
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
-          * @default ''
          */
         "applicationDescription"?: string;
         /**
           * Should only be set if you use ix-menu standalone
          */
         "applicationName"?: string;
-        /**
-          * @default false
-         */
         "enableMapExpand"?: boolean;
         /**
           * Is settings tab is visible
-          * @default true
          */
         "enableSettings"?: boolean;
         /**
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
-          * @default false
          */
         "enableToggleTheme"?: boolean;
         /**
           * Toggle the expand state of the menu
-          * @default false
          */
         "expand"?: boolean;
-        /**
-          * @default 'Collapse'
-         */
         "i18nCollapse"?: string;
-        /**
-          * @default ' Expand'
-         */
         "i18nExpand"?: string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
-          * @default 'Expand sidebar'
          */
         "i18nExpandSidebar"?: string;
-        /**
-          * @default 'About & legal information'
-         */
         "i18nLegal"?: string;
-        /**
-          * @default 'Settings'
-         */
         "i18nSettings"?: string;
-        /**
-          * @default 'Toggle theme'
-         */
         "i18nToggleTheme"?: string;
         /**
           * Menu expanded
@@ -7297,22 +6571,18 @@ declare namespace LocalJSX {
         "onOpenSettings"?: (event: IxMenuCustomEvent<void>) => void;
         /**
           * Menu stays pinned to the left
-          * @default false
          */
         "pinned"?: boolean;
         /**
           * Is about tab visible
-          * @default false
          */
         "showAbout"?: boolean;
         /**
           * Is settings tab visible
-          * @default false
          */
         "showSettings"?: boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
-          * @default false
          */
         "startExpanded"?: boolean;
     }
@@ -7323,7 +6593,6 @@ declare namespace LocalJSX {
         "activeTabLabel"?: string;
         /**
           * Content of the header
-          * @default 'About & legal information'
          */
         "label"?: string;
         /**
@@ -7335,9 +6604,6 @@ declare namespace LocalJSX {
           * @since 3.0.0
          */
         "onTabChange"?: (event: IxMenuAboutCustomEvent<string>) => void;
-        /**
-          * @default false
-         */
         "show"?: boolean;
     }
     interface IxMenuAboutItem {
@@ -7355,13 +6621,7 @@ declare namespace LocalJSX {
           * Subtitle of the about news
          */
         "aboutItemLabel"?: string;
-        /**
-          * @default false
-         */
         "expanded"?: boolean;
-        /**
-          * @default 'Show more'
-         */
         "i18nShowMore"?: string;
         /**
           * Title of the about news
@@ -7369,7 +6629,6 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Bottom offset
-          * @default 0
          */
         "offsetBottom"?: number;
         /**
@@ -7382,7 +6641,6 @@ declare namespace LocalJSX {
         "onShowMore"?: (event: IxMenuAboutNewsCustomEvent<MouseEvent>) => void;
         /**
           * Show about news
-          * @default false
          */
         "show"?: boolean;
     }
@@ -7393,7 +6651,6 @@ declare namespace LocalJSX {
         "bottom"?: string;
         /**
           * Use for translation
-          * @default 'Logout'
          */
         "i18nLogout"?: string;
         /**
@@ -7410,7 +6667,6 @@ declare namespace LocalJSX {
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
         /**
           * Control the visibility of the logout button
-          * @default true
          */
         "showLogoutButton"?: boolean;
         /**
@@ -7454,39 +6710,32 @@ declare namespace LocalJSX {
         "breakpoint"?: Breakpoint;
         /**
           * Whether the menu expand icon displays the expanded state or not
-          * @default false
          */
         "expanded"?: boolean;
         /**
           * Accessibility label for the menu expand icon (MANDATORY)
-          * @default 'Expand'
          */
         "ixAriaLabel"?: string;
         /**
           * Display as pinned
-          * @default false
          */
         "pinned"?: boolean;
     }
     interface IxMenuItem {
         /**
           * State to display active
-          * @default false
          */
         "active"?: boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @default false
          */
         "bottom"?: boolean;
         /**
           * Disable tab and remove event handlers
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Move the Tab to a top position.
-          * @default false
          */
         "home"?: boolean;
         /**
@@ -7494,9 +6743,6 @@ declare namespace LocalJSX {
           * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon"?: string;
-        /**
-          * @default false
-         */
         "isCategory"?: boolean;
         /**
           * Label of the menu item. Will also be used as tooltip text
@@ -7514,7 +6760,6 @@ declare namespace LocalJSX {
         "activeTabLabel"?: string;
         /**
           * Label of first tab
-          * @default 'Settings'
          */
         "label"?: string;
         /**
@@ -7526,9 +6771,6 @@ declare namespace LocalJSX {
           * @since 3.0.0
          */
         "onTabChange"?: (event: IxMenuSettingsCustomEvent<string>) => void;
-        /**
-          * @default false
-         */
         "show"?: boolean;
     }
     interface IxMenuSettingsItem {
@@ -7544,7 +6786,6 @@ declare namespace LocalJSX {
     interface IxMessageBar {
         /**
           * If true, close button is enabled and alert can be dismissed by the user
-          * @default true
          */
         "dismissible"?: boolean;
         /**
@@ -7558,7 +6799,6 @@ declare namespace LocalJSX {
         /**
           * Specifies the type of the alert.
           * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
-          * @default 'info'
          */
         "type"?: | 'alarm'
     | 'danger'
@@ -7572,12 +6812,10 @@ declare namespace LocalJSX {
     interface IxModal {
         /**
           * Should the modal be animated
-          * @default true
          */
         "animation"?: boolean;
         /**
           * Show a backdrop behind the modal dialog
-          * @default true
          */
         "backdrop"?: boolean;
         /**
@@ -7586,17 +6824,14 @@ declare namespace LocalJSX {
         "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
-          * @default false
          */
         "centered"?: boolean;
         /**
           * Dismiss modal on backdrop click
-          * @default false
          */
         "closeOnBackdropClick"?: boolean;
         /**
           * If set to true the modal can be closed by pressing the Escape key
-          * @default true
          */
         "closeOnEscape"?: boolean;
         /**
@@ -7609,7 +6844,6 @@ declare namespace LocalJSX {
         "onDialogDismiss"?: (event: IxModalCustomEvent<any>) => void;
         /**
           * Modal size
-          * @default '360'
          */
         "size"?: IxModalSize;
     }
@@ -7620,7 +6854,6 @@ declare namespace LocalJSX {
     interface IxModalHeader {
         /**
           * Hide the close button
-          * @default false
          */
         "hideClose"?: boolean;
         /**
@@ -7648,7 +6881,6 @@ declare namespace LocalJSX {
         "allowedCharactersPattern"?: string;
         /**
           * Disables the input field
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -7701,12 +6933,10 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         /**
           * Indicates if the field is read-only
-          * @default false
          */
         "readonly"?: boolean;
         /**
           * Indicates if the field is required
-          * @default false
          */
         "required"?: boolean;
         /**
@@ -7728,7 +6958,6 @@ declare namespace LocalJSX {
         "validText"?: string;
         /**
           * The value of the input field
-          * @default 0
          */
         "value"?: number;
         /**
@@ -7739,32 +6968,26 @@ declare namespace LocalJSX {
     interface IxPagination {
         /**
           * Advanced mode
-          * @default false
          */
         "advanced"?: boolean;
         /**
           * Total number of pages
-          * @default 0
          */
         "count"?: number;
         /**
           * /**   i18n
-          * @default 'Items'
          */
         "i18nItems"?: string;
         /**
           * i18n
-          * @default 'of'
          */
         "i18nOf"?: string;
         /**
           * i18n
-          * @default 'Page'
          */
         "i18nPage"?: string;
         /**
           * Number of items shown at once. Can only be changed in advaced mode.
-          * @default 15
          */
         "itemCount"?: number;
         /**
@@ -7777,29 +7000,24 @@ declare namespace LocalJSX {
         "onPageSelected"?: (event: IxPaginationCustomEvent<number>) => void;
         /**
           * Zero based index of currently selected page
-          * @default 0
          */
         "selectedPage"?: number;
         /**
           * Show item count in advanced mode
-          * @default true
          */
         "showItemCount"?: boolean;
     }
     interface IxPane {
         /**
           * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
-          * @default false
          */
         "borderless"?: boolean;
         /**
           * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
-          * @default 'top'
          */
         "composition"?: Composition;
         /**
           * State of the pane
-          * @default false
          */
         "expanded"?: boolean;
         /**
@@ -7808,20 +7026,13 @@ declare namespace LocalJSX {
         "heading"?: string;
         /**
           * Define if the pane should have a collapsed state
-          * @default false
          */
         "hideOnCollapse"?: boolean;
         /**
           * Name of the icon
          */
         "icon"?: string;
-        /**
-          * @default false
-         */
         "ignoreLayoutSettings"?: boolean;
-        /**
-          * @default false
-         */
         "isMobile"?: boolean;
         /**
           * This event is triggered when the variant of the pane is changed
@@ -7839,7 +7050,6 @@ declare namespace LocalJSX {
         "onVariantChanged"?: (event: IxPaneCustomEvent<VariantChangedEvent>) => void;
         /**
           * The maximum size of the sidebar, when it is expanded
-          * @default '240px'
          */
         "size"?: | '240px'
     | '320px'
@@ -7850,31 +7060,26 @@ declare namespace LocalJSX {
     | '50%';
         /**
           * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
-          * @default 'inline'
          */
         "variant"?: 'floating' | 'inline';
     }
     interface IxPaneLayout {
         /**
           * Set the default border state for all panes in the layout
-          * @default false
          */
         "borderless"?: boolean;
         /**
           * Choose the layout of the panes. When set to 'full-vertical' the vertical panes (left, right) will get the full height. When set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.
-          * @default 'full-vertical'
          */
         "layout"?: 'full-vertical' | 'full-horizontal';
         /**
           * Set the default variant for all panes in the layout
-          * @default 'inline'
          */
         "variant"?: 'floating' | 'inline';
     }
     interface IxPill {
         /**
           * Align pill content left
-          * @default false
          */
         "alignLeft"?: boolean;
         /**
@@ -7887,7 +7092,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Show pill as outline
-          * @default false
          */
         "outline"?: boolean;
         /**
@@ -7897,12 +7101,10 @@ declare namespace LocalJSX {
         /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
-          * @default false
          */
         "tooltipText"?: string | boolean;
         /**
           * Pill variant
-          * @default 'primary'
          */
         "variant"?: | 'primary'
     | 'alarm'
@@ -7916,7 +7118,6 @@ declare namespace LocalJSX {
     interface IxPushCard {
         /**
           * Collapse the card
-          * @default true
          */
         "collapse"?: boolean;
         /**
@@ -7937,7 +7138,6 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card variant
-          * @default 'outline'
          */
         "variant"?: PushCardVariant;
     }
@@ -7947,12 +7147,10 @@ declare namespace LocalJSX {
     interface IxRadio {
         /**
           * Checked state of the radio component
-          * @default false
          */
         "checked"?: boolean;
         /**
           * Disabled state of the radio component
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -7978,7 +7176,6 @@ declare namespace LocalJSX {
         /**
           * Requires the radio component and its group to be checked for the form to be submittable
           * @since 3.0.0
-          * @default false
          */
         "required"?: boolean;
         /**
@@ -7992,7 +7189,6 @@ declare namespace LocalJSX {
     interface IxRadioGroup {
         /**
           * Alignment of the radio buttons in the group
-          * @default 'column'
          */
         "direction"?: 'column' | 'row';
         /**
@@ -8017,7 +7213,6 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxRadioGroupCustomEvent<string>) => void;
         /**
           * Required state of the checkbox component
-          * @default false
          */
         "required"?: boolean;
         /**
@@ -8045,12 +7240,10 @@ declare namespace LocalJSX {
     interface IxSelect {
         /**
           * Show clear button
-          * @default false
          */
         "allowClear"?: boolean;
         /**
           * If true the select will be in disabled state
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -8063,7 +7256,6 @@ declare namespace LocalJSX {
         "dropdownWidth"?: string;
         /**
           * Select is extendable
-          * @default false
          */
         "editable"?: boolean;
         /**
@@ -8072,27 +7264,22 @@ declare namespace LocalJSX {
         "helperText"?: string;
         /**
           * Hide list header
-          * @default false
          */
         "hideListHeader"?: boolean;
         /**
           * Information inside of dropdown if no items where found with current filter text
-          * @default 'No matches'
          */
         "i18nNoMatches"?: string;
         /**
           * Input field placeholder
-          * @default 'Select an option'
          */
         "i18nPlaceholder"?: string;
         /**
           * Input field placeholder for editable select
-          * @default 'Type of select option'
          */
         "i18nPlaceholderEditable"?: string;
         /**
           * Select list header
-          * @default 'Select an option'
          */
         "i18nSelectListHeader"?: string;
         /**
@@ -8109,7 +7296,6 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Selection mode
-          * @default 'single'
          */
         "mode"?: 'single' | 'multiple';
         /**
@@ -8134,12 +7320,10 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
         /**
           * If true the select will be in readonly mode
-          * @default false
          */
         "readonly"?: boolean;
         /**
           * A Boolean attribute indicating that an option with a non-empty string value must be selected
-          * @default false
          */
         "required"?: boolean;
         /**
@@ -8152,7 +7336,6 @@ declare namespace LocalJSX {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
          */
         "value"?: string | string[];
         /**
@@ -8161,9 +7344,6 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     interface IxSelectItem {
-        /**
-          * @default false
-         */
         "hover"?: boolean;
         /**
           * Displayed name of the item
@@ -8175,7 +7355,6 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxSelectItemCustomEvent<string>) => void;
         /**
           * Flag indicating whether the item is selected
-          * @default false
          */
         "selected"?: boolean;
         /**
@@ -8186,7 +7365,6 @@ declare namespace LocalJSX {
     interface IxSlider {
         /**
           * Show control as disabled
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -8199,67 +7377,53 @@ declare namespace LocalJSX {
         "marker"?: SliderMarker;
         /**
           * Maximum slider value
-          * @default 100
          */
         "max"?: number;
         /**
           * Minimum slider value
-          * @default 0
          */
         "min"?: number;
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
           * Legal number intervals
           * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
-          * @default 1
          */
         "step"?: number;
         /**
           * Show a trace line
-          * @default false
          */
         "trace"?: boolean;
         /**
           * Define the start point of the trace line
-          * @default 0
          */
         "traceReference"?: number;
         /**
           * Current value of the slider
-          * @default 0
          */
         "value"?: number;
     }
     interface IxSpinner {
-        /**
-          * @default false
-         */
         "hideTrack"?: boolean;
         /**
           * Size of spinner
-          * @default 'medium'
          */
         "size"?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
-          * @default 'secondary'
          */
         "variant"?: 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-          * @default 'both'
          */
         "closeBehavior"?: CloseBehavior;
         /**
           * Disabled
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Button invisible
-          * @default false
          */
         "ghost"?: boolean;
         /**
@@ -8276,12 +7440,10 @@ declare namespace LocalJSX {
         "onButtonClick"?: (event: IxSplitButtonCustomEvent<MouseEvent>) => void;
         /**
           * Button outline variant
-          * @default false
          */
         "outline"?: boolean;
         /**
           * Placement of the dropdown
-          * @default 'bottom-start'
          */
         "placement"?: AlignedPlacement;
         /**
@@ -8290,7 +7452,6 @@ declare namespace LocalJSX {
         "splitIcon"?: string;
         /**
           * Color variant of button
-          * @default 'primary'
          */
         "variant"?: SplitButtonVariant;
     }
@@ -8301,17 +7462,14 @@ declare namespace LocalJSX {
         "counter"?: number;
         /**
           * Set disabled tab
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Set icon only tab
-          * @default false
          */
         "icon"?: boolean;
         /**
           * Set layout width style
-          * @default 'auto'
          */
         "layout"?: 'auto' | 'stretched';
         /**
@@ -8320,29 +7478,24 @@ declare namespace LocalJSX {
         "onTabClick"?: (event: IxTabItemCustomEvent<TabClickDetail>) => void;
         /**
           * Set selected placement
-          * @default 'bottom'
          */
         "placement"?: 'bottom' | 'top';
         /**
           * Set rounded tab
-          * @default false
          */
         "rounded"?: boolean;
         /**
           * Set selected tab
-          * @default false
          */
         "selected"?: boolean;
         /**
           * Set small size tab
-          * @default false
          */
         "small"?: boolean;
     }
     interface IxTabs {
         /**
           * Set layout width style
-          * @default 'auto'
          */
         "layout"?: 'auto' | 'stretched';
         /**
@@ -8351,22 +7504,18 @@ declare namespace LocalJSX {
         "onSelectedChange"?: (event: IxTabsCustomEvent<number>) => void;
         /**
           * Set placement style
-          * @default 'bottom'
          */
         "placement"?: 'bottom' | 'top';
         /**
           * Set rounded tabs
-          * @default false
          */
         "rounded"?: boolean;
         /**
           * Set default selected tab by index
-          * @default 0
          */
         "selected"?: number;
         /**
           * Set tab items to small size
-          * @default false
          */
         "small"?: boolean;
     }
@@ -8376,7 +7525,6 @@ declare namespace LocalJSX {
     interface IxTextarea {
         /**
           * Determines if the textarea field is disabled.
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -8425,17 +7573,14 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         /**
           * Determines if the textarea field is readonly.
-          * @default false
          */
         "readonly"?: boolean;
         /**
           * Determines if the textarea field is required.
-          * @default false
          */
         "required"?: boolean;
         /**
           * Determines the resize behavior of the textarea field. Resizing can be enabled in one direction, both directions or completely disabled.
-          * @default 'both'
          */
         "resizeBehavior"?: TextareaResizeBehavior;
         /**
@@ -8464,7 +7609,6 @@ declare namespace LocalJSX {
         "validText"?: string;
         /**
           * The value of the textarea field.
-          * @default ''
          */
         "value"?: string;
         /**
@@ -8475,19 +7619,16 @@ declare namespace LocalJSX {
     interface IxTile {
         /**
           * Size of the tile - one of 'small', 'medium' or 'large'
-          * @default 'medium'
          */
         "size"?: 'small' | 'medium' | 'big';
     }
     interface IxTimePicker {
         /**
           * Corner style
-          * @default 'rounded'
          */
         "corners"?: TimePickerCorners;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @default 'TT'
          */
         "format"?: string;
         /**
@@ -8500,37 +7641,30 @@ declare namespace LocalJSX {
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
           * Show hour input
-          * @default true
          */
         "showHour"?: boolean;
         /**
           * Show minutes input
-          * @default true
          */
         "showMinutes"?: boolean;
         /**
           * Show seconds input
-          * @default true
          */
         "showSeconds"?: boolean;
         /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
-          * @default true
          */
         "standaloneAppearance"?: boolean;
         /**
           * Text of date select button
-          * @default 'Done'
          */
         "textSelectTime"?: string;
         /**
           * Text for top label
-          * @default 'Time'
          */
         "textTime"?: string;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
          */
         "time"?: string;
         /**
@@ -8541,12 +7675,10 @@ declare namespace LocalJSX {
     interface IxToast {
         /**
           * Autoclose behavior
-          * @default true
          */
         "autoClose"?: boolean;
         /**
           * Autoclose title after delay
-          * @default 5000
          */
         "autoCloseDelay"?: number;
         /**
@@ -8567,22 +7699,12 @@ declare namespace LocalJSX {
         "toastTitle"?: string;
         /**
           * Toast type
-          * @default 'info'
          */
         "type"?: ToastType;
     }
     interface IxToastContainer {
-        /**
-          * @default 'toast-container'
-         */
         "containerClass"?: string;
-        /**
-          * @default 'toast-container'
-         */
         "containerId"?: string;
-        /**
-          * @default 'bottom-right'
-         */
         "position"?: 'bottom-right' | 'top-right';
     }
     /**
@@ -8591,22 +7713,18 @@ declare namespace LocalJSX {
     interface IxToggle {
         /**
           * Whether the slide-toggle element is checked or not.
-          * @default false
          */
         "checked"?: boolean;
         /**
           * Whether the slide-toggle element is disabled or not.
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Hide `on` and `off` text
-          * @default false
          */
         "hideText"?: boolean;
         /**
           * If true the control is in indeterminate state
-          * @default false
          */
         "indeterminate"?: boolean;
         /**
@@ -8624,39 +7742,32 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxToggleCustomEvent<string>) => void;
         /**
           * Required state of the checkbox component.  If true, checkbox needs to be checked to be valid
-          * @default false
          */
         "required"?: boolean;
         /**
           * Text for indeterminate state
-          * @default 'Mixed'
          */
         "textIndeterminate"?: string;
         /**
           * Text for off state
-          * @default 'Off'
          */
         "textOff"?: string;
         /**
           * Text for on state
-          * @default 'On'
          */
         "textOn"?: string;
         /**
           * Value of the checkbox component
-          * @default 'on'
          */
         "value"?: string;
     }
     interface IxToggleButton {
         /**
           * Disable the button
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Button with no background or outline
-          * @default false
          */
         "ghost"?: boolean;
         /**
@@ -8665,7 +7776,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Loading button
-          * @default false
          */
         "loading"?: boolean;
         /**
@@ -8674,46 +7784,32 @@ declare namespace LocalJSX {
         "onPressedChange"?: (event: IxToggleButtonCustomEvent<boolean>) => void;
         /**
           * Outline button
-          * @default false
          */
         "outline"?: boolean;
         /**
           * Show button as pressed
-          * @default false
          */
         "pressed"?: boolean;
         /**
           * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
-          * @default 'secondary'
          */
         "variant"?: ButtonVariant1;
     }
     interface IxTooltip {
-        /**
-          * @default false
-         */
         "animationFrame"?: boolean;
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
         "for"?: ElementReference | ElementReference[];
-        /**
-          * @default 50
-         */
         "hideDelay"?: number;
         /**
           * Define if the user can access the tooltip via mouse.
-          * @default false
          */
         "interactive"?: boolean;
         /**
           * Initial placement of the tooltip. If the selected placement doesn't have enough space, the tooltip will be repositioned to another location.
-          * @default 'top'
          */
         "placement"?: 'top' | 'right' | 'bottom' | 'left';
-        /**
-          * @default 0
-         */
         "showDelay"?: number;
         /**
           * Title of the tooltip
@@ -8723,12 +7819,10 @@ declare namespace LocalJSX {
     interface IxTree {
         /**
           * Selection and collapsed state management
-          * @default {}
          */
         "context"?: TreeContext;
         /**
           * Tree model
-          * @default {}
          */
         "model"?: TreeModel<any>;
         /**
@@ -8774,7 +7868,6 @@ declare namespace LocalJSX {
         "context"?: TreeItemContext;
         /**
           * Has tree item children
-          * @default false
          */
         "hasChildren"?: boolean;
         /**
@@ -8793,7 +7886,6 @@ declare namespace LocalJSX {
     interface IxTypography {
         /**
           * Display text bold
-          * @default false
          */
         "bold"?: boolean;
         /**
@@ -8806,7 +7898,6 @@ declare namespace LocalJSX {
         "textColor"?: TypographyColors;
         /**
           * Text decoration
-          * @default 'none'
          */
         "textDecoration"?: TextDecoration;
     }
@@ -8817,32 +7908,26 @@ declare namespace LocalJSX {
         "accept"?: string;
         /**
           * Disable all input events
-          * @default false
          */
         "disabled"?: boolean;
         /**
           * Text for disabled state
-          * @default 'File upload currently not possible.'
          */
         "i18nUploadDisabled"?: string;
         /**
           * Label for upload file button
-          * @default 'Upload file…'
          */
         "i18nUploadFile"?: string;
         /**
           * Will be used by state = UploadFileState.LOADING
-          * @default 'Checking files…'
          */
         "loadingText"?: string;
         /**
           * Whether the text should wrap to more than one line
-          * @default false
          */
         "multiline"?: boolean;
         /**
           * If multiple is true the user can drop or select multiple files
-          * @default false
          */
         "multiple"?: boolean;
         /**
@@ -8851,22 +7936,18 @@ declare namespace LocalJSX {
         "onFilesChanged"?: (event: IxUploadCustomEvent<Array<File>>) => void;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
-          * @default '+ Drag files here or…'
          */
         "selectFileText"?: string;
         /**
           * After a file is uploaded you can set the upload component to a defined state
-          * @default UploadFileState.SELECT_FILE
          */
         "state"?: UploadFileState;
         /**
           * Will be used by state = UploadFileState.UPLOAD_FAILED
-          * @default 'Upload failed. Please try again.'
          */
         "uploadFailedText"?: string;
         /**
           * Will be used by state = UploadFileState.UPLOAD_SUCCESSED
-          * @default 'Upload successful'
          */
         "uploadSuccessText"?: string;
     }
@@ -8880,52 +7961,43 @@ declare namespace LocalJSX {
         "message"?: string;
         /**
           * Placement of the tooltip
-          * @default 'top'
          */
         "placement"?: Side;
         /**
           * Suppress the automatic placement of the dropdown.
-          * @default false
          */
         "suppressAutomaticPlacement"?: boolean;
     }
     interface IxWorkflowStep {
         /**
           * Activate navigation click
-          * @default false
          */
         "clickable"?: boolean;
         /**
           * Set disabled
-          * @default false
          */
         "disabled"?: boolean;
         "onSelectedChanged"?: (event: IxWorkflowStepCustomEvent<HTMLIxWorkflowStepElement>) => void;
         /**
           * Activate navigation click
-          * @default 'undefined'
          */
         "position"?: 'first' | 'last' | 'single' | 'undefined';
         /**
           * Set selected
-          * @default false
          */
         "selected"?: boolean;
         /**
           * Set status
-          * @default 'open'
          */
         "status"?: 'open' | 'success' | 'done' | 'warning' | 'error';
         /**
           * Select orientation
-          * @default false
          */
         "vertical"?: boolean;
     }
     interface IxWorkflowSteps {
         /**
           * Activate navigation click
-          * @default false
          */
         "clickable"?: boolean;
         /**
@@ -8934,12 +8006,10 @@ declare namespace LocalJSX {
         "onStepSelected"?: (event: IxWorkflowStepsCustomEvent<number>) => void;
         /**
           * Activate navigation click
-          * @default 0
          */
         "selectedIndex"?: number;
         /**
           * Select orientation
-          * @default false
          */
         "vertical"?: boolean;
     }

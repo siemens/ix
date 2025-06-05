@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.33.1",
+    "version": "4.29.0",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -70,12 +70,7 @@
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Card icon",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "undefined"
-            }
-          ],
+          "docsTags": [],
           "default": "undefined",
           "values": [
             {
@@ -102,12 +97,7 @@
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Card selection",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -163,12 +153,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'outline'"
-            }
-          ],
+          "docsTags": [],
           "default": "'outline'",
           "values": [
             {
@@ -293,12 +278,7 @@
           "attr": "breakpoints",
           "reflectToAttr": false,
           "docs": "Supported layouts",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "['sm', 'md', 'lg']"
-            }
-          ],
+          "docsTags": [],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
@@ -414,12 +394,7 @@
           "attr": "theme-system-appearance",
           "reflectToAttr": false,
           "docs": "Use the system appearance dark or light",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -526,12 +501,7 @@
           "attr": "show-menu",
           "reflectToAttr": false,
           "docs": "Controls the visibility of the menu toggle button based on the context of the application header.\n\nWhen the application header is utilized outside the application frame, the menu toggle button is displayed.\nConversely, if the header is within the application frame, this property is ineffective.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -821,10 +791,6 @@
             {
               "name": "example",
               "text": "['sm', 'md']"
-            },
-            {
-              "name": "default",
-              "text": "['sm', 'md', 'lg']"
             }
           ],
           "default": "['sm', 'md', 'lg']",
@@ -898,12 +864,7 @@
           "attr": "hide-header",
           "reflectToAttr": false,
           "docs": "Hide application header. Will disable responsive feature of basic navigation.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -957,12 +918,7 @@
           "attr": "collapsed",
           "reflectToAttr": true,
           "docs": "Collapsed state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1070,12 +1026,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Blind variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'filled'"
-            }
-          ],
+          "docsTags": [],
           "default": "'filled'",
           "values": [
             {
@@ -1184,12 +1135,7 @@
           "attr": "aria-label-previous-button",
           "reflectToAttr": false,
           "docs": "Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list\nwith conditionally hidden previous items",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'previous'"
-            }
-          ],
+          "docsTags": [],
           "default": "'previous'",
           "values": [
             {
@@ -1213,12 +1159,7 @@
           "attr": "ghost",
           "reflectToAttr": false,
           "docs": "Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -1242,12 +1183,7 @@
           "attr": "next-items",
           "reflectToAttr": false,
           "docs": "Items will be accessible through a dropdown",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "[]"
-            }
-          ],
+          "docsTags": [],
           "default": "[]",
           "values": [
             {
@@ -1271,12 +1207,7 @@
           "attr": "visible-item-count",
           "reflectToAttr": false,
           "docs": "Excess items will get hidden inside of dropdown",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "9"
-            }
-          ],
+          "docsTags": [],
           "default": "9",
           "values": [
             {
@@ -1492,12 +1423,7 @@
           "attr": "disabled",
           "reflectToAttr": true,
           "docs": "Disable the button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1552,12 +1478,7 @@
           "attr": "ghost",
           "reflectToAttr": false,
           "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1607,12 +1528,7 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1636,12 +1552,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1665,12 +1576,7 @@
           "attr": "type",
           "reflectToAttr": false,
           "docs": "Type of the button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'button'"
-            }
-          ],
+          "docsTags": [],
           "default": "'button'",
           "values": [
             {
@@ -1705,12 +1611,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'primary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -1787,12 +1688,7 @@
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Show card in selected state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -1822,12 +1718,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'outline'"
-            }
-          ],
+          "docsTags": [],
           "default": "'outline'",
           "values": [
             {
@@ -1914,12 +1805,7 @@
           "attr": "collapse",
           "reflectToAttr": false,
           "docs": "Collapse the card",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2024,12 +1910,7 @@
           "attr": "collapse",
           "reflectToAttr": false,
           "docs": "Collapse the list",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2053,12 +1934,7 @@
           "attr": "hide-show-all",
           "reflectToAttr": false,
           "docs": "Hide the show all button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2082,12 +1958,7 @@
           "attr": "i-1-8n-more-cards",
           "reflectToAttr": false,
           "docs": "i18n More cards available",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'There are more cards available'"
-            }
-          ],
+          "docsTags": [],
           "default": "'There are more cards available'",
           "values": [
             {
@@ -2111,12 +1982,7 @@
           "attr": "i-1-8n-show-all",
           "reflectToAttr": false,
           "docs": "i18n Show all button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Show all'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Show all'",
           "values": [
             {
@@ -2166,12 +2032,7 @@
           "attr": "list-style",
           "reflectToAttr": false,
           "docs": "List style",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'stack'"
-            }
-          ],
+          "docsTags": [],
           "default": "'stack'",
           "values": [
             {
@@ -2226,12 +2087,7 @@
           "attr": "suppress-overflow-handling",
           "reflectToAttr": false,
           "docs": "Suppress the overflow handling of child elements",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2422,12 +2278,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "If true the filter will be in disabled state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2483,12 +2334,7 @@
           "attr": "hide-icon",
           "reflectToAttr": false,
           "docs": "Allows to hide the icon inside the text input.\nDefaults to false",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2512,12 +2358,7 @@
           "attr": "i-1-8n-plain-text",
           "reflectToAttr": false,
           "docs": "i18n",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Filter by text'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Filter by text'",
           "values": [
             {
@@ -2567,12 +2408,7 @@
           "attr": "label-categories",
           "reflectToAttr": false,
           "docs": "i18n",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Categories'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Categories'",
           "values": [
             {
@@ -2596,12 +2432,7 @@
           "attr": "non-selectable-categories",
           "reflectToAttr": false,
           "docs": "In certain use cases some categories may not be available for selection anymore.\nTo allow proper display of set filters with these categories this ID to label mapping can be populated.\n\nConfiguration object hash used to supply labels to the filter chips in the input field.\nEach ID maps to a string representing the label to display.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "{}"
-            }
-          ],
+          "docsTags": [],
           "default": "{}",
           "values": [
             {
@@ -2654,12 +2485,7 @@
           "attr": "readonly",
           "reflectToAttr": false,
           "docs": "If true the filter will be in readonly mode",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2683,12 +2509,7 @@
           "attr": "repeat-categories",
           "reflectToAttr": false,
           "docs": "If set to true, allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -2876,12 +2697,7 @@
           "attr": "checked",
           "reflectToAttr": true,
           "docs": "Checked state of the checkbox component",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2905,12 +2721,7 @@
           "attr": "disabled",
           "reflectToAttr": true,
           "docs": "Disabled state of the checkbox component",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -2934,12 +2745,7 @@
           "attr": "indeterminate",
           "reflectToAttr": true,
           "docs": "Indeterminate state of the checkbox component",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -3015,12 +2821,7 @@
           "attr": "required",
           "reflectToAttr": true,
           "docs": "Required state of the checkbox component.\n\nIf true, checkbox needs to be checked to be valid",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -3044,12 +2845,7 @@
           "attr": "value",
           "reflectToAttr": true,
           "docs": "Value of the checkbox component",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'on'"
-            }
-          ],
+          "docsTags": [],
           "default": "'on'",
           "values": [
             {
@@ -3161,12 +2957,7 @@
           "attr": "direction",
           "reflectToAttr": false,
           "docs": "Alignment of the checkboxes in the group",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'column'"
-            }
-          ],
+          "docsTags": [],
           "default": "'column'",
           "values": [
             {
@@ -3299,12 +3090,7 @@
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
           "docs": "Show helper, info, warning, error and valid text as tooltip",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -3418,12 +3204,7 @@
           "attr": "active",
           "reflectToAttr": false,
           "docs": "Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation)\nwill be possible and also the close button will not be present.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -3499,12 +3280,7 @@
           "attr": "closable",
           "reflectToAttr": false,
           "docs": "Show close icon",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -3554,12 +3330,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Show chip with outline style",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -3587,10 +3358,6 @@
             {
               "name": "since",
               "text": "3.0.0"
-            },
-            {
-              "name": "default",
-              "text": "false"
             }
           ],
           "default": "false",
@@ -3619,12 +3386,7 @@
           "attr": "variant",
           "reflectToAttr": true,
           "docs": "Chip variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'primary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -4125,12 +3887,7 @@
           "attr": "has-back-button",
           "reflectToAttr": false,
           "docs": "Display a back button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -4154,12 +3911,7 @@
           "attr": "header-subtitle",
           "reflectToAttr": false,
           "docs": "Subtitle of Header",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "undefined"
-            }
-          ],
+          "docsTags": [],
           "default": "undefined",
           "values": [
             {
@@ -4218,12 +3970,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of content header",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'primary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -4412,12 +4159,7 @@
           "attr": "required",
           "reflectToAttr": false,
           "docs": "A value is required or must be checked for the form to be submittable",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -4573,12 +4315,7 @@
           "attr": "custom-range-allowed",
           "reflectToAttr": false,
           "docs": "Controls whether the user is allowed to pick custom date ranges in the component.\nWhen set to 'true', the user can select a custom date range using the date picker.\nWhen set to 'false', only predefined time date ranges are available for selection.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -4602,12 +4339,7 @@
           "attr": "date-range-id",
           "reflectToAttr": false,
           "docs": "Used to set the initial select date range as well as the button name,\nif not set or no according date range label is found, nothing will be selected",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'custom'"
-            }
-          ],
+          "docsTags": [],
           "default": "'custom'",
           "values": [
             {
@@ -4637,12 +4369,7 @@
           "attr": "date-range-options",
           "reflectToAttr": false,
           "docs": "An array of predefined date range options for the date picker.\nEach option is an object with a label describing the range and a function\nthat returns the start and end dates of the range as a DateRangeOption object.\n\nExample format:\n  {\n    id: 'some unique id',\n    label: 'Name of the range',\n    from: undefined, to: '2023/03/29'\n  },\n  // ... other predefined date range options ...",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "[]"
-            }
-          ],
+          "docsTags": [],
           "default": "[]",
           "values": [
             {
@@ -4666,12 +4393,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disable the button that opens the dropdown containing the date picker.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -4699,10 +4421,6 @@
             {
               "name": "link",
               "text": "https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens."
-            },
-            {
-              "name": "default",
-              "text": "'yyyy/LL/dd'"
             }
           ],
           "default": "'yyyy/LL/dd'",
@@ -4728,12 +4446,7 @@
           "attr": "from",
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -4757,12 +4470,7 @@
           "attr": "ghost",
           "reflectToAttr": false,
           "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -4786,12 +4494,7 @@
           "attr": "i18n-custom-item",
           "reflectToAttr": false,
           "docs": "Text for custom dropdown item. Will be used for translation.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Custom...'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Custom...'",
           "values": [
             {
@@ -4815,12 +4518,7 @@
           "attr": "i18n-done",
           "reflectToAttr": false,
           "docs": "Text for the done button. Will be used for translation.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Done'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -4844,12 +4542,7 @@
           "attr": "i18n-no-range",
           "reflectToAttr": false,
           "docs": "Text for the done button. Will be used for translation.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'No range set'"
-            }
-          ],
+          "docsTags": [],
           "default": "'No range set'",
           "values": [
             {
@@ -4873,12 +4566,7 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -4928,12 +4616,7 @@
           "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -4957,12 +4640,7 @@
           "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -4986,12 +4664,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -5015,12 +4688,7 @@
           "attr": "range",
           "reflectToAttr": false,
           "docs": "If true a range of dates can be selected.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -5048,10 +4716,6 @@
             {
               "name": "since",
               "text": "3.0.0"
-            },
-            {
-              "name": "default",
-              "text": "false"
             }
           ],
           "default": "false",
@@ -5077,12 +4741,7 @@
           "attr": "to",
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -5112,12 +4771,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'primary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -5150,12 +4804,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -5299,12 +4948,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "disabled attribute",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -5328,12 +4972,7 @@
           "attr": "format",
           "reflectToAttr": false,
           "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'yyyy/LL/dd'"
-            }
-          ],
+          "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
             {
@@ -5383,12 +5022,7 @@
           "attr": "i18n-error-date-unparsable",
           "reflectToAttr": false,
           "docs": "i18n string for the error message when the date is not parsable",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Date is not valid'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Date is not valid'",
           "values": [
             {
@@ -5568,12 +5202,7 @@
           "attr": "readonly",
           "reflectToAttr": false,
           "docs": "readonly attribute",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -5653,10 +5282,6 @@
             {
               "name": "since",
               "text": "3.0.0"
-            },
-            {
-              "name": "default",
-              "text": "false"
             }
           ],
           "default": "false",
@@ -5708,12 +5333,7 @@
           "attr": "value",
           "reflectToAttr": true,
           "docs": "value of the input element",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -5920,12 +5540,7 @@
           "attr": "corners",
           "reflectToAttr": false,
           "docs": "Corner style",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'rounded'"
-            }
-          ],
+          "docsTags": [],
           "default": "'rounded'",
           "values": [
             {
@@ -5962,12 +5577,7 @@
           "attr": "format",
           "reflectToAttr": false,
           "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'yyyy/LL/dd'"
-            }
-          ],
+          "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
             {
@@ -6017,12 +5627,7 @@
           "attr": "i18n-done",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Done'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -6072,12 +5677,7 @@
           "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -6101,12 +5701,7 @@
           "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -6130,12 +5725,7 @@
           "attr": "range",
           "reflectToAttr": false,
           "docs": "If true a date-range can be selected (from/to).",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -6163,10 +5753,6 @@
             {
               "name": "since",
               "text": "3.0.0"
-            },
-            {
-              "name": "default",
-              "text": "false"
             }
           ],
           "default": "false",
@@ -6218,12 +5804,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -6389,12 +5970,7 @@
           "attr": "date-format",
           "reflectToAttr": false,
           "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'yyyy/LL/dd'"
-            }
-          ],
+          "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
             {
@@ -6444,12 +6020,7 @@
           "attr": "i18n-done",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Done'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -6477,10 +6048,6 @@
             {
               "name": "since",
               "text": "3.0.0"
-            },
-            {
-              "name": "default",
-              "text": "'Time'"
             }
           ],
           "default": "'Time'",
@@ -6584,12 +6151,7 @@
           "attr": "range",
           "reflectToAttr": false,
           "docs": "If true a date-range can be selected (from/to).",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -6613,12 +6175,7 @@
           "attr": "show-hour",
           "reflectToAttr": false,
           "docs": "Show hour input",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -6642,12 +6199,7 @@
           "attr": "show-minutes",
           "reflectToAttr": false,
           "docs": "Show minutes input",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -6671,12 +6223,7 @@
           "attr": "show-seconds",
           "reflectToAttr": false,
           "docs": "Show seconds input",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -6704,10 +6251,6 @@
             {
               "name": "see",
               "text": "{ this.timeFormat}"
-            },
-            {
-              "name": "default",
-              "text": "false"
             }
           ],
           "default": "false",
@@ -6737,10 +6280,6 @@
             {
               "name": "since",
               "text": "3.0.0"
-            },
-            {
-              "name": "default",
-              "text": "false"
             }
           ],
           "default": "false",
@@ -6792,12 +6331,7 @@
           "attr": "time-format",
           "reflectToAttr": false,
           "docs": "Time format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'HH:mm:ss'"
-            }
-          ],
+          "docsTags": [],
           "default": "'HH:mm:ss'",
           "values": [
             {
@@ -6878,12 +6412,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -7028,12 +6557,7 @@
           "attr": "close-on-click-outside",
           "reflectToAttr": false,
           "docs": "Fired in case of an outside click during drawer showed state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -7057,12 +6581,7 @@
           "attr": "full-height",
           "reflectToAttr": false,
           "docs": "Render the drawer with maximum height",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -7086,12 +6605,7 @@
           "attr": "max-width",
           "reflectToAttr": false,
           "docs": "Max width interpreted as REM",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "28"
-            }
-          ],
+          "docsTags": [],
           "default": "28",
           "values": [
             {
@@ -7115,12 +6629,7 @@
           "attr": "min-width",
           "reflectToAttr": false,
           "docs": "Min width interpreted as REM",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "16"
-            }
-          ],
+          "docsTags": [],
           "default": "16",
           "values": [
             {
@@ -7144,12 +6653,7 @@
           "attr": "show",
           "reflectToAttr": false,
           "docs": "Show or hide the drawer",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -7173,12 +6677,7 @@
           "attr": "width",
           "reflectToAttr": false,
           "docs": "Width interpreted as REM if not set to 'auto'",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "this.minWidth"
-            }
-          ],
+          "docsTags": [],
           "default": "this.minWidth",
           "values": [
             {
@@ -7393,12 +6892,7 @@
           "attr": "close-behavior",
           "reflectToAttr": false,
           "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.\nIf the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'both'"
-            }
-          ],
+          "docsTags": [],
           "default": "'both'",
           "values": [
             {
@@ -7466,12 +6960,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Placement of the dropdown",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'bottom-start'"
-            }
-          ],
+          "docsTags": [],
           "default": "'bottom-start'",
           "values": [
             {
@@ -7524,12 +7013,7 @@
           "attr": "positioning-strategy",
           "reflectToAttr": false,
           "docs": "Position strategy",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'fixed'"
-            }
-          ],
+          "docsTags": [],
           "default": "'fixed'",
           "values": [
             {
@@ -7558,12 +7042,7 @@
           "attr": "show",
           "reflectToAttr": true,
           "docs": "Show dropdown",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -7587,12 +7066,7 @@
           "attr": "suppress-automatic-placement",
           "reflectToAttr": false,
           "docs": "Suppress the automatic placement of the dropdown.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -7739,12 +7213,7 @@
           "attr": "close-behavior",
           "reflectToAttr": false,
           "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'both'"
-            }
-          ],
+          "docsTags": [],
           "default": "'both'",
           "values": [
             {
@@ -7780,12 +7249,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disable button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -7809,12 +7273,7 @@
           "attr": "ghost",
           "reflectToAttr": false,
           "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -7890,12 +7349,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -7986,12 +7440,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'primary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -8130,12 +7579,7 @@
           "attr": "checked",
           "reflectToAttr": false,
           "docs": "Whether the item is checked or not. If true a checkmark will mark the item as checked.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8159,12 +7603,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disable item and remove event listeners",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8188,12 +7627,7 @@
           "attr": "hover",
           "reflectToAttr": false,
           "docs": "Display hover state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8408,12 +7842,7 @@
           "attr": "layout",
           "reflectToAttr": false,
           "docs": "Optional empty state layout - one of 'large', 'compact' or 'compactBreak'",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'large'"
-            }
-          ],
+          "docsTags": [],
           "default": "'large'",
           "values": [
             {
@@ -8511,12 +7940,7 @@
           "attr": "animated",
           "reflectToAttr": false,
           "docs": "Animate state change transitions. Defaults to 'true'.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -8540,12 +7964,7 @@
           "attr": "chevron",
           "reflectToAttr": false,
           "docs": "Display a chevron icon in list items. Defaults to 'false'",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8569,12 +7988,7 @@
           "attr": "compact",
           "reflectToAttr": false,
           "docs": "Make event-list items more compact",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8598,12 +8012,7 @@
           "attr": "item-height",
           "reflectToAttr": false,
           "docs": "Determines the height of list items.\nThis can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value.\nIn case a number is supplied it will get converted to rem internally.\nDefaults to 'S'.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'S'"
-            }
-          ],
+          "docsTags": [],
           "default": "'S'",
           "values": [
             {
@@ -8659,12 +8068,7 @@
           "attr": "chevron",
           "reflectToAttr": false,
           "docs": "Show chevron on right side of the event list item",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8688,12 +8092,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disable event list item",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8748,12 +8147,7 @@
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Show event list item as selected",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8831,12 +8225,7 @@
           "attr": "full-width",
           "reflectToAttr": false,
           "docs": "If true the search field will fill all available horizontal space of it's parent container when expanded.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8860,12 +8249,7 @@
           "attr": "ghost",
           "reflectToAttr": false,
           "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -8915,12 +8299,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -8944,12 +8323,7 @@
           "attr": "placeholder",
           "reflectToAttr": false,
           "docs": "Placeholder text",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Enter text here'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Enter text here'",
           "values": [
             {
@@ -8973,12 +8347,7 @@
           "attr": "value",
           "reflectToAttr": false,
           "docs": "Default value",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -9008,12 +8377,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "button variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'primary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -9190,12 +8554,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "If true the filter chip will be in disabled state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -9219,12 +8578,7 @@
           "attr": "readonly",
           "reflectToAttr": false,
           "docs": "If true the filter chip will be in readonly mode",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -9296,12 +8650,7 @@
           "attr": "height",
           "reflectToAttr": false,
           "docs": "Height interpreted as REM",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "15.125"
-            }
-          ],
+          "docsTags": [],
           "default": "15.125",
           "values": [
             {
@@ -9333,10 +8682,6 @@
             {
               "name": "since",
               "text": "3.0.0"
-            },
-            {
-              "name": "default",
-              "text": "0"
             }
           ],
           "default": "0",
@@ -9406,12 +8751,7 @@
           "attr": "width",
           "reflectToAttr": false,
           "docs": "Width interpreted as REM",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "16"
-            }
-          ],
+          "docsTags": [],
           "default": "16",
           "values": [
             {
@@ -9520,12 +8860,7 @@
           "attr": "collapsed",
           "reflectToAttr": true,
           "docs": "Whether the group is collapsed or expanded. Defaults to true.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -9549,12 +8884,7 @@
           "attr": "expand-on-header-click",
           "reflectToAttr": false,
           "docs": "Expand the group if the header is clicked",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -9630,12 +8960,7 @@
           "attr": "selected",
           "reflectToAttr": true,
           "docs": "Whether the group is selected.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -9685,12 +9010,7 @@
           "attr": "suppress-header-selection",
           "reflectToAttr": false,
           "docs": "Prevent header from being selectable",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -9830,12 +9150,7 @@
           "attr": "focusable",
           "reflectToAttr": false,
           "docs": "The elements tabindex attribute will get set accordingly.\nIf true tabindex will be 0, -1 otherwise.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -9937,12 +9252,7 @@
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Show selected state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -9966,12 +9276,7 @@
           "attr": "suppress-selection",
           "reflectToAttr": false,
           "docs": "Supress the selection of the group",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10410,12 +9715,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disabled",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10439,12 +9739,7 @@
           "attr": "ghost",
           "reflectToAttr": false,
           "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10520,12 +9815,7 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10549,12 +9839,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Button outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10578,12 +9863,7 @@
           "attr": "oval",
           "reflectToAttr": false,
           "docs": "Button in oval shape",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10607,12 +9887,7 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Size of icon in button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'24'"
-            }
-          ],
+          "docsTags": [],
           "default": "'24'",
           "values": [
             {
@@ -10645,12 +9920,7 @@
           "attr": "type",
           "reflectToAttr": false,
           "docs": "Type of the button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'button'"
-            }
-          ],
+          "docsTags": [],
           "default": "'button'",
           "values": [
             {
@@ -10685,12 +9955,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'secondary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'secondary'",
           "values": [
             {
@@ -10753,12 +10018,7 @@
           "attr": "disabled",
           "reflectToAttr": true,
           "docs": "Disable the button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10782,12 +10042,7 @@
           "attr": "ghost",
           "reflectToAttr": false,
           "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10837,12 +10092,7 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10866,12 +10116,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10899,10 +10144,6 @@
             {
               "name": "since",
               "text": "3.1.0"
-            },
-            {
-              "name": "default",
-              "text": "false"
             }
           ],
           "default": "false",
@@ -10928,12 +10169,7 @@
           "attr": "pressed",
           "reflectToAttr": false,
           "docs": "Show button as pressed",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -10957,12 +10193,7 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Size of icon in button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'24'"
-            }
-          ],
+          "docsTags": [],
           "default": "'24'",
           "values": [
             {
@@ -11001,12 +10232,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant.\nImportant: Variant 'primary' can only be combined with either outline or ghost.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'secondary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'secondary'",
           "values": [
             {
@@ -11140,12 +10366,7 @@
           "attr": "disabled",
           "reflectToAttr": true,
           "docs": "Specifies whether the text field is disabled.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -11403,12 +10624,7 @@
           "attr": "readonly",
           "reflectToAttr": true,
           "docs": "Specifies whether the text field is readonly.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -11432,12 +10648,7 @@
           "attr": "required",
           "reflectToAttr": true,
           "docs": "Specifies whether the text field is required.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -11487,12 +10698,7 @@
           "attr": "type",
           "reflectToAttr": false,
           "docs": "The type of the text field. Possible values are 'text', 'email', or 'password'.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'text'"
-            }
-          ],
+          "docsTags": [],
           "default": "'text'",
           "values": [
             {
@@ -11559,12 +10765,7 @@
           "attr": "value",
           "reflectToAttr": true,
           "docs": "The value of the text field.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -11859,12 +11060,7 @@
           "attr": "label-position",
           "reflectToAttr": false,
           "docs": "Optional key value label position - 'top' or 'left'",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'top'"
-            }
-          ],
+          "docsTags": [],
           "default": "'top'",
           "values": [
             {
@@ -11948,12 +11144,7 @@
           "attr": "striped",
           "reflectToAttr": false,
           "docs": "Optional striped key value list style",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -12027,12 +11218,7 @@
           "attr": "orientation",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'horizontal'"
-            }
-          ],
+          "docsTags": [],
           "default": "'horizontal'",
           "values": [
             {
@@ -12061,12 +11247,7 @@
           "attr": "state",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'neutral'"
-            }
-          ],
+          "docsTags": [],
           "default": "'neutral'",
           "values": [
             {
@@ -12178,12 +11359,7 @@
           "attr": "layout",
           "reflectToAttr": false,
           "docs": "Defines the layout of the form.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "[\n    { minWidth: '0', columns: 1 },\n    { minWidth: '48em', columns: 2 },\n  ]"
-            }
-          ],
+          "docsTags": [],
           "default": "[\n    { minWidth: '0', columns: 1 },\n    { minWidth: '48em', columns: 2 },\n  ]",
           "values": [
             {
@@ -12241,12 +11417,7 @@
           "attr": "columns",
           "reflectToAttr": false,
           "docs": "Overwrite the default number of columns. Choose between 2 and 12 columns.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "12"
-            }
-          ],
+          "docsTags": [],
           "default": "12",
           "values": [
             {
@@ -12270,12 +11441,7 @@
           "attr": "gap",
           "reflectToAttr": false,
           "docs": "Grid gap",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'24'"
-            }
-          ],
+          "docsTags": [],
           "default": "'24'",
           "values": [
             {
@@ -12312,12 +11478,7 @@
           "attr": "no-margin",
           "reflectToAttr": false,
           "docs": "The grid will not have any horizontal padding",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -12365,12 +11526,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disable the link button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -12394,12 +11550,7 @@
           "attr": "target",
           "reflectToAttr": false,
           "docs": "Specifies where to open the link\n\nhttps://www.w3schools.com/html/html_links.asp",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'_self'"
-            }
-          ],
+          "docsTags": [],
           "default": "'_self'",
           "values": [
             {
@@ -12538,12 +11689,7 @@
           "attr": "hide-context-menu",
           "reflectToAttr": false,
           "docs": "Hide the sidebar context menu button when set to true",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -12990,12 +12136,7 @@
           "attr": "application-description",
           "reflectToAttr": false,
           "docs": "Should only be set if you use ix-menu standalone",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -13045,12 +12186,7 @@
           "attr": "enable-settings",
           "reflectToAttr": false,
           "docs": "Is settings tab is visible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -13074,12 +12210,7 @@
           "attr": "enable-toggle-theme",
           "reflectToAttr": false,
           "docs": "Show toggle between light and dark variant. Only if the provided theme have implemented both!",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -13103,12 +12234,7 @@
           "attr": "expand",
           "reflectToAttr": true,
           "docs": "Toggle the expand state of the menu",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -13132,12 +12258,7 @@
           "attr": "i-1-8n-collapse",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Collapse'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Collapse'",
           "values": [
             {
@@ -13161,12 +12282,7 @@
           "attr": "i-1-8n-expand",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "' Expand'"
-            }
-          ],
+          "docsTags": [],
           "default": "' Expand'",
           "values": [
             {
@@ -13190,12 +12306,7 @@
           "attr": "i-1-8n-expand-sidebar",
           "reflectToAttr": false,
           "docs": "Accessibility i18n label for the burger menu of the sidebar",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Expand sidebar'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Expand sidebar'",
           "values": [
             {
@@ -13219,12 +12330,7 @@
           "attr": "i-1-8n-legal",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'About & legal information'"
-            }
-          ],
+          "docsTags": [],
           "default": "'About & legal information'",
           "values": [
             {
@@ -13248,12 +12354,7 @@
           "attr": "i-1-8n-settings",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Settings'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Settings'",
           "values": [
             {
@@ -13277,12 +12378,7 @@
           "attr": "i-1-8n-toggle-theme",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Toggle theme'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Toggle theme'",
           "values": [
             {
@@ -13306,12 +12402,7 @@
           "attr": "pinned",
           "reflectToAttr": false,
           "docs": "Menu stays pinned to the left",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -13335,12 +12426,7 @@
           "attr": "show-about",
           "reflectToAttr": false,
           "docs": "Is about tab visible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -13364,12 +12450,7 @@
           "attr": "show-settings",
           "reflectToAttr": false,
           "docs": "Is settings tab visible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -13393,12 +12474,7 @@
           "attr": "start-expanded",
           "reflectToAttr": false,
           "docs": "If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -13740,12 +12816,7 @@
           "attr": "label",
           "reflectToAttr": false,
           "docs": "Content of the header",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'About & legal information'"
-            }
-          ],
+          "docsTags": [],
           "default": "'About & legal information'",
           "values": [
             {
@@ -13946,12 +13017,7 @@
           "attr": "i-1-8n-show-more",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Show more'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Show more'",
           "values": [
             {
@@ -14001,12 +13067,7 @@
           "attr": "offset-bottom",
           "reflectToAttr": false,
           "docs": "Bottom offset",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -14030,12 +13091,7 @@
           "attr": "show",
           "reflectToAttr": true,
           "docs": "Show about news",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -14162,12 +13218,7 @@
           "attr": "i-1-8n-logout",
           "reflectToAttr": false,
           "docs": "Use for translation",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Logout'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Logout'",
           "values": [
             {
@@ -14243,12 +13294,7 @@
           "attr": "show-logout-button",
           "reflectToAttr": false,
           "docs": "Control the visibility of the logout button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -14596,12 +13642,7 @@
           "attr": "active",
           "reflectToAttr": false,
           "docs": "State to display active",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -14625,12 +13666,7 @@
           "attr": "bottom",
           "reflectToAttr": false,
           "docs": "Caution: this is no longer working. Please use slot=\"bottom\" instead.\n\nPlace tab on bottom",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -14654,12 +13690,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disable tab and remove event handlers",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -14683,12 +13714,7 @@
           "attr": "home",
           "reflectToAttr": false,
           "docs": "Move the Tab to a top position.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -14863,12 +13889,7 @@
           "attr": "label",
           "reflectToAttr": false,
           "docs": "Label of first tab",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Settings'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Settings'",
           "values": [
             {
@@ -15036,12 +14057,7 @@
           "attr": "dismissible",
           "reflectToAttr": false,
           "docs": "If true, close button is enabled and alert can be dismissed by the user",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -15069,10 +14085,6 @@
             {
               "name": "deprecated",
               "text": "Type `danger` will be removed in 4.0. Use `alarm` instead."
-            },
-            {
-              "name": "default",
-              "text": "'info'"
             }
           ],
           "default": "'info'",
@@ -15181,12 +14193,7 @@
           "attr": "animation",
           "reflectToAttr": false,
           "docs": "Should the modal be animated",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -15210,12 +14217,7 @@
           "attr": "backdrop",
           "reflectToAttr": false,
           "docs": "Show a backdrop behind the modal dialog",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -15273,12 +14275,7 @@
           "attr": "centered",
           "reflectToAttr": false,
           "docs": "Centered modal",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -15302,12 +14299,7 @@
           "attr": "close-on-backdrop-click",
           "reflectToAttr": false,
           "docs": "Dismiss modal on backdrop click",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -15331,12 +14323,7 @@
           "attr": "close-on-escape",
           "reflectToAttr": false,
           "docs": "If set to true the modal can be closed by pressing the Escape key",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -15366,12 +14353,7 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Modal size",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'360'"
-            }
-          ],
+          "docsTags": [],
           "default": "'360'",
           "values": [
             {
@@ -15644,12 +14626,7 @@
           "attr": "hide-close",
           "reflectToAttr": false,
           "docs": "Hide the close button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -15829,12 +14806,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disables the input field",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -16098,12 +15070,7 @@
           "attr": "readonly",
           "reflectToAttr": false,
           "docs": "Indicates if the field is read-only",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -16127,12 +15094,7 @@
           "attr": "required",
           "reflectToAttr": true,
           "docs": "Indicates if the field is required",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -16268,12 +15230,7 @@
           "attr": "value",
           "reflectToAttr": true,
           "docs": "The value of the input field",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -16495,12 +15452,7 @@
           "attr": "advanced",
           "reflectToAttr": false,
           "docs": "Advanced mode",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -16524,12 +15476,7 @@
           "attr": "count",
           "reflectToAttr": false,
           "docs": "Total number of pages",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -16553,12 +15500,7 @@
           "attr": "i-1-8n-items",
           "reflectToAttr": false,
           "docs": "/**\n  i18n",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Items'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Items'",
           "values": [
             {
@@ -16582,12 +15524,7 @@
           "attr": "i-1-8n-of",
           "reflectToAttr": false,
           "docs": "i18n",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'of'"
-            }
-          ],
+          "docsTags": [],
           "default": "'of'",
           "values": [
             {
@@ -16611,12 +15548,7 @@
           "attr": "i-1-8n-page",
           "reflectToAttr": false,
           "docs": "i18n",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Page'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Page'",
           "values": [
             {
@@ -16640,12 +15572,7 @@
           "attr": "item-count",
           "reflectToAttr": false,
           "docs": "Number of items shown at once.\nCan only be changed in advaced mode.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "15"
-            }
-          ],
+          "docsTags": [],
           "default": "15",
           "values": [
             {
@@ -16669,12 +15596,7 @@
           "attr": "selected-page",
           "reflectToAttr": false,
           "docs": "Zero based index of currently selected page",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -16698,12 +15620,7 @@
           "attr": "show-item-count",
           "reflectToAttr": false,
           "docs": "Show item count in advanced mode",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -16791,12 +15708,7 @@
           "attr": "borderless",
           "reflectToAttr": false,
           "docs": "Toggle the border of the pane.\nDefaults to the borderless attribute of the pane layout. If used standalone it defaults to false.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -16826,12 +15738,7 @@
           "attr": "composition",
           "reflectToAttr": false,
           "docs": "Defines the position of the pane inside it's container.\nInside a pane layout this property will automatically be set to the name of slot the pane is assigned to.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'top'"
-            }
-          ],
+          "docsTags": [],
           "default": "'top'",
           "values": [
             {
@@ -16868,12 +15775,7 @@
           "attr": "expanded",
           "reflectToAttr": false,
           "docs": "State of the pane",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -16923,12 +15825,7 @@
           "attr": "hide-on-collapse",
           "reflectToAttr": false,
           "docs": "Define if the pane should have a collapsed state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -16978,12 +15875,7 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "The maximum size of the sidebar, when it is expanded",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'240px'"
-            }
-          ],
+          "docsTags": [],
           "default": "'240px'",
           "values": [
             {
@@ -17032,12 +15924,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of the side pane.\nDefaults to the variant attribute of the pane layout. If used standalone it defaults to inline.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'inline'"
-            }
-          ],
+          "docsTags": [],
           "default": "'inline'",
           "values": [
             {
@@ -17151,12 +16038,7 @@
           "attr": "borderless",
           "reflectToAttr": false,
           "docs": "Set the default border state for all panes in the layout",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -17180,12 +16062,7 @@
           "attr": "layout",
           "reflectToAttr": false,
           "docs": "Choose the layout of the panes.\nWhen set to 'full-vertical' the vertical panes (left, right) will get the full height.\nWhen set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'full-vertical'"
-            }
-          ],
+          "docsTags": [],
           "default": "'full-vertical'",
           "values": [
             {
@@ -17214,12 +16091,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Set the default variant for all panes in the layout",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'inline'"
-            }
-          ],
+          "docsTags": [],
           "default": "'inline'",
           "values": [
             {
@@ -17297,12 +16169,7 @@
           "attr": "align-left",
           "reflectToAttr": false,
           "docs": "Align pill content left",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -17378,12 +16245,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Show pill as outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -17437,10 +16299,6 @@
             {
               "name": "since",
               "text": "3.0.0"
-            },
-            {
-              "name": "default",
-              "text": "false"
             }
           ],
           "default": "false",
@@ -17469,12 +16327,7 @@
           "attr": "variant",
           "reflectToAttr": true,
           "docs": "Pill variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'primary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -17565,12 +16418,7 @@
           "attr": "collapse",
           "reflectToAttr": false,
           "docs": "Collapse the card",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -17704,12 +16552,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'outline'"
-            }
-          ],
+          "docsTags": [],
           "default": "'outline'",
           "values": [
             {
@@ -17800,12 +16643,7 @@
           "attr": "checked",
           "reflectToAttr": true,
           "docs": "Checked state of the radio component",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -17829,12 +16667,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disabled state of the radio component",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -17914,10 +16747,6 @@
             {
               "name": "since",
               "text": "3.0.0"
-            },
-            {
-              "name": "default",
-              "text": "false"
             }
           ],
           "default": "false",
@@ -18057,12 +16886,7 @@
           "attr": "direction",
           "reflectToAttr": false,
           "docs": "Alignment of the radio buttons in the group",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'column'"
-            }
-          ],
+          "docsTags": [],
           "default": "'column'",
           "values": [
             {
@@ -18422,12 +17246,7 @@
           "attr": "allow-clear",
           "reflectToAttr": false,
           "docs": "Show clear button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -18451,12 +17270,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "If true the select will be in disabled state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -18532,12 +17346,7 @@
           "attr": "editable",
           "reflectToAttr": false,
           "docs": "Select is extendable",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -18587,12 +17396,7 @@
           "attr": "hide-list-header",
           "reflectToAttr": false,
           "docs": "Hide list header",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -18616,12 +17420,7 @@
           "attr": "i-1-8n-no-matches",
           "reflectToAttr": false,
           "docs": "Information inside of dropdown if no items where found with current filter text",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'No matches'"
-            }
-          ],
+          "docsTags": [],
           "default": "'No matches'",
           "values": [
             {
@@ -18645,12 +17444,7 @@
           "attr": "i-1-8n-placeholder",
           "reflectToAttr": false,
           "docs": "Input field placeholder",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Select an option'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Select an option'",
           "values": [
             {
@@ -18674,12 +17468,7 @@
           "attr": "i-1-8n-placeholder-editable",
           "reflectToAttr": false,
           "docs": "Input field placeholder for editable select",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Type of select option'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Type of select option'",
           "values": [
             {
@@ -18703,12 +17492,7 @@
           "attr": "i-1-8n-select-list-header",
           "reflectToAttr": false,
           "docs": "Select list header",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Select an option'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Select an option'",
           "values": [
             {
@@ -18810,12 +17594,7 @@
           "attr": "mode",
           "reflectToAttr": false,
           "docs": "Selection mode",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'single'"
-            }
-          ],
+          "docsTags": [],
           "default": "'single'",
           "values": [
             {
@@ -18870,12 +17649,7 @@
           "attr": "readonly",
           "reflectToAttr": false,
           "docs": "If true the select will be in readonly mode",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -18899,12 +17673,7 @@
           "attr": "required",
           "reflectToAttr": true,
           "docs": "A Boolean attribute indicating that an option with a non-empty string value must be selected",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -18980,12 +17749,7 @@
           "attr": "value",
           "reflectToAttr": false,
           "docs": "Current selected value.\nThis corresponds to the value property of ix-select-items",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "[]"
-            }
-          ],
+          "docsTags": [],
           "default": "[]",
           "values": [
             {
@@ -19225,12 +17989,7 @@
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Flag indicating whether the item is selected",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -19336,12 +18095,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Show control as disabled",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -19426,12 +18180,7 @@
           "attr": "max",
           "reflectToAttr": false,
           "docs": "Maximum slider value",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "100"
-            }
-          ],
+          "docsTags": [],
           "default": "100",
           "values": [
             {
@@ -19455,12 +18204,7 @@
           "attr": "min",
           "reflectToAttr": false,
           "docs": "Minimum slider value",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -19488,10 +18232,6 @@
             {
               "name": "link",
               "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
-            },
-            {
-              "name": "default",
-              "text": "1"
             }
           ],
           "default": "1",
@@ -19517,12 +18257,7 @@
           "attr": "trace",
           "reflectToAttr": false,
           "docs": "Show a trace line",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -19546,12 +18281,7 @@
           "attr": "trace-reference",
           "reflectToAttr": false,
           "docs": "Define the start point of the trace line",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -19575,12 +18305,7 @@
           "attr": "value",
           "reflectToAttr": false,
           "docs": "Current value of the slider",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -19702,12 +18427,7 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Size of spinner",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'medium'"
-            }
-          ],
+          "docsTags": [],
           "default": "'medium'",
           "values": [
             {
@@ -19748,12 +18468,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of spinner",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'secondary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'secondary'",
           "values": [
             {
@@ -19828,12 +18543,7 @@
           "attr": "close-behavior",
           "reflectToAttr": false,
           "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'both'"
-            }
-          ],
+          "docsTags": [],
           "default": "'both'",
           "values": [
             {
@@ -19869,12 +18579,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disabled",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -19898,12 +18603,7 @@
           "attr": "ghost",
           "reflectToAttr": false,
           "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -19979,12 +18679,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Button outline variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20014,12 +18709,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Placement of the dropdown",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'bottom-start'"
-            }
-          ],
+          "docsTags": [],
           "default": "'bottom-start'",
           "values": [
             {
@@ -20104,12 +18794,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Color variant of button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'primary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'primary'",
           "values": [
             {
@@ -20222,12 +18907,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Set disabled tab",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20251,12 +18931,7 @@
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Set icon only tab",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20280,12 +18955,7 @@
           "attr": "layout",
           "reflectToAttr": false,
           "docs": "Set layout width style",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'auto'"
-            }
-          ],
+          "docsTags": [],
           "default": "'auto'",
           "values": [
             {
@@ -20314,12 +18984,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Set selected placement",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'bottom'"
-            }
-          ],
+          "docsTags": [],
           "default": "'bottom'",
           "values": [
             {
@@ -20348,12 +19013,7 @@
           "attr": "rounded",
           "reflectToAttr": false,
           "docs": "Set rounded tab",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20377,12 +19037,7 @@
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Set selected tab",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20406,12 +19061,7 @@
           "attr": "small",
           "reflectToAttr": false,
           "docs": "Set small size tab",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20490,12 +19140,7 @@
           "attr": "layout",
           "reflectToAttr": false,
           "docs": "Set layout width style",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'auto'"
-            }
-          ],
+          "docsTags": [],
           "default": "'auto'",
           "values": [
             {
@@ -20524,12 +19169,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Set placement style",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'bottom'"
-            }
-          ],
+          "docsTags": [],
           "default": "'bottom'",
           "values": [
             {
@@ -20558,12 +19198,7 @@
           "attr": "rounded",
           "reflectToAttr": false,
           "docs": "Set rounded tabs",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20587,12 +19222,7 @@
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Set default selected tab by index",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -20616,12 +19246,7 @@
           "attr": "small",
           "reflectToAttr": false,
           "docs": "Set tab items to small size",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20719,12 +19344,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Determines if the textarea field is disabled.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20956,12 +19576,7 @@
           "attr": "readonly",
           "reflectToAttr": false,
           "docs": "Determines if the textarea field is readonly.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -20985,12 +19600,7 @@
           "attr": "required",
           "reflectToAttr": true,
           "docs": "Determines if the textarea field is required.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -21020,12 +19630,7 @@
           "attr": "resize-behavior",
           "reflectToAttr": false,
           "docs": "Determines the resize behavior of the textarea field.\nResizing can be enabled in one direction, both directions or completely disabled.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'both'"
-            }
-          ],
+          "docsTags": [],
           "default": "'both'",
           "values": [
             {
@@ -21218,12 +19823,7 @@
           "attr": "value",
           "reflectToAttr": true,
           "docs": "The value of the textarea field.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "''",
           "values": [
             {
@@ -21394,12 +19994,7 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Size of the tile - one of 'small', 'medium' or 'large'",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'medium'"
-            }
-          ],
+          "docsTags": [],
           "default": "'medium'",
           "values": [
             {
@@ -21485,12 +20080,7 @@
           "attr": "corners",
           "reflectToAttr": false,
           "docs": "Corner style",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'rounded'"
-            }
-          ],
+          "docsTags": [],
           "default": "'rounded'",
           "values": [
             {
@@ -21527,12 +20117,7 @@
           "attr": "format",
           "reflectToAttr": false,
           "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'TT'"
-            }
-          ],
+          "docsTags": [],
           "default": "'TT'",
           "values": [
             {
@@ -21556,12 +20141,7 @@
           "attr": "show-hour",
           "reflectToAttr": false,
           "docs": "Show hour input",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -21585,12 +20165,7 @@
           "attr": "show-minutes",
           "reflectToAttr": false,
           "docs": "Show minutes input",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -21614,12 +20189,7 @@
           "attr": "show-seconds",
           "reflectToAttr": false,
           "docs": "Show seconds input",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -21643,12 +20213,7 @@
           "attr": "standalone-appearance",
           "reflectToAttr": false,
           "docs": "Controls the visual presentation and styling of the component when it is displayed as a standalone element",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -21672,12 +20237,7 @@
           "attr": "text-select-time",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Done'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -21701,12 +20261,7 @@
           "attr": "text-time",
           "reflectToAttr": false,
           "docs": "Text for top label",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Time'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Time'",
           "values": [
             {
@@ -21730,12 +20285,7 @@
           "attr": "time",
           "reflectToAttr": false,
           "docs": "Select time with format string\nFormat has to match the `format` property.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "DateTime.now().toFormat(this.format)"
-            }
-          ],
+          "docsTags": [],
           "default": "DateTime.now().toFormat(this.format)",
           "values": [
             {
@@ -21880,12 +20430,7 @@
           "attr": "auto-close",
           "reflectToAttr": false,
           "docs": "Autoclose behavior",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -21909,12 +20454,7 @@
           "attr": "auto-close-delay",
           "reflectToAttr": false,
           "docs": "Autoclose title after delay",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "5000"
-            }
-          ],
+          "docsTags": [],
           "default": "5000",
           "values": [
             {
@@ -22022,12 +20562,7 @@
           "attr": "type",
           "reflectToAttr": false,
           "docs": "Toast type",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'info'"
-            }
-          ],
+          "docsTags": [],
           "default": "'info'",
           "values": [
             {
@@ -22115,12 +20650,7 @@
           "attr": "container-class",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'toast-container'"
-            }
-          ],
+          "docsTags": [],
           "default": "'toast-container'",
           "values": [
             {
@@ -22144,12 +20674,7 @@
           "attr": "container-id",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'toast-container'"
-            }
-          ],
+          "docsTags": [],
           "default": "'toast-container'",
           "values": [
             {
@@ -22173,12 +20698,7 @@
           "attr": "position",
           "reflectToAttr": false,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'bottom-right'"
-            }
-          ],
+          "docsTags": [],
           "default": "'bottom-right'",
           "values": [
             {
@@ -22295,12 +20815,7 @@
           "attr": "checked",
           "reflectToAttr": true,
           "docs": "Whether the slide-toggle element is checked or not.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22324,12 +20839,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Whether the slide-toggle element is disabled or not.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22353,12 +20863,7 @@
           "attr": "hide-text",
           "reflectToAttr": false,
           "docs": "Hide `on` and `off` text",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22382,12 +20887,7 @@
           "attr": "indeterminate",
           "reflectToAttr": true,
           "docs": "If true the control is in indeterminate state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22437,12 +20937,7 @@
           "attr": "required",
           "reflectToAttr": true,
           "docs": "Required state of the checkbox component.\n\nIf true, checkbox needs to be checked to be valid",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22466,12 +20961,7 @@
           "attr": "text-indeterminate",
           "reflectToAttr": false,
           "docs": "Text for indeterminate state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Mixed'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Mixed'",
           "values": [
             {
@@ -22495,12 +20985,7 @@
           "attr": "text-off",
           "reflectToAttr": false,
           "docs": "Text for off state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Off'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Off'",
           "values": [
             {
@@ -22524,12 +21009,7 @@
           "attr": "text-on",
           "reflectToAttr": false,
           "docs": "Text for on state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'On'"
-            }
-          ],
+          "docsTags": [],
           "default": "'On'",
           "values": [
             {
@@ -22553,12 +21033,7 @@
           "attr": "value",
           "reflectToAttr": true,
           "docs": "Value of the checkbox component",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'on'"
-            }
-          ],
+          "docsTags": [],
           "default": "'on'",
           "values": [
             {
@@ -22641,12 +21116,7 @@
           "attr": "disabled",
           "reflectToAttr": true,
           "docs": "Disable the button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22670,12 +21140,7 @@
           "attr": "ghost",
           "reflectToAttr": false,
           "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22725,12 +21190,7 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22754,12 +21214,7 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22783,12 +21238,7 @@
           "attr": "pressed",
           "reflectToAttr": false,
           "docs": "Show button as pressed",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -22818,12 +21268,7 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant.\nImportant: Variant 'primary' can only be combined with either outline or ghost.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'secondary'"
-            }
-          ],
+          "docsTags": [],
           "default": "'secondary'",
           "values": [
             {
@@ -22972,12 +21417,7 @@
           "attr": "interactive",
           "reflectToAttr": false,
           "docs": "Define if the user can access the tooltip via mouse.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -23001,12 +21441,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Initial placement of the tooltip.\nIf the selected placement doesn't have enough space, the tooltip will be repositioned to another location.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'top'"
-            }
-          ],
+          "docsTags": [],
           "default": "'top'",
           "values": [
             {
@@ -23114,12 +21549,7 @@
           "attr": "context",
           "reflectToAttr": false,
           "docs": "Selection and collapsed state management",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "{}"
-            }
-          ],
+          "docsTags": [],
           "default": "{}",
           "values": [
             {
@@ -23149,12 +21579,7 @@
           "attr": "model",
           "reflectToAttr": false,
           "docs": "Tree model",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "{}"
-            }
-          ],
+          "docsTags": [],
           "default": "{}",
           "values": [
             {
@@ -23412,12 +21837,7 @@
           "attr": "has-children",
           "reflectToAttr": false,
           "docs": "Has tree item children",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -23626,12 +22046,7 @@
           "attr": "bold",
           "reflectToAttr": false,
           "docs": "Display text bold",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -23786,12 +22201,7 @@
           "attr": "text-decoration",
           "reflectToAttr": false,
           "docs": "Text decoration",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'none'"
-            }
-          ],
+          "docsTags": [],
           "default": "'none'",
           "values": [
             {
@@ -23885,12 +22295,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disable all input events",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -23914,12 +22319,7 @@
           "attr": "i-1-8n-upload-disabled",
           "reflectToAttr": false,
           "docs": "Text for disabled state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'File upload currently not possible.'"
-            }
-          ],
+          "docsTags": [],
           "default": "'File upload currently not possible.'",
           "values": [
             {
@@ -23943,12 +22343,7 @@
           "attr": "i-1-8n-upload-file",
           "reflectToAttr": false,
           "docs": "Label for upload file button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Upload file…'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Upload file…'",
           "values": [
             {
@@ -23972,12 +22367,7 @@
           "attr": "loading-text",
           "reflectToAttr": false,
           "docs": "Will be used by state = UploadFileState.LOADING",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Checking files…'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Checking files…'",
           "values": [
             {
@@ -24001,12 +22391,7 @@
           "attr": "multiline",
           "reflectToAttr": false,
           "docs": "Whether the text should wrap to more than one line",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -24030,12 +22415,7 @@
           "attr": "multiple",
           "reflectToAttr": false,
           "docs": "If multiple is true the user can drop or select multiple files",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -24059,12 +22439,7 @@
           "attr": "select-file-text",
           "reflectToAttr": false,
           "docs": "Will be used by state = UploadFileState.SELECT_FILE",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'+ Drag files here or…'"
-            }
-          ],
+          "docsTags": [],
           "default": "'+ Drag files here or…'",
           "values": [
             {
@@ -24094,12 +22469,7 @@
           "attr": "state",
           "reflectToAttr": false,
           "docs": "After a file is uploaded you can set the upload component to a defined state",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "UploadFileState.SELECT_FILE"
-            }
-          ],
+          "docsTags": [],
           "default": "UploadFileState.SELECT_FILE",
           "values": [
             {
@@ -24132,12 +22502,7 @@
           "attr": "upload-failed-text",
           "reflectToAttr": false,
           "docs": "Will be used by state = UploadFileState.UPLOAD_FAILED",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Upload failed. Please try again.'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Upload failed. Please try again.'",
           "values": [
             {
@@ -24161,12 +22526,7 @@
           "attr": "upload-success-text",
           "reflectToAttr": false,
           "docs": "Will be used by state = UploadFileState.UPLOAD_SUCCESSED",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'Upload successful'"
-            }
-          ],
+          "docsTags": [],
           "default": "'Upload successful'",
           "values": [
             {
@@ -24320,12 +22680,7 @@
           "attr": "placement",
           "reflectToAttr": false,
           "docs": "Placement of the tooltip",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'top'"
-            }
-          ],
+          "docsTags": [],
           "default": "'top'",
           "values": [
             {
@@ -24362,12 +22717,7 @@
           "attr": "suppress-automatic-placement",
           "reflectToAttr": false,
           "docs": "Suppress the automatic placement of the dropdown.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -24420,12 +22770,7 @@
           "attr": "clickable",
           "reflectToAttr": false,
           "docs": "Activate navigation click",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -24449,12 +22794,7 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Set disabled",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -24478,12 +22818,7 @@
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Set selected",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -24507,12 +22842,7 @@
           "attr": "status",
           "reflectToAttr": false,
           "docs": "Set status",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'open'"
-            }
-          ],
+          "docsTags": [],
           "default": "'open'",
           "values": [
             {
@@ -24553,12 +22883,7 @@
           "attr": "vertical",
           "reflectToAttr": false,
           "docs": "Select orientation",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -24606,12 +22931,7 @@
           "attr": "clickable",
           "reflectToAttr": false,
           "docs": "Activate navigation click",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -24635,12 +22955,7 @@
           "attr": "selected-index",
           "reflectToAttr": false,
           "docs": "Activate navigation click",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -24664,12 +22979,7 @@
           "attr": "vertical",
           "reflectToAttr": false,
           "docs": "Select orientation",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -24971,6 +23281,11 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components.d.ts"
+    },
+    "../../node_modules/.pnpm/@stencil+core@4.29.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "../../node_modules/.pnpm/@stencil+core@4.29.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",
