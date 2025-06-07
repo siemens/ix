@@ -7,8 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import DrawerDemo from './preview-examples/drawer';
+
 function App() {
-  return <div></div>;
+  return (
+    <div style={{ padding: 24 }}>
+      <DrawerDemo />
+    </div>
+  );
 }
 
 export default App;

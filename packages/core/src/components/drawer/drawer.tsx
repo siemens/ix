@@ -67,20 +67,19 @@ export class Drawer {
    */
   @Event() drawerClose!: EventEmitter;
 
-  toggle = false;
-
   private static duration = 300;
   private callback = this.clickedOutside.bind(this);
   private divElement?: HTMLElement;
 
   @State() showContent = true;
+  // Added for unified state control
+  @State() internalVisible = false;
 
   @Watch('show')
   onShowChanged(newValue: boolean, oldValue?: boolean) {
     if (newValue === oldValue) {
       return;
     }
-
     this.toggleDrawer(newValue);
   }
 
@@ -94,36 +93,25 @@ export class Drawer {
 
     if (show) {
       const { defaultPrevented } = this.open.emit();
-
-      if (defaultPrevented) {
-        return;
-      }
-
+      if (defaultPrevented) return;
       this.show = true;
-      if (!this.toggle && this.divElement) {
-        this.slideInRight(this.divElement);
+      if (!this.internalVisible && this.divElement) {
+        this.animateDrawer('in', this.divElement);
         setTimeout(() => {
-          window.addEventListener('mousedown', this.callback);
+          window.addEventListener('pointerdown', this.callback);
         }, Drawer.duration);
       }
     } else {
       const { defaultPrevented } = this.drawerClose.emit();
-
-      if (defaultPrevented) {
-        return;
-      }
-
+      if (defaultPrevented) return;
       this.show = false;
-
-      if (this.toggle && this.divElement) {
-        this.slideOutRight(this.divElement);
+      if (this.internalVisible && this.divElement) {
+        this.animateDrawer('out', this.divElement);
       }
-
-      window.removeEventListener('mousedown', this.callback);
+      window.removeEventListener('pointerdown', this.callback);
     }
 
-    this.toggle = this.show;
-
+    this.internalVisible = this.show;
     return Promise.resolve();
   }
 
@@ -131,17 +119,14 @@ export class Drawer {
     this.toggleDrawer(false);
   }
 
-  private clickedOutside(evt: any) {
-    if (!this.closeOnClickOutside) {
-      return;
-    }
-
-    const target = evt.target;
+  private clickedOutside(evt: PointerEvent) {
+    if (!this.closeOnClickOutside) return;
+    const target = evt.target as HTMLElement;
     const closestElement = target.closest('#div-container');
     const btn = target.closest('#drawer-btn');
 
     if (
-      evt.target.type !== 'button' &&
+      target.tagName !== 'BUTTON' &&
       closestElement !== this.divElement &&
       target !== btn
     ) {
@@ -153,24 +138,7 @@ export class Drawer {
     return Math.min(Math.max(width, this.minWidth), this.maxWidth);
   }
 
-  private slideOutRight(el: HTMLElement) {
-    const initialWidth = `${this.getConstrainedWidth(
-      this.width === 'auto' ? this.minWidth : this.width
-    )}rem`;
-
-    anime({
-      targets: el,
-      duration: Drawer.duration,
-      width: [initialWidth, 0],
-      opacity: [1, 0],
-      easing: 'easeInSine',
-      complete: () => {
-        el.classList.add('display-none');
-      },
-    });
-  }
-
-  private slideInRight(el: HTMLElement) {
+  private animateDrawer(direction: 'in' | 'out', el: HTMLElement) {
     const targetWidth = `${this.getConstrainedWidth(
       this.width === 'auto' ? this.minWidth : this.width
     )}rem`;
@@ -178,14 +146,15 @@ export class Drawer {
     anime({
       targets: el,
       duration: Drawer.duration,
-      width: [0, targetWidth],
-      opacity: [0, 1],
-      easing: 'easeOutSine',
+      width: direction === 'in' ? [0, targetWidth] : [targetWidth, 0],
+      opacity: direction === 'in' ? [0, 1] : [1, 0],
+      easing: direction === 'in' ? 'easeOutSine' : 'easeInSine',
       begin: () => {
-        el.classList.remove('display-none');
+        if (direction === 'in') el.classList.remove('display-none');
       },
       complete: () => {
-        this.showContent = true;
+        if (direction === 'out') el.classList.add('display-none');
+        if (direction === 'in') this.showContent = true;
       },
     });
   }
@@ -210,6 +179,8 @@ export class Drawer {
         ref={(el) => (this.divElement = el as HTMLElement)}
         data-testid="container"
         id="div-container"
+        role="dialog"
+        aria-modal="true"
       >
         <div
           style={{
