@@ -237,14 +237,10 @@ async function createSBom(packageName: string) {
 }
 
 async function main() {
-  const packages = [
-    '@siemens/ix',
-    '@siemens/ix-react',
-    '@siemens/ix-angular',
-    '@siemens/ix-vue',
-    '@siemens/ix-echarts',
-    '@siemens/ix-aggrid',
-  ];
+  const { dependencies } = getPkg(path.join(__dirname, 'package.json'));
+  const packages = Object.keys(dependencies);
+
+  console.log('Creating SBOMs for packages:', packages);
 
   const sbomPromises = packages.map(async (pkg) => {
     const { version } = getPkg(
