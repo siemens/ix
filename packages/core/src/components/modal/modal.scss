@@ -1,3 +1,13 @@
+@keyframes ix-modal-slide-in-top {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 50vh));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
@@ -120,13 +130,12 @@
 :host(.visible) {
   display: block;
 }
-
-:host(.align-center) {
-  dialog {
-    margin: 0;
-    left: 50%;
-    top: 50%;
-  }
+:host(.align-center) dialog,
+dialog.align-center {
+  animation: ix-modal-slide-in-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  left: 50%;
+  top: 6rem;
+  transform: translate(-50%, 0);
 }
 
 :host(.no-backdrop) {
