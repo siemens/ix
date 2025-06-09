@@ -43,7 +43,7 @@ SPDX-License-Identifier: MIT
         Primary
       </ix-chip>
 
-      <ix-chip variant="critical" closable outline icon="print"> Critical </ix-chip>
+      <ix-chip variant="critical" closable outline> Critical </ix-chip>
       <ix-chip variant="alarm" icon="print"> Alarm with icon </ix-chip>
       <ix-chip
         variant="alarm"
@@ -65,6 +65,67 @@ SPDX-License-Identifier: MIT
       >
         Alarm
       </ix-chip>
+    </div>
+    <div
+      style="
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          flex: 1;
+          max-width: 300px;
+        "
+      >
+        <ix-chip icon="print" variant="primary" outline closable
+          >Primary</ix-chip
+        >
+        <ix-chip icon="print" variant="alarm" outline closable>Alarm</ix-chip>
+        <ix-chip icon="print" variant="critical" outline>Critical</ix-chip>
+        <ix-chip icon="print" variant="warning" outline>Warning</ix-chip>
+        <ix-chip icon="print" variant="info" outline>Info</ix-chip>
+        <ix-chip icon="print" variant="success" outline>Success</ix-chip>
+        <ix-chip icon="print" variant="neutral" outline>Neutral</ix-chip>
+        <ix-chip
+          icon="print"
+          variant="custom"
+          background="#FF00FF"
+          outline
+          closable
+          >Custom</ix-chip
+        >
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          flex: 1;
+          max-width: 300px;
+        "
+      >
+        <ix-chip icon="print" variant="primary" closable>Primary</ix-chip>
+        <ix-chip icon="print" variant="alarm" closable>Alarm</ix-chip>
+        <ix-chip icon="print" variant="critical">Critical</ix-chip>
+        <ix-chip icon="print" variant="warning">Warning</ix-chip>
+        <ix-chip icon="print" variant="info">Info</ix-chip>
+        <ix-chip icon="print" variant="success">Success</ix-chip>
+        <ix-chip icon="print" variant="neutral">Neutral</ix-chip>
+        <ix-chip
+          icon="print"
+          variant="custom"
+          background="#FF00FF"
+          chip-color="black"
+          closable
+          >Custom</ix-chip
+        >
+      </div>
     </div>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>
