@@ -141,6 +141,18 @@
     transform: translateY(-50%);
   }
 
+  .slider-container {
+    width: 100%;
+
+    .slider {
+      width: 100%;
+
+      input[type='range'] {
+        width: 100%;
+      }
+    }
+  }
+
   // Trace reference
   input[type='range'].trace:not(.hide-trace-reference)::after {
     content: '';
@@ -264,18 +276,38 @@
   .label-end {
     margin-right: 0.5rem;
   }
-
-  .label-error {
-    margin-left: 0.5rem;
-  }
 }
 
-:host(.error) {
+:host(.invalid) {
   --trace-color: var(--theme-color-alarm-40);
   --tick-color--active: var(--theme-color-alarm);
 
   @include thumb() {
     background-color: var(--theme-color-alarm);
+  }
+}
+:host(.warning) {
+  --trace-color: var(--theme-color-warning-40);
+  --tick-color--active: var(--theme-color-warning);
+
+  @include thumb() {
+    background-color: var(--theme-color-warning);
+  }
+}
+:host(.info) {
+  --trace-color: var(--theme-color-info-40);
+  --tick-color--active: var(--theme-color-info);
+
+  @include thumb() {
+    background-color: var(--theme-color-info);
+  }
+}
+:host(.valid) {
+  --trace-color: var(--theme-color-success-40);
+  --tick-color--active: var(--theme-color-success);
+
+  @include thumb() {
+    background-color: var(--theme-color-success);
   }
 }
 

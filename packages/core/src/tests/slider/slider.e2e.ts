@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { iconRocket } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('should show reference value', async ({ page, mount }) => {
@@ -152,67 +151,171 @@ regressionTest(
   }
 );
 
-regressionTest('should render with label', async ({ page, mount }) => {
-  await mount(
-    `
-    <div id='slider-container'>
-
-      <ix-slider
-        min="500"
-        max="1000"
-        value="777"
-        trace
-        traceReference="2000"
-        >
-        <span slot="label-start">500</span>
-        <span slot="label-end">1000</span>
-      </ix-slider>
-
-      <ix-slider>
-        <ix-icon name="rocket" slot="label-start">500</ix-icon>
-        <ix-icon name="rocket" slot="label-end">1000</ix-icon>
-      </ix-slider>
-
-    </div>
-  `,
-    {
-      icons: {
-        iconRocket,
-      },
-    }
-  );
-
-  const slider1 = page.locator('ix-slider').nth(0);
-  const slider2 = page.locator('ix-slider').nth(1);
-
-  await expect(slider1).toHaveClass(/hydrated/);
-  await expect(slider2).toHaveClass(/hydrated/);
-
-  expect(
-    await page.locator('#slider-container').screenshot()
-  ).toMatchSnapshot();
-});
-
-regressionTest('should render with error', async ({ page, mount }) => {
+regressionTest('should render all slider variants', async ({ page, mount }) => {
   await mount(`
+    <style>
+      .slider-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+      }
+    </style>
     <div id='slider-container'>
+      <!-- Default Sliders -->
+      <div class="slider-section">
+        <ix-slider
+          helper-text="This is a helper text"
+          label="Slider with helper"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+        </ix-slider>
 
-      <ix-slider error="Some error message">
-      </ix-slider>
+        <ix-slider
+          helper-text="This is a helper text"
+          label="Default slider with labels"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+          <span slot="label-start">500</span>
+          <span slot="label-end">1000</span>
+        </ix-slider>
+      </div>
 
-      <ix-slider error="Some error message">
-        <span slot="label-start">500</span>
-        <span slot="label-end">1000</span>
-      </ix-slider>
+      <!-- Error Sliders -->
+      <div class="slider-section">
+        <ix-slider
+          class="ix-invalid"
+          invalid-text="This is invalid"
+          label="Slider with error"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+        </ix-slider>
 
+        <ix-slider
+          class="ix-invalid"
+          invalid-text="This is invalid"
+          label="Slider with error and labels"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+          <span slot="label-start">500</span>
+          <span slot="label-end">1000</span>
+        </ix-slider>
+      </div>
+
+      <!-- Info Sliders -->
+      <div class="slider-section">
+        <ix-slider
+          class="ix-info"
+          info-text="This is an info"
+          label="Slider with info"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+        </ix-slider>
+
+        <ix-slider
+          class="ix-info"
+          info-text="This is an info"
+          label="Slider with info and labels"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+          <span slot="label-start">500</span>
+          <span slot="label-end">1000</span>
+        </ix-slider>
+      </div>
+
+      <!-- Warning Sliders -->
+      <div class="slider-section">
+        <ix-slider
+          class="ix-warning"
+          warning-text="This is a warning"
+          label="Slider with warning"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+        </ix-slider>
+
+        <ix-slider
+          class="ix-warning"
+          warning-text="This is a warning"
+          label="Slider with warning and labels"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+          <span slot="label-start">500</span>
+          <span slot="label-end">1000</span>
+        </ix-slider>
+      </div>
+
+      <!-- Valid Sliders -->
+      <div class="slider-section">
+        <ix-slider
+          class="ix-valid"
+          valid-text="This is valid"
+          label="Slider with success"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+        </ix-slider>
+
+        <ix-slider
+          class="ix-valid"
+          valid-text="This is valid"
+          label="Slider with success and labels"
+          value="40"
+          max="250"
+          min="25"
+          trace
+          trace-reference="25">
+          <span slot="label-start">500</span>
+          <span slot="label-end">1000</span>
+        </ix-slider>
+      </div>
     </div>
   `);
 
-  const slider1 = page.locator('ix-slider').nth(0);
-  const slider2 = page.locator('ix-slider').nth(1);
+  const allSliders = page.locator('ix-slider');
 
-  await expect(slider1).toHaveClass(/hydrated/);
-  await expect(slider2).toHaveClass(/hydrated/);
+  // Test default sliders
+  await expect(allSliders.nth(0)).toHaveClass(/hydrated/);
+  await expect(allSliders.nth(1)).toHaveClass(/hydrated/);
+
+  // Test error sliders
+  await expect(allSliders.nth(2)).toHaveClass('ix-invalid invalid hydrated');
+  await expect(allSliders.nth(3)).toHaveClass('ix-invalid invalid hydrated');
+
+  // Test info sliders
+  await expect(allSliders.nth(4)).toHaveClass('ix-info info hydrated');
+  await expect(allSliders.nth(5)).toHaveClass('ix-info info hydrated');
+
+  // Test warning sliders
+  await expect(allSliders.nth(6)).toHaveClass('ix-warning warning hydrated');
+  await expect(allSliders.nth(7)).toHaveClass('ix-warning warning hydrated');
+
+  // Test valid sliders
+  await expect(allSliders.nth(8)).toHaveClass('ix-valid valid hydrated');
+  await expect(allSliders.nth(9)).toHaveClass('ix-valid valid hydrated');
 
   expect(
     await page.locator('#slider-container').screenshot()

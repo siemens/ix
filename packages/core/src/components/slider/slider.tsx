@@ -8,12 +8,14 @@
  */
 
 import {
+  AttachInternals,
   Component,
   Element,
   Event,
   EventEmitter,
   h,
   Host,
+  Method,
   Prop,
   State,
   Watch,
@@ -21,6 +23,12 @@ import {
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
+import {
+  ValidationResults,
+  HookValidationLifecycle,
+  FieldWrapperInterface,
+  IxFormValidationState,
+} from '../utils/input';
 
 export type SliderMarker = Array<number>;
 
@@ -35,6 +43,7 @@ function between(min: number, value: number, max: number) {
 }
 
 /**
+ * @form-ready
  * @slot label-start - Element will be displayed at the start of the slider
  * @slot label-end - Element will be displayed at the end of the slider
  */
@@ -42,9 +51,49 @@ function between(min: number, value: number, max: number) {
   tag: 'ix-slider',
   styleUrl: 'slider.scss',
   shadow: true,
+  formAssociated: true,
 })
-export class Slider {
+export class Slider implements FieldWrapperInterface, IxFormValidationState {
+  @AttachInternals() formInternals!: ElementInternals;
   @Element() hostElement!: HTMLIxSliderElement;
+  /**
+   * Show text below the field component
+   */
+  @Prop() helperText?: string;
+
+  /**
+   * Label for the field component
+   */
+  @Prop() label?: string;
+  /**
+   * Error text for the field component
+   */
+  @Prop() invalidText?: string;
+
+  /**
+   * Info text for the field component
+   */
+  @Prop() infoText?: string;
+
+  /**
+   * Warning text for the field component
+   */
+  @Prop() warningText?: string;
+
+  /**
+   * Valid text for the field component
+   */
+  @Prop() validText?: string;
+
+  /**
+   * Show helper, info, warning, error and valid text as tooltip
+   */
+  @Prop() showTextAsTooltip?: boolean;
+
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
 
   /**
    * Legal number intervals
@@ -89,11 +138,6 @@ export class Slider {
   @Prop() disabled = false;
 
   /**
-   * Show error state and message
-   */
-  @Prop() error?: boolean | string;
-
-  /**
    *
    */
   @Event() valueChange!: EventEmitter<number>;
@@ -104,8 +148,10 @@ export class Slider {
   @State() rangeTraceReference = 0;
   @State() showTooltip = false;
 
-  private a11yAttributes?: A11yAttributes;
+  private touched = false;
 
+  private a11yAttributes?: A11yAttributes;
+  private readonly controlRef = makeRef<HTMLElement>();
   private readonly thumbRef = makeRef<HTMLDivElement>();
   private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
@@ -132,6 +178,19 @@ export class Slider {
 
     this.tooltip?.hideTooltip();
   }
+  @HookValidationLifecycle()
+  onClassField({
+    isInvalid,
+    isInfo,
+    isValid,
+    isWarning,
+    isInvalidByRequired,
+  }: ValidationResults) {
+    this.isInvalid = isInvalid || isInvalidByRequired;
+    this.isInfo = isInfo;
+    this.isValid = isValid;
+    this.isWarning = isWarning;
+  }
 
   componentWillLoad() {
     this.a11yAttributes = a11yHostAttributes(this.hostElement, [
@@ -141,9 +200,13 @@ export class Slider {
       'aria-valuenow',
     ]);
     this.updateRangeVariables();
+    this.formInternals.setFormValue(this.value.toString());
   }
 
   @Watch('value')
+  watchValue(newValue: number) {
+    this.formInternals.setFormValue(newValue.toString());
+  }
   @Watch('max')
   @Watch('min')
   @Watch('traceReference')
@@ -152,6 +215,10 @@ export class Slider {
     this.rangeTraceReference = between(this.min, this.traceReference, this.max);
     this.rangeMin = Math.min(this.min, this.max);
     this.rangeMax = Math.max(this.min, this.max);
+  }
+  private updateFormInternalValue(value: number) {
+    this.formInternals.setFormValue(value.toString());
+    this.value = value;
   }
 
   private onInput(event: InputEvent) {
@@ -167,6 +234,8 @@ export class Slider {
       if (defaultPrevented) {
         this.rangeInput = oldValue;
         this.slider.value = oldValue.toString();
+      } else {
+        this.updateFormInternalValue(value);
       }
     }
   }
@@ -189,6 +258,17 @@ export class Slider {
   @OnListener<Slider>('pointerup', (self) => self.showTooltip)
   onPointerUp() {
     this.showTooltip = false;
+  }
+  /** @internal */
+  @Method()
+  hasValidValue(): Promise<boolean> {
+    return Promise.resolve(true);
+  }
+
+  /** @internal */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
   }
 
   render() {
@@ -213,106 +293,124 @@ export class Slider {
       <Host
         class={{
           disabled: this.disabled,
-          error: !!this.error,
+          invalid: !!this.isInvalid,
+          info: !!this.isInfo,
+          valid: !!this.isValid,
+          warning: !!this.isWarning,
         }}
         onPointerDown={() => setTimeout(() => (this.showTooltip = true))}
       >
-        <div class="slider">
-          <div class="track">
-            <div
-              ref={this.thumbRef}
-              class="thumb"
-              style={{
-                left: `calc(${valueInPercentage} * 100% - 8px)`,
-              }}
-            ></div>
-            <div class="ticks">
-              {this.marker
-                ? this.marker.map((markerValue) => {
-                    if (markerValue > this.max || markerValue < this.min) {
-                      return;
-                    }
+        <ix-field-wrapper
+          label={this.label}
+          helperText={this.helperText}
+          invalidText={this.invalidText}
+          infoText={this.infoText}
+          warningText={this.warningText}
+          validText={this.validText}
+          showTextAsTooltip={this.showTextAsTooltip}
+          isValid={this.isValid}
+          isInfo={this.isInfo}
+          isWarning={this.isWarning}
+          isInvalid={this.isInvalid}
+          controlRef={this.controlRef}
+        >
+          <div class="slider-container">
+            <div class="slider">
+              <div class="track">
+                <div
+                  ref={this.thumbRef}
+                  class="thumb"
+                  style={{
+                    left: `calc(${valueInPercentage} * 100% - 8px)`,
+                  }}
+                ></div>
+                <div class="ticks">
+                  {this.marker
+                    ? this.marker.map((markerValue) => {
+                        if (markerValue > this.max || markerValue < this.min) {
+                          return;
+                        }
 
-                    let left = (markerValue - this.rangeMin) / range;
+                        let left = (markerValue - this.rangeMin) / range;
 
-                    return (
-                      <div
-                        class={{
-                          tick: true,
-                          'tick-active':
-                            this.isMarkerActive(markerValue) && this.trace,
-                        }}
-                        style={{
-                          '--tick-value': `${left}`,
-                        }}
-                      ></div>
-                    );
-                  })
-                : null}
+                        return (
+                          <div
+                            class={{
+                              tick: true,
+                              'tick-active':
+                                this.isMarkerActive(markerValue) && this.trace,
+                            }}
+                            style={{
+                              '--tick-value': `${left}`,
+                            }}
+                          ></div>
+                        );
+                      })
+                    : null}
+                </div>
+              </div>
+
+              <input
+                id="slider"
+                ref={this.controlRef}
+                type="range"
+                list={this.marker ? 'markers' : undefined}
+                step={this.step}
+                min={this.min}
+                max={this.max}
+                value={this.rangeInput}
+                tabindex={this.disabled ? -1 : 0}
+                onInput={(event) => this.onInput(event)}
+                onFocus={() => {
+                  this.showTooltip = true;
+                  this.touched = true;
+                }}
+                onBlur={() => {
+                  this.showTooltip = false;
+                }}
+                style={{
+                  '--value': `${valueInPercentage}`,
+                  '--trace-reference': `${traceReferenceInPercentage}`,
+                  '--trace-start': `${traceStart}`,
+                  '--trace-end': `${traceEnd}`,
+                }}
+                class={{
+                  trace:
+                    this.trace &&
+                    traceReferenceInPercentage !== valueInPercentage,
+                  'hide-trace-reference':
+                    this.trace &&
+                    (this.traceReference <= this.min ||
+                      this.traceReference >= this.max),
+                }}
+                role="slider"
+                aria-valuenow={this.rangeInput}
+                aria-valuemin={this.min}
+                aria-valuemax={this.max}
+                {...this.a11yAttributes}
+              />
+
+              <ix-tooltip
+                ref={this.tooltipRef}
+                class={{
+                  'hide-tooltip': !this.showTooltip,
+                }}
+                animationFrame={true}
+                for={this.thumbRef.waitForCurrent()}
+              >
+                {this.rangeInput}
+              </ix-tooltip>
+            </div>
+            <div class="label">
+              <div class="label-start">
+                <slot name="label-start"></slot>
+              </div>
+              <div class="label-end">
+                <slot name="label-end"></slot>
+              </div>
             </div>
           </div>
-
-          <input
-            id="slider"
-            type="range"
-            list={this.marker ? 'markers' : undefined}
-            step={this.step}
-            min={this.min}
-            max={this.max}
-            value={this.rangeInput}
-            tabindex={this.disabled ? -1 : 0}
-            onInput={(event) => this.onInput(event)}
-            style={{
-              '--value': `${valueInPercentage}`,
-              '--trace-reference': `${traceReferenceInPercentage}`,
-              '--trace-start': `${traceStart}`,
-              '--trace-end': `${traceEnd}`,
-            }}
-            class={{
-              trace:
-                this.trace && traceReferenceInPercentage !== valueInPercentage,
-              'hide-trace-reference':
-                this.trace &&
-                (this.traceReference <= this.min ||
-                  this.traceReference >= this.max),
-            }}
-            onFocus={() => {
-              this.showTooltip = true;
-            }}
-            onBlur={() => {
-              this.showTooltip = false;
-            }}
-            role="slider"
-            aria-valuenow={this.rangeInput}
-            aria-valuemin={this.min}
-            aria-valuemax={this.max}
-            {...this.a11yAttributes}
-          />
-
-          <ix-tooltip
-            ref={this.tooltipRef}
-            class={{
-              'hide-tooltip': !this.showTooltip,
-            }}
-            animationFrame={true}
-            for={this.thumbRef.waitForCurrent()}
-          >
-            {this.rangeInput}
-          </ix-tooltip>
-        </div>
-        <div class="label">
-          <div class="label-start">
-            <slot name="label-start"></slot>
-          </div>
-          <div class="label-end">
-            <slot name="label-end"></slot>
-          </div>
-        </div>
-        {this.error ? (
-          <ix-typography class={'label-error'} textColor="alarm">
-            {this.error}
-          </ix-typography>
-        ) : null}
+        </ix-field-wrapper>
       </Host>
     );
   }
