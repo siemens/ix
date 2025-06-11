@@ -68,9 +68,6 @@ $border-radius: 100px;
       &.icon:not(.closable) {
         padding-right: calc(0.75rem - 1px);
       }
-      &.custom .with-icon {
-        color: var(--border-color);
-      }
     }
 
     &:not(.outline) {
