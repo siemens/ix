@@ -21,18 +21,6 @@
   position: relative;
   width: fit-content;
 
-  @media (max-width: 576px) {
-    .header {
-      height: $medium-control-height !important;
-    }
-  }
-
-  @media (min-width: 576px) {
-    .header {
-      height: $large-control-height !important;
-    }
-  }
-
   .standaloneAppearance {
     box-shadow: none;
   }
@@ -82,7 +70,7 @@
         align-items: center;
         margin: 0 0.125rem;
         min-height: 100%;
-        margin-top: 3.125rem;
+        margin-top: 3.25rem;
       }
     }
 
