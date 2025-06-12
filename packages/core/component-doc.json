@@ -20060,8 +20060,7 @@
           "text": "3.2.0"
         },
         {
-          "name": "form-ready",
-          "text": "3.2.0"
+          "name": "form-ready"
         },
         {
           "name": "slot",
@@ -20467,12 +20466,7 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Locale identifier (e.g. 'en' or 'de').",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "3.2.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
