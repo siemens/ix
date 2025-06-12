@@ -41,9 +41,17 @@
       height: 100%;
     }
 
-    .header {
-      padding: $default-space;
-      flex: 0 1 auto;
+    &.straight {
+      border-radius: 0;
+    }
+
+    .header-container {
+      width: 100%;
+
+      .header {
+        padding: $default-space;
+        flex: 0 1 auto;
+      }
     }
 
     .separator {
@@ -53,11 +61,23 @@
     }
 
     .content {
+      &--time-picker {
+        padding: 0 $default-space;
+      }
+
       padding: 0 $default-space $default-space $default-space;
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
+    }
+
+    .footer-container {
+      width: 100%;
+
+      .footer {
+        padding: $default-space;
+      }
     }
   }
 }
