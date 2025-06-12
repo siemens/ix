@@ -97,6 +97,7 @@ export class Modal {
   get dialog() {
     return this.hostElement.shadowRoot!.querySelector('dialog');
   }
+
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
 
