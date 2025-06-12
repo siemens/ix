@@ -4947,7 +4947,7 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "disabled attribute",
+          "docs": "Disabled attribute",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -4995,7 +4995,7 @@
           "mutable": false,
           "attr": "helper-text",
           "reflectToAttr": false,
-          "docs": "helper text below the input field",
+          "docs": "Helper text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -5021,7 +5021,7 @@
           "mutable": false,
           "attr": "i18n-error-date-unparsable",
           "reflectToAttr": false,
-          "docs": "i18n string for the error message when the date is not parsable",
+          "docs": "I18n string for the error message when the date is not parsable",
           "docsTags": [],
           "default": "'Date is not valid'",
           "values": [
@@ -5045,7 +5045,7 @@
           "mutable": false,
           "attr": "info-text",
           "reflectToAttr": false,
-          "docs": "info text below the input field",
+          "docs": "Info text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -5071,7 +5071,7 @@
           "mutable": false,
           "attr": "invalid-text",
           "reflectToAttr": true,
-          "docs": "error text below the input field",
+          "docs": "Error text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -5097,7 +5097,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "label of the input field",
+          "docs": "Label of the input field",
           "docsTags": [],
           "values": [
             {
@@ -5149,7 +5149,7 @@
           "mutable": false,
           "attr": "name",
           "reflectToAttr": true,
-          "docs": "name of the input element",
+          "docs": "Name of the input element",
           "docsTags": [],
           "values": [
             {
@@ -5175,7 +5175,7 @@
           "mutable": false,
           "attr": "placeholder",
           "reflectToAttr": true,
-          "docs": "placeholder of the input element",
+          "docs": "Placeholder of the input element",
           "docsTags": [],
           "values": [
             {
@@ -5201,7 +5201,7 @@
           "mutable": false,
           "attr": "readonly",
           "reflectToAttr": false,
-          "docs": "readonly attribute",
+          "docs": "Readonly attribute",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -5225,7 +5225,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": false,
-          "docs": "required attribute",
+          "docs": "Required attribute",
           "docsTags": [],
           "values": [
             {
@@ -5251,7 +5251,7 @@
           "mutable": false,
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
-          "docs": "show text as tooltip",
+          "docs": "Show text as tooltip",
           "docsTags": [],
           "values": [
             {
@@ -5306,7 +5306,7 @@
           "mutable": false,
           "attr": "valid-text",
           "reflectToAttr": false,
-          "docs": "valid text below the input field",
+          "docs": "Valid text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -5332,7 +5332,7 @@
           "mutable": true,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "value of the input element",
+          "docs": "Value of the input element",
           "docsTags": [],
           "default": "''",
           "values": [
@@ -5359,7 +5359,7 @@
           "mutable": false,
           "attr": "warning-text",
           "reflectToAttr": false,
-          "docs": "warning text below the input field",
+          "docs": "Warning text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -20057,11 +20057,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "3.1.0"
+          "text": "3.2.0"
         },
         {
           "name": "form-ready",
-          "text": "3.1.0"
+          "text": "3.2.0"
         },
         {
           "name": "slot",
@@ -20122,7 +20122,7 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "disabled attribute",
+          "docs": "Disabled attribute",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -20170,7 +20170,7 @@
           "mutable": false,
           "attr": "helper-text",
           "reflectToAttr": false,
-          "docs": "helper text below the input field",
+          "docs": "Helper text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -20220,9 +20220,153 @@
           "mutable": false,
           "attr": "i18n-error-time-unparsable",
           "reflectToAttr": false,
-          "docs": "i18n string for the error message when the time is not parsable",
+          "docs": "I18n string for the error message when the time is not parsable",
           "docsTags": [],
           "default": "'Time is not valid'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nHourColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-hour-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker hour column header",
+          "docsTags": [],
+          "default": "'hr'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nMillisecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-millisecond-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker millisecond column header",
+          "docsTags": [],
+          "default": "'ms'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nMinuteColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-minute-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker minute column header",
+          "docsTags": [],
+          "default": "'min'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nSecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-second-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker second column header",
+          "docsTags": [],
+          "default": "'sec'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nSelectTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-select-time",
+          "reflectToAttr": false,
+          "docs": "Text of time-picker time select button",
+          "docsTags": [],
+          "default": "'Confirm'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-time",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker top label",
+          "docsTags": [],
+          "default": "'Time'",
           "values": [
             {
               "type": "string"
@@ -20244,7 +20388,7 @@
           "mutable": false,
           "attr": "info-text",
           "reflectToAttr": false,
-          "docs": "info text below the input field",
+          "docs": "Info text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -20270,7 +20414,7 @@
           "mutable": false,
           "attr": "invalid-text",
           "reflectToAttr": true,
-          "docs": "error text below the input field",
+          "docs": "Error text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -20296,7 +20440,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "label of the input field",
+          "docs": "Label of the input field",
           "docsTags": [],
           "values": [
             {
@@ -20326,7 +20470,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.0.0"
+              "text": "3.2.0"
             }
           ],
           "values": [
@@ -20401,7 +20545,7 @@
           "mutable": false,
           "attr": "name",
           "reflectToAttr": true,
-          "docs": "name of the input element",
+          "docs": "Name of the input element",
           "docsTags": [],
           "values": [
             {
@@ -20427,7 +20571,7 @@
           "mutable": false,
           "attr": "placeholder",
           "reflectToAttr": true,
-          "docs": "placeholder of the input element",
+          "docs": "Placeholder of the input element",
           "docsTags": [],
           "values": [
             {
@@ -20453,7 +20597,7 @@
           "mutable": false,
           "attr": "readonly",
           "reflectToAttr": false,
-          "docs": "readonly attribute",
+          "docs": "Readonly attribute",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -20477,7 +20621,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": false,
-          "docs": "required attribute",
+          "docs": "Required attribute",
           "docsTags": [],
           "values": [
             {
@@ -20527,7 +20671,7 @@
           "mutable": false,
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
-          "docs": "show text as tooltip",
+          "docs": "Show text as tooltip",
           "docsTags": [],
           "values": [
             {
@@ -20543,150 +20687,6 @@
           "setter": false
         },
         {
-          "name": "textHourColumnHeader",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-hour-column-header",
-          "reflectToAttr": false,
-          "docs": "Text for time-picker hour column header",
-          "docsTags": [],
-          "default": "'hr'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textMillisecondColumnHeader",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-millisecond-column-header",
-          "reflectToAttr": false,
-          "docs": "Text for time-picker millisecond column header",
-          "docsTags": [],
-          "default": "'ms'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textMinuteColumnHeader",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-minute-column-header",
-          "reflectToAttr": false,
-          "docs": "Text for time-picker minute column header",
-          "docsTags": [],
-          "default": "'min'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textSecondColumnHeader",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-second-column-header",
-          "reflectToAttr": false,
-          "docs": "Text for time-picker second column header",
-          "docsTags": [],
-          "default": "'sec'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textSelectTime",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-select-time",
-          "reflectToAttr": false,
-          "docs": "Text of time-picker time select button",
-          "docsTags": [],
-          "default": "'Confirm'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textTime",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-time",
-          "reflectToAttr": false,
-          "docs": "Text for time-picker top label",
-          "docsTags": [],
-          "default": "'Time'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "validText",
           "type": "string | undefined",
           "complexType": {
@@ -20697,7 +20697,7 @@
           "mutable": false,
           "attr": "valid-text",
           "reflectToAttr": false,
-          "docs": "valid text below the input field",
+          "docs": "Valid text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -20723,7 +20723,7 @@
           "mutable": true,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "value of the input element",
+          "docs": "Value of the input element",
           "docsTags": [],
           "default": "''",
           "values": [
@@ -20747,7 +20747,7 @@
           "mutable": false,
           "attr": "warning-text",
           "reflectToAttr": false,
-          "docs": "warning text below the input field",
+          "docs": "Warning text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -20983,7 +20983,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.1.0"
+              "text": "3.2.0"
             }
           ],
           "default": "false",
@@ -21012,13 +21012,157 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.1.0"
+              "text": "3.2.0"
             }
           ],
           "default": "HOUR_INTERVAL_DEFAULT",
           "values": [
             {
               "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nConfirmTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-confirm-time",
+          "reflectToAttr": false,
+          "docs": "Text of the time confirm button",
+          "docsTags": [],
+          "default": "CONFIRM_BUTTON_DEFAULT",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-header",
+          "reflectToAttr": false,
+          "docs": "Text for top header",
+          "docsTags": [],
+          "default": "HEADER_DEFAULT",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nHourColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-hour-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for hour column header",
+          "docsTags": [],
+          "default": "'hr'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nMillisecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-millisecond-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for millisecond column header",
+          "docsTags": [],
+          "default": "'ms'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nMinuteColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-minute-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for minute column header",
+          "docsTags": [],
+          "default": "'min'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nSecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-second-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for second column header",
+          "docsTags": [],
+          "default": "'sec'",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -21041,7 +21185,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.1.0"
+              "text": "3.2.0"
             }
           ],
           "default": "MILLISECOND_INTERVAL_DEFAULT",
@@ -21070,7 +21214,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.1.0"
+              "text": "3.2.0"
             }
           ],
           "default": "MINUTE_INTERVAL_DEFAULT",
@@ -21099,7 +21243,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.1.0"
+              "text": "3.2.0"
             }
           ],
           "default": "SECOND_INTERVAL_DEFAULT",
@@ -21228,102 +21372,6 @@
           "setter": false
         },
         {
-          "name": "textHourColumnHeader",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-hour-column-header",
-          "reflectToAttr": false,
-          "docs": "Text for hour column header",
-          "docsTags": [],
-          "default": "'hr'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textMillisecondColumnHeader",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-millisecond-column-header",
-          "reflectToAttr": false,
-          "docs": "Text for millisecond column header",
-          "docsTags": [],
-          "default": "'ms'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textMinuteColumnHeader",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-minute-column-header",
-          "reflectToAttr": false,
-          "docs": "Text for minute column header",
-          "docsTags": [],
-          "default": "'min'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textSecondColumnHeader",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-second-column-header",
-          "reflectToAttr": false,
-          "docs": "Text for second column header",
-          "docsTags": [],
-          "default": "'sec'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "textSelectTime",
           "type": "string",
           "complexType": {
@@ -21335,8 +21383,14 @@
           "attr": "text-select-time",
           "reflectToAttr": false,
           "docs": "Text of time select button",
-          "docsTags": [],
-          "default": "'Confirm'",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Use `i18nConfirmTime` instead. Will be removed in 4.0.0."
+            }
+          ],
+          "default": "CONFIRM_BUTTON_DEFAULT",
+          "deprecation": "Use `i18nConfirmTime` instead. Will be removed in 4.0.0.",
           "values": [
             {
               "type": "string"
@@ -21359,8 +21413,14 @@
           "attr": "text-time",
           "reflectToAttr": false,
           "docs": "Text for top label",
-          "docsTags": [],
-          "default": "'Time'",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Use `i18nHeader` instead. Will be removed in 4.0.0."
+            }
+          ],
+          "default": "HEADER_DEFAULT",
+          "deprecation": "Use `i18nHeader` instead. Will be removed in 4.0.0.",
           "values": [
             {
               "type": "string"
@@ -21410,10 +21470,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "This is determined by the currently set time"
+              "text": "This is determined by the currently set time. Will be removed in 4.0.0."
             }
           ],
-          "deprecation": "This is determined by the currently set time",
+          "deprecation": "This is determined by the currently set time. Will be removed in 4.0.0.",
           "values": [
             {
               "value": "AM",

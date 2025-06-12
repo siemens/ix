@@ -46,7 +46,7 @@ export type TimeInputValidityState = {
 
 /**
  * @since 3.2.0
- * @form-ready 3.2.0
+ * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */
@@ -77,8 +77,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
-   *
-   * @since 3.2.0
    */
   @Prop() locale?: string;
 
@@ -389,6 +387,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           type="text"
           value={this.value}
           placeholder={this.placeholder}
+          name={this.name}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
             this.onInput(target.value);

@@ -66,9 +66,9 @@
         margin-top: 1px;
 
         .column-header {
-          height: 40px;
-          width: 40px;
-          line-height: 40px;
+          height: 2.5rem;
+          width: 2.5rem;
+          line-height: 2.5rem;
           text-align: center;
           color: var(--theme-color-soft-text);
           text-overflow: ellipsis;
@@ -80,9 +80,9 @@
       .column-seperator {
         display: flex;
         align-items: center;
-        margin: 0 $tiny-space;
+        margin: 0 0.125rem;
         min-height: 100%;
-        margin-top: 51.5px;
+        margin-top: 3.219rem;
       }
     }
 
@@ -96,9 +96,9 @@
       }
 
       .element-container {
-        width: 40px;
-        height: 40px;
-        margin: 3px;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin: 0 0.188rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -127,9 +127,9 @@
       }
 
       .element-list-padding {
-        width: 40px;
-        height: 210px;
-        min-height: 210px;
+        width: 2.5rem;
+        height: 13.125rem;
+        min-height: 13.125rem;
       }
     }
 
@@ -143,35 +143,10 @@
     }
   }
 
-  input,
-  .time-reference {
-    width: 2.625rem;
-    height: $large-space;
-    text-align: center;
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
-
-    /* Chrome, Safari, Edge, Opera */
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0 0.3125rem;
-    }
-
-    /* Firefox */
-    &[type='number'] {
-      -moz-appearance: textfield;
-    }
-  }
-
-  .ix-form-control[type='number'] {
-    text-align: center;
-  }
-
   .footer {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
+    gap: 0.5rem;
     flex-wrap: wrap;
 
     .confirm-button {
@@ -194,8 +169,8 @@
 
       button {
         all: unset;
-        width: 42px;
-        height: 30px;
+        width: 2.625rem;
+        height: 1.875rem;
         text-align: center;
         border: 1px solid var(--theme-color-primary);
         color: var(--theme-color-primary);

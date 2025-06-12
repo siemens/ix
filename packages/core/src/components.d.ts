@@ -858,6 +858,10 @@ export namespace Components {
          */
         "individual": boolean;
         "standaloneAppearance"?: boolean;
+        /**
+          * Timepicker specific styling
+         */
+        "timePickerAppearance": boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -2698,7 +2702,7 @@ export namespace Components {
     }
     /**
      * @since 3.2.0
-     * @form-ready 3.2.0
+     * @form-ready 
      */
     interface IxTimeInput {
         /**
@@ -2774,7 +2778,6 @@ export namespace Components {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 3.2.0
          */
         "locale"?: string;
         /**
@@ -4728,7 +4731,7 @@ declare global {
     }
     /**
      * @since 3.2.0
-     * @form-ready 3.2.0
+     * @form-ready 
      */
     interface HTMLIxTimeInputElement extends Components.IxTimeInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTimeInputElementEventMap>(type: K, listener: (this: HTMLIxTimeInputElement, ev: IxTimeInputCustomEvent<HTMLIxTimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5881,6 +5884,10 @@ declare namespace LocalJSX {
          */
         "individual"?: boolean;
         "standaloneAppearance"?: boolean;
+        /**
+          * Timepicker specific styling
+         */
+        "timePickerAppearance"?: boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -7859,7 +7866,7 @@ declare namespace LocalJSX {
     }
     /**
      * @since 3.2.0
-     * @form-ready 3.2.0
+     * @form-ready 
      */
     interface IxTimeInput {
         /**
@@ -7920,7 +7927,6 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de').
-          * @since 3.2.0
          */
         "locale"?: string;
         /**
@@ -8675,7 +8681,7 @@ declare module "@stencil/core" {
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             /**
              * @since 3.2.0
-             * @form-ready 3.2.0
+             * @form-ready 
              */
             "ix-time-input": LocalJSX.IxTimeInput & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;

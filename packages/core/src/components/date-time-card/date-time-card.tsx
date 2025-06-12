@@ -23,6 +23,9 @@ export class DateTimeCard {
   /** @internal */
   @Prop() standaloneAppearance?: boolean;
 
+  /** Timepicker specific styling */
+  @Prop() timePickerAppearance: boolean = false;
+
   /**
    * Hide header
    */
@@ -67,7 +70,12 @@ export class DateTimeCard {
             </div>
           )}
 
-          <div class="content">
+          <div
+            class={{
+              content: true,
+              'content--time-picker': this.timePickerAppearance,
+            }}
+          >
             <slot></slot>
           </div>
 

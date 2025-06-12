@@ -718,13 +718,14 @@ export class TimePicker {
     };
 
     this.timeUpdate(unit, number);
-    this.elementListScrollToTop(unit, number);
+    this.elementListScrollToTop(unit, number, 'smooth');
     this.timeChange.emit(this._time!.toFormat(this.format));
   }
 
   private elementListScrollToTop(
     unit: TimePickerDescriptorUnit,
-    number: number
+    number: number,
+    scrollBehaviour: 'smooth' | 'instant'
   ) {
     const elementList = this.hostElement.shadowRoot?.querySelector(
       `[data-element-list-id="${unit}"]`
@@ -751,7 +752,10 @@ export class TimePicker {
         elementContainerHeight / 2 -
         scrollPositionOffset;
 
-      elementList.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+      elementList.scrollTo({
+        top: scrollPosition,
+        behavior: scrollBehaviour,
+      });
     }
   }
 
@@ -771,7 +775,8 @@ export class TimePicker {
       ) {
         this.elementListScrollToTop(
           unitKey as TimePickerDescriptorUnit,
-          Number(this.formattedTime[unitKey])
+          Number(this.formattedTime[unitKey]),
+          'instant'
         );
       }
     }
@@ -835,6 +840,7 @@ export class TimePicker {
       <Host>
         <ix-date-time-card
           standaloneAppearance={this.standaloneAppearance}
+          timePickerAppearance={true}
           corners={this.corners}
           hasFooter={true}
           hideHeader={this.hideHeader}

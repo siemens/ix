@@ -61,6 +61,10 @@
     }
 
     .content {
+      &--time-picker {
+        padding: 0 $default-space 0 $default-space;
+      }
+
       padding: 0 $default-space $default-space $default-space;
       flex: 1 1 auto;
       display: flex;
