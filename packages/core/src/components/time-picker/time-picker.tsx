@@ -351,19 +351,17 @@ export class TimePicker {
 
   componentDidRender() {
     if (this.isUnitFocused) {
-      const cellElement = this.hostElement.shadowRoot?.querySelector(
-        `[data-element-container-id="${this.focusedUnit}-${this.focusedValue}"]`
-      ) as HTMLButtonElement;
+      const elementContainer = this.getElementContainer(
+        this.focusedUnit,
+        this.focusedValue
+      );
+      const elementList = this.getElementList(this.focusedUnit);
 
-      const elementList = this.hostElement.shadowRoot?.querySelector(
-        `[data-element-list-id="${this.focusedUnit}"]`
-      ) as HTMLDivElement;
+      if (elementContainer) {
+        elementContainer.focus({ preventScroll: true });
 
-      if (cellElement) {
-        cellElement.focus({ preventScroll: true });
-
-        if (!this.isElementVisible(cellElement, elementList)) {
-          cellElement.scrollIntoView({
+        if (!this.isElementVisible(elementContainer, elementList)) {
+          elementContainer.scrollIntoView({
             block: this.focusScrollAlignment,
           });
 
@@ -375,19 +373,6 @@ export class TimePicker {
         }
       }
     }
-  }
-
-  private isElementVisible(
-    element: HTMLElement,
-    container: HTMLElement
-  ): boolean {
-    const elementRect = element.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-
-    return (
-      elementRect.top >= containerRect.top &&
-      elementRect.bottom <= containerRect.bottom
-    );
   }
 
   disconnectedCallback() {
@@ -467,6 +452,34 @@ export class TimePicker {
 
   onUnitCellFocus() {
     this.isUnitFocused = true;
+  }
+
+  private getElementList(unit: TimePickerDescriptorUnit): HTMLDivElement {
+    return this.hostElement.shadowRoot?.querySelector(
+      `[data-element-list-id="${unit}"]`
+    ) as HTMLDivElement;
+  }
+
+  private getElementContainer(
+    unit: TimePickerDescriptorUnit,
+    number: number
+  ): HTMLDivElement {
+    return this.hostElement.shadowRoot?.querySelector(
+      `[data-element-container-id="${unit}-${number}"]`
+    ) as HTMLDivElement;
+  }
+
+  private isElementVisible(
+    element: HTMLElement,
+    container: HTMLElement
+  ): boolean {
+    const elementRect = element.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    return (
+      elementRect.top >= containerRect.top &&
+      elementRect.bottom <= containerRect.bottom
+    );
   }
 
   private updateFocusedValue(value: number) {
@@ -761,13 +774,8 @@ export class TimePicker {
     number: number,
     scrollBehaviour: 'smooth' | 'instant'
   ) {
-    const elementList = this.hostElement.shadowRoot?.querySelector(
-      `[data-element-list-id="${unit}"]`
-    ) as HTMLDivElement;
-
-    const elementContainer = this.hostElement.shadowRoot?.querySelector(
-      `[data-element-container-id="${unit}-${number}"]`
-    ) as HTMLDivElement;
+    const elementList = this.getElementList(unit);
+    const elementContainer = this.getElementContainer(unit, number);
 
     if (elementList && elementContainer) {
       const elementListHeight = elementList.clientHeight;
