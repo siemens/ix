@@ -82,14 +82,15 @@
         align-items: center;
         margin: 0 0.125rem;
         min-height: 100%;
-        margin-top: 3.219rem;
+        margin-top: 3.125rem;
       }
     }
 
     .element-list {
       list-style-type: none;
       overflow: auto;
-      max-height: 250px;
+      max-height: 244px;
+      padding: 2px 0;
 
       button {
         all: unset;

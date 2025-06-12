@@ -317,6 +317,7 @@ export class TimePicker {
 
   private visibilityObserver?: MutationObserver;
   private hasUpdatedScrollPositions = false;
+  private focusScrollAlignment: 'start' | 'end' = 'start';
 
   componentWillLoad() {
     this.initPicker();
@@ -354,10 +355,39 @@ export class TimePicker {
         `[data-element-container-id="${this.focusedUnit}-${this.focusedValue}"]`
       ) as HTMLButtonElement;
 
+      const elementList = this.hostElement.shadowRoot?.querySelector(
+        `[data-element-list-id="${this.focusedUnit}"]`
+      ) as HTMLDivElement;
+
       if (cellElement) {
-        cellElement.focus();
+        cellElement.focus({ preventScroll: true });
+
+        if (!this.isElementVisible(cellElement, elementList)) {
+          cellElement.scrollIntoView({
+            block: this.focusScrollAlignment,
+          });
+
+          if (this.focusScrollAlignment === 'end') {
+            elementList.scrollTop += 2;
+          } else {
+            elementList.scrollTop -= 2;
+          }
+        }
       }
     }
+  }
+
+  private isElementVisible(
+    element: HTMLElement,
+    container: HTMLElement
+  ): boolean {
+    const elementRect = element.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    return (
+      elementRect.top >= containerRect.top &&
+      elementRect.bottom <= containerRect.bottom
+    );
   }
 
   disconnectedCallback() {
@@ -399,11 +429,13 @@ export class TimePicker {
 
       case 'ArrowUp':
         newValue -= newValueInterval;
+        this.focusScrollAlignment = 'start';
         this.updateFocusedValue(newValue);
         break;
 
       case 'ArrowDown':
         newValue += newValueInterval;
+        this.focusScrollAlignment = 'end';
         this.updateFocusedValue(newValue);
         break;
 
@@ -444,8 +476,10 @@ export class TimePicker {
 
     if (value > maxValue) {
       value = minValue;
+      this.focusScrollAlignment = 'start';
     } else if (value < minValue) {
       value = maxValue;
+      this.focusScrollAlignment = 'end';
     }
 
     this.focusedValue = value;
@@ -740,7 +774,7 @@ export class TimePicker {
       const elementContainerHeight = elementContainer.clientHeight;
 
       // Offset which is used to adjust the scroll position to account for margins, elements being hidden, etc.
-      let scrollPositionOffset = 13;
+      let scrollPositionOffset = 15;
       if (this.hideHeader) {
         // 74 --> height of the header container
         scrollPositionOffset -= 74;
