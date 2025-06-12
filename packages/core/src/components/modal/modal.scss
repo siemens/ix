@@ -134,8 +134,8 @@
 dialog.align-center {
   animation: ix-modal-slide-in-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   left: 50%;
-  top: 6rem;
-  transform: translate(-50%, 0);
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 :host(.no-backdrop) {
