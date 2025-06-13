@@ -34,10 +34,12 @@
     margin-left: auto;
     margin-right: 0;
     transition: var(--theme-default-time) transform ease-in-out;
+    color: var(--theme-color-std-text);
   }
 
   .category-chevron--open {
     transform: rotate(-180deg);
+    color: var(--theme-color-dynamic);
   }
 
   .menu-items {
