@@ -15,7 +15,7 @@
   display: inline-flex;
   flex-direction: row;
   position: relative;
-  height: 1.5rem;
+  min-height: 1.5rem;
   margin-block-start: 0.25rem;
   margin-block-end: 0.25rem;
 
@@ -31,6 +31,7 @@
   }
 
   .label {
+    word-break: break-word;
     display: inline-block;
     white-space: normal;
     overflow: hidden;
