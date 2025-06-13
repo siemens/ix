@@ -200,13 +200,15 @@ export class Radio implements IxFormComponent<string> {
               style={{ visibility: this.checked ? 'visible' : 'hidden' }}
             ></div>
           </button>
-          <ix-typography
-            format="label"
-            textColor={this.disabled ? 'weak' : 'std'}
-          >
-            {this.label}
-            <slot></slot>
-          </ix-typography>
+          {this.label && (
+            <ix-typography
+              format="label"
+              textColor={this.disabled ? 'weak' : 'std'}
+            >
+              {this.label}
+              <slot></slot>
+            </ix-typography>
+          )}
         </label>
       </Host>
     );
