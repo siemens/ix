@@ -178,6 +178,11 @@ export class Chip {
               }}
               name={this.icon}
               size={'24'}
+              style={
+                this.variant === 'custom'
+                  ? { color: this.outline ? this.background : this.chipColor }
+                  : undefined
+              }
             />
           )}
           <span class="slot-container">

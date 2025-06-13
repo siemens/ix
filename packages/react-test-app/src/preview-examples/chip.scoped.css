@@ -13,9 +13,11 @@
 
 .chip {
   display: flex;
-  flex-direction: column;
+  gap: 2rem;
 }
 
-.chip > ix-chip {
-  margin-bottom: 0.5rem;
+.chip-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
