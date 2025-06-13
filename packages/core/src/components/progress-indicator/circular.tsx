@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Fragment, h, type FunctionalComponent } from '@stencil/core';
+import { h, type FunctionalComponent } from '@stencil/core';
 import { ProgressIndicatorSize } from './progress-indicator';
 import { MakeRef } from '../utils/make-ref';
 
@@ -47,7 +47,7 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
   const slotInsideCircular = size === 'lg' || size === 'xl';
 
   return (
-    <Fragment>
+    <div class="circular-progress-container">
       <svg
         ref={referRef}
         width={sizeInPixel}
@@ -67,17 +67,19 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
           stroke="var(--theme-color-component-4)"
           stroke-width={`3px`}
         ></circle>
-        <circle
-          r={sizeInPixel / 2 - padding}
-          cx={sizeInPixel / 2}
-          cy={sizeInPixel / 2}
-          stroke="var(--ix-progress-indicator-color)"
-          stroke-width="3px"
-          stroke-linecap="round"
-          stroke-dashoffset={`${percentage}px`}
-          fill="transparent"
-          stroke-dasharray={`${circumference}px`}
-        ></circle>
+        {percentage > 0 && (
+          <circle
+            r={sizeInPixel / 2 - padding}
+            cx={sizeInPixel / 2}
+            cy={sizeInPixel / 2}
+            stroke="var(--ix-progress-indicator-color)"
+            stroke-width="3px"
+            stroke-linecap="round"
+            stroke-dashoffset={`${percentage}px`}
+            fill="transparent"
+            stroke-dasharray={`${circumference}px`}
+          ></circle>
+        )}
         <foreignObject
           x={`0px`}
           y={`0px`}
@@ -95,6 +97,6 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
         </foreignObject>
       </svg>
       {!slotInsideCircular && <div class="slotted-container">{children}</div>}
-    </Fragment>
+    </div>
   );
 };

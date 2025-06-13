@@ -35,15 +35,6 @@
     align-items: flex-start;
     margin: 0.25rem 0px;
     gap: 0.25rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    .text {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
   }
 
   .helper-text {
@@ -165,6 +156,10 @@
   }
 
   @include linear.linear;
+
+  .linear-slot {
+    min-width: 2.25rem;
+  }
 }
 
 :host(.circular) {

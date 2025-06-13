@@ -23,17 +23,64 @@ SPDX-License-Identifier: MIT
       defineCustomElement();
     </script>
   </head>
-  <body style="margin: 0px; height: 100vh; padding: 5rem; display: flex">
-    <ix-progress-indicator
+  <body
+    style="
+      margin: 0px;
+      height: 100vh;
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+    "
+  >
+    <!-- <ix-progress-indicator
+      id="p-x"
       type="circular"
-      max="100"
-      value="25"
-      status="info"
       label="info"
-      size="md"
-      helper-text="This is a helper text"
-      show-text-as-tooltip
+      helper-text="very long text very long textvery long textvery long textvery long textvery long textvery long textvery long text"
     >
     </ix-progress-indicator>
+    <ix-progress-indicator id="p-0" type="circular"> </ix-progress-indicator> -->
+    <ix-progress-indicator type="circular" size="xs" value="75"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="circular" size="sm" value="75"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="circular" size="md" value="75"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="circular" size="lg" value="75"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="circular" size="xl" value="75"
+      >75%</ix-progress-indicator
+    >
+    <!-- <script>
+      // const p0 = document.getElementById('p-0');
+      const p1 = document.getElementById('p-1');
+
+      const attr = {
+        max: 100,
+        value: 25,
+        status: 'info',
+        label: 'info',
+        size: 'md',
+        helperText: 'This is a helper text',
+        showTextAsTooltip: false,
+      };
+
+      // Object.assign(p0, attr);
+      Object.assign(p1, attr);
+    </script> -->
+    <!-- <ix-button id="btn-toggle">Toggle</ix-button>
+    <script>
+      const btnToggle = document.getElementById('btn-toggle');
+      const progressIndicator = document.querySelector('ix-progress-indicator');
+      btnToggle.addEventListener('click', () => {
+        progressIndicator.status = 'error';
+        progressIndicator.helperText =
+          'A error with an longer text just for demonstration the behavior of the helper text';
+      });
+    </script> -->
   </body>
 </html>

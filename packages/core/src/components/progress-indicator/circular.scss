@@ -7,6 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 @mixin circular {
+  .circular-progress-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.25rem;
+  }
   .slotted-container {
     width: 100%;
     height: 100%;

@@ -144,6 +144,7 @@ export class ProgressIndicator {
           linear: this.type === 'linear',
           circular: this.type === 'circular',
         }}
+        tabIndex={-1}
       >
         <div
           class={{
@@ -169,7 +170,9 @@ export class ProgressIndicator {
                   value={clampedValue}
                   referRef={this.anchorRef}
                 ></LinearBar>
-                <slot></slot>
+                <div class="linear-slot">
+                  <slot></slot>
+                </div>
               </Fragment>
             ) : (
               <Fragment>
@@ -185,7 +188,7 @@ export class ProgressIndicator {
           </div>
           {this.showTextAsTooltip === true && this.helperText ? (
             <ix-tooltip
-              for={this.anchorRef.waitForCurrent() as Promise<HTMLElement>}
+              for={this.hostElement}
               showDelay={500}
               placement="bottom"
             >
