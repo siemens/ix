@@ -40,12 +40,11 @@ export async function showToast(
   }
 
   let toastContainerAction: HTMLElement | undefined;
-  let rootAction: ReactDOMClient.Root | undefined;
 
   if (config.action) {
     toastContainerAction = document.createElement('DIV');
-    rootAction = ReactDOMClient.createRoot(toastContainerAction);
-    rootAction.render(config.action);
+    root = ReactDOMClient.createRoot(toastContainerAction);
+    root.render(config.action);
   }
 
   const toastInstance = await toast({
@@ -56,7 +55,6 @@ export async function showToast(
 
   toastInstance.onClose.once(() => {
     root?.unmount();
-    rootAction?.unmount();
   });
 
   return toastInstance;
