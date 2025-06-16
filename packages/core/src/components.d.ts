@@ -2202,6 +2202,9 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    /**
+     * @since 3.2.0
+     */
     interface IxProgressIndicator {
         /**
           * The helper text for the progress indicator.
@@ -4374,6 +4377,9 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
+    /**
+     * @since 3.2.0
+     */
     interface HTMLIxProgressIndicatorElement extends Components.IxProgressIndicator, HTMLStencilElement {
     }
     var HTMLIxProgressIndicatorElement: {
@@ -7171,6 +7177,9 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
+    /**
+     * @since 3.2.0
+     */
     interface IxProgressIndicator {
         /**
           * The helper text for the progress indicator.
@@ -8339,6 +8348,9 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            /**
+             * @since 3.2.0
+             */
             "ix-progress-indicator": LocalJSX.IxProgressIndicator & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             /**

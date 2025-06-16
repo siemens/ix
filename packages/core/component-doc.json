@@ -16386,7 +16386,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "3.2.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
