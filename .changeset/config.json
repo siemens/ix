@@ -3,14 +3,7 @@
   "changelog": ["@changesets/changelog-github", { "repo": "siemens/ix" }],
   "commit": false,
   "linked": [],
-  "fixed": [
-    [
-      "@siemens/ix",
-      "@siemens/ix-angular",
-      "@siemens/ix-react",
-      "@siemens/ix-vue"
-    ]
-  ],
+  "fixed": [],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
