@@ -1,5 +1,11 @@
 # @siemens/ix-angular
 
+## 3.1.1
+
+### Patch Changes
+
+- [`139f1136e105df4e4a6f9965ca4237352f0111a1`](https://github.com/siemens/ix/commit/139f1136e105df4e4a6f9965ca4237352f0111a1) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix broken build output
+
 ## 3.1.0
 
 ### Minor Changes
