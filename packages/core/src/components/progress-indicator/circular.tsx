@@ -8,7 +8,6 @@
  */
 import { h, type FunctionalComponent } from '@stencil/core';
 import { ProgressIndicatorSize } from './progress-indicator';
-import { MakeRef } from '../utils/make-ref';
 
 function getCircularSize(size: ProgressIndicatorSize) {
   switch (size) {
