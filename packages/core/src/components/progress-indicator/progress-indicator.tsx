@@ -20,6 +20,9 @@ import { makeRef } from '../utils/make-ref';
 
 export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+/**
+ * @since 3.2.0
+ */
 @Component({
   tag: 'ix-progress-indicator',
   styleUrl: 'progress-indicator.scss',
