@@ -139,6 +139,27 @@ export class WorkflowStep {
     }
   }
 
+  getIconAriaLabel() {
+    switch (this.iconName) {
+      case iconCircle:
+        return 'Circle';
+      case iconCircleDot:
+        return 'Circle dot';
+      case iconCircleFilled:
+        return 'Done';
+      case iconError:
+        return 'Error';
+      case iconSuccess:
+        return 'Success';
+      case iconTriangleFilled:
+        return 'Warning';
+      case iconWarning:
+        return 'Warning';
+      default:
+        return 'Step';
+    }
+  }
+
   render() {
     const icons = !this.customIconSlot ? (
       <Fragment>
@@ -153,9 +174,9 @@ export class WorkflowStep {
         <ix-icon
           color={this.iconColor}
           name={this.iconName}
-          data-name={this.iconName}
           class="absolute"
           size="24"
+          aria-label={this.getIconAriaLabel()}
         ></ix-icon>
       </Fragment>
     ) : null;

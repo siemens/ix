@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { iconCircleDot, iconError } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -91,20 +90,22 @@ regressionTest(
     const step1 = page.locator('#step1');
     await expect(workflowSteps).toHaveClass(/hydrated/);
     await expect(selectedDiv).toHaveClass(/selected/);
+    let icon = await page.locator('#step1 ix-icon').nth(1);
+    let iconSvg = await icon.getAttribute('aria-label');
     await step1.evaluate((el) => {
       el.setAttribute('status', 'error');
     });
     await expect(step1).toHaveAttribute('status', 'error');
-    let icon = await page.locator('#step1 ix-icon').nth(1);
-    let iconSvg = await icon.getAttribute('data-name');
-    expect(iconSvg).toContain(iconError);
+    icon = await page.locator('#step1 ix-icon').nth(1);
+    iconSvg = await icon.getAttribute('aria-label');
+    expect(iconSvg).toBe('Error');
     await step1.evaluate((el) => {
       el.setAttribute('status', 'open');
     });
     await expect(step1).toHaveAttribute('status', 'open');
     icon = await page.locator('#step1 ix-icon').nth(1);
-    iconSvg = await icon.getAttribute('data-name');
-    expect(iconSvg).toContain(iconCircleDot);
+    iconSvg = await icon.getAttribute('aria-label');
+    expect(iconSvg).toBe('Circle dot');
     await expect(selectedDiv).toHaveClass(/selected/);
   }
 );
