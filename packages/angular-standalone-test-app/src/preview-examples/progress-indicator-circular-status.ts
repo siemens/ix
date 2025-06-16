@@ -13,6 +13,7 @@ import { IxProgressIndicator } from '@siemens/ix-angular/standalone';
 @Component({
   selector: 'app-example',
   templateUrl: './progress-indicator-circular-status.html',
+  styleUrl: './progress-indicator.css',
   imports: [IxProgressIndicator],
   standalone: true,
 })
