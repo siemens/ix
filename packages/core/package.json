@@ -111,7 +111,6 @@
     "autoprefixer": "10.4.20",
     "cssnano": "^6.1.2",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint-config-ix": "workspace:*",
     "eslint-plugin-react": "^7.35.0",
     "eslint": "^8.57.0",
     "fs-extra": "^10.1.0",

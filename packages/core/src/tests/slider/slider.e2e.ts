@@ -151,6 +151,32 @@ regressionTest(
   }
 );
 
+regressionTest('should render with error', async ({ page, mount }) => {
+  await mount(`
+    <div id='slider-container'>
+
+      <ix-slider error="Some error message">
+      </ix-slider>
+
+      <ix-slider error="Some error message">
+        <span slot="label-start">500</span>
+        <span slot="label-end">1000</span>
+      </ix-slider>
+
+    </div>
+  `);
+
+  const slider1 = page.locator('ix-slider').nth(0);
+  const slider2 = page.locator('ix-slider').nth(1);
+
+  await expect(slider1).toHaveClass(/hydrated/);
+  await expect(slider2).toHaveClass(/hydrated/);
+
+  expect(
+    await page.locator('#slider-container').screenshot()
+  ).toMatchSnapshot();
+});
+
 regressionTest('should render all slider variants', async ({ page, mount }) => {
   await mount(`
     <style>
@@ -195,7 +221,7 @@ regressionTest('should render all slider variants', async ({ page, mount }) => {
           max="250"
           min="25"
           trace
-          trace-reference="25">
+          trace-reference="250">
         </ix-slider>
 
         <ix-slider
@@ -206,7 +232,7 @@ regressionTest('should render all slider variants', async ({ page, mount }) => {
           max="250"
           min="25"
           trace
-          trace-reference="25">
+          trace-reference="250">
           <span slot="label-start">500</span>
           <span slot="label-end">1000</span>
         </ix-slider>
@@ -276,7 +302,7 @@ regressionTest('should render all slider variants', async ({ page, mount }) => {
           max="250"
           min="25"
           trace
-          trace-reference="25">
+          trace-reference="250">
         </ix-slider>
 
         <ix-slider
@@ -287,7 +313,7 @@ regressionTest('should render all slider variants', async ({ page, mount }) => {
           max="250"
           min="25"
           trace
-          trace-reference="25">
+          trace-reference="250">
           <span slot="label-start">500</span>
           <span slot="label-end">1000</span>
         </ix-slider>

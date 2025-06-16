@@ -90,11 +90,6 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
    */
   @Prop() showTextAsTooltip?: boolean;
 
-  @State() isInvalid = false;
-  @State() isValid = false;
-  @State() isInfo = false;
-  @State() isWarning = false;
-
   /**
    * Legal number intervals
    *
@@ -138,6 +133,11 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @Prop() disabled = false;
 
   /**
+   * Show error state and message
+   */
+  @Prop() error?: boolean | string;
+
+  /**
    *
    */
   @Event() valueChange!: EventEmitter<number>;
@@ -147,6 +147,10 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @State() rangeMax = 100;
   @State() rangeTraceReference = 0;
   @State() showTooltip = false;
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
 
   private touched = false;
 
@@ -297,6 +301,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
           info: !!this.isInfo,
           valid: !!this.isValid,
           warning: !!this.isWarning,
+          error: !!this.error,
         }}
         onPointerDown={() => setTimeout(() => (this.showTooltip = true))}
       >
@@ -409,6 +414,11 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                 <slot name="label-end"></slot>
               </div>
             </div>
+            {this.error ? (
+              <ix-typography class={'label-error'} textColor="alarm">
+                {this.error}
+              </ix-typography>
+            ) : null}
           </div>
         </ix-field-wrapper>
       </Host>
