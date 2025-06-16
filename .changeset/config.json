@@ -2,8 +2,15 @@
   "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
   "changelog": ["@changesets/changelog-github", { "repo": "siemens/ix" }],
   "commit": false,
-  "linked": [],
   "fixed": [],
+  "linked": [
+    [
+      "@siemens/ix",
+      "@siemens/ix-angular",
+      "@siemens/ix-react",
+      "@siemens/ix-vue"
+    ]
+  ],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
