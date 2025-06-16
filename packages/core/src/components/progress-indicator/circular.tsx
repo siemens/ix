@@ -36,9 +36,8 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
   children
 ) => {
   const { value, size } = props;
-  const padding = 0;
   const sizeInPixel = getCircularSize(size);
-  const radius = sizeInPixel / 2 - padding;
+  const radius = sizeInPixel / 2;
   const circumference = 2 * Math.PI * radius;
   const percentage = Math.round(circumference * ((100 - value) / 100));
 
@@ -57,18 +56,18 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
         style={{ transform: 'rotate(-90deg)' }}
       >
         <circle
-          r={sizeInPixel / 2 - padding}
-          cx={sizeInPixel / 2}
-          cy={sizeInPixel / 2}
+          r={radius}
+          cx={radius}
+          cy={radius}
           fill="transparent"
           stroke="var(--theme-color-component-4)"
           stroke-width={`3px`}
         ></circle>
         {percentage > 0 && (
           <circle
-            r={sizeInPixel / 2 - padding}
-            cx={sizeInPixel / 2}
-            cy={sizeInPixel / 2}
+            r={radius}
+            cx={radius}
+            cy={radius}
             stroke="var(--ix-progress-indicator-color)"
             stroke-width="3px"
             stroke-linecap="round"
