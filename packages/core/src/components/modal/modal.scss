@@ -1,7 +1,6 @@
 @keyframes ix-modal-slide-in-top {
   from {
     opacity: 0;
-    transform: translate(-50%, calc(-50% - 50vh));
   }
   to {
     opacity: 1;
@@ -18,7 +17,7 @@
  */
 
 ::backdrop {
-  --ix-dialog-backdrop: var(--theme-color-lightbox, #0000008c);
+  background: var(--theme-color-lightbox, #0000008c);
 }
 
 :focus-visible {
@@ -130,9 +129,9 @@
 :host(.visible) {
   display: block;
 }
-:host(.align-center) dialog,
-dialog.align-center {
-  animation: ix-modal-slide-in-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+:host(.align-center) dialog {
+  animation: ix-modal-slide-in-top var(--theme-slow-time)
+    cubic-bezier(0.4, 0, 0.2, 1);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
