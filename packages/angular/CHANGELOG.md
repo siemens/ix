@@ -1,5 +1,26 @@
 # @siemens/ix-angular
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1793](https://github.com/siemens/ix/pull/1793) [`826c656ab14e4e67aad0edf4e5dbacdb6add4e23`](https://github.com/siemens/ix/commit/826c656ab14e4e67aad0edf4e5dbacdb6add4e23) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Add `form` attribute to `ix-button` to support automatic form submit.
+
+  Fixes #1653
+
+- [#1856](https://github.com/siemens/ix/pull/1856) [`3a3814be041ac02df2ba4225d64b00b5ab5feb09`](https://github.com/siemens/ix/commit/3a3814be041ac02df2ba4225d64b00b5ab5feb09) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Add oval attribute to **ix-icon-toggle-button**.
+
+### Patch Changes
+
+- [#1921](https://github.com/siemens/ix/pull/1921) [`c3f909ebba8cf0b277416f65a958418f1e1c1418`](https://github.com/siemens/ix/commit/c3f909ebba8cf0b277416f65a958418f1e1c1418) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix an issue where the **ix-toast** component gets removed after tree-shaking during a production build.
+
+- [#1921](https://github.com/siemens/ix/pull/1921) [`c3f909ebba8cf0b277416f65a958418f1e1c1418`](https://github.com/siemens/ix/commit/c3f909ebba8cf0b277416f65a958418f1e1c1418) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix an issue where the **ix-modal** component gets removed after tree-shaking during a production build.
+
+  Fixes #1911
+
+- Updated dependencies [[`826c656ab14e4e67aad0edf4e5dbacdb6add4e23`](https://github.com/siemens/ix/commit/826c656ab14e4e67aad0edf4e5dbacdb6add4e23), [`634fa40faac751464a5da789adf0614e323236f9`](https://github.com/siemens/ix/commit/634fa40faac751464a5da789adf0614e323236f9), [`1da72685f28e77b457386d8df3caaaa7302a28c7`](https://github.com/siemens/ix/commit/1da72685f28e77b457386d8df3caaaa7302a28c7), [`3aaaadbeb2c735d0e242be7f9a777437edfcbe2b`](https://github.com/siemens/ix/commit/3aaaadbeb2c735d0e242be7f9a777437edfcbe2b), [`9346254f83af3316950a3681557939e74ba399e6`](https://github.com/siemens/ix/commit/9346254f83af3316950a3681557939e74ba399e6), [`ec011a4b76b25916c04e918e20b448c2f87978f5`](https://github.com/siemens/ix/commit/ec011a4b76b25916c04e918e20b448c2f87978f5), [`3a3814be041ac02df2ba4225d64b00b5ab5feb09`](https://github.com/siemens/ix/commit/3a3814be041ac02df2ba4225d64b00b5ab5feb09), [`f99ca055f217ef87a10047ea3b48f4ecc1e2522b`](https://github.com/siemens/ix/commit/f99ca055f217ef87a10047ea3b48f4ecc1e2522b), [`f1ea5f5c142311fc815adc3ac786e1c65f2498ad`](https://github.com/siemens/ix/commit/f1ea5f5c142311fc815adc3ac786e1c65f2498ad), [`3c2a336ed03a0766fcc909a1b0cdfdc9026d00f4`](https://github.com/siemens/ix/commit/3c2a336ed03a0766fcc909a1b0cdfdc9026d00f4)]:
+  - @siemens/ix@3.1.0
+
 ## 3.0.0
 
 ### Major Changes
