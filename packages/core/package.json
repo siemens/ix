@@ -19,6 +19,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "READMEOSS.html",
     "components/",
     "dist/",
     "loader/",
