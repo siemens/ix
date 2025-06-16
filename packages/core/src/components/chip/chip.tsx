@@ -193,6 +193,23 @@ export class Chip {
               <slot></slot>
             </span>
           </div>
+          {this.icon && (
+            <ix-icon
+              class={{
+                'with-icon': true,
+              }}
+              name={this.icon}
+              size={'24'}
+              style={
+                this.variant === 'custom'
+                  ? { color: this.outline ? this.background : this.chipColor }
+                  : undefined
+              }
+            />
+          )}
+          <span class="slot-container">
+            <slot></slot>
+          </span>
           {isInactive === false && this.closable ? this.getCloseButton() : null}
         </div>
         {this.getTooltip()}
