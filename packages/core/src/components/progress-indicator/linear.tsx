@@ -7,17 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { h } from '@stencil/core';
-import { MakeRef } from '../utils/make-ref';
 
 export function LinearBar({
   value,
-  referRef,
-}: {
+}: Readonly<{
   value: number;
-  referRef: MakeRef<Element>;
-}) {
+}>) {
   return (
-    <div class="linear-progress-container" ref={referRef}>
+    <div class="linear-progress-container">
       <div
         class="progress"
         role="progressbar"

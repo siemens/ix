@@ -30,14 +30,13 @@ function getCircularSize(size: ProgressIndicatorSize) {
 export type CircularProgressProps = {
   value: number;
   size: ProgressIndicatorSize;
-  referRef: MakeRef<Element>;
 };
 
 export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
-  props: CircularProgressProps,
+  props: Readonly<CircularProgressProps>,
   children
 ) => {
-  const { value, size, referRef } = props;
+  const { value, size } = props;
   const padding = 0;
   const sizeInPixel = getCircularSize(size);
   const radius = sizeInPixel / 2 - padding;
@@ -49,7 +48,6 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
   return (
     <div class="circular-progress-container">
       <svg
-        ref={referRef}
         width={sizeInPixel}
         height={sizeInPixel}
         viewBox={`-${sizeInPixel * 0.125} -${sizeInPixel * 0.125} ${

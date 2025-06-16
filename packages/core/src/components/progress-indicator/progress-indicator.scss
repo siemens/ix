@@ -15,10 +15,6 @@
   width: 24rem;
   height: fit-content;
 
-  .progress-indicator {
-    height: 100%;
-  }
-
   .progress-container {
     display: flex;
     align-items: center;
@@ -35,9 +31,7 @@
     align-items: flex-start;
     margin: 0.25rem 0px;
     gap: 0.25rem;
-  }
 
-  .helper-text {
     ix-icon {
       margin: 0.125rem;
     }
@@ -89,6 +83,8 @@
 
   .progress-indicator {
     --ix-progress-indicator-color: var(--theme-color-success);
+
+    height: 100%;
 
     &.xs {
       --ix-progress-indicator-height: 0.125rem;

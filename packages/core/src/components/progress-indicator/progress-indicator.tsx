@@ -89,8 +89,6 @@ export class ProgressIndicator {
    */
   @Prop() showTextAsTooltip: boolean = false;
 
-  private anchorRef = makeRef<Element>();
-
   private getHelperText() {
     let icon: string | null = null;
 
@@ -169,24 +167,15 @@ export class ProgressIndicator {
           <div class="progress-container">
             {this.type === 'linear' ? (
               <Fragment>
-                <LinearBar
-                  value={clampedValue}
-                  referRef={this.anchorRef}
-                ></LinearBar>
+                <LinearBar value={clampedValue}></LinearBar>
                 <div class="linear-slot">
                   <slot></slot>
                 </div>
               </Fragment>
             ) : (
-              <Fragment>
-                <CircularProgress
-                  value={clampedValue}
-                  size={this.size}
-                  referRef={this.anchorRef}
-                >
-                  <slot></slot>
-                </CircularProgress>
-              </Fragment>
+              <CircularProgress value={clampedValue} size={this.size}>
+                <slot></slot>
+              </CircularProgress>
             )}
           </div>
           {this.showTextAsTooltip === true && this.helperText ? (
