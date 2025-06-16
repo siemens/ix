@@ -16,7 +16,6 @@ import {
   iconWarning,
 } from '@siemens/ix-icons/icons';
 import { CircularProgress } from './circular';
-import { makeRef } from '../utils/make-ref';
 
 export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
