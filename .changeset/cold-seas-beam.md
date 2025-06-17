@@ -3,3 +3,5 @@
 ---
 
 Add **ix-progress-indicator**
+
+Fixes #651
