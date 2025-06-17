@@ -17,6 +17,7 @@ import {
   Host,
   Method,
   Prop,
+  State,
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
@@ -101,7 +102,8 @@ export class Toggle implements IxFormComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
-  private lineClamp: number = 1;
+  @State() lineClamp: number = 1;
+
   private touched = false;
   private resizeObserver!: ResizeObserver;
 
