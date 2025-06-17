@@ -114,6 +114,43 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
       await expect(page.locator('ix-modal dialog')).not.toBeVisible();
     }
   );
+  regressionTest(
+    'should not close modal when mouse is held down inside modal and released outside',
+    async ({ mount, page }) => {
+      await mount(`<ix-button>Some background noise</ix-button>`);
+
+      await setupModalEnvironment(page);
+      await createToggleExample(page);
+
+      // Wait for modal to appear
+      await page.waitForTimeout(500);
+
+      const modalDialog = page.locator('ix-modal dialog');
+      await expect(modalDialog).toBeVisible();
+
+      // Get bounding box of the modal to find a point inside it
+      const box = await modalDialog.boundingBox();
+      if (!box) throw new Error('Modal bounding box not found');
+
+      const insideX = box.x + box.width / 2;
+      const insideY = box.y + box.height / 2;
+
+      // Simulate mouse down inside modal
+      await page.mouse.move(insideX, insideY);
+      await page.mouse.down();
+
+      // Simulate mouse up outside modal
+      await page.mouse.move(20, 20);
+      await page.mouse.up();
+
+      // Wait for any animations
+      await page.waitForTimeout(500);
+
+      // Modal should still be visible
+      await expect(modalDialog).toBeVisible();
+    }
+  );
+
 
   regressionTest(
     'should stay open after interacting with input elements',
