@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Siemens Third-Party Software disclosure document</title>
+	<meta charset="utf-8" />
+
+	<style>
+		td, th, tr, table
+			{font-size: 8.0pt;
+			border: 1px solid #2F4F4F;
+			border-collapse: collapse;
+			margin-left: 10.4pt;
+			padding: 5.4pt 5.4pt 5.4pt 5.4pt;}
+
+		table.componentSummary
+			{width: 95%;
+			border: 1px solid #2F4F4F;
+			table-layout: fixed;
+			border-collapse: collapse;}
+
+		th.componentSummary
+			{padding: 1.0pt 1.0pt 1.0pt 1.0pt;}
+
+		td.componentSummary
+			{padding: 1.0pt 1.0pt 1.0pt 1.0pt;}
+
+		table.componentDetail
+				{font-size: 12.0pt;
+				border-style: none;}
+
+		tr.componentDetail
+				{font-size: 12.0pt;
+				border-style: none;}
+
+		td.componentDetail
+				{font-size: 12.0pt;
+				border-style: none;
+				margin-left: 5.1pt;
+				padding: 5.4pt 5.4pt 5.4pt 5.4pt;}
+
+		p
+			{font-family: "Arial";
+			font-size: 10.0pt;
+			margin-left: 5.1pt;}
+
+		p.important
+			{font-family: "Arial";
+			font-size: 12.0pt;}
+
+		p.tiny
+			{
+				font-size: 0.5em;
+			}
+
+		td.applicationCopyright
+			{width: 440.0pt;
+			border: solid windowtext 1.0pt;
+			padding: 5.4pt 5.4pt 5.4pt 5.4pt;}
+
+		table.licenseText
+			{border-style: none;
+			width: 95%;
+			table-layout: fixed;}
+
+		tr.licenseText
+			{border-style: none;}
+
+		td.licenseText
+			{border-style: none;
+			margin-left: 5.1pt;
+			padding: 5.4pt 5.4pt 5.4pt 5.4pt;}
+
+		table.passThroughInformationText
+			{border-style: none;
+			width: 95%;
+			table-layout: fixed;}
+
+		tr.passThroughInformationText
+			{border-style: none;}
+
+		td.passThroughInformationText
+			{border-style: none;
+			margin-left: 5.1pt;
+			padding: 5.4pt 5.4pt 5.4pt 5.4pt;}
+
+		table.copyrightText
+			{width: 95%;
+			table-layout: fixed;}
+
+		td.copyrightText
+			{border-style: none;
+			margin-left: 0.0pt;
+			padding: 5.4pt 5.4pt 5.4pt 5.4pt;}
+
+		h4
+			{font-size: 14.0pt;}
+
+		h5
+			{margin-left: 8.0pt;
+			font-size: 12.0pt;}
+
+		.watermark {
+			position: fixed;
+			left: 50%;
+			margin-left: -18%;
+			margin-top: 20px;
+			z-index: -10;
+		}
+		@media print{
+			.watermark {
+				position: fixed;
+				left: 0%;
+				margin: 0%;
+				z-index: -10;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="application-info" style="visibility:hidden;" data-template="">
+		@siemens/ix-angular 3.1.1 -
+	</div>
+    <div id="template">
+	    Siemens Third-Party Software Disclosure Document<br><br>English / English<br>Note to Resellers: Please pass on this document to your customers to avoid license infringements.<br><br>Third-Party Software Information<br><br>This product, solution or service ("Product") contains third-party software components listed in this document. These components are Open Source Software licensed under a license approved by the Open Source Initiative (www.opensource.org) or similar licenses as determined by SIEMENS ("OSS") and/or commercial or freeware software components. With respect to the OSS components, the applicable OSS license conditions prevail over any other terms and conditions covering the Product. The OSS portions of this Product are provided royalty-free and can be used at no charge.<br>If SIEMENS has combined or linked certain components of the Product with/to OSS components licensed under the GNU LGPL version 2 or later as per the definition of the applicable license, and if use of the corresponding object file is not unrestricted ("LGPL Licensed Module", whereas the LGPL Licensed Module and the components that the LGPL Licensed Module is combined with or linked to is the "Combined Product"), the following additional rights apply, if the relevant LGPL license criteria are met: (i) you are entitled to modify the Combined Product for your own use, including but not limited to the right to modify the Combined Product to relink modified versions of the LGPL Licensed Module, and (ii) you may reverse-engineer the Combined Product, but only to debug your modifications. The modification right does not include the right to distribute such modifications and you shall maintain in confidence any information resulting from such reverse-engineering of a Combined Product.<br>Certain OSS licenses require SIEMENS to make source code available, for example, the GNU General Public License, the GNU Lesser General Public License and the Mozilla Public License. If such licenses are applicable and this Product is not shipped with the required source code, a copy of this source code can be obtained by anyone in receipt of this information during the period required by the applicable OSS licenses by contacting the following address.<br>SIEMENS may charge a handling fee of up to 5 Euro to fulfil the request.<br>Warranty regarding further use of the Open Source Software<br>SIEMENS' warranty obligations are set forth in your agreement with SIEMENS. SIEMENS does not provide any warranty or technical support for this Product or any OSS components contained in it if they are modified or used in any manner not specified by SIEMENS. The license conditions listed below may contain disclaimers that apply between you and the respective licensor. For the avoidance of doubt, SIEMENS does not make any warranty commitment on behalf of or binding upon any third party licensor.<br><br>German / Deutsch<br>Hinweis an die Vertriebspartner: Bitte geben Sie dieses Dokument an Ihre Kunden weiter, um urheberrechtliche Lizenzverstöße zu vermeiden.<br>Informationen zu Fremdsoftware<br>Dieses Produkt, diese Lösung oder dieser Service ("Produkt") enthält die nachfolgend aufgelisteten Fremdsoftwarekomponenten. Bei diesen handelt es sich entweder um Open Source Software, die unter einer von der Open Source Initiative (www.opensource.org) anerkannten Lizenz oder einer durch Siemens als vergleichbar definierten Lizenz ("OSS") lizenziert ist und/oder um kommerzielle Software oder Freeware. Hinsichtlich der OSS Komponenten gelten die einschlägigen OSS Lizenzbedingungen vorrangig vor allen anderen auf dieses Produkt anwendbaren Bedingungen. SIEMENS stellt Ihnen die OSS-Anteile dieses Produkts ohne zusätzliche Kosten zur Verfügung.<br>Soweit SIEMENS bestimmte Komponenten des Produkts mit OSS Komponenten gemäß der Definition der anwendbaren Lizenz kombiniert oder verlinkt hat, die unter der GNU LGPL Version 2 oder einer späteren Version lizenziert werden und soweit die entsprechende Objektdatei nicht unbeschränkt genutzt werden darf ("LGPL-lizenziertes Modul", wobei das LGPL-lizenzierte Modul und die Komponenten, mit welchen das LGPL-lizenzierte Modul verbunden ist, nachfolgend "verbundenes Produkt" genannt werden) und die entsprechenden LGPL Lizenzkriterien erfüllt sind, dürfen Sie zusätzlich (i) das verbundene Produkt für eigene Verwendungszwecke bearbeiten und erhalten insbesondere das Recht, das verbundene Produkt zu bearbeiten, um es mit einer modifizierten Version des LGPL lizenzierten Moduls zu verlinken und (ii) das verbundene Produkt rückentwickeln, jedoch ausschließlich zum Zwecke der Fehlerkorrektur Ihrer Bearbeitungen. Das Recht zur Bearbeitung schließt nicht das Recht ein, diese zu distribuieren. Sie müssen sämtliche Informationen, die Sie aus dem Reverse Engineering des verbundenen Produktes gewinnen, vertraulich behandeln.<br>Bestimmte OSS Lizenzen verpflichten SIEMENS zur Herausgabe des Quellcodes, z.B. die GNU General Public License, die GNU Lesser General Public License sowie die Mozilla Public License. Soweit diese Lizenzen Anwendung finden und das Produkt nicht bereits mit dem notwendigen Quellcode ausgeliefert wurde, so kann eine Kopie des Quellcodes von jedermann während des in der anwendbaren OSS Lizenz angegebenen Zeitraums unter der folgenden Anschrift angefordert werden.<br>SIEMENS kann für die Erfüllung der Anfrage eine Bearbeitungsgebühr von bis zu 5 Euro in Rechnung stellen.<br>Gewährleistung betreffend Verwendung der Open Source Software<br>Die Gewährleistungspflichten von SIEMENS sind in dem jeweiligen Vertrag mit SIEMENS geregelt. Soweit Sie das Produkt oder die OSS Komponenten modifizieren oder in einer anderen als der von SIEMENS spezifizierten Weise verwenden, ist die Gewährleistung ausgeschlossen und eine technische Unterstützung erfolgt nicht. Die nachfolgenden Lizenzbedingungen können Haftungsbeschränkungen enthalten, die zwischen Ihnen und dem jeweiligen Lizenzgeber gelten. Klarstellend wird darauf hingewiesen, dass SIEMENS keine Gewährleistungsverpflichtungen im Namen von oder verpflichtend für einen Drittlizenzgeber abgibt.<br><br>Chinese / 中文<br>经销商须知：   请将本文件转发给您的客户，以避免构成对许可证的侵权。<br>第三方软件信息<br>本产品、解决方案或服务（统称“本产品”）中包含本文件列出的第三方软件组件。 这些组件是开放源代码促进会 (www.opensource.org) 批准的许可证或西门子确定的类似许可证所许可的开放源代码软件（简称“OSS”）和/或商业或免费软件组件。 针对 OSS组件，适用的 OSS 许可证条件优先于涵盖本产品的任何其他条款和条件。 本产品的 OSS 部分免许可费，可以免费使用。<br>如果西门子已经按照所适用的许可证的定义，根据第 2版或之后版本的GNU LGPL将本产品的某些组件与获得许可证的 OSS组件相组合或关联，并且如果使用相应的目标文件并非不受限制（“LGPL许可模块”，LGPL 许可模块以及与 LGPL 许可模块相组合或关联的组件统称为“组合产品”），则在符合以下相关LGPL许可标准的前提下，以下附加权利予以适用： (i) 您有权修改组合产品供自己使用，包括但不限于修改组合产品以重新连接 LGPL 许可模块修改版本的权利，并且 (ii) 您可以对组合产品进行逆向工程（但仅限于调试您的修改）。修改权不包括散布此类修改的权利，您应对此类组合产品逆向工程所获得的任何信息予以保密。<br>某些 OSS 许可证需要西门子提供源代码，例如 GNU 通用公共许可证、GNU 宽通用公共许可证和 Mozilla 公共许可证。如果适用此类许可证并且本产品发货时未随附所需的源代码，收到本信息的任何 人可以在所适用的OSS许可证要求的期限内通过以下地址联系获取这些源代码的副本。<br>西门子可收取最多 5 欧元的手续费以完成该请求。<br>关于进一步使用开放源代码软件的保修<br>您与西门子的协议中规定了西门子的保修义务。如果以西门子未指明的任何方式修改或使用本产品或其中包含的任何 OSS组件，西门子不为其提供任何保修或技术支持服务。下面列出的许可证条件可能包含适用于您和相应许可人之间的免责声明。为了避免产生疑问，西门子不代表或约束任何第三方许可人作出任何保修承诺。<br><br>Spanish / Español<br>Indicación para los distribuidores: Sírvase entregar este documento a sus clientes para prevenir infracciones de licencia sobre los aspectos de los derechos de autor.<br>Información sobre software de terceros<br>Este producto, solución o servicio ("producto") contiene los siguientes componentes de software de terceros listados a continuación. Se trata de Open Source Software cuya licencia ha sido otorgada por la Open Source Initiative (www.opensource.org) o que corresponde a una licencia definida por Siemens como comparable ("OSS") y/o de software o freeware comercial. En relación a los componentes OSS prevalecen  las condiciones de concesión de licencia OSS pertinentes por sobre todas las demás condiciones aplicables para este producto. SIEMENS le entrega estas partes OSS del producto sin coste adicional.<br>En la medida en que SIEMENS haya combinado o enlazado determinados componentes del producto con componentes OSS según la definición de la licencia aplicable, cuya licencia está sujeta a la GNU LGPL versión 2 o una versión posterior y que no se puede utilizar sin restricciones ("módulo con licencia LGPL", denominándose a continuación el módulo de licencia LGPL y los componentes combinados con el módulo de licencia LGPL, como "producto integrado") y que se hayan cumplido los criterios de licencia LGPL correspondientes, usted está autorizado para adicionalmente (i) procesar el producto conectado para sus propios fines de uso y obtener particularmente el derecho a procesar el producto conectado para enlazarlo con una versión modificada del módulo de licencia LGPL y (ii) realizar ingeniería inversa para el producto conectado, pero exclusivamente para fines de corrección de errores de sus procesamientos. El derecho al procesamiento no incluye el derecho a su distribución. Está obligado a tratar de manera confidencial toda la información que obtiene en el marco de la ingeniería inversa del producto conectado.<br>Determinadas licencias OSS obligan a Siemens a la publicación del código fuente, p. ej. la GNU General Public License, la GNU Lesser General Public License así como la Mozilla Public License. En la medida que se apliquen estas licencias y que el producto no se haya suministrado con el código fuente necesario, puede solicitarse una copia del código fuente por parte de cualquier persona durante el período indicado en la licencia OSS, mediante envío de la solicitud correspondiente a la siguiente dirección.<br>SIEMENS puede facturar una tasa de servicio de hasta 5 Euros para la tramitación de la consulta.<br>Garantía en relación al uso del Open Source Software<br>Las obligaciones de Siemens relacionadas a la garantía del Software, están especificados en el contrato correspondiente con SIEMENS. En caso de modificar el producto o los componentes OSS o usarse de una manera que difiera del modo especificado por SIEMENS, dejará de tener vigencia la garantía y no habrá derechoal soporte técnico asociado a ella. Las siguientes condiciones de concesión de licencia pueden contener limitaciones de responsabilidad que rigen entre su parte y el licenciador correspondiente. Se aclara que SIEMENS no asume obligaciones de garantía en nombre de o en forma vinculante para licenciadores de terceros.<br><br>French / Français<br>Note pour les partenaires de distribution: veuillez transmettre ce document à vos clients pour éviter toutes infractions aux dispositions en matière de droits d’auteur.<br>Informations sur des logiciels de tiers<br>Le présent produit,  solution ou  service (« Produit ») contient des éléments de logiciels indiqués ci-après, appartenant à des tiers. Ces logiciels sont des Open Source Software dont l’utilisation est accordée en vertu d’une licence reconnue par la Open Service Initiative (www.opensource.org), ou d’une licence équivalente définie comme telle par Siemens ("OSS"), et/ou en vertu d’un logiciel commercial ou un freeware. En ce qui concerne les composants OSS, les conditions de licence OSS pertinentes priment sur toutes les autres conditions éventuellement applicables au Produit. SIEMENS met à votre disposition gratuitement et sans frais supplémentaires les parties OSS du Produit.<br>Si SIEMENS a combiné ou relié certains composants du Produit avec des éléments OSS  dont l’utilisation est accordée en vertu de la licence GNU LGPL version 2 ou d'une version postérieure, conformément à la licence applicable, et si l’utilisation du fichier objet correspondant est soumise à des restrictions (« Module Sous Licence LGPL », le module sous licence LGPL et les composants avec lesquels ce module est lié, sont dénommés ci-après "Produit Lié"), si les critères de licence LGPL applicables sont respectés, vous avez également les droits suivants : (i) droit de modifier le Produit Lié pour votre propre usage , inclus notamment le droit de modifier le Produit Lié afin de le relier différentes versions modifiées du Module Sous Licence LGPL et (ii) droit de faire de la retro-ingénierie sur le Produit Lié, mais exclusivement afin de corriger les éventuels dysfonctionnements des modifications  que vous y avez apportées. Le droit de modifier n’inclut pas le droit de distribuer ces modifications et toutes les informations que vous avez  obtenues à l’occasion d’opérations de retro-ingénierie du Produit Lié seront strictement confidentielles.<br>Certaines licences OSS, comme par exemple la GNU General Public License, la GNU Lesser General Public License, ainsi que la Mozilla Public License, obligent SIEMENS à divulguer le code source. Si ces licences sont applicables et si le Produit n’a pas été préalablement livré avec le code source nécessaire, une copie du code source peut être demandée  pendant la durée de la licence OSS applicable, en s’adressant à l’adresse suivante.<br>SIEMENS peut facturer des frais de traitement allant jusqu’à 5 Euro pour répondre à cette demande.<br>Garantie relative à l’utilisation du logiciel Open Source<br>Les obligations de garantie de SIEMENS sont définies dans votre contrat. Si vous modifiez le Produit ou les éléments OSS y contenus ou si vous les utilisez d’une manière autre que celle spécifiée par SIEMENS, vous perdez le bénéfice de la garantie et aucune assistance technique ne vous sera fournie. Les conditions de licence ci-après peuvent contenir des limitations de responsabilités applicables entre vous et le concédant. En tout état de cause, nous vous signalons que SIEMENS ne prend aucun engagement de garantie au nom et pour le compte de tiers concédants.<br><br>Italian / Italiano<br>IMPORTANTE per i partner commerciali: si prega di inoltrare il presente documento ai clienti per evitare violazioni delle condizioni di licenza.<br>Informazioni relative al software di altri produttori<br>Il presente prodotto, soluzione o servizio ("Prodotto") contengono componenti software di altri produttori elencati qui di seguito. Questi software di altri produttori possono essere Open Source Software (OSS), concessi in licenza con una licenza riconosciuta dall'Open Source Initiative (www.opensource.org) o ritenuta equivalente da Siemens ("OSS"), e/o software o freeware commerciali. Per quanto riguarda i componenti dell'OSS, le relative condizioni di licenza pertinenti prevalgono rispetto a tutte le altre condizioni applicabili al presente Prodotto. SIEMENS mette a disposizione i componenti dell'OSS contenuti nel presente Prodotto senza costi aggiuntivi.<br>Se SIEMENS ha combinato o linkato determinati componenti del Prodotto con prodotti dell'OSS secondo la definizione indicata nella licenza applicabile e concessa ai sensi della licenza GNU LGPL Version 2 o successiva, se il relativo file di oggetto non può essere utilizzato in maniera illimitata ("modulo concesso con licenza LGPL", vale a dire il modulo con licenza LGPL e i componenti a cui detto modello è collegato, denominati qui di seguito "Prodotto Collegato") e, infine, se i relativi criteri di licenza LGPL sono stati soddisfatti, sarà possibile inoltre (i) modificare il Prodotto Collegato per propri scopi di impiego, in particolare elaborare il Prodotto Collegato per linkarlo ad una versione modificata del modulo con licenza LGPL, e (ii) effettuare il reverse engineering del Prodotto Collegato, esclusivamente a fini di correzione degli errori di elaborazione. Il diritto di elaborazione non include il diritto di distribuire tali modifiche. Inoltre, tutte le informazioni ottenute con il reverse engineering del Prodotto Collegato devono essere trattate come riservate.<br>Determinate licenze OSS obbligano SIEMENS a pubblicare il codice sorgente, ad es. la GNU General Public License, la GNU Lesser General Public License e la Mozilla Public License. Se queste licenze sono applicabili, e il presente Prodotto non è stato già fornito con il necessario codice sorgente, è possibile richiedere una copia di detto codice nel periodo di validità indicato nella licenza OSS applicabile al seguente indirizzo.<br>Per l'evasione della richiesta, SIEMENS potrà addebitare fino a 5 Euro.<br>Garanzia di utilizzo dell'Open Source Software<br>Le obbligazioni di garanzia di SIEMENS sono disciplinate dal vostro contratto sottoscritto con SIEMENS. Se si modifica il Prodotto o i componenti dell'OSS, oppure li si utilizza in un modo diverso da quello specificato da SIEMENS, la garanzia e il supporto tecnico decadono. Le seguenti condizioni di licenza possono contenere limitazioni di responsabilità valevoli nel rapporto tra l'utente e il licenziante. Per maggiore chiarezza, si ribadisce che SIEMENS non concede alcuna garanzia a nome di, o vincolante per, qualsiasi terza parte licenziante.<br><br>Japanese / 日本語<br>再販業者への注意事項：ライセンス違反を防ぐため、本書を顧客の皆様に配布してください。<br>他社製ソフトウェアの使用に関する情報<br>本製品、ソリューション、またはサービス（以下「本製品」）には、本書に記載の他社製ソフトウェ アのコンポーネントが含まれています。該当するコンポーネントとは、Open Source Initiative (www.opensource.org) によって認可されたライセンスのもとで使用許諾を得たオープンソースソフ トウェア、または SIEMENS によって決定された同様のライセンス（以下「OSS」）、および/または商用もしくはフリーウェアのソフトウェアコンポーネントを指します。本製品を対象とするその他いかなる契約条件に対しても、OSS のコンポーネントに関しては、適用される OSS ライセンス条件が優先するものとします。本製品の OSS の部分に関しては、著作権使用料無料で提供され、無料で使用する ことができます。<br>SIEMENS が、本製品の特定のコンポーネントと適用されるライセンスの定義の通りに GNU LGPLのバージョン 2 以降のもとで使用許諾を得た OSS コンポーネントを組み合わせるか、関連付け、なおかつ付随するオブジェクト・ファイルの使用が制限されていない場合（以下「LGPL 使用許諾モジュー ル」、それに対し、LGPL使用許諾モジュールが組み合わされているか、関連付けられている LGPL 使用許諾済みモジュールとコンポーネントを「組み合わせ製品」という）、関連する LGPL 使用許諾の基準を満たしていれば、次の追加の権利が適用されます。(i) 個人的な使用のために組み合わせ製品を変更することができる（LGPL 使用許諾モジュールの変更したバージョンを再度関連付けるために組み合わせ製品を変更する権利を含むが、それに限定されるものではない）、および (ii) 組み合わせ製品にリバースエンジニアリングを行うことができる（ただし変更のデバッグのみ）。変更に関する権利には、該当する変更を配布する権利は含まれていません。また契約者の方は、このような組み合わせ製品のリバースエンジニアリングから生じるいかなる情報に関しても極秘として維持するものとします。<br>例えば、GNU General Public License （GNU一般公衆利用許諾書）、GNU Lesser General Public License（GNU劣等一般公衆利用許諾書）、Mozilla Public License 等の特定の OSSライセンスでは、SIEMENS がソースコードを利用できるようにする必要があります。該当するライセンスが適用可能であり、本製品が必要とされるソースコードとともに出荷されなかった場合、この情報を受け取った人物が適用される OSS ライセンスによって義務付けられている期間中に以下の住所まで連絡することで、このソースコードのコピーを入手することができます。<br>リクエストを実行するために SIEMENS では、最高 5 ユーロの手数料を請求する場合があります。<br>オープンソースソフトウェアのさらなる使用に関する保証<br>SIEMENS の保証義務は、契約者と SIEMENS との契約書に記載されています。本製品を SIEMENS が指定した以外の方法で変更したり、使用したりした場合、SIEMENS では本製品、またはいかなる OSS コンポーネントに対しても保証やテクニカルサポートを提供いたしません。以下に記載のライセンス条件には、 契約者と個別のライセンサーとの間で適用される免責事項が含まれる場合があります。誤解を避けるため、SIEMENSでは他社のライセンサーを代表、または他社を拘束するいかなる保証義務も負いません。<br><br>Russian / Русский<br>Информация для партнёров по сбыту: просим передать этот документ вашим клиентам во избежание нарушений лицензионных прав.<br>Информация о программном обеспечении сторонних разработчиков<br>Настоящий продукт, настоящее решение или сервис ("Продукт") включает в себя программные компоненты сторонних разработчиков, перечисленные ниже. Это компоненты программного обеспечения с открытым кодом, имеющие лицензию, признанную организацией Open Source Initiative (www.opensource.org), либо иную лицензию согласно определению компании SIEMENS ("OSS"), и / или компоненты коммерческого либо свободно распространяемого программного обеспечения. В отношении компонентов OSS соответствующие условия лицензии OSS имеют приоритет перед всеми прочими положениями, применимыми к данному Продукту. SIEMENS предоставляет вам долевые права на OSS в отношении данного Продукта на безвозмездной основе.<br>Если SIEMENS комбинирует или связывает определённые компоненты Продукта с компонентами OSS в соответствии с определением применимой лицензии, лицензированными по версии 2 или более поздней GNU LGPL, и если неограниченное использование соответствующего объектного файла не разрешено ("Модуль по лицензии LGPL", причём Модуль по лицензии LGPL и компоненты, с которыми скомбинирован или связан Модуль по лицензии LGPL, далее именуются "Комбинированный продукт") и выполнены соответствующие критерии лицензии LGPL, вам разрешается дополнительно (i) обрабатывать Комбинированный продукт в собственных целях и, в частности, но не ограничиваясь, обрабатывать Комбинированный продукт таким образом, чтобы связать его с модифицированной версией Модуля по лицензии LGPL, а также (ii) проводить обратную разработку Комбинированного продукта, но только в целях исправления ошибок вашей обработки. Право на обработку не включает в себя право на дистрибуцию. Вы обязаны сохранять конфиденциальность в отношении всей информации, полученной вами в ходе обратной разработки Комбинированного продукта.<br>Определённые лицензии OSS обязывают SIEMENS раскрывать исходный код, например, GNU General Public License, GNU Lesser General Public License и Mozilla Public License. Если указанные лицензии применимы и Продукт поставлен без необходимого исходного кода, копия исходного кода может быть запрошена обладателем настоящей информации в течение времени, указанного в применимой лицензии OSS, по следующему адресу.<br>За выполнение запроса SIEMENS может взимать сбор в размере до 5 евро.<br>Гарантия в отношении дальнейшего применения программного обеспечения с открытым кодом<br>Гарантийные обязательства SIEMENS регулируются соответствующим договором с компанией SIEMENS. Если вы модифицируете Продукт или компоненты OSS либо используете их иным образом, чем указано компанией SIEMENS, гарантия аннулируется, техническая поддержка не предоставляется. Приведённые ниже лицензионные условия могут включать в себя положения об ограничении ответственности, действующие в отношениях между вами и соответствующим лицензиаром. Во избежание сомнений подчёркиваем, что SIEMENS не даёт гарантии от имени сторонних лицензиаров и гарантии, налагающей обязательства на сторонних лицензиаров.<br><br><br>Korean / 한국어<br>제3자 소프트웨어 정보<br><br>본 제품, 솔루션 또는 서비스(이하 “제품”)는 본 문서에 기재된 제3자 소프트웨어 구성요소를 포함한다. 이들 구성요소는 오픈 소스 이니셔티브(www.opensource.org)가 승인한 라이선스 또는 지멘스가 유사 라이선스로 판단하는 라이선스 하에 사용 권한이 부여된 오픈 소스 소프트웨어(이하 "OSS") 및/또는 상용 또는 무료 소프트웨어 구성요소이다. OSS 구성요소와 관련하여, 해당되는 OSS 라이선스 조건은 본 제품을 포괄하는 기타 모든 약관에 우선한다. 본 제품의 OSS 일부는 로열티 없이 제공되며 무료로 사용할 수 있다.<br><br>지멘스가 해당되는 라이선스의 정의에 따라 GNU LGPL 버전 2 또는 그 이상의 사용 권한이 부여된 OSS 구성요소와 본 제품의 특정 구성요소를 조합 또는 연결한 경우 그리고 해당 오브젝트 파일의 사용이 제한되지 않는 경우(이하 "LGPL 라이선스 모듈"인반면, LGPL 라이선스 모듈과 LGPL 라이선스 모듈이 조합 또는 연결된 구성요소는 "조합 제품"이라 한다) 관련 LPGL 라이선스 기준이 충족되는 경우에 한하여 다음과 같은 추가적인 권한을 가진다. (i) 귀하는 사용을 위한 조합 제품을 수정할 권리가 있으며, 이는 조합 제품을 수정하여 LGPL 라이선스 모듈의 수정 버전에 재연결할 수 있는 권리를 포함하되 이에 한정하지 않는다. 그리고 (ii) 귀하는 조합 제품을 역엔지니어링할 수 있지만 이는 귀하의 수정 항목을 디버깅하기 위해서만 가능하다. 본 수정 권한은 그러한 수정 항목을 배포할 권리는 포함하지 않으며, 귀하는 조합 제품의 그러한 역엔지니어링으로부터 발생한 모든 정보를 기밀로 유지해야 한다.<br><br>일부 OSS 라이선스는 지멘스가 소스 코드를 사용할 수 있게 만들 것을 요구하며, 이러한 소스 코드의 예는 GNU 일반 공중 사용 허가서(GNU General Public License), GNU 약소 일반 공중 사용 허가서(GNU Lesser General Public License), 모질라 공용 허가서(Mozilla Public License)가 있다. 이러한 라이선스가 적용되고 본 제품이 요구하는 소스 코드와 함께 배송되지 않은 경우, 해당 OSS 라이선스가 요구하는 기간 동안 본 정보를 받아보는 누구나 다음 주소로 연락하여 해당 소스 코드의 사본을 얻을 수 있다<br><br>지멘스는 이 요청을 충족하기 위해 최대 5유로의 취급 수수료를 부과할 수 있다.<br><br>오픈 소스 소프트웨어의 추가적 사용과 관련한 보증<br><br>지멘스의 보증 의무는 지멘스와 귀하 간의 계약서에 명시되어 있다. 본 제품 또는 본 제품에 포함된 OSS 구성요소가 지멘스에서 지정하지 않은 방식으로 수정 또는 사용된 경우, 지멘스는 본 제품 또는 본 제품에 포함된 어떠한 OSS 구성요소에도 어떠한 보증이나 기술 지원도 제공하지 않는다. 아래 나열된 라이선스 조건에는 귀하와 관련 라이선스 소유자 간에 적용되는 면책 조항이 포함되어 있을 수 있다. 혼동을 피하기 위해 명확히 하자면, 지멘스는 어떠한 제3자 라이선스 소유자를 대신하여 또는 그를 구속하는 어떠한 보증 약속도 하지 않는다.<br><br><br>Open Source Software and/or other third-party software contained in this Product<br><br>If you like to receive a copy of the source code, please contact SIEMENS at the following address:<br><br>Siemens AG<br>Attn: Software Licensing<br>LC TEC IT&SL<br>Hertha-Sponer-Weg 3<br>91058 Erlangen<br>Germany<br><br>Subject: Open Source Request (please specify Product name and version)<br><br>
+	</div>
+
+	<p id="not-approved-warn">
+
+	</p>
+
+	<p id="general-info">
+		Please note the following license conditions and copyright notices applicable to Open Source Software and/or other components (or parts thereof):
+	</p>
+
+	<table class="componentSummary">
+		<thead>
+			<tr>
+				<th class="componentSummary">Component</th>
+				<th class="componentSummary">Open Source Software<br />[Yes/No]</th>
+				<th class="componentSummary">Acknowledgements/Comment</th>
+				<th class="componentSummary">License conditions and copyright notices</th>
+			</tr>
+		</thead>
+
+		<tbody id="component-summary" data-template="">
+			<tr>
+				<td id="BlackDuckCompSummCellInsertionPoint" class="componentSummary">@floating-ui/dom (npm) - 1.6.13</td>
+				<td class="componentSummary">Yes</td>
+				<td class="componentSummary"></td>
+				<td class="componentSummary"><a href="#compDetail_354536">LICENSE AND COPYRIGHT INFORMATION FOR COMPONENT @floating-ui/dom (npm) - 1.6.13</a></td>
+			</tr>
+			<tr>
+				<td id="BlackDuckCompSummCellInsertionPoint" class="componentSummary">@stencil/core (npm) - 4.27.2</td>
+				<td class="componentSummary">Yes</td>
+				<td class="componentSummary"></td>
+				<td class="componentSummary"><a href="#compDetail_386568">LICENSE AND COPYRIGHT INFORMATION FOR COMPONENT @stencil/core (npm) - 4.27.2</a></td>
+			</tr>
+			<tr>
+				<td id="BlackDuckCompSummCellInsertionPoint" class="componentSummary">@stencil/core (npm) - 4.29.0</td>
+				<td class="componentSummary">Yes</td>
+				<td class="componentSummary"></td>
+				<td class="componentSummary"><a href="#compDetail_400906">LICENSE AND COPYRIGHT INFORMATION FOR COMPONENT @stencil/core (npm) - 4.29.0</a></td>
+			</tr>
+			<tr>
+				<td id="BlackDuckCompSummCellInsertionPoint" class="componentSummary">animejs (npm) - 3.2.2</td>
+				<td class="componentSummary">Yes</td>
+				<td class="componentSummary"></td>
+				<td class="componentSummary"><a href="#compDetail_258269">LICENSE AND COPYRIGHT INFORMATION FOR COMPONENT animejs (npm) - 3.2.2</a></td>
+			</tr>
+			<tr>
+				<td id="BlackDuckCompSummCellInsertionPoint" class="componentSummary">luxon (npm) - 3.4.4</td>
+				<td class="componentSummary">Yes</td>
+				<td class="componentSummary"></td>
+				<td class="componentSummary"><a href="#compDetail_253754">LICENSE AND COPYRIGHT INFORMATION FOR COMPONENT luxon (npm) - 3.4.4</a></td>
+			</tr>
+			<tr>
+				<td id="BlackDuckCompSummCellInsertionPoint" class="componentSummary">tslib (npm) - 2.8.1</td>
+				<td class="componentSummary">Yes</td>
+				<td class="componentSummary"></td>
+				<td class="componentSummary"><a href="#compDetail_339633">LICENSE AND COPYRIGHT INFORMATION FOR COMPONENT tslib (npm) - 2.8.1</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<table class="componentDetail">
+		<tbody id="component-detail">
+				<tr class="componentDetail">
+					<td class="componentDetail">
+						<h4><br /><a name="compDetail_354536">LICENSE CONDITIONS AND COPYRIGHT NOTICES</a></h4>
+						    <h4> Open Source Software: - @floating-ui/dom (npm) - 1.6.13</h4>
+								<p class='important'>Enclosed you will find the <a href='#compLicenseText_354536'>license conditions</a> and
+								<a href='#compCopyrightText_354536'>copyright notices</a> applicable for
+								 - @floating-ui/dom (npm) - 1.6.13</p>
+								<br/>
+
+							<h5><a name='compLicenseText_354536'>License conditions:</a></h5>
+							<br />
+							<table class='licenseText'>
+									<tr>
+										<td>The MIT License
+<br>
+<br>Copyright (c) &lt;year&gt; &lt;copyright holders&gt;
+<br>
+<br>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+<br>
+<br>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+<br>
+<br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</td>
+									</tr>
+							</table>
+						<br />
+
+						<br/>
+
+							<br />
+							<h5><a name='compCopyrightText_354536'>Copyrights:</a></h5>
+                                <table class='copyrightText'>
+                                    <tr>
+                                        <td class='copyrightText'>
+                                            Copyright (c) 2021-present Floating UI contributors; atomiks&#39;, license&#39; MIT&#39;, bugs&#39; https://github.com/floating-ui/floating-ui
+                                        </td>
+                                    </tr>
+                                </table>
+							<br />
+						<br/>
+					</td>
+				</tr>
+				<tr class="componentDetail">
+					<td class="componentDetail">
+						<h4><br /><a name="compDetail_386568">LICENSE CONDITIONS AND COPYRIGHT NOTICES</a></h4>
+						    <h4> Open Source Software: - @stencil/core (npm) - 4.27.2</h4>
+								<p class='important'>Enclosed you will find the <a href='#compLicenseText_386568'>license conditions</a> and
+								<a href='#compCopyrightText_386568'>copyright notices</a> applicable for
+								 - @stencil/core (npm) - 4.27.2</p>
+								<br/>
+
+							<h5><a name='compLicenseText_386568'>License conditions:</a></h5>
+							<br />
+							<table class='licenseText'>
+									<tr>
+										<td>Apache License Version 2.0, January 2004<br> <br>http://www.apache.org/licenses/<br>TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION<br> <br>1. Definitions.<br> <br>"License" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document.<br> <br>"Licensor" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.<br> <br>"Legal Entity" shall mean the union of the acting entity and all other entities that control, are controlled by, or are under common control with that entity. For the purposes of this definition, "control" means (i) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the outstanding shares, or (iii) beneficial ownership of such entity.<br> <br>"You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.<br> <br>"Source" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.<br> <br>"Object" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.<br> <br>"Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a copyright notice that is included in or attached to the work (an example is provided in the Appendix below).<br> <br>"Derivative Works" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Work and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship. For the purposes of this License, Derivative Works shall not include works that remain separable from, or merely link (or bind by name) to the interfaces of, the Work and Derivative Works thereof.<br> <br>"Contribution" shall mean any work of authorship, including the original version of the Work and any modifications or additions to that Work or Derivative Works thereof, that is intentionally submitted to Licensor for inclusion in the Work by the copyright owner or by an individual or Legal Entity authorized to submit on behalf of the copyright owner. For the purposes of this definition, "submitted" means any form of electronic, verbal, or written communication sent to the Licensor or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, the Licensor for the purpose of discussing and improving the Work, but excluding communication that is conspicuously marked or otherwise designated in writing by the copyright owner as "Not a Contribution."<br> <br>"Contributor" shall mean Licensor and any individual or Legal Entity on behalf of whom a Contribution has been received by Licensor and subsequently incorporated within the Work.<br> <br>2. Grant of Copyright License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.<br> <br>3. Grant of Patent License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work, where such license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Work to which such Contribution(s) was submitted. If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Work or a Contribution incorporated within the Work constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for that Work shall terminate as of the date such litigation is filed.<br> <br>4. Redistribution. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:<br> <br>(a) You must give any other recipients of the Work or Derivative Works a copy of this License; and <br> <br>(b) You must cause any modified files to carry prominent notices stating that You changed the files; and <br> <br>(c) You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and <br> <br>(d) If the Work includes a "NOTICE" text file as part of its distribution, then any Derivative Works that You distribute must include a readable copy of the attribution notices contained within such NOTICE file, excluding those notices that do not pertain to any part of the Derivative Works, in at least one of the following places: within a NOTICE text file distributed as part of the Derivative Works; within the Source form or documentation, if provided along with the Derivative Works; or, within a display generated by the Derivative Works, if and wherever such third-party notices normally appear. The contents of the NOTICE file are for informational purposes only and do not modify the License. You may add Your own attribution notices within Derivative Works that You distribute, alongside or as an addendum to the NOTICE text from the Work, provided that such additional attribution notices cannot be construed as modifying the License.<br>You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License.<br> <br>5. Submission of Contributions. Unless You explicitly state otherwise, any Contribution intentionally submitted for inclusion in the Work by You to the Licensor shall be under the terms and conditions of this License, without any additional terms or conditions. Notwithstanding the above, nothing herein shall supersede or modify the terms of any separate license agreement you may have executed with Licensor regarding such Contributions.<br> <br>6. Trademarks. This License does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the NOTICE file.<br> <br>7. Disclaimer of Warranty. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License.<br> <br>8. Limitation of Liability. In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Work (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if such Contributor has been advised of the possibility of such damages.<br> <br>9. Accepting Warranty or Additional Liability. While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability.<br> <br>END OF TERMS AND CONDITIONS<br>APPENDIX: How to apply the Apache License to your work.<br>To apply the Apache License to your work, attach the following boilerplate notice, with the fields enclosed by brackets "[]" replaced with your own identifying information. (Don't include the brackets!) The text should be enclosed in the appropriate comment syntax for the file format. We also recommend that a file or class name and description of purpose be included on the same "printed page" as the copyright notice for easier identification within third-party archives.<br>Copyright [yyyy] [name of copyright owner]<br>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. <br>You may obtain a copy of the License at<br>http://www.apache.org/licenses/LICENSE-2.0<br>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</td>
+									</tr>
+									<tr>
+										<td>Boost Software License - Version 1.0 - August 17th, 2003<br> <br>Permission is hereby granted, free of charge, to any person or organization obtaining a copy of the software and accompanying documentation covered by this license (the "Software") to use, reproduce, display, distribute, execute, and transmit the Software, and to prepare derivative works of the Software, and to permit third-parties to whom the Software is furnished to do so, all subject to the following:<br> <br>The copyright notices in the Software and this entire statement, including the above license grant, this restriction and the following disclaimer, must be included in all copies of the Software, in whole or in part, and all derivative works of the Software, unless such copies or derivative works are solely in the form of machine-executable object code generated by a source language processor.<br> <br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</td>
+									</tr>
+									<tr>
+										<td>Redistribution and use in source and binary forms, with or without<br>modification, are permitted provided that the following conditions are<br>met:<br> <br>Redistributions of source code must retain the above copyright<br>notice, this list of conditions and the following disclaimer.<br>   * Redistributions in binary form must reproduce the above<br>copyright notice, this list of conditions and the following disclaimer<br>in the documentation and/or other materials provided with the<br>distribution.<br>   * Neither the name of Google Inc. nor the names of its<br>contributors may be used to endorse or promote products derived from<br>this software without specific prior written permission.<br> <br>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS<br>"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT<br>LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR<br>A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT<br>OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br>SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT<br>LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,<br>DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY<br>THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT<br>(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE<br>OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</td>
+									</tr>
+									<tr>
+										<td>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+<br>
+<br>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+<br>
+<br>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+<br>
+<br>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</td>
+									</tr>
+									<tr>
+										<td>The MIT License
+<br>
+<br>Copyright (c) &lt;year&gt; &lt;copyright holders&gt;
+<br>
+<br>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+<br>
+<br>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+<br>
+<br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</td>
+									</tr>
+							</table>
+						<br />
+
+						<br/>
+
+							<br />
+							<h5><a name='compCopyrightText_386568'>Copyrights:</a></h5>
+                                <table class='copyrightText'>
+                                    <tr>
+                                        <td class='copyrightText'>
+                                            (c) 2019 Denis Pushkarev  (zloirock.ru); (c) 2020 Denis Pushkarev  (zloirock.ru); Copyright (c) 2016 The Polymer Project Authors; Copyright (c) 2016, Evgeny Panasyuk; Copyright (c) 2019-present Drifty Co.; Copyright (c) 2023, Robert Eisele (robert@raw.org); Copyright (c) Microsoft Corporation; Copyright 2006, Jeremy White &lt;jwhite@codeweavers.com&gt;; Copyright 2006, Kevin Krammer &lt;kevin.krammer@gmx.at&gt;; Copyright 2009-2010, Fathi Boudra &lt;fabo@freedesktop.org&gt;; Copyright 2009-2010, Rex Dieter &lt;rdieter@fedoraproject.org&gt;; Copyright 2024 Mattias Buelens, Diwank Singh Tomer and other contributors; Copyright Google Inc.; Copyright OpenJS Foundation and other contributors
+                                        </td>
+                                    </tr>
+                                </table>
+							<br />
+						<br/>
+					</td>
+				</tr>
+				<tr class="componentDetail">
+					<td class="componentDetail">
+						<h4><br /><a name="compDetail_400906">LICENSE CONDITIONS AND COPYRIGHT NOTICES</a></h4>
+						    <h4> Open Source Software: - @stencil/core (npm) - 4.29.0</h4>
+								<p class='important'>Enclosed you will find the <a href='#compLicenseText_400906'>license conditions</a> and
+								<a href='#compCopyrightText_400906'>copyright notices</a> applicable for
+								 - @stencil/core (npm) - 4.29.0</p>
+								<br/>
+
+							<h5><a name='compLicenseText_400906'>License conditions:</a></h5>
+							<br />
+							<table class='licenseText'>
+									<tr>
+										<td>Apache License Version 2.0, January 2004<br> <br>http://www.apache.org/licenses/<br>TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION<br> <br>1. Definitions.<br> <br>"License" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document.<br> <br>"Licensor" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.<br> <br>"Legal Entity" shall mean the union of the acting entity and all other entities that control, are controlled by, or are under common control with that entity. For the purposes of this definition, "control" means (i) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the outstanding shares, or (iii) beneficial ownership of such entity.<br> <br>"You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.<br> <br>"Source" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.<br> <br>"Object" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.<br> <br>"Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a copyright notice that is included in or attached to the work (an example is provided in the Appendix below).<br> <br>"Derivative Works" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Work and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship. For the purposes of this License, Derivative Works shall not include works that remain separable from, or merely link (or bind by name) to the interfaces of, the Work and Derivative Works thereof.<br> <br>"Contribution" shall mean any work of authorship, including the original version of the Work and any modifications or additions to that Work or Derivative Works thereof, that is intentionally submitted to Licensor for inclusion in the Work by the copyright owner or by an individual or Legal Entity authorized to submit on behalf of the copyright owner. For the purposes of this definition, "submitted" means any form of electronic, verbal, or written communication sent to the Licensor or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, the Licensor for the purpose of discussing and improving the Work, but excluding communication that is conspicuously marked or otherwise designated in writing by the copyright owner as "Not a Contribution."<br> <br>"Contributor" shall mean Licensor and any individual or Legal Entity on behalf of whom a Contribution has been received by Licensor and subsequently incorporated within the Work.<br> <br>2. Grant of Copyright License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.<br> <br>3. Grant of Patent License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work, where such license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Work to which such Contribution(s) was submitted. If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Work or a Contribution incorporated within the Work constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for that Work shall terminate as of the date such litigation is filed.<br> <br>4. Redistribution. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:<br> <br>(a) You must give any other recipients of the Work or Derivative Works a copy of this License; and <br> <br>(b) You must cause any modified files to carry prominent notices stating that You changed the files; and <br> <br>(c) You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and <br> <br>(d) If the Work includes a "NOTICE" text file as part of its distribution, then any Derivative Works that You distribute must include a readable copy of the attribution notices contained within such NOTICE file, excluding those notices that do not pertain to any part of the Derivative Works, in at least one of the following places: within a NOTICE text file distributed as part of the Derivative Works; within the Source form or documentation, if provided along with the Derivative Works; or, within a display generated by the Derivative Works, if and wherever such third-party notices normally appear. The contents of the NOTICE file are for informational purposes only and do not modify the License. You may add Your own attribution notices within Derivative Works that You distribute, alongside or as an addendum to the NOTICE text from the Work, provided that such additional attribution notices cannot be construed as modifying the License.<br>You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License.<br> <br>5. Submission of Contributions. Unless You explicitly state otherwise, any Contribution intentionally submitted for inclusion in the Work by You to the Licensor shall be under the terms and conditions of this License, without any additional terms or conditions. Notwithstanding the above, nothing herein shall supersede or modify the terms of any separate license agreement you may have executed with Licensor regarding such Contributions.<br> <br>6. Trademarks. This License does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the NOTICE file.<br> <br>7. Disclaimer of Warranty. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License.<br> <br>8. Limitation of Liability. In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Work (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if such Contributor has been advised of the possibility of such damages.<br> <br>9. Accepting Warranty or Additional Liability. While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability.<br> <br>END OF TERMS AND CONDITIONS<br>APPENDIX: How to apply the Apache License to your work.<br>To apply the Apache License to your work, attach the following boilerplate notice, with the fields enclosed by brackets "[]" replaced with your own identifying information. (Don't include the brackets!) The text should be enclosed in the appropriate comment syntax for the file format. We also recommend that a file or class name and description of purpose be included on the same "printed page" as the copyright notice for easier identification within third-party archives.<br>Copyright [yyyy] [name of copyright owner]<br>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. <br>You may obtain a copy of the License at<br>http://www.apache.org/licenses/LICENSE-2.0<br>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</td>
+									</tr>
+									<tr>
+										<td>Boost Software License - Version 1.0 - August 17th, 2003<br> <br>Permission is hereby granted, free of charge, to any person or organization obtaining a copy of the software and accompanying documentation covered by this license (the "Software") to use, reproduce, display, distribute, execute, and transmit the Software, and to prepare derivative works of the Software, and to permit third-parties to whom the Software is furnished to do so, all subject to the following:<br> <br>The copyright notices in the Software and this entire statement, including the above license grant, this restriction and the following disclaimer, must be included in all copies of the Software, in whole or in part, and all derivative works of the Software, unless such copies or derivative works are solely in the form of machine-executable object code generated by a source language processor.<br> <br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</td>
+									</tr>
+									<tr>
+										<td>Redistribution and use in source and binary forms, with or without<br>modification, are permitted provided that the following conditions are<br>met:<br> <br>Redistributions of source code must retain the above copyright<br>notice, this list of conditions and the following disclaimer.<br>   * Redistributions in binary form must reproduce the above<br>copyright notice, this list of conditions and the following disclaimer<br>in the documentation and/or other materials provided with the<br>distribution.<br>   * Neither the name of Google Inc. nor the names of its<br>contributors may be used to endorse or promote products derived from<br>this software without specific prior written permission.<br> <br>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS<br>"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT<br>LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR<br>A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT<br>OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br>SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT<br>LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,<br>DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY<br>THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT<br>(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE<br>OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</td>
+									</tr>
+									<tr>
+										<td>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+<br>
+<br>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+<br>
+<br>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+<br>
+<br>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</td>
+									</tr>
+									<tr>
+										<td>The MIT License
+<br>
+<br>Copyright (c) &lt;year&gt; &lt;copyright holders&gt;
+<br>
+<br>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+<br>
+<br>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+<br>
+<br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</td>
+									</tr>
+							</table>
+						<br />
+
+						<br/>
+
+							<br />
+							<h5><a name='compCopyrightText_400906'>Copyrights:</a></h5>
+                                <table class='copyrightText'>
+                                    <tr>
+                                        <td class='copyrightText'>
+                                            (c) 2019 Denis Pushkarev  (zloirock.ru); (c) 2020 Denis Pushkarev  (zloirock.ru); Copyright (c) 2016 The Polymer Project Authors; Copyright (c) 2016, Evgeny Panasyuk; Copyright (c) 2019-present Drifty Co.; Copyright (c) 2023, Robert Eisele (robert@raw.org); Copyright (c) Microsoft Corporation; Copyright 2006, Jeremy White &lt;jwhite@codeweavers.com&gt;; Copyright 2006, Kevin Krammer &lt;kevin.krammer@gmx.at&gt;; Copyright 2009-2010, Fathi Boudra &lt;fabo@freedesktop.org&gt;; Copyright 2009-2010, Rex Dieter &lt;rdieter@fedoraproject.org&gt;; Copyright 2024 Mattias Buelens, Diwank Singh Tomer and other contributors; Copyright Google Inc.; Copyright OpenJS Foundation and other contributors
+                                        </td>
+                                    </tr>
+                                </table>
+							<br />
+						<br/>
+					</td>
+				</tr>
+				<tr class="componentDetail">
+					<td class="componentDetail">
+						<h4><br /><a name="compDetail_258269">LICENSE CONDITIONS AND COPYRIGHT NOTICES</a></h4>
+						    <h4> Open Source Software: - animejs (npm) - 3.2.2</h4>
+								<p class='important'>Enclosed you will find the <a href='#compLicenseText_258269'>license conditions</a> and
+								<a href='#compCopyrightText_258269'>copyright notices</a> applicable for
+								 - animejs (npm) - 3.2.2</p>
+								<br/>
+
+							<h5><a name='compLicenseText_258269'>License conditions:</a></h5>
+							<br />
+							<table class='licenseText'>
+									<tr>
+										<td>The MIT License
+<br>
+<br>Copyright (c) &lt;year&gt; &lt;copyright holders&gt;
+<br>
+<br>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+<br>
+<br>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+<br>
+<br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</td>
+									</tr>
+							</table>
+						<br />
+
+						<br/>
+
+							<br />
+							<h5><a name='compCopyrightText_258269'>Copyrights:</a></h5>
+                                <table class='copyrightText'>
+                                    <tr>
+                                        <td class='copyrightText'>
+                                            (c) 2019 Julian Garnier (http://juliangarnier.com); (c) 2023 Julian Garnier; Copyright (c) 2016 Apple Inc.; Copyright (c) 2019 Julian Garnier; Julian Garnier &lt;hello@julian.gr&gt;
+                                        </td>
+                                    </tr>
+                                </table>
+							<br />
+						<br/>
+					</td>
+				</tr>
+				<tr class="componentDetail">
+					<td class="componentDetail">
+						<h4><br /><a name="compDetail_253754">LICENSE CONDITIONS AND COPYRIGHT NOTICES</a></h4>
+						    <h4> Open Source Software: - luxon (npm) - 3.4.4</h4>
+								<p class='important'>Enclosed you will find the <a href='#compLicenseText_253754'>license conditions</a> and
+								<a href='#compCopyrightText_253754'>copyright notices</a> applicable for
+								 - luxon (npm) - 3.4.4</p>
+								<br/>
+
+							<h5><a name='compLicenseText_253754'>License conditions:</a></h5>
+							<br />
+							<table class='licenseText'>
+									<tr>
+										<td>The MIT License
+<br>
+<br>Copyright (c) &lt;year&gt; &lt;copyright holders&gt;
+<br>
+<br>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+<br>
+<br>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+<br>
+<br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</td>
+									</tr>
+							</table>
+						<br />
+
+						<br/>
+
+							<br />
+							<h5><a name='compCopyrightText_253754'>Copyrights:</a></h5>
+                                <table class='copyrightText'>
+                                    <tr>
+                                        <td class='copyrightText'>
+                                            Copyright 2019 JS Foundation and other contributors
+                                        </td>
+                                    </tr>
+                                </table>
+							<br />
+						<br/>
+					</td>
+				</tr>
+				<tr class="componentDetail">
+					<td class="componentDetail">
+						<h4><br /><a name="compDetail_339633">LICENSE CONDITIONS AND COPYRIGHT NOTICES</a></h4>
+						    <h4> Open Source Software: - tslib (npm) - 2.8.1</h4>
+								<p class='important'>Enclosed you will find the <a href='#compLicenseText_339633'>license conditions</a> and
+								<a href='#compCopyrightText_339633'>copyright notices</a> applicable for
+								 - tslib (npm) - 2.8.1</p>
+								<br/>
+
+							<h5><a name='compLicenseText_339633'>License conditions:</a></h5>
+							<br />
+							<table class='licenseText'>
+									<tr>
+										<td>Permission to use, copy, modify, and/or distribute this software for any<br>purpose with or without fee is hereby granted.<br> <br>THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH<br>REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY<br>AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,<br>INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM<br>LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR<br>OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR<br>PERFORMANCE OF THIS SOFTWARE.</td>
+									</tr>
+							</table>
+						<br />
+
+						<br/>
+
+							<br />
+							<h5><a name='compCopyrightText_339633'>Copyrights:</a></h5>
+                                <table class='copyrightText'>
+                                    <tr>
+                                        <td class='copyrightText'>
+                                            Copyright (c) Microsoft Corporation
+                                        </td>
+                                    </tr>
+                                </table>
+							<br />
+						<br/>
+					</td>
+				</tr>
+		</tbody>
+	</table>
+
+ 	<p class='tiny'>
+ 		Portions generated with ScanCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. No content created from ScanCode should be considered or used as legal 	advice. Consult an Attorney for any legal advice. ScanCode is a free software code scanning tool from nexB Inc. and others.
+		 Visit <a href="https://github.com/nexB/scancode-toolkit/">https://github.com/nexB/scancode-toolkit/</a> for support and download.
+	</p>
+
+</body>
+</html>
