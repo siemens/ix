@@ -302,8 +302,8 @@ export class TimePicker {
   @Watch('_time')
   onTimeChange() {
     const formattedTimeOld = this.formattedTime;
-    this.formattedTime = this.getFormattedTime();
     this.setTimeRef();
+    this.formattedTime = this.getFormattedTime();
 
     this.updateScrollPositions(formattedTimeOld);
   }
@@ -755,6 +755,7 @@ export class TimePicker {
   }
 
   private isSelected(unit: TimePickerDescriptorUnit, number: number): boolean {
+    const test = this.formattedTime![unit] === String(number);
     return this.formattedTime![unit] === String(number);
   }
 
