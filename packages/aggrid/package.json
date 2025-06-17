@@ -8,10 +8,11 @@
     "directory": "packages/aggrid"
   },
   "description": "AG Grid theme based on ix theme variables",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "files": [
     "LICENSE",
     "README.md",
+    "READMEOSS.html",
     "dist/"
   ],
   "scripts": {
@@ -38,7 +39,7 @@
     "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@siemens/ix": "^3.0.0"
+    "@siemens/ix": "^3.1.0"
   },
   "peerDependencies": {
     "ag-grid-community": "^28 || ^29 || ^30 || ^31 || ^32"
