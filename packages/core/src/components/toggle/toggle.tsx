@@ -101,7 +101,9 @@ export class Toggle implements IxFormComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  private lineClamp: number = 1;
   private touched = false;
+  private resizeObserver!: ResizeObserver;
 
   onCheckedChange(newChecked: boolean) {
     if (this.disabled) {
@@ -129,11 +131,40 @@ export class Toggle implements IxFormComponent<string> {
     this.updateFormInternalValue();
   }
 
+  componentDidLoad() {
+     this.calculateLineClamp();
+     this.setupResizeObserver();
+  }
+
+   private calculateLineClamp() {
+    const container = this.hostElement.shadowRoot!.querySelector('label');
+    if (!container) return;
+
+    const containerHeight = container.clientHeight;
+    this.lineClamp = Math.floor(containerHeight / 20);
+  }
+  private setupResizeObserver() {
+    this.resizeObserver = new ResizeObserver(() => {
+      this.calculateLineClamp();
+    });
+
+    const container = this.hostElement.shadowRoot!.querySelector('label');
+    if (container) {
+      this.resizeObserver.observe(container);
+    }
+  }
+
   updateFormInternalValue(): void {
     if (this.checked) {
       this.formInternals.setFormValue(this.value);
     } else {
       this.formInternals.setFormValue(null);
+    }
+  }
+
+  disconnectedCallback() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
   }
 
@@ -210,7 +241,7 @@ export class Toggle implements IxFormComponent<string> {
             }
           />
           {!this.hideText && (
-            <ix-typography class="label">{toggleText}</ix-typography>
+            <ix-typography class="label" style={{'-webkit-line-clamp': `${this.lineClamp}`}}>{toggleText}</ix-typography>
           )}
         </label>
       </Host>
