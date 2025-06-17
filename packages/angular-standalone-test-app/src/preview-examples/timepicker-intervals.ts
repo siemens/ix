@@ -14,14 +14,6 @@ import { IxTimePicker } from '@siemens/ix-angular/standalone';
   standalone: true,
   selector: 'app-example',
   imports: [IxTimePicker],
-  template: `
-    <ix-time-picker
-      format="hh:mm:ss a"
-      time="01:15:10 AM"
-      hourInterval="2"
-      minuteInterval="15"
-      secondInterval="10"
-    ></ix-time-picker>
-  `,
+  templateUrl: 'timepicker-intervals.html',
 })
 export default class TimepickerIntervals {}

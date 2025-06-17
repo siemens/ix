@@ -14,7 +14,7 @@ import {
 } from '@siemens/ix-angular/common';
 
 @Directive({
-  selector: 'ix-date-input',
+  selector: 'ix-time-input',
   providers: [createValueAccessorProvider(IxTimeValueAccessorDirective)],
 })
 export class IxTimeValueAccessorDirective extends TimeValueAccessorBaseDirective {

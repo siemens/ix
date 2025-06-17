@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -14,7 +14,7 @@ export default () => {
     <IxTimeInput
       label="Time"
       name="time"
-      helper-text="Some helper text"
+      helperText="Some helper text"
     ></IxTimeInput>
   );
 };

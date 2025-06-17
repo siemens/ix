@@ -20147,7 +20147,7 @@
           "reflectToAttr": false,
           "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
           "docsTags": [],
-          "default": "'tt'",
+          "default": "'TT'",
           "values": [
             {
               "type": "string"

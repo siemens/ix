@@ -18,7 +18,7 @@ import {
  */
 @Directive({
   standalone: true,
-  selector: 'ix-date-input',
+  selector: 'ix-time-input',
   providers: [createValueAccessorProvider(IxTimeValueAccessorDirective)],
 })
 export class IxTimeValueAccessorDirective extends TimeValueAccessorBaseDirective {
