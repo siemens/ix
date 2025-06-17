@@ -30,7 +30,7 @@ export function hasAnyText({
   return invalidText || warningText || infoText || validText || helperText;
 }
 
-export function renderHelperText({
+export function HelperText({
   isInvalid,
   invalidText,
   isWarning,

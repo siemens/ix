@@ -48,6 +48,13 @@ $border-radius: 100px;
     &.outline {
       &.icon {
         padding-left: calc(0.75rem - 1px);
+        @each $color in $predefined-chips {
+          &.#{$color} {
+            .with-icon {
+              color: var(--theme-color-#{$color});
+            }
+          }
+        }
       }
       &:not(.icon) {
         padding-left: calc(0.5rem - 1px);
@@ -115,13 +122,17 @@ $border-radius: 100px;
   }
 
   .container.primary.outline {
-    color: var(--theme-chip-primary-outline--color);
+    color: var(--theme-chip-outline--color);
     background-color: transparent;
     border: solid 1px var(--theme-chip-primary-outline--border-color);
 
     .close-button {
-      color: var(--theme-chip-primary-outline--color);
-      --ix-icon-button-color: var(--theme-chip-primary-outline--color);
+      color: var(--theme-chip-outline--color);
+      --ix-icon-button-color: var(--theme-chip-outline--color);
+    }
+
+    .with-icon {
+      color: var(--theme-color-primary);
     }
 
     @if $interaction {
