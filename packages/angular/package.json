@@ -34,7 +34,7 @@
     "@angular/platform-browser": "^18.2.13",
     "@angular/platform-browser-dynamic": "^18.2.13",
     "@angular/router": "^18.2.13",
-    "@jest/globals": "^29.7.0",
+    "@jest/globals": "^30.0.0",
     "@siemens/ix": "workspace:*",
     "@types/jest": "^29.5.12",
     "fs-extra": "^10.1.0",
