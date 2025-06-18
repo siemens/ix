@@ -96,6 +96,7 @@ import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/i
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
 import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
+import { defineCustomElement as defineIxTimeInput } from '@siemens/ix/components/ix-time-input.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
@@ -1267,17 +1268,68 @@ export const IxTile: StencilVueComponent<JSX.IxTile> = /*@__PURE__*/ defineConta
 ]);
 
 
+export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ defineContainer<JSX.IxTimeInput>('ix-time-input', defineIxTimeInput, [
+  'name',
+  'placeholder',
+  'value',
+  'locale',
+  'format',
+  'required',
+  'helperText',
+  'label',
+  'invalidText',
+  'readonly',
+  'disabled',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
+  'i18nErrorTimeUnparsable',
+  'hourInterval',
+  'minuteInterval',
+  'secondInterval',
+  'millisecondInterval',
+  'i18nSelectTime',
+  'i18nTime',
+  'i18nHourColumnHeader',
+  'i18nMinuteColumnHeader',
+  'i18nSecondColumnHeader',
+  'i18nMillisecondColumnHeader',
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur'
+], [
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur'
+]);
+
+
 export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', defineIxTimePicker, [
   'format',
   'corners',
   'standaloneAppearance',
+  'dateTimePickerAppearance',
   'showHour',
   'showMinutes',
   'showSeconds',
+  'hideHeader',
+  'hourInterval',
+  'minuteInterval',
+  'secondInterval',
+  'millisecondInterval',
   'time',
   'timeReference',
   'textSelectTime',
+  'i18nConfirmTime',
   'textTime',
+  'i18nHeader',
+  'i18nHourColumnHeader',
+  'i18nMinuteColumnHeader',
+  'i18nSecondColumnHeader',
+  'i18nMillisecondColumnHeader',
   'timeSelect',
   'timeChange'
 ], [
