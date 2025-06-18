@@ -14,6 +14,6 @@ import { IxTimePicker } from '@siemens/ix-angular/standalone';
   standalone: true,
   selector: 'app-example',
   imports: [IxTimePicker],
-  templateUrl: 'timepicker.html',
+  templateUrl: './timepicker.html',
 })
 export default class Timepicker {}
