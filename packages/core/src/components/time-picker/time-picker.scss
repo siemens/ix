@@ -77,7 +77,8 @@
     .element-list {
       list-style-type: none;
       overflow: auto;
-      max-height: 15.25rem;
+      max-height: 15.375rem;
+      padding-top: 0.125rem;
 
       button {
         all: unset;

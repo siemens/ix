@@ -373,9 +373,9 @@ export class TimePicker {
           });
 
           if (this.focusScrollAlignment === 'end') {
-            elementList.scrollTop += 3;
+            elementList.scrollTop += 4;
           } else {
-            elementList.scrollTop -= 3;
+            elementList.scrollTop -= 4;
           }
         }
       }
