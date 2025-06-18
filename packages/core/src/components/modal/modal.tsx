@@ -100,15 +100,13 @@ export class Modal {
 
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
-
-    let transformY = this.centered ? '-50%' : '-50%';
-    let toY = this.centered ? '-50%' : '0%';
+    const translateY = this.centered ? ['-90%', '-50%'] : [0, 40];
 
     anime({
       targets: this.dialog,
       duration,
       opacity: [0, 1],
-      translateY: [transformY, toY],
+      translateY,
       translateX: ['-50%', '-50%'],
       easing: 'easeOutSine',
     });
@@ -116,15 +114,13 @@ export class Modal {
 
   private slideOutModal(completeCallback: Function) {
     const duration = this.animation ? Animation.mediumTime : 0;
-
-    let transformY = this.centered ? '-50%' : '0%';
-    let toY = this.centered ? '-100%' : '-50%';
+    const translateY = this.centered ? ['-50%', '-90%'] : [40, 0];
 
     anime({
       targets: this.dialog,
       duration,
       opacity: [1, 0],
-      translateY: [transformY, toY],
+      translateY,
       translateX: ['-50%', '-50%'],
       easing: 'easeInSine',
       complete: () => {
