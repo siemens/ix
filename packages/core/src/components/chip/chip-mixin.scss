@@ -29,6 +29,13 @@ $border-radius: 100px;
       cursor: default;
     }
 
+    .content-wrapper {
+      display: inline-flex;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+    }
+
     .with-icon {
       margin-right: $tiny-space;
     }
@@ -41,6 +48,13 @@ $border-radius: 100px;
 
     .slot-container {
       @include ellipsis;
+    }
+
+    &.centerContent {
+      .content-wrapper {
+        justify-content: center;
+        text-align: center;
+      }
     }
   }
 
