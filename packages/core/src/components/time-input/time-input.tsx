@@ -334,6 +334,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async openDropdown() {
+    // keep picker in sync with input
+    this.time = this.value;
+
     const dropdownElement = await this.dropdownElementRef.waitForCurrent();
     const id = dropdownElement.getAttribute('data-ix-dropdown');
 

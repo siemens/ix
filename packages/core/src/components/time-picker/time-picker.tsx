@@ -316,7 +316,6 @@ export class TimePicker {
   @State() private focusedValue: number = 0;
 
   private visibilityObserver?: MutationObserver;
-  private hasUpdatedScrollPositions = false;
   private focusScrollAlignment: 'start' | 'end' = 'start';
 
   componentWillLoad() {
@@ -336,7 +335,7 @@ export class TimePicker {
 
     this.setTimeRef();
     this.setTimePickerDescriptors();
-    this.setInitialFocusedValue();
+    this.setInitialFocusedValueAndUnit();
 
     this.watchHourIntervalPropHandler(this.hourInterval);
     this.watchMinuteIntervalPropHandler(this.minuteInterval);
@@ -408,8 +407,9 @@ export class TimePicker {
 
     switch (event.key) {
       case 'Tab':
-        // Let tab navigation work normally
+        // Let tab navigation work normally and reset focused value/unit
         shouldPreventDefault = false;
+        this.setInitialFocusedValueAndUnit();
         break;
 
       case 'ArrowUp':
@@ -515,7 +515,7 @@ export class TimePicker {
     }
   }
 
-  private setInitialFocusedValue() {
+  private setInitialFocusedValueAndUnit() {
     const firstVisibleDescriptor = this.timePickerDescriptors.find(
       (descriptor) => !descriptor.hidden
     );
@@ -532,6 +532,8 @@ export class TimePicker {
     this.focusedValue = isValidSelection
       ? selectedValue
       : firstVisibleDescriptor.numberArray[0];
+
+    this.focusedUnit = firstVisibleDescriptor.unit;
   }
 
   private setupVisibilityObserver() {
@@ -557,22 +559,25 @@ export class TimePicker {
   private mutationObserverCallback(mutations: MutationRecord[]) {
     for (const mutation of mutations) {
       if (mutation.type !== 'attributes') {
-        this.hasUpdatedScrollPositions = false;
         continue;
       }
 
       const dropdown = mutation.target as HTMLElement;
+
       if (!dropdown.classList.contains('show')) {
+        // keep picker in sync with input
+        this._time = DateTime.fromFormat(this.time, this.format);
+        this.setInitialFocusedValueAndUnit();
+
         continue;
       }
 
       const elementsReady = this.areElementsRendered();
-      if (!elementsReady || this.hasUpdatedScrollPositions) {
+      if (!elementsReady) {
         continue;
       }
 
       this.updateScrollPositions();
-      this.hasUpdatedScrollPositions = true;
     }
   }
 
@@ -755,7 +760,6 @@ export class TimePicker {
   }
 
   private isSelected(unit: TimePickerDescriptorUnit, number: number): boolean {
-    const test = this.formattedTime![unit] === String(number);
     return this.formattedTime![unit] === String(number);
   }
 
