@@ -91,21 +91,19 @@ regressionTest(
     await expect(workflowSteps).toHaveClass(/hydrated/);
     await expect(selectedDiv).toHaveClass(/selected/);
     let icon = await page.locator('#step1 ix-icon').nth(1);
-    let iconSvg = await icon.getAttribute('aria-label');
+    let iconAriaLabel = await icon.getAttribute('aria-label');
     await step1.evaluate((el) => {
       el.setAttribute('status', 'error');
     });
     await expect(step1).toHaveAttribute('status', 'error');
-    icon = await page.locator('#step1 ix-icon').nth(1);
-    iconSvg = await icon.getAttribute('aria-label');
-    expect(iconSvg).toBe('Error');
+    iconAriaLabel = await icon.getAttribute('aria-label');
+    expect(iconAriaLabel).toBe('Error');
     await step1.evaluate((el) => {
       el.setAttribute('status', 'open');
     });
     await expect(step1).toHaveAttribute('status', 'open');
-    icon = await page.locator('#step1 ix-icon').nth(1);
-    iconSvg = await icon.getAttribute('aria-label');
-    expect(iconSvg).toBe('Circle dot');
+    iconAriaLabel = await icon.getAttribute('aria-label');
+    expect(iconAriaLabel).toBe('Circle dot');
     await expect(selectedDiv).toHaveClass(/selected/);
   }
 );
