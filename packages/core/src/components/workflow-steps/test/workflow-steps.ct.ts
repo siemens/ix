@@ -85,9 +85,8 @@ regressionTest(
       </ix-workflow-steps>
     `);
     const workflowSteps = page.locator('ix-workflow-steps');
-    const selectedStep = workflowSteps.locator('ix-workflow-step').nth(0);
-    const selectedDiv = selectedStep.locator('.step');
     const step1 = page.locator('#step1');
+    const selectedDiv = step1.locator('.step');
     await expect(workflowSteps).toHaveClass(/hydrated/);
     await expect(selectedDiv).toHaveClass(/selected/);
     let icon = await page.locator('#step1 ix-icon').nth(1);
