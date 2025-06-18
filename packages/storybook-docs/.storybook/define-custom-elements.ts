@@ -77,6 +77,7 @@ import { defineCustomElement as ixPagination } from '@siemens/ix/components/ix-p
 import { defineCustomElement as ixPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as ixPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as ixPill } from '@siemens/ix/components/ix-pill.js';
+import { defineCustomElement as ixProgressIndicator } from '@siemens/ix/components/ix-progress-indicator.js';
 import { defineCustomElement as ixPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as ixRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as ixRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
@@ -180,6 +181,7 @@ ixPagination();
 ixPane();
 ixPaneLayout();
 ixPill();
+ixProgressIndicator();
 ixPushCard();
 ixRadio();
 ixRadioGroup();
