@@ -175,7 +175,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /**
    * Text for time-picker hour column header
    */
-  @Prop({ attribute: 'i18n-column-header' }) i18nHourColumnHeader: string =
+  @Prop({ attribute: 'i18n-hour-column-header' }) i18nHourColumnHeader: string =
     'hr';
 
   /**
