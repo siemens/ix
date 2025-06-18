@@ -1,10 +1,7 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "noImplicitAny": false,
-    "paths": {
-      "@utils/test": ["tests/utils/test"]
-    }
-  }
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.test.json" }
+  ]
 }

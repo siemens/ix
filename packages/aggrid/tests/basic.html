@@ -10,8 +10,14 @@ LICENSE file in the root directory of this source tree.
   <head>
     <title>Ag-Grid basic</title>
     <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32/dist/ag-grid-community.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community@32/styles/ag-grid.css" />
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community@32/styles/ag-theme-alpine.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/ag-grid-community@32/styles/ag-grid.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/ag-grid-community@32/styles/ag-theme-alpine.css"
+    />
 
     <link rel="stylesheet" href="/dist/ix-aggrid/ix-aggrid.css" />
     <link rel="stylesheet" href="/www/siemens-ix.css" />
@@ -24,7 +30,10 @@ LICENSE file in the root directory of this source tree.
     </style>
   </head>
   <body>
-    <div style="width: 100%; height: 100%" class="ag-theme-alpine-dark ag-theme-ix"></div>
+    <div
+      style="width: 100%; height: 100%"
+      class="ag-theme-alpine-dark ag-theme-ix"
+    ></div>
     <script type="module">
       import { themeSwitcher } from './utils/test/theme-switcher.js';
 
@@ -32,7 +41,7 @@ LICENSE file in the root directory of this source tree.
 
       (() => {
         const columnDefs = [
-          { field: 'make', resizable: true},
+          { field: 'make', resizable: true },
           { field: 'model', resizable: true, sortable: true, filter: true },
           { field: 'price', resizable: true, editable: true },
         ];
