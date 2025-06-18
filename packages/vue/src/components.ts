@@ -82,6 +82,7 @@ import { defineCustomElement as defineIxPagination } from '@siemens/ix/component
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
+import { defineCustomElement as defineIxProgressIndicator } from '@siemens/ix/components/ix-progress-indicator.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
@@ -316,6 +317,7 @@ export const IxChip: StencilVueComponent<JSX.IxChip> = /*@__PURE__*/ defineConta
   'chipColor',
   'outline',
   'tooltipText',
+  'centerContent',
   'closeChip'
 ], [
   'closeChip'
@@ -1052,6 +1054,20 @@ export const IxPill: StencilVueComponent<JSX.IxPill> = /*@__PURE__*/ defineConta
   'pillColor',
   'alignLeft',
   'tooltipText'
+]);
+
+
+export const IxProgressIndicator: StencilVueComponent<JSX.IxProgressIndicator> = /*@__PURE__*/ defineContainer<JSX.IxProgressIndicator>('ix-progress-indicator', defineIxProgressIndicator, [
+  'type',
+  'size',
+  'value',
+  'min',
+  'max',
+  'status',
+  'label',
+  'helperText',
+  'textAlignment',
+  'showTextAsTooltip'
 ]);
 
 

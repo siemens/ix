@@ -38,6 +38,7 @@ import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+import { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -85,6 +86,7 @@ export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+export { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -492,6 +494,11 @@ export namespace Components {
           * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background": string | undefined;
+        /**
+          * Center the content of the chip. Set to false to disable centering.
+          * @since 3.2.0
+         */
+        "centerContent": boolean;
         /**
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
@@ -2216,6 +2223,56 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    /**
+     * @since 3.2.0
+     */
+    interface IxProgressIndicator {
+        /**
+          * The helper text for the progress indicator.
+         */
+        "helperText"?: string;
+        /**
+          * The label for the progress indicator.
+         */
+        "label"?: string;
+        /**
+          * The maximum value of the progress indicator.
+         */
+        "max": number;
+        /**
+          * The minimum value of the progress indicator.
+         */
+        "min": number;
+        /**
+          * Show the helper text as a tooltip
+         */
+        "showTextAsTooltip": boolean;
+        /**
+          * The size of the progress indicator.
+         */
+        "size": ProgressIndicatorSize;
+        /**
+          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
+         */
+        "status": | 'default'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning'
+    | 'paused';
+        /**
+          * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
+         */
+        "textAlignment": 'left' | 'center' | 'right';
+        /**
+          * The type of progress indicator to use.
+         */
+        "type": 'linear' | 'circular';
+        /**
+          * The value of the progress indicator.
+         */
+        "value": number;
     }
     interface IxPushCard {
         /**
@@ -4527,6 +4584,15 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
+    /**
+     * @since 3.2.0
+     */
+    interface HTMLIxProgressIndicatorElement extends Components.IxProgressIndicator, HTMLStencilElement {
+    }
+    var HTMLIxProgressIndicatorElement: {
+        prototype: HTMLIxProgressIndicatorElement;
+        new (): HTMLIxProgressIndicatorElement;
+    };
     interface HTMLIxPushCardElement extends Components.IxPushCard, HTMLStencilElement {
     }
     var HTMLIxPushCardElement: {
@@ -5023,6 +5089,7 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-progress-indicator": HTMLIxProgressIndicatorElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
         "ix-radio-group": HTMLIxRadioGroupElement;
@@ -5507,6 +5574,11 @@ declare namespace LocalJSX {
           * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background"?: string | undefined;
+        /**
+          * Center the content of the chip. Set to false to disable centering.
+          * @since 3.2.0
+         */
+        "centerContent"?: boolean;
         /**
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
@@ -7357,6 +7429,56 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
+    /**
+     * @since 3.2.0
+     */
+    interface IxProgressIndicator {
+        /**
+          * The helper text for the progress indicator.
+         */
+        "helperText"?: string;
+        /**
+          * The label for the progress indicator.
+         */
+        "label"?: string;
+        /**
+          * The maximum value of the progress indicator.
+         */
+        "max"?: number;
+        /**
+          * The minimum value of the progress indicator.
+         */
+        "min"?: number;
+        /**
+          * Show the helper text as a tooltip
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * The size of the progress indicator.
+         */
+        "size"?: ProgressIndicatorSize;
+        /**
+          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
+         */
+        "status"?: | 'default'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning'
+    | 'paused';
+        /**
+          * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
+         */
+        "textAlignment"?: 'left' | 'center' | 'right';
+        /**
+          * The type of progress indicator to use.
+         */
+        "type"?: 'linear' | 'circular';
+        /**
+          * The value of the progress indicator.
+         */
+        "value"?: number;
+    }
     interface IxPushCard {
         /**
           * Collapse the card
@@ -8517,6 +8639,7 @@ declare namespace LocalJSX {
         "ix-pane": IxPane;
         "ix-pane-layout": IxPaneLayout;
         "ix-pill": IxPill;
+        "ix-progress-indicator": IxProgressIndicator;
         "ix-push-card": IxPushCard;
         "ix-radio": IxRadio;
         "ix-radio-group": IxRadioGroup;
@@ -8654,6 +8777,10 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            /**
+             * @since 3.2.0
+             */
+            "ix-progress-indicator": LocalJSX.IxProgressIndicator & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             /**
              * @form-ready 

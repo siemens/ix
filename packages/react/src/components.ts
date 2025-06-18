@@ -85,6 +85,7 @@ import { IxPagination as IxPaginationElement, defineCustomElement as defineIxPag
 import { IxPaneLayout as IxPaneLayoutElement, defineCustomElement as defineIxPaneLayout } from "@siemens/ix/components/ix-pane-layout.js";
 import { IxPane as IxPaneElement, defineCustomElement as defineIxPane } from "@siemens/ix/components/ix-pane.js";
 import { IxPill as IxPillElement, defineCustomElement as defineIxPill } from "@siemens/ix/components/ix-pill.js";
+import { IxProgressIndicator as IxProgressIndicatorElement, defineCustomElement as defineIxProgressIndicator } from "@siemens/ix/components/ix-progress-indicator.js";
 import { IxPushCard as IxPushCardElement, defineCustomElement as defineIxPushCard } from "@siemens/ix/components/ix-push-card.js";
 import { IxRadioGroup as IxRadioGroupElement, defineCustomElement as defineIxRadioGroup } from "@siemens/ix/components/ix-radio-group.js";
 import { IxRadio as IxRadioElement, defineCustomElement as defineIxRadio } from "@siemens/ix/components/ix-radio.js";
@@ -1115,6 +1116,17 @@ export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents> = /*@__P
     react: React,
     events: {} as IxPillEvents,
     defineCustomElement: defineIxPill
+});
+
+export type IxProgressIndicatorEvents = NonNullable<unknown>;
+
+export const IxProgressIndicator: StencilReactComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents> = /*@__PURE__*/ createComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents>({
+    tagName: 'ix-progress-indicator',
+    elementClass: IxProgressIndicatorElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IxProgressIndicatorEvents,
+    defineCustomElement: defineIxProgressIndicator
 });
 
 export type IxPushCardEvents = NonNullable<unknown>;
