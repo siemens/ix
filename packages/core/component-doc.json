@@ -20612,7 +20612,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i18n-column-header",
+          "attr": "i18n-hour-column-header",
           "reflectToAttr": false,
           "docs": "Text for time-picker hour column header",
           "docsTags": [],

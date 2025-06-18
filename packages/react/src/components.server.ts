@@ -1674,7 +1674,7 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         millisecondInterval: 'millisecond-interval',
         i18nSelectTime: 'i18n-select-time',
         i18nTime: 'i18n-time',
-        i18nHourColumnHeader: 'i18n-column-header',
+        i18nHourColumnHeader: 'i18n-hour-column-header',
         i18nMinuteColumnHeader: 'i18n-minute-column-header',
         i18nSecondColumnHeader: 'i18n-second-column-header',
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header'
