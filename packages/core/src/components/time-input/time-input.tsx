@@ -165,32 +165,36 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /**
    * Text of time-picker time select button
    */
-  @Prop() i18nSelectTime: string = 'Confirm';
+  @Prop({ attribute: 'i18n-select-time' }) i18nSelectTime: string = 'Confirm';
 
   /**
    * Text for time-picker top label
    */
-  @Prop() i18nTime: string = 'Time';
+  @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
    * Text for time-picker hour column header
    */
-  @Prop() i18nHourColumnHeader: string = 'hr';
+  @Prop({ attribute: 'i18n-column-header' }) i18nHourColumnHeader: string =
+    'hr';
 
   /**
    * Text for time-picker minute column header
    */
-  @Prop() i18nMinuteColumnHeader: string = 'min';
+  @Prop({ attribute: 'i18n-minute-column-header' })
+  i18nMinuteColumnHeader: string = 'min';
 
   /**
    * Text for time-picker second column header
    */
-  @Prop() i18nSecondColumnHeader: string = 'sec';
+  @Prop({ attribute: 'i18n-second-column-header' })
+  i18nSecondColumnHeader: string = 'sec';
 
   /**
    * Text for time-picker millisecond column header
    */
-  @Prop() i18nMillisecondColumnHeader: string = 'ms';
+  @Prop({ attribute: 'i18n-millisecond-column-header' })
+  i18nMillisecondColumnHeader: string = 'ms';
 
   /**
    * Input change event.

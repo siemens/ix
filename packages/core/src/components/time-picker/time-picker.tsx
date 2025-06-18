@@ -246,7 +246,8 @@ export class TimePicker {
   /**
    * Text of the time confirm button
    */
-  @Prop() i18nConfirmTime = CONFIRM_BUTTON_DEFAULT;
+  @Prop({ attribute: 'i18n-confirm-time' }) i18nConfirmTime =
+    CONFIRM_BUTTON_DEFAULT;
 
   /**
    * Text for top label
@@ -258,27 +259,31 @@ export class TimePicker {
   /**
    * Text for top header
    */
-  @Prop() i18nHeader: string = HEADER_DEFAULT;
+  @Prop({ attribute: 'i18n-header' }) i18nHeader: string = HEADER_DEFAULT;
 
   /**
    * Text for hour column header
    */
-  @Prop() i18nHourColumnHeader: string = 'hr';
+  @Prop({ attribute: 'i18n-column-header' }) i18nHourColumnHeader: string =
+    'hr';
 
   /**
    * Text for minute column header
    */
-  @Prop() i18nMinuteColumnHeader: string = 'min';
+  @Prop({ attribute: 'i18n-minute-column-header' })
+  i18nMinuteColumnHeader: string = 'min';
 
   /**
    * Text for second column header
    */
-  @Prop() i18nSecondColumnHeader: string = 'sec';
+  @Prop({ attribute: 'i18n-second-column-header' })
+  i18nSecondColumnHeader: string = 'sec';
 
   /**
    * Text for millisecond column header
    */
-  @Prop() i18nMillisecondColumnHeader: string = 'ms';
+  @Prop({ attribute: 'i18n-millisecond-column-header' })
+  i18nMillisecondColumnHeader: string = 'ms';
 
   /**
    * Time event
