@@ -32,7 +32,7 @@ export function hasAnyText({
   );
 }
 
-export function renderHelperText(props: {
+export function HelperText(props: {
   isInvalid: boolean;
   invalidText?: string;
   isWarning: boolean;
