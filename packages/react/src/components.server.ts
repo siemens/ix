@@ -404,7 +404,8 @@ export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents> = /*@__P
         background: 'background',
         chipColor: 'chip-color',
         outline: 'outline',
-        tooltipText: 'tooltip-text'
+        tooltipText: 'tooltip-text',
+        centerContent: 'center-content'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot

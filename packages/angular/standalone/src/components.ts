@@ -592,14 +592,14 @@ export declare interface IxCheckboxGroup extends Components.IxCheckboxGroup {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChip,
-  inputs: ['active', 'background', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant']
+  inputs: ['active', 'background', 'centerContent', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant']
 })
 @Component({
   selector: 'ix-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'background', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant'],
+  inputs: ['active', 'background', 'centerContent', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant'],
   standalone: true
 })
 export class IxChip {
