@@ -79,6 +79,7 @@ export const DIRECTIVES = [
   d.IxPane,
   d.IxPaneLayout,
   d.IxPill,
+  d.IxProgressIndicator,
   d.IxPushCard,
   d.IxRadio,
   d.IxRadioGroup,
