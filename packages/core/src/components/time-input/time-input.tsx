@@ -181,18 +181,21 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /**
    * Text for time-picker minute column header
    */
+  // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-minute-column-header' })
   i18nMinuteColumnHeader: string = 'min';
 
   /**
    * Text for time-picker second column header
    */
+  // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-second-column-header' })
   i18nSecondColumnHeader: string = 'sec';
 
   /**
    * Text for time-picker millisecond column header
    */
+  // eslint-disable-next-line @stencil-community/decorators-style
   @Prop({ attribute: 'i18n-millisecond-column-header' })
   i18nMillisecondColumnHeader: string = 'ms';
 

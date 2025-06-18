@@ -20241,7 +20241,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-hour-column-header",
+          "attr": "i18n-column-header",
           "reflectToAttr": false,
           "docs": "Text for time-picker hour column header",
           "docsTags": [],
@@ -20265,7 +20265,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-millisecond-column-header",
+          "attr": "i18n-millisecond-column-header",
           "reflectToAttr": false,
           "docs": "Text for time-picker millisecond column header",
           "docsTags": [],
@@ -20289,7 +20289,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-minute-column-header",
+          "attr": "i18n-minute-column-header",
           "reflectToAttr": false,
           "docs": "Text for time-picker minute column header",
           "docsTags": [],
@@ -20313,7 +20313,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-second-column-header",
+          "attr": "i18n-second-column-header",
           "reflectToAttr": false,
           "docs": "Text for time-picker second column header",
           "docsTags": [],
@@ -20337,7 +20337,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-select-time",
+          "attr": "i18n-select-time",
           "reflectToAttr": false,
           "docs": "Text of time-picker time select button",
           "docsTags": [],
@@ -20361,7 +20361,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-time",
+          "attr": "i18n-time",
           "reflectToAttr": false,
           "docs": "Text for time-picker top label",
           "docsTags": [],
@@ -21029,7 +21029,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-confirm-time",
+          "attr": "i18n-confirm-time",
           "reflectToAttr": false,
           "docs": "Text of the time confirm button",
           "docsTags": [],
@@ -21053,7 +21053,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-header",
+          "attr": "i18n-header",
           "reflectToAttr": false,
           "docs": "Text for top header",
           "docsTags": [],
@@ -21077,7 +21077,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-hour-column-header",
+          "attr": "i18n-column-header",
           "reflectToAttr": false,
           "docs": "Text for hour column header",
           "docsTags": [],
@@ -21101,7 +21101,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-millisecond-column-header",
+          "attr": "i18n-millisecond-column-header",
           "reflectToAttr": false,
           "docs": "Text for millisecond column header",
           "docsTags": [],
@@ -21125,7 +21125,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-minute-column-header",
+          "attr": "i18n-minute-column-header",
           "reflectToAttr": false,
           "docs": "Text for minute column header",
           "docsTags": [],
@@ -21149,7 +21149,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-second-column-header",
+          "attr": "i18n-second-column-header",
           "reflectToAttr": false,
           "docs": "Text for second column header",
           "docsTags": [],
