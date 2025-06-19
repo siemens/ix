@@ -109,3 +109,27 @@ test('Radio button should not cause layout shift when checked', async ({
   expect(newBounds.top).toBeCloseTo(initialBounds.top, 0);
   expect(newBounds.left).toBeCloseTo(initialBounds.left, 0);
 });
+
+test('Clicking label (including padding) checks the radio', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-radio label="Test"></ix-radio>`);
+  const radio = page.locator('ix-radio');
+  const label = radio.locator('label');
+
+  await label.waitFor({ state: 'visible' });
+
+  const box = await label.boundingBox();
+  if (!box) {
+    throw new Error('Label bounding box not found');
+  }
+  await page.mouse.click(box.x + 2, box.y + 2);
+
+  await page.waitForFunction(() => {
+    const radio = document.querySelector('ix-radio');
+    return radio?.getAttribute('aria-checked') === 'true';
+  });
+
+  await expect(radio).toHaveAttribute('aria-checked', 'true');
+});

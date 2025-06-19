@@ -181,6 +181,7 @@ export class Radio implements IxFormComponent<string> {
             name={this.name}
             ref={this.inputRef}
             type="radio"
+            value={this.value ?? 'on'}
             onChange={() => {
               const ref = this.inputRef.current;
               if (ref) {

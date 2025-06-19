@@ -28,7 +28,6 @@
     height: 1.125rem;
     min-height: 1.125rem;
     max-height: 1.125rem;
-    margin: 0.125rem;
     border: 1px solid white;
     border-radius: 100px;
   }
@@ -38,7 +37,7 @@
     outline-offset: var(--theme-radiobtn--focus--outline-offset);
   }
 
-  input[type="radio"] {
+  input[type='radio'] {
     display: none;
   }
 
@@ -50,6 +49,7 @@
 
     width: 100%;
     height: 100%;
+    padding: 0.125rem;
   }
 
   .checkmark {
