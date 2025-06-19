@@ -16,6 +16,17 @@ export class RadioValueAccessorBaseDirective extends ValueAccessor {
     super(injector, el);
   }
 
+  override ngAfterViewInit() {
+    super.ngAfterViewInit();
+    this.handleRadioGroupValueChange();
+  }
+
+  private handleRadioGroupValueChange(): void {
+    this.getAssignedNgControl()?.valueChanges?.subscribe((value: string) => {
+      this.lastValue = value;
+    });
+  }
+
   override writeValue(value: string): void {
     this.lastValue = value;
     this.elementRef.nativeElement.checked =
