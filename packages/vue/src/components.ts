@@ -82,6 +82,7 @@ import { defineCustomElement as defineIxPagination } from '@siemens/ix/component
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
+import { defineCustomElement as defineIxProgressIndicator } from '@siemens/ix/components/ix-progress-indicator.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
 import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
@@ -95,6 +96,7 @@ import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/i
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
 import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
+import { defineCustomElement as defineIxTimeInput } from '@siemens/ix/components/ix-time-input.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
@@ -315,6 +317,7 @@ export const IxChip: StencilVueComponent<JSX.IxChip> = /*@__PURE__*/ defineConta
   'chipColor',
   'outline',
   'tooltipText',
+  'centerContent',
   'closeChip'
 ], [
   'closeChip'
@@ -1054,6 +1057,20 @@ export const IxPill: StencilVueComponent<JSX.IxPill> = /*@__PURE__*/ defineConta
 ]);
 
 
+export const IxProgressIndicator: StencilVueComponent<JSX.IxProgressIndicator> = /*@__PURE__*/ defineContainer<JSX.IxProgressIndicator>('ix-progress-indicator', defineIxProgressIndicator, [
+  'type',
+  'size',
+  'value',
+  'min',
+  'max',
+  'status',
+  'label',
+  'helperText',
+  'textAlignment',
+  'showTextAsTooltip'
+]);
+
+
 export const IxPushCard: StencilVueComponent<JSX.IxPushCard> = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push-card', defineIxPushCard, [
   'icon',
   'notification',
@@ -1251,17 +1268,68 @@ export const IxTile: StencilVueComponent<JSX.IxTile> = /*@__PURE__*/ defineConta
 ]);
 
 
+export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ defineContainer<JSX.IxTimeInput>('ix-time-input', defineIxTimeInput, [
+  'name',
+  'placeholder',
+  'value',
+  'locale',
+  'format',
+  'required',
+  'helperText',
+  'label',
+  'invalidText',
+  'readonly',
+  'disabled',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
+  'i18nErrorTimeUnparsable',
+  'hourInterval',
+  'minuteInterval',
+  'secondInterval',
+  'millisecondInterval',
+  'i18nSelectTime',
+  'i18nTime',
+  'i18nHourColumnHeader',
+  'i18nMinuteColumnHeader',
+  'i18nSecondColumnHeader',
+  'i18nMillisecondColumnHeader',
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur'
+], [
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur'
+]);
+
+
 export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', defineIxTimePicker, [
   'format',
   'corners',
   'standaloneAppearance',
+  'dateTimePickerAppearance',
   'showHour',
   'showMinutes',
   'showSeconds',
+  'hideHeader',
+  'hourInterval',
+  'minuteInterval',
+  'secondInterval',
+  'millisecondInterval',
   'time',
   'timeReference',
   'textSelectTime',
+  'i18nConfirmTime',
   'textTime',
+  'i18nHeader',
+  'i18nHourColumnHeader',
+  'i18nMinuteColumnHeader',
+  'i18nSecondColumnHeader',
+  'i18nMillisecondColumnHeader',
   'timeSelect',
   'timeChange'
 ], [
