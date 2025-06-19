@@ -15,7 +15,8 @@
   display: inline-flex;
   flex-direction: row;
   position: relative;
-  height: 1.5rem;
+  min-height: 1.5rem;
+  height: calc(100% - 0.5rem);
   margin-block-start: 0.25rem;
   margin-block-end: 0.25rem;
 
@@ -31,8 +32,10 @@
   }
 
   .label {
-    display: inline-block;
+    word-break: break-word;
+    display: -webkit-box;
     white-space: normal;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-block-start: 0.125rem;
