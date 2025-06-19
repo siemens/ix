@@ -12,7 +12,21 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('time picker', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto('time-picker-rework/basic');
+    await page.goto('time-picker/basic');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixels: 25,
+    });
+  });
+
+  regressionTest('formats', async ({ page }) => {
+    await page.goto('time-picker/formats');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixels: 25,
+    });
+  });
+
+  regressionTest('interval', async ({ page }) => {
+    await page.goto('time-picker/interval');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixels: 25,
     });

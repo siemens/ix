@@ -26,108 +26,211 @@ regressionTest.describe('time picker tests', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
       `<ix-time-picker
-      time="09:10:11"
+        time="09:10:11"
+        format="hh:mm:ss"
       >
       </ix-time-picker>
       <ix-time-picker
-      time="10:11:12 AM"
-      format="hh:mm:ss a"
+        time="10:11:12 AM"
+        format="hh:mm:ss a"
       >
       </ix-time-picker>`
     );
   });
 
-  regressionTest('get time', async ({ page }) => {
+  regressionTest('should get correct time', async ({ page }) => {
     expect(await getTimeObjs(page)).toEqual(['09:10:11', '10:11:12 AM']);
   });
 
-  regressionTest('increment time units', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
-
-    // Slice is necessary, because on element is on Shadow-DOM
-    const incrementButtons = (
-      await page.$$('ix-icon-button.arrows:first-child')
-    ).slice(0, 3);
-
-    for (const button of incrementButtons) {
-      await button.click();
-    }
-
-    expect(await getTimeObjs(page)).toEqual(['10:11:12', '10:11:12 AM']);
-  });
-
-  regressionTest('decrement time units', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
-
-    const decrementButtons = (
-      await page.$$('ix-icon-button.arrows:last-child')
-    ).slice(0, 3);
-
-    for (const button of decrementButtons) {
-      await button.click();
-    }
-
-    expect(await getTimeObjs(page)).toEqual(['08:09:10', '10:11:12 AM']);
-  });
-
-  regressionTest('maximum / minimum time units', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
-    const inputFields = await page
-      .locator('ix-date-time-card')
-      .locator('input')
-      .all();
-
-    for (const field of inputFields) {
-      await field.type('100');
-      await field.press('Enter');
-    }
-
-    expect(await getTimeObjs(page)).toEqual(['23:59:59', '12:59:59 PM']);
-  });
-
-  regressionTest('change time reference', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
-    const dateTimeCard = await page.$$('ix-date-time-card');
-
-    const decrementButtons = await dateTimeCard[1].$$(
-      'ix-icon-button.arrows:last-child'
-    );
-    await decrementButtons[3].click();
-
-    expect(await getTimeObjs(page)).toEqual(['09:10:11', '10:11:12 PM']);
-  });
-
   regressionTest(
-    'select different time fires timeChange event',
+    'should change time selection by clicking',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
 
-      const timeChangeEvent = page.evaluate(() => {
-        return new Promise((f) => {
-          document.addEventListener('timeChange', (data) => f(data));
-        });
-      });
+      // First time picker - select 12 hour
+      await page
+        .locator('ix-time-picker')
+        .first()
+        .locator('[data-element-container-id="hour-12"]')
+        .click();
 
-      const incrementButtons = (
-        await page.$$('ix-icon-button.arrows:first-child')
-      ).slice(0, 3);
-      await incrementButtons[2].click();
+      // Select 12 minute
+      await page
+        .locator('ix-time-picker')
+        .first()
+        .locator('[data-element-container-id="minute-12"]')
+        .click();
 
-      expect(await timeChangeEvent).toBeTruthy();
+      // Select 30 second
+      await page
+        .locator('ix-time-picker')
+        .first()
+        .locator('[data-element-container-id="second-30"]')
+        .click();
+
+      // Switch AM to PM in the second time picker
+      await page
+        .locator('ix-time-picker')
+        .nth(1)
+        .locator('[data-am-pm-id="PM"]')
+        .click();
+
+      expect(await getTimeObjs(page)).toEqual(['12:12:30', '10:11:12 PM']);
     }
   );
 
-  regressionTest('change time from outside', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
+  regressionTest(
+    'should fire timeChange event when time is changed',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
 
-    await page.$eval(TIME_PICKER_SELECTOR, (el: HTMLIxTimePickerElement) => {
-      el.time = '10:11:15';
-    });
+      // Set up a listener for the timeChange event on the first time picker
+      const timeChangePromise = page.evaluate(() => {
+        return new Promise((resolve) => {
+          const timePicker = document.querySelector('ix-time-picker');
+          timePicker?.addEventListener('timeChange', (event) => {
+            resolve(event.detail);
+          });
+        });
+      });
 
-    await page.$eval(TIME_PICKER_SELECTOR, (el: HTMLIxTimePickerElement) => {
-      el.time = '11:12:15';
-    });
+      // Make a change to the first time picker
+      await page
+        .locator('ix-time-picker')
+        .first()
+        .locator('[data-element-container-id="hour-10"]')
+        .click();
 
-    expect(['11:12:15', '10:11:12 AM']).toEqual(await getTimeObjs(page));
-  });
+      // Wait for the event to be fired and get the event detail
+      const eventDetail = await timeChangePromise;
+
+      // Verify that we received the event with the correct time
+      expect(eventDetail).toBe('10:10:11');
+    }
+  );
+
+  regressionTest(
+    'should change time selection when updating time attribute from outside',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
+
+      await page.$eval(TIME_PICKER_SELECTOR, (el: HTMLIxTimePickerElement) => {
+        el.time = '10:11:15';
+      });
+
+      await page.$eval(TIME_PICKER_SELECTOR, (el: HTMLIxTimePickerElement) => {
+        el.time = '11:12:15';
+      });
+
+      expect(['11:12:15', '10:11:12 AM']).toEqual(await getTimeObjs(page));
+    }
+  );
+
+  regressionTest(
+    'should fire timeSelect event when confirm button is clicked',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
+
+      // Set up a listener for the timeSelect event on the first time picker
+      const timeSelectPromise = page.evaluate(() => {
+        return new Promise((resolve) => {
+          const timePicker = document.querySelector('ix-time-picker');
+          timePicker?.addEventListener('timeSelect', (event) => {
+            resolve(event.detail);
+          });
+        });
+      });
+
+      // Click the "Confirm" button on the first time picker
+      await page.locator('ix-time-picker').first().locator('ix-button').click();
+
+      // Wait for the event to be fired and get the event detail
+      const eventDetail = await timeSelectPromise;
+
+      expect(eventDetail).toBe('09:10:11');
+    }
+  );
+
+  regressionTest(
+    'keyboard navigation should work correctly in the time picker',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
+
+      // Focus on the hour element in the second time picker
+      const secondPicker = page.locator('ix-time-picker').nth(1);
+      await secondPicker
+        .locator('[data-element-container-id="hour-10"]')
+        .focus();
+
+      // Change hour
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Enter');
+
+      // Change minutes
+      await page.keyboard.press('ArrowRight');
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Enter');
+
+      // Change seconds
+      await page.keyboard.press('ArrowRight');
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Enter');
+
+      // Change time ref
+      await page.keyboard.press('Tab');
+      await page.keyboard.press('Tab');
+      await page.keyboard.press('Enter');
+
+      expect(await getTimeObjs(page)).toEqual(['09:10:11', '11:12:13 PM']);
+    }
+  );
+
+  regressionTest(
+    'should update scroll position when time value is selected',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
+
+      // Get the first time picker
+      const firstPicker = page.locator('ix-time-picker').first();
+
+      // Get the initial scroll position of the hour list
+      const initialScrollTop = await firstPicker
+        .locator('[data-element-list-id="hour"]')
+        .evaluate((el) => el.scrollTop);
+
+      await firstPicker.locator('[data-element-container-id="hour-6"]').click();
+
+      // wait for scroll
+      await page.waitForTimeout(500);
+
+      const newScrollTop = await firstPicker
+        .locator('[data-element-list-id="hour"]')
+        .evaluate((el) => el.scrollTop);
+
+      expect(newScrollTop).not.toEqual(initialScrollTop);
+
+      // Verify the scroll follows the scrollPosition calculation
+      const isScrollPositionCorrect = await firstPicker
+        .locator('[data-element-list-id="hour"]')
+        .evaluate((container) => {
+          const selectedElement = container.querySelector(
+            '[data-element-container-id="hour-6"]'
+          ) as HTMLElement;
+          const containerHeight = container.clientHeight;
+          const elementHeight = selectedElement.clientHeight;
+
+          // This should match the calculation in the elementListScrollToTop method
+          const expectedScrollPosition =
+            selectedElement.offsetTop -
+            containerHeight / 2 +
+            elementHeight / 2 -
+            13;
+
+          // Allow small differences due to rounding/margin
+          return Math.abs(container.scrollTop - expectedScrollPosition) < 5;
+        });
+
+      expect(isScrollPositionCorrect).toBe(true);
+    }
+  );
 });
