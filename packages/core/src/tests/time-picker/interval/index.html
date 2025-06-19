@@ -13,11 +13,6 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
-    <style>
-      ix-time-picker {
-        margin-inline-end: 1rem;
-      }
-    </style>
   </head>
   <body>
     <div
@@ -28,14 +23,12 @@ SPDX-License-Identifier: MIT
         margin-top: 2rem;
       "
     >
-      <ix-time-picker style="width: min-content" time="10:11:12"></ix-time-picker>
-      <ix-time-picker style="width: min-content" time="10:11:12" show-minutes="false" show-seconds="false"></ix-time-picker>
-      <ix-time-picker style="width: min-content" time="10:11:12" show-hour="false" show-seconds="false"></ix-time-picker>
-      <ix-time-picker style="width: min-content" time="10:11:12" show-hour="false" show-minutes="false"></ix-time-picker>
       <ix-time-picker
-        style="width: min-content"
-        time="10:11:12 AM"
-        format="hh:mm:ss a"
+        format="hh:mm:ss.SSS"
+        millisecond-interval="50"
+        second-interval="5"
+        minute-interval="15"
+        time="10:30:10.150"
       ></ix-time-picker>
     </div>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
