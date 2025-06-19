@@ -68,7 +68,7 @@ export class Blind {
   private chevronRef?: HTMLElement;
   private blindId = ++sequentialInstanceId;
 
-  constructor() {}
+  constructor() { }
 
   private onHeaderClick() {
     this.collapsed = !this.collapsed;
@@ -81,6 +81,12 @@ export class Blind {
 
   get content() {
     return this.hostElement.shadowRoot!.querySelector('.blind-content');
+  }
+  private geticonChevronColor() {
+    if (this.variant === 'filled' || this.variant === 'outline') {
+      return this.collapsed ? 'color-primary' : 'color-dynamic';
+    }
+    return `color-${this.variant}--contrast`;
   }
 
   @Watch('collapsed')
@@ -153,11 +159,7 @@ export class Blind {
             <ix-icon
               class="collapse-icon"
               name={iconChevronRightSmall}
-              color={
-                this.variant === 'filled' || this.variant === 'outline'
-                  ? 'color-primary'
-                  : `color-${this.variant}--contrast`
-              }
+              color={this.geticonChevronColor()}
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
             ></ix-icon>
             <div
