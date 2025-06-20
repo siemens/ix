@@ -82,25 +82,21 @@ export class WorkflowStep {
 
   @Watch('selected')
   selectedHandler() {
-    const selectedStyle = this.selected ? '--selected' : '';
-
-    if (this.status === 'open') {
-      this.iconName = this.selected ? iconCircleDot : iconCircle;
-      this.iconColor = `workflow-step-icon-default--color${selectedStyle}`;
-    }
-
-    if (this.status === 'done' && !this.disabled) {
-      this.iconColor = `workflow-step-icon-done--color${selectedStyle}`;
-    }
+    this.setWorkflowStepStyles();
   }
 
   @Watch('disabled')
   @Watch('status')
   watchPropHandler() {
+    this.setWorkflowStepStyles();
+  }
+
+  setWorkflowStepStyles() {
+    const selectedStyle = this.selected ? '--selected' : '';
     switch (this.status) {
       case 'open':
-        this.iconName = iconCircle;
-        this.iconColor = 'workflow-step-icon-default--color';
+        this.iconName = this.selected ? iconCircleDot : iconCircle;
+        this.iconColor = `workflow-step-icon-default--color${selectedStyle}`;
         break;
       case 'success':
         this.iconName = iconSuccess;
@@ -108,7 +104,7 @@ export class WorkflowStep {
         break;
       case 'done':
         this.iconName = iconCircleFilled;
-        this.iconColor = 'workflow-step-icon-done--color';
+        this.iconColor = `workflow-step-icon-done--color${selectedStyle}`;
         break;
       case 'warning':
         this.iconName = iconWarning;
@@ -118,7 +114,6 @@ export class WorkflowStep {
         this.iconName = iconError;
         this.iconColor = 'color-alarm';
         break;
-
       default:
         this.iconName = iconCircle;
         break;
@@ -144,6 +139,27 @@ export class WorkflowStep {
     }
   }
 
+  getIconAriaLabel() {
+    switch (this.iconName) {
+      case iconCircle:
+        return 'Circle';
+      case iconCircleDot:
+        return 'Circle dot';
+      case iconCircleFilled:
+        return 'Done';
+      case iconError:
+        return 'Error';
+      case iconSuccess:
+        return 'Success';
+      case iconTriangleFilled:
+        return 'Warning';
+      case iconWarning:
+        return 'Warning';
+      default:
+        return 'Step';
+    }
+  }
+
   render() {
     const icons = !this.customIconSlot ? (
       <Fragment>
@@ -160,6 +176,7 @@ export class WorkflowStep {
           name={this.iconName}
           class="absolute"
           size="24"
+          aria-label={this.getIconAriaLabel()}
         ></ix-icon>
       </Fragment>
     ) : null;
