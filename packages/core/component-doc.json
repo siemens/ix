@@ -10281,7 +10281,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Button variant.\nImportant: Variant 'primary' can only be combined with either outline or ghost.",
+          "docs": "Button variant.",
           "docsTags": [],
           "default": "'secondary'",
           "values": [
@@ -22796,7 +22796,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Button variant.\nImportant: Variant 'primary' can only be combined with either outline or ghost.",
+          "docs": "Button variant.",
           "docsTags": [],
           "default": "'secondary'",
           "values": [
