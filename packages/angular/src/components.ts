@@ -455,14 +455,14 @@ export declare interface IxCheckboxGroup extends Components.IxCheckboxGroup {}
 
 
 @ProxyCmp({
-  inputs: ['active', 'background', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant']
+  inputs: ['active', 'background', 'centerContent', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant']
 })
 @Component({
   selector: 'ix-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'background', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant'],
+  inputs: ['active', 'background', 'centerContent', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant'],
 })
 export class IxChip {
   protected el: HTMLIxChipElement;
@@ -2493,7 +2493,42 @@ export declare interface IxTile extends Components.IxTile {}
 
 
 @ProxyCmp({
-  inputs: ['corners', 'format', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
+  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  methods: ['getNativeInputElement', 'focusInput']
+})
+@Component({
+  selector: 'ix-time-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+})
+export class IxTimeInput {
+  protected el: HTMLIxTimeInputElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange']);
+  }
+}
+
+
+import type { TimeInputValidityState as IIxTimeInputTimeInputValidityState } from '@siemens/ix';
+
+export declare interface IxTimeInput extends Components.IxTimeInput {
+  /**
+   * Input change event.
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Validation state change event.
+   */
+  validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['corners', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
   methods: ['getCurrentTime']
 })
 @Component({
@@ -2501,7 +2536,7 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
 })
 export class IxTimePicker {
   protected el: HTMLIxTimePickerElement;
