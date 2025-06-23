@@ -88,6 +88,7 @@
 }
 
 :host {
+  padding: 0.5rem;
   @include ix-component;
   display: flex;
   flex-direction: column;
@@ -235,8 +236,7 @@
     position: absolute;
     background-color: var(--track-color);
     height: 4px;
-    width: calc(100% - 1rem);
-    margin-left: 0.5rem;
+    width: 100%;
     top: 50%;
     transform: translateY(-50%);
     left: 0px;
@@ -267,14 +267,6 @@
     margin-top: 0.5rem;
 
     min-height: 0px;
-  }
-
-  .label-start {
-    margin-left: 0.5rem;
-  }
-
-  .label-end {
-    margin-right: 0.5rem;
   }
 
   .label-error {
