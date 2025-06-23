@@ -3243,6 +3243,35 @@
           "setter": false
         },
         {
+          "name": "centerContent",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "center-content",
+          "reflectToAttr": false,
+          "docs": "Center the content of the chip.\nSet to false to disable centering.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.2.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "chipColor",
           "type": "string | undefined",
           "complexType": {
@@ -4947,7 +4976,7 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "disabled attribute",
+          "docs": "Disabled attribute",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -4995,7 +5024,7 @@
           "mutable": false,
           "attr": "helper-text",
           "reflectToAttr": false,
-          "docs": "helper text below the input field",
+          "docs": "Helper text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -5021,7 +5050,7 @@
           "mutable": false,
           "attr": "i18n-error-date-unparsable",
           "reflectToAttr": false,
-          "docs": "i18n string for the error message when the date is not parsable",
+          "docs": "I18n string for the error message when the date is not parsable",
           "docsTags": [],
           "default": "'Date is not valid'",
           "values": [
@@ -5045,7 +5074,7 @@
           "mutable": false,
           "attr": "info-text",
           "reflectToAttr": false,
-          "docs": "info text below the input field",
+          "docs": "Info text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -5071,7 +5100,7 @@
           "mutable": false,
           "attr": "invalid-text",
           "reflectToAttr": true,
-          "docs": "error text below the input field",
+          "docs": "Error text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -5097,7 +5126,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "label of the input field",
+          "docs": "Label of the input field",
           "docsTags": [],
           "values": [
             {
@@ -5149,7 +5178,7 @@
           "mutable": false,
           "attr": "name",
           "reflectToAttr": true,
-          "docs": "name of the input element",
+          "docs": "Name of the input element",
           "docsTags": [],
           "values": [
             {
@@ -5175,7 +5204,7 @@
           "mutable": false,
           "attr": "placeholder",
           "reflectToAttr": true,
-          "docs": "placeholder of the input element",
+          "docs": "Placeholder of the input element",
           "docsTags": [],
           "values": [
             {
@@ -5201,7 +5230,7 @@
           "mutable": false,
           "attr": "readonly",
           "reflectToAttr": false,
-          "docs": "readonly attribute",
+          "docs": "Readonly attribute",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -5225,7 +5254,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": false,
-          "docs": "required attribute",
+          "docs": "Required attribute",
           "docsTags": [],
           "values": [
             {
@@ -5251,7 +5280,7 @@
           "mutable": false,
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
-          "docs": "show text as tooltip",
+          "docs": "Show text as tooltip",
           "docsTags": [],
           "values": [
             {
@@ -5306,7 +5335,7 @@
           "mutable": false,
           "attr": "valid-text",
           "reflectToAttr": false,
-          "docs": "valid text below the input field",
+          "docs": "Valid text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -5332,7 +5361,7 @@
           "mutable": true,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "value of the input element",
+          "docs": "Value of the input element",
           "docsTags": [],
           "default": "''",
           "values": [
@@ -5359,7 +5388,7 @@
           "mutable": false,
           "attr": "warning-text",
           "reflectToAttr": false,
-          "docs": "warning text below the input field",
+          "docs": "Warning text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -5953,7 +5982,6 @@
         "ix-time-picker": [
           "ix-date-time-card",
           "ix-typography",
-          "ix-icon-button",
           "ix-button"
         ]
       },
@@ -6175,8 +6203,14 @@
           "attr": "show-hour",
           "reflectToAttr": false,
           "docs": "Show hour input",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
+            }
+          ],
           "default": "true",
+          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
           "values": [
             {
               "type": "boolean"
@@ -6199,8 +6233,14 @@
           "attr": "show-minutes",
           "reflectToAttr": false,
           "docs": "Show minutes input",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
+            }
+          ],
           "default": "true",
+          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
           "values": [
             {
               "type": "boolean"
@@ -6223,8 +6263,14 @@
           "attr": "show-seconds",
           "reflectToAttr": false,
           "docs": "Show seconds input",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
+            }
+          ],
           "default": "true",
+          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
           "values": [
             {
               "type": "boolean"
@@ -6794,7 +6840,8 @@
         "ix-menu-avatar",
         "ix-menu-category",
         "ix-select",
-        "ix-split-button"
+        "ix-split-button",
+        "ix-time-input"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -6832,6 +6879,9 @@
           "ix-dropdown"
         ],
         "ix-split-button": [
+          "ix-dropdown"
+        ],
+        "ix-time-input": [
           "ix-dropdown"
         ]
       },
@@ -9575,7 +9625,7 @@
         "ix-pane",
         "ix-select",
         "ix-split-button",
-        "ix-time-picker",
+        "ix-time-input",
         "ix-toast"
       ],
       "dependencies": [
@@ -9669,7 +9719,7 @@
         "ix-split-button": [
           "ix-icon-button"
         ],
-        "ix-time-picker": [
+        "ix-time-input": [
           "ix-icon-button"
         ],
         "ix-toast": [
@@ -16377,6 +16427,348 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/progress-indicator",
+      "filePath": "src/components/progress-indicator/progress-indicator.tsx",
+      "fileName": "progress-indicator.tsx",
+      "readmePath": "src/components/progress-indicator/readme.md",
+      "usagesDir": "src/components/progress-indicator/usage",
+      "tag": "ix-progress-indicator",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "3.2.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-typography",
+        "ix-tooltip"
+      ],
+      "dependencyGraph": {
+        "ix-progress-indicator": [
+          "ix-typography",
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "helperText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "The helper text for the progress indicator.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "label",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "The label for the progress indicator.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "max",
+          "reflectToAttr": false,
+          "docs": "The maximum value of the progress indicator.",
+          "docsTags": [],
+          "default": "100",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "min",
+          "reflectToAttr": false,
+          "docs": "The minimum value of the progress indicator.",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Show the helper text as a tooltip",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "size",
+          "type": "\"lg\" | \"md\" | \"sm\" | \"xl\" | \"xs\"",
+          "complexType": {
+            "original": "ProgressIndicatorSize",
+            "resolved": "\"lg\" | \"md\" | \"sm\" | \"xl\" | \"xs\"",
+            "references": {
+              "ProgressIndicatorSize": {
+                "location": "local",
+                "path": "src/components/progress-indicator/progress-indicator.tsx",
+                "id": "src/components/progress-indicator/progress-indicator.tsx::ProgressIndicatorSize"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "The size of the progress indicator.",
+          "docsTags": [],
+          "default": "'md'",
+          "values": [
+            {
+              "value": "lg",
+              "type": "string"
+            },
+            {
+              "value": "md",
+              "type": "string"
+            },
+            {
+              "value": "sm",
+              "type": "string"
+            },
+            {
+              "value": "xl",
+              "type": "string"
+            },
+            {
+              "value": "xs",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "status",
+          "type": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
+          "complexType": {
+            "original": "| 'default'\n    | 'success'\n    | 'error'\n    | 'info'\n    | 'warning'\n    | 'paused'",
+            "resolved": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "status",
+          "reflectToAttr": false,
+          "docs": "The state of the progress indicator.\nThis is used to indicate the current state of the progress indicator.",
+          "docsTags": [],
+          "default": "'default'",
+          "values": [
+            {
+              "value": "default",
+              "type": "string"
+            },
+            {
+              "value": "error",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "paused",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textAlignment",
+          "type": "\"center\" | \"left\" | \"right\"",
+          "complexType": {
+            "original": "'left' | 'center' | 'right'",
+            "resolved": "\"center\" | \"left\" | \"right\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "The text alignment for the helper text.\nCan be 'left', 'center', or 'right'.",
+          "docsTags": [],
+          "default": "'left'",
+          "values": [
+            {
+              "value": "center",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "type",
+          "type": "\"circular\" | \"linear\"",
+          "complexType": {
+            "original": "'linear' | 'circular'",
+            "resolved": "\"circular\" | \"linear\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "The type of progress indicator to use.",
+          "docsTags": [],
+          "default": "'linear'",
+          "values": [
+            {
+              "value": "circular",
+              "type": "string"
+            },
+            {
+              "value": "linear",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "The value of the progress indicator.",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/push-card",
       "filePath": "src/components/push-card/push-card.tsx",
       "fileName": "push-card.tsx",
@@ -20024,6 +20416,819 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/time-input",
+      "filePath": "src/components/time-input/time-input.tsx",
+      "fileName": "time-input.tsx",
+      "readmePath": "src/components/time-input/readme.md",
+      "usagesDir": "src/components/time-input/usage",
+      "tag": "ix-time-input",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "3.2.0"
+        },
+        {
+          "name": "form-ready"
+        },
+        {
+          "name": "slot",
+          "text": "start - Element will be displayed at the start of the input"
+        },
+        {
+          "name": "slot",
+          "text": "end - Element will be displayed at the end of the input"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-field-wrapper",
+        "ix-dropdown",
+        "ix-time-picker"
+      ],
+      "dependencyGraph": {
+        "ix-time-input": [
+          "ix-icon-button",
+          "ix-field-wrapper",
+          "ix-dropdown",
+          "ix-time-picker"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-time-picker": [
+          "ix-date-time-card",
+          "ix-typography",
+          "ix-button"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disabled attribute",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": false,
+          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docsTags": [],
+          "default": "'TT'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "helperText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Helper text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hourInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hour-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for hour selection",
+          "docsTags": [],
+          "default": "1",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nErrorTimeUnparsable",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-error-time-unparsable",
+          "reflectToAttr": false,
+          "docs": "I18n string for the error message when the time is not parsable",
+          "docsTags": [],
+          "default": "'Time is not valid'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nHourColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-hour-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker hour column header",
+          "docsTags": [],
+          "default": "'hr'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nMillisecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-millisecond-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker millisecond column header",
+          "docsTags": [],
+          "default": "'ms'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nMinuteColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-minute-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker minute column header",
+          "docsTags": [],
+          "default": "'min'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nSecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-second-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker second column header",
+          "docsTags": [],
+          "default": "'sec'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nSelectTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-select-time",
+          "reflectToAttr": false,
+          "docs": "Text of time-picker time select button",
+          "docsTags": [],
+          "default": "'Confirm'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-time",
+          "reflectToAttr": false,
+          "docs": "Text for time-picker top label",
+          "docsTags": [],
+          "default": "'Time'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "infoText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "Info text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": true,
+          "docs": "Error text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "label",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label of the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "locale",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "millisecondInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "millisecond-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for millisecond selection",
+          "docsTags": [],
+          "default": "100",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "minuteInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "minute-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for minute selection",
+          "docsTags": [],
+          "default": "1",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "name",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the input element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "Placeholder of the input element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "Readonly attribute",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "required",
+          "type": "boolean | undefined",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "Required attribute",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "secondInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "second-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for second selection",
+          "docsTags": [],
+          "default": "1",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean | undefined",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Show text as tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "validText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "Valid text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Value of the input element",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "warningText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "Warning text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Get the native input element",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "validityStateChange",
+          "detail": "{ patternMismatch: boolean; invalidReason?: string | undefined; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "TimeInputValidityState",
+            "resolved": "{ patternMismatch: boolean; invalidReason?: string | undefined; }",
+            "references": {
+              "TimeInputValidityState": {
+                "location": "local",
+                "path": "src/components/time-input/time-input.tsx",
+                "id": "src/components/time-input/time-input.tsx::TimeInputValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Validation state change event.",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": false,
+          "composed": true,
+          "docs": "Input change event.",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [
+        {
+          "name": "end",
+          "docs": "Element will be displayed at the end of the input"
+        },
+        {
+          "name": "start",
+          "docs": "Element will be displayed at the start of the input"
+        }
+      ],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/time-picker",
       "filePath": "src/components/time-picker/time-picker.tsx",
       "fileName": "time-picker.tsx",
@@ -20036,28 +21241,27 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-time-input"
       ],
       "dependencies": [
         "ix-date-time-card",
         "ix-typography",
-        "ix-icon-button",
         "ix-button"
       ],
       "dependencyGraph": {
         "ix-time-picker": [
           "ix-date-time-card",
           "ix-typography",
-          "ix-icon-button",
           "ix-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
         ],
         "ix-button": [
           "ix-spinner"
         ],
         "ix-datetime-picker": [
+          "ix-time-picker"
+        ],
+        "ix-time-input": [
           "ix-time-picker"
         ]
       },
@@ -20116,12 +21320,301 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.\nNote: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.",
           "docsTags": [],
           "default": "'TT'",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hideHeader",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-header",
+          "reflectToAttr": false,
+          "docs": "Hides the header of the picker.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.2.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hourInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "hour-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for hour selection",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.2.0"
+            }
+          ],
+          "default": "HOUR_INTERVAL_DEFAULT",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nConfirmTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-confirm-time",
+          "reflectToAttr": false,
+          "docs": "Text of the time confirm button",
+          "docsTags": [],
+          "default": "CONFIRM_BUTTON_DEFAULT",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-header",
+          "reflectToAttr": false,
+          "docs": "Text for top header",
+          "docsTags": [],
+          "default": "HEADER_DEFAULT",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nHourColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for hour column header",
+          "docsTags": [],
+          "default": "'hr'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nMillisecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-millisecond-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for millisecond column header",
+          "docsTags": [],
+          "default": "'ms'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nMinuteColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-minute-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for minute column header",
+          "docsTags": [],
+          "default": "'min'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "i18nSecondColumnHeader",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-second-column-header",
+          "reflectToAttr": false,
+          "docs": "Text for second column header",
+          "docsTags": [],
+          "default": "'sec'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "millisecondInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "millisecond-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for millisecond selection",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.2.0"
+            }
+          ],
+          "default": "MILLISECOND_INTERVAL_DEFAULT",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "minuteInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "minute-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for minute selection",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.2.0"
+            }
+          ],
+          "default": "MINUTE_INTERVAL_DEFAULT",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "secondInterval",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "second-interval",
+          "reflectToAttr": false,
+          "docs": "Interval for second selection",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.2.0"
+            }
+          ],
+          "default": "SECOND_INTERVAL_DEFAULT",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -20141,8 +21634,14 @@
           "attr": "show-hour",
           "reflectToAttr": false,
           "docs": "Show hour input",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
+            }
+          ],
           "default": "true",
+          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
           "values": [
             {
               "type": "boolean"
@@ -20165,8 +21664,14 @@
           "attr": "show-minutes",
           "reflectToAttr": false,
           "docs": "Show minutes input",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
+            }
+          ],
           "default": "true",
+          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
           "values": [
             {
               "type": "boolean"
@@ -20189,8 +21694,14 @@
           "attr": "show-seconds",
           "reflectToAttr": false,
           "docs": "Show seconds input",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
+            }
+          ],
           "default": "true",
+          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
           "values": [
             {
               "type": "boolean"
@@ -20236,9 +21747,15 @@
           "mutable": false,
           "attr": "text-select-time",
           "reflectToAttr": false,
-          "docs": "Text of date select button",
-          "docsTags": [],
-          "default": "'Done'",
+          "docs": "Text of time select button",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Use `i18nConfirmTime` instead. Will be removed in 4.0.0."
+            }
+          ],
+          "default": "CONFIRM_BUTTON_DEFAULT",
+          "deprecation": "Use `i18nConfirmTime` instead. Will be removed in 4.0.0.",
           "values": [
             {
               "type": "string"
@@ -20261,8 +21778,14 @@
           "attr": "text-time",
           "reflectToAttr": false,
           "docs": "Text for top label",
-          "docsTags": [],
-          "default": "'Time'",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Use `i18nHeader` instead. Will be removed in 4.0.0."
+            }
+          ],
+          "default": "HEADER_DEFAULT",
+          "deprecation": "Use `i18nHeader` instead. Will be removed in 4.0.0.",
           "values": [
             {
               "type": "string"
@@ -20309,7 +21832,13 @@
           "attr": "time-reference",
           "reflectToAttr": false,
           "docs": "Set time reference",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "This is determined by the currently set time. Will be removed in 4.0.0."
+            }
+          ],
+          "deprecation": "This is determined by the currently set time. Will be removed in 4.0.0.",
           "values": [
             {
               "value": "AM",
@@ -21338,6 +22867,7 @@
         "ix-field-wrapper",
         "ix-menu-item",
         "ix-pill",
+        "ix-progress-indicator",
         "ix-slider"
       ],
       "dependencies": [
@@ -21357,6 +22887,9 @@
           "ix-tooltip"
         ],
         "ix-pill": [
+          "ix-tooltip"
+        ],
+        "ix-progress-indicator": [
           "ix-tooltip"
         ],
         "ix-slider": [
@@ -21944,6 +23477,7 @@
         "ix-modal-header",
         "ix-pagination",
         "ix-pane",
+        "ix-progress-indicator",
         "ix-push-card",
         "ix-radio",
         "ix-slider",
@@ -22009,6 +23543,9 @@
           "ix-typography"
         ],
         "ix-pane": [
+          "ix-typography"
+        ],
+        "ix-progress-indicator": [
           "ix-typography"
         ],
         "ix-push-card": [
@@ -23162,6 +24699,11 @@
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },
+    "src/components/progress-indicator/progress-indicator.tsx::ProgressIndicatorSize": {
+      "declaration": "export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';",
+      "docstring": "",
+      "path": "src/components/progress-indicator/progress-indicator.tsx"
+    },
     "src/components/push-card/push-card.tsx::PushCardVariant": {
       "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
@@ -23191,6 +24733,11 @@
       "declaration": "export type TextareaResizeBehavior =\n  | 'both'\n  | 'horizontal'\n  | 'vertical'\n  | 'none';",
       "docstring": "",
       "path": "src/components/input/textarea.tsx"
+    },
+    "src/components/time-input/time-input.tsx::TimeInputValidityState": {
+      "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
+      "docstring": "",
+      "path": "src/components/time-input/time-input.tsx"
     },
     "src/components/time-picker/time-picker.tsx::TimePickerCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
