@@ -29,13 +29,14 @@ function getCircularSize(size: ProgressIndicatorSize) {
 export type CircularProgressProps = {
   value: number;
   size: ProgressIndicatorSize;
+  alignment?: 'left' | 'center' | 'right';
 };
 
 export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
   props: Readonly<CircularProgressProps>,
   children
 ) => {
-  const { value, size } = props;
+  const { value, size, alignment } = props;
   const sizeInPixel = getCircularSize(size);
   const radius = sizeInPixel / 2;
   const circumference = 2 * Math.PI * radius;
@@ -44,7 +45,12 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
   const slotInsideCircular = size === 'lg' || size === 'xl';
 
   return (
-    <div class="circular-progress-container">
+    <div
+      class={{
+        'circular-progress-container': true,
+        [`align-${alignment}`]: !!alignment,
+      }}
+    >
       <svg
         width={sizeInPixel}
         height={sizeInPixel}

@@ -12,9 +12,21 @@
     align-items: center;
     width: 100%;
     gap: 0.25rem;
+
+    &.align-left {
+      justify-content: flex-start;
+    }
+
+    &.align-center {
+      justify-content: center;
+    }
+
+    &.align-right {
+      justify-content: flex-end;
+    }
   }
+
   .slotted-container {
-    width: 100%;
     height: 100%;
   }
 

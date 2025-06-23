@@ -17,6 +17,7 @@
 
   .progress-container {
     display: flex;
+    width: 100%;
     align-items: center;
     gap: 0.5rem;
     flex-wrap: nowrap;
@@ -28,12 +29,16 @@
 
   .helper-text {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     margin: 0.25rem 0px;
     gap: 0.25rem;
 
     ix-icon {
       margin: 0.125rem;
+    }
+
+    &.default {
+      color: var(--theme-color-soft-text);
     }
 
     &.success {
@@ -68,21 +73,38 @@
       }
     }
 
-    &.text-left {
-      justify-content: flex-start;
-    }
+    .text {
+      &.align-left {
+        text-align: start;
+      }
 
-    &.text-right {
-      justify-content: flex-end;
-    }
+      &.align-right {
+        text-align: end;
+      }
 
-    &.text-center {
-      justify-content: center;
+      &.align-center {
+        text-align: center;
+      }
     }
   }
 
   .progress-indicator {
-    --ix-progress-indicator-color: var(--theme-color-success);
+    display: flex;
+    flex-direction: column;
+
+    &.text-center {
+      align-items: center;
+    }
+
+    &.text-left {
+      align-items: flex-start;
+    }
+
+    &.text-right {
+      align-items: flex-end;
+    }
+
+    --ix-progress-indicator-color: var(--theme-color-dynamic);
 
     height: 100%;
 
