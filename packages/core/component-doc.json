@@ -20404,10 +20404,12 @@
         "ix-toast-container"
       ],
       "dependencies": [
+        "ix-typography",
         "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-toast": [
+          "ix-typography",
           "ix-icon-button"
         ],
         "ix-icon-button": [
@@ -20631,6 +20633,7 @@
           "ix-toast"
         ],
         "ix-toast": [
+          "ix-typography",
           "ix-icon-button"
         ],
         "ix-icon-button": [
@@ -21949,6 +21952,7 @@
         "ix-slider",
         "ix-textarea",
         "ix-time-picker",
+        "ix-toast",
         "ix-toggle",
         "ix-tooltip"
       ],
@@ -22024,6 +22028,9 @@
           "ix-typography"
         ],
         "ix-time-picker": [
+          "ix-typography"
+        ],
+        "ix-toast": [
           "ix-typography"
         ],
         "ix-toggle": [

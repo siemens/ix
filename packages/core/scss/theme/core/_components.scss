@@ -103,6 +103,7 @@
 @use "./components/nav-overlay-header" as asComponent_nav-overlay-header;
 @use "./components/nav-overlay" as asComponent_nav-overlay;
 @use "./components/nav" as asComponent_nav;
+@use "./components/navigation" as asComponent_navigation;
 @use "./components/overlay-header" as asComponent_overlay-header;
 @use "./components/overlay" as asComponent_overlay;
 @use "./components/pill-outline" as asComponent_pill-outline;
@@ -146,7 +147,6 @@
 @use "./components/table-selection" as asComponent_table-selection;
 @use "./components/table" as asComponent_table;
 @use "./components/theme-modal" as asComponent_theme-modal;
-@use "./components/theme-navigation" as asComponent_theme-navigation;
 @use "./components/tile" as asComponent_tile;
 @use "./components/toast-timer-track" as asComponent_toast-timer-track;
 @use "./components/toast-timer-value" as asComponent_toast-timer-value;
@@ -277,6 +277,7 @@
   @include asComponent_nav-overlay-header.setVars;
   @include asComponent_nav-overlay.setVars;
   @include asComponent_nav.setVars;
+  @include asComponent_navigation.setVars;
   @include asComponent_overlay-header.setVars;
   @include asComponent_overlay.setVars;
   @include asComponent_pill-outline.setVars;
@@ -320,7 +321,6 @@
   @include asComponent_table-selection.setVars;
   @include asComponent_table.setVars;
   @include asComponent_theme-modal.setVars;
-  @include asComponent_theme-navigation.setVars;
   @include asComponent_tile.setVars;
   @include asComponent_toast-timer-track.setVars;
   @include asComponent_toast-timer-value.setVars;

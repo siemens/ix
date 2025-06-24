@@ -1,5 +1,5 @@
 @mixin setVars {
   --theme-btn--focus--outline-offset: var(--theme-focus-outline-offset);
   --theme-btn--border-radius: var(--theme-min-border-radius);
-  --theme-btn--border-thickness: var(--theme-border-width-thick);
+  --theme-btn--border-thickness: var(--theme-border-width-default);
 }
