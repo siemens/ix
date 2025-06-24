@@ -32,17 +32,19 @@ export function hasAnyText({
   );
 }
 
-export function HelperText(props: Readonly<{
-  isInvalid: boolean;
-  invalidText?: string;
-  isWarning: boolean;
-  warningText?: string;
-  isInfo: boolean;
-  infoText?: string;
-  isValid: boolean;
-  validText?: string;
-  helperText?: string;
-}>) {
+export function HelperText(
+  props: Readonly<{
+    isInvalid: boolean;
+    invalidText?: string;
+    isWarning: boolean;
+    warningText?: string;
+    isInfo: boolean;
+    infoText?: string;
+    isValid: boolean;
+    validText?: string;
+    helperText?: string;
+  }>
+) {
   if (!hasAnyText(props)) return null;
   if (props.isInvalid && props.invalidText?.trim() !== '') {
     return (
