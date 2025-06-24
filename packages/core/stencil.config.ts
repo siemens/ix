@@ -48,6 +48,7 @@ export const config: Config = {
   globalScript: './src/setup.ts',
   extras: {
     enableImportInjection: true,
+    addGlobalStyleToComponents: false,
   },
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/www/'],
