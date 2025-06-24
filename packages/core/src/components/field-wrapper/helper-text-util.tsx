@@ -32,7 +32,7 @@ export function hasAnyText({
   );
 }
 
-export function HelperText(props: {
+export function HelperText(props: Readonly<{
   isInvalid: boolean;
   invalidText?: string;
   isWarning: boolean;
@@ -42,7 +42,7 @@ export function HelperText(props: {
   isValid: boolean;
   validText?: string;
   helperText?: string;
-}) {
+}>) {
   if (!hasAnyText(props)) return null;
   if (props.isInvalid && props.invalidText?.trim() !== '') {
     return (
