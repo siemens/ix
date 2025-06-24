@@ -1,4 +1,4 @@
-name: (Shared) Manage stale issues and PRs
+name: Manage stale issues
 on:
   schedule:
     # Run hourly
