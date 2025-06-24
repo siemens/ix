@@ -53,9 +53,9 @@ export class PushCard {
           <ix-card-content>
             <ix-card-title>
               {this.icon ? (
-                <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
+                <ix-icon class="icon" name={this.icon} size="32"></ix-icon>
               ) : null}
-              <span class={'notification'}>{this.notification ?? 0}</span>
+              <ix-typography format="display-xxl">{this.notification ?? 0}</ix-typography>
               <slot name="title-action"></slot>
             </ix-card-title>
             <ix-typography format="h4">{this.heading}</ix-typography>

@@ -167,7 +167,9 @@ export class Toast {
           ) : null}
           <div class="toast-content">
             {this.toastTitle ? (
-              <div class="toast-title">{this.toastTitle}</div>
+              <ix-typography class="toast-title" format="h5">
+                {this.toastTitle}
+              </ix-typography>
             ) : null}
             <div class="toast-message">
               <slot></slot>
