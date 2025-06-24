@@ -35,7 +35,7 @@
     "gulp-sass": "^5.1.0",
     "http-server": "^14.1.1",
     "rimraf": "^5.0.9",
-    "sass": "^1.77.8",
+    "sass": "^1.89.2",
     "ts-node": "^10.9.2"
   },
   "dependencies": {
