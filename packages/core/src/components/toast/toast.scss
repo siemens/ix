@@ -28,7 +28,9 @@
   background-color: var(--theme-toast--background);
   border: var(--theme-toast--border-thickness) solid
     var(--theme-toast--border-color);
-  border-radius: var(--theme-toast--border-radius);
+  border-radius: var(--theme-toast--border-radius,
+    var(--theme-toast--border-radus)
+  );
   box-shadow: var(--theme-toast--box-shadow);
 
   --animate-duration: #{$medium-time};
