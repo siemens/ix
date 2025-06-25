@@ -9,6 +9,9 @@
 
 import { Component } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
+import { AggridCellRendererPill } from './aggrid-cell-renderer/aggrid-cell-renderer-pill';
+import { AggridCellRendererIcon } from './aggrid-cell-renderer/aggrid-cell-renderer-icon';
+import { AggridCellRenderer } from './aggrid-cell-renderer/aggrid-cell-renderer';
 
 @Component({
   selector: 'app-example',
@@ -22,6 +25,7 @@ export default class AGGrid {
         headerName: 'Type',
         resizable: true,
         checkboxSelection: true,
+        cellRenderer: AggridCellRendererPill,
       },
       {
         field: 'status',
@@ -29,29 +33,23 @@ export default class AGGrid {
         resizable: true,
         sortable: true,
         filter: true,
+        cellRenderer: AggridCellRendererIcon,
       },
-      { field: 'hwVersion', headerName: 'HW version', resizable: true },
-    ],
-    rowData: [
       {
-        type: 'Equipment',
+        field: 'hwVersion',
+        headerName: 'HW version',
+        resizable: true,
+        cellRenderer: AggridCellRenderer,
+      },
+    ],
+    rowData: Array.from({ length: 10000 }).map((_, index) => {
+      return {
+        type: 'Equipment' + index,
         status: 'Normal',
         hwVersion: '2.0',
         checked: false,
-      },
-      {
-        type: 'Positioner',
-        status: 'Maintenance',
-        hwVersion: '1.0',
-        checked: true,
-      },
-      {
-        type: 'Pressure sensor',
-        status: 'Unknown',
-        hwVersion: 'N/A',
-        checked: false,
-      },
-    ],
+      };
+    }),
     rowSelection: 'multiple',
     suppressCellFocus: true,
     checkboxSelection: true,

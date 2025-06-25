@@ -247,6 +247,7 @@ import ProgressIndicatorLinearStatus from '../preview-examples/progress-indicato
 import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
 import ProgressIndicatorCircularStatus from '../preview-examples/progress-indicator-circular-status';
 import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
+import { AgGridCustomRendererModule } from '../preview-examples/aggrid-cell-renderer/aggrid-cell.module';
 
 @NgModule({
   declarations: [
@@ -524,6 +525,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     NgxEchartsModule.forRoot({
       echarts,
     }),
+    AgGridCustomRendererModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
