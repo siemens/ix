@@ -90,12 +90,11 @@ regressionTest(
     await expect(workflowSteps).toHaveClass(/hydrated/);
     await expect(selectedDiv).toHaveClass(/selected/);
     let icon = await page.locator('#step1 ix-icon').nth(1);
-    let iconAriaLabel = await icon.getAttribute('aria-label');
     await step1.evaluate((el) => {
       el.setAttribute('status', 'error');
     });
     await expect(step1).toHaveAttribute('status', 'error');
-    iconAriaLabel = await icon.getAttribute('aria-label');
+    let iconAriaLabel = await icon.getAttribute('aria-label');
     expect(iconAriaLabel).toBe('Error');
     await step1.evaluate((el) => {
       el.setAttribute('status', 'open');
