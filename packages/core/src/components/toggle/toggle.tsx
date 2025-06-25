@@ -134,26 +134,28 @@ export class Toggle implements IxFormComponent<string> {
   }
 
   componentDidLoad() {
-     this.calculateLineClamp();
-     this.setupResizeObserver();
+    this.initializeDynamicLabelResize();
   }
 
-   private calculateLineClamp() {
+  private calculateLineClamp() {
     const container = this.hostElement.shadowRoot!.querySelector('label');
     if (!container) return;
-
+    const computedStyle = window.getComputedStyle(container);
+    const lineHeight = computedStyle.lineHeight;
+    const lineHeightInPx = parseFloat(lineHeight);
     const containerHeight = container.clientHeight;
-    this.lineClamp = Math.floor(containerHeight / 20);
+    this.lineClamp = Math.floor(containerHeight / lineHeightInPx);
   }
-  private setupResizeObserver() {
+
+  private initializeDynamicLabelResize() {
+    const container = this.hostElement.shadowRoot?.querySelector('label');
+    if (!container) return;
+
     this.resizeObserver = new ResizeObserver(() => {
       this.calculateLineClamp();
     });
 
-    const container = this.hostElement.shadowRoot!.querySelector('label');
-    if (container) {
-      this.resizeObserver.observe(container);
-    }
+    this.resizeObserver.observe(container);
   }
 
   updateFormInternalValue(): void {
@@ -243,7 +245,12 @@ export class Toggle implements IxFormComponent<string> {
             }
           />
           {!this.hideText && (
-            <ix-typography class="label" style={{'-webkit-line-clamp': `${this.lineClamp}`}}>{toggleText}</ix-typography>
+            <ix-typography
+              class="label"
+              style={{ '-webkit-line-clamp': `${this.lineClamp}` }}
+            >
+              {toggleText}
+            </ix-typography>
           )}
         </label>
       </Host>
