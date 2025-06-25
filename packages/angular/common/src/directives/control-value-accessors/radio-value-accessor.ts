@@ -9,9 +9,13 @@
 
 import { Directive, HostListener, ElementRef, Injector } from '@angular/core';
 import { ValueAccessor } from './value-accessor';
+import { Subscription } from 'rxjs';
 
 @Directive()
 export class RadioValueAccessorBaseDirective extends ValueAccessor {
+
+  private radioValueChangeSubscription?: Subscription;
+
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
   }
@@ -22,7 +26,7 @@ export class RadioValueAccessorBaseDirective extends ValueAccessor {
   }
 
   private handleRadioGroupValueChange(): void {
-    this.getAssignedNgControl()?.valueChanges?.subscribe((value: string) => {
+    this.radioValueChangeSubscription = this.getAssignedNgControl()?.valueChanges?.subscribe((value: string) => {
       this.lastValue = value;
     });
   }
@@ -37,5 +41,12 @@ export class RadioValueAccessorBaseDirective extends ValueAccessor {
   @HostListener('checkedChange', ['$event.target'])
   handleChangeEvent(el: any): void {
     super.handleValueChange(el, el.value);
+  }
+
+  override ngOnDestroy() {
+    super.ngOnDestroy();
+    if (this.radioValueChangeSubscription) {
+      this.radioValueChangeSubscription.unsubscribe();
+    }
   }
 }
