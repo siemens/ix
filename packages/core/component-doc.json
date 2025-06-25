@@ -17409,6 +17409,30 @@
           "setter": false
         },
         {
+          "name": "i18nAllSelected",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-all-selected",
+          "reflectToAttr": false,
+          "docs": "Chip label for all selected items in multiple mode.",
+          "docsTags": [],
+          "default": "'All'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "i18nNoMatches",
           "type": "string",
           "complexType": {

@@ -1472,6 +1472,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         i18nPlaceholderEditable: 'i-1-8n-placeholder-editable',
         i18nSelectListHeader: 'i-1-8n-select-list-header',
         i18nNoMatches: 'i-1-8n-no-matches',
+        i18nAllSelected: 'i-1-8n-all-selected',
         hideListHeader: 'hide-list-header',
         dropdownWidth: 'dropdown-width',
         dropdownMaxWidth: 'dropdown-max-width'
