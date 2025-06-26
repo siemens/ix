@@ -44,11 +44,16 @@ export class IxActionCard {
   @Prop() selected = false;
 
   render() {
-    const shouldUseSoftColor = this.variant === 'outline' || this.variant === 'filled';
+    const shouldUseSoftColor =
+      this.variant === 'outline' || this.variant === 'filled';
 
     return (
       <Host>
-        <ix-card selected={this.selected} variant={this.variant}>
+        <ix-card
+          selected={this.selected}
+          variant={this.variant}
+          class={'pointer'}
+        >
           <ix-card-content>
             {this.icon ? (
               <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
@@ -58,7 +63,10 @@ export class IxActionCard {
                 <ix-typography format="h4">{this.heading}</ix-typography>
               ) : null}
               {this.subheading ? (
-                <ix-typography format="h5" text-color={shouldUseSoftColor ? 'soft' : undefined}>
+                <ix-typography
+                  format="h5"
+                  text-color={shouldUseSoftColor ? 'soft' : undefined}
+                >
                   {this.subheading}
                 </ix-typography>
               ) : null}
