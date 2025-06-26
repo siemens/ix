@@ -46,14 +46,7 @@ export class IxActionCard {
   render() {
     return (
       <Host>
-        <ix-card
-          selected={this.selected}
-          variant={this.variant}
-          class={{
-            pointer: true,
-            [`variant-${this.variant}`]: true,
-          }}
-        >
+        <ix-card selected={this.selected} variant={this.variant}>
           <ix-card-content>
             {this.icon ? (
               <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
@@ -63,9 +56,7 @@ export class IxActionCard {
                 <ix-typography format="h4">{this.heading}</ix-typography>
               ) : null}
               {this.subheading ? (
-                <ix-typography format="h5" class="subheading">
-                  {this.subheading}
-                </ix-typography>
+                <ix-typography format="h5">{this.subheading}</ix-typography>
               ) : null}
               <slot></slot>
             </div>
