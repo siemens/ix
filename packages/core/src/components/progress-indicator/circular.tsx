@@ -76,7 +76,6 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
             cy={radius}
             stroke="var(--ix-progress-indicator-color)"
             stroke-width="3px"
-            stroke-linecap="round"
             stroke-dashoffset={`${percentage}px`}
             fill="transparent"
             stroke-dasharray={`${circumference}px`}

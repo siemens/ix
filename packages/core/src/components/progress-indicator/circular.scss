@@ -12,6 +12,7 @@
     align-items: center;
     width: 100%;
     gap: 0.25rem;
+    margin: var(--ix-progress-indicator-margin, 0.5rem 0);
 
     &.align-left {
       justify-content: flex-start;
