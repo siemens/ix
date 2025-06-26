@@ -49,7 +49,10 @@ export class IxActionCard {
         <ix-card
           selected={this.selected}
           variant={this.variant}
-          class={'pointer'}
+          class={{
+            pointer: true,
+            [`variant-${this.variant}`]: true,
+          }}
         >
           <ix-card-content>
             {this.icon ? (
@@ -60,7 +63,9 @@ export class IxActionCard {
                 <ix-typography format="h4">{this.heading}</ix-typography>
               ) : null}
               {this.subheading ? (
-                <ix-typography format="h5">{this.subheading}</ix-typography>
+                <ix-typography format="h5" class="subheading">
+                  {this.subheading}
+                </ix-typography>
               ) : null}
               <slot></slot>
             </div>

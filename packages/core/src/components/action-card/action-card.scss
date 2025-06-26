@@ -24,4 +24,14 @@
     width: 100%;
     height: 100%;
   }
+  .subheading {
+    color: inherit;
+  }
+
+  ix-card.variant-outline,
+  ix-card.variant-filled {
+    .subheading {
+      color: var(--theme-color-soft-text);
+    }
+  }
 }
