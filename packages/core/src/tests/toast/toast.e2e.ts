@@ -22,4 +22,10 @@ regressionTest.describe('toast', () => {
     await page.waitForTimeout(200);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('custom', async ({ page }) => {
+    await page.goto('toast/custom');
+    await page.waitForTimeout(200);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
