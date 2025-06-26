@@ -44,6 +44,8 @@ export class IxActionCard {
   @Prop() selected = false;
 
   render() {
+    const shouldUseSoftColor = this.variant === 'outline' || this.variant === 'filled';
+
     return (
       <Host>
         <ix-card selected={this.selected} variant={this.variant}>
@@ -56,7 +58,9 @@ export class IxActionCard {
                 <ix-typography format="h4">{this.heading}</ix-typography>
               ) : null}
               {this.subheading ? (
-                <ix-typography format="h5">{this.subheading}</ix-typography>
+                <ix-typography format="h5" text-color={shouldUseSoftColor ? 'soft' : undefined}>
+                  {this.subheading}
+                </ix-typography>
               ) : null}
               <slot></slot>
             </div>
