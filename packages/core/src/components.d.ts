@@ -38,11 +38,13 @@ import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+import { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TextareaResizeBehavior } from "./components/input/textarea";
+import { TimeInputValidityState } from "./components/time-input/time-input";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
@@ -84,11 +86,13 @@ export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+export { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TextareaResizeBehavior } from "./components/input/textarea";
+export { TimeInputValidityState } from "./components/time-input/time-input";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
@@ -491,6 +495,11 @@ export namespace Components {
          */
         "background": string | undefined;
         /**
+          * Center the content of the chip. Set to false to disable centering.
+          * @since 3.2.0
+         */
+        "centerContent": boolean;
+        /**
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
         "chipColor": string | undefined;
@@ -701,7 +710,7 @@ export namespace Components {
      */
     interface IxDateInput {
         /**
-          * disabled attribute
+          * Disabled attribute
          */
         "disabled": boolean;
         /**
@@ -720,19 +729,19 @@ export namespace Components {
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * helper text below the input field
+          * Helper text below the input field
          */
         "helperText"?: string;
         /**
-          * i18n string for the error message when the date is not parsable
+          * I18n string for the error message when the date is not parsable
          */
         "i18nErrorDateUnparsable": string;
         /**
-          * info text below the input field
+          * Info text below the input field
          */
         "infoText"?: string;
         /**
-          * error text below the input field
+          * Error text below the input field
          */
         "invalidText"?: string;
         /**
@@ -740,7 +749,7 @@ export namespace Components {
          */
         "isTouched": () => Promise<boolean>;
         /**
-          * label of the input field
+          * Label of the input field
          */
         "label"?: string;
         /**
@@ -748,23 +757,23 @@ export namespace Components {
          */
         "locale"?: string;
         /**
-          * name of the input element
+          * Name of the input element
          */
         "name"?: string;
         /**
-          * placeholder of the input element
+          * Placeholder of the input element
          */
         "placeholder"?: string;
         /**
-          * readonly attribute
+          * Readonly attribute
          */
         "readonly": boolean;
         /**
-          * required attribute
+          * Required attribute
          */
         "required"?: boolean;
         /**
-          * show text as tooltip
+          * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -773,15 +782,15 @@ export namespace Components {
          */
         "showWeekNumbers": boolean;
         /**
-          * valid text below the input field
+          * Valid text below the input field
          */
         "validText"?: string;
         /**
-          * value of the input element
+          * Value of the input element
          */
         "value"?: string;
         /**
-          * warning text below the input field
+          * Warning text below the input field
          */
         "warningText"?: string;
     }
@@ -844,10 +853,22 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners1;
         /**
+          * Display footer
+         */
+        "hasFooter": boolean;
+        /**
+          * Hide header
+         */
+        "hideHeader": boolean;
+        /**
           * set styles
          */
         "individual": boolean;
         "standaloneAppearance"?: boolean;
+        /**
+          * Timepicker specific styling
+         */
+        "timePickerAppearance": boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -885,14 +906,17 @@ export namespace Components {
         "range": boolean;
         /**
           * Show hour input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showHour": boolean;
         /**
           * Show minutes input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showMinutes": boolean;
         /**
           * Show seconds input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showSeconds": boolean;
         /**
@@ -2200,6 +2224,56 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    /**
+     * @since 3.2.0
+     */
+    interface IxProgressIndicator {
+        /**
+          * The helper text for the progress indicator.
+         */
+        "helperText"?: string;
+        /**
+          * The label for the progress indicator.
+         */
+        "label"?: string;
+        /**
+          * The maximum value of the progress indicator.
+         */
+        "max": number;
+        /**
+          * The minimum value of the progress indicator.
+         */
+        "min": number;
+        /**
+          * Show the helper text as a tooltip
+         */
+        "showTextAsTooltip": boolean;
+        /**
+          * The size of the progress indicator.
+         */
+        "size": ProgressIndicatorSize;
+        /**
+          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
+         */
+        "status": | 'default'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning'
+    | 'paused';
+        /**
+          * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
+         */
+        "textAlignment": 'left' | 'center' | 'right';
+        /**
+          * The type of progress indicator to use.
+         */
+        "type": 'linear' | 'circular';
+        /**
+          * The value of the progress indicator.
+         */
+        "value": number;
+    }
     interface IxPushCard {
         /**
           * Collapse the card
@@ -2683,13 +2757,139 @@ export namespace Components {
          */
         "size": 'small' | 'medium' | 'big';
     }
+    /**
+     * @since 3.2.0
+     * @form-ready 
+     */
+    interface IxTimeInput {
+        /**
+          * Disabled attribute
+         */
+        "disabled": boolean;
+        /**
+          * Focuses the input field
+         */
+        "focusInput": () => Promise<void>;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "format": string;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
+        /**
+          * Get the native input element
+         */
+        "getNativeInputElement": () => Promise<HTMLInputElement>;
+        "getValidityState": () => Promise<ValidityState>;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * Helper text below the input field
+         */
+        "helperText"?: string;
+        /**
+          * Interval for hour selection
+         */
+        "hourInterval": number;
+        /**
+          * I18n string for the error message when the time is not parsable
+         */
+        "i18nErrorTimeUnparsable": string;
+        /**
+          * Text for time-picker hour column header
+         */
+        "i18nHourColumnHeader": string;
+        /**
+          * Text for time-picker millisecond column header
+         */
+        "i18nMillisecondColumnHeader": string;
+        /**
+          * Text for time-picker minute column header
+         */
+        "i18nMinuteColumnHeader": string;
+        /**
+          * Text for time-picker second column header
+         */
+        "i18nSecondColumnHeader": string;
+        /**
+          * Text of time-picker time select button
+         */
+        "i18nSelectTime": string;
+        /**
+          * Text for time-picker top label
+         */
+        "i18nTime": string;
+        /**
+          * Info text below the input field
+         */
+        "infoText"?: string;
+        /**
+          * Error text below the input field
+         */
+        "invalidText"?: string;
+        /**
+          * Returns whether the text field has been touched.
+         */
+        "isTouched": () => Promise<boolean>;
+        /**
+          * Label of the input field
+         */
+        "label"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de').
+         */
+        "locale"?: string;
+        /**
+          * Interval for millisecond selection
+         */
+        "millisecondInterval": number;
+        /**
+          * Interval for minute selection
+         */
+        "minuteInterval": number;
+        /**
+          * Name of the input element
+         */
+        "name"?: string;
+        /**
+          * Placeholder of the input element
+         */
+        "placeholder"?: string;
+        /**
+          * Readonly attribute
+         */
+        "readonly": boolean;
+        /**
+          * Required attribute
+         */
+        "required"?: boolean;
+        /**
+          * Interval for second selection
+         */
+        "secondInterval": number;
+        /**
+          * Show text as tooltip
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * Valid text below the input field
+         */
+        "validText"?: string;
+        /**
+          * Value of the input element
+         */
+        "value": string;
+        /**
+          * Warning text below the input field
+         */
+        "warningText"?: string;
+    }
     interface IxTimePicker {
         /**
           * Corner style
          */
         "corners": TimePickerCorners;
+        "dateTimePickerAppearance": boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
          */
         "format": string;
         /**
@@ -2697,15 +2897,67 @@ export namespace Components {
          */
         "getCurrentTime": () => Promise<string | undefined>;
         /**
+          * Hides the header of the picker.
+          * @since 3.2.0
+         */
+        "hideHeader": boolean;
+        /**
+          * Interval for hour selection
+          * @since 3.2.0
+         */
+        "hourInterval": number;
+        /**
+          * Text of the time confirm button
+         */
+        "i18nConfirmTime": string;
+        /**
+          * Text for top header
+         */
+        "i18nHeader": string;
+        /**
+          * Text for hour column header
+         */
+        "i18nHourColumnHeader": string;
+        /**
+          * Text for millisecond column header
+         */
+        "i18nMillisecondColumnHeader": string;
+        /**
+          * Text for minute column header
+         */
+        "i18nMinuteColumnHeader": string;
+        /**
+          * Text for second column header
+         */
+        "i18nSecondColumnHeader": string;
+        /**
+          * Interval for millisecond selection
+          * @since 3.2.0
+         */
+        "millisecondInterval": number;
+        /**
+          * Interval for minute selection
+          * @since 3.2.0
+         */
+        "minuteInterval": number;
+        /**
+          * Interval for second selection
+          * @since 3.2.0
+         */
+        "secondInterval": number;
+        /**
           * Show hour input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showHour": boolean;
         /**
           * Show minutes input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showMinutes": boolean;
         /**
           * Show seconds input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showSeconds": boolean;
         /**
@@ -2713,11 +2965,13 @@ export namespace Components {
          */
         "standaloneAppearance": boolean;
         /**
-          * Text of date select button
+          * Text of time select button
+          * @deprecated Use `i18nConfirmTime` instead. Will be removed in 4.0.0.
          */
         "textSelectTime": string;
         /**
           * Text for top label
+          * @deprecated Use `i18nHeader` instead. Will be removed in 4.0.0.
          */
         "textTime": string;
         /**
@@ -2726,6 +2980,7 @@ export namespace Components {
         "time": string;
         /**
           * Set time reference
+          * @deprecated This is determined by the currently set time. Will be removed in 4.0.0.
          */
         "timeReference": 'AM' | 'PM' | undefined;
     }
@@ -3243,6 +3498,10 @@ export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
 export interface IxTextareaCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTextareaElement;
+}
+export interface IxTimeInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTimeInputElement;
 }
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4325,6 +4584,15 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
+    /**
+     * @since 3.2.0
+     */
+    interface HTMLIxProgressIndicatorElement extends Components.IxProgressIndicator, HTMLStencilElement {
+    }
+    var HTMLIxProgressIndicatorElement: {
+        prototype: HTMLIxProgressIndicatorElement;
+        new (): HTMLIxProgressIndicatorElement;
+    };
     interface HTMLIxPushCardElement extends Components.IxPushCard, HTMLStencilElement {
     }
     var HTMLIxPushCardElement: {
@@ -4520,6 +4788,30 @@ declare global {
     var HTMLIxTileElement: {
         prototype: HTMLIxTileElement;
         new (): HTMLIxTileElement;
+    };
+    interface HTMLIxTimeInputElementEventMap {
+        "valueChange": string;
+        "validityStateChange": TimeInputValidityState;
+        "ixFocus": void;
+        "ixBlur": void;
+    }
+    /**
+     * @since 3.2.0
+     * @form-ready 
+     */
+    interface HTMLIxTimeInputElement extends Components.IxTimeInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTimeInputElementEventMap>(type: K, listener: (this: HTMLIxTimeInputElement, ev: IxTimeInputCustomEvent<HTMLIxTimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTimeInputElementEventMap>(type: K, listener: (this: HTMLIxTimeInputElement, ev: IxTimeInputCustomEvent<HTMLIxTimeInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxTimeInputElement: {
+        prototype: HTMLIxTimeInputElement;
+        new (): HTMLIxTimeInputElement;
     };
     interface HTMLIxTimePickerElementEventMap {
         "timeSelect": string;
@@ -4797,6 +5089,7 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-progress-indicator": HTMLIxProgressIndicatorElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-radio": HTMLIxRadioElement;
         "ix-radio-group": HTMLIxRadioGroupElement;
@@ -4810,6 +5103,7 @@ declare global {
         "ix-tabs": HTMLIxTabsElement;
         "ix-textarea": HTMLIxTextareaElement;
         "ix-tile": HTMLIxTileElement;
+        "ix-time-input": HTMLIxTimeInputElement;
         "ix-time-picker": HTMLIxTimePickerElement;
         "ix-toast": HTMLIxToastElement;
         "ix-toast-container": HTMLIxToastContainerElement;
@@ -5281,6 +5575,11 @@ declare namespace LocalJSX {
          */
         "background"?: string | undefined;
         /**
+          * Center the content of the chip. Set to false to disable centering.
+          * @since 3.2.0
+         */
+        "centerContent"?: boolean;
+        /**
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
         "chipColor"?: string | undefined;
@@ -5499,7 +5798,7 @@ declare namespace LocalJSX {
      */
     interface IxDateInput {
         /**
-          * disabled attribute
+          * Disabled attribute
          */
         "disabled"?: boolean;
         /**
@@ -5507,23 +5806,23 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * helper text below the input field
+          * Helper text below the input field
          */
         "helperText"?: string;
         /**
-          * i18n string for the error message when the date is not parsable
+          * I18n string for the error message when the date is not parsable
          */
         "i18nErrorDateUnparsable"?: string;
         /**
-          * info text below the input field
+          * Info text below the input field
          */
         "infoText"?: string;
         /**
-          * error text below the input field
+          * Error text below the input field
          */
         "invalidText"?: string;
         /**
-          * label of the input field
+          * Label of the input field
          */
         "label"?: string;
         /**
@@ -5531,7 +5830,7 @@ declare namespace LocalJSX {
          */
         "locale"?: string;
         /**
-          * name of the input element
+          * Name of the input element
          */
         "name"?: string;
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
@@ -5545,19 +5844,19 @@ declare namespace LocalJSX {
          */
         "onValueChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         /**
-          * placeholder of the input element
+          * Placeholder of the input element
          */
         "placeholder"?: string;
         /**
-          * readonly attribute
+          * Readonly attribute
          */
         "readonly"?: boolean;
         /**
-          * required attribute
+          * Required attribute
          */
         "required"?: boolean;
         /**
-          * show text as tooltip
+          * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
@@ -5566,15 +5865,15 @@ declare namespace LocalJSX {
          */
         "showWeekNumbers"?: boolean;
         /**
-          * valid text below the input field
+          * Valid text below the input field
          */
         "validText"?: string;
         /**
-          * value of the input element
+          * Value of the input element
          */
         "value"?: string;
         /**
-          * warning text below the input field
+          * Warning text below the input field
          */
         "warningText"?: string;
     }
@@ -5645,10 +5944,22 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners1;
         /**
+          * Display footer
+         */
+        "hasFooter"?: boolean;
+        /**
+          * Hide header
+         */
+        "hideHeader"?: boolean;
+        /**
           * set styles
          */
         "individual"?: boolean;
         "standaloneAppearance"?: boolean;
+        /**
+          * Timepicker specific styling
+         */
+        "timePickerAppearance"?: boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -5698,14 +6009,17 @@ declare namespace LocalJSX {
         "range"?: boolean;
         /**
           * Show hour input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showHour"?: boolean;
         /**
           * Show minutes input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showMinutes"?: boolean;
         /**
           * Show seconds input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showSeconds"?: boolean;
         /**
@@ -7115,6 +7429,56 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
+    /**
+     * @since 3.2.0
+     */
+    interface IxProgressIndicator {
+        /**
+          * The helper text for the progress indicator.
+         */
+        "helperText"?: string;
+        /**
+          * The label for the progress indicator.
+         */
+        "label"?: string;
+        /**
+          * The maximum value of the progress indicator.
+         */
+        "max"?: number;
+        /**
+          * The minimum value of the progress indicator.
+         */
+        "min"?: number;
+        /**
+          * Show the helper text as a tooltip
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * The size of the progress indicator.
+         */
+        "size"?: ProgressIndicatorSize;
+        /**
+          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
+         */
+        "status"?: | 'default'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning'
+    | 'paused';
+        /**
+          * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
+         */
+        "textAlignment"?: 'left' | 'center' | 'right';
+        /**
+          * The type of progress indicator to use.
+         */
+        "type"?: 'linear' | 'circular';
+        /**
+          * The value of the progress indicator.
+         */
+        "value"?: number;
+    }
     interface IxPushCard {
         /**
           * Collapse the card
@@ -7622,15 +7986,180 @@ declare namespace LocalJSX {
          */
         "size"?: 'small' | 'medium' | 'big';
     }
+    /**
+     * @since 3.2.0
+     * @form-ready 
+     */
+    interface IxTimeInput {
+        /**
+          * Disabled attribute
+         */
+        "disabled"?: boolean;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "format"?: string;
+        /**
+          * Helper text below the input field
+         */
+        "helperText"?: string;
+        /**
+          * Interval for hour selection
+         */
+        "hourInterval"?: number;
+        /**
+          * I18n string for the error message when the time is not parsable
+         */
+        "i18nErrorTimeUnparsable"?: string;
+        /**
+          * Text for time-picker hour column header
+         */
+        "i18nHourColumnHeader"?: string;
+        /**
+          * Text for time-picker millisecond column header
+         */
+        "i18nMillisecondColumnHeader"?: string;
+        /**
+          * Text for time-picker minute column header
+         */
+        "i18nMinuteColumnHeader"?: string;
+        /**
+          * Text for time-picker second column header
+         */
+        "i18nSecondColumnHeader"?: string;
+        /**
+          * Text of time-picker time select button
+         */
+        "i18nSelectTime"?: string;
+        /**
+          * Text for time-picker top label
+         */
+        "i18nTime"?: string;
+        /**
+          * Info text below the input field
+         */
+        "infoText"?: string;
+        /**
+          * Error text below the input field
+         */
+        "invalidText"?: string;
+        /**
+          * Label of the input field
+         */
+        "label"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de').
+         */
+        "locale"?: string;
+        /**
+          * Interval for millisecond selection
+         */
+        "millisecondInterval"?: number;
+        /**
+          * Interval for minute selection
+         */
+        "minuteInterval"?: number;
+        /**
+          * Name of the input element
+         */
+        "name"?: string;
+        "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
+        "onIxFocus"?: (event: IxTimeInputCustomEvent<void>) => void;
+        /**
+          * Validation state change event.
+         */
+        "onValidityStateChange"?: (event: IxTimeInputCustomEvent<TimeInputValidityState>) => void;
+        /**
+          * Input change event.
+         */
+        "onValueChange"?: (event: IxTimeInputCustomEvent<string>) => void;
+        /**
+          * Placeholder of the input element
+         */
+        "placeholder"?: string;
+        /**
+          * Readonly attribute
+         */
+        "readonly"?: boolean;
+        /**
+          * Required attribute
+         */
+        "required"?: boolean;
+        /**
+          * Interval for second selection
+         */
+        "secondInterval"?: number;
+        /**
+          * Show text as tooltip
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * Valid text below the input field
+         */
+        "validText"?: string;
+        /**
+          * Value of the input element
+         */
+        "value"?: string;
+        /**
+          * Warning text below the input field
+         */
+        "warningText"?: string;
+    }
     interface IxTimePicker {
         /**
           * Corner style
          */
         "corners"?: TimePickerCorners;
+        "dateTimePickerAppearance"?: boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
          */
         "format"?: string;
+        /**
+          * Hides the header of the picker.
+          * @since 3.2.0
+         */
+        "hideHeader"?: boolean;
+        /**
+          * Interval for hour selection
+          * @since 3.2.0
+         */
+        "hourInterval"?: number;
+        /**
+          * Text of the time confirm button
+         */
+        "i18nConfirmTime"?: string;
+        /**
+          * Text for top header
+         */
+        "i18nHeader"?: string;
+        /**
+          * Text for hour column header
+         */
+        "i18nHourColumnHeader"?: string;
+        /**
+          * Text for millisecond column header
+         */
+        "i18nMillisecondColumnHeader"?: string;
+        /**
+          * Text for minute column header
+         */
+        "i18nMinuteColumnHeader"?: string;
+        /**
+          * Text for second column header
+         */
+        "i18nSecondColumnHeader"?: string;
+        /**
+          * Interval for millisecond selection
+          * @since 3.2.0
+         */
+        "millisecondInterval"?: number;
+        /**
+          * Interval for minute selection
+          * @since 3.2.0
+         */
+        "minuteInterval"?: number;
         /**
           * Time change event
          */
@@ -7640,15 +8169,23 @@ declare namespace LocalJSX {
          */
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
+          * Interval for second selection
+          * @since 3.2.0
+         */
+        "secondInterval"?: number;
+        /**
           * Show hour input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showHour"?: boolean;
         /**
           * Show minutes input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showMinutes"?: boolean;
         /**
           * Show seconds input
+          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
          */
         "showSeconds"?: boolean;
         /**
@@ -7656,11 +8193,13 @@ declare namespace LocalJSX {
          */
         "standaloneAppearance"?: boolean;
         /**
-          * Text of date select button
+          * Text of time select button
+          * @deprecated Use `i18nConfirmTime` instead. Will be removed in 4.0.0.
          */
         "textSelectTime"?: string;
         /**
           * Text for top label
+          * @deprecated Use `i18nHeader` instead. Will be removed in 4.0.0.
          */
         "textTime"?: string;
         /**
@@ -7669,6 +8208,7 @@ declare namespace LocalJSX {
         "time"?: string;
         /**
           * Set time reference
+          * @deprecated This is determined by the currently set time. Will be removed in 4.0.0.
          */
         "timeReference"?: 'AM' | 'PM' | undefined;
     }
@@ -8099,6 +8639,7 @@ declare namespace LocalJSX {
         "ix-pane": IxPane;
         "ix-pane-layout": IxPaneLayout;
         "ix-pill": IxPill;
+        "ix-progress-indicator": IxProgressIndicator;
         "ix-push-card": IxPushCard;
         "ix-radio": IxRadio;
         "ix-radio-group": IxRadioGroup;
@@ -8112,6 +8653,7 @@ declare namespace LocalJSX {
         "ix-tabs": IxTabs;
         "ix-textarea": IxTextarea;
         "ix-tile": IxTile;
+        "ix-time-input": IxTimeInput;
         "ix-time-picker": IxTimePicker;
         "ix-toast": IxToast;
         "ix-toast-container": IxToastContainer;
@@ -8235,6 +8777,10 @@ declare module "@stencil/core" {
             "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            /**
+             * @since 3.2.0
+             */
+            "ix-progress-indicator": LocalJSX.IxProgressIndicator & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             /**
              * @form-ready 
@@ -8260,6 +8806,11 @@ declare module "@stencil/core" {
              */
             "ix-textarea": LocalJSX.IxTextarea & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
+            /**
+             * @since 3.2.0
+             * @form-ready 
+             */
+            "ix-time-input": LocalJSX.IxTimeInput & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
