@@ -32,7 +32,7 @@ LICENSE file in the root directory of this source tree.
 
       (() => {
         const columnDefs = [
-          { field: 'make', resizable: true},
+          { field: 'make', resizable: true, tooltipValueGetter: (params) => params.value},
           { field: 'model', resizable: true, sortable: true, filter: true },
           { field: 'price', resizable: true, editable: true },
         ];

@@ -254,4 +254,7 @@
   .ag-icon-tree-closed {
     color: var(--theme-color-std-text);
   }
+  .ag-tooltip {
+    background: var(--theme-tootlip--background, var(--theme-tooltip--background));
+  }
 }
