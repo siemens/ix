@@ -43,10 +43,11 @@ export class IxActionCard {
    */
   @Prop() selected = false;
 
-  render() {
-    const shouldUseSoftColor =
-      this.variant === 'outline' || this.variant === 'filled';
+  private getSubheadingTextColor() {
+    return this.variant === 'outline' || this.variant === 'filled' ? 'soft' : undefined;
+  }
 
+  render() {
     return (
       <Host>
         <ix-card
@@ -65,7 +66,7 @@ export class IxActionCard {
               {this.subheading ? (
                 <ix-typography
                   format="h5"
-                  text-color={shouldUseSoftColor ? 'soft' : undefined}
+                  text-color={this.getSubheadingTextColor()}
                 >
                   {this.subheading}
                 </ix-typography>
