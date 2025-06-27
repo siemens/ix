@@ -30,7 +30,7 @@
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs",
+      "require": "./dist/cjs/index.cjs.js",
       "default": "./dist/esm/index.js"
     },
     "./hydrate": {
