@@ -52,7 +52,7 @@ export const config: Config = {
   },
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/www/'],
-    setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
+    setupFilesAfterEnv: [],
     browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
     browserHeadless: 'shell',
   },
@@ -78,7 +78,7 @@ export const config: Config = {
       includeImportCustomElements: true,
       includePolyfills: false,
       includeDefineCustomElements: false,
-      excludeComponents: ['ix-playground-internal', 'ix-icon'],
+      excludeComponents: ['ix-icon'],
       componentModels: [
         {
           elements: [
