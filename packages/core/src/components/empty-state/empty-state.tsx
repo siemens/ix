@@ -8,8 +8,7 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-
-export type EmptyStateLayout = 'large' | 'compact' | 'compactBreak';
+import type { EmptyStateLayout } from './empty-state.types';
 
 @Component({
   tag: 'ix-empty-state',

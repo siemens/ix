@@ -8,9 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { CardVariant } from '../card/card';
-
-export type ActionCardVariant = CardVariant;
+import type { ActionCardVariant } from './action-card.types';
 
 @Component({
   tag: 'ix-action-card',

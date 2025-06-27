@@ -16,10 +16,7 @@ export default defineConfig({
       external: (id) =>
         external.includes(id) ||
         id.startsWith('@siemens/ix') ||
-        id.startsWith('@siemens/ix/hydrate') ||
-        id.startsWith('@siemens/ix-icons') ||
-        id.startsWith('@stencil/vue-output-target') ||
-        id.startsWith('@stencil/vue-output-target/runtime'),
+        id.startsWith('@stencil/vue-output-target'),
       output: [
         {
           dir: 'dist/',

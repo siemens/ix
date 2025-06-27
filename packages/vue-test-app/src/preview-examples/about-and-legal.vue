@@ -15,11 +15,12 @@ import {
   IxMenuAbout,
   IxMenuAboutItem,
 } from '@siemens/ix-vue';
-import { ref, watch } from 'vue';
+import { useTemplateRef, onMounted } from 'vue';
 
-const menu = ref<HTMLIxMenuElement>();
-
-watch(menu, () => menu.value?.toggleAbout(true));
+const input = useTemplateRef<HTMLIxMenuElement>('menu');
+onMounted(() => {
+  input.value?.toggleAbout(true);
+});
 </script>
 
 <template>

@@ -8,61 +8,11 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-
-export type TypographyVariants =
-  | 'x-small'
-  | 'small'
-  | 'caption'
-  | 'caption-single'
-  | 'default'
-  | 'default-single'
-  | 'default-title'
-  | 'default-title-single'
-  | 'large'
-  | 'large-single'
-  | 'large-title'
-  | 'large-title-single'
-  | 'h2'
-  | 'display-large';
-
-export type TypographyColors =
-  | 'alarm'
-  | 'alarm-contrast'
-  | 'contrast'
-  | 'critical-contrast'
-  | 'info-contrast'
-  | 'inv-contrast'
-  | 'inv-soft'
-  | 'inv-std'
-  | 'inv-weak'
-  | 'neutral-contrast'
-  | 'primary-contrast'
-  | 'soft'
-  | 'std'
-  | 'success-contrast'
-  | 'warning-contrast'
-  | 'weak';
-
-type TypographyFormatLabel = 'label' | 'label-xs' | 'label-sm' | 'label-lg';
-type TypographyFormatBody = 'body' | 'body-xs' | 'body-sm' | 'body-lg';
-type TypographyFormatDisplay =
-  | 'display'
-  | 'display-xs'
-  | 'display-sm'
-  | 'display-lg'
-  | 'display-xl'
-  | 'display-xxl';
-type TypographyFormatHeading = 'h6' | 'h5' | 'h4' | 'h3' | 'h2' | 'h1';
-type TypographyFormatCode = 'code' | 'code-sm' | 'code-lg';
-
-export type TypographyFormat =
-  | TypographyFormatLabel
-  | TypographyFormatBody
-  | TypographyFormatDisplay
-  | TypographyFormatHeading
-  | TypographyFormatCode;
-
-export type TextDecoration = 'none' | 'underline' | 'line-through';
+import type {
+  TypographyFormat,
+  TextDecoration,
+  TypographyColors,
+} from './typography.types';
 
 @Component({
   tag: 'ix-typography',
