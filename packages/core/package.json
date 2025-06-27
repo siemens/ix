@@ -13,14 +13,13 @@
   "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
-  "types": "dist/types/interfaces.d.ts",
+  "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "files": [
     "LICENSE",
     "README.md",
     "READMEOSS.html",
-    "components/",
     "dist/",
     "loader/",
     "scss/",
@@ -28,7 +27,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/types/interfaces.d.ts",
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.cjs",
       "default": "./dist/esm/index.js"
