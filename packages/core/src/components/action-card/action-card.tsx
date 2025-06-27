@@ -44,7 +44,9 @@ export class IxActionCard {
   @Prop() selected = false;
 
   private getSubheadingTextColor() {
-    return this.variant === 'outline' || this.variant === 'filled' ? 'soft' : undefined;
+    return this.variant === 'outline' || this.variant === 'filled'
+      ? 'soft'
+      : undefined;
   }
 
   render() {
