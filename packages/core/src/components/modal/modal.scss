@@ -8,7 +8,7 @@
  */
 
 ::backdrop {
-  --ix-dialog-backdrop: var(--theme-color-lightbox, #0000008c);
+  background: var(--theme-color-lightbox, #0000008c);
 }
 
 :focus-visible {
