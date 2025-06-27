@@ -21,6 +21,7 @@
     "README.md",
     "READMEOSS.html",
     "dist/",
+    "components/",
     "loader/",
     "scss/",
     "hydrate/"
