@@ -22,6 +22,7 @@ import {
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import { IxFormComponent, HookValidationLifecycle } from '../utils/input';
+import { debounce } from '../utils/debounce';
 
 /**
  * @form-ready
@@ -102,10 +103,17 @@ export class Toggle implements IxFormComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
-  @State() lineClamp: number = 1;
+  @State() webkitLineClamp!: number | undefined;
 
   private touched = false;
-  private resizeObserver!: ResizeObserver;
+  private resizeObserver: ResizeObserver | null = null;
+  private typography: HTMLElement | null = null;
+  private readonly DEBOUNCE_TIME = 100;
+
+  debouncedOnResize = debounce(
+    this.calculateLineClamp.bind(this),
+    this.DEBOUNCE_TIME
+  );
 
   onCheckedChange(newChecked: boolean) {
     if (this.disabled) {
@@ -134,28 +142,58 @@ export class Toggle implements IxFormComponent<string> {
   }
 
   componentDidLoad() {
-    this.initializeDynamicLabelResize();
+    this.initializeLineClampObserver();
+  }
+
+  private initializeLineClampObserver() {
+    this.typography =
+      this.hostElement.shadowRoot?.querySelector('ix-typography') || null;
+
+    if (!this.typography) {
+      console.warn('Typography element not found');
+      return;
+    }
+    this.calculateLineClamp();
+    this.setupResizeObserver();
   }
 
   private calculateLineClamp() {
-    const container = this.hostElement.shadowRoot!.querySelector('label');
-    if (!container) return;
-    const computedStyle = window.getComputedStyle(container);
-    const lineHeight = computedStyle.lineHeight;
-    const lineHeightInPx = parseFloat(lineHeight);
-    const containerHeight = container.clientHeight;
-    this.lineClamp = Math.floor(containerHeight / lineHeightInPx);
+    if (!this.typography) {
+      return;
+    }
+    const parentHeight = this.hostElement.parentElement?.clientHeight;
+    if (!parentHeight) {
+      return;
+    }
+    const typographyStyle = window.getComputedStyle(this.typography);
+    const hostStyle = window.getComputedStyle(this.hostElement);
+
+    const hostMargin =
+      parseFloat(hostStyle.marginTop) + parseFloat(hostStyle.marginBottom);
+    const lineHeight = parseFloat(typographyStyle.lineHeight);
+    if (parentHeight && lineHeight) {
+      this.webkitLineClamp = Math.floor(
+        (parentHeight - hostMargin) / lineHeight
+      );
+    }
   }
 
-  private initializeDynamicLabelResize() {
-    const container = this.hostElement.shadowRoot?.querySelector('label');
-    if (!container) return;
+  private setupResizeObserver() {
+    this.cleanupResizeObserver();
+    if (!this.typography) {
+      console.warn('Typography element not found');
+      return;
+    }
 
-    this.resizeObserver = new ResizeObserver(() => {
-      this.calculateLineClamp();
-    });
+    this.resizeObserver = new ResizeObserver(() => this.debouncedOnResize());
+    this.resizeObserver.observe(this.typography);
+  }
 
-    this.resizeObserver.observe(container);
+  private cleanupResizeObserver() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
   }
 
   updateFormInternalValue(): void {
@@ -167,9 +205,7 @@ export class Toggle implements IxFormComponent<string> {
   }
 
   disconnectedCallback() {
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    }
+    this.cleanupResizeObserver();
   }
 
   @Watch('checked')
@@ -197,9 +233,7 @@ export class Toggle implements IxFormComponent<string> {
   }
 
   @HookValidationLifecycle()
-  updateClassMappings() {
-    /** This function is intentionally empty */
-  }
+  updateClassMappings() {}
 
   render() {
     let toggleText = this.textOff;
@@ -211,6 +245,7 @@ export class Toggle implements IxFormComponent<string> {
     if (this.indeterminate) {
       toggleText = this.textIndeterminate;
     }
+
     return (
       <Host
         class={{
@@ -247,7 +282,7 @@ export class Toggle implements IxFormComponent<string> {
           {!this.hideText && (
             <ix-typography
               class="label"
-              style={{ '-webkit-line-clamp': `${this.lineClamp}` }}
+              style={{ '-webkit-line-clamp': `${this.webkitLineClamp}` }}
             >
               {toggleText}
             </ix-typography>

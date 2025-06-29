@@ -16,7 +16,7 @@
   flex-direction: row;
   position: relative;
   min-height: 1.5rem;
-  height: calc(100% - 0.5rem);
+  max-height: calc(100% - 0.5rem);
   margin-block-start: 0.25rem;
   margin-block-end: 0.25rem;
 
@@ -28,13 +28,14 @@
     display: flex;
     align-items: flex-start;
     width: 100%;
-    height: 100%;
+    max-height: 100%;
   }
 
   .label {
     word-break: break-word;
     display: -webkit-box;
     white-space: normal;
+    max-height: 100%;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
