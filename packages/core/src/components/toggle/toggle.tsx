@@ -233,7 +233,9 @@ export class Toggle implements IxFormComponent<string> {
   }
 
   @HookValidationLifecycle()
-  updateClassMappings() {}
+  updateClassMappings() {
+    /** This function is intentionally empty */
+  }
 
   render() {
     let toggleText = this.textOff;
