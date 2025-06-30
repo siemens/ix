@@ -63,6 +63,14 @@ export class DropdownButton {
    */
   @Prop() placement?: AlignedPlacement;
 
+  /**
+   * Aria label for the dropdown button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelDropdownButton?: string;
+
   private readonly dropdownAnchor = makeRef<HTMLElement>();
 
   private getTriangle() {
@@ -97,6 +105,7 @@ export class DropdownButton {
               ghost={this.ghost}
               disabled={this.disabled}
               alignment="start"
+              ariaLabel={this.ariaLabelDropdownButton}
             >
               <div class={'content'}>
                 {this.icon ? (

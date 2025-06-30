@@ -43,6 +43,13 @@ export class IxActionCard {
    */
   @Prop() selected = false;
 
+  /**
+   * Aria Label for the card component
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabel?: string;
+
   render() {
     return (
       <Host>
@@ -50,6 +57,10 @@ export class IxActionCard {
           selected={this.selected}
           variant={this.variant}
           class={'pointer'}
+          aria-label={this.ariaLabel}
+          aria-labelledby={
+            !this.ariaLabel ? 'ix-action-card-heading' : undefined
+          }
         >
           <ix-card-content>
             {this.icon ? (
@@ -57,7 +68,13 @@ export class IxActionCard {
             ) : null}
             <div>
               {this.heading ? (
-                <ix-typography format="h4">{this.heading}</ix-typography>
+                <ix-typography
+                  id="ix-action-card-heading"
+                  aria-hidden="true"
+                  format="h4"
+                >
+                  {this.heading}
+                </ix-typography>
               ) : null}
               {this.subheading ? (
                 <ix-typography format="h5">{this.subheading}</ix-typography>

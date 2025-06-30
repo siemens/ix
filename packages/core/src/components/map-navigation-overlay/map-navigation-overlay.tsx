@@ -40,6 +40,21 @@ export class MapNavigationOverlay {
   @Prop() icon?: string;
 
   /**
+   * Aria label for the icon
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
+   * Aria label for the close icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelCloseIconButton?: string;
+
+  /**
    * Color of icon
    *
    * @deprecated since 2.1.0. Use `icon-color`
@@ -97,13 +112,17 @@ export class MapNavigationOverlay {
             }}
             style={{
               'background-color':
-                (this.iconColor ?? this.color)
+                this.iconColor ?? this.color
                   ? `var(--theme-${this.iconColor ?? this.color})`
                   : '',
             }}
           ></div>
           <div class="overlay-header-content">
-            <ix-icon size="32" name={this.icon}></ix-icon>
+            <ix-icon
+              size="32"
+              name={this.icon}
+              aria-label={this.ariaLabelIcon}
+            ></ix-icon>
             <span class="overlay-header-title" title={this.name}>
               {this.name}
             </span>
@@ -114,6 +133,7 @@ export class MapNavigationOverlay {
             icon={iconClose}
             size="24"
             onClick={() => this.closeOverlay()}
+            a11yLabel={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         </div>
 

@@ -59,6 +59,20 @@ export class Tabs {
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
   /**
+   * Aria label for the chevron left icon button
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelChevronLeftIconButton?: string;
+
+  /**
+   * Aria label for the chevron right icon button
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelChevronRightIconButton?: string;
+
+  /**
    * `selected` property changed
    */
   @Event() selectedChange!: EventEmitter<number>;
@@ -331,7 +345,11 @@ export class Tabs {
     return (
       <Host>
         {this.showArrowPrevious && (
-          <div class="arrow" onClick={() => this.move(this.scrollAmount, true)}>
+          <div
+            class="arrow"
+            onClick={() => this.move(this.scrollAmount, true)}
+            aria-label={this.ariaLabelChevronLeftIconButton}
+          >
             <ix-icon name={iconChevronLeftSmall}></ix-icon>
           </div>
         )}
@@ -352,6 +370,7 @@ export class Tabs {
           <div
             class="arrow right"
             onClick={() => this.move(-this.scrollAmount, true)}
+            aria-label={this.ariaLabelChevronRightIconButton}
           >
             <ix-icon name={iconChevronRightSmall}></ix-icon>
           </div>

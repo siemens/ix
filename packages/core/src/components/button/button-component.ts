@@ -44,4 +44,9 @@ export interface IxButtonComponent {
    * Annotate with @Prop() decorator
    */
   icon?: string;
+
+  /**
+   * Annotate with @Prop() decorator
+   */
+  ariaLabel?: string;
 }

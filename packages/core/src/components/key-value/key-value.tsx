@@ -26,6 +26,13 @@ export class KeyValue {
   @Prop() icon?: string;
 
   /**
+   * Aria label for the icon
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
    * Key value label
    */
   @Prop() label!: string;
@@ -48,7 +55,12 @@ export class KeyValue {
         }`}
       >
         {this.icon && (
-          <ix-icon name={this.icon} size="24" class="keyValue__icon"></ix-icon>
+          <ix-icon
+            name={this.icon}
+            size="24"
+            class="keyValue__icon"
+            aria-label={this.ariaLabelIcon}
+          ></ix-icon>
         )}
         <div class="keyValue__content">
           <div class="content__label">{this.label}</div>

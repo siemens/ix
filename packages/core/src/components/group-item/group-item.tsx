@@ -32,6 +32,11 @@ export class GroupItem {
   @Prop() icon?: string;
 
   /**
+   * Aria label for the icon
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
    * Group item text
    */
   @Prop() text?: string;
@@ -81,7 +86,13 @@ export class GroupItem {
       >
         <button tabindex={this.focusable ? 0 : -1}>
           <div class="group-entry-selection-indicator"></div>
-          {this.icon ? <ix-icon size="16" name={this.icon}></ix-icon> : null}
+          {this.icon ? (
+            <ix-icon
+              size="16"
+              name={this.icon}
+              aria-label={this.ariaLabelIcon}
+            ></ix-icon>
+          ) : null}
           {this.text ? (
             <span class="group-entry-text">
               <span title={this.text}>{this.text}</span>

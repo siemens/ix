@@ -14,6 +14,7 @@ import { iconChevronDown, iconMoreMenu } from '@siemens/ix-icons/icons';
 
 function CardListTitle(props: {
   label?: string;
+  ariaLabelExpandButton?: string;
   isCollapsed: boolean;
   onClick: (e: MouseEvent) => void;
   onShowAllClick: (e: MouseEvent) => void;
@@ -36,6 +37,7 @@ function CardListTitle(props: {
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,
         }}
+        a11yLabel={props.ariaLabelExpandButton}
       ></ix-icon-button>
       <ix-typography class="CardList_Title__Label" format="body-lg">
         {props.label}
@@ -62,6 +64,14 @@ function CardListTitle(props: {
   shadow: true,
 })
 export class CardList {
+  /**
+   * Aria label for the card's expand button.
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelExpandButton?: string;
+
   /**
    * Name the card list
    */

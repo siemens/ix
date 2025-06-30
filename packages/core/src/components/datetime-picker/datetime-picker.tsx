@@ -120,6 +120,18 @@ export class DatetimePicker
   @Prop() i18nTime: string = 'Time';
 
   /**
+   * Aria label for the previous month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelPreviousMonthButton?: string;
+
+  /**
+   * Aria label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelNextMonthButton?: string;
+
+  /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
    */
@@ -203,6 +215,8 @@ export class DatetimePicker
                 standaloneAppearance={false}
                 locale={this.locale}
                 showWeekNumbers={this.showWeekNumbers}
+                ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
+                ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
               ></ix-date-picker>
             </ix-col>
 

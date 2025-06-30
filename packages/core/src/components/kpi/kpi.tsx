@@ -22,6 +22,20 @@ export class Kpi {
   @Prop() label?: string;
 
   /**
+   * Aria label for the alarm icon
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelAlarmIcon?: string;
+
+  /**
+   * Aria label for the warning icon
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelWarningIcon?: string;
+
+  /**
    *
    */
   @Prop() value?: string | number;
@@ -49,6 +63,7 @@ export class Kpi {
             color="kpi-display-icon--color"
             name={iconAlarm}
             size="16"
+            aria-label={this.ariaLabelAlarmIcon}
           ></ix-icon>
         );
 
@@ -58,6 +73,7 @@ export class Kpi {
             color="kpi-display-icon--color"
             name={iconWarning}
             size="16"
+            aria-label={this.ariaLabelWarningIcon}
           ></ix-icon>
         );
 

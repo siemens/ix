@@ -69,6 +69,22 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() label?: string;
 
   /**
+   * Aria label for the chevron down icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelChevronDownIconButton?: string;
+
+  /**
+   * Aria label for the clear icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelClearIconButton?: string;
+
+  /**
    * Warning text for the select component
    **/
   @Prop() warningText?: string;
@@ -896,6 +912,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                         e.stopPropagation();
                         this.clear();
                       }}
+                      a11yLabel={this.ariaLabelClearIconButton}
                     />
                   ) : null}
                   {this.disabled || this.readonly ? null : (
@@ -908,6 +925,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
                       }}
+                      a11yLabel={this.ariaLabelChevronDownIconButton}
                     ></ix-icon-button>
                   )}
                 </div>

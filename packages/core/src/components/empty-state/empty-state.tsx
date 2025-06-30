@@ -43,6 +43,13 @@ export class EmptyState {
   @Prop() action?: string;
 
   /**
+   * Aria label for the empty state icon
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelEmptyStateIcon?: string;
+
+  /**
    * Empty state action click event
    */
   @Event() actionClick!: EventEmitter<void>;
@@ -57,6 +64,7 @@ export class EmptyState {
               name={this.icon}
               size={this.layout === 'large' ? '32' : '32'}
               color="color-soft-text"
+              aria-label={this.ariaLabelEmptyStateIcon}
             />
           </div>
         )}

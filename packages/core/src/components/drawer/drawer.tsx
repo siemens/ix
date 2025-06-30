@@ -58,6 +58,14 @@ export class Drawer {
   @Prop() width: number | 'auto' = this.minWidth;
 
   /**
+   * Aria label for the close icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCloseButton?: string;
+
+  /**
    * Fire event after drawer is open
    */
   @Event() open!: EventEmitter;
@@ -233,6 +241,7 @@ export class Drawer {
               ghost
               onClick={() => this.onCloseClicked()}
               data-testid="close-button"
+              a11yLabel={this.ariaLabelCloseButton}
             ></ix-icon-button>
           </div>
           <div

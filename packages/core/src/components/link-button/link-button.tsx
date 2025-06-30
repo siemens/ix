@@ -50,6 +50,7 @@ export class LinkButton {
             class="icon"
             name={iconChevronRightSmall}
             size="16"
+            aria-hidden="true"
           ></ix-icon>
           <div
             class={{

@@ -39,6 +39,11 @@ export class BreadcrumbItem {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
+   * @since 3.2.0
+   */
+  @Prop() ariaLabel?: string;
+
+  /**
    * Breadcrumb label
    */
   @Prop() label?: string;
@@ -105,7 +110,7 @@ export class BreadcrumbItem {
       extraClasses: {
         'dropdown-trigger': this.isDropdownTrigger,
       },
-      ariaAttributes: this.a11y,
+      ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabel },
     };
 
     if (!this.visible) {

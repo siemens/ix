@@ -28,6 +28,14 @@ export type CardAccordionExpandChangeEvent = {
 })
 export class CardAccordion {
   /**
+   * Aria label for the card's expand button.
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelExpandButton?: string;
+
+  /**
    * Collapse the card
    */
   @Prop() collapse = false;
@@ -90,6 +98,7 @@ export class CardAccordion {
           type="button"
           aria-expanded={this.expandContent}
           aria-controls={getAriaControlsId()}
+          aria-label={this.ariaLabelExpandButton}
         >
           <ix-icon
             name={iconChevronRightSmall}

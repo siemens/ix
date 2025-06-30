@@ -37,6 +37,12 @@ export class FilterChip {
   @Prop() readonly = false;
 
   /**
+   * Aria label for the close icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelCloseIconButton?: string;
+
+  /**
    * Close clicked
    */
   @Event() closeClick!: EventEmitter<void>;
@@ -66,6 +72,7 @@ export class FilterChip {
             variant="primary"
             disabled={this.disabled}
             onClick={(e) => this.onCloseClick(e)}
+            a11yLabel={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}
       </Host>

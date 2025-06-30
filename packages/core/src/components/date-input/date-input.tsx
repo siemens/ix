@@ -101,6 +101,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() label?: string;
 
   /**
+   * Aria label for the calendar icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCalendarButton?: string;
+
+  /**
    * Error text below the input field
    */
   @Prop({ reflect: true }) invalidText?: string;
@@ -371,6 +379,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ghost
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
+            a11yLabel={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>

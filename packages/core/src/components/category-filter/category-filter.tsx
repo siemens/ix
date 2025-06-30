@@ -152,6 +152,30 @@ export class CategoryFilter {
   @Prop() i18nPlainText = 'Filter by text';
 
   /**
+   * Aria label for the reset button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelResetButton?: string;
+
+  /**
+   * Aria label for the operator button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelOperatorButton?: string;
+
+  /**
+   * Aria label for the filter input
+   * Will be set as aria-label on the nested HTML input element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelFilterInput?: string;
+
+  /**
    * Event dispatched whenever a category gets selected in the dropdown
    */
   @Event() categoryChanged!: EventEmitter<string>;
@@ -649,6 +673,7 @@ export class CategoryFilter {
         'btn-icon-32': true,
         'btn-toggle-operator': true,
       },
+      ariaAttributes: { 'aria-label': this.ariaLabelOperatorButton },
     };
 
     return (
@@ -795,6 +820,7 @@ export class CategoryFilter {
         oval
         icon={iconClear}
         size="16"
+        a11yLabel={this.ariaLabelResetButton}
       ></ix-icon-button>
     );
   }
@@ -877,6 +903,7 @@ export class CategoryFilter {
                   type="text"
                   placeholder={this.placeholder}
                   {...this.a11yAttributes}
+                  aria-label={this.ariaLabelFilterInput}
                 ></input>
               </div>
             </div>
