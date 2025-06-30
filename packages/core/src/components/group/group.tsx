@@ -91,6 +91,8 @@ export class Group {
 
   @State() showExpandCollapsedIcon = false;
 
+  @State() hasDropdown = false;
+
   private observer: MutationObserver = null!;
 
   @Watch('selected')
@@ -182,11 +184,27 @@ export class Group {
     }
   }
 
+  private checkDropdownSlot() {
+    const slot = this.hostElement.querySelector('slot[name="dropdown"]');
+    if (slot) {
+      const assigned = (slot as HTMLSlotElement).assignedElements({
+        flatten: true,
+      });
+      this.hasDropdown = assigned.length > 0;
+    } else {
+      this.hasDropdown = !!this.hostElement.querySelector('[slot="dropdown"]');
+    }
+  }
+
   componentWillRender() {
     this.groupItems.forEach((item, index) => {
       item.selected = index === this.index;
       item.index = index;
     });
+  }
+
+  componentWillLoad() {
+    this.checkDropdownSlot();
   }
 
   componentDidLoad() {
@@ -265,9 +283,11 @@ export class Group {
               <slot name="header"></slot>
             </div>
           </div>
-          <ix-group-context-menu>
-            <slot name="dropdown"></slot>
-          </ix-group-context-menu>
+          {this.hasDropdown && (
+            <ix-group-context-menu>
+              <slot name="dropdown"></slot>
+            </ix-group-context-menu>
+          )}
         </div>
         <div
           class={{
