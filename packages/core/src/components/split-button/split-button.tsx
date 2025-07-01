@@ -62,7 +62,7 @@ export class SplitButton {
    *
    * @since 2.3.0
    */
-  @Prop() ariaLabel?: string;
+  @Prop() ariaLabelButton?: string;
 
   /**
    * Button icon
@@ -137,7 +137,7 @@ export class SplitButton {
               {...buttonAttributes}
               icon={this.icon}
               onClick={(e) => this.buttonClick.emit(e)}
-              a11yLabel={this.ariaLabel}
+              a11yLabel={this.ariaLabelButton}
             ></ix-icon-button>
           )}
           <ix-icon-button

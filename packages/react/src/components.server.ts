@@ -124,10 +124,11 @@ export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCa
     properties: {
         variant: 'variant',
         icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
         heading: 'heading',
         subheading: 'subheading',
         selected: 'selected',
-        ariaLabel: 'aria-label'
+        ariaLabelCard: 'aria-label-card'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -157,7 +158,10 @@ export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderEleme
     tagName: 'ix-application-header',
     properties: {
         name: 'name',
-        showMenu: 'show-menu'
+        showMenu: 'show-menu',
+        ariaLabelMenuExpandIconButton: 'aria-label-menu-expand-icon-button',
+        ariaLabelAppSwitchIconButton: 'aria-label-app-switch-icon-button',
+        ariaLabelMoreMenuIconButton: 'aria-label-more-menu-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -229,7 +233,7 @@ export type IxBreadcrumbItemEvents = NonNullable<unknown>;
 export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents> = /*@__PURE__*/ createComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents>({
     tagName: 'ix-breadcrumb-item',
     properties: {
-        ariaLabel: 'aria-label',
+        ariaLabelButton: 'aria-label-button',
         label: 'label',
         icon: 'icon',
         ghost: 'ghost',
@@ -246,7 +250,7 @@ export type IxButtonEvents = NonNullable<unknown>;
 export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = /*@__PURE__*/ createComponent<IxButtonElement, IxButtonEvents>({
     tagName: 'ix-button',
     properties: {
-        ariaLabel: 'aria-label',
+        ariaLabelButton: 'aria-label-button',
         variant: 'variant',
         outline: 'outline',
         ghost: 'ghost',
@@ -497,6 +501,7 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
         ghost: 'ghost',
         loading: 'loading',
         showWeekNumbers: 'show-week-numbers',
+        ariaLabelDropdownButton: 'aria-label-dropdown-button',
         customRangeAllowed: 'custom-range-allowed',
         dateRangeOptions: 'date-range-options',
         locale: 'locale',
@@ -691,6 +696,8 @@ export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDrop
     properties: {
         label: 'label',
         icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
+        ariaLabelButton: 'aria-label-button',
         hover: 'hover',
         disabled: 'disabled',
         checked: 'checked',
@@ -809,7 +816,8 @@ export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEven
         state: 'state',
         height: 'height',
         width: 'width',
-        index: 'index'
+        index: 'index',
+        ariaLabelEyeIconButton: 'aria-label-eye-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -923,7 +931,7 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
         size: 'size',
         disabled: 'disabled',
         loading: 'loading',
-        ariaLabel: 'aria-label'
+        ariaLabelIconButton: 'aria-label-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -1056,7 +1064,8 @@ export const IxMapNavigation: StencilReactComponent<IxMapNavigationElement, IxMa
     properties: {
         applicationName: 'application-name',
         navigationTitle: 'navigation-title',
-        hideContextMenu: 'hide-context-menu'
+        hideContextMenu: 'hide-context-menu',
+        ariaLabelContextIconButton: 'aria-label-context-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -1298,6 +1307,8 @@ export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalH
     properties: {
         hideClose: 'hide-close',
         icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
+        ariaLabelCloseIconButton: 'aria-label-close-icon-button',
         iconColor: 'icon-color'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
@@ -1352,7 +1363,9 @@ export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginati
         selectedPage: 'selected-page',
         i18nPage: 'i-1-8n-page',
         i18nOf: 'i-1-8n-of',
-        i18nItems: 'i-1-8n-items'
+        i18nItems: 'i-1-8n-items',
+        ariaLabelChevronLeftIconButton: 'aria-label-chevron-left-icon-button',
+        ariaLabelChevronRightIconButton: 'aria-label-chevron-right-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot
@@ -1375,6 +1388,7 @@ export const IxPane: StencilReactComponent<IxPaneElement, IxPaneEvents> = /*@__P
         expanded: 'expanded',
         composition: 'composition',
         icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
         ignoreLayoutSettings: 'ignore-layout-settings',
         isMobile: 'is-mobile'
     },
@@ -1403,6 +1417,7 @@ export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents> = /*@__P
         variant: 'variant',
         outline: 'outline',
         icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
         background: 'background',
         pillColor: 'pill-color',
         alignLeft: 'align-left',
@@ -1438,6 +1453,7 @@ export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEven
     tagName: 'ix-push-card',
     properties: {
         icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
         notification: 'notification',
         heading: 'heading',
         subheading: 'subheading',
@@ -1592,7 +1608,7 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
         outline: 'outline',
         ghost: 'ghost',
         label: 'label',
-        ariaLabel: 'aria-label',
+        ariaLabelButton: 'aria-label-button',
         icon: 'icon',
         splitIcon: 'split-icon',
         ariaLabelSplitIconButton: 'aria-label-split-icon-button',
@@ -1820,7 +1836,7 @@ export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxTogg
         loading: 'loading',
         icon: 'icon',
         pressed: 'pressed',
-        ariaLabel: 'aria-label'
+        ariaLabelButton: 'aria-label-button'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot

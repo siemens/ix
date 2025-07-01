@@ -112,7 +112,7 @@ export class MapNavigationOverlay {
             }}
             style={{
               'background-color':
-                this.iconColor ?? this.color
+                (this.iconColor ?? this.color)
                   ? `var(--theme-${this.iconColor ?? this.color})`
                   : '',
             }}

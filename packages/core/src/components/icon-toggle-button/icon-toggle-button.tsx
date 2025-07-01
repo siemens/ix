@@ -81,7 +81,7 @@ export class IconToggleButton {
    *
    * @since 2.3.0
    */
-  @Prop() ariaLabel?: string;
+  @Prop() ariaLabelIconButton?: string;
 
   /**
    * Pressed change event
@@ -118,7 +118,7 @@ export class IconToggleButton {
       type: 'button',
       ariaAttributes: {
         'aria-pressed': a11yBoolean(this.pressed),
-        'aria-label': this.ariaLabel,
+        'aria-label': this.ariaLabelIconButton,
       },
       extraClasses: {
         'icon-button': true,

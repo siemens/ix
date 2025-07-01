@@ -33,7 +33,7 @@ export class Button implements IxButtonComponent {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabel?: string;
+  @Prop() ariaLabelButton?: string;
 
   /**
    * Button variant
@@ -166,7 +166,7 @@ export class Button implements IxButtonComponent {
       alignment: this.alignment,
       tabIndex: this.hostElement.tabIndex,
       ariaAttributes: {
-        'aria-label': this.ariaLabel,
+        'aria-label': this.ariaLabelButton,
       },
     };
 

@@ -29,6 +29,13 @@ export class IxActionCard {
   @Prop() icon: string | undefined = undefined;
 
   /**
+   * Aria label for the icon
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
    * Card heading
    */
   @Prop() heading?: string;
@@ -44,11 +51,11 @@ export class IxActionCard {
   @Prop() selected = false;
 
   /**
-   * Aria Label for the card component
+   * Aria Label for the card
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabel?: string;
+  @Prop() ariaLabelCard?: string;
 
   private getSubheadingTextColor() {
     return this.variant === 'outline' || this.variant === 'filled'
@@ -63,14 +70,19 @@ export class IxActionCard {
           selected={this.selected}
           variant={this.variant}
           class={'pointer'}
-          aria-label={this.ariaLabel}
+          aria-label={this.ariaLabelCard}
           aria-labelledby={
-            !this.ariaLabel ? 'ix-action-card-heading' : undefined
+            !this.ariaLabelCard ? 'ix-action-card-heading' : undefined
           }
         >
           <ix-card-content>
             {this.icon ? (
-              <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
+              <ix-icon
+                class={'icon'}
+                name={this.icon}
+                size="32"
+                aria-label={this.ariaLabelIcon}
+              ></ix-icon>
             ) : null}
             <div>
               {this.heading ? (

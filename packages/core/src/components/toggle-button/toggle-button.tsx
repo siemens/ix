@@ -59,7 +59,7 @@ export class ToggleButton {
    *
    * @since 2.3.0
    */
-  @Prop() ariaLabel?: string;
+  @Prop() ariaLabelButton?: string;
 
   /**
    * Pressed change event
@@ -85,7 +85,7 @@ export class ToggleButton {
       type: 'button',
       ariaAttributes: {
         'aria-pressed': a11yBoolean(this.pressed),
-        'aria-label': this.ariaLabel,
+        'aria-label': this.ariaLabelButton,
       },
     };
 

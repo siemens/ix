@@ -104,10 +104,15 @@ export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxActionCard {
         /**
-          * Aria Label for the card component
+          * Aria Label for the card
           * @since 3.2.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelCard"?: string;
+        /**
+          * Aria label for the icon
+          * @since 2.3.0
+         */
+        "ariaLabelIcon"?: string;
         /**
           * Card heading
          */
@@ -152,6 +157,21 @@ export namespace Components {
         "themeSystemAppearance": boolean;
     }
     interface IxApplicationHeader {
+        /**
+          * Aria label for the app switch icon button
+          * @since 2.3.0
+         */
+        "ariaLabelAppSwitchIconButton"?: string;
+        /**
+          * Aria label for the menu expand icon button
+          * @since 2.3.0
+         */
+        "ariaLabelMenuExpandIconButton"?: string;
+        /**
+          * Aria label for the more menu icon button
+          * @since 2.3.0
+         */
+        "ariaLabelMoreMenuIconButton"?: string;
         /**
           * Application name
          */
@@ -249,9 +269,10 @@ export namespace Components {
     }
     interface IxBreadcrumbItem {
         /**
+          * Aria label for the button Will be set as aria-label for the nested HTML button element
           * @since 3.2.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelButton"?: string;
         "ghost": boolean;
         /**
           * Icon to be displayed next ot the label
@@ -271,7 +292,7 @@ export namespace Components {
           * Aria label for the button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelButton"?: string;
         /**
           * Disable the button
          */
@@ -664,6 +685,10 @@ export namespace Components {
         "warningText"?: string;
     }
     interface IxDateDropdown {
+        /**
+          * Aria label for the dropdown Will be set as aria-label on the nested HTML dropdown element
+         */
+        "ariaLabelDropdownButton"?: string;
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
          */
@@ -1157,6 +1182,15 @@ export namespace Components {
     }
     interface IxDropdownItem {
         /**
+          * Aria label for the item's button Will be set as aria-label for the nested HTML button element
+          * @since 2.3.0
+         */
+        "ariaLabelButton"?: string;
+        /**
+          * Aria label of the icon
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Whether the item is checked or not. If true a checkmark will mark the item as checked.
          */
         "checked": boolean;
@@ -1382,6 +1416,11 @@ export namespace Components {
     }
     interface IxFlipTile {
         /**
+          * Aria label for the eye icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.2.0
+         */
+        "ariaLabelEyeIconButton"?: string;
+        /**
           * Height interpreted as REM
          */
         "height": number | 'auto';
@@ -1548,7 +1587,7 @@ export namespace Components {
           * Aria label for the icon button Will be set for the native HTML button element
           * @since 2.3.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelIconButton"?: string;
         /**
           * Disable the button
          */
@@ -1776,6 +1815,11 @@ export namespace Components {
           * Application name
          */
         "applicationName"?: string;
+        /**
+          * Aria label for the context menu icon button Will be set for the native HTML button element
+          * @since 2.3.0
+         */
+        "ariaLabelContextIconButton"?: string;
         /**
           * Close current shown overlay
           * @deprecated Will be removed in 2.0.0. Use slot based approach
@@ -2440,6 +2484,11 @@ export namespace Components {
     }
     interface IxPushCard {
         /**
+          * Aria label for the icon
+          * @since 3.2.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Collapse the card
          */
         "collapse": boolean;
@@ -2737,7 +2786,7 @@ export namespace Components {
           * Aria label for the button (use if no label and icon button)
           * @since 2.3.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelButton"?: string;
         /**
           * Aria label for the split icon button
           * @since 2.3.0
@@ -3272,7 +3321,7 @@ export namespace Components {
           * Aria label for the button Will be set as aria-label on the nested HTML button element
           * @since 2.3.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelButton"?: string;
         /**
           * Disable the button
          */
@@ -5330,10 +5379,15 @@ declare global {
 declare namespace LocalJSX {
     interface IxActionCard {
         /**
-          * Aria Label for the card component
+          * Aria Label for the card
           * @since 3.2.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelCard"?: string;
+        /**
+          * Aria label for the icon
+          * @since 2.3.0
+         */
+        "ariaLabelIcon"?: string;
         /**
           * Card heading
          */
@@ -5378,6 +5432,21 @@ declare namespace LocalJSX {
         "themeSystemAppearance"?: boolean;
     }
     interface IxApplicationHeader {
+        /**
+          * Aria label for the app switch icon button
+          * @since 2.3.0
+         */
+        "ariaLabelAppSwitchIconButton"?: string;
+        /**
+          * Aria label for the menu expand icon button
+          * @since 2.3.0
+         */
+        "ariaLabelMenuExpandIconButton"?: string;
+        /**
+          * Aria label for the more menu icon button
+          * @since 2.3.0
+         */
+        "ariaLabelMoreMenuIconButton"?: string;
         /**
           * Application name
          */
@@ -5496,9 +5565,10 @@ declare namespace LocalJSX {
     }
     interface IxBreadcrumbItem {
         /**
+          * Aria label for the button Will be set as aria-label for the nested HTML button element
           * @since 3.2.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelButton"?: string;
         "ghost"?: boolean;
         /**
           * Icon to be displayed next ot the label
@@ -5519,7 +5589,7 @@ declare namespace LocalJSX {
           * Aria label for the button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelButton"?: string;
         /**
           * Disable the button
          */
@@ -5960,6 +6030,10 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     interface IxDateDropdown {
+        /**
+          * Aria label for the dropdown Will be set as aria-label on the nested HTML dropdown element
+         */
+        "ariaLabelDropdownButton"?: string;
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
          */
@@ -6470,6 +6544,15 @@ declare namespace LocalJSX {
     }
     interface IxDropdownItem {
         /**
+          * Aria label for the item's button Will be set as aria-label for the nested HTML button element
+          * @since 2.3.0
+         */
+        "ariaLabelButton"?: string;
+        /**
+          * Aria label of the icon
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Whether the item is checked or not. If true a checkmark will mark the item as checked.
          */
         "checked"?: boolean;
@@ -6710,6 +6793,11 @@ declare namespace LocalJSX {
     }
     interface IxFlipTile {
         /**
+          * Aria label for the eye icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.2.0
+         */
+        "ariaLabelEyeIconButton"?: string;
+        /**
           * Height interpreted as REM
          */
         "height"?: number | 'auto';
@@ -6897,7 +6985,7 @@ declare namespace LocalJSX {
           * Aria label for the icon button Will be set for the native HTML button element
           * @since 2.3.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelIconButton"?: string;
         /**
           * Disable the button
          */
@@ -7123,6 +7211,11 @@ declare namespace LocalJSX {
           * Application name
          */
         "applicationName"?: string;
+        /**
+          * Aria label for the context menu icon button Will be set for the native HTML button element
+          * @since 2.3.0
+         */
+        "ariaLabelContextIconButton"?: string;
         /**
           * Hide the sidebar context menu button when set to true
          */
@@ -7853,6 +7946,11 @@ declare namespace LocalJSX {
     }
     interface IxPushCard {
         /**
+          * Aria label for the icon
+          * @since 3.2.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Collapse the card
          */
         "collapse"?: boolean;
@@ -8164,7 +8262,7 @@ declare namespace LocalJSX {
           * Aria label for the button (use if no label and icon button)
           * @since 2.3.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelButton"?: string;
         /**
           * Aria label for the split icon button
           * @since 2.3.0
@@ -8713,7 +8811,7 @@ declare namespace LocalJSX {
           * Aria label for the button Will be set as aria-label on the nested HTML button element
           * @since 2.3.0
          */
-        "ariaLabel"?: string;
+        "ariaLabelButton"?: string;
         /**
           * Disable the button
          */
