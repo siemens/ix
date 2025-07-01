@@ -24750,7 +24750,7 @@
       "path": "src/components/toast/toast-container.tsx"
     },
     "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "declaration": "export interface ToastConfig {\n  title?: string;\n  message?: string | HTMLElement;\n  action?: HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
     },
