@@ -52,6 +52,14 @@ export class FlipTile {
   @Prop() index = 0;
 
   /**
+   * Aria label for the eye icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelEyeIconButton?: string;
+
+  /**
    * Event emitted when the index changes
    * @since 3.0.0
    */
@@ -169,6 +177,7 @@ export class FlipTile {
               variant="primary"
               ghost
               onClick={() => this.toggleIndex()}
+              a11yLabel={this.ariaLabelEyeIconButton}
             ></ix-icon-button>
           </div>
 

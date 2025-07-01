@@ -50,6 +50,14 @@ export class MapNavigation {
   @Prop() hideContextMenu = true;
 
   /**
+   * Aria label for the context menu icon button
+   * Will be set for the native HTML button element
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelContextIconButton?: string;
+
+  /**
    * Navigation toggled
    */
   @Event() navigationToggled!: EventEmitter<boolean>;
@@ -249,6 +257,7 @@ export class MapNavigation {
                     size="24"
                     variant="secondary"
                     onClick={(_) => this.contextMenuClick.emit()}
+                    a11yLabel={this.ariaLabelContextIconButton}
                   ></ix-icon-button>
                 )}
               </div>

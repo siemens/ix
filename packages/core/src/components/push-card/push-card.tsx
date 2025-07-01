@@ -24,6 +24,13 @@ export class PushCard {
   @Prop() icon?: string;
 
   /**
+   * Aria label for the icon
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
    * Card KPI value
    */
   @Prop() notification?: string;
@@ -55,7 +62,12 @@ export class PushCard {
           <ix-card-content>
             <ix-card-title>
               {this.icon ? (
-                <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
+                <ix-icon
+                  class={'icon'}
+                  name={this.icon}
+                  size="32"
+                  aria-label={this.ariaLabelIcon}
+                ></ix-icon>
               ) : null}
               <span class={'notification'}>{this.notification ?? 0}</span>
               <slot name="title-action"></slot>
