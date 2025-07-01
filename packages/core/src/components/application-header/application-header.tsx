@@ -57,6 +57,27 @@ export class ApplicationHeader {
   @Prop({ mutable: true }) showMenu?: boolean = false;
 
   /**
+   * Aria label for the menu expand icon button
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelMenuExpandIconButton?: string;
+
+  /**
+   * Aria label for the app switch icon button
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelAppSwitchIconButton?: string;
+
+  /**
+   * Aria label for the more menu icon button
+   *
+   * @since 2.3.0
+   */
+  @Prop() ariaLabelMoreMenuIconButton?: string;
+
+  /**
    * Event emitted when the menu toggle button is clicked
    */
   @Event() menuToggle!: EventEmitter<boolean>;
@@ -250,6 +271,7 @@ export class ApplicationHeader {
           <ix-menu-expand-icon
             onClick={() => this.onMenuClick()}
             expanded={this.menuExpanded}
+            ixAriaLabel={this.ariaLabelMenuExpandIconButton}
           ></ix-menu-expand-icon>
         )}
         {showApplicationSwitch && (
@@ -258,6 +280,7 @@ export class ApplicationHeader {
             icon={iconApps}
             ghost
             class="app-switch"
+            a11yLabel={this.ariaLabelAppSwitchIconButton}
           ></ix-icon-button>
         )}
         <div class={{ logo: true }}>
@@ -278,6 +301,7 @@ export class ApplicationHeader {
                 data-testid="show-more"
                 icon={iconMoreMenu}
                 ghost
+                a11yLabel={this.ariaLabelMoreMenuIconButton}
               ></ix-icon-button>
               <ix-dropdown
                 data-overflow-dropdown
