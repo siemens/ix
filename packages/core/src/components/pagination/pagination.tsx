@@ -89,6 +89,22 @@ export class Pagination {
   @Prop() i18nItems = 'Items';
 
   /**
+   * Aria label for the chevron left icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelChevronLeftIconButton?: string;
+
+  /**
+   * Aria label for the chevron right icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelChevronRightIconButton?: string;
+
+  /**
    * Page selection event
    */
   @Event() pageSelected!: EventEmitter<number>;
@@ -219,6 +235,7 @@ export class Pagination {
           ghost
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
+          a11yLabel={this.ariaLabelChevronLeftIconButton}
         ></ix-icon-button>
 
         {this.advanced ? (
@@ -253,6 +270,7 @@ export class Pagination {
           ghost
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
+          a11yLabel={this.ariaLabelChevronRightIconButton}
         ></ix-icon-button>
 
         {this.advanced && this.showItemCount ? (

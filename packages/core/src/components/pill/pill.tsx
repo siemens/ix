@@ -43,6 +43,13 @@ export class Pill implements IxComponent {
   @Prop() icon?: string;
 
   /**
+   * Aria label for the icon
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
    * Custom color for pill. Only working for `variant='custom'`
    */
   @Prop() background: string | undefined;
@@ -145,6 +152,7 @@ export class Pill implements IxComponent {
               }}
               name={this.icon}
               size={'16'}
+              aria-label={this.ariaLabelIcon}
             />
           )}
           <span class="slot-container">

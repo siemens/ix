@@ -111,6 +111,11 @@ export class Pane {
   @Prop() icon?: string;
 
   /**
+   * Aria label for the icon
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
    * @internal
    * Prevents overwriting of the variant and borderless property when used inside layout
    */
@@ -660,7 +665,11 @@ export class Pane {
               }}
             >
               {this.icon ? (
-                <ix-icon size="24" name={this.icon}></ix-icon>
+                <ix-icon
+                  size="24"
+                  name={this.icon}
+                  aria-label={this.ariaLabelIcon}
+                ></ix-icon>
               ) : null}
               <div class="title-text-overflow">
                 <ix-typography format="h4">{this.heading}</ix-typography>
