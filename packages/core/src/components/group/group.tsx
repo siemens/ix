@@ -185,14 +185,14 @@ export class Group {
   }
 
   private checkDropdownSlot() {
-    const slot = this.hostElement.querySelector('slot[name="dropdown"]');
+    const slot = this.hostElement.querySelector<HTMLSlotElement>(
+      'slot[name="dropdown"]'
+    );
     if (slot) {
-      const assigned = (slot as HTMLSlotElement).assignedElements({
-        flatten: true,
-      });
-      this.hasDropdown = assigned.length > 0;
+      this.hasDropdown = slot.assignedElements({ flatten: true }).length > 0;
     } else {
-      this.hasDropdown = !!this.hostElement.querySelector('[slot="dropdown"]');
+      this.hasDropdown =
+        this.hostElement.querySelector('[slot="dropdown"]') !== null;
     }
   }
 
