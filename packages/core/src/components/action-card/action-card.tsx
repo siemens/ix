@@ -50,6 +50,12 @@ export class IxActionCard {
    */
   @Prop() ariaLabel?: string;
 
+  private getSubheadingTextColor() {
+    return this.variant === 'outline' || this.variant === 'filled'
+      ? 'soft'
+      : undefined;
+  }
+
   render() {
     return (
       <Host>
@@ -77,7 +83,12 @@ export class IxActionCard {
                 </ix-typography>
               ) : null}
               {this.subheading ? (
-                <ix-typography format="h5">{this.subheading}</ix-typography>
+                <ix-typography
+                  format="h5"
+                  text-color={this.getSubheadingTextColor()}
+                >
+                  {this.subheading}
+                </ix-typography>
               ) : null}
               <slot></slot>
             </div>

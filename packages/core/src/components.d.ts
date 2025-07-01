@@ -1583,7 +1583,7 @@ export namespace Components {
          */
         "size": '24' | '16' | '12';
         /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
+          * Button variant.
          */
         "variant": ButtonVariant1;
     }
@@ -3298,7 +3298,7 @@ export namespace Components {
          */
         "pressed": boolean;
         /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
+          * Button variant.
          */
         "variant": ButtonVariant1;
     }
@@ -6936,7 +6936,7 @@ declare namespace LocalJSX {
          */
         "size"?: '24' | '16' | '12';
         /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
+          * Button variant.
          */
         "variant"?: ButtonVariant1;
     }
@@ -8743,7 +8743,7 @@ declare namespace LocalJSX {
          */
         "pressed"?: boolean;
         /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
+          * Button variant.
          */
         "variant"?: ButtonVariant1;
     }
