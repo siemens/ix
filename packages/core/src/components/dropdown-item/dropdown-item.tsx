@@ -42,6 +42,11 @@ export class DropdownItem implements DropdownItemWrapper {
   @Prop() icon?: string;
 
   /**
+   * Aria label of the icon
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
    * Display hover state
    */
   @Prop() hover = false;
@@ -117,7 +122,11 @@ export class DropdownItem implements DropdownItemWrapper {
             </div>
           ) : null}
           {this.icon ? (
-            <ix-icon class="dropdown-item-icon" name={this.icon}></ix-icon>
+            <ix-icon
+              class="dropdown-item-icon"
+              name={this.icon}
+              aria-label={this.ariaLabelIcon}
+            ></ix-icon>
           ) : null}
           <div class="dropdown-item-text">
             {this.label}

@@ -2122,6 +2122,15 @@ export namespace Components {
     }
     interface IxModalHeader {
         /**
+          * Aria label for the close icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.2.0
+         */
+        "ariaLabelCloseIconButton"?: string;
+        /**
+          * Aria label for the icon
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Hide the close button
          */
         "hideClose": boolean;
@@ -2238,6 +2247,16 @@ export namespace Components {
          */
         "advanced": boolean;
         /**
+          * Aria label for the chevron left icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.2.0
+         */
+        "ariaLabelChevronLeftIconButton"?: string;
+        /**
+          * Aria label for the chevron right icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.2.0
+         */
+        "ariaLabelChevronRightIconButton"?: string;
+        /**
           * Total number of pages
          */
         "count": number;
@@ -2267,6 +2286,10 @@ export namespace Components {
         "showItemCount": boolean;
     }
     interface IxPane {
+        /**
+          * Aria label for the icon
+         */
+        "ariaLabelIcon"?: string;
         /**
           * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
          */
@@ -2327,6 +2350,11 @@ export namespace Components {
           * Align pill content left
          */
         "alignLeft": boolean;
+        /**
+          * Aria label for the icon
+          * @since 3.2.0
+         */
+        "ariaLabelIcon"?: string;
         /**
           * Custom color for pill. Only working for `variant='custom'`
          */
@@ -7483,6 +7511,15 @@ declare namespace LocalJSX {
     }
     interface IxModalHeader {
         /**
+          * Aria label for the close icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.2.0
+         */
+        "ariaLabelCloseIconButton"?: string;
+        /**
+          * Aria label for the icon
+         */
+        "ariaLabelIcon"?: string;
+        /**
           * Hide the close button
          */
         "hideClose"?: boolean;
@@ -7601,6 +7638,16 @@ declare namespace LocalJSX {
          */
         "advanced"?: boolean;
         /**
+          * Aria label for the chevron left icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.2.0
+         */
+        "ariaLabelChevronLeftIconButton"?: string;
+        /**
+          * Aria label for the chevron right icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.2.0
+         */
+        "ariaLabelChevronRightIconButton"?: string;
+        /**
           * Total number of pages
          */
         "count"?: number;
@@ -7638,6 +7685,10 @@ declare namespace LocalJSX {
         "showItemCount"?: boolean;
     }
     interface IxPane {
+        /**
+          * Aria label for the icon
+         */
+        "ariaLabelIcon"?: string;
         /**
           * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
          */
@@ -7712,6 +7763,11 @@ declare namespace LocalJSX {
           * Align pill content left
          */
         "alignLeft"?: boolean;
+        /**
+          * Aria label for the icon
+          * @since 3.2.0
+         */
+        "ariaLabelIcon"?: string;
         /**
           * Custom color for pill. Only working for `variant='custom'`
          */
