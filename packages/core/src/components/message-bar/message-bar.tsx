@@ -128,6 +128,7 @@ export class MessageBar {
           {this.dismissible ? (
             <ix-icon-button
               icon={iconClose}
+              iconColor="color-soft-text"
               size="24"
               ghost={true}
               onClick={() => {

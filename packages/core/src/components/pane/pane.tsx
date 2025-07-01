@@ -648,6 +648,11 @@ export class Pane {
                     : this.expandIcon
                   : this.minimizeIcon
               }
+              iconColor={
+                this.expanded && (this.isMobile || this.hideOnCollapse)
+                  ? 'color-soft-text'
+                  : undefined
+              }
               ghost
               onClick={() => this.dispatchExpandedChangedEvent()}
               aria-controls={`pane-${this.composition}`}

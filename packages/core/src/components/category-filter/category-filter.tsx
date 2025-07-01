@@ -794,6 +794,7 @@ export class CategoryFilter {
         ghost
         oval
         icon={iconClear}
+        iconColor="color-soft-text"
         size="16"
       ></ix-icon-button>
     );
