@@ -18,7 +18,7 @@
   z-index: var(--theme-z-index-tooltip);
 
   .validation-tooltip {
-    background-color: var(--theme-tootlip--background);
+    background-color: var(--theme-tooltip--background);
     color: var(--theme-tooltip--color);
     padding: $padding 10px;
     border-radius: 4px;
@@ -43,7 +43,7 @@
       visibility: visible;
       content: '';
       transform: rotate(45deg);
-      background-color: var(--theme-tootlip--background);
+      background-color: var(--theme-tooltip--background);
     }
   }
 
