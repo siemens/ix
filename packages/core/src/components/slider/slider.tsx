@@ -133,11 +133,6 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @Prop() disabled = false;
 
   /**
-   * Show error state and message
-   */
-  @Prop() error?: boolean | string;
-
-  /**
    *
    */
   @Event() valueChange!: EventEmitter<number>;
@@ -208,9 +203,6 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   }
 
   @Watch('value')
-  watchValue(newValue: number) {
-    this.formInternals.setFormValue(newValue.toString());
-  }
   @Watch('max')
   @Watch('min')
   @Watch('traceReference')
@@ -219,6 +211,9 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
     this.rangeTraceReference = between(this.min, this.traceReference, this.max);
     this.rangeMin = Math.min(this.min, this.max);
     this.rangeMax = Math.max(this.min, this.max);
+    if (this.value !== undefined) {
+      this.formInternals.setFormValue(this.value.toString());
+    }
   }
   private updateFormInternalValue(value: number) {
     this.formInternals.setFormValue(value.toString());
@@ -297,11 +292,10 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
       <Host
         class={{
           disabled: this.disabled,
-          invalid: !!this.isInvalid,
-          info: !!this.isInfo,
-          valid: !!this.isValid,
-          warning: !!this.isWarning,
-          error: !!this.error,
+          invalid: this.isInvalid,
+          info: this.isInfo,
+          valid: this.isValid,
+          warning: this.isWarning,
         }}
         onPointerDown={() => setTimeout(() => (this.showTooltip = true))}
       >
@@ -414,11 +408,6 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                 <slot name="label-end"></slot>
               </div>
             </div>
-            {this.error ? (
-              <ix-typography class={'label-error'} textColor="alarm">
-                {this.error}
-              </ix-typography>
-            ) : null}
           </div>
         </ix-field-wrapper>
       </Host>

@@ -88,7 +88,6 @@
 }
 
 :host {
-  padding: 0.5rem;
   @include ix-component;
   display: flex;
   flex-direction: column;
@@ -257,13 +256,8 @@
 
     min-height: 0px;
   }
-
-  .label-error {
-    margin-left: 0.5rem;
-  }
 }
 
-:host(.error),
 :host(.invalid) {
   --trace-color: var(--theme-color-alarm-40);
   --tick-color--active: var(--theme-color-alarm);
@@ -272,6 +266,7 @@
     background-color: var(--theme-color-alarm);
   }
 }
+
 :host(.warning) {
   --trace-color: var(--theme-color-warning-40);
   --tick-color--active: var(--theme-color-warning);
@@ -280,6 +275,7 @@
     background-color: var(--theme-color-warning);
   }
 }
+
 :host(.info) {
   --trace-color: var(--theme-color-info-40);
   --tick-color--active: var(--theme-color-info);
@@ -288,6 +284,7 @@
     background-color: var(--theme-color-info);
   }
 }
+
 :host(.valid) {
   --trace-color: var(--theme-color-success-40);
   --tick-color--active: var(--theme-color-success);
