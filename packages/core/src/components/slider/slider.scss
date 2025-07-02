@@ -88,6 +88,7 @@
 }
 
 :host {
+  padding: 0.5rem;
   @include ix-component;
   display: flex;
   flex-direction: column;
