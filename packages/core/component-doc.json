@@ -43,7 +43,7 @@
           "mutable": false,
           "attr": "aria-label-card",
           "reflectToAttr": false,
-          "docs": "Aria Label for the card",
+          "docs": "ARIA label for the card",
           "docsTags": [
             {
               "name": "since",
@@ -74,11 +74,11 @@
           "mutable": false,
           "attr": "aria-label-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the icon",
+          "docs": "ARIA label for the icon",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -536,11 +536,11 @@
           "mutable": false,
           "attr": "aria-label-app-switch-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the app switch icon button",
+          "docs": "ARIA label for the app switch icon button",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -567,11 +567,11 @@
           "mutable": false,
           "attr": "aria-label-menu-expand-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the menu expand icon button",
+          "docs": "ARIA label for the menu expand icon button",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -598,11 +598,11 @@
           "mutable": false,
           "attr": "aria-label-more-menu-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the more menu icon button",
+          "docs": "ARIA label for the more menu icon button",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -1480,7 +1480,7 @@
           "mutable": false,
           "attr": "aria-label-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the button\nWill be set as aria-label for the nested HTML button element",
+          "docs": "ARIA label for the button\nWill be set as aria-label for the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -1634,7 +1634,7 @@
           "mutable": false,
           "attr": "aria-label-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -2047,7 +2047,7 @@
           "mutable": false,
           "attr": "aria-label-expand-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the card's expand button.\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the card's expand button.\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -2183,7 +2183,7 @@
           "mutable": false,
           "attr": "aria-label-expand-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the card's expand button.\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the card's expand button.\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -2556,7 +2556,7 @@
           "mutable": false,
           "attr": "aria-label-filter-input",
           "reflectToAttr": false,
-          "docs": "Aria label for the filter input\nWill be set as aria-label on the nested HTML input element",
+          "docs": "ARIA label for the filter input\nWill be set as aria-label on the nested HTML input element",
           "docsTags": [
             {
               "name": "since",
@@ -2587,7 +2587,7 @@
           "mutable": false,
           "attr": "aria-label-operator-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the operator button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the operator button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -2618,7 +2618,7 @@
           "mutable": false,
           "attr": "aria-label-reset-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the reset button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the reset button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -3625,7 +3625,7 @@
           "mutable": false,
           "attr": "aria-label-close-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the close button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the close button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [],
           "values": [
             {
@@ -4767,7 +4767,7 @@
           "mutable": false,
           "attr": "aria-label-dropdown-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the dropdown\nWill be set as aria-label on the nested HTML dropdown element",
+          "docs": "ARIA label for the dropdown\nWill be set as aria-label on the nested HTML dropdown element",
           "docsTags": [],
           "values": [
             {
@@ -5426,7 +5426,7 @@
           "mutable": false,
           "attr": "aria-label-calendar-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the calendar icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the calendar icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -6043,7 +6043,7 @@
           "mutable": false,
           "attr": "aria-label-next-month-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the next month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the next month icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [],
           "values": [
             {
@@ -6069,7 +6069,7 @@
           "mutable": false,
           "attr": "aria-label-previous-month-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the previous month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the previous month icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [],
           "values": [
             {
@@ -6530,7 +6530,7 @@
           "mutable": false,
           "attr": "aria-label-next-month-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the next month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the next month icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [],
           "values": [
             {
@@ -6556,7 +6556,7 @@
           "mutable": false,
           "attr": "aria-label-previous-month-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the previous month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the previous month icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [],
           "values": [
             {
@@ -7187,7 +7187,7 @@
           "mutable": false,
           "attr": "aria-label-close-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -7878,7 +7878,7 @@
           "mutable": false,
           "attr": "aria-label-dropdown-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the dropdown button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the dropdown button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -8275,11 +8275,11 @@
           "mutable": false,
           "attr": "aria-label-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the item's button\nWill be set as aria-label for the nested HTML button element",
+          "docs": "ARIA label for the item's button\nWill be set as aria-label for the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -8306,7 +8306,7 @@
           "mutable": false,
           "attr": "aria-label-icon",
           "reflectToAttr": false,
-          "docs": "Aria label of the icon",
+          "docs": "ARIA label for the icon",
           "docsTags": [],
           "values": [
             {
@@ -8540,7 +8540,7 @@
           "mutable": false,
           "attr": "aria-label-empty-state-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the empty state icon",
+          "docs": "ARIA label for the empty state icon",
           "docsTags": [
             {
               "name": "since",
@@ -9009,11 +9009,11 @@
           "mutable": false,
           "attr": "aria-label-clear-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the clear icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the clear icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -9040,11 +9040,11 @@
           "mutable": false,
           "attr": "aria-label-search-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the search icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the search icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -9071,11 +9071,11 @@
           "mutable": false,
           "attr": "aria-label-search-input",
           "reflectToAttr": false,
-          "docs": "Aria label for the search input\nWill be set as aria-label on the nested HTML input element",
+          "docs": "ARIA label for the search input\nWill be set as aria-label on the nested HTML input element",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -9431,7 +9431,7 @@
           "mutable": false,
           "attr": "aria-label-close-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [],
           "values": [
             {
@@ -9553,7 +9553,7 @@
           "mutable": false,
           "attr": "aria-label-eye-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the eye icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the eye icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -10084,7 +10084,7 @@
           "mutable": false,
           "attr": "aria-label-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the icon",
+          "docs": "ARIA label for the icon",
           "docsTags": [],
           "values": [
             {
@@ -10978,11 +10978,11 @@
           "mutable": false,
           "attr": "aria-label-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the icon button\nWill be set for the native HTML button element",
+          "docs": "ARIA label for the icon button\nWill be set for the native HTML button element",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -11996,11 +11996,11 @@
           "mutable": false,
           "attr": "aria-label-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the icon",
+          "docs": "ARIA label for the icon",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -12214,11 +12214,11 @@
           "mutable": false,
           "attr": "aria-label-alarm-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the alarm icon",
+          "docs": "ARIA label for the alarm icon",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -12245,11 +12245,11 @@
           "mutable": false,
           "attr": "aria-label-warning-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the warning icon",
+          "docs": "ARIA label for the warning icon",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -12773,11 +12773,11 @@
           "mutable": false,
           "attr": "aria-label-context-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the context menu icon button\nWill be set for the native HTML button element",
+          "docs": "ARIA label for the context menu icon button\nWill be set for the native HTML button element",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -13079,11 +13079,11 @@
           "mutable": false,
           "attr": "aria-label-close-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -13110,11 +13110,11 @@
           "mutable": false,
           "attr": "aria-label-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the icon",
+          "docs": "ARIA label for the icon",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -15803,7 +15803,7 @@
           "mutable": false,
           "attr": "aria-label-close-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -15834,7 +15834,7 @@
           "mutable": false,
           "attr": "aria-label-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the icon",
+          "docs": "ARIA label for the icon",
           "docsTags": [],
           "values": [
             {
@@ -16710,7 +16710,7 @@
           "mutable": false,
           "attr": "aria-label-chevron-left-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the chevron left icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the chevron left icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -16741,7 +16741,7 @@
           "mutable": false,
           "attr": "aria-label-chevron-right-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the chevron right icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the chevron right icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -17004,7 +17004,7 @@
           "mutable": false,
           "attr": "aria-label-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the icon",
+          "docs": "ARIA label for the icon",
           "docsTags": [],
           "values": [
             {
@@ -17515,7 +17515,7 @@
           "mutable": false,
           "attr": "aria-label-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the icon",
+          "docs": "ARIA label for the icon",
           "docsTags": [
             {
               "name": "since",
@@ -18113,7 +18113,7 @@
           "mutable": false,
           "attr": "aria-label-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the icon",
+          "docs": "ARIA label for the icon",
           "docsTags": [
             {
               "name": "since",
@@ -18996,7 +18996,7 @@
           "mutable": false,
           "attr": "aria-label-chevron-down-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the chevron down icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the chevron down icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -19027,7 +19027,7 @@
           "mutable": false,
           "attr": "aria-label-clear-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the clear icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the clear icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
@@ -20325,11 +20325,11 @@
           "mutable": false,
           "attr": "aria-label-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the button (use if no label and icon button)",
+          "docs": "ARIA label for the button (use if no label and icon button)",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -20356,11 +20356,11 @@
           "mutable": false,
           "attr": "aria-label-split-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the split icon button",
+          "docs": "ARIA label for the split icon button",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -20990,11 +20990,11 @@
           "mutable": false,
           "attr": "aria-label-chevron-left-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the chevron left icon button",
+          "docs": "ARIA label for the chevron left icon button",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -21021,11 +21021,11 @@
           "mutable": false,
           "attr": "aria-label-chevron-right-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the chevron right icon button",
+          "docs": "ARIA label for the chevron right icon button",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -23479,11 +23479,11 @@
           "mutable": false,
           "attr": "aria-label-close-icon-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -24196,11 +24196,11 @@
           "mutable": false,
           "attr": "aria-label-button",
           "reflectToAttr": false,
-          "docs": "Aria label for the button\nWill be set as aria-label on the nested HTML button element",
+          "docs": "ARIA label for the button\nWill be set as aria-label on the nested HTML button element",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.3.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -24920,7 +24920,7 @@
           "mutable": false,
           "attr": "aria-label-chevron-icon",
           "reflectToAttr": false,
-          "docs": "Aria label for the chevron icon",
+          "docs": "ARIA label for the chevron icon",
           "docsTags": [],
           "values": [
             {

@@ -120,13 +120,13 @@ export class DatetimePicker
   @Prop() i18nTime: string = 'Time';
 
   /**
-   * Aria label for the previous month icon button
+   * ARIA label for the previous month icon button
    * Will be set as aria-label on the nested HTML button element
    */
   @Prop() ariaLabelPreviousMonthButton?: string;
 
   /**
-   * Aria label for the next month icon button
+   * ARIA label for the next month icon button
    * Will be set as aria-label on the nested HTML button element
    */
   @Prop() ariaLabelNextMonthButton?: string;

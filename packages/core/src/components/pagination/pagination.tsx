@@ -8,19 +8,19 @@
  */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yBoolean } from '../utils/a11y';
 import {
-  iconChevronLeftSmall,
-  iconChevronRightSmall,
+    iconChevronLeftSmall,
+    iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
 @Component({
@@ -89,7 +89,7 @@ export class Pagination {
   @Prop() i18nItems = 'Items';
 
   /**
-   * Aria label for the chevron left icon button
+   * ARIA label for the chevron left icon button
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0
@@ -97,7 +97,7 @@ export class Pagination {
   @Prop() ariaLabelChevronLeftIconButton?: string;
 
   /**
-   * Aria label for the chevron right icon button
+   * ARIA label for the chevron right icon button
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0

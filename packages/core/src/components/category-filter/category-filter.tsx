@@ -8,15 +8,15 @@
  */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
-  Watch,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
+    State,
+    Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { FilterState } from './filter-state';
@@ -25,8 +25,8 @@ import { LogicalFilterOperator } from './logical-filter-operator';
 import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
 import {
-  addDisposableEventListener,
-  DisposableEventListener,
+    addDisposableEventListener,
+    DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
@@ -152,7 +152,7 @@ export class CategoryFilter {
   @Prop() i18nPlainText = 'Filter by text';
 
   /**
-   * Aria label for the reset button
+   * ARIA label for the reset button
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0
@@ -160,7 +160,7 @@ export class CategoryFilter {
   @Prop() ariaLabelResetButton?: string;
 
   /**
-   * Aria label for the operator button
+   * ARIA label for the operator button
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0
@@ -168,7 +168,7 @@ export class CategoryFilter {
   @Prop() ariaLabelOperatorButton?: string;
 
   /**
-   * Aria label for the filter input
+   * ARIA label for the filter input
    * Will be set as aria-label on the nested HTML input element
    *
    * @since 3.2.0

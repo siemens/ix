@@ -33,7 +33,7 @@ export class TreeItem {
   @Prop() context?: TreeItemContext;
 
   /**
-   * Aria label for the chevron icon
+   * ARIA label for the chevron icon
    */
   @Prop() ariaLabelChevronIcon?: string;
 

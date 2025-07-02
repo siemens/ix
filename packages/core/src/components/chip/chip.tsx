@@ -9,13 +9,13 @@
 
 import { iconCloseSmall } from '@siemens/ix-icons/icons';
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
 } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
 
@@ -89,7 +89,7 @@ export class Chip {
   @Prop() centerContent = false;
 
   /**
-   * Aria label for the close button
+   * ARIA label for the close button
    * Will be set as aria-label on the nested HTML button element
    */
   @Prop() ariaLabelCloseButton?: string;

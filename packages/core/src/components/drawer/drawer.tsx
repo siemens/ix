@@ -9,15 +9,15 @@
 
 import { iconClose } from '@siemens/ix-icons/icons';
 import {
-  Component,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Method,
-  Prop,
-  State,
-  Watch,
+    Component,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Method,
+    Prop,
+    State,
+    Watch,
 } from '@stencil/core';
 import anime from 'animejs';
 
@@ -58,7 +58,7 @@ export class Drawer {
   @Prop() width: number | 'auto' = this.minWidth;
 
   /**
-   * Aria label for the close icon button
+   * ARIA label for the close icon button
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0

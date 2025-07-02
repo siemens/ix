@@ -50,10 +50,10 @@ export class MapNavigation {
   @Prop() hideContextMenu = true;
 
   /**
-   * Aria label for the context menu icon button
+   * ARIA label for the context menu icon button
    * Will be set for the native HTML button element
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelContextIconButton?: string;
 

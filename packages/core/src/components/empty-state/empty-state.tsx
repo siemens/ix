@@ -43,7 +43,7 @@ export class EmptyState {
   @Prop() action?: string;
 
   /**
-   * Aria label for the empty state icon
+   * ARIA label for the empty state icon
    *
    * @since 3.2.0
    */

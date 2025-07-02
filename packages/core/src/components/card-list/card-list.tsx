@@ -1,13 +1,13 @@
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Listen,
-  Prop,
-  State,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Listen,
+    Prop,
+    State,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { iconChevronDown, iconMoreMenu } from '@siemens/ix-icons/icons';
@@ -65,7 +65,7 @@ function CardListTitle(props: {
 })
 export class CardList {
   /**
-   * Aria label for the card's expand button.
+   * ARIA label for the card's expand button.
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0

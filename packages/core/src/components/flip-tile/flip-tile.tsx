@@ -8,15 +8,15 @@
  */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
-  Watch,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
+    State,
+    Watch,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileState } from './flip-tile-state';
@@ -52,7 +52,7 @@ export class FlipTile {
   @Prop() index = 0;
 
   /**
-   * Aria label for the eye icon button
+   * ARIA label for the eye icon button
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0

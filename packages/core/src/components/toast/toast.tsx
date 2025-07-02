@@ -63,10 +63,10 @@ export class Toast {
   @Prop() iconColor?: string;
 
   /**
-   * Aria label for the close icon button
+   * ARIA label for the close icon button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelCloseIconButton?: string;
 

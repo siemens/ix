@@ -8,17 +8,17 @@
  */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  Fragment,
-  h,
-  Host,
-  Method,
-  Prop,
-  State,
-  Watch,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    Fragment,
+    h,
+    Host,
+    Method,
+    Prop,
+    State,
+    Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { type LiteralStringUnion } from '../utils/type-helper';
@@ -131,7 +131,7 @@ export class DateDropdown
   @Prop() showWeekNumbers = false;
 
   /**
-   * Aria label for the dropdown
+   * ARIA label for the dropdown
    * Will be set as aria-label on the nested HTML dropdown element
    */
   @Prop() ariaLabelDropdownButton?: string;

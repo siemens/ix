@@ -8,13 +8,13 @@
  */
 
 import {
-  Component,
-  Element,
-  h,
-  Host,
-  Listen,
-  Prop,
-  Watch,
+    Component,
+    Element,
+    h,
+    Host,
+    Listen,
+    Prop,
+    Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
@@ -28,7 +28,7 @@ export type ButtonVariant = 'danger' | 'primary' | 'secondary';
 })
 export class Button implements IxButtonComponent {
   /**
-   * Aria label for the button
+   * ARIA label for the button
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0

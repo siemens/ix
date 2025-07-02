@@ -8,15 +8,15 @@
  */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  Fragment,
-  h,
-  Host,
-  Prop,
-  State,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    Fragment,
+    h,
+    Host,
+    Prop,
+    State,
 } from '@stencil/core';
 import animejs from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
@@ -39,7 +39,7 @@ export class BreadcrumbItem {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
-   * Aria label for the button
+   * ARIA label for the button
    * Will be set as aria-label for the nested HTML button element
    *
    * @since 3.2.0

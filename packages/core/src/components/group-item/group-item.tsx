@@ -8,14 +8,14 @@
  */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Listen,
-  Prop,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Listen,
+    Prop,
 } from '@stencil/core';
 
 @Component({
@@ -32,7 +32,7 @@ export class GroupItem {
   @Prop() icon?: string;
 
   /**
-   * Aria label for the icon
+   * ARIA label for the icon
    */
   @Prop() ariaLabelIcon?: string;
 

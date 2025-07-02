@@ -24,7 +24,7 @@ export class PushCard {
   @Prop() icon?: string;
 
   /**
-   * Aria label for the icon
+   * ARIA label for the icon
    *
    * @since 3.2.0
    */

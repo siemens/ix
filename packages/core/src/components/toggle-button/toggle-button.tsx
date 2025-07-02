@@ -54,10 +54,10 @@ export class ToggleButton {
   @Prop() pressed = false;
 
   /**
-   * Aria label for the button
+   * ARIA label for the button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelButton?: string;
 

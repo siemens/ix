@@ -59,16 +59,16 @@ export class Tabs {
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
   /**
-   * Aria label for the chevron left icon button
+   * ARIA label for the chevron left icon button
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelChevronLeftIconButton?: string;
 
   /**
-   * Aria label for the chevron right icon button
+   * ARIA label for the chevron right icon button
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelChevronRightIconButton?: string;
 

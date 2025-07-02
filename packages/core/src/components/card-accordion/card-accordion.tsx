@@ -1,14 +1,14 @@
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
-  Watch,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
+    State,
+    Watch,
 } from '@stencil/core';
 
 let accordionControlId = 0;
@@ -28,7 +28,7 @@ export type CardAccordionExpandChangeEvent = {
 })
 export class CardAccordion {
   /**
-   * Aria label for the card's expand button.
+   * ARIA label for the card's expand button.
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0

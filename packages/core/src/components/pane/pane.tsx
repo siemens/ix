@@ -8,26 +8,26 @@
  */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
-  Watch,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
+    State,
+    Watch,
 } from '@stencil/core';
 import anime from 'animejs';
 import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 import {
-  iconClose,
-  iconDoubleChevronDown,
-  iconDoubleChevronLeft,
-  iconDoubleChevronRight,
-  iconDoubleChevronUp,
+    iconClose,
+    iconDoubleChevronDown,
+    iconDoubleChevronLeft,
+    iconDoubleChevronRight,
+    iconDoubleChevronUp,
 } from '@siemens/ix-icons/icons';
 
 export type Composition = 'top' | 'left' | 'bottom' | 'right';
@@ -111,7 +111,7 @@ export class Pane {
   @Prop() icon?: string;
 
   /**
-   * Aria label for the icon
+   * ARIA label for the icon
    */
   @Prop() ariaLabelIcon?: string;
 

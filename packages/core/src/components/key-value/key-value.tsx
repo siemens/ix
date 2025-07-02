@@ -26,9 +26,9 @@ export class KeyValue {
   @Prop() icon?: string;
 
   /**
-   * Aria label for the icon
+   * ARIA label for the icon
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelIcon?: string;
 

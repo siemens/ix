@@ -29,9 +29,9 @@ export class IxActionCard {
   @Prop() icon: string | undefined = undefined;
 
   /**
-   * Aria label for the icon
+   * ARIA label for the icon
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelIcon?: string;
 
@@ -51,7 +51,7 @@ export class IxActionCard {
   @Prop() selected = false;
 
   /**
-   * Aria Label for the card
+   * ARIA label for the card
    *
    * @since 3.2.0
    */

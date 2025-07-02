@@ -8,14 +8,14 @@
  */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  Watch,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
+    Watch,
 } from '@stencil/core';
 import { closestPassShadow } from '../utils/shadow-dom';
 import { iconClose } from '@siemens/ix-icons/icons';
@@ -39,12 +39,12 @@ export class ModalHeader {
   @Prop() icon?: string;
 
   /**
-   * Aria label for the icon
+   * ARIA label for the icon
    */
   @Prop() ariaLabelIcon?: string;
 
   /**
-   * Aria label for the close icon button
+   * ARIA label for the close icon button
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0

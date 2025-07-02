@@ -42,15 +42,15 @@ export class DropdownItem implements DropdownItemWrapper {
   @Prop() icon?: string;
 
   /**
-   * Aria label of the icon
+   * ARIA label for the icon
    */
   @Prop() ariaLabelIcon?: string;
 
   /**
-   * Aria label for the item's button
+   * ARIA label for the item's button
    * Will be set as aria-label for the nested HTML button element
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelButton?: string;
 

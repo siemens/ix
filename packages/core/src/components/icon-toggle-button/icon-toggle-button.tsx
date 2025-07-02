@@ -76,10 +76,10 @@ export class IconToggleButton {
   @Prop() loading: boolean = false;
 
   /**
-   * Aria label for the icon button
+   * ARIA label for the icon button
    * Will be set for the native HTML button element
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelIconButton?: string;
 

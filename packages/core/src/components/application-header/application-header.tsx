@@ -57,23 +57,23 @@ export class ApplicationHeader {
   @Prop({ mutable: true }) showMenu?: boolean = false;
 
   /**
-   * Aria label for the menu expand icon button
+   * ARIA label for the menu expand icon button
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelMenuExpandIconButton?: string;
 
   /**
-   * Aria label for the app switch icon button
+   * ARIA label for the app switch icon button
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelAppSwitchIconButton?: string;
 
   /**
-   * Aria label for the more menu icon button
+   * ARIA label for the more menu icon button
    *
-   * @since 2.3.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelMoreMenuIconButton?: string;
 

@@ -64,7 +64,7 @@ export class DropdownButton {
   @Prop() placement?: AlignedPlacement;
 
   /**
-   * Aria label for the dropdown button
+   * ARIA label for the dropdown button
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0
