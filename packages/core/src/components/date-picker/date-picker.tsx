@@ -159,7 +159,7 @@ export class DatePicker implements IxDatePickerComponent {
   @Prop() today = DateTime.now().toISO();
 
   /**
-   * Triggers when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
+   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
    * The property strings are formatted according to the `format` property and not affected by the `locale` property.
    * The locale applied is always `en-US`.
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
@@ -167,14 +167,14 @@ export class DatePicker implements IxDatePickerComponent {
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Triggers when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
+   * Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
    * The property strings are formatted according to the `format` property and not affected by the `locale` property.
    * The locale applied is always `en-US`.
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Triggers when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
+   * Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
    * The property strings are formatted according to the `format` property and not affected by the `locale` property.
    * The locale applied is always `en-US`.
    */
