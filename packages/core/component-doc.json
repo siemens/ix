@@ -5679,7 +5679,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
           "docsTags": [],
           "values": [
             {
@@ -5866,7 +5866,7 @@
           },
           "signature": "getCurrentDate() => Promise<{ from: string | undefined; to: string | undefined; }>",
           "parameters": [],
-          "docs": "Get the currently selected date-range.",
+          "docs": "Get the currently selected date or range. The object returned contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.",
           "docsTags": []
         }
       ],
@@ -5888,7 +5888,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Triggers if the date selection changes.\nNote: Since 2.0.0 `dateChange` does not dispatch detail property as `string`",
+          "docs": "Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.\nNote: Since 2.0.0 `dateChange` does not dispatch detail property as `string`",
           "docsTags": []
         },
         {
@@ -5908,7 +5908,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Triggers if the date selection changes.\nOnly triggered if date-picker-rework is in range mode.",
+          "docs": "Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.",
           "docsTags": []
         },
         {
@@ -5928,7 +5928,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Date selection confirmed via button action",
+          "docs": "Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.",
           "docsTags": []
         }
       ],
