@@ -257,8 +257,13 @@
 
     min-height: 0px;
   }
+
+  .label-error {
+    margin-left: 0.5rem;
+  }
 }
 
+:host(.error),
 :host(.invalid) {
   --trace-color: var(--theme-color-alarm-40);
   --tick-color--active: var(--theme-color-alarm);

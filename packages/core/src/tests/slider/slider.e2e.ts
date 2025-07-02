@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconRocket } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('should show reference value', async ({ page, mount }) => {
@@ -150,6 +151,47 @@ regressionTest(
     ).toMatchSnapshot();
   }
 );
+
+regressionTest('should render with label', async ({ page, mount }) => {
+  await mount(
+    `
+    <div id='slider-container'>
+
+      <ix-slider
+        min="500"
+        max="1000"
+        value="777"
+        trace
+        traceReference="2000"
+        >
+        <span slot="label-start">500</span>
+        <span slot="label-end">1000</span>
+      </ix-slider>
+
+      <ix-slider>
+        <ix-icon name="rocket" slot="label-start">500</ix-icon>
+        <ix-icon name="rocket" slot="label-end">1000</ix-icon>
+      </ix-slider>
+
+    </div>
+  `,
+    {
+      icons: {
+        iconRocket,
+      },
+    }
+  );
+
+  const slider1 = page.locator('ix-slider').nth(0);
+  const slider2 = page.locator('ix-slider').nth(1);
+
+  await expect(slider1).toHaveClass(/hydrated/);
+  await expect(slider2).toHaveClass(/hydrated/);
+
+  expect(
+    await page.locator('#slider-container').screenshot()
+  ).toMatchSnapshot();
+});
 
 regressionTest('should render all slider variants', async ({ page, mount }) => {
   await mount(`
@@ -316,6 +358,32 @@ regressionTest('should render all slider variants', async ({ page, mount }) => {
   // Test valid sliders
   await expect(allSliders.nth(8)).toHaveClass('ix-valid valid hydrated');
   await expect(allSliders.nth(9)).toHaveClass('ix-valid valid hydrated');
+
+  expect(
+    await page.locator('#slider-container').screenshot()
+  ).toMatchSnapshot();
+});
+
+regressionTest('should render with error', async ({ page, mount }) => {
+  await mount(`
+    <div id='slider-container'>
+
+      <ix-slider error="Some error message">
+      </ix-slider>
+
+      <ix-slider error="Some error message">
+        <span slot="label-start">500</span>
+        <span slot="label-end">1000</span>
+      </ix-slider>
+
+    </div>
+  `);
+
+  const slider1 = page.locator('ix-slider').nth(0);
+  const slider2 = page.locator('ix-slider').nth(1);
+
+  await expect(slider1).toHaveClass(/hydrated/);
+  await expect(slider2).toHaveClass(/hydrated/);
 
   expect(
     await page.locator('#slider-container').screenshot()
