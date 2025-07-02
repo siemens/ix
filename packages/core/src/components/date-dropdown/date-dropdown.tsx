@@ -8,17 +8,17 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    Fragment,
-    h,
-    Host,
-    Method,
-    Prop,
-    State,
-    Watch,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Fragment,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { type LiteralStringUnion } from '../utils/type-helper';

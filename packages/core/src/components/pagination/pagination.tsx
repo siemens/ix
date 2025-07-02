@@ -8,19 +8,19 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yBoolean } from '../utils/a11y';
 import {
-    iconChevronLeftSmall,
-    iconChevronRightSmall,
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
 @Component({

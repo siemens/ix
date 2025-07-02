@@ -8,15 +8,15 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State,
-    Watch,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { FilterState } from './filter-state';
@@ -25,8 +25,8 @@ import { LogicalFilterOperator } from './logical-filter-operator';
 import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
 import {
-    addDisposableEventListener,
-    DisposableEventListener,
+  addDisposableEventListener,
+  DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 

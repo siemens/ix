@@ -8,13 +8,13 @@
  */
 
 import {
-    Component,
-    Element,
-    h,
-    Host,
-    Listen,
-    Prop,
-    Watch,
+  Component,
+  Element,
+  h,
+  Host,
+  Listen,
+  Prop,
+  Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';

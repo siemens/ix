@@ -8,17 +8,17 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    Fragment,
-    h,
-    Host,
-    Method,
-    Prop,
-    State,
-    Watch,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Fragment,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 import { DateTime, Info } from 'luxon';
@@ -26,9 +26,9 @@ import { OnListener } from '../utils/listener';
 import { IxDatePickerComponent } from './date-picker-component';
 import { makeRef } from '../utils/make-ref';
 import {
-    iconChevronLeftSmall,
-    iconChevronRightSmall,
-    iconSingleCheck,
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+  iconSingleCheck,
 } from '@siemens/ix-icons/icons';
 
 export type DateChangeEvent = {

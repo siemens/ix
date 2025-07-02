@@ -9,15 +9,15 @@
 
 import { iconClose } from '@siemens/ix-icons/icons';
 import {
-    Component,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Method,
-    Prop,
-    State,
-    Watch,
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import anime from 'animejs';
 

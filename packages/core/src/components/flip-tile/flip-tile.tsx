@@ -8,15 +8,15 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State,
-    Watch,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileState } from './flip-tile-state';

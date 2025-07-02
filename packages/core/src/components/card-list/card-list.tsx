@@ -1,13 +1,13 @@
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { iconChevronDown, iconMoreMenu } from '@siemens/ix-icons/icons';

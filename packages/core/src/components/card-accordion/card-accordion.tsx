@@ -1,14 +1,14 @@
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State,
-    Watch,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 
 let accordionControlId = 0;

@@ -8,15 +8,15 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    Fragment,
-    h,
-    Host,
-    Prop,
-    State,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Fragment,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import animejs from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';

@@ -8,32 +8,32 @@
  */
 
 import {
-    iconChevronDownSmall,
-    iconClear,
-    iconPlus,
+  iconChevronDownSmall,
+  iconClear,
+  iconPlus,
 } from '@siemens/ix-icons/icons';
 import {
-    AttachInternals,
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Method,
-    Prop,
-    State,
-    Watch,
+  AttachInternals,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Method,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
 import { ArrowFocusController } from '../utils/focus';
 import {
-    HookValidationLifecycle,
-    IxInputFieldComponent,
-    ValidationResults,
+  HookValidationLifecycle,
+  IxInputFieldComponent,
+  ValidationResults,
 } from '../utils/input';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
