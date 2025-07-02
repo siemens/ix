@@ -57,12 +57,17 @@ export class ContentHeader {
         ) : null}
 
         <div class="titleGroup">
-          <ix-typography
-            format={this.variant === 'secondary' ? 'h4' : 'h3'}
-            class={this.variant === 'secondary' ? 'secondary' : ''}
-          >
-            {this.headerTitle}
-          </ix-typography>
+          <div class="headerTitleRow">
+            <ix-typography
+              format={this.variant === 'secondary' ? 'h4' : 'h3'}
+              class={this.variant === 'secondary' ? 'secondary' : ''}
+            >
+              {this.headerTitle}
+            </ix-typography>
+            <div class="headerSlot">
+              <slot name="header" />
+            </div>
+          </div>
           {!!this.headerSubtitle && (
             <ix-typography
               format={'h6'}
