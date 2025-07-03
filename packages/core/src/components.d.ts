@@ -2424,6 +2424,10 @@ export namespace Components {
          */
         "hideListHeader": boolean;
         /**
+          * Chip label for all selected items in multiple mode.
+         */
+        "i18nAllSelected": string;
+        /**
           * Information inside of dropdown if no items where found with current filter text
          */
         "i18nNoMatches": string;
@@ -7630,6 +7634,10 @@ declare namespace LocalJSX {
           * Hide list header
          */
         "hideListHeader"?: boolean;
+        /**
+          * Chip label for all selected items in multiple mode.
+         */
+        "i18nAllSelected"?: string;
         /**
           * Information inside of dropdown if no items where found with current filter text
          */
