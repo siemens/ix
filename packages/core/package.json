@@ -13,24 +13,24 @@
   "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
-  "types": "dist/types/interfaces.d.ts",
+  "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "files": [
     "LICENSE",
     "README.md",
     "READMEOSS.html",
-    "components/",
     "dist/",
+    "components/",
     "loader/",
     "scss/",
     "hydrate/"
   ],
   "exports": {
     ".": {
-      "types": "./dist/types/interfaces.d.ts",
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs",
+      "require": "./dist/cjs/index.cjs.js",
       "default": "./dist/esm/index.js"
     },
     "./hydrate": {
@@ -92,7 +92,7 @@
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "^0.10.2",
-    "@stencil/core": "^4.35.1",
+    "@stencil/core": "^4.35.3",
     "@stencil/react-output-target": "^1.1.0",
     "@stencil/sass": "^3.0.12",
     "@stencil/vue-output-target": "0.10.8",

@@ -5,101 +5,99 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { ActionCardVariant } from "./components/action-card/action-card";
+import { ActionCardVariant } from "./components/action-card/action-card.types";
 import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
-import { BlindVariant } from "./components/blind/blind";
+import { BlindVariant } from "./components/blind/blind.types";
 import { ButtonVariant } from "./components/button/button";
-import { CardVariant } from "./components/card/card";
-import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
+import { CardVariant } from "./components/card/card.types";
+import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
-import { ColumnSize } from "./components/col/col";
-import { ContentHeaderVariant } from "./components/content-header/content-header";
-import { CssGridTemplateType } from "./components/css-grid/css-grid";
+import { ColumnSize } from "./components/col/col.types";
+import { ContentHeaderVariant } from "./components/content-header/content-header.types";
+import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
-import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
-import { DateInputValidityState } from "./components/date-input/date-input";
-import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-import { DateChangeEvent } from "./components/date-picker/date-picker";
-import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
+import { DateInputValidityState } from "./components/date-input/date-input.types";
+import { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
+import { DateChangeEvent } from "./components/date-picker/date-picker.events";
+import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
-import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
-import { EmptyStateLayout } from "./components/empty-state/empty-state";
+import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
+import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
-import { IconButtonVariant } from "./components/icon-button/icon-button";
-import { KeyValueLabelPosition } from "./components/key-value/key-value";
+import { IconButtonVariant } from "./components/icon-button/icon-button.types";
+import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
-import { IxModalSize } from "./components/modal/modal";
-import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
-import { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator";
-import { PushCardVariant } from "./components/push-card/push-card";
-import { SliderMarker } from "./components/slider/slider";
-import { SplitButtonVariant } from "./components/split-button/split-button";
-import { TabClickDetail } from "./components/tab-item/tab-item";
-import { TextareaResizeBehavior } from "./components/input/textarea";
-import { TimeInputValidityState } from "./components/time-input/time-input";
-import { TimePickerCorners } from "./components/time-picker/time-picker";
+import { IxModalSize } from "./components/modal/modal.types";
+import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
+import { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator.types";
+import { PushCardVariant } from "./components/push-card/push-card.types";
+import { SliderMarker } from "./components/slider/slider.types";
+import { SplitButtonVariant } from "./components/split-button/split-button.types";
+import { TabClickDetail } from "./components/tab-item/tab-item.types";
+import { TextareaResizeBehavior } from "./components/input/textarea.types";
+import { TimeInputValidityState } from "./components/time-input/time-input.types";
+import { TimePickerCorners } from "./components/time-picker/time-picker.types";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
-import { ShowToastResult } from "./components/toast/toast-container";
+import { ShowToastResult } from "./components/toast/toast-container.types";
 import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
+import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 import { UploadFileState } from "./components/upload/upload-file-state";
-export { ActionCardVariant } from "./components/action-card/action-card";
+export { ActionCardVariant } from "./components/action-card/action-card.types";
 export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
-export { BlindVariant } from "./components/blind/blind";
+export { BlindVariant } from "./components/blind/blind.types";
 export { ButtonVariant } from "./components/button/button";
-export { CardVariant } from "./components/card/card";
-export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
+export { CardVariant } from "./components/card/card.types";
+export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
-export { ColumnSize } from "./components/col/col";
-export { ContentHeaderVariant } from "./components/content-header/content-header";
-export { CssGridTemplateType } from "./components/css-grid/css-grid";
+export { ColumnSize } from "./components/col/col.types";
+export { ContentHeaderVariant } from "./components/content-header/content-header.types";
+export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
-export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
-export { DateInputValidityState } from "./components/date-input/date-input";
-export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-export { DateChangeEvent } from "./components/date-picker/date-picker";
-export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
+export { DateInputValidityState } from "./components/date-input/date-input.types";
+export { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
+export { DateChangeEvent } from "./components/date-picker/date-picker.events";
+export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
-export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
-export { EmptyStateLayout } from "./components/empty-state/empty-state";
+export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
+export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
-export { IconButtonVariant } from "./components/icon-button/icon-button";
-export { KeyValueLabelPosition } from "./components/key-value/key-value";
+export { IconButtonVariant } from "./components/icon-button/icon-button.types";
+export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
-export { IxModalSize } from "./components/modal/modal";
-export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
-export { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator";
-export { PushCardVariant } from "./components/push-card/push-card";
-export { SliderMarker } from "./components/slider/slider";
-export { SplitButtonVariant } from "./components/split-button/split-button";
-export { TabClickDetail } from "./components/tab-item/tab-item";
-export { TextareaResizeBehavior } from "./components/input/textarea";
-export { TimeInputValidityState } from "./components/time-input/time-input";
-export { TimePickerCorners } from "./components/time-picker/time-picker";
+export { IxModalSize } from "./components/modal/modal.types";
+export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
+export { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator.types";
+export { PushCardVariant } from "./components/push-card/push-card.types";
+export { SliderMarker } from "./components/slider/slider.types";
+export { SplitButtonVariant } from "./components/split-button/split-button.types";
+export { TabClickDetail } from "./components/tab-item/tab-item.types";
+export { TextareaResizeBehavior } from "./components/input/textarea.types";
+export { TimeInputValidityState } from "./components/time-input/time-input.types";
+export { TimePickerCorners } from "./components/time-picker/time-picker.types";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
-export { ShowToastResult } from "./components/toast/toast-container";
+export { ShowToastResult } from "./components/toast/toast-container.types";
 export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
+export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxActionCard {
@@ -972,7 +970,7 @@ export namespace Components {
           * Set corners style
           * @default 'rounded'
          */
-        "corners": DateTimeCardCorners1;
+        "corners": DateTimeCardCorners;
         /**
           * Display footer
           * @default false
@@ -1693,7 +1691,7 @@ export namespace Components {
          */
         "size": '24' | '16' | '12';
         /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
+          * Button variant.
           * @default 'secondary'
          */
         "variant": ButtonVariant1;
@@ -3562,7 +3560,7 @@ export namespace Components {
          */
         "pressed": boolean;
         /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
+          * Button variant.
           * @default 'secondary'
          */
         "variant": ButtonVariant1;
@@ -6569,7 +6567,7 @@ declare namespace LocalJSX {
           * Set corners style
           * @default 'rounded'
          */
-        "corners"?: DateTimeCardCorners1;
+        "corners"?: DateTimeCardCorners;
         /**
           * Display footer
           * @default false
@@ -7344,7 +7342,7 @@ declare namespace LocalJSX {
          */
         "size"?: '24' | '16' | '12';
         /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
+          * Button variant.
           * @default 'secondary'
          */
         "variant"?: ButtonVariant1;
@@ -9305,7 +9303,7 @@ declare namespace LocalJSX {
          */
         "pressed"?: boolean;
         /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
+          * Button variant.
           * @default 'secondary'
          */
         "variant"?: ButtonVariant1;

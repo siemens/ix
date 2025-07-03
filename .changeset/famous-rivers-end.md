@@ -2,4 +2,6 @@
 '@siemens/ix': minor
 ---
 
-Export only public api component types
+Remove internal type definition from public api types.
+
+Fixes #1969
