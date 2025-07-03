@@ -1065,8 +1065,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       '@stencil/vue-output-target':
-        specifier: ^0.10.7
-        version: 0.10.7(@stencil/core@4.35.1)(vue@3.5.13(typescript@5.8.3))
+        specifier: ^0.10.8
+        version: 0.10.8(@stencil/core@4.35.1)(vue@3.5.13(typescript@5.8.3))
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.62.0
@@ -5293,18 +5293,6 @@ packages:
       next: 13 || 14 || 15
       vite: ^6.x
       webpack: ^5.x
-
-  '@stencil/vue-output-target@0.10.7':
-    resolution: {integrity: sha512-IYxDe+SLCkwhwsWRdynE31rTK1zN3hVwwojQ/V9lrN8Gnx4PTvrUQHiRno9jFo1dk+EaBZWX9gZSmXta0ZaZew==}
-    peerDependencies:
-      '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
-      vue: ^3.4.38
-      vue-router: ^4.5.0
-    peerDependenciesMeta:
-      '@stencil/core':
-        optional: true
-      vue-router:
-        optional: true
 
   '@stencil/vue-output-target@0.10.8':
     resolution: {integrity: sha512-/a20LG29xqy/lxBqo6zc1LbyS20GW9xghypZ7vYdo5fQB8jHClAQDkn+c8aykQlre5TtHiODgvr/rRDUrQKwyg==}
@@ -19733,7 +19721,7 @@ snapshots:
       vite: 7.0.0(@types/node@20.16.5)(jiti@1.21.7)(less@4.2.0)(sass@1.89.2)(stylus@0.59.0)(terser@5.43.1)(tsx@4.19.4)(yaml@2.8.0)
       webpack: 5.96.1
 
-  '@stencil/vue-output-target@0.10.7(@stencil/core@4.35.1)(vue@3.5.13(typescript@5.8.3))':
+  '@stencil/vue-output-target@0.10.8(@stencil/core@4.35.1)(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       vue: 3.5.13(typescript@5.8.3)
     optionalDependencies:
