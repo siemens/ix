@@ -117,7 +117,7 @@ export class Chip {
             this.closeChip.emit(event);
             event.stopPropagation();
           }}
-          a11yLabel={this.ariaLabelCloseButton}
+          aria-label={this.ariaLabelCloseButton}
         ></ix-icon-button>
       </div>
     );

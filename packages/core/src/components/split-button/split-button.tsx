@@ -137,7 +137,7 @@ export class SplitButton {
               {...buttonAttributes}
               icon={this.icon}
               onClick={(e) => this.buttonClick.emit(e)}
-              a11yLabel={this.ariaLabelButton}
+              aria-label={this.ariaLabelButton}
             ></ix-icon-button>
           )}
           <ix-icon-button
@@ -145,7 +145,7 @@ export class SplitButton {
             ref={(r) => (this.triggerElement = r)}
             class={'anchor'}
             icon={this.splitIcon ?? iconContextMenu}
-            a11yLabel={this.ariaLabelSplitIconButton}
+            aria-label={this.ariaLabelSplitIconButton}
           ></ix-icon-button>
         </div>
 

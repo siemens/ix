@@ -162,7 +162,7 @@ export class ExpandingSearch
             'btn-search': true,
             'btn-search--expanded': this.expanded,
           }}
-          a11yLabel={this.ariaLabelSearchIconButton}
+          aria-label={this.ariaLabelSearchIconButton}
         ></ix-icon-button>
 
         <div
@@ -206,7 +206,7 @@ export class ExpandingSearch
               size="16"
               data-testid="clear-button"
               onClick={() => this.clearClicked()}
-              a11yLabel={this.ariaLabelClearIconButton}
+              aria-label={this.ariaLabelClearIconButton}
             />
           ) : null}
         </div>

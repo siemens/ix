@@ -257,7 +257,7 @@ export class MapNavigation {
                     size="24"
                     variant="secondary"
                     onClick={(_) => this.contextMenuClick.emit()}
-                    a11yLabel={this.ariaLabelContextIconButton}
+                    aria-label={this.ariaLabelContextIconButton}
                   ></ix-icon-button>
                 )}
               </div>

@@ -912,7 +912,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                         e.stopPropagation();
                         this.clear();
                       }}
-                      a11yLabel={this.ariaLabelClearIconButton}
+                      aria-label={this.ariaLabelClearIconButton}
                     />
                   ) : null}
                   {this.disabled || this.readonly ? null : (
@@ -925,7 +925,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
                       }}
-                      a11yLabel={this.ariaLabelChevronDownIconButton}
+                      aria-label={this.ariaLabelChevronDownIconButton}
                     ></ix-icon-button>
                   )}
                 </div>

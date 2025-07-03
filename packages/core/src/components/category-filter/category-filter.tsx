@@ -820,7 +820,7 @@ export class CategoryFilter {
         oval
         icon={iconClear}
         size="16"
-        a11yLabel={this.ariaLabelResetButton}
+        aria-label={this.ariaLabelResetButton}
       ></ix-icon-button>
     );
   }

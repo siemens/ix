@@ -72,7 +72,7 @@ export class FilterChip {
             variant="primary"
             disabled={this.disabled}
             onClick={(e) => this.onCloseClick(e)}
-            a11yLabel={this.ariaLabelCloseIconButton}
+            aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}
       </Host>

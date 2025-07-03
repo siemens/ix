@@ -187,7 +187,7 @@ export class Toast {
               size="24"
               ghost
               onClick={() => this.closeToast.emit()}
-              a11yLabel={this.ariaLabelCloseIconButton}
+              aria-label={this.ariaLabelCloseIconButton}
             />
           </div>
         </div>

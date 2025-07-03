@@ -235,7 +235,7 @@ export class Pagination {
           ghost
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
-          a11yLabel={this.ariaLabelChevronLeftIconButton}
+          aria-label={this.ariaLabelChevronLeftIconButton}
         ></ix-icon-button>
 
         {this.advanced ? (
@@ -270,7 +270,7 @@ export class Pagination {
           ghost
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
-          a11yLabel={this.ariaLabelChevronRightIconButton}
+          aria-label={this.ariaLabelChevronRightIconButton}
         ></ix-icon-button>
 
         {this.advanced && this.showItemCount ? (

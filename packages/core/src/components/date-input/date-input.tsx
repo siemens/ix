@@ -157,6 +157,18 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() showWeekNumbers = false;
 
   /**
+   * ARIA label for the previous month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelPreviousMonthButton?: string;
+
+  /**
+   * ARIA label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelNextMonthButton?: string;
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -379,7 +391,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ghost
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
-            a11yLabel={this.ariaLabelCalendarButton}
+            aria-label={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>
@@ -503,6 +515,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
               this.onInput(from);
             }}
             showWeekNumbers={this.showWeekNumbers}
+            ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+            ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

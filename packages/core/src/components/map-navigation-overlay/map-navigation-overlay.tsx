@@ -133,7 +133,7 @@ export class MapNavigationOverlay {
             icon={iconClose}
             size="24"
             onClick={() => this.closeOverlay()}
-            a11yLabel={this.ariaLabelCloseIconButton}
+            aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         </div>
 

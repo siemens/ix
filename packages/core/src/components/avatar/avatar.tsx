@@ -19,6 +19,7 @@ import {
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+import { a11yHostAttributes } from '../utils/a11y';
 
 function DefaultAvatar(props: { initials?: string; a11yLabel?: string }) {
   const { initials } = props;
@@ -113,6 +114,8 @@ export class Avatar {
   /**
    * Accessibility label for the image
    * Will be set as aria-label on the nested HTML img element
+   *
+   * @deprecated Set the native `aria-label` on the ix-avatar host element
    */
   @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
@@ -175,6 +178,9 @@ export class Avatar {
   }
 
   render() {
+    const a11y = a11yHostAttributes(this.hostElement);
+    const a11yLabel = a11y['aria-label'];
+
     if (this.isClosestApplicationHeader) {
       return (
         <Host slot="ix-application-header-avatar" class={'avatar-button'}>
@@ -193,7 +199,7 @@ export class Avatar {
             <AvatarImage
               image={this.image}
               initials={this.initials}
-              a11yLabel={this.a11yLabel}
+              a11yLabel={a11yLabel ?? this.a11yLabel}
             />
           </BaseButton>
           <ix-dropdown
@@ -209,7 +215,7 @@ export class Avatar {
                   image={this.image}
                   initials={this.initials}
                   userName={this.username}
-                  a11yLabel={this.a11yLabel}
+                  a11yLabel={a11yLabel ?? this.a11yLabel}
                 />
                 {this.hasSlottedElements && (
                   <ix-divider onClick={(e) => e.preventDefault()}></ix-divider>
@@ -230,7 +236,7 @@ export class Avatar {
         <AvatarImage
           image={this.image}
           initials={this.initials}
-          a11yLabel={this.a11yLabel}
+          a11yLabel={a11yLabel ?? this.a11yLabel}
         />
       </Host>
     );

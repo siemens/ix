@@ -37,7 +37,7 @@ function CardListTitle(props: {
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,
         }}
-        a11yLabel={props.ariaLabelExpandButton}
+        aria-label={props.ariaLabelExpandButton}
       ></ix-icon-button>
       <ix-typography class="CardList_Title__Label" format="body-lg">
         {props.label}

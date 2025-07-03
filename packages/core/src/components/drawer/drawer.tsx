@@ -241,7 +241,7 @@ export class Drawer {
               ghost
               onClick={() => this.onCloseClicked()}
               data-testid="close-button"
-              a11yLabel={this.ariaLabelCloseButton}
+              aria-label={this.ariaLabelCloseButton}
             ></ix-icon-button>
           </div>
           <div

@@ -177,7 +177,7 @@ export class FlipTile {
               variant="primary"
               ghost
               onClick={() => this.toggleIndex()}
-              a11yLabel={this.ariaLabelEyeIconButton}
+              aria-label={this.ariaLabelEyeIconButton}
             ></ix-icon-button>
           </div>
 

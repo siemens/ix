@@ -280,7 +280,7 @@ export class ApplicationHeader {
             icon={iconApps}
             ghost
             class="app-switch"
-            a11yLabel={this.ariaLabelAppSwitchIconButton}
+            aria-label={this.ariaLabelAppSwitchIconButton}
           ></ix-icon-button>
         )}
         <div class={{ logo: true }}>
@@ -301,7 +301,7 @@ export class ApplicationHeader {
                 data-testid="show-more"
                 icon={iconMoreMenu}
                 ghost
-                a11yLabel={this.ariaLabelMoreMenuIconButton}
+                aria-label={this.ariaLabelMoreMenuIconButton}
               ></ix-icon-button>
               <ix-dropdown
                 data-overflow-dropdown
