@@ -11,7 +11,10 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
-import { a11yHostAttributes, getFallbackLabelFromIconName } from '../utils/a11y';
+import {
+  a11yHostAttributes,
+  getFallbackLabelFromIconName,
+} from '../utils/a11y';
 
 export type IconButtonVariant = ButtonVariant;
 
@@ -118,9 +121,10 @@ export class IconButton {
 
     const baseButtonProps: BaseButtonProps = {
       ariaAttributes: {
-        'aria-label': a11y['aria-label']
-          ?? this.a11yLabel
-          ?? getFallbackLabelFromIconName(this.icon),
+        'aria-label':
+          a11y['aria-label'] ??
+          this.a11yLabel ??
+          getFallbackLabelFromIconName(this.icon),
       },
       variant: this.variant,
       outline: this.outline,
