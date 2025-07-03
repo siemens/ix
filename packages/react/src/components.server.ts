@@ -540,7 +540,9 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         validText: 'valid-text',
         showTextAsTooltip: 'show-text-as-tooltip',
         i18nErrorDateUnparsable: 'i18n-error-date-unparsable',
-        showWeekNumbers: 'show-week-numbers'
+        showWeekNumbers: 'show-week-numbers',
+        ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
+        ariaLabelNextMonthButton: 'aria-label-next-month-button'
     },
     hydrateModule: import('@siemens/ix/hydrate'),
     serializeShadowRoot

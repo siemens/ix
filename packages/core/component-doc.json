@@ -763,7 +763,13 @@
           "attr": "a11y-label",
           "reflectToAttr": false,
           "docs": "Accessibility label for the image\nWill be set as aria-label on the nested HTML img element",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Set the native `aria-label` on the ix-avatar host element"
+            }
+          ],
+          "deprecation": "Set the native `aria-label` on the ix-avatar host element",
           "values": [
             {
               "type": "string"
@@ -5433,6 +5439,58 @@
               "text": "3.2.0"
             }
           ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelNextMonthButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-next-month-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the next month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelPreviousMonthButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-previous-month-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the previous month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -10650,7 +10708,13 @@
           "attr": "a11y-label",
           "reflectToAttr": false,
           "docs": "Accessibility label for the icon button\nWill be set as aria-label on the nested HTML button element",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Set the native `aria-label` on the ix-icon-button host element"
+            }
+          ],
+          "deprecation": "Set the native `aria-label` on the ix-icon-button host element",
           "values": [
             {
               "type": "string"

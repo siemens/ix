@@ -189,6 +189,7 @@ export namespace Components {
     interface IxAvatar {
         /**
           * Accessibility label for the image Will be set as aria-label on the nested HTML img element
+          * @deprecated Set the native `aria-label` on the ix-avatar host element
          */
         "a11yLabel"?: string;
         /**
@@ -786,6 +787,14 @@ export namespace Components {
           * @since 3.2.0
          */
         "ariaLabelCalendarButton"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelNextMonthButton"?: string;
+        /**
+          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelPreviousMonthButton"?: string;
         /**
           * Disabled attribute
          */
@@ -1539,6 +1548,7 @@ export namespace Components {
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
+          * @deprecated Set the native `aria-label` on the ix-icon-button host element
          */
         "a11yLabel"?: string;
         /**
@@ -5473,6 +5483,7 @@ declare namespace LocalJSX {
     interface IxAvatar {
         /**
           * Accessibility label for the image Will be set as aria-label on the nested HTML img element
+          * @deprecated Set the native `aria-label` on the ix-avatar host element
          */
         "a11yLabel"?: string;
         /**
@@ -6131,6 +6142,14 @@ declare namespace LocalJSX {
           * @since 3.2.0
          */
         "ariaLabelCalendarButton"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelNextMonthButton"?: string;
+        /**
+          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelPreviousMonthButton"?: string;
         /**
           * Disabled attribute
          */
@@ -6937,6 +6956,7 @@ declare namespace LocalJSX {
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
+          * @deprecated Set the native `aria-label` on the ix-icon-button host element
          */
         "a11yLabel"?: string;
         /**
