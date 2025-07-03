@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.35.1",
+    "version": "4.35.3",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -26665,10 +26665,10 @@
       "docstring": "",
       "path": "src/components.d.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.35.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "../../node_modules/.pnpm/@stencil+core@4.35.3/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.35.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "../../node_modules/.pnpm/@stencil+core@4.35.3/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",
