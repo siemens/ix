@@ -50,6 +50,7 @@ import Chip from '../preview-examples/chip';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import ContentHeaderWithSlot from '../preview-examples/content-header-with-slot';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
@@ -471,6 +472,10 @@ const routes: Routes = [
       {
         path: 'content-header',
         component: ContentHeader,
+      },
+      {
+        path: 'content-header-with-slot',
+        component: ContentHeaderWithSlot,
       },
       {
         path: 'datepicker-locale',

@@ -54,6 +54,7 @@ import Chip from './preview-examples/chip';
 import Content from './preview-examples/content';
 import ContentHeader from './preview-examples/content-header';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
+import ContentHeaderWithSlot from './preview-examples/content-header-with-slot';
 import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
@@ -331,6 +332,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<ContentHeaderNoBack />}
         />
         <Route path="/preview/content-header" element={<ContentHeader />} />
+        <Route
+          path="/preview/content-header-with-slot"
+          element={<ContentHeaderWithSlot />}
+        />
         <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
         <Route path="/preview/datepicker" element={<Datepicker />} />
         <Route
