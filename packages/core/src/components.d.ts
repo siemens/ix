@@ -2834,10 +2834,6 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de').
-         */
-        "locale"?: string;
-        /**
           * Interval for millisecond selection
          */
         "millisecondInterval": number;
@@ -8047,10 +8043,6 @@ declare namespace LocalJSX {
           * Label of the input field
          */
         "label"?: string;
-        /**
-          * Locale identifier (e.g. 'en' or 'de').
-         */
-        "locale"?: string;
         /**
           * Interval for millisecond selection
          */
