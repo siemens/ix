@@ -20826,32 +20826,6 @@
           "setter": false
         },
         {
-          "name": "locale",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "locale",
-          "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "millisecondInterval",
           "type": "number",
           "complexType": {
