@@ -32,7 +32,7 @@ body:
       label: What type of frontend framework are you seeing the problem on?
       multiple: true
       options:
-        - Angular
+        - Angular (NgModule)
         - Angular (Standalone)
         - React
         - JavaScript
