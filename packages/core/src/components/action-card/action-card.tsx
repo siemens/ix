@@ -53,7 +53,7 @@ export class IxActionCard {
   /**
    * ARIA label for the card
    *
-   * @since 3.2.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelCard?: string;
 
