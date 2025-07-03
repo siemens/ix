@@ -161,6 +161,12 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   private readonly thumbRef = makeRef<HTMLDivElement>();
   private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
+  private get hasLabels() {
+    return !!this.hostElement.querySelector(
+      '[slot="label-start"], [slot="label-end"]'
+    );
+  }
+
   get tooltip() {
     return this.tooltipRef.current;
   }
@@ -408,14 +414,16 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                 {this.rangeInput}
               </ix-tooltip>
             </div>
-            <div class="label">
-              <div class="label-start">
-                <slot name="label-start"></slot>
+            {this.hasLabels && (
+              <div class="label">
+                <div class="label-start">
+                  <slot name="label-start"></slot>
+                </div>
+                <div class="label-end">
+                  <slot name="label-end"></slot>
+                </div>
               </div>
-              <div class="label-end">
-                <slot name="label-end"></slot>
-              </div>
-            </div>
+            )}
             {this.error ? (
               <ix-typography class={'label-error'} textColor="alarm">
                 {this.error}
