@@ -345,13 +345,13 @@ export class Tabs {
     return (
       <Host>
         {this.showArrowPrevious && (
-          <div
+          <button
             class="arrow"
             onClick={() => this.move(this.scrollAmount, true)}
             aria-label={this.ariaLabelChevronLeftIconButton}
           >
             <ix-icon name={iconChevronLeftSmall}></ix-icon>
-          </div>
+          </button>
         )}
         <div
           class={{
@@ -367,13 +367,13 @@ export class Tabs {
           </div>
         </div>
         {this.showArrowNext && (
-          <div
+          <button
             class="arrow right"
             onClick={() => this.move(-this.scrollAmount, true)}
             aria-label={this.ariaLabelChevronRightIconButton}
           >
             <ix-icon name={iconChevronRightSmall}></ix-icon>
-          </div>
+          </button>
         )}
       </Host>
     );

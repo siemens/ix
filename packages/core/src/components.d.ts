@@ -105,7 +105,7 @@ export namespace Components {
     interface IxActionCard {
         /**
           * ARIA label for the card
-          * @since 3.2.0
+          * @since 3.3.0
          */
         "ariaLabelCard"?: string;
         /**
@@ -5380,7 +5380,7 @@ declare namespace LocalJSX {
     interface IxActionCard {
         /**
           * ARIA label for the card
-          * @since 3.2.0
+          * @since 3.3.0
          */
         "ariaLabelCard"?: string;
         /**
