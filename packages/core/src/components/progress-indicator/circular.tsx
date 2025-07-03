@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { h, type FunctionalComponent } from '@stencil/core';
-import { ProgressIndicatorSize } from './progress-indicator';
+import type { ProgressIndicatorSize } from './progress-indicator.types';
 
 function getCircularSize(size: ProgressIndicatorSize) {
   switch (size) {

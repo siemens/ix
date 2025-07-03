@@ -48,10 +48,11 @@ export const config: Config = {
   globalScript: './src/setup.ts',
   extras: {
     enableImportInjection: true,
+    addGlobalStyleToComponents: false,
   },
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/www/'],
-    setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
+    setupFilesAfterEnv: [],
     browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
     browserHeadless: 'shell',
   },
@@ -77,7 +78,7 @@ export const config: Config = {
       includeImportCustomElements: true,
       includePolyfills: false,
       includeDefineCustomElements: false,
-      excludeComponents: ['ix-playground-internal', 'ix-icon'],
+      excludeComponents: ['ix-icon'],
       componentModels: [
         {
           elements: [

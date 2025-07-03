@@ -23,13 +23,6 @@ import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
-export type BreadcrumbItemLinkTarget =
-  | '_self'
-  | '_blank'
-  | '_parent'
-  | '_top'
-  | string;
-
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',

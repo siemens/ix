@@ -10,15 +10,11 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import type { CardAccordionExpandChangeEvent } from './card-accordion.types';
 
 let accordionControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
   return [prefix, accordionControlId++].join('-');
-};
-
-export type CardAccordionExpandChangeEvent = {
-  expand: boolean;
-  nativeEvent: Event;
 };
 
 @Component({

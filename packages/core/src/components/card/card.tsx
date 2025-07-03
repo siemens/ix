@@ -1,15 +1,5 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-
-export type CardVariant =
-  | 'alarm'
-  | 'critical'
-  | 'warning'
-  | 'info'
-  | 'neutral'
-  | 'success'
-  | 'primary'
-  | 'outline'
-  | 'filled';
+import type { CardVariant } from './card.types';
 
 @Component({
   tag: 'ix-card',

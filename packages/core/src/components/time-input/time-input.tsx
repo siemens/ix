@@ -38,11 +38,7 @@ import {
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
-
-export type TimeInputValidityState = {
-  patternMismatch: boolean;
-  invalidReason?: string;
-};
+import type { TimeInputValidityState } from './time-input.types';
 
 /**
  * @since 3.2.0

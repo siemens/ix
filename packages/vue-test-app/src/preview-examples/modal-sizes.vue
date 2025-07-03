@@ -8,8 +8,13 @@
 -->
 
 <script setup lang="tsx">
-import { IxModalSize } from '@siemens/ix';
-import { IxButton, Modal, ModalSlotProps, showModal } from '@siemens/ix-vue';
+import type { IxModalSize } from '@siemens/ix';
+import {
+  IxButton,
+  Modal,
+  type ModalSlotProps,
+  showModal,
+} from '@siemens/ix-vue';
 
 const sizes: IxModalSize[] = [
   '360',
@@ -24,16 +29,15 @@ const sizes: IxModalSize[] = [
 const open = (size: IxModalSize) => {
   showModal({
     size,
-    content:
+    content: (
       <Modal>
-        {
-          ({ closeModal }: ModalSlotProps) => <IxButton onClick={closeModal}> Modal with size {size} </IxButton>
-        }
+        {({ closeModal }: ModalSlotProps) => (
+          <IxButton onClick={closeModal}> Modal with size {size} </IxButton>
+        )}
       </Modal>
+    ),
   });
 };
-
-
 </script>
 
 <style scoped src="./modal-sizes.css"></style>

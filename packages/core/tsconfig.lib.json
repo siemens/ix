@@ -16,11 +16,14 @@
     "preserveSymlinks": false,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@utils/test": ["src/tests/utils/test"]
-    },
     "strict": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "playwright.config.ts", "playwright-ct.config.ts"]
+  "exclude": [
+    "node_modules",
+    "playwright.config.ts",
+    "playwright-ct.config.ts",
+    "src/**/*.ct.ts",
+    "src/**/*.e2e.ts"
+  ]
 }
