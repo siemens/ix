@@ -124,9 +124,17 @@
     display: block;
     z-index: -1;
 
-    width: calc((100% * (var(--trace-end) - var(--trace-start))));
+    width: calc(
+      calc(7px + calc(100% * var(--trace-end)) - calc(16px * var(--trace-end))) -
+        calc(
+          7px + calc(100% * var(--trace-start)) -
+            calc(16px * var(--trace-start))
+        )
+    );
 
-    left: calc(100% * var(--trace-start));
+    left: calc(
+      7px + calc(100% * var(--trace-start)) - calc(16px * var(--trace-start))
+    );
 
     height: 4px;
     background-color: var(--trace-color);
@@ -156,7 +164,10 @@
     background-color: var(--trace-reference-color);
     top: 50%;
     transform: translateY(-50%);
-    left: calc(100% * var(--trace-reference));
+    left: calc(
+      7px + calc(100% * var(--trace-reference)) -
+        calc(16px * var(--trace-reference))
+    );
   }
 
   @include track() {
@@ -225,7 +236,8 @@
     position: absolute;
     background-color: var(--track-color);
     height: 4px;
-    width: 100%;
+    width: calc(100% - 1rem);
+    margin-left: 0.5rem;
     top: 50%;
     transform: translateY(-50%);
     left: 0px;
