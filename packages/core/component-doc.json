@@ -1490,7 +1490,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -1644,7 +1644,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -2057,7 +2057,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -2193,7 +2193,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -2566,7 +2566,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -2597,7 +2597,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -2628,7 +2628,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -4773,7 +4773,7 @@
           "mutable": false,
           "attr": "aria-label-dropdown-button",
           "reflectToAttr": false,
-          "docs": "ARIA label for the dropdown\nWill be set as aria-label on the nested HTML dropdown element",
+          "docs": "ARIA label for the dropdown\nWill be set as aria-label on the nested HTML button element that will trigger the dropdown",
           "docsTags": [],
           "values": [
             {
@@ -5436,7 +5436,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -7249,7 +7249,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -7940,7 +7940,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -8602,7 +8602,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -9615,7 +9615,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -15871,7 +15871,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -16778,7 +16778,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -16809,7 +16809,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -17583,7 +17583,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -18181,7 +18181,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -19064,7 +19064,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -19095,7 +19095,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.2.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
