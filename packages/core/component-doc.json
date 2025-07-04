@@ -33,6 +33,68 @@
       },
       "props": [
         {
+          "name": "ariaLabelCard",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-card",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the card",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "heading",
           "type": "string | undefined",
           "complexType": {
@@ -464,6 +526,99 @@
       },
       "props": [
         {
+          "name": "ariaLabelAppSwitchIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-app-switch-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the app switch icon button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelMenuExpandIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-menu-expand-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the menu expand icon button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelMoreMenuIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-more-menu-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the more menu icon button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "name",
           "type": "string | undefined",
           "complexType": {
@@ -596,6 +751,38 @@
         ]
       },
       "props": [
+        {
+          "name": "a11yLabel",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "a11y-label",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the image\nWill be set as aria-label on the nested HTML img element",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Set the native `aria-label` on the ix-avatar host element"
+            }
+          ],
+          "deprecation": "Set the native `aria-label` on the ix-avatar host element",
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "extra",
           "type": "string | undefined",
@@ -1289,6 +1476,37 @@
       },
       "props": [
         {
+          "name": "ariaLabelButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the button\nWill be set as aria-label for the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -1411,6 +1629,37 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "disabled",
           "type": "boolean",
@@ -1794,6 +2043,37 @@
       },
       "props": [
         {
+          "name": "ariaLabelExpandButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-expand-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the card's expand button.\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "collapse",
           "type": "boolean",
           "complexType": {
@@ -1898,6 +2178,37 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelExpandButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-expand-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the card's expand button.\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "collapse",
           "type": "boolean",
@@ -2240,6 +2551,99 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelFilterInput",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-filter-input",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the filter input\nWill be set as aria-label on the nested HTML input element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelOperatorButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-operator-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the operator button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelResetButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-reset-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the reset button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "categories",
           "type": "undefined | { [id: string]: { label: string; options: string[]; }; }",
@@ -3212,6 +3616,32 @@
             }
           ],
           "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelCloseButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-close-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the close button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -4333,6 +4763,32 @@
       },
       "props": [
         {
+          "name": "ariaLabelDropdownButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-dropdown-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the dropdown\nWill be set as aria-label on the nested HTML button element that will trigger the dropdown",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "customRangeAllowed",
           "type": "boolean",
           "complexType": {
@@ -4966,6 +5422,89 @@
       },
       "props": [
         {
+          "name": "ariaLabelCalendarButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-calendar-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the calendar icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelNextMonthButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-next-month-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the next month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelPreviousMonthButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-previous-month-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the previous month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "disabled",
           "type": "boolean",
           "complexType": {
@@ -5552,6 +6091,58 @@
       },
       "props": [
         {
+          "name": "ariaLabelNextMonthButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-next-month-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the next month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelPreviousMonthButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-previous-month-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the previous month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "corners",
           "type": "\"left\" | \"right\" | \"rounded\" | \"straight\"",
           "complexType": {
@@ -5986,6 +6577,58 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelNextMonthButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-next-month-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the next month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelPreviousMonthButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-previous-month-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the previous month icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "dateFormat",
           "type": "string",
@@ -6591,6 +7234,37 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelCloseButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-close-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "closeOnClickOutside",
           "type": "boolean",
@@ -7252,6 +7926,37 @@
       },
       "props": [
         {
+          "name": "ariaLabelDropdownButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-dropdown-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the dropdown button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "closeBehavior",
           "type": "\"both\" | \"inside\" | \"outside\" | boolean",
           "complexType": {
@@ -7618,6 +8323,63 @@
       },
       "props": [
         {
+          "name": "ariaLabelButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the item's button\nWill be set as aria-label for the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "checked",
           "type": "boolean",
           "complexType": {
@@ -7812,6 +8574,37 @@
           "reflectToAttr": false,
           "docs": "Optional empty state action",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelEmptyStateIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-empty-state-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the empty state icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -8264,6 +9057,99 @@
       },
       "props": [
         {
+          "name": "ariaLabelClearIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-clear-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the clear icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelSearchIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-search-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the search icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelSearchInput",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-search-input",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the search input\nWill be set as aria-label on the nested HTML input element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "fullWidth",
           "type": "boolean",
           "complexType": {
@@ -8593,6 +9479,32 @@
       },
       "props": [
         {
+          "name": "ariaLabelCloseIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-close-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "disabled",
           "type": "boolean",
           "complexType": {
@@ -8688,6 +9600,37 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelEyeIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-eye-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the eye icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "height",
           "type": "\"auto\" | number",
@@ -9188,6 +10131,32 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "focusable",
           "type": "boolean",
@@ -9739,7 +10708,13 @@
           "attr": "a11y-label",
           "reflectToAttr": false,
           "docs": "Accessibility label for the icon button\nWill be set as aria-label on the nested HTML button element",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Set the native `aria-label` on the ix-icon-button host element"
+            }
+          ],
+          "deprecation": "Set the native `aria-label` on the ix-icon-button host element",
           "values": [
             {
               "type": "string"
@@ -10056,6 +11031,37 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon button\nWill be set for the native HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "disabled",
           "type": "boolean",
@@ -11044,6 +12050,37 @@
       "dependencyGraph": {},
       "props": [
         {
+          "name": "ariaLabelIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -11230,6 +12267,68 @@
       "dependencies": [],
       "dependencyGraph": {},
       "props": [
+        {
+          "name": "ariaLabelAlarmIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-alarm-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the alarm icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelWarningIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-warning-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the warning icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "label",
           "type": "string | undefined",
@@ -11728,6 +12827,37 @@
           "setter": false
         },
         {
+          "name": "ariaLabelContextIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-context-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the context menu icon button\nWill be set for the native HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "hideContextMenu",
           "type": "boolean",
           "complexType": {
@@ -12002,6 +13132,68 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelCloseIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-close-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "color",
           "type": "string | undefined",
@@ -14665,6 +15857,63 @@
       },
       "props": [
         {
+          "name": "ariaLabelCloseIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-close-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "hideClose",
           "type": "boolean",
           "complexType": {
@@ -15515,6 +16764,68 @@
           "setter": false
         },
         {
+          "name": "ariaLabelChevronLeftIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-chevron-left-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the chevron left icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelChevronRightIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-chevron-right-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the chevron right icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "count",
           "type": "number",
           "complexType": {
@@ -15746,6 +17057,32 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "borderless",
           "type": "boolean",
@@ -16227,6 +17564,37 @@
             }
           ],
           "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -16798,6 +18166,37 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "collapse",
           "type": "boolean",
@@ -17646,6 +19045,68 @@
             }
           ],
           "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelChevronDownIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-chevron-down-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the chevron down icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelClearIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-clear-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the clear icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -18918,6 +20379,68 @@
       },
       "props": [
         {
+          "name": "ariaLabelButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the button (use if no label and icon button)",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelSplitIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-split-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the split icon button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "closeBehavior",
           "type": "\"both\" | \"inside\" | \"outside\" | boolean",
           "complexType": {
@@ -19520,6 +21043,68 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelChevronLeftIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-chevron-left-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the chevron left icon button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelChevronRightIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-chevron-right-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the chevron right icon button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "layout",
           "type": "\"auto\" | \"stretched\"",
@@ -21922,6 +23507,37 @@
       },
       "props": [
         {
+          "name": "ariaLabelCloseIconButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-close-icon-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "autoClose",
           "type": "boolean",
           "complexType": {
@@ -22607,6 +24223,37 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "disabled",
           "type": "boolean",
@@ -23300,6 +24947,32 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelChevronIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-chevron-icon",
+          "reflectToAttr": false,
+          "docs": "ARIA label for the chevron icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "context",
           "type": "TreeItemContext | undefined",
