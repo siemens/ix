@@ -154,7 +154,7 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
   );
 
   regressionTest(
-    'should close modal when mouse is held down ouside modal and released inside modal',
+    'should not close modal when mouse is held down ouside modal and released inside modal',
     async ({ mount, page }) => {
       await mount(`<ix-button>Some background noise</ix-button>`);
 
@@ -186,7 +186,7 @@ regressionTest.describe('closeOnBackdropClick = true', () => {
       await page.waitForTimeout(500);
 
       // Modal should still be visible
-      await expect(modalDialog).not.toBeVisible();
+      await expect(modalDialog).toBeVisible();
     }
   );
 
