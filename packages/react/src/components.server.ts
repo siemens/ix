@@ -1655,7 +1655,6 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         name: 'name',
         placeholder: 'placeholder',
         value: 'value',
-        locale: 'locale',
         format: 'format',
         required: 'required',
         helperText: 'helper-text',

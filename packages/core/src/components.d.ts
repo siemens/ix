@@ -808,7 +808,7 @@ export namespace Components {
          */
         "from": string | undefined;
         /**
-          * Get the currently selected date-range.
+          * Get the currently selected date or range. The object returned contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
          */
         "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
@@ -816,7 +816,7 @@ export namespace Components {
          */
         "i18nDone": string;
         /**
-          * Locale identifier (e.g. 'en' or 'de').
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
          */
         "locale"?: string;
         /**
@@ -2833,10 +2833,6 @@ export namespace Components {
           * Label of the input field
          */
         "label"?: string;
-        /**
-          * Locale identifier (e.g. 'en' or 'de').
-         */
-        "locale"?: string;
         /**
           * Interval for millisecond selection
          */
@@ -5895,7 +5891,7 @@ declare namespace LocalJSX {
          */
         "i18nDone"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de').
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
          */
         "locale"?: string;
         /**
@@ -5907,15 +5903,15 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Triggers if the date selection changes. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
+          * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Triggers if the date selection changes. Only triggered if date-picker-rework is in range mode.
+          * Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date selection confirmed via button action
+          * Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
@@ -8047,10 +8043,6 @@ declare namespace LocalJSX {
           * Label of the input field
          */
         "label"?: string;
-        /**
-          * Locale identifier (e.g. 'en' or 'de').
-         */
-        "locale"?: string;
         /**
           * Interval for millisecond selection
          */
