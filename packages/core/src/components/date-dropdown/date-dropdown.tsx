@@ -132,7 +132,7 @@ export class DateDropdown
 
   /**
    * ARIA label for the dropdown
-   * Will be set as aria-label on the nested HTML dropdown element
+   * Will be set as aria-label on the nested HTML button element that will trigger the dropdown
    */
   @Prop() ariaLabelDropdownButton?: string;
 
