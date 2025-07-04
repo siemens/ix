@@ -155,7 +155,7 @@ export class Blind {
               name={iconChevronRightSmall}
               color={
                 this.variant === 'filled' || this.variant === 'outline'
-                  ? 'color-primary'
+                  ? 'color-std-text'
                   : `color-${this.variant}--contrast`
               }
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
