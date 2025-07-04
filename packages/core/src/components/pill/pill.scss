@@ -33,6 +33,7 @@
     }
 
     &.outline {
+      background-color: var(--theme-pill-outline--background);
       &.icon {
         padding-left: 0.4375rem;
         padding-right: 0.4375rem;
