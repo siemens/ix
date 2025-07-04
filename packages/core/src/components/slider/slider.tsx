@@ -230,7 +230,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   }
   private updateFormInternalValue(value: number) {
     this.formInternals.setFormValue(value.toString());
-    this.value = value;
+    this.valueChange.emit(value);
   }
 
   private onInput(event: InputEvent) {
