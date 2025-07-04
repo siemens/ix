@@ -92,7 +92,7 @@ export class Pagination {
    * ARIA label for the chevron left icon button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 3.2.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelChevronLeftIconButton?: string;
 
@@ -100,7 +100,7 @@ export class Pagination {
    * ARIA label for the chevron right icon button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 3.2.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelChevronRightIconButton?: string;
 

@@ -155,7 +155,7 @@ export class CategoryFilter {
    * ARIA label for the reset button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 3.2.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelResetButton?: string;
 
@@ -163,7 +163,7 @@ export class CategoryFilter {
    * ARIA label for the operator button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 3.2.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelOperatorButton?: string;
 
@@ -171,7 +171,7 @@ export class CategoryFilter {
    * ARIA label for the filter input
    * Will be set as aria-label on the nested HTML input element
    *
-   * @since 3.2.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelFilterInput?: string;
 

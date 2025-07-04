@@ -31,7 +31,7 @@ export class CardAccordion {
    * ARIA label for the card's expand button.
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 3.2.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelExpandButton?: string;
 

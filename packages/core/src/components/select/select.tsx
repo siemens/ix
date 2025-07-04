@@ -72,7 +72,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * ARIA label for the chevron down icon button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 3.2.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelChevronDownIconButton?: string;
 
@@ -80,7 +80,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * ARIA label for the clear icon button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 3.2.0
+   * @since 3.3.0
    */
   @Prop() ariaLabelClearIconButton?: string;
 
