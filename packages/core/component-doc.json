@@ -5679,7 +5679,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
           "docsTags": [],
           "values": [
             {
@@ -5866,7 +5866,7 @@
           },
           "signature": "getCurrentDate() => Promise<{ from: string | undefined; to: string | undefined; }>",
           "parameters": [],
-          "docs": "Get the currently selected date-range.",
+          "docs": "Get the currently selected date or range. The object returned contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.",
           "docsTags": []
         }
       ],
@@ -5888,7 +5888,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Triggers if the date selection changes.\nNote: Since 2.0.0 `dateChange` does not dispatch detail property as `string`",
+          "docs": "Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.\nNote: Since 2.0.0 `dateChange` does not dispatch detail property as `string`",
           "docsTags": []
         },
         {
@@ -5908,7 +5908,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Triggers if the date selection changes.\nOnly triggered if date-picker-rework is in range mode.",
+          "docs": "Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.",
           "docsTags": []
         },
         {
@@ -5928,7 +5928,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Date selection confirmed via button action",
+          "docs": "Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.",
           "docsTags": []
         }
       ],
@@ -10281,7 +10281,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Button variant.\nImportant: Variant 'primary' can only be combined with either outline or ghost.",
+          "docs": "Button variant.",
           "docsTags": [],
           "default": "'secondary'",
           "values": [
@@ -20826,32 +20826,6 @@
           "setter": false
         },
         {
-          "name": "locale",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "locale",
-          "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "millisecondInterval",
           "type": "number",
           "complexType": {
@@ -22796,7 +22770,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Button variant.\nImportant: Variant 'primary' can only be combined with either outline or ghost.",
+          "docs": "Button variant.",
           "docsTags": [],
           "default": "'secondary'",
           "values": [
@@ -24750,7 +24724,7 @@
       "path": "src/components/toast/toast-container.tsx"
     },
     "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "declaration": "export interface ToastConfig {\n  title?: string;\n  message?: string | HTMLElement;\n  action?: HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
     },
