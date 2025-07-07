@@ -1,5 +1,54 @@
 # @siemens/ix
 
+## 3.2.0
+
+### Minor Changes
+
+- [#1951](https://github.com/siemens/ix/pull/1951) [`ecbbd0a7435722731337b3da6cb83bb2d40654aa`](https://github.com/siemens/ix/commit/ecbbd0a7435722731337b3da6cb83bb2d40654aa) Thanks [@danielleroux](https://github.com/danielleroux)! - Add **ix-progress-indicator**
+
+  Fixes #651
+
+- [#1974](https://github.com/siemens/ix/pull/1974) [`6b9a8fc5922f936a96e3f09e8ea11e0720aa5383`](https://github.com/siemens/ix/commit/6b9a8fc5922f936a96e3f09e8ea11e0720aa5383) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove internal type definition from public api types.
+
+  Fixes #1969
+
+- [#1864](https://github.com/siemens/ix/pull/1864) [`4077296037dd7889ddeb175559aca11f93a33312`](https://github.com/siemens/ix/commit/4077296037dd7889ddeb175559aca11f93a33312) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Add option for action button slot to **ix-toast**
+
+- [#1877](https://github.com/siemens/ix/pull/1877) [`813b9cea25e8f6d948a992f9145254bf7045adf0`](https://github.com/siemens/ix/commit/813b9cea25e8f6d948a992f9145254bf7045adf0) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Add `centerContent` property to `ix-chip`.
+
+  Fixes #1854
+
+- [#1853](https://github.com/siemens/ix/pull/1853) [`b67d0122acdf2f4f7df1f8d85bbd5a3fafe38624`](https://github.com/siemens/ix/commit/b67d0122acdf2f4f7df1f8d85bbd5a3fafe38624) Thanks [@lzeiml](https://github.com/lzeiml)! - Rework `ix-time-picker` according to new design
+
+  The ix-time-picker has been reworked to a new design and now uses different columns with selectable numbers to select the time. Milliseconds can now be selected as well.
+  There are also new interval properties to control which numbers are displayed for hours, minutes, seconds and milliseconds.
+  Additionally the displayed columns are now determined by the used format, making the showHour, showMinutes, showSeconds properties deprecated and will be removed with 4.0.0.
+  The numbers for hours, minutes, etc. can also be selected by tabbing onto the first number, and then using arrow keys and Enter to select the desired time.
+
+  Add new `ix-time-input` component
+
+  The time-input component has been added as well, combining an input field and the new ix-time-picker, similar to the ix-date-input.
+
+### Patch Changes
+
+- [#1882](https://github.com/siemens/ix/pull/1882) [`455933edb3f3b9d8145ea4f58007fe815f46f841`](https://github.com/siemens/ix/commit/455933edb3f3b9d8145ea4f58007fe815f46f841) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Gracefully handle whitespace and undefined texts in `ix-field-wrapper`.
+
+- [#1980](https://github.com/siemens/ix/pull/1980) [`3d953256650eaa541dfbb93ec5e98a48212d97ad`](https://github.com/siemens/ix/commit/3d953256650eaa541dfbb93ec5e98a48212d97ad) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Set soft text as subheading color for filled and outline variant of **ix-action-card**.
+
+  Fixes #1967
+
+- [#1943](https://github.com/siemens/ix/pull/1943) [`9776d7fb0cc5bb3b9afb4982cbceb00a8c638549`](https://github.com/siemens/ix/commit/9776d7fb0cc5bb3b9afb4982cbceb00a8c638549) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Remove obsolete console warning message for formerly illegal property combinations for **ix-toggle-button** and **ix-icon-toggle-button**.
+
+- [#1945](https://github.com/siemens/ix/pull/1945) [`a3ac05becce0e245f0397a8f6b9789176b7728e6`](https://github.com/siemens/ix/commit/a3ac05becce0e245f0397a8f6b9789176b7728e6) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Align **ix-pill** and **ix-chip** vertically flush, with or without icons.
+
+- [#1993](https://github.com/siemens/ix/pull/1993) [`b519b420fd3ca5de9c73c227ce78431b520ec4a6`](https://github.com/siemens/ix/commit/b519b420fd3ca5de9c73c227ce78431b520ec4a6) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Improve jsdocs for **ix-date-picker** to better describe `locale` property
+
+- [#1873](https://github.com/siemens/ix/pull/1873) [`b630ffefe83f20c458bbef88d21918479e1ae540`](https://github.com/siemens/ix/commit/b630ffefe83f20c458bbef88d21918479e1ae540) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Align visual appearance of **ix-workflow** to component state
+
+  Fixes #1808
+
+- [#1978](https://github.com/siemens/ix/pull/1978) [`1055e0127f0e25a654f5a7d69e5db102340a3a83`](https://github.com/siemens/ix/commit/1055e0127f0e25a654f5a7d69e5db102340a3a83) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Fix order of bottom menu items in **ix-menu**. Now "Settings" appears first and "About and legal information" appears last.
+
 ## 3.1.0
 
 ### Minor Changes
