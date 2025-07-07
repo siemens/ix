@@ -10,11 +10,7 @@
 import { Component, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { TypedEvent } from '../utils/typed-event';
 import { ToastConfig } from './toast-utils';
-
-export type ShowToastResult = {
-  onClose: TypedEvent<any | undefined>;
-  close: (result?: any) => void;
-};
+import type { ShowToastResult } from './toast-container.types';
 
 @Component({
   tag: 'ix-toast-container',
