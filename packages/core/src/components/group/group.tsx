@@ -185,15 +185,7 @@ export class Group {
   }
 
   private checkDropdownSlot() {
-    const slot = this.hostElement.querySelector<HTMLSlotElement>(
-      'slot[name="dropdown"]'
-    );
-    if (slot) {
-      this.hasDropdown = slot.assignedElements({ flatten: true }).length > 0;
-    } else {
-      this.hasDropdown =
-        this.hostElement.querySelector('[slot="dropdown"]') !== null;
-    }
+    this.hasDropdown = !!this.hostElement.querySelector('[slot="dropdown"]');
   }
 
   componentWillRender() {
@@ -201,9 +193,6 @@ export class Group {
       item.selected = index === this.index;
       item.index = index;
     });
-  }
-
-  componentWillLoad() {
     this.checkDropdownSlot();
   }
 
@@ -217,6 +206,8 @@ export class Group {
     this.observer.observe(this.groupContent, {
       childList: true,
     });
+    //for initial check
+    this.checkDropdownSlot();
   }
 
   disconnectedCallback() {
