@@ -97,6 +97,7 @@ import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/i
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
 import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
+import { defineCustomElement as defineIxTimeInput } from '@siemens/ix/components/ix-time-input.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
@@ -821,17 +822,22 @@ import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/i
 
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
-   * Triggers if the date selection changes.
+   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
+The property strings are formatted according to the `format` property and not affected by the `locale` property.
+The locale applied is always `en-US`.
 Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Triggers if the date selection changes.
-Only triggered if date-picker-rework is in range mode.
+   * Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
+The property strings are formatted according to the `format` property and not affected by the `locale` property.
+The locale applied is always `en-US`.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Date selection confirmed via button action
+   * Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
+The property strings are formatted according to the `format` property and not affected by the `locale` property.
+The locale applied is always `en-US`.
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
 }
@@ -2777,8 +2783,45 @@ export declare interface IxTile extends Components.IxTile {}
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineIxTimeInput,
+  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  methods: ['getNativeInputElement', 'focusInput']
+})
+@Component({
+  selector: 'ix-time-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  standalone: true
+})
+export class IxTimeInput {
+  protected el: HTMLIxTimeInputElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange']);
+  }
+}
+
+
+import type { TimeInputValidityState as IIxTimeInputTimeInputValidityState } from '@siemens/ix/components';
+
+export declare interface IxTimeInput extends Components.IxTimeInput {
+  /**
+   * Input change event.
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Validation state change event.
+   */
+  validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
+}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineIxTimePicker,
-  inputs: ['corners', 'format', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
   methods: ['getCurrentTime']
 })
 @Component({
@@ -2786,7 +2829,7 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
   standalone: true
 })
 export class IxTimePicker {

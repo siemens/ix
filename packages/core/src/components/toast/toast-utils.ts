@@ -12,7 +12,8 @@ export type ToastPosition = 'bottom-right' | 'top-right';
 
 export interface ToastConfig {
   title?: string;
-  message: string | HTMLElement;
+  message?: string | HTMLElement;
+  action?: HTMLElement;
   type?: ToastType;
   autoClose?: boolean;
   autoCloseDelay?: number;
