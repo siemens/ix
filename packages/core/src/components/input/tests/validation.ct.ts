@@ -39,6 +39,23 @@ test.describe('validation', () => {
 
       await expect(input).toHaveClass(/ix-invalid/);
     });
+
+    test('check input if used object or array as value', async ({
+      mount,
+      page,
+    }) => {
+      await mount('<ix-input></ix-input>');
+      const input = page.locator('ix-input');
+      const shadowDomInput = input.locator('input');
+
+      await shadowDomInput.fill('{}');
+      const valueObj = await shadowDomInput.inputValue();
+      expect(valueObj).toBe('{}');
+
+      await shadowDomInput.fill('[]');
+      const valueArr = await shadowDomInput.inputValue();
+      expect(valueArr).toBe('[]');
+    });
   });
 
   test.describe('ix-number-input', () => {
@@ -87,6 +104,25 @@ test.describe('validation', () => {
       await buttonPlus.click();
 
       await expect(ixInput).toHaveAttribute('value', '8');
+    });
+  });
+
+  test.describe('ix-textarea', () => {
+    test('check textarea if used object or array as value', async ({
+      mount,
+      page,
+    }) => {
+      await mount('<ix-textarea></ix-textarea>');
+      const input = page.locator('ix-textarea');
+      const shadowDomInput = input.locator('textarea');
+
+      await shadowDomInput.fill('{}');
+      const valueObj = await shadowDomInput.inputValue();
+      expect(valueObj).toBe('{}');
+
+      await shadowDomInput.fill('[]');
+      const valueArr = await shadowDomInput.inputValue();
+      expect(valueArr).toBe('[]');
     });
   });
 });

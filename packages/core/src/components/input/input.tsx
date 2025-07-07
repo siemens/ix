@@ -217,9 +217,7 @@ export class Input implements IxInputFieldComponent<string> {
     this.value = value;
   }
 
-    getValue(): string {    
-    return  (typeof this.value as unknown) === 'string' ? this.value : JSON.stringify(this.value);
-  }
+
 
   /** @internal */
   @Method()
@@ -307,7 +305,7 @@ export class Input implements IxInputFieldComponent<string> {
               type={this.inputType}
               isInvalid={this.isInvalid}
               required={this.required}
-              value={this.getValue()}
+              value={this.value}
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
@@ -352,7 +350,7 @@ export class Input implements IxInputFieldComponent<string> {
               slot="bottom-right"
               textColor="soft"
             >
-              {(this.getValue() ?? '').length}/{this.maxLength}
+              {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>
           )}
         </ix-field-wrapper>
