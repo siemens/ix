@@ -19,12 +19,14 @@ SPDX-License-Identifier: MIT
         iconPen,
         iconTrashcan,
         iconContextMenu,
+        iconInfo,
       } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
 
       addIcons({
         iconPen,
         iconTrashcan,
         iconContextMenu,
+        iconInfo,
       });
     </script>
   </head>
@@ -35,6 +37,28 @@ SPDX-License-Identifier: MIT
       header-title="content title"
       header-subtitle="subtitle content asdf"
     >
+      <ix-button ghost="{true}">Button1</ix-button>
+      <ix-button ghost="{true}">Button2</ix-button>
+      <ix-button ghost="{true}">Button3</ix-button>
+    </ix-content-header>
+    <ix-content-header
+      variant="secondary"
+      has-back-button="true"
+      header-title="content title"
+      header-subtitle="subtitle content asdf"
+    >
+      <ix-pill slot="header" icon="info">Label</ix-pill>
+      <ix-button ghost="{true}">Button1</ix-button>
+      <ix-button ghost="{true}">Button2</ix-button>
+      <ix-button ghost="{true}">Button3</ix-button>
+    </ix-content-header>
+    <ix-content-header
+      variant="secondary"
+      has-back-button="true"
+      header-title="content title with a really loooooooooong name name name name name name name name name name name name"
+      header-subtitle="subtitle content  with a really loooooooooong name name name name name name name name name name name name"
+    >
+      <ix-pill slot="header" icon="info">Label</ix-pill>
       <ix-button ghost="{true}">Button1</ix-button>
       <ix-button ghost="{true}">Button2</ix-button>
       <ix-button ghost="{true}">Button3</ix-button>
