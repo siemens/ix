@@ -113,9 +113,10 @@ class ThemeSwitcher {
       Array.from(document.body.classList).find((className) =>
         this.isThemeClass(className)
       ) ??
-      `theme-${window
-        .getComputedStyle(document.body)
-        .getPropertyValue('--ix-theme-name')}`
+      `theme-${document.body.getAttribute(dataIxTheme) || 'classic'}-${
+        document.body.getAttribute(dataIxColorSchema) ||
+        getCurrentSystemAppearance()
+      }`
     );
   }
 
