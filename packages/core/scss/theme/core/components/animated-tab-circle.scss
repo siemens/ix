@@ -1,0 +1,12 @@
+@mixin setVars {
+  --theme-animated-tab-circle--background: var(--theme-color-component-1);
+  --theme-animated-tab-circle--background--hover: var(--theme-color-ghost-primary--hover);
+  --theme-animated-tab-circle--background--active: var(--theme-color-ghost-primary--active);
+  --theme-animated-tab-circle--background--selected: var(--theme-color-ghost);
+  --theme-animated-tab-circle--background--disabled: var(--theme-color-ghost);
+  --theme-animated-tab-circle--border-color: var(--theme-color-0);
+  --theme-animated-tab-circle--border-color--hover: var(--theme-color-0);
+  --theme-animated-tab-circle--border-color--active: var(--theme-color-0);
+  --theme-animated-tab-circle--border-color--selected: var(--theme-color-dynamic);
+  --theme-animated-tab-circle--border-color--disabled: var(--theme-color-ghost);
+}

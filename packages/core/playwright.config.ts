@@ -20,21 +20,25 @@ const __dirname = path.resolve();
 // require('dotenv').config();
 // eslint-disable-next-line turbo/no-undeclared-env-vars
 
-const THEMES = ['theme-classic-light', 'theme-classic-dark'];
+const THEMES = ['classic'];
+const COLOR_SCHEMES = ['light', 'dark'];
 
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {
-    return [
-      {
-        name: `chromium - ${theme}`,
-        use: {
-          ...devices['Desktop Chrome'],
+    return COLOR_SCHEMES.flatMap((colorScheme) => {
+      return [
+        {
+          name: `chromium - theme-${theme}-${colorScheme}`,
+          use: {
+            ...devices['Desktop Chrome'],
+          },
+          metadata: {
+            'data-ix-theme': theme,
+            'data-ix-color-schema': colorScheme,
+          },
         },
-        metadata: {
-          theme,
-        },
-      },
-    ];
+      ];
+    });
   });
 }
 

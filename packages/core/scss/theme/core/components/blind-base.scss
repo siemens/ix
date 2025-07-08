@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-blind-base--border-color: var(--theme-color-0);
+  --theme-blind-base--background: var(--theme-color-component-1);
+}

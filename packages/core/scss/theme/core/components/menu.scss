@@ -1,0 +1,7 @@
+@mixin setVars {
+  --theme-menu--background: var(--theme-color-2);
+  --theme-menu--border-color: var(--theme-color-0);
+  --theme-menu--border-thickness: var(--theme-border-width-none);
+  --theme-menu--border-radius: var(--theme-default-border-radius);
+  --theme-menu--box-shadow: var(--theme-shadow-4);
+}

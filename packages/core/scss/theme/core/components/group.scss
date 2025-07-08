@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-group--border-radius--focus: var(--theme-min-border-radius);
+  --theme-group--border-radius: var(--theme-default-border-radius);
+}

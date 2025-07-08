@@ -1,0 +1,8 @@
+@mixin setVars {
+  --theme-breadcrumb-btn--background: var(--theme-color-component-1);
+  --theme-breadcrumb-btn--background--hover: var(--theme-color-component-1--hover);
+  --theme-breadcrumb-btn--background--active: var(--theme-color-component-1--active);
+  --theme-breadcrumb-btn--color: var(--theme-color-soft-text);
+  --theme-breadcrumb-btn--color--hover: var(--theme-color-std-text);
+  --theme-breadcrumb-btn--color--active: var(--theme-color-std-text);
+}

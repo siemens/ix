@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-kpi-display--background: var(--theme-color-ghost);
+  --theme-kpi-display--background--hover: var(--theme-color-ghost--hover);
+  --theme-kpi-display--background--active: var(--theme-color-ghost--active);
+}

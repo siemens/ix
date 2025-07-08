@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-flip-footer--background: var(--theme-color-component-1);
+  --theme-flip-footer--color: var(--theme-color-std-text);
+}
