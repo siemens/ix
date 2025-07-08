@@ -206,7 +206,6 @@ export class Group {
     this.observer.observe(this.groupContent, {
       childList: true,
     });
-    //for initial check
     this.checkDropdownSlot();
   }
 
