@@ -27,19 +27,10 @@ import { makeRef } from '../utils/make-ref';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { iconHistory } from '@siemens/ix-icons/icons';
-
-export type DateDropdownOption = {
-  id: string;
-  label: string;
-  from?: string;
-  to?: string;
-};
-
-export type DateRangeChangeEvent = {
-  id: string;
-  from?: string;
-  to?: string;
-};
+import type {
+  DateDropdownOption,
+  DateRangeChangeEvent,
+} from './date-dropdown.types';
 
 @Component({
   tag: 'ix-date-dropdown',

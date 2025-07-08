@@ -9,8 +9,7 @@
 
 import { iconArrowLeft } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-
-export type ContentHeaderVariant = 'primary' | 'secondary';
+import type { ContentHeaderVariant } from './content-header.types';
 
 @Component({
   tag: 'ix-content-header',
