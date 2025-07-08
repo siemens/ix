@@ -74,7 +74,7 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
   await expect(radioElement).not.toHaveClass(/disabled/);
   await expect(nativeInput).not.toBeDisabled();
 
-  const disableLabelColor = 'rgba(245, 252, 255, 0.93)';
+  const disableLabelColor = 'rgba(245, 252, 255, 0.9)';
   await expect(label).toHaveCSS('color', disableLabelColor);
 });
 
