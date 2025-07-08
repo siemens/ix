@@ -30,6 +30,9 @@
   }
 
   .arrow {
+    // unset button styles first
+    all: unset;
+
     position: absolute;
     display: flex;
     align-items: center;

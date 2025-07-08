@@ -123,6 +123,18 @@ export class DatePicker implements IxDatePickerComponent {
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
   /**
+   * ARIA label for the previous month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelPreviousMonthButton?: string;
+
+  /**
+   * ARIA label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelNextMonthButton?: string;
+
+  /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
    */
@@ -691,6 +703,7 @@ export class DatePicker implements IxDatePickerComponent {
               icon={iconChevronLeftSmall}
               variant="primary"
               class="arrows"
+              aria-label={this.ariaLabelPreviousMonthButton}
             ></ix-icon-button>
             <div class="selector">
               <ix-button
@@ -766,6 +779,7 @@ export class DatePicker implements IxDatePickerComponent {
               icon={iconChevronRightSmall}
               variant="primary"
               class="arrows"
+              aria-label={this.ariaLabelNextMonthButton}
             ></ix-icon-button>
           </div>
           <div
@@ -808,6 +822,7 @@ export class DatePicker implements IxDatePickerComponent {
                         tabIndex={day === this.focusedDay ? 0 : -1}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
+                        aria-label={`${this.selectedMonth}: ${day}`}
                       >
                         {day}
                       </div>
