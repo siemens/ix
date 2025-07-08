@@ -31,7 +31,8 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
   const originalScreenshot = page.screenshot.bind(page);
   const dataIxTheme = testInfo.project.metadata?.['data-ix-theme'] ?? 'classic';
-  const dataIxColorSchema = testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
+  const dataIxColorSchema =
+    testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
   testInfo.annotations.push({
     type: `${dataIxTheme} ${dataIxColorSchema}`,
   });
@@ -183,8 +184,10 @@ export const regressionTest = testBase.extend<{
   },
   mount: async ({ page }, use, testInfo: TestInfo) => {
     testInfo.componentTest = true;
-    const dataIxTheme = testInfo.project.metadata?.['data-ix-theme'] ?? 'classic';
-    const dataIxColorSchema = testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
+    const dataIxTheme =
+      testInfo.project.metadata?.['data-ix-theme'] ?? 'classic';
+    const dataIxColorSchema =
+      testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
     testInfo.annotations.push({
       type: `${dataIxTheme} ${dataIxColorSchema}`,
     });
