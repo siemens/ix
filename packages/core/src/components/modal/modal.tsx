@@ -31,7 +31,6 @@ import { IxModalSize } from './modal.types';
 })
 export class Modal {
   private ariaAttributes: A11yAttributes = {};
-  private isMouseUpInsideDialog = false;
   private isMouseDownInsideDialog = false;
   @Element() hostElement!: HTMLIxModalElement;
 
@@ -139,7 +138,7 @@ export class Modal {
   }
 
   private onMouseUp(event: MouseEvent) {
-    this.isMouseUpInsideDialog = this.isPointInsideDialog(
+    const isMouseUpInsideDialog = this.isPointInsideDialog(
       event.clientX,
       event.clientY
     );
@@ -147,7 +146,7 @@ export class Modal {
     if (
       this.closeOnBackdropClick &&
       !this.isMouseDownInsideDialog &&
-      !this.isMouseUpInsideDialog
+      !isMouseUpInsideDialog
     ) {
       this.dismissModal();
     }
