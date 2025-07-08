@@ -272,9 +272,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   @Watch('value')
   watchValue() {
-    if (!this.isInputInvalid) {
-      this.from = this.value;
-    }
+    this.from = this.value;
   }
 
   /** @internal */
@@ -301,23 +299,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     }
 
     const date = DateTime.fromFormat(value, this.format);
-    if (date.isValid) {
-      this.isInputInvalid = false;
+    const minDate = DateTime.fromFormat(this.minDate, this.format);
+    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
 
-      if (
-        date < DateTime.fromFormat(this.minDate, this.format) ||
-        date > DateTime.fromFormat(this.maxDate, this.format)
-      ) {
-        this.isInputInvalid = true;
-      }
+    this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
 
-      if (this.isInputInvalid) {
-        this.updateFormInternalValue(value);
-        this.closeDropdown();
-      }
+    if (this.isInputInvalid) {
+      this.invalidReason = date.invalidReason || undefined;
+      this.from = undefined;
     } else {
-      this.isInputInvalid = true;
-      this.invalidReason = date.invalidReason;
+      this.updateFormInternalValue(value);
+      this.closeDropdown();
     }
 
     this.valueChange.emit(value);
