@@ -37,7 +37,11 @@ import {
   createClassMutationObserver,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import type { DateInputValidityState } from './date-input.types';
+
+export type DateInputValidityState = {
+  patternMismatch: boolean;
+  invalidReason?: string;
+};
 
 /**
  * @form-ready
@@ -71,6 +75,18 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   /**
+   * The earliest date that can be selected by the date input/picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() minDate = '';
+
+  /**
+   * The latest date that can be selected by the date input/picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() maxDate = '';
+
+  /**
    * Locale identifier (e.g. 'en' or 'de').
    */
   @Prop() locale?: string;
@@ -95,6 +111,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * Label of the input field
    */
   @Prop() label?: string;
+
+  /**
+   * ARIA label for the calendar icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.3.0
+   */
+  @Prop() ariaLabelCalendarButton?: string;
 
   /**
    * Error text below the input field
@@ -143,6 +167,24 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
+
+  /**
+   * The index of which day to start the week on, based on the Locale#weekdays array.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   */
+  @Prop() weekStartIndex = 0;
+
+  /**
+   * ARIA label for the previous month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelPreviousMonthButton?: string;
+
+  /**
+   * ARIA label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelNextMonthButton?: string;
 
   /**
    * Input change event.
@@ -230,7 +272,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   @Watch('value')
   watchValue() {
-    this.from = this.value;
+    if (!this.isInputInvalid) {
+      this.from = this.value;
+    }
   }
 
   /** @internal */
@@ -260,8 +304,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     if (date.isValid) {
       this.isInputInvalid = false;
 
-      this.updateFormInternalValue(value);
-      this.closeDropdown();
+      if (
+        date < DateTime.fromFormat(this.minDate, this.format) ||
+        date > DateTime.fromFormat(this.maxDate, this.format)
+      ) {
+        this.isInputInvalid = true;
+      }
+
+      if (this.isInputInvalid) {
+        this.updateFormInternalValue(value);
+        this.closeDropdown();
+      }
     } else {
       this.isInputInvalid = true;
       this.invalidReason = date.invalidReason;
@@ -367,6 +420,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ghost
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
+            aria-label={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>
@@ -485,11 +539,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             locale={this.locale}
             range={false}
             from={this.from ?? ''}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
             onDateChange={(event) => {
               const { from } = event.detail;
               this.onInput(from);
             }}
             showWeekNumbers={this.showWeekNumbers}
+            ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+            ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
+            standaloneAppearance={false}
           ></ix-date-picker>
         </ix-dropdown>
       </Host>
