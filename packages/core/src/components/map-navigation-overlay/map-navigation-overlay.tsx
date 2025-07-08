@@ -112,6 +112,7 @@ export class MapNavigationOverlay {
             class="overlay-close"
             ghost
             icon={iconClose}
+            iconColor="color-soft-text"
             size="24"
             onClick={() => this.closeOverlay()}
           ></ix-icon-button>
