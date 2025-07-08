@@ -8,12 +8,10 @@
  */
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
 import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
-
-export type DropdownButtonVariant = ButtonVariant;
+import type { DropdownButtonVariant } from './dropdown-button.types';
 
 @Component({
   tag: 'ix-dropdown-button',

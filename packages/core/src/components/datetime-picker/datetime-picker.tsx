@@ -8,18 +8,12 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import type { DateChangeEvent } from '../date-picker/date-picker';
+import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-
-export type DateTimeSelectEvent = {
-  from?: string;
-  to?: string;
-  time: string;
-};
-
-export type DateTimeDateChangeEvent =
-  | string
-  | Omit<DateTimeSelectEvent, 'time'>;
+import type {
+  DateTimeDateChangeEvent,
+  DateTimeSelectEvent,
+} from './datetime-picker.types';
 
 @Component({
   tag: 'ix-datetime-picker',

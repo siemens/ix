@@ -8,6 +8,11 @@
  */
 
 import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -20,21 +25,12 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 import { DateTime, Info } from 'luxon';
+import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import { OnListener } from '../utils/listener';
-import { IxDatePickerComponent } from './date-picker-component';
 import { makeRef } from '../utils/make-ref';
-import {
-  iconChevronLeftSmall,
-  iconChevronRightSmall,
-  iconSingleCheck,
-} from '@siemens/ix-icons/icons';
-
-export type DateChangeEvent = {
-  from?: string;
-  to?: string;
-};
+import { IxDatePickerComponent } from './date-picker-component';
+import type { DateChangeEvent } from './date-picker.events';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -146,6 +142,9 @@ export class DatePicker implements IxDatePickerComponent {
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
+   * The locale is used to translate the labels for weekdays and months.
+   * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
+   * It does not affect the values returned by methods and events.
    */
   @Prop() locale?: string;
 
@@ -168,24 +167,31 @@ export class DatePicker implements IxDatePickerComponent {
   @Prop() today = DateTime.now().toISO();
 
   /**
-   * Triggers if the date selection changes.
+   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
+   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
+   * The locale applied is always `en-US`.
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Triggers if the date selection changes.
-   * Only triggered if date-picker-rework is in range mode.
+   * Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
+   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
+   * The locale applied is always `en-US`.
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Date selection confirmed via button action
+   * Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
+   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
+   * The locale applied is always `en-US`.
    */
   @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Get the currently selected date-range.
+   * Get the currently selected date or range. The object returned contains `from` and `to` properties.
+   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
+   * The locale applied is always `en-US`.
    */
   @Method()
   async getCurrentDate() {
