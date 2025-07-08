@@ -8,8 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-
-export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';
+import type { DateTimeCardCorners } from './date-time-card.types';
 
 /**
  * @internal
