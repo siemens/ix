@@ -21,7 +21,7 @@ import {
 import anime from 'animejs';
 import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
-import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 
 export type BlindVariant = CardVariant;
 
@@ -90,18 +90,18 @@ export class Blind {
 
   private animateCollapse(isCollapsed: boolean) {
     if (isCollapsed) {
-      this.rotateChevronRight();
-    } else {
       this.rotateChevronDown();
+    } else {
+      this.rotateChevronUp();
     }
   }
 
-  private rotateChevronDown() {
+  private rotateChevronUp() {
     anime({
       targets: this.chevronRef,
       duration: 150,
       easing: 'easeInOutSine',
-      rotateZ: 90,
+      rotateZ: 180,
     });
     anime({
       targets: this.content,
@@ -111,7 +111,7 @@ export class Blind {
     });
   }
 
-  private rotateChevronRight() {
+  private rotateChevronDown() {
     anime({
       targets: this.chevronRef,
       duration: 150,
@@ -152,7 +152,7 @@ export class Blind {
           <div class={'blind-header-content'}>
             <ix-icon
               class="collapse-icon"
-              name={iconChevronRightSmall}
+              name={iconChevronDownSmall}
               color={
                 this.variant === 'filled' || this.variant === 'outline'
                   ? 'color-std-text'

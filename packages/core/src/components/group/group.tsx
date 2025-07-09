@@ -245,7 +245,7 @@ export class Group {
                   hidden: !this.showExpandCollapsedIcon,
                 }}
                 name={
-                  this.collapsed ? iconChevronUpSmall : iconChevronDownSmall
+                  this.collapsed ? iconChevronDownSmall : iconChevronUpSmall
                 }
                 onClick={(event: Event) => this.onExpandClick(event)}
               ></ix-icon>

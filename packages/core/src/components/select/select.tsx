@@ -9,6 +9,7 @@
 
 import {
   iconChevronDownSmall,
+  iconChevronUpSmall,
   iconClear,
   iconPlus,
 } from '@siemens/ix-icons/icons';
@@ -903,7 +904,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       data-select-dropdown
                       key="dropdown"
                       class={{ 'dropdown-visible': this.dropdownShow }}
-                      icon={iconChevronDownSmall}
+                      icon={this.dropdownShow?iconChevronUpSmall:iconChevronDownSmall}
                       ghost
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
