@@ -904,7 +904,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       data-select-dropdown
                       key="dropdown"
                       class={{ 'dropdown-visible': this.dropdownShow }}
-                      icon={this.dropdownShow?iconChevronUpSmall:iconChevronDownSmall}
+                      icon={
+                        this.dropdownShow
+                          ? iconChevronUpSmall
+                          : iconChevronDownSmall
+                      }
                       ghost
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
