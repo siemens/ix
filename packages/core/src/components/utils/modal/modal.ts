@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxModalSize } from '../../modal/modal';
+import type { IxModalSize } from '../../modal/modal.types';
 import { getCoreDelegate, resolveDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 

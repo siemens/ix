@@ -19,11 +19,9 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
-import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
 import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
-
-export type BlindVariant = CardVariant;
+import type { BlindVariant } from './blind.types';
 
 let sequentialInstanceId = 0;
 
