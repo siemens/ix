@@ -161,6 +161,11 @@ export class Input implements IxInputFieldComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the input value is committed (e.g., on blur or enter key)
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -316,6 +321,9 @@ export class Input implements IxInputFieldComponent<string> {
                 this.touched = true;
               }}
               ariaAttributes={inputAria}
+              onChange={() => {
+                this.ixChange.emit(this.value);
+              }}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
@@ -348,7 +356,7 @@ export class Input implements IxInputFieldComponent<string> {
               slot="bottom-right"
               textColor="soft"
             >
-              {this.value?.length}/{this.maxLength}
+              {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>
           )}
         </ix-field-wrapper>
