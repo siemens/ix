@@ -69,7 +69,7 @@ export const IxTree = React.forwardRef(
 
     return (
       <InternalIxTree
-        //@ts-expect-error
+        //@ts-expect-error ref exposed by the StencilComponent type
         ref={ref}
         {...props}
         renderItem={props.renderItem ? renderItem : undefined}
