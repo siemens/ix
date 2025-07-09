@@ -7,10 +7,14 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script setup lang="ts">
-import { IxModalSize } from '@siemens/ix';
-import { IxButton, IxModal } from '@siemens/ix-vue';
-import { ref } from 'vue';
+<script setup lang="tsx">
+import type { IxModalSize } from '@siemens/ix';
+import {
+  IxButton,
+  Modal,
+  type ModalSlotProps,
+  showModal,
+} from '@siemens/ix-vue';
 
 const sizes: IxModalSize[] = [
   '360',
@@ -21,16 +25,18 @@ const sizes: IxModalSize[] = [
   'full-width',
   'full-screen',
 ];
-const currentSize = ref<IxModalSize | undefined>(undefined);
-const show = ref(false);
 
 const open = (size: IxModalSize) => {
-  currentSize.value = size;
-  show.value = true;
-};
-
-const closeModal = () => {
-  show.value = false;
+  showModal({
+    size,
+    content: (
+      <Modal>
+        {({ closeModal }: ModalSlotProps) => (
+          <IxButton onClick={closeModal}> Modal with size {size} </IxButton>
+        )}
+      </Modal>
+    ),
+  });
 };
 </script>
 
@@ -42,8 +48,4 @@ const closeModal = () => {
       Show modal size {{ size }}
     </IxButton>
   </div>
-
-  <IxModal v-if="show && currentSize" :size="currentSize" @close="show = false">
-    <IxButton @click="closeModal"> Modal with size {{ currentSize }} </IxButton>
-  </IxModal>
 </template>

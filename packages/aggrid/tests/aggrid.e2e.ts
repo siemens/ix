@@ -108,4 +108,18 @@ regressionTest.describe('aggrid', () => {
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
   });
+
+  regressionTest('tooltip display', async ({ page }) => {
+    await page.goto('basic.html');
+    const makeCell = page.locator('.ag-cell[col-id="make"]').first();
+    await makeCell.hover();
+    await page.waitForSelector('.ag-tooltip');
+
+    expect(
+      await page.screenshot({
+        fullPage: true,
+        animations: 'disabled',
+      }),
+    ).toMatchSnapshot();
+  });
 });

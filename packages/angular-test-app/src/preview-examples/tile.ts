@@ -43,9 +43,9 @@ import { Component } from '@angular/core';
         class="tile-footer"
         slot="footer"
       >
-        <ix-button ghost slot="footer">
-          <ix-icon name="chevron-right-small"></ix-icon>Details
-        </ix-button>
+      <ix-button icon="chevron-right-small" ghost slot="footer">
+          Details
+      </ix-button>
       </div>
     </ix-tile>
   `,

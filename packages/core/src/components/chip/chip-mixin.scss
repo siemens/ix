@@ -19,6 +19,7 @@ $border-radius: 100px;
     align-items: center;
     border-radius: $border-radius;
     padding: 0.5rem;
+    vertical-align: top;
 
     height: $default-control-height;
     max-height: $default-control-height;
@@ -27,6 +28,13 @@ $border-radius: 100px;
       cursor: pointer;
     } @else {
       cursor: default;
+    }
+
+    .content-wrapper {
+      display: inline-flex;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
     }
 
     .with-icon {
@@ -42,12 +50,26 @@ $border-radius: 100px;
     .slot-container {
       @include ellipsis;
     }
+
+    &.centerContent {
+      .content-wrapper {
+        justify-content: center;
+        text-align: center;
+      }
+    }
   }
 
   .container {
     &.outline {
       &.icon {
         padding-left: calc(0.75rem - 1px);
+        @each $color in $predefined-chips {
+          &.#{$color} {
+            .with-icon {
+              color: var(--theme-color-#{$color});
+            }
+          }
+        }
       }
       &:not(.icon) {
         padding-left: calc(0.5rem - 1px);
@@ -115,13 +137,17 @@ $border-radius: 100px;
   }
 
   .container.primary.outline {
-    color: var(--theme-chip-primary-outline--color);
+    color: var(--theme-chip-outline--color);
     background-color: transparent;
     border: solid 1px var(--theme-chip-primary-outline--border-color);
 
     .close-button {
-      color: var(--theme-chip-primary-outline--color);
-      --ix-icon-button-color: var(--theme-chip-primary-outline--color);
+      color: var(--theme-chip-outline--color);
+      --ix-icon-button-color: var(--theme-chip-outline--color);
+    }
+
+    .with-icon {
+      color: var(--theme-color-primary);
     }
 
     @if $interaction {

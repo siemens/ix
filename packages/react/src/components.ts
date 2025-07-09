@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimePickerCustomEvent, type IxGroupItemCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaneCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTextareaCustomEvent, type IxUploadCustomEvent, type TabClickDetail, type VariantChangedEvent } from "@siemens/ix";
+import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimePickerCustomEvent, type IxGroupItemCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaneCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxUploadCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
 import { IxActionCard as IxActionCardElement, defineCustomElement as defineIxActionCard } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement, defineCustomElement as defineIxApplicationHeader } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement, defineCustomElement as defineIxApplication } from "@siemens/ix/components/ix-application.js";
@@ -85,6 +85,7 @@ import { IxPagination as IxPaginationElement, defineCustomElement as defineIxPag
 import { IxPaneLayout as IxPaneLayoutElement, defineCustomElement as defineIxPaneLayout } from "@siemens/ix/components/ix-pane-layout.js";
 import { IxPane as IxPaneElement, defineCustomElement as defineIxPane } from "@siemens/ix/components/ix-pane.js";
 import { IxPill as IxPillElement, defineCustomElement as defineIxPill } from "@siemens/ix/components/ix-pill.js";
+import { IxProgressIndicator as IxProgressIndicatorElement, defineCustomElement as defineIxProgressIndicator } from "@siemens/ix/components/ix-progress-indicator.js";
 import { IxPushCard as IxPushCardElement, defineCustomElement as defineIxPushCard } from "@siemens/ix/components/ix-push-card.js";
 import { IxRadioGroup as IxRadioGroupElement, defineCustomElement as defineIxRadioGroup } from "@siemens/ix/components/ix-radio-group.js";
 import { IxRadio as IxRadioElement, defineCustomElement as defineIxRadio } from "@siemens/ix/components/ix-radio.js";
@@ -98,6 +99,7 @@ import { IxTabItem as IxTabItemElement, defineCustomElement as defineIxTabItem }
 import { IxTabs as IxTabsElement, defineCustomElement as defineIxTabs } from "@siemens/ix/components/ix-tabs.js";
 import { IxTextarea as IxTextareaElement, defineCustomElement as defineIxTextarea } from "@siemens/ix/components/ix-textarea.js";
 import { IxTile as IxTileElement, defineCustomElement as defineIxTile } from "@siemens/ix/components/ix-tile.js";
+import { IxTimeInput as IxTimeInputElement, defineCustomElement as defineIxTimeInput } from "@siemens/ix/components/ix-time-input.js";
 import { IxTimePicker as IxTimePickerElement, defineCustomElement as defineIxTimePicker } from "@siemens/ix/components/ix-time-picker.js";
 import { IxToastContainer as IxToastContainerElement, defineCustomElement as defineIxToastContainer } from "@siemens/ix/components/ix-toast-container.js";
 import { IxToast as IxToastElement, defineCustomElement as defineIxToast } from "@siemens/ix/components/ix-toast.js";
@@ -118,7 +120,7 @@ export type IxActionCardEvents = NonNullable<unknown>;
 export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCardEvents> = /*@__PURE__*/ createComponent<IxActionCardElement, IxActionCardEvents>({
     tagName: 'ix-action-card',
     elementClass: IxActionCardElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxActionCardEvents,
     defineCustomElement: defineIxActionCard
@@ -129,7 +131,7 @@ export type IxApplicationEvents = NonNullable<unknown>;
 export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplicationEvents> = /*@__PURE__*/ createComponent<IxApplicationElement, IxApplicationEvents>({
     tagName: 'ix-application',
     elementClass: IxApplicationElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxApplicationEvents,
     defineCustomElement: defineIxApplication
@@ -143,7 +145,7 @@ export type IxApplicationHeaderEvents = {
 export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents> = /*@__PURE__*/ createComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents>({
     tagName: 'ix-application-header',
     elementClass: IxApplicationHeaderElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onMenuToggle: 'menuToggle',
@@ -157,7 +159,7 @@ export type IxAvatarEvents = NonNullable<unknown>;
 export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = /*@__PURE__*/ createComponent<IxAvatarElement, IxAvatarEvents>({
     tagName: 'ix-avatar',
     elementClass: IxAvatarElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxAvatarEvents,
     defineCustomElement: defineIxAvatar
@@ -168,7 +170,7 @@ export type IxBasicNavigationEvents = NonNullable<unknown>;
 export const IxBasicNavigation: StencilReactComponent<IxBasicNavigationElement, IxBasicNavigationEvents> = /*@__PURE__*/ createComponent<IxBasicNavigationElement, IxBasicNavigationEvents>({
     tagName: 'ix-basic-navigation',
     elementClass: IxBasicNavigationElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxBasicNavigationEvents,
     defineCustomElement: defineIxBasicNavigation
@@ -179,7 +181,7 @@ export type IxBlindEvents = { onCollapsedChange: EventName<CustomEvent<boolean>>
 export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents> = /*@__PURE__*/ createComponent<IxBlindElement, IxBlindEvents>({
     tagName: 'ix-blind',
     elementClass: IxBlindElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onCollapsedChange: 'collapsedChange' } as IxBlindEvents,
     defineCustomElement: defineIxBlind
@@ -193,7 +195,7 @@ export type IxBreadcrumbEvents = {
 export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcrumbEvents> = /*@__PURE__*/ createComponent<IxBreadcrumbElement, IxBreadcrumbEvents>({
     tagName: 'ix-breadcrumb',
     elementClass: IxBreadcrumbElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onItemClick: 'itemClick',
@@ -207,7 +209,7 @@ export type IxBreadcrumbItemEvents = NonNullable<unknown>;
 export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents> = /*@__PURE__*/ createComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents>({
     tagName: 'ix-breadcrumb-item',
     elementClass: IxBreadcrumbItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxBreadcrumbItemEvents,
     defineCustomElement: defineIxBreadcrumbItem
@@ -218,7 +220,7 @@ export type IxButtonEvents = NonNullable<unknown>;
 export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = /*@__PURE__*/ createComponent<IxButtonElement, IxButtonEvents>({
     tagName: 'ix-button',
     elementClass: IxButtonElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxButtonEvents,
     defineCustomElement: defineIxButton
@@ -229,7 +231,7 @@ export type IxCardEvents = NonNullable<unknown>;
 export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents> = /*@__PURE__*/ createComponent<IxCardElement, IxCardEvents>({
     tagName: 'ix-card',
     elementClass: IxCardElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxCardEvents,
     defineCustomElement: defineIxCard
@@ -240,7 +242,7 @@ export type IxCardAccordionEvents = NonNullable<unknown>;
 export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCardAccordionEvents> = /*@__PURE__*/ createComponent<IxCardAccordionElement, IxCardAccordionEvents>({
     tagName: 'ix-card-accordion',
     elementClass: IxCardAccordionElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxCardAccordionEvents,
     defineCustomElement: defineIxCardAccordion
@@ -251,7 +253,7 @@ export type IxCardContentEvents = NonNullable<unknown>;
 export const IxCardContent: StencilReactComponent<IxCardContentElement, IxCardContentEvents> = /*@__PURE__*/ createComponent<IxCardContentElement, IxCardContentEvents>({
     tagName: 'ix-card-content',
     elementClass: IxCardContentElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxCardContentEvents,
     defineCustomElement: defineIxCardContent
@@ -270,7 +272,7 @@ export type IxCardListEvents = {
 export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEvents> = /*@__PURE__*/ createComponent<IxCardListElement, IxCardListEvents>({
     tagName: 'ix-card-list',
     elementClass: IxCardListElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onCollapseChanged: 'collapseChanged',
@@ -285,7 +287,7 @@ export type IxCardTitleEvents = NonNullable<unknown>;
 export const IxCardTitle: StencilReactComponent<IxCardTitleElement, IxCardTitleEvents> = /*@__PURE__*/ createComponent<IxCardTitleElement, IxCardTitleEvents>({
     tagName: 'ix-card-title',
     elementClass: IxCardTitleElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxCardTitleEvents,
     defineCustomElement: defineIxCardTitle
@@ -301,7 +303,7 @@ export type IxCategoryFilterEvents = {
 export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, IxCategoryFilterEvents> = /*@__PURE__*/ createComponent<IxCategoryFilterElement, IxCategoryFilterEvents>({
     tagName: 'ix-category-filter',
     elementClass: IxCategoryFilterElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onCategoryChanged: 'categoryChanged',
@@ -321,7 +323,7 @@ export type IxCheckboxEvents = {
 export const IxCheckbox: StencilReactComponent<IxCheckboxElement, IxCheckboxEvents> = /*@__PURE__*/ createComponent<IxCheckboxElement, IxCheckboxEvents>({
     tagName: 'ix-checkbox',
     elementClass: IxCheckboxElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onCheckedChange: 'checkedChange',
@@ -336,7 +338,7 @@ export type IxCheckboxGroupEvents = NonNullable<unknown>;
 export const IxCheckboxGroup: StencilReactComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents> = /*@__PURE__*/ createComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents>({
     tagName: 'ix-checkbox-group',
     elementClass: IxCheckboxGroupElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxCheckboxGroupEvents,
     defineCustomElement: defineIxCheckboxGroup
@@ -347,7 +349,7 @@ export type IxChipEvents = { onCloseChip: EventName<CustomEvent<any>> };
 export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents> = /*@__PURE__*/ createComponent<IxChipElement, IxChipEvents>({
     tagName: 'ix-chip',
     elementClass: IxChipElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onCloseChip: 'closeChip' } as IxChipEvents,
     defineCustomElement: defineIxChip
@@ -358,7 +360,7 @@ export type IxColEvents = NonNullable<unknown>;
 export const IxCol: StencilReactComponent<IxColElement, IxColEvents> = /*@__PURE__*/ createComponent<IxColElement, IxColEvents>({
     tagName: 'ix-col',
     elementClass: IxColElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxColEvents,
     defineCustomElement: defineIxCol
@@ -369,7 +371,7 @@ export type IxContentEvents = NonNullable<unknown>;
 export const IxContent: StencilReactComponent<IxContentElement, IxContentEvents> = /*@__PURE__*/ createComponent<IxContentElement, IxContentEvents>({
     tagName: 'ix-content',
     elementClass: IxContentElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxContentEvents,
     defineCustomElement: defineIxContent
@@ -380,7 +382,7 @@ export type IxContentHeaderEvents = { onBackButtonClick: EventName<CustomEvent<v
 export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxContentHeaderEvents> = /*@__PURE__*/ createComponent<IxContentHeaderElement, IxContentHeaderEvents>({
     tagName: 'ix-content-header',
     elementClass: IxContentHeaderElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onBackButtonClick: 'backButtonClick' } as IxContentHeaderEvents,
     defineCustomElement: defineIxContentHeader
@@ -391,7 +393,7 @@ export type IxCustomFieldEvents = NonNullable<unknown>;
 export const IxCustomField: StencilReactComponent<IxCustomFieldElement, IxCustomFieldEvents> = /*@__PURE__*/ createComponent<IxCustomFieldElement, IxCustomFieldEvents>({
     tagName: 'ix-custom-field',
     elementClass: IxCustomFieldElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxCustomFieldEvents,
     defineCustomElement: defineIxCustomField
@@ -402,7 +404,7 @@ export type IxDateDropdownEvents = { onDateRangeChange: EventName<IxDateDropdown
 export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDateDropdownEvents> = /*@__PURE__*/ createComponent<IxDateDropdownElement, IxDateDropdownEvents>({
     tagName: 'ix-date-dropdown',
     elementClass: IxDateDropdownElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onDateRangeChange: 'dateRangeChange' } as IxDateDropdownEvents,
     defineCustomElement: defineIxDateDropdown
@@ -416,7 +418,7 @@ export type IxDateInputEvents = {
 export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputEvents> = /*@__PURE__*/ createComponent<IxDateInputElement, IxDateInputEvents>({
     tagName: 'ix-date-input',
     elementClass: IxDateInputElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onValueChange: 'valueChange',
@@ -434,7 +436,7 @@ export type IxDatePickerEvents = {
 export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePickerEvents> = /*@__PURE__*/ createComponent<IxDatePickerElement, IxDatePickerEvents>({
     tagName: 'ix-date-picker',
     elementClass: IxDatePickerElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onDateChange: 'dateChange',
@@ -453,7 +455,7 @@ export type IxDatetimePickerEvents = {
 export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, IxDatetimePickerEvents> = /*@__PURE__*/ createComponent<IxDatetimePickerElement, IxDatetimePickerEvents>({
     tagName: 'ix-datetime-picker',
     elementClass: IxDatetimePickerElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onTimeChange: 'timeChange',
@@ -468,7 +470,7 @@ export type IxDividerEvents = NonNullable<unknown>;
 export const IxDivider: StencilReactComponent<IxDividerElement, IxDividerEvents> = /*@__PURE__*/ createComponent<IxDividerElement, IxDividerEvents>({
     tagName: 'ix-divider',
     elementClass: IxDividerElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxDividerEvents,
     defineCustomElement: defineIxDivider
@@ -482,7 +484,7 @@ export type IxDrawerEvents = {
 export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents> = /*@__PURE__*/ createComponent<IxDrawerElement, IxDrawerEvents>({
     tagName: 'ix-drawer',
     elementClass: IxDrawerElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onOpen: 'open',
@@ -496,7 +498,7 @@ export type IxDropdownEvents = { onShowChanged: EventName<CustomEvent<boolean>> 
 export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents>({
     tagName: 'ix-dropdown',
     elementClass: IxDropdownElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onShowChanged: 'showChanged' } as IxDropdownEvents,
     defineCustomElement: defineIxDropdown
@@ -507,7 +509,7 @@ export type IxDropdownButtonEvents = NonNullable<unknown>;
 export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, IxDropdownButtonEvents> = /*@__PURE__*/ createComponent<IxDropdownButtonElement, IxDropdownButtonEvents>({
     tagName: 'ix-dropdown-button',
     elementClass: IxDropdownButtonElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxDropdownButtonEvents,
     defineCustomElement: defineIxDropdownButton
@@ -518,7 +520,7 @@ export type IxDropdownHeaderEvents = NonNullable<unknown>;
 export const IxDropdownHeader: StencilReactComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents> = /*@__PURE__*/ createComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents>({
     tagName: 'ix-dropdown-header',
     elementClass: IxDropdownHeaderElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxDropdownHeaderEvents,
     defineCustomElement: defineIxDropdownHeader
@@ -529,7 +531,7 @@ export type IxDropdownItemEvents = NonNullable<unknown>;
 export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDropdownItemEvents> = /*@__PURE__*/ createComponent<IxDropdownItemElement, IxDropdownItemEvents>({
     tagName: 'ix-dropdown-item',
     elementClass: IxDropdownItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxDropdownItemEvents,
     defineCustomElement: defineIxDropdownItem
@@ -540,7 +542,7 @@ export type IxDropdownQuickActionsEvents = NonNullable<unknown>;
 export const IxDropdownQuickActions: StencilReactComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents> = /*@__PURE__*/ createComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents>({
     tagName: 'ix-dropdown-quick-actions',
     elementClass: IxDropdownQuickActionsElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxDropdownQuickActionsEvents,
     defineCustomElement: defineIxDropdownQuickActions
@@ -551,7 +553,7 @@ export type IxEmptyStateEvents = { onActionClick: EventName<CustomEvent<void>> }
 export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptyStateEvents> = /*@__PURE__*/ createComponent<IxEmptyStateElement, IxEmptyStateEvents>({
     tagName: 'ix-empty-state',
     elementClass: IxEmptyStateElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onActionClick: 'actionClick' } as IxEmptyStateEvents,
     defineCustomElement: defineIxEmptyState
@@ -562,7 +564,7 @@ export type IxEventListEvents = NonNullable<unknown>;
 export const IxEventList: StencilReactComponent<IxEventListElement, IxEventListEvents> = /*@__PURE__*/ createComponent<IxEventListElement, IxEventListEvents>({
     tagName: 'ix-event-list',
     elementClass: IxEventListElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxEventListEvents,
     defineCustomElement: defineIxEventList
@@ -573,7 +575,7 @@ export type IxEventListItemEvents = { onItemClick: EventName<CustomEvent<any>> }
 export const IxEventListItem: StencilReactComponent<IxEventListItemElement, IxEventListItemEvents> = /*@__PURE__*/ createComponent<IxEventListItemElement, IxEventListItemEvents>({
     tagName: 'ix-event-list-item',
     elementClass: IxEventListItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onItemClick: 'itemClick' } as IxEventListItemEvents,
     defineCustomElement: defineIxEventListItem
@@ -584,7 +586,7 @@ export type IxExpandingSearchEvents = { onValueChange: EventName<CustomEvent<str
 export const IxExpandingSearch: StencilReactComponent<IxExpandingSearchElement, IxExpandingSearchEvents> = /*@__PURE__*/ createComponent<IxExpandingSearchElement, IxExpandingSearchEvents>({
     tagName: 'ix-expanding-search',
     elementClass: IxExpandingSearchElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onValueChange: 'valueChange' } as IxExpandingSearchEvents,
     defineCustomElement: defineIxExpandingSearch
@@ -595,7 +597,7 @@ export type IxFieldLabelEvents = NonNullable<unknown>;
 export const IxFieldLabel: StencilReactComponent<IxFieldLabelElement, IxFieldLabelEvents> = /*@__PURE__*/ createComponent<IxFieldLabelElement, IxFieldLabelEvents>({
     tagName: 'ix-field-label',
     elementClass: IxFieldLabelElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxFieldLabelEvents,
     defineCustomElement: defineIxFieldLabel
@@ -606,7 +608,7 @@ export type IxFilterChipEvents = { onCloseClick: EventName<CustomEvent<void>> };
 export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterChipEvents> = /*@__PURE__*/ createComponent<IxFilterChipElement, IxFilterChipEvents>({
     tagName: 'ix-filter-chip',
     elementClass: IxFilterChipElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onCloseClick: 'closeClick' } as IxFilterChipEvents,
     defineCustomElement: defineIxFilterChip
@@ -617,7 +619,7 @@ export type IxFlipTileEvents = { onToggle: EventName<CustomEvent<number>> };
 export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEvents> = /*@__PURE__*/ createComponent<IxFlipTileElement, IxFlipTileEvents>({
     tagName: 'ix-flip-tile',
     elementClass: IxFlipTileElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onToggle: 'toggle' } as IxFlipTileEvents,
     defineCustomElement: defineIxFlipTile
@@ -628,7 +630,7 @@ export type IxFlipTileContentEvents = NonNullable<unknown>;
 export const IxFlipTileContent: StencilReactComponent<IxFlipTileContentElement, IxFlipTileContentEvents> = /*@__PURE__*/ createComponent<IxFlipTileContentElement, IxFlipTileContentEvents>({
     tagName: 'ix-flip-tile-content',
     elementClass: IxFlipTileContentElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxFlipTileContentEvents,
     defineCustomElement: defineIxFlipTileContent
@@ -643,7 +645,7 @@ export type IxGroupEvents = {
 export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents> = /*@__PURE__*/ createComponent<IxGroupElement, IxGroupEvents>({
     tagName: 'ix-group',
     elementClass: IxGroupElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onSelectGroup: 'selectGroup',
@@ -658,7 +660,7 @@ export type IxGroupContextMenuEvents = NonNullable<unknown>;
 export const IxGroupContextMenu: StencilReactComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents> = /*@__PURE__*/ createComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents>({
     tagName: 'ix-group-context-menu',
     elementClass: IxGroupContextMenuElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxGroupContextMenuEvents,
     defineCustomElement: defineIxGroupContextMenu
@@ -669,7 +671,7 @@ export type IxGroupItemEvents = { onSelectedChanged: EventName<IxGroupItemCustom
 export const IxGroupItem: StencilReactComponent<IxGroupItemElement, IxGroupItemEvents> = /*@__PURE__*/ createComponent<IxGroupItemElement, IxGroupItemEvents>({
     tagName: 'ix-group-item',
     elementClass: IxGroupItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onSelectedChanged: 'selectedChanged' } as IxGroupItemEvents,
     defineCustomElement: defineIxGroupItem
@@ -680,7 +682,7 @@ export type IxHelperTextEvents = NonNullable<unknown>;
 export const IxHelperText: StencilReactComponent<IxHelperTextElement, IxHelperTextEvents> = /*@__PURE__*/ createComponent<IxHelperTextElement, IxHelperTextEvents>({
     tagName: 'ix-helper-text',
     elementClass: IxHelperTextElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxHelperTextEvents,
     defineCustomElement: defineIxHelperText
@@ -691,7 +693,7 @@ export type IxIconButtonEvents = NonNullable<unknown>;
 export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButtonEvents> = /*@__PURE__*/ createComponent<IxIconButtonElement, IxIconButtonEvents>({
     tagName: 'ix-icon-button',
     elementClass: IxIconButtonElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxIconButtonEvents,
     defineCustomElement: defineIxIconButton
@@ -702,7 +704,7 @@ export type IxIconToggleButtonEvents = { onPressedChange: EventName<CustomEvent<
 export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents> = /*@__PURE__*/ createComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents>({
     tagName: 'ix-icon-toggle-button',
     elementClass: IxIconToggleButtonElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onPressedChange: 'pressedChange' } as IxIconToggleButtonEvents,
     defineCustomElement: defineIxIconToggleButton
@@ -717,7 +719,7 @@ export type IxInputEvents = {
 export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@__PURE__*/ createComponent<IxInputElement, IxInputEvents>({
     tagName: 'ix-input',
     elementClass: IxInputElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onValueChange: 'valueChange',
@@ -732,7 +734,7 @@ export type IxInputGroupEvents = NonNullable<unknown>;
 export const IxInputGroup: StencilReactComponent<IxInputGroupElement, IxInputGroupEvents> = /*@__PURE__*/ createComponent<IxInputGroupElement, IxInputGroupEvents>({
     tagName: 'ix-input-group',
     elementClass: IxInputGroupElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxInputGroupEvents,
     defineCustomElement: defineIxInputGroup
@@ -743,7 +745,7 @@ export type IxKeyValueEvents = NonNullable<unknown>;
 export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEvents> = /*@__PURE__*/ createComponent<IxKeyValueElement, IxKeyValueEvents>({
     tagName: 'ix-key-value',
     elementClass: IxKeyValueElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxKeyValueEvents,
     defineCustomElement: defineIxKeyValue
@@ -754,7 +756,7 @@ export type IxKeyValueListEvents = NonNullable<unknown>;
 export const IxKeyValueList: StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents> = /*@__PURE__*/ createComponent<IxKeyValueListElement, IxKeyValueListEvents>({
     tagName: 'ix-key-value-list',
     elementClass: IxKeyValueListElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxKeyValueListEvents,
     defineCustomElement: defineIxKeyValueList
@@ -765,7 +767,7 @@ export type IxKpiEvents = NonNullable<unknown>;
 export const IxKpi: StencilReactComponent<IxKpiElement, IxKpiEvents> = /*@__PURE__*/ createComponent<IxKpiElement, IxKpiEvents>({
     tagName: 'ix-kpi',
     elementClass: IxKpiElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxKpiEvents,
     defineCustomElement: defineIxKpi
@@ -776,7 +778,7 @@ export type IxLayoutAutoEvents = NonNullable<unknown>;
 export const IxLayoutAuto: StencilReactComponent<IxLayoutAutoElement, IxLayoutAutoEvents> = /*@__PURE__*/ createComponent<IxLayoutAutoElement, IxLayoutAutoEvents>({
     tagName: 'ix-layout-auto',
     elementClass: IxLayoutAutoElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxLayoutAutoEvents,
     defineCustomElement: defineIxLayoutAuto
@@ -787,7 +789,7 @@ export type IxLayoutGridEvents = NonNullable<unknown>;
 export const IxLayoutGrid: StencilReactComponent<IxLayoutGridElement, IxLayoutGridEvents> = /*@__PURE__*/ createComponent<IxLayoutGridElement, IxLayoutGridEvents>({
     tagName: 'ix-layout-grid',
     elementClass: IxLayoutGridElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxLayoutGridEvents,
     defineCustomElement: defineIxLayoutGrid
@@ -798,7 +800,7 @@ export type IxLinkButtonEvents = NonNullable<unknown>;
 export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButtonEvents> = /*@__PURE__*/ createComponent<IxLinkButtonElement, IxLinkButtonEvents>({
     tagName: 'ix-link-button',
     elementClass: IxLinkButtonElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxLinkButtonEvents,
     defineCustomElement: defineIxLinkButton
@@ -812,7 +814,7 @@ export type IxMapNavigationEvents = {
 export const IxMapNavigation: StencilReactComponent<IxMapNavigationElement, IxMapNavigationEvents> = /*@__PURE__*/ createComponent<IxMapNavigationElement, IxMapNavigationEvents>({
     tagName: 'ix-map-navigation',
     elementClass: IxMapNavigationElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onNavigationToggled: 'navigationToggled',
@@ -826,7 +828,7 @@ export type IxMapNavigationOverlayEvents = { onCloseClick: EventName<CustomEvent
 export const IxMapNavigationOverlay: StencilReactComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents> = /*@__PURE__*/ createComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents>({
     tagName: 'ix-map-navigation-overlay',
     elementClass: IxMapNavigationOverlayElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onCloseClick: 'closeClick' } as IxMapNavigationOverlayEvents,
     defineCustomElement: defineIxMapNavigationOverlay
@@ -843,7 +845,7 @@ export type IxMenuEvents = {
 export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = /*@__PURE__*/ createComponent<IxMenuElement, IxMenuEvents>({
     tagName: 'ix-menu',
     elementClass: IxMenuElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onExpandChange: 'expandChange',
@@ -863,7 +865,7 @@ export type IxMenuAboutEvents = {
 export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutEvents> = /*@__PURE__*/ createComponent<IxMenuAboutElement, IxMenuAboutEvents>({
     tagName: 'ix-menu-about',
     elementClass: IxMenuAboutElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onTabChange: 'tabChange',
@@ -877,7 +879,7 @@ export type IxMenuAboutItemEvents = { onLabelChange: EventName<IxMenuAboutItemCu
 export const IxMenuAboutItem: StencilReactComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents> = /*@__PURE__*/ createComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents>({
     tagName: 'ix-menu-about-item',
     elementClass: IxMenuAboutItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onLabelChange: 'labelChange' } as IxMenuAboutItemEvents,
     defineCustomElement: defineIxMenuAboutItem
@@ -891,7 +893,7 @@ export type IxMenuAboutNewsEvents = {
 export const IxMenuAboutNews: StencilReactComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents> = /*@__PURE__*/ createComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents>({
     tagName: 'ix-menu-about-news',
     elementClass: IxMenuAboutNewsElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onShowMore: 'showMore',
@@ -905,7 +907,7 @@ export type IxMenuAvatarEvents = { onLogoutClick: EventName<CustomEvent<any>> };
 export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvatarEvents> = /*@__PURE__*/ createComponent<IxMenuAvatarElement, IxMenuAvatarEvents>({
     tagName: 'ix-menu-avatar',
     elementClass: IxMenuAvatarElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onLogoutClick: 'logoutClick' } as IxMenuAvatarEvents,
     defineCustomElement: defineIxMenuAvatar
@@ -916,7 +918,7 @@ export type IxMenuAvatarItemEvents = { onItemClick: EventName<IxMenuAvatarItemCu
 export const IxMenuAvatarItem: StencilReactComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents> = /*@__PURE__*/ createComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents>({
     tagName: 'ix-menu-avatar-item',
     elementClass: IxMenuAvatarItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onItemClick: 'itemClick' } as IxMenuAvatarItemEvents,
     defineCustomElement: defineIxMenuAvatarItem
@@ -927,7 +929,7 @@ export type IxMenuCategoryEvents = NonNullable<unknown>;
 export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenuCategoryEvents> = /*@__PURE__*/ createComponent<IxMenuCategoryElement, IxMenuCategoryEvents>({
     tagName: 'ix-menu-category',
     elementClass: IxMenuCategoryElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxMenuCategoryEvents,
     defineCustomElement: defineIxMenuCategory
@@ -938,7 +940,7 @@ export type IxMenuItemEvents = NonNullable<unknown>;
 export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEvents> = /*@__PURE__*/ createComponent<IxMenuItemElement, IxMenuItemEvents>({
     tagName: 'ix-menu-item',
     elementClass: IxMenuItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxMenuItemEvents,
     defineCustomElement: defineIxMenuItem
@@ -952,7 +954,7 @@ export type IxMenuSettingsEvents = {
 export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenuSettingsEvents> = /*@__PURE__*/ createComponent<IxMenuSettingsElement, IxMenuSettingsEvents>({
     tagName: 'ix-menu-settings',
     elementClass: IxMenuSettingsElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onTabChange: 'tabChange',
@@ -966,7 +968,7 @@ export type IxMenuSettingsItemEvents = { onLabelChange: EventName<IxMenuSettings
 export const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents> = /*@__PURE__*/ createComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents>({
     tagName: 'ix-menu-settings-item',
     elementClass: IxMenuSettingsItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onLabelChange: 'labelChange' } as IxMenuSettingsItemEvents,
     defineCustomElement: defineIxMenuSettingsItem
@@ -980,7 +982,7 @@ export type IxMessageBarEvents = {
 export const IxMessageBar: StencilReactComponent<IxMessageBarElement, IxMessageBarEvents> = /*@__PURE__*/ createComponent<IxMessageBarElement, IxMessageBarEvents>({
     tagName: 'ix-message-bar',
     elementClass: IxMessageBarElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onClosedChange: 'closedChange',
@@ -997,7 +999,7 @@ export type IxModalEvents = {
 export const IxModal: StencilReactComponent<IxModalElement, IxModalEvents> = /*@__PURE__*/ createComponent<IxModalElement, IxModalEvents>({
     tagName: 'ix-modal',
     elementClass: IxModalElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onDialogClose: 'dialogClose',
@@ -1011,7 +1013,7 @@ export type IxModalContentEvents = NonNullable<unknown>;
 export const IxModalContent: StencilReactComponent<IxModalContentElement, IxModalContentEvents> = /*@__PURE__*/ createComponent<IxModalContentElement, IxModalContentEvents>({
     tagName: 'ix-modal-content',
     elementClass: IxModalContentElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxModalContentEvents,
     defineCustomElement: defineIxModalContent
@@ -1022,7 +1024,7 @@ export type IxModalFooterEvents = NonNullable<unknown>;
 export const IxModalFooter: StencilReactComponent<IxModalFooterElement, IxModalFooterEvents> = /*@__PURE__*/ createComponent<IxModalFooterElement, IxModalFooterEvents>({
     tagName: 'ix-modal-footer',
     elementClass: IxModalFooterElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxModalFooterEvents,
     defineCustomElement: defineIxModalFooter
@@ -1033,7 +1035,7 @@ export type IxModalHeaderEvents = { onCloseClick: EventName<IxModalHeaderCustomE
 export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalHeaderEvents> = /*@__PURE__*/ createComponent<IxModalHeaderElement, IxModalHeaderEvents>({
     tagName: 'ix-modal-header',
     elementClass: IxModalHeaderElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onCloseClick: 'closeClick' } as IxModalHeaderEvents,
     defineCustomElement: defineIxModalHeader
@@ -1048,7 +1050,7 @@ export type IxNumberInputEvents = {
 export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumberInputEvents> = /*@__PURE__*/ createComponent<IxNumberInputElement, IxNumberInputEvents>({
     tagName: 'ix-number-input',
     elementClass: IxNumberInputElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onValueChange: 'valueChange',
@@ -1066,7 +1068,7 @@ export type IxPaginationEvents = {
 export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginationEvents> = /*@__PURE__*/ createComponent<IxPaginationElement, IxPaginationEvents>({
     tagName: 'ix-pagination',
     elementClass: IxPaginationElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onPageSelected: 'pageSelected',
@@ -1084,7 +1086,7 @@ export type IxPaneEvents = {
 export const IxPane: StencilReactComponent<IxPaneElement, IxPaneEvents> = /*@__PURE__*/ createComponent<IxPaneElement, IxPaneEvents>({
     tagName: 'ix-pane',
     elementClass: IxPaneElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onExpandedChanged: 'expandedChanged',
@@ -1099,7 +1101,7 @@ export type IxPaneLayoutEvents = NonNullable<unknown>;
 export const IxPaneLayout: StencilReactComponent<IxPaneLayoutElement, IxPaneLayoutEvents> = /*@__PURE__*/ createComponent<IxPaneLayoutElement, IxPaneLayoutEvents>({
     tagName: 'ix-pane-layout',
     elementClass: IxPaneLayoutElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxPaneLayoutEvents,
     defineCustomElement: defineIxPaneLayout
@@ -1110,10 +1112,21 @@ export type IxPillEvents = NonNullable<unknown>;
 export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents> = /*@__PURE__*/ createComponent<IxPillElement, IxPillEvents>({
     tagName: 'ix-pill',
     elementClass: IxPillElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxPillEvents,
     defineCustomElement: defineIxPill
+});
+
+export type IxProgressIndicatorEvents = NonNullable<unknown>;
+
+export const IxProgressIndicator: StencilReactComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents> = /*@__PURE__*/ createComponent<IxProgressIndicatorElement, IxProgressIndicatorEvents>({
+    tagName: 'ix-progress-indicator',
+    elementClass: IxProgressIndicatorElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxProgressIndicatorEvents,
+    defineCustomElement: defineIxProgressIndicator
 });
 
 export type IxPushCardEvents = NonNullable<unknown>;
@@ -1121,7 +1134,7 @@ export type IxPushCardEvents = NonNullable<unknown>;
 export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEvents> = /*@__PURE__*/ createComponent<IxPushCardElement, IxPushCardEvents>({
     tagName: 'ix-push-card',
     elementClass: IxPushCardElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxPushCardEvents,
     defineCustomElement: defineIxPushCard
@@ -1136,7 +1149,7 @@ export type IxRadioEvents = {
 export const IxRadio: StencilReactComponent<IxRadioElement, IxRadioEvents> = /*@__PURE__*/ createComponent<IxRadioElement, IxRadioEvents>({
     tagName: 'ix-radio',
     elementClass: IxRadioElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onCheckedChange: 'checkedChange',
@@ -1151,7 +1164,7 @@ export type IxRadioGroupEvents = { onValueChange: EventName<CustomEvent<string>>
 export const IxRadioGroup: StencilReactComponent<IxRadioGroupElement, IxRadioGroupEvents> = /*@__PURE__*/ createComponent<IxRadioGroupElement, IxRadioGroupEvents>({
     tagName: 'ix-radio-group',
     elementClass: IxRadioGroupElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onValueChange: 'valueChange' } as IxRadioGroupEvents,
     defineCustomElement: defineIxRadioGroup
@@ -1162,7 +1175,7 @@ export type IxRowEvents = NonNullable<unknown>;
 export const IxRow: StencilReactComponent<IxRowElement, IxRowEvents> = /*@__PURE__*/ createComponent<IxRowElement, IxRowEvents>({
     tagName: 'ix-row',
     elementClass: IxRowElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxRowEvents,
     defineCustomElement: defineIxRow
@@ -1178,7 +1191,7 @@ export type IxSelectEvents = {
 export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = /*@__PURE__*/ createComponent<IxSelectElement, IxSelectEvents>({
     tagName: 'ix-select',
     elementClass: IxSelectElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onValueChange: 'valueChange',
@@ -1194,7 +1207,7 @@ export type IxSelectItemEvents = { onItemClick: EventName<CustomEvent<string>> }
 export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents>({
     tagName: 'ix-select-item',
     elementClass: IxSelectItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onItemClick: 'itemClick' } as IxSelectItemEvents,
     defineCustomElement: defineIxSelectItem
@@ -1205,7 +1218,7 @@ export type IxSliderEvents = { onValueChange: EventName<CustomEvent<number>> };
 export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents> = /*@__PURE__*/ createComponent<IxSliderElement, IxSliderEvents>({
     tagName: 'ix-slider',
     elementClass: IxSliderElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onValueChange: 'valueChange' } as IxSliderEvents,
     defineCustomElement: defineIxSlider
@@ -1216,7 +1229,7 @@ export type IxSpinnerEvents = NonNullable<unknown>;
 export const IxSpinner: StencilReactComponent<IxSpinnerElement, IxSpinnerEvents> = /*@__PURE__*/ createComponent<IxSpinnerElement, IxSpinnerEvents>({
     tagName: 'ix-spinner',
     elementClass: IxSpinnerElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxSpinnerEvents,
     defineCustomElement: defineIxSpinner
@@ -1227,7 +1240,7 @@ export type IxSplitButtonEvents = { onButtonClick: EventName<IxSplitButtonCustom
 export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitButtonEvents> = /*@__PURE__*/ createComponent<IxSplitButtonElement, IxSplitButtonEvents>({
     tagName: 'ix-split-button',
     elementClass: IxSplitButtonElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onButtonClick: 'buttonClick' } as IxSplitButtonEvents,
     defineCustomElement: defineIxSplitButton
@@ -1238,7 +1251,7 @@ export type IxTabItemEvents = { onTabClick: EventName<IxTabItemCustomEvent<TabCl
 export const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents> = /*@__PURE__*/ createComponent<IxTabItemElement, IxTabItemEvents>({
     tagName: 'ix-tab-item',
     elementClass: IxTabItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onTabClick: 'tabClick' } as IxTabItemEvents,
     defineCustomElement: defineIxTabItem
@@ -1249,7 +1262,7 @@ export type IxTabsEvents = { onSelectedChange: EventName<CustomEvent<number>> };
 export const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents> = /*@__PURE__*/ createComponent<IxTabsElement, IxTabsEvents>({
     tagName: 'ix-tabs',
     elementClass: IxTabsElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onSelectedChange: 'selectedChange' } as IxTabsEvents,
     defineCustomElement: defineIxTabs
@@ -1264,7 +1277,7 @@ export type IxTextareaEvents = {
 export const IxTextarea: StencilReactComponent<IxTextareaElement, IxTextareaEvents> = /*@__PURE__*/ createComponent<IxTextareaElement, IxTextareaEvents>({
     tagName: 'ix-textarea',
     elementClass: IxTextareaElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onValueChange: 'valueChange',
@@ -1279,10 +1292,27 @@ export type IxTileEvents = NonNullable<unknown>;
 export const IxTile: StencilReactComponent<IxTileElement, IxTileEvents> = /*@__PURE__*/ createComponent<IxTileElement, IxTileEvents>({
     tagName: 'ix-tile',
     elementClass: IxTileElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxTileEvents,
     defineCustomElement: defineIxTile
+});
+
+export type IxTimeInputEvents = {
+    onValueChange: EventName<CustomEvent<string>>,
+    onValidityStateChange: EventName<IxTimeInputCustomEvent<TimeInputValidityState>>
+};
+
+export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputEvents> = /*@__PURE__*/ createComponent<IxTimeInputElement, IxTimeInputEvents>({
+    tagName: 'ix-time-input',
+    elementClass: IxTimeInputElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+        onValueChange: 'valueChange',
+        onValidityStateChange: 'validityStateChange'
+    } as IxTimeInputEvents,
+    defineCustomElement: defineIxTimeInput
 });
 
 export type IxTimePickerEvents = {
@@ -1293,7 +1323,7 @@ export type IxTimePickerEvents = {
 export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePickerEvents> = /*@__PURE__*/ createComponent<IxTimePickerElement, IxTimePickerEvents>({
     tagName: 'ix-time-picker',
     elementClass: IxTimePickerElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onTimeSelect: 'timeSelect',
@@ -1307,7 +1337,7 @@ export type IxToastEvents = { onCloseToast: EventName<CustomEvent<any>> };
 export const IxToast: StencilReactComponent<IxToastElement, IxToastEvents> = /*@__PURE__*/ createComponent<IxToastElement, IxToastEvents>({
     tagName: 'ix-toast',
     elementClass: IxToastElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onCloseToast: 'closeToast' } as IxToastEvents,
     defineCustomElement: defineIxToast
@@ -1318,7 +1348,7 @@ export type IxToastContainerEvents = NonNullable<unknown>;
 export const IxToastContainer: StencilReactComponent<IxToastContainerElement, IxToastContainerEvents> = /*@__PURE__*/ createComponent<IxToastContainerElement, IxToastContainerEvents>({
     tagName: 'ix-toast-container',
     elementClass: IxToastContainerElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxToastContainerEvents,
     defineCustomElement: defineIxToastContainer
@@ -1332,7 +1362,7 @@ export type IxToggleEvents = {
 export const IxToggle: StencilReactComponent<IxToggleElement, IxToggleEvents> = /*@__PURE__*/ createComponent<IxToggleElement, IxToggleEvents>({
     tagName: 'ix-toggle',
     elementClass: IxToggleElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
         onCheckedChange: 'checkedChange',
@@ -1346,7 +1376,7 @@ export type IxToggleButtonEvents = { onPressedChange: EventName<CustomEvent<bool
 export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxToggleButtonEvents> = /*@__PURE__*/ createComponent<IxToggleButtonElement, IxToggleButtonEvents>({
     tagName: 'ix-toggle-button',
     elementClass: IxToggleButtonElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onPressedChange: 'pressedChange' } as IxToggleButtonEvents,
     defineCustomElement: defineIxToggleButton
@@ -1357,7 +1387,7 @@ export type IxTooltipEvents = NonNullable<unknown>;
 export const IxTooltip: StencilReactComponent<IxTooltipElement, IxTooltipEvents> = /*@__PURE__*/ createComponent<IxTooltipElement, IxTooltipEvents>({
     tagName: 'ix-tooltip',
     elementClass: IxTooltipElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxTooltipEvents,
     defineCustomElement: defineIxTooltip
@@ -1368,7 +1398,7 @@ export type IxTypographyEvents = NonNullable<unknown>;
 export const IxTypography: StencilReactComponent<IxTypographyElement, IxTypographyEvents> = /*@__PURE__*/ createComponent<IxTypographyElement, IxTypographyEvents>({
     tagName: 'ix-typography',
     elementClass: IxTypographyElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxTypographyEvents,
     defineCustomElement: defineIxTypography
@@ -1379,7 +1409,7 @@ export type IxUploadEvents = { onFilesChanged: EventName<IxUploadCustomEvent<Arr
 export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = /*@__PURE__*/ createComponent<IxUploadElement, IxUploadEvents>({
     tagName: 'ix-upload',
     elementClass: IxUploadElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onFilesChanged: 'filesChanged' } as IxUploadEvents,
     defineCustomElement: defineIxUpload
@@ -1390,7 +1420,7 @@ export type IxValidationTooltipEvents = NonNullable<unknown>;
 export const IxValidationTooltip: StencilReactComponent<IxValidationTooltipElement, IxValidationTooltipEvents> = /*@__PURE__*/ createComponent<IxValidationTooltipElement, IxValidationTooltipEvents>({
     tagName: 'ix-validation-tooltip',
     elementClass: IxValidationTooltipElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxValidationTooltipEvents,
     defineCustomElement: defineIxValidationTooltip
@@ -1401,7 +1431,7 @@ export type IxWorkflowStepEvents = NonNullable<unknown>;
 export const IxWorkflowStep: StencilReactComponent<IxWorkflowStepElement, IxWorkflowStepEvents> = /*@__PURE__*/ createComponent<IxWorkflowStepElement, IxWorkflowStepEvents>({
     tagName: 'ix-workflow-step',
     elementClass: IxWorkflowStepElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IxWorkflowStepEvents,
     defineCustomElement: defineIxWorkflowStep
@@ -1412,7 +1442,7 @@ export type IxWorkflowStepsEvents = { onStepSelected: EventName<CustomEvent<numb
 export const IxWorkflowSteps: StencilReactComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents> = /*@__PURE__*/ createComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents>({
     tagName: 'ix-workflow-steps',
     elementClass: IxWorkflowStepsElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: { onStepSelected: 'stepSelected' } as IxWorkflowStepsEvents,
     defineCustomElement: defineIxWorkflowSteps
