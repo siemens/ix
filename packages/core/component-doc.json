@@ -24836,11 +24836,16 @@
         },
         {
           "name": "renderItem",
-          "type": "(<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement) | undefined",
+          "type": "(<T = any>(index: number, data: TreeItem<T>, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement) | undefined",
           "complexType": {
-            "original": "<T = any>(\n    index: number,\n    data: T,\n    dataList: Array<T>,\n    context: TreeContext,\n    update: (callback: UpdateCallback) => void\n  ) => HTMLElement",
-            "resolved": "(<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement) | undefined",
+            "original": "<T = any>(\n    index: number,\n    data: TreeItem<T>,\n    dataList: Array<T>,\n    context: TreeContext,\n    update: (callback: UpdateCallback) => void\n  ) => HTMLElement",
+            "resolved": "(<T = any>(index: number, data: TreeItem<T>, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement) | undefined",
             "references": {
+              "TreeItem": {
+                "location": "import",
+                "path": "tree-model",
+                "id": "src/components/tree/tree-model.ts::TreeItem"
+              },
               "T": {
                 "location": "global",
                 "id": "global::T"
@@ -24872,7 +24877,7 @@
           "docsTags": [],
           "values": [
             {
-              "type": "(<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement)"
+              "type": "(<T = any>(index: number, data: TreeItem<T>, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement)"
             },
             {
               "type": "undefined"
@@ -24895,14 +24900,20 @@
           "attr": "root",
           "reflectToAttr": false,
           "docs": "Initial root element will not be rendered",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'root'"
+            }
+          ],
+          "default": "'root'",
           "values": [
             {
               "type": "string"
             }
           ],
           "optional": false,
-          "required": true,
+          "required": false,
           "getter": false,
           "setter": false
         },
@@ -24938,7 +24949,76 @@
           "setter": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "markItemAsDirty",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "(ids: string[]) => Promise<void>",
+            "parameters": [
+              {
+                "name": "ids",
+                "type": "string[]",
+                "docs": ""
+              }
+            ],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "markItemAsDirty(ids: string[]) => Promise<void>",
+          "parameters": [
+            {
+              "name": "ids",
+              "type": "string[]",
+              "docs": ""
+            }
+          ],
+          "docs": "Mark items as dirty.\nThis will force the list to re-render the items with the given ids.",
+          "docsTags": []
+        },
+        {
+          "name": "refreshTree",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "(options?: RefreshTreeOptions) => Promise<void>",
+            "parameters": [
+              {
+                "name": "options",
+                "type": "{ force?: boolean | undefined; }",
+                "docs": ""
+              }
+            ],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "refreshTree(options?: RefreshTreeOptions) => Promise<void>",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "{ force?: boolean | undefined; }",
+              "docs": ""
+            }
+          ],
+          "docs": "Refresh the list.\nThis will re-render the list with the current model and context.",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "contextChange",
@@ -26646,6 +26726,11 @@
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",
+      "docstring": "",
+      "path": "src/components/tree/tree-model.ts"
+    },
+    "src/components/tree/tree-model.ts::TreeItem": {
+      "declaration": "export interface TreeItem<T> {\n  id: TreeItemId;\n  data: T;\n  hasChildren: boolean;\n  children: TreeItemId[];\n}",
       "docstring": "",
       "path": "src/components/tree/tree-model.ts"
     },
