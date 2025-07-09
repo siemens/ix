@@ -33,14 +33,12 @@
 
   .label {
     word-break: break-word;
-    display: -webkit-box;
+    display: block;
     white-space: normal;
-    max-height: 100%;
-    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
     margin-block-start: 0.125rem;
     margin-inline-start: 0.5rem;
+    min-height: 1rem;
   }
 
   .switch {

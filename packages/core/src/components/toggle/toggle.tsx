@@ -103,7 +103,11 @@ export class Toggle implements IxFormComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
-  @State() webkitLineClamp!: number | undefined;
+  /**
+   * Maximum height for the toggle label text.
+   * Calculated dynamically based on parent height and typography line height.
+   */
+  @State() maxHeight: string | undefined;
 
   private touched = false;
   private resizeObserver: ResizeObserver | null = null;
@@ -111,7 +115,7 @@ export class Toggle implements IxFormComponent<string> {
   private readonly DEBOUNCE_TIME = 100;
 
   debouncedOnResize = debounce(
-    this.calculateLineClamp.bind(this),
+    this.calculateMaxHeight.bind(this),
     this.DEBOUNCE_TIME
   );
 
@@ -153,11 +157,11 @@ export class Toggle implements IxFormComponent<string> {
       console.warn('Typography element not found');
       return;
     }
-    this.calculateLineClamp();
+    this.calculateMaxHeight();
     this.setupResizeObserver();
   }
 
-  private calculateLineClamp() {
+  private calculateMaxHeight() {
     if (!this.typography) {
       return;
     }
@@ -172,9 +176,8 @@ export class Toggle implements IxFormComponent<string> {
       parseFloat(hostStyle.marginTop) + parseFloat(hostStyle.marginBottom);
     const lineHeight = parseFloat(typographyStyle.lineHeight);
     if (parentHeight && lineHeight) {
-      this.webkitLineClamp = Math.floor(
-        (parentHeight - hostMargin) / lineHeight
-      );
+      const noOfLines = Math.floor((parentHeight - hostMargin) / lineHeight);
+      this.maxHeight = `${noOfLines * lineHeight}px`;
     }
   }
 
@@ -186,7 +189,7 @@ export class Toggle implements IxFormComponent<string> {
     }
 
     this.resizeObserver = new ResizeObserver(() => this.debouncedOnResize());
-    this.resizeObserver.observe(this.typography);
+    this.resizeObserver.observe(this.hostElement);
   }
 
   private cleanupResizeObserver() {
@@ -284,7 +287,7 @@ export class Toggle implements IxFormComponent<string> {
           {!this.hideText && (
             <ix-typography
               class="label"
-              style={{ '-webkit-line-clamp': `${this.webkitLineClamp}` }}
+              style={{ 'max-height': `${this.maxHeight}` }}
             >
               {toggleText}
             </ix-typography>
