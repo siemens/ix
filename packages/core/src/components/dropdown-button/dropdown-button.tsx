@@ -7,9 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { AlignedPlacement } from '../dropdown/placement';
-import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
+import {
+  iconChevronDownSmall,
+  iconChevronUpSmall,
+} from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
 
@@ -61,6 +64,8 @@ export class DropdownButton {
    */
   @Prop() placement?: AlignedPlacement;
 
+  @State() dropdownShow = false;
+
   private readonly dropdownAnchor = makeRef<HTMLElement>();
 
   private getTriangle() {
@@ -78,6 +83,10 @@ export class DropdownButton {
       ></div>
     );
   }
+
+  private onDropdownShowChanged = (event: CustomEvent<boolean>) => {
+    this.dropdownShow = event.detail;
+  };
 
   render() {
     return (
@@ -105,7 +114,14 @@ export class DropdownButton {
                   ></ix-icon>
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
-                <ix-icon name={iconChevronDownSmall} size="24"></ix-icon>
+                <ix-icon
+                  name={
+                    this.dropdownShow
+                      ? iconChevronUpSmall
+                      : iconChevronDownSmall
+                  }
+                  size="24"
+                ></ix-icon>
               </div>
             </ix-button>
           ) : (
@@ -127,6 +143,7 @@ export class DropdownButton {
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
+          onShowChanged={this.onDropdownShowChanged}
         >
           <slot></slot>
         </ix-dropdown>
