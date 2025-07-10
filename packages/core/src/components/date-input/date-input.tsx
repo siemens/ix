@@ -37,11 +37,7 @@ import {
   createClassMutationObserver,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-
-export type DateInputValidityState = {
-  patternMismatch: boolean;
-  invalidReason?: string;
-};
+import type { DateInputValidityState } from './date-input.types';
 
 /**
  * @form-ready
