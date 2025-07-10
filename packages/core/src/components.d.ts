@@ -808,6 +808,19 @@ export namespace Components {
      */
     interface IxDateInput {
         /**
+          * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.3.0
+         */
+        "ariaLabelCalendarButton"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelNextMonthButton"?: string;
+        /**
+          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelPreviousMonthButton"?: string;
+        /**
           * Disabled attribute
           * @default false
          */
@@ -858,6 +871,16 @@ export namespace Components {
          */
         "locale"?: string;
         /**
+          * The latest date that can be selected by the date input/picker. If not set there will be no restriction.
+          * @default ''
+         */
+        "maxDate": string;
+        /**
+          * The earliest date that can be selected by the date input/picker. If not set there will be no restriction.
+          * @default ''
+         */
+        "minDate": string;
+        /**
           * Name of the input element
          */
         "name"?: string;
@@ -897,6 +920,11 @@ export namespace Components {
           * Warning text below the input field
          */
         "warningText"?: string;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @default 0
+         */
+        "weekStartIndex": number;
     }
     interface IxDatePicker {
         /**
@@ -6398,6 +6426,19 @@ declare namespace LocalJSX {
      */
     interface IxDateInput {
         /**
+          * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
+          * @since 3.3.0
+         */
+        "ariaLabelCalendarButton"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelNextMonthButton"?: string;
+        /**
+          * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+         */
+        "ariaLabelPreviousMonthButton"?: string;
+        /**
           * Disabled attribute
           * @default false
          */
@@ -6432,6 +6473,16 @@ declare namespace LocalJSX {
           * Locale identifier (e.g. 'en' or 'de').
          */
         "locale"?: string;
+        /**
+          * The latest date that can be selected by the date input/picker. If not set there will be no restriction.
+          * @default ''
+         */
+        "maxDate"?: string;
+        /**
+          * The earliest date that can be selected by the date input/picker. If not set there will be no restriction.
+          * @default ''
+         */
+        "minDate"?: string;
         /**
           * Name of the input element
          */
@@ -6482,6 +6533,11 @@ declare namespace LocalJSX {
           * Warning text below the input field
          */
         "warningText"?: string;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @default 0
+         */
+        "weekStartIndex"?: number;
     }
     interface IxDatePicker {
         /**
