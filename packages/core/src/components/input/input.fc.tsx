@@ -61,7 +61,7 @@ export function TextareaElement(
       }}
       {...props.ariaAttributes}
       onChange={() => props.onChange()}
-      onKeyDown={e => e.key === 'Enter' && !e.shiftKey && props.onChange()}
+      onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && props.onChange()}
     ></textarea>
   );
 }
@@ -120,7 +120,7 @@ export function InputElement(
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
       onChange={() => props.onChange()}
-      onKeyDown={e => e.key === 'Enter' && props.onChange()}
+      onKeyDown={(e) => e.key === 'Enter' && props.onChange()}
     ></input>
   );
 }
