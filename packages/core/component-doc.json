@@ -26559,11 +26559,6 @@
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
-    "src/components/date-input/date-input.types.ts::DateInputValidityState": {
-      "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
-      "docstring": "",
-      "path": "src/components/date-input/date-input.types.ts"
-    },
     "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent": {
       "declaration": "export interface CustomCloseEvent {\n  nativeEvent: MouseEvent;\n  name: string;\n}",
       "docstring": "",
@@ -26643,6 +26638,11 @@
       "declaration": "{\n  id: string;\n  from?: string;\n  to?: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.types.ts"
+    },
+    "src/components/date-input/date-input.types.ts::DateInputValidityState": {
+      "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
+      "docstring": "",
+      "path": "src/components/date-input/date-input.types.ts"
     },
     "src/components/date-time-card/date-time-card.types.ts::DateTimeCardCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
