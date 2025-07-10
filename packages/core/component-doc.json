@@ -6018,9 +6018,9 @@
             "resolved": "{ patternMismatch: boolean; invalidReason?: string | undefined; }",
             "references": {
               "DateInputValidityState": {
-                "location": "local",
-                "path": "src/components/date-input/date-input.tsx",
-                "id": "src/components/date-input/date-input.tsx::DateInputValidityState"
+                "location": "import",
+                "path": "date-input.types",
+                "id": "src/components/date-input/date-input.types.ts::DateInputValidityState"
               }
             }
           },
@@ -26559,10 +26559,10 @@
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
-    "src/components/date-input/date-input.tsx::DateInputValidityState": {
+    "src/components/date-input/date-input.types.ts::DateInputValidityState": {
       "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
       "docstring": "",
-      "path": "src/components/date-input/date-input.tsx"
+      "path": "src/components/date-input/date-input.types.ts"
     },
     "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent": {
       "declaration": "export interface CustomCloseEvent {\n  nativeEvent: MouseEvent;\n  name: string;\n}",
