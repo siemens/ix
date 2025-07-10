@@ -45,15 +45,20 @@ test.describe('validation', () => {
     }) => {
       await mount('<ix-input></ix-input>');
 
-      await page.evaluate(() => {
-        (window as any).ixChangeDetail = undefined;
-        const ixInput = document.querySelector('ix-input');
-        if (ixInput) {
-          ixInput.addEventListener('ixChange', (e) => {
-            (window as any).ixChangeDetail = (e as CustomEvent).detail;
-          });
-        }
-      });
+      const setupEventListener = `
+    window.ixChangeDetail = undefined;
+    const ixInput = document.querySelector('ix-input');
+
+    function handleIxChange(e) {
+      window.ixChangeDetail = e.detail;
+    }
+
+    if (ixInput) {
+      ixInput.addEventListener('ixChange', handleIxChange);
+    }
+  `;
+
+      await page.evaluate(setupEventListener);
 
       const input = page.locator('ix-input');
       const shadowDomInput = input.locator('input');
@@ -61,13 +66,17 @@ test.describe('validation', () => {
       await shadowDomInput.fill('test value');
       await shadowDomInput.press('Enter');
 
-      await page.waitForFunction(
-        () => (window as any).ixChangeDetail !== undefined
-      );
+      const waitForChangeDetail = `
+    () => window.ixChangeDetail !== undefined
+  `;
 
-      const eventDetail = await page.evaluate(
-        () => (window as any).ixChangeDetail
-      );
+      await page.waitForFunction(waitForChangeDetail);
+
+      const getEventDetail = `
+    window.ixChangeDetail
+  `;
+
+      const eventDetail = await page.evaluate(getEventDetail);
       expect(eventDetail).toBe('test value');
     });
 
