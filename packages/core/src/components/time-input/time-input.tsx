@@ -38,11 +38,7 @@ import {
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
-
-export type TimeInputValidityState = {
-  patternMismatch: boolean;
-  invalidReason?: string;
-};
+import type { TimeInputValidityState } from './time-input.types';
 
 /**
  * @since 3.2.0
@@ -74,11 +70,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
    * Value of the input element
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
-
-  /**
-   * Locale identifier (e.g. 'en' or 'de').
-   */
-  @Prop() locale?: string;
 
   /**
    * Format of time string

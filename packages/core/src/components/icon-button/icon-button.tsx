@@ -9,11 +9,9 @@
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
-import { ButtonVariant } from '../button/button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
 import { getFallbackLabelFromIconName } from '../utils/a11y';
-
-export type IconButtonVariant = ButtonVariant;
+import type { IconButtonVariant } from './icon-button.types';
 
 @Component({
   tag: 'ix-icon-button',
