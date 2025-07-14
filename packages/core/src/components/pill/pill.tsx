@@ -67,6 +67,8 @@ export class Pill implements IxComponent {
   @State() iconOnly = false;
 
   private readonly containerElementRef = makeRef<HTMLElement>();
+  private readonly ICON_MIN_WIDTH = 30;
+  private readonly TEXT_MIN_WIDTH = 40;
 
   componentWillLoad() {
     this.checkIfContentAvailable();
@@ -94,6 +96,17 @@ export class Pill implements IxComponent {
         {text}
       </ix-tooltip>
     );
+  }
+  componentDidLoad() {
+    if (this.containerElementRef.current) {
+      let minWidth = 0;
+      const text = this.hostElement.textContent?.trim();
+      if (this.icon) minWidth += this.ICON_MIN_WIDTH;
+      if (text) minWidth += this.TEXT_MIN_WIDTH;
+      if (minWidth) {
+        this.containerElementRef.current.style.minWidth = `${minWidth}px`;
+      }
+    }
   }
 
   render() {
