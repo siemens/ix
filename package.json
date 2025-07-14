@@ -29,6 +29,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "visual-regression": "dotenv -- turbo run visual-regression",
     "test": "dotenv -- turbo run test --concurrency=1",
+    "test.setup": "dotenv -- turbo run test.setup --concurrency=1",
     "prepare": "pnpm disable-telemetry",
     "disable-telemetry": "turbo telemetry disable",
     "compare-examples": "node ./scripts/compare-preview-examples-across-test-apps.js",

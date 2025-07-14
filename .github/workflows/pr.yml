@@ -186,7 +186,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm run test.setup
 
       - name: Build
         run: pnpm run build --cache-dir=.turbo --filter !\documentation

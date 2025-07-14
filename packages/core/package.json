@@ -70,6 +70,7 @@
     "prettier": "npx prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
     "start": "stencil build --dev --watch --serve",
+    "test.setup": "playwright install chromium --with-deps",
     "test": "npm run test.spec && npm run test.ct",
     "test.spec": "stencil test --spec",
     "test.ct": "playwright test --config playwright-ct.config.ts --reporter list",
