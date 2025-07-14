@@ -10,17 +10,8 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('3rd-party:bootstrap', () => {
-  regressionTest('html elements', async ({ page }, testInfo) => {
+  regressionTest('html elements', async ({ page }) => {
     await page.goto('3rd-party/bootstrap/html-elements');
-    const dataIxColorSchema =
-      testInfo.project.metadata?.['data-ix-color-schema'];
-
-    if (dataIxColorSchema === 'light') {
-      await page.evaluate(() => {
-        document.body.setAttribute('data-ix-color-schema', 'light');
-      });
-    }
-
     await expect(page.locator('ix-button')).toBeVisible();
     await expect(page).toHaveScreenshot({
       fullPage: true,
