@@ -20,10 +20,8 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 import { OnListener } from '../utils/listener';
-
-export type TimePickerCorners = DateTimeCardCorners;
+import type { TimePickerCorners } from './time-picker.types';
 
 type TimePickerDescriptorUnit = 'hour' | 'minute' | 'second' | 'millisecond';
 
