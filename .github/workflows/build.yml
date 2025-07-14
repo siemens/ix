@@ -131,15 +131,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Build
-        run: pnpm run build --cache-dir=.turbo --filter !\documentation
-
-      - name: Test
-        run: pnpm run test --cache-dir=.turbo --filter !\documentation
+      - uses: ./.github/workflows/actions/unit
 
   unit-memlab:
     needs: [build]

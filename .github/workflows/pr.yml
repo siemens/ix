@@ -184,15 +184,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm run test.setup
-
-      - name: Build
-        run: pnpm run build --cache-dir=.turbo --filter !\documentation
-
-      - name: Test
-        run: pnpm run test --cache-dir=.turbo --filter !\documentation
+      - uses: ./.github/workflows/actions/unit
 
   unit-memlab:
     if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}

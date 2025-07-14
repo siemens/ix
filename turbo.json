@@ -36,7 +36,6 @@
       "cache": false
     },
     "test": {
-      "dependsOn": ["^build"],
       "cache": false
     },
     "test.memlab": {
