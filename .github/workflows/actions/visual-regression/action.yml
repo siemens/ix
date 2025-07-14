@@ -1,0 +1,51 @@
+name: 'Unit tests'
+description: 'Unit tests'
+inputs:
+  projectName:
+    description: 'Name of the project to run tests for'
+    required: true
+  projectPath:
+    description: 'Path to the project blob reports'
+    required: false
+    default: ''
+  shardIndex:
+    description: 'Shard index for parallel test execution'
+    required: false
+    default: ''
+  shardTotal:
+    description: 'Total number of shards for parallel test execution'
+    required: false
+    default: ''
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Playwright Browsers
+      shell: bash
+      run: pnpm run test.setup
+
+    - name: Build
+      shell: bash
+      run: pnpm run build --cache-dir=.turbo --filter !\documentation
+
+    - name: Test
+      shell: bash
+      run: |
+        if [ -n "${{ inputs.shardIndex }}" ] && [ -n "${{ inputs.shardTotal }}" ]; then
+          pnpm run test --cache-dir=.turbo --filter ${{ inputs.projectName }} -- --shard=${{ inputs.shardIndex }}/${{ inputs.shardTotal }}
+        else
+          pnpm run test --cache-dir=.turbo --filter ${{ inputs.projectName }}
+        fi
+
+    - uses: actions/upload-artifact@v4
+      if: always() && inputs.shardIndex != '' && inputs.projectPath != ''
+      with:
+        name: ${{ inputs.projectName }}-blob-report-${{ inputs.shardIndex }}
+        path: ${{ inputs.projectPath }}
+        retention-days: 1
+
+    - uses: actions/upload-artifact@v4
+      if: failure() && inputs.shardIndex == '' && inputs.projectPath != ''
+      with:
+        name: ${{ inputs.projectName }}-html-report--attempt-${{ github.run_attempt }}
+        path: ${{ inputs.projectPath }}
+        retention-days: 1

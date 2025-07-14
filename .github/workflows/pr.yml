@@ -90,20 +90,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - uses: ./.github/workflows/actions/visual-regression
         with:
-          name: core-blob-report-${{ matrix.shardIndex }}
-          path: |
-            ./packages/core/blob-report/
-          retention-days: 1
+          projectName: '@siemens/ix'
+          projectPath: './packages/core/blob-report/'
+          shardIndex: '${{ matrix.shardIndex }}'
+          shardTotal: '${{ matrix.shardTotal }}'
 
   merge-core-reports:
     if: failure()
@@ -112,23 +104,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Download blob reports from GitHub Actions Artifacts
-        uses: actions/download-artifact@v4
+      - uses: ./.github/workflows/actions/merge-reports
         with:
-          path: all-blob-reports
-          pattern: core-blob-report-*
-          merge-multiple: true
-
-      - name: Merge into HTML Report
-        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
-
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: core-html-report--attempt-${{ github.run_attempt }}
-          path: playwright-report
-          retention-days: 14
+          projectName: 'core'
+          blobPattern: 'core-blob-report-*'
 
   visual-testing-aggrid:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
@@ -138,20 +117,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
-
-      - uses: actions/upload-artifact@v4
-        if: failure()
+      - uses: ./.github/workflows/actions/visual-regression
         with:
-          name: aggrid-html-report--attempt-${{ github.run_attempt }}
-          path: |
-            ./packages/aggrid/playwright-report/
-          retention-days: 1
+          projectName: '@siemens/ix-aggrid'
+          projectPath: './packages/aggrid/playwright-report/'
 
   visual-testing-echarts:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
@@ -161,20 +130,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
-
-      - uses: actions/upload-artifact@v4
-        if: failure()
+      - uses: ./.github/workflows/actions/visual-regression
         with:
-          name: echarts-html-report--attempt-${{ github.run_attempt }}
-          path: |
-            ./packages/echarts/playwright-report/
-          retention-days: 1
+          projectName: '@siemens/ix-echarts'
+          projectPath: './packages/echarts/playwright-report/'
 
   unit:
     if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
