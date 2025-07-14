@@ -12,18 +12,16 @@ import { iconStar } from '@siemens/ix-icons/icons';
 
 const Index = () => {
   return (
-    <>
-      <IxButton
-        onClick={async () => {
-          await showToast({
-            icon: iconStar,
-            message: 'Foobar',
-          });
-        }}
-      >
-        Hallo
-      </IxButton>
-    </>
+    <IxButton
+      onClick={async () => {
+        await showToast({
+          icon: iconStar,
+          message: 'Foobar',
+        });
+      }}
+    >
+      Hallo
+    </IxButton>
   );
 };
 
