@@ -9,6 +9,9 @@
 import { h, FunctionalComponent } from '@stencil/core';
 import { MakeRef } from '../utils/make-ref';
 import { A11yAttributes } from '../utils/a11y';
+import { inputValue } from './input.util';
+
+
 
 export function TextareaElement(
   props: Readonly<{
@@ -45,7 +48,7 @@ export function TextareaElement(
         'is-invalid': props.isInvalid,
       }}
       required={props.required}
-      value={props.value}
+      value={inputValue(props.value)}
       placeholder={props.placeholder}
       onInput={(inputEvent) => {
         const target = inputEvent.target as HTMLInputElement;
@@ -105,7 +108,7 @@ export function InputElement(
         'is-invalid': props.isInvalid,
       }}
       required={props.required}
-      value={props.value}
+      value={inputValue(props.value)}
       placeholder={props.placeholder}
       onKeyPress={(event) => props.onKeyPress(event)}
       onInput={(inputEvent) => {
