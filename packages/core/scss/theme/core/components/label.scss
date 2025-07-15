@@ -1,0 +1,8 @@
+@mixin setVars {
+  --theme-label--color: var(--theme-color-soft-text);
+  --theme-label--color--hover: var(--theme-color-std-text);
+  --theme-label--color--active: var(--theme-color-std-text);
+  --theme-label--color--focus: var(--theme-color-dynamic);
+  --theme-label--color--disabled: var(--theme-color-weak-text);
+  --theme-label--color--invalid: var(--theme-color-alarm-text);
+}

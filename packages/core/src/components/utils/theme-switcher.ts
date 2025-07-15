@@ -1,7 +1,19 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { type LiteralStringUnion } from './type-helper';
 import { TypedEvent } from './typed-event';
 
 export type ThemeVariant = 'light' | 'dark';
+
+const dataIxTheme = 'data-ix-theme';
+const dataIxColorSchema = 'data-ix-color-schema';
 
 class ThemeSwitcher {
   readonly prefixTheme = 'theme-';
@@ -10,10 +22,16 @@ class ThemeSwitcher {
   readonly defaultTheme = 'theme-classic-dark';
 
   mutationObserver?: MutationObserver;
+  mutationObserverData?: MutationObserver;
   _themeChanged = new TypedEvent<string>();
+  _schemaChanged = new TypedEvent<string>();
 
   public get themeChanged() {
     return this._themeChanged;
+  }
+
+  public get schemaChanged() {
+    return this._schemaChanged;
   }
 
   public hasVariantSuffix(className: string) {
@@ -30,20 +48,16 @@ class ThemeSwitcher {
   }
 
   public setTheme(themeName: string, systemAppearance = false) {
-    if (!this.isThemeClass(themeName) && systemAppearance === false) {
-      throw Error(
-        `Provided theme name ${themeName} does not match our naming conventions. (theme-<name>-(dark,light))`
-      );
+    if (this.isThemeClass(themeName)) {
+      this.replaceBodyThemeClass(themeName);
+    } else {
+      document.body.setAttribute(dataIxTheme, themeName);
     }
 
     if (systemAppearance) {
       const currentSystemAppearance = getCurrentSystemAppearance();
-      this.replaceBodyThemeClass(themeName);
       this.setVariant(currentSystemAppearance);
-      return;
     }
-
-    this.replaceBodyThemeClass(themeName);
   }
 
   private replaceBodyThemeClass(themeName: string) {
@@ -59,6 +73,16 @@ class ThemeSwitcher {
   }
 
   public toggleMode() {
+    const colorSchema = this.getDataColorSchema();
+    if (colorSchema) {
+      if (colorSchema === 'dark') {
+        document.body.setAttribute(dataIxColorSchema, 'light');
+      } else {
+        document.body.setAttribute(dataIxColorSchema, 'dark');
+      }
+      return;
+    }
+
     const oldThemes: string[] = [];
 
     document.body.classList.forEach((className) => {
@@ -80,18 +104,28 @@ class ThemeSwitcher {
     });
   }
 
+  private getDataColorSchema() {
+    return document.body.getAttribute(dataIxColorSchema);
+  }
+
   public getCurrentTheme() {
     return (
       Array.from(document.body.classList).find((className) =>
         this.isThemeClass(className)
       ) ??
-      `theme-${window
-        .getComputedStyle(document.body)
-        .getPropertyValue('--ix-theme-name')}`
+      `theme-${document.body.getAttribute(dataIxTheme) || 'classic'}-${
+        document.body.getAttribute(dataIxColorSchema) ||
+        getCurrentSystemAppearance()
+      }`
     );
   }
 
   public setVariant(variant: ThemeVariant = getCurrentSystemAppearance()) {
+    if (this.getDataColorSchema()) {
+      document.body.setAttribute(dataIxColorSchema, variant);
+      return;
+    }
+
     const currentTheme = this.getCurrentTheme();
     document.body.classList.remove(currentTheme);
 
@@ -134,7 +168,7 @@ class ThemeSwitcher {
     });
   }
 
-  private registerMutationObserver() {
+  private registerMutationObservers() {
     if (typeof (window as any) === 'undefined') {
       return;
     }
@@ -154,10 +188,32 @@ class ThemeSwitcher {
       attributeFilter: ['class'],
       attributeOldValue: true,
     });
+
+    this.mutationObserverData = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        const { target } = mutation;
+        const theme = (target as Element).attributes.getNamedItem(dataIxTheme);
+        if (theme?.value && mutation.oldValue !== theme.value) {
+          this._themeChanged.emit(theme.value);
+        }
+
+        const colorSchema = (target as Element).attributes.getNamedItem(
+          dataIxColorSchema
+        );
+        if (colorSchema?.value && mutation.oldValue !== colorSchema.value) {
+          this._schemaChanged.emit(colorSchema.value);
+        }
+      });
+    });
+
+    this.mutationObserverData.observe(document.body, {
+      attributes: true,
+      attributeFilter: [dataIxTheme, dataIxColorSchema],
+    });
   }
 
   public constructor() {
-    this.registerMutationObserver();
+    this.registerMutationObservers();
   }
 }
 

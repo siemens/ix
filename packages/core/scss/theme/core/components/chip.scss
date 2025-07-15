@@ -1,0 +1,6 @@
+@mixin setVars {
+  --theme-chip--background: var(--theme-color-component-1);
+  --theme-chip--background--hover: var(--theme-color-component-1--hover);
+  --theme-chip--background--active: var(--theme-color-component-1--active);
+  --theme-chip--color: var(--theme-color-std-text);
+}

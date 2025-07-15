@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-checkbox-label--color: var(--theme-color-std-text);
+  --theme-checkbox-label--color--disabled: var(--theme-color-weak-text);
+}

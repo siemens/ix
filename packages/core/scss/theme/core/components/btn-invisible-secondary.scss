@@ -1,0 +1,23 @@
+@mixin setVars {
+  --theme-btn-invisible-secondary--background: var(--theme-color-ghost);
+  --theme-btn-invisible-secondary--background--hover: var(--theme-color-ghost--hover);
+  --theme-btn-invisible-secondary--background--active: var(--theme-color-ghost--active);
+  --theme-btn-invisible-secondary--background--disabled: var(--theme-color-ghost);
+  --theme-btn-invisible-secondary--color: var(--theme-color-std-text);
+  --theme-btn-invisible-secondary--color--hover: var(--theme-color-std-text);
+  --theme-btn-invisible-secondary--color--active: var(--theme-color-std-text);
+  --theme-btn-invisible-secondary--color--disabled: var(--theme-color-weak-text);
+  --theme-btn-invisible-secondary--color--selected: var(--theme-color-dynamic);
+  --theme-btn-invisible-secondary--color--selected-hover: var(--theme-color-dynamic);
+  --theme-btn-invisible-secondary--color--selected-active: var(--theme-color-dynamic);
+  --theme-btn-invisible-secondary--background--selected: var(--theme-color-component-7);
+  --theme-btn-invisible-secondary--background--selected-hover: var(--theme-color-component-7--hover);
+  --theme-btn-invisible-secondary--background--selected-active: var(--theme-color-component-7--active);
+  --theme-btn-invisible-secondary--border-color: var(--theme-color-0);
+  --theme-btn-invisible-secondary--border-color--hover: var(--theme-color-0);
+  --theme-btn-invisible-secondary--border-color--active: var(--theme-color-0);
+  --theme-btn-invisible-secondary--border-color--disabled: var(--theme-color-0);
+  --theme-btn-invisible-secondary--border-color--selected: var(--theme-color-0);
+  --theme-btn-invisible-secondary--border-color--selected-hover: var(--theme-color-0);
+  --theme-btn-invisible-secondary--border-color--selected-active: var(--theme-color-0);
+}

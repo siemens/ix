@@ -1,0 +1,7 @@
+@mixin setVars {
+  --theme-slider-trace-marker--background: var(--theme-color-dynamic);
+  --theme-slider-trace-marker--background--disabled: var(--theme-color-7);
+  --theme-slider-trace-marker--background--invalid: var(--theme-color-alarm);
+  --theme-slider-trace-marker--background--warning: var(--theme-color-warning);
+  --theme-slider-trace-marker--background--info: var(--theme-color-info);
+}

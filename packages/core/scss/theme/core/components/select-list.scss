@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-select-list--background: var(--theme-color-2);
+  --theme-select-list--border-color: var(--theme-color-0);
+}

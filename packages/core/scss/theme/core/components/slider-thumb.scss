@@ -1,0 +1,15 @@
+@mixin setVars {
+  --theme-slider-thumb--background: var(--theme-color-dynamic);
+  --theme-slider-thumb--background--hover: var(--theme-color-dynamic--hover);
+  --theme-slider-thumb--background--active: var(--theme-color-dynamic--active);
+  --theme-slider-thumb--background--disabled: var(--theme-color-7);
+  --theme-slider-thumb--background--invalid: var(--theme-color-alarm);
+  --theme-slider-thumb--background--invalid--hover: var(--theme-color-alarm--hover);
+  --theme-slider-thumb--background--invalid--active: var(--theme-color-alarm--active);
+  --theme-slider-thumb--background--warning: var(--theme-color-warning);
+  --theme-slider-thumb--background--warning--hover: var(--theme-color-warning--hover);
+  --theme-slider-thumb--background--warning--active: var(--theme-color-warning--active);
+  --theme-slider-thumb--background--info: var(--theme-color-info);
+  --theme-slider-thumb--background--info--hover: var(--theme-color-info--hover);
+  --theme-slider-thumb--background--info--active: var(--theme-color-info--active);
+}
