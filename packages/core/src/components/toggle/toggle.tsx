@@ -176,7 +176,6 @@ export class Toggle implements IxFormComponent<string> {
     if (this.indeterminate) {
       toggleText = this.textIndeterminate;
     }
-
     return (
       <Host
         class={{
