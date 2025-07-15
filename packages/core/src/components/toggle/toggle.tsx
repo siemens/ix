@@ -17,12 +17,10 @@ import {
   Host,
   Method,
   Prop,
-  State,
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import { IxFormComponent, HookValidationLifecycle } from '../utils/input';
-import { debounce } from '../utils/debounce';
 
 /**
  * @form-ready
@@ -103,21 +101,7 @@ export class Toggle implements IxFormComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
-  /**
-   * Maximum height for the toggle label text.
-   * Calculated dynamically based on parent height and typography line height.
-   */
-  @State() maxHeight: string | undefined;
-
   private touched = false;
-  private resizeObserver: ResizeObserver | null = null;
-  private typography: HTMLElement | null = null;
-  private readonly DEBOUNCE_TIME = 100;
-
-  debouncedOnResize = debounce(
-    this.calculateMaxHeight.bind(this),
-    this.DEBOUNCE_TIME
-  );
 
   onCheckedChange(newChecked: boolean) {
     if (this.disabled) {
@@ -145,70 +129,12 @@ export class Toggle implements IxFormComponent<string> {
     this.updateFormInternalValue();
   }
 
-  componentDidLoad() {
-    this.initializeLineClampObserver();
-  }
-
-  private initializeLineClampObserver() {
-    this.typography =
-      this.hostElement.shadowRoot?.querySelector('ix-typography') || null;
-
-    if (!this.typography) {
-      console.warn('Typography element not found');
-      return;
-    }
-    this.calculateMaxHeight();
-    this.setupResizeObserver();
-  }
-
-  private calculateMaxHeight() {
-    if (!this.typography) {
-      return;
-    }
-    const parentHeight = this.hostElement.parentElement?.clientHeight;
-    if (!parentHeight) {
-      return;
-    }
-    const typographyStyle = window.getComputedStyle(this.typography);
-    const hostStyle = window.getComputedStyle(this.hostElement);
-
-    const hostMargin =
-      parseFloat(hostStyle.marginTop) + parseFloat(hostStyle.marginBottom);
-    const lineHeight = parseFloat(typographyStyle.lineHeight);
-    if (parentHeight && lineHeight) {
-      const noOfLines = Math.floor((parentHeight - hostMargin) / lineHeight);
-      this.maxHeight = `${noOfLines * lineHeight}px`;
-    }
-  }
-
-  private setupResizeObserver() {
-    this.cleanupResizeObserver();
-    if (!this.typography) {
-      console.warn('Typography element not found');
-      return;
-    }
-
-    this.resizeObserver = new ResizeObserver(() => this.debouncedOnResize());
-    this.resizeObserver.observe(this.hostElement);
-  }
-
-  private cleanupResizeObserver() {
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-      this.resizeObserver = null;
-    }
-  }
-
   updateFormInternalValue(): void {
     if (this.checked) {
       this.formInternals.setFormValue(this.value);
     } else {
       this.formInternals.setFormValue(null);
     }
-  }
-
-  disconnectedCallback() {
-    this.cleanupResizeObserver();
   }
 
   @Watch('checked')
@@ -285,12 +211,7 @@ export class Toggle implements IxFormComponent<string> {
             }
           />
           {!this.hideText && (
-            <ix-typography
-              class="label"
-              style={{ 'max-height': `${this.maxHeight}` }}
-            >
-              {toggleText}
-            </ix-typography>
+            <ix-typography class="label">{toggleText}</ix-typography>
           )}
         </label>
       </Host>
