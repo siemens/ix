@@ -92,7 +92,7 @@
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "^0.10.2",
-    "@stencil/core": "^4.35.3",
+    "@stencil/core": "^4.36.0",
     "@stencil/react-output-target": "^1.1.0",
     "@stencil/sass": "^3.0.12",
     "@stencil/vue-output-target": "0.10.8",
