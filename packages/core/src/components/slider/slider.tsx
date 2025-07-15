@@ -21,8 +21,7 @@ import {
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
-
-export type SliderMarker = Array<number>;
+import type { SliderMarker } from './slider.types';
 
 function between(min: number, value: number, max: number) {
   if (value < min) {

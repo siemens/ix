@@ -10,7 +10,7 @@ body:
   - type: checkboxes
     attributes:
       label: Prerequisites
-      description:  Make sure to not violate these rules
+      description: Make sure to not violate these rules
       options:
         - label: I have read the [Contributing Guidelines](https://github.com/siemens/ix/blob/main/CONTRIBUTING.md).
           required: true
@@ -32,10 +32,21 @@ body:
       label: What type of frontend framework are you seeing the problem on?
       multiple: true
       options:
-        - Angular
+        - Angular (NgModule)
+        - Angular (Standalone)
         - React
         - JavaScript
         - Others
+    validations:
+      required: true
+
+  - type: input
+    id: framework-version
+    attributes:
+      label: On which version of the frontend framework are you experiencing the issue?
+      description: |
+        The exact version of the frontend framework you use.
+        e.g @angular/core@20.0.0, react@18.2.0, vue@3.2.0, etc.
     validations:
       required: true
 
@@ -44,7 +55,7 @@ body:
     attributes:
       label: Which version of iX do you use?
       description: The exact version of Siemens iX you use.
-      placeholder: v2.x.x
+      placeholder: v3.x.x
     validations:
       required: true
 

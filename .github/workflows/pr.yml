@@ -8,6 +8,8 @@ on:
       - opened
       - reopened
       - synchronize
+    paths-ignore:
+      - '**/*.md'
 
 concurrency:
   group: pr-${{ github.head_ref }}

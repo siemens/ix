@@ -9,12 +9,11 @@
 
 import { Component, h, Host, Prop, State } from '@stencil/core';
 import { templateBuilder } from './builder';
+import type { CssGridTemplateType } from './css-grid.types';
 
 const smQuery = 'only screen and (max-width: 576px)';
 const mdQuery = 'only screen and (max-width: 768px)';
 const lgQuery = 'only screen and (max-width: 992px)';
-
-export type CssGridTemplateType = 'sm' | 'md' | 'lg';
 
 const mediaQueryCollection: Array<{
   name: CssGridTemplateType;

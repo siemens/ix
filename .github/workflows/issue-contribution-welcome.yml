@@ -18,7 +18,7 @@ jobs:
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            The issue has been labeled as `Contribution welcome 👨‍💻`. This issue is open for contributions from the community.
+            This issue is labeled as `Contribution welcome 👨‍💻` and is open for community contributions. The IX team has reviewed it and accepted it, though it doesn't have a set priority yet.
+            If you'd like to work on this, please leave a comment here to indicate your intention to submit a pull request. This will help us coordinate and ensure there's no duplicated effort.
 
-            If you'd like to work on this issue, please comment here letting us know that you would like to submit a pull request for it. This helps us to keep track of the pull request and make sure there isn't duplicated effort.
-            Thank you!
+            Thanks for your contribution!
