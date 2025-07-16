@@ -1191,7 +1191,7 @@ importers:
         specifier: ^2.0.12
         version: 2.0.12
 
-  testing/visual-regressions:
+  testing/visual-testing:
     devDependencies:
       '@esbuild/linux-arm64':
         specifier: 0.25.1
@@ -1208,9 +1208,6 @@ importers:
       '@types/node':
         specifier: ^24.0.14
         version: 24.0.14
-      http-server:
-        specifier: ^14.1.1
-        version: 14.1.1
       vite:
         specifier: ^7.0.4
         version: 7.0.4(@types/node@24.0.14)(jiti@1.21.7)(less@4.2.0)(sass@1.89.2)(stylus@0.59.0)(terser@5.43.1)(tsx@4.19.4)(yaml@2.8.0)
@@ -30116,7 +30113,7 @@ snapshots:
 
   tinyglobby@0.2.13:
     dependencies:
-      fdir: 6.4.4(picomatch@4.0.2)
+      fdir: 6.4.6(picomatch@4.0.2)
       picomatch: 4.0.2
 
   tinyglobby@0.2.14:
