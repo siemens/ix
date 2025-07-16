@@ -31,7 +31,7 @@ import { IxModalSize } from './modal.types';
 })
 export class Modal {
   private ariaAttributes: A11yAttributes = {};
-
+  private isMouseDownInsideDialog = false;
   @Element() hostElement!: HTMLIxModalElement;
 
   /**
@@ -128,23 +128,34 @@ export class Modal {
     });
   }
 
-  private onModalClick(event: MouseEvent) {
-    if (event.target !== this.dialog) {
-      return;
-    }
+  private onMouseDown(event: MouseEvent) {
+    this.isMouseDownInsideDialog = this.isPointInsideDialog(
+      event.clientX,
+      event.clientY
+    );
+  }
 
-    const rect = this.dialog!.getBoundingClientRect();
-    const isClickOutside =
-      rect.top <= event.clientY &&
-      event.clientY <= rect.top + rect.height &&
-      rect.left <= event.clientX &&
-      event.clientX <= rect.left + rect.width;
+  private onMouseUp(event: MouseEvent) {
+    const isMouseUpInsideDialog = this.isPointInsideDialog(
+      event.clientX,
+      event.clientY
+    );
 
-    if (!isClickOutside && this.closeOnBackdropClick) {
+    if (
+      this.closeOnBackdropClick &&
+      !this.isMouseDownInsideDialog &&
+      !isMouseUpInsideDialog
+    ) {
       this.dismissModal();
     }
   }
 
+  private isPointInsideDialog(x: number, y: number): boolean {
+    const rect = this.dialog!.getBoundingClientRect();
+    return (
+      x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
+    );
+  }
   /**
    * Show the dialog
    */
@@ -250,7 +261,8 @@ export class Modal {
               [`modal-size-${this.size}`]: true,
             }}
             onClose={() => this.dismissModal()}
-            onClick={(event) => this.onModalClick(event)}
+            onMouseDown={(event) => this.onMouseDown(event)}
+            onMouseUp={(event) => this.onMouseUp(event)}
             onCancel={(e) => {
               e.preventDefault();
               this.dismissModal();
