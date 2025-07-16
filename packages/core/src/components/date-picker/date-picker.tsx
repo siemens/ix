@@ -8,6 +8,11 @@
  */
 
 import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -20,21 +25,12 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 import { DateTime, Info } from 'luxon';
+import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import { OnListener } from '../utils/listener';
-import { IxDatePickerComponent } from './date-picker-component';
 import { makeRef } from '../utils/make-ref';
-import {
-  iconChevronLeftSmall,
-  iconChevronRightSmall,
-  iconSingleCheck,
-} from '@siemens/ix-icons/icons';
-
-export type DateChangeEvent = {
-  from?: string;
-  to?: string;
-};
+import { IxDatePickerComponent } from './date-picker-component';
+import type { DateChangeEvent } from './date-picker.events';
 
 interface CalendarWeek {
   weekNumber: number;
