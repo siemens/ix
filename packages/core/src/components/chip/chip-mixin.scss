@@ -139,7 +139,7 @@ $border-radius: 100px;
 
   .container.primary.outline {
     color: var(--theme-chip-outline--color);
-    background-color: transparent;
+    background-color: var(--theme-chip-primary-outline--background);
     border: solid 1px var(--theme-chip-primary-outline--border-color);
 
     .close-button {
@@ -221,6 +221,7 @@ $border-radius: 100px;
 
       &.outline {
         color: var(--theme-chip-outline--color);
+        background-color: var(--theme-chip-outline--background);
         border-color: var(--theme-color-#{$color});
 
         @if $interaction {
