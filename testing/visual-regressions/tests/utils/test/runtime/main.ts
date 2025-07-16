@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+import '@siemens/ix/dist/siemens-ix/siemens-ix-core.css';
 
 import { showMessage } from '@siemens/ix';
 import { defineCustomElements } from '@siemens/ix/loader';
@@ -37,6 +37,19 @@ function provideUtilFunctions() {
   window.showMessage = showMessage;
 }
 
-normalizeBodyStyles();
-detectThemeSwitching();
-provideUtilFunctions();
+function provideThemeStyles() {
+  console.log(import.meta.env.VITE_THEME_CONFIG);
+  const config = JSON.parse(import.meta.env.VITE_THEME_CONFIG);
+  return Promise.all(
+    config.map(async ({ importPath }: any) => {
+      await import(/* @vite-ignore */ importPath);
+    })
+  );
+}
+
+(async () => {
+  await provideThemeStyles();
+  normalizeBodyStyles();
+  detectThemeSwitching();
+  provideUtilFunctions();
+})();
