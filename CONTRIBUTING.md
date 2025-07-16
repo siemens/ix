@@ -66,10 +66,9 @@ Once it's filed:
 
 #### Issue workflow
 
-- The project team will label the issue accordingly. `Workflow: Issue created`
-- A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs with the `needs-repro` label will not be addressed until the steps to reproduce it have been provided. Ideally you can provide a link to a running example (e.g. StackBlitz).
-- If the team is able to reproduce the issue, it will be marked `type: bug` and `Workflow: Approved`, as well as possibly other labels (such as `type: enhancement`)
-- If work on the issue has begun the workflow label will be changed to `Workflow: In progress`
+- The project team will label the issue accordingly. `Backlog`
+- A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs reproduction`. Bugs with the `needs reproduction` label will not be addressed until the steps to reproduce it have been provided. Ideally you can provide a link to a running example (e.g. StackBlitz).
+- If the team is able to reproduce the issue, it will be marked `type: bug`.
 
 ### Suggesting Enhancements
 
