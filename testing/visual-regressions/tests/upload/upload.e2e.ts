@@ -9,7 +9,13 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
-import { UploadFileState } from '@siemens/ix';
+
+enum UploadFileState {
+  SELECT_FILE = 'SELECT_FILE',
+  LOADING = 'LOADING',
+  UPLOAD_FAILED = 'UPLOAD_FAILED',
+  UPLOAD_SUCCESSED = 'UPLOAD_SUCCESSED',
+}
 
 regressionTest.describe('upload', () => {
   regressionTest('basic', async ({ page }) => {
