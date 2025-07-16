@@ -95,7 +95,6 @@ export class Chip {
 
   private readonly containerElementRef = makeRef<HTMLElement>();
 
-
   private getCloseButton() {
     return (
       <div class="close-button-container">
@@ -133,7 +132,6 @@ export class Chip {
       </ix-tooltip>
     );
   }
-
 
   render() {
     const isInactive = this.active === false;
