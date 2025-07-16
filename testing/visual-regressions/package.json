@@ -4,15 +4,14 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "playwright test --config=playwright.config.ts",
-    "host-root": "npx http-server"
+    "visual-regression": "playwright test --config=playwright.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-icons": "^3.0.0",
     "@types/node": "^24.0.14",
-    "http-server": "^14.1.1",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "@esbuild/linux-arm64": "0.25.1"
   }
 }
