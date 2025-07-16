@@ -1,7 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 import path from 'path';
+import { visualTestConfig } from './visual-regression.config';
 
-const THEMES = ['theme-classic-light', 'theme-classic-dark'];
+const THEMES = visualTestConfig.map((theme) => theme.selector);
 
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {
