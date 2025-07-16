@@ -13,9 +13,6 @@ import { defineCustomElements } from '@siemens/ix/loader';
 import { defineCustomElement as defineCustomElementIxIcon } from '@siemens/ix-icons/components/ix-icon.js';
 import { addIcons } from '@siemens/ix-icons';
 
-defineCustomElements();
-defineCustomElementIxIcon();
-
 function normalizeBodyStyles() {
   const body = document.body;
   body.style.margin = '0';
@@ -49,7 +46,12 @@ function provideThemeStyles() {
 
 (async () => {
   await provideThemeStyles();
+
+  provideUtilFunctions();
+
+  defineCustomElements();
+  defineCustomElementIxIcon();
+
   normalizeBodyStyles();
   detectThemeSwitching();
-  provideUtilFunctions();
 })();

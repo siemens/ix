@@ -65,11 +65,12 @@ async function mountComponent(
 ): Promise<ElementHandle<HTMLElement>> {
   return page.evaluateHandle(
     async ({ componentSelector, config }) => {
+      await window.customElements.whenDefined('ix-button');
+      const mount = document.querySelector('#mount');
+
       if (config?.icons) {
         window.addIcons(config.icons);
       }
-      await window.customElements.whenDefined('ix-button');
-      const mount = document.querySelector('#mount');
 
       if (!mount) {
         throw new Error('No mount point found in the document.');
