@@ -7,15 +7,15 @@ SPDX-License-Identifier: MIT
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
       name="viewport"
     />
     <title>Stencil Component Starter</title>
     <script type="module">
-      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
-      import { iconStar } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconStar } from '@siemens/ix-icons/icons';
 
       addIcons({
         iconStar,
@@ -38,18 +38,18 @@ SPDX-License-Identifier: MIT
         <p>This is a popup pane.</p>
       </ix-pane>
 
-      <ix-button id="toggle-expanded" style="margin: 2.5rem" >
+      <ix-button id="toggle-expanded" style="margin: 2.5rem">
         Toggle Expanded
       </ix-button>
     </div>
 
     <script>
-      const pane = document.getElementById("popup-pane");
-      const button = document.getElementById("toggle-expanded");
+      const pane = document.getElementById('popup-pane');
+      const button = document.getElementById('toggle-expanded');
 
-      button.addEventListener("click", () => {
-        pane.expanded = !pane.expanded
-      })
+      button.addEventListener('click', () => {
+        pane.expanded = !pane.expanded;
+      });
     </script>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
   </body>
