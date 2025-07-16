@@ -84,7 +84,7 @@ export class DropdownButton {
     );
   }
 
-  private onDropdownShowChanged = (event: CustomEvent<boolean>) => {
+  private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
     this.dropdownShow = event.detail;
   };
 
