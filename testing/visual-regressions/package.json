@@ -1,0 +1,17 @@
+{
+  "name": "visual-regressions",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "playwright test --config=playwright.config.ts",
+    "host-root": "npx http-server"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@siemens/ix-icons": "^3.0.0",
+    "@siemens/ix": "workspace:*",
+    "@types/node": "^24.0.14",
+    "http-server": "^14.1.1"
+  }
+}

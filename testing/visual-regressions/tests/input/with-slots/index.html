@@ -1,0 +1,108 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      body {
+        padding: 1rem;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import {
+        iconBulb,
+        iconStar,
+      } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconBulb,
+        iconStar,
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <h4>text</h4>
+      <ix-input value="Lorem ipsum">
+        <ix-typography slot="start" text-color="weak"> Text </ix-typography>
+      </ix-input>
+      <ix-input value="Lorem ipsum">
+        <ix-typography slot="end" text-color="weak">unit</ix-typography>
+      </ix-input>
+
+      <h4>dynamic slot insertion</h4>
+      <ix-input value="Lorem ipsum" id="inputOne"> </ix-input>
+      <ix-input value="Lorem ipsum" id="inputTwo"> </ix-input>
+      <ix-button id="addSlotsButton"> Insert slots </ix-button>
+
+      <h4>icon-16</h4>
+      <ix-input value="Lorem ipsum">
+        <ix-icon slot="start" size="16" name="bulb"></ix-icon>
+      </ix-input>
+      <ix-input value="Lorem ipsum">
+        <ix-icon slot="end" size="16" name="bulb"></ix-icon>
+      </ix-input>
+
+      <h4>icon-24</h4>
+      <ix-input value="Lorem ipsum">
+        <ix-icon slot="start" size="24" name="bulb"></ix-icon>
+      </ix-input>
+      <ix-input value="Lorem ipsum">
+        <ix-icon slot="end" size="24" name="bulb"></ix-icon>
+      </ix-input>
+
+      <h4>button with icon-16</h4>
+      <ix-input value="Lorem ipsum">
+        <ix-icon-button slot="start" icon="star" size="16"></ix-icon-button>
+      </ix-input>
+      <ix-input value="Lorem ipsum">
+        <ix-icon-button slot="end" icon="star" size="16"></ix-icon-button>
+      </ix-input>
+
+      <h4>button with icon-24</h4>
+      <ix-input value="Lorem ipsum">
+        <ix-icon-button slot="start" icon="star" size="24"></ix-icon-button>
+      </ix-input>
+      <ix-input value="Lorem ipsum">
+        <ix-icon-button slot="end" icon="star" size="24"></ix-icon-button>
+      </ix-input>
+    </div>
+
+    <script>
+      document
+        .getElementById('addSlotsButton')
+        .addEventListener('click', function () {
+          const inputOne = document.getElementById('inputOne');
+
+          const startSlot = document.createElement('ix-typography');
+          startSlot.setAttribute('slot', 'start');
+          startSlot.setAttribute('text-color', 'weak');
+          startSlot.textContent = 'Text';
+
+          inputOne.appendChild(startSlot);
+
+          const inputTwo = document.getElementById('inputTwo');
+
+          const endSlot = document.createElement('ix-typography');
+          endSlot.setAttribute('slot', 'end');
+          endSlot.setAttribute('text-color', 'weak');
+          endSlot.textContent = 'unit';
+
+          inputTwo.appendChild(endSlot);
+        });
+    </script>
+
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

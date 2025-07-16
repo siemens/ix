@@ -1,0 +1,86 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      ix-card {
+        margin: 1rem;
+      }
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <ix-card selected>
+      <div class="card-content">
+        <ix-typography>Insight</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="filled">
+      <div class="card-content">
+        <ix-typography>Notification</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="alarm">
+      <div class="card-content">
+        <ix-typography>Alarm</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="critical">
+      <div class="card-content">
+        <ix-typography>Critical</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="warning">
+      <div class="card-content">
+        <ix-typography>Warning</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="info">
+      <div class="card-content">
+        <ix-typography>Info</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="neutral">
+      <div class="card-content">
+        <ix-typography>Neutral</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="success">
+      <div class="card-content">
+        <ix-typography>Success</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="primary">
+      <div class="card-content">
+        <ix-typography>Primary</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="outline">
+      <div class="card-content">
+        <ix-typography>Outline</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="filled">
+      <div class="card-content">
+        <ix-typography>Filled</ix-typography>
+      </div>
+    </ix-card>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

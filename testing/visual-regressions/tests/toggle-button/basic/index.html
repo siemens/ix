@@ -1,0 +1,61 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      ix-toggle-button {
+        margin: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <ix-toggle-button outline>Normal</ix-toggle-button>
+      <ix-toggle-button outline pressed>Pressed</ix-toggle-button>
+      <ix-toggle-button disabled outline>Disabled</ix-toggle-button>
+      <ix-toggle-button ghost outline="false"> Normal </ix-toggle-button>
+      <ix-toggle-button ghost pressed> Pressed</ix-toggle-button>
+      <ix-toggle-button disabled ghost> Disabled</ix-toggle-button>
+      <ix-toggle-button> Normal</ix-toggle-button>
+      <ix-toggle-button pressed> Pressed</ix-toggle-button>
+      <ix-toggle-button disabled> Disabled</ix-toggle-button>
+    </div>
+
+    <div>
+      <ix-toggle-button variant="primary">Normal (primary)</ix-toggle-button>
+      <ix-toggle-button variant="primary" pressed>
+        Pressed (primary)
+      </ix-toggle-button>
+
+      <ix-toggle-button variant="primary" outline> Normal</ix-toggle-button>
+      <ix-toggle-button variant="primary" outline pressed>
+        Pressed
+      </ix-toggle-button>
+      <ix-toggle-button variant="primary" outline disabled>
+        Disabled
+      </ix-toggle-button>
+      <ix-toggle-button variant="primary" ghost> Normal</ix-toggle-button>
+      <ix-toggle-button variant="primary" ghost pressed>
+        Pressed
+      </ix-toggle-button>
+      <ix-toggle-button variant="primary" ghost disabled>
+        Disabled
+      </ix-toggle-button>
+    </div>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

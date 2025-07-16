@@ -1,0 +1,59 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      .inv-bg {
+        background-color: var(--theme-color-alarm);
+      }
+    </style>
+  </head>
+  <body>
+    <ix-typography text-color="alarm">Alarm</ix-typography>
+    <ix-typography text-color="contrast">Contrast</ix-typography>
+    <ix-typography text-color="soft">Soft</ix-typography>
+    <ix-typography text-color="std">Std</ix-typography>
+    <ix-typography text-color="weak">Weak</ix-typography>
+
+    <div class="inv-bg">
+      <ix-typography text-color="inv-contrast">Inv-contrast</ix-typography>
+      <ix-typography text-color="inv-std">Inv-std</ix-typography>
+      <ix-typography text-color="inv-soft">Inv-soft</ix-typography>
+      <ix-typography text-color="inv-weak">Inv-weak</ix-typography>
+    </div>
+
+    <div id="conrast-container"></div>
+
+    <script>
+      const contrastColors = [
+        'alarm',
+        'critical',
+        'info',
+        'neutral',
+        'primary',
+        'success',
+        'warning',
+      ];
+      const contrastContainer = document.getElementById('conrast-container');
+      contrastColors.forEach(color => {
+        const div = document.createElement('div');
+        div.style.backgroundColor = `var(--theme-color-${color})`;
+        div.innerHTML = `<ix-typography text-color="${color}-contrast">${color} contrast</ix-typography>`;
+        contrastContainer.appendChild(div);
+      });
+    </script>
+
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

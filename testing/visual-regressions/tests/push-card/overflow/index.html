@@ -1,0 +1,45 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      ix-push-card {
+        margin: 1rem;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconBulb } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconBulb,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-push-card
+      icon="bulb"
+      notification="99"
+      heading="This is an example text for testing the overflow behavior."
+      subheading="This is an example text for testing the overflow behavior. This is an
+      example text for testing the overflow behavior. This is an example
+      text for testing the overflow behavior. This is an example text for
+      testing the overflow behavior. This is an example text for testing the
+      overflow behavior. This is an example text for testing the overflow
+      behavior."
+    >
+    </ix-push-card>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

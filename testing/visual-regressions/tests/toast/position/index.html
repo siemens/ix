@@ -1,0 +1,87 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconBulb } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconBulb,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-toast-container></ix-toast-container>
+    <script>
+      (async () => {
+        await window.customElements.whenDefined('ix-toast-container');
+        const toastContainer = document.querySelector('ix-toast-container');
+
+        toastContainer.position = 'top-right';
+
+        toast = {};
+        toast.info = (config) => {
+          toastContainer.showToast({
+            ...config,
+            autoClose: false,
+            type: 'info',
+          });
+        };
+
+        toast.error = (config) => {
+          toastContainer.showToast({
+            ...config,
+            autoClose: false,
+            type: 'error',
+          });
+        };
+
+        toast.success = (config) => {
+          toastContainer.showToast({
+            ...config,
+            autoClose: false,
+            type: 'success',
+          });
+        };
+
+        toast.warning = (config) => {
+          toastContainer.showToast({
+            ...config,
+            autoClose: false,
+            type: 'warning',
+          });
+        };
+
+        toast.info({
+          message: 'Info',
+        });
+        toast.error({
+          message: 'Error',
+        });
+        toast.success({
+          message: 'Success',
+        });
+        toast.warning({
+          message: 'Warning',
+        });
+        toast.info({
+          icon: 'bulb',
+          message: 'Custom icon',
+        });
+      })();
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

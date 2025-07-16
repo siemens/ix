@@ -1,0 +1,100 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import {
+        iconStar,
+        iconPrint,
+      } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconStar,
+        iconPrint,
+      });
+    </script>
+    <style>
+      .debug-element {
+        position: relative;
+        background-color: #ff000069;
+        width: 10rem;
+        height: 10rem;
+      }
+      .debug-element::after {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: 'TEST';
+        border: 2px dashed #ff0000aa;
+        padding: 2rem;
+        font-size: 55px;
+
+        width: 8rem;
+        height: 5rem;
+
+        left: 10%;
+        top: 25%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ix-application>
+      <ix-application-header name="Test">
+        <div slot="logo">LOGO</div>
+      </ix-application-header>
+      <ix-menu>
+        <ix-menu-item>Test 1</ix-menu-item>
+        <ix-menu-item>Test 1</ix-menu-item>
+        <ix-menu-item>Test 1</ix-menu-item>
+        <ix-menu-item>Test 2</ix-menu-item>
+        <ix-menu-item>Test 3</ix-menu-item>
+        <ix-menu-item>Test 4</ix-menu-item>
+        <ix-menu-item>Test 5</ix-menu-item>
+        <ix-menu-item>Test 6</ix-menu-item>
+        <ix-menu-item>Test 7</ix-menu-item>
+        <ix-menu-item>Test 8</ix-menu-item>
+        <ix-menu-item>Test 9</ix-menu-item>
+        <ix-menu-item>Test 10</ix-menu-item>
+        <ix-menu-item>Test 11</ix-menu-item>
+        <ix-menu-item>Test 12</ix-menu-item>
+        <ix-menu-item>Test 13</ix-menu-item>
+        <ix-menu-item>Test 14</ix-menu-item>
+        <ix-menu-item>Test 15</ix-menu-item>
+        <ix-menu-item>Test 16</ix-menu-item>
+        <ix-menu-item>Test 17</ix-menu-item>
+        <ix-menu-item>Test 18</ix-menu-item>
+        <ix-menu-item>Test 19</ix-menu-item>
+        <ix-menu-item>Test 20</ix-menu-item>
+        <ix-menu-item>Test 21</ix-menu-item>
+        <ix-menu-item>Test 22</ix-menu-item>
+        <ix-menu-item>Test 23</ix-menu-item>
+        <ix-menu-about>
+          <ix-menu-about-item>Item 1</ix-menu-about-item>
+          <ix-menu-about-item>Item 1</ix-menu-about-item>
+          <ix-menu-about-item>Item 1</ix-menu-about-item>
+        </ix-menu-about>
+        <ix-menu-settings>
+          <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+          <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+          <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+        </ix-menu-settings>
+      </ix-menu>
+      <div class="debug-element"></div>
+    </ix-application>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

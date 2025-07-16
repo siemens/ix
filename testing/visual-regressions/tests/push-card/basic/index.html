@@ -1,0 +1,146 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconBulb } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconBulb,
+      });
+    </script>
+  </head>
+  <body>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem;
+      }
+    </style>
+    <div class="container">
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="outline"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="filled"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="alarm"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="critical"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="warning"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="success"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="info"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="neutral"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="primary"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="outline"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="filled"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+    </div>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

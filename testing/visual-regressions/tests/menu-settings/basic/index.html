@@ -1,0 +1,50 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <ix-basic-navigation>
+      <ix-menu start-expanded>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+        <ix-menu-item>Item 3</ix-menu-item>
+        <ix-menu-settings>
+          <ix-menu-settings-item label="Label 1"
+            >First Label - <span id="changeSpan">First Content</span></ix-menu-settings-item
+          >
+          <ix-menu-settings-item id="changeTab" label="Label 2"
+            >Other Label - Other Content</ix-menu-settings-item
+          >
+        </ix-menu-settings>
+      </ix-menu>
+    </ix-basic-navigation>
+    <script>
+      window.onload = function() {
+        var changeTab = document.getElementById('changeTab');
+        var changeSpan = document.getElementById('changeSpan');
+        changeSpan.addEventListener('click', function() {
+          changeTab.setAttribute('label', 'Changed Label');
+        });
+      }
+    </script>
+    <script>
+      document.querySelector('ix-basic-navigation').breakpoints = [
+        'small',
+        'medium',
+      ];
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

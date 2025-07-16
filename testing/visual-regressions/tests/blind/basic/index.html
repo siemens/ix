@@ -1,0 +1,91 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      ix-blind {
+        margin: 0.5rem;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import {
+        iconBulb,
+        iconTrashcan,
+        iconRename,
+        iconContextMenu,
+        iconWarning,
+        iconInfo,
+      } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconBulb,
+        iconTrashcan,
+        iconRename,
+        iconContextMenu,
+        iconWarning,
+        iconInfo,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-blind variant="filled" icon="bulb" label="insight" sublabel="sublabel">
+      <div>filled content</div>
+    </ix-blind>
+    <ix-blind variant="outline" icon="bulb" label="outline" sublabel="sublabel">
+      <div>Outline content</div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="alarm" label="alarm" sublabel="sublabel">
+      <div>Alarm content</div>
+    </ix-blind>
+    <ix-blind
+      icon="bulb"
+      variant="critical"
+      label="critical"
+      sublabel="sublabel"
+    >
+      <div>Critical content</div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="warning" label="warning" sublabel="sublabel">
+      <div>Warning content</div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="info" label="info" sublabel="sublabel">
+      <div>Info content</div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="success" label="success" sublabel="sublabel">
+      <div>Success content</div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="neutral" label="neutral" sublabel="sublabel">
+      <div>Neutral content</div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="primary" label="primary" sublabel="sublabel">
+      <div>Primary content</div>
+    </ix-blind>
+    <ix-blind
+      icon="warning"
+      variant="warning"
+      label="A long asset name that does not fit to blind header"
+      subLabel="subLabel A long asset name that does not fit"
+      style="width: 300px"
+    >
+      <ix-icon-button
+        id="context-menu"
+        slot="header-actions"
+        ghost
+        icon="context-menu"
+      ></ix-icon-button>
+    </ix-blind>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>
