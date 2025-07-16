@@ -18,8 +18,8 @@
       "@utils/test": ["tests/utils/test"]
     },
     "noEmit": true,
-    "types": ["@siemens/ix-icons"]
+    "types": ["node", "@siemens/ix-icons"]
   },
-  "include": ["tests"],
+  "include": ["tests", "tests/runtime.d.ts"],
   "exclude": ["node_modules"]
 }

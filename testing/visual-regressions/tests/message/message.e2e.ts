@@ -9,15 +9,8 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
-import { showMessage } from 'src/components/utils/modal/message';
-import { IxModalSize } from 'src/components';
+import { IxModalSize } from '@siemens/ix';
 import { iconInfo } from '@siemens/ix-icons/icons';
-
-declare global {
-  interface Window {
-    showMessage: typeof showMessage;
-  }
-}
 
 const screenWidths: IxModalSize[] = [
   `360`,
@@ -32,22 +25,6 @@ const screenWidths: IxModalSize[] = [
 screenWidths.forEach((size) => {
   regressionTest(`message size ${size}`, async ({ page, mount }) => {
     await mount(``);
-
-    await page.evaluate(() => {
-      return new Promise<void>((resolve) => {
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.innerHTML = `
-        import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
-        window.showMessage = ix.showMessage;
-      `;
-
-        document.body.appendChild(script);
-        resolve();
-      });
-    });
-
-    await page.waitForTimeout(500);
 
     await page.evaluate(
       ({ size, iconInfo }) => {

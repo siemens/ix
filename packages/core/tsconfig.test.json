@@ -7,6 +7,6 @@
     "types": ["@siemens/ix-icons"],
     "noEmit": true
   },
-  "include": ["src/**/*.ct.ts", "src/**/*.e2e.ts", "src/tests"],
+  "include": ["src/**/*.ct.ts", "src/**/*.e2e.ts", "src/tests", "../../testing/visual-regressions/tests/_test"],
   "exclude": ["node_modules", "playwright.config.ts", "playwright-ct.config.ts"]
 }

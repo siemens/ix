@@ -40,7 +40,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     }
 
     const response = await originalGoto(
-      `http://127.0.0.1:8080/src/tests/${url}?theme=${theme}`,
+      `/tests/${url}/index.html?theme=${theme}`,
       options
     );
 
@@ -60,59 +60,14 @@ async function mountComponent(
   page: Page,
   selector: string,
   config?: {
-    headTags?: string[];
     icons?: Record<string, string>;
   }
 ): Promise<ElementHandle<HTMLElement>> {
   return page.evaluateHandle(
     async ({ componentSelector, config }) => {
-      if (config?.headTags) {
-        config.headTags.forEach((tag) => {
-          const head = document.querySelector('head');
-          if (!head) {
-            throw new Error('No head tag found in the document.');
-          }
-
-          head.innerHTML += tag;
-        });
-      }
-
       if (config?.icons) {
-        const iconImport = Object.keys(config.icons).join(',\n');
-        const addIconsScript = `
-          import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
-          import {
-            ${iconImport}
-          } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
-
-          addIcons({
-            ${iconImport}
-          });
-        `;
-
-        const head = document.querySelector('head');
-
-        if (!head) {
-          throw new Error('No head tag found in the document.');
-        }
-
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.textContent = addIconsScript;
-
-        head.appendChild(script);
+        window.addIcons(config.icons);
       }
-
-      const loadScript = document.createElement('script');
-      loadScript.src = '/scripts/e2e/load-e2e-runtime.js';
-      document.body.appendChild(loadScript);
-
-      await new Promise<void>((resolve) => {
-        loadScript.onload = async () => {
-          resolve();
-        };
-      });
-
       await window.customElements.whenDefined('ix-button');
       const mount = document.querySelector('#mount');
 
@@ -131,7 +86,6 @@ export const regressionTest = testBase.extend<{
   mount: (
     selector: string,
     config?: {
-      headTags?: string[];
       icons?: Record<string, string>;
     }
   ) => Promise<ElementHandle<HTMLElement>>;
@@ -186,9 +140,7 @@ export const regressionTest = testBase.extend<{
     testInfo.annotations.push({
       type: theme,
     });
-    await page.goto(
-      `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
-    );
+    await page.goto(`/tests/utils/ct/index.html?theme=${theme}`);
     await use((selector, config) => mountComponent(page, selector, config));
   },
 });
