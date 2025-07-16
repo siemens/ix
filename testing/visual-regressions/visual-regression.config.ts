@@ -9,8 +9,10 @@
 
 function defineVisualTestConfig(
   config: {
+    name: string;
     selector: string;
     importPath: string;
+    skipImport?: boolean;
   }[]
 ) {
   process.env.VITE_THEME_CONFIG = JSON.stringify(config);
@@ -19,12 +21,14 @@ function defineVisualTestConfig(
 
 export const visualTestConfig = defineVisualTestConfig([
   {
+    name: 'classic-dark',
     selector: 'theme-classic-dark',
     importPath: require.resolve(
       '@siemens/ix/dist/siemens-ix/theme/classic-dark.css'
     ),
   },
   {
+    name: 'classic-light',
     selector: 'theme-classic-light',
     importPath: require.resolve(
       '@siemens/ix/dist/siemens-ix/theme/classic-light.css'

@@ -38,7 +38,11 @@ function provideThemeStyles() {
   console.log(import.meta.env.VITE_THEME_CONFIG);
   const config = JSON.parse(import.meta.env.VITE_THEME_CONFIG);
   return Promise.all(
-    config.map(async ({ importPath }: any) => {
+    config.map(async ({ importPath, skipImport }: any) => {
+      if (skipImport) {
+        return;
+      }
+
       await import(/* @vite-ignore */ importPath);
     })
   );

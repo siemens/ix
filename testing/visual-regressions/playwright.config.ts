@@ -2,18 +2,16 @@ import { defineConfig, devices } from '@playwright/test';
 import path from 'path';
 import { visualTestConfig } from './visual-regression.config';
 
-const THEMES = visualTestConfig.map((theme) => theme.selector);
-
 function buildProjectsWithThemes() {
-  return THEMES.flatMap((theme) => {
+  return visualTestConfig.flatMap((theme) => {
     return [
       {
-        name: `chromium - ${theme}`,
+        name: `chromium - ${theme.name}`,
         use: {
           ...devices['Desktop Chrome'],
         },
         metadata: {
-          theme,
+          theme: theme.selector,
         },
       },
     ];
