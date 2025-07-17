@@ -37,9 +37,8 @@
 @import 'mixins/scrollbar';
 @import './normalize';
 
-body,
-[data-ix-theme],
-[data-ix-color-schema] {
+html:not([data-ix-theme]) body,
+[data-ix-theme] {
   @include common.setVars;
   @include components.setComponentVars;
 
