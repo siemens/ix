@@ -6,13 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ShowToastResult } from './toast-container';
+import type { ShowToastResult } from './toast-container.types';
 export type ToastType = 'info' | 'success' | 'error' | 'warning';
 export type ToastPosition = 'bottom-right' | 'top-right';
 
 export interface ToastConfig {
   title?: string;
-  message: string | HTMLElement;
+  message?: string | HTMLElement;
+  action?: HTMLElement;
   type?: ToastType;
   autoClose?: boolean;
   autoCloseDelay?: number;

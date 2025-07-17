@@ -33,7 +33,7 @@ regressionTest.describe('datetime picker tests single', () => {
     );
   });
 
-  regressionTest('increment time units', async ({ page }) => {
+  regressionTest('change time', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     const timeChangeEvent = page.evaluate(() => {
@@ -42,13 +42,11 @@ regressionTest.describe('datetime picker tests single', () => {
       });
     });
 
-    const incrementButtons = (
-      await page.$$('ix-icon-button.arrows:first-child')
-    ).slice(0, 3);
-
-    for (const button of incrementButtons) {
-      await button.click();
-    }
+    await page
+      .locator('ix-time-picker')
+      .first()
+      .locator('[data-element-container-id="hour-12"]')
+      .click();
 
     expect(await timeChangeEvent).toBeTruthy;
   });
@@ -62,7 +60,7 @@ regressionTest.describe('datetime picker tests single', () => {
       });
     });
 
-    await page.getByText(/^17$/).click();
+    await page.getByText(/^17$/).first().click();
 
     expect(await dateChangeEvent).toBeTruthy;
   });
