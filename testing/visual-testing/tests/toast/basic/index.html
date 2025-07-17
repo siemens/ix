@@ -29,7 +29,7 @@ SPDX-License-Identifier: MIT
         await window.customElements.whenDefined('ix-toast-container');
         const toastContainer = document.querySelector('ix-toast-container');
 
-        toast = {};
+        const toast = {};
         toast.info = (config) => {
           toastContainer.showToast({
             ...config,

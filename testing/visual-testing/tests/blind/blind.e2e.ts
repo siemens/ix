@@ -9,7 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
-import { regressionTest as regressionTest } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 regressionTest.describe('blind', () => {
   regressionTest('basic', async ({ page }) => {

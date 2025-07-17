@@ -158,7 +158,6 @@ regressionTest.describe('basic navigation mobile', () => {
   });
 
   regressionTest('mobile expanded overlay', async ({ page, mount }) => {
-    // await page.goto('basic-navigation/mobile');
     await mount(
       `
       <ix-basic-navigation application-name="Test">

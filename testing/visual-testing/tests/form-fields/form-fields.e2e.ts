@@ -9,7 +9,7 @@
 
 import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
-import type { LiteralStringUnion } from '../../components/utils/type-helper';
+import { LiteralStringUnion } from 'tests/utils/helper';
 
 type FormElementState = LiteralStringUnion<
   'info' | 'warning' | 'valid' | 'invalid'
