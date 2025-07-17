@@ -3630,10 +3630,18 @@ export namespace Components {
          */
         "context": TreeContext;
         /**
+          * Mark items as dirty. This will force the list to re-render the items with the given ids.
+         */
+        "markItemsAsDirty": (ids: string[]) => Promise<void>;
+        /**
           * Tree model
           * @default {}
          */
         "model": TreeModel<any>;
+        /**
+          * Refresh the list. This will re-render the list with the current model and context.
+         */
+        "refreshTree": (options?: RefreshTreeOptions) => Promise<void>;
         /**
           * Render function of tree items
          */
@@ -3646,6 +3654,7 @@ export namespace Components {
   ) => HTMLElement;
         /**
           * Initial root element will not be rendered
+          * @default 'root'
          */
         "root": string;
         /**
@@ -9427,8 +9436,9 @@ declare namespace LocalJSX {
   ) => HTMLElement;
         /**
           * Initial root element will not be rendered
+          * @default 'root'
          */
-        "root": string;
+        "root"?: string;
         /**
           * Enable to toggle items by click on the item
           * @since 3.0.0
