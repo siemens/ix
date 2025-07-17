@@ -1,5 +1,5 @@
-name: 'Unit tests'
-description: 'Unit tests'
+name: 'Visual regression tests'
+description: 'Visual regression tests'
 inputs:
   projectName:
     description: 'Name of the project to run tests for'
@@ -31,9 +31,9 @@ runs:
       shell: bash
       run: |
         if [ -n "${{ inputs.shardIndex }}" ] && [ -n "${{ inputs.shardTotal }}" ]; then
-          pnpm run test --cache-dir=.turbo --filter ${{ inputs.projectName }} -- --shard=${{ inputs.shardIndex }}/${{ inputs.shardTotal }}
+          pnpm run visual-regression --cache-dir=.turbo --filter ${{ inputs.projectName }} -- --shard=${{ inputs.shardIndex }}/${{ inputs.shardTotal }}
         else
-          pnpm run test --cache-dir=.turbo --filter ${{ inputs.projectName }}
+          pnpm run visual-regression --cache-dir=.turbo --filter ${{ inputs.projectName }}
         fi
 
     - uses: actions/upload-artifact@v4

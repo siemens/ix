@@ -24836,16 +24836,11 @@
         },
         {
           "name": "renderItem",
-          "type": "(<T = any>(index: number, data: TreeItem<T>, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement) | undefined",
+          "type": "(<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement) | undefined",
           "complexType": {
-            "original": "<T = any>(\n    index: number,\n    data: TreeItem<T>,\n    dataList: Array<T>,\n    context: TreeContext,\n    update: (callback: UpdateCallback) => void\n  ) => HTMLElement",
-            "resolved": "(<T = any>(index: number, data: TreeItem<T>, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement) | undefined",
+            "original": "<T = any>(\n    index: number,\n    data: T,\n    dataList: Array<T>,\n    context: TreeContext,\n    update: (callback: UpdateCallback) => void\n  ) => HTMLElement",
+            "resolved": "(<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement) | undefined",
             "references": {
-              "TreeItem": {
-                "location": "import",
-                "path": "tree-model",
-                "id": "src/components/tree/tree-model.ts::TreeItem"
-              },
               "T": {
                 "location": "global",
                 "id": "global::T"
@@ -24877,7 +24872,7 @@
           "docsTags": [],
           "values": [
             {
-              "type": "(<T = any>(index: number, data: TreeItem<T>, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement)"
+              "type": "(<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement)"
             },
             {
               "type": "undefined"
@@ -24951,7 +24946,7 @@
       ],
       "methods": [
         {
-          "name": "markItemAsDirty",
+          "name": "markItemsAsDirty",
           "returns": {
             "type": "Promise<void>",
             "docs": ""
@@ -24973,7 +24968,7 @@
             },
             "return": "Promise<void>"
           },
-          "signature": "markItemAsDirty(ids: string[]) => Promise<void>",
+          "signature": "markItemsAsDirty(ids: string[]) => Promise<void>",
           "parameters": [
             {
               "name": "ids",
@@ -26726,11 +26721,6 @@
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",
-      "docstring": "",
-      "path": "src/components/tree/tree-model.ts"
-    },
-    "src/components/tree/tree-model.ts::TreeItem": {
-      "declaration": "export interface TreeItem<T> {\n  id: TreeItemId;\n  data: T;\n  hasChildren: boolean;\n  children: TreeItemId[];\n}",
       "docstring": "",
       "path": "src/components/tree/tree-model.ts"
     },

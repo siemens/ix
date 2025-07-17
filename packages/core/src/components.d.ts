@@ -49,7 +49,7 @@ import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container.types";
 import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
-import { TreeContext, TreeItem, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
+import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card.types";
@@ -96,7 +96,7 @@ export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container.types";
 export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
-export { TreeContext, TreeItem, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
+export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
@@ -3604,7 +3604,7 @@ export namespace Components {
         /**
           * Mark items as dirty. This will force the list to re-render the items with the given ids.
          */
-        "markItemAsDirty": (ids: string[]) => Promise<void>;
+        "markItemsAsDirty": (ids: string[]) => Promise<void>;
         /**
           * Tree model
           * @default {}
@@ -3619,7 +3619,7 @@ export namespace Components {
          */
         "renderItem"?: <T = any>(
     index: number,
-    data: TreeItem<T>,
+    data: T,
     dataList: Array<T>,
     context: TreeContext,
     update: (callback: UpdateCallback) => void
@@ -9373,7 +9373,7 @@ declare namespace LocalJSX {
          */
         "renderItem"?: <T = any>(
     index: number,
-    data: TreeItem<T>,
+    data: T,
     dataList: Array<T>,
     context: TreeContext,
     update: (callback: UpdateCallback) => void

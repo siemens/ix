@@ -55,7 +55,7 @@ export class Tree {
    */
   @Prop() renderItem?: <T = any>(
     index: number,
-    data: TreeItem<T>,
+    data: T,
     dataList: Array<T>,
     context: TreeContext,
     update: (callback: UpdateCallback) => void
@@ -105,7 +105,7 @@ export class Tree {
   }
 
   private getVirtualizerOptions(
-    freshTreeOptions: RefreshTreeOptions
+    refreshTreeOptions: RefreshTreeOptions
   ): VirtualListConfig {
     const list = this.buildTreeList(this.model[this.root]);
 
@@ -126,7 +126,7 @@ export class Tree {
         /**
          * Return only the existing item if it is already rendered
          */
-        if (renderedTreeItem && freshTreeOptions.force === false) {
+        if (renderedTreeItem && refreshTreeOptions.force === false) {
           renderedTreeItem.hasChildren = item.hasChildren;
           renderedTreeItem.context = { ...context };
 
@@ -136,12 +136,12 @@ export class Tree {
             const doUpdate = this.updates.get(item.id);
 
             if (doUpdate) {
-              const ifUpdateRequestedRerender = doUpdate(item, {
+              const updateRequestedRerender = doUpdate(item, {
                 ...this.context,
               });
 
-              if (typeof ifUpdateRequestedRerender === 'boolean') {
-                forceRerender = ifUpdateRequestedRerender;
+              if (typeof updateRequestedRerender === 'boolean') {
+                forceRerender = updateRequestedRerender;
               }
             }
           }
@@ -288,7 +288,7 @@ export class Tree {
    * This will force the list to re-render the items with the given ids.
    */
   @Method()
-  async markItemAsDirty(ids: string[]) {
+  async markItemsAsDirty(ids: string[]) {
     ids.forEach((id) => this.dirtyItems.add(id));
   }
 

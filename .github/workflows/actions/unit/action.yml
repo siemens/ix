@@ -1,5 +1,5 @@
-name: 'Visual regression tests'
-description: 'Visual regression tests'
+name: 'Unit tests'
+description: 'Unit tests'
 runs:
   using: 'composite'
   steps:
