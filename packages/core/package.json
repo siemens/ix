@@ -73,7 +73,8 @@
     "test": "npm run test.spec && npm run test.ct",
     "test.spec": "stencil test --spec",
     "test.ct": "playwright test --config playwright.config.ts --reporter list",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "host-root": "http-server -a 127.0.0.1 -p 8080 -c-1"
   },
   "siemensix": {
     "dependencies": [
