@@ -1,0 +1,65 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconHierarchy,
+        iconCalendarSettings,
+        iconSoundLoud,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconHierarchy,
+        iconCalendarSettings,
+        iconSoundLoud,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-tabs rounded placement="top">
+      <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>
+      <ix-tab-item counter="{200}"><ix-icon name="tree"></ix-icon></ix-tab-item>
+      <ix-tab-item><ix-icon name="maintenance"></ix-icon></ix-tab-item>
+      <ix-tab-item disabled counter="{24}"
+        ><ix-icon name="sound-loud"></ix-icon
+      ></ix-tab-item>
+      <ix-tab-item><ix-icon name="hierarchy"></ix-icon></ix-tab-item>
+      <ix-tab-item disabled
+        ><ix-icon name="calendar-settings"></ix-icon
+      ></ix-tab-item>
+    </ix-tabs>
+
+    <ix-tabs rounded>
+      <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>
+      <ix-tab-item counter="{200}"><ix-icon name="tree"></ix-icon></ix-tab-item>
+      <ix-tab-item><ix-icon name="maintenance"></ix-icon></ix-tab-item>
+      <ix-tab-item disabled counter="{24}"
+        ><ix-icon name="sound-loud"></ix-icon
+      ></ix-tab-item>
+      <ix-tab-item><ix-icon name="hierarchy"></ix-icon></ix-tab-item>
+      <ix-tab-item disabled
+        ><ix-icon name="calendar-settings"></ix-icon
+      ></ix-tab-item>
+    </ix-tabs>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>
