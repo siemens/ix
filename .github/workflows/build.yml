@@ -154,21 +154,3 @@ jobs:
           cd testing/performance-memlab
           pnpm dlx puppeteer browsers install chrome@127.0.6533.88
           pnpm test.memlab
-
-  sbom:
-    needs: [build]
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: ./.github/workflows/actions/turbo
-
-      - name: Create SBOM
-        run: pnpm build --filter oss-clearing
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: sbom-${{ github.run_attempt }}
-          path: |
-            ./tooling/oss-clearing/sboms/
