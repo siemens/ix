@@ -15,6 +15,11 @@ import {
   expect,
 } from '@playwright/test';
 
+export type AdditionalPageConfig = {
+  icons?: Record<string, string>;
+  bodyPadding?: boolean | string;
+};
+
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;
 }
@@ -61,8 +66,11 @@ async function mountComponent(
   selector: string,
   config?: {
     icons?: Record<string, string>;
+    bodyPadding?: boolean | string;
   }
 ): Promise<ElementHandle<HTMLElement>> {
+  await page.mouse.move(9999, 9999);
+
   return page.evaluateHandle(
     async ({ componentSelector, config }) => {
       await window.customElements.whenDefined('ix-button');
@@ -86,9 +94,7 @@ async function mountComponent(
 export const regressionTest = testBase.extend<{
   mount: (
     selector: string,
-    config?: {
-      icons?: Record<string, string>;
-    }
+    config?: AdditionalPageConfig
   ) => Promise<ElementHandle<HTMLElement>>;
   createElement: (
     selector: string,
@@ -96,6 +102,8 @@ export const regressionTest = testBase.extend<{
   ) => Promise<ElementHandle<HTMLElement>>;
 }>({
   page: async ({ page }, use, testInfo) => {
+    await page.mouse.move(9999, 9999);
+
     page = await extendPageFixture(page, testInfo);
 
     await page.route('*/**/svg/*.svg', async (route, request) => {
