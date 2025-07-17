@@ -62,11 +62,11 @@ class ThemeSwitcher {
 
   private replaceBodyThemeClass(themeName: string) {
     const oldThemes: string[] = [];
-    document.body.classList.forEach((className) => {
-      if (this.isThemeClass(className)) {
+    Array.from(document.body.classList)
+      .filter((className) => className && this.isThemeClass(className))
+      .forEach((className) => {
         oldThemes.push(className);
-      }
-    });
+      });
 
     document.body.classList.remove(...oldThemes);
     document.body.classList.add(themeName);
@@ -84,12 +84,11 @@ class ThemeSwitcher {
     }
 
     const oldThemes: string[] = [];
-
-    document.body.classList.forEach((className) => {
-      if (this.isThemeClass(className)) {
+    Array.from(document.body.classList)
+      .filter((className) => className && this.isThemeClass(className))
+      .forEach((className) => {
         oldThemes.push(className);
-      }
-    });
+      });
 
     if (oldThemes.length === 0) {
       document.body.classList.add(this.getOppositeMode(this.defaultTheme));
@@ -140,6 +139,8 @@ class ThemeSwitcher {
         currentTheme.replace(/-light$/g, `-${variant}`)
       );
     }
+
+    document.body.setAttribute(dataIxColorSchema, variant);
   }
 
   private getOppositeMode(themeName: string) {
