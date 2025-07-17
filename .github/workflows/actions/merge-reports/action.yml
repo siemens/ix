@@ -4,6 +4,9 @@ inputs:
   projectName:
     description: 'Name of the project for artifact naming'
     required: true
+  artifactName:
+    description: 'Name of the artifact to upload'
+    required: true
   blobPattern:
     description: 'Pattern to match blob report artifacts'
     required: true
@@ -28,6 +31,6 @@ runs:
     - name: Upload HTML report
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ inputs.projectName }}-html-report--attempt-${{ github.run_attempt }}
+        name: ${{ inputs.artifactName }}-html-report--attempt-${{ github.run_attempt }}
         path: ${{ inputs.outputPath }}
         retention-days: 14

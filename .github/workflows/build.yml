@@ -43,6 +43,7 @@ jobs:
       - uses: ./.github/workflows/actions/visual-regression
         with:
           projectName: '@siemens/ix'
+          artifactName: 'core'
           projectPath: './packages/core/blob-report/'
           shardIndex: '${{ matrix.shardIndex }}'
           shardTotal: '${{ matrix.shardTotal }}'
@@ -57,6 +58,7 @@ jobs:
       - uses: ./.github/workflows/actions/merge-reports
         with:
           projectName: '@siemens/ix'
+          artifactName: 'core'
           blobPattern: '@siemens/ix-blob-report-*'
 
   visual-testing-aggrid:
@@ -69,6 +71,7 @@ jobs:
       - uses: ./.github/workflows/actions/visual-regression
         with:
           projectName: '@siemens/ix-aggrid'
+          artifactName: 'aggrid'
           projectPath: './packages/aggrid/playwright-report/'
 
   visual-testing-echarts:
@@ -81,6 +84,7 @@ jobs:
       - uses: ./.github/workflows/actions/visual-regression
         with:
           projectName: '@siemens/ix-echarts'
+          artifactName: 'echarts'
           projectPath: './packages/echarts/playwright-report/'
 
   unit:

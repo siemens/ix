@@ -4,6 +4,9 @@ inputs:
   projectName:
     description: 'Name of the project to run tests for'
     required: true
+  artifactName:
+    description: 'Name of the artifact to upload'
+    required: true
   projectPath:
     description: 'Path to the project blob reports'
     required: false
@@ -39,13 +42,13 @@ runs:
     - uses: actions/upload-artifact@v4
       if: always() && inputs.shardIndex != '' && inputs.projectPath != ''
       with:
-        name: ${{ inputs.projectName }}-blob-report-${{ inputs.shardIndex }}
+        name: ${{ inputs.artifactName }}-blob-report-${{ inputs.shardIndex }}
         path: ${{ inputs.projectPath }}
         retention-days: 1
 
     - uses: actions/upload-artifact@v4
       if: failure() && inputs.shardIndex == '' && inputs.projectPath != ''
       with:
-        name: ${{ inputs.projectName }}-html-report--attempt-${{ github.run_attempt }}
+        name: ${{ inputs.artifactName }}-html-report--attempt-${{ github.run_attempt }}
         path: ${{ inputs.projectPath }}
         retention-days: 1
