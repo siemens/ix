@@ -8,18 +8,12 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import type { DateChangeEvent } from '../date-picker/date-picker';
+import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-
-export type DateTimeSelectEvent = {
-  from?: string;
-  to?: string;
-  time: string;
-};
-
-export type DateTimeDateChangeEvent =
-  | string
-  | Omit<DateTimeSelectEvent, 'time'>;
+import type {
+  DateTimeDateChangeEvent,
+  DateTimeSelectEvent,
+} from './datetime-picker.types';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -36,16 +30,22 @@ export class DatetimePicker
 
   /**
    * Show hour input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showHour = true;
 
   /**
    * Show minutes input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showMinutes = true;
 
   /**
    * Show seconds input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showSeconds = true;
 
@@ -205,13 +205,14 @@ export class DatetimePicker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
                 standaloneAppearance={false}
-                showHour={this.showHour}
-                showMinutes={this.showMinutes}
-                showSeconds={this.showSeconds}
+                dateTimePickerAppearance={true}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
                 textTime={this.i18nTime}
                 time={this.time}
+                showHour={this.showHour}
+                showMinutes={this.showMinutes}
+                showSeconds={this.showSeconds}
               ></ix-time-picker>
               <div class="btn-select-date-container">
                 <ix-button

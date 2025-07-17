@@ -29,28 +29,14 @@ import {
   iconDoubleChevronRight,
   iconDoubleChevronUp,
 } from '@siemens/ix-icons/icons';
-
-export type Composition = 'top' | 'left' | 'bottom' | 'right';
-export type ExpandedChangedEvent = {
-  slot: string;
-  expanded: boolean;
-};
-export type SlotChangedEvent = {
-  slot: string;
-  newSlot: string;
-};
-export type HideOnCollapseChangedEvent = {
-  slot: string;
-  hideOnCollapse: boolean;
-};
-export type VariantChangedEvent = {
-  slot: string;
-  variant: 'floating' | 'inline';
-};
-export type BorderlessChangedEvent = {
-  slot: string;
-  borderless: boolean;
-};
+import type {
+  BorderlessChangedEvent,
+  Composition,
+  ExpandedChangedEvent,
+  HideOnCollapseChangedEvent,
+  SlotChangedEvent,
+  VariantChangedEvent,
+} from './pane.types';
 
 @Component({
   tag: 'ix-pane',

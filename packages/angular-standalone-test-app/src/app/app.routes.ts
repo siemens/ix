@@ -1326,6 +1326,49 @@ export const routes: Routes = [
             (m) => m.default
           ),
       },
+
+      {
+        path: 'progress-indicator',
+        loadComponent: () =>
+          import('../preview-examples/progress-indicator').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'progress-indicator-linear-sizes',
+        loadComponent: () =>
+          import('../preview-examples/progress-indicator-linear-sizes').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'progress-indicator-linear-status',
+        loadComponent: () =>
+          import('../preview-examples/progress-indicator-linear-status').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'progress-indicator-circular-sizes',
+        loadComponent: () =>
+          import('../preview-examples/progress-indicator-circular-sizes').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'progress-indicator-circular-status',
+        loadComponent: () =>
+          import('../preview-examples/progress-indicator-circular-status').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'progress-indicator-circular',
+        loadComponent: () =>
+          import('../preview-examples/progress-indicator-circular').then(
+            (m) => m.default
+          ),
+      },
     ],
   },
 ];

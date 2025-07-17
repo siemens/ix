@@ -28,7 +28,9 @@
   background-color: var(--theme-toast--background);
   border: var(--theme-toast--border-thickness) solid
     var(--theme-toast--border-color);
-  border-radius: var(--theme-toast--border-radius);
+  border-radius: var(--theme-toast--border-radius,
+    var(--theme-toast--border-radus)
+  );
   box-shadow: var(--theme-toast--box-shadow);
 
   --animate-duration: #{$medium-time};
@@ -44,7 +46,7 @@
     .toast-icon {
       display: flex;
       align-items: flex-start;
-      margin-right: $default-space;
+      margin-right: 0.5rem;
     }
 
     .toast-content {
@@ -63,6 +65,10 @@
 
         @include text-default;
       }
+
+      .toast-action {
+        margin-top: 0.5rem;
+      }
     }
 
     .toast-icon + .toast-content {
@@ -76,12 +82,16 @@
     pointer-events: all;
     margin-left: auto;
     margin-right: 0px;
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .toast-progress-bar {
     position: absolute;
     bottom: 0;
-    height: $tiny-space;
+    height: 0.125rem;
     width: 100%;
     background-color: var(--theme-toast-timer-value--background);
     transform-origin: left;

@@ -8,8 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-
-export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';
+import type { DateTimeCardCorners } from './date-time-card.types';
 
 /**
  * @internal
@@ -22,6 +21,19 @@ export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';
 export class DateTimeCard {
   /** @internal */
   @Prop() standaloneAppearance?: boolean;
+
+  /** Timepicker specific styling */
+  @Prop() timePickerAppearance: boolean = false;
+
+  /**
+   * Hide header
+   */
+  @Prop() hideHeader: boolean = false;
+
+  /**
+   * Display footer
+   */
+  @Prop() hasFooter: boolean = false;
 
   /**
    * set styles
@@ -40,6 +52,7 @@ export class DateTimeCard {
       rounded: this.corners === 'rounded',
       left: this.corners === 'left',
       right: this.corners === 'right',
+      straight: this.corners === 'straight',
     };
   }
 
@@ -47,15 +60,32 @@ export class DateTimeCard {
     return (
       <Host>
         <div class={this.cardClasses()}>
-          <div class="header">
-            <slot name="header"></slot>
-          </div>
+          {!this.hideHeader && (
+            <div class="header-container">
+              <div class="header">
+                <slot name="header"></slot>
+              </div>
+              <div class="separator"></div>
+            </div>
+          )}
 
-          <div class="separator"></div>
-
-          <div class="content">
+          <div
+            class={{
+              content: true,
+              'content--time-picker': this.timePickerAppearance,
+            }}
+          >
             <slot></slot>
           </div>
+
+          {this.hasFooter && (
+            <div class="footer-container">
+              <div class="separator"></div>
+              <div class="footer">
+                <slot name="footer"></slot>
+              </div>
+            </div>
+          )}
         </div>
       </Host>
     );

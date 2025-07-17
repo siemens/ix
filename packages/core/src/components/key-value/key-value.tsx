@@ -8,8 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-
-export type KeyValueLabelPosition = 'top' | 'left';
+import type { KeyValueLabelPosition } from './key-value.types';
 
 /**
  * @slot custom-value - Optional custom value at key value instead of text value
