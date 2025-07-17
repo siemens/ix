@@ -92,7 +92,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
-          projectName: '@siemens/ix'
+          projectName: 'core'
           projectPath: './packages/core/blob-report/'
           shardIndex: '${{ matrix.shardIndex }}'
           shardTotal: '${{ matrix.shardTotal }}'
