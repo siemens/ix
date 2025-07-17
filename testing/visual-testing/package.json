@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
+    "test.setup": "playwright install chromium --with-deps",
     "visual-regression": "playwright test --config=playwright.config.ts"
   },
   "devDependencies": {

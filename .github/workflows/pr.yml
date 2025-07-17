@@ -92,9 +92,9 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
-          projectName: '@siemens/ix'
-          projectPath: './packages/core/blob-report/'
-          artifactName: 'core'
+          projectName: 'visual-testing'
+          projectPath: './testing/visual-testing/blob-report/'
+          artifactName: 'visual-testing'
           shardIndex: '${{ matrix.shardIndex }}'
           shardTotal: '${{ matrix.shardTotal }}'
 
@@ -107,9 +107,9 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/merge-reports
         with:
-          projectName: '@siemens/ix'
-          artifactName: 'core'
-          blobPattern: '@siemens/ix-blob-report-*'
+          projectName: 'visual-testing'
+          artifactName: 'visual-testing'
+          blobPattern: 'visual-testing-blob-report-*'
 
   visual-testing-aggrid:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
