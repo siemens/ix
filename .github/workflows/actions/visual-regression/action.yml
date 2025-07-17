@@ -1,0 +1,54 @@
+name: 'Visual regression tests'
+description: 'Visual regression tests'
+inputs:
+  projectName:
+    description: 'Name of the project to run tests for'
+    required: true
+  artifactName:
+    description: 'Name of the artifact to upload'
+    required: true
+  projectPath:
+    description: 'Path to the project blob reports'
+    required: false
+    default: ''
+  shardIndex:
+    description: 'Shard index for parallel test execution'
+    required: false
+    default: ''
+  shardTotal:
+    description: 'Total number of shards for parallel test execution'
+    required: false
+    default: ''
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Playwright Browsers
+      shell: bash
+      run: pnpm run test.setup
+
+    - name: Build
+      shell: bash
+      run: pnpm run build --cache-dir=.turbo --filter !\documentation
+
+    - name: Test
+      shell: bash
+      run: |
+        if [ -n "${{ inputs.shardIndex }}" ] && [ -n "${{ inputs.shardTotal }}" ]; then
+          pnpm run visual-regression --cache-dir=.turbo --filter ${{ inputs.projectName }} -- --shard=${{ inputs.shardIndex }}/${{ inputs.shardTotal }}
+        else
+          pnpm run visual-regression --cache-dir=.turbo --filter ${{ inputs.projectName }}
+        fi
+
+    - uses: actions/upload-artifact@v4
+      if: always() && inputs.shardIndex != '' && inputs.projectPath != ''
+      with:
+        name: ${{ inputs.artifactName }}-blob-report-${{ inputs.shardIndex }}
+        path: ${{ inputs.projectPath }}
+        retention-days: 1
+
+    - uses: actions/upload-artifact@v4
+      if: failure() && inputs.shardIndex == '' && inputs.projectPath != ''
+      with:
+        name: ${{ inputs.artifactName }}-html-report--attempt-${{ github.run_attempt }}
+        path: ${{ inputs.projectPath }}
+        retention-days: 1

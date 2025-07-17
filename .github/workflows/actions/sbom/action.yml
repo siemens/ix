@@ -1,0 +1,14 @@
+name: 'Create SBOM'
+description: 'Create SBOM'
+runs:
+  using: 'composite'
+  steps:
+    - name: Create SBOM
+      run: pnpm build --filter oss-clearing
+      shell: bash
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: sbom-${{ github.run_attempt }}
+        path: |
+          ./tooling/oss-clearing/sboms/
