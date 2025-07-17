@@ -9,6 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+import { text } from 'stream/consumers';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(
@@ -172,5 +173,31 @@ regressionTest(
     await page.mouse.move(10, 10);
     await page.waitForTimeout(100);
     await expect(tooltip).not.toBeVisible();
+  }
+);
+
+regressionTest(
+  'should not create when valid-text is undefined',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <ix-field-wrapper helper-text="my helper text is visible" is-valid>
+        </ix-field-wrapper>
+      `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    await fieldWrapperElement.evaluate(
+      (elm: HTMLIxHelperTextElement) => ((elm as any)[`valid-text`] = undefined)
+    );
+
+    const helperTextElement = fieldWrapperElement
+      .locator('.field-bottom')
+      .locator('ix-typography.bottom-text')
+      .filter({ hasText: 'my helper text is visible' });
+
+    await expect(helperTextElement).toHaveCount(1);
   }
 );
