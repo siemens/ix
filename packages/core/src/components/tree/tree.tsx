@@ -15,11 +15,13 @@ import {
   h,
   Host,
   Listen,
+  Method,
   Prop,
   Watch,
 } from '@stencil/core';
-import { VirtualList, VirtualListConfig } from './../utils/lazy-list';
+import { dropdownController } from '../dropdown/dropdown-controller';
 import { renderDefaultItem } from '../tree-item/default-tree-item';
+import { VirtualList, VirtualListConfig } from './../utils/lazy-list';
 import {
   TreeContext,
   TreeItem,
@@ -28,7 +30,7 @@ import {
   TreeModel,
   UpdateCallback,
 } from './tree-model';
-import { dropdownController } from '../dropdown/dropdown-controller';
+import { defaultRefreshTreeOptions, RefreshTreeOptions } from './tree.types';
 
 @Component({
   tag: 'ix-tree',
@@ -41,7 +43,7 @@ export class Tree {
   /**
    * Initial root element will not be rendered
    */
-  @Prop() root!: string;
+  @Prop() root: string = 'root';
 
   /**
    * Tree model
@@ -96,11 +98,15 @@ export class Tree {
   private observer!: MutationObserver;
   private hasFirstRender = false;
 
+  private readonly dirtyItems = new Set<string>();
+
   private updatePadding(element: HTMLElement, item: TreeItemVisual<unknown>) {
     element.style.paddingLeft = item.level + 'rem';
   }
 
-  private getVirtualizerOptions(): VirtualListConfig {
+  private getVirtualizerOptions(
+    refreshTreeOptions: RefreshTreeOptions
+  ): VirtualListConfig {
     const list = this.buildTreeList(this.model[this.root]);
 
     return {
@@ -117,20 +123,34 @@ export class Tree {
 
         const context = this.getContext(item.id);
 
-        if (renderedTreeItem) {
+        /**
+         * Return only the existing item if it is already rendered
+         */
+        if (renderedTreeItem && refreshTreeOptions.force === false) {
           renderedTreeItem.hasChildren = item.hasChildren;
           renderedTreeItem.context = { ...context };
+
+          let forceRerender = this.dirtyItems.has(item.id);
 
           if (this.updates.has(item.id)) {
             const doUpdate = this.updates.get(item.id);
 
             if (doUpdate) {
-              doUpdate(item, { ...this.context });
+              const updateRequestedRerender = doUpdate(item, {
+                ...this.context,
+              });
+
+              if (typeof updateRequestedRerender === 'boolean') {
+                forceRerender = updateRequestedRerender;
+              }
             }
           }
 
           this.updatePadding(renderedTreeItem, item);
-          return renderedTreeItem;
+
+          if (!forceRerender) {
+            return renderedTreeItem;
+          }
         }
 
         const update = (callback: UpdateCallback) => {
@@ -156,6 +176,8 @@ export class Tree {
         el.setAttribute('data-tree-node-id', item.id);
         el.style.paddingRight = '1rem';
         this.updatePadding(el, item);
+
+        this.dirtyItems.delete(item.id);
 
         return el;
       },
@@ -237,7 +259,7 @@ export class Tree {
     this.hasFirstRender = true;
 
     if (this.isListInitialized()) {
-      this.refreshList();
+      this.refreshTree();
     } else {
       this.initList();
     }
@@ -255,10 +277,19 @@ export class Tree {
   }
 
   @Watch('model')
-  modelChange() {
+  onModelChange() {
     if (this.hasFirstRender && !this.isListInitialized()) {
       this.initList();
     }
+  }
+
+  /**
+   * Mark items as dirty.
+   * This will force the list to re-render the items with the given ids.
+   */
+  @Method()
+  async markItemsAsDirty(ids: string[]) {
+    ids.forEach((id) => this.dirtyItems.add(id));
   }
 
   private isListInitialized() {
@@ -274,9 +305,17 @@ export class Tree {
     );
   }
 
-  private refreshList() {
+  /**
+   * Refresh the list.
+   * This will re-render the list with the current model and context.
+   */
+  @Method()
+  async refreshTree(options = defaultRefreshTreeOptions) {
     if (this.hyperlist) {
-      this.hyperlist.refresh(this.hostElement, this.getVirtualizerOptions());
+      this.hyperlist.refresh(
+        this.hostElement,
+        this.getVirtualizerOptions(options)
+      );
     }
   }
 
@@ -286,7 +325,7 @@ export class Tree {
     }
 
     this.hyperlist?.destroy();
-    const config = this.getVirtualizerOptions();
+    const config = this.getVirtualizerOptions(defaultRefreshTreeOptions);
     this.hyperlist = new VirtualList(this.hostElement, config);
   }
 

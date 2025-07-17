@@ -1,0 +1,16 @@
+name: 'Unit tests'
+description: 'Unit tests'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Playwright Browsers
+      shell: bash
+      run: pnpm run test.setup
+
+    - name: Build
+      shell: bash
+      run: pnpm run build --cache-dir=.turbo --filter !\documentation
+
+    - name: Test
+      shell: bash
+      run: pnpm run test --cache-dir=.turbo --filter !\documentation

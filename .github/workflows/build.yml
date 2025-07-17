@@ -40,20 +40,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - uses: ./.github/workflows/actions/visual-regression
         with:
-          name: core-blob-report-${{ matrix.shardIndex }}
-          path: |
-            ./packages/core/blob-report/
-          retention-days: 1
+          projectName: '@siemens/ix'
+          artifactName: 'core'
+          projectPath: './packages/core/blob-report/'
+          shardIndex: '${{ matrix.shardIndex }}'
+          shardTotal: '${{ matrix.shardTotal }}'
 
   merge-core-reports:
     if: failure()
@@ -62,23 +55,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Download blob reports from GitHub Actions Artifacts
-        uses: actions/download-artifact@v4
+      - uses: ./.github/workflows/actions/merge-reports
         with:
-          path: all-blob-reports
-          pattern: core-blob-report-*
-          merge-multiple: true
-
-      - name: Merge into HTML Report
-        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
-
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: core-html-report--attempt-${{ github.run_attempt }}
-          path: playwright-report
-          retention-days: 14
+          projectName: '@siemens/ix'
+          artifactName: 'core'
+          blobPattern: '@siemens/ix-blob-report-*'
 
   visual-testing-aggrid:
     needs: [build]
@@ -87,20 +68,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
-
-      - uses: actions/upload-artifact@v4
-        if: failure()
+      - uses: ./.github/workflows/actions/visual-regression
         with:
-          name: aggrid-html-report--attempt-${{ github.run_attempt }}
-          path: |
-            ./packages/aggrid/playwright-report/
-          retention-days: 1
+          projectName: '@siemens/ix-aggrid'
+          artifactName: 'aggrid'
+          projectPath: './packages/aggrid/playwright-report/'
 
   visual-testing-echarts:
     needs: [build]
@@ -109,20 +81,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
-
-      - uses: actions/upload-artifact@v4
-        if: failure()
+      - uses: ./.github/workflows/actions/visual-regression
         with:
-          name: echarts-html-report--attempt-${{ github.run_attempt }}
-          path: |
-            ./packages/echarts/playwright-report/
-          retention-days: 1
+          projectName: '@siemens/ix-echarts'
+          artifactName: 'echarts'
+          projectPath: './packages/echarts/playwright-report/'
 
   unit:
     needs: [build]
@@ -131,15 +94,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Build
-        run: pnpm run build --cache-dir=.turbo --filter !\documentation
-
-      - name: Test
-        run: pnpm run test --cache-dir=.turbo --filter !\documentation
+      - uses: ./.github/workflows/actions/unit
 
   unit-memlab:
     needs: [build]
