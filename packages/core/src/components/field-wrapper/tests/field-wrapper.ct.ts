@@ -9,7 +9,6 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
-import { text } from 'stream/consumers';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(
