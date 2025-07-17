@@ -96,6 +96,7 @@ export class ModalHeader {
             onClick={(event) => this.onCloseClick(event)}
             ghost
             icon={iconClose}
+            iconColor="color-soft-text"
           ></ix-icon-button>
         ) : null}
       </Host>
