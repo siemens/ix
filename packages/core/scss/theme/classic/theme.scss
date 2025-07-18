@@ -1,5 +1,5 @@
-@use "./dark/variables" as as_dark_variables;
-@use "./light/variables" as as_light_variables;
+@use './dark/variables' as as_dark_variables;
+@use './light/variables' as as_light_variables;
 
 @mixin theme-only-dark {
   :root,
@@ -26,18 +26,6 @@
   }
 }
 
-@mixin schemas {
-    [data-ix-color-schema='dark'],
-    &[data-ix-color-schema='dark'] {
-      @include as_dark_variables.setVars();
-    }
-
-    [data-ix-color-schema='light'],
-    &[data-ix-color-schema='light'] {
-      @include as_light_variables.setVars();
-    }
-}
-
 @mixin theme {
   :root,
   :host {
@@ -45,18 +33,23 @@
   }
 
   [data-ix-theme='classic'] {
-    @include as_dark_variables.setVars();
-    @include schemas;
-  }
+    &,
+    &[data-ix-color-schema='dark'] {
+      @include as_dark_variables.setVars();
+    }
 
+    &[data-ix-color-schema='light'] {
+      @include as_light_variables.setVars();
+    }
+  }
+  
+  :not([data-ix-theme]) body:not([class*='theme-']):not([data-ix-theme]),
   body[class*='theme-classic-dark'] {
     @include as_dark_variables.setVars();
-    @include schemas;
   }
 
   body[class*='theme-classic-light'] {
     @include as_light_variables.setVars();
-    @include schemas;
   }
 
   [data-ix-theme='classic'][data-ix-color-schema='system'] {

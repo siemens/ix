@@ -32,29 +32,40 @@ async function setupDistFolder() {
 }
 
 function collectThemeFiles() {
-  const themePath = (file: string) => path.join(THEME, file, '_index.scss');
+  const themePath = (themeName: string, schema: string) =>
+    path.join(THEME, themeName, schema, '_index.scss');
 
   const files = fse.readdirSync(THEME);
-  return files
-    .filter((themeName) => fse.existsSync(themePath(themeName)))
-    .map((themeName) => ({
-      filePath: fse.realpathSync(themePath(themeName)),
-      themeName: themeName,
-    }));
+  const themeFiles = ['dark', 'light']
+    .map((schema) => {
+      return files
+        .filter((themeName) => fse.existsSync(themePath(themeName, schema)))
+        .map(
+          (themeName) => (
+            {
+              filePath: fse.realpathSync(themePath(themeName, schema)),
+              themeName,
+              schema,
+            }
+          )
+        );
+    })
+    .flat();
+  return themeFiles;
 }
 
 function compileThemes() {
   console.log('Compile themes');
 
   const themes = collectThemeFiles();
-  return themes.map(({ filePath, themeName }) => {
+  return themes.map(({ filePath, themeName, schema }) => {
     console.log(`\t${themeName}`);
     const { css } = sass.compile(filePath, {
       sourceMap: false,
     });
 
     return {
-      path: path.join(DIST_THEME, `${themeName}.css`),
+      path: path.join(DIST_THEME, `${themeName}-${schema}.css`),
       css,
     };
   });
