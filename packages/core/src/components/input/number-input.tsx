@@ -35,6 +35,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputBlur,
+  onInputChange,
 } from './input.util';
 
 let numberInputIds = 0;
@@ -165,6 +166,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
    * Event emitted when the input field loses focus
    */
   @Event() ixBlur!: EventEmitter<void>;
+
+  /**
+   * Event emitted when the value of the input field changed
+   */
+  @Event() ixChange!: EventEmitter<void>;
 
   @State() isInvalid = false;
   @State() isValid = false;
@@ -319,6 +325,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
               }}
+              onChange={() => onInputChange(this, this.inputRef.current)}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

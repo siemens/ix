@@ -89,6 +89,8 @@ export interface IxInputFieldComponent<T = string>
   // Annotate as @Prop()
   readonly: boolean;
 
+  ixChange: EventEmitter<void>;
+
   // Annotate as @Method()
   getNativeInputElement(): Promise<HTMLInputElement | HTMLTextAreaElement>;
 

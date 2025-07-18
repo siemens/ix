@@ -198,6 +198,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /** @internal */
+  @Event() ixChange!: EventEmitter<void>;
+
   @State() show = false;
   @State() from?: string | null = null;
   @State() isInputInvalid = false;

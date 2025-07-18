@@ -29,6 +29,7 @@ export function TextareaElement(
     valueChange: (value: string) => void;
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
+    onChange: () => void;
     ariaAttributes?: A11yAttributes;
   }>
 ) {
@@ -53,6 +54,7 @@ export function TextareaElement(
         props.valueChange(target.value);
       }}
       onBlur={() => props.onBlur()}
+      onChange={() => props.onChange()}
       style={{
         resize: props.resizeBehavior,
         height: props.textareaHeight,
@@ -84,6 +86,7 @@ export function InputElement(
     valueChange: (value: string) => void;
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
+    onChange: () => void;
     ariaAttributes?: A11yAttributes;
   }>
 ) {
@@ -114,6 +117,7 @@ export function InputElement(
         props.valueChange(target.value);
       }}
       onBlur={() => props.onBlur()}
+      onChange={() => props.onChange()}
       {...props.ariaAttributes}
     ></input>
   );

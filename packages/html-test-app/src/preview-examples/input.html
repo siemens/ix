@@ -18,5 +18,10 @@ LICENSE file in the root directory of this source tree.
     <ix-input placeholder="Enter your Username"></ix-input>
 
     <script type="module" src="./init.js"></script>
+    <script>
+      const ixInput = document.getElementsByTagName('ix-input')[0];
+      ixInput.addEventListener('ixBlur', function() { console.log('blur')});
+      ixInput.addEventListener('ixChange', function() { console.log('change')});
+    </script>
   </body>
 </html>

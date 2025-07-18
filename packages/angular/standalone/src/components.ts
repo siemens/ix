@@ -1476,7 +1476,7 @@ export class IxInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur', 'ixChange']);
   }
 }
 
@@ -1494,6 +1494,10 @@ export declare interface IxInput extends Components.IxInput {
    * Event emitted when the text field loses focus.
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the value of the text field changed.
+   */
+  ixChange: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -2218,7 +2222,7 @@ export class IxNumberInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur', 'ixChange']);
   }
 }
 
@@ -2236,6 +2240,10 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
    * Event emitted when the input field loses focus
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the value of the input field changed
+   */
+  ixChange: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -2737,7 +2745,7 @@ export class IxTextarea {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur', 'ixChange']);
   }
 }
 
@@ -2755,6 +2763,10 @@ export declare interface IxTextarea extends Components.IxTextarea {
    * Event emitted when the textarea field loses focus.
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the value of the text field changed.
+   */
+  ixChange: EventEmitter<CustomEvent<void>>;
 }
 
 

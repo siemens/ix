@@ -26,7 +26,7 @@ import {
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
-import { mapValidationResult, onInputBlur } from './input.util';
+import { mapValidationResult, onInputBlur, onInputChange } from './input.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
 /**
@@ -158,6 +158,11 @@ export class Textarea implements IxInputFieldComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the value of the text field changed.
+   */
+  @Event() ixChange!: EventEmitter<void>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -274,6 +279,7 @@ export class Textarea implements IxInputFieldComponent<string> {
                 onInputBlur(this, this.textAreaRef.current);
                 this.touched = true;
               }}
+              onChange={() => onInputChange(this, this.textAreaRef.current)}
             ></TextareaElement>
           </div>
         </ix-field-wrapper>
