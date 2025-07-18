@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.35.3",
+    "version": "4.36.0",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -25065,14 +25065,20 @@
           "attr": "root",
           "reflectToAttr": false,
           "docs": "Initial root element will not be rendered",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'root'"
+            }
+          ],
+          "default": "'root'",
           "values": [
             {
               "type": "string"
             }
           ],
           "optional": false,
-          "required": true,
+          "required": false,
           "getter": false,
           "setter": false
         },
@@ -25108,7 +25114,76 @@
           "setter": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "markItemsAsDirty",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "(ids: string[]) => Promise<void>",
+            "parameters": [
+              {
+                "name": "ids",
+                "type": "string[]",
+                "docs": ""
+              }
+            ],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "markItemsAsDirty(ids: string[]) => Promise<void>",
+          "parameters": [
+            {
+              "name": "ids",
+              "type": "string[]",
+              "docs": ""
+            }
+          ],
+          "docs": "Mark items as dirty.\nThis will force the list to re-render the items with the given ids.",
+          "docsTags": []
+        },
+        {
+          "name": "refreshTree",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "(options?: RefreshTreeOptions) => Promise<void>",
+            "parameters": [
+              {
+                "name": "options",
+                "type": "{ force?: boolean | undefined; }",
+                "docs": ""
+              }
+            ],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "refreshTree(options?: RefreshTreeOptions) => Promise<void>",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "{ force?: boolean | undefined; }",
+              "docs": ""
+            }
+          ],
+          "docs": "Refresh the list.\nThis will re-render the list with the current model and context.",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "contextChange",
@@ -26809,10 +26884,10 @@
       "docstring": "",
       "path": "src/components.d.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.35.3/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "../../node_modules/.pnpm/@stencil+core@4.36.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.35.3/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "../../node_modules/.pnpm/@stencil+core@4.36.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",
