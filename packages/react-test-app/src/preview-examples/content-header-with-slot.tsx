@@ -7,15 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxButton, IxContentHeader } from '@siemens/ix-react';
+import { IxButton, IxContentHeader, IxPill } from '@siemens/ix-react';
+import { addIcons } from '@siemens/ix-icons';
+import { iconInfo } from '@siemens/ix-icons/icons';
+
+addIcons({ iconInfo });
 
 export default () => {
   return (
     <IxContentHeader
-      has-back-button
-      header-title="Content title"
-      header-subtitle="Subtitle"
+      hasBackButton
+      headerTitle="Content title"
+      headerSubtitle="Subtitle"
     >
+      <IxPill slot="header" icon="info">
+        Label
+      </IxPill>
       <IxButton ghost>Button1</IxButton>
       <IxButton ghost>Button2</IxButton>
       <IxButton ghost>Button3</IxButton>
