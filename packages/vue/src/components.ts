@@ -1144,6 +1144,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'i18nPlaceholderEditable',
   'i18nSelectListHeader',
   'i18nNoMatches',
+  'i18nAllSelected',
   'hideListHeader',
   'dropdownWidth',
   'dropdownMaxWidth',
