@@ -14,6 +14,7 @@ $border-radius: 100px;
   .container {
     display: inline-flex;
     width: inherit;
+    max-width: 100%;
     box-sizing: border-box;
     position: relative;
     align-items: center;
