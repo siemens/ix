@@ -37,6 +37,7 @@ import {
   getAriaAttributesForInput,
   mapValidationResult,
   onInputBlur,
+  onInputChange,
 } from './input.util';
 
 let inputIds = 0;
@@ -160,6 +161,11 @@ export class Input implements IxInputFieldComponent<string> {
    * Event emitted when the text field loses focus.
    */
   @Event() ixBlur!: EventEmitter<void>;
+
+  /**
+   * Event emitted when the value of the text field changed.
+   */
+  @Event() ixChange!: EventEmitter<void>;
 
   @State() isInvalid = false;
   @State() isValid = false;
@@ -315,6 +321,7 @@ export class Input implements IxInputFieldComponent<string> {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
               }}
+              onChange={() => onInputChange(this, this.inputRef.current)}
               ariaAttributes={inputAria}
             ></InputElement>
             <SlotEnd

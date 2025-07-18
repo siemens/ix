@@ -11916,6 +11916,20 @@
           "docsTags": []
         },
         {
+          "event": "ixChange",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the text field changed.",
+          "docsTags": []
+        },
+        {
           "event": "validityStateChange",
           "detail": "ValidityState",
           "bubbles": true,
@@ -16596,6 +16610,20 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event emitted when the input field loses focus",
+          "docsTags": []
+        },
+        {
+          "event": "ixChange",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the input field changed",
           "docsTags": []
         },
         {
@@ -21928,6 +21956,20 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event emitted when the textarea field loses focus.",
+          "docsTags": []
+        },
+        {
+          "event": "ixChange",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the text field changed.",
           "docsTags": []
         },
         {

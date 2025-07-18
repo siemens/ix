@@ -76,6 +76,17 @@ export async function checkInternalValidity<T>(
   comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
 }
 
+export function onInputChange<T>(
+  comp: IxInputFieldComponent<T>,
+  input?: HTMLInputElement | HTMLTextAreaElement | null
+) {
+  comp.ixChange.emit();
+
+  if (!input) {
+    throw new Error('Input element is not available');
+  }
+}
+
 export function onInputBlur<T>(
   comp: IxFormComponent<T>,
   input?: HTMLInputElement | HTMLTextAreaElement | null

@@ -185,6 +185,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /** @internal */
+  @Event() ixChange!: EventEmitter<void>;
+
   @State() dropdownShow = false;
   @State() selectedLabels: (string | undefined)[] = [];
   @State() isDropdownEmpty = false;

@@ -13,4 +13,11 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   templateUrl: './input.html'
 })
-export default class Input {}
+export default class Input {
+  onBlur() {
+    console.log('blur');
+  }
+  onChange() {
+    console.log('change');
+  }
+}

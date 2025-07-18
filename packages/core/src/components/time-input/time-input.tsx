@@ -206,6 +206,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /** @internal */
+  @Event() ixChange!: EventEmitter<void>;
+
   @State() show = false;
   @State() time: string | null = null;
   @State() isInputInvalid = false;
