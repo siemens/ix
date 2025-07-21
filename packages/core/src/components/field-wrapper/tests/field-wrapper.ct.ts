@@ -176,7 +176,7 @@ regressionTest(
 );
 
 regressionTest(
-  'should not create when valid-text is undefined',
+  'should show helper text if valid-text is undefined',
   async ({ mount, page }) => {
     await mount(
       `
