@@ -7,23 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxButton, showToast } from './../..';
+import { IxButton, showToast } from '../..';
 import { iconStar } from '@siemens/ix-icons/icons';
 
 const Index = () => {
   return (
-    <>
-      <IxButton
-        onClick={async () => {
-          await showToast({
-            icon: iconStar,
-            message: 'Foobar',
-          });
-        }}
-      >
-        Hallo
-      </IxButton>
-    </>
+    <IxButton
+      onClick={async () => {
+        await showToast({
+          icon: iconStar,
+          message: 'Foobar',
+        });
+      }}
+    >
+      Hallo
+    </IxButton>
   );
 };
 
