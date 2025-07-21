@@ -100,4 +100,56 @@ regressionTest.describe('time input tests', () => {
       await expect(page.locator('input')).toHaveValue('12:30:45');
     }
   );
+
+  regressionTest(
+    'closing dropdown and reopening after entering invalid time does not break component',
+    async ({ page }) => {
+      await page.locator('input').click();
+
+      await expect(
+        page.locator('ix-dropdown[data-testid="time-dropdown"]')
+      ).toHaveClass(/show/);
+
+      await expect(page.locator('ix-time-picker')).toBeVisible();
+
+      await page.locator('input').fill('invalid-time');
+
+      await expect(page.locator('input')).toHaveClass(/is-invalid/);
+      await expect(page.locator('ix-field-wrapper')).toContainText(
+        'Time is not valid'
+      );
+
+      await page
+        .locator('ix-icon-button[data-testid="open-time-picker"]')
+        .click();
+
+      await expect(
+        page.locator('ix-dropdown[data-testid="time-dropdown"]')
+      ).not.toHaveClass(/show/);
+
+      await expect(page.locator('input')).toHaveClass(/is-invalid/);
+      await expect(page.locator('ix-field-wrapper')).toContainText(
+        'Time is not valid'
+      );
+
+      await page
+        .locator('ix-icon-button[data-testid="open-time-picker"]')
+        .click();
+
+      await expect(
+        page.locator('ix-dropdown[data-testid="time-dropdown"]')
+      ).toHaveClass(/show/);
+
+      await page
+        .locator('ix-time-picker [data-element-container-id="second-30"]')
+        .click();
+
+      await page.locator('ix-time-picker ix-button').click();
+
+      await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
+      await expect(page.locator('ix-field-wrapper')).not.toContainText(
+        'Time is not valid'
+      );
+    }
+  );
 });
