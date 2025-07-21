@@ -55,9 +55,9 @@
       "default": "./components/index.js"
     },
     "./dist/siemens-ix/siemens-ix.css": "./dist/siemens-ix/siemens-ix.css",
-    "./dist/siemens-ix/siemens-ix-core.css": "./dist/siemens-ix/siemens-ix-core.css",
-    "./dist/siemens-ix/theme/classic-dark.css": "./dist/siemens-ix/theme/classic-dark.css",
-    "./dist/siemens-ix/theme/classic-light.css": "./dist/siemens-ix/theme/classic-light.css",
+    "./dist/siemens-ix/siemens-ix-core.css": "./dist-css/siemens-ix-core.css",
+    "./dist/siemens-ix/theme/classic-dark.css": "./dist-css/theme/classic-dark.css",
+    "./dist/siemens-ix/theme/classic-light.css": "./dist-css/theme/classic-light.css",
     "./component-doc.json": "./component-doc.json",
     "./scss/*": "./scss/*"
   },
