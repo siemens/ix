@@ -944,6 +944,16 @@ export namespace Components {
          */
         "locale"?: string;
         /**
+          * The latest date that can be selected by the date input/picker. If not set there will be no restriction.
+          * @default ''
+         */
+        "maxDate": string;
+        /**
+          * The earliest date that can be selected by the date input/picker. If not set there will be no restriction.
+          * @default ''
+         */
+        "minDate": string;
+        /**
           * Name of the input element
          */
         "name"?: string;
@@ -983,6 +993,11 @@ export namespace Components {
           * Warning text below the input field
          */
         "warningText"?: string;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @default 0
+         */
+        "weekStartIndex": number;
     }
     interface IxDatePicker {
         /**
@@ -3865,10 +3880,18 @@ export namespace Components {
          */
         "context": TreeContext;
         /**
+          * Mark items as dirty. This will force the list to re-render the items with the given ids.
+         */
+        "markItemsAsDirty": (ids: string[]) => Promise<void>;
+        /**
           * Tree model
           * @default {}
          */
         "model": TreeModel<any>;
+        /**
+          * Refresh the list. This will re-render the list with the current model and context.
+         */
+        "refreshTree": (options?: RefreshTreeOptions) => Promise<void>;
         /**
           * Render function of tree items
          */
@@ -3881,6 +3904,7 @@ export namespace Components {
   ) => HTMLElement;
         /**
           * Initial root element will not be rendered
+          * @default 'root'
          */
         "root": string;
         /**
@@ -6786,6 +6810,16 @@ declare namespace LocalJSX {
          */
         "locale"?: string;
         /**
+          * The latest date that can be selected by the date input/picker. If not set there will be no restriction.
+          * @default ''
+         */
+        "maxDate"?: string;
+        /**
+          * The earliest date that can be selected by the date input/picker. If not set there will be no restriction.
+          * @default ''
+         */
+        "minDate"?: string;
+        /**
           * Name of the input element
          */
         "name"?: string;
@@ -6835,6 +6869,11 @@ declare namespace LocalJSX {
           * Warning text below the input field
          */
         "warningText"?: string;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @default 0
+         */
+        "weekStartIndex"?: number;
     }
     interface IxDatePicker {
         /**
@@ -9901,8 +9940,9 @@ declare namespace LocalJSX {
   ) => HTMLElement;
         /**
           * Initial root element will not be rendered
+          * @default 'root'
          */
-        "root": string;
+        "root"?: string;
         /**
           * Enable to toggle items by click on the item
           * @since 3.0.0
