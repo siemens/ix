@@ -47,11 +47,15 @@ class ThemeSwitcher {
     );
   }
 
-  public setTheme(themeName: string, systemAppearance = false) {
+  public setTheme(
+    themeName: string,
+    systemAppearance = false,
+    target = document.body
+  ) {
     if (this.isThemeClass(themeName)) {
       this.replaceBodyThemeClass(themeName);
     } else {
-      document.body.setAttribute(dataIxTheme, themeName);
+      target.setAttribute(dataIxTheme, themeName);
     }
 
     if (systemAppearance) {
@@ -73,13 +77,12 @@ class ThemeSwitcher {
   }
 
   public toggleMode() {
-    const colorSchema = this.getDataColorSchema();
-    if (colorSchema) {
-      if (colorSchema === 'dark') {
-        document.body.setAttribute(dataIxColorSchema, 'light');
-      } else {
-        document.body.setAttribute(dataIxColorSchema, 'dark');
-      }
+    const elements = [document.body, document.documentElement];
+    const elementWithSchema = elements.find(el => this.getDataColorSchema(el));
+
+    if (elementWithSchema) {
+      const currentSchema = this.getDataColorSchema(elementWithSchema)!;
+      elementWithSchema.setAttribute(dataIxColorSchema, currentSchema === 'dark' ? 'light' : 'dark');
       return;
     }
 
@@ -103,8 +106,8 @@ class ThemeSwitcher {
     });
   }
 
-  private getDataColorSchema() {
-    return document.body.getAttribute(dataIxColorSchema);
+  private getDataColorSchema(target: HTMLElement) {
+    return target.getAttribute(dataIxColorSchema);
   }
 
   public getCurrentTheme() {
@@ -112,16 +115,17 @@ class ThemeSwitcher {
       Array.from(document.body.classList).find((className) =>
         this.isThemeClass(className)
       ) ??
-      `theme-${document.body.getAttribute(dataIxTheme) || 'classic'}-${
+      `theme-${document.body.getAttribute(dataIxTheme) || document.documentElement.getAttribute(dataIxTheme) || 'classic'}-${
         document.body.getAttribute(dataIxColorSchema) ||
+        document.documentElement.getAttribute(dataIxColorSchema) ||
         getCurrentSystemAppearance()
       }`
     );
   }
 
-  public setVariant(variant: ThemeVariant = getCurrentSystemAppearance()) {
-    if (this.getDataColorSchema()) {
-      document.body.setAttribute(dataIxColorSchema, variant);
+  public setVariant(variant: ThemeVariant = getCurrentSystemAppearance(), target = document.body) {
+    if (this.getDataColorSchema(target)) {
+      target.setAttribute(dataIxColorSchema, variant);
       return;
     }
 
@@ -140,7 +144,7 @@ class ThemeSwitcher {
       );
     }
 
-    document.body.setAttribute(dataIxColorSchema, variant);
+    target.setAttribute(dataIxColorSchema, variant);
   }
 
   private getOppositeMode(themeName: string) {
@@ -185,7 +189,7 @@ class ThemeSwitcher {
       this.handleMutations(mutations);
     });
 
-    this.mutationObserver.observe(document.body, {
+    this.mutationObserver.observe(document.documentElement, {
       attributeFilter: ['class'],
       attributeOldValue: true,
     });
@@ -207,7 +211,7 @@ class ThemeSwitcher {
       });
     });
 
-    this.mutationObserverData.observe(document.body, {
+    this.mutationObserverData.observe(document.documentElement, {
       attributes: true,
       attributeFilter: [dataIxTheme, dataIxColorSchema],
     });

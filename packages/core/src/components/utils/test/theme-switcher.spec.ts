@@ -28,6 +28,11 @@ describe('ThemeSwitcher', () => {
       themeSwitcher.setTheme(theme);
       expect(document.body.getAttribute('data-ix-theme')).toBe(theme);
     });
+
+    it('should set theme attribute on html element', () => {
+      themeSwitcher.setTheme(theme, false, document.documentElement);
+      expect(document.documentElement.getAttribute('data-ix-theme')).toBe(theme);
+    });
   });
 
   describe('schema', () => {
@@ -37,17 +42,27 @@ describe('ThemeSwitcher', () => {
       expect(document.body.getAttribute('data-ix-color-schema')).toBe(schema);
     });
 
+    it('should set schema on html element', () => {
+      const schema = 'dark';
+      themeSwitcher.setVariant(schema, document.documentElement);
+      expect(document.documentElement.getAttribute('data-ix-color-schema')).toBe(schema);
+    });
+
     it('should toggle schema via CSS class', () => {
       themeSwitcher.toggleMode();
-      expect(document.body.classList.contains('theme-classic-light')).toBe(
-        true
-      );
+      expect(document.body.classList.contains('theme-classic-light')).toBe(true);
     });
 
     it('should toggle schema via attribute', () => {
       themeSwitcher.setVariant('dark');
       themeSwitcher.toggleMode();
       expect(document.body.getAttribute('data-ix-color-schema')).toBe('light');
+    });
+
+    it('should toggle schema via attribute on html element', () => {
+      document.documentElement.setAttribute('data-ix-color-schema', 'dark');
+      themeSwitcher.toggleMode();
+      expect(document.documentElement.getAttribute('data-ix-color-schema')).toBe('light');
     });
   });
 
