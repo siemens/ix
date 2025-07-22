@@ -47,13 +47,13 @@ class ThemeSwitcher {
     );
   }
 
-  /**
-   * @deprecated The 'target' parameter is deprecated. In v4, setTheme will always target the document.
-   * TODO: IX-3024
-   */
   public setTheme(
     themeName: string,
     systemAppearance = false,
+    /**
+     * @deprecated In v4 setTheme will always target the document.
+     * TODO: IX-3024
+     */
     target = document.body
   ) {
     if (this.isThemeClass(themeName)) {
@@ -82,11 +82,16 @@ class ThemeSwitcher {
 
   public toggleMode() {
     const elements = [document.body, document.documentElement];
-    const elementWithSchema = elements.find(el => this.getDataColorSchema(el));
+    const elementWithSchema = elements.find((el) =>
+      this.getDataColorSchema(el)
+    );
 
     if (elementWithSchema) {
       const currentSchema = this.getDataColorSchema(elementWithSchema)!;
-      elementWithSchema.setAttribute(dataIxColorSchema, currentSchema === 'dark' ? 'light' : 'dark');
+      elementWithSchema.setAttribute(
+        dataIxColorSchema,
+        currentSchema === 'dark' ? 'light' : 'dark'
+      );
       return;
     }
 
@@ -119,7 +124,11 @@ class ThemeSwitcher {
       Array.from(document.body.classList).find((className) =>
         this.isThemeClass(className)
       ) ??
-      `theme-${document.body.getAttribute(dataIxTheme) || document.documentElement.getAttribute(dataIxTheme) || 'classic'}-${
+      `theme-${
+        document.body.getAttribute(dataIxTheme) ||
+        document.documentElement.getAttribute(dataIxTheme) ||
+        'classic'
+      }-${
         document.body.getAttribute(dataIxColorSchema) ||
         document.documentElement.getAttribute(dataIxColorSchema) ||
         getCurrentSystemAppearance()
@@ -127,7 +136,10 @@ class ThemeSwitcher {
     );
   }
 
-  public setVariant(variant: ThemeVariant = getCurrentSystemAppearance(), target = document.body) {
+  public setVariant(
+    variant: ThemeVariant = getCurrentSystemAppearance(),
+    target = document.body
+  ) {
     if (this.getDataColorSchema(target)) {
       target.setAttribute(dataIxColorSchema, variant);
       return;
