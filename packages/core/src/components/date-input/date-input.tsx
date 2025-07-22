@@ -70,6 +70,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
+  @Watch('value') watchValuePropHandler(newValue: string) {
+    this.onInput(newValue);
+  }
+
   /**
    * The earliest date that can be selected by the date input/picker.
    * If not set there will be no restriction.

@@ -179,3 +179,28 @@ regressionTest(
     expect(formData).toBe('2024/12/12');
   }
 );
+
+regressionTest(
+  'updating component value attribute updates validity',
+  async ({ page, mount }) => {
+    await mount(
+      `<ix-date-input id="date-input" value="2024/05/05"></ix-date-input>`
+    );
+
+    await page.evaluate(() => {
+      document
+        .getElementById('date-input')
+        ?.setAttribute('value', 'invalid-date');
+    });
+
+    await expect(page.locator('input')).toHaveClass(/is-invalid/);
+
+    await page.evaluate(() => {
+      document
+        .getElementById('date-input')
+        ?.setAttribute('value', '2024/05/05');
+    });
+
+    await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
+  }
+);

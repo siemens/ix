@@ -13,6 +13,7 @@ regressionTest.describe('time input tests', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
       `<ix-time-input
+        id="time-input"
         value="09:10:11"
         format="HH:mm:ss"
       >
@@ -150,6 +151,27 @@ regressionTest.describe('time input tests', () => {
       await expect(page.locator('ix-field-wrapper')).not.toContainText(
         'Time is not valid'
       );
+    }
+  );
+
+  regressionTest(
+    'updating component value attribute updates validity',
+    async ({ page }) => {
+      await page.evaluate(() => {
+        document
+          .getElementById('time-input')
+          ?.setAttribute('value', 'invalid-time');
+      });
+
+      await expect(page.locator('input')).toHaveClass(/is-invalid/);
+
+      await page.evaluate(() => {
+        document
+          .getElementById('time-input')
+          ?.setAttribute('value', '09:10:11');
+      });
+
+      await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
     }
   );
 });
