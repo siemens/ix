@@ -117,6 +117,11 @@ test('Clicking label (including padding) checks the radio', async ({
   await mount(`<ix-radio label="Test"></ix-radio>`);
   const radio = page.locator('ix-radio');
   const label = radio.locator('label');
+  const box = await label.boundingBox();
+  if (!box) {
+    throw new Error('Label bounding box not found');
+  }
+  await page.mouse.click(box.x + 2, box.y + 2);
 
   await label.waitFor({ state: 'visible' });
   await expect(radio).toHaveAttribute('aria-checked', 'true');
