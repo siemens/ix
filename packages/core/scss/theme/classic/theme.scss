@@ -32,14 +32,27 @@
     color-scheme: light dark;
   }
 
-  [data-ix-theme='classic'] {
-    &,
-    &[data-ix-color-schema='dark'] {
-      @include as_dark_variables.setVars();
-    }
+  html,
+  body {
+    &[data-ix-theme='classic'] {
+      &,
+      &[data-ix-color-schema='dark'] {
+        @include as_dark_variables.setVars();
+      }
 
-    &[data-ix-color-schema='light'] {
-      @include as_light_variables.setVars();
+      &[data-ix-color-schema='light'] {
+        @include as_light_variables.setVars();
+      }
+
+      &[data-ix-color-schema='system'] {
+        @media (prefers-color-scheme: dark) {
+          @include as_dark_variables.setVars();
+        }
+
+        @media (prefers-color-scheme: light) {
+          @include as_light_variables.setVars();
+        }
+      }
     }
   }
   
@@ -50,15 +63,5 @@
 
   body[class*='theme-classic-light'] {
     @include as_light_variables.setVars();
-  }
-
-  [data-ix-theme='classic'][data-ix-color-schema='system'] {
-    @media (prefers-color-scheme: dark) {
-      @include as_dark_variables.setVars();
-    }
-
-    @media (prefers-color-scheme: light) {
-      @include as_light_variables.setVars();
-    }
   }
 }
