@@ -40,6 +40,13 @@
   input[type='radio'] {
     display: none;
   }
+  .radio-button {
+    height: 1.5rem;
+    width: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   label {
     display: flex;
@@ -132,7 +139,7 @@
   }
 
   ix-typography {
-    margin: 0.125rem 0 0.125rem 0.375rem;
+    margin: 0.125rem 0 0.125rem 0.5rem;
   }
 }
 
