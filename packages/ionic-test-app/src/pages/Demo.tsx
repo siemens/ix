@@ -141,7 +141,7 @@ function IconExamples() {
               <IxCol
                 key={`${row}_${col}_${icon}`}
                 size="3"
-                class={styles.IconCol}
+                className={styles.IconCol}
               >
                 <IxIcon name={icon}></IxIcon>
               </IxCol>

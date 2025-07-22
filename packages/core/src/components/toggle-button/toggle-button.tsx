@@ -7,15 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Component,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  Watch,
-} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
 import { a11yBoolean } from '../utils/a11y';
@@ -28,7 +20,6 @@ import { a11yBoolean } from '../utils/a11y';
 export class ToggleButton {
   /**
    * Button variant.
-   * Important: Variant 'primary' can only be combined with either outline or ghost.
    */
   @Prop() variant: ButtonVariant = 'secondary';
 
@@ -66,37 +57,6 @@ export class ToggleButton {
    * Pressed change event
    */
   @Event() pressedChange!: EventEmitter<boolean>;
-
-  private isIllegalToggleButtonConfig() {
-    return this.variant === 'primary' && (this.outline || this.ghost);
-  }
-
-  private logIllegalConfig() {
-    console.warn(
-      'iX toggle button with illegal configuration detected. Variant "primary" can only be combined with "outline" or "ghost".'
-    );
-  }
-
-  @Watch('variant')
-  onVariantChange() {
-    if (this.isIllegalToggleButtonConfig()) {
-      this.logIllegalConfig();
-    }
-  }
-
-  @Watch('ghost')
-  onGhostChange() {
-    this.onVariantChange();
-  }
-
-  @Watch('outline')
-  onOutlineChange() {
-    this.onVariantChange();
-  }
-
-  componentDidLoad() {
-    this.onVariantChange();
-  }
 
   private dispatchPressedChange() {
     this.pressedChange.emit(!this.pressed);

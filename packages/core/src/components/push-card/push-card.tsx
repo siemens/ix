@@ -8,9 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { CardVariant } from '../card/card';
-
-export type PushCardVariant = CardVariant;
+import type { PushCardVariant } from './push-card.types';
 
 @Component({
   tag: 'ix-push-card',

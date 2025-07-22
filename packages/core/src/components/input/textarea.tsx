@@ -27,12 +27,7 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import { mapValidationResult, onInputBlur } from './input.util';
-
-export type TextareaResizeBehavior =
-  | 'both'
-  | 'horizontal'
-  | 'vertical'
-  | 'none';
+import type { TextareaResizeBehavior } from './textarea.types';
 
 /**
  * @form-ready
@@ -252,7 +247,7 @@ export class Textarea implements IxInputFieldComponent<string> {
               slot="bottom-right"
               textColor="soft"
             >
-              {(this.value || '').length}/{this.maxLength}
+              {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>
           )}
           <div class="input-wrapper">

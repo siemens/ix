@@ -27,41 +27,35 @@ export function hasAnyText({
   validText?: string;
   helperText?: string;
 }) {
-  return invalidText || warningText || infoText || validText || helperText;
+  return [invalidText, warningText, infoText, validText, helperText].some(
+    (text) => text?.trim()
+  );
 }
 
-export function HelperText({
-  isInvalid,
-  invalidText,
-  isWarning,
-  warningText,
-  isInfo,
-  infoText,
-  isValid,
-  validText,
-  helperText,
-}: {
-  isInvalid: boolean;
-  invalidText?: string;
-  isWarning: boolean;
-  warningText?: string;
-  isInfo: boolean;
-  infoText?: string;
-  isValid: boolean;
-  validText?: string;
-  helperText?: string;
-}) {
-  if (isInvalid && invalidText !== undefined) {
+export function HelperText(
+  props: Readonly<{
+    isInvalid: boolean;
+    invalidText?: string;
+    isWarning: boolean;
+    warningText?: string;
+    isInfo: boolean;
+    infoText?: string;
+    isValid: boolean;
+    validText?: string;
+    helperText?: string;
+  }>
+) {
+  if (!hasAnyText(props)) return null;
+  if (props.isInvalid && props.invalidText?.trim() !== '') {
     return (
       <ix-typography textColor="alarm" class="bottom-text">
         <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
-
-        {invalidText}
+        {props.invalidText}
       </ix-typography>
     );
   }
 
-  if (isWarning && warningText !== undefined) {
+  if (props.isWarning && props.warningText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon
@@ -69,33 +63,33 @@ export function HelperText({
           name={iconWarning}
           size="16"
         ></ix-icon>
-        {warningText}
+        {props.warningText}
       </ix-typography>
     );
   }
 
-  if (isInfo && infoText !== undefined) {
+  if (props.isInfo && props.infoText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon info" name={iconInfo} size="16"></ix-icon>
-        {infoText}
+        {props.infoText}
       </ix-typography>
     );
   }
 
-  if (isValid && validText !== undefined) {
+  if (props.isValid && props.validText?.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon valid" name={iconSuccess} size="16"></ix-icon>
-        {validText}
+        {props.validText}
       </ix-typography>
     );
   }
 
   return (
-    helperText && (
+    props.helperText?.trim() !== '' && (
       <ix-typography class="bottom-text" textColor="soft">
-        {helperText}
+        {props.helperText}
       </ix-typography>
     )
   );

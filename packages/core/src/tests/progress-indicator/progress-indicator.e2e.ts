@@ -76,5 +76,25 @@ regressionTest.describe('progress-indicator', () => {
 
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
+
+    regressionTest('text alignment', async ({ page }) => {
+      await page.goto('progress-indicator/text-alignment');
+
+      const progressIndicators = await page
+        .locator('ix-progress-indicator')
+        .all();
+
+      await Promise.all(
+        progressIndicators.map(
+          async (locator) =>
+            await locator.evaluate((el: HTMLIxProgressIndicatorElement) => {
+              el.label = 'Progress Indicator';
+              el.helperText = 'A helper text for the progress indicator';
+            })
+        )
+      );
+
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
   });
 });

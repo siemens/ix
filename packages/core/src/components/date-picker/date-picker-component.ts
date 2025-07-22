@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { DateTimeCardCorners } from '../date-time-card/date-time-card';
+import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 
 export interface IxDatePickerComponent {
   /**

@@ -91,6 +91,7 @@ import { defineCustomElement as ixTabItem } from '@siemens/ix/components/ix-tab-
 import { defineCustomElement as ixTabs } from '@siemens/ix/components/ix-tabs.js';
 import { defineCustomElement as ixTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as ixTile } from '@siemens/ix/components/ix-tile.js';
+import { defineCustomElement as ixTimeInput } from '@siemens/ix/components/ix-time-input.js';
 import { defineCustomElement as ixTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as ixToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as ixToastContainer } from '@siemens/ix/components/ix-toast-container.js';
@@ -195,6 +196,7 @@ ixTabItem();
 ixTabs();
 ixTextarea();
 ixTile();
+ixTimeInput();
 ixTimePicker();
 ixToast();
 ixToastContainer();

@@ -93,6 +93,7 @@ export const DIRECTIVES = [
   d.IxTabs,
   d.IxTextarea,
   d.IxTile,
+  d.IxTimeInput,
   d.IxTimePicker,
   d.IxToast,
   d.IxToastContainer,

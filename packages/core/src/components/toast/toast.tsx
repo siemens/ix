@@ -172,6 +172,9 @@ export class Toast {
             <div class="toast-message">
               <slot></slot>
             </div>
+            <div class="toast-action">
+              <slot name="action"></slot>
+            </div>
           </div>
           <div class="toast-close">
             <ix-icon-button
