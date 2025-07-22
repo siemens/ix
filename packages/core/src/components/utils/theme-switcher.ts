@@ -47,6 +47,10 @@ class ThemeSwitcher {
     );
   }
 
+  /**
+   * @deprecated The 'target' parameter is deprecated. In v4, setTheme will always target the document.
+   * TODO: IX-3024
+   */
   public setTheme(
     themeName: string,
     systemAppearance = false,

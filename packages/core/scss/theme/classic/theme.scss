@@ -32,6 +32,7 @@
     color-scheme: light dark;
   }
 
+  :root,
   html,
   body {
     &[data-ix-theme='classic'] {
