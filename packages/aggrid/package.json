@@ -16,6 +16,7 @@
     "dist/"
   ],
   "scripts": {
+    "test.setup": "playwright install chromium --with-deps",
     "build": "gulp",
     "visual-regression": "playwright test",
     "host-root": "http-server -a 127.0.0.1"
