@@ -59,21 +59,21 @@ export class ApplicationHeader {
   /**
    * ARIA label for the menu expand icon button
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelMenuExpandIconButton?: string;
 
   /**
    * ARIA label for the app switch icon button
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelAppSwitchIconButton?: string;
 
   /**
    * ARIA label for the more menu icon button
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelMoreMenuIconButton?: string;
 

@@ -61,14 +61,14 @@ export class Tabs {
   /**
    * ARIA label for the chevron left icon button
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelChevronLeftIconButton?: string;
 
   /**
    * ARIA label for the chevron right icon button
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelChevronRightIconButton?: string;
 

@@ -24,14 +24,14 @@ export class Kpi {
   /**
    * ARIA label for the alarm icon
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelAlarmIcon?: string;
 
   /**
    * ARIA label for the warning icon
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelWarningIcon?: string;
 

@@ -79,7 +79,7 @@ export class IconToggleButton {
    * ARIA label for the icon button
    * Will be set for the native HTML button element
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelIconButton?: string;
 

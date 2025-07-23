@@ -50,7 +50,7 @@ export class DropdownItem implements DropdownItemWrapper {
    * ARIA label for the item's button
    * Will be set as aria-label for the nested HTML button element
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelButton?: string;
 

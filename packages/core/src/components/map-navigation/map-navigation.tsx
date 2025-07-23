@@ -53,7 +53,7 @@ export class MapNavigation {
    * ARIA label for the context menu icon button
    * Will be set for the native HTML button element
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelContextIconButton?: string;
 

@@ -58,7 +58,7 @@ export class SplitButton {
   /**
    * ARIA label for the button (use if no label and icon button)
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelButton?: string;
 
@@ -75,7 +75,7 @@ export class SplitButton {
   /**
    * ARIA label for the split icon button
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelSplitIconButton?: string;
 
