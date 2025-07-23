@@ -103,12 +103,12 @@ export namespace Components {
     interface IxActionCard {
         /**
           * ARIA label for the card
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCard"?: string;
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -162,17 +162,17 @@ export namespace Components {
     interface IxApplicationHeader {
         /**
           * ARIA label for the app switch icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelAppSwitchIconButton"?: string;
         /**
           * ARIA label for the menu expand icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelMenuExpandIconButton"?: string;
         /**
           * ARIA label for the more menu icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
@@ -283,7 +283,7 @@ export namespace Components {
     interface IxBreadcrumbItem {
         /**
           * ARIA label for the button Will be set as aria-label for the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
@@ -318,7 +318,7 @@ export namespace Components {
         "alignment": 'center' | 'start';
         /**
           * ARIA label for the button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
@@ -380,7 +380,7 @@ export namespace Components {
     interface IxCardAccordion {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
         /**
@@ -394,7 +394,7 @@ export namespace Components {
     interface IxCardList {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
         /**
@@ -446,17 +446,17 @@ export namespace Components {
     interface IxCategoryFilter {
         /**
           * ARIA label for the filter input Will be set as aria-label on the nested HTML input element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelFilterInput"?: string;
         /**
           * ARIA label for the operator button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelOperatorButton"?: string;
         /**
           * ARIA label for the reset button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelResetButton"?: string;
         /**
@@ -882,7 +882,7 @@ export namespace Components {
     interface IxDateInput {
         /**
           * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCalendarButton"?: string;
         /**
@@ -1206,7 +1206,7 @@ export namespace Components {
     interface IxDrawer {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -1316,7 +1316,7 @@ export namespace Components {
     interface IxDropdownButton {
         /**
           * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
         /**
@@ -1366,7 +1366,7 @@ export namespace Components {
     interface IxDropdownItem {
         /**
           * ARIA label for the item's button Will be set as aria-label for the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
@@ -1416,7 +1416,7 @@ export namespace Components {
         "action"?: string;
         /**
           * ARIA label for the empty state icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
@@ -1484,17 +1484,17 @@ export namespace Components {
     interface IxExpandingSearch {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
         /**
           * ARIA label for the search icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelSearchIconButton"?: string;
         /**
           * ARIA label for the search input Will be set as aria-label on the nested HTML input element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelSearchInput"?: string;
         /**
@@ -1634,7 +1634,7 @@ export namespace Components {
     interface IxFlipTile {
         /**
           * ARIA label for the eye icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelEyeIconButton"?: string;
         /**
@@ -1822,7 +1822,7 @@ export namespace Components {
     interface IxIconToggleButton {
         /**
           * ARIA label for the icon button Will be set for the native HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIconButton"?: string;
         /**
@@ -1980,7 +1980,7 @@ export namespace Components {
     interface IxKeyValue {
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -2011,12 +2011,12 @@ export namespace Components {
     interface IxKpi {
         /**
           * ARIA label for the alarm icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelAlarmIcon"?: string;
         /**
           * ARIA label for the warning icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelWarningIcon"?: string;
         "label"?: string;
@@ -2081,7 +2081,7 @@ export namespace Components {
         "applicationName"?: string;
         /**
           * ARIA label for the context menu icon button Will be set for the native HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelContextIconButton"?: string;
         /**
@@ -2116,12 +2116,12 @@ export namespace Components {
     interface IxMapNavigationOverlay {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCloseIconButton"?: string;
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -2495,7 +2495,7 @@ export namespace Components {
     interface IxModalHeader {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -2626,12 +2626,12 @@ export namespace Components {
         "advanced": boolean;
         /**
           * ARIA label for the chevron left icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -2753,7 +2753,7 @@ export namespace Components {
         "alignLeft": boolean;
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -2853,7 +2853,7 @@ export namespace Components {
     interface IxPushCard {
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -2980,12 +2980,12 @@ export namespace Components {
         "allowClear": boolean;
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
         /**
@@ -3187,12 +3187,12 @@ export namespace Components {
     interface IxSplitButton {
         /**
           * ARIA label for the button (use if no label and icon button)
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
           * ARIA label for the split icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelSplitIconButton"?: string;
         /**
@@ -3282,12 +3282,12 @@ export namespace Components {
     interface IxTabs {
         /**
           * ARIA label for the chevron left icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -3691,7 +3691,7 @@ export namespace Components {
     interface IxToast {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -3801,7 +3801,7 @@ export namespace Components {
     interface IxToggleButton {
         /**
           * ARIA label for the button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
@@ -5914,12 +5914,12 @@ declare namespace LocalJSX {
     interface IxActionCard {
         /**
           * ARIA label for the card
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCard"?: string;
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -5973,17 +5973,17 @@ declare namespace LocalJSX {
     interface IxApplicationHeader {
         /**
           * ARIA label for the app switch icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelAppSwitchIconButton"?: string;
         /**
           * ARIA label for the menu expand icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelMenuExpandIconButton"?: string;
         /**
           * ARIA label for the more menu icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
@@ -6115,7 +6115,7 @@ declare namespace LocalJSX {
     interface IxBreadcrumbItem {
         /**
           * ARIA label for the button Will be set as aria-label for the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
@@ -6151,7 +6151,7 @@ declare namespace LocalJSX {
         "alignment"?: 'center' | 'start';
         /**
           * ARIA label for the button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
@@ -6213,7 +6213,7 @@ declare namespace LocalJSX {
     interface IxCardAccordion {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
         /**
@@ -6228,7 +6228,7 @@ declare namespace LocalJSX {
     interface IxCardList {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
         /**
@@ -6296,17 +6296,17 @@ declare namespace LocalJSX {
     interface IxCategoryFilter {
         /**
           * ARIA label for the filter input Will be set as aria-label on the nested HTML input element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelFilterInput"?: string;
         /**
           * ARIA label for the operator button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelOperatorButton"?: string;
         /**
           * ARIA label for the reset button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelResetButton"?: string;
         /**
@@ -6763,7 +6763,7 @@ declare namespace LocalJSX {
     interface IxDateInput {
         /**
           * ARIA label for the calendar icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCalendarButton"?: string;
         /**
@@ -7102,7 +7102,7 @@ declare namespace LocalJSX {
     interface IxDrawer {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCloseButton"?: string;
         /**
@@ -7214,7 +7214,7 @@ declare namespace LocalJSX {
     interface IxDropdownButton {
         /**
           * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
         /**
@@ -7264,7 +7264,7 @@ declare namespace LocalJSX {
     interface IxDropdownItem {
         /**
           * ARIA label for the item's button Will be set as aria-label for the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
@@ -7313,7 +7313,7 @@ declare namespace LocalJSX {
         "action"?: string;
         /**
           * ARIA label for the empty state icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
@@ -7389,17 +7389,17 @@ declare namespace LocalJSX {
     interface IxExpandingSearch {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
         /**
           * ARIA label for the search icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelSearchIconButton"?: string;
         /**
           * ARIA label for the search input Will be set as aria-label on the nested HTML input element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelSearchInput"?: string;
         /**
@@ -7547,7 +7547,7 @@ declare namespace LocalJSX {
     interface IxFlipTile {
         /**
           * ARIA label for the eye icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelEyeIconButton"?: string;
         /**
@@ -7756,7 +7756,7 @@ declare namespace LocalJSX {
     interface IxIconToggleButton {
         /**
           * ARIA label for the icon button Will be set for the native HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIconButton"?: string;
         /**
@@ -7912,7 +7912,7 @@ declare namespace LocalJSX {
     interface IxKeyValue {
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -7943,12 +7943,12 @@ declare namespace LocalJSX {
     interface IxKpi {
         /**
           * ARIA label for the alarm icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelAlarmIcon"?: string;
         /**
           * ARIA label for the warning icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelWarningIcon"?: string;
         "label"?: string;
@@ -8013,7 +8013,7 @@ declare namespace LocalJSX {
         "applicationName"?: string;
         /**
           * ARIA label for the context menu icon button Will be set for the native HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelContextIconButton"?: string;
         /**
@@ -8037,12 +8037,12 @@ declare namespace LocalJSX {
     interface IxMapNavigationOverlay {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCloseIconButton"?: string;
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -8469,7 +8469,7 @@ declare namespace LocalJSX {
     interface IxModalHeader {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -8602,12 +8602,12 @@ declare namespace LocalJSX {
         "advanced"?: boolean;
         /**
           * ARIA label for the chevron left icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -8751,7 +8751,7 @@ declare namespace LocalJSX {
         "alignLeft"?: boolean;
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -8851,7 +8851,7 @@ declare namespace LocalJSX {
     interface IxPushCard {
         /**
           * ARIA label for the icon
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -8990,12 +8990,12 @@ declare namespace LocalJSX {
         "allowClear"?: boolean;
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
         /**
@@ -9199,12 +9199,12 @@ declare namespace LocalJSX {
     interface IxSplitButton {
         /**
           * ARIA label for the button (use if no label and icon button)
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
           * ARIA label for the split icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelSplitIconButton"?: string;
         /**
@@ -9302,12 +9302,12 @@ declare namespace LocalJSX {
     interface IxTabs {
         /**
           * ARIA label for the chevron left icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
@@ -9712,7 +9712,7 @@ declare namespace LocalJSX {
     interface IxToast {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelCloseIconButton"?: string;
         /**
@@ -9827,7 +9827,7 @@ declare namespace LocalJSX {
     interface IxToggleButton {
         /**
           * ARIA label for the button Will be set as aria-label on the nested HTML button element
-          * @since 3.3.0
+          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
