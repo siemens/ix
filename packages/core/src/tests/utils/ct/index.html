@@ -27,6 +27,11 @@ SPDX-License-Identifier: MIT
       defineCustomElements();
     </script>
 
+    <script type="module">
+      import { toast } from '/www/build/index.esm.js';
+      window.toast = toast;
+    </script>
+
     <title>Stencil Component Starter</title>
     <style>
       html,

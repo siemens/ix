@@ -15,6 +15,7 @@
     "dist"
   ],
   "scripts": {
+    "test.setup": "playwright install chromium --with-deps",
     "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
     "compile": "rollup -c",
