@@ -22,10 +22,8 @@
     "html-test-app",
     "ionic-test-app",
     "nextjs-test-app",
-    "figma-plugin",
     "documentation",
     "storybook-docs",
-    "vitest-react",
     "oss-clearing"
   ]
 }

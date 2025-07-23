@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "paths": {
+      "@utils/test": ["src/tests/utils/test"]
+    },
+    "types": ["@siemens/ix-icons"],
+    "noEmit": true
+  },
+  "include": ["src/**/*.ct.ts", "src/**/*.e2e.ts", "src/tests"],
+  "exclude": ["node_modules", "playwright.config.ts", "playwright-ct.config.ts"]
+}

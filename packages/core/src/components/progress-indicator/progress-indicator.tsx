@@ -16,8 +16,7 @@ import {
   iconWarning,
 } from '@siemens/ix-icons/icons';
 import { CircularProgress } from './circular';
-
-export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+import type { ProgressIndicatorSize } from './progress-indicator.types';
 
 /**
  * @since 3.2.0

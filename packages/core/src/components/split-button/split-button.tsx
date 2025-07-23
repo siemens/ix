@@ -17,12 +17,10 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
-
-export type SplitButtonVariant = ButtonVariant;
+import type { SplitButtonVariant } from './split-button.types';
 
 @Component({
   tag: 'ix-split-button',

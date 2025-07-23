@@ -39,7 +39,7 @@ jobs:
       #     result-encoding: string
 
       - name: Jira Ticket created
-        if: "contains(github.event.label.name, 'Workflow: Issue created')"
+        if: "contains(github.event.label.name, 'Backlog')"
         uses: actions-cool/issues-helper@a610082f8ac0cf03e357eb8dd0d5e2ba075e017e
         with:
           actions: 'create-comment'
