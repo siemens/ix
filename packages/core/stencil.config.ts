@@ -103,7 +103,7 @@ export const config: Config = {
       stencilPackageName: corePackageName,
       outDir: '../react/src',
       excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
-      clientModule: '@siemens/ix/loader',
+      clientModule: '@siemens/ix',
       hydrateModule: '@siemens/ix/hydrate',
       serializeShadowRoot: { scoped: [], default: 'declarative-shadow-dom' },
     }),
