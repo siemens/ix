@@ -1014,8 +1014,8 @@ importers:
         specifier: ~4.17.0
         version: 4.17.2
       '@storybook/addon-a11y':
-        specifier: ^8.4.2
-        version: 8.4.2(storybook@8.4.2(prettier@3.4.2))
+        specifier: ^9.0.18
+        version: 9.0.18(storybook@8.4.2(prettier@3.4.2))
       '@storybook/addon-actions':
         specifier: ^8.4.2
         version: 8.4.2(storybook@8.4.2(prettier@3.4.2))
@@ -5284,10 +5284,10 @@ packages:
       vue-router:
         optional: true
 
-  '@storybook/addon-a11y@8.4.2':
-    resolution: {integrity: sha512-v6Tl+qr3Eslf06qmt2hq1ticYi7oRLIFosePQUOlW1+cgdIbV+r1IxsZ7creCDWX4kIMTbUFhbET9LTYGHem1A==}
+  '@storybook/addon-a11y@9.0.18':
+    resolution: {integrity: sha512-msbsTI9TmePQ5ElVclLi7ns5WaAntouJFaj9ElNugFWME21k68RiyXnioDjDfEoi/+y8tthQNNqjsHoX/Ev0Og==}
     peerDependencies:
-      storybook: ^8.4.2
+      storybook: ^9.0.18
 
   '@storybook/addon-actions@8.4.2':
     resolution: {integrity: sha512-+hA200XN5aeA4T3jq8IifQq6Y+9FyNQ0Q+blM1L0Tl7WLzBc7B1kHQnKvhSj5pvMSBWc/Q/kY7Ev5t9gdOu13g==}
@@ -6881,6 +6881,10 @@ packages:
 
   axe-core@4.10.2:
     resolution: {integrity: sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w==}
+    engines: {node: '>=4'}
+
+  axe-core@4.10.3:
+    resolution: {integrity: sha512-Xm7bpRXnDSX2YE2YFfBk2FnF0ep6tmG7xPh8iHee8MIcrgq762Nkce856dYtJYLkuIoYZvGfTs/PbZhideTcEg==}
     engines: {node: '>=4'}
 
   axe-html-reporter@2.2.11:
@@ -19700,10 +19704,10 @@ snapshots:
     optionalDependencies:
       '@stencil/core': 4.36.0
 
-  '@storybook/addon-a11y@8.4.2(storybook@8.4.2(prettier@3.4.2))':
+  '@storybook/addon-a11y@9.0.18(storybook@8.4.2(prettier@3.4.2))':
     dependencies:
-      '@storybook/addon-highlight': 8.4.2(storybook@8.4.2(prettier@3.4.2))
-      axe-core: 4.10.2
+      '@storybook/global': 5.0.0
+      axe-core: 4.10.3
       storybook: 8.4.2(prettier@3.4.2)
 
   '@storybook/addon-actions@8.4.2(storybook@8.4.2(prettier@3.4.2))':
@@ -21681,6 +21685,8 @@ snapshots:
       possible-typed-array-names: 1.0.0
 
   axe-core@4.10.2: {}
+
+  axe-core@4.10.3: {}
 
   axe-html-reporter@2.2.11(axe-core@4.10.2):
     dependencies:
