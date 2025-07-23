@@ -24,7 +24,7 @@ runs:
   steps:
     - name: Install Playwright Browsers
       shell: bash
-      run: pnpm run test.setup
+      run: pnpm run test.setup --cache-dir=.turbo --filter ${{ inputs.projectName }}
 
     - name: Build
       shell: bash

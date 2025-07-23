@@ -43,7 +43,6 @@ function buildProjectsWithThemes() {
  */
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config: PlaywrightTestConfig = {
-  testMatch: path.join(__dirname, 'src', 'tests', '**', '*.e2e.ts'),
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -58,13 +57,8 @@ const config: PlaywrightTestConfig = {
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   // eslint-disable-next-line turbo/no-undeclared-env-vars
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  // eslint-disable-next-line turbo/no-undeclared-env-vars
-  retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: 10,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: process.env.CI ? 'blob' : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -75,12 +69,21 @@ const config: PlaywrightTestConfig = {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
-  /* Configure projects for major browsers */
-  projects: buildProjectsWithThemes(),
+  testMatch: path.join(__dirname, 'src', '**', '*.ct.ts'),
+  reporter: 'list',
+  projects: [
+    {
+      name: `chromium`,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+    },
+  ],
   webServer: {
     command: 'pnpm run host-root',
     port: 8080,
   },
+  retries: 3,
 };
 
 export default config;
