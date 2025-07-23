@@ -27,7 +27,6 @@
     "@storybook/web-components": "^9.0.18",
     "@storybook/web-components-vite": "^9.0.18",
     "@types/fs-extra": "^9.0.13",
-    "axe-playwright": "^2.0.3",
     "fs-extra": "^11.2.0",
     "start-server-and-test": "^2.0.12",
     "storybook": "^9.0.18",
