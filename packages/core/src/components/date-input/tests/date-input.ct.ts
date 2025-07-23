@@ -183,24 +183,20 @@ regressionTest(
 regressionTest(
   'updating component value attribute updates validity',
   async ({ page, mount }) => {
-    await mount(
-      `<ix-date-input id="date-input" value="2024/05/05"></ix-date-input>`
-    );
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
 
-    await page.evaluate(() => {
-      document
-        .getElementById('date-input')
-        ?.setAttribute('value', 'invalid-date');
+    const dateInput = page.locator('ix-date-input');
+
+    await dateInput.evaluateHandle((el) => {
+      el.setAttribute('value', 'invalid-date');
     });
 
-    await expect(page.locator('input')).toHaveClass(/is-invalid/);
+    await expect(dateInput).toHaveClass(/is-invalid/);
 
-    await page.evaluate(() => {
-      document
-        .getElementById('date-input')
-        ?.setAttribute('value', '2024/05/05');
+    await dateInput.evaluateHandle((el) => {
+      el.setAttribute('value', '2024/05/05');
     });
 
-    await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
+    await expect(dateInput).not.toHaveClass(/is-invalid/);
   }
 );
