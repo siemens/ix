@@ -42,6 +42,19 @@ export class DropdownItem implements DropdownItemWrapper {
   @Prop() icon?: string;
 
   /**
+   * ARIA label for the icon
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
+   * ARIA label for the item's button
+   * Will be set as aria-label for the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelButton?: string;
+
+  /**
    * Display hover state
    */
   @Prop() hover = false;
@@ -104,6 +117,7 @@ export class DropdownItem implements DropdownItemWrapper {
             'no-checked-field': this.suppressChecked,
           }}
           onClick={() => this.emitItemClick()}
+          aria-label={this.ariaLabelButton}
         >
           {!this.suppressChecked ? (
             <div class="dropdown-item-checked">
@@ -117,7 +131,11 @@ export class DropdownItem implements DropdownItemWrapper {
             </div>
           ) : null}
           {this.icon ? (
-            <ix-icon class="dropdown-item-icon" name={this.icon}></ix-icon>
+            <ix-icon
+              class="dropdown-item-icon"
+              name={this.icon}
+              aria-label={this.ariaLabelIcon}
+            ></ix-icon>
           ) : null}
           <div class="dropdown-item-text">
             {this.label}
