@@ -23,14 +23,13 @@ import {
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
+import type { SliderMarker } from './slider.types';
 import {
   ValidationResults,
   HookValidationLifecycle,
   FieldWrapperInterface,
   IxFormValidationState,
 } from '../utils/input';
-
-export type SliderMarker = Array<number>;
 
 function between(min: number, value: number, max: number) {
   if (value < min) {
@@ -154,9 +153,8 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @State() isInfo = false;
   @State() isWarning = false;
 
-  private touched = false;
-
   private a11yAttributes?: A11yAttributes;
+  private touched = false;
   private readonly controlRef = makeRef<HTMLElement>();
   private readonly thumbRef = makeRef<HTMLDivElement>();
   private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
