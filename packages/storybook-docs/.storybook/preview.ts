@@ -32,9 +32,9 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    html: {
-      root: '#root-inner',
-      removeComments: true,
+    a11y: {
+      // TODO(IX-3023): Set test runner to throw errors for accessibility violations
+      // test: 'error',
     },
   },
   decorators: [

@@ -20,21 +20,21 @@ function copyAdditionalThemeIfPresent() {
   }
 }
 
-function copyIconAssets() {
-  const iconAssetsPath = path.join(
-    __dirname,
-    '..',
-    'node_modules',
-    '@siemens',
-    'ix-icons',
-    'svg'
-  );
-  const targetPath = path.join(__dirname, '..', 'public', 'svg');
+// function copyIconAssets() {
+//   const iconAssetsPath = path.join(
+//     __dirname,
+//     '..',
+//     'node_modules',
+//     '@siemens',
+//     'ix-icons',
+//     'svg'
+//   );
+//   const targetPath = path.join(__dirname, '..', 'public', 'svg');
 
-  fs.copy(iconAssetsPath, targetPath);
-}
+//   fs.copy(iconAssetsPath, targetPath);
+// }
 
-copyIconAssets();
+// copyIconAssets();
 
 const hasAdditionalTheme = copyAdditionalThemeIfPresent();
 
