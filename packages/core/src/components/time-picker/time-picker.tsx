@@ -572,8 +572,11 @@ export class TimePicker {
 
       if (!dropdown.classList.contains('show')) {
         // keep picker in sync with input
-        this._time = DateTime.fromFormat(this.time, this.format);
-        this.setInitialFocusedValueAndUnit();
+        const timeFormat = DateTime.fromFormat(this.time, this.format);
+        if (timeFormat.isValid) {
+          this._time = DateTime.fromFormat(this.time, this.format);
+          this.setInitialFocusedValueAndUnit();
+        }
 
         continue;
       }
