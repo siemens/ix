@@ -55,11 +55,13 @@ function DefaultAvatar(props: { initials?: string; a11yLabel?: string }) {
   );
 }
 
-function AvatarImage(props: {
-  image?: string;
-  initials?: string;
-  a11yLabel?: string;
-}) {
+function AvatarImage(
+  props: Readonly<{
+    image?: string;
+    initials?: string;
+    a11yLabel?: string;
+  }>
+) {
   return (
     <div class="avatar">
       {props.image ? (
@@ -75,13 +77,15 @@ function AvatarImage(props: {
   );
 }
 
-function UserInfo(props: {
-  image?: string;
-  initials?: string;
-  userName: string;
-  extra?: string;
-  a11yLabel?: string;
-}) {
+function UserInfo(
+  props: Readonly<{
+    image?: string;
+    initials?: string;
+    userName: string;
+    extra?: string;
+    a11yLabel?: string;
+  }>
+) {
   return (
     <Fragment>
       <div class="user-info" onClick={(event) => event.preventDefault()}>
