@@ -112,14 +112,14 @@ import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/compone
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
 @ProxyCmp({
   defineCustomElementFn: defineIxActionCard,
-  inputs: ['heading', 'icon', 'selected', 'subheading', 'variant']
+  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'selected', 'subheading', 'variant']
 })
 @Component({
   selector: 'ix-action-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['heading', 'icon', 'selected', 'subheading', 'variant'],
+  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'selected', 'subheading', 'variant'],
   standalone: true
 })
 export class IxActionCard {
@@ -160,14 +160,14 @@ export declare interface IxApplication extends Components.IxApplication {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxApplicationHeader,
-  inputs: ['name', 'showMenu']
+  inputs: ['ariaLabelAppSwitchIconButton', 'ariaLabelMenuExpandIconButton', 'ariaLabelMoreMenuIconButton', 'name', 'showMenu']
 })
 @Component({
   selector: 'ix-application-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['name', 'showMenu'],
+  inputs: ['ariaLabelAppSwitchIconButton', 'ariaLabelMenuExpandIconButton', 'ariaLabelMoreMenuIconButton', 'name', 'showMenu'],
   standalone: true
 })
 export class IxApplicationHeader {
@@ -194,14 +194,14 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
 
 @ProxyCmp({
   defineCustomElementFn: defineIxAvatar,
-  inputs: ['extra', 'image', 'initials', 'username']
+  inputs: ['a11yLabel', 'extra', 'image', 'initials', 'username']
 })
 @Component({
   selector: 'ix-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['extra', 'image', 'initials', 'username'],
+  inputs: ['a11yLabel', 'extra', 'image', 'initials', 'username'],
   standalone: true
 })
 export class IxAvatar {
@@ -306,14 +306,14 @@ export declare interface IxBreadcrumb extends Components.IxBreadcrumb {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxBreadcrumbItem,
-  inputs: ['icon', 'label']
+  inputs: ['ariaLabelButton', 'icon', 'label']
 })
 @Component({
   selector: 'ix-breadcrumb-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'label'],
+  inputs: ['ariaLabelButton', 'icon', 'label'],
   standalone: true
 })
 export class IxBreadcrumbItem {
@@ -330,14 +330,14 @@ export declare interface IxBreadcrumbItem extends Components.IxBreadcrumbItem {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxButton,
-  inputs: ['disabled', 'form', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant']
+  inputs: ['ariaLabelButton', 'disabled', 'form', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant']
 })
 @Component({
   selector: 'ix-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'form', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant'],
+  inputs: ['ariaLabelButton', 'disabled', 'form', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant'],
   standalone: true
 })
 export class IxButton {
@@ -378,14 +378,14 @@ export declare interface IxCard extends Components.IxCard {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCardAccordion,
-  inputs: ['collapse']
+  inputs: ['ariaLabelExpandButton', 'collapse']
 })
 @Component({
   selector: 'ix-card-accordion',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapse'],
+  inputs: ['ariaLabelExpandButton', 'collapse'],
   standalone: true
 })
 export class IxCardAccordion {
@@ -425,14 +425,14 @@ export declare interface IxCardContent extends Components.IxCardContent {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCardList,
-  inputs: ['collapse', 'hideShowAll', 'i18nMoreCards', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling']
+  inputs: ['ariaLabelExpandButton', 'collapse', 'hideShowAll', 'i18nMoreCards', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling']
 })
 @Component({
   selector: 'ix-card-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapse', 'hideShowAll', 'i18nMoreCards', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling'],
+  inputs: ['ariaLabelExpandButton', 'collapse', 'hideShowAll', 'i18nMoreCards', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling'],
   standalone: true
 })
 export class IxCardList {
@@ -486,14 +486,14 @@ export declare interface IxCardTitle extends Components.IxCardTitle {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCategoryFilter,
-  inputs: ['categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'staticOperator', 'suggestions']
+  inputs: ['ariaLabelFilterInput', 'ariaLabelOperatorButton', 'ariaLabelResetButton', 'categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'staticOperator', 'suggestions']
 })
 @Component({
   selector: 'ix-category-filter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'staticOperator', 'suggestions'],
+  inputs: ['ariaLabelFilterInput', 'ariaLabelOperatorButton', 'ariaLabelResetButton', 'categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'staticOperator', 'suggestions'],
   standalone: true
 })
 export class IxCategoryFilter {
@@ -593,14 +593,14 @@ export declare interface IxCheckboxGroup extends Components.IxCheckboxGroup {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChip,
-  inputs: ['active', 'background', 'centerContent', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant']
+  inputs: ['active', 'ariaLabelCloseButton', 'background', 'centerContent', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant']
 })
 @Component({
   selector: 'ix-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'background', 'centerContent', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant'],
+  inputs: ['active', 'ariaLabelCloseButton', 'background', 'centerContent', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant'],
   standalone: true
 })
 export class IxChip {
@@ -724,7 +724,7 @@ export declare interface IxCustomField extends Components.IxCustomField {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDateDropdown,
-  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'ghost', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'outline', 'range', 'showWeekNumbers', 'to', 'variant', 'weekStartIndex'],
+  inputs: ['ariaLabelDropdownButton', 'customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'ghost', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'outline', 'range', 'showWeekNumbers', 'to', 'variant', 'weekStartIndex'],
   methods: ['getDateRange']
 })
 @Component({
@@ -732,7 +732,7 @@ export declare interface IxCustomField extends Components.IxCustomField {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'ghost', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'outline', 'range', 'showWeekNumbers', 'to', 'variant', 'weekStartIndex'],
+  inputs: ['ariaLabelDropdownButton', 'customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'ghost', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'outline', 'range', 'showWeekNumbers', 'to', 'variant', 'weekStartIndex'],
   standalone: true
 })
 export class IxDateDropdown {
@@ -797,7 +797,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDatePicker,
-  inputs: ['corners', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'range', 'showWeekNumbers', 'to', 'weekStartIndex'],
+  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'corners', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'range', 'showWeekNumbers', 'to', 'weekStartIndex'],
   methods: ['getCurrentDate']
 })
 @Component({
@@ -805,7 +805,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'range', 'showWeekNumbers', 'to', 'weekStartIndex'],
+  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'corners', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'range', 'showWeekNumbers', 'to', 'weekStartIndex'],
   standalone: true
 })
 export class IxDatePicker {
@@ -845,14 +845,14 @@ The locale applied is always `en-US`.
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDatetimePicker,
-  inputs: ['dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'showWeekNumbers', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
+  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'showWeekNumbers', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'showWeekNumbers', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
+  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'showWeekNumbers', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
   standalone: true
 })
 export class IxDatetimePicker {
@@ -909,7 +909,7 @@ export declare interface IxDivider extends Components.IxDivider {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDrawer,
-  inputs: ['closeOnClickOutside', 'fullHeight', 'maxWidth', 'minWidth', 'show', 'width'],
+  inputs: ['ariaLabelCloseButton', 'closeOnClickOutside', 'fullHeight', 'maxWidth', 'minWidth', 'show', 'width'],
   methods: ['toggleDrawer']
 })
 @Component({
@@ -917,7 +917,7 @@ export declare interface IxDivider extends Components.IxDivider {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['closeOnClickOutside', 'fullHeight', 'maxWidth', 'minWidth', 'show', 'width'],
+  inputs: ['ariaLabelCloseButton', 'closeOnClickOutside', 'fullHeight', 'maxWidth', 'minWidth', 'show', 'width'],
   standalone: true
 })
 export class IxDrawer {
@@ -975,14 +975,14 @@ export declare interface IxDropdown extends Components.IxDropdown {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDropdownButton,
-  inputs: ['closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant']
+  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant']
 })
 @Component({
   selector: 'ix-dropdown-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant'],
+  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant'],
   standalone: true
 })
 export class IxDropdownButton {
@@ -1023,14 +1023,14 @@ export declare interface IxDropdownHeader extends Components.IxDropdownHeader {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDropdownItem,
-  inputs: ['checked', 'disabled', 'hover', 'icon', 'label']
+  inputs: ['ariaLabelButton', 'ariaLabelIcon', 'checked', 'disabled', 'hover', 'icon', 'label']
 })
 @Component({
   selector: 'ix-dropdown-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'hover', 'icon', 'label'],
+  inputs: ['ariaLabelButton', 'ariaLabelIcon', 'checked', 'disabled', 'hover', 'icon', 'label'],
   standalone: true
 })
 export class IxDropdownItem {
@@ -1070,14 +1070,14 @@ export declare interface IxDropdownQuickActions extends Components.IxDropdownQui
 
 @ProxyCmp({
   defineCustomElementFn: defineIxEmptyState,
-  inputs: ['action', 'header', 'icon', 'layout', 'subHeader']
+  inputs: ['action', 'ariaLabelEmptyStateIcon', 'header', 'icon', 'layout', 'subHeader']
 })
 @Component({
   selector: 'ix-empty-state',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['action', 'header', 'icon', 'layout', 'subHeader'],
+  inputs: ['action', 'ariaLabelEmptyStateIcon', 'header', 'icon', 'layout', 'subHeader'],
   standalone: true
 })
 export class IxEmptyState {
@@ -1154,14 +1154,14 @@ export declare interface IxEventListItem extends Components.IxEventListItem {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxExpandingSearch,
-  inputs: ['fullWidth', 'ghost', 'icon', 'outline', 'placeholder', 'value', 'variant']
+  inputs: ['ariaLabelClearIconButton', 'ariaLabelSearchIconButton', 'ariaLabelSearchInput', 'fullWidth', 'ghost', 'icon', 'outline', 'placeholder', 'value', 'variant']
 })
 @Component({
   selector: 'ix-expanding-search',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['fullWidth', 'ghost', 'icon', 'outline', 'placeholder', 'value', 'variant'],
+  inputs: ['ariaLabelClearIconButton', 'ariaLabelSearchIconButton', 'ariaLabelSearchInput', 'fullWidth', 'ghost', 'icon', 'outline', 'placeholder', 'value', 'variant'],
   standalone: true
 })
 export class IxExpandingSearch {
@@ -1208,14 +1208,14 @@ export declare interface IxFieldLabel extends Components.IxFieldLabel {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxFilterChip,
-  inputs: ['disabled', 'readonly']
+  inputs: ['ariaLabelCloseIconButton', 'disabled', 'readonly']
 })
 @Component({
   selector: 'ix-filter-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'readonly'],
+  inputs: ['ariaLabelCloseIconButton', 'disabled', 'readonly'],
   standalone: true
 })
 export class IxFilterChip {
@@ -1238,14 +1238,14 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxFlipTile,
-  inputs: ['height', 'index', 'state', 'width']
+  inputs: ['ariaLabelEyeIconButton', 'height', 'index', 'state', 'width']
 })
 @Component({
   selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['height', 'index', 'state', 'width'],
+  inputs: ['ariaLabelEyeIconButton', 'height', 'index', 'state', 'width'],
   standalone: true
 })
 export class IxFlipTile {
@@ -1352,14 +1352,14 @@ export declare interface IxGroupContextMenu extends Components.IxGroupContextMen
 
 @ProxyCmp({
   defineCustomElementFn: defineIxGroupItem,
-  inputs: ['focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
+  inputs: ['ariaLabelIcon', 'focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
 })
 @Component({
   selector: 'ix-group-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text'],
+  inputs: ['ariaLabelIcon', 'focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text'],
   standalone: true
 })
 export class IxGroupItem {
@@ -1430,14 +1430,14 @@ export declare interface IxIconButton extends Components.IxIconButton {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxIconToggleButton,
-  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'pressed', 'size', 'variant']
+  inputs: ['ariaLabelIconButton', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'pressed', 'size', 'variant']
 })
 @Component({
   selector: 'ix-icon-toggle-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'pressed', 'size', 'variant'],
+  inputs: ['ariaLabelIconButton', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'pressed', 'size', 'variant'],
   standalone: true
 })
 export class IxIconToggleButton {
@@ -1522,14 +1522,14 @@ export declare interface IxInputGroup extends Components.IxInputGroup {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxKeyValue,
-  inputs: ['icon', 'label', 'labelPosition', 'value']
+  inputs: ['ariaLabelIcon', 'icon', 'label', 'labelPosition', 'value']
 })
 @Component({
   selector: 'ix-key-value',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'label', 'labelPosition', 'value'],
+  inputs: ['ariaLabelIcon', 'icon', 'label', 'labelPosition', 'value'],
   standalone: true
 })
 export class IxKeyValue {
@@ -1570,14 +1570,14 @@ export declare interface IxKeyValueList extends Components.IxKeyValueList {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxKpi,
-  inputs: ['label', 'orientation', 'state', 'unit', 'value']
+  inputs: ['ariaLabelAlarmIcon', 'ariaLabelWarningIcon', 'label', 'orientation', 'state', 'unit', 'value']
 })
 @Component({
   selector: 'ix-kpi',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['label', 'orientation', 'state', 'unit', 'value'],
+  inputs: ['ariaLabelAlarmIcon', 'ariaLabelWarningIcon', 'label', 'orientation', 'state', 'unit', 'value'],
   standalone: true
 })
 export class IxKpi {
@@ -1666,7 +1666,7 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMapNavigation,
-  inputs: ['applicationName', 'hideContextMenu', 'navigationTitle'],
+  inputs: ['applicationName', 'ariaLabelContextIconButton', 'hideContextMenu', 'navigationTitle'],
   methods: ['toggleSidebar', 'openOverlay', 'closeOverlay']
 })
 @Component({
@@ -1674,7 +1674,7 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'hideContextMenu', 'navigationTitle'],
+  inputs: ['applicationName', 'ariaLabelContextIconButton', 'hideContextMenu', 'navigationTitle'],
   standalone: true
 })
 export class IxMapNavigation {
@@ -1701,14 +1701,14 @@ export declare interface IxMapNavigation extends Components.IxMapNavigation {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMapNavigationOverlay,
-  inputs: ['color', 'icon', 'iconColor', 'name']
+  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'color', 'icon', 'iconColor', 'name']
 })
 @Component({
   selector: 'ix-map-navigation-overlay',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'icon', 'iconColor', 'name'],
+  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'color', 'icon', 'iconColor', 'name'],
   standalone: true
 })
 export class IxMapNavigationOverlay {
@@ -2171,14 +2171,14 @@ export declare interface IxModalFooter extends Components.IxModalFooter {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxModalHeader,
-  inputs: ['hideClose', 'icon', 'iconColor']
+  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'hideClose', 'icon', 'iconColor']
 })
 @Component({
   selector: 'ix-modal-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hideClose', 'icon', 'iconColor'],
+  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'hideClose', 'icon', 'iconColor'],
   standalone: true
 })
 export class IxModalHeader {
@@ -2241,14 +2241,14 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxPagination,
-  inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount']
+  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount']
 })
 @Component({
   selector: 'ix-pagination',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount'],
+  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount'],
   standalone: true
 })
 export class IxPagination {
@@ -2275,14 +2275,14 @@ export declare interface IxPagination extends Components.IxPagination {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxPane,
-  inputs: ['borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant']
+  inputs: ['ariaLabelIcon', 'borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant']
 })
 @Component({
   selector: 'ix-pane',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant'],
+  inputs: ['ariaLabelIcon', 'borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant'],
   standalone: true
 })
 export class IxPane {
@@ -2341,14 +2341,14 @@ export declare interface IxPaneLayout extends Components.IxPaneLayout {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxPill,
-  inputs: ['alignLeft', 'background', 'icon', 'outline', 'pillColor', 'tooltipText', 'variant']
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'icon', 'outline', 'pillColor', 'tooltipText', 'variant']
 })
 @Component({
   selector: 'ix-pill',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alignLeft', 'background', 'icon', 'outline', 'pillColor', 'tooltipText', 'variant'],
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'icon', 'outline', 'pillColor', 'tooltipText', 'variant'],
   standalone: true
 })
 export class IxPill {
@@ -2389,14 +2389,14 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
 
 @ProxyCmp({
   defineCustomElementFn: defineIxPushCard,
-  inputs: ['collapse', 'heading', 'icon', 'notification', 'subheading', 'variant']
+  inputs: ['ariaLabelIcon', 'collapse', 'heading', 'icon', 'notification', 'subheading', 'variant']
 })
 @Component({
   selector: 'ix-push-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapse', 'heading', 'icon', 'notification', 'subheading', 'variant'],
+  inputs: ['ariaLabelIcon', 'collapse', 'heading', 'icon', 'notification', 'subheading', 'variant'],
   standalone: true
 })
 export class IxPushCard {
@@ -2504,7 +2504,7 @@ export declare interface IxRow extends Components.IxRow {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxSelect,
-  inputs: ['allowClear', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['allowClear', 'ariaLabelChevronDownIconButton', 'ariaLabelClearIconButton', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2512,7 +2512,7 @@ export declare interface IxRow extends Components.IxRow {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowClear', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['allowClear', 'ariaLabelChevronDownIconButton', 'ariaLabelClearIconButton', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
   standalone: true
 })
 export class IxSelect {
@@ -2629,14 +2629,14 @@ export declare interface IxSpinner extends Components.IxSpinner {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxSplitButton,
-  inputs: ['closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant']
+  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant']
 })
 @Component({
   selector: 'ix-split-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant'],
+  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant'],
   standalone: true
 })
 export class IxSplitButton {
@@ -2691,14 +2691,14 @@ export declare interface IxTabItem extends Components.IxTabItem {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTabs,
-  inputs: ['layout', 'placement', 'rounded', 'selected', 'small']
+  inputs: ['ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'layout', 'placement', 'rounded', 'selected', 'small']
 })
 @Component({
   selector: 'ix-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['layout', 'placement', 'rounded', 'selected', 'small'],
+  inputs: ['ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'layout', 'placement', 'rounded', 'selected', 'small'],
   standalone: true
 })
 export class IxTabs {
@@ -2856,14 +2856,14 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxToast,
-  inputs: ['autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type']
+  inputs: ['ariaLabelCloseIconButton', 'autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type']
 })
 @Component({
   selector: 'ix-toast',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type'],
+  inputs: ['ariaLabelCloseIconButton', 'autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type'],
   standalone: true
 })
 export class IxToast {
@@ -2945,14 +2945,14 @@ export declare interface IxToggle extends Components.IxToggle {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxToggleButton,
-  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant']
+  inputs: ['ariaLabelButton', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant']
 })
 @Component({
   selector: 'ix-toggle-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant'],
+  inputs: ['ariaLabelButton', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant'],
   standalone: true
 })
 export class IxToggleButton {
@@ -2999,14 +2999,14 @@ export declare interface IxTooltip extends Components.IxTooltip {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTreeItem,
-  inputs: ['context', 'hasChildren', 'text']
+  inputs: ['ariaLabelChevronIcon', 'context', 'hasChildren', 'text']
 })
 @Component({
   selector: 'ix-tree-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['context', 'hasChildren', 'text'],
+  inputs: ['ariaLabelChevronIcon', 'context', 'hasChildren', 'text'],
   standalone: true
 })
 export class IxTreeItem {
