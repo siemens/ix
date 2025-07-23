@@ -21,7 +21,9 @@ import { BaseButton } from '../button/base-button';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
 import { a11yHostAttributes } from '../utils/a11y';
 
-function DefaultAvatar(props: { initials?: string; a11yLabel?: string }) {
+function DefaultAvatar(
+  props: Readonly<{ initials?: string; a11yLabel?: string }>
+) {
   const { initials } = props;
 
   if (initials) {
