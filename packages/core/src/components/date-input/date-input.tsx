@@ -70,6 +70,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
+  @Watch('value') watchValuePropHandler(newValue: string) {
+    this.onInput(newValue);
+  }
+
   /**
    * The earliest date that can be selected by the date input/picker.
    * If not set there will be no restriction.
@@ -112,7 +116,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * ARIA label for the calendar icon button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @since 3.3.0
+   * @since 3.2.0
    */
   @Prop() ariaLabelCalendarButton?: string;
 
