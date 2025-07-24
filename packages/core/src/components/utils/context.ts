@@ -84,7 +84,7 @@ export type ContextConsumerSubscription = {
   unsubscribe: () => void;
 };
 
-export function useContextConsumer<
+export function createContextConsumer<
   T extends HTMLElement,
   C extends UnknownContext,
 >(
@@ -120,7 +120,7 @@ export type ContextProvider<C extends Context<{}> = Context<any>> = {
   emit: (context: ContextType<C>) => void;
 };
 
-export function useContextProvider<
+export function createContextProvider<
   X extends {},
   C extends Context<X>,
   T extends HTMLElement = HTMLElement,

@@ -26,7 +26,7 @@ import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
-import { ContextType, useContextConsumer } from '../utils/context';
+import { ContextType, createContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
@@ -297,7 +297,7 @@ export class Menu {
   }
 
   componentWillLoad() {
-    useContextConsumer(
+    createContextConsumer(
       this.hostElement,
       ApplicationLayoutContext,
       (ctx) => {

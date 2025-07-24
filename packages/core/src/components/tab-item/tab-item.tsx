@@ -57,6 +57,11 @@ export class TabItem {
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
   /**
+   * This value is used to identify the tab item in the tab context.
+   */
+  @Prop() value?: string;
+
+  /**
    * Emitted when the tab is clicked.
    */
   @Event() tabClick!: EventEmitter<TabClickDetail>;
@@ -100,6 +105,7 @@ export class TabItem {
 
           const clientEvent = this.tabClick.emit({
             nativeEvent: event,
+            value: this.value,
           });
 
           if (clientEvent.defaultPrevented) {

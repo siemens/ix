@@ -27,7 +27,7 @@ import {
   AppSwitchConfiguration,
 } from '../utils/application-layout/context';
 import { Breakpoint } from '../utils/breakpoints';
-import { ContextType, useContextConsumer } from '../utils/context';
+import { ContextType, createContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
@@ -110,7 +110,7 @@ export class ApplicationHeader {
   }
 
   componentWillLoad() {
-    useContextConsumer(
+    createContextConsumer(
       this.hostElement,
       ApplicationLayoutContext,
       (ctx) => {

@@ -8,4 +8,5 @@
  */
 export type TabClickDetail = {
   nativeEvent: MouseEvent;
+  value?: string;
 };

@@ -14,7 +14,7 @@ import {
 } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
-import { ContextProvider, useContextProvider } from '../utils/context';
+import { ContextProvider, createContextProvider } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import { IxTheme, themeSwitcher } from '../utils/theme-switcher';
@@ -93,7 +93,7 @@ export class Application {
   componentWillLoad() {
     applicationLayoutService.setBreakpoints(this.breakpoints);
 
-    this.contextProvider = useContextProvider(
+    this.contextProvider = createContextProvider(
       this.hostElement,
       ApplicationLayoutContext,
       {

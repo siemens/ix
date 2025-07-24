@@ -22202,6 +22202,56 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/tab-context",
+      "filePath": "src/components/tab-context/tab-context.tsx",
+      "fileName": "tab-context.tsx",
+      "readmePath": "src/components/tab-context/readme.md",
+      "usagesDir": "src/components/tab-context/usage",
+      "tag": "ix-tab-context",
+      "overview": "The `ix-tab-context` component provides a context for tab items and panels.\nIt allows the active tab to be shared across the tab items and panels.\nThis component should be used to wrap `ix-tab-item` and `ix-tab-panel` components.\n\nix-tab-context contains no UI state or any visual representation.\nIt is purely a context provider for the active tab value.\n\nIt could be that the ix-tab-context needs to be written for each framework individually,\nas it is a context provider and not a UI component.",
+      "usage": {},
+      "docs": "The `ix-tab-context` component provides a context for tab items and panels.\nIt allows the active tab to be shared across the tab items and panels.\nThis component should be used to wrap `ix-tab-item` and `ix-tab-panel` components.\n\nix-tab-context contains no UI state or any visual representation.\nIt is purely a context provider for the active tab value.\n\nIt could be that the ix-tab-context needs to be written for each framework individually,\nas it is a context provider and not a UI component.",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "value",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/tab-item",
       "filePath": "src/components/tab-item/tab-item.tsx",
       "fileName": "tab-item.tsx",
@@ -22465,17 +22515,43 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "value",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "This value is used to identify the tab item in the tab context.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
       "events": [
         {
           "event": "tabClick",
-          "detail": "{ nativeEvent: MouseEvent; }",
+          "detail": "{ nativeEvent: MouseEvent; value?: string | undefined; }",
           "bubbles": true,
           "complexType": {
             "original": "TabClickDetail",
-            "resolved": "{ nativeEvent: MouseEvent; }",
+            "resolved": "{ nativeEvent: MouseEvent; value?: string | undefined; }",
             "references": {
               "TabClickDetail": {
                 "location": "import",
@@ -22490,6 +22566,82 @@
           "docsTags": []
         }
       ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/tab-panel",
+      "filePath": "src/components/tab-panel/tab-panel.tsx",
+      "fileName": "tab-panel.tsx",
+      "readmePath": "src/components/tab-panel/readme.md",
+      "usagesDir": "src/components/tab-panel/usage",
+      "tag": "ix-tab-panel",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "activeValue",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "active-value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "value",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],

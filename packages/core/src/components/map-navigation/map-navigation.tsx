@@ -20,7 +20,7 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
-import { useContextProvider } from '../utils/context';
+import { createContextProvider } from '../utils/context';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
 
 @Component({
@@ -96,7 +96,7 @@ export class MapNavigation {
   }
 
   componentWillLoad() {
-    useContextProvider(this.hostElement, ApplicationLayoutContext, {
+    createContextProvider(this.hostElement, ApplicationLayoutContext, {
       hideHeader: false,
       host: 'map-navigation',
     });

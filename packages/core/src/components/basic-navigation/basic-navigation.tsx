@@ -11,7 +11,7 @@ import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
-import { ContextProvider, useContextProvider } from '../utils/context';
+import { ContextProvider, createContextProvider } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
 
@@ -85,7 +85,7 @@ export class BasicNavigation {
   componentWillLoad() {
     applicationLayoutService.setBreakpoints(this.breakpoints);
 
-    this.contextProvider = useContextProvider(
+    this.contextProvider = createContextProvider(
       this.hostElement,
       ApplicationLayoutContext,
       {
