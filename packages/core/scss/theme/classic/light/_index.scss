@@ -1,0 +1,6 @@
+@use "./variables" as light;
+
+body[class*="theme-classic-light"],
+[data-ix-theme="classic"][data-ix-color-schema="light"] {
+  @include light.setVars;
+}

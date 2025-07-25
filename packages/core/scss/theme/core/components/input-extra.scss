@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-input-extra--background--active: var(--theme-color-component-8--hover);
+  --theme-input-extra--background--hover: var(--theme-color-component-8--hover);
+}

@@ -1,0 +1,6 @@
+@mixin setVars {
+  --theme-select-list-item-check--color: var(--theme-color-std-text);
+  --theme-select-list-item-check--color--hover: var(--theme-color-std-text);
+  --theme-select-list-item-check--color--active: var(--theme-color-std-text);
+  --theme-select-list-item-check--color--disabled: var(--theme-color-weak-text);
+}

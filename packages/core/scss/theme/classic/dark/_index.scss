@@ -1,0 +1,6 @@
+@use "./variables" as dark;
+
+body[class*="theme-classic-dark"],
+[data-ix-theme="classic"][data-ix-color-schema="dark"] {
+  @include dark.setVars;
+}

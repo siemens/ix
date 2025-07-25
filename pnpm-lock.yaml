@@ -62,8 +62,8 @@ importers:
         version: link:../core
     devDependencies:
       '@playwright/test':
-        specifier: ^1.49.1
-        version: 1.49.1
+        specifier: ^1.54.1
+        version: 1.54.1
       '@siemens/ix-icons':
         specifier: ^3.0.0
         version: 3.0.0
@@ -390,8 +390,8 @@ importers:
         specifier: ^1.6.13
         version: 1.6.13
       '@playwright/test':
-        specifier: ^1.49.1
-        version: 1.49.1
+        specifier: ^1.54.1
+        version: 1.54.1
       '@siemens/ix-icons':
         specifier: ^3.0.0
         version: 3.0.0
@@ -597,8 +597,8 @@ importers:
   packages/echarts:
     devDependencies:
       '@playwright/test':
-        specifier: ^1.49.1
-        version: 1.49.1
+        specifier: ^1.54.1
+        version: 1.54.1
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
         version: 8.5.0(rollup@2.79.1)(tslib@2.8.1)(typescript@4.9.5)
@@ -789,7 +789,7 @@ importers:
         version: link:../react
       next:
         specifier: ^15.3.3
-        version: 15.3.3(@playwright/test@1.49.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
+        version: 15.3.3(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -799,7 +799,7 @@ importers:
     devDependencies:
       '@stencil/ssr':
         specifier: ^0.1.1
-        version: 0.1.1(next@15.3.3(@playwright/test@1.49.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(vite@7.0.4(@types/node@20.16.5)(jiti@1.21.7)(less@4.2.0)(sass@1.89.2)(terser@5.43.1)(tsx@4.19.4)(yaml@2.8.0))(webpack@5.96.1)
+        version: 0.1.1(next@15.3.3(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(vite@7.0.4(@types/node@20.16.5)(jiti@1.21.7)(less@4.2.0)(sass@1.89.2)(terser@5.43.1)(tsx@4.19.4)(yaml@2.8.0))(webpack@5.96.1)
       '@types/node':
         specifier: ^20
         version: 20.16.5
@@ -4682,8 +4682,8 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@playwright/test@1.49.1':
-    resolution: {integrity: sha512-Ky+BVzPz8pL6PQxHqNRW1k3mIyv933LML7HktS8uik0bUXNCdPhoS/kLihiO1tMf/egaJb4IutXd7UywvXEW+g==}
+  '@playwright/test@1.54.1':
+    resolution: {integrity: sha512-FS8hQ12acieG2dYSksmLOF7BNxnVf2afRJdCuM1eMSxj6QTSE6G4InGF7oApGgDb65MX7AwMVlIkpru0yZA4Xw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -7253,10 +7253,6 @@ packages:
 
   caniuse-lite@1.0.30001727:
     resolution: {integrity: sha512-pB68nIHmbN6L/4C6MH1DokyR3bYqFwjaSs/sWDHGj4CTcFtQUQMuJftVwWkXq7mNWOybD3KhUv3oWHoGxgP14Q==}
-
-  chai@5.1.2:
-    resolution: {integrity: sha512-aGtmf24DW6MLHHG5gCx4zaI3uBq3KRtxeVs0DjFH6Z0rDNbsvTxFASFvdj79pxjxZ8/5u3PIiN3IwEIQkiiuPw==}
-    engines: {node: '>=12'}
 
   chai@5.2.0:
     resolution: {integrity: sha512-mCuXncKXk5iCLhfhwTc0izo0gtEmpz5CtG2y8GiOINBlMVS6v8TMRc5TaLWKS6692m9+dVVfzgeVxR5UxWHTYw==}
@@ -11722,18 +11718,8 @@ packages:
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
 
-  playwright-core@1.49.1:
-    resolution: {integrity: sha512-BzmpVcs4kE2CH15rWfzpjzVGhWERJfmnXmniSyKeRZUs9Ws65m+RGIi7mjJK/euCegfn3i7jvqWeWyHe9y3Vgg==}
-    engines: {node: '>=18'}
-    hasBin: true
-
   playwright-core@1.54.1:
     resolution: {integrity: sha512-Nbjs2zjj0htNhzgiy5wu+3w09YetDx5pkrpI/kZotDlDUaYk0HVA5xrBVPdow4SAUIlhgKcJeJg4GRKW6xHusA==}
-    engines: {node: '>=18'}
-    hasBin: true
-
-  playwright@1.49.1:
-    resolution: {integrity: sha512-VYL8zLoNTBxVOrJBbDuRgDWa3i+mfQgDTrL8Ah9QXZ7ax4Dsj0MSq5bYgytRnDVVe+njoKnfsYkH3HzqVj5UZA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -19178,9 +19164,9 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@playwright/test@1.49.1':
+  '@playwright/test@1.54.1':
     dependencies:
-      playwright: 1.49.1
+      playwright: 1.54.1
 
   '@polka/url@1.0.0-next.29': {}
 
@@ -19676,14 +19662,14 @@ snapshots:
     dependencies:
       '@stencil/core': 4.36.0
 
-  '@stencil/ssr@0.1.1(next@15.3.3(@playwright/test@1.49.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(vite@7.0.4(@types/node@20.16.5)(jiti@1.21.7)(less@4.2.0)(sass@1.89.2)(terser@5.43.1)(tsx@4.19.4)(yaml@2.8.0))(webpack@5.96.1)':
+  '@stencil/ssr@0.1.1(next@15.3.3(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(vite@7.0.4(@types/node@20.16.5)(jiti@1.21.7)(less@4.2.0)(sass@1.89.2)(terser@5.43.1)(tsx@4.19.4)(yaml@2.8.0))(webpack@5.96.1)':
     dependencies:
       ast-types: 0.14.2
       decamelize: 6.0.0
       esbuild: 0.25.1
       imports-loader: 5.0.0(webpack@5.96.1)
       mlly: 1.7.4
-      next: 15.3.3(@playwright/test@1.49.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
+      next: 15.3.3(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
       recast: 0.23.9
       vite: 7.0.4(@types/node@20.16.5)(jiti@1.21.7)(less@4.2.0)(sass@1.89.2)(terser@5.43.1)(tsx@4.19.4)(yaml@2.8.0)
       webpack: 5.96.1
@@ -20870,7 +20856,7 @@ snapshots:
     dependencies:
       '@vitest/spy': 2.0.5
       '@vitest/utils': 2.0.5
-      chai: 5.1.2
+      chai: 5.2.0
       tinyrainbow: 1.2.0
 
   '@vitest/expect@3.2.4':
@@ -22181,14 +22167,6 @@ snapshots:
   caniuse-lite@1.0.30001724: {}
 
   caniuse-lite@1.0.30001727: {}
-
-  chai@5.1.2:
-    dependencies:
-      assertion-error: 2.0.1
-      check-error: 2.1.1
-      deep-eql: 5.0.2
-      loupe: 3.1.4
-      pathval: 2.0.0
 
   chai@5.2.0:
     dependencies:
@@ -27436,7 +27414,7 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  next@15.3.3(@playwright/test@1.49.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2):
+  next@15.3.3(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2):
     dependencies:
       '@next/env': 15.3.3
       '@swc/counter': 0.1.3
@@ -27456,7 +27434,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 15.3.3
       '@next/swc-win32-arm64-msvc': 15.3.3
       '@next/swc-win32-x64-msvc': 15.3.3
-      '@playwright/test': 1.49.1
+      '@playwright/test': 1.54.1
       sass: 1.89.2
       sharp: 0.34.2
     transitivePeerDependencies:
@@ -28195,15 +28173,7 @@ snapshots:
       mlly: 1.7.4
       pathe: 2.0.3
 
-  playwright-core@1.49.1: {}
-
   playwright-core@1.54.1: {}
-
-  playwright@1.49.1:
-    dependencies:
-      playwright-core: 1.49.1
-    optionalDependencies:
-      fsevents: 2.3.2
 
   playwright@1.54.1:
     dependencies:

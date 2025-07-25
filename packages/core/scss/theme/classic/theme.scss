@@ -1,0 +1,68 @@
+@use './dark/variables' as as_dark_variables;
+@use './light/variables' as as_light_variables;
+
+@mixin theme-only-dark {
+  :root,
+  :host {
+    color-scheme: dark;
+    @include as_dark_variables.setVars();
+  }
+
+  body[class*='theme-classic'],
+  [data-ix-theme='classic'] {
+    @include as_dark_variables.setVars();
+  }
+}
+
+@mixin theme-only-light {
+  :root,
+  :host {
+    color-scheme: light;
+  }
+
+  body[class*='theme-classic'],
+  [data-ix-theme='classic'] {
+    @include as_light_variables.setVars();
+  }
+}
+
+@mixin theme {
+  :root,
+  :host {
+    color-scheme: light dark;
+  }
+
+  :root,
+  html,
+  body {
+    &[data-ix-theme='classic'] {
+      &,
+      &[data-ix-color-schema='dark'] {
+        @include as_dark_variables.setVars();
+      }
+
+      &[data-ix-color-schema='light'] {
+        @include as_light_variables.setVars();
+      }
+
+      &[data-ix-color-schema='system'] {
+        @media (prefers-color-scheme: dark) {
+          @include as_dark_variables.setVars();
+        }
+
+        @media (prefers-color-scheme: light) {
+          @include as_light_variables.setVars();
+        }
+      }
+    }
+  }
+  
+  :not([data-ix-theme]) body:not([class*='theme-']):not([data-ix-theme]),
+  body[class*='theme-classic-dark'] {
+    @include as_dark_variables.setVars();
+  }
+
+  body[class*='theme-classic-light'] {
+    @include as_light_variables.setVars();
+  }
+}

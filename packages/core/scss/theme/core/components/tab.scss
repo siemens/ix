@@ -1,0 +1,12 @@
+@mixin setVars {
+  --theme-tab--background: var(--theme-color-ghost);
+  --theme-tab--background--hover: var(--theme-color-ghost-primary--hover);
+  --theme-tab--background--active: var(--theme-color-ghost-primary--active);
+  --theme-tab--background--selected: var(--theme-color-ghost);
+  --theme-tab--background--disabled: var(--theme-color-ghost);
+  --theme-tab--color: var(--theme-color-std-text);
+  --theme-tab--color--hover: var(--theme-color-std-text);
+  --theme-tab--color--active: var(--theme-color-std-text);
+  --theme-tab--color--selected: var(--theme-color-std-text);
+  --theme-tab--color--disabled: var(--theme-color-weak-text);
+}
