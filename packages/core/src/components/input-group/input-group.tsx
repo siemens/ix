@@ -133,7 +133,7 @@ export class InputGroup {
         this.inputElement.style.backgroundPosition = `left ${left}px center`;
         this.inputPaddingLeft += 26;
       }
-    });
+    }, 100);
   }
 
   private endSlotChanged() {
