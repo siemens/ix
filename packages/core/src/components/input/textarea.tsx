@@ -158,6 +158,11 @@ export class Textarea implements IxInputFieldComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the textarea value is committed (e.g., on blur or enter key)
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -270,6 +275,9 @@ export class Textarea implements IxInputFieldComponent<string> {
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
+              onChange={() => {
+                this.ixChange.emit(this.value);
+              }}
               onBlur={() => {
                 onInputBlur(this, this.textAreaRef.current);
                 this.touched = true;
