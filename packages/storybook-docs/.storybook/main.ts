@@ -15,26 +15,10 @@ function copyAdditionalThemeIfPresent() {
 
     return true;
   } catch (e) {
-    console.log('Skip injecting additional theme', e);
+    console.log('Skip injecting additional theme');
     return false;
   }
 }
-
-function copyIconAssets() {
-  const iconAssetsPath = path.join(
-    __dirname,
-    '..',
-    'node_modules',
-    '@siemens',
-    'ix-icons',
-    'svg'
-  );
-  const targetPath = path.join(__dirname, '..', 'public', 'svg');
-
-  fs.copy(iconAssetsPath, targetPath);
-}
-
-copyIconAssets();
 
 const hasAdditionalTheme = copyAdditionalThemeIfPresent();
 
@@ -49,12 +33,10 @@ const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-themes'),
     getAbsolutePath('@storybook/addon-designs'),
     getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath('@storybook/addon-interactions'),
-    getAbsolutePath('@whitespace/storybook-addon-html'),
+    getAbsolutePath('@storybook/addon-docs'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/web-components-vite'),

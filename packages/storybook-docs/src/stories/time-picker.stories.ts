@@ -13,7 +13,7 @@ import { genericRender, makeArgTypes } from './utils/generic-render';
 type Element = Components.IxTimePicker;
 
 const meta = {
-  title: 'Example/Time Picker',
+  title: 'Example/TimePicker',
   tags: [],
   render: (args) => genericRender('ix-time-picker', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-time-picker', {}),

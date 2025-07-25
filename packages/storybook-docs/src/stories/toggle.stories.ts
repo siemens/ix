@@ -9,7 +9,7 @@
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 type Element = Components.IxToggle & {
   defaultSlot: string;
@@ -19,7 +19,7 @@ type Element = Components.IxToggle & {
 };
 
 const toggleRender = (args: Element) => {
-  const container = genericRender('ix-toggle', args);
+  const container = genericRender('ix-toggle', args, ['validation']);
   const ixToggle = container.querySelector('ix-toggle') as HTMLIxToggleElement;
   ixToggle.addEventListener('checkedChange', action('checkedChange'));
   ixToggle.classList.remove('ix-invalid', 'ix-valid', 'ix-warning', 'ix-info');
@@ -90,7 +90,7 @@ export const Warning: Story = {
 export const Overflow: Story = {
   args: {
     disabled: false,
-    'text-on': 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+    textOn: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
     checked: true,
   },
   render: (args) => {

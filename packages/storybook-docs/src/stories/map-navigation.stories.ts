@@ -76,7 +76,7 @@ type Element = Components.IxMapNavigation & {
 };
 
 const meta = {
-  title: 'Example/Map-Navigation',
+  title: 'Example/MapNavigation',
   render: (args) => {
     return html`<story-map-navigation
       .args=${args}

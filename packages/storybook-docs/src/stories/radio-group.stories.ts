@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { genericRender } from './utils/generic-render';
 
