@@ -24,4 +24,6 @@ export default () => {
       </IxDrawer>
       <IxButton onClick={() => setShow(!show)}>Toggle drawer</IxButton>
     </>
-  );};
+  );
+};
+
