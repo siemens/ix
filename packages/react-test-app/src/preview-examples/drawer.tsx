@@ -23,13 +23,6 @@ export default () => {
         <span>Some content of drawer</span>
       </IxDrawer>
       <IxButton onClick={() => setShow(!show)}>Toggle drawer</IxButton>
-    <IxDrawer
-      closeOnClickOutside={true}
-      show={show}
-      onDrawerClose={() => setShow(false)}
-    >
-      <span>Some content of drawer</span>
-    </IxDrawer>
-  </>
+   </>
   );
 };
