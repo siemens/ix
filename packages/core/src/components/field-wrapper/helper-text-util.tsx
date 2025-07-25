@@ -46,7 +46,7 @@ export function HelperText(
   }>
 ) {
   if (!hasAnyText(props)) return null;
-  if (props.isInvalid && props.invalidText?.trim() !== '') {
+  if (props.isInvalid && props.invalidText && props.invalidText.trim() !== '') {
     return (
       <ix-typography textColor="alarm" class="bottom-text">
         <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
@@ -55,7 +55,7 @@ export function HelperText(
     );
   }
 
-  if (props.isWarning && props.warningText?.trim() !== '') {
+  if (props.isWarning && props.warningText && props.warningText.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon
@@ -68,7 +68,7 @@ export function HelperText(
     );
   }
 
-  if (props.isInfo && props.infoText?.trim() !== '') {
+  if (props.isInfo && props.infoText && props.infoText.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon info" name={iconInfo} size="16"></ix-icon>
@@ -77,7 +77,7 @@ export function HelperText(
     );
   }
 
-  if (props.isValid && props.validText?.trim() !== '') {
+  if (props.isValid && props.validText && props.validText.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon class="text-icon valid" name={iconSuccess} size="16"></ix-icon>
@@ -87,7 +87,8 @@ export function HelperText(
   }
 
   return (
-    props.helperText?.trim() !== '' && (
+    props.helperText &&
+    props.helperText.trim() !== '' && (
       <ix-typography class="bottom-text" textColor="soft">
         {props.helperText}
       </ix-typography>
