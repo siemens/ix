@@ -173,6 +173,7 @@ export class Radio implements IxFormComponent<string> {
         onBlur={() => this.ixBlur.emit()}
       >
         <label>
+          <div class="radio-button">
           <input
             aria-checked={a11yBoolean(this.checked)}
             required={this.required}
@@ -181,6 +182,7 @@ export class Radio implements IxFormComponent<string> {
             name={this.name}
             ref={this.inputRef}
             type="radio"
+            value={this.value ?? 'on'}
             onChange={() => {
               const ref = this.inputRef.current;
               if (ref) {
@@ -200,13 +202,16 @@ export class Radio implements IxFormComponent<string> {
               style={{ visibility: this.checked ? 'visible' : 'hidden' }}
             ></div>
           </button>
-          <ix-typography
-            format="label"
-            textColor={this.disabled ? 'weak' : 'std'}
-          >
-            {this.label}
-            <slot></slot>
-          </ix-typography>
+          </div>
+          {this.label && (
+            <ix-typography
+              format="label"
+              textColor={this.disabled ? 'weak' : 'std'}
+            >
+              {this.label}
+              <slot></slot>
+            </ix-typography>
+          )}
         </label>
       </Host>
     );
