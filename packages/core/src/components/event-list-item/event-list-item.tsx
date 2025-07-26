@@ -96,6 +96,7 @@ export class EventListItem {
                 name={iconChevronRight}
                 size="16"
                 class="chevron-icon"
+                aria-hidden="true"
               ></ix-icon>
             )}
           </div>

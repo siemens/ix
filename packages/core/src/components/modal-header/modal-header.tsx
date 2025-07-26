@@ -38,6 +38,19 @@ export class ModalHeader {
    */
   @Prop() icon?: string;
 
+  /**
+   * ARIA label for the icon
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
+   * ARIA label for the close icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCloseIconButton?: string;
+
   @Watch('icon')
   onIconChange(icon?: string) {
     if (this.parentDialog) {
@@ -83,7 +96,12 @@ export class ModalHeader {
     return (
       <Host>
         {this.icon ? (
-          <ix-icon name={this.icon} color={this.iconColor} size="32"></ix-icon>
+          <ix-icon
+            name={this.icon}
+            color={this.iconColor}
+            size="32"
+            aria-label={this.ariaLabelIcon}
+          ></ix-icon>
         ) : null}
         <div class="modal-title">
           <ix-typography format="h5">
@@ -97,6 +115,7 @@ export class ModalHeader {
             ghost
             icon={iconClose}
             iconColor="color-soft-text"
+            aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}
       </Host>

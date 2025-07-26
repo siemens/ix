@@ -23,6 +23,7 @@
 .toast-container {
   display: block;
   position: fixed;
+  z-index: var(--theme-z-index-toast);
 }
 
 .toast-container--top-right {
