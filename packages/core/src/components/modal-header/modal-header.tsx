@@ -114,6 +114,7 @@ export class ModalHeader {
             onClick={(event) => this.onCloseClick(event)}
             ghost
             icon={iconClose}
+            iconColor="color-soft-text"
             aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}

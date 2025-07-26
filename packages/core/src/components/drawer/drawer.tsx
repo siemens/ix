@@ -237,6 +237,7 @@ export class Drawer {
                 display: this.showContent ? 'block' : 'none',
               }}
               icon={iconClose}
+              iconColor="color-soft-text"
               size="24"
               ghost
               onClick={() => this.onCloseClicked()}
