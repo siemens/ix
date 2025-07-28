@@ -11,7 +11,11 @@ import jsonFile from '@siemens/ix/component-doc.json';
 import { ArgTypes } from '@storybook/web-components';
 import type { JsonDocsProp } from '@stencil/core/internal';
 
-export function genericRender(selector: string, args: any) {
+export function genericRender(
+  selector: string,
+  args: any,
+  ignoreArgs: string[] = []
+) {
   const rootInner = document.createElement('div');
   rootInner.id = 'root-inner';
   const element = document.createElement(selector);
@@ -26,10 +30,16 @@ export function genericRender(selector: string, args: any) {
     delete args['previewWidth'];
   }
 
-  Object.keys(args).forEach((key) => {
-    const prop = getProp(selector, key);
-    element.setAttribute((prop as any).attr ?? prop.name, args[key]);
-  });
+  Object.keys(args)
+    .filter((key) => !ignoreArgs.includes(key))
+    .forEach((key) => {
+      const prop = getProp(selector, key);
+      if (prop.type === 'boolean' && args[key] === false) {
+        element.removeAttribute((prop as any).attr ?? prop.name);
+        return;
+      }
+      element.setAttribute((prop as any).attr ?? prop.name, args[key]);
+    });
 
   rootInner.appendChild(element);
   return rootInner;
