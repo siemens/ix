@@ -6,8 +6,7 @@
   "scripts": {
     "build.watch": "storybook dev -p 6006",
     "build": "storybook build",
-    "test.a11y": "start-server-and-test build.watch http://localhost:6006 test-storybook",
-    "test.setup": "playwright install chromium --with-deps"
+    "test.a11y": "start-server-and-test build.watch http://localhost:6006 test-storybook"
   },
   "dependencies": {
     "@maskito/core": "^3.2.0",
