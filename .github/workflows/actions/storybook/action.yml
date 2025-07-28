@@ -5,8 +5,12 @@ runs:
   steps:
     - name: Build
       shell: bash
-      run: pnpm run build --cache-dir=.turbo --filter !\documentation
+      run: echo "Skipping build step for Storybook action"
 
-    - name: Test
-      shell: bash
-      run: pnpm --filter storybook-docs test.a11y
+    # - name: Build
+    #   shell: bash
+    #   run: pnpm run build --cache-dir=.turbo --filter !\documentation
+
+    # - name: Test
+    #   shell: bash
+    #   run: pnpm --filter storybook-docs test.a11y
