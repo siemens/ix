@@ -63,6 +63,30 @@ export class ExpandingSearch
    */
   @Prop() ghost = true;
 
+  /**
+   * ARIA label for the search icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelSearchIconButton?: string;
+
+  /**
+   * ARIA label for the clear icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelClearIconButton?: string;
+
+  /**
+   * ARIA label for the search input
+   * Will be set as aria-label on the nested HTML input element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelSearchInput?: string;
+
   @State() isFieldChanged = false;
   @State() expanded = false;
   @State() hasFocus = false;
@@ -138,6 +162,7 @@ export class ExpandingSearch
             'btn-search': true,
             'btn-search--expanded': this.expanded,
           }}
+          aria-label={this.ariaLabelSearchIconButton}
         ></ix-icon-button>
 
         <div
@@ -170,6 +195,7 @@ export class ExpandingSearch
             onFocus={() => (this.hasFocus = true)}
             onInput={(e: InputEvent) => this.onChange(e)}
             tabindex={this.expanded ? 0 : -1}
+            aria-label={this.ariaLabelSearchInput}
           />
 
           {this.isFieldChanged ? (
@@ -180,6 +206,7 @@ export class ExpandingSearch
               size="16"
               data-testid="clear-button"
               onClick={() => this.clearClicked()}
+              aria-label={this.ariaLabelClearIconButton}
             />
           ) : null}
         </div>

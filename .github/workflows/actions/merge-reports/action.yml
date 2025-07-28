@@ -1,0 +1,36 @@
+name: 'Merge Reports'
+description: 'Merge Playwright blob reports into HTML report'
+inputs:
+  projectName:
+    description: 'Name of the project for artifact naming'
+    required: true
+  artifactName:
+    description: 'Name of the artifact to upload'
+    required: true
+  blobPattern:
+    description: 'Pattern to match blob report artifacts'
+    required: true
+  outputPath:
+    description: 'Path where the merged HTML report will be generated'
+    required: false
+    default: 'playwright-report'
+runs:
+  using: 'composite'
+  steps:
+    - name: Download blob reports from GitHub Actions Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: all-blob-reports
+        pattern: ${{ inputs.blobPattern }}
+        merge-multiple: true
+
+    - name: Merge into HTML Report
+      shell: bash
+      run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
+
+    - name: Upload HTML report
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifactName }}-html-report--attempt-${{ github.run_attempt }}
+        path: ${{ inputs.outputPath }}
+        retention-days: 14
