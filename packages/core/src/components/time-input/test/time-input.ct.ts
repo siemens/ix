@@ -100,4 +100,67 @@ regressionTest.describe('time input tests', () => {
       await expect(page.locator('input')).toHaveValue('12:30:45');
     }
   );
+
+  regressionTest(
+    'closing dropdown and reopening after entering invalid time does not break component',
+    async ({ page }) => {
+      const input = page.locator('input');
+      const fieldWrapper = page.locator('ix-field-wrapper');
+      const dropdown = page.locator('ix-dropdown[data-testid="time-dropdown"]');
+      const iconButton = page.locator(
+        'ix-icon-button[data-testid="open-time-picker"]'
+      );
+
+      await input.click();
+
+      await expect(dropdown).toHaveClass(/show/);
+
+      await expect(page.locator('ix-time-picker')).toBeVisible();
+
+      await input.fill('invalid-time');
+
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(fieldWrapper).toContainText('Time is not valid');
+
+      await iconButton.click();
+
+      await expect(dropdown).not.toHaveClass(/show/);
+
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(fieldWrapper).toContainText('Time is not valid');
+
+      await iconButton.click();
+
+      await expect(dropdown).toHaveClass(/show/);
+
+      await page
+        .locator('ix-time-picker [data-element-container-id="second-30"]')
+        .click();
+
+      await page.locator('ix-time-picker ix-button').click();
+
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(fieldWrapper).not.toContainText('Time is not valid');
+    }
+  );
+
+  regressionTest(
+    'updating component value attribute updates validity',
+    async ({ page }) => {
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await timeInput.evaluateHandle((el) => {
+        el.setAttribute('value', 'invalid-time');
+      });
+
+      await expect(input).toHaveClass(/is-invalid/);
+
+      await timeInput.evaluateHandle((el) => {
+        el.setAttribute('value', '09:10:11');
+      });
+
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
 });
