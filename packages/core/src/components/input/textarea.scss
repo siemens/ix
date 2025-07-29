@@ -54,3 +54,21 @@
     border-color: var(--theme-input--border-color--invalid--active) !important;
   }
 }
+
+:host {
+  textarea:not([rows]) {
+    height: 3.25rem; 
+  }
+  display: block;
+  width: var(--textarea-width, 100%);
+
+}
+
+.input-wrapper{
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+}
+
