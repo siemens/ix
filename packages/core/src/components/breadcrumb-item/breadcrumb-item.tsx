@@ -32,6 +32,14 @@ export class BreadcrumbItem {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
+   * ARIA label for the button
+   * Will be set as aria-label for the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelButton?: string;
+
+  /**
    * Breadcrumb label
    */
   @Prop() label?: string;
@@ -98,7 +106,7 @@ export class BreadcrumbItem {
       extraClasses: {
         'dropdown-trigger': this.isDropdownTrigger,
       },
-      ariaAttributes: this.a11y,
+      ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabelButton },
     };
 
     if (!this.visible) {

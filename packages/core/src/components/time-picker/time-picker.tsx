@@ -30,6 +30,7 @@ interface TimePickerDescriptor {
   header: string;
   hidden: boolean;
   numberArray: number[];
+  focusedValue: number;
 }
 
 interface TimeOutputFormat {
@@ -413,29 +414,22 @@ export class TimePicker {
 
     switch (event.key) {
       case 'Tab':
-        // Let tab navigation work normally and reset focused value/unit
         shouldPreventDefault = false;
-        this.setInitialFocusedValueAndUnit();
+        this.isUnitFocused = false;
         break;
 
       case 'ArrowUp':
         newValue -= newValueInterval;
         this.focusScrollAlignment = 'start';
         this.updateFocusedValue(newValue);
+        this.updateDescriptorFocusedValue(this.focusedUnit, this.focusedValue);
         break;
 
       case 'ArrowDown':
         newValue += newValueInterval;
         this.focusScrollAlignment = 'end';
         this.updateFocusedValue(newValue);
-        break;
-
-      case 'ArrowLeft':
-        this.moveFocusToAdjacentUnit(-1);
-        break;
-
-      case 'ArrowRight':
-        this.moveFocusToAdjacentUnit(1);
+        this.updateDescriptorFocusedValue(this.focusedUnit, this.focusedValue);
         break;
 
       case 'Enter':
@@ -452,12 +446,20 @@ export class TimePicker {
     }
   }
 
-  onUnitCellBlur() {
+  onUnitCellBlur(unit: TimePickerDescriptorUnit) {
     this.isUnitFocused = false;
+    const focusedValue = Number(this.formattedTime[unit]);
+
+    this.updateDescriptorFocusedValue(unit, focusedValue);
+    this.elementListScrollToTop(unit, focusedValue, 'smooth');
   }
 
-  onUnitCellFocus() {
+  onUnitCellFocus(unit: TimePickerDescriptorUnit, value: number) {
     this.isUnitFocused = true;
+    this.focusedUnit = unit;
+    this.focusedValue = value;
+
+    this.updateDescriptorFocusedValue(unit, value);
   }
 
   private getElementList(unit: TimePickerDescriptorUnit): HTMLDivElement {
@@ -502,23 +504,6 @@ export class TimePicker {
     }
 
     this.focusedValue = value;
-  }
-
-  private moveFocusToAdjacentUnit(direction: number) {
-    const currentUnitIndex = this.timePickerDescriptors.findIndex(
-      (d) => d.unit === this.focusedUnit
-    );
-    const newUnitIndex = currentUnitIndex + direction;
-
-    // Check if new index is within bounds
-    if (newUnitIndex >= 0 && newUnitIndex < this.timePickerDescriptors.length) {
-      const newUnit = this.timePickerDescriptors[newUnitIndex].unit;
-
-      const selectedValue = Number(this.formattedTime[newUnit]);
-
-      this.focusedUnit = newUnit;
-      this.updateFocusedValue(selectedValue);
-    }
   }
 
   private setInitialFocusedValueAndUnit() {
@@ -572,8 +557,11 @@ export class TimePicker {
 
       if (!dropdown.classList.contains('show')) {
         // keep picker in sync with input
-        this._time = DateTime.fromFormat(this.time, this.format);
-        this.setInitialFocusedValueAndUnit();
+        const timeFormat = DateTime.fromFormat(this.time, this.format);
+        if (timeFormat.isValid) {
+          this._time = DateTime.fromFormat(this.time, this.format);
+          this.setInitialFocusedValueAndUnit();
+        }
 
         continue;
       }
@@ -692,6 +680,14 @@ export class TimePicker {
     }
   }
 
+  private getInitialFocusedValueForUnit(
+    unit: TimePickerDescriptorUnit,
+    numberArray: number[]
+  ): number {
+    const selectedValue = Number(this.formattedTime[unit]);
+    return numberArray.includes(selectedValue) ? selectedValue : numberArray[0];
+  }
+
   private setTimePickerDescriptors() {
     let hourNumbers = [];
     let minuteNumbers = [];
@@ -730,6 +726,7 @@ export class TimePicker {
         hidden:
           !LUXON_FORMAT_PATTERNS.hours.test(this.format) || !this.showHour,
         numberArray: hourNumbers,
+        focusedValue: this.getInitialFocusedValueForUnit('hour', hourNumbers),
       },
       {
         unit: 'minute',
@@ -737,6 +734,10 @@ export class TimePicker {
         hidden:
           !LUXON_FORMAT_PATTERNS.minutes.test(this.format) || !this.showMinutes,
         numberArray: minuteNumbers,
+        focusedValue: this.getInitialFocusedValueForUnit(
+          'minute',
+          minuteNumbers
+        ),
       },
       {
         unit: 'second',
@@ -744,12 +745,20 @@ export class TimePicker {
         hidden:
           !LUXON_FORMAT_PATTERNS.seconds.test(this.format) || !this.showSeconds,
         numberArray: secondNumbers,
+        focusedValue: this.getInitialFocusedValueForUnit(
+          'second',
+          secondNumbers
+        ),
       },
       {
         unit: 'millisecond',
         header: this.i18nMillisecondColumnHeader,
         hidden: !LUXON_FORMAT_PATTERNS.milliseconds.test(this.format),
         numberArray: millisecondsNumbers,
+        focusedValue: this.getInitialFocusedValueForUnit(
+          'millisecond',
+          millisecondsNumbers
+        ),
       },
     ];
 
@@ -778,6 +787,25 @@ export class TimePicker {
     this.timeUpdate(unit, number);
     this.elementListScrollToTop(unit, number, 'smooth');
     this.timeChange.emit(this._time!.toFormat(this.format));
+  }
+
+  private updateDescriptorFocusedValue(
+    unit: TimePickerDescriptorUnit,
+    value: number
+  ) {
+    const descriptorIndex = this.timePickerDescriptors.findIndex(
+      (d) => d.unit === unit
+    );
+    if (descriptorIndex !== -1) {
+      this.timePickerDescriptors = [
+        ...this.timePickerDescriptors.slice(0, descriptorIndex),
+        {
+          ...this.timePickerDescriptors[descriptorIndex],
+          focusedValue: value,
+        },
+        ...this.timePickerDescriptors.slice(descriptorIndex + 1),
+      ];
+    }
   }
 
   private elementListScrollToTop(
@@ -859,9 +887,15 @@ export class TimePicker {
     number: number,
     descriptorUnit: TimePickerDescriptorUnit
   ): string {
-    return number === this.focusedValue && descriptorUnit === this.focusedUnit
-      ? '0'
-      : '-1';
+    const descriptor = this.timePickerDescriptors.find(
+      (d) => d.unit === descriptorUnit
+    );
+
+    if (descriptor && number === descriptor.focusedValue) {
+      return '0';
+    }
+
+    return '-1';
   }
 
   private getConfirmButtonText(): string {
@@ -921,12 +955,10 @@ export class TimePicker {
                           'element-container': true,
                         }}
                         onClick={() => this.select(descriptor.unit, number)}
-                        onFocus={() => {
-                          this.focusedUnit = descriptor.unit;
-                          this.focusedValue = number;
-                          this.onUnitCellFocus();
-                        }}
-                        onBlur={() => this.onUnitCellBlur()}
+                        onFocus={() =>
+                          this.onUnitCellFocus(descriptor.unit, number)
+                        }
+                        onBlur={() => this.onUnitCellBlur(descriptor.unit)}
                         tabindex={this.getElementContainerTabIndex(
                           number,
                           descriptor.unit

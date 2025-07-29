@@ -121,6 +121,12 @@ export class DateDropdown
    */
   @Prop() showWeekNumbers = false;
 
+  /**
+   * ARIA label for the dropdown
+   * Will be set as aria-label on the nested HTML button element that will trigger the dropdown
+   */
+  @Prop() ariaLabelDropdownButton?: string;
+
   @Watch('dateRangeId')
   @Watch('to')
   @Watch('from')
@@ -353,6 +359,7 @@ export class DateDropdown
           icon={iconHistory}
           ref={this.triggerRef}
           disabled={this.disabled}
+          ariaLabel={this.ariaLabelDropdownButton}
         >
           {this.getButtonLabel()}
         </ix-button>

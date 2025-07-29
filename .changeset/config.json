@@ -24,7 +24,6 @@
     "nextjs-test-app",
     "documentation",
     "storybook-docs",
-    "vitest-react",
     "oss-clearing"
   ]
 }
