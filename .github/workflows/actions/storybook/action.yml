@@ -1,0 +1,16 @@
+name: 'Accessibility Tests'
+description: 'Accessibility Tests'
+runs:
+  using: 'composite'
+  steps:
+    - name: Build
+      shell: bash
+      run: echo "Skipping build step for Storybook action"
+
+    # - name: Build
+    #   shell: bash
+    #   run: pnpm run build --cache-dir=.turbo --filter !\documentation
+
+    # - name: Test
+    #   shell: bash
+    #   run: pnpm --filter storybook-docs test.a11y

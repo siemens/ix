@@ -45,7 +45,7 @@ type Element = Components.IxBasicNavigation & {
 };
 
 const meta = {
-  title: 'Example/Basic-Navigation',
+  title: 'Example/BasicNavigation',
   render: (args) => {
     return html`<story-basic-navigation
       .args=${args}

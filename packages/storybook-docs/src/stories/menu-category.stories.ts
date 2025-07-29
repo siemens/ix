@@ -11,10 +11,12 @@ import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { makeArgTypes } from './utils/generic-render';
 
-type Elements = Components.IxMenu & Components.IxMenuCategory & Components.IxMenuItem;
+type Elements = Components.IxMenu &
+  Components.IxMenuCategory &
+  Components.IxMenuItem;
 
 const meta = {
-  title: 'Example/Menu/MenuCategory',
+  title: 'Example/ApplicationMenu',
   tags: [],
   render: (args) => {
     return html`<ix-menu expand="${args.expand}">
