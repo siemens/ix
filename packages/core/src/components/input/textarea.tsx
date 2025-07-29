@@ -175,9 +175,12 @@ export class Textarea implements IxInputFieldComponent<string> {
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
     if (this.textareaWidth) {
-    this.hostElement.style.setProperty('--textarea-width', this.textareaWidth);
-    this.hostElement.setAttribute('textarea-width', '');
-  }
+      this.hostElement.style.setProperty(
+        '--textarea-width',
+        this.textareaWidth
+      );
+      this.hostElement.setAttribute('textarea-width', '');
+    }
   }
 
   updateFormInternalValue(value: string) {
