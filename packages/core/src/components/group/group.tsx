@@ -23,7 +23,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import {
   iconChevronDownSmall,
-  iconChevronRightSmall,
+  iconChevronUpSmall,
 } from '@siemens/ix-icons/icons';
 
 @Component({
@@ -253,7 +253,7 @@ export class Group {
                   hidden: !this.showExpandCollapsedIcon,
                 }}
                 name={
-                  this.collapsed ? iconChevronRightSmall : iconChevronDownSmall
+                  this.collapsed ? iconChevronDownSmall : iconChevronUpSmall
                 }
                 onClick={(event: Event) => this.onExpandClick(event)}
               ></ix-icon>
