@@ -38,18 +38,15 @@
   }
 
   .input-container {
-    $default-vertical-padding: 1px;
-    $default-right-padding: $large-space;
-    $padding-left-with-icon: 1.75rem;
-    $padding-left-no-icon: $tiny-space;
+    $padding-with-icon: 1px $large-space 1px 1.75rem;
+    $padding-no-icon: 1px $large-space 1px $tiny-space;
 
     &:not(.readonly):not(.disabled):not(.no-icon),
     &.readonly:not(.no-icon),
     &.disabled:not(.no-icon) {
       @include element-input(
         $feature-read-only: false,
-        $padding: $default-vertical-padding $default-right-padding
-          $default-vertical-padding $padding-left-with-icon
+        $padding: $padding-with-icon
       );
     }
 
@@ -58,8 +55,7 @@
     &.disabled.no-icon {
       @include element-input(
         $feature-read-only: false,
-        $padding: $default-vertical-padding $default-right-padding
-          $default-vertical-padding $padding-left-no-icon
+        $padding: $padding-no-icon
       );
     }
 
@@ -83,10 +79,6 @@
     display: flex;
     height: auto;
     max-height: 3.75rem;
-
-    &.no-icon ix-icon {
-      display: none;
-    }
   }
 
   .token-container {
