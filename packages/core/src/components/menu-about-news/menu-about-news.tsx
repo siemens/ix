@@ -82,6 +82,7 @@ export class MenuAboutNews {
         <ix-icon-button
           size="24"
           icon={iconClose}
+          iconColor="color-soft-text"
           ghost
           onClick={() => {
             this.show = false;

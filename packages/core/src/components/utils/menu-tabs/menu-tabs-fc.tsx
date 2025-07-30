@@ -58,6 +58,7 @@ export const MenuTabs: FunctionalComponent<MenuTabsProps> = ({ context }) => {
           ghost
           size="24"
           icon={iconClose}
+          iconColor="color-soft-text"
           onClick={(e) =>
             context.close.emit({
               name:

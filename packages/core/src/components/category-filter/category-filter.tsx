@@ -819,6 +819,7 @@ export class CategoryFilter {
         ghost
         oval
         icon={iconClear}
+        iconColor="color-soft-text"
         size="16"
         aria-label={this.ariaLabelResetButton}
       ></ix-icon-button>
