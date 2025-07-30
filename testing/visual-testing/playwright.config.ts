@@ -11,7 +11,8 @@ function buildProjectsWithThemes() {
           ...devices['Desktop Chrome'],
         },
         metadata: {
-          theme: theme.selector,
+          theme: theme.theme,
+          colorSchema: theme.colorSchema,
         },
       },
     ];

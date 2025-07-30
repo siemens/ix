@@ -10,7 +10,8 @@
 function defineVisualTestConfig(
   config: {
     name: string;
-    selector: string;
+    theme: string;
+    colorSchema: string;
     importPath: string;
     skipImport?: boolean;
   }[]
@@ -22,14 +23,16 @@ function defineVisualTestConfig(
 export const visualTestConfig = defineVisualTestConfig([
   {
     name: 'classic-dark',
-    selector: 'theme-classic-dark',
+    theme: 'classic',
+    colorSchema: 'dark',
     importPath: require.resolve(
       '@siemens/ix/dist/siemens-ix/theme/classic-dark.css'
     ),
   },
   {
     name: 'classic-light',
-    selector: 'theme-classic-light',
+    theme: 'classic',
+    colorSchema: 'light',
     importPath: require.resolve(
       '@siemens/ix/dist/siemens-ix/theme/classic-light.css'
     ),
