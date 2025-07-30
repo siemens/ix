@@ -50,6 +50,7 @@ import { ShowToastResult } from "./components/toast/toast-container.types";
 import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
+import { RefreshTreeOptions } from "./components/tree/tree.types";
 import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card.types";
@@ -97,6 +98,7 @@ export { ShowToastResult } from "./components/toast/toast-container.types";
 export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
+export { RefreshTreeOptions } from "./components/tree/tree.types";
 export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {

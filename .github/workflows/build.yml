@@ -96,6 +96,15 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/unit
 
+  accessibility:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/storybook
+
   unit-memlab:
     needs: [build]
     timeout-minutes: 10

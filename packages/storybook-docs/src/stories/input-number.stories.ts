@@ -14,7 +14,7 @@ import { html } from 'lit';
 type Element = Components.IxNumberInput;
 
 const meta = {
-  title: 'Example/Input/Number',
+  title: 'Example/NumberInput',
   tags: [],
   render: (args) => genericRender('ix-number-input', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-number-input', {}),
