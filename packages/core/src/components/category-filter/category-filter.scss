@@ -38,8 +38,27 @@
   }
 
   .input-container {
-    &:not(.readonly):not(.disabled) {
-      @include element-input('false');
+    $default-vertical-padding: 1px;
+    $default-right-padding: $large-space;
+    $padding-left-with-icon: 1.75rem;
+    $padding-left-no-icon: $tiny-space;
+
+    &:not(.readonly):not(.disabled):not(.no-icon),
+    &.readonly:not(.no-icon),
+    &.disabled:not(.no-icon) {
+      @include element-input(
+        $feature-read-only: false,
+        $padding: $default-vertical-padding $default-right-padding $default-vertical-padding $padding-left-with-icon
+      );
+    }
+
+    &:not(.readonly):not(.disabled).no-icon,
+    &.readonly.no-icon,
+    &.disabled.no-icon {
+      @include element-input(
+        $feature-read-only: false,
+        $padding: $default-vertical-padding $default-right-padding $default-vertical-padding $padding-left-no-icon
+      );
     }
 
     &:not(.readonly):not(.disabled):hover {
@@ -59,17 +78,12 @@
         var(--theme-input--border-color-bottom--disabled);
     }
 
-    &.readonly {
-      @include element-input;
-    }
-
     display: flex;
     height: auto;
     max-height: 3.75rem;
-    padding: 1px $large-space 1px 1.75rem !important;
 
-    &.no-icon {
-      padding-left: $tiny-space !important;
+    &.no-icon ix-icon {
+      display: none;
     }
   }
 
@@ -92,8 +106,8 @@
     &:hover,
     &:focus,
     &:focus-visible {
-      border: none !important;
-      outline: none !important;
+      border: none !important; // Keep !important if intended to override browser defaults or external styles
+      outline: none !important; // Keep !important if intended to override browser defaults or external styles
     }
 
     &.hide-placeholder::placeholder {
