@@ -150,8 +150,7 @@ jobs:
       - uses: ./.github/workflows/actions/unit
 
   accessibility:
-    # Just for testing
-    # if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
