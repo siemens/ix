@@ -14,31 +14,6 @@ import path from 'path';
 const __dirname = path.resolve();
 
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
-// eslint-disable-next-line turbo/no-undeclared-env-vars
-
-const THEMES = ['theme-classic-light', 'theme-classic-dark'];
-
-function buildProjectsWithThemes() {
-  return THEMES.flatMap((theme) => {
-    return [
-      {
-        name: `chromium - ${theme}`,
-        use: {
-          ...devices['Desktop Chrome'],
-        },
-        metadata: {
-          theme,
-        },
-      },
-    ];
-  });
-}
-
-/**
  * See https://playwright.dev/docs/test-configuration.
  */
 /** @type {import('@playwright/test').PlaywrightTestConfig} */

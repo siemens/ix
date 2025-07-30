@@ -1,0 +1,14 @@
+@mixin setVars {
+  --theme-nav-item-primary--background: var(--theme-color-ghost);
+  --theme-nav-item-primary--background--hover: var(--theme-color-ghost--hover);
+  --theme-nav-item-primary--background--active: var(--theme-color-ghost--active);
+  --theme-nav-item-primary--background--selected: var(--theme-color-1);
+  --theme-nav-item-primary--border-color: var(--theme-color-0);
+  --theme-nav-item-primary--border-color--hover: var(--theme-color-0);
+  --theme-nav-item-primary--border-color--active: var(--theme-color-0);
+  --theme-nav-item-primary--border-color--selected: var(--theme-color-dynamic);
+  --theme-nav-item-primary--color: var(--theme-color-std-text);
+  --theme-nav-item-primary--color--hover: var(--theme-color-std-text);
+  --theme-nav-item-primary--color--active: var(--theme-color-std-text);
+  --theme-nav-item-primary--color--selected: var(--theme-color-std-text);
+}

@@ -87,7 +87,7 @@
   },
   "devDependencies": {
     "@floating-ui/dom": "^1.6.13",
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.54.1",
     "@siemens/ix-icons": "^3.0.0",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",

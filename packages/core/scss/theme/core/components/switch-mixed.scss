@@ -1,0 +1,19 @@
+@mixin setVars {
+  --theme-switch-mixed--background: var(--theme-color-component-4);
+  --theme-switch-mixed--background--hover: var(--theme-color-component-5);
+  --theme-switch-mixed--background--active: var(--theme-color-component-4);
+  --theme-switch-mixed--background--disabled: var(--theme-color-component-2);
+  --theme-switch-mixed--background--invalid: var(--theme-color-component-4);
+  --theme-switch-mixed--background--invalid--hover: var(--theme-color-component-5);
+  --theme-switch-mixed--background--invalid--active: var(--theme-color-component-4);
+  --theme-switch-mixed--background--warning: var(--theme-color-component-4);
+  --theme-switch-mixed--background--warning--hover: var(--theme-color-component-5);
+  --theme-switch-mixed--background--warning--active: var(--theme-color-component-4);
+  --theme-switch-mixed--background--info: var(--theme-color-component-4);
+  --theme-switch-mixed--background--info--hover: var(--theme-color-component-5);
+  --theme-switch-mixed--background--info--active: var(--theme-color-component-4);
+  --theme-switch-mixed--border-color: var(--theme-color-0);
+  --theme-switch-mixed--border-color--hover: var(--theme-color-0);
+  --theme-switch-mixed--border-color--active: var(--theme-color-0);
+  --theme-switch-mixed--border-color--disabled: var(--theme-color-0);
+}

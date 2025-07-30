@@ -1,0 +1,6 @@
+@mixin setVars {
+  --theme-input-search-icon--color: var(--theme-color-primary);
+  --theme-input-search-icon--color--hover: var(--theme-color-dynamic);
+  --theme-input-search-icon--color--focus: var(--theme-color-dynamic);
+  --theme-input-search-icon--color--disabled: var(--theme-color-weak-text);
+}

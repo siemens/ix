@@ -1,0 +1,8 @@
+@mixin setVars {
+  --theme-blind-header-closed--background: var(--theme-color-ghost);
+  --theme-blind-header-closed--background--hover: var(--theme-color-ghost--hover);
+  --theme-blind-header-closed--background--active: var(--theme-color-ghost--active);
+  --theme-blind-header-closed--color: var(--theme-color-std-text);
+  --theme-blind-header-closed--color--active: var(--theme-color-std-text);
+  --theme-blind-header-closed--color--hover: var(--theme-color-std-text);
+}

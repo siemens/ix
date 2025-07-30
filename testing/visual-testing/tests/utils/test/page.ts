@@ -32,12 +32,25 @@ export type Mount = (
   }
 ) => Promise<ElementHandle<HTMLElement>>;
 
+function getThemeMetaData(testInfo: TestInfo): {
+  theme: string;
+  colorSchema: string;
+} {
+  const theme = testInfo.project.metadata?.theme ?? 'classic';
+  const colorSchema = testInfo.project.metadata?.colorSchema ?? 'dark';
+
+  return {
+    theme,
+    colorSchema,
+  };
+}
+
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
   const originalScreenshot = page.screenshot.bind(page);
-  const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
+  const { theme, colorSchema } = getThemeMetaData(testInfo);
   testInfo.annotations.push({
-    type: theme,
+    type: `theme-${theme}-${colorSchema}`,
   });
   page.goto = async (url: string, options) => {
     if (testInfo.componentTest === true) {
@@ -45,7 +58,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     }
 
     const response = await originalGoto(
-      `/tests/${url}/index.html?theme=${theme}`,
+      `/tests/${url}/index.html?theme=${theme}&colorSchema=${colorSchema}`,
       options
     );
 
@@ -145,11 +158,14 @@ export const regressionTest = testBase.extend<{
   },
   mount: async ({ page }, use, testInfo: TestInfo) => {
     testInfo.componentTest = true;
-    const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
+    const { theme, colorSchema } = getThemeMetaData(testInfo);
+
     testInfo.annotations.push({
-      type: theme,
+      type: `theme-${theme}-${colorSchema}`,
     });
-    await page.goto(`/tests/utils/ct/index.html?theme=${theme}`);
+    await page.goto(
+      `/tests/utils/ct/index.html?theme=${theme}&colorSchema=${colorSchema}`
+    );
     await use((selector, config) => mountComponent(page, selector, config));
   },
 });

@@ -1,0 +1,9 @@
+@mixin setVars {
+  --theme-table-header-cell--background: var(--theme-color-ghost);
+  --theme-table-header-cell--background--hover: var(--theme-color-ghost--hover);
+  --theme-table-header-cell--background--active: var(--theme-color-ghost--active);
+  --theme-table-header-cell--border-color: var(--theme-color-0);
+  --theme-table-header-cell--border-color--hover: var(--theme-color-0);
+  --theme-table-header-cell--border-color--active: var(--theme-color-0);
+  --theme-table-header-cell--color: var(--theme-color-std-text);
+}

@@ -6,17 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use './theme/classic/theme' as ix;
+@use './core';
 
-/* Include 3rd party libraries */
-
-/* Default Theme */
-@import './theme/classic-dark';
-@import './theme/classic-light';
-
-/* Core Style */
-@import './core';
-
-/* Load embedded theme */
-body:not([class*='theme-']) {
-  @extend .theme-classic-dark;
-}
+@include ix.theme;
