@@ -1197,7 +1197,7 @@ importers:
         specifier: 0.25.1
         version: 0.25.1
       '@playwright/test':
-        specifier: ^1.49.1
+        specifier: ^1.54.1
         version: 1.54.1
       '@siemens/ix':
         specifier: workspace:*
