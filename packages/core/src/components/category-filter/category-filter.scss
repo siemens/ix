@@ -41,8 +41,20 @@
     $padding-with-icon: 1px $large-space 1px 1.75rem;
     $padding-no-icon: 1px $large-space 1px $tiny-space;
 
-    &:not(.readonly):not(.disabled):not(.no-icon),
-    &.readonly:not(.no-icon),
+    &:not(.readonly):not(.disabled):not(.no-icon) {
+      @include element-input(
+        $feature-read-only: false,
+        $padding: $padding-with-icon
+      );
+    }
+
+    &:not(.readonly):not(.disabled).no-icon {
+      @include element-input(
+        $feature-read-only: false,
+        $padding: $padding-no-icon
+      );
+    }
+
     &.disabled:not(.no-icon) {
       @include element-input(
         $feature-read-only: false,
@@ -50,11 +62,23 @@
       );
     }
 
-    &:not(.readonly):not(.disabled).no-icon,
-    &.readonly.no-icon,
     &.disabled.no-icon {
       @include element-input(
         $feature-read-only: false,
+        $padding: $padding-no-icon
+      );
+    }
+
+    &.readonly:not(.no-icon) {
+      @include element-input(
+        $feature-read-only: true,
+        $padding: $padding-with-icon
+      );
+    }
+
+    &.readonly.no-icon {
+      @include element-input(
+        $feature-read-only: true,
         $padding: $padding-no-icon
       );
     }
