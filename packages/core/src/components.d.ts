@@ -4960,6 +4960,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5306,6 +5307,7 @@ declare global {
         "valueChange": number;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5556,6 +5558,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -7855,6 +7858,10 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
         /**
+          * Event emitted when the input value is committed (e.g., on blur or enter key)
+         */
+        "onIxChange"?: (event: IxInputCustomEvent<string>) => void;
+        /**
           * Event emitted when the validity state of the text field changes.
          */
         "onValidityStateChange"?: (event: IxInputCustomEvent<ValidityState>) => void;
@@ -8541,6 +8548,10 @@ declare namespace LocalJSX {
           * Event emitted when the input field loses focus
          */
         "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the input value is committed (e.g., on blur or enter key)
+         */
+        "onIxChange"?: (event: IxNumberInputCustomEvent<string>) => void;
         /**
           * Event emitted when the validity state of the input field changes
          */
@@ -9381,6 +9392,10 @@ declare namespace LocalJSX {
           * Event emitted when the textarea field loses focus.
          */
         "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
+        /**
+          * Event emitted when the textarea value is committed (e.g., on blur or enter key)
+         */
+        "onIxChange"?: (event: IxTextareaCustomEvent<string>) => void;
         /**
           * Event emitted when the validity state of the textarea field changes.
          */

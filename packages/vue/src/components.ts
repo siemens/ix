@@ -754,11 +754,13 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'allowedCharactersPattern',
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange');
 
@@ -1033,11 +1035,13 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'step',
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange');
 
@@ -1310,11 +1314,13 @@ export const IxTextarea: StencilVueComponent<JSX.IxTextarea, JSX.IxTextarea["val
   'minLength',
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange');
 
