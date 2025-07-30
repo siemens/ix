@@ -48,7 +48,8 @@
     &.disabled:not(.no-icon) {
       @include element-input(
         $feature-read-only: false,
-        $padding: $default-vertical-padding $default-right-padding $default-vertical-padding $padding-left-with-icon
+        $padding: $default-vertical-padding $default-right-padding
+          $default-vertical-padding $padding-left-with-icon
       );
     }
 
@@ -57,7 +58,8 @@
     &.disabled.no-icon {
       @include element-input(
         $feature-read-only: false,
-        $padding: $default-vertical-padding $default-right-padding $default-vertical-padding $padding-left-no-icon
+        $padding: $default-vertical-padding $default-right-padding
+          $default-vertical-padding $padding-left-no-icon
       );
     }
 
@@ -106,8 +108,8 @@
     &:hover,
     &:focus,
     &:focus-visible {
-      border: none !important; // Keep !important if intended to override browser defaults or external styles
-      outline: none !important; // Keep !important if intended to override browser defaults or external styles
+      border: none !important;
+      outline: none !important;
     }
 
     &.hide-placeholder::placeholder {
