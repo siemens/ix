@@ -26933,6 +26933,11 @@
               "Promise": {
                 "location": "global",
                 "id": "global::Promise"
+              },
+              "RefreshTreeOptions": {
+                "location": "import",
+                "path": "tree.types",
+                "id": "src/components/tree/tree.types.ts::RefreshTreeOptions"
               }
             },
             "return": "Promise<void>"
@@ -28689,6 +28694,11 @@
       "declaration": "(\n  treeItem: TreeItem<any>,\n  context: TreeContext\n) => void",
       "docstring": "",
       "path": "src/components/tree/tree-model.ts"
+    },
+    "src/components/tree/tree.types.ts::RefreshTreeOptions": {
+      "declaration": "{\n  force?: boolean;\n}",
+      "docstring": "",
+      "path": "src/components/tree/tree.types.ts"
     },
     "src/components/tree/tree-model.ts::TreeItemContext": {
       "declaration": "export interface TreeItemContext {\n  isExpanded: boolean;\n  isSelected: boolean;\n}",
