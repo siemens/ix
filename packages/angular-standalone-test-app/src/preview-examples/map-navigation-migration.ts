@@ -23,7 +23,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [
     IxApplication,

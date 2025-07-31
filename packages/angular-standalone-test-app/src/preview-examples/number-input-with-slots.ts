@@ -16,7 +16,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxNumberInput, IxIcon, IxTypography, IxTextValueAccessorDirective],
   templateUrl: './number-input-with-slots.html',

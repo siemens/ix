@@ -15,6 +15,5 @@ import { IxProgressIndicator } from '@siemens/ix-angular/standalone';
   templateUrl: './progress-indicator-linear-sizes.html',
   styleUrl: './progress-indicator.css',
   imports: [IxProgressIndicator],
-
 })
 export default class ProgressIndicatorLinearSizes {}

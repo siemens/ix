@@ -17,7 +17,6 @@ import * as echarts from 'echarts';
 /* import 'echarts-gl'; */
 
 @Component({
-
   selector: 'app-example',
   providers: [provideEchartsCore({ echarts })],
   imports: [NgxEchartsDirective],

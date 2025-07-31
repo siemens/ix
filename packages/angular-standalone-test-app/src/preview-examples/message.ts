@@ -13,7 +13,6 @@ import { IxButton } from '@siemens/ix-angular/standalone';
 import { showMessage } from '@siemens/ix';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxButton],
   template: `

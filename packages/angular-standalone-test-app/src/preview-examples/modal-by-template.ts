@@ -19,7 +19,6 @@ import {
 import { ModalService } from '@siemens/ix-angular';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxButton, IxModal, IxModalHeader, IxModalContent, IxModalFooter],
   template: `

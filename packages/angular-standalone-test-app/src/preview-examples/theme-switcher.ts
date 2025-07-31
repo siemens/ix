@@ -23,7 +23,6 @@ import {
 import { themeSwitcher } from '@siemens/ix';
 
 @Component({
-
   selector: 'app-example',
   imports: [
     IxLayoutGrid,

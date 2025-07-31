@@ -15,7 +15,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxCheckboxGroup, IxCheckbox, IxBooleanValueAccessorDirective],
   templateUrl: `./form-checkbox-group.html`,

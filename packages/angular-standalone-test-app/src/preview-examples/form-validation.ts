@@ -74,7 +74,6 @@ export function customRequiredValidator(): ValidatorFn {
 }
 
 @Component({
-
   selector: 'app-example',
   imports: [
     IxLayoutAuto,

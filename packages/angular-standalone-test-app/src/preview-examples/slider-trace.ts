@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxSlider } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxSlider],
   templateUrl: './slider-trace.html',

@@ -24,7 +24,6 @@ import {
 } from '@angular/forms';
 
 @Component({
-
   selector: 'app-example',
   imports: [
     IxSelect,

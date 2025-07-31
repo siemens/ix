@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxChip } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxChip],
   template: `

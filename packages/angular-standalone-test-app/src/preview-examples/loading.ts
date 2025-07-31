@@ -13,7 +13,6 @@ import { IxButton } from '@siemens/ix-angular/standalone';
 import { showModalLoading } from '@siemens/ix';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxButton],
   template: ` <ix-button (click)="startLoading()">Start loading</ix-button> `,

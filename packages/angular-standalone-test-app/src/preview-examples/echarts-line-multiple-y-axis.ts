@@ -17,7 +17,6 @@ import { EChartsOption, SeriesOption } from 'echarts';
 import { YAXisOption } from 'echarts/types/dist/shared';
 
 @Component({
-
   selector: 'app-example',
   providers: [provideEchartsCore({ echarts })],
   imports: [NgxEchartsDirective],

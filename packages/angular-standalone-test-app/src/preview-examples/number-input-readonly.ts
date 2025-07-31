@@ -14,7 +14,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxNumberInput, IxTextValueAccessorDirective],
   templateUrl: './number-input-readonly.html',

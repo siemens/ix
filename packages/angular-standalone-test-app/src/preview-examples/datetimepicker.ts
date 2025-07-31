@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxDatetimePicker } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxDatetimePicker],
   template: `<ix-datetime-picker></ix-datetime-picker>`,

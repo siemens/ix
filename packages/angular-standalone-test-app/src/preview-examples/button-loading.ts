@@ -10,7 +10,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-
   selector: 'app-example',
   template: './button-loading.html',
   styleUrls: ['./button-loading.css'],

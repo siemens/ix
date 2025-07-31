@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxDateDropdown } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxDateDropdown],
   templateUrl: './date-dropdown.html',

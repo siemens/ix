@@ -14,7 +14,6 @@ import { ModalService } from '@siemens/ix-angular';
 import ModalByInstanceExample from './modal-by-instance-content';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxButton],
   template: '<ix-button (click)="openModal()">Show modal</ix-button>',

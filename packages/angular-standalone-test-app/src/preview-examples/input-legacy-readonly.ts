@@ -10,7 +10,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-
   selector: 'app-example',
   template: `
     <form class="needs-validation">

@@ -22,7 +22,6 @@ import {
 import { Breakpoint } from '@siemens/ix';
 
 @Component({
-
   selector: 'app-example',
   imports: [
     IxApplication,

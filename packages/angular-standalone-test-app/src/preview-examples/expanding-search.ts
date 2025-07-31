@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxExpandingSearch } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxExpandingSearch],
   template: `

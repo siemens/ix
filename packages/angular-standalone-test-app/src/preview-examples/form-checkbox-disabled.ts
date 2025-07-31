@@ -14,7 +14,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxCheckbox, IxBooleanValueAccessorDirective],
   templateUrl: `./form-checkbox-disabled.html`,

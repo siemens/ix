@@ -27,7 +27,6 @@ const lastSevenDays = new Date(
 });
 
 @Component({
-
   selector: 'app-example',
   imports: [IxDateDropdown],
   templateUrl: './date-dropdown-user-range.html',

@@ -13,7 +13,6 @@ import { NgIf } from '@angular/common';
 import { IxTabs, IxTabItem } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxTabs, IxTabItem, NgIf],
   template: `

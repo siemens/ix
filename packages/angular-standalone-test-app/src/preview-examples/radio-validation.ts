@@ -15,7 +15,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-
   selector: 'app-example',
   imports: [IxRadioGroup, IxRadio, IxRadioValueAccessorDirective],
   templateUrl: './radio-validation.html',
