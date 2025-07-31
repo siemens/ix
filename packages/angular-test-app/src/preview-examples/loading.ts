@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 import { showModalLoading } from '@siemens/ix';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   template: ` <ix-button (click)="startLoading()">Start loading</ix-button> `,
 })

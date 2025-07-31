@@ -15,7 +15,7 @@ type TreeData = {
   icon: string;
 };
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   styles: [
     `

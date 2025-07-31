@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 import { AppSwitchConfiguration } from '@siemens/ix';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   templateUrl: './application-app-switch.html',
 })

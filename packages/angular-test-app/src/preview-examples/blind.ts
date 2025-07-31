@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   templateUrl: './blind.html',
   styleUrls: ['./blind.css'],

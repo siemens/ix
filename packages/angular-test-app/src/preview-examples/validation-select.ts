@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   templateUrl: `./validation-select.html`,
 })

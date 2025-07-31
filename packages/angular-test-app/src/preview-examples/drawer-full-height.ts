@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   template: `
     <ix-drawer [fullHeight]="true" [closeOnClickOutside]="true" [show]="show">

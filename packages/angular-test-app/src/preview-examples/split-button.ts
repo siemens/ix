@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   template: `
     <ix-split-button label="Action text" splitIcon="chevron-down-small">

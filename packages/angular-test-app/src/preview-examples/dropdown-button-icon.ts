@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   styleUrls: ['./dropdown-button-icon.css'],
   template: `

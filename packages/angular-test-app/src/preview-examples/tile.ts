@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   template: `
     <ix-tile size="small">92.8 °C</ix-tile>

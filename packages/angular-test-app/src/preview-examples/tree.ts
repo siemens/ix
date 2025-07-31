@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 import { TreeModel } from '@siemens/ix';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   template: ` <div class="example">
     <ix-tree root="root" [model]="model"></ix-tree>

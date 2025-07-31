@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   template: `
     <ix-expanding-search placeholder="Search..."></ix-expanding-search>

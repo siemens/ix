@@ -10,7 +10,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ModalService } from '@siemens/ix-angular';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   template: `
     <ix-button (click)="openModal()">Show modal</ix-button>

@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   templateUrl: './map-navigation-migration.html',
   styleUrls: ['./map-navigation-migration.css'],

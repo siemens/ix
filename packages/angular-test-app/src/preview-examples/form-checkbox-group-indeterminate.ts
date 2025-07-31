@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-example',
   templateUrl: './form-checkbox-group-indeterminate.html',
   styleUrls: ['./form-checkbox-group-indeterminate.css'],

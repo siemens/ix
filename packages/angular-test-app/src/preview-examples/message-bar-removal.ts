@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-message-bar-single-removal',
   templateUrl: './message-bar-removal.html',
   styleUrls: ['./message-bar.css']

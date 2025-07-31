@@ -2,7 +2,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ModalService } from '@siemens/ix-angular';
 import { NgForm } from '@angular/forms';
 
-@Component({
+@Component({ standalone: false,
   selector: 'app-modal-form-ix-button-submit',
   templateUrl: './modal-form-ix-button-submit.html',
 })
