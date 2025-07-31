@@ -26,7 +26,7 @@
     "@siemens/ix-icons": "^3.0.0",
     "ag-grid-angular": "^32.0.2",
     "ag-grid-community": "^32.0.2",
-    "echarts": "5.4.3",
+    "echarts": "^6.0.0",
     "echarts-gl": "^2.0.9",
     "html-test-app": "workspace:*",
     "ngx-echarts": "^20.0.1",

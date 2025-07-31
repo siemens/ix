@@ -12,7 +12,7 @@ import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
 import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 @Component({

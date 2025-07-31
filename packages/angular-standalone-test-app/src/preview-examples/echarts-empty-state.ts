@@ -16,7 +16,7 @@ import { IxEmptyState } from '@siemens/ix-angular/standalone';
 
 import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 @Component({
