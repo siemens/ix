@@ -1,0 +1,7 @@
+@mixin setVars {
+  --theme-tab-pill--border-color: var(--theme-color-neutral);
+  --theme-tab-pill--border-color--hover: var(--theme-color-neutral);
+  --theme-tab-pill--border-color--active: var(--theme-color-neutral);
+  --theme-tab-pill--border-color--selected: var(--theme-color-dynamic);
+  --theme-tab-pill--border-color--disabled: var(--theme-color-neutral);
+}

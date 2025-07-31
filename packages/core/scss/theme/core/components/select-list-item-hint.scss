@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-select-list-item-hint--color: var(--theme-color-soft-text);
+  --theme-select-list-item-hint--color--hover: var(--theme-color-soft-text);
+  --theme-select-list-item-hint--color--active: var(--theme-color-soft-text);
+}

@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-table-group-splitter--background: var(--theme-color-x-weak-bdr);
+  --theme-table-group-splitter--background--hover: var(--theme-color-dynamic);
+}
