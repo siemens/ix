@@ -23,7 +23,7 @@ import {
 } from '@angular/forms';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [
     IxInput,

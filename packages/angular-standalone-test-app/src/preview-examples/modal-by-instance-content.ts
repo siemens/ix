@@ -17,7 +17,7 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example-content',
   imports: [IxModalHeader, IxModalContent, IxModalFooter, IxButton],
   template: `

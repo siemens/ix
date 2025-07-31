@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IxTimePicker } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxTimePicker],
   templateUrl: './timepicker.html',

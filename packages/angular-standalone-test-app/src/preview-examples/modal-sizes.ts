@@ -13,7 +13,7 @@ import { IxButton } from '@siemens/ix-angular/standalone';
 import { IxModalSize, ModalService } from '@siemens/ix-angular';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxButton],
   styleUrls: ['./modal-sizes.css'],

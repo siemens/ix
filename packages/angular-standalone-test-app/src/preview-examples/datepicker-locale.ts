@@ -18,7 +18,7 @@ import {
 type Locale = 'de' | 'en';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [
     IxSelect,

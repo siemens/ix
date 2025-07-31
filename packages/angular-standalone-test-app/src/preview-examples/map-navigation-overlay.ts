@@ -21,7 +21,7 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [
     IxMapNavigation,

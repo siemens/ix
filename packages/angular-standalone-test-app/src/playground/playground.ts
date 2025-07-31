@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-playground',
-  standalone: true,
+
   imports: [],
   templateUrl: './playground.html',
   styleUrls: ['./playground.css'],

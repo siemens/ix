@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IxTabs, IxTabItem, IxIcon } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxTabs, IxTabItem, IxIcon],
   template: `

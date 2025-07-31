@@ -23,7 +23,7 @@ import {
 import { AppSwitchConfiguration } from '@siemens/ix';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [
     IxApplication,

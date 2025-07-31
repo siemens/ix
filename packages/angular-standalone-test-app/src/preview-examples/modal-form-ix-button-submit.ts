@@ -20,7 +20,7 @@ import {
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
-  standalone: true,
+
   selector: 'app-modal-form-ix-button-submit',
   templateUrl: './modal-form-ix-button-submit.html',
   imports: [

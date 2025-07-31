@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IxEmptyState } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxEmptyState],
   template: ` <ix-empty-state

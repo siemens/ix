@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IxAvatar } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxAvatar],
   template: ` <ix-avatar initials="JD"></ix-avatar> `,

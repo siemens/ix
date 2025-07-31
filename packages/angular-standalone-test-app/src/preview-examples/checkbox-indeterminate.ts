@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   template: `
     <div>

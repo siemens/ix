@@ -15,7 +15,7 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxCheckboxGroup, IxCheckbox, IxBooleanValueAccessorDirective],
   templateUrl: `./form-checkbox-validation.html`,

@@ -13,14 +13,14 @@ import { IxButton } from '@siemens/ix-angular/standalone';
 import { ToastService } from '@siemens/ix-angular';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxButton],
   template: `
     <ix-button (click)="showToastMessage()" style="margin-right: 0.5rem">
       Trigger toast with custom message
     </ix-button>
-    
+
     <ix-button (click)="showToastMessageAction()">
       Trigger toast with action button
     </ix-button>

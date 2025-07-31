@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IxCategoryFilter } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxCategoryFilter],
   template: `

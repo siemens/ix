@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IxButton, IxTooltip } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxButton, IxTooltip],
   templateUrl: './tooltip.html',

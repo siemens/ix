@@ -18,7 +18,7 @@ type TreeData = {
 };
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxButton, IxTree, IxIcon],
   styles: [

@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IxButton } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxButton],
   templateUrl: './button-danger-ghost.html',

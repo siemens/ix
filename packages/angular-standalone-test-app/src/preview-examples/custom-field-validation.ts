@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IxCustomField } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxCustomField],
   templateUrl: './custom-field-validation.html',

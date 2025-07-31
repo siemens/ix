@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IxPill } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
+
   selector: 'app-example',
   imports: [IxPill],
   styleUrls: ['./pill.css'],
