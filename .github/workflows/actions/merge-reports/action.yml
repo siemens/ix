@@ -24,6 +24,10 @@ runs:
         pattern: ${{ inputs.blobPattern }}
         merge-multiple: true
 
+    - name: Install Playwright Browsers
+      shell: bash
+      run: pnpm run test.setup --cache-dir=.turbo --filter ${{ inputs.projectName }}
+
     - name: Merge into HTML Report
       shell: bash
       run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
