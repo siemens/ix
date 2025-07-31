@@ -6,18 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/component';
 
 $CardList__Title__Height: 1.5rem;
 
 :host {
-  @include ix-component;
-
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: flex-start;
   margin: 0.5rem;
+
+  @include component.ix-component;
 
   .CardList_Title {
     display: flex;
