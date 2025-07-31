@@ -1,0 +1,6 @@
+@mixin setVars {
+  --theme-app-header--color: var(--theme-color-std-text);
+  --theme-app-header--background: var(--theme-color-2);
+  --theme-app-header--border-color: var(--theme-color-weak-bdr);
+  --theme-app-header--border-width: var(--theme-blind--border-thickness);
+}
