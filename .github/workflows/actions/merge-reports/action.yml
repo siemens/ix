@@ -30,7 +30,9 @@ runs:
 
     - name: Merge into HTML Report
       shell: bash
-      run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
+      run: |
+        cd testing/visual-testing
+        pnpm exec playwright merge-reports --reporter html ./all-blob-reports
 
     - name: Upload HTML report
       uses: actions/upload-artifact@v4
