@@ -42,6 +42,7 @@ import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
 import { TabClickDetail } from "./components/tab-item/tab-item.types";
+import { TabsContextController } from "./components/tabs-context/controller";
 import { TextareaResizeBehavior } from "./components/input/textarea.types";
 import { TimeInputValidityState } from "./components/time-input/time-input.types";
 import { TimePickerCorners } from "./components/time-picker/time-picker.types";
@@ -90,6 +91,7 @@ export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
 export { TabClickDetail } from "./components/tab-item/tab-item.types";
+export { TabsContextController } from "./components/tabs-context/controller";
 export { TextareaResizeBehavior } from "./components/input/textarea.types";
 export { TimeInputValidityState } from "./components/time-input/time-input.types";
 export { TimePickerCorners } from "./components/time-picker/time-picker.types";
@@ -3240,18 +3242,6 @@ export namespace Components {
          */
         "variant": SplitButtonVariant;
     }
-    /**
-     * The `ix-tab-context` component provides a context for tab items and panels.
-     * It allows the active tab to be shared across the tab items and panels.
-     * This component should be used to wrap `ix-tab-item` and `ix-tab-panel` components.
-     * ix-tab-context contains no UI state or any visual representation.
-     * It is purely a context provider for the active tab value.
-     * It could be that the ix-tab-context needs to be written for each framework individually,
-     * as it is a context provider and not a UI component.
-     */
-    interface IxTabContext {
-        "value"?: string;
-    }
     interface IxTabItem {
         /**
           * Set counter value
@@ -3298,6 +3288,9 @@ export namespace Components {
         "value"?: string;
     }
     interface IxTabPanel {
+        /**
+          * The value of the tab panel, which should match the value of the corresponding tab.
+         */
         "value"?: string;
     }
     interface IxTabs {
@@ -3336,6 +3329,13 @@ export namespace Components {
           * @default false
          */
         "small": boolean;
+    }
+    interface IxTabsContext {
+        /**
+          * The controller for managing the tabs context. This can be replaced with a custom controller if needed.
+          * @default new DOMTabsContextController()
+         */
+        "tabsController": TabsContextController;
     }
     /**
      * @form-ready 
@@ -5539,21 +5539,6 @@ declare global {
         prototype: HTMLIxSplitButtonElement;
         new (): HTMLIxSplitButtonElement;
     };
-    /**
-     * The `ix-tab-context` component provides a context for tab items and panels.
-     * It allows the active tab to be shared across the tab items and panels.
-     * This component should be used to wrap `ix-tab-item` and `ix-tab-panel` components.
-     * ix-tab-context contains no UI state or any visual representation.
-     * It is purely a context provider for the active tab value.
-     * It could be that the ix-tab-context needs to be written for each framework individually,
-     * as it is a context provider and not a UI component.
-     */
-    interface HTMLIxTabContextElement extends Components.IxTabContext, HTMLStencilElement {
-    }
-    var HTMLIxTabContextElement: {
-        prototype: HTMLIxTabContextElement;
-        new (): HTMLIxTabContextElement;
-    };
     interface HTMLIxTabItemElementEventMap {
         "tabClick": TabClickDetail;
     }
@@ -5593,6 +5578,12 @@ declare global {
     var HTMLIxTabsElement: {
         prototype: HTMLIxTabsElement;
         new (): HTMLIxTabsElement;
+    };
+    interface HTMLIxTabsContextElement extends Components.IxTabsContext, HTMLStencilElement {
+    }
+    var HTMLIxTabsContextElement: {
+        prototype: HTMLIxTabsContextElement;
+        new (): HTMLIxTabsContextElement;
     };
     interface HTMLIxTextareaElementEventMap {
         "valueChange": string;
@@ -5932,10 +5923,10 @@ declare global {
         "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
         "ix-split-button": HTMLIxSplitButtonElement;
-        "ix-tab-context": HTMLIxTabContextElement;
         "ix-tab-item": HTMLIxTabItemElement;
         "ix-tab-panel": HTMLIxTabPanelElement;
         "ix-tabs": HTMLIxTabsElement;
+        "ix-tabs-context": HTMLIxTabsContextElement;
         "ix-textarea": HTMLIxTextareaElement;
         "ix-tile": HTMLIxTileElement;
         "ix-time-input": HTMLIxTimeInputElement;
@@ -9298,18 +9289,6 @@ declare namespace LocalJSX {
          */
         "variant"?: SplitButtonVariant;
     }
-    /**
-     * The `ix-tab-context` component provides a context for tab items and panels.
-     * It allows the active tab to be shared across the tab items and panels.
-     * This component should be used to wrap `ix-tab-item` and `ix-tab-panel` components.
-     * ix-tab-context contains no UI state or any visual representation.
-     * It is purely a context provider for the active tab value.
-     * It could be that the ix-tab-context needs to be written for each framework individually,
-     * as it is a context provider and not a UI component.
-     */
-    interface IxTabContext {
-        "value"?: string;
-    }
     interface IxTabItem {
         /**
           * Set counter value
@@ -9360,6 +9339,9 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IxTabPanel {
+        /**
+          * The value of the tab panel, which should match the value of the corresponding tab.
+         */
         "value"?: string;
     }
     interface IxTabs {
@@ -9402,6 +9384,13 @@ declare namespace LocalJSX {
           * @default false
          */
         "small"?: boolean;
+    }
+    interface IxTabsContext {
+        /**
+          * The controller for managing the tabs context. This can be replaced with a custom controller if needed.
+          * @default new DOMTabsContextController()
+         */
+        "tabsController"?: TabsContextController;
     }
     /**
      * @form-ready 
@@ -10288,10 +10277,10 @@ declare namespace LocalJSX {
         "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
         "ix-split-button": IxSplitButton;
-        "ix-tab-context": IxTabContext;
         "ix-tab-item": IxTabItem;
         "ix-tab-panel": IxTabPanel;
         "ix-tabs": IxTabs;
+        "ix-tabs-context": IxTabsContext;
         "ix-textarea": IxTextarea;
         "ix-tile": IxTile;
         "ix-time-input": IxTimeInput;
@@ -10440,19 +10429,10 @@ declare module "@stencil/core" {
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
-            /**
-             * The `ix-tab-context` component provides a context for tab items and panels.
-             * It allows the active tab to be shared across the tab items and panels.
-             * This component should be used to wrap `ix-tab-item` and `ix-tab-panel` components.
-             * ix-tab-context contains no UI state or any visual representation.
-             * It is purely a context provider for the active tab value.
-             * It could be that the ix-tab-context needs to be written for each framework individually,
-             * as it is a context provider and not a UI component.
-             */
-            "ix-tab-context": LocalJSX.IxTabContext & JSXBase.HTMLAttributes<HTMLIxTabContextElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tab-panel": LocalJSX.IxTabPanel & JSXBase.HTMLAttributes<HTMLIxTabPanelElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
+            "ix-tabs-context": LocalJSX.IxTabsContext & JSXBase.HTMLAttributes<HTMLIxTabsContextElement>;
             /**
              * @form-ready 
              */

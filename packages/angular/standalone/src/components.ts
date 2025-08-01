@@ -93,10 +93,10 @@ import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/component
 import { defineCustomElement as defineIxSlider } from '@siemens/ix/components/ix-slider.js';
 import { defineCustomElement as defineIxSpinner } from '@siemens/ix/components/ix-spinner.js';
 import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/components/ix-split-button.js';
-import { defineCustomElement as defineIxTabContext } from '@siemens/ix/components/ix-tab-context.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabPanel } from '@siemens/ix/components/ix-tab-panel.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
+import { defineCustomElement as defineIxTabsContext } from '@siemens/ix/components/ix-tabs-context.js';
 import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimeInput } from '@siemens/ix/components/ix-time-input.js';
@@ -2660,30 +2660,6 @@ export declare interface IxSplitButton extends Components.IxSplitButton {
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIxTabContext,
-  inputs: ['value']
-})
-@Component({
-  selector: 'ix-tab-context',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['value'],
-  standalone: true
-})
-export class IxTabContext {
-  protected el: HTMLIxTabContextElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxTabContext extends Components.IxTabContext {}
-
-
-@ProxyCmp({
   defineCustomElementFn: defineIxTabItem,
   inputs: ['counter', 'disabled', 'icon', 'layout', 'placement', 'rounded', 'selected', 'small', 'value']
 })
@@ -2767,6 +2743,30 @@ export declare interface IxTabs extends Components.IxTabs {
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxTabsContext,
+  inputs: ['tabsController']
+})
+@Component({
+  selector: 'ix-tabs-context',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['tabsController'],
+  standalone: true
+})
+export class IxTabsContext {
+  protected el: HTMLIxTabsContextElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxTabsContext extends Components.IxTabsContext {}
 
 
 @ProxyCmp({

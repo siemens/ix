@@ -95,9 +95,9 @@ import { IxSelect as IxSelectElement, defineCustomElement as defineIxSelect } fr
 import { IxSlider as IxSliderElement, defineCustomElement as defineIxSlider } from "@siemens/ix/components/ix-slider.js";
 import { IxSpinner as IxSpinnerElement, defineCustomElement as defineIxSpinner } from "@siemens/ix/components/ix-spinner.js";
 import { IxSplitButton as IxSplitButtonElement, defineCustomElement as defineIxSplitButton } from "@siemens/ix/components/ix-split-button.js";
-import { IxTabContext as IxTabContextElement, defineCustomElement as defineIxTabContext } from "@siemens/ix/components/ix-tab-context.js";
 import { IxTabItem as IxTabItemElement, defineCustomElement as defineIxTabItem } from "@siemens/ix/components/ix-tab-item.js";
 import { IxTabPanel as IxTabPanelElement, defineCustomElement as defineIxTabPanel } from "@siemens/ix/components/ix-tab-panel.js";
+import { IxTabsContext as IxTabsContextElement, defineCustomElement as defineIxTabsContext } from "@siemens/ix/components/ix-tabs-context.js";
 import { IxTabs as IxTabsElement, defineCustomElement as defineIxTabs } from "@siemens/ix/components/ix-tabs.js";
 import { IxTextarea as IxTextareaElement, defineCustomElement as defineIxTextarea } from "@siemens/ix/components/ix-textarea.js";
 import { IxTile as IxTileElement, defineCustomElement as defineIxTile } from "@siemens/ix/components/ix-tile.js";
@@ -1248,17 +1248,6 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
     defineCustomElement: defineIxSplitButton
 });
 
-export type IxTabContextEvents = NonNullable<unknown>;
-
-export const IxTabContext: StencilReactComponent<IxTabContextElement, IxTabContextEvents> = /*@__PURE__*/ createComponent<IxTabContextElement, IxTabContextEvents>({
-    tagName: 'ix-tab-context',
-    elementClass: IxTabContextElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
-    react: React,
-    events: {} as IxTabContextEvents,
-    defineCustomElement: defineIxTabContext
-});
-
 export type IxTabItemEvents = { onTabClick: EventName<IxTabItemCustomEvent<TabClickDetail>> };
 
 export const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents> = /*@__PURE__*/ createComponent<IxTabItemElement, IxTabItemEvents>({
@@ -1290,6 +1279,17 @@ export const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents> = /*@__P
     react: React,
     events: { onSelectedChange: 'selectedChange' } as IxTabsEvents,
     defineCustomElement: defineIxTabs
+});
+
+export type IxTabsContextEvents = NonNullable<unknown>;
+
+export const IxTabsContext: StencilReactComponent<IxTabsContextElement, IxTabsContextEvents> = /*@__PURE__*/ createComponent<IxTabsContextElement, IxTabsContextEvents>({
+    tagName: 'ix-tabs-context',
+    elementClass: IxTabsContextElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxTabsContextEvents,
+    defineCustomElement: defineIxTabsContext
 });
 
 export type IxTextareaEvents = {

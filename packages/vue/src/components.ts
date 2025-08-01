@@ -92,10 +92,10 @@ import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/component
 import { defineCustomElement as defineIxSlider } from '@siemens/ix/components/ix-slider.js';
 import { defineCustomElement as defineIxSpinner } from '@siemens/ix/components/ix-spinner.js';
 import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/components/ix-split-button.js';
-import { defineCustomElement as defineIxTabContext } from '@siemens/ix/components/ix-tab-context.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabPanel } from '@siemens/ix/components/ix-tab-panel.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
+import { defineCustomElement as defineIxTabsContext } from '@siemens/ix/components/ix-tabs-context.js';
 import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimeInput } from '@siemens/ix/components/ix-time-input.js';
@@ -1260,11 +1260,6 @@ export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__
 ]);
 
 
-export const IxTabContext: StencilVueComponent<JSX.IxTabContext> = /*@__PURE__*/ defineContainer<JSX.IxTabContext>('ix-tab-context', defineIxTabContext, [
-  'value'
-]);
-
-
 export const IxTabItem: StencilVueComponent<JSX.IxTabItem> = /*@__PURE__*/ defineContainer<JSX.IxTabItem>('ix-tab-item', defineIxTabItem, [
   'selected',
   'disabled',
@@ -1297,6 +1292,11 @@ export const IxTabs: StencilVueComponent<JSX.IxTabs> = /*@__PURE__*/ defineConta
   'selectedChange'
 ], [
   'selectedChange'
+]);
+
+
+export const IxTabsContext: StencilVueComponent<JSX.IxTabsContext> = /*@__PURE__*/ defineContainer<JSX.IxTabsContext>('ix-tabs-context', defineIxTabsContext, [
+  'tabsController'
 ]);
 
 

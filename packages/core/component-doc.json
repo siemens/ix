@@ -22202,56 +22202,6 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/tab-context",
-      "filePath": "src/components/tab-context/tab-context.tsx",
-      "fileName": "tab-context.tsx",
-      "readmePath": "src/components/tab-context/readme.md",
-      "usagesDir": "src/components/tab-context/usage",
-      "tag": "ix-tab-context",
-      "overview": "The `ix-tab-context` component provides a context for tab items and panels.\nIt allows the active tab to be shared across the tab items and panels.\nThis component should be used to wrap `ix-tab-item` and `ix-tab-panel` components.\n\nix-tab-context contains no UI state or any visual representation.\nIt is purely a context provider for the active tab value.\n\nIt could be that the ix-tab-context needs to be written for each framework individually,\nas it is a context provider and not a UI component.",
-      "usage": {},
-      "docs": "The `ix-tab-context` component provides a context for tab items and panels.\nIt allows the active tab to be shared across the tab items and panels.\nThis component should be used to wrap `ix-tab-item` and `ix-tab-panel` components.\n\nix-tab-context contains no UI state or any visual representation.\nIt is purely a context provider for the active tab value.\n\nIt could be that the ix-tab-context needs to be written for each framework individually,\nas it is a context provider and not a UI component.",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [
-        {
-          "name": "value",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "value",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "src/components/tab-item",
       "filePath": "src/components/tab-item/tab-item.tsx",
       "fileName": "tab-item.tsx",
@@ -22588,32 +22538,6 @@
       "dependencyGraph": {},
       "props": [
         {
-          "name": "activeValue",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "active-value",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "value",
           "type": "string | undefined",
           "complexType": {
@@ -22624,7 +22548,7 @@
           "mutable": false,
           "attr": "value",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "The value of the tab panel, which should match the value of the corresponding tab.",
           "docsTags": [],
           "values": [
             {
@@ -22924,6 +22848,65 @@
           "passive": false
         }
       ]
+    },
+    {
+      "dirPath": "src/components/tabs-context",
+      "filePath": "src/components/tabs-context/tabs-context.tsx",
+      "fileName": "tabs-context.tsx",
+      "readmePath": "src/components/tabs-context/readme.md",
+      "usagesDir": "src/components/tabs-context/usage",
+      "tag": "ix-tabs-context",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "tabsController",
+          "type": "TabsContextController",
+          "complexType": {
+            "original": "TabsContextController",
+            "resolved": "TabsContextController",
+            "references": {
+              "TabsContextController": {
+                "location": "import",
+                "path": "controller",
+                "id": "src/components/tabs-context/controller.ts::TabsContextController"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "tabs-controller",
+          "reflectToAttr": false,
+          "docs": "The controller for managing the tabs context.\nThis can be replaced with a custom controller if needed.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "new DOMTabsContextController()"
+            }
+          ],
+          "default": "new DOMTabsContextController()",
+          "values": [
+            {
+              "type": "TabsContextController"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
     },
     {
       "dirPath": "src/components/input",
@@ -28597,9 +28580,14 @@
       "path": "src/components/split-button/split-button.types.ts"
     },
     "src/components/tab-item/tab-item.types.ts::TabClickDetail": {
-      "declaration": "{\n  nativeEvent: MouseEvent;\n}",
+      "declaration": "{\n  nativeEvent: MouseEvent;\n  value?: string;\n}",
       "docstring": "",
       "path": "src/components/tab-item/tab-item.types.ts"
+    },
+    "src/components/tabs-context/controller.ts::TabsContextController": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components/tabs-context/controller.ts"
     },
     "src/components/time-input/time-input.types.ts::TimeInputValidityState": {
       "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",

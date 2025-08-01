@@ -2381,28 +2381,6 @@ export declare interface IxSplitButton extends Components.IxSplitButton {
 
 
 @ProxyCmp({
-  inputs: ['value']
-})
-@Component({
-  selector: 'ix-tab-context',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['value'],
-})
-export class IxTabContext {
-  protected el: HTMLIxTabContextElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxTabContext extends Components.IxTabContext {}
-
-
-@ProxyCmp({
   inputs: ['counter', 'disabled', 'icon', 'layout', 'placement', 'rounded', 'selected', 'small', 'value']
 })
 @Component({
@@ -2480,6 +2458,28 @@ export declare interface IxTabs extends Components.IxTabs {
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['tabsController']
+})
+@Component({
+  selector: 'ix-tabs-context',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['tabsController'],
+})
+export class IxTabsContext {
+  protected el: HTMLIxTabsContextElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxTabsContext extends Components.IxTabsContext {}
 
 
 @ProxyCmp({

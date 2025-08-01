@@ -26,3 +26,4 @@ export {
 } from './components/utils/rwd.util';
 export * from './components/utils/theme-switcher';
 export * from './components/utils/context';
+export * from './components/tabs-context/controller';
