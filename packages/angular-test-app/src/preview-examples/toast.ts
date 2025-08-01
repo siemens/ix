@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 import { ToastService } from '@siemens/ix-angular';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-button (click)="showToastMessage()">Trigger toast</ix-button>

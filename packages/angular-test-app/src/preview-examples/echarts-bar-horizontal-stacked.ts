@@ -13,7 +13,8 @@ import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts';
 import { BarSeriesOption, EChartsOption } from 'echarts';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './echarts-bar-horizontal-stacked.html',
   styleUrls: ['./echarts-bar-horizontal-stacked.css'],

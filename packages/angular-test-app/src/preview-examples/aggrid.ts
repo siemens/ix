@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './aggrid.html',
 })

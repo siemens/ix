@@ -11,7 +11,8 @@ import { Component } from '@angular/core';
 import { addIcons } from '@siemens/ix-icons';
 import { iconStar, iconStarFilled } from '@siemens/ix-icons/icons';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './add-icons.html',
   styleUrls: ['./add-icons.css'],

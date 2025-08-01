@@ -24,7 +24,8 @@ const lastSevenDays = new Date(
   day: '2-digit',
 });
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './date-dropdown-user-range.html',
 })

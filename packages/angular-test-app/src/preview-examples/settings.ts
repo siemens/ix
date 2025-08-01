@@ -9,7 +9,8 @@
 
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './settings.html',
 })

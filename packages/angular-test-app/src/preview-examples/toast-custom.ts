@@ -10,7 +10,8 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ToastService } from '@siemens/ix-angular';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-button (click)="showToastMessage()">
@@ -27,15 +28,19 @@ import { ToastService } from '@siemens/ix-angular';
 
     <ng-template #customToastAction let-toast>
       <div>
-        <ix-button ghost icon="undo" (click)="toast.close('Action')">Undo</ix-button>
+        <ix-button ghost icon="undo" (click)="toast.close('Action')"
+          >Undo</ix-button
+        >
       </div>
     </ng-template>
   `,
-  styles: [`
-    ix-button {
-      margin-right: 0.5rem;
-    }
-  `]
+  styles: [
+    `
+      ix-button {
+        margin-right: 0.5rem;
+      }
+    `,
+  ],
 })
 export default class ToastCustom {
   @ViewChild('customToastMessage', { read: TemplateRef })

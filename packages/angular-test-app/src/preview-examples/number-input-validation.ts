@@ -9,8 +9,9 @@
 
 import { Component } from '@angular/core';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './number-input-validation.html'
+  templateUrl: './number-input-validation.html',
 })
 export default class NumberInputValidation {}

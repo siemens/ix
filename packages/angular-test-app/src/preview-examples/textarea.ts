@@ -9,8 +9,9 @@
 
 import { Component } from '@angular/core';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './textarea.html'
+  templateUrl: './textarea.html',
 })
 export default class Textarea {}

@@ -9,7 +9,8 @@
 
 import { Component } from '@angular/core';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-button variant="secondary"> Button </ix-button>

@@ -14,7 +14,8 @@ import { EChartsOption } from 'echarts';
 import * as echarts from 'echarts';
 /* import 'echarts-gl'; */
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './echarts-special-3d.html',
   styleUrls: ['./echarts-special-3d.css'],

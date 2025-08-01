@@ -14,7 +14,8 @@ import * as echarts from 'echarts';
 import { EChartsOption, SeriesOption } from 'echarts';
 import { YAXisOption } from 'echarts/types/dist/shared';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './echarts-line-multiple-y-axis.html',
   styleUrls: ['./echarts-line-multiple-y-axis.css'],

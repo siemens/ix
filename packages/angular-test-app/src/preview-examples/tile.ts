@@ -9,7 +9,8 @@
 
 import { Component } from '@angular/core';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-tile size="small">92.8 °C</ix-tile>
@@ -20,10 +21,7 @@ import { Component } from '@angular/core';
     </ix-tile>
 
     <ix-tile size="big">
-      <div
-        class="tile-header"
-        slot="header"
-      >
+      <div class="tile-header" slot="header">
         Tile header
         <ix-icon-button ghost icon="context-menu"></ix-icon-button>
       </div>
@@ -39,13 +37,10 @@ import { Component } from '@angular/core';
       >
         <span>92.8 °C</span>
       </div>
-      <div
-        class="tile-footer"
-        slot="footer"
-      >
-      <ix-button icon="chevron-right-small" ghost slot="footer">
+      <div class="tile-footer" slot="footer">
+        <ix-button icon="chevron-right-small" ghost slot="footer">
           Details
-      </ix-button>
+        </ix-button>
       </div>
     </ix-tile>
   `,

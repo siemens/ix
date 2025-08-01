@@ -9,8 +9,9 @@
 
 import { Component } from '@angular/core';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './textarea-disabled.html'
+  templateUrl: './textarea-disabled.html',
 })
 export default class TextareaDisabled {}

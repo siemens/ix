@@ -9,7 +9,8 @@
 
 import { Component } from '@angular/core';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './form-layout-grid.html',
   styleUrls: ['./form-layout-grid.css'],

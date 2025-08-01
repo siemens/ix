@@ -9,8 +9,9 @@
 
 import { Component } from '@angular/core';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './input-readonly.html'
+  templateUrl: './input-readonly.html',
 })
 export default class InputReadonly {}

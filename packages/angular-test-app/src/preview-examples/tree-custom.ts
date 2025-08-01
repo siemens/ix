@@ -15,7 +15,8 @@ type TreeData = {
   icon: string;
 };
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   styles: [
     `
@@ -43,7 +44,11 @@ type TreeData = {
     ></ix-tree>
     <ng-template #treeItem let-item>
       <div style="display: flex; align-items: center">
-        <ix-icon [name]="item.icon" size="16" style="margin-inline-end: 0.5rem"></ix-icon>
+        <ix-icon
+          [name]="item.icon"
+          size="16"
+          style="margin-inline-end: 0.5rem"
+        ></ix-icon>
         {{ item.name }}
       </div>
     </ng-template>

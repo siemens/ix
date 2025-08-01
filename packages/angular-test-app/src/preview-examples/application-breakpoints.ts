@@ -9,7 +9,8 @@
 import { Component } from '@angular/core';
 import { Breakpoint } from '@siemens/ix';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './application-breakpoints.html',
 })

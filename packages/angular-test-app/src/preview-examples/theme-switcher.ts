@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 import { themeSwitcher } from '@siemens/ix';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './theme-switcher.html',
   styleUrls: ['./theme-switcher.css'],

@@ -13,7 +13,8 @@ import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
-@Component({ standalone: false,
+@Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './echarts-pie.html',
   styleUrls: ['./echarts-pie.css'],
