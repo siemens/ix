@@ -30,6 +30,9 @@ export class InputGroup {
   startSlotRef?: HTMLElement;
   endSlotRef?: HTMLElement;
 
+  private isVisible: boolean = true;
+  private intersectionObserver?: IntersectionObserver;
+
   private get inputElement() {
     return this.hostElement.querySelector('input') as HTMLInputElement;
   }
@@ -56,8 +59,10 @@ export class InputGroup {
 
     this.observer = new MutationObserver(() => {
       this.slotChanged();
-      this.startSlotChanged();
-      this.endSlotChanged();
+      if (this.isVisible) {
+        this.startSlotChanged();
+        this.endSlotChanged();
+      }
     });
 
     this.observer.observe(this.hostElement, {
@@ -66,10 +71,37 @@ export class InputGroup {
       attributes: true,
       characterData: true,
     });
+    this.setupVisibilityObserver();
+  }
+
+  private setupVisibilityObserver() {
+    this.intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        this.isVisible = entry.isIntersecting;
+
+        if (this.isVisible) {
+          setTimeout(() => {
+            this.startSlotChanged();
+            this.endSlotChanged();
+          }, 50);
+        }
+      });
+    });
+
+    this.intersectionObserver.observe(this.hostElement);
   }
 
   componentDidRender() {
     this.prepareInputElement();
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+    if (this.intersectionObserver) {
+      this.intersectionObserver.disconnect();
+    }
   }
 
   private onValidInput() {
@@ -133,7 +165,7 @@ export class InputGroup {
         this.inputElement.style.backgroundPosition = `left ${left}px center`;
         this.inputPaddingLeft += 26;
       }
-    }, 100);
+    });
   }
 
   private endSlotChanged() {
