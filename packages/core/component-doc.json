@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.36.1",
+    "version": "4.36.0",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -6465,6 +6465,20 @@
         }
       ],
       "events": [
+        {
+          "event": "ixChange",
+          "detail": "string | undefined",
+          "bubbles": true,
+          "complexType": {
+            "original": "string | undefined",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the input value is committed",
+          "docsTags": []
+        },
         {
           "event": "validityStateChange",
           "detail": "{ patternMismatch: boolean; invalidReason?: string | undefined; }",
@@ -21130,6 +21144,20 @@
           "docsTags": []
         },
         {
+          "event": "ixChange",
+          "detail": "string | string[]",
+          "bubbles": true,
+          "complexType": {
+            "original": "string | string[]",
+            "resolved": "string | string[]",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the input value is committed",
+          "docsTags": []
+        },
+        {
           "event": "valueChange",
           "detail": "string | string[]",
           "bubbles": true,
@@ -24388,6 +24416,20 @@
         }
       ],
       "events": [
+        {
+          "event": "ixChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the input value is committed",
+          "docsTags": []
+        },
         {
           "event": "validityStateChange",
           "detail": "{ patternMismatch: boolean; invalidReason?: string | undefined; }",

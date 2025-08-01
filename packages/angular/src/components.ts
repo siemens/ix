@@ -625,7 +625,7 @@ export class IxDateInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixChange']);
   }
 }
 
@@ -641,6 +641,10 @@ export declare interface IxDateInput extends Components.IxDateInput {
    * Validation state change event.
    */
   validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
+  /**
+   * Event emitted when the input value is committed
+   */
+  ixChange: EventEmitter<CustomEvent<string | undefined>>;
 }
 
 
@@ -2259,7 +2263,7 @@ export class IxSelect {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'inputChange', 'addItem', 'ixBlur']);
+    proxyOutputs(this, this.el, ['valueChange', 'inputChange', 'addItem', 'ixBlur', 'ixChange']);
   }
 }
 
@@ -2281,6 +2285,10 @@ export declare interface IxSelect extends Components.IxSelect {
    * Blur input
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the input value is committed
+   */
+  ixChange: EventEmitter<CustomEvent<string | string[]>>;
 }
 
 
@@ -2525,7 +2533,7 @@ export class IxTimeInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixChange']);
   }
 }
 
@@ -2541,6 +2549,10 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    * Validation state change event.
    */
   validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
+  /**
+   * Event emitted when the input value is committed
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 

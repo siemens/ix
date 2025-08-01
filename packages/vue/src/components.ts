@@ -427,11 +427,13 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'ariaLabelNextMonthButton',
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixFocus',
   'ixBlur'
 ], [
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixFocus',
   'ixBlur'
 ],
@@ -1200,12 +1202,14 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'valueChange',
   'inputChange',
   'addItem',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'inputChange',
   'addItem',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange');
 
@@ -1359,12 +1363,14 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'valueChange',
   'validityStateChange',
   'ixFocus',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
   'ixFocus',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ]);
 
 

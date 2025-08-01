@@ -210,6 +210,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the input value is committed
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
   @State() show = false;
   @State() time: string | null = null;
   @State() isInputInvalid = false;
@@ -229,6 +234,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private previousValue: string = '';
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -250,6 +256,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad(): void {
+    this.previousValue = this.value;
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
@@ -299,11 +306,18 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async onInput(value: string) {
+    const previous = this.value;
     this.value = value;
+
     if (!value) {
       this.isInputInvalid = false;
       this.updateFormInternalValue(value);
       this.valueChange.emit(value);
+
+      if (previous !== value) {
+        this.ixChange.emit(value);
+        this.previousValue = value;
+      }
       return;
     }
 
@@ -314,6 +328,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
     const time = DateTime.fromFormat(value, this.format);
     if (time.isValid) {
       this.isInputInvalid = false;
+      if (previous !== value) {
+        this.ixChange.emit(value);
+        this.previousValue = value;
+      }
     } else {
       this.isInputInvalid = true;
       this.invalidReason = time.invalidReason;
@@ -410,6 +428,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+
+            if (this.value !== this.previousValue) {
+              this.ixChange.emit(this.value);
+              this.previousValue = this.value;
+            }
           }}
         ></input>
         <SlotEnd
@@ -553,8 +576,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
             i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
               this.onInput(event.detail);
-
               this.show = false;
+              if (this.value !== this.previousValue) {
+                this.ixChange.emit(this.value);
+                this.previousValue = this.value;
+              }
             }}
           ></ix-time-picker>
         </ix-dropdown>
