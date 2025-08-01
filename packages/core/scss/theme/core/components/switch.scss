@@ -1,0 +1,6 @@
+@mixin setVars {
+  --theme-switch--color: var(--theme-color-std-text);
+  --theme-switch--color--hover: var(--theme-color-std-text);
+  --theme-switch--color--active: var(--theme-color-std-text);
+  --theme-switch--color--disabled: var(--theme-color-weak-text);
+}

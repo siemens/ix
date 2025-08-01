@@ -13,7 +13,7 @@ import { genericRender, makeArgTypes } from './utils/generic-render';
 type Element = Components.IxDateInput;
 
 const meta = {
-  title: 'Example/Input/Time',
+  title: 'Example/TimeInput',
   tags: [],
   render: (args) => genericRender('ix-time-input', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-time-input', {}),

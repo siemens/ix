@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-tooltip-close-btn--background: var(--theme-color-ghost);
+  --theme-tooltip-close-btn--background--hover: var(--theme-color-ghost--hover);
+  --theme-tooltip-close-btn--background--active: var(--theme-color-ghost--active);
+}

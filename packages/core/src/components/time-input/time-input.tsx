@@ -71,6 +71,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
+  @Watch('value') watchValuePropHandler(newValue: string) {
+    this.onInput(newValue);
+  }
+
   /**
    * Format of time string
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.

@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-blind-header-icon-closed--color: var(--theme-color-primary);
+  --theme-blind-header-icon-closed--color--active: var(--theme-color-primary);
+  --theme-blind-header-icon-closed--color--hover: var(--theme-color-primary);
+}

@@ -174,3 +174,29 @@ regressionTest(
     await expect(tooltip).not.toBeVisible();
   }
 );
+
+regressionTest(
+  'should show helper text if valid-text is undefined',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <ix-field-wrapper helper-text="my helper text is visible" is-valid>
+        </ix-field-wrapper>
+      `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    await fieldWrapperElement.evaluate(
+      (elm: HTMLIxHelperTextElement) => ((elm as any)[`valid-text`] = undefined)
+    );
+
+    const helperTextElement = fieldWrapperElement
+      .locator('.field-bottom')
+      .locator('ix-typography.bottom-text')
+      .filter({ hasText: 'my helper text is visible' });
+
+    await expect(helperTextElement).toHaveCount(1);
+  }
+);

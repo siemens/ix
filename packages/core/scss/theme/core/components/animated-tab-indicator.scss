@@ -1,0 +1,6 @@
+@mixin setVars {
+  --theme-animated-tab-indicator--background: var(--theme-color-soft-bdr);
+  --theme-animated-tab-indicator--background--hover: var(--theme-color-soft-bdr);
+  --theme-animated-tab-indicator--background--active: var(--theme-color-soft-bdr);
+  --theme-animated-tab-indicator--background--selected: var(--theme-color-dynamic);
+}
