@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxPaneLayout, IxPane, IxButton } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxPaneLayout, IxPane, IxButton],
   templateUrl: './pane-layout.html',

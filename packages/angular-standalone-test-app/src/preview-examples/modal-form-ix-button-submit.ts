@@ -15,12 +15,11 @@ import {
   IxModalContent,
   IxModalFooter,
   IxInput,
-  ModalService
+  ModalService,
 } from '@siemens/ix-angular/standalone';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
-  standalone: true,
   selector: 'app-modal-form-ix-button-submit',
   templateUrl: './modal-form-ix-button-submit.html',
   imports: [

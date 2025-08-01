@@ -10,11 +10,13 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <textarea placeholder="Enter text here" readonly>
       Some example text
-    </textarea>
+    </textarea
+    >
   `,
 })
 export default class TextareaLegacyReadonly {}

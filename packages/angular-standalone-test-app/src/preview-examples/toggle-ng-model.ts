@@ -17,7 +17,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxToggle, IxBooleanValueAccessorDirective, FormsModule],
   template: ` <ix-toggle [(ngModel)]="checked"></ix-toggle>`,

@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxPagination } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxPagination],
   template: ` <ix-pagination count="100"></ix-pagination> `,
