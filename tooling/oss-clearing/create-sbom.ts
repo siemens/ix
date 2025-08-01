@@ -74,10 +74,7 @@ async function resolveComponentData(
       '--json',
       '--long',
       `${packageName}@${version}`,
-    ], {
-      encoding: 'utf-8',
-      shell: true,
-    });
+    ]);
 
     resolve(JSON.parse(stdout.toString()));
   });
@@ -106,8 +103,6 @@ class CustomPUrlFactory extends CDX.Factories.PackageUrlFactory {
 async function createSBom(packageName: string) {
   const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
     cwd: path.join(__dirname, 'node_modules', packageName),
-    encoding: 'utf-8',
-    shell: true,
   });
 
   let [npmJson] = JSON.parse(stdout.toString());
@@ -115,8 +110,6 @@ async function createSBom(packageName: string) {
   if (packageName === '@siemens/ix-angular') {
     const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
       cwd: path.join(npmJson.path, '..'),
-      encoding: 'utf-8',
-      shell: true,
     });
     const [npmJsonParent] = JSON.parse(stdout.toString());
     npmJson = npmJsonParent;
@@ -248,14 +241,10 @@ async function createSBom(packageName: string) {
 }
 
 async function main() {
-  const packages = [
-    '@siemens/ix',
-    '@siemens/ix-react',
-    '@siemens/ix-angular',
-    '@siemens/ix-vue',
-    '@siemens/ix-echarts',
-    '@siemens/ix-aggrid',
-  ];
+  const { dependencies } = getPkg(path.join(__dirname, 'package.json'));
+  const packages = Object.keys(dependencies);
+
+  console.log('Creating SBOMs for packages:', packages);
 
   const sbomPromises = packages.map(async (pkg) => {
     const { version } = getPkg(
