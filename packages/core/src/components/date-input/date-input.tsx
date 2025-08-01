@@ -230,6 +230,13 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
+  private handleValueChange(newValue: string | undefined) {
+    if (newValue !== this.previousValue) {
+      this.ixChange.emit(newValue);
+      this.previousValue = newValue;
+    }
+  }
+
   updateFormInternalValue(value: string | undefined): void {
     if (value) {
       this.formInternals.setFormValue(value);
@@ -295,14 +302,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   async onInput(value: string | undefined) {
-    const previous = this.value;
     this.value = value;
     this.valueChange.emit(value);
+    this.handleValueChange(value);
     if (!value) {
-      if (previous !== value) {
-        this.ixChange.emit(value);
-        this.previousValue = value;
-      }
       return;
     }
     if (!this.format) {
@@ -321,10 +324,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
-      if (previous !== value) {
-        this.ixChange.emit(value);
-        this.previousValue = value;
-      }
+      this.handleValueChange(value);
     }
 
     this.valueChange.emit(value);
@@ -415,10 +415,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
-            if (this.value !== this.previousValue) {
-              this.ixChange.emit(this.value);
-              this.previousValue = this.value;
-            }
+            this.handleValueChange(this.value);
           }}
         ></input>
         <SlotEnd
