@@ -19,7 +19,6 @@ import {
 
 @Component({
   selector: 'app-example',
-
   imports: [
     IxApplication,
     IxApplicationHeader,
