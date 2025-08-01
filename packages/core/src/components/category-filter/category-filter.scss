@@ -7,30 +7,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/mixins/fonts';
-@import 'mixins/hover';
-@import 'mixins/shadows';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/text-truncation';
-@import '../button/button';
-@import 'legacy/components/dropdown';
-@import 'legacy/components/forms';
-@import 'mixins/input';
-
-@include form;
+@use './common-variables' as vars;
+@use '../button/button';
+@use 'legacy/components/dropdown';
+@use 'legacy/mixins/fonts' as legacy-fonts;
+@use 'mixins/hover';
+@use 'mixins/fonts';
+@use 'mixins/input';
+@use 'mixins/shadows';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/text-truncation';
 
 :host {
-  @include ix-component;
-
   display: block;
   position: relative;
   height: auto;
 
+  @include component.ix-component;
+
   .reset-button {
     position: absolute;
-    top: $tiny-space;
-    right: $tiny-space;
+    top: vars.$tiny-space;
+    right: vars.$tiny-space;
   }
 
   .reset-button.hide-reset-button {
@@ -39,7 +37,7 @@
 
   .input-container {
     &:not(.readonly):not(.disabled) {
-      @include element-input('false');
+      @include input.element-input('false');
     }
 
     &:not(.readonly):not(.disabled):hover {
@@ -60,16 +58,16 @@
     }
 
     &.readonly {
-      @include element-input;
+      @include input.element-input;
     }
 
     display: flex;
     height: auto;
     max-height: 3.75rem;
-    padding: 1px $large-space 1px 1.75rem !important;
+    padding: 1px vars.$large-space 1px 1.75rem !important;
 
     &.no-icon {
-      padding-left: $tiny-space;
+      padding-left: vars.$tiny-space;
     }
   }
 
@@ -79,14 +77,20 @@
   }
 
   .text-input {
-    @include ellipsis;
-    @include text-default;
     width: auto;
     height: 1.75rem;
-    min-height: $large-space;
+    min-height: vars.$large-space;
     background: transparent;
     flex-grow: 1;
     box-shadow: none;
+
+    @include text-truncation.ellipsis;
+    @include legacy-fonts.text-default;
+
+    &::placeholder {
+      @include fonts.typography-label;
+      color: var(--theme-color-soft-text);
+    }
 
     &,
     &:hover,
@@ -110,22 +114,22 @@
 
   ix-icon {
     position: absolute;
-    top: $small-space;
-    left: $small-space;
+    top: vars.$small-space;
+    left: vars.$small-space;
   }
 
   ix-filter-chip {
-    margin-right: $tiny-space;
+    margin-right: vars.$tiny-space;
   }
 
   .category-preview {
     display: flex;
     align-items: center;
-    height: $large-space;
+    height: vars.$large-space;
     background-color: var(--theme-bg-3);
-    border-top-left-radius: $default-space;
-    border-bottom-left-radius: $default-space;
-    padding: $small-space;
+    border-top-left-radius: vars.$default-space;
+    border-bottom-left-radius: vars.$default-space;
+    padding: vars.$small-space;
     margin: 2px 0;
   }
 
@@ -148,20 +152,20 @@
       flex-direction: column;
 
       .dropdown-item {
-        @include text-default-single;
-        @include ellipsis;
-        @include focus-visible {
-          border-color: var(--theme-color-focus-bdr);
-        }
-
-        height: $large-control-height;
-        margin: $tiny-space $small-space;
-        padding-inline: $small-space;
+        height: vars.$large-control-height;
+        margin: vars.$tiny-space vars.$small-space;
+        padding-inline: vars.$small-space;
         border: 1px solid transparent;
         border-radius: 100rem;
         width: auto;
         justify-content: flex-start;
         flex-grow: 1;
+
+        @include legacy-fonts.text-default-single;
+        @include text-truncation.ellipsis;
+        @include hover.focus-visible {
+          border-color: var(--theme-color-focus-bdr);
+        }
       }
 
       .category-item {
@@ -178,7 +182,7 @@
     .btn-toggle-operator {
       width: 2rem;
       height: 2rem;
-      margin-inline: $small-space;
+      margin-inline: vars.$small-space;
     }
   }
 

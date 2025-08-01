@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'mixins/shadow-dom/component';
-@import 'mixins/shadow-dom/hover';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/hover';
 
 $itemPadding: 0.5rem;
 $itemPaddingRight: 1.5rem;
@@ -23,7 +23,7 @@ $focusBorder: 0.0625rem;
 
 :host {
   --ix-dropdown-item-checked-color: var(--theme-color-primary);
-  @include ix-component;
+
   display: flex;
   flex-direction: row;
 
@@ -33,6 +33,8 @@ $focusBorder: 0.0625rem;
   overflow: hidden;
   cursor: pointer;
 
+  @include component.ix-component;
+
   .dropdown-item {
     all: unset;
     display: flex;
@@ -40,9 +42,10 @@ $focusBorder: 0.0625rem;
     align-items: center;
     position: relative;
     height: calc(100% - 2px);
-    @include applyItemWidth($itemPadding, $itemPaddingRight);
     border: $focusBorder solid transparent;
     white-space: nowrap;
+
+    @include applyItemWidth($itemPadding, $itemPaddingRight);
   }
 
   .dropdown-item.no-checked-field {
@@ -104,7 +107,7 @@ $focusBorder: 0.0625rem;
   }
 }
 
-@include ghost-hover-pressed;
+@include hover.ghost-hover-pressed;
 
 :host(.disabled) {
   pointer-events: none;

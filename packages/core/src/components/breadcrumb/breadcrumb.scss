@@ -7,20 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/hover';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
-
   display: flex;
   justify-content: flex-start;
   height: 2.5rem;
   align-items: center;
   background-color: transparent;
   overflow: hidden;
+
+  @include component.ix-component;
 
   .previous-button {
     width: 3rem;
@@ -41,7 +41,7 @@
     .more-text-ellipsis {
       width: 1rem;
       display: inline-block;
-      font-weight: $font-weight-bold;
+      font-weight: vars.$font-weight-bold;
     }
 
     ix-icon {

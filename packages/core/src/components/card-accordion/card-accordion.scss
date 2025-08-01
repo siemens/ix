@@ -6,16 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   display: flex;
   position: relative;
   flex-direction: column;
   width: 100%;
   transition: var(--theme-default-time) ease-in-out;
+
+  @include component.ix-component;
 
   .expand-action {
     all: unset;
@@ -39,7 +40,7 @@
       background: var(--theme-color-component-1--active);
     }
 
-    @include focus-visible {
+    @include hover.focus-visible {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-btn--focus--outline-offset);
     }

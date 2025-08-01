@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
-@import 'legacy/mixins/fonts';
+@use './common-variables' as vars;
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+@use 'legacy/mixins/fonts';
 
 @mixin set-height($height) {
   height: $height;
@@ -24,8 +24,6 @@ $heightBig: 10rem;
 $width: 11.937rem;
 
 :host {
-  @include ix-component;
-
   min-width: $width;
   max-width: $width;
   width: $width;
@@ -46,18 +44,20 @@ $width: 11.937rem;
   //   }
   // }
 
+  @include component.ix-component;
+
   .tile-header {
     display: flex;
     align-items: center;
 
-    @include text-l-title;
+    @include fonts.text-l-title;
   }
 
   .tile-header,
   .tile-subheader,
   .tile-content,
   .tile-footer {
-    padding: 0 $default-space;
+    padding: 0 vars.$default-space;
   }
 
   .tile-header,
@@ -67,9 +67,9 @@ $width: 11.937rem;
 
   .tile-header.has-content {
     display: flex;
-    height: $large-control-height;
-    max-height: $large-control-height;
-    padding-inline-end: $small-space;
+    height: vars.$large-control-height;
+    max-height: vars.$large-control-height;
+    padding-inline-end: vars.$small-space;
   }
 
   .tile-subheader {
@@ -79,7 +79,7 @@ $width: 11.937rem;
 
   .tile-footer.has-content {
     border-block-start: 1px solid var(--theme-color-1);
-    height: $large-control-height;
+    height: vars.$large-control-height;
   }
 }
 

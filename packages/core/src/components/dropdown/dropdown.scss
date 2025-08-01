@@ -7,35 +7,36 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
+@use './common-variables' as vars;
 
-@import 'legacy/mixins/fonts';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
+@use 'legacy/mixins/fonts';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
 
 :host {
   background-color: var(--theme-color-2);
   border-radius: var(--theme-default-border-radius);
-  @include ix-component;
   min-width: 0px;
   z-index: var(--theme-z-index-dropdown);
   box-shadow: var(--theme-shadow-4);
 
   padding: 0.25rem 0px;
 
+  @include component.ix-component;
+
   .dropdown-header {
     display: flex;
     align-items: center;
-    height: $large-control-height;
+    height: vars.$large-control-height;
     color: var(--theme-menu-header--color);
-    padding: 0 $default-space;
+    padding: 0 vars.$default-space;
   }
 }
 
 $dropdown-offset: 3rem;
 
 :host(.overflow) {
-  max-height: calc(50vh - $dropdown-offset); 
+  max-height: calc(50vh - $dropdown-offset);
   overflow-y: auto;
 }
 

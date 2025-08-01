@@ -6,12 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
-@import 'mixins/hover';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
 
 :host {
-  @include ix-component;
   display: block;
+
+  @include component.ix-component;
 
   .content {
     padding: 2rem;
@@ -58,7 +59,7 @@
   }
 
   .AppEntry {
-    @include ghost-hover-pressed;
+    @include hover.ghost-hover-pressed;
   }
 
   .AppEntry:focus-visible {

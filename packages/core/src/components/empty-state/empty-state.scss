@@ -1,8 +1,8 @@
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
+  @include component.ix-component;
 
   .label__subHeader {
     color: var(--theme-color-soft-text);
@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: $default-space;
+  gap: vars.$default-space;
 
   .emptyState__icon {
     width: 3.5rem;
@@ -33,14 +33,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: $large-space;
+    gap: vars.$large-space;
 
     .content__label {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: $small-space;
+      gap: vars.$small-space;
     }
   }
 
@@ -55,13 +55,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: $default-space;
+  gap: vars.$default-space;
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: $large-control-height;
+    height: vars.$large-control-height;
   }
 
   .emptyState__content {
@@ -69,7 +69,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: $default-space;
+    gap: vars.$default-space;
   }
 }
 
@@ -77,19 +77,19 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: $default-space;
+  gap: vars.$default-space;
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: $large-control-height;
+    height: vars.$large-control-height;
   }
 
   .emptyState__content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: $small-space;
+    gap: vars.$small-space;
   }
 }

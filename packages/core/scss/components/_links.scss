@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import './mixins/hover';
+@use './mixins/hover';
 
 @mixin no-link-decoration {
   text-decoration: none;
@@ -18,22 +18,22 @@ a[href] {
   color: var(--theme-color-primary);
   text-decoration: none;
 
-  @include hover {
+  @include hover.hover {
     color: var(--theme-color-dynamic);
     text-decoration: underline;
   }
 
-  @include active {
+  @include hover.active {
     color: var(--theme-color-dynamic);
     text-decoration: underline;
   }
 
-  @include visited {
+  @include hover.visited {
     color: var(--theme-color-primary);
     text-decoration: none;
   }
 
-  @include focus-visible {
+  @include hover.focus-visible {
     outline: 1px solid var(--theme-color-focus-bdr);
     outline-offset: 0.125rem;
   }

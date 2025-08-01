@@ -7,13 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   display: inline-block;
   position: relative;
+
+  @include component.ix-component;
 
   @media (max-width: 48em) {
     .min-width {
@@ -42,5 +43,5 @@
 
   .pull-right {
     float: right;
-    padding: 0 $default-space $medium-space $default-space;  }
+    padding: 0 vars.$default-space vars.$medium-space vars.$default-space;  }
 }

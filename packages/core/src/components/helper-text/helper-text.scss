@@ -1,7 +1,7 @@
-@import "./../field-wrapper/field-wrapper.mixins.scss";
+@use "./../field-wrapper/field-wrapper.mixins.scss";
 
 :host {
   display: block;
 
-  @include helper-text;
+  @include field-wrapper.helper-text;
 }

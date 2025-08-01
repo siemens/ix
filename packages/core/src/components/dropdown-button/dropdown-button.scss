@@ -6,16 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
-
   display: inline-block;
   position: relative;
-  height: $x-large-space;
+  height: vars.$x-large-space;
   width: auto;
+
+  @include component.ix-component;
 
   .hide {
     display: none;

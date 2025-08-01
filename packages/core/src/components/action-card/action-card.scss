@@ -6,10 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   display: block;
   position: relative;
   min-width: 13.375rem;
@@ -19,6 +18,8 @@
   cursor: pointer;
 
   margin: 0.25rem 0;
+
+  @include component.ix-component;
 
   ix-card {
     width: 100%;

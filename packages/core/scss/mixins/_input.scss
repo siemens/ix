@@ -6,12 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import './fonts';
-@import './validation/form-component';
+@use './fonts';
+@use './validation/form-component';
 
 @mixin element-input($feature-read-only: true) {
   & {
-    @include typography-body;
     min-height: 2rem;
     width: auto;
     padding: 0.25rem 0.5rem;
@@ -23,6 +22,8 @@
       var(--theme-input--border-color);
     border-radius: var(--theme-input--border-radius);
     box-shadow: var(--theme-input--box-shadow);
+
+    @include fonts.typography-body;
   }
 
   &[type='number'] {
@@ -146,9 +147,9 @@
     @include element-textarea();
   }
 
-  @include input-valid;
+  @include form-component.input-valid;
 
-  @include input-info {
+  @include form-component.input-info {
     & {
       border-color: var(--theme-input--border-color--info);
     }
@@ -162,7 +163,7 @@
     }
   }
 
-  @include input-warning {
+  @include form-component.input-warning {
     & {
       border-color: var(
         --theme-input--border-color--warning--active
@@ -182,7 +183,7 @@
     }
   }
 
-  @include input-invalid {
+  @include form-component.input-invalid {
     & {
       background-color: var(--theme-input--background--invalid);
       border-color: var(--theme-input--border-color--invalid) !important;
@@ -206,7 +207,7 @@
   input#{$namespace} ~ .valid-feedback,
   input#{$namespace} ~ .invalid-feedback {
     display: none;
-    @include typography-body;
+    @include fonts.typography-body;
   }
 
   form {

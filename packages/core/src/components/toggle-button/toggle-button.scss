@@ -7,16 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/components/buttons';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'legacy/components/buttons';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   display: inline-block;
   width: auto;
-  height: $x-large-space;
+  height: vars.$x-large-space;
   vertical-align: middle;
+
+  @include component.ix-component;
 
   .btn {
     width: 100%;

@@ -7,15 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/break-points';
-@import 'mixins/shadows';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/break-points';
+@use 'mixins/shadows';
+@use 'mixins/shadow-dom/component';
 $left: 3.4rem;
 
 :host {
-  @include ix-component;
-
   --margin: 0.5rem;
 
   display: block;
@@ -23,7 +21,7 @@ $left: 3.4rem;
   width: 20rem;
   height: auto;
   background-color: var(--theme-color-2);
-  border-radius: $default-border-radius;
+  border-radius: vars.$default-border-radius;
   padding: 1rem;
   left: $left;
   z-index: 10000;
@@ -31,12 +29,13 @@ $left: 3.4rem;
 
   margin-inline-start: var(--margin) !important;
 
-  @include box-shadow(4);
+  @include shadows.box-shadow(4);
+  @include component.ix-component;
 
   .banner-container {
     position: absolute;
     top: 0.0625rem;
-    left: $default-space;
+    left: vars.$default-space;
 
     svg {
       position: absolute;
@@ -49,7 +48,7 @@ $left: 3.4rem;
     }
 
     ix-icon {
-      margin: $small-space;
+      margin: vars.$small-space;
       position: absolute;
       z-index: 1;
     }
@@ -58,7 +57,7 @@ $left: 3.4rem;
   .cui-popover-news-header {
     margin-bottom: 2.5rem;
     margin-inline-start: 4rem;
-    margin-block-start: -$tiny-space;
+    margin-block-start: -(vars.$tiny-space);
   }
 
   .popover-body {
@@ -72,8 +71,8 @@ $left: 3.4rem;
   }
 
   ix-icon-button {
-    top: $small-space;
-    right: $small-space;
+    top: vars.$small-space;
+    right: vars.$small-space;
     position: absolute;
   }
 
@@ -94,7 +93,7 @@ $left: 3.4rem;
   display: none;
 }
 
-@include media-breakpoint-match('sm') {
+@include break-points.media-breakpoint-match('sm') {
   :host {
     display: flex;
     flex-direction: column;

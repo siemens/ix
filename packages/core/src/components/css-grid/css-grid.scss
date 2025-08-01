@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
+@use './common-variables' as vars;
 
 :host {
   display: grid;
   position: relative;
-  row-gap: $large-space;
-  column-gap: $large-space;
+  row-gap: vars.$large-space;
+  column-gap: vars.$large-space;
 }

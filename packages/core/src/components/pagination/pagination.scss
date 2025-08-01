@@ -7,13 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/components/forms';
-@import '../icon-button/icon-button';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'legacy/components/forms';
+@use '../icon-button/icon-button';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
+  @include component.ix-component;
 
   &,
   .advanced-pagination,
@@ -27,13 +27,13 @@
   }
 
   .advanced-pagination {
-    padding: 0 $medium-space;
+    padding: 0 vars.$medium-space;
   }
 
   .page-selection {
     width: 4.125rem;
     text-align: center;
-    margin: 0 $small-space;
+    margin: 0 vars.$small-space;
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
   }
@@ -49,11 +49,11 @@
   .item-count {
     flex-grow: 1;
     justify-content: flex-end;
-    margin-inline-start: $large-space;
+    margin-inline-start: vars.$large-space;
 
     ix-select {
       width: 4.5rem;
-      margin-inline-start: $large-space;
+      margin-inline-start: vars.$large-space;
     }
   }
 

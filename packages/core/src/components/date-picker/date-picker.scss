@@ -7,15 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/text-truncation';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
+@use 'mixins/text-truncation';
 
 :host {
-  @include ix-component;
   display: block;
   position: relative;
   width: 21rem;
+
+  @include component.ix-component;
 
   .header {
     display: flex;
@@ -35,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: $tiny-space $default-space;
+    padding: vars.$tiny-space vars.$default-space;
 
     .dropdown {
       color: var(--theme-menu-item--color);
@@ -64,7 +65,7 @@
     .arrowYear {
       display: flex;
       position: relative;
-      padding: $medium-space $x-large-space;
+      padding: vars.$medium-space vars.$x-large-space;
       align-items: center;
       cursor: pointer;
 
@@ -78,13 +79,13 @@
 
       .arrowPosition {
         position: absolute;
-        left: calc(($x-large-space / 2) - 6px);
+        left: calc((vars.$x-large-space / 2) - 6px);
         top: calc(50% - 6px);
       }
 
       .checkPosition {
         position: absolute;
-        left: calc(($x-large-space / 2) - 6px);
+        left: calc((vars.$x-large-space / 2) - 6px);
         top: calc(50% - 8px);
       }
 
@@ -296,7 +297,7 @@
         cursor: initial;
 
         .overflow {
-          @include ellipsis;
+          @include text-truncation.ellipsis;
         }
       }
 
@@ -321,7 +322,7 @@
   .button {
     display: flex;
     justify-content: flex-end;
-    margin-top: $default-space;
+    margin-top: vars.$default-space;
   }
 
   .hidden {

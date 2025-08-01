@@ -6,23 +6,23 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'common-variables';
-@import 'legacy/components/forms';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/hover';
-@import 'mixins/text-truncation';
+@use './common-variables' as vars;
+@use 'legacy/components/forms';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
 
 $container-width: 11.5625rem;
 
 :host {
-  @include ix-component;
-
   display: inline-flex;
   width: auto;
-  height: $x-large-space;
+  height: vars.$x-large-space;
   align-items: center;
   justify-content: space-between;
   position: relative;
+
+  @include component.ix-component;
 
   .input-container {
     transition: all var(--theme-medium-time) ease-in-out;
@@ -43,7 +43,7 @@ $container-width: 11.5625rem;
   }
 
   .collapsed {
-    width: $large-space;
+    width: vars.$large-space;
     border: none;
   }
 
@@ -56,8 +56,8 @@ $container-width: 11.5625rem;
 
   .btn-search {
     display: flex;
-    max-width: $x-large-space;
-    max-height: $x-large-space;
+    max-width: vars.$x-large-space;
+    max-height: vars.$x-large-space;
     border-radius: var(--theme-input--border-radius);
     transition: all var(--theme-default-time) ease-in-out;
     z-index: 1;
@@ -65,19 +65,19 @@ $container-width: 11.5625rem;
     position: relative;
     border: none;
 
-    @include hover {
+    @include hover.hover {
       border-color: transparent;
     }
 
-    @include active {
+    @include hover.active {
       border-color: transparent;
     }
 
-    @include focus {
+    @include hover.focus {
       outline: none;
     }
 
-    @include focus-visible {
+    @include hover.focus-visible {
       outline: var(--focus--border-color);
       outline-width: 1px;
       outline-style: solid;
@@ -90,8 +90,8 @@ $container-width: 11.5625rem;
   }
 
   .btn-search:active {
-    width: $x-large-space;
-    height: $x-large-space;
+    width: vars.$x-large-space;
+    height: vars.$x-large-space;
     border-radius: var(--theme-input--border-radius);
     border: var(--theme-std-bdr-1) !important;
   }
@@ -112,7 +112,7 @@ $container-width: 11.5625rem;
   }
 
   .input {
-    padding-left: $x-large-space !important;
+    padding-left: vars.$x-large-space !important;
     padding-right: 2.5rem !important;
   }
 

@@ -7,17 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/text-truncation';
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/text-truncation';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   display: block;
   position: relative;
   margin-bottom: 0.5rem;
   margin-right: 0.75rem;
+
+  @include component.ix-component;
 
   .avatar {
     all: unset;
@@ -38,23 +39,23 @@
       flex-direction: column;
       overflow: hidden;
       white-space: nowrap;
-      margin-left: $default-space;
+      margin-left: vars.$default-space;
       line-height: 1.14;
 
       .text-default-single {
         color: var(--theme-nav-item-primary--color);
-        @include ellipsis;
+        @include text-truncation.ellipsis;
       }
     }
 
     border-radius: 1.25rem;
 
-    @include hover {
+    @include hover.hover {
       background-color: var(--theme-avatar-btn--background--hover);
       color: var(--theme-avatar-btn--color--hover);
     }
 
-    @include active {
+    @include hover.active {
       background-color: var(--theme-avatar-btn--background--active);
       color: var(--theme-avatar-btn--color--active);
     }

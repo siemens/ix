@@ -7,11 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   display: inline-flex;
   flex-direction: row;
   position: relative;
@@ -19,6 +18,8 @@
   max-height: calc(100% - 0.5rem);
   margin-block-start: 0.25rem;
   margin-block-end: 0.25rem;
+
+  @include component.ix-component;
 
   input[type='checkbox'] {
     display: none;

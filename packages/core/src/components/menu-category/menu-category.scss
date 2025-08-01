@@ -7,14 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'mixins/shadow-dom/component';
-@import 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/text-truncation';
 
 :host {
-  @include ix-component;
   display: flex;
   flex-direction: column;
   position: relative;
+
+  @include component.ix-component;
 
   .category {
     display: flex;
@@ -27,7 +28,8 @@
   .category-text {
     width: 100%;
     padding-right: 0.25rem;
-    @include ellipsis;
+
+    @include text-truncation.ellipsis;
   }
 
   .category-chevron {

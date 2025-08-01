@@ -6,11 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
-@import 'mixins/validation/form-component';
-@import './input.mixins.scss';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/validation/form-component';
+@use './input.mixins.scss';
 
-@include input-field;
+@include input.input-field;
 
 :host {
   .password-eye {

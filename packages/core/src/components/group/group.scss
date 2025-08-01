@@ -7,20 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/mixins/fonts';
-@import 'mixins/hover';
-@import 'mixins/text-truncation';
+@use './common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
 
 :host {
-  @include ellipsis;
-
   display: flex;
   flex-direction: column;
   position: relative;
   width: 19.75rem;
   min-width: 12rem;
   border-color: var(--theme-group-item--border-color);
+
+  @include text-truncation.ellipsis;
 
   .group-header {
     height: 4rem;
@@ -34,7 +34,7 @@
 
     cursor: pointer;
 
-    @include hover {
+    @include hover.hover {
       background-color: var(--theme-group-item--background--hover);
 
       &.selected {
@@ -42,7 +42,7 @@
       }
     }
 
-    @include active {
+    @include hover.active {
       background-color: var(--theme-group-item--background--active);
 
       &.selected {
@@ -50,7 +50,7 @@
       }
     }
 
-    @include focus-visible {
+    @include hover.focus-visible {
       border: 1px solid var(--theme-color-focus-bdr);
       border-radius: var(--theme-default-border-radius)
         var(--theme-default-border-radius) 0px 0px;
@@ -79,21 +79,19 @@
   }
 
   .group-header-clickable {
-    @include ellipsis;
-
     display: flex;
     width: 100%;
     min-width: 0;
+
+    @include text-truncation.ellipsis;
   }
 
   .group-header-selection-indicator {
-    width: $tiny-space;
+    width: vars.$tiny-space;
     border-top-left-radius: var(--theme-group--border-radius);
   }
 
   .group-header-content {
-    @include ellipsis;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -103,6 +101,8 @@
     padding: 0.5rem;
     padding-left: 0;
 
+    @include text-truncation.ellipsis;
+
     .group-header-props-container {
       width: 100%;
     }
@@ -111,23 +111,23 @@
       display: flex;
       align-items: center;
       font-size: 1rem;
-      font-weight: $font-weight-bold;
+      font-weight: vars.$font-weight-bold;
       height: 1.5rem;
 
       & > * {
-        @include ellipsis;
-
         min-width: 0;
         padding-right: 0;
+
+        @include text-truncation.ellipsis;
       }
     }
 
     .group-subheader {
-      @include ellipsis();
-
       height: 1.25rem;
       font-size: 0.875rem;
       color: var(--theme-group-subheader--color);
+
+      @include text-truncation.ellipsis();
     }
   }
 
@@ -137,8 +137,8 @@
   }
 
   .btn-expand-header {
-    margin: $small-space;
-    margin-inline-end: $tiny-space;
+    margin: vars.$small-space;
+    margin-inline-end: vars.$tiny-space;
     min-width: 1.5rem;
   }
 

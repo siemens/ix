@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   display: block;
   position: relative;
   width: fit-content;
   height: fit-content;
   min-width: 2rem;
+
+  @include component.ix-component;
 
   .steps {
     display: flex;

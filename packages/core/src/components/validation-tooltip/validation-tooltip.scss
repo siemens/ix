@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/fonts';
+@use './common-variables' as vars;
+@use 'legacy/fonts';
 
 :host {
   display: inline-block;

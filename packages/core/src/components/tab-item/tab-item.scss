@@ -7,23 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/text-truncation';
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/text-truncation';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px $large-space;
+  padding: 10px vars.$large-space;
   line-height: 20px;
   font-size: 14px;
   font-weight: bold;
   background-color: var(--theme-tab--background);
   color: var(--theme-tab--color);
+
+  @include component.ix-component;
 
   &::after {
     content: '';
@@ -35,7 +36,7 @@
   }
 
   .text {
-    @include ellipsis;
+    @include text-truncation.ellipsis;
 
     span,
     span::before {
@@ -99,8 +100,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: $tiny-space;
-    padding-right: $tiny-space;
+    padding-left: vars.$tiny-space;
+    padding-right: vars.$tiny-space;
     font-size: 12px;
     line-height: 14px;
     color: var(--theme-pill-outline--color);
@@ -139,7 +140,7 @@
 :host(.stretched) {
   flex-basis: 100%;
   width: 100%;
-  @include ellipsis;
+  @include text-truncation.ellipsis;
 }
 
 :host(:hover:not(.circle)) {
@@ -193,14 +194,14 @@
 }
 
 :host(.icon) {
-  padding: $large-space $small-space;
+  padding: vars.$large-space vars.$small-space;
 }
 
 :host(.small-tab) {
   height: 32px;
-  padding: $default-space;
+  padding: vars.$default-space;
 }
 
 :host(.small-tab.icon) {
-  padding: $default-space $tiny-space;
+  padding: vars.$default-space vars.$tiny-space;
 }

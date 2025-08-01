@@ -7,6 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import './icon-button-mixin.scss';
+@use './icon-button-mixin.scss';
 
-@include base-icon-button;
+@include icon-button-mixin.base-icon-button;

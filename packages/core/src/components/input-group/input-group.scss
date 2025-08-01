@@ -6,17 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
-@import 'mixins/shadow-dom/host-disabled';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/host-disabled';
 
 :host {
-  @include ix-component;
-
   position: relative;
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   align-items: stretch;
+
+  @include component.ix-component;
 
   .group {
     display: flex;
@@ -44,7 +44,7 @@
   }
 }
 
-@include host-disabled {
+@include host-disabled.host-disabled {
   .group-start,
   .group-end {
     ::slotted(*) {

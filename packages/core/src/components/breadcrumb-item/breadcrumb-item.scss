@@ -7,14 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'mixins/shadow-dom/component';
-@import '../button/button-mixin';
-@import '../button/button';
+@use 'mixins/shadow-dom/component';
+@use '../button/button-mixin';
+@use '../button/button';
 
-@include all-btn-variants;
+@include button-mixin.all-btn-variants;
 
 :host {
-  @include ix-component;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -23,6 +22,8 @@
   margin-right: 0.25rem;
   max-width: 15rem;
   min-width: 0;
+
+  @include component.ix-component;
 
   li {
     display: contents;

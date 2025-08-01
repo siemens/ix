@@ -7,62 +7,62 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'legacy/mixins/fonts';
+@use 'legacy/mixins/fonts';
 
 .text-xs {
-  @include text-xs;
+  @include fonts.text-xs;
 }
 
 .text-s {
-  @include text-s;
+  @include fonts.text-s;
 }
 
 .text-caption {
-  @include text-caption;
+  @include fonts.text-caption;
 }
 
 .text-caption-single {
-  @include text-caption-single;
+  @include fonts.text-caption-single;
 }
 
 .text-default {
-  @include text-default;
+  @include fonts.text-default;
 }
 
 .text-default-single {
-  @include text-default-single;
+  @include fonts.text-default-single;
 }
 
 .text-default-title {
-  @include text-default-title;
+  @include fonts.text-default-title;
 }
 
 .text-default-title-single {
-  @include text-default-title-single;
+  @include fonts.text-default-title-single;
 }
 
 .text-l {
-  @include text-l;
+  @include fonts.text-l;
 }
 
 .text-l-single {
-  @include text-l-single;
+  @include fonts.text-l-single;
 }
 
 .text-l-title {
-  @include text-l-title;
+  @include fonts.text-l-title;
 }
 
 .text-l-title-single {
-  @include text-l-title-single;
+  @include fonts.text-l-title-single;
 }
 
 .text-h2 {
-  @include text-h2;
+  @include fonts.text-h2;
 }
 
 .text-xl {
-  @include text-xl;
+  @include fonts.text-xl;
 }
 
 a {

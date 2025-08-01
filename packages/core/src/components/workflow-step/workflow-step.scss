@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
 
 :host(:not(.host-vertical)) {
   width: 12rem;
@@ -27,9 +27,10 @@
 }
 
 :host {
-  @include ix-component;
   display: inline-block;
   position: relative;
+
+  @include component.ix-component;
 
   .step {
     display: flex;
@@ -37,7 +38,7 @@
     align-items: center;
     background-color: var(--theme-workflow-step--background);
     border-radius: var(--theme-workflow--border-radius);
-    padding: 1.125rem 0 $small-space 0;
+    padding: 1.125rem 0 vars.$small-space 0;
 
     .wrapper {
       display: flex;
@@ -107,9 +108,9 @@
     }
 
     .text {
-      margin-top: $default-space;
+      margin-top: vars.$default-space;
       width: 100%;
-      padding: 0 $small-space;
+      padding: 0 vars.$small-space;
 
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -148,7 +149,7 @@
       }
 
       .text {
-        margin: 0 $default-space;
+        margin: 0 vars.$default-space;
         padding: 0;
         width: auto;
       }

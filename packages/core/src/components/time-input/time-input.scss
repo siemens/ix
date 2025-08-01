@@ -6,17 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
-@import 'mixins/input';
-@import './../input/input.mixins.scss';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/input';
+@use './../input/input.mixins.scss' as input-mixins;
 
-@include input-field;
+@include input-mixins.input-field;
 
 :host {
-  @include ix-component;
-
   display: inline-block;
   position: relative;
+
+  @include component.ix-component;
 
   input {
     width: 100%;

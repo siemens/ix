@@ -7,6 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './common-variables' as vars;
+@use 'mixins/text-truncation';
+
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 $border-radius: 100px;
 
@@ -22,8 +25,8 @@ $border-radius: 100px;
     padding: 0.5rem;
     vertical-align: top;
 
-    height: $default-control-height;
-    max-height: $default-control-height;
+    height: vars.$default-control-height;
+    max-height: vars.$default-control-height;
 
     @if $interaction {
       cursor: pointer;
@@ -39,7 +42,7 @@ $border-radius: 100px;
     }
 
     .with-icon {
-      margin-right: $tiny-space;
+      margin-right: vars.$tiny-space;
     }
 
     .close-button-container {
@@ -49,7 +52,7 @@ $border-radius: 100px;
     }
 
     .slot-container {
-      @include ellipsis;
+      @include text-truncation.ellipsis;
     }
 
     &.centerContent {

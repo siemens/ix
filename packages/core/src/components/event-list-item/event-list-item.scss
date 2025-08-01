@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'mixins/text-truncation';
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/shadow-dom/host-disabled';
-@import 'common-variables';
+@use 'mixins/text-truncation';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/host-disabled';
+@use './common-variables' as vars;
 
 $default-event-list-item-height: 2.5rem;
 
 :host {
-  @include ix-component;
+  @include component.ix-component;
 
   .event-list-item {
     display: flex;
@@ -24,25 +24,25 @@ $default-event-list-item-height: 2.5rem;
     position: relative;
     height: var(--event-list-item-height, $default-event-list-item-height);
     max-height: var(--event-list-item-height, $default-event-list-item-height);
-    border-radius: var(--event-list-item-border-radius, $default-border-radius);
+    border-radius: var(--event-list-item-border-radius, vars.$default-border-radius);
     background-color: var(--theme-event-item--background);
     overflow: hidden;
     transition: var(--theme-default-time);
     cursor: pointer;
-    margin-bottom: var(--event-list-item-margin-bottom, $small-space);
+    margin-bottom: var(--event-list-item-margin-bottom, vars.$small-space);
 
     .indicator {
       height: 100%;
-      width: $small-space;
-      max-width: $small-space;
-      min-width: $small-space;
+      width: vars.$small-space;
+      max-width: vars.$small-space;
+      min-width: vars.$small-space;
       border-top-left-radius: var(
         --event-list-item-border-radius,
-        $default-border-radius
+        vars.$default-border-radius
       );
       border-bottom-left-radius: var(
         --event-list-item-border-radius,
-        $default-border-radius
+        vars.$default-border-radius
       );
     }
 
@@ -52,26 +52,26 @@ $default-event-list-item-height: 2.5rem;
     }
 
     .event-list-item-container {
-      @include ellipsis;
-
       display: flex;
       flex-grow: 1;
-      width: calc(100% - (#{$default-space} + #{$small-space}));
+      width: calc(100% - (#{vars.$default-space} + #{vars.$small-space}));
       height: 100%;
       border: 0.062rem solid;
       border-color: var(--theme-event-item--border);
       border-top-left-radius: 0;
       border-top-right-radius: var(
         --event-list-item-border-radius,
-        $default-border-radius
+        vars.$default-border-radius
       );
       border-bottom-left-radius: 0;
       border-bottom-right-radius: var(
         --event-list-item-border-radius,
-        $default-border-radius
+        vars.$default-border-radius
       );
       border-left: none;
-      padding-left: $default-space;
+      padding-left: vars.$default-space;
+
+      @include text-truncation.ellipsis;
     }
 
     .event-content {
@@ -82,31 +82,31 @@ $default-event-list-item-height: 2.5rem;
       max-height: var(--event-list-item-height, 100%);
       white-space: var(--event-list-item-content-white-space, inherit);
       overflow: hidden;
-      padding-inline-end: $small-space;
+      padding-inline-end: vars.$small-space;
     }
 
     .chevron-icon {
       margin-left: auto;
-      margin-right: $small-space;
+      margin-right: vars.$small-space;
       opacity: 0.6;
       align-self: center;
     }
 
     &:not(.selected) {
-      @include hover {
+      @include hover.hover {
         background-color: var(--theme-event-item--background--hover);
       }
 
-      @include active {
+      @include hover.active {
         background-color: var(--theme-event-item--background--active);
       }
 
       .event-list-item-container {
-        @include hover {
+        @include hover.hover {
           border-color: var(--theme-event-item--border--hover);
         }
 
-        @include active {
+        @include hover.active {
           border-color: var(--theme-event-item--border--active);
         }
       }
@@ -129,4 +129,4 @@ $default-event-list-item-height: 2.5rem;
   }
 }
 
-@include host-disabled;
+@include host-disabled.host-disabled;

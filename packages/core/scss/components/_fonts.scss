@@ -6,111 +6,111 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/fonts';
+@use 'mixins/fonts';
 
 @mixin font-label {
   .typography-label {
-    @include typography-label;
+    @include fonts.typography-label;
   }
 
   .typography-label-xs {
-    @include typography-label-xs;
+    @include fonts.typography-label-xs;
   }
 
   .typography-label-sm {
-    @include typography-label-sm;
+    @include fonts.typography-label-sm;
   }
 
   .typography-label-lg {
-    @include typography-label-lg;
+    @include fonts.typography-label-lg;
   }
 
   .typography-body {
-    @include typography-body;
+    @include fonts.typography-body;
   }
 
   .typography-body-xs {
-    @include typography-body-xs;
+    @include fonts.typography-body-xs;
   }
 
   .typography-body-sm {
-    @include typography-body-sm;
+    @include fonts.typography-body-sm;
   }
 
   .typography-body-lg {
-    @include typography-body-lg;
+    @include fonts.typography-body-lg;
   }
 
   .typography-display {
-    @include typography-display;
+    @include fonts.typography-display;
   }
 
   .typography-display-xs {
-    @include typography-display-xs;
+    @include fonts.typography-display-xs;
   }
 
   .typography-display-sm {
-    @include typography-display-sm;
+    @include fonts.typography-display-sm;
   }
 
   .typography-display-lg {
-    @include typography-display-lg;
+    @include fonts.typography-display-lg;
   }
 
   .typography-display-xl {
-    @include typography-display-xl;
+    @include fonts.typography-display-xl;
   }
 
   .typography-display-xxl {
-    @include typography-display-xxl;
+    @include fonts.typography-display-xxl;
   }
 
   h6,
   .h6,
   .typography-h6 {
-    @include typography-h6;
+    @include fonts.typography-h6;
   }
 
   h5,
   .h5,
   .typography-h5 {
-    @include typography-h5;
+    @include fonts.typography-h5;
   }
 
   h4,
   .h4,
   .typography-h4 {
-    @include typography-h4;
+    @include fonts.typography-h4;
   }
 
   h3,
   .h3,
   .typography-h3 {
-    @include typography-h3;
+    @include fonts.typography-h3;
   }
 
   h2,
   .h2,
   .typography-h2 {
-    @include typography-h2;
+    @include fonts.typography-h2;
   }
 
   h1,
   .h1,
   .typography-h1 {
-    @include typography-h1;
+    @include fonts.typography-h1;
   }
 
   .typography-code {
-    @include typography-code;
+    @include fonts.typography-code;
   }
 
   .typography-code-lg {
-    @include typography-code-lg;
+    @include fonts.typography-code-lg;
   }
 
   .typography-code-sm {
-    @include typography-code-sm;
+    @include fonts.typography-code-sm;
   }
 
   .typography-decoration-none {
