@@ -30,7 +30,7 @@ runs:
 
     - name: Merge into HTML Report
       shell: bash
-      run: pnpm --filter ${{ inputs.projectName }} exec playwright merge-reports --reporter html ../../all-blob-reports
+      run: pnpm --filter ${{ inputs.projectName }} exec playwright merge-reports --reporter html ../../all-blob-reports --output ${{ inputs.outputPath }}
 
     - name: Upload HTML report
       uses: actions/upload-artifact@v4
