@@ -1,0 +1,6 @@
+@mixin setVars {
+  --theme-chip-close-btn--background--hover: var(--theme-color-ghost--hover);
+  --theme-chip-close-btn--background--active: var(--theme-color-ghost--active);
+  --theme-chip-close-btn--color: var(--theme-color-soft-text);
+  --theme-chip-close-btn--background: var(--theme-color-ghost);
+}

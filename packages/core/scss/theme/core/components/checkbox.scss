@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-checkbox--focus--outline-offset: var(--theme-focus-outline-offset);
+  --theme-checkbox--border-thickness: var(--theme-border-width-default);
+}

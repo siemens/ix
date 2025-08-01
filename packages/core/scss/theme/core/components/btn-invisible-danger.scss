@@ -1,0 +1,14 @@
+@mixin setVars {
+  --theme-btn-invisible-danger--background: var(--theme-color-ghost);
+  --theme-btn-invisible-danger--background--hover: var(--theme-color-ghost--hover);
+  --theme-btn-invisible-danger--background--active: var(--theme-color-ghost--active);
+  --theme-btn-invisible-danger--background--disabled: var(--theme-color-ghost);
+  --theme-btn-invisible-danger--color: var(--theme-color-alarm-text);
+  --theme-btn-invisible-danger--color--hover: var(--theme-color-alarm-text);
+  --theme-btn-invisible-danger--color--active: var(--theme-color-alarm-text);
+  --theme-btn-invisible-danger--color--disabled: var(--theme-color-weak-text);
+  --theme-btn-invisible-danger--border-color: var(--theme-color-0);
+  --theme-btn-invisible-danger--border-color--hover: var(--theme-color-0);
+  --theme-btn-invisible-danger--border-color--active: var(--theme-color-0);
+  --theme-btn-invisible-danger--border-color--disabled: var(--theme-color-0);
+}
