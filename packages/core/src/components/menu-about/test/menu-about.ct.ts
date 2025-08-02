@@ -76,3 +76,37 @@ regressionTest('should not change tab', async ({ mount, page }) => {
   await expect(tabItems.first()).toHaveAttribute('selected', 'true');
   await expect(tabItems.last()).not.toHaveAttribute('selected', 'true');
 });
+
+regressionTest('tabChange event should fire exactly once per tab click', async ({ mount, page }) => {
+  await mount(`
+      <ix-menu>
+        <ix-menu-about>
+          <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    `);
+
+  const about = page.locator('ix-menu-about');
+  const element = page.locator('#aboutAndLegal');
+  await element.click();
+
+  const tabItems = page.locator('ix-tab-item');
+  await expect(tabItems.first()).toHaveClass(/hydrated/);
+
+  // Track tabChange events
+  await about.evaluate((e) => {
+    (window as any).tabChangeEvents = [];
+    (e as any).addEventListener('tabChange', (event: any) => {
+      (window as any).tabChangeEvents.push(event.detail);
+    });
+  });
+
+  // Click Tab 2 and verify exactly one event fires
+  await tabItems.nth(1).click();
+  await page.waitForTimeout(100);
+
+  const events = await page.evaluate(() => (window as any).tabChangeEvents || []);
+  expect(events).toHaveLength(1);
+  expect(events[0]).toBe('Tab 2');
+});
