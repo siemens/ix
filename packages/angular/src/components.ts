@@ -625,7 +625,7 @@ export class IxDateInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixChange']);
   }
 }
 
@@ -641,6 +641,10 @@ export declare interface IxDateInput extends Components.IxDateInput {
    * Validation state change event.
    */
   validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
+  /**
+   * Event emitted when the input value is committed
+   */
+  ixChange: EventEmitter<CustomEvent<string | undefined>>;
 }
 
 
@@ -1277,7 +1281,7 @@ export class IxInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur', 'ixChange']);
   }
 }
 
@@ -1295,6 +1299,10 @@ export declare interface IxInput extends Components.IxInput {
    * Event emitted when the text field loses focus.
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the input value is committed (e.g., on blur or enter key)
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -1969,7 +1977,7 @@ export class IxNumberInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur', 'ixChange']);
   }
 }
 
@@ -1987,6 +1995,10 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
    * Event emitted when the input field loses focus
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the input value is committed (e.g., on blur or enter key)
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -2251,7 +2263,7 @@ export class IxSelect {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'inputChange', 'addItem', 'ixBlur']);
+    proxyOutputs(this, this.el, ['valueChange', 'inputChange', 'addItem', 'ixBlur', 'ixChange']);
   }
 }
 
@@ -2273,6 +2285,10 @@ export declare interface IxSelect extends Components.IxSelect {
    * Blur input
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the input value is committed
+   */
+  ixChange: EventEmitter<CustomEvent<string | string[]>>;
 }
 
 
@@ -2454,7 +2470,7 @@ export class IxTextarea {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur', 'ixChange']);
   }
 }
 
@@ -2472,6 +2488,10 @@ export declare interface IxTextarea extends Components.IxTextarea {
    * Event emitted when the textarea field loses focus.
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the textarea value is committed (e.g., on blur or enter key)
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -2513,7 +2533,7 @@ export class IxTimeInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixChange']);
   }
 }
 
@@ -2529,6 +2549,10 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    * Validation state change event.
    */
   validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
+  /**
+   * Event emitted when the input value is committed
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
 }
 
 

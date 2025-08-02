@@ -649,7 +649,8 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
 
 export type IxDateInputEvents = {
     onValueChange: EventName<CustomEvent<string | undefined>>,
-    onValidityStateChange: EventName<IxDateInputCustomEvent<DateInputValidityState>>
+    onValidityStateChange: EventName<IxDateInputCustomEvent<DateInputValidityState>>,
+    onIxChange: EventName<CustomEvent<string | undefined>>
 };
 
 export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputEvents> = /*@__PURE__*/ createComponent<IxDateInputElement, IxDateInputEvents>({
@@ -686,7 +687,8 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
     react: React,
     events: {
         onValueChange: 'valueChange',
-        onValidityStateChange: 'validityStateChange'
+        onValidityStateChange: 'validityStateChange',
+        onIxChange: 'ixChange'
     } as IxDateInputEvents,
     defineCustomElement: defineIxDateInput
 });
@@ -1215,7 +1217,8 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
 export type IxInputEvents = {
     onValueChange: EventName<CustomEvent<string>>,
     onValidityStateChange: EventName<IxInputCustomEvent<ValidityState>>,
-    onIxBlur: EventName<CustomEvent<void>>
+    onIxBlur: EventName<CustomEvent<void>>,
+    onIxChange: EventName<CustomEvent<string>>
 };
 
 export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@__PURE__*/ createComponent<IxInputElement, IxInputEvents>({
@@ -1248,7 +1251,8 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@
     events: {
         onValueChange: 'valueChange',
         onValidityStateChange: 'validityStateChange',
-        onIxBlur: 'ixBlur'
+        onIxBlur: 'ixBlur',
+        onIxChange: 'ixChange'
     } as IxInputEvents,
     defineCustomElement: defineIxInput
 });
@@ -1746,7 +1750,8 @@ export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalH
 export type IxNumberInputEvents = {
     onValueChange: EventName<CustomEvent<number>>,
     onValidityStateChange: EventName<IxNumberInputCustomEvent<ValidityState>>,
-    onIxBlur: EventName<CustomEvent<void>>
+    onIxBlur: EventName<CustomEvent<void>>,
+    onIxChange: EventName<CustomEvent<string>>
 };
 
 export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumberInputEvents> = /*@__PURE__*/ createComponent<IxNumberInputElement, IxNumberInputEvents>({
@@ -1780,7 +1785,8 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
     events: {
         onValueChange: 'valueChange',
         onValidityStateChange: 'validityStateChange',
-        onIxBlur: 'ixBlur'
+        onIxBlur: 'ixBlur',
+        onIxChange: 'ixChange'
     } as IxNumberInputEvents,
     defineCustomElement: defineIxNumberInput
 });
@@ -2010,7 +2016,8 @@ export type IxSelectEvents = {
     onValueChange: EventName<CustomEvent<string | string[]>>,
     onInputChange: EventName<CustomEvent<string>>,
     onAddItem: EventName<CustomEvent<string>>,
-    onIxBlur: EventName<CustomEvent<void>>
+    onIxBlur: EventName<CustomEvent<void>>,
+    onIxChange: EventName<CustomEvent<string | string[]>>
 };
 
 export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = /*@__PURE__*/ createComponent<IxSelectElement, IxSelectEvents>({
@@ -2050,7 +2057,8 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         onValueChange: 'valueChange',
         onInputChange: 'inputChange',
         onAddItem: 'addItem',
-        onIxBlur: 'ixBlur'
+        onIxBlur: 'ixBlur',
+        onIxChange: 'ixChange'
     } as IxSelectEvents,
     defineCustomElement: defineIxSelect
 });
@@ -2190,7 +2198,8 @@ export const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents> = /*@__P
 export type IxTextareaEvents = {
     onValueChange: EventName<CustomEvent<string>>,
     onValidityStateChange: EventName<IxTextareaCustomEvent<ValidityState>>,
-    onIxBlur: EventName<CustomEvent<void>>
+    onIxBlur: EventName<CustomEvent<void>>,
+    onIxChange: EventName<CustomEvent<string>>
 };
 
 export const IxTextarea: StencilReactComponent<IxTextareaElement, IxTextareaEvents> = /*@__PURE__*/ createComponent<IxTextareaElement, IxTextareaEvents>({
@@ -2225,7 +2234,8 @@ export const IxTextarea: StencilReactComponent<IxTextareaElement, IxTextareaEven
     events: {
         onValueChange: 'valueChange',
         onValidityStateChange: 'validityStateChange',
-        onIxBlur: 'ixBlur'
+        onIxBlur: 'ixBlur',
+        onIxChange: 'ixChange'
     } as IxTextareaEvents,
     defineCustomElement: defineIxTextarea
 });
@@ -2246,7 +2256,8 @@ export const IxTile: StencilReactComponent<IxTileElement, IxTileEvents> = /*@__P
 
 export type IxTimeInputEvents = {
     onValueChange: EventName<CustomEvent<string>>,
-    onValidityStateChange: EventName<IxTimeInputCustomEvent<TimeInputValidityState>>
+    onValidityStateChange: EventName<IxTimeInputCustomEvent<TimeInputValidityState>>,
+    onIxChange: EventName<CustomEvent<string>>
 };
 
 export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputEvents> = /*@__PURE__*/ createComponent<IxTimeInputElement, IxTimeInputEvents>({
@@ -2285,7 +2296,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
     react: React,
     events: {
         onValueChange: 'valueChange',
-        onValidityStateChange: 'validityStateChange'
+        onValidityStateChange: 'validityStateChange',
+        onIxChange: 'ixChange'
     } as IxTimeInputEvents,
     defineCustomElement: defineIxTimeInput
 });

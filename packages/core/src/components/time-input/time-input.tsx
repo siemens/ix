@@ -210,6 +210,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the input value is committed
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
   @State() show = false;
   @State() time: string | null = null;
   @State() isInputInvalid = false;
@@ -229,8 +234,15 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private previousValue: string = '';
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+  private handleValueChange(newValue: string) {
+    if (newValue !== this.previousValue) {
+      this.ixChange.emit(newValue);
+      this.previousValue = newValue;
+    }
+  }
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -250,6 +262,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad(): void {
+    this.previousValue = this.value;
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
@@ -300,10 +313,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   async onInput(value: string) {
     this.value = value;
+    this.valueChange.emit(value);
+    this.handleValueChange(value);
+
     if (!value) {
       this.isInputInvalid = false;
       this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
       return;
     }
 
@@ -314,13 +329,13 @@ export class TimeInput implements IxInputFieldComponent<string> {
     const time = DateTime.fromFormat(value, this.format);
     if (time.isValid) {
       this.isInputInvalid = false;
+      this.handleValueChange(value);
     } else {
       this.isInputInvalid = true;
       this.invalidReason = time.invalidReason;
     }
 
     this.updateFormInternalValue(value);
-    this.valueChange.emit(value);
   }
 
   onTimeIconClick(event: Event) {
@@ -410,6 +425,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+            this.handleValueChange(this.value);
           }}
         ></input>
         <SlotEnd
@@ -553,8 +569,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
             i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
               this.onInput(event.detail);
-
               this.show = false;
+              this.handleValueChange(event.detail);
             }}
           ></ix-time-picker>
         </ix-dropdown>

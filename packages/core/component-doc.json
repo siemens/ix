@@ -6466,6 +6466,20 @@
       ],
       "events": [
         {
+          "event": "ixChange",
+          "detail": "string | undefined",
+          "bubbles": true,
+          "complexType": {
+            "original": "string | undefined",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the input value is committed",
+          "docsTags": []
+        },
+        {
           "event": "validityStateChange",
           "detail": "{ patternMismatch: boolean; invalidReason?: string | undefined; }",
           "bubbles": true,
@@ -12839,6 +12853,20 @@
           "docsTags": []
         },
         {
+          "event": "ixChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the input value is committed (e.g., on blur or enter key)",
+          "docsTags": []
+        },
+        {
           "event": "validityStateChange",
           "detail": "ValidityState",
           "bubbles": true,
@@ -17765,6 +17793,20 @@
           "docsTags": []
         },
         {
+          "event": "ixChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the input value is committed (e.g., on blur or enter key)",
+          "docsTags": []
+        },
+        {
           "event": "validityStateChange",
           "detail": "ValidityState",
           "bubbles": true,
@@ -21102,6 +21144,20 @@
           "docsTags": []
         },
         {
+          "event": "ixChange",
+          "detail": "string | string[]",
+          "bubbles": true,
+          "complexType": {
+            "original": "string | string[]",
+            "resolved": "string | string[]",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the input value is committed",
+          "docsTags": []
+        },
+        {
           "event": "valueChange",
           "detail": "string | string[]",
           "bubbles": true,
@@ -23433,6 +23489,20 @@
           "docsTags": []
         },
         {
+          "event": "ixChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the textarea value is committed (e.g., on blur or enter key)",
+          "docsTags": []
+        },
+        {
           "event": "validityStateChange",
           "detail": "ValidityState",
           "bubbles": true,
@@ -24346,6 +24416,20 @@
         }
       ],
       "events": [
+        {
+          "event": "ixChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the input value is committed",
+          "docsTags": []
+        },
         {
           "event": "validityStateChange",
           "detail": "{ patternMismatch: boolean; invalidReason?: string | undefined; }",

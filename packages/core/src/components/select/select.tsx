@@ -202,6 +202,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the input value is committed
+   */
+  @Event() ixChange!: EventEmitter<string | string[]>;
+
   @State() dropdownShow = false;
   @State() selectedLabels: (string | undefined)[] = [];
   @State() isDropdownEmpty = false;
@@ -223,6 +228,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private customItemsContainerElement?: HTMLDivElement;
   private addItemElement?: HTMLIxDropdownItemElement;
   private arrowFocusController?: ArrowFocusController;
+  private previousValue: string | string[] = [];
 
   private touched = false;
 
@@ -389,7 +395,15 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.customItemsContainerElement?.appendChild(newItem);
 
     this.clearInput();
+    const oldValue = this.value;
     this.itemClick(value);
+
+    if (
+      this.isMultipleMode &&
+      JSON.stringify(oldValue) !== JSON.stringify(this.value)
+    ) {
+      this.ixChange.emit(this.value);
+    }
 
     return false;
   }
@@ -503,15 +517,29 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
-    this.dropdownShow = event.detail;
+    const show = event.detail;
+    this.dropdownShow = show;
 
-    if (event.detail) {
+    if (show) {
+      // Store initial value when dropdown opens
+      this.previousValue = Array.isArray(this.value)
+        ? [...this.value]
+        : this.value;
+
       this.inputElement?.focus();
       this.inputElement?.select();
-
       this.removeHiddenFromItems();
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
     } else {
+      // Emit ixChange if value changed during interaction
+      const currentValue = Array.isArray(this.value)
+        ? [...this.value]
+        : this.value;
+
+      if (JSON.stringify(currentValue) !== JSON.stringify(this.previousValue)) {
+        this.ixChange.emit(currentValue);
+      }
+
       this.navigationItem = undefined;
       this.updateSelection();
       this.inputFilterText = '';
@@ -719,10 +747,14 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private clear() {
+    const oldValue = this.value;
     this.clearInput();
     this.selectedLabels = [];
     this.value = [];
     this.emitValueChange([]);
+    if (JSON.stringify(oldValue) !== JSON.stringify([])) {
+      this.ixChange.emit([]);
+    }
     this.dropdownShow = false;
   }
 

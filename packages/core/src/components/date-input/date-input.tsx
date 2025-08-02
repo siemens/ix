@@ -196,6 +196,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
 
+  /**
+   * Event emitted when the input value is committed
+   */
+  @Event() ixChange!: EventEmitter<string | undefined>;
+
   /** @internal */
   @Event() ixFocus!: EventEmitter<void>;
 
@@ -221,8 +226,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private previousValue: string | undefined;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  private handleValueChange(newValue: string | undefined) {
+    if (newValue !== this.previousValue) {
+      this.ixChange.emit(newValue);
+      this.previousValue = newValue;
+    }
+  }
 
   updateFormInternalValue(value: string | undefined): void {
     if (value) {
@@ -246,6 +259,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   componentWillLoad(): void {
+    this.previousValue = this.value;
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -289,11 +303,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   async onInput(value: string | undefined) {
     this.value = value;
+    this.valueChange.emit(value);
+    this.handleValueChange(value);
     if (!value) {
-      this.valueChange.emit(value);
       return;
     }
-
     if (!this.format) {
       return;
     }
@@ -310,6 +324,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
+      this.handleValueChange(value);
     }
 
     this.valueChange.emit(value);
@@ -400,6 +415,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+            this.handleValueChange(this.value);
           }}
         ></input>
         <SlotEnd
