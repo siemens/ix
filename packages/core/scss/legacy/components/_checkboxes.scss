@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use './../../common-variables' as vars;
+@use 'common-variables' as vars;
 
 @mixin checkbox-basic() {
   $size: 1.125rem;

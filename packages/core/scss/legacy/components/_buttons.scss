@@ -9,7 +9,7 @@
 
 @use './mixins/hover';
 @use './mixins/text-truncation';
-@use './../../common-variables' as vars;
+@use 'common-variables' as vars;
 
 .btn {
   display: inline-flex;

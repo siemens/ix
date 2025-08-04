@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use './common-variables' as vars;
-@use './mixins/hover';
-@use './mixins/text-truncation';
+@use 'common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
 @use 'legacy/mixins/fonts';
 
 @mixin from-control-invalid {

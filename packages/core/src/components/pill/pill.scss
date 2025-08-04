@@ -9,7 +9,6 @@
 @use 'mixins/shadow-dom/component';
 
 @use './../chip/chip-mixin';
-@use './common-variables';
 @use 'mixins/text-truncation';
 
 :host {

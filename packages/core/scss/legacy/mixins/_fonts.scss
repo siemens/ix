@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '../../_common-variables' as vars;
+@use 'common-variables' as vars;
 
 @mixin font-smoothing {
   -webkit-font-smoothing: antialiased;

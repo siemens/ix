@@ -6,15 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use './theme/core/common' as common;
-@use './theme/core/components' as components;
+@use 'theme/core/common' as common;
+@use 'theme/core/components' as components;
+
+@use 'common-variables' as vars;
 
 /* Import global stylings for Web Components */
 @use './../src/components/toast/styles/toast-container';
 
 /* Legacy typography will be removed in 4.0.0 */
-@use './legacy/mixins/fonts' as legacy-font-mixins;
-@use './legacy/fonts' as legacy-fonts;
+@use 'legacy/mixins/fonts' as legacy-font-mixins;
+@use 'legacy/fonts' as legacy-fonts;
 
 /* Common */
 @use 'z-index';
@@ -25,18 +27,16 @@
 @use 'legacy/components/radiobuttons';
 
 /* Global style components */
-@use './components/links';
-@use './components/shadows';
-@use './components/input-group';
-@use './components/table';
-@use './components/fonts';
-@use './components/button-group';
+@use 'components/links';
+@use 'components/shadows';
+@use 'components/input-group';
+@use 'components/table';
+@use 'components/fonts';
+@use 'components/button-group';
 
 @use 'mixins/scrollbar';
-@use './mixins/fonts' as font-mixins;
-@use './normalize';
-
-@use './common-variables' as vars;
+@use 'mixins/fonts' as font-mixins;
+@use 'normalize';
 
 :not([data-ix-theme]) body:not([data-ix-theme]),
 [data-ix-theme] {
@@ -57,7 +57,7 @@
   @include components.setComponentVars;
 }
 
-:root, body {
+body {
   color: var(--theme-color-std-text);
   background-color: var(--theme-color-1);
   margin: 0;
