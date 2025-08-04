@@ -57,18 +57,18 @@
 
 :host {
   textarea:not([rows]) {
-    height: 3.25rem; 
+    height: 3.25rem;
   }
-  display: block;
-  width: var(--textarea-width, 100%);
-
+}
+:host([textarea-width]) {
+    display: block;
+    width: var(--textarea-width);
 }
 
-.input-wrapper{
+.input-wrapper {
   width: 100%;
 }
 
 textarea {
   width: 100%;
 }
-
