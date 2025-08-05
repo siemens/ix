@@ -38,25 +38,8 @@
   }
 
   .input-container {
-    $padding-with-icon: 1px $large-space 1px 1.75rem;
-    $padding-no-icon: 1px $large-space 1px $tiny-space;
-
-    &:not(.readonly) {
-      &:not(.no-icon) {
-        @include element-input(false, $padding-with-icon);
-      }
-      &.no-icon {
-        @include element-input(false, $padding-no-icon);
-      }
-    }
-
-    &.readonly {
-      &:not(.no-icon) {
-        @include element-input(true, $padding-with-icon);
-      }
-      &.no-icon {
-        @include element-input(true, $padding-no-icon);
-      }
+    &:not(.readonly):not(.disabled) {
+      @include element-input('false');
     }
 
     &:not(.readonly):not(.disabled):hover {
@@ -76,9 +59,18 @@
         var(--theme-input--border-color-bottom--disabled);
     }
 
+    &.readonly {
+      @include element-input;
+    }
+
     display: flex;
     height: auto;
     max-height: 3.75rem;
+    padding: 1px $large-space 1px 1.75rem !important;
+
+    &.no-icon {
+      padding-left: $tiny-space;
+    }
   }
 
   .token-container {

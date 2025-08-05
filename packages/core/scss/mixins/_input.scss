@@ -9,12 +9,12 @@
 @import './fonts';
 @import './validation/form-component';
 
-@mixin element-input($feature-read-only: true, $padding: 0.25rem 0.5rem) {
+@mixin element-input($feature-read-only: true) {
   & {
     @include typography-body;
     min-height: 2rem;
     width: auto;
-    padding: $padding;
+    padding: 0.25rem 0.5rem;
     background-color: var(--theme-input--background);
     color: var(--theme-input--color);
     appearance: textfield;
