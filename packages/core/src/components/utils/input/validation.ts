@@ -120,6 +120,7 @@ export function HookValidationLifecycle(options?: {
         if (host.hasValidValue && typeof host.hasValidValue === 'function') {
           const hasValue = await host.hasValidValue();
           const touched = await isTouched(host);
+
           if (host.required) {
             host.classList.toggle('ix-invalid--required', !hasValue && touched);
           } else {
@@ -140,6 +141,7 @@ export function HookValidationLifecycle(options?: {
         }
       };
 
+      host.addEventListener('checkedChange', checkIfRequiredFunction);
       host.addEventListener('valueChange', checkIfRequiredFunction);
       host.addEventListener('ixBlur', checkIfRequiredFunction);
       setTimeout(checkIfRequiredFunction);
@@ -172,6 +174,7 @@ export function HookValidationLifecycle(options?: {
       }
 
       if (host && checkIfRequiredFunction) {
+        host.removeEventListener('checkedChange', checkIfRequiredFunction);
         host.removeEventListener('valueChange', checkIfRequiredFunction);
         host.removeEventListener('ixBlur', checkIfRequiredFunction);
         checkIfRequiredFunction = null;

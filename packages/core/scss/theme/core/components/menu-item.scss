@@ -1,0 +1,10 @@
+@mixin setVars {
+  --theme-menu-item--background: var(--theme-color-ghost);
+  --theme-menu-item--background--hover: var(--theme-color-ghost--hover);
+  --theme-menu-item--background--active: var(--theme-color-ghost--active);
+  --theme-menu-item--background--disabled: var(--theme-color-ghost);
+  --theme-menu-item--color: var(--theme-color-std-text);
+  --theme-menu-item--color--hover: var(--theme-color-std-text);
+  --theme-menu-item--color--active: var(--theme-color-std-text);
+  --theme-menu-item--color--disabled: var(--theme-color-weak-text);
+}

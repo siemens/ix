@@ -1,0 +1,9 @@
+@mixin setVars {
+  --theme-workflow-step--color--disabled: var(--theme-color-weak-text);
+  --theme-workflow-step--background: var(--theme-color-ghost);
+  --theme-workflow-step--background--hover: var(--theme-color-ghost--hover);
+  --theme-workflow-step--background--active: var(--theme-color-ghost--active);
+  --theme-workflow-step--background--selected: var(--theme-color-ghost--selected);
+  --theme-workflow-step--background--disabled: var(--theme-color-ghost);
+  --theme-workflow-step--color: var(--theme-color-std-text);
+}

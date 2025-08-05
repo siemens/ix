@@ -20,9 +20,6 @@ import {
 import { closestPassShadow } from '../utils/shadow-dom';
 import { iconClose } from '@siemens/ix-icons/icons';
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-modal-header',
   styleUrl: 'modal-header.scss',
@@ -40,6 +37,19 @@ export class ModalHeader {
    * Icon of the Header
    */
   @Prop() icon?: string;
+
+  /**
+   * ARIA label for the icon
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
+   * ARIA label for the close icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCloseIconButton?: string;
 
   @Watch('icon')
   onIconChange(icon?: string) {
@@ -86,7 +96,12 @@ export class ModalHeader {
     return (
       <Host>
         {this.icon ? (
-          <ix-icon name={this.icon} color={this.iconColor} size="32"></ix-icon>
+          <ix-icon
+            name={this.icon}
+            color={this.iconColor}
+            size="32"
+            aria-label={this.ariaLabelIcon}
+          ></ix-icon>
         ) : null}
         <div class="modal-title">
           <ix-typography format="h5">
@@ -99,6 +114,7 @@ export class ModalHeader {
             onClick={(event) => this.onCloseClick(event)}
             ghost
             icon={iconClose}
+            aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}
       </Host>

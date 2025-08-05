@@ -73,7 +73,7 @@ function getPropertyType(property: any): string {
     return property.type.qualifiedName;
   } else if (property.type instanceof UnionType) {
     return property.type.types
-      .filter((t) => 'name' in t)
+      .filter((t: any) => 'name' in t)
       .map((t: any) => t.name)
       .join(' | ');
   } else {
@@ -94,8 +94,8 @@ function extractCommentTags(
   for (const tag of property.comment.blockTags) {
     const tagName = tag.tag.substring(1); // Remove @ symbol
     const tagText = tag.content
-      .filter((content) => content.kind === 'text')
-      .map((content) => content.text)
+      .filter((content: any) => content.kind === 'text')
+      .map((content: any) => content.text)
       .join('');
 
     tags.push({ tag: tagName, text: tagText });
@@ -110,8 +110,8 @@ function getCommentSummary(property: any): string {
   }
 
   return property.comment.summary
-    .filter((summary) => summary.kind === 'text')
-    .map((summary) => summary.text)
+    .filter((summary: any) => summary.kind === 'text')
+    .map((summary: any) => summary.text)
     .join('');
 }
 
@@ -263,7 +263,7 @@ function generateStructuredMDX(
     hasEvents: false,
     hasSlots: false,
     singleFramework: framework,
-    framework: framework?.charAt(0).toUpperCase() + framework?.slice(1),
+    framework: framework?.charAt(0).toUpperCase()! + framework?.slice(1),
     properties: propertyOutput,
     events: '',
     slots: '',

@@ -66,10 +66,9 @@ Once it's filed:
 
 #### Issue workflow
 
-- The project team will label the issue accordingly. `Workflow: Issue created`
-- A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs with the `needs-repro` label will not be addressed until the steps to reproduce it have been provided. Ideally you can provide a link to a running example (e.g. StackBlitz).
-- If the team is able to reproduce the issue, it will be marked `type: bug` and `Workflow: Approved`, as well as possibly other labels (such as `type: enhancement`)
-- If work on the issue has begun the workflow label will be changed to `Workflow: In progress`
+- The project team will label the issue accordingly. `Backlog`
+- A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs reproduction`. Bugs with the `needs reproduction` label will not be addressed until the steps to reproduce it have been provided. Ideally you can provide a link to a running example (e.g. StackBlitz).
+- If the team is able to reproduce the issue, it will be marked `type: bug`.
 
 ### Suggesting Enhancements
 
@@ -212,18 +211,23 @@ docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.50.0-no
 5. Run the test suite:
 
 - Run all tests: `pnpm visual-regression`
-- Run workspace: `pnpm visual-regression --filter @siemens/ix`
 
-6. Adapt and update snapshots with: `pnpm --filter @siemens/ix run visual-regression <test name> -u`
+Workspace:
 
-7. Check the results by opening the test report in your browser: `packages/<workspace>/playwright-report/index.html`
+- `@siemens/ix-aggrid` => `pnpm visual-regression --filter @siemens/ix-aggrid`
+- `@siemens/ix` => `pnpm visual-regression --filter visual-testing`
 
-8. Check the git diff and commit changes 🎉
+1. Adapt and update snapshots with: `pnpm --filter visual-testing run visual-regression <test name> -u`
+
+2. Check the results by opening the test report in your browser: `packages/<workspace>/playwright-report/index.html`
+
+3. Check the git diff and commit changes 🎉
 
 ### Modify and preview documentation
 
-1. Run `pnpm start --filter documentation` from within the `root` directory.
-2. Locate the docs to modify inside `/packages/documentation/docs/`.
+The documentation source is maintained in a separate repository: [siemens/ix-docs](https://github.com/siemens/ix-docs). This repository contains all relevant markdown files and Figma assets.
+
+If you need to update only the preview or code examples, you can do so by following the instructions in the next section.
 
 #### Preview and example code
 
@@ -235,20 +239,6 @@ docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.50.0-no
 These packages contain playground applications to explore and test the respective `ix` components.
 The preview source code for the documentation is also located inside the `x-test-app`'s. (`src/preview-examples`)
 These preview-examples will be translated to markdown files and get copied into `./packages/documentation/docs/auto-generated/previews`.
-
-#### Figma integration
-
-> You need to have access to the internal figma library
-
-To see all image references it is necessary to create a personal access token (https://www.figma.com/developers/api#access-tokens).
-
-Store the token as environment variable "FIGMA_API_TOKEN" or in the .env file inside project root.
-
-Serve documentation [locally](http://localhost:3000/siemens-ix/)
-
-```sh
-pnpm start --filter=documentation
-```
 
 ### Submit Pull Request
 

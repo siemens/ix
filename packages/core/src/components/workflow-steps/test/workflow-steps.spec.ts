@@ -12,7 +12,6 @@ import { WorkflowStep } from '../..//workflow-step/workflow-step';
 import { WorkflowSteps } from '../workflow-steps';
 //@ts-ignore
 import { createMutationObserver } from './../../utils/mutation-observer';
-
 jest.mock('./../../utils/mutation-observer');
 
 describe('workflow-steps', () => {

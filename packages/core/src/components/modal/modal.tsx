@@ -22,10 +22,7 @@ import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
 import { OnListener } from '../utils/listener';
 import { waitForElement } from '../utils/waitForElement';
-
-export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
-export type IxModalDynamicSize = 'full-width' | 'full-screen';
-export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
+import { IxModalSize } from './modal.types';
 
 @Component({
   tag: 'ix-modal',
@@ -34,13 +31,11 @@ export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
 })
 export class Modal {
   private ariaAttributes: A11yAttributes = {};
-
+  private isMouseDownInsideDialog = false;
   @Element() hostElement!: HTMLIxModalElement;
 
   /**
    * Modal size
-   *
-   * @since 2.0.0
    */
   @Prop() size: IxModalSize = '360';
 
@@ -56,8 +51,6 @@ export class Modal {
 
   /**
    * Dismiss modal on backdrop click
-   *
-   * @since 2.0.0
    */
   @Prop() closeOnBackdropClick = false;
 
@@ -104,14 +97,13 @@ export class Modal {
 
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
-
-    let transformY = this.centered ? '-50%' : 40;
+    const translateY = this.centered ? ['-90%', '-50%'] : [0, 40];
 
     anime({
       targets: this.dialog,
       duration,
       opacity: [0, 1],
-      translateY: [0, transformY],
+      translateY,
       translateX: ['-50%', '-50%'],
       easing: 'easeOutSine',
     });
@@ -119,14 +111,13 @@ export class Modal {
 
   private slideOutModal(completeCallback: Function) {
     const duration = this.animation ? Animation.mediumTime : 0;
-
-    let transformY = this.centered ? '-50%' : 40;
+    const translateY = this.centered ? ['-50%', '-90%'] : [40, 0];
 
     anime({
       targets: this.dialog,
       duration,
       opacity: [1, 0],
-      translateY: [transformY, 0],
+      translateY,
       translateX: ['-50%', '-50%'],
       easing: 'easeInSine',
       complete: () => {
@@ -137,23 +128,34 @@ export class Modal {
     });
   }
 
-  private onModalClick(event: MouseEvent) {
-    if (event.target !== this.dialog) {
-      return;
-    }
+  private onMouseDown(event: MouseEvent) {
+    this.isMouseDownInsideDialog = this.isPointInsideDialog(
+      event.clientX,
+      event.clientY
+    );
+  }
 
-    const rect = this.dialog!.getBoundingClientRect();
-    const isClickOutside =
-      rect.top <= event.clientY &&
-      event.clientY <= rect.top + rect.height &&
-      rect.left <= event.clientX &&
-      event.clientX <= rect.left + rect.width;
+  private onMouseUp(event: MouseEvent) {
+    const isMouseUpInsideDialog = this.isPointInsideDialog(
+      event.clientX,
+      event.clientY
+    );
 
-    if (!isClickOutside && this.closeOnBackdropClick) {
+    if (
+      this.closeOnBackdropClick &&
+      !this.isMouseDownInsideDialog &&
+      !isMouseUpInsideDialog
+    ) {
       this.dismissModal();
     }
   }
 
+  private isPointInsideDialog(x: number, y: number): boolean {
+    const rect = this.dialog!.getBoundingClientRect();
+    return (
+      x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
+    );
+  }
   /**
    * Show the dialog
    */
@@ -259,7 +261,8 @@ export class Modal {
               [`modal-size-${this.size}`]: true,
             }}
             onClose={() => this.dismissModal()}
-            onClick={(event) => this.onModalClick(event)}
+            onMouseDown={(event) => this.onMouseDown(event)}
+            onMouseUp={(event) => this.onMouseUp(event)}
             onCancel={(e) => {
               e.preventDefault();
               this.dismissModal();

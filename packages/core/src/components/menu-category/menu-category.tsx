@@ -26,9 +26,6 @@ import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-menu-category',
   styleUrl: 'menu-category.scss',

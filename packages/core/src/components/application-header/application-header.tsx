@@ -53,15 +53,32 @@ export class ApplicationHeader {
    *
    * When the application header is utilized outside the application frame, the menu toggle button is displayed.
    * Conversely, if the header is within the application frame, this property is ineffective.
-   *
-   * @since 2.5.0
    */
   @Prop({ mutable: true }) showMenu?: boolean = false;
 
   /**
-   * Event emitted when the menu toggle button is clicked
+   * ARIA label for the menu expand icon button
    *
-   * @since 2.5.0
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelMenuExpandIconButton?: string;
+
+  /**
+   * ARIA label for the app switch icon button
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelAppSwitchIconButton?: string;
+
+  /**
+   * ARIA label for the more menu icon button
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelMoreMenuIconButton?: string;
+
+  /**
+   * Event emitted when the menu toggle button is clicked
    */
   @Event() menuToggle!: EventEmitter<boolean>;
 
@@ -254,6 +271,7 @@ export class ApplicationHeader {
           <ix-menu-expand-icon
             onClick={() => this.onMenuClick()}
             expanded={this.menuExpanded}
+            ixAriaLabel={this.ariaLabelMenuExpandIconButton}
           ></ix-menu-expand-icon>
         )}
         {showApplicationSwitch && (
@@ -262,6 +280,7 @@ export class ApplicationHeader {
             icon={iconApps}
             ghost
             class="app-switch"
+            aria-label={this.ariaLabelAppSwitchIconButton}
           ></ix-icon-button>
         )}
         <div class={{ logo: true }}>
@@ -282,6 +301,7 @@ export class ApplicationHeader {
                 data-testid="show-more"
                 icon={iconMoreMenu}
                 ghost
+                aria-label={this.ariaLabelMoreMenuIconButton}
               ></ix-icon-button>
               <ix-dropdown
                 data-overflow-dropdown

@@ -8,10 +8,7 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-
-export type TabClickDetail = {
-  nativeEvent: MouseEvent;
-};
+import type { TabClickDetail } from './tab-item.types';
 
 @Component({
   tag: 'ix-tab-item',
@@ -61,8 +58,6 @@ export class TabItem {
 
   /**
    * Emitted when the tab is clicked.
-   *
-   * @since 2.0.0
    */
   @Event() tabClick!: EventEmitter<TabClickDetail>;
 

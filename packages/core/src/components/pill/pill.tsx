@@ -43,6 +43,13 @@ export class Pill implements IxComponent {
   @Prop() icon?: string;
 
   /**
+   * ARIA label for the icon
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
    * Custom color for pill. Only working for `variant='custom'`
    */
   @Prop() background: string | undefined;
@@ -138,14 +145,16 @@ export class Pill implements IxComponent {
             'with-gap': !this.iconOnly,
           }}
         >
-          <ix-icon
-            class={{
-              'with-icon': true,
-              hidden: this.icon === undefined || this.icon === '',
-            }}
-            name={this.icon}
-            size={'16'}
-          />
+          {this.icon && (
+            <ix-icon
+              class={{
+                'with-icon': true,
+              }}
+              name={this.icon}
+              size={'16'}
+              aria-label={this.ariaLabelIcon}
+            />
+          )}
           <span class="slot-container">
             <slot onSlotchange={() => this.checkIfContentAvailable()}></slot>
           </span>

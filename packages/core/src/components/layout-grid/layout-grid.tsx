@@ -9,9 +9,6 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-layout-grid',
   styleUrl: 'layout-grid.scss',

@@ -8,18 +8,12 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import type { DateChangeEvent } from '../date-picker/date-picker';
+import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-
-export type DateTimeSelectEvent = {
-  from?: string;
-  to?: string;
-  time: string;
-};
-
-export type DateTimeDateChangeEvent =
-  | string
-  | Omit<DateTimeSelectEvent, 'time'>;
+import type {
+  DateTimeDateChangeEvent,
+  DateTimeSelectEvent,
+} from './datetime-picker.types';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -36,79 +30,69 @@ export class DatetimePicker
 
   /**
    * Show hour input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showHour = true;
 
   /**
    * Show minutes input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showMinutes = true;
 
   /**
    * Show seconds input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showSeconds = true;
 
   /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() minDate?: string;
 
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() maxDate?: string;
 
   /**
    * Date format string.
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-   *
-   * @since 1.1.0
    */
   @Prop() dateFormat: string = 'yyyy/LL/dd';
 
   /**
    * Time format string.
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-   *
-   * @since 1.1.0
    */
   @Prop() timeFormat: string = 'HH:mm:ss';
 
   /**
    * The selected starting date. If the picker is not in range mode this is the selected date.
    * Format has to match the `format` property.
-   *
-   * @since 1.1.0
    */
   @Prop() from?: string;
 
   /**
    * The selected end date. If the the picker is not in range mode this property has no impact.
    * Format has to match the `format` property.
-   *
-   * @since 1.1.0
    */
   @Prop() to?: string;
 
   /**
    * Select time with format string
-   *
-   * @since 1.1.0
    */
   @Prop() time?: string;
 
   /**
    * Show time reference input
    * Time reference is default aligned with @see {this.timeFormat}
-   *
-   * @since 1.1.0
    */
   @Prop() showTimeReference: boolean = false;
 
@@ -119,8 +103,6 @@ export class DatetimePicker
 
   /**
    * Text of date select button
-   *
-   * @since 2.1.0
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
 
@@ -132,18 +114,26 @@ export class DatetimePicker
   @Prop() i18nTime: string = 'Time';
 
   /**
+   * ARIA label for the previous month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelPreviousMonthButton?: string;
+
+  /**
+   * ARIA label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelNextMonthButton?: string;
+
+  /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-   *
-   * @since 2.1.0
    */
   @Prop() weekStartIndex = 0;
 
   /**
    * Format of time string
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-   *
-   * @since 2.1.0
    */
   @Prop() locale?: string;
 
@@ -155,24 +145,17 @@ export class DatetimePicker
   @Prop() showWeekNumbers = false;
 
   /**
-
    * Time change
-   *
-   * @since 1.1.0
    */
   @Event() timeChange!: EventEmitter<string>;
 
   /**
    * Date change
-   *
-   * @since 1.1.0
    */
   @Event() dateChange!: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
    * Datetime selection event is fired after confirm button is pressed
-   *
-   * @since 1.1.0
    */
   @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 
@@ -226,6 +209,8 @@ export class DatetimePicker
                 standaloneAppearance={false}
                 locale={this.locale}
                 showWeekNumbers={this.showWeekNumbers}
+                ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
+                ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
               ></ix-date-picker>
             </ix-col>
 
@@ -234,13 +219,14 @@ export class DatetimePicker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
                 standaloneAppearance={false}
-                showHour={this.showHour}
-                showMinutes={this.showMinutes}
-                showSeconds={this.showSeconds}
+                dateTimePickerAppearance={true}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
                 textTime={this.i18nTime}
                 time={this.time}
+                showHour={this.showHour}
+                showMinutes={this.showMinutes}
+                showSeconds={this.showSeconds}
               ></ix-time-picker>
               <div class="btn-select-date-container">
                 <ix-button

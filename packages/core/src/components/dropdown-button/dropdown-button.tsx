@@ -7,17 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
-import { ButtonVariant } from '../button/button';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { AlignedPlacement } from '../dropdown/placement';
-import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
+import {
+  iconChevronDownSmall,
+  iconChevronUpSmall,
+} from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
+import type { DropdownButtonVariant } from './dropdown-button.types';
 
-export type DropdownButtonVariant = ButtonVariant;
-
-/**
- * @since 1.3.0
- */
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
@@ -58,16 +56,23 @@ export class DropdownButton {
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-   * @since 2.1.0
    */
   @Prop() closeBehavior: 'inside' | 'outside' | 'both' | boolean = 'both';
 
   /**
    * Placement of the dropdown
-   *
-   * @since 2.0.0
    */
   @Prop() placement?: AlignedPlacement;
+
+  /**
+   * ARIA label for the dropdown button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelDropdownButton?: string;
+
+  @State() dropdownShow = false;
 
   private readonly dropdownAnchor = makeRef<HTMLElement>();
 
@@ -87,6 +92,10 @@ export class DropdownButton {
     );
   }
 
+  private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
+    this.dropdownShow = event.detail;
+  };
+
   render() {
     return (
       <Host
@@ -103,6 +112,7 @@ export class DropdownButton {
               ghost={this.ghost}
               disabled={this.disabled}
               alignment="start"
+              ariaLabel={this.ariaLabelDropdownButton}
             >
               <div class={'content'}>
                 {this.icon ? (
@@ -113,7 +123,14 @@ export class DropdownButton {
                   ></ix-icon>
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
-                <ix-icon name={iconChevronDownSmall} size="24"></ix-icon>
+                <ix-icon
+                  name={
+                    this.dropdownShow
+                      ? iconChevronUpSmall
+                      : iconChevronDownSmall
+                  }
+                  size="24"
+                ></ix-icon>
               </div>
             </ix-button>
           ) : (
@@ -135,6 +152,7 @@ export class DropdownButton {
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
+          onShowChanged={this.onDropdownShowChanged}
         >
           <slot></slot>
         </ix-dropdown>

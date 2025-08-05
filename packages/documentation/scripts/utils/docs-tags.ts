@@ -13,12 +13,12 @@ export function convertDocsTagsToTSXElement(
   tagName: string,
   docsTags: {
     name: string;
-    text: string;
+    text?: string;
   }[]
 ) {
   return docsTags.map((tag) => {
     const { name, text } = tag;
-    const escapedText = escapeMarkdown(text).replace(/`/g, '\\`');
+    const escapedText = escapeMarkdown(text ?? '').replace(/`/g, '\\`');
     let template = '';
     if (name === 'since') {
       template = `<SinceTag message={\`${escapedText}\`} />`;
@@ -26,6 +26,10 @@ export function convertDocsTagsToTSXElement(
 
     if (name === 'deprecated') {
       template = `<DeprecatedTag message={\`${escapedText}\`} />`;
+    }
+
+    if (name === 'form-ready') {
+      template = `<FormReady message={\`${escapedText}\`} />`;
     }
 
     if (template === '') {

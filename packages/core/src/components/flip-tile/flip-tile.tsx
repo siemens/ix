@@ -37,13 +37,11 @@ export class FlipTile {
 
   /**
    * Height interpreted as REM
-   * @since 1.5.0
    */
   @Prop() height: number | 'auto' = 15.125;
 
   /**
    * Width interpreted as REM
-   * @since 1.5.0
    */
   @Prop() width: number | 'auto' = 16;
 
@@ -52,6 +50,14 @@ export class FlipTile {
    * @since 3.0.0
    */
   @Prop() index = 0;
+
+  /**
+   * ARIA label for the eye icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelEyeIconButton?: string;
 
   /**
    * Event emitted when the index changes
@@ -171,6 +177,7 @@ export class FlipTile {
               variant="primary"
               ghost
               onClick={() => this.toggleIndex()}
+              aria-label={this.ariaLabelEyeIconButton}
             ></ix-icon-button>
           </div>
 

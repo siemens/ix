@@ -1,19 +1,6 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
+import type { CardVariant } from './card.types';
 
-export type CardVariant =
-  | 'alarm'
-  | 'critical'
-  | 'warning'
-  | 'info'
-  | 'neutral'
-  | 'success'
-  | 'primary'
-  | 'outline'
-  | 'filled';
-
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-card',
   styleUrl: 'card.scss',
@@ -28,7 +15,7 @@ export class Card {
   @Prop() variant: CardVariant = 'outline';
 
   /**
-   * @since 2.1.0
+   * Show card in selected state
    */
   @Prop() selected: boolean = false;
 

@@ -1,7 +1,7 @@
 {
   "root": true,
   "parserOptions": {
-    "project": "./tsconfig.lib.json"
+    "project": "./tsconfig.lint.json"
   },
   "extends": [
     /* "plugin:@typescript-eslint/recommended", */ "plugin:@stencil-community/recommended",
@@ -21,6 +21,8 @@
     "react/jsx-uses-react": 0,
     "react/react-in-jsx-scope": 0,
     "@typescript-eslint/no-confusing-non-null-assertion": "error",
-    "@typescript-eslint/no-explicit-any": "warn"
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-unused-vars": "off"
   }
 }

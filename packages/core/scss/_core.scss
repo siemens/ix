@@ -6,6 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use './theme/core/common' as common;
+@use './theme/core/components' as components;
 
 /* Import global stylings for Web Components */
 @import './../src/components/toast/styles/toast-container';
@@ -22,6 +24,7 @@
 @import 'legacy/components/input';
 @import 'legacy/components/checkboxes';
 @import 'legacy/components/radiobuttons';
+@import 'legacy/fonts';
 
 /* Global style components */
 @import './components/links';
@@ -34,7 +37,11 @@
 @import 'mixins/scrollbar';
 @import './normalize';
 
-:root {
+:not([data-ix-theme]) body:not([data-ix-theme]),
+[data-ix-theme] {
+  @include common.setVars;
+  @include components.setComponentVars;
+
   --animate-duration: #{$default-time};
   --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
     Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
@@ -44,6 +51,8 @@
   --ix-safe-area-inset-right: 0rem;
   --ix-safe-area-inset-bottom: 0rem;
   --ix-safe-area-inset-left: 0rem;
+
+  color: var(--theme-color-std-text);
 }
 
 body {

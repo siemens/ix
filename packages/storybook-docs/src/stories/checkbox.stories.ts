@@ -9,7 +9,7 @@
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 type Element = Components.IxCheckbox & {
   defaultSlot: string;
@@ -96,5 +96,12 @@ export const Group: GroupStory = {
   render: (args) => CheckboxGroupRender(args),
   args: {
     label: 'Checkbox Group',
+  },
+};
+
+export const Required: Story = {
+  args: {
+    label: 'Required',
+    required: true,
   },
 };

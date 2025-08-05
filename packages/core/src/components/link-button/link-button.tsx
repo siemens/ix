@@ -10,9 +10,6 @@
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-link-button',
   styleUrl: 'link-button.scss',
@@ -53,6 +50,7 @@ export class LinkButton {
             class="icon"
             name={iconChevronRightSmall}
             size="16"
+            aria-hidden="true"
           ></ix-icon>
           <div
             class={{

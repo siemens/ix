@@ -13,6 +13,7 @@ import { regressionTest } from '@utils/test';
 declare global {
   interface Window {
     submitCount: number;
+    isFormSubmitted: boolean;
   }
 }
 
@@ -108,5 +109,100 @@ regressionTest(
 
     await expect(button).not.toHaveAttribute('disabled');
     await expect(button).not.toHaveClass(/loading/);
+  }
+);
+
+regressionTest(
+  'should not submit form when form attribute is not set',
+  async ({ mount, page }) => {
+    await mount(`
+    <form id="test-form">
+      <input type="text" name="test-input">
+    </form>
+    <ix-button type="submit">Submit</ix-button>
+  `);
+
+    await page.evaluate(() => {
+      window.isFormSubmitted = false;
+      const form = document.getElementById('test-form');
+      if (!form) {
+        return;
+      }
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.isFormSubmitted = true;
+      });
+    });
+
+    const button = page.locator('ix-button');
+    await button.click();
+
+    const formSubmitted = await page.evaluate(() => window.isFormSubmitted);
+    expect(formSubmitted).toBe(false);
+  }
+);
+
+regressionTest(
+  'should not submit if form attribute is invalid',
+  async ({ mount, page }) => {
+    await mount(`
+    <form id="test-form">
+      <input type="text" name="test-input">
+    </form>
+    <ix-button type="submit" form="invalid-form">Submit</ix-button>
+  `);
+
+    await page.evaluate(() => {
+      window.isFormSubmitted = false;
+      const form = document.getElementById('test-form');
+
+      if (!form) {
+        return;
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.isFormSubmitted = true;
+      });
+    });
+
+    const button = page.locator('ix-button');
+    await button.click();
+
+    const isFormSubmitted = await page.evaluate(() => window.isFormSubmitted);
+    expect(isFormSubmitted).toBe(false);
+  }
+);
+
+regressionTest(
+  'should submit form when form attribute is set',
+  async ({ mount, page }) => {
+    await mount(`
+    <form id="test-form">
+      <input type="text" name="test-input">
+    </form>
+    <ix-button type="submit" form="test-form">Submit</ix-button>
+  `);
+
+    await page.evaluate(() => {
+      window.isFormSubmitted = false;
+      const form = document.getElementById('test-form');
+
+      if (!form) {
+        return;
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.isFormSubmitted = true;
+      });
+    });
+
+    const button = page.locator('ix-button');
+
+    await button.click();
+
+    const formSubmitted = await page.evaluate(() => window.isFormSubmitted);
+    expect(formSubmitted).toBe(true);
   }
 );

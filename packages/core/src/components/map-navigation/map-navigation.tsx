@@ -50,6 +50,14 @@ export class MapNavigation {
   @Prop() hideContextMenu = true;
 
   /**
+   * ARIA label for the context menu icon button
+   * Will be set for the native HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelContextIconButton?: string;
+
+  /**
    * Navigation toggled
    */
   @Event() navigationToggled!: EventEmitter<boolean>;
@@ -109,7 +117,6 @@ export class MapNavigation {
    * Change the visibility of the sidebar
    *
    * @param show new visibility state
-   * @since 1.6.0
    */
   @Method()
   async toggleSidebar(show?: boolean) {
@@ -250,6 +257,7 @@ export class MapNavigation {
                     size="24"
                     variant="secondary"
                     onClick={(_) => this.contextMenuClick.emit()}
+                    aria-label={this.ariaLabelContextIconButton}
                   ></ix-icon-button>
                 )}
               </div>

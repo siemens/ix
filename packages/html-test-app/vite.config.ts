@@ -28,7 +28,7 @@ entryPoints.forEach((file) => {
 });
 
 const additionalTheme = {
-  css: 'ix-corporate-theme/dist/css/brand-theme.css',
+  css: 'corporate-theme/dist/css/brand-theme.css',
 };
 
 // https://vitejs.dev/config/

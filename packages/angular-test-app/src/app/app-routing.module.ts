@@ -158,6 +158,7 @@ import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
+import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
 import NumberInputDisabled from '../preview-examples/number-input-disabled';
@@ -173,6 +174,12 @@ import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
+import ProgressIndicator from '../preview-examples/progress-indicator';
+import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
+import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
+import ProgressIndicatorCircularStatus from '../preview-examples/progress-indicator-circular-status';
+import ProgressIndicatorLinearSizes from '../preview-examples/progress-indicator-linear-sizes';
+import ProgressIndicatorLinearStatus from '../preview-examples/progress-indicator-linear-status';
 import PushCard from '../preview-examples/push-card';
 import Radio from '../preview-examples/radio';
 import Radiobutton from '../preview-examples/radio-button';
@@ -745,6 +752,10 @@ const routes: Routes = [
         component: ModalByTemplate,
       },
       {
+        path: 'modal-form-ix-button-submit',
+        component: ModalFormIxButtonSubmit,
+      },
+      {
         path: 'modal-sizes',
         component: ModalSizes,
       },
@@ -1027,6 +1038,27 @@ const routes: Routes = [
       { path: 'layout-auto-custom', component: LayoutAutoCustom },
       { path: 'form-layout-auto', component: FormLayoutAuto },
       { path: 'form-layout-grid', component: FormLayoutGrid },
+      { path: 'progress-indicator', component: ProgressIndicator },
+      {
+        path: 'progress-indicator-linear-sizes',
+        component: ProgressIndicatorLinearSizes,
+      },
+      {
+        path: 'progress-indicator-linear-status',
+        component: ProgressIndicatorLinearStatus,
+      },
+      {
+        path: 'progress-indicator-circular-sizes',
+        component: ProgressIndicatorCircularSizes,
+      },
+      {
+        path: 'progress-indicator-circular-status',
+        component: ProgressIndicatorCircularStatus,
+      },
+      {
+        path: 'progress-indicator-circular',
+        component: ProgressIndicatorCircular,
+      },
     ],
   },
 ];

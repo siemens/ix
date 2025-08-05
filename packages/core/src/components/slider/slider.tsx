@@ -21,8 +21,7 @@ import {
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
-
-export type SliderMarker = Array<number>;
+import type { SliderMarker } from './slider.types';
 
 function between(min: number, value: number, max: number) {
   if (value < min) {
@@ -35,8 +34,6 @@ function between(min: number, value: number, max: number) {
 }
 
 /**
- * @since 2.0.0
- *
  * @slot label-start - Element will be displayed at the start of the slider
  * @slot label-end - Element will be displayed at the end of the slider
  */
@@ -127,7 +124,7 @@ export class Slider {
 
   @Watch('showTooltip')
   onShowTooltipChange() {
-    if (this.showTooltip) {
+    if (this.showTooltip && this.pseudoThumb) {
       this.tooltip?.showTooltip(this.pseudoThumb);
       return;
     }

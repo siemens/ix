@@ -13,7 +13,7 @@ import { genericRender, makeArgTypes } from './utils/generic-render';
 type Element = Components.IxInput;
 
 const meta = {
-  title: 'Example/Input/Text',
+  title: 'Example/Input',
   tags: [],
   render: (args) => genericRender('ix-input', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-input', {}),
@@ -33,5 +33,14 @@ export const Required: Story = {
     label: 'Required',
     value: '',
     required: true,
+  },
+};
+
+export const MinLength: Story = {
+  args: {
+    label: 'MinLength',
+    minLength: 3,
+    maxLength: 5,
+    value: '1234567',
   },
 };

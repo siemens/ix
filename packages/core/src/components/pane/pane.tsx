@@ -29,32 +29,15 @@ import {
   iconDoubleChevronRight,
   iconDoubleChevronUp,
 } from '@siemens/ix-icons/icons';
+import type {
+  BorderlessChangedEvent,
+  Composition,
+  ExpandedChangedEvent,
+  HideOnCollapseChangedEvent,
+  SlotChangedEvent,
+  VariantChangedEvent,
+} from './pane.types';
 
-export type Composition = 'top' | 'left' | 'bottom' | 'right';
-export type ExpandedChangedEvent = {
-  slot: string;
-  expanded: boolean;
-};
-export type SlotChangedEvent = {
-  slot: string;
-  newSlot: string;
-};
-export type HideOnCollapseChangedEvent = {
-  slot: string;
-  hideOnCollapse: boolean;
-};
-export type VariantChangedEvent = {
-  slot: string;
-  variant: 'floating' | 'inline';
-};
-export type BorderlessChangedEvent = {
-  slot: string;
-  borderless: boolean;
-};
-
-/**
- * @since 2.1.0
- */
 @Component({
   tag: 'ix-pane',
   styleUrl: 'pane.scss',
@@ -112,6 +95,11 @@ export class Pane {
    * Name of the icon
    */
   @Prop() icon?: string;
+
+  /**
+   * ARIA label for the icon
+   */
+  @Prop() ariaLabelIcon?: string;
 
   /**
    * @internal
@@ -663,7 +651,11 @@ export class Pane {
               }}
             >
               {this.icon ? (
-                <ix-icon size="24" name={this.icon}></ix-icon>
+                <ix-icon
+                  size="24"
+                  name={this.icon}
+                  aria-label={this.ariaLabelIcon}
+                ></ix-icon>
               ) : null}
               <div class="title-text-overflow">
                 <ix-typography format="h4">{this.heading}</ix-typography>

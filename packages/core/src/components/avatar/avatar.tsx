@@ -19,8 +19,11 @@ import {
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+import { a11yHostAttributes } from '../utils/a11y';
 
-function DefaultAvatar(props: { initials?: string }) {
+function DefaultAvatar(
+  props: Readonly<{ initials?: string; a11yLabel?: string }>
+) {
   const { initials } = props;
 
   if (initials) {
@@ -34,6 +37,7 @@ function DefaultAvatar(props: { initials?: string }) {
       width="32"
       height="32"
       viewBox="0 0 32 32"
+      aria-label={props.a11yLabel}
     >
       <g fill="none" fill-rule="evenodd">
         <path
@@ -53,28 +57,45 @@ function DefaultAvatar(props: { initials?: string }) {
   );
 }
 
-function AvatarImage(props: { image?: string; initials?: string }) {
+function AvatarImage(
+  props: Readonly<{
+    image?: string;
+    initials?: string;
+    a11yLabel?: string;
+  }>
+) {
   return (
     <div class="avatar">
       {props.image ? (
-        <img src={props.image} class="avatar-image"></img>
+        <img
+          src={props.image}
+          class="avatar-image"
+          aria-label={props.a11yLabel}
+        ></img>
       ) : (
-        <DefaultAvatar initials={props.initials} />
+        <DefaultAvatar initials={props.initials} a11yLabel={props.a11yLabel} />
       )}
     </div>
   );
 }
 
-function UserInfo(props: {
-  image?: string;
-  initials?: string;
-  userName: string;
-  extra?: string;
-}) {
+function UserInfo(
+  props: Readonly<{
+    image?: string;
+    initials?: string;
+    userName: string;
+    extra?: string;
+    a11yLabel?: string;
+  }>
+) {
   return (
     <Fragment>
       <div class="user-info" onClick={(event) => event.preventDefault()}>
-        <AvatarImage image={props.image} initials={props.initials} />
+        <AvatarImage
+          image={props.image}
+          initials={props.initials}
+          a11yLabel={props.a11yLabel}
+        />
         <div class="user">
           <div class="username">{props.userName}</div>
           {props.extra && (
@@ -88,9 +109,6 @@ function UserInfo(props: {
   );
 }
 
-/**
- * @since 2.0.0
- */
 @Component({
   tag: 'ix-avatar',
   styleUrl: 'avatar.scss',
@@ -98,6 +116,14 @@ function UserInfo(props: {
 })
 export class Avatar {
   @Element() hostElement!: HTMLIxAvatarElement;
+
+  /**
+   * Accessibility label for the image
+   * Will be set as aria-label on the nested HTML img element
+   *
+   * @deprecated Set the native `aria-label` on the ix-avatar host element
+   */
+  @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
   /**
    * Display an avatar image
@@ -114,16 +140,12 @@ export class Avatar {
   /**
    * If set an info card displaying the username will be placed inside the dropdown.
    * Note: Only working if avatar is part of the ix-application-header
-   *
-   * @since 2.1.0
    */
   @Prop() username?: string;
 
   /**
    * Optional description text that will be displayed underneath the username.
    * Note: Only working if avatar is part of the ix-application-header
-   *
-   * @since 2.1.0
    */
   @Prop() extra?: string;
 
@@ -162,6 +184,9 @@ export class Avatar {
   }
 
   render() {
+    const a11y = a11yHostAttributes(this.hostElement);
+    const a11yLabel = a11y['aria-label'];
+
     if (this.isClosestApplicationHeader) {
       return (
         <Host slot="ix-application-header-avatar" class={'avatar-button'}>
@@ -177,7 +202,11 @@ export class Avatar {
             type="button"
             variant="primary"
           >
-            <AvatarImage image={this.image} initials={this.initials} />
+            <AvatarImage
+              image={this.image}
+              initials={this.initials}
+              a11yLabel={a11yLabel ?? this.a11yLabel}
+            />
           </BaseButton>
           <ix-dropdown
             ref={(ref) => (this.dropdownElement = ref as HTMLIxDropdownElement)}
@@ -192,6 +221,7 @@ export class Avatar {
                   image={this.image}
                   initials={this.initials}
                   userName={this.username}
+                  a11yLabel={a11yLabel ?? this.a11yLabel}
                 />
                 {this.hasSlottedElements && (
                   <ix-divider onClick={(e) => e.preventDefault()}></ix-divider>
@@ -209,7 +239,11 @@ export class Avatar {
 
     return (
       <Host>
-        <AvatarImage image={this.image} initials={this.initials} />
+        <AvatarImage
+          image={this.image}
+          initials={this.initials}
+          a11yLabel={a11yLabel ?? this.a11yLabel}
+        />
       </Host>
     );
   }

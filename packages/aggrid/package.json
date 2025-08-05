@@ -8,21 +8,23 @@
     "directory": "packages/aggrid"
   },
   "description": "AG Grid theme based on ix theme variables",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.2",
   "files": [
     "LICENSE",
     "README.md",
+    "READMEOSS.html",
     "dist/"
   ],
   "scripts": {
+    "test.setup": "playwright install chromium --with-deps",
     "build": "gulp",
     "visual-regression": "playwright test",
     "host-root": "http-server -a 127.0.0.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.54.1",
     "@siemens/ix": "workspace:*",
-    "@siemens/ix-icons": "3.0.0-alpha.1",
+    "@siemens/ix-icons": "^3.0.0",
     "@types/gulp": "^4.0.14",
     "@types/gulp-postcss": "^8.0.4",
     "@types/gulp-sass": "^5.0.2",
@@ -34,11 +36,11 @@
     "gulp-sass": "^5.1.0",
     "http-server": "^14.1.1",
     "rimraf": "^5.0.9",
-    "sass": "^1.77.8",
+    "sass": "^1.89.2",
     "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@siemens/ix": "^3.0.0-alpha.4"
+    "@siemens/ix": "^3.2.0"
   },
   "peerDependencies": {
     "ag-grid-community": "^28 || ^29 || ^30 || ^31 || ^32"

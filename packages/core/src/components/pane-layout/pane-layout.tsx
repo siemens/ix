@@ -18,13 +18,10 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { Composition } from '../pane/pane';
+import type { Composition } from '../pane/pane.types';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
-/**
- * @since 2.1.0
- */
 @Component({
   tag: 'ix-pane-layout',
   styleUrl: 'pane-layout.scss',

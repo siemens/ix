@@ -22,7 +22,7 @@
     "@ionic/react": "^8.0.0",
     "@ionic/react-router": "^8.0.0",
     "@siemens/ix": "workspace:*",
-    "@siemens/ix-icons": "3.0.0-alpha.1",
+    "@siemens/ix-icons": "^3.0.0",
     "@siemens/ix-react": "workspace:*",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
@@ -32,7 +32,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
-    "sass": "^1.77.8"
+    "sass": "^1.89.2"
   },
   "devDependencies": {
     "@capacitor/cli": "6.1.1",
@@ -46,7 +46,7 @@
     "fs-extra": "^11.2.0",
     "terser": "^5.4.0",
     "typescript": "^5.1.6",
-    "vite": "^5.4.9"
+    "vite": "^4.5.14"
   },
   "description": "An Ionic project"
 }

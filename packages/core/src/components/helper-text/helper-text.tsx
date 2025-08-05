@@ -6,7 +6,7 @@ import {
   checkFieldClasses,
   createClassMutationObserver,
 } from '../utils/input';
-import { renderHelperText } from '../field-wrapper/helper-text-util';
+import { HelperText as HelperTextUtil } from '../field-wrapper/helper-text-util';
 import { IxComponent } from '../utils/internal';
 
 @Component({
@@ -99,14 +99,16 @@ export class HelperText implements IxComponent {
   render() {
     return (
       <Host>
-        {renderHelperText({
-          helperText: this.helperText,
-          invalidText: this.invalidText,
-          validText: this.validText,
-          infoText: this.infoText,
-          warningText: this.warningText,
-          ...this.validationResults,
-        })}
+        <HelperTextUtil
+          {...{
+            helperText: this.helperText,
+            invalidText: this.invalidText,
+            validText: this.validText,
+            infoText: this.infoText,
+            warningText: this.warningText,
+            ...this.validationResults,
+          }}
+        />
       </Host>
     );
   }

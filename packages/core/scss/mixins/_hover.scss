@@ -12,7 +12,7 @@
     cursor: pointer;
 
     &:hover,
-    &:hover {
+    &.hover {
       @content;
     }
   }
@@ -87,6 +87,14 @@
     &.active,
     &:active {
       background-color: var(--theme-ghost--background--active);
+    }
+  }
+}
+
+@mixin visited() {
+  &:not(.disabled):not(:disabled) {
+    &:visited {
+      @content;
     }
   }
 }

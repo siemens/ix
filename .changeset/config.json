@@ -2,8 +2,8 @@
   "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
   "changelog": ["@changesets/changelog-github", { "repo": "siemens/ix" }],
   "commit": false,
-  "linked": [],
-  "fixed": [
+  "fixed": [],
+  "linked": [
     [
       "@siemens/ix",
       "@siemens/ix-angular",
@@ -22,9 +22,8 @@
     "html-test-app",
     "ionic-test-app",
     "nextjs-test-app",
-    "figma-plugin",
     "documentation",
     "storybook-docs",
-    "vitest-react"
+    "oss-clearing"
   ]
 }

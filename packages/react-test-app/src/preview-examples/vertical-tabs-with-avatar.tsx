@@ -35,14 +35,17 @@ export default () => {
           label="User profile..."
         ></IxMenuAvatarItem>
       </IxMenuAvatar>
-      <IxMenuItem home tab-icon={iconHome}>
+      <IxMenuItem home icon={iconHome}>
         Home
       </IxMenuItem>
-      <IxMenuItem tab-icon={iconGlobe}> Normal Tab </IxMenuItem>
-      <IxMenuItem tab-icon={iconStar} disabled>
+      <IxMenuItem icon={iconGlobe}>Normal tab</IxMenuItem>
+      <IxMenuItem icon={iconStar} disabled>
         Disabled Tab
       </IxMenuItem>
-      <IxMenuItem tab-icon={iconStar}> With other Icon </IxMenuItem>
+      <IxMenuItem icon={iconStar}>With other icon</IxMenuItem>
+      <IxMenuItem icon={iconStar} style={{ display: 'none' }}>
+        Should not be visible
+      </IxMenuItem>
     </IxMenu>
   );
 };

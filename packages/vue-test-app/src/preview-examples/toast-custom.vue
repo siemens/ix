@@ -9,17 +9,42 @@
 
 <script setup lang="ts">
 import { IxButton, showToast } from '@siemens/ix-vue';
+import { iconUndo } from '@siemens/ix-icons/icons';
 import { ref } from 'vue';
 
-const custom = ref<HTMLElement | null>(null);
+const customMessage = ref<HTMLElement | null>(null);
+const customAction = ref<HTMLElement | null>(null);
 </script>
 
 <template>
-  <IxButton @click="showToast({ message: custom! })"> Trigger toast </IxButton>
+  <IxButton
+    @click="
+      showToast({
+        title: 'Toast headline',
+        message: customMessage!,
+        type: 'success',
+      })
+    "
+    style="margin-right: 0.5rem"
+  >
+    Trigger toast with custom message
+  </IxButton>
+
+  <IxButton
+    @click="
+      showToast({
+        title: 'Toast headline',
+        message: customMessage!,
+        action: customAction!,
+      })
+    "
+  >
+    Trigger toast with action button
+  </IxButton>
   <template>
-    <div ref="custom">
-      <div>Custom toast message</div>
-      <IxButton>Action</IxButton>
+    <div ref="customMessage">This message is from template</div>
+    <div ref="customAction">
+      <IxButton ghost :icon="iconUndo">Undo</IxButton>
     </div>
   </template>
 </template>

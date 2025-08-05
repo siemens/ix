@@ -9,7 +9,7 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 import { DateTime } from 'luxon';
-import { DateDropdownOption } from '../date-dropdown';
+import { DateDropdownOption } from '../date-dropdown.types';
 
 const DATE_DROPDOWN_SELECTOR = 'ix-date-dropdown';
 

@@ -17,12 +17,10 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
-
-export type SplitButtonVariant = ButtonVariant;
+import type { SplitButtonVariant } from './split-button.types';
 
 @Component({
   tag: 'ix-split-button',
@@ -39,7 +37,6 @@ export class SplitButton {
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
-   * @since 2.3.0
    */
   @Prop() closeBehavior: CloseBehavior = 'both';
 
@@ -59,6 +56,13 @@ export class SplitButton {
   @Prop() label?: string;
 
   /**
+   * ARIA label for the button (use if no label and icon button)
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelButton?: string;
+
+  /**
    * Button icon
    */
   @Prop() icon?: string;
@@ -67,6 +71,13 @@ export class SplitButton {
    * Icon of the button on the right
    */
   @Prop() splitIcon?: string;
+
+  /**
+   * ARIA label for the split icon button
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelSplitIconButton?: string;
 
   /**
    * Disabled
@@ -124,6 +135,7 @@ export class SplitButton {
               {...buttonAttributes}
               icon={this.icon}
               onClick={(e) => this.buttonClick.emit(e)}
+              aria-label={this.ariaLabelButton}
             ></ix-icon-button>
           )}
           <ix-icon-button
@@ -131,6 +143,7 @@ export class SplitButton {
             ref={(r) => (this.triggerElement = r)}
             class={'anchor'}
             icon={this.splitIcon ?? iconContextMenu}
+            aria-label={this.ariaLabelSplitIconButton}
           ></ix-icon-button>
         </div>
 

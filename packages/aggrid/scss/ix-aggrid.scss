@@ -247,4 +247,14 @@
   .ag-sticky-bottom {
     display: none;
   }
+
+  .ag-icon-tree-open {
+    color: var(--theme-color-primary);
+  }
+  .ag-icon-tree-closed {
+    color: var(--theme-color-std-text);
+  }
+  .ag-tooltip {
+    background: var(--theme-tootlip--background, var(--theme-tooltip--background));
+  }
 }

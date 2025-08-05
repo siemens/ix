@@ -76,14 +76,26 @@ export class Chip {
   /**
    * Display a tooltip. By default, no tooltip will be displayed.
    * Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+   *
    * @since 3.0.0
    */
   @Prop() tooltipText: string | boolean = false;
 
   /**
+   * Center the content of the chip.
+   * Set to false to disable centering.
+   * @since 3.2.0
+   */
+  @Prop() centerContent = false;
+
+  /**
+   * ARIA label for the close button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelCloseButton?: string;
+
+  /**
    * Fire event if close button is clicked
-   *
-   * @since 1.5.0
    */
   @Event() closeChip!: EventEmitter;
 
@@ -105,6 +117,7 @@ export class Chip {
             this.closeChip.emit(event);
             event.stopPropagation();
           }}
+          aria-label={this.ariaLabelCloseButton}
         ></ix-icon-button>
       </div>
     );
@@ -170,19 +183,28 @@ export class Chip {
             custom: this.variant === 'custom',
             closable: this.closable,
             icon: !!this.icon,
+            centerContent: this.centerContent,
           }}
         >
-          <ix-icon
-            class={{
-              'with-icon': true,
-              hidden: !this.icon,
-            }}
-            name={this.icon}
-            size={'24'}
-          />
-          <span class="slot-container">
-            <slot></slot>
-          </span>
+          <div class="content-wrapper">
+            {this.icon && (
+              <ix-icon
+                class={{
+                  'with-icon': true,
+                }}
+                name={this.icon}
+                size={'24'}
+                style={
+                  this.variant === 'custom'
+                    ? { color: this.outline ? this.background : this.chipColor }
+                    : undefined
+                }
+              />
+            )}
+            <span class="slot-container">
+              <slot></slot>
+            </span>
+          </div>
           {isInactive === false && this.closable ? this.getCloseButton() : null}
         </div>
         {this.getTooltip()}

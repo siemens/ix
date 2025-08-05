@@ -15,7 +15,7 @@
     <a href="https://ix.siemens.io"><strong>Explore the documentation »</strong></a>
     <br />
     <br />
-    <a href="https://ix.siemens.io/docs/installation/">Quickstart</a>
+    <a href="https://ix.siemens.io/docs/home/getting-started/developers">Quickstart</a>
     ·
     <a href="https://community.siemens.com/c/ix/">Community</a>
     ·
@@ -45,7 +45,7 @@ Adopt major frameworks for seamless integration into your project.
 
 ## 🚀 Getting Started
 
-You can find a getting started guide [here](https://ix.siemens.io/docs/installation/)
+You can find a getting started guide [here](https://ix.siemens.io/docs/home/getting-started/developers)
 
 <!-- CONTRIBUTING -->
 

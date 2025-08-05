@@ -9,7 +9,7 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
 import { FieldWrapperInterface } from '../utils/input';
 import { MakeRef, makeRef } from '../utils/make-ref';
-import { hasAnyText, renderHelperText } from './helper-text-util';
+import { hasAnyText, HelperText } from './helper-text-util';
 
 /** @internal */
 @Component({
@@ -130,7 +130,7 @@ export class FieldWrapper implements FieldWrapperInterface {
           <slot></slot>
         </div>
         <div class={'field-bottom'}>
-          {!this.showTextAsTooltip && renderHelperText(textOptions)}
+          {!this.showTextAsTooltip && <HelperText {...textOptions} />}
           <div class="bottom-right">
             <slot name="bottom-right"></slot>
           </div>
@@ -142,7 +142,7 @@ export class FieldWrapper implements FieldWrapperInterface {
             showDelay={500}
             placement="bottom"
           >
-            {renderHelperText(textOptions)}
+            <HelperText {...textOptions} />
           </ix-tooltip>
         )}
       </Host>

@@ -3,11 +3,13 @@ name: Pull Request
 on:
   pull_request:
     branches-ignore:
-      - changeset-release/main
+      - 'changeset-release/main'
     types:
       - opened
       - reopened
       - synchronize
+    paths-ignore:
+      - '**/*.md'
 
 concurrency:
   group: pr-${{ github.head_ref }}
@@ -61,7 +63,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Build
-        run: pnpm build --cache-dir=.turbo --filter \!documentation
+        run: pnpm build --cache-dir=.turbo
 
       - name: Lint
         run: pnpm lint
@@ -69,21 +71,14 @@ jobs:
       - name: Check for local development changes
         run: ./scripts/lint-build.sh
 
-  build-docs:
-    needs: [changes, build]
-    if: ${{ needs.changes.outputs.docs_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - uses: ./.github/workflows/actions/turbo
-
-      - name: Build
-        run: pnpm build --cache-dir=.turbo --filter documentation
+      - name: Documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-${{ github.run_attempt }}
+          path: ./packages/documentation/build
 
   visual-testing-core:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -95,20 +90,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - uses: ./.github/workflows/actions/visual-regression
         with:
-          name: core-blob-report-${{ matrix.shardIndex }}
-          path: |
-            ./packages/core/blob-report/
-          retention-days: 1
+          projectName: 'visual-testing'
+          projectPath: './testing/visual-testing/blob-report/'
+          artifactName: 'visual-testing'
+          shardIndex: '${{ matrix.shardIndex }}'
+          shardTotal: '${{ matrix.shardTotal }}'
 
   merge-core-reports:
     if: failure()
@@ -117,90 +105,62 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Download blob reports from GitHub Actions Artifacts
-        uses: actions/download-artifact@v4
+      - uses: ./.github/workflows/actions/merge-reports
         with:
-          path: all-blob-reports
-          pattern: core-blob-report-*
-          merge-multiple: true
-
-      - name: Merge into HTML Report
-        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
-
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: core-html-report--attempt-${{ github.run_attempt }}
-          path: playwright-report
-          retention-days: 14
+          projectName: 'visual-testing'
+          artifactName: 'visual-testing'
+          blobPattern: 'visual-testing-blob-report-*'
 
   visual-testing-aggrid:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
-
-      - uses: actions/upload-artifact@v4
-        if: failure()
+      - uses: ./.github/workflows/actions/visual-regression
         with:
-          name: aggrid-html-report--attempt-${{ github.run_attempt }}
-          path: |
-            ./packages/aggrid/playwright-report/
-          retention-days: 1
+          projectName: '@siemens/ix-aggrid'
+          artifactName: 'aggrid'
+          projectPath: './packages/aggrid/playwright-report/'
 
   visual-testing-echarts:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
-
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
-
-      - uses: actions/upload-artifact@v4
-        if: failure()
+      - uses: ./.github/workflows/actions/visual-regression
         with:
-          name: echarts-html-report--attempt-${{ github.run_attempt }}
-          path: |
-            ./packages/echarts/playwright-report/
-          retention-days: 1
+          projectName: '@siemens/ix-echarts'
+          artifactName: 'echarts'
+          projectPath: './packages/echarts/playwright-report/'
 
   unit:
-    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/unit
 
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
-
-      - name: Build
-        run: pnpm run build --cache-dir=.turbo --filter !\documentation
-
-      - name: Test
-        run: pnpm run test --cache-dir=.turbo --filter !\documentation
+  accessibility:
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    needs: [build, changes]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/storybook
 
   unit-memlab:
-    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' }}
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest

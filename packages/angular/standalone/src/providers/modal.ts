@@ -18,6 +18,7 @@ import {
   Injector,
 } from '@angular/core';
 
+import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
 export { IxActiveModal } from '@siemens/ix-angular/common';
 
 @Injectable()
@@ -33,6 +34,7 @@ export class ModalService extends BaseModalService {
   public open<TData = any, TReason = any>(
     config: ModalConfig<TData>
   ): Promise<ModalInstance<TReason>> {
+    defineCustomElement();
     return super.open(config);
   }
 }

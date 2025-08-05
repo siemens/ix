@@ -27,23 +27,11 @@ import { makeRef } from '../utils/make-ref';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { iconHistory } from '@siemens/ix-icons/icons';
+import type {
+  DateDropdownOption,
+  DateRangeChangeEvent,
+} from './date-dropdown.types';
 
-export type DateDropdownOption = {
-  id: string;
-  label: string;
-  from?: string;
-  to?: string;
-};
-
-export type DateRangeChangeEvent = {
-  id: string;
-  from?: string;
-  to?: string;
-};
-
-/**
- * @since 2.1.0
- */
 @Component({
   tag: 'ix-date-dropdown',
   styleUrl: 'date-dropdown.scss',
@@ -58,8 +46,6 @@ export class DateDropdown
 
   /**
    * Disable the button that opens the dropdown containing the date picker.
-   *
-   * @since 2.3.0
    */
   @Prop() disabled = false;
 
@@ -135,6 +121,12 @@ export class DateDropdown
    */
   @Prop() showWeekNumbers = false;
 
+  /**
+   * ARIA label for the dropdown
+   * Will be set as aria-label on the nested HTML button element that will trigger the dropdown
+   */
+  @Prop() ariaLabelDropdownButton?: string;
+
   @Watch('dateRangeId')
   @Watch('to')
   @Watch('from')
@@ -184,16 +176,12 @@ export class DateDropdown
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
-   *
-   * @since 2.6.0
    */
   @Prop() locale?: string;
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-   *
-   * @since 2.6.0
    */
   @Prop() weekStartIndex = 0;
 
@@ -371,6 +359,7 @@ export class DateDropdown
           icon={iconHistory}
           ref={this.triggerRef}
           disabled={this.disabled}
+          ariaLabel={this.ariaLabelDropdownButton}
         >
           {this.getButtonLabel()}
         </ix-button>

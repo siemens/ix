@@ -7,6 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  iconError,
+  iconInfo,
+  iconQuestion,
+  iconSuccess,
+  iconWarning,
+} from '@siemens/ix-icons/icons';
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 import { ModalConfig } from './modal';
@@ -177,7 +184,7 @@ showMessage.info = (
   return showMessage({
     message,
     messageTitle: title,
-    icon: 'info',
+    icon: iconInfo,
     actions: createConfirmButtons(
       textOkay,
       textCancel,
@@ -198,7 +205,7 @@ showMessage.warning = (
   return showMessage({
     message,
     messageTitle: title,
-    icon: 'warning',
+    icon: iconWarning,
     iconColor: 'color-warning',
     actions: createConfirmButtons(
       textOkay,
@@ -220,7 +227,7 @@ showMessage.error = (
   return showMessage({
     message,
     messageTitle: title,
-    icon: 'error',
+    icon: iconError,
     iconColor: 'color-alarm',
     actions: createConfirmButtons(
       textOkay,
@@ -242,7 +249,7 @@ showMessage.success = (
   return showMessage({
     message,
     messageTitle: title,
-    icon: 'success',
+    icon: iconSuccess,
     iconColor: 'color-success',
     actions: createConfirmButtons(
       textOkay,
@@ -264,7 +271,7 @@ showMessage.question = (
   return showMessage({
     message,
     messageTitle: title,
-    icon: 'question',
+    icon: iconQuestion,
     actions: createConfirmButtons(
       textOkay,
       textCancel,

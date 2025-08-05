@@ -25,8 +25,6 @@ import { iconDocument } from '@siemens/ix-icons/icons';
 export class MenuItem {
   /**
    * Label of the menu item. Will also be used as tooltip text
-   *
-   * @since 2.2.0
    */
   @Prop() label?: string;
 

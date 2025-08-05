@@ -19,11 +19,9 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
-import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
-import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
-
-export type BlindVariant = CardVariant;
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
+import type { BlindVariant } from './blind.types';
 
 let sequentialInstanceId = 0;
 
@@ -45,19 +43,16 @@ export class Blind {
 
   /**
    * Secondary label inside blind header
-   * @since 2.0.0
    */
   @Prop() sublabel?: string;
 
   /**
    * Optional icon to be displayed next to the header label
-   * @since 1.5.0
    */
   @Prop() icon?: string;
 
   /**
    * Blind variant
-   * @since 2.0.0
    */
   @Prop() variant: BlindVariant = 'filled';
 
@@ -93,18 +88,18 @@ export class Blind {
 
   private animateCollapse(isCollapsed: boolean) {
     if (isCollapsed) {
-      this.rotateChevronRight();
-    } else {
       this.rotateChevronDown();
+    } else {
+      this.rotateChevronUp();
     }
   }
 
-  private rotateChevronDown() {
+  private rotateChevronUp() {
     anime({
       targets: this.chevronRef,
       duration: 150,
       easing: 'easeInOutSine',
-      rotateZ: 90,
+      rotateZ: 180,
     });
     anime({
       targets: this.content,
@@ -114,7 +109,7 @@ export class Blind {
     });
   }
 
-  private rotateChevronRight() {
+  private rotateChevronDown() {
     anime({
       targets: this.chevronRef,
       duration: 150,
@@ -155,10 +150,10 @@ export class Blind {
           <div class={'blind-header-content'}>
             <ix-icon
               class="collapse-icon"
-              name={iconChevronRightSmall}
+              name={iconChevronDownSmall}
               color={
                 this.variant === 'filled' || this.variant === 'outline'
-                  ? 'color-primary'
+                  ? 'color-std-text'
                   : `color-${this.variant}--contrast`
               }
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}

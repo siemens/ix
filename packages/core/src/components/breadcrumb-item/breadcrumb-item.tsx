@@ -23,13 +23,6 @@ import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
-export type BreadcrumbItemLinkTarget =
-  | '_self'
-  | '_blank'
-  | '_parent'
-  | '_top'
-  | string;
-
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
@@ -37,6 +30,14 @@ export type BreadcrumbItemLinkTarget =
 })
 export class BreadcrumbItem {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
+
+  /**
+   * ARIA label for the button
+   * Will be set as aria-label for the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelButton?: string;
 
   /**
    * Breadcrumb label
@@ -105,7 +106,7 @@ export class BreadcrumbItem {
       extraClasses: {
         'dropdown-trigger': this.isDropdownTrigger,
       },
-      ariaAttributes: this.a11y,
+      ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabelButton },
     };
 
     if (!this.visible) {

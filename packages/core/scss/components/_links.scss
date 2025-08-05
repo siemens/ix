@@ -16,13 +16,26 @@
 
 a[href] {
   color: var(--theme-color-primary);
+  text-decoration: none;
 
   @include hover {
-    color: var(--theme-color-primary);
+    color: var(--theme-color-dynamic);
+    text-decoration: underline;
   }
 
   @include active {
-    color: var(--theme-color-std-text);
+    color: var(--theme-color-dynamic);
+    text-decoration: underline;
+  }
+
+  @include visited {
+    color: var(--theme-color-primary);
+    text-decoration: none;
+  }
+
+  @include focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: 0.125rem;
   }
 
   .glyph {

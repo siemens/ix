@@ -37,15 +37,11 @@ import {
   createClassMutationObserver,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-
-export type DateInputValidityState = {
-  patternMismatch: boolean;
-  invalidReason?: string;
-};
+import type { DateInputValidityState } from './date-input.types';
 
 /**
- * @since 2.6.0
- * @form-ready 2.6.0
+ * @form-ready
+ *
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */
@@ -60,24 +56,38 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
-   * name of the input element
+   * Name of the input element
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
-   * placeholder of the input element
+   * Placeholder of the input element
    */
   @Prop({ reflect: true }) placeholder?: string;
 
   /**
-   * value of the input element
+   * Value of the input element
    */
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
+  @Watch('value') watchValuePropHandler(newValue: string) {
+    this.onInput(newValue);
+  }
+
+  /**
+   * The earliest date that can be selected by the date input/picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() minDate = '';
+
+  /**
+   * The latest date that can be selected by the date input/picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() maxDate = '';
+
   /**
    * Locale identifier (e.g. 'en' or 'de').
-   *
-   * @since 2.6.0
    */
   @Prop() locale?: string;
 
@@ -88,57 +98,65 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() format: string = 'yyyy/LL/dd';
 
   /**
-   * required attribute
+   * Required attribute
    */
   @Prop() required?: boolean;
 
   /**
-   * helper text below the input field
+   * Helper text below the input field
    */
   @Prop() helperText?: string;
 
   /**
-   * label of the input field
+   * Label of the input field
    */
   @Prop() label?: string;
 
   /**
-   * error text below the input field
+   * ARIA label for the calendar icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCalendarButton?: string;
+
+  /**
+   * Error text below the input field
    */
   @Prop({ reflect: true }) invalidText?: string;
 
   /**
-   * readonly attribute
+   * Readonly attribute
    */
   @Prop() readonly: boolean = false;
 
   /**
-   * disabled attribute
+   * Disabled attribute
    */
   @Prop() disabled: boolean = false;
 
   /**
-   * info text below the input field
+   * Info text below the input field
    */
   @Prop() infoText?: string;
 
   /**
-   * warning text below the input field
+   * Warning text below the input field
    */
   @Prop() warningText?: string;
 
   /**
-   * valid text below the input field
+   * Valid text below the input field
    */
   @Prop() validText?: string;
 
   /**
-   * show text as tooltip
+   * Show text as tooltip
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * i18n string for the error message when the date is not parsable
+   * I18n string for the error message when the date is not parsable
    */
   @Prop({ attribute: 'i18n-error-date-unparsable' }) i18nErrorDateUnparsable =
     'Date is not valid';
@@ -149,6 +167,24 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
+
+  /**
+   * The index of which day to start the week on, based on the Locale#weekdays array.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   */
+  @Prop() weekStartIndex = 0;
+
+  /**
+   * ARIA label for the previous month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelPreviousMonthButton?: string;
+
+  /**
+   * ARIA label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelNextMonthButton?: string;
 
   /**
    * Input change event.
@@ -167,7 +203,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Event() ixBlur!: EventEmitter<void>;
 
   @State() show = false;
-  @State() from: string | null = null;
+  @State() from?: string | null = null;
   @State() isInputInvalid = false;
   @State() isInvalid = false;
   @State() isValid = false;
@@ -189,7 +225,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string | undefined): void {
-    this.formInternals.setFormValue(value);
+    if (value) {
+      this.formInternals.setFormValue(value);
+    } else {
+      this.formInternals.setFormValue(null);
+    }
     this.value = value;
   }
 
@@ -259,14 +299,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     }
 
     const date = DateTime.fromFormat(value, this.format);
-    if (date.isValid) {
-      this.isInputInvalid = false;
+    const minDate = DateTime.fromFormat(this.minDate, this.format);
+    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
 
+    this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
+
+    if (this.isInputInvalid) {
+      this.invalidReason = date.invalidReason || undefined;
+      this.from = undefined;
+    } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
-    } else {
-      this.isInputInvalid = true;
-      this.invalidReason = date.invalidReason;
     }
 
     this.valueChange.emit(value);
@@ -338,6 +381,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           ref={this.inputElementRef}
           type="text"
           value={this.value ?? ''}
+          placeholder={this.placeholder}
+          name={this.name}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
             this.onInput(target.value);
@@ -367,6 +412,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ghost
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
+            aria-label={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>
@@ -485,11 +531,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             locale={this.locale}
             range={false}
             from={this.from ?? ''}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
             onDateChange={(event) => {
               const { from } = event.detail;
               this.onInput(from);
             }}
             showWeekNumbers={this.showWeekNumbers}
+            ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+            ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
+            standaloneAppearance={false}
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

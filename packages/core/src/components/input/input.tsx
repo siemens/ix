@@ -42,8 +42,7 @@ import {
 let inputIds = 0;
 
 /**
- * @since 2.6.0
- * @form-ready 2.6.0
+ * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */
@@ -239,6 +238,15 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   /**
+   * Returns the validity state of the input field.
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const input = await this.inputRef.waitForCurrent();
+    return Promise.resolve(input.validity);
+  }
+
+  /**
    * Focuses the input field
    */
   @Method()
@@ -340,7 +348,7 @@ export class Input implements IxInputFieldComponent<string> {
               slot="bottom-right"
               textColor="soft"
             >
-              {this.value?.length}/{this.maxLength}
+              {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>
           )}
         </ix-field-wrapper>

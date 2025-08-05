@@ -1,4 +1,4 @@
-import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -10,20 +10,13 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import type { CardAccordionExpandChangeEvent } from './card-accordion.types';
 
 let accordionControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
   return [prefix, accordionControlId++].join('-');
 };
 
-export type CardAccordionExpandChangeEvent = {
-  expand: boolean;
-  nativeEvent: Event;
-};
-
-/**
- * @since 1.6.0
- */
 @Component({
   tag: 'ix-card-accordion',
   styleUrl: 'card-accordion.scss',
@@ -31,8 +24,15 @@ export type CardAccordionExpandChangeEvent = {
 })
 export class CardAccordion {
   /**
+   * ARIA label for the card's expand button.
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelExpandButton?: string;
+
+  /**
    * Collapse the card
-   * @since 2.1.0
    */
   @Prop() collapse = false;
 
@@ -94,9 +94,10 @@ export class CardAccordion {
           type="button"
           aria-expanded={this.expandContent}
           aria-controls={getAriaControlsId()}
+          aria-label={this.ariaLabelExpandButton}
         >
           <ix-icon
-            name={iconChevronRightSmall}
+            name={iconChevronDownSmall}
             class={{
               'expand-icon': true,
               show: this.expandContent,

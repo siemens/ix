@@ -20,9 +20,6 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 import { IxTheme, themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
-/**
- * @since 2.1.0
- */
 @Component({
   tag: 'ix-application',
   styleUrl: 'application.scss',

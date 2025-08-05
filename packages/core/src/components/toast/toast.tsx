@@ -63,6 +63,14 @@ export class Toast {
   @Prop() iconColor?: string;
 
   /**
+   * ARIA label for the close icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCloseIconButton?: string;
+
+  /**
    * Toast closed
    */
   @Event() closeToast!: EventEmitter;
@@ -167,10 +175,15 @@ export class Toast {
           ) : null}
           <div class="toast-content">
             {this.toastTitle ? (
-              <div class="toast-title">{this.toastTitle}</div>
+              <ix-typography class="toast-title" format="h5">
+                {this.toastTitle}
+              </ix-typography>
             ) : null}
             <div class="toast-message">
               <slot></slot>
+            </div>
+            <div class="toast-action">
+              <slot name="action"></slot>
             </div>
           </div>
           <div class="toast-close">
@@ -179,6 +192,7 @@ export class Toast {
               size="24"
               ghost
               onClick={() => this.closeToast.emit()}
+              aria-label={this.ariaLabelCloseIconButton}
             />
           </div>
         </div>

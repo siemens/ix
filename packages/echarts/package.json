@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/echarts"
   },
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0",
   "description": "Siemens iX theme for echarts",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -15,6 +15,7 @@
     "dist"
   ],
   "scripts": {
+    "test.setup": "playwright install chromium --with-deps",
     "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
     "compile": "rollup -c",
@@ -24,7 +25,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.54.1",
     "@rollup/plugin-typescript": "^8.5.0",
     "echarts": "^5.5.1",
     "http-server": "^14.1.1",
