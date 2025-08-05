@@ -3124,6 +3124,9 @@ export namespace Components {
          */
         "value": string;
     }
+    /**
+     * @form-ready 
+     */
     interface IxSlider {
         /**
           * Show control as disabled
@@ -3132,8 +3135,27 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Show error state and message
+          * @deprecated Will be removed in 4.0.0. Use invalid class instead.
          */
         "error"?: boolean | string;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText"?: string;
+        "isTouched": () => Promise<boolean>;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
         /**
           * Define tick marker on the slider. Marker has to be within slider min/max
          */
@@ -3148,6 +3170,10 @@ export namespace Components {
           * @default 0
          */
         "min": number;
+        /**
+          * Show helper, info, warning, error and valid text as tooltip
+         */
+        "showTextAsTooltip"?: boolean;
         /**
           * Legal number intervals
           * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
@@ -3165,10 +3191,18 @@ export namespace Components {
          */
         "traceReference": number;
         /**
+          * Valid text for the field component
+         */
+        "validText"?: string;
+        /**
           * Current value of the slider
           * @default 0
          */
         "value": number;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
     }
     interface IxSpinner {
         /**
@@ -5483,6 +5517,9 @@ declare global {
     interface HTMLIxSliderElementEventMap {
         "valueChange": number;
     }
+    /**
+     * @form-ready 
+     */
     interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSliderElementEventMap>(type: K, listener: (this: HTMLIxSliderElement, ev: IxSliderCustomEvent<HTMLIxSliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -9135,6 +9172,9 @@ declare namespace LocalJSX {
          */
         "value": string;
     }
+    /**
+     * @form-ready 
+     */
     interface IxSlider {
         /**
           * Show control as disabled
@@ -9143,8 +9183,25 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * Show error state and message
+          * @deprecated Will be removed in 4.0.0. Use invalid class instead.
          */
         "error"?: boolean | string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
         /**
           * Define tick marker on the slider. Marker has to be within slider min/max
          */
@@ -9160,6 +9217,10 @@ declare namespace LocalJSX {
          */
         "min"?: number;
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
+        /**
+          * Show helper, info, warning, error and valid text as tooltip
+         */
+        "showTextAsTooltip"?: boolean;
         /**
           * Legal number intervals
           * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
@@ -9177,10 +9238,18 @@ declare namespace LocalJSX {
          */
         "traceReference"?: number;
         /**
+          * Valid text for the field component
+         */
+        "validText"?: string;
+        /**
           * Current value of the slider
           * @default 0
          */
         "value"?: number;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
     }
     interface IxSpinner {
         /**
@@ -10374,6 +10443,9 @@ declare module "@stencil/core" {
              */
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
+            /**
+             * @form-ready 
+             */
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
