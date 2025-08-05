@@ -105,6 +105,10 @@ async function copyStaticFiles() {
   fs.copySync(__htmlTestApp, path.join(__demo, 'html'));
   fs.copySync(__reactTestApp, path.join(__demo, 'react'));
   fs.copySync(__angularTestApp, path.join(__demo, 'angular'));
+  fs.copySync(
+    __angularStandaloneTestApp,
+    path.join(__demo, 'angular_standalone')
+  );
   fs.copySync(__vueTestApp, path.join(__demo, 'vue'));
 }
 

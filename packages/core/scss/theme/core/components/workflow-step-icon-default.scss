@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-workflow-step-icon-default--color: var(--theme-color-soft-text);
+  --theme-workflow-step-icon-default--color--selected: var(--theme-color-dynamic);
+  --theme-workflow-step-icon-default--color--disabled: var(--theme-color-weak-text);
+}
