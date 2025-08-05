@@ -23,24 +23,22 @@ function getItems(
 }
 
 export function setTab(context: MenuSettings | MenuAbout, label: string) {
-
   const { defaultPrevented } = context.tabChange.emit(label);
 
   if (defaultPrevented) {
     return;
   }
 
-  // Set flag to indicate this is an internal change
   context.isInternalTabChange = true;
-
   context.activeTabLabel = label;
-
-  // Reset flag after the change
   context.isInternalTabChange = false;
   syncTabDisplay(context, label);
 }
 
-export function syncTabDisplay(context: MenuSettings | MenuAbout, label: string) {
+export function syncTabDisplay(
+  context: MenuSettings | MenuAbout,
+  label: string
+) {
   context.items.forEach((i) => {
     i.style.display = 'none';
     if (i.label === label) {
