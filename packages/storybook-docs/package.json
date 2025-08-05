@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "build.watch": "storybook dev -p 6006",
+    "build.watch.no-open": "storybook dev -p 6006 --no-open",
     "build": "storybook build",
-    "test.a11y": "start-server-and-test build.watch http://localhost:6006 test-storybook"
+    "test.a11y": "start-server-and-test build.watch.no-open http://localhost:6006 test-storybook"
   },
   "dependencies": {
     "@maskito/core": "^3.2.0",
@@ -28,6 +29,7 @@
     "@storybook/web-components-vite": "^9.0.18",
     "@types/fs-extra": "^9.0.13",
     "fs-extra": "^11.2.0",
+    "playwright": "^1.54.1",
     "start-server-and-test": "^2.0.12",
     "storybook": "^9.0.18",
     "typescript": "~5.6.2",

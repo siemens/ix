@@ -310,7 +310,7 @@ export class Tree {
    * This will re-render the list with the current model and context.
    */
   @Method()
-  async refreshTree(options = defaultRefreshTreeOptions) {
+  async refreshTree(options: RefreshTreeOptions = defaultRefreshTreeOptions) {
     if (this.hyperlist) {
       this.hyperlist.refresh(
         this.hostElement,
