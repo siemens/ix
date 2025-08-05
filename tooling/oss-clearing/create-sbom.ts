@@ -119,6 +119,10 @@ async function createSBom(packageName: string) {
     npmJson = await handleCoreLibraryDependencies(npmJson);
   }
 
+  if (packageName === '@siemens/ix-brand-theme') {
+    npmJson = await handleCoreLibraryDependencies(npmJson);
+  }
+
   if (packageName === '@siemens/ix-icons') {
     npmJson = await handleIconsLibraryDependencies(npmJson);
   }
