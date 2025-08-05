@@ -83,6 +83,8 @@ export class SplitButton {
    * Disabled
    */
   @Prop() disabled = false;
+  @Prop() disabledButton = false;
+  @Prop() disabledIcon = false;
 
   /**
    * Placement of the dropdown
@@ -99,6 +101,14 @@ export class SplitButton {
   private triggerElement?: HTMLElement;
   private dropdownElement?: HTMLIxDropdownElement;
 
+  private get isDisabledButton() {
+    return this.disabled || this.disabledButton;
+  }
+
+  private get isDisabledIcon() {
+    return this.disabled || this.disabledIcon;
+  }
+
   private linkTriggerRef() {
     if (this.triggerElement && this.dropdownElement) {
       this.dropdownElement.trigger = this.triggerElement;
@@ -114,10 +124,17 @@ export class SplitButton {
       variant: this.variant,
       outline: this.outline,
       ghost: this.ghost,
-      disabled: this.disabled,
+      disabled: this.disabled || this.isDisabledButton,
       class: {
         'left-button-border': !this.outline,
       },
+    };
+    const disabledButtonAttributes = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      disabled: this.disabled || this.isDisabledIcon,
+      class: { anchor: true },
     };
     return (
       <Host>
@@ -139,7 +156,7 @@ export class SplitButton {
             ></ix-icon-button>
           )}
           <ix-icon-button
-            {...buttonAttributes}
+            {...disabledButtonAttributes}
             ref={(r) => (this.triggerElement = r)}
             class={'anchor'}
             icon={this.splitIcon ?? iconContextMenu}
