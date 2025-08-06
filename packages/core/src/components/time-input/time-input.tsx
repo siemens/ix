@@ -234,13 +234,13 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private previousValue: string = '';
+  private oldValue: string = '';
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
   private handleValueChange(newValue: string) {
-    if (newValue !== this.previousValue) {
+    if (newValue !== this.oldValue) {
       this.ixChange.emit(newValue);
-      this.previousValue = newValue;
+      this.oldValue = newValue;
     }
   }
 
@@ -262,7 +262,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad(): void {
-    this.previousValue = this.value;
+    this.oldValue = this.value;
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
@@ -339,6 +339,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   onTimeIconClick(event: Event) {
+    if (event.defaultPrevented) {
+      return;
+    }
     if (!this.show) {
       event.stopPropagation();
       event.preventDefault();
@@ -413,6 +416,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
             this.onInput(target.value);
           }}
           onClick={(event) => {
+            if (event.defaultPrevented) {
+              return;
+            }
             if (this.show) {
               event.stopPropagation();
               event.preventDefault();

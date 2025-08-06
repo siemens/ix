@@ -94,6 +94,9 @@ export interface IxInputFieldComponent<T = string>
 
   // Annotate as @Method()
   focusInput(): Promise<void>;
+
+  // Annotate as @Event()
+  ixChange: EventEmitter<T>;
 }
 
 export function isIxInputFieldComponent<T>(

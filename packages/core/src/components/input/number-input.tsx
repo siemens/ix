@@ -169,7 +169,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   /**
    * Event emitted when the input value is committed (e.g., on blur or enter key)
    */
-  @Event() ixChange!: EventEmitter<string>;
+  @Event() ixChange!: EventEmitter<number>;
 
   @State() isInvalid = false;
   @State() isValid = false;
@@ -325,7 +325,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 this.touched = true;
               }}
               onChange={() => {
-                this.ixChange.emit(this.value.toString());
+                this.ixChange.emit(this.value);
               }}
             ></InputElement>
             <SlotEnd

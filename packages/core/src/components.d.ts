@@ -5310,7 +5310,7 @@ declare global {
         "valueChange": number;
         "validityStateChange": ValidityState;
         "ixBlur": void;
-        "ixChange": string;
+        "ixChange": number;
     }
     /**
      * @form-ready 
@@ -8560,7 +8560,7 @@ declare namespace LocalJSX {
         /**
           * Event emitted when the input value is committed (e.g., on blur or enter key)
          */
-        "onIxChange"?: (event: IxNumberInputCustomEvent<string>) => void;
+        "onIxChange"?: (event: IxNumberInputCustomEvent<number>) => void;
         /**
           * Event emitted when the validity state of the input field changes
          */

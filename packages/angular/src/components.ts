@@ -1998,7 +1998,7 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
   /**
    * Event emitted when the input value is committed (e.g., on blur or enter key)
    */
-  ixChange: EventEmitter<CustomEvent<string>>;
+  ixChange: EventEmitter<CustomEvent<number>>;
 }
 
 

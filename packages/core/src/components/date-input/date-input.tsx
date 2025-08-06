@@ -226,14 +226,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private previousValue: string | undefined;
+  private oldValue: string | undefined;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleValueChange(newValue: string | undefined) {
-    if (newValue !== this.previousValue) {
+    if (newValue !== this.oldValue) {
       this.ixChange.emit(newValue);
-      this.previousValue = newValue;
+      this.oldValue = newValue;
     }
   }
 
@@ -259,7 +259,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   componentWillLoad(): void {
-    this.previousValue = this.value;
+    this.oldValue = this.value;
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -331,6 +331,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   onCalenderClick(event: Event) {
+    if (event.defaultPrevented) {
+      return;
+    }
     if (!this.show) {
       event.stopPropagation();
       event.preventDefault();
@@ -403,6 +406,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.onInput(target.value);
           }}
           onClick={(event) => {
+            if (event.defaultPrevented) {
+              return;
+            }
             if (this.show) {
               event.stopPropagation();
               event.preventDefault();

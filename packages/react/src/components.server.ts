@@ -1751,7 +1751,7 @@ export type IxNumberInputEvents = {
     onValueChange: EventName<CustomEvent<number>>,
     onValidityStateChange: EventName<IxNumberInputCustomEvent<ValidityState>>,
     onIxBlur: EventName<CustomEvent<void>>,
-    onIxChange: EventName<CustomEvent<string>>
+    onIxChange: EventName<CustomEvent<number>>
 };
 
 export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumberInputEvents> = /*@__PURE__*/ createComponent<IxNumberInputElement, IxNumberInputEvents>({

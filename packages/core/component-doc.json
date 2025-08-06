@@ -17794,11 +17794,11 @@
         },
         {
           "event": "ixChange",
-          "detail": "string",
+          "detail": "number",
           "bubbles": true,
           "complexType": {
-            "original": "string",
-            "resolved": "string",
+            "original": "number",
+            "resolved": "number",
             "references": {}
           },
           "cancelable": true,
