@@ -28,6 +28,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleValueChange,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -231,10 +232,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleValueChange(newValue: string | undefined) {
-    if (newValue !== this.oldValue) {
-      this.ixChange.emit(newValue);
-      this.oldValue = newValue;
-    }
+    this.oldValue = handleValueChange(newValue, this.oldValue, this.ixChange);
   }
 
   updateFormInternalValue(value: string | undefined): void {

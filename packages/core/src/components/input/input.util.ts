@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { EventEmitter } from '@stencil/core';
 import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   IxFormComponent,
@@ -190,4 +191,15 @@ function observeElementUntilVisible(
 
   intersectionObserver.observe(hostElement);
   return intersectionObserver;
+}
+
+export function handleValueChange<T>(
+  newValue: T,
+  oldValue: T,
+  emitter: EventEmitter<T>
+): T {
+  if (newValue !== oldValue) {
+    emitter.emit(newValue);
+  }
+  return newValue;
 }
