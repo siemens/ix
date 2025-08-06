@@ -59,9 +59,9 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
   const label = radioElement.locator('label');
 
   const checkedChange$ = radioElement.evaluate(
-    (element: HTMLIxCheckboxElement) => {
+    (element: HTMLElement) => {
       // Needed for testcase
-      element.disabled = undefined as any;
+      (element as any).disabled = undefined as any;
       return new Promise<void>((resolve) => {
         element.addEventListener('checkedChange', () => resolve());
       });
@@ -118,10 +118,7 @@ test('Clicking label (including padding) checks the radio', async ({
   const radio = page.locator('ix-radio');
   const label = radio.locator('label');
   const box = await label.boundingBox();
-  if (!box) {
-    throw new Error('Label bounding box not found');
-  }
-  await page.mouse.click(box.x + 2, box.y + 2);
+  await page.mouse.click(box!.x + 2, box!.y + 2);
 
   await label.waitFor({ state: 'visible' });
   await expect(radio).toHaveAttribute('aria-checked', 'true');
