@@ -238,9 +238,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private oldValue: string = '';
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
-  private handleValueChange(newValue: string) {
-    this.oldValue = handleValueChange(newValue, this.oldValue, this.ixChange);
-  }
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
     this.value = value;
@@ -311,29 +308,24 @@ export class TimeInput implements IxInputFieldComponent<string> {
   async onInput(value: string) {
     this.value = value;
     this.valueChange.emit(value);
+
     if (!value) {
       this.isInputInvalid = false;
       this.updateFormInternalValue(value);
-      this.handleValueChange(value);
-      return;
-    }
-
-    if (!this.format) {
+    } else if (!this.format) {
       this.updateFormInternalValue(value);
-      this.handleValueChange(value);
-      return;
-    }
-
-    const time = DateTime.fromFormat(value, this.format);
-    if (time.isValid) {
-      this.isInputInvalid = false;
-      this.updateFormInternalValue(value);
-      this.handleValueChange(value);
     } else {
-      this.isInputInvalid = true;
-      this.invalidReason = time.invalidReason;
-      this.updateFormInternalValue(value);
+      const time = DateTime.fromFormat(value, this.format);
+      if (time.isValid) {
+        this.isInputInvalid = false;
+        this.updateFormInternalValue(value);
+      } else {
+        this.isInputInvalid = true;
+        this.invalidReason = time.invalidReason;
+        this.updateFormInternalValue(value);
+      }
     }
+    this.oldValue = handleValueChange(value, this.oldValue, this.ixChange);
   }
   onTimeIconClick(event: Event) {
     if (event.defaultPrevented) {
@@ -428,7 +420,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
-            this.handleValueChange(this.value);
+            this.oldValue = handleValueChange(
+              this.value,
+              this.oldValue,
+              this.ixChange
+            );
           }}
         ></input>
         <SlotEnd
@@ -573,7 +569,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
               this.onInput(event.detail);
               this.show = false;
-              this.handleValueChange(event.detail);
+              this.oldValue = handleValueChange(
+                event.detail,
+                this.oldValue,
+                this.ixChange
+              );
             }}
           ></ix-time-picker>
         </ix-dropdown>

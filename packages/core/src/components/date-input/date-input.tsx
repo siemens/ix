@@ -231,10 +231,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  private handleValueChange(newValue: string | undefined) {
-    this.oldValue = handleValueChange(newValue, this.oldValue, this.ixChange);
-  }
-
   updateFormInternalValue(value: string | undefined): void {
     if (value) {
       this.formInternals.setFormValue(value);
@@ -302,34 +298,29 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   async onInput(value: string | undefined) {
     this.value = value;
     this.valueChange.emit(value);
+
     if (!value) {
       this.updateFormInternalValue(undefined);
-      this.handleValueChange(value);
-      return;
-    }
-    if (!this.format) {
-      this.updateFormInternalValue(value);
-      this.handleValueChange(value);
-      return;
-    }
-
-    const date = DateTime.fromFormat(value, this.format);
-    const minDate = DateTime.fromFormat(this.minDate, this.format);
-    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
-
-    this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
-
-    if (this.isInputInvalid) {
-      this.invalidReason = date.invalidReason || undefined;
       this.from = undefined;
-    } else {
+    } else if (!this.format) {
       this.updateFormInternalValue(value);
-      this.from = value;
-      this.closeDropdown();
-      this.handleValueChange(value);
-    }
+    } else {
+      const date = DateTime.fromFormat(value, this.format);
+      const minDate = DateTime.fromFormat(this.minDate, this.format);
+      const maxDate = DateTime.fromFormat(this.maxDate, this.format);
 
-    this.valueChange.emit(value);
+      this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
+
+      if (this.isInputInvalid) {
+        this.invalidReason = date.invalidReason || undefined;
+        this.from = undefined;
+      } else {
+        this.updateFormInternalValue(value);
+        this.from = value;
+        this.closeDropdown();
+      }
+    }
+    this.oldValue = handleValueChange(value, this.oldValue, this.ixChange);
   }
 
   onCalenderClick(event: Event) {
@@ -423,7 +414,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
-            this.handleValueChange(this.value);
           }}
         ></input>
         <SlotEnd
