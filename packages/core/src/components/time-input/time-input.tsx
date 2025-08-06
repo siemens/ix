@@ -314,30 +314,30 @@ export class TimeInput implements IxInputFieldComponent<string> {
   async onInput(value: string) {
     this.value = value;
     this.valueChange.emit(value);
-    this.handleValueChange(value);
-
     if (!value) {
       this.isInputInvalid = false;
       this.updateFormInternalValue(value);
+      this.handleValueChange(value);
       return;
     }
 
     if (!this.format) {
+      this.updateFormInternalValue(value);
+      this.handleValueChange(value);
       return;
     }
 
     const time = DateTime.fromFormat(value, this.format);
     if (time.isValid) {
       this.isInputInvalid = false;
+      this.updateFormInternalValue(value);
       this.handleValueChange(value);
     } else {
       this.isInputInvalid = true;
       this.invalidReason = time.invalidReason;
+      this.updateFormInternalValue(value);
     }
-
-    this.updateFormInternalValue(value);
   }
-
   onTimeIconClick(event: Event) {
     if (event.defaultPrevented) {
       return;

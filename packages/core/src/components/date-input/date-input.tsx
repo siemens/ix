@@ -304,11 +304,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   async onInput(value: string | undefined) {
     this.value = value;
     this.valueChange.emit(value);
-    this.handleValueChange(value);
     if (!value) {
+      this.updateFormInternalValue(undefined);
+      this.handleValueChange(value);
       return;
     }
     if (!this.format) {
+      this.updateFormInternalValue(value);
+      this.handleValueChange(value);
       return;
     }
 
@@ -323,6 +326,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.from = undefined;
     } else {
       this.updateFormInternalValue(value);
+      this.from = value;
       this.closeDropdown();
       this.handleValueChange(value);
     }
