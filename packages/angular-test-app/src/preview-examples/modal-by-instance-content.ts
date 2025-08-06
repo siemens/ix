@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { IxActiveModal } from '@siemens/ix-angular';
 
 @Component({
+  standalone: false,
   selector: 'app-example-content',
   template: `
     <ix-modal-header> Message headline </ix-modal-header>

@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { showMessage } from '@siemens/ix';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-button (click)="triggerMessage()">Show 'success' message</ix-button>

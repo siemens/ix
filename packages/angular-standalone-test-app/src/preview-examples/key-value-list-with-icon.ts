@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxKeyValueList, IxKeyValue } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxKeyValueList, IxKeyValue],
   template: `
