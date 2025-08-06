@@ -343,6 +343,11 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * Icon name for the right side of the button
+          * @since 3.3.0
+         */
+        "iconRight"?: string;
+        /**
           * @default '24'
          */
         "iconSize": '12' | '16' | '24';
@@ -6175,6 +6180,11 @@ declare namespace LocalJSX {
           * Icon name
          */
         "icon"?: string;
+        /**
+          * Icon name for the right side of the button
+          * @since 3.3.0
+         */
+        "iconRight"?: string;
         /**
           * @default '24'
          */

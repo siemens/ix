@@ -14,7 +14,10 @@
 
 @mixin btn-base-variant($name, $enable-border: true) {
   .btn-#{$name} {
-    border-radius: var(--theme-btn--border-radius);
+    border-top-left-radius: var(--ix-button-border-radius-left);
+    border-bottom-left-radius: var(--ix-button-border-radius-left);
+    border-top-right-radius: var(--ix-button-border-radius-right);
+    border-bottom-right-radius: var(--ix-button-border-radius-right);
 
     &,
     &.focus,
@@ -125,6 +128,9 @@
 @mixin btn {
   :host {
     @include ix-component;
+    --ix-button-border-radius-left: var(--theme-btn--border-radius);
+    --ix-button-border-radius-right: var(--theme-btn--border-radius);
+
     display: inline-block;
     height: 2rem;
     vertical-align: middle;
@@ -137,10 +143,6 @@
     }
 
     ix-spinner {
-      margin-right: 0.25rem;
-    }
-
-    ix-icon {
       margin-right: 0.25rem;
     }
 
@@ -160,6 +162,11 @@
       // Prevents icon to show title tooltip
       // if embedded in ix-icon-button or ix-button[icon]
       pointer-events: none;
+      margin-right: 0.25rem;
+    }
+
+    .icon-right {
+      margin-left: 0.25rem;
     }
   }
 

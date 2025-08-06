@@ -303,6 +303,7 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = 
         loading: 'loading',
         form: 'form',
         icon: 'icon',
+        iconRight: 'icon-right',
         alignment: 'alignment',
         iconSize: 'icon-size'
     },
