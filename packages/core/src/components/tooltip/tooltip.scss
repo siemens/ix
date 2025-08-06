@@ -37,10 +37,9 @@
 
 .tooltip-title {
   display: flex;
-  align-items: flex-start;
 
   ::slotted(ix-icon) {
-    padding: 0.125rem 0.25rem 0.125rem 0;
+    margin-right: 0.35rem;
   }
 }
 
