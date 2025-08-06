@@ -23,4 +23,11 @@ regressionTest.describe('split-button', () => {
       maxDiffPixelRatio: 0.02,
     });
   });
+  regressionTest('disabled states', async ({ page }) => {
+    await page.goto('split-button/disabled');
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.02,
+    });
+  });
 });
