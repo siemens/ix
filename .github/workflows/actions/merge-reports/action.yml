@@ -13,7 +13,7 @@ inputs:
   outputPath:
     description: 'Path where the merged HTML report will be generated'
     required: false
-    default: 'playwright-report'
+    default: 'testing/visual-testing/playwright-report'
 runs:
   using: 'composite'
   steps:
@@ -24,9 +24,13 @@ runs:
         pattern: ${{ inputs.blobPattern }}
         merge-multiple: true
 
+    - name: Install Playwright Browsers
+      shell: bash
+      run: pnpm run test.setup --cache-dir=.turbo --filter ${{ inputs.projectName }}
+
     - name: Merge into HTML Report
       shell: bash
-      run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
+      run: pnpm --filter ${{ inputs.projectName }} exec playwright merge-reports --reporter html ../../all-blob-reports
 
     - name: Upload HTML report
       uses: actions/upload-artifact@v4
