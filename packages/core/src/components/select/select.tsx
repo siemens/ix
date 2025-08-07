@@ -202,6 +202,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the selected value is changed
+   */
+  @Event({ cancelable: true }) ixChange!: EventEmitter<string | string[]>;
+
   @State() dropdownShow = false;
   @State() selectedLabels: (string | undefined)[] = [];
   @State() isDropdownEmpty = false;
@@ -232,6 +237,16 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
+
+  private areValuesEqual(a: string | string[], b: string | string[]): boolean {
+    if (Array.isArray(a) !== Array.isArray(b)) return false;
+
+    if (Array.isArray(a) && Array.isArray(b)) {
+      return a.length === b.length && a.every((val, index) => val === b[index]);
+    }
+    return a === b;
+  }
+
   private readonly focusControllerCallbackBind =
     this.focusDropdownItem.bind(this);
 
@@ -339,6 +354,22 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return !!this.value;
   }
 
+  private emitIxChangeWithRollback(
+    newValue: string | string[],
+    oldValue: string | string[]
+  ) {
+    if (!this.areValuesEqual(newValue, oldValue)) {
+      const event = this.ixChange.emit(newValue);
+
+      if (event.defaultPrevented) {
+        this.value = oldValue;
+        this.updateSelection();
+        return true;
+      }
+    }
+    return false;
+  }
+
   private focusDropdownItem(index: number) {
     this.navigationItem = undefined;
 
@@ -362,6 +393,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     const oldValue = this.value;
     const value = this.toggleValue(newId);
     this.value = value;
+    if (this.emitIxChangeWithRollback(value, oldValue)) {
+      return;
+    }
     const defaultPrevented = this.emitValueChange(value);
 
     if (defaultPrevented) {
@@ -390,7 +424,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     this.clearInput();
     this.itemClick(value);
-
     return false;
   }
 
@@ -508,7 +541,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     if (event.detail) {
       this.inputElement?.focus();
       this.inputElement?.select();
-
       this.removeHiddenFromItems();
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
     } else {
@@ -588,7 +620,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         )
       : -1;
 
-    // Slotted select items
     if (indexNonShadow === 0) {
       if (!this.visibleShadowItems.length && this.isAddItemVisible()) {
         this.focusAddItemButton();
@@ -626,7 +657,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       return;
     }
 
-    // Custom select items
     const indexShadow = this.visibleShadowItems.indexOf(
       this.navigationItem as HTMLIxSelectItemElement
     );
@@ -719,10 +749,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private clear() {
+    const oldValue = this.value;
     this.clearInput();
     this.selectedLabels = [];
     this.value = [];
-    this.emitValueChange([]);
+
+    this.emitIxChangeWithRollback([], oldValue);
     this.dropdownShow = false;
   }
 

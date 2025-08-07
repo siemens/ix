@@ -30,6 +30,7 @@ export function TextareaElement(
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
     ariaAttributes?: A11yAttributes;
+    onChange: () => void;
   }>
 ) {
   return (
@@ -59,6 +60,7 @@ export function TextareaElement(
         width: props.textareaWidth,
       }}
       {...props.ariaAttributes}
+      onChange={() => props.onChange()}
     ></textarea>
   );
 }
@@ -85,6 +87,7 @@ export function InputElement(
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
     ariaAttributes?: A11yAttributes;
+    onChange: () => void;
   }>
 ) {
   return (
@@ -115,6 +118,18 @@ export function InputElement(
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
+      onChange={() => props.onChange()}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          const input = e.target as HTMLInputElement;
+          const currentValue = input.value === '' ? 0 : Number(input.value);
+          const propValue = Number(props.value);
+
+          if (currentValue !== propValue) {
+            props.onChange();
+          }
+        }
+      }}
     ></input>
   );
 }

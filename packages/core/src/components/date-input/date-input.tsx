@@ -28,6 +28,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleValueChange,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -196,6 +197,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
 
+  /**
+   * Event emitted when the date input value with any change is committed
+   */
+  @Event({ cancelable: true }) ixChange!: EventEmitter<string | undefined>;
+
   /** @internal */
   @Event() ixFocus!: EventEmitter<void>;
 
@@ -221,6 +227,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private oldValue: string | undefined;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -246,6 +253,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   componentWillLoad(): void {
+    this.oldValue = this.value;
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -288,31 +296,36 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   async onInput(value: string | undefined) {
-    this.value = value;
-    if (!value) {
-      this.valueChange.emit(value);
+    const newValue = handleValueChange(value, this.oldValue, this.ixChange);
+
+    if (newValue !== value) {
       return;
     }
+    this.oldValue = newValue;
+    this.value = newValue;
+    this.valueChange.emit(newValue);
 
-    if (!this.format) {
-      return;
-    }
-
-    const date = DateTime.fromFormat(value, this.format);
-    const minDate = DateTime.fromFormat(this.minDate, this.format);
-    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
-
-    this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
-
-    if (this.isInputInvalid) {
-      this.invalidReason = date.invalidReason || undefined;
+    if (!newValue) {
+      this.updateFormInternalValue(undefined);
       this.from = undefined;
+    } else if (!this.format) {
+      this.updateFormInternalValue(newValue);
     } else {
-      this.updateFormInternalValue(value);
-      this.closeDropdown();
-    }
+      const date = DateTime.fromFormat(newValue, this.format);
+      const minDate = DateTime.fromFormat(this.minDate, this.format);
+      const maxDate = DateTime.fromFormat(this.maxDate, this.format);
 
-    this.valueChange.emit(value);
+      this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
+
+      if (this.isInputInvalid) {
+        this.invalidReason = date.invalidReason || undefined;
+        this.from = undefined;
+      } else {
+        this.updateFormInternalValue(newValue);
+        this.from = newValue;
+        this.closeDropdown();
+      }
+    }
   }
 
   onCalenderClick(event: Event) {
@@ -321,7 +334,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       event.preventDefault();
       this.openDropdown();
     }
-
     if (this.inputElementRef.current) {
       this.inputElementRef.current.focus();
     }

@@ -28,6 +28,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleValueChange,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -210,6 +211,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the time input value with any change is committed
+   */
+  @Event({ cancelable: true }) ixChange!: EventEmitter<string>;
+
   @State() show = false;
   @State() time: string | null = null;
   @State() isInputInvalid = false;
@@ -229,9 +235,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private oldValue: string = '';
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
-
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
     this.value = value;
@@ -250,6 +256,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad(): void {
+    this.oldValue = this.value;
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
@@ -299,30 +306,30 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async onInput(value: string) {
-    this.value = value;
-    if (!value) {
-      this.isInputInvalid = false;
-      this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
+    const newValue = handleValueChange(value, this.oldValue, this.ixChange);
+    if (newValue !== value) {
       return;
     }
-
-    if (!this.format) {
-      return;
-    }
-
-    const time = DateTime.fromFormat(value, this.format);
-    if (time.isValid) {
+    this.oldValue = newValue;
+    this.value = newValue;
+    this.valueChange.emit(newValue);
+    if (!newValue) {
       this.isInputInvalid = false;
+      this.updateFormInternalValue(newValue);
+    } else if (!this.format) {
+      this.updateFormInternalValue(newValue);
     } else {
-      this.isInputInvalid = true;
-      this.invalidReason = time.invalidReason;
+      const time = DateTime.fromFormat(newValue, this.format);
+      if (time.isValid) {
+        this.isInputInvalid = false;
+        this.updateFormInternalValue(newValue);
+      } else {
+        this.isInputInvalid = true;
+        this.invalidReason = time.invalidReason;
+        this.updateFormInternalValue(newValue);
+      }
     }
-
-    this.updateFormInternalValue(value);
-    this.valueChange.emit(value);
   }
-
   onTimeIconClick(event: Event) {
     if (!this.show) {
       event.stopPropagation();
@@ -553,7 +560,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
             i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
               this.onInput(event.detail);
-
               this.show = false;
             }}
           ></ix-time-picker>
