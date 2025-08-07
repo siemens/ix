@@ -7,9 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
 
 @mixin set-border($composition) {
   @if $composition {
@@ -18,12 +17,13 @@
 }
 
 :host {
-  @include ix-component;
   background-color: var(--theme-color-2);
   display: flex;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+
+  @include component.ix-component;
 
   aside {
     width: 100%;

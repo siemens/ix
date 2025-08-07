@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'common-variables' as vars;
+
 @mixin radio-basic() {
   $size: 1.25rem;
 
@@ -35,7 +37,7 @@
     user-select: none;
 
     color: var(--theme-radiobtn-label--color);
-    margin-right: $default-space;
+    margin-right: vars.$default-space;
   }
 
   .ix-form-control[type='radio']:not(:disabled) + label {
@@ -51,7 +53,7 @@
     max-width: $size;
     max-height: $size;
     float: left;
-    margin-right: $small-space;
+    margin-right: vars.$small-space;
 
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -109,8 +111,8 @@
 
     & + label:after {
       content: '';
-      width: $small-space;
-      height: $small-space;
+      width: vars.$small-space;
+      height: vars.$small-space;
       display: block;
       background-color: var(--theme-radiobtn-checked--color);
       border-radius: 100%;

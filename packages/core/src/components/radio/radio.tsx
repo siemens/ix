@@ -173,40 +173,45 @@ export class Radio implements IxFormComponent<string> {
         onBlur={() => this.ixBlur.emit()}
       >
         <label>
-          <input
-            aria-checked={a11yBoolean(this.checked)}
-            required={this.required}
-            disabled={this.disabled}
-            checked={this.checked}
-            name={this.name}
-            ref={this.inputRef}
-            type="radio"
-            onChange={() => {
-              const ref = this.inputRef.current;
-              if (ref) {
-                this.setCheckedState(ref.checked);
-              }
-            }}
-          />
-          <button
-            disabled={this.disabled}
-            class={{
-              checked: this.checked,
-            }}
-            onClick={() => this.setCheckedState(!this.checked)}
-          >
-            <div
-              class="checkmark"
-              style={{ visibility: this.checked ? 'visible' : 'hidden' }}
-            ></div>
-          </button>
-          <ix-typography
-            format="label"
-            textColor={this.disabled ? 'weak' : 'std'}
-          >
-            {this.label}
-            <slot></slot>
-          </ix-typography>
+          <div class="radio-button">
+            <input
+              aria-checked={a11yBoolean(this.checked)}
+              required={this.required}
+              disabled={this.disabled}
+              checked={this.checked}
+              name={this.name}
+              ref={this.inputRef}
+              type="radio"
+              value={this.value ?? 'on'}
+              onChange={() => {
+                const ref = this.inputRef.current;
+                if (ref) {
+                  this.setCheckedState(ref.checked);
+                }
+              }}
+            />
+            <button
+              disabled={this.disabled}
+              class={{
+                checked: this.checked,
+              }}
+              onClick={() => this.setCheckedState(!this.checked)}
+            >
+              <div
+                class="checkmark"
+                style={{ visibility: this.checked ? 'visible' : 'hidden' }}
+              ></div>
+            </button>
+          </div>
+          {this.label && (
+            <ix-typography
+              format="label"
+              textColor={this.disabled ? 'weak' : 'std'}
+            >
+              {this.label}
+              <slot></slot>
+            </ix-typography>
+          )}
         </label>
       </Host>
     );
