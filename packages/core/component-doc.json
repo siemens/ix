@@ -1845,6 +1845,37 @@
           "setter": false
         },
         {
+          "name": "iconRight",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon-right",
+          "reflectToAttr": false,
+          "docs": "Icon name for the right side of the button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "loading",
           "type": "boolean",
           "complexType": {
@@ -26101,6 +26132,37 @@
           "reflectToAttr": false,
           "docs": "Icon name",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "iconRight",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon-right",
+          "reflectToAttr": false,
+          "docs": "Icon name for the right side of the button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
