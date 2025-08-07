@@ -19,7 +19,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
 
 @Component({
   tag: 'ix-drawer',
@@ -166,13 +166,12 @@ export class Drawer {
       this.width === 'auto' ? this.minWidth : this.width
     )}rem`;
 
-    anime({
-      targets: el,
+    animate(el, {
       duration: Drawer.duration,
       width: [initialWidth, 0],
       opacity: [1, 0],
       easing: 'easeInSine',
-      complete: () => {
+      onComplete: () => {
         el.classList.add('display-none');
       },
     });
@@ -183,16 +182,15 @@ export class Drawer {
       this.width === 'auto' ? this.minWidth : this.width
     )}rem`;
 
-    anime({
-      targets: el,
+    animate(el, {
       duration: Drawer.duration,
       width: [0, targetWidth],
       opacity: [0, 1],
       easing: 'easeOutSine',
-      begin: () => {
+      onBegin: () => {
         el.classList.remove('display-none');
       },
-      complete: () => {
+      onComplete: () => {
         this.showContent = true;
       },
     });

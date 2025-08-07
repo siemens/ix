@@ -20,7 +20,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
 import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
 import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
@@ -569,14 +569,13 @@ export class Menu {
 
   private animateOverlayFadeIn() {
     requestAnimationFrame(() => {
-      anime({
-        targets: this.overlayContainer,
+      animate(this.overlayContainer!, {
         duration: 300,
         backdropFilter: [0, 'blur(1rem)'],
         translateX: ['-4rem', 0],
         opacity: [0, 1],
         easing: 'easeInSine',
-        begin: () => {
+        onBegin: () => {
           if (this.showPinned) {
             return;
           }
@@ -589,14 +588,13 @@ export class Menu {
 
   private animateOverlayFadeOut(onComplete: Function) {
     requestAnimationFrame(() => {
-      anime({
-        targets: this.overlayContainer,
+      animate(this.overlayContainer!, {
         duration: 300,
         backdropFilter: ['blur(1rem)', 0],
         translateX: [0, '-4rem'],
         opacity: [1, 0],
         easing: 'easeInSine',
-        complete: () => onComplete(),
+        onComplete: () => onComplete(),
       });
     });
   }

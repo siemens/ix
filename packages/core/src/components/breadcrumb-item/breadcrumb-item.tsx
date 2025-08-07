@@ -18,7 +18,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import animejs from 'animejs';
+import { animate } from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
@@ -79,8 +79,7 @@ export class BreadcrumbItem {
   }
 
   animationFadeIn() {
-    animejs({
-      targets: this.hostElement,
+    animate(this.hostElement, {
       duration: 150,
       opacity: [0, 1],
       translateX: ['-100%', '0%'],

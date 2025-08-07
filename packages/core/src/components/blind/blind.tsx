@@ -18,7 +18,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
 import { a11yBoolean } from '../utils/a11y';
 import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import type { BlindVariant } from './blind.types';
@@ -95,14 +95,12 @@ export class Blind {
   }
 
   private rotateChevronUp() {
-    anime({
-      targets: this.chevronRef,
+    animate(this.chevronRef!, {
       duration: 150,
       easing: 'easeInOutSine',
       rotateZ: 180,
     });
-    anime({
-      targets: this.content,
+    animate(this.content!, {
       duration: 150,
       easing: 'easeInOutSine',
       opacity: 1,
@@ -110,14 +108,12 @@ export class Blind {
   }
 
   private rotateChevronDown() {
-    anime({
-      targets: this.chevronRef,
+    animate(this.chevronRef!, {
       duration: 150,
       easing: 'easeInOutSine',
       rotateZ: 0,
     });
-    anime({
-      targets: this.content,
+    animate(this.content!, {
       duration: 150,
       easing: 'easeInOutSine',
       opacity: 0,
