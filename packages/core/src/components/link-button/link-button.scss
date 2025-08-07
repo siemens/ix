@@ -7,22 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/components/buttons';
-@import 'mixins/hover';
+@use 'common-variables' as vars;
+@use 'legacy/components/buttons';
+@use 'mixins/hover';
 
 :host {
   display: inline-flex;
-  height: $x-large-space;
-  font-size: $font-size-default;
-  font-weight: $font-weight-normal;
-  min-width: $x-large-space;
+  height: vars.$x-large-space;
+  font-size: vars.$font-size-default;
+  font-weight: vars.$font-weight-normal;
+  min-width: vars.$x-large-space;
 
   .link-button {
     display: inline-flex;
     position: relative;
     width: 100%;
-    padding: 0 $tiny-space 0 0;
+    padding: 0 vars.$tiny-space 0 0;
     align-items: center;
     justify-content: center;
     background-color: transparent;
@@ -39,7 +39,7 @@
       overflow: hidden;
     }
 
-    @include hover {
+    @include hover.hover {
       color: var(--theme-color-dynamic--hover);
 
       .link {
@@ -48,7 +48,7 @@
       }
     }
 
-    @include active {
+    @include hover.active {
       color: var(--theme-color-dynamic--active);
 
       .link {

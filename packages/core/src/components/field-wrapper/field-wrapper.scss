@@ -1,4 +1,4 @@
-@import "./field-wrapper.mixins.scss";
+@use "./field-wrapper.mixins.scss";
 
 :host {
   display: flex;
@@ -29,7 +29,7 @@
     margin-right: 0px;
   }
 
-  @include helper-text;
+  @include field-wrapper.helper-text;
 
   .bottom-text {
     margin-top: 0.25rem;

@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/mixins/fonts';
-@import 'mixins/hover';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
 
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
@@ -29,13 +29,13 @@
       }
 
       @if $variant == 'filled' or $variant == 'outline' {
-        @include ghost-hover-pressed;
+        @include hover.ghost-hover-pressed;
       } @else {
-        @include hover {
+        @include hover.hover {
           background-color: var(--theme-color-#{$variant}--hover);
         }
 
-        @include active {
+        @include hover.active {
           background-color: var(--theme-color-#{$variant}--active);
         }
       }
@@ -64,11 +64,12 @@
 }
 
 :host {
-  @include ix-component;
   display: flex;
   flex-direction: column;
   border-radius: var(--theme-blind--border-radius);
   overflow: hidden;
+
+  @include component.ix-component;
 
   .blind-header-wrapper {
     position: relative;
@@ -100,7 +101,7 @@
 
   .blind-header {
     all: unset;
-    @include ellipsis;
+    @include text-truncation.ellipsis;
 
     display: block;
     position: absolute;
@@ -119,7 +120,7 @@
       var(--theme-blind--border-radius) 0 0;
     cursor: pointer;
 
-    @include focus-visible {
+    @include hover.focus-visible {
       border-color: var(--theme-color-focus-bdr);
       outline: none;
     }
@@ -127,7 +128,7 @@
 
   .blind-header-title-icon,
   .collapse-icon {
-    margin-right: $small-space;
+    margin-right: vars.$small-space;
   }
 
   .blind-header-title-row {
@@ -148,17 +149,17 @@
   }
   ix-typography {
     flex-grow: 1;
-    @include ellipsis;
+    @include text-truncation.ellipsis;
   }
 
   .blind-header-title-label {
-    @include ellipsis;
     padding-inline-end: 0.5rem;
+    @include text-truncation.ellipsis;
   }
 
   .blind-header-title-sublabel {
-    @include ellipsis;
     padding-inline: 0.5rem;
+    @include text-truncation.ellipsis;
   }
 
   .blind-header-title {
