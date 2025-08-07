@@ -1,5 +1,17 @@
 @mixin setVars {
   --theme-btn--focus--outline-offset: var(--theme-focus-outline-offset);
-  --theme-btn--border-radius: var(--theme-min-border-radius);
+  --theme-btn--border-radius: var(--theme-small-border-radius);
   --theme-btn--border-thickness: var(--theme-border-width-default);
+  --theme-btn--background: var(--theme-color-primary);
+  --theme-btn--background--hover: var(--theme-color-primary--hover);
+  --theme-btn--background--active: var(--theme-color-primary--active);
+  --theme-btn--background--disabled: var(--theme-color-component-4);
+  --theme-btn--color: var(--theme-color-primary--contrast);
+  --theme-btn--color--hover: var(--theme-color-primary--contrast);
+  --theme-btn--color--active: var(--theme-color-primary--contrast);
+  --theme-btn--color--disabled: var(--theme-color-primary--contrast);
+  --theme-btn--border-color: var(--theme-color-ghost);
+  --theme-btn--border-color--hover: var(--theme-color-ghost);
+  --theme-btn--border-color--active: var(--theme-color-ghost);
+  --theme-btn--border-color--disabled: var(--theme-color-ghost);
 }
