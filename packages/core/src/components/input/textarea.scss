@@ -6,13 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import './input.mixins.scss';
+@use './input.mixins.scss';
+@use 'mixins/validation/form-component';
 
-@include input-field;
+@include input.input-field;
 
-@include host-valid;
+@include form-component.host-valid;
 
-@include host-info {
+@include form-component.host-info {
   textarea {
     border-color: var(--theme-input--border-color--info);
   }
@@ -26,7 +27,7 @@
   }
 }
 
-@include host-warning {
+@include form-component.host-warning {
   textarea {
     border-color: var(--theme-input--border-color--warning--active) !important;
   }
@@ -40,7 +41,7 @@
   }
 }
 
-@include host-invalid {
+@include form-component.host-invalid {
   textarea {
     background-color: var(--theme-input--background--invalid);
     border-color: var(--theme-input--border-color--invalid) !important;

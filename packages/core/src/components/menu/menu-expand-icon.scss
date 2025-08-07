@@ -6,16 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'common-variables';
-@import 'legacy/components/buttons';
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
+@use 'legacy/components/buttons';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
 
 $focus-bdr-width: 0.0625rem;
 
 :host {
-  @include ix-component;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +20,8 @@ $focus-bdr-width: 0.0625rem;
   width: 2rem;
   border-radius: var(--theme-btn--border-radius);
   pointer-events: all;
+
+  @include component.ix-component;
 
   svg {
     display: inline-block;
@@ -39,7 +38,7 @@ $focus-bdr-width: 0.0625rem;
   }
 }
 
-@include host-hover {
+@include hover.host-hover {
   .menu-expand-button {
     background-color: var(--theme-menu-btn--background--hover);
   }
@@ -51,7 +50,7 @@ $focus-bdr-width: 0.0625rem;
   cursor: pointer;
 }
 
-@include host-active {
+@include hover.host-active {
   .menu-expand-button {
     background-color: var(--theme-menu-btn--background--active);
   }

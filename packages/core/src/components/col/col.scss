@@ -6,10 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   position: relative;
   flex-basis: 0;
   flex-grow: 1;
@@ -18,4 +17,6 @@
   min-height: 1px;
 
   padding: calc(var(--ix-layout-grid-gutter) * 0.5);
+
+  @include component.ix-component;
 }
