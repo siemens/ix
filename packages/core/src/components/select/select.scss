@@ -7,22 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/mixins/fonts';
-@import 'mixins/hover';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/field';
-@import 'mixins/validation/form-component';
+@use 'common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/field';
+@use 'mixins/validation/form-component';
 
 :host {
-  @include ix-component;
-
   display: inline-block;
   position: relative;
   min-height: 2rem;
   height: auto;
   border-radius: var(--theme-input--border-radius);
+
+  @include component.ix-component;
 
   .display-none {
     display: none;
@@ -37,10 +37,10 @@
     border: var(--theme-input--border-thickness) solid
       var(--theme-input--border-color);
     border-radius: var(--theme-input--border-radius);
-    padding: 0 0 0 $small-space;
+    padding: 0 0 0 vars.$small-space;
     box-shadow: var(--theme-inset-shadow-1) !important;
 
-    @include hover {
+    @include hover.hover {
       background-color: var(--theme-input--background--hover);
       border-color: var(--theme-input--border-color--hover);
     }
@@ -137,11 +137,12 @@
     }
 
     input {
-      @include ellipsis;
-      @include text-default;
       background: transparent;
       height: 1.75rem;
       width: 100%;
+
+      @include text-truncation.ellipsis;
+      @include fonts.text-default;
 
       &,
       &:hover,
@@ -177,20 +178,21 @@
   }
 
   .select-list-header {
-    @include ellipsis;
     display: flex;
     align-items: center;
-    height: $default-control-height;
+    height: vars.$default-control-height;
     color: var(--theme-select-list-item-hint--color);
-    margin: 0 $small-space 0 1rem;
+    margin: 0 vars.$small-space 0 1rem;
+
+    @include text-truncation.ellipsis;
   }
 }
 
 
 
-@include host-valid;
+@include form-component.host-valid;
 
-@include host-info {
+@include form-component.host-info {
   .select {
     border-color: var(--theme-input--border-color--info);
   }
@@ -204,7 +206,7 @@
   }
 }
 
-@include host-warning {
+@include form-component.host-warning {
   .select {
     border-color: var(--theme-input--border-color--warning);
   }
@@ -218,7 +220,7 @@
   }
 }
 
-@include host-invalid {
+@include form-component.host-invalid {
   .select {
     border-color: var(--theme-input--border-color--invalid);
     background-color: var(--theme-input--background--invalid);
