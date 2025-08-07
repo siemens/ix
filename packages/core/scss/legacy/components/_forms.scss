@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import './mixins/hover';
-@import './mixins/text-truncation';
-@import 'legacy/mixins/fonts';
+@use 'common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'legacy/mixins/fonts';
 
 @mixin from-control-invalid {
   color: $form-feedback-invalid-color;
@@ -18,31 +18,32 @@
 
 .ix-form-control,
 .ix-form-control-plaintext {
-  @include text-default();
   color: var(--theme-input--color);
-  @include ellipsis;
   border-radius: var(--theme-input--border-radius);
-  height: $default-control-height;
-  min-height: $default-control-height;
-  min-width: $input-min-width;
+  height: vars.$default-control-height;
+  min-height: vars.$default-control-height;
+  min-width: vars.$input-min-width;
   background-color: var(--theme-input--background);
   border: solid 1px var(--theme-input--border-color);
   box-shadow: var(--theme-input--box-shadow);
-  padding-inline-start: $input-padding-x;
-  padding-inline-end: $input-padding-x;
+  padding-inline-start: vars.$input-padding-x;
+  padding-inline-end: vars.$input-padding-x;
+
+  @include fonts.text-default();
+  @include text-truncation.ellipsis;
 
   &::placeholder {
     color: var(--theme-input-hint--color);
   }
 
   &:not(:read-only):not([readonly]):not([readOnly]):not(.readonly) {
-    @include hover {
+    @include hover.hover {
       background-color: var(--theme-input--background--hover);
       border-color: var(--theme-input--border-color--hover);
       cursor: auto;
     }
 
-    @include focus-visible {
+    @include hover.focus-visible {
       background-color: var(--theme-input--background--focus);
       border-color: var(--theme-input--border-color--focus);
       outline-offset: var(--theme-input--focus--outline-offset);
@@ -136,7 +137,7 @@ select.ix-form-control {
 }
 
 textarea.ix-form-control {
-  padding: 0.375rem $small-space;
+  padding: 0.375rem vars.$small-space;
 }
 
 input.ix-form-control {

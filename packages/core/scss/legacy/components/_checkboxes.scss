@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'common-variables' as vars;
+
 @mixin checkbox-basic() {
   $size: 1.125rem;
 
@@ -42,7 +44,7 @@
     max-width: $size;
     max-height: $size;
     float: left;
-    margin-right: $small-space;
+    margin-right: vars.$small-space;
     margin-top: 1px;
 
     background-repeat: no-repeat;

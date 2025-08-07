@@ -7,26 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import './mixins/hover';
-@import './mixins/text-truncation';
+@use './mixins/hover';
+@use './mixins/text-truncation';
+@use 'common-variables' as vars;
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: $x-large-space;
-  font-size: $font-size-default;
-  font-weight: $font-weight-bold;
+  height: vars.$x-large-space;
+  font-size: vars.$font-size-default;
+  font-weight: vars.$font-weight-bold;
   transition: var(--theme-default-time);
-  padding: 0 $small-space;
+  padding: 0 vars.$small-space;
   min-width: 5rem;
-  gap: $tiny-space;
+  gap: vars.$tiny-space;
 
-  @include ellipsis;
+  @include text-truncation.ellipsis;
 
   .glyph {
-    margin-right: $tiny-space;
-    font-weight: $font-weight-normal;
+    margin-right: vars.$tiny-space;
+    font-weight: vars.$font-weight-normal;
   }
 
   &:focus-visible,
@@ -63,7 +64,7 @@ $button-categories: (primary, secondary);
       }
     }
 
-    @include focus-visible {
+    @include hover.focus-visible {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-btn--focus--outline-offset);
     }
@@ -144,8 +145,8 @@ $button-categories: (primary, secondary);
 
 .btn-oval,
 .btn-icon {
-  min-width: $x-large-space;
-  width: $x-large-space;
+  min-width: vars.$x-large-space;
+  width: vars.$x-large-space;
 
   .glyph {
     margin-right: 0;
@@ -154,28 +155,28 @@ $button-categories: (primary, secondary);
 
 .btn-oval {
   border-radius: 6.25rem;
-  width: $default-control-height;
+  width: vars.$default-control-height;
 }
 
 .btn-icon-xs,
 .btn-icon-12 {
-  height: $default-space;
-  width: $default-space;
-  min-width: $default-space;
-  min-height: $default-space;
+  height: vars.$default-space;
+  width: vars.$default-space;
+  min-width: vars.$default-space;
+  min-height: vars.$default-space;
 }
 
 .btn-icon-s,
 .btn-icon-16 {
-  height: $large-space;
-  width: $large-space;
-  min-width: $large-space;
-  min-height: $large-space;
+  height: vars.$large-space;
+  width: vars.$large-space;
+  min-width: vars.$large-space;
+  min-height: vars.$large-space;
 }
 
 .btn-icon-32 {
-  height: $x-large-space;
-  width: $x-large-space;
-  min-width: $x-large-space;
-  min-height: $x-large-space;
+  height: vars.$x-large-space;
+  width: vars.$x-large-space;
+  min-width: vars.$x-large-space;
+  min-height: vars.$x-large-space;
 }

@@ -6,14 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import './button-mixin';
+@use './button-mixin';
 
-@include btn;
 $button-categories: (danger, primary, secondary);
+
+@include button-mixin.btn;
+
 @each $category in $button-categories {
-  @include btn-variant($category);
-  @include btn-variant('outline-#{$category}');
-  @include btn-variant('invisible-#{$category}', false);
+  @include button-mixin.btn-variant($category);
+  @include button-mixin.btn-variant('outline-#{$category}');
+  @include button-mixin.btn-variant('invisible-#{$category}', false);
 }
 
 :host {

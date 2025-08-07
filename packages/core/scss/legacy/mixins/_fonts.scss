@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'common-variables' as vars;
+
 @mixin font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smooting: grayscale;
@@ -18,7 +20,6 @@
   $font-weight: $font-weight-normal,
   $color-inverted: false
 ) {
-  @include font-smoothing();
   font-family: Siemens Sans, sans-serif;
   font-size: $font-size;
   font-weight: $font-weight;
@@ -29,130 +30,132 @@
   } @else {
     color: var(--theme-color-std-text);
   }
+
+  @include font-smoothing();
 }
 
 @mixin text-default($color-inverted: false) {
   @include text-format(
-    $font-size-default,
-    $line-height-default,
-    $font-weight-normal,
+    vars.$font-size-default,
+    vars.$line-height-default,
+    vars.$font-weight-normal,
     $color-inverted
   );
 }
 
 @mixin text-default-single($color-inverted: false) {
   @include text-format(
-    $font-size-default,
-    $line-height-default-single,
-    $font-weight-normal,
+    vars.$font-size-default,
+    vars.$line-height-default-single,
+    vars.$font-weight-normal,
     $color-inverted
   );
 }
 
 @mixin text-default-title($color-inverted: false) {
   @include text-format(
-    $font-size-default,
-    $line-height-default,
-    $font-weight-bold,
+    vars.$font-size-default,
+    vars.$line-height-default,
+    vars.$font-weight-bold,
     $color-inverted
   );
 }
 
 @mixin text-default-title-single($color-inverted: false) {
   @include text-format(
-    $font-size-default,
-    $line-height-default-single,
-    $font-weight-bold,
+    vars.$font-size-default,
+    vars.$line-height-default-single,
+    vars.$font-weight-bold,
     $color-inverted
   );
 }
 
 @mixin text-xs($color-inverted: false) {
   @include text-format(
-    $font-size-xs,
-    $line-height-xs,
-    $font-weight-normal,
+    vars.$font-size-xs,
+    vars.$line-height-xs,
+    vars.$font-weight-normal,
     $color-inverted
   );
 }
 
 @mixin text-s($color-inverted: false) {
   @include text-format(
-    $font-size-s,
-    $line-height-s,
-    $font-weight-normal,
+    vars.$font-size-s,
+    vars.$line-height-s,
+    vars.$font-weight-normal,
     $color-inverted
   );
 }
 
 @mixin text-caption($color-inverted: false) {
   @include text-format(
-    $font-size-caption,
-    $line-height-caption,
-    $font-weight-bold,
+    vars.$font-size-caption,
+    vars.$line-height-caption,
+    vars.$font-weight-bold,
     $color-inverted
   );
 }
 
 @mixin text-caption-single($color-inverted: false) {
   @include text-format(
-    $font-size-caption,
-    $line-height-caption-single,
-    $font-weight-bold,
+    vars.$font-size-caption,
+    vars.$line-height-caption-single,
+    vars.$font-weight-bold,
     $color-inverted
   );
 }
 
 @mixin text-l($color-inverted: false) {
   @include text-format(
-    $font-size-l,
-    $line-height-l,
-    $font-weight-normal,
+    vars.$font-size-l,
+    vars.$line-height-l,
+    vars.$font-weight-normal,
     $color-inverted
   );
 }
 
 @mixin text-l-single($color-inverted: false) {
   @include text-format(
-    $font-size-l,
-    $line-height-l-single,
-    $font-weight-normal,
+    vars.$font-size-l,
+    vars.$line-height-l-single,
+    vars.$font-weight-normal,
     $color-inverted
   );
 }
 
 @mixin text-l-title($color-inverted: false) {
   @include text-format(
-    $font-size-l,
-    $line-height-l,
-    $font-weight-bold,
+    vars.$font-size-l,
+    vars.$line-height-l,
+    vars.$font-weight-bold,
     $color-inverted
   );
 }
 
 @mixin text-l-title-single($color-inverted: false) {
   @include text-format(
-    $font-size-l,
-    $line-height-l-single,
-    $font-weight-bold,
+    vars.$font-size-l,
+    vars.$line-height-l-single,
+    vars.$font-weight-bold,
     $color-inverted
   );
 }
 
 @mixin text-h2($color-inverted: false) {
   @include text-format(
-    $font-size-xl,
-    $line-height-h2,
-    $font-weight-bold,
+    vars.$font-size-xl,
+    vars.$line-height-h2,
+    vars.$font-weight-bold,
     $color-inverted
   );
 }
 
 @mixin text-xl($color-inverted: false) {
   @include text-format(
-    $font-size-xl,
-    $line-height-xl,
-    $font-weight-normal,
+    vars.$font-size-xl,
+    vars.$line-height-xl,
+    vars.$font-weight-normal,
     $color-inverted
   );
 }
