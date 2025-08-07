@@ -6,12 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
-@import 'mixins/break-points';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/break-points';
 
 :host {
-  @include ix-component;
-
   display: flex;
   align-items: flex-end;
   flex-wrap: nowrap;
@@ -31,6 +29,8 @@
     var(--theme-app-header--border-color);
 
   z-index: var(--theme-z-index-fixed);
+
+  @include component.ix-component;
 
   .app-switch {
     margin-right: 1rem;
@@ -83,7 +83,7 @@
     display: block;
   }
 
-  @include media-breakpoint-match('sm') {
+  @include break-points.media-breakpoint-match('sm') {
     .logo {
       display: none;
     }

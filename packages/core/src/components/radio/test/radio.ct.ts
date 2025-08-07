@@ -58,15 +58,12 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
   const nativeInput = radioElement.locator('input');
   const label = radioElement.locator('label');
 
-  const checkedChange$ = radioElement.evaluate(
-    (element: HTMLIxCheckboxElement) => {
-      // Needed for testcase
-      element.disabled = undefined as any;
-      return new Promise<void>((resolve) => {
-        element.addEventListener('checkedChange', () => resolve());
-      });
-    }
-  );
+  const checkedChange$ = radioElement.evaluate((element: HTMLElement) => {
+    (element as any).disabled = undefined as any;
+    return new Promise<void>((resolve) => {
+      element.addEventListener('checkedChange', () => resolve());
+    });
+  });
 
   await radioElement.click();
   await checkedChange$;
@@ -108,4 +105,18 @@ test('Radio button should not cause layout shift when checked', async ({
 
   expect(newBounds.top).toBeCloseTo(initialBounds.top, 0);
   expect(newBounds.left).toBeCloseTo(initialBounds.left, 0);
+});
+
+test('Clicking label (including padding) checks the radio', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-radio label="Test"></ix-radio>`);
+  const radio = page.locator('ix-radio');
+  const label = radio.locator('label');
+  const box = await label.boundingBox();
+  await page.mouse.click(box!.x + 2, box!.y + 2);
+
+  await label.waitFor({ state: 'visible' });
+  await expect(radio).toHaveAttribute('aria-checked', 'true');
 });

@@ -7,19 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/mixins/fonts';
-@import 'mixins/shadow-dom/hover';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/text-truncation';
+@use './common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/shadow-dom/hover';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/text-truncation';
 
 $focusBorderWidth: 1px;
 
 :host {
-  @include ix-component;
   display: flex;
   min-height: 2.25rem;
   height: 2.25rem;
+
+  @include component.ix-component;
 
   > button {
     display: flex;
@@ -42,7 +43,7 @@ $focusBorderWidth: 1px;
   }
 
   ix-icon {
-    margin-right: $tiny-space;
+    margin-right: vars.$tiny-space;
     margin-top: -0.125rem;
   }
 
@@ -50,26 +51,26 @@ $focusBorderWidth: 1px;
     position: absolute;
     left: -#{$focusBorderWidth};
     height: calc(100% + #{$focusBorderWidth * 2});
-    width: $tiny-space;
+    width: vars.$tiny-space;
   }
 
   .group-entry-text {
-    @include text-default;
-    @include ellipsis();
+    @include fonts.text-default;
+    @include text-truncation.ellipsis();
   }
 
   .group-entry-text-secondary {
-    &,
-    span {
-      @include text-default;
-      @include ellipsis;
-    }
-
     display: flex;
     justify-content: flex-end;
     flex-grow: 1;
     white-space: nowrap;
     color: var(--theme-color-soft-text);
+
+    &,
+    span {
+      @include fonts.text-default;
+      @include text-truncation.ellipsis;
+    }
   }
 }
 

@@ -6,22 +6,22 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/component';
 
-@import './../chip/chip-mixin';
-@import 'common-variables';
-@import 'mixins/text-truncation';
+@use './../chip/chip-mixin';
+@use 'mixins/text-truncation';
 
 :host {
-  @include ix-component;
   display: inline-block;
   position: relative;
   height: 1.25rem;
   max-height: 1.25rem;
   margin-left: 0.25rem;
+
+  @include component.ix-component;
 }
 
-@include chip-container(false);
+@include chip-mixin.chip-container(false);
 
 :host {
   .container {
