@@ -167,9 +167,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Event() ixBlur!: EventEmitter<void>;
 
   /**
-   * Event emitted when the input value is committed (e.g., on blur or enter key)
+   * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
    */
-  @Event() ixChange!: EventEmitter<number>;
+  @Event({ cancelable: true }) ixChange!: EventEmitter<number>;
 
   @State() isInvalid = false;
   @State() isValid = false;
@@ -317,9 +317,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
               valueChange={(value) => this.valueChange.emit(Number(value))}
-              updateFormInternalValue={(value) =>
-                this.updateFormInternalValue(Number(value))
-              }
+              updateFormInternalValue={(value) => {
+                const numericValue = value === '' ? 0 : Number(value);
+                this.updateFormInternalValue(numericValue);
+              }}
               onBlur={() => {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;

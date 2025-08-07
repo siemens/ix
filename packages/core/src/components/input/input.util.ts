@@ -177,7 +177,7 @@ export const addDisposableChangesAndVisibilityObservers = (
   };
 };
 
-function observeElementUntilVisible(
+export function observeElementUntilVisible(
   hostElement: HTMLElement,
   updateCallback: () => void
 ): IntersectionObserver {
@@ -199,7 +199,10 @@ export function handleValueChange<T>(
   emitter: EventEmitter<T>
 ): T {
   if (newValue !== oldValue) {
-    emitter.emit(newValue);
+    const event = emitter.emit(newValue);
+    if (event.defaultPrevented) {
+      return oldValue;
+    }
   }
   return newValue;
 }

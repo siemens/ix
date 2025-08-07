@@ -642,7 +642,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
    */
   validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
   /**
-   * Event emitted when the input value is committed
+   * Event emitted when the date input value with any change is committed
    */
   ixChange: EventEmitter<CustomEvent<string | undefined>>;
 }
@@ -1300,7 +1300,7 @@ export declare interface IxInput extends Components.IxInput {
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the input value is committed (e.g., on blur or enter key)
+   * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
    */
   ixChange: EventEmitter<CustomEvent<string>>;
 }
@@ -1996,7 +1996,7 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the input value is committed (e.g., on blur or enter key)
+   * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
    */
   ixChange: EventEmitter<CustomEvent<number>>;
 }
@@ -2286,7 +2286,7 @@ export declare interface IxSelect extends Components.IxSelect {
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the input value is committed
+   * Event emitted when the selected value is changed
    */
   ixChange: EventEmitter<CustomEvent<string | string[]>>;
 }
@@ -2489,7 +2489,7 @@ export declare interface IxTextarea extends Components.IxTextarea {
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the textarea value is committed (e.g., on blur or enter key)
+   * Event emitted when the textarea value with any change is committed (e.g., on blur or enter key)
    */
   ixChange: EventEmitter<CustomEvent<string>>;
 }
@@ -2550,7 +2550,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    */
   validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
   /**
-   * Event emitted when the input value is committed
+   * Event emitted when the time input value with any change is committed
    */
   ixChange: EventEmitter<CustomEvent<string>>;
 }

@@ -159,9 +159,9 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Event() ixBlur!: EventEmitter<void>;
 
   /**
-   * Event emitted when the textarea value is committed (e.g., on blur or enter key)
+   * Event emitted when the textarea value with any change is committed (e.g., on blur or enter key)
    */
-  @Event() ixChange!: EventEmitter<string>;
+  @Event({ cancelable: true }) ixChange!: EventEmitter<string>;
 
   @State() isInvalid = false;
   @State() isValid = false;

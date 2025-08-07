@@ -6476,7 +6476,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event emitted when the input value is committed",
+          "docs": "Event emitted when the date input value with any change is committed",
           "docsTags": []
         },
         {
@@ -12863,7 +12863,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event emitted when the input value is committed (e.g., on blur or enter key)",
+          "docs": "Event emitted when the input value with any change is committed (e.g., on blur or enter key)",
           "docsTags": []
         },
         {
@@ -17803,7 +17803,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event emitted when the input value is committed (e.g., on blur or enter key)",
+          "docs": "Event emitted when the input value with any change is committed (e.g., on blur or enter key)",
           "docsTags": []
         },
         {
@@ -21154,7 +21154,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event emitted when the input value is committed",
+          "docs": "Event emitted when the selected value is changed",
           "docsTags": []
         },
         {
@@ -23499,7 +23499,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event emitted when the textarea value is committed (e.g., on blur or enter key)",
+          "docs": "Event emitted when the textarea value with any change is committed (e.g., on blur or enter key)",
           "docsTags": []
         },
         {
@@ -24427,7 +24427,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event emitted when the input value is committed",
+          "docs": "Event emitted when the time input value with any change is committed",
           "docsTags": []
         },
         {

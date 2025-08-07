@@ -6833,7 +6833,7 @@ declare namespace LocalJSX {
         "name"?: string;
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
-          * Event emitted when the input value is committed
+          * Event emitted when the date input value with any change is committed
          */
         "onIxChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
@@ -7867,7 +7867,7 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
         /**
-          * Event emitted when the input value is committed (e.g., on blur or enter key)
+          * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
          */
         "onIxChange"?: (event: IxInputCustomEvent<string>) => void;
         /**
@@ -8558,7 +8558,7 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
         /**
-          * Event emitted when the input value is committed (e.g., on blur or enter key)
+          * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
          */
         "onIxChange"?: (event: IxNumberInputCustomEvent<number>) => void;
         /**
@@ -9099,7 +9099,7 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxSelectCustomEvent<void>) => void;
         /**
-          * Event emitted when the input value is committed
+          * Event emitted when the selected value is changed
          */
         "onIxChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
         /**
@@ -9406,7 +9406,7 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
         /**
-          * Event emitted when the textarea value is committed (e.g., on blur or enter key)
+          * Event emitted when the textarea value with any change is committed (e.g., on blur or enter key)
          */
         "onIxChange"?: (event: IxTextareaCustomEvent<string>) => void;
         /**
@@ -9564,7 +9564,7 @@ declare namespace LocalJSX {
         "name"?: string;
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
-          * Event emitted when the input value is committed
+          * Event emitted when the time input value with any change is committed
          */
         "onIxChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         "onIxFocus"?: (event: IxTimeInputCustomEvent<void>) => void;

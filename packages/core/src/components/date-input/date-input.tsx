@@ -198,9 +198,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
 
   /**
-   * Event emitted when the input value is committed
+   * Event emitted when the date input value with any change is committed
    */
-  @Event() ixChange!: EventEmitter<string | undefined>;
+  @Event({ cancelable: true }) ixChange!: EventEmitter<string | undefined>;
 
   /** @internal */
   @Event() ixFocus!: EventEmitter<void>;
@@ -296,16 +296,22 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   async onInput(value: string | undefined) {
-    this.value = value;
-    this.valueChange.emit(value);
+    const newValue = handleValueChange(value, this.oldValue, this.ixChange);
 
-    if (!value) {
+    if (newValue !== value) {
+      return;
+    }
+    this.oldValue = newValue;
+    this.value = newValue;
+    this.valueChange.emit(newValue);
+
+    if (!newValue) {
       this.updateFormInternalValue(undefined);
       this.from = undefined;
     } else if (!this.format) {
-      this.updateFormInternalValue(value);
+      this.updateFormInternalValue(newValue);
     } else {
-      const date = DateTime.fromFormat(value, this.format);
+      const date = DateTime.fromFormat(newValue, this.format);
       const minDate = DateTime.fromFormat(this.minDate, this.format);
       const maxDate = DateTime.fromFormat(this.maxDate, this.format);
 
@@ -315,24 +321,19 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
         this.invalidReason = date.invalidReason || undefined;
         this.from = undefined;
       } else {
-        this.updateFormInternalValue(value);
-        this.from = value;
+        this.updateFormInternalValue(newValue);
+        this.from = newValue;
         this.closeDropdown();
       }
     }
-    this.oldValue = handleValueChange(value, this.oldValue, this.ixChange);
   }
 
   onCalenderClick(event: Event) {
-    if (event.defaultPrevented) {
-      return;
-    }
     if (!this.show) {
       event.stopPropagation();
       event.preventDefault();
       this.openDropdown();
     }
-
     if (this.inputElementRef.current) {
       this.inputElementRef.current.focus();
     }
@@ -399,9 +400,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.onInput(target.value);
           }}
           onClick={(event) => {
-            if (event.defaultPrevented) {
-              return;
-            }
             if (this.show) {
               event.stopPropagation();
               event.preventDefault();

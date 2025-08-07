@@ -162,9 +162,9 @@ export class Input implements IxInputFieldComponent<string> {
   @Event() ixBlur!: EventEmitter<void>;
 
   /**
-   * Event emitted when the input value is committed (e.g., on blur or enter key)
+   * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
    */
-  @Event() ixChange!: EventEmitter<string>;
+  @Event({ cancelable: true }) ixChange!: EventEmitter<string>;
 
   @State() isInvalid = false;
   @State() isValid = false;
@@ -322,7 +322,21 @@ export class Input implements IxInputFieldComponent<string> {
               }}
               ariaAttributes={inputAria}
               onChange={() => {
-                this.ixChange.emit(this.value);
+                const input = this.inputRef.current;
+                const newValue = input?.value;
+
+                if (!input || newValue === undefined) return;
+
+                const event = this.ixChange.emit(newValue);
+
+                if (event.defaultPrevented) {
+                  input.value = this.value;
+                  this.updateFormInternalValue(this.value);
+                } else {
+                  this.value = newValue;
+                  this.valueChange.emit(newValue);
+                  this.updateFormInternalValue(newValue);
+                }
               }}
             ></InputElement>
             <SlotEnd
