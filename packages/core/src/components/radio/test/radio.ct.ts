@@ -58,15 +58,12 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
   const nativeInput = radioElement.locator('input');
   const label = radioElement.locator('label');
 
-  const checkedChange$ = radioElement.evaluate(
-    (element: HTMLElement) => {
-      // Needed for testcase
-      (element as any).disabled = undefined as any;
-      return new Promise<void>((resolve) => {
-        element.addEventListener('checkedChange', () => resolve());
-      });
-    }
-  );
+  const checkedChange$ = radioElement.evaluate((element: HTMLElement) => {
+    (element as any).disabled = undefined as any;
+    return new Promise<void>((resolve) => {
+      element.addEventListener('checkedChange', () => resolve());
+    });
+  });
 
   await radioElement.click();
   await checkedChange$;
