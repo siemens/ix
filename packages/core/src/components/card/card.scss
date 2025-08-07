@@ -6,10 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -22,6 +21,8 @@
 
   border: 1px solid var(--ix-card-border-color, var(--theme-color-soft-bdr));
   border-radius: var(--theme-default-border-radius);
+
+  @include component.ix-component;
 
   .card-content {
     display: block;
@@ -56,16 +57,16 @@
 }
 
 :host(.card-outline) {
-  @include accordionChevronColorPrimary;
-
   --ix-card-background: var(--theme-color-ghost);
   --ix-card-border-color: var(--theme-color-soft-bdr);
+
+  @include accordionChevronColorPrimary;
 }
 
 :host(.card-filled) {
-  @include accordionChevronColorPrimary;
-
   --ix-card-background: var(--theme-color-component-1);
+
+  @include accordionChevronColorPrimary;
 }
 
 :host(.card-alarm) {

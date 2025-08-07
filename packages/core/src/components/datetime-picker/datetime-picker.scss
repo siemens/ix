@@ -7,17 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
-
   display: block;
   background-color: var(--theme-menu--background);
   border-radius: 4px;
   position: relative;
   width: min-content;
+
+  @include component.ix-component;
 
   ix-layout-grid {
     border-radius: 0.25rem;
@@ -72,7 +72,7 @@
   }
 
   .btn-select-date-container {
-    padding: 0 $default-space $default-space;
+    padding: 0 vars.$default-space vars.$default-space;
 
     @media (max-width: 576px) {
       & .btn-select-date {

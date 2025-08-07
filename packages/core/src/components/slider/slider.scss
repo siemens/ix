@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/component';
 
 @mixin track {
   // Chrome, Safari, Opera, and Edge Chromium
@@ -88,7 +88,6 @@
 }
 
 :host {
-  @include ix-component;
   display: flex;
   flex-direction: column;
   min-height: 2rem;
@@ -102,6 +101,8 @@
   --tick-color: var(--theme-color-8);
   --tick-color--active: var(--theme-color-dynamic);
   --track-color: var(--theme-color-component-4);
+
+  @include component.ix-component;
 
   input[type='range'] {
     position: absolute;
