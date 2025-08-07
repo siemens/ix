@@ -2416,6 +2416,7 @@ export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxTogg
         disabled: 'disabled',
         loading: 'loading',
         icon: 'icon',
+        iconRight: 'icon-right',
         pressed: 'pressed',
         ariaLabelButton: 'aria-label-button'
     },

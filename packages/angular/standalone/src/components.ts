@@ -2945,14 +2945,14 @@ export declare interface IxToggle extends Components.IxToggle {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxToggleButton,
-  inputs: ['ariaLabelButton', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant']
+  inputs: ['ariaLabelButton', 'disabled', 'ghost', 'icon', 'iconRight', 'loading', 'outline', 'pressed', 'variant']
 })
 @Component({
   selector: 'ix-toggle-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelButton', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant'],
+  inputs: ['ariaLabelButton', 'disabled', 'ghost', 'icon', 'iconRight', 'loading', 'outline', 'pressed', 'variant'],
   standalone: true
 })
 export class IxToggleButton {
