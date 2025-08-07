@@ -25,6 +25,10 @@ export function genericRender(
     delete args.defaultSlot;
   }
 
+  if (args['styles']) {
+    Object.assign(element.style, args['styles']);
+    delete args['styles'];
+  }
   if (args['previewWidth']) {
     element.style.width = `${args['previewWidth']}`;
     delete args['previewWidth'];
