@@ -7,13 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
-  margin: $small-space $small-space 0rem $small-space;
+  margin: vars.$small-space vars.$small-space 0rem vars.$small-space;
+
+  @include component.ix-component;
 
   .message-container {
     display: flex;
@@ -22,10 +23,10 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     min-height: 3.375rem;
-    padding: calc(#{$medium-space} - var(--theme-message-bar--border-thickness))
-      $medium-space
-      calc(#{$medium-space} - var(--theme-message-bar--border-thickness))
-      $default-space;
+    padding: calc(#{vars.$medium-space} - var(--theme-message-bar--border-thickness))
+      vars.$medium-space
+      calc(#{vars.$medium-space} - var(--theme-message-bar--border-thickness))
+      vars.$default-space;
     border-radius: var(--theme-message-bar--border-radius);
     background-color: var(--theme-messagebar--background);
   }
@@ -49,17 +50,18 @@
 
 
   .message-content {
-    @include ellipsis;
     flex-grow: 1;
     align-self: center;
     min-height: 1.25rem;
-    padding: 0 $default-space;
+    padding: 0 vars.$default-space;
     font-weight: normal;
     white-space: normal;
+
+    @include text-truncation.ellipsis;
   }
 
   ix-icon {
-    margin-top: $tiny-space;
+    margin-top: vars.$tiny-space;
   }
 
   .message-bar-hidden {

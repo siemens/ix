@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   width: auto;
   display: flex;
   align-items: center;
   position: relative;
+
+  @include component.ix-component;
 
   .tab-items {
     overflow: hidden;
