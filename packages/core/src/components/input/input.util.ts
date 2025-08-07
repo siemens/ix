@@ -191,3 +191,7 @@ function observeElementUntilVisible(
   intersectionObserver.observe(hostElement);
   return intersectionObserver;
 }
+
+export const inputValue = (value: unknown) => {
+  return typeof value === 'string' ? value : JSON.stringify(value);
+};
