@@ -77,6 +77,12 @@ export class Button implements IxButtonComponent {
    */
   @Prop() icon?: string;
 
+  /**
+   * Icon name for the right side of the button
+   * @since 3.3.0
+   */
+  @Prop() iconRight?: string;
+
   /** @internal */
   @Prop() alignment: 'center' | 'start' = 'center';
 
@@ -159,6 +165,7 @@ export class Button implements IxButtonComponent {
       selected: false,
       disabled: this.disabled || this.loading,
       icon: this.icon,
+      iconRight: this.iconRight,
       iconSize: this.iconSize,
       loading: this.loading,
       onClick: () => this.dispatchFormEvents(),
