@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'legacy/mixins/fonts';
+@use 'legacy/mixins/fonts';
 
 @mixin bs-legacy-support {
   --bs-table-color-type: initial;
@@ -33,7 +33,7 @@
   color: var(--theme-color-std-text);
   vertical-align: top;
   border-color: var(--theme-table--border-color);
-  @include text-default;
+  @include fonts.text-default;
   @include bs-legacy-support;
 
   --ix-table-background: var(--theme-table--background);

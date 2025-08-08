@@ -6,11 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/input';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/validation/form-component';
+@use 'mixins/input';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/validation/form-component';
 
-@include form;
+@include input.form;
 
 @mixin applySpacingToStartSlot {
   .start-container ::slotted(*) {
@@ -46,12 +46,12 @@
 
 @mixin input-field {
   :host {
-    @include ix-component;
-
     display: inline-block;
     position: relative;
 
     width: auto;
+
+    @include component.ix-component;
 
     .input-wrapper {
       display: flex;
@@ -101,9 +101,9 @@
     }
   }
 
-  @include host-valid;
+  @include form-component.host-valid;
 
-  @include host-info {
+  @include form-component.host-info {
     input {
       border-color: var(--theme-input--border-color--info);
     }
@@ -117,7 +117,7 @@
     }
   }
 
-  @include host-warning {
+  @include form-component.host-warning {
     input {
       border-color: var(
         --theme-input--border-color--warning--active
@@ -137,7 +137,7 @@
     }
   }
 
-  @include host-invalid {
+  @include form-component.host-invalid {
     input {
       background-color: var(--theme-input--background--invalid);
       border-color: var(--theme-input--border-color--invalid) !important;

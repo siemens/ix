@@ -6,14 +6,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
-@import 'common-variables';
-@import 'legacy/fonts';
-@import 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/text-truncation';
 
 :host {
-  @include ix-component;
-
   position: absolute;
   width: 100%;
   height: 100%;
@@ -22,6 +20,8 @@
   left: 0;
 
   background-color: var(--theme-overlay--background);
+
+  @include component.ix-component;
 
   .overlay-header {
     display: flex;
@@ -39,29 +39,30 @@
     min-width: 0;
 
     ix-icon {
-      margin-inline-start: $default-space;
+      margin-inline-start: vars.$default-space;
       color: var(--theme-overlay-header--color);
     }
 
     .overlay-header-title {
-      @include text-h2;
-      @include ellipsis;
       color: var(--theme-overlay-header--color);
-      margin-inline-start: $default-space;
+      margin-inline-start: vars.$default-space;
+
+      @include fonts.text-h2;
+      @include text-truncation.ellipsis;
     }
   }
 
   .color-indicator {
     display: inline-block;
     position: relative;
-    width: $small-space;
+    width: vars.$small-space;
     height: 100%;
     background-color: var(--theme-color-neutral);
   }
 
   .overlay-close {
     margin-inline-start: auto;
-    margin-inline-end: $default-space;
+    margin-inline-end: vars.$default-space;
   }
 
   .display-none {

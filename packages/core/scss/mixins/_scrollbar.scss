@@ -13,7 +13,8 @@
 
   @-moz-document url-prefix() {
     * {
-      scrollbar-color: var(--theme-scrollbar-thumb--background) var(--theme-scrollbar-track--background);
+      scrollbar-color: var(--theme-scrollbar-thumb--background)
+        var(--theme-scrollbar-track--background);
       scrollbar-width: thin;
     }
   }
