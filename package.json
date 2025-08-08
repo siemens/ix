@@ -16,7 +16,7 @@
   "packageManager": "pnpm@9.3.0",
   "engines": {
     "pnpm": ">=9.x.x",
-    "node": ">=18.x.x"
+    "node": "22.18.0"
   },
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
