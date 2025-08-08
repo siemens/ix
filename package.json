@@ -60,5 +60,8 @@
       "cheerio": "1.0.0-rc.12",
       "rollup": "npm:@rollup/wasm-node"
     }
+  },
+  "volta": {
+    "node": "22.18.0"
   }
 }
