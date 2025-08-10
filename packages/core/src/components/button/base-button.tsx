@@ -62,6 +62,7 @@ export type BaseButtonProps = {
   disabled: boolean;
   loading: boolean;
   icon?: string;
+  iconRight?: string;
   onClick?: Function;
   ariaAttributes?: A11yAttributes;
   extraClasses?: { [key: string]: boolean };
@@ -136,6 +137,14 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
       >
         {children}
       </div>
+      {props.iconRight ? (
+        <ix-icon
+          class="icon-right"
+          name={props.iconRight}
+          size={props.iconSize as any}
+          color={props.iconColor}
+        ></ix-icon>
+      ) : null}
       {props.afterContent ? props.afterContent : null}
     </button>
   );

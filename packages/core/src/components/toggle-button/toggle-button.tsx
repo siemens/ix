@@ -49,6 +49,12 @@ export class ToggleButton {
   @Prop() icon?: string;
 
   /**
+   * Icon name for the right side of the button
+   * @since 3.3.0
+   */
+  @Prop() iconRight?: string;
+
+  /**
    * Show button as pressed
    */
   @Prop() pressed = false;
@@ -80,6 +86,7 @@ export class ToggleButton {
       selected: this.pressed,
       disabled: this.disabled || this.loading,
       icon: this.icon,
+      iconRight: this.iconRight,
       loading: this.loading,
       onClick: () => this.dispatchPressedChange(),
       type: 'button',

@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'sass:map' as map;
+
 $screen-breakpoints: (
   sm: (
     max: 48em,
@@ -21,11 +23,11 @@ $screen-breakpoints: (
 );
 
 @function breakpoint-min($name, $breakpoints: $screen-breakpoints) {
-  @return map-get($map: map-get($map: $breakpoints, $key: $name), $key: min);
+  @return map.get($map: map.get($map: $breakpoints, $key: $name), $key: min);
 }
 
 @function breakpoint-max($name, $breakpoints: $screen-breakpoints) {
-  @return map-get($map: map-get($map: $breakpoints, $key: $name), $key: max);
+  @return map.get($map: map.get($map: $breakpoints, $key: $name), $key: max);
 }
 
 @mixin media-breakpoint-match($name, $breakpoints: $screen-breakpoints) {

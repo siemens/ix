@@ -1,14 +1,14 @@
-@import 'common-variables';
-@import 'mixins/text-truncation';
+@use './common-variables' as vars;
+@use 'mixins/text-truncation';
 
 :host(.keyValue) {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: $default-space;
+  gap: vars.$default-space;
 
   .keyValue__icon {
-    padding: $tiny-space 0;
+    padding: vars.$tiny-space 0;
   }
 
   .keyValue__content {
@@ -19,8 +19,9 @@
     &,
     .content__label,
     .content__value {
-      @include ellipsis;
       max-width: 100%;
+
+      @include text-truncation.ellipsis;
     }
 
     .content__label {
@@ -34,7 +35,7 @@
 }
 
 :host(.keyValue.keyValue--column) {
-  padding: $small-space 0;
+  padding: vars.$small-space 0;
   border-bottom: 1px solid var(--theme-color-soft-bdr);
 
   .keyValue__content {
@@ -48,11 +49,11 @@
 }
 
 :host(.keyValue.keyValue--row) {
-  padding: $tiny-space 0;
+  padding: vars.$tiny-space 0;
 
   .keyValue__content {
     flex-direction: row;
-    gap: $default-space;
+    gap: vars.$default-space;
     align-items: center;
 
     .content__label,
