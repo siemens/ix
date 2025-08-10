@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,13 +8,16 @@
  */
 
 import { Component } from '@angular/core';
-import { addIcons } from '@siemens/ix-icons';
-import { iconInfo } from '@siemens/ix-icons/icons';
-
-addIcons({ iconInfo });
 
 @Component({
   selector: 'app-example',
   templateUrl: './content-header-with-slot.html',
+  styles: [
+    `
+      .margin-top {
+        margin-top: 0.375rem;
+      }
+    `,
+  ],
 })
 export default class ContentHeaderWithSlot {}

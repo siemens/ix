@@ -1,5 +1,5 @@
 <!--
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -15,9 +15,11 @@ import { iconInfo } from '@siemens/ix-icons/icons';
 addIcons({ iconInfo });
 </script>
 
+<style scoped src="./content-header-with-slot.css"></style>
+
 <template>
   <IxContentHeader has-back-button header-title="Content title" header-subtitle="Subtitle">
-    <IxPill slot="header" icon="info">Label</IxPill>
+    <IxPill slot="header" icon="info" class="margin-top">Label</IxPill>
     <IxButton ghost>Button1</IxButton>
     <IxButton ghost>Button2</IxButton>
     <IxButton ghost>Button3</IxButton>
