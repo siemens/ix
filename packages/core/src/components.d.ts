@@ -3213,6 +3213,14 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * @default false
+         */
+        "disabledButton": boolean;
+        /**
+          * @default false
+         */
+        "disabledIcon": boolean;
+        /**
           * Button invisible
           * @default false
          */
@@ -9234,6 +9242,14 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "disabledButton"?: boolean;
+        /**
+          * @default false
+         */
+        "disabledIcon"?: boolean;
         /**
           * Button invisible
           * @default false
