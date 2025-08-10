@@ -9,7 +9,7 @@
 
 import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import { IxDropdownItem, IxSplitButton } from '@siemens/ix-react';
-import './split-button.css'
+import './split-button.scoped.css'
 
 export default () => {
   return (
