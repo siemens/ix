@@ -2594,7 +2594,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Indicates if the field is required
+          * Indicates if the field is required. When required, empty values (undefined) are not accepted.
           * @default false
          */
         "required": boolean;
@@ -2607,8 +2607,9 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Step value to increment or decrement the input value
+          * Step value to increment or decrement the input value. Default step value is 1.
           * @since 3.0.0
+          * @default 1
          */
         "step"?: string | number;
         /**
@@ -2616,10 +2617,10 @@ export namespace Components {
          */
         "validText"?: string;
         /**
-          * The value of the input field
+          * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
-        "value": number;
+        "value"?: number | undefined;
         /**
           * The warning text for the input field
          */
@@ -5315,7 +5316,7 @@ declare global {
         new (): HTMLIxModalLoadingElement;
     };
     interface HTMLIxNumberInputElementEventMap {
-        "valueChange": number;
+        "valueChange": number | undefined;
         "validityStateChange": ValidityState;
         "ixBlur": void;
     }
@@ -8565,7 +8566,7 @@ declare namespace LocalJSX {
         /**
           * Event emitted when the value of the input field changes
          */
-        "onValueChange"?: (event: IxNumberInputCustomEvent<number>) => void;
+        "onValueChange"?: (event: IxNumberInputCustomEvent<number | undefined>) => void;
         /**
           * The pattern for the input field
          */
@@ -8580,7 +8581,7 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * Indicates if the field is required
+          * Indicates if the field is required. When required, empty values (undefined) are not accepted.
           * @default false
          */
         "required"?: boolean;
@@ -8593,8 +8594,9 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Step value to increment or decrement the input value
+          * Step value to increment or decrement the input value. Default step value is 1.
           * @since 3.0.0
+          * @default 1
          */
         "step"?: string | number;
         /**
@@ -8602,10 +8604,10 @@ declare namespace LocalJSX {
          */
         "validText"?: string;
         /**
-          * The value of the input field
+          * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
-        "value"?: number;
+        "value"?: number | undefined;
         /**
           * The warning text for the input field
          */
