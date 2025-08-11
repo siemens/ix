@@ -98,7 +98,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/siemen
 
 1. **Node.js Setup**: This project uses [Volta](https://volta.sh/) to pin Node.js version 22.18.0. You can either:
    - Install [Volta](https://volta.sh/) and let it automatically manage the correct Node.js version when you enter the project directory
-   - Or manually [download the installer](https://nodejs.org/) for Node.js v22.18.0 and [install pnpm](https://pnpm.io/installation)
+   - Or manually [download the installer](https://nodejs.org/) for Node.js and [install pnpm](https://pnpm.io/installation). Checkout `<root>/package.json` the property `volta` for the defined versions.
 2. Fork this repository.
 3. Clone your fork.
 4. Create a new branch from main for your change.
