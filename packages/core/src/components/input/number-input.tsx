@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -19,6 +19,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import {
   HookValidationLifecycle,
@@ -50,7 +51,7 @@ let numberInputIds = 0;
   shadow: true,
   formAssociated: true,
 })
-export class NumberInput implements IxInputFieldComponent<number> {
+export class NumberInput implements IxInputFieldComponent<number | undefined> {
   @Element() hostElement!: HTMLIxNumberInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -65,12 +66,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop({ reflect: true }) placeholder?: string;
 
   /**
-   * The value of the input field
+   * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
    */
-  @Prop({ reflect: true, mutable: true }) value: number = 0;
+  @Prop({ reflect: true, mutable: true }) value?: number | undefined = 0;
 
   /**
-   * Indicates if the field is required
+   * Indicates if the field is required. When required, empty values (undefined) are not accepted.
    */
   @Prop({ reflect: true }) required: boolean = false;
 
@@ -145,16 +146,16 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop() showStepperButtons?: boolean;
 
   /**
-   * Step value to increment or decrement the input value
+   * Step value to increment or decrement the input value. Default step value is 1.
    *
    * @since 3.0.0
    */
-  @Prop() step?: string | number;
+  @Prop() step?: string | number = 1;
 
   /**
    * Event emitted when the value of the input field changes
    */
-  @Event() valueChange!: EventEmitter<number>;
+  @Event() valueChange!: EventEmitter<number | undefined>;
 
   /**
    * Event emitted when the validity state of the input field changes
@@ -179,6 +180,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  @Watch('value')
+  onValueChange(newValue: number | undefined) {
+    this.updateFormInternalValue(newValue);
+  }
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -209,9 +215,93 @@ export class NumberInput implements IxInputFieldComponent<number> {
     );
   }
 
-  updateFormInternalValue(value: number) {
-    this.formInternals.setFormValue(value.toString());
+  private parseScientificNotation(input: string): number | undefined {
+    if (!input || input.trim() === '') {
+      return undefined;
+    }
+
+    // Handle scientific notation (1E6, 1E-6, 1e6, 1e-6)
+    const scientificRegex = /^[+-]?(\d+\.?\d*|\.\d+)[eE][+-]?\d+$/i;
+    const isScientific = scientificRegex.test(input.trim());
+
+    if (isScientific) {
+      const parsed = parseFloat(input);
+      return isNaN(parsed) ? undefined : parsed;
+    }
+
+    const parsed = parseFloat(input);
+    return isNaN(parsed) ? undefined : parsed;
+  }
+
+  private formatValue(value: number | undefined): string {
+    if (value === undefined || value === null) {
+      return '';
+    }
+    return value.toString();
+  }
+
+  updateFormInternalValue(value: number | undefined) {
+    const formValue = value !== undefined && value !== null ? value.toString() : '';
+    this.formInternals.setFormValue(formValue);
     this.value = value;
+  }
+
+  private handleInputChange = (inputValue: string) => {
+    const parsedValue = this.parseScientificNotation(inputValue);
+    this.updateFormInternalValue(parsedValue);
+    this.valueChange.emit(parsedValue);
+  };
+
+  private handleKeyDown = (event: KeyboardEvent) => {
+    if (this.disabled || this.readonly) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowUp':
+        event.preventDefault();
+        this.handleStepOperation('up');
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        this.handleStepOperation('down');
+        break;
+    }
+  };
+
+  private handleStepOperation(operation: 'up' | 'down') {
+    if (!this.inputRef.current) {
+      return;
+    }
+
+    const currentValue = this.value ?? 0;
+    const stepValue =
+      typeof this.step === 'string' ? parseFloat(this.step) : (this.step ?? 1);
+
+    let newValue: number;
+
+    if (operation === 'up') {
+      newValue = currentValue + stepValue;
+    } else {
+      newValue = currentValue - stepValue;
+    }
+
+    if (this.min !== undefined) {
+      const minValue =
+        typeof this.min === 'string' ? parseFloat(this.min) : this.min;
+      newValue = Math.max(newValue, minValue);
+    }
+
+    if (this.max !== undefined) {
+      const maxValue =
+        typeof this.max === 'string' ? parseFloat(this.max) : this.max;
+      newValue = Math.min(newValue, maxValue);
+    }
+
+    this.inputRef.current.value = newValue.toString();
+    this.updateFormInternalValue(newValue);
+    checkInternalValidity(this, this.inputRef.current);
+    this.valueChange.emit(newValue);
   }
 
   /** @internal */
@@ -225,12 +315,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
   async hasValidValue(): Promise<boolean> {
     const nativeInput = await this.getNativeInputElement();
     if (nativeInput.value === '') {
-      return Promise.resolve(false);
+      return Promise.resolve(!this.required);
     }
 
-    return Promise.resolve(
-      this.value !== null && this.value !== undefined && !isNaN(this.value)
-    );
+    const parsedValue = this.parseScientificNotation(nativeInput.value);
+    return Promise.resolve(parsedValue !== undefined);
   }
 
   /**
@@ -304,17 +393,19 @@ export class NumberInput implements IxInputFieldComponent<number> {
               min={this.min}
               max={this.max}
               pattern={this.pattern}
-              type={'number'}
+              type={'text'}
               isInvalid={this.isInvalid}
               required={this.required}
-              value={this.value}
+              value={this.formatValue(this.value)}
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
-              valueChange={(value) => this.valueChange.emit(Number(value))}
-              updateFormInternalValue={(value) =>
-                this.updateFormInternalValue(Number(value))
-              }
+              onKeyDown={(event) => this.handleKeyDown(event)}
+              valueChange={this.handleInputChange}
+              updateFormInternalValue={(value) => {
+                const parsedValue = this.parseScientificNotation(value);
+                this.updateFormInternalValue(parsedValue);
+              }}
               onBlur={() => {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
@@ -336,17 +427,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   size="16"
                   class="number-stepper-button step-minus"
                   aria-label="decrement number"
-                  onClick={() => {
-                    if (!this.inputRef.current) {
-                      return;
-                    }
-                    this.inputRef.current.stepDown();
-                    checkInternalValidity(this, this.inputRef.current);
-                    this.updateFormInternalValue(
-                      Number(this.inputRef.current.value)
-                    );
-                    this.valueChange.emit(this.value);
-                  }}
+                  onClick={() => this.handleStepOperation('down')}
                 ></ix-icon-button>
                 <ix-icon-button
                   variant="subtle-tertiary"
@@ -354,17 +435,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   size="16"
                   class="number-stepper-button step-plus"
                   aria-label="increment number"
-                  onClick={() => {
-                    if (!this.inputRef.current) {
-                      return;
-                    }
-                    this.inputRef.current.stepUp();
-                    checkInternalValidity(this, this.inputRef.current);
-                    this.updateFormInternalValue(
-                      Number(this.inputRef.current.value)
-                    );
-                    this.valueChange.emit(this.value);
-                  }}
+                  onClick={() => this.handleStepOperation('up')}
                 ></ix-icon-button>
               </div>
             </SlotEnd>

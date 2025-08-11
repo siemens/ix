@@ -81,6 +81,7 @@ export function InputElement(
     placeholder?: string;
     inputRef: (el: HTMLInputElement | undefined) => void;
     onKeyPress: (event: KeyboardEvent) => void;
+    onKeyDown?: (event: KeyboardEvent) => void;
     valueChange: (value: string) => void;
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
@@ -108,6 +109,7 @@ export function InputElement(
       value={props.value}
       placeholder={props.placeholder}
       onKeyPress={(event) => props.onKeyPress(event)}
+      onKeyDown={(event) => props.onKeyDown?.(event)}
       onInput={(inputEvent) => {
         const target = inputEvent.target as HTMLInputElement;
         props.updateFormInternalValue(target.value);

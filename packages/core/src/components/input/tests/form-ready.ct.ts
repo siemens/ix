@@ -41,6 +41,37 @@ regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   expect(formData).toBe('123');
 });
 
+regressionTest(
+  `form-ready - ix-number-input with scientific notation`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-number-input name="my-field-name"></ix-number-input></form>`
+    );
+
+    const formElement = page.locator('form');
+    preventFormSubmission(formElement);
+    const input = page.locator('ix-number-input').locator('input');
+
+    // Test positive scientific notation
+    await input.fill('1E6');
+    await input.blur();
+    let formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe('1000000');
+
+    // Test negative scientific notation
+    await input.fill('1E-6');
+    await input.blur();
+    formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe('0.000001');
+
+    // Test lowercase scientific notation
+    await input.fill('2.5e3');
+    await input.blur();
+    formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe('2500');
+  }
+);
+
 regressionTest(`form-ready - ix-textarea`, async ({ mount, page }) => {
   await mount(`<form><ix-textarea name="my-field-name"></ix-textarea></form>`);
 
@@ -83,6 +114,30 @@ regressionTest(
 );
 
 regressionTest(
+  `form-ready - ix-number-input required validation with undefined value`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-number-input name="my-field-name" required></ix-number-input></form>`
+    );
+
+    const numberInput = page.locator('ix-number-input');
+    const input = numberInput.locator('input');
+
+    await expect(numberInput).toHaveClass(/hydrated/);
+
+    await numberInput.evaluate((el) => {
+      // @ts-ignore
+      el.value = undefined;
+    });
+
+    await input.focus();
+    await input.blur();
+
+    await expect(numberInput).toHaveClass(/invalid/);
+  }
+);
+
+regressionTest(
   `form-ready - ix-textarea with initial value`,
   async ({ mount, page }) => {
     await mount(
@@ -113,6 +168,7 @@ regressionTest(
     await expect(counter).toHaveText('0/100');
   }
 );
+
 regressionTest(
   'form-ready - input correctly renders character counter with null value',
   async ({ mount, page }) => {

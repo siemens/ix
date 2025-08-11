@@ -18268,7 +18268,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": true,
-          "docs": "Indicates if the field is required",
+          "docs": "Indicates if the field is required. When required, empty values (undefined) are not accepted.",
           "docsTags": [
             {
               "name": "default",
@@ -18349,13 +18349,18 @@
           "mutable": false,
           "attr": "step",
           "reflectToAttr": false,
-          "docs": "Step value to increment or decrement the input value",
+          "docs": "Step value to increment or decrement the input value. Default step value is 1.",
           "docsTags": [
             {
               "name": "since",
               "text": "3.0.0"
+            },
+            {
+              "name": "default",
+              "text": "1"
             }
           ],
+          "default": "1",
           "values": [
             {
               "type": "number"
@@ -18400,16 +18405,16 @@
         },
         {
           "name": "value",
-          "type": "number",
+          "type": "number | undefined",
           "complexType": {
-            "original": "number",
-            "resolved": "number",
+            "original": "number | undefined",
+            "resolved": "number | undefined",
             "references": {}
           },
           "mutable": true,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "The value of the input field",
+          "docs": "The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.",
           "docsTags": [
             {
               "name": "default",
@@ -18420,9 +18425,12 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "undefined"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -18540,11 +18548,11 @@
         },
         {
           "event": "valueChange",
-          "detail": "number",
+          "detail": "number | undefined",
           "bubbles": true,
           "complexType": {
-            "original": "number",
-            "resolved": "number",
+            "original": "number | undefined",
+            "resolved": "number | undefined",
             "references": {}
           },
           "cancelable": true,

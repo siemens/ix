@@ -2119,7 +2119,7 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
   /**
    * Event emitted when the value of the input field changes
    */
-  valueChange: EventEmitter<CustomEvent<number>>;
+  valueChange: EventEmitter<CustomEvent<number | undefined>>;
   /**
    * Event emitted when the validity state of the input field changes
    */
