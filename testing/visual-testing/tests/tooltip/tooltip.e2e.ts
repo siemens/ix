@@ -22,7 +22,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: 0.001,
     });
   });
 
@@ -37,7 +37,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: 0.001,
     });
   });
 
@@ -52,7 +52,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: 0.001,
     });
   });
 
@@ -67,7 +67,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: 0.001,
     });
   });
 
@@ -160,7 +160,7 @@ regressionTest.describe('tooltip', () => {
       <div style="width: 10rem; height: 10rem">
         <ix-button id="trigger" style="position: absolute; left: 20rem; top: 10rem;">Trigger</ix-button>
         <ix-tooltip for="#trigger" placement="left">
-          Tooltip content 123 123
+          Tooltip content 321 321
         </ix-tooltip>
       </div>
     `);
