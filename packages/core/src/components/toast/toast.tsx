@@ -16,6 +16,7 @@ import {
   Host,
   Prop,
   State,
+  Method,
 } from '@stencil/core';
 import { ToastType } from './toast-utils';
 import {
@@ -77,8 +78,15 @@ export class Toast {
 
   @State() progress = 0;
   @State() touched = false;
+  @State() isPaused = false;
 
   @Element() hostElement!: HTMLIxToastElement;
+
+  @Method()
+  async togglePause() {
+    if (!this.autoClose) return;
+    this.isPaused = !this.isPaused;
+  }
 
   private getIcon() {
     if (this.icon) {
@@ -152,9 +160,12 @@ export class Toast {
 
     const progressBarClass = ['toast-progress-bar'];
 
+    const animationPlayState =
+      this.touched || this.isPaused ? 'paused' : 'running';
+
     progressBarStyle = {
       animationDuration: `${this.autoCloseDelay}ms`,
-      animationPlayState: this.touched ? 'paused' : 'running',
+      animationPlayState: animationPlayState,
     };
 
     progressBarClass.push('toast-progress-bar--animated');
@@ -184,6 +195,12 @@ export class Toast {
             </div>
             <div class="toast-action">
               <slot name="action"></slot>
+              <ix-button
+                onClick={() => this.togglePause()}
+                style={{ marginLeft: '0.5rem' }}
+              >
+                {this.isPaused ? 'Resume' : 'Pause'}
+              </ix-button>
             </div>
           </div>
           <div class="toast-close">
