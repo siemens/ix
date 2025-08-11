@@ -308,6 +308,7 @@ export class Input implements IxInputFieldComponent<string> {
               type={this.inputType}
               isInvalid={this.isInvalid}
               required={this.required}
+              valueType="string"
               value={this.value}
               placeholder={this.placeholder}
               inputRef={this.inputRef}

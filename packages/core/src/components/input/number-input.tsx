@@ -312,6 +312,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
               type={'number'}
               isInvalid={this.isInvalid}
               required={this.required}
+              valueType="number"
               value={this.value}
               placeholder={this.placeholder}
               inputRef={this.inputRef}
@@ -326,7 +327,18 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 this.touched = true;
               }}
               onChange={() => {
-                this.ixChange.emit(this.value);
+                const input = this.inputRef.current;
+                if (!input) return;
+                const newValue = Number(input.value);
+                const event = this.ixChange.emit(newValue);
+                if (event.defaultPrevented) {
+                  input.value = this.value.toString();
+                  this.updateFormInternalValue(this.value);
+                } else {
+                  this.value = newValue;
+                  this.updateFormInternalValue(newValue);
+                  this.valueChange.emit(newValue);
+                }
               }}
             ></InputElement>
             <SlotEnd

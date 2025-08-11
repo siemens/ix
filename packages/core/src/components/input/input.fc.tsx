@@ -9,6 +9,7 @@
 import { h, FunctionalComponent } from '@stencil/core';
 import { MakeRef } from '../utils/make-ref';
 import { A11yAttributes } from '../utils/a11y';
+import { handleEnterKey } from './input.util';
 
 export function TextareaElement(
   props: Readonly<{
@@ -79,6 +80,7 @@ export function InputElement(
     type: string;
     isInvalid: boolean;
     required: boolean;
+    valueType?: 'string' | 'number';
     value: string | number;
     placeholder?: string;
     inputRef: (el: HTMLInputElement | undefined) => void;
@@ -122,10 +124,14 @@ export function InputElement(
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
           const input = e.target as HTMLInputElement;
-          const currentValue = input.value === '' ? 0 : Number(input.value);
-          const propValue = Number(props.value);
+          const currentValue = input.value;
+          const hasChanged = handleEnterKey(
+            currentValue,
+            props.value,
+            props.valueType ?? 'string'
+          );
 
-          if (currentValue !== propValue) {
+          if (hasChanged) {
             props.onChange();
           }
         }

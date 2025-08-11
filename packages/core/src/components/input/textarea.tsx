@@ -276,7 +276,20 @@ export class Textarea implements IxInputFieldComponent<string> {
                 this.updateFormInternalValue(value)
               }
               onChange={() => {
-                this.ixChange.emit(this.value);
+                const textarea = this.textAreaRef.current;
+                if (!textarea) return;
+
+                const newValue = textarea.value;
+                const event = this.ixChange.emit(newValue);
+
+                if (event.defaultPrevented) {
+                  textarea.value = this.value;
+                  this.updateFormInternalValue(this.value);
+                } else {
+                  this.value = newValue;
+                  this.updateFormInternalValue(newValue);
+                  this.valueChange.emit(newValue);
+                }
               }}
               onBlur={() => {
                 onInputBlur(this, this.textAreaRef.current);

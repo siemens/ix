@@ -206,3 +206,15 @@ export function handleValueChange<T>(
   }
   return newValue;
 }
+
+export function handleEnterKey<T>(
+  currentValue: string,
+  propValue: T,
+  valueType: 'string' | 'number'
+): boolean {
+  if (valueType === 'number') {
+    const numericCurrent = currentValue === '' ? 0 : Number(currentValue);
+    return numericCurrent !== (propValue as number);
+  }
+  return currentValue !== (propValue as string);
+}
