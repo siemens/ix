@@ -6,12 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
-@import 'legacy/components/button-group';
+@use 'mixins/shadow-dom/component';
+@use 'legacy/components/button-group';
 
 :host {
-  @include ix-component;
   display: inline-block;
+
+  @include component.ix-component;
 
   .btn-group {
     position: relative;
@@ -19,12 +20,15 @@
     vertical-align: middle;
     width: 100%;
 
-    > ix-button:nth-child(1) {
+    > ix-button:nth-child(1),
+    > ix-icon-button:nth-child(1) {
       width: calc(100% - 2rem);
+      --ix-button-border-radius-right: 0;
     }
 
-    > ix-button:nth-child(2) {
+    > ix-icon-button:nth-child(2) {
       width: 2rem;
+      --ix-button-border-radius-left: 0;
     }
   }
 

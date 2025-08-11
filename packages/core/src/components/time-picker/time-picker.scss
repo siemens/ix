@@ -7,19 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/input';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
+@use 'mixins/input';
+@use 'legacy/components/forms';
 
-@include form;
+@include input.form;
 
 :host {
-  @include ix-component;
-  @import 'legacy/components/forms';
-
   display: block;
   position: relative;
   width: fit-content;
+
+  @include component.ix-component;
 
   .standaloneAppearance {
     box-shadow: none;
@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: $large-control-height;
+    height: vars.$large-control-height;
   }
 
   .clock {
@@ -191,7 +191,7 @@
   }
 
   .default-space {
-    margin-left: $default-space;
+    margin-left: vars.$default-space;
   }
 
   .text-align {
