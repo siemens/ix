@@ -13,6 +13,10 @@ export function getExampleResourcesInput(): InputType {
     control: {
       type: 'select',
     },
-    options: ['/images/example-app-icon.svg', '/images/example-company.svg'],
+    options: [
+      '',
+      '/images/example-app-icon.svg',
+      '/images/example-company.svg',
+    ],
   };
 }

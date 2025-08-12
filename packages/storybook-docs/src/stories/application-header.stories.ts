@@ -94,13 +94,11 @@ export const Overflow: OverflowStory = {
       'ix-application-header'
     ) as HTMLIxApplicationHeaderElement;
 
-    generateSomeButtons('Default', args.defaultButtons, true).forEach(
-      (button) => {
-        applicationHeader.appendChild(button);
-      }
-    );
+    generateSomeButtons('Item', args.defaultButtons, true).forEach((button) => {
+      applicationHeader.appendChild(button);
+    });
 
-    generateSomeButtons('Secondary', args.overflowButtons).forEach((button) => {
+    generateSomeButtons('Slot item', args.overflowButtons).forEach((button) => {
       button.slot = 'secondary';
       applicationHeader.appendChild(button);
     });
@@ -129,7 +127,8 @@ export const withAvatar: Story = {
 
 function generateSomeButtons(prefix: string, count: number, outline = false) {
   return Array.from({ length: count }, (_, i) => {
-    const button = document.createElement('ix-button');
+    const button = document.createElement('ix-icon-button');
+    button.icon = 'star';
     button.innerText = `${prefix} Button ${i + 1}`;
     button.style.marginRight = '0.5rem';
     if (outline) {

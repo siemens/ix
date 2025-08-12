@@ -1,5 +1,8 @@
 import type { Preview } from '@storybook/web-components-vite';
-import { withThemeByClassName } from '@storybook/addon-themes';
+import {
+  withThemeByClassName,
+  withThemeByDataAttribute,
+} from '@storybook/addon-themes';
 import { defineCustomElement } from '@siemens/ix-icons/components/ix-icon.js';
 import './define-custom-elements';
 import { preloadIcons } from './preload-icons';

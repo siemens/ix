@@ -202,6 +202,10 @@ export class ApplicationHeader {
   }
 
   private attachSiemensLogoIfLoaded() {
+    if (this.companyLogo !== undefined && this.companyLogo !== '') {
+      return;
+    }
+
     const logoElement = document.createElement('ix-siemens-logo');
     if (!this.isLogoSlotted()) {
       this.hostElement
@@ -300,93 +304,106 @@ export class ApplicationHeader {
           [`breakpoint-${this.breakpoint}`]: true,
         }}
         slot="application-header"
+        role="navigation"
       >
-        {this.appIcon && (
-          <div class="app-icon">
-            <img src={this.appIcon} alt={this.appIconAlt} />
+        <div class="left-side">
+          {this.appIcon && (
+            <div class="app-icon">
+              <img src={this.appIcon} alt={this.appIconAlt} />
+            </div>
+          )}
+          {(this.showMenu || showMenuByApplicationFrame) && (
+            <ix-menu-expand-icon
+              onClick={() => this.onMenuClick()}
+              expanded={this.menuExpanded}
+              ixAriaLabel={this.ariaLabelMenuExpandIconButton}
+            ></ix-menu-expand-icon>
+          )}
+          {showApplicationSwitch && (
+            <ix-icon-button
+              onClick={() => this.showAppSwitch()}
+              icon={iconApps}
+              ghost
+              class="app-switch"
+              aria-label={this.ariaLabelAppSwitchIconButton}
+            ></ix-icon-button>
+          )}
+          <div
+            class={{
+              logo: true,
+              hasSlotted: !!(this.hasLogo || this.companyLogo),
+            }}
+          >
+            {this.companyLogo && (
+              <img src={this.companyLogo} alt={this.companyLogoAlt} />
+            )}
+            <slot
+              name="logo"
+              onSlotchange={(event) => this.updateHasLogo(event.target)}
+            ></slot>
           </div>
-        )}
-        {(this.showMenu || showMenuByApplicationFrame) && (
-          <ix-menu-expand-icon
-            onClick={() => this.onMenuClick()}
-            expanded={this.menuExpanded}
-            ixAriaLabel={this.ariaLabelMenuExpandIconButton}
-          ></ix-menu-expand-icon>
-        )}
-        {showApplicationSwitch && (
-          <ix-icon-button
-            onClick={() => this.showAppSwitch()}
-            icon={iconApps}
-            ghost
-            class="app-switch"
-            aria-label={this.ariaLabelAppSwitchIconButton}
-          ></ix-icon-button>
-        )}
-        <div
-          class={{
-            logo: true,
-            hasSlotted: !!(this.hasLogo || this.companyLogo),
-          }}
-        >
-          {this.companyLogo && (
-            <img src={this.companyLogo} alt={this.companyLogoAlt} />
-          )}
-          <slot
-            name="logo"
-            onSlotchange={(event) => this.updateHasLogo(event.target)}
-          ></slot>
-        </div>
-        <div class="name">
-          <ix-typography format="body-lg" class="application-name">
-            {this.name}
-          </ix-typography>
-          {this.nameSuffix && (
-            <ix-typography
-              format="body-xs"
-              textColor="soft"
-              class="application-name-suffix"
-            >
-              {this.nameSuffix}
+          <div class="name">
+            <ix-typography format="body-lg" class="application-name">
+              {this.name}
             </ix-typography>
-          )}
-        </div>
-        <div class="secondary">
-          <slot name="secondary"></slot>
-        </div>
-        <div class="content">
-          {this.breakpoint === 'sm' ? (
-            <Fragment>
-              <ix-icon-button
-                class={{
-                  ['context-menu']: true,
-                  ['context-menu-visible']: this.hasSlottedElements,
-                }}
-                data-context-menu
-                data-testid="show-more"
-                icon={iconMoreMenu}
-                ghost
-                aria-label={this.ariaLabelMoreMenuIconButton}
-              ></ix-icon-button>
-              <ix-dropdown
-                data-overflow-dropdown
-                class="dropdown"
-                discoverAllSubmenus
-                trigger={this.resolveContextMenuButton()}
+            {this.nameSuffix && (
+              <ix-typography
+                format="body-xs"
+                textColor="soft"
+                class="application-name-suffix"
               >
-                <div
-                  class="dropdown-content"
-                  onClick={(e) => this.onContentBgClick(e)}
-                >
-                  <slot
-                    onSlotchange={() => this.updateIsSlottedContent()}
-                  ></slot>
-                </div>
-              </ix-dropdown>
-            </Fragment>
-          ) : (
-            <slot onSlotchange={() => this.updateIsSlottedContent()}></slot>
+                {this.nameSuffix}
+              </ix-typography>
+            )}
+          </div>
+        </div>
+        <div class="right-side">
+          {this.breakpoint !== 'sm' && (
+            <div class="secondary">
+              <slot name="secondary"></slot>
+            </div>
           )}
-          <slot name="ix-application-header-avatar"></slot>
+          <div class="content">
+            {this.breakpoint === 'sm' ? (
+              <Fragment>
+                <ix-icon-button
+                  class={{
+                    ['context-menu']: true,
+                    ['context-menu-visible']: this.hasSlottedElements,
+                  }}
+                  data-context-menu
+                  data-testid="show-more"
+                  icon={iconMoreMenu}
+                  ghost
+                  aria-label={this.ariaLabelMoreMenuIconButton}
+                ></ix-icon-button>
+                <ix-dropdown
+                  data-overflow-dropdown
+                  class="dropdown"
+                  discoverAllSubmenus
+                  trigger={this.resolveContextMenuButton()}
+                >
+                  <div
+                    class="dropdown-content"
+                    onClick={(e) => this.onContentBgClick(e)}
+                  >
+                    <div class="top">
+                      <slot name="secondary"></slot>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="bottom">
+                      <slot
+                        onSlotchange={() => this.updateIsSlottedContent()}
+                      ></slot>
+                    </div>
+                  </div>
+                </ix-dropdown>
+              </Fragment>
+            ) : (
+              <slot onSlotchange={() => this.updateIsSlottedContent()}></slot>
+            )}
+            <slot name="ix-application-header-avatar"></slot>
+          </div>
         </div>
       </Host>
     );
