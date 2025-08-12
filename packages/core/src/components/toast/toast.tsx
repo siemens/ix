@@ -16,7 +16,6 @@ import {
   Host,
   Prop,
   State,
-  Method,
 } from '@stencil/core';
 import { ToastType } from './toast-utils';
 import {
@@ -77,15 +76,26 @@ export class Toast {
   @Event() closeToast!: EventEmitter;
 
   @State() progress = 0;
-  @State() touched = false;
-  @State() isPaused = false;
+  @State() paused = false;
+  private isManualPause = false;
 
   @Element() hostElement!: HTMLIxToastElement;
 
-  @Method()
-  async togglePause() {
-    if (!this.autoClose) return;
-    this.isPaused = !this.isPaused;
+  public pause() {
+    this.paused = true;
+  }
+
+  public resume() {
+    if (!this.isManualPause) {
+      this.paused = false;
+    }
+  }
+
+  private get progressBarStyle() {
+    return {
+      animationDuration: `${this.autoCloseDelay}ms`,
+      animationPlayState: this.paused ? 'paused' : 'running',
+    };
   }
 
   private getIcon() {
@@ -152,34 +162,21 @@ export class Toast {
     }
     setTimeout(() => {
       this.closeToast.emit();
+      this.isManualPause = false;
+      this.paused = false;
     }, 250);
   }
 
   render() {
-    let progressBarStyle: Record<string, string> = {};
-
     const progressBarClass = ['toast-progress-bar'];
-
-    const animationPlayState =
-      this.touched || this.isPaused ? 'paused' : 'running';
-
-    progressBarStyle = {
-      animationDuration: `${this.autoCloseDelay}ms`,
-      animationPlayState: animationPlayState,
-    };
-
     progressBarClass.push('toast-progress-bar--animated');
 
     return (
       <Host class="animate__animated animate__fadeIn">
         <div
           class="toast-body"
-          onPointerLeave={() => {
-            this.touched = false;
-          }}
-          onPointerEnter={() => {
-            this.touched = true;
-          }}
+          onPointerLeave={() => this.resume()}
+          onPointerEnter={() => this.pause()}
         >
           {this.type || this.icon ? (
             <div class="toast-icon">{this.getIcon()}</div>
@@ -195,12 +192,6 @@ export class Toast {
             </div>
             <div class="toast-action">
               <slot name="action"></slot>
-              <ix-button
-                onClick={() => this.togglePause()}
-                style={{ marginLeft: '0.5rem' }}
-              >
-                {this.isPaused ? 'Resume' : 'Pause'}
-              </ix-button>
             </div>
           </div>
           <div class="toast-close">
@@ -217,15 +208,8 @@ export class Toast {
         {this.autoClose ? (
           <div
             class={progressBarClass.join(' ')}
-            style={progressBarStyle}
-            onAnimationEnd={() => {
-              this.close();
-            }}
-            onTransitionEnd={() => {
-              if (this.progress === 0) {
-                this.close();
-              }
-            }}
+            style={this.progressBarStyle}
+            onAnimationEnd={() => this.close()}
           ></div>
         ) : null}
       </Host>

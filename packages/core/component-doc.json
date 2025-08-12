@@ -1657,7 +1657,6 @@
         "ix-menu-about-news",
         "ix-split-button",
         "ix-time-picker",
-        "ix-toast",
         "ix-upload"
       ],
       "dependencies": [
@@ -1692,9 +1691,6 @@
           "ix-button"
         ],
         "ix-time-picker": [
-          "ix-button"
-        ],
-        "ix-toast": [
           "ix-button"
         ],
         "ix-upload": [
@@ -25226,17 +25222,12 @@
       ],
       "dependencies": [
         "ix-typography",
-        "ix-button",
         "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-toast": [
           "ix-typography",
-          "ix-button",
           "ix-icon-button"
-        ],
-        "ix-button": [
-          "ix-spinner"
         ],
         "ix-icon-button": [
           "ix-spinner"
@@ -25462,30 +25453,7 @@
           "setter": false
         }
       ],
-      "methods": [
-        {
-          "name": "togglePause",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "complexType": {
-            "signature": "() => Promise<void>",
-            "parameters": [],
-            "references": {
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
-              }
-            },
-            "return": "Promise<void>"
-          },
-          "signature": "togglePause() => Promise<void>",
-          "parameters": [],
-          "docs": "",
-          "docsTags": []
-        }
-      ],
+      "methods": [],
       "events": [
         {
           "event": "closeToast",
@@ -25529,11 +25497,7 @@
         ],
         "ix-toast": [
           "ix-typography",
-          "ix-button",
           "ix-icon-button"
-        ],
-        "ix-button": [
-          "ix-spinner"
         ],
         "ix-icon-button": [
           "ix-spinner"
