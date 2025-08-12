@@ -117,6 +117,7 @@
   }
 
   .right-side {
+    width: 0px;
     flex: 1 0 auto;
     justify-content: space-between;
 
@@ -176,5 +177,9 @@
     ::slotted(ix-avatar) {
       margin-left: 1rem;
     }
+  }
+
+  .right-side.sm {
+    justify-content: end;
   }
 }

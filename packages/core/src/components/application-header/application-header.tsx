@@ -357,7 +357,7 @@ export class ApplicationHeader {
             )}
           </div>
         </div>
-        <div class="right-side">
+        <div class={{ 'right-side': true, sm: this.breakpoint === 'sm' }}>
           {this.breakpoint !== 'sm' && (
             <div class="secondary">
               <slot name="secondary"></slot>
