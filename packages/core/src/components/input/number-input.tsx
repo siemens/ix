@@ -40,6 +40,8 @@ import {
 
 let numberInputIds = 0;
 
+const SCIENTIFIC_REGEX = /^[+-]?(\d+\.?\d*|\.\d+)[eE][+-]?\d+$/i;
+
 /**
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
@@ -220,15 +222,6 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
       return undefined;
     }
 
-    // Handle scientific notation (1E6, 1E-6, 1e6, 1e-6)
-    const scientificRegex = /^[+-]?(\d+\.?\d*|\.\d+)[eE][+-]?\d+$/i;
-    const isScientific = scientificRegex.test(input.trim());
-
-    if (isScientific) {
-      const parsed = parseFloat(input);
-      return isNaN(parsed) ? undefined : parsed;
-    }
-
     const parsed = parseFloat(input);
     return isNaN(parsed) ? undefined : parsed;
   }
@@ -241,15 +234,38 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
   }
 
   updateFormInternalValue(value: number | undefined) {
-    const formValue = value !== undefined && value !== null ? value.toString() : '';
+    const formValue =
+      value !== undefined && value !== null ? value.toString() : '';
     this.formInternals.setFormValue(formValue);
     this.value = value;
   }
 
   private handleInputChange = (inputValue: string) => {
     const parsedValue = this.parseScientificNotation(inputValue);
-    this.updateFormInternalValue(parsedValue);
+    const isScientificNotation = SCIENTIFIC_REGEX.test(inputValue.trim());
+
+    if (isScientificNotation) {
+      this.formInternals.setFormValue(inputValue);
+    }
+
     this.valueChange.emit(parsedValue);
+  };
+
+  private handleBlur = () => {
+    if (!this.inputRef.current) return;
+
+    const inputValue = this.inputRef.current.value;
+
+    const parsedValue = this.parseScientificNotation(inputValue);
+
+    if (parsedValue !== undefined) {
+      this.inputRef.current.value = this.formatValue(parsedValue);
+    }
+
+    this.updateFormInternalValue(parsedValue);
+
+    onInputBlur(this, this.inputRef.current);
+    this.touched = true;
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
@@ -276,7 +292,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
     const currentValue = this.value ?? 0;
     const stepValue =
-      typeof this.step === 'string' ? parseFloat(this.step) : (this.step ?? 1);
+      typeof this.step === 'string' ? parseFloat(this.step) : this.step ?? 1;
 
     let newValue: number;
 
@@ -393,7 +409,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
               min={this.min}
               max={this.max}
               pattern={this.pattern}
-              type={'text'}
+              type={'number'}
               isInvalid={this.isInvalid}
               required={this.required}
               value={this.formatValue(this.value)}
@@ -403,13 +419,16 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
               onKeyDown={(event) => this.handleKeyDown(event)}
               valueChange={this.handleInputChange}
               updateFormInternalValue={(value) => {
-                const parsedValue = this.parseScientificNotation(value);
-                this.updateFormInternalValue(parsedValue);
+                const isScientificNotation = SCIENTIFIC_REGEX.test(
+                  value.trim()
+                );
+
+                if (!isScientificNotation) {
+                  const parsedValue = this.parseScientificNotation(value);
+                  this.updateFormInternalValue(parsedValue);
+                }
               }}
-              onBlur={() => {
-                onInputBlur(this, this.inputRef.current);
-                this.touched = true;
-              }}
+              onBlur={this.handleBlur}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
