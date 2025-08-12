@@ -23,7 +23,7 @@
   width: 100%;
   height: calc(3rem);
   min-height: calc(3rem);
-  padding-top: 0;
+  padding-top: var(--ix-safe-area-inset-top, 0rem);
   padding-right: calc(0.625rem + var(--ix-safe-area-inset-right, 0rem));
   padding-left: calc(0.625rem + var(--ix-safe-area-inset-left, 0rem));
 
@@ -117,9 +117,10 @@
   }
 
   .right-side {
-    width: 0px;
-    flex: 1 0 auto;
+    min-width: 0;
+    flex: 1 1 auto;
     justify-content: space-between;
+    overflow: hidden;
 
     .content,
     .secondary {
