@@ -166,6 +166,11 @@ export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderEleme
     tagName: 'ix-application-header',
     properties: {
         name: 'name',
+        nameSuffix: 'name-suffix',
+        companyLogo: 'company-logo',
+        companyLogoAlt: 'company-logo-alt',
+        appIcon: 'app-icon',
+        appIconAlt: 'app-icon-alt',
         showMenu: 'show-menu',
         ariaLabelMenuExpandIconButton: 'aria-label-menu-expand-icon-button',
         ariaLabelAppSwitchIconButton: 'aria-label-app-switch-icon-button',

@@ -134,6 +134,11 @@ export const IxApplication: StencilVueComponent<JSX.IxApplication> = /*@__PURE__
 
 export const IxApplicationHeader: StencilVueComponent<JSX.IxApplicationHeader> = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', defineIxApplicationHeader, [
   'name',
+  'nameSuffix',
+  'companyLogo',
+  'companyLogoAlt',
+  'appIcon',
+  'appIconAlt',
   'showMenu',
   'ariaLabelMenuExpandIconButton',
   'ariaLabelAppSwitchIconButton',

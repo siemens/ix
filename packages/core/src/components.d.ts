@@ -163,6 +163,14 @@ export namespace Components {
     }
     interface IxApplicationHeader {
         /**
+          * TODO Define final property name
+         */
+        "appIcon"?: string;
+        /**
+          * TODO Define final property name
+         */
+        "appIconAlt"?: string;
+        /**
           * ARIA label for the app switch icon button
           * @since 3.2.0
          */
@@ -178,9 +186,21 @@ export namespace Components {
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
+          * TODO Define final property name
+         */
+        "companyLogo"?: string;
+        /**
+          * TODO Define final property name
+         */
+        "companyLogoAlt"?: string;
+        /**
           * Application name
          */
         "name"?: string;
+        /**
+          * TODO Define final property name
+         */
+        "nameSuffix"?: string;
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
           * @default false
@@ -5984,6 +6004,14 @@ declare namespace LocalJSX {
     }
     interface IxApplicationHeader {
         /**
+          * TODO Define final property name
+         */
+        "appIcon"?: string;
+        /**
+          * TODO Define final property name
+         */
+        "appIconAlt"?: string;
+        /**
           * ARIA label for the app switch icon button
           * @since 3.2.0
          */
@@ -5999,9 +6027,21 @@ declare namespace LocalJSX {
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
+          * TODO Define final property name
+         */
+        "companyLogo"?: string;
+        /**
+          * TODO Define final property name
+         */
+        "companyLogoAlt"?: string;
+        /**
           * Application name
          */
         "name"?: string;
+        /**
+          * TODO Define final property name
+         */
+        "nameSuffix"?: string;
         /**
           * Event emitted when the menu toggle button is clicked
          */

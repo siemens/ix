@@ -49,6 +49,31 @@ export class ApplicationHeader {
   @Prop() name?: string;
 
   /**
+   * TODO Define final property name
+   */
+  @Prop() nameSuffix?: string;
+
+  /**
+   * TODO Define final property name
+   */
+  @Prop() companyLogo?: string;
+
+  /**
+   * TODO Define final property name
+   */
+  @Prop() companyLogoAlt?: string;
+
+  /**
+   * TODO Define final property name
+   */
+  @Prop() appIcon?: string;
+
+  /**
+   * TODO Define final property name
+   */
+  @Prop() appIconAlt?: string;
+
+  /**
    * Controls the visibility of the menu toggle button based on the context of the application header.
    *
    * When the application header is utilized outside the application frame, the menu toggle button is displayed.
@@ -94,6 +119,8 @@ export class ApplicationHeader {
   @State() suppressResponsive = false;
 
   @State() hasSlottedElements = false;
+
+  @State() hasLogo = false;
 
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
@@ -247,6 +274,13 @@ export class ApplicationHeader {
     }
   }
 
+  private updateHasLogo(target: EventTarget | null) {
+    if (target === null) {
+      return;
+    }
+    this.hasLogo = hasSlottedElements(target);
+  }
+
   render() {
     const hasApplicationContextAvailable = !!this.applicationLayoutContext;
 
@@ -267,6 +301,11 @@ export class ApplicationHeader {
         }}
         slot="application-header"
       >
+        {this.appIcon && (
+          <div class="app-icon">
+            <img src={this.appIcon} alt={this.appIconAlt} />
+          </div>
+        )}
         {(this.showMenu || showMenuByApplicationFrame) && (
           <ix-menu-expand-icon
             onClick={() => this.onMenuClick()}
@@ -283,12 +322,37 @@ export class ApplicationHeader {
             aria-label={this.ariaLabelAppSwitchIconButton}
           ></ix-icon-button>
         )}
-        <div class={{ logo: true }}>
-          <slot name="logo"></slot>
+        <div
+          class={{
+            logo: true,
+            hasSlotted: !!(this.hasLogo || this.companyLogo),
+          }}
+        >
+          {this.companyLogo && (
+            <img src={this.companyLogo} alt={this.companyLogoAlt} />
+          )}
+          <slot
+            name="logo"
+            onSlotchange={(event) => this.updateHasLogo(event.target)}
+          ></slot>
         </div>
-        <ix-typography format="body-lg" class="name">
-          {this.name}
-        </ix-typography>
+        <div class="name">
+          <ix-typography format="body-lg" class="application-name">
+            {this.name}
+          </ix-typography>
+          {this.nameSuffix && (
+            <ix-typography
+              format="body-xs"
+              textColor="soft"
+              class="application-name-suffix"
+            >
+              {this.nameSuffix}
+            </ix-typography>
+          )}
+        </div>
+        <div class="secondary">
+          <slot name="secondary"></slot>
+        </div>
         <div class="content">
           {this.breakpoint === 'sm' ? (
             <Fragment>

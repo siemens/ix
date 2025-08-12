@@ -22,6 +22,38 @@ SPDX-License-Identifier: MIT
 
       defineCustomElement();
     </script>
+    <style>
+      .default-slot {
+        margin-right: 0.5rem;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <ix-application-header
+      name="My Application name"
+      name-suffix="Powered by Siemens"
+      app-icon="/test.svg"
+    >
+      <img src="/test.svg" slot="logo"></img>
+      <ix-button outline class="default-slot">Test</ix-button>
+      <ix-button outline class="default-slot">Test</ix-button>
+      <!-- <ix-button outline class="default-slot">Test</ix-button>
+      <ix-button outline class="default-slot">Test</ix-button>
+      <ix-button outline class="default-slot">Test</ix-button>
+      <ix-button outline class="default-slot">Test</ix-button>
+      <ix-button outline class="default-slot">Test</ix-button>
+      <ix-button outline class="default-slot">Test</ix-button>
+      <ix-button outline class="default-slot">Test</ix-button> -->
+
+      <ix-button slot="secondary" class="default-slot">Test</ix-button>
+      <ix-button slot="secondary" class="default-slot">Test</ix-button>
+      <ix-button slot="secondary" class="default-slot">Test</ix-button>
+      <!-- <ix-button slot="secondary" class="default-slot">Test</ix-button>
+      <ix-button slot="secondary" class="default-slot">Test</ix-button>
+      <ix-button slot="secondary" class="default-slot">Test</ix-button>
+      <ix-button slot="secondary" class="default-slot">Test</ix-button>
+      <ix-button slot="secondary" class="default-slot">Test</ix-button>
+      <ix-button slot="secondary" class="default-slot">Test</ix-button> -->
+    </ix-application-header>
+  </body>
 </html>

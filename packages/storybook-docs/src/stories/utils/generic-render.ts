@@ -11,6 +11,11 @@ import jsonFile from '@siemens/ix/component-doc.json';
 import { ArgTypes } from '@storybook/web-components';
 import type { JsonDocsProp } from '@stencil/core/internal';
 
+export type GenericRenderComponent<T> = T & {
+  styles: Partial<CSSStyleDeclaration>;
+  defaultSlot: string;
+};
+
 export function genericRender(
   selector: string,
   args: any,
