@@ -63,7 +63,6 @@ export default class ToastCustom {
       title: 'Toast headline',
       message: this.customToastRef,
       action: this.customToastActionRef,
-      showPauseButton: true,
     });
   }
 }

@@ -19,7 +19,6 @@ export interface ToastConfig {
   autoCloseDelay?: number;
   icon?: string;
   iconColor?: string;
-  showPauseButton?: boolean;
 }
 
 export function getToastContainer() {

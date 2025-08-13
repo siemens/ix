@@ -3720,10 +3720,6 @@ export namespace Components {
          */
         "iconColor"?: string;
         /**
-          * @default false
-         */
-        "showPauseButton": boolean;
-        /**
           * Toast title
          */
         "toastTitle"?: string;
@@ -3746,11 +3742,6 @@ export namespace Components {
           * @default 'bottom-right'
          */
         "position": 'bottom-right' | 'top-right';
-        /**
-          * Show pause button on all toasts
-          * @default false
-         */
-        "showPauseButton": boolean;
         /**
           * Display a toast message
           * @param config
@@ -9764,10 +9755,6 @@ declare namespace LocalJSX {
          */
         "onCloseToast"?: (event: IxToastCustomEvent<any>) => void;
         /**
-          * @default false
-         */
-        "showPauseButton"?: boolean;
-        /**
           * Toast title
          */
         "toastTitle"?: string;
@@ -9790,11 +9777,6 @@ declare namespace LocalJSX {
           * @default 'bottom-right'
          */
         "position"?: 'bottom-right' | 'top-right';
-        /**
-          * Show pause button on all toasts
-          * @default false
-         */
-        "showPauseButton"?: boolean;
     }
     /**
      * @form-ready 

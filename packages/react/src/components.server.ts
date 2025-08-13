@@ -2345,8 +2345,7 @@ export const IxToast: StencilReactComponent<IxToastElement, IxToastEvents> = /*@
         autoClose: 'auto-close',
         icon: 'icon',
         iconColor: 'icon-color',
-        ariaLabelCloseIconButton: 'aria-label-close-icon-button',
-        showPauseButton: 'show-pause-button'
+        ariaLabelCloseIconButton: 'aria-label-close-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -2364,8 +2363,7 @@ export const IxToastContainer: StencilReactComponent<IxToastContainerElement, Ix
     properties: {
         containerId: 'container-id',
         containerClass: 'container-class',
-        position: 'position',
-        showPauseButton: 'show-pause-button'
+        position: 'position'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,

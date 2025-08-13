@@ -30,11 +30,6 @@ export class ToastContainer {
    */
   @Prop() position: 'bottom-right' | 'top-right' = 'bottom-right';
 
-  /**
-   * Show pause button on all toasts
-   */
-  @Prop() showPauseButton = false;
-
   private readonly PREFIX_POSITION_CLASS = 'toast-container--';
 
   get hostContainer() {
@@ -94,10 +89,6 @@ export class ToastContainer {
     toast.autoCloseDelay = config.autoCloseDelay ?? 5000;
     toast.icon = config.icon;
     toast.iconColor = config.iconColor;
-    toast.showPauseButton =
-      typeof config.showPauseButton === 'boolean'
-        ? config.showPauseButton
-        : this.showPauseButton;
     toast.addEventListener(
       'closeToast',
       (event: CustomEvent<any | undefined>) => {
