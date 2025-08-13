@@ -2856,14 +2856,14 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxToast,
-  inputs: ['ariaLabelCloseIconButton', 'autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type']
+  inputs: ['ariaLabelCloseIconButton', 'autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'showPauseButton', 'toastTitle', 'type']
 })
 @Component({
   selector: 'ix-toast',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCloseIconButton', 'autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type'],
+  inputs: ['ariaLabelCloseIconButton', 'autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'showPauseButton', 'toastTitle', 'type'],
   standalone: true
 })
 export class IxToast {
@@ -2886,7 +2886,7 @@ export declare interface IxToast extends Components.IxToast {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxToastContainer,
-  inputs: ['containerClass', 'containerId', 'position'],
+  inputs: ['containerClass', 'containerId', 'position', 'showPauseButton'],
   methods: ['showToast']
 })
 @Component({
@@ -2894,7 +2894,7 @@ export declare interface IxToast extends Components.IxToast {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['containerClass', 'containerId', 'position'],
+  inputs: ['containerClass', 'containerId', 'position', 'showPauseButton'],
   standalone: true
 })
 export class IxToastContainer {

@@ -25379,6 +25379,35 @@
           "setter": false
         },
         {
+          "name": "showPauseButton",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-pause-button",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "toastTitle",
           "type": "string | undefined",
           "complexType": {
@@ -25589,6 +25618,35 @@
             {
               "value": "top-right",
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "showPauseButton",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-pause-button",
+          "reflectToAttr": false,
+          "docs": "Show pause button on all toasts",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -28534,7 +28592,7 @@
       "path": "src/components/toast/toast-container.types.ts"
     },
     "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  title?: string;\n  message?: string | HTMLElement;\n  action?: HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "declaration": "export interface ToastConfig {\n  title?: string;\n  message?: string | HTMLElement;\n  action?: HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n  showPauseButton?: boolean;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
     },

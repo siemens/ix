@@ -24,6 +24,8 @@ import {
   iconInfo,
   iconSuccess,
   iconWarning,
+  iconPause,
+  iconPlay,
 } from '@siemens/ix-icons/icons';
 
 @Component({
@@ -75,14 +77,23 @@ export class Toast {
    */
   @Event() closeToast!: EventEmitter;
 
+  @Prop() showPauseButton = false;
+
   @State() progress = 0;
   @State() paused = false;
-  private isManualPause = false;
+  @State() isManualPause = false;
 
   @Element() hostElement!: HTMLIxToastElement;
 
+  private togglePause() {
+    this.isManualPause = !this.isManualPause;
+    this.paused = this.isManualPause;
+  }
+
   public pause() {
-    this.paused = true;
+    if (!this.isManualPause) {
+      this.paused = true;
+    }
   }
 
   public resume() {
@@ -194,7 +205,17 @@ export class Toast {
               <slot name="action"></slot>
             </div>
           </div>
-          <div class="toast-close">
+        <div class="toast-close">
+            {this.showPauseButton ? (
+              <ix-icon-button
+                icon={this.isManualPause ? iconPlay : iconPause}
+                iconColor="color-soft-text"
+                size="24"
+                ghost
+                onClick={() => this.togglePause()}
+                aria-label={this.isManualPause ? 'Resume' : 'Pause'}
+              />
+            ) : null}
             <ix-icon-button
               icon={iconClose}
               iconColor="color-soft-text"

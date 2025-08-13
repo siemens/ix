@@ -1402,6 +1402,7 @@ export const IxToast: StencilVueComponent<JSX.IxToast> = /*@__PURE__*/ defineCon
   'icon',
   'iconColor',
   'ariaLabelCloseIconButton',
+  'showPauseButton',
   'closeToast'
 ], [
   'closeToast'
@@ -1411,7 +1412,8 @@ export const IxToast: StencilVueComponent<JSX.IxToast> = /*@__PURE__*/ defineCon
 export const IxToastContainer: StencilVueComponent<JSX.IxToastContainer> = /*@__PURE__*/ defineContainer<JSX.IxToastContainer>('ix-toast-container', defineIxToastContainer, [
   'containerId',
   'containerClass',
-  'position'
+  'position',
+  'showPauseButton'
 ]);
 
 
