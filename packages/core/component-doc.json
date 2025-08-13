@@ -25453,7 +25453,52 @@
           "setter": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "pause",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "pause() => Promise<void>",
+          "parameters": [],
+          "docs": "Pause the toast (pauses progress bar)",
+          "docsTags": []
+        },
+        {
+          "name": "resume",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "resume() => Promise<void>",
+          "parameters": [],
+          "docs": "Resume the toast (resumes progress bar)",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "closeToast",
@@ -28529,7 +28574,7 @@
       "path": "src/components/time-picker/time-picker.types.ts"
     },
     "src/components/toast/toast-container.types.ts::ShowToastResult": {
-      "declaration": "{\n  onClose: TypedEvent<any | undefined>;\n  close: (result?: any) => void;\n}",
+      "declaration": "{\n  onClose: TypedEvent<any | undefined>;\n  close: (result?: any) => void;\n  pause: () => void;\n  resume: () => void;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-container.types.ts"
     },

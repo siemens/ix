@@ -14,6 +14,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Method,
   Prop,
   State,
 } from '@stencil/core';
@@ -32,6 +33,16 @@ import {
   shadow: true,
 })
 export class Toast {
+
+  @Method()
+  async pause() {
+    this.pausedByApi = true;
+  }
+
+  @Method()
+  async resume() {
+    this.pausedByApi = false;
+  }
   /**
    * Toast type
    */
@@ -77,6 +88,7 @@ export class Toast {
 
   @State() progress = 0;
   @State() touched = false;
+  @State() pausedByApi = false;
 
   @Element() hostElement!: HTMLIxToastElement;
 
@@ -154,7 +166,8 @@ export class Toast {
 
     progressBarStyle = {
       animationDuration: `${this.autoCloseDelay}ms`,
-      animationPlayState: this.touched ? 'paused' : 'running',
+      animationPlayState:
+        this.touched || this.pausedByApi ? 'paused' : 'running',
     };
 
     progressBarClass.push('toast-progress-bar--animated');

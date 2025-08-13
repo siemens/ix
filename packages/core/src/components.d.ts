@@ -3720,6 +3720,14 @@ export namespace Components {
          */
         "iconColor"?: string;
         /**
+          * Pause the toast (pauses progress bar)
+         */
+        "pause": () => Promise<void>;
+        /**
+          * Resume the toast (resumes progress bar)
+         */
+        "resume": () => Promise<void>;
+        /**
           * Toast title
          */
         "toastTitle"?: string;
