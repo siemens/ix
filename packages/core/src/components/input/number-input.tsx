@@ -295,7 +295,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
     const currentValue = this.value ?? 0;
     const stepValue =
-      typeof this.step === 'string' ? parseFloat(this.step) : this.step ?? 1;
+      typeof this.step === 'string' ? parseFloat(this.step) : (this.step ?? 1);
 
     let newValue: number;
 
