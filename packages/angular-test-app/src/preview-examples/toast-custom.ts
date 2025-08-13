@@ -16,7 +16,7 @@ import { ToastService } from '@siemens/ix-angular';
     <ix-button (click)="showToastMessage()">
       Trigger toast with custom message
     </ix-button>
-
+    
     <ix-button (click)="showToastMessageAction()">
       Trigger toast with action button
     </ix-button>
@@ -61,4 +61,4 @@ export default class ToastCustom {
       action: this.customToastActionRef,
     });
   }
-} 
+}

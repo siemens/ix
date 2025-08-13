@@ -2856,8 +2856,7 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxToast,
-  inputs: ['ariaLabelCloseIconButton', 'autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type'],
-  methods: ['togglePause']
+  inputs: ['ariaLabelCloseIconButton', 'autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type']
 })
 @Component({
   selector: 'ix-toast',
