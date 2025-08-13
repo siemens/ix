@@ -31,6 +31,7 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
+import type { PrimaryNavigation } from './application-header.types';
 
 /**
  * @slot logo - Location of the logo
@@ -103,6 +104,11 @@ export class ApplicationHeader {
   @Prop() ariaLabelMoreMenuIconButton?: string;
 
   /**
+   * TODO define final naming
+   */
+  @Prop() primaryNavigation?: PrimaryNavigation[];
+
+  /**
    * Event emitted when the menu toggle button is clicked
    */
   @Event() menuToggle!: EventEmitter<boolean>;
@@ -119,8 +125,6 @@ export class ApplicationHeader {
   @State() suppressResponsive = false;
 
   @State() hasSlottedElements = false;
-
-  @State() hasLogo = false;
 
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
@@ -194,15 +198,12 @@ export class ApplicationHeader {
     const slotElement = this.hostElement.shadowRoot!.querySelector(
       'slot[name="logo"]'
     ) as HTMLSlotElement;
-    const nodes = slotElement.assignedNodes({
-      flatten: true,
-    });
 
-    return nodes.length !== 0;
+    return hasSlottedElements(slotElement);
   }
 
   private attachSiemensLogoIfLoaded() {
-    if (this.companyLogo !== undefined && this.companyLogo !== '') {
+    if (this.companyLogo) {
       return;
     }
 
@@ -278,13 +279,6 @@ export class ApplicationHeader {
     }
   }
 
-  private updateHasLogo(target: EventTarget | null) {
-    if (target === null) {
-      return;
-    }
-    this.hasLogo = hasSlottedElements(target);
-  }
-
   render() {
     const hasApplicationContextAvailable = !!this.applicationLayoutContext;
 
@@ -307,7 +301,7 @@ export class ApplicationHeader {
         role="navigation"
       >
         <div class="left-side">
-          {this.appIcon && (
+          {this.appIcon && this.breakpoint !== 'sm' && (
             <div class="app-icon">
               <img src={this.appIcon} alt={this.appIconAlt} />
             </div>
@@ -328,20 +322,16 @@ export class ApplicationHeader {
               aria-label={this.ariaLabelAppSwitchIconButton}
             ></ix-icon-button>
           )}
-          <div
-            class={{
-              logo: true,
-              hasSlotted: !!(this.hasLogo || this.companyLogo),
-            }}
-          >
-            {this.companyLogo && (
-              <img src={this.companyLogo} alt={this.companyLogoAlt} />
-            )}
-            <slot
-              name="logo"
-              onSlotchange={(event) => this.updateHasLogo(event.target)}
-            ></slot>
-          </div>
+
+          {this.breakpoint !== 'sm' && (
+            <div class="logo">
+              {this.companyLogo ? (
+                <img src={this.companyLogo} alt={this.companyLogoAlt} />
+              ) : (
+                <slot name="logo"></slot>
+              )}
+            </div>
+          )}
           <div class="name">
             <ix-typography format="body-lg" class="application-name">
               {this.name}
@@ -360,6 +350,14 @@ export class ApplicationHeader {
         <div class={{ 'right-side': true, sm: this.breakpoint === 'sm' }}>
           {this.breakpoint !== 'sm' && (
             <div class="secondary">
+              {this.primaryNavigation &&
+                this.primaryNavigation.length !== 0 && (
+                  <ix-tabs class="primary-navigation">
+                    {this.primaryNavigation.map((item) => (
+                      <ix-tab-item key={item.label}>{item.label}</ix-tab-item>
+                    ))}
+                  </ix-tabs>
+                )}
               <slot name="secondary"></slot>
             </div>
           )}

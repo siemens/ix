@@ -25,6 +25,9 @@ const meta = {
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-application-header', {
     appIcon: getExampleResourcesInput(),
     companyLogo: getExampleResourcesInput(),
+    primaryNavigation: {
+      control: 'object',
+    },
   }),
   args: {
     name: 'Application Header',
@@ -122,6 +125,39 @@ export const withAvatar: Story = {
   },
   args: {
     name: 'Application Header',
+  },
+};
+
+export const PrimaryNavigation: Story = {
+  args: {
+    primaryNavigation: [
+      { label: 'Home', url: '/home' },
+      { label: 'About', url: '/about' },
+      { label: 'Contact', url: '/contact' },
+    ],
+  },
+  render: (args) => {
+    const container = genericRender('ix-application-header', args);
+    const applicationHeader = container.querySelector(
+      'ix-application-header'
+    ) as HTMLIxApplicationHeaderElement;
+    applicationHeader.primaryNavigation = args.primaryNavigation;
+
+    const application = document.createElement('ix-application');
+    application.appendChild(applicationHeader);
+
+    const menu = document.createElement('ix-menu');
+    application.appendChild(menu);
+
+    const menuItem1 = document.createElement('ix-menu-item');
+    menuItem1.label = 'Profile';
+    menu.appendChild(menuItem1);
+
+    const menuItem2 = document.createElement('ix-menu-item');
+    menuItem2.label = 'Settings';
+    menu.appendChild(menuItem2);
+
+    return application;
   },
 };
 

@@ -9,6 +9,7 @@ import { ActionCardVariant } from "./components/action-card/action-card.types";
 import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
+import { PrimaryNavigation } from "./components/application-header/application-header.types";
 import { BlindVariant } from "./components/blind/blind.types";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card.types";
@@ -57,6 +58,7 @@ export { ActionCardVariant } from "./components/action-card/action-card.types";
 export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
+export { PrimaryNavigation } from "./components/application-header/application-header.types";
 export { BlindVariant } from "./components/blind/blind.types";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card.types";
@@ -201,6 +203,10 @@ export namespace Components {
           * TODO Define final property name
          */
         "nameSuffix"?: string;
+        /**
+          * TODO define final naming
+         */
+        "primaryNavigation"?: PrimaryNavigation[];
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
           * @default false
@@ -6051,6 +6057,10 @@ declare namespace LocalJSX {
           * @since 3.0.0
          */
         "onOpenAppSwitch"?: (event: IxApplicationHeaderCustomEvent<void>) => void;
+        /**
+          * TODO define final naming
+         */
+        "primaryNavigation"?: PrimaryNavigation[];
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
           * @default false
