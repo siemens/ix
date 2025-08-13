@@ -149,7 +149,7 @@
   }
 
   .side-pane-content {
-    padding: var(--theme-space-1) var(--theme-space-2);
+    padding: var(--theme-space-1) var(--theme-space-2) var(--theme-space-3) var(--theme-space-2);
     overflow: auto;
     height: 100%;
     width: 100%;
@@ -165,7 +165,7 @@
 }
 
 :host(.box-shadow) {
-  box-shadow: 0 0 1rem black;
+  box-shadow: 0 0 1rem var(--theme-color-shadow-2);
 }
 
 :host(.nav-left-border) {
