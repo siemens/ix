@@ -25473,7 +25473,7 @@
           },
           "signature": "pause() => Promise<void>",
           "parameters": [],
-          "docs": "Pause the toast (pauses progress bar)",
+          "docs": "",
           "docsTags": []
         },
         {
@@ -25495,7 +25495,7 @@
           },
           "signature": "resume() => Promise<void>",
           "parameters": [],
-          "docs": "Resume the toast (resumes progress bar)",
+          "docs": "",
           "docsTags": []
         }
       ],

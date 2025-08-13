@@ -33,7 +33,6 @@ import {
   shadow: true,
 })
 export class Toast {
-
   @Method()
   async pause() {
     this.pausedByApi = true;
