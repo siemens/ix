@@ -76,7 +76,7 @@ test.describe('validation', () => {
       mount,
       page,
     }) => {
-      await mount('<ix-number-input></ix-number-input>');
+      await mount('<ix-number-input step="0.1"></ix-number-input>');
 
       const ixInput = page.locator('ix-number-input');
       const shadowDomInput = ixInput.locator('input');
@@ -84,16 +84,19 @@ test.describe('validation', () => {
       // Test positive scientific notation
       await shadowDomInput.fill('1E6');
       await shadowDomInput.blur();
+      await expect(shadowDomInput).toHaveValue('1000000');
       await expect(ixInput).not.toHaveClass(/ix-invalid/);
 
       // Test negative scientific notation
-      await shadowDomInput.fill('1E-6');
+      await shadowDomInput.fill('1E-1');
       await shadowDomInput.blur();
+      await expect(shadowDomInput).toHaveValue('0.1');
       await expect(ixInput).not.toHaveClass(/ix-invalid/);
 
       // Test lowercase scientific notation
       await shadowDomInput.fill('2.5e3');
       await shadowDomInput.blur();
+      await expect(shadowDomInput).toHaveValue('2500');
       await expect(ixInput).not.toHaveClass(/ix-invalid/);
     });
 
