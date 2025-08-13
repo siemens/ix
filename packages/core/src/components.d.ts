@@ -3723,6 +3723,7 @@ export namespace Components {
           * Toast title
          */
         "toastTitle"?: string;
+        "togglePause": () => Promise<void>;
         /**
           * Toast type
           * @default 'info'
