@@ -40,8 +40,6 @@ import {
 
 let numberInputIds = 0;
 
-const SCIENTIFIC_REGEX = /^[+-]?(\d+\.?\d*|\.\d+)[eE][+-]?\d+$/i;
-
 /**
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
@@ -226,6 +224,11 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     return isNaN(parsed) ? undefined : parsed;
   }
 
+  private isScientificNotation(input: string): boolean {
+    const parsed = parseFloat(input);
+    return !isNaN(parsed) && isFinite(parsed) && /[eE]/.test(input);
+  }
+
   private formatValue(value: number | undefined): string {
     if (value === undefined || value === null) {
       return '';
@@ -242,7 +245,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
   private handleInputChange = (inputValue: string) => {
     const parsedValue = this.parseScientificNotation(inputValue);
-    const isScientificNotation = SCIENTIFIC_REGEX.test(inputValue.trim());
+    const isScientificNotation = this.isScientificNotation(inputValue.trim());
 
     if (isScientificNotation) {
       this.formInternals.setFormValue(inputValue);
@@ -419,7 +422,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
               onKeyDown={(event) => this.handleKeyDown(event)}
               valueChange={this.handleInputChange}
               updateFormInternalValue={(value) => {
-                const isScientificNotation = SCIENTIFIC_REGEX.test(
+                const isScientificNotation = this.isScientificNotation(
                   value.trim()
                 );
 
