@@ -11,11 +11,8 @@
 @include input.input-field;
 
 :host {
-  input {
-    text-align: right;
-  }
   .input-wrapper.show-stepper-buttons {
-    input {
+    input[type='number'] {
       min-width: 6rem;
     }
   }
