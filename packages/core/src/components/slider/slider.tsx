@@ -139,6 +139,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
    * @deprecated Will be removed in 4.0.0. Use invalid class instead.
    */
   @Prop() error?: boolean | string;
+
   /**
    *
    */
@@ -229,7 +230,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
       this.setFormValueIfChanged(this.value);
     }
   }
-  
+
   private updateFormInternalValue(value: number) {
     this.setFormValueIfChanged(value);
     this.valueChange.emit(value);
