@@ -166,6 +166,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
+   */
+  @Event({ cancelable: true }) ixChange!: EventEmitter<number>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -307,17 +312,33 @@ export class NumberInput implements IxInputFieldComponent<number> {
               type={'number'}
               isInvalid={this.isInvalid}
               required={this.required}
+              valueType="number"
               value={this.value}
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
               valueChange={(value) => this.valueChange.emit(Number(value))}
-              updateFormInternalValue={(value) =>
-                this.updateFormInternalValue(Number(value))
-              }
+              updateFormInternalValue={(value) => {
+                const numericValue = value === '' ? 0 : Number(value);
+                this.updateFormInternalValue(numericValue);
+              }}
               onBlur={() => {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
+              }}
+              onChange={() => {
+                const input = this.inputRef.current;
+                if (!input) return;
+                const newValue = Number(input.value);
+                const event = this.ixChange.emit(newValue);
+                if (event.defaultPrevented) {
+                  input.value = this.value.toString();
+                  this.updateFormInternalValue(this.value);
+                } else {
+                  this.value = newValue;
+                  this.updateFormInternalValue(newValue);
+                  this.valueChange.emit(newValue);
+                }
               }}
             ></InputElement>
             <SlotEnd

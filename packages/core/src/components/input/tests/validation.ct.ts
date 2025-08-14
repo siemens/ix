@@ -39,6 +39,61 @@ test.describe('validation', () => {
 
       await expect(input).toHaveClass(/ix-invalid/);
     });
+    test('ix-change event should be emitted on enter keydown', async ({
+      mount,
+      page,
+    }) => {
+      await mount('<ix-input></ix-input>');
+
+      const setupEventListener = `
+    window.ixChangeDetail = undefined;
+    const ixInput = document.querySelector('ix-input');
+
+    function handleIxChange(e) {
+      window.ixChangeDetail = e.detail;
+    }
+
+    if (ixInput) {
+      ixInput.addEventListener('ixChange', handleIxChange);
+    }
+  `;
+
+      await page.evaluate(setupEventListener);
+
+      const input = page.locator('ix-input');
+      const shadowDomInput = input.locator('input');
+
+      await shadowDomInput.fill('test value');
+      await shadowDomInput.press('Enter');
+
+      const waitForChangeDetail = `
+    () => window.ixChangeDetail !== undefined
+  `;
+
+      await page.waitForFunction(waitForChangeDetail);
+
+      const getEventDetail = `
+    window.ixChangeDetail
+  `;
+
+      const eventDetail = await page.evaluate(getEventDetail);
+      expect(eventDetail).toBe('test value');
+    });
+
+    test('ix-change event should be emitted on blur', async ({
+      mount,
+      page,
+    }) => {
+      await mount('<ix-input></ix-input>');
+
+      const input = page.locator('ix-input');
+      const shadowDomInput = input.locator('input');
+
+      await shadowDomInput.fill('test value');
+      await shadowDomInput.blur();
+
+      await expect(input).toHaveAttribute('value', 'test value');
+    });
   });
 
   test.describe('ix-number-input', () => {
