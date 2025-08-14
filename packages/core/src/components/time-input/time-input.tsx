@@ -39,10 +39,10 @@ import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
 import type { TimeInputValidityState } from './time-input.types';
 import {
-  closeDropdown,
+  closeDropdownUtil,
   createValidityState,
   handleIconClick,
-  openDropdown,
+  openDropdownUtil,
 } from '../utils/input/picker-input.util';
 
 /**
@@ -341,11 +341,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
     // keep picker in sync with input
     this.time = this.value;
 
-    return openDropdown(this.dropdownElementRef);
+    return openDropdownUtil(this.dropdownElementRef);
   }
 
   async closeDropdown() {
-    return closeDropdown(this.dropdownElementRef);
+    return closeDropdownUtil(this.dropdownElementRef);
   }
 
   private checkClassList() {

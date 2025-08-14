@@ -38,10 +38,10 @@ import {
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
 import {
-  closeDropdown,
+  closeDropdownUtil,
   createValidityState,
   handleIconClick,
-  openDropdown,
+  openDropdownUtil,
 } from '../utils/input/picker-input.util';
 
 /**
@@ -330,11 +330,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   async openDropdown() {
-    return openDropdown(this.dropdownElementRef);
+    return openDropdownUtil(this.dropdownElementRef);
   }
 
   async closeDropdown() {
-    return closeDropdown(this.dropdownElementRef);
+    return closeDropdownUtil(this.dropdownElementRef);
   }
 
   private checkClassList() {
