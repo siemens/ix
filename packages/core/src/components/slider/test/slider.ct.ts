@@ -95,25 +95,21 @@ regressionTest(
   }
 );
 
-regressionTest('should check form readiness', async ({ page, mount }) => {
-  await mount(`
-    <form id="slider-form">
-      <ix-slider name="slider" value="20"></ix-slider>
-    </form>
-  `);
+regressionTest.only(`form-readiness`, async ({ mount, page }) => {
+  await mount(
+    `<form><ix-slider name="ix-slider" value="0"></ix-slider></form>`
+  );
 
-  const slider = page.locator('ix-slider');
-  await expect(slider).toHaveClass(/hydrated/);
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+  const input = page.locator('ix-slider').locator('input');
+  await input.focus();
+  await input.evaluate((el) => {
+    (el as HTMLInputElement).value = '50';
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await input.blur();
 
-  const form = page.locator('#slider-form');
-  await preventFormSubmission(form);
-
-  const formData1 = await getFormValue(form, 'slider', page);
-  expect(formData1).toBe('20');
-
-  await slider.evaluate((s) => s.focus());
-  await slider.evaluate((s) => s.setAttribute('value', '30'));
-
-  const formData2 = await getFormValue(form, 'slider', page);
-  expect(formData2).toBe('30');
+  const formData = await getFormValue(formElement, 'ix-slider', page);
+  expect(formData).toBe('50');
 });

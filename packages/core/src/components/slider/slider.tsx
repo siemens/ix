@@ -153,7 +153,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @State() isWarning = false;
 
   private a11yAttributes?: A11yAttributes;
-
+  private lastFormValue?: string;
   private touched = false;
   private readonly controlRef = makeRef<HTMLElement>();
   private readonly thumbRef = makeRef<HTMLDivElement>();
@@ -211,7 +211,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
       'aria-valuenow',
     ]);
     this.updateRangeVariables();
-    this.formInternals.setFormValue(this.value.toString());
+    this.setFormValueIfChanged(this.value);
   }
 
   @Watch('value')
@@ -224,12 +224,20 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
     this.rangeMin = Math.min(this.min, this.max);
     this.rangeMax = Math.max(this.min, this.max);
     if (this.value !== undefined) {
-      this.formInternals.setFormValue(this.value.toString());
+      this.setFormValueIfChanged(this.value);
     }
   }
   private updateFormInternalValue(value: number) {
-    this.formInternals.setFormValue(value.toString());
+    this.setFormValueIfChanged(value);
     this.valueChange.emit(value);
+  }
+
+  private setFormValueIfChanged(value: number) {
+    const valueStr = value.toString();
+    if (this.lastFormValue !== valueStr) {
+      this.formInternals.setFormValue(valueStr);
+      this.lastFormValue = valueStr;
+    }
   }
 
   private onInput(event: InputEvent) {
