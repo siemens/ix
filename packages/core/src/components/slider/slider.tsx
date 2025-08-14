@@ -55,6 +55,7 @@ function between(min: number, value: number, max: number) {
 export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @AttachInternals() formInternals!: ElementInternals;
   @Element() hostElement!: HTMLIxSliderElement;
+
   /**
    * Show text below the field component
    */
@@ -64,6 +65,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
    * Label for the field component
    */
   @Prop() label?: string;
+
   /**
    * Error text for the field component
    */
@@ -227,6 +229,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
       this.setFormValueIfChanged(this.value);
     }
   }
+  
   private updateFormInternalValue(value: number) {
     this.setFormValueIfChanged(value);
     this.valueChange.emit(value);
