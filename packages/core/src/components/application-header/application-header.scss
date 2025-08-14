@@ -108,13 +108,6 @@
       margin-left: 1rem;
       min-width: fit-content;
     }
-
-    @include break-points.media-breakpoint-match('sm') {
-      .logo {
-        margin-left: 0.5rem;
-        display: none;
-      }
-    }
   }
 
   .right-side {
@@ -181,5 +174,18 @@
 
   .right-side.sm {
     justify-content: end;
+  }
+
+  @include break-points.media-breakpoint-match('sm') {
+    .logo {
+      margin-left: 0.5rem;
+      display: none;
+    }
+
+    .content,
+    .secondary,
+    .app-icon {
+      display: none;
+    }
   }
 }

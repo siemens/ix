@@ -207,11 +207,10 @@ export class ApplicationHeader {
       return;
     }
 
-    const logoElement = document.createElement('ix-siemens-logo');
     if (!this.isLogoSlotted()) {
-      this.hostElement
-        .shadowRoot!.querySelector('.logo')
-        ?.appendChild(logoElement);
+      const logoElement = document.createElement('ix-siemens-logo');
+      logoElement.slot = 'logo';
+      this.hostElement.appendChild(logoElement);
     }
   }
 
