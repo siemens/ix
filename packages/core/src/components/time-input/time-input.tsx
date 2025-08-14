@@ -39,10 +39,10 @@ import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
 import type { TimeInputValidityState } from './time-input.types';
 import {
-  closeDropdownUtil,
+  closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
-  openDropdownUtil,
+  openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
 
 /**

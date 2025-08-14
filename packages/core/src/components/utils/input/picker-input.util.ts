@@ -9,7 +9,7 @@
 
 import { dropdownController } from '../../dropdown/dropdown-controller';
 
-export async function openDropdownUtil(dropdownElementRef: any) {
+export async function openDropdown(dropdownElementRef: any) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
   const id = dropdownElement.getAttribute('data-ix-dropdown');
 
@@ -25,7 +25,7 @@ export async function openDropdownUtil(dropdownElementRef: any) {
   dropdownController.present(dropdown);
 }
 
-export async function closeDropdownUtil(dropdownElementRef: any) {
+export async function closeDropdown(dropdownElementRef: any) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
   const id = dropdownElement.getAttribute('data-ix-dropdown');
 

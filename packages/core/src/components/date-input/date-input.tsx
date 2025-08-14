@@ -38,10 +38,10 @@ import {
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
 import {
-  closeDropdownUtil,
+  closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
-  openDropdownUtil,
+  openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
 
 /**
