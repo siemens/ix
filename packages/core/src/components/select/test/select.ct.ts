@@ -174,7 +174,10 @@ test('open filtered dropdown on input', async ({ mount, page }) => {
   await expect(item2).not.toBeVisible();
 });
 
-test('filter works when typing exact text of manually selected item', async ({ mount, page }) => {
+test('filter works when typing exact text of manually selected item', async ({
+  mount,
+  page,
+}) => {
   await mount(`
         <ix-select>
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
