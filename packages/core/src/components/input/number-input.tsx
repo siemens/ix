@@ -215,7 +215,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     );
   }
 
-  private parseScientificNotation(input: string): number | undefined {
+  private convertNumberStringToFloat(input: string): number | undefined {
     if (!input || input.trim() === '') {
       return undefined;
     }
@@ -244,7 +244,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
   }
 
   private handleInputChange = (inputValue: string) => {
-    const parsedValue = this.parseScientificNotation(inputValue);
+    const parsedValue = this.convertNumberStringToFloat(inputValue);
     const isScientificNotation = this.isScientificNotation(inputValue.trim());
 
     if (isScientificNotation) {
@@ -259,7 +259,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
     const inputValue = this.inputRef.current.value;
 
-    const parsedValue = this.parseScientificNotation(inputValue);
+    const parsedValue = this.convertNumberStringToFloat(inputValue);
 
     if (parsedValue !== undefined) {
       this.inputRef.current.value = this.formatValue(parsedValue);
@@ -295,7 +295,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
     const currentValue = this.value ?? 0;
     const stepValue =
-      typeof this.step === 'string' ? parseFloat(this.step) : (this.step ?? 1);
+      typeof this.step === 'string' ? parseFloat(this.step) : this.step ?? 1;
 
     let newValue: number;
 
@@ -337,7 +337,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
       return Promise.resolve(!this.required);
     }
 
-    const parsedValue = this.parseScientificNotation(nativeInput.value);
+    const parsedValue = this.convertNumberStringToFloat(nativeInput.value);
     return Promise.resolve(parsedValue !== undefined);
   }
 
@@ -427,7 +427,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
                 );
 
                 if (!isScientificNotation) {
-                  const parsedValue = this.parseScientificNotation(value);
+                  const parsedValue = this.convertNumberStringToFloat(value);
                   this.updateFormInternalValue(parsedValue);
                 }
               }}
