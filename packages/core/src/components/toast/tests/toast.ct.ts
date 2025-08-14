@@ -68,8 +68,8 @@ regressionTest(
   'verify functionality of pause and resume api',
   async ({ mount, page }) => {
     await mount('');
-    await page.evaluate(() => {
-      window.toast({
+    const toastHandle = await page.evaluateHandle(() => {
+      return window.toast({
         message: 'Pause/Resume test',
         autoCloseDelay: 2000,
       });
@@ -78,17 +78,17 @@ regressionTest(
     const toast = page.locator('ix-toast');
     await expect(toast).toBeVisible();
 
-    await page.evaluate(() => {
-      const el = document.querySelector('ix-toast');
-      el && (el as any).pause?.();
-    });
+    await page.evaluate((handle) => {
+      handle.pause();
+    }, toastHandle);
+
     await page.waitForTimeout(2000);
     await expect(toast).toBeVisible();
 
-    await page.evaluate(() => {
-      const el = document.querySelector('ix-toast');
-      el && (el as any).resume?.();
-    });
+    await page.evaluate((handle) => {
+      handle.resume();
+    }, toastHandle);
+
     await page.waitForTimeout(2000);
     await expect(toast).not.toBeVisible();
   }
