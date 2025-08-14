@@ -40,6 +40,8 @@ import {
 
 let numberInputIds = 0;
 
+const VALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
+
 /**
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
@@ -288,6 +290,34 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     }
   };
 
+  private handleBeforeInput = (e: InputEvent) => {
+    if (this.disabled || this.readonly) return;
+
+    if (e.inputType === 'insertText') {
+      const character = e.data as string | null;
+      // block invalid characters
+      if (character && VALID_NUMBER_INPUT_REGEX.test(character)) {
+        e.preventDefault();
+      }
+    }
+
+    if (e.inputType === 'insertFromPaste') {
+      const dt = (e as any).dataTransfer || (e as any).clipboardData;
+      const text = dt?.getData?.('text') ?? '';
+      if (VALID_NUMBER_INPUT_REGEX.test(text)) {
+        e.preventDefault();
+      }
+    }
+  };
+
+  private handlePaste = (e: ClipboardEvent) => {
+    // Fallback for browsers that don’t fire beforeinput for paste
+    const text = e.clipboardData?.getData('text') ?? '';
+    if (VALID_NUMBER_INPUT_REGEX.test(text)) {
+      e.preventDefault();
+    }
+  };
+
   private handleStepOperation(operation: 'up' | 'down') {
     if (!this.inputRef.current) {
       return;
@@ -295,7 +325,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
     const currentValue = this.value ?? 0;
     const stepValue =
-      typeof this.step === 'string' ? parseFloat(this.step) : (this.step ?? 1);
+      typeof this.step === 'string' ? parseFloat(this.step) : this.step ?? 1;
 
     let newValue: number;
 
@@ -420,6 +450,8 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
               onKeyDown={(event) => this.handleKeyDown(event)}
+              onBeforeInput={(event) => this.handleBeforeInput(event)}
+              onPaste={(event) => this.handlePaste(event)}
               valueChange={this.handleInputChange}
               updateFormInternalValue={(value) => {
                 const isScientificNotation = this.isScientificNotation(
