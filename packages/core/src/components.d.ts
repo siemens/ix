@@ -3719,6 +3719,8 @@ export namespace Components {
           * Icon color of toast
          */
         "iconColor"?: string;
+        "pause": () => Promise<void>;
+        "resume": () => Promise<void>;
         /**
           * Toast title
          */

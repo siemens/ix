@@ -63,3 +63,33 @@ regressionTest(
     await expect(toast).not.toBeVisible();
   }
 );
+
+regressionTest(
+  'verify functionality of pause and resume api',
+  async ({ mount, page }) => {
+    await mount('');
+    const toastHandle = await page.evaluateHandle(() => {
+      return window.toast({
+        message: 'Pause/Resume test',
+        autoCloseDelay: 2000,
+      });
+    });
+
+    const toast = page.locator('ix-toast');
+    await expect(toast).toBeVisible();
+
+    await page.evaluate((handle) => {
+      handle.pause();
+    }, toastHandle);
+
+    await page.waitForTimeout(2000);
+    await expect(toast).toBeVisible();
+
+    await page.evaluate((handle) => {
+      handle.resume();
+    }, toastHandle);
+
+    await page.waitForTimeout(2000);
+    await expect(toast).not.toBeVisible();
+  }
+);
