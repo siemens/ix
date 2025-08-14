@@ -679,10 +679,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private filterItemsWithTypeahead() {
     this.inputFilterText = this.inputElement?.value.trim() ?? '';
 
-    if (this.isSingleMode && this.inputFilterText === this.selectedLabels[0]) {
-      return;
-    }
-
     if (this.inputFilterText) {
       this.items.forEach((item) => {
         item.classList.remove('display-none');

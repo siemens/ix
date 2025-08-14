@@ -174,6 +174,28 @@ test('open filtered dropdown on input', async ({ mount, page }) => {
   await expect(item2).not.toBeVisible();
 });
 
+test('filter works when typing exact text of manually selected item', async ({ mount, page }) => {
+  await mount(`
+        <ix-select>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByRole('button', { name: 'Item 3' }).click();
+
+  await expect(page.locator('input')).toHaveValue('Item 3');
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.locator('input').fill('Item 3');
+
+  await expect(page.getByRole('button', { name: 'Item 1' })).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
+});
+
 test('remove text from input and reselect the element', async ({
   mount,
   page,
@@ -778,14 +800,13 @@ test('last select item can be accessed via scrolling', async ({
   await mount(`
     <ix-select>
       ${Array.from(
-        {
-          length: 20,
-        },
-        (_, i) =>
-          `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${
-            i + 1
-          }</ix-select-item>`
-      ).join('')}
+    {
+      length: 20,
+    },
+    (_, i) =>
+      `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${i + 1
+      }</ix-select-item>`
+  ).join('')}
     </ix-select>
   `);
 
@@ -810,12 +831,11 @@ test('last select item can be accessed via scrolling when select placed at cente
     <div style="height:calc(50vh-1px)"></div>
     <ix-select>
       ${Array.from(
-        { length: 20 },
-        (_, i) =>
-          `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${
-            i + 1
-          }</ix-select-item>`
-      ).join('')}
+    { length: 20 },
+    (_, i) =>
+      `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${i + 1
+      }</ix-select-item>`
+  ).join('')}
     </ix-select>
   `);
 
