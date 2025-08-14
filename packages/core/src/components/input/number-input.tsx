@@ -302,7 +302,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     }
 
     if (e.inputType === 'insertFromPaste') {
-      const dt = (e as any).dataTransfer || (e as any).clipboardData;
+      const dt = e.dataTransfer || (e as any).clipboardData;
       const text = dt?.getData?.('text') ?? '';
       if (VALID_NUMBER_INPUT_REGEX.test(text)) {
         e.preventDefault();
