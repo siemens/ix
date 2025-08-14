@@ -2620,7 +2620,7 @@ export namespace Components {
           * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
-        "value"?: number | undefined;
+        "value"?: number;
         /**
           * The warning text for the input field
          */
@@ -8607,7 +8607,7 @@ declare namespace LocalJSX {
           * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
-        "value"?: number | undefined;
+        "value"?: number;
         /**
           * The warning text for the input field
          */
