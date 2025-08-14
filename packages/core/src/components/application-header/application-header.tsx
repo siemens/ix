@@ -34,7 +34,9 @@ import { Disposable } from '../utils/typed-event';
 import type { PrimaryNavigation } from './application-header.types';
 
 /**
- * @slot logo - Location of the logo
+ * @slot Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
+ * @slot secondary - Place additional items inside the header. If the screen size is small, the items will be shown inside a dropdown.
+ * @slot logo - Place a company logo inside the header. As alternative checkout the companyLogo property.
  */
 @Component({
   tag: 'ix-application-header',
@@ -50,27 +52,29 @@ export class ApplicationHeader {
   @Prop() name?: string;
 
   /**
-   * TODO Define final property name
+   * Define a suffix which will be displayed aside of the application name
    */
   @Prop() nameSuffix?: string;
 
   /**
-   * TODO Define final property name
+   * Company logo will be show on the left side of the application name.
+   * It will be hidden on smaller screens.
    */
   @Prop() companyLogo?: string;
 
   /**
-   * TODO Define final property name
+   * Alt text for the company logo
    */
   @Prop() companyLogoAlt?: string;
 
   /**
-   * TODO Define final property name
+   * App icon will be shown on the first element inside the header.
+   * It will be hidden on smaller screens.
    */
   @Prop() appIcon?: string;
 
   /**
-   * TODO Define final property name
+   * Alt text for the app icon
    */
   @Prop() appIconAlt?: string;
 
@@ -102,11 +106,6 @@ export class ApplicationHeader {
    * @since 3.2.0
    */
   @Prop() ariaLabelMoreMenuIconButton?: string;
-
-  /**
-   * TODO define final naming
-   */
-  @Prop() primaryNavigation?: PrimaryNavigation[];
 
   /**
    * Event emitted when the menu toggle button is clicked
@@ -352,14 +351,6 @@ export class ApplicationHeader {
         <div class={{ 'right-side': true, sm: this.breakpoint === 'sm' }}>
           {this.breakpoint !== 'sm' && (
             <div class="secondary">
-              {this.primaryNavigation &&
-                this.primaryNavigation.length !== 0 && (
-                  <ix-tabs class="primary-navigation">
-                    {this.primaryNavigation.map((item) => (
-                      <ix-tab-item key={item.label}>{item.label}</ix-tab-item>
-                    ))}
-                  </ix-tabs>
-                )}
               <slot name="secondary"></slot>
             </div>
           )}
