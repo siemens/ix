@@ -5,4 +5,6 @@
 "@siemens/ix-vue": patch
 ---
 
-feat(core/number-input): scientific notation values are now converted to decimal format on blur
+Add support for empty values and numbers in scientific notation (e.g. 1E-2) for __ix-number-input__.
+
+Fixes #1968.
