@@ -303,6 +303,7 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = 
         loading: 'loading',
         form: 'form',
         icon: 'icon',
+        iconRight: 'icon-right',
         alignment: 'alignment',
         iconSize: 'icon-size'
     },
@@ -2415,6 +2416,7 @@ export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxTogg
         disabled: 'disabled',
         loading: 'loading',
         icon: 'icon',
+        iconRight: 'icon-right',
         pressed: 'pressed',
         ariaLabelButton: 'aria-label-button'
     },
