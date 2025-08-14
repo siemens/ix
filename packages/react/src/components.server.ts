@@ -174,8 +174,7 @@ export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderEleme
         showMenu: 'show-menu',
         ariaLabelMenuExpandIconButton: 'aria-label-menu-expand-icon-button',
         ariaLabelAppSwitchIconButton: 'aria-label-app-switch-icon-button',
-        ariaLabelMoreMenuIconButton: 'aria-label-more-menu-icon-button',
-        primaryNavigation: 'primary-navigation'
+        ariaLabelMoreMenuIconButton: 'aria-label-more-menu-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
