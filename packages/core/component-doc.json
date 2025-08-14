@@ -18407,7 +18407,7 @@
           "name": "value",
           "type": "number | undefined",
           "complexType": {
-            "original": "number | undefined",
+            "original": "number",
             "resolved": "number | undefined",
             "references": {}
           },

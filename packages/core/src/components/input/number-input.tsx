@@ -40,7 +40,7 @@ import {
 
 let numberInputIds = 0;
 
-const VALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
+const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
 
 /**
  * @form-ready
@@ -70,7 +70,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
   /**
    * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
    */
-  @Prop({ reflect: true, mutable: true }) value?: number | undefined = 0;
+  @Prop({ reflect: true, mutable: true }) value?: number = 0;
 
   /**
    * Indicates if the field is required. When required, empty values (undefined) are not accepted.
@@ -245,7 +245,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     this.value = value;
   }
 
-  private handleInputChange = (inputValue: string) => {
+  private readonly handleInputChange = (inputValue: string) => {
     const parsedValue = this.convertNumberStringToFloat(inputValue);
     const isScientificNotation = this.isScientificNotation(inputValue.trim());
 
@@ -256,7 +256,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     this.valueChange.emit(parsedValue);
   };
 
-  private handleBlur = () => {
+  private readonly handleBlur = () => {
     if (!this.inputRef.current) return;
 
     const inputValue = this.inputRef.current.value;
@@ -273,7 +273,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     this.touched = true;
   };
 
-  private handleKeyDown = (event: KeyboardEvent) => {
+  private readonly handleKeyDown = (event: KeyboardEvent) => {
     if (this.disabled || this.readonly) {
       return;
     }
@@ -290,13 +290,13 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     }
   };
 
-  private handleBeforeInput = (e: InputEvent) => {
+  private readonly handleBeforeInput = (e: InputEvent) => {
     if (this.disabled || this.readonly) return;
 
     if (e.inputType === 'insertText') {
-      const character = e.data as string | null;
-      // block invalid characters
-      if (character && VALID_NUMBER_INPUT_REGEX.test(character)) {
+      const character = e.data;
+
+      if (character && INVALID_NUMBER_INPUT_REGEX.test(character)) {
         e.preventDefault();
       }
     }
@@ -304,16 +304,16 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     if (e.inputType === 'insertFromPaste') {
       const dt = e.dataTransfer || (e as any).clipboardData;
       const text = dt?.getData?.('text') ?? '';
-      if (VALID_NUMBER_INPUT_REGEX.test(text)) {
+      if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
         e.preventDefault();
       }
     }
   };
 
-  private handlePaste = (e: ClipboardEvent) => {
+  private readonly handlePaste = (e: ClipboardEvent) => {
     // Fallback for browsers that don’t fire beforeinput for paste
     const text = e.clipboardData?.getData('text') ?? '';
-    if (VALID_NUMBER_INPUT_REGEX.test(text)) {
+    if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
       e.preventDefault();
     }
   };
@@ -325,7 +325,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
     const currentValue = this.value ?? 0;
     const stepValue =
-      typeof this.step === 'string' ? parseFloat(this.step) : (this.step ?? 1);
+      typeof this.step === 'string' ? parseFloat(this.step) : this.step ?? 1;
 
     let newValue: number;
 
