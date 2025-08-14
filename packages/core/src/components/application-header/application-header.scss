@@ -40,11 +40,11 @@
     position: relative;
     align-items: center;
     min-width: 0;
+    height: 100%;
   }
 
   .left-side {
     flex: 0 1 auto;
-    padding-bottom: 0.4375rem;
 
     .app-icon {
       display: block;
@@ -66,8 +66,11 @@
     }
 
     .app-switch {
-      margin-right: 1rem;
-      padding-bottom: 0.3rem;
+      margin: 0 0.625rem;
+    }
+
+    .app-switch.without-app-icon {
+      margin-left: 0px;
     }
 
     .name {
@@ -111,7 +114,6 @@
   }
 
   .right-side {
-    height: 100%;
     flex: 1 1 auto;
     overflow: hidden;
     justify-content: space-between;

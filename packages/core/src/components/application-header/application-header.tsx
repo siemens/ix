@@ -317,7 +317,10 @@ export class ApplicationHeader {
               onClick={() => this.showAppSwitch()}
               icon={iconApps}
               ghost
-              class="app-switch"
+              class={{
+                'app-switch': true,
+                'without-app-icon': !this.appIcon,
+              }}
               aria-label={this.ariaLabelAppSwitchIconButton}
             ></ix-icon-button>
           )}

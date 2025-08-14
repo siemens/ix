@@ -16,23 +16,33 @@ import {
 } from './utils/generic-render';
 import { getExampleResourcesInput } from './utils/example-resources';
 
-type Element = GenericRenderComponent<Components.IxApplicationHeader>;
+type Element = GenericRenderComponent<
+  Components.IxApplicationHeader,
+  {
+    showAppSwitch: boolean;
+  }
+>;
 
 const meta = {
   title: 'Example/ApplicationHeader',
   tags: [],
-  render: (args) => genericRender('ix-application-header', args),
+  render: (args) =>
+    genericRender('ix-application-header', args, ['showAppSwitch']),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-application-header', {
     appIcon: getExampleResourcesInput(),
     companyLogo: getExampleResourcesInput(),
     primaryNavigation: {
       control: 'object',
     },
+    showAppSwitch: {
+      control: 'boolean',
+    },
   }),
   args: {
     name: 'Application Header',
   },
   parameters: {
+    layout: 'fullscreen',
     design: {
       type: 'figma',
     },
@@ -89,10 +99,30 @@ export const Overflow: OverflowStory = {
   },
 
   render: (args) => {
-    const container = genericRender('ix-application-header', args, [
-      'defaultButtons',
-      'overflowButtons',
-    ]);
+    const appframe = document.createElement('ix-application');
+    const container = genericRender(
+      'ix-application-header',
+      args,
+      ['defaultButtons', 'overflowButtons', 'showAppSwitch'],
+      (header, args) => {
+        if (args.showAppSwitch) {
+          appframe.appSwitchConfig = {
+            apps: [
+              {
+                description: 'test',
+                iconSrc: '',
+                id: '1',
+                name: 'Test App',
+                target: '_blank',
+                url: 'https://example.com',
+              },
+            ],
+            currentAppId: '1',
+          };
+        }
+        return header;
+      }
+    );
     const applicationHeader = container.querySelector(
       'ix-application-header'
     ) as HTMLIxApplicationHeaderElement;
@@ -106,7 +136,9 @@ export const Overflow: OverflowStory = {
       applicationHeader.appendChild(button);
     });
 
-    return container;
+    appframe.appendChild(applicationHeader);
+
+    return appframe;
   },
 };
 
