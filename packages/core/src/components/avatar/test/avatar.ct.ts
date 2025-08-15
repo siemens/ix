@@ -115,4 +115,39 @@ regressionTest.describe('embedded into header', () => {
       await expect(avatar.locator('ix-divider')).not.toBeVisible();
     }
   );
+
+  regressionTest('should show no tooltip', async ({ page, mount }) => {
+    await mount(`<ix-avatar aria-label-tooltip="myTooltip"></ix-avatar>`);
+
+    const avatar = page.locator('ix-avatar');
+    await avatar.hover();
+
+    const tooltip = avatar.getByLabel('myTooltip');
+    await expect(tooltip).not.toBeAttached();
+  });
+
+  regressionTest(
+    'should show tooltip text with username or tooltip-text',
+    async ({ page, mount }) => {
+      await mount(
+        `<ix-avatar aria-label-tooltip="myTooltip" username="foo"></ix-avatar>`
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.hover();
+
+      const tooltip = avatar.getByLabel('myTooltip');
+      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveClass(/visible/);
+      await expect(tooltip).toHaveText('foo');
+
+      await avatar.evaluate((avatar) =>
+        avatar.setAttribute('tooltip-text', 'other text')
+      );
+
+      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveClass(/visible/);
+      await expect(tooltip).toHaveText('other text');
+    }
+  );
 });

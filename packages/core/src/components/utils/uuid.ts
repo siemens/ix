@@ -16,3 +16,7 @@ export function generateUUID(): string {
 
   return uuid;
 }
+
+export const createSequentialId = (prefix: string, sequenceId: number) => {
+  return `${prefix}-${sequenceId++}`;
+};

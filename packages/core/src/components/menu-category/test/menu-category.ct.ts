@@ -30,7 +30,7 @@ regressionTest('should collapse by click', async ({ mount, page }) => {
     <ix-menu>
       <ix-menu-category label="Category label">
         <ix-menu-item>Test</ix-menu-item>
-        <ix-menu-item>Test 2</ix-menu-item>
+        <ix-menu-item aria-label="MenuItem2">Test 2</ix-menu-item>
       </ix-menu-category>
     </ix-menu>
   </ix-basic-navigation>
@@ -47,7 +47,7 @@ regressionTest('should collapse by click', async ({ mount, page }) => {
 
   await categoryItem.click();
 
-  const item = page.locator('ix-menu-item').getByText('Test 2');
+  const item = page.getByLabel('MenuItem2');
   await item.evaluate((item: HTMLIxMenuItemElement) => (item.active = true));
   await expect(item).toHaveClass(/active/);
 
