@@ -199,6 +199,11 @@ export namespace Components {
          */
         "a11yLabel"?: string;
         /**
+          * aria-label for the tooltip
+          * @since 3.3.0
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
          */
         "extra"?: string;
@@ -210,6 +215,11 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Text to display in a tooltip when hovering over the avatar
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
@@ -6039,6 +6049,11 @@ declare namespace LocalJSX {
          */
         "a11yLabel"?: string;
         /**
+          * aria-label for the tooltip
+          * @since 3.3.0
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
          */
         "extra"?: string;
@@ -6050,6 +6065,11 @@ declare namespace LocalJSX {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Text to display in a tooltip when hovering over the avatar
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */

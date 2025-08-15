@@ -262,6 +262,7 @@ export class MenuCategory implements IxMenuItemBase {
           icon={this.icon}
           onClick={(e) => this.onCategoryClick(e)}
           onFocus={() => this.onPointerEnter()}
+          tooltipText={this.tooltipText}
           isCategory
         >
           <div class="category">

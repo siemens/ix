@@ -192,7 +192,9 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = 
         image: 'image',
         initials: 'initials',
         username: 'username',
-        extra: 'extra'
+        extra: 'extra',
+        tooltipText: 'tooltip-text',
+        ariaLabelTooltip: 'aria-label-tooltip'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
