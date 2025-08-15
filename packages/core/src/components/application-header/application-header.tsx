@@ -52,33 +52,45 @@ export class ApplicationHeader {
 
   /**
    * Define a suffix which will be displayed aside of the application name
+   *
+   * @since 3.3.0
    */
   @Prop() nameSuffix?: string;
 
   /**
    * Company logo will be show on the left side of the application name.
    * It will be hidden on smaller screens.
+   *
+   * @since 3.3.0
    */
   @Prop() companyLogo?: string;
 
   /**
    * Alt text for the company logo
+   *
+   * @since 3.3.0
    */
   @Prop() companyLogoAlt?: string;
 
   /**
    * App icon will be shown on the first element inside the header.
    * It will be hidden on smaller screens.
+   *
+   * @since 3.3.0
    */
   @Prop() appIcon?: string;
 
   /**
    * Alt text for the app icon
+   *
+   * @since 3.3.0
    */
   @Prop() appIconAlt?: string;
 
   /**
    * Hides the bottom border of the header
+   *
+   * @since 3.3.0
    */
   @Prop() hideBottomBorder = false;
 
