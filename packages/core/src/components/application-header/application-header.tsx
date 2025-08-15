@@ -26,12 +26,11 @@ import {
   ApplicationLayoutContext,
   AppSwitchConfiguration,
 } from '../utils/application-layout/context';
-import { Breakpoint } from '../utils/breakpoints';
+import { Breakpoint, getCurrentBreakpoint } from '../utils/breakpoints';
 import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
-import type { PrimaryNavigation } from './application-header.types';
 
 /**
  * @slot Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
@@ -123,23 +122,23 @@ export class ApplicationHeader {
   @State() menuExpanded = false;
   @State() suppressResponsive = false;
 
-  @State() hasSlottedElements = false;
-
+  @State() hasOverflowSlottedElements = false;
+  @State() applicationLayoutContext?: ContextType<
+    typeof ApplicationLayoutContext
+  >;
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
   private callbackUpdateAppSwitchModal?: (
     config: AppSwitchConfiguration
   ) => void;
 
-  @State() applicationLayoutContext?: ContextType<
-    typeof ApplicationLayoutContext
-  >;
-
   get contentBackground() {
     return this.hostElement.shadowRoot!.querySelector('.dropdown-content');
   }
 
   componentWillLoad() {
+    this.breakpoint = getCurrentBreakpoint();
+
     useContextConsumer(
       this.hostElement,
       ApplicationLayoutContext,
@@ -170,7 +169,7 @@ export class ApplicationHeader {
       this.breakpoint = mode;
     });
 
-    this.updateIsSlottedContent();
+    this.updateHasDefaultSlotAssignedElements();
   }
 
   componentDidLoad() {
@@ -264,11 +263,17 @@ export class ApplicationHeader {
     );
   }
 
-  private updateIsSlottedContent() {
-    const slotElement =
-      this.hostElement.shadowRoot!.querySelector('.content slot');
+  private updateHasDefaultSlotAssignedElements() {
+    const defaultSlot = this.hostElement.shadowRoot!.querySelector(
+      '.content slot:not([name])'
+    );
 
-    this.hasSlottedElements = hasSlottedElements(slotElement);
+    const secondarySlot = this.hostElement.shadowRoot!.querySelector(
+      '.content slot[name="secondary"]'
+    );
+
+    this.hasOverflowSlottedElements =
+      hasSlottedElements(defaultSlot) || hasSlottedElements(secondarySlot);
   }
 
   private onContentBgClick(e: MouseEvent) {
@@ -360,7 +365,7 @@ export class ApplicationHeader {
                 <ix-icon-button
                   class={{
                     ['context-menu']: true,
-                    ['context-menu-visible']: this.hasSlottedElements,
+                    ['context-menu-visible']: this.hasOverflowSlottedElements,
                   }}
                   data-context-menu
                   data-testid="show-more"
@@ -384,14 +389,18 @@ export class ApplicationHeader {
                     <div class="divider"></div>
                     <div class="bottom">
                       <slot
-                        onSlotchange={() => this.updateIsSlottedContent()}
+                        onSlotchange={() =>
+                          this.updateHasDefaultSlotAssignedElements()
+                        }
                       ></slot>
                     </div>
                   </div>
                 </ix-dropdown>
               </Fragment>
             ) : (
-              <slot onSlotchange={() => this.updateIsSlottedContent()}></slot>
+              <slot
+                onSlotchange={() => this.updateHasDefaultSlotAssignedElements()}
+              ></slot>
             )}
             <slot name="ix-application-header-avatar"></slot>
           </div>
