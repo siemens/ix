@@ -570,7 +570,12 @@
           "attr": "app-icon",
           "reflectToAttr": false,
           "docs": "App icon will be shown on the first element inside the header.\nIt will be hidden on smaller screens.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -596,7 +601,12 @@
           "attr": "app-icon-alt",
           "reflectToAttr": false,
           "docs": "Alt text for the app icon",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -715,7 +725,12 @@
           "attr": "company-logo",
           "reflectToAttr": false,
           "docs": "Company logo will be show on the left side of the application name.\nIt will be hidden on smaller screens.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -741,7 +756,12 @@
           "attr": "company-logo-alt",
           "reflectToAttr": false,
           "docs": "Alt text for the company logo",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -768,6 +788,10 @@
           "reflectToAttr": false,
           "docs": "Hides the bottom border of the header",
           "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
             {
               "name": "default",
               "text": "false"
@@ -822,7 +846,12 @@
           "attr": "name-suffix",
           "reflectToAttr": false,
           "docs": "Define a suffix which will be displayed aside of the application name",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"

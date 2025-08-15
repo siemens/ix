@@ -164,10 +164,12 @@ export namespace Components {
     interface IxApplicationHeader {
         /**
           * App icon will be shown on the first element inside the header. It will be hidden on smaller screens.
+          * @since 3.3.0
          */
         "appIcon"?: string;
         /**
           * Alt text for the app icon
+          * @since 3.3.0
          */
         "appIconAlt"?: string;
         /**
@@ -187,14 +189,17 @@ export namespace Components {
         "ariaLabelMoreMenuIconButton"?: string;
         /**
           * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
+          * @since 3.3.0
          */
         "companyLogo"?: string;
         /**
           * Alt text for the company logo
+          * @since 3.3.0
          */
         "companyLogoAlt"?: string;
         /**
           * Hides the bottom border of the header
+          * @since 3.3.0
           * @default false
          */
         "hideBottomBorder": boolean;
@@ -204,6 +209,7 @@ export namespace Components {
         "name"?: string;
         /**
           * Define a suffix which will be displayed aside of the application name
+          * @since 3.3.0
          */
         "nameSuffix"?: string;
         /**
@@ -6010,10 +6016,12 @@ declare namespace LocalJSX {
     interface IxApplicationHeader {
         /**
           * App icon will be shown on the first element inside the header. It will be hidden on smaller screens.
+          * @since 3.3.0
          */
         "appIcon"?: string;
         /**
           * Alt text for the app icon
+          * @since 3.3.0
          */
         "appIconAlt"?: string;
         /**
@@ -6033,14 +6041,17 @@ declare namespace LocalJSX {
         "ariaLabelMoreMenuIconButton"?: string;
         /**
           * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
+          * @since 3.3.0
          */
         "companyLogo"?: string;
         /**
           * Alt text for the company logo
+          * @since 3.3.0
          */
         "companyLogoAlt"?: string;
         /**
           * Hides the bottom border of the header
+          * @since 3.3.0
           * @default false
          */
         "hideBottomBorder"?: boolean;
@@ -6050,6 +6061,7 @@ declare namespace LocalJSX {
         "name"?: string;
         /**
           * Define a suffix which will be displayed aside of the application name
+          * @since 3.3.0
          */
         "nameSuffix"?: string;
         /**
