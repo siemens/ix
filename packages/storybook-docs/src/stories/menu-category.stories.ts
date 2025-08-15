@@ -9,7 +9,6 @@
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
-import { expect } from 'storybook/test';
 
 type Elements = Components.IxMenuCategory & {
   items: number;
