@@ -9,13 +9,12 @@
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { getExampleResourcesInput } from './utils/example-resources';
 import {
   genericRender,
   GenericRenderComponent,
   makeArgTypes,
 } from './utils/generic-render';
-import { getExampleResourcesInput } from './utils/example-resources';
-import { Heading } from '@storybook/addon-docs/blocks';
 
 type Element = GenericRenderComponent<
   Components.IxApplicationHeader,
