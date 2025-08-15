@@ -1940,14 +1940,14 @@ export declare interface IxMenuAvatarItem extends Components.IxMenuAvatarItem {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMenuCategory,
-  inputs: ['icon', 'label', 'notifications']
+  inputs: ['icon', 'label', 'notifications', 'tooltipText']
 })
 @Component({
   selector: 'ix-menu-category',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'label', 'notifications'],
+  inputs: ['icon', 'label', 'notifications', 'tooltipText'],
   standalone: true
 })
 export class IxMenuCategory {
@@ -1964,14 +1964,14 @@ export declare interface IxMenuCategory extends Components.IxMenuCategory {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMenuItem,
-  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'label', 'notifications']
+  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'label', 'notifications', 'tooltipText']
 })
 @Component({
   selector: 'ix-menu-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'label', 'notifications'],
+  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'label', 'notifications', 'tooltipText'],
   standalone: true
 })
 export class IxMenuItem {

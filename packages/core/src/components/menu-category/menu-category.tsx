@@ -22,7 +22,7 @@ import { closestIxMenu } from '../utils/application-layout/context';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { createEnterLeaveDebounce } from './enter-leave';
 import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
-
+import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
@@ -31,7 +31,7 @@ const DefaultAnimationTimeout = 150;
   styleUrl: 'menu-category.scss',
   shadow: true,
 })
-export class MenuCategory {
+export class MenuCategory implements IxMenuItemBase {
   @Element() hostElement!: HTMLIxMenuCategoryElement;
 
   /**
@@ -48,6 +48,13 @@ export class MenuCategory {
    * Show notification count on the category
    */
   @Prop() notifications?: number;
+
+  /**
+   * Will be shown as tooltip text, if not provided menu text content will be used.
+   *
+   * @since 3.3.0
+   */
+  @Prop() tooltipText?: string;
 
   /** @internal */
   // eslint-disable-next-line @stencil-community/decorators-style

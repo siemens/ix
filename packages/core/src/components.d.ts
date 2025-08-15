@@ -2345,6 +2345,11 @@ export namespace Components {
           * Show notification count on the category
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuExpandIcon {
         /**
@@ -2405,6 +2410,11 @@ export namespace Components {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuSettings {
         /**
@@ -8312,6 +8322,11 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuExpandIcon {
         /**
@@ -8372,6 +8387,11 @@ declare namespace LocalJSX {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuSettings {
         /**

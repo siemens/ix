@@ -929,6 +929,7 @@ export const IxMenuCategory: StencilVueComponent<JSX.IxMenuCategory> = /*@__PURE
   'label',
   'icon',
   'notifications',
+  'tooltipText',
   'closeOtherCategories'
 ], [
   'closeOtherCategories'
@@ -943,6 +944,7 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
   'notifications',
   'active',
   'disabled',
+  'tooltipText',
   'isCategory'
 ]);
 
