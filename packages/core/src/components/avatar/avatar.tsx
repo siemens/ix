@@ -20,6 +20,7 @@ import {
 import { BaseButton } from '../button/base-button';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+import { makeRef } from '../utils/make-ref';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -169,6 +170,8 @@ export class Avatar {
   private slotElement?: HTMLSlotElement;
   private dropdownElement?: HTMLIxDropdownElement;
 
+  private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
+
   componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
     this.isClosestApplicationHeader = closest !== null;
@@ -214,6 +217,7 @@ export class Avatar {
         />
         {hasTooltip && (
           <ix-tooltip
+            ref={this.tooltipRef}
             for={this.hostElement}
             aria-hidden={a11yBoolean(ariaHidden)}
             aria-label={this.ariaLabelTooltip}
@@ -246,6 +250,11 @@ export class Avatar {
             trigger={this.resolveAvatarTrigger()}
             class="avatar-dropdown"
             onClick={(e) => this.onDropdownClick(e)}
+            onShowChanged={(event) => {
+              if (event.detail && this.tooltipRef.current) {
+                this.tooltipRef.current.hideTooltip(0);
+              }
+            }}
           >
             {this.username && (
               <Fragment>
