@@ -15,6 +15,7 @@ import {
   makeArgTypes,
 } from './utils/generic-render';
 import { getExampleResourcesInput } from './utils/example-resources';
+import { Heading } from '@storybook/addon-docs/blocks';
 
 type Element = GenericRenderComponent<
   Components.IxApplicationHeader,
@@ -31,9 +32,6 @@ const meta = {
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-application-header', {
     appIcon: getExampleResourcesInput(),
     companyLogo: getExampleResourcesInput(),
-    primaryNavigation: {
-      control: 'object',
-    },
     showAppSwitch: {
       control: 'boolean',
     },
@@ -157,6 +155,30 @@ export const withAvatar: Story = {
   },
   args: {
     name: 'Application Header',
+  },
+};
+
+export const NoBorderBottom: Story = {
+  args: {
+    name: 'Application Header',
+    hideBottomBorder: true,
+  },
+
+  render: (args) => {
+    const container = genericRender('ix-application-header', args);
+    const bottomContent = document.createElement('div');
+    Object.assign(bottomContent.style, {
+      display: 'flex',
+      position: 'relative',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'var(--theme-app-header--background)',
+      height: '5rem',
+      width: '100%',
+    });
+    bottomContent.innerText = 'Simple div with same background as header';
+    container.appendChild(bottomContent);
+    return container;
   },
 };
 

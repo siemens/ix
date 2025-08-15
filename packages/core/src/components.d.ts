@@ -194,6 +194,11 @@ export namespace Components {
          */
         "companyLogoAlt"?: string;
         /**
+          * Hides the bottom border of the header
+          * @default false
+         */
+        "hideBottomBorder": boolean;
+        /**
           * Application name
          */
         "name"?: string;
@@ -6034,6 +6039,11 @@ declare namespace LocalJSX {
           * Alt text for the company logo
          */
         "companyLogoAlt"?: string;
+        /**
+          * Hides the bottom border of the header
+          * @default false
+         */
+        "hideBottomBorder"?: boolean;
         /**
           * Application name
          */

@@ -78,6 +78,11 @@ export class ApplicationHeader {
   @Prop() appIconAlt?: string;
 
   /**
+   * Hides the bottom border of the header
+   */
+  @Prop() hideBottomBorder = false;
+
+  /**
    * Controls the visibility of the menu toggle button based on the context of the application header.
    *
    * When the application header is utilized outside the application frame, the menu toggle button is displayed.
@@ -299,6 +304,7 @@ export class ApplicationHeader {
       <Host
         class={{
           [`breakpoint-${this.breakpoint}`]: true,
+          'hide-bottom-border': this.hideBottomBorder,
         }}
         slot="application-header"
         role="navigation"

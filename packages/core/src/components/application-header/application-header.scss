@@ -191,3 +191,7 @@
     }
   }
 }
+
+:host(.hide-bottom-border) {
+  border-bottom: none;
+}
