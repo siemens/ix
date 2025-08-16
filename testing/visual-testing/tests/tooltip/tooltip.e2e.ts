@@ -19,7 +19,6 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
-    await page.setViewportSize({ height: 400, width: 400 });
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
@@ -168,7 +167,6 @@ regressionTest.describe('tooltip', () => {
 
     const trigger = await page.waitForSelector('#trigger');
     await trigger.hover();
-    await page.setViewportSize({ height: 300, width: 450 });
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
