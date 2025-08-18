@@ -86,6 +86,7 @@ export class Tabs {
 
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
+  private classObserver?: MutationObserver;
 
   private clickAction: {
     timeout: NodeJS.Timeout | null;
@@ -125,6 +126,126 @@ export class Tabs {
       this.renderArrows();
     });
     this.resizeObserver.observe(parentElement);
+  }
+
+  private initMutationObserver() {
+    this.setupSlotChangeListener();
+    this.setupClassObserver();
+  }
+
+  private setupSlotChangeListener() {
+    const slotEl = this.hostElement.shadowRoot?.querySelector('slot');
+    if (!slotEl) return;
+
+    slotEl.addEventListener('slotchange', () => {
+      setTimeout(() => this.handleSlotChange(), 0);
+    });
+  }
+
+  private setupClassObserver() {
+    this.classObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => this.handleClassMutation(mutation));
+    });
+
+    this.classObserver.observe(this.hostElement, {
+      childList: false,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
+
+  private handleClassMutation(mutation: MutationRecord) {
+    if (!this.isTabItemClassMutation(mutation)) return;
+
+    const element = mutation.target as HTMLIxTabItemElement;
+    const index = this.getTabs().indexOf(element);
+    if (index !== -1) {
+      this.setTabSelectionState(element, index);
+    }
+  }
+
+  private isTabItemClassMutation(mutation: MutationRecord): boolean {
+    return mutation.type === 'attributes' &&
+           mutation.attributeName === 'class' &&
+           mutation.target.nodeName === 'IX-TAB-ITEM';
+  }
+
+  private handleSlotChange() {
+    const tabs = this.getTabs();
+    this.totalItems = tabs.length;
+
+    tabs.forEach((element, index) => {
+      if (!element.hasAttribute('placement')) {
+        this.setTabAttributes(element);
+      }
+      this.setTabSelectionState(element, index);
+    });
+
+    this.renderArrows();
+  }
+
+  private setTabAttributes(element: HTMLIxTabItemElement) {
+    if (this.small) element.setAttribute('small', 'true');
+    if (this.rounded) element.setAttribute('rounded', 'true');
+    element.setAttribute('layout', this.layout);
+    element.setAttribute('placement', this.placement);
+  }
+
+  private setTabSelectionState(element: HTMLIxTabItemElement, index: number) {
+    const isSelected = index === this.selected;
+
+    this.setTabProperties(element, isSelected);
+    this.applyTabClasses(element, isSelected);
+  }
+
+  private setTabProperties(element: HTMLIxTabItemElement, isSelected: boolean) {
+    (element as any).selected = isSelected;
+    element.setAttribute('selected', isSelected ? 'true' : 'false');
+  }
+
+  private applyTabClasses(element: HTMLIxTabItemElement, isSelected: boolean) {
+    const requiredClasses = this.getRequiredClasses(isSelected);
+
+    requiredClasses.forEach(className => {
+      if (!element.classList.contains(className)) {
+        element.classList.add(className);
+      }
+    });
+
+    if (!isSelected && element.classList.contains('selected')) {
+      element.classList.remove('selected');
+    }
+  }
+
+  private getRequiredClasses(isSelected: boolean): string[] {
+    const classes = ['hydrated'];
+
+    if (this.shouldHaveBottomClass()) {
+      classes.push('bottom');
+    }
+
+    if (isSelected) {
+      classes.push('selected');
+    }
+
+    return classes;
+  }
+
+  private shouldHaveBottomClass(): boolean {
+    return this.placement === 'bottom' && this.layout !== 'stretched';
+  }
+
+  private updateTabAttributes() {
+    const tabs = this.getTabs();
+    this.totalItems = tabs.length;
+
+    tabs.forEach((element, index) => {
+      this.setTabAttributes(element);
+      this.setTabSelectionState(element, index);
+    });
+
+    this.renderArrows();
   }
 
   private showArrows() {
@@ -270,22 +391,7 @@ export class Tabs {
   }
 
   componentWillLoad() {
-    const tabs = this.getTabs();
-
-    tabs.map((element, index) => {
-      if (this.small) element.setAttribute('small', 'true');
-
-      if (this.rounded) element.setAttribute('rounded', 'true');
-
-      element.setAttribute('layout', this.layout);
-      element.setAttribute(
-        'selected',
-        index === this.selected ? 'true' : 'false'
-      );
-
-      element.setAttribute('placement', this.placement);
-    });
-
+    this.updateTabAttributes();
     this.initResizeObserver();
   }
 
@@ -293,16 +399,22 @@ export class Tabs {
     const tabs = this.getTabs();
     this.totalItems = tabs.length;
 
-    tabs.map((element, index) => {
-      element.setAttribute(
-        'selected',
-        index === this.selected ? 'true' : 'false'
-      );
+    tabs.forEach((element, index) => {
+      this.setTabSelectionState(element, index);
     });
   }
 
   componentWillRender() {
     this.renderArrows();
+
+    const tabs = this.getTabs();
+    if (this.selected >= tabs.length) {
+      const newSelected = 0;
+      if (this.selected !== newSelected) {
+        this.selected = newSelected;
+        this.selectedChange.emit(newSelected);
+      }
+    }
   }
 
   private renderArrows() {
@@ -319,10 +431,13 @@ export class Tabs {
         this.dragStart(element, event)
       );
     });
+
+    this.initMutationObserver();
   }
 
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
+    this.classObserver?.disconnect();
   }
 
   @Listen('tabClick')
