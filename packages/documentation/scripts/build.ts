@@ -14,7 +14,7 @@ import { fetchChangelog } from './utils/fetch-changelog';
 import componentDoc from '@siemens/ix/component-doc.json';
 import { convertDocsTagsToTSXElement } from './utils/docs-tags';
 import { generateTypeScriptDocs } from './typedoc-generator';
-import { escapeBackticks } from './utils/escape';
+import { escapeBackticks, parseJSDocsToMarkdown } from './utils/escape';
 
 type OutputType = 'html' | 'react' | 'angular' | 'angular_standalone' | 'vue';
 
@@ -331,7 +331,7 @@ async function generateApiMarkdown() {
       props: props.map((prop) => ({
         ...prop,
         docsTags: convertDocsTagsToTSXElement(component.tag, prop.docsTags),
-        docs: escapeBackticks(prop.docs.replace(/\n/g, '')),
+        docs: parseJSDocsToMarkdown(escapeBackticks(prop.docs)),
       })),
     });
 
@@ -340,7 +340,7 @@ async function generateApiMarkdown() {
       events: events.map((event) => ({
         ...event,
         docsTags: convertDocsTagsToTSXElement(component.tag, event.docsTags),
-        docs: escapeBackticks(event.docs.replace(/\n/g, '')),
+        docs: parseJSDocsToMarkdown(escapeBackticks(event.docs)),
       })),
     });
 
@@ -348,7 +348,7 @@ async function generateApiMarkdown() {
       slots: slots.map((tag) => ({
         ...tag,
         docsTags: convertDocsTagsToTSXElement(component.tag, []),
-        docs: escapeBackticks(tag.docs.replace(/\n/g, '')),
+        docs: parseJSDocsToMarkdown(escapeBackticks(tag.docs)),
       })),
     });
 

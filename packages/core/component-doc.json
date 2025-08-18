@@ -5930,7 +5930,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -6703,7 +6703,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -7181,7 +7181,7 @@
           "mutable": false,
           "attr": "date-format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -7298,7 +7298,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Format of time string\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [],
           "values": [
             {
@@ -7599,7 +7599,7 @@
           "mutable": false,
           "attr": "time-format",
           "reflectToAttr": false,
-          "docs": "Time format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Time format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -23670,7 +23670,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Format of time string\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -24523,7 +24523,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.\nNote: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.",
+          "docs": "Format of time string\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.\nNote: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.",
           "docsTags": [
             {
               "name": "default",
@@ -27439,7 +27439,7 @@
           "mutable": false,
           "attr": "accept",
           "reflectToAttr": false,
-          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\n[accept]{@link \"https://www.w3schools.com/tags/att_input_accept.asp\"}",
+          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\n[accept]{@link https://www.w3schools.com/tags/att_input_accept.asp}",
           "docsTags": [],
           "values": [
             {
