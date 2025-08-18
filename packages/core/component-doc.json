@@ -3907,7 +3907,7 @@
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
-          "docs": "Custom background color.\nOnly has an effect on chips with `variant='custom'`",
+          "docs": "Custom background color.\nOnly has an effect on chips with \"variant='custom'\"",
           "docsTags": [],
           "values": [
             {
@@ -3966,7 +3966,7 @@
           "mutable": false,
           "attr": "chip-color",
           "reflectToAttr": false,
-          "docs": "Custom font and icon color.\nOnly has an effect on chips with `variant='custom'`",
+          "docs": "Custom font and icon color.\nOnly has an effect on chips with \"variant='custom'\"",
           "docsTags": [],
           "values": [
             {
@@ -5247,7 +5247,7 @@
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
+          "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to \"null\" no default start date will be pre-selected.\n\nFormat is based on `format`",
           "docsTags": [
             {
               "name": "default",
@@ -6732,7 +6732,7 @@
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "The selected starting date. If the date-picker-rework is not in range mode this is the selected date.\nFormat has to match the `format` property.",
+          "docs": "The selected starting date. If the date-picker-rework is not in range mode this is the selected date.\nFormat has to match the 'format' property.",
           "docsTags": [],
           "values": [
             {
@@ -7210,7 +7210,7 @@
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "The selected starting date. If the picker is not in range mode this is the selected date.\nFormat has to match the `format` property.",
+          "docs": "The selected starting date. If the picker is not in range mode this is the selected date.\nFormat has to match the \"format\" property.",
           "docsTags": [],
           "values": [
             {
@@ -7659,7 +7659,7 @@
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
-          "docs": "The selected end date. If the the picker is not in range mode this property has no impact.\nFormat has to match the `format` property.",
+          "docs": "The selected end date. If the the picker is not in range mode this property has no impact.\nFormat has to match the \"format\" property.",
           "docsTags": [],
           "values": [
             {
@@ -9678,7 +9678,7 @@
           "mutable": false,
           "attr": "item-color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are \"--theme-color-alarm\" or \"color-alarm\"",
           "docsTags": [
             {
               "name": "link",
@@ -18862,7 +18862,7 @@
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
-          "docs": "Custom color for pill. Only working for `variant='custom'`",
+          "docs": "Custom color for pill. Only working for \"variant='custom'\"",
           "docsTags": [],
           "values": [
             {
@@ -18943,7 +18943,7 @@
           "mutable": false,
           "attr": "pill-color",
           "reflectToAttr": false,
-          "docs": "Custom font color for pill. Only working for `variant='custom'`",
+          "docs": "Custom font color for pill. Only working for \"variant='custom'\"",
           "docsTags": [],
           "values": [
             {
@@ -22783,7 +22783,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "`selected` property changed",
+          "docs": "\"selected\" property changed",
           "docsTags": []
         }
       ],
@@ -25090,7 +25090,7 @@
           "mutable": false,
           "attr": "time",
           "reflectToAttr": false,
-          "docs": "Select time with format string\nFormat has to match the `format` property.",
+          "docs": "Select time with format string\nFormat has to match the \"format\" property.",
           "docsTags": [
             {
               "name": "default",
@@ -25753,7 +25753,7 @@
           "mutable": false,
           "attr": "hide-text",
           "reflectToAttr": false,
-          "docs": "Hide `on` and `off` text",
+          "docs": "Hide \"on\" and \"off\" text",
           "docsTags": [
             {
               "name": "default",
@@ -26403,7 +26403,7 @@
           "mutable": false,
           "attr": "for",
           "reflectToAttr": false,
-          "docs": "CSS selector for hover trigger element e.g. `for=\"[data-my-custom-select]\"`",
+          "docs": "CSS selector for hover trigger element e.g. for=\"[data-my-custom-select]\"",
           "docsTags": [],
           "values": [
             {

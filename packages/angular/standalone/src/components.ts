@@ -2713,7 +2713,7 @@ export class IxTabs {
 
 export declare interface IxTabs extends Components.IxTabs {
   /**
-   * `selected` property changed
+   * "selected" property changed
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
 }

@@ -634,7 +634,7 @@ export namespace Components {
          */
         "ariaLabelCloseButton"?: string;
         /**
-          * Custom background color. Only has an effect on chips with `variant='custom'`
+          * Custom background color. Only has an effect on chips with "variant='custom'"
          */
         "background": string | undefined;
         /**
@@ -644,7 +644,7 @@ export namespace Components {
          */
         "centerContent": boolean;
         /**
-          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+          * Custom font and icon color. Only has an effect on chips with "variant='custom'"
          */
         "chipColor": string | undefined;
         /**
@@ -800,7 +800,7 @@ export namespace Components {
          */
         "format": string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
+          * Picker date. If the picker is in range mode this property is the start date. If set to "null" no default start date will be pre-selected.  Format is based on `format`
           * @default ''
          */
         "from": string;
@@ -1026,7 +1026,7 @@ export namespace Components {
          */
         "format": string;
         /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the 'format' property.
          */
         "from": string | undefined;
         /**
@@ -1124,7 +1124,7 @@ export namespace Components {
          */
         "dateFormat": string;
         /**
-          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the "format" property.
          */
         "from"?: string;
         /**
@@ -1199,7 +1199,7 @@ export namespace Components {
          */
         "timeReference"?: 'AM' | 'PM';
         /**
-          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the "format" property.
          */
         "to"?: string;
         /**
@@ -1478,7 +1478,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are "--theme-color-alarm" or "color-alarm"
           * @link https://ix.siemens.io/docs/theming/colors/
          */
         "itemColor"?: string;
@@ -2764,7 +2764,7 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Custom color for pill. Only working for `variant='custom'`
+          * Custom color for pill. Only working for "variant='custom'"
          */
         "background": string | undefined;
         /**
@@ -2777,7 +2777,7 @@ export namespace Components {
          */
         "outline": boolean;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
+          * Custom font color for pill. Only working for "variant='custom'"
          */
         "pillColor": string | undefined;
         /**
@@ -3685,7 +3685,7 @@ export namespace Components {
          */
         "textTime": string;
         /**
-          * Select time with format string Format has to match the `format` property.
+          * Select time with format string Format has to match the "format" property.
           * @default DateTime.now().toFormat(this.format)
          */
         "time": string;
@@ -3765,7 +3765,7 @@ export namespace Components {
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * Hide `on` and `off` text
+          * Hide "on" and "off" text
           * @default false
          */
         "hideText": boolean;
@@ -3857,7 +3857,7 @@ export namespace Components {
          */
         "animationFrame": boolean;
         /**
-          * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
+          * CSS selector for hover trigger element e.g. for="[data-my-custom-select]"
          */
         "for"?: ElementReference | ElementReference[];
         /**
@@ -6517,7 +6517,7 @@ declare namespace LocalJSX {
          */
         "ariaLabelCloseButton"?: string;
         /**
-          * Custom background color. Only has an effect on chips with `variant='custom'`
+          * Custom background color. Only has an effect on chips with "variant='custom'"
          */
         "background"?: string | undefined;
         /**
@@ -6527,7 +6527,7 @@ declare namespace LocalJSX {
          */
         "centerContent"?: boolean;
         /**
-          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+          * Custom font and icon color. Only has an effect on chips with "variant='custom'"
          */
         "chipColor"?: string | undefined;
         /**
@@ -6691,7 +6691,7 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
+          * Picker date. If the picker is in range mode this property is the start date. If set to "null" no default start date will be pre-selected.  Format is based on `format`
           * @default ''
          */
         "from"?: string;
@@ -6912,7 +6912,7 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the 'format' property.
          */
         "from"?: string | undefined;
         /**
@@ -7018,7 +7018,7 @@ declare namespace LocalJSX {
          */
         "dateFormat"?: string;
         /**
-          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the "format" property.
          */
         "from"?: string;
         /**
@@ -7105,7 +7105,7 @@ declare namespace LocalJSX {
          */
         "timeReference"?: 'AM' | 'PM';
         /**
-          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the "format" property.
          */
         "to"?: string;
         /**
@@ -7389,7 +7389,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are "--theme-color-alarm" or "color-alarm"
           * @link https://ix.siemens.io/docs/theming/colors/
          */
         "itemColor"?: string;
@@ -8772,7 +8772,7 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Custom color for pill. Only working for `variant='custom'`
+          * Custom color for pill. Only working for "variant='custom'"
          */
         "background"?: string | undefined;
         /**
@@ -8785,7 +8785,7 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
+          * Custom font color for pill. Only working for "variant='custom'"
          */
         "pillColor"?: string | undefined;
         /**
@@ -9333,7 +9333,7 @@ declare namespace LocalJSX {
          */
         "layout"?: 'auto' | 'stretched';
         /**
-          * `selected` property changed
+          * "selected" property changed
          */
         "onSelectedChange"?: (event: IxTabsCustomEvent<number>) => void;
         /**
@@ -9716,7 +9716,7 @@ declare namespace LocalJSX {
          */
         "textTime"?: string;
         /**
-          * Select time with format string Format has to match the `format` property.
+          * Select time with format string Format has to match the "format" property.
           * @default DateTime.now().toFormat(this.format)
          */
         "time"?: string;
@@ -9793,7 +9793,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Hide `on` and `off` text
+          * Hide "on" and "off" text
           * @default false
          */
         "hideText"?: boolean;
@@ -9897,7 +9897,7 @@ declare namespace LocalJSX {
          */
         "animationFrame"?: boolean;
         /**
-          * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
+          * CSS selector for hover trigger element e.g. for="[data-my-custom-select]"
          */
         "for"?: ElementReference | ElementReference[];
         /**
