@@ -15,7 +15,6 @@ import {
   h,
   Host,
   Prop,
-  State,
   Watch,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
@@ -65,9 +64,8 @@ export class FlipTile {
    */
   @Event() toggle!: EventEmitter<number>;
 
-  @State() isFlipAnimationActive: boolean = false;
+  // @State() isFlipAnimationActive: boolean = false;
 
-  private readonly ANIMATION_DURATION = 150;
   private contentItems: Array<HTMLIxFlipTileContentElement> = [];
   private observer?: MutationObserver;
 
@@ -129,21 +127,17 @@ export class FlipTile {
   }
 
   private doFlipAnimation(index: number) {
-    if (this.isFlipAnimationActive) {
-      return;
-    }
-
-    this.isFlipAnimationActive = true;
-
-    setTimeout(() => {
-      this.index = index;
-
-      this.updateContentVisibility(this.index);
-    }, this.ANIMATION_DURATION);
-
-    setTimeout(() => {
-      this.isFlipAnimationActive = false;
-    }, 2 * this.ANIMATION_DURATION);
+    // if (this.isFlipAnimationActive) {
+    //   return;
+    // }
+    // this.isFlipAnimationActive = true;
+    // setTimeout(() => {
+    //   this.index = index;
+    //   this.updateContentVisibility(this.index);
+    // }, this.ANIMATION_DURATION);
+    // setTimeout(() => {
+    //   this.isFlipAnimationActive = false;
+    // }, 2 * this.ANIMATION_DURATION);
   }
 
   render() {
@@ -165,7 +159,7 @@ export class FlipTile {
             warning: this.state === FlipTileState.Warning,
             alarm: this.state === FlipTileState.Alarm,
             primary: this.state === FlipTileState.Primary,
-            'flip-animation-active': this.isFlipAnimationActive,
+            // 'flip-animation-active': this.isFlipAnimationActive,
           }}
         >
           <div class="flip-tile-header">

@@ -8,9 +8,31 @@
  */
 
 export default abstract class Animation {
-  static readonly shortTime = 0;
-  static readonly defaultTime = 150;
-  static readonly mediumTime = 300;
-  static readonly slowTime = 500;
-  static readonly xSlowTime = 1000;
+  static get shortTime() {
+    return this.prefersReducedMotion() ? 0 : 0;
+  }
+
+  static get defaultTime() {
+    return this.prefersReducedMotion() ? 0 : 150;
+  }
+
+  static get mediumTime() {
+    return this.prefersReducedMotion() ? 0 : 300;
+  }
+
+  static get slowTime() {
+    return this.prefersReducedMotion() ? 0 : 500;
+  }
+
+  static get xSlowTime() {
+    return this.prefersReducedMotion() ? 0 : 1000;
+  }
+
+  static prefersReducedMotion(): boolean {
+    if (typeof window === 'undefined' || !window.matchMedia) {
+      return false;
+    }
+
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
 }
