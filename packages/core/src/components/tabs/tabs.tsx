@@ -73,7 +73,7 @@ export class Tabs {
   @Prop() ariaLabelChevronRightIconButton?: string;
 
   /**
-   * "selected" property changed
+   * `selected` property changed
    */
   @Event() selectedChange!: EventEmitter<number>;
 

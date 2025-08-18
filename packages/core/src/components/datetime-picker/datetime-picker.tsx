@@ -75,13 +75,13 @@ export class DatetimePicker
 
   /**
    * The selected starting date. If the picker is not in range mode this is the selected date.
-   * Format has to match the "format" property.
+   * Format has to match the `format` property.
    */
   @Prop() from?: string;
 
   /**
    * The selected end date. If the the picker is not in range mode this property has no impact.
-   * Format has to match the "format" property.
+   * Format has to match the `format` property.
    */
   @Prop() to?: string;
 

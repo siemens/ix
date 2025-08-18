@@ -63,7 +63,7 @@ export class DatePicker implements IxDatePickerComponent {
 
   /**
    * The selected starting date. If the date-picker-rework is not in range mode this is the selected date.
-   * Format has to match the 'format' property.
+   * Format has to match the `format` property.
    */
   @Prop() from: string | undefined;
 

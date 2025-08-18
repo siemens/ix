@@ -20,6 +20,7 @@ export function escapeMarkdown(markdown: string) {
     [/</g, '&lt;'],
     [/>/g, '&gt;'],
     [/_/g, '\\_'],
+    [/`/g, '\\`'],
     [/\|/g, '\uff5c'],
   ];
 

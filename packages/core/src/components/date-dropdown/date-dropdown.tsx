@@ -62,7 +62,7 @@ export class DateDropdown
 
   /**
    * Picker date. If the picker is in range mode this property is the start date.
-   * If set to "null" no default start date will be pre-selected.
+   * If set to `null` no default start date will be pre-selected.
    *
    * Format is based on `format`
    */

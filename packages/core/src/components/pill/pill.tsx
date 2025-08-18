@@ -50,12 +50,12 @@ export class Pill implements IxComponent {
   @Prop() ariaLabelIcon?: string;
 
   /**
-   * Custom color for pill. Only working for "variant='custom'"
+   * Custom color for pill. Only working for `variant='custom'`
    */
   @Prop() background: string | undefined;
 
   /**
-   * Custom font color for pill. Only working for "variant='custom'"
+   * Custom font color for pill. Only working for `variant='custom'`
    */
   @Prop() pillColor: string | undefined;
 

@@ -28,7 +28,7 @@ export class EventListItem {
   /**
    * Color of the status indicator.
    * You can find a list of all available colors in our documentation.
-   * Example values are "--theme-color-alarm" or "color-alarm"
+   * Example values are `--theme-color-alarm` or `color-alarm`
    *
    * @link https://ix.siemens.io/docs/theming/colors/
    */
