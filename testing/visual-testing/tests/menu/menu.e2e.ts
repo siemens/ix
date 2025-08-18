@@ -20,6 +20,8 @@ regressionTest.describe('menu', () => {
       const category = page.locator('ix-menu-category');
       await category.click();
 
+      await page.mouse.move(0, 0);
+
       await page.waitForTimeout(1000);
 
       await expect(page).toHaveScreenshot();
@@ -50,10 +52,10 @@ regressionTest.describe('menu', () => {
       const category = page.locator('ix-menu-category');
       await category.click();
 
-      const link1 = page.getByText('Link 1');
+      const link1 = page.getByLabel('link1');
       await expect(link1).toBeVisible();
 
-      const link2 = page.getByText('Link 2');
+      const link2 = page.getByLabel('link2');
       await expect(link2).toBeVisible();
 
       await link2.hover();
