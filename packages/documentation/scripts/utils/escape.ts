@@ -30,3 +30,7 @@ export function escapeMarkdown(markdown: string) {
 
   return replacedMarkdown;
 }
+
+export function escapeBackticks(str: string) {
+  return str.replaceAll(/`/g, '\\`');
+}
