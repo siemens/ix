@@ -95,7 +95,7 @@ regressionTest(
   }
 );
 
-regressionTest.only(`form-readiness`, async ({ mount, page }) => {
+regressionTest(`form-readiness`, async ({ mount, page }) => {
   await mount(
     `<form><ix-slider name="ix-slider" value="0"></ix-slider></form>`
   );
