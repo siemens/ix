@@ -192,7 +192,7 @@ export class MenuItem implements IxMenuItemBase {
           for={this.buttonRef.waitForCurrent()}
           placement={'right'}
           showDelay={1000}
-          interactive={true}
+          interactive={false}
           aria-hidden={a11yBoolean(this.ariaHiddenTooltip)}
           aria-labelledby={this.internalItemId}
         >
