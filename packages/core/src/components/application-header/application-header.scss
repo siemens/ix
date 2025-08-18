@@ -82,21 +82,32 @@
       margin-left: 0.75rem;
       margin-right: 0.75rem;
       color: var(--theme-app-header--color);
-      min-width: 4rem;
+      min-width: 0;
 
       gap: 0.75rem;
+      overflow: hidden;
     }
 
-    .application-name-suffix,
-    .application-name {
+    .application-name,
+    .application-name-suffix {
       overflow: hidden;
       overflow-wrap: anywhere;
       text-overflow: ellipsis;
       text-wrap: nowrap;
     }
 
+    .application-name {
+      flex: 0 1 auto;
+      min-width: 0;
+      flex-shrink: 0;
+      max-width: 100%;
+    }
+
     .application-name-suffix {
-      margin-top: 8px;
+      flex: 1 1 auto;
+      margin-top: 0.5rem;
+      min-width: 0;
+      flex-shrink: 1;
     }
 
     .logo {
