@@ -58,13 +58,13 @@ export class Chip {
 
   /**
    * Custom background color.
-   * Only has an effect on chips with `variant='custom'`
+   * Only has an effect on chips with "variant='custom'"
    */
   @Prop() background: string | undefined;
 
   /**
    * Custom font and icon color.
-   * Only has an effect on chips with `variant='custom'`
+   * Only has an effect on chips with "variant='custom'"
    */
   @Prop() chipColor: string | undefined;
 

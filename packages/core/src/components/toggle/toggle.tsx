@@ -77,7 +77,7 @@ export class Toggle implements IxFormComponent<string> {
   @Prop() textIndeterminate = 'Mixed';
 
   /**
-   * Hide `on` and `off` text
+   * Hide "on" and "off" text
    */
   @Prop() hideText = false;
 

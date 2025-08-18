@@ -214,7 +214,7 @@ export class TimePicker {
 
   /**
    * Select time with format string
-   * Format has to match the `format` property.
+   * Format has to match the "format" property.
    */
   @Prop() time: string = DateTime.now().toFormat(this.format);
 

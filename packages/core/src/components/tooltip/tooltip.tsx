@@ -53,7 +53,7 @@ let tooltipInstance = 0;
 })
 export class Tooltip {
   /**
-   * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
+   * CSS selector for hover trigger element e.g. for="[data-my-custom-select]"
    */
   @Prop() for?: ElementReference | ElementReference[];
 
