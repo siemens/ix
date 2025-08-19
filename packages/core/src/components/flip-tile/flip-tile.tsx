@@ -15,11 +15,14 @@ import {
   h,
   Host,
   Prop,
+  State,
   Watch,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileState } from './flip-tile-state';
 import { iconEye } from '@siemens/ix-icons/icons';
+import { animate } from 'animejs';
+import Animation from '../utils/animation';
 
 @Component({
   tag: 'ix-flip-tile',
@@ -64,7 +67,7 @@ export class FlipTile {
    */
   @Event() toggle!: EventEmitter<number>;
 
-  // @State() isFlipAnimationActive: boolean = false;
+  @State() isFlipAnimationActive: boolean = false;
 
   private contentItems: Array<HTMLIxFlipTileContentElement> = [];
   private observer?: MutationObserver;
@@ -127,17 +130,41 @@ export class FlipTile {
   }
 
   private doFlipAnimation(index: number) {
-    // if (this.isFlipAnimationActive) {
-    //   return;
-    // }
-    // this.isFlipAnimationActive = true;
-    // setTimeout(() => {
-    //   this.index = index;
-    //   this.updateContentVisibility(this.index);
-    // }, this.ANIMATION_DURATION);
-    // setTimeout(() => {
-    //   this.isFlipAnimationActive = false;
-    // }, 2 * this.ANIMATION_DURATION);
+    if (this.isFlipAnimationActive) {
+      return;
+    }
+
+    this.isFlipAnimationActive = true;
+
+    animate(
+      this.hostElement.shadowRoot!.querySelector('.flip-tile-container')!,
+      {
+        keyframes: {
+          '0%': {
+            transform: 'rotateY(0)',
+          },
+          '50%': {
+            transform: 'rotateY(90deg)',
+          },
+          '51%': {
+            transform: 'rotateY(270deg)',
+          },
+          '100%': {
+            transform: 'rotateY(360deg)',
+          },
+        },
+        duration: Animation.defaultTime,
+        easing: 'ease-in-out',
+        onComplete: () => {
+          this.index = index;
+          this.updateContentVisibility(this.index);
+        },
+      }
+    );
+
+    setTimeout(() => {
+      this.isFlipAnimationActive = false;
+    }, 2 * Animation.defaultTime);
   }
 
   render() {
