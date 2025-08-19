@@ -38,6 +38,7 @@ import {
   iconNavigationLeft,
   iconNavigationRight,
 } from '@siemens/ix-icons/icons';
+import Animation from '../utils/animation';
 
 @Component({
   tag: 'ix-menu',
@@ -570,7 +571,7 @@ export class Menu {
   private animateOverlayFadeIn() {
     requestAnimationFrame(() => {
       animate(this.overlayContainer!, {
-        duration: 300,
+        duration: Animation.mediumTime,
         backdropFilter: [0, 'blur(1rem)'],
         translateX: ['-4rem', 0],
         opacity: [0, 1],
@@ -589,7 +590,7 @@ export class Menu {
   private animateOverlayFadeOut(onComplete: Function) {
     requestAnimationFrame(() => {
       animate(this.overlayContainer!, {
-        duration: 300,
+        duration: Animation.mediumTime,
         backdropFilter: ['blur(1rem)', 0],
         translateX: [0, '-4rem'],
         opacity: [1, 0],

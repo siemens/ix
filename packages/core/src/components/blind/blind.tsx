@@ -22,6 +22,7 @@ import { animate } from 'animejs';
 import { a11yBoolean } from '../utils/a11y';
 import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import type { BlindVariant } from './blind.types';
+import Animation from '../utils/animation';
 
 let sequentialInstanceId = 0;
 
@@ -96,12 +97,12 @@ export class Blind {
 
   private rotateChevronUp() {
     animate(this.chevronRef!, {
-      duration: 150,
+      duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       rotateZ: 180,
     });
     animate(this.content!, {
-      duration: 150,
+      duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       opacity: 1,
     });
@@ -109,12 +110,12 @@ export class Blind {
 
   private rotateChevronDown() {
     animate(this.chevronRef!, {
-      duration: 150,
+      duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       rotateZ: 0,
     });
     animate(this.content!, {
-      duration: 150,
+      duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       opacity: 0,
     });

@@ -22,6 +22,7 @@ import { animate } from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
+import Animation from '../utils/animation';
 
 @Component({
   tag: 'ix-breadcrumb-item',
@@ -80,7 +81,7 @@ export class BreadcrumbItem {
 
   animationFadeIn() {
     animate(this.hostElement, {
-      duration: 150,
+      duration: Animation.defaultTime,
       opacity: [0, 1],
       translateX: ['-100%', '0%'],
       easing: 'linear',

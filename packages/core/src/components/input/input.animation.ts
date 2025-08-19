@@ -7,11 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { animate } from 'animejs';
+import Animation from '../utils/animation';
 
 export function shakeInput(input: HTMLInputElement) {
   const xMax = 5;
   animate(input, {
-    duration: 200,
+    duration: Animation.defaultTime,
     easing: 'easeInOutSine',
     loop: 2,
     translateX: [

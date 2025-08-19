@@ -20,6 +20,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { animate } from 'animejs';
+import Animation from '../utils/animation';
 
 @Component({
   tag: 'ix-drawer',
@@ -77,7 +78,6 @@ export class Drawer {
 
   toggle = false;
 
-  private static duration = 300;
   private callback = this.clickedOutside.bind(this);
   private divElement?: HTMLElement;
 
@@ -112,7 +112,7 @@ export class Drawer {
         this.slideInRight(this.divElement);
         setTimeout(() => {
           window.addEventListener('mousedown', this.callback);
-        }, Drawer.duration);
+        }, Animation.mediumTime);
       }
     } else {
       const { defaultPrevented } = this.drawerClose.emit();
@@ -167,7 +167,7 @@ export class Drawer {
     )}rem`;
 
     animate(el, {
-      duration: Drawer.duration,
+      duration: Animation.mediumTime,
       width: [initialWidth, 0],
       opacity: [1, 0],
       easing: 'easeInSine',
@@ -183,7 +183,7 @@ export class Drawer {
     )}rem`;
 
     animate(el, {
-      duration: Drawer.duration,
+      duration: Animation.mediumTime,
       width: [0, targetWidth],
       opacity: [0, 1],
       easing: 'easeOutSine',
