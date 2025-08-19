@@ -5214,12 +5214,8 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
-            {
-              "name": "link",
-              "text": "https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens."
-            },
             {
               "name": "default",
               "text": "'yyyy/LL/dd'"
@@ -9678,13 +9674,8 @@
           "mutable": false,
           "attr": "item-color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/theming/colors/"
-            }
-          ],
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`\n\n{@link https://ix.siemens.io/docs/theming/colors/}",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -16072,13 +16063,8 @@
           "mutable": true,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/icon-library/icons"
-            }
-          ],
+          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -21495,12 +21481,8 @@
           "mutable": false,
           "attr": "step",
           "reflectToAttr": false,
-          "docs": "Legal number intervals",
+          "docs": "Legal number intervals\n\n{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}",
           "docsTags": [
-            {
-              "name": "link",
-              "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
-            },
             {
               "name": "default",
               "text": "1"
