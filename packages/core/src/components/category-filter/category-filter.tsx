@@ -300,6 +300,10 @@ export class CategoryFilter {
       this.addToken(category.value, category.id, category.operator, false);
     }
 
+    if (document.activeElement === this.textInput?.current) {
+      this.textInput?.current?.focus();
+    }
+
     this.emitFilterEvent();
   }
 
@@ -491,7 +495,9 @@ export class CategoryFilter {
 
     this.isScrollStateDirty = true;
 
-    this.textInput?.current?.focus();
+    if (document.activeElement === this.textInput?.current) {
+      this.textInput?.current?.focus();
+    }
 
     if (emitEvent) {
       this.emitFilterEvent();
