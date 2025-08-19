@@ -186,7 +186,6 @@ export class FlipTile {
             warning: this.state === FlipTileState.Warning,
             alarm: this.state === FlipTileState.Alarm,
             primary: this.state === FlipTileState.Primary,
-            // 'flip-animation-active': this.isFlipAnimationActive,
           }}
         >
           <div class="flip-tile-header">
