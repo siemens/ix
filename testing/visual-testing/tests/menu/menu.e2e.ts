@@ -20,9 +20,22 @@ regressionTest.describe('menu', () => {
       const category = page.locator('ix-menu-category');
       await category.click();
 
-      await page.mouse.move(0, 0);
+      const parentCategory = await category
+        .locator('.category-parent')
+        .boundingBox();
 
-      await page.waitForTimeout(1000);
+      await page.mouse.move(
+        parentCategory!.x + parentCategory!.width / 2,
+        parentCategory!.y + parentCategory!.height / 2,
+        {
+          steps: 10,
+        }
+      );
+
+      const tooltip = category
+        .locator('ix-tooltip')
+        .getByText('Category with a long name');
+      await expect(tooltip).not.toHaveClass(/visible/);
 
       await expect(page).toHaveScreenshot();
     }
