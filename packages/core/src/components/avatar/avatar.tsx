@@ -204,8 +204,7 @@ export class Avatar {
     const a11y = a11yHostAttributes(this.hostElement);
     const a11yLabel = a11y['aria-label'];
 
-    const hasTooltip = this.username || this.tooltipText;
-    const tooltipText = this.tooltipText || this.username || '';
+    const tooltipText = this.tooltipText || this.username;
     const ariaHidden = tooltipText === this.username;
 
     const Avatar = (
@@ -215,7 +214,7 @@ export class Avatar {
           initials={this.initials}
           a11yLabel={a11yLabel ?? this.a11yLabel}
         />
-        {hasTooltip && (
+        {!!tooltipText && (
           <ix-tooltip
             ref={this.tooltipRef}
             for={this.hostElement}

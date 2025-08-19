@@ -34,19 +34,27 @@ export const Default: Story = {
 };
 
 export const withAvatar: Story = {
-  render: ({ extra, image, initials, username }) => {
-    return html`<ix-application-header name="Application name">
-      <ix-avatar
-        extra=${extra}
-        image=${image}
-        initials=${initials}
-        username=${username}
-      >
-        <ix-dropdown-item>Profile</ix-dropdown-item>
-        <ix-dropdown-item>Settings</ix-dropdown-item>
-        <ix-dropdown-item>Logout</ix-dropdown-item>
-      </ix-avatar>
-    </ix-application-header>`;
+  render: (args) => {
+    const container = genericRender('ix-avatar', args);
+    const avatar = container.querySelector('ix-avatar') as HTMLIxAvatarElement;
+
+    const dropdownItem1 = document.createElement('ix-dropdown-item');
+    dropdownItem1.textContent = 'Profile';
+
+    const dropdownItem2 = document.createElement('ix-dropdown-item');
+    dropdownItem2.textContent = 'Settings';
+
+    const dropdownItem3 = document.createElement('ix-dropdown-item');
+    dropdownItem3.textContent = 'Logout';
+
+    avatar.appendChild(dropdownItem1);
+    avatar.appendChild(dropdownItem2);
+    avatar.appendChild(dropdownItem3);
+
+    const applicationHeader = document.createElement('ix-application-header');
+    applicationHeader.appendChild(avatar);
+
+    return applicationHeader;
   },
   args: {
     extra: 'Administrator',
