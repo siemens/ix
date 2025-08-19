@@ -9,7 +9,7 @@
 
 export default abstract class Animation {
   static get shortTime() {
-    return this.prefersReducedMotion() ? 0 : 0;
+    return 0;
   }
 
   static get defaultTime() {
