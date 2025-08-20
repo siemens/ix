@@ -33,15 +33,6 @@ import {
   shadow: true,
 })
 export class Toast {
-  @Method()
-  async pause() {
-    this.pausedByApi = true;
-  }
-
-  @Method()
-  async resume() {
-    this.pausedByApi = false;
-  }
   /**
    * Toast type
    */
@@ -87,7 +78,7 @@ export class Toast {
 
   @State() progress = 0;
   @State() touched = false;
-  @State() pausedByApi = false;
+  @State() paused = false;
 
   @Element() hostElement!: HTMLIxToastElement;
 
@@ -158,6 +149,16 @@ export class Toast {
     }, 250);
   }
 
+  @Method()
+  async pause() {
+    this.paused = true;
+  }
+
+  @Method()
+  async resume() {
+    this.paused = false;
+  }
+
   render() {
     let progressBarStyle: Record<string, string> = {};
 
@@ -165,8 +166,7 @@ export class Toast {
 
     progressBarStyle = {
       animationDuration: `${this.autoCloseDelay}ms`,
-      animationPlayState:
-        this.touched || this.pausedByApi ? 'paused' : 'running',
+      animationPlayState: this.touched || this.paused ? 'paused' : 'running',
     };
 
     progressBarClass.push('toast-progress-bar--animated');
