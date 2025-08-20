@@ -16,6 +16,8 @@ export function getExampleResourcesInput(): InputType {
     options: [
       '',
       '/images/example-app-icon.svg',
+      '/images/example-app-icon-2-3.svg',
+      '/images/example-app-icon-3-2.svg',
       '/images/example-company.svg',
     ],
   };
