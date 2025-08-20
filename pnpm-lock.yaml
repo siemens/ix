@@ -386,6 +386,13 @@ importers:
         version: 5.4.5
 
   packages/core:
+    dependencies:
+      animejs:
+        specifier: ^4.1.2
+        version: 4.1.2
+      luxon:
+        specifier: ^3.4.4
+        version: 3.4.4
     devDependencies:
       '@floating-ui/dom':
         specifier: ^1.6.13
@@ -423,9 +430,6 @@ importers:
       '@testing-library/jest-dom':
         specifier: ^6.6.1
         version: 6.6.3
-      '@types/animejs':
-        specifier: ^3.1.12
-        version: 3.1.12
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -450,9 +454,6 @@ importers:
       animate.css:
         specifier: ~4.1.1
         version: 4.1.1
-      animejs:
-        specifier: ~3.2.2
-        version: 3.2.2
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.48)
@@ -483,9 +484,6 @@ importers:
       jest-cli:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.16.5)(ts-node@10.9.2(@types/node@20.16.5)(typescript@5.4.5))
-      luxon:
-        specifier: ^3.4.4
-        version: 3.4.4
       mustache:
         specifier: ^4.2.0
         version: 4.2.0
@@ -3093,7 +3091,6 @@ packages:
   '@esbuild/linux-arm64@0.25.1':
     resolution: {integrity: sha512-jaN3dHi0/DDPelk0nLcXRm1q7DNJpjXy7yWaWvbfkPvI+7XNSc/lDOnCLN7gzsyzgu6qSAmgSvP9oXAhP973uQ==}
     engines: {node: '>=18'}
-    cpu: [arm64]
     os: [linux]
 
   '@esbuild/linux-arm@0.18.20':
@@ -5166,9 +5163,6 @@ packages:
     resolution: {integrity: sha512-92F7/SFyufn4DXsha9+QfKnN03JGqtMFMXgSHbZOo8JG59WkTni7UzAouNQDf7AuP9OAMxVOPQcqG3sB7w+kkg==}
     engines: {node: ^16.14.0 || >=18.0.0}
 
-  '@types/animejs@3.1.12':
-    resolution: {integrity: sha512-fpdH+ZtlO0kqjTOqRaBdsEmvpRNOayI8k4EVkEtitL5l6wducDOXk0rgQgfZqWf/ZX9DzXrHf257S5i9xTcISQ==}
-
   '@types/aria-query@5.0.3':
     resolution: {integrity: sha512-0Z6Tr7wjKJIk4OUEjVUQMtyunLDy339vcMaj38Kpj6jM2OE1p3S4kXExKZ7a3uXQAPCoy3sbrP1wibDKaf39oA==}
 
@@ -6064,8 +6058,8 @@ packages:
   animate.css@4.1.1:
     resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
 
-  animejs@3.2.2:
-    resolution: {integrity: sha512-Ao95qWLpDPXXM+WrmwcKbl6uNlC5tjnowlaRYtuVDHHoygjtIPfDUoK9NthrlZsQSKjZXlmji2TrBUAVbiH0LQ==}
+  animejs@4.1.2:
+    resolution: {integrity: sha512-QojQzHzN4ZCOGk4Seir5CWPHGKFPpMAsen3KEj/BHsIKDceH0xKd3FBWflyKiNefKG2fn3+ofpY9jD/UXhpY6A==}
 
   ansi-colors@1.1.0:
     resolution: {integrity: sha512-SFKX67auSNoVR38N3L+nvsPjOE0bybKTYbkf5tRvushrAPQ9V75huw0ZxBkKVeRU9kqH3d6HA4xTckbwZ4ixmA==}
@@ -19027,8 +19021,6 @@ snapshots:
       '@tufjs/canonical-json': 2.0.0
       minimatch: 9.0.5
 
-  '@types/animejs@3.1.12': {}
-
   '@types/aria-query@5.0.3': {}
 
   '@types/aws-lambda@8.10.148': {}
@@ -20189,7 +20181,7 @@ snapshots:
 
   animate.css@4.1.1: {}
 
-  animejs@3.2.2: {}
+  animejs@4.1.2: {}
 
   ansi-colors@1.1.0:
     dependencies:
