@@ -13,6 +13,11 @@ import { makeRef } from '../utils/make-ref';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
 import { iconDocument } from '@siemens/ix-icons/icons';
+import { a11yBoolean } from '../utils/a11y';
+import { createSequentialId } from '../utils/uuid';
+import { IxMenuItemBase } from './menu-item.interface';
+
+let sequenceId = 0;
 
 /**
  * @slot menu-item-label Custom label
@@ -22,7 +27,7 @@ import { iconDocument } from '@siemens/ix-icons/icons';
   styleUrl: 'menu-item.scss',
   shadow: true,
 })
-export class MenuItem {
+export class MenuItem implements IxMenuItemBase {
   /**
    * Label of the menu item. Will also be used as tooltip text
    */
@@ -41,7 +46,7 @@ export class MenuItem {
   @Prop() bottom = false;
 
   /**
-   * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
+   * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
    */
   @Prop({ mutable: true }) icon?: string;
 
@@ -60,13 +65,26 @@ export class MenuItem {
    */
   @Prop() disabled: boolean = false;
 
+  /**
+   * Will be shown as tooltip text, if not provided menu text content will be used.
+   *
+   * @since 3.3.0
+   */
+  @Prop() tooltipText?: string;
+
   /** @internal */
   @Prop() isCategory: boolean = false;
 
   @Element() hostElement!: HTMLIxMenuItemElement;
 
   @State() tooltip?: string;
+  @State() ariaHiddenTooltip = false;
   @State() menuExpanded: boolean = false;
+
+  private readonly internalItemId = createSequentialId(
+    'ix-menu-item-',
+    sequenceId++
+  );
 
   private readonly buttonRef = makeRef<HTMLButtonElement>();
   private isHostedInsideCategory = false;
@@ -93,7 +111,15 @@ export class MenuItem {
   }
 
   setTooltip() {
-    this.tooltip = this.label ?? this.hostElement.textContent ?? undefined;
+    this.tooltip =
+      this.tooltipText ??
+      this.label ??
+      this.hostElement.textContent ??
+      undefined;
+
+    this.ariaHiddenTooltip =
+      this.tooltipText === this.label ||
+      this.tooltipText === this.hostElement.textContent;
   }
 
   connectedCallback() {
@@ -134,6 +160,7 @@ export class MenuItem {
         slot: 'bottom',
       };
     }
+
     return (
       <Host
         class={{
@@ -156,22 +183,21 @@ export class MenuItem {
               <div class="pill">{this.notifications}</div>
             </div>
           ) : null}
-          <span class="tab-text text-default">
+          <span id={this.internalItemId} class="tab-text text-default">
             {this.label}
             <slot></slot>
           </span>
         </button>
-        {!this.isCategory &&
-          !this.isHostedInsideCategory &&
-          !this.menuExpanded && (
-            <ix-tooltip
-              for={this.buttonRef.waitForCurrent()}
-              placement={'right'}
-              showDelay={1000}
-            >
-              {this.tooltip}
-            </ix-tooltip>
-          )}
+        <ix-tooltip
+          for={this.buttonRef.waitForCurrent()}
+          placement={'right'}
+          showDelay={1000}
+          interactive={false}
+          aria-hidden={a11yBoolean(this.ariaHiddenTooltip)}
+          aria-labelledby={this.internalItemId}
+        >
+          {this.tooltip}
+        </ix-tooltip>
       </Host>
     );
   }
