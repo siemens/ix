@@ -40,7 +40,7 @@ test.describe('validation', () => {
       await expect(input).toHaveClass(/ix-invalid/);
     });
 
-    test.only('ix-change event should be emitted on enter keydown', async ({
+    test('ix-change event should be emitted on enter keydown', async ({
       mount,
       page,
     }) => {
