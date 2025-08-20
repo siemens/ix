@@ -199,6 +199,11 @@ export namespace Components {
          */
         "a11yLabel"?: string;
         /**
+          * aria-label for the tooltip
+          * @since 3.3.0
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
          */
         "extra"?: string;
@@ -210,6 +215,11 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Text to display in a tooltip when hovering over the avatar
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
@@ -2345,6 +2355,11 @@ export namespace Components {
           * Show notification count on the category
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuExpandIcon {
         /**
@@ -2405,6 +2420,11 @@ export namespace Components {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuSettings {
         /**
@@ -6029,6 +6049,11 @@ declare namespace LocalJSX {
          */
         "a11yLabel"?: string;
         /**
+          * aria-label for the tooltip
+          * @since 3.3.0
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
          */
         "extra"?: string;
@@ -6040,6 +6065,11 @@ declare namespace LocalJSX {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Text to display in a tooltip when hovering over the avatar
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
@@ -8312,6 +8342,11 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuExpandIcon {
         /**
@@ -8372,6 +8407,11 @@ declare namespace LocalJSX {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuSettings {
         /**
