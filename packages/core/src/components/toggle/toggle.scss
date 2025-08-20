@@ -27,7 +27,7 @@
 
   .wrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     max-height: 100%;
   }
@@ -37,8 +37,9 @@
     display: block;
     white-space: normal;
     overflow: hidden;
-    text-overflow: ellipsis;
+    margin-block-start: 0.125rem;
     margin-inline-start: 0.5rem;
+    min-height: 1rem;
     margin-left: 0.625rem;
   }
 
