@@ -118,14 +118,10 @@ export class ToastContainer {
         removeToast(result);
       },
       pause: () => {
-        if (typeof toast.pause === 'function') {
-          toast.pause();
-        }
+        toast.pause();
       },
       resume: () => {
-        if (typeof toast.resume === 'function') {
-          toast.resume();
-        }
+        toast.resume();
       },
     };
   }
