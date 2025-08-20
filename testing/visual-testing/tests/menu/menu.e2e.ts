@@ -20,7 +20,22 @@ regressionTest.describe('menu', () => {
       const category = page.locator('ix-menu-category');
       await category.click();
 
-      await page.waitForTimeout(1000);
+      const parentCategory = await category
+        .locator('.category-parent')
+        .boundingBox();
+
+      await page.mouse.move(
+        parentCategory!.x + parentCategory!.width / 2,
+        parentCategory!.y + parentCategory!.height / 2,
+        {
+          steps: 10,
+        }
+      );
+
+      const tooltip = category
+        .locator('ix-tooltip')
+        .getByText('Category with a long name');
+      await expect(tooltip).not.toHaveClass(/visible/);
 
       await expect(page).toHaveScreenshot();
     }
@@ -50,10 +65,10 @@ regressionTest.describe('menu', () => {
       const category = page.locator('ix-menu-category');
       await category.click();
 
-      const link1 = page.getByText('Link 1');
+      const link1 = page.getByLabel('link1');
       await expect(link1).toBeVisible();
 
-      const link2 = page.getByText('Link 2');
+      const link2 = page.getByLabel('link2');
       await expect(link2).toBeVisible();
 
       await link2.hover();

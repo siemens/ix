@@ -10,42 +10,22 @@ import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
-type Elements = Components.IxMenuCategory & {
-  items: number;
-};
+type Elements = Components.IxMenuItem;
 
 const meta = {
-  title: 'Example/MenuCategory',
+  title: 'Example/MenuItem',
   tags: [],
   render: (args) => {
-    const container = genericRender('ix-menu-category', args, ['items']);
-    const categoryMenu = container.querySelector(
-      'ix-menu-category'
-    ) as HTMLIxMenuCategoryElement;
-
-    categoryMenu.ariaLabel = 'my-category-menu';
+    const container = genericRender('ix-menu-item', args);
+    const menuItem = container.querySelector(
+      'ix-menu-item'
+    ) as HTMLIxMenuItemElement;
 
     const menu = document.createElement('ix-menu');
-    menu.appendChild(categoryMenu);
-
-    for (let i = 0; i < args.items; i++) {
-      const menuItem = document.createElement('ix-menu-item');
-      menuItem.label = `Item ${i + 1}`;
-      menuItem.tooltipText = `Tooltip for Item ${i + 1}`;
-      categoryMenu.appendChild(menuItem);
-    }
-
+    menu.appendChild(menuItem);
     return menu;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu', {
-    items: {
-      control: 'number',
-      name: 'items*',
-    },
-  }),
-  args: {
-    items: 3,
-  },
+  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu'),
   parameters: {
     design: {
       type: 'figma',
@@ -59,6 +39,29 @@ type Story = StoryObj<Elements>;
 
 export const Default: Story = {
   args: {
-    label: 'Menu Category',
+    label: 'Menu Item',
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    label: 'Menu Item',
+    icon: 'home',
+  },
+};
+
+export const Notification: Story = {
+  args: {
+    label: 'Menu Item',
+    icon: 'home',
+    notifications: 5,
+  },
+};
+
+export const CustomTooltip: Story = {
+  args: {
+    label: 'Menu Item',
+    icon: 'home',
+    tooltipText: 'My custom tooltip text',
   },
 };
