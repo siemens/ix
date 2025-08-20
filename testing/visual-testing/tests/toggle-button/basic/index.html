@@ -21,6 +21,15 @@ LICENSE file in the root directory of this source tree.
         margin: 0.25rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconBulb, iconStar } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconBulb,
+        iconStar,
+      });
+    </script>
   </head>
   <body>
     <div>
@@ -33,6 +42,11 @@ LICENSE file in the root directory of this source tree.
       <ix-toggle-button> Normal</ix-toggle-button>
       <ix-toggle-button pressed> Pressed</ix-toggle-button>
       <ix-toggle-button disabled> Disabled</ix-toggle-button>
+    </div>
+
+    <div>
+      <ix-toggle-button icon="star">Normal</ix-toggle-button>
+      <ix-toggle-button icon="star" icon-right="bulb">Pressed</ix-toggle-button>
     </div>
 
     <div>
