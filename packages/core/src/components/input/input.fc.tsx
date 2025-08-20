@@ -85,6 +85,7 @@ export function InputElement(
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
     ariaAttributes?: A11yAttributes;
+    form?: HTMLFormElement;
   }>
 ) {
   return (
@@ -115,6 +116,14 @@ export function InputElement(
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (props.form && typeof props.form.requestSubmit === 'function') {
+            props.form.requestSubmit();
+          }
+        }
+      }}
     ></input>
   );
 }
