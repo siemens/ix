@@ -40,7 +40,7 @@ test.describe('validation', () => {
       await expect(input).toHaveClass(/ix-invalid/);
     });
 
-    test('ix-change event should be emitted on enter keydown', async ({
+    test.only('ix-change event should be emitted on enter keydown', async ({
       mount,
       page,
     }) => {
@@ -49,16 +49,17 @@ test.describe('validation', () => {
       const input = page.locator('ix-input');
       const shadowDomInput = input.locator('input');
 
-      await page.evaluate(() => {
-        function handleIxChange(e: any) {
+      const handlerScript = `
+        window.handleIxChange = function(e) {
           // @ts-ignore
           console.log('ixChange:', e.detail);
-        }
+        };
         const ixInput = document.querySelector('ix-input');
         if (ixInput) {
-          ixInput.addEventListener('ixChange', handleIxChange);
+          ixInput.addEventListener('ixChange', window.handleIxChange);
         }
-      });
+      `;
+      await page.evaluate(handlerScript);
 
       await shadowDomInput.fill('test value');
       const [msg] = await Promise.all([

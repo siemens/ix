@@ -213,7 +213,7 @@ export class Input implements IxInputFieldComponent<string> {
     );
   }
 
-  private handleInputChange = () => {
+  private readonly handleInputChange = () => {
     const input = this.inputRef.current;
     const newValue = input?.value;
 

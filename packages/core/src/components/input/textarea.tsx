@@ -172,7 +172,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   private readonly textAreaRef = makeRef<HTMLTextAreaElement>();
   private touched = false;
 
-  private handleInputChange = () => {
+  private readonly handleInputChange = () => {
     const textarea = this.textAreaRef.current;
     if (!textarea) return;
 

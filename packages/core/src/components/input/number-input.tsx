@@ -214,7 +214,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
     );
   }
 
-  private handleInputChange = () => {
+  private readonly handleInputChange = () => {
     const input = this.inputRef.current;
     if (!input) return;
     const newValue = Number(input.value);
