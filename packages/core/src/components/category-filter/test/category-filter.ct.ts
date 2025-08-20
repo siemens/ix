@@ -111,7 +111,6 @@ regressionTest.describe('focus behavior', () => {
   regressionTest(
     'should focus input when adding token programmatically and input was already focused',
     async ({ page }) => {
-      const categoryFilter = page.locator('ix-category-filter');
       const input = await page.locator('input').first();
 
       await input.click();
