@@ -36,39 +36,12 @@ body:
     attributes:
       label: Detailed description
       description: |
-        • For a bug: what happened?  
+        • For a bug: what happened?
         • For a feature: what problem are you trying to solve?  
         • Feel free to add any context that helps us understand the issue.
       placeholder: Tell us more…
     validations:
       required: true
-
-  - type: textarea
-    id: steps
-    attributes:
-      label: Steps to reproduce / user flow (if applicable)
-      placeholder: |
-        1. Open …
-        2. Select …
-        3. Observe …
-    validations:
-      required: false
-
-  - type: textarea
-    id: expected
-    attributes:
-      label: Expected / desired outcome
-      placeholder: What should happen or what should exist?
-    validations:
-      required: false
-
-  - type: textarea
-    id: actual
-    attributes:
-      label: Actual outcome (if different)
-      placeholder: What actually happened? Could you find any workaround?
-    validations:
-      required: false
 
   # ──────────────────────────────────────────────
 
