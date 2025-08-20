@@ -6,12 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import '@siemens/ix/scss/mixins/fonts';
-@import '@siemens/ix/scss/mixins/input';
+@use '@siemens/ix/scss/mixins/fonts';
+@use '@siemens/ix/scss/mixins/input';
 
 [class*='ag-theme-ix'] {
-  @include typography-body;
-
   --ag-background-color: transparent;
 
   --ag-foreground-color: var(--theme-color-std-text);
@@ -33,6 +31,8 @@
   --ag-input-focus-border-color: var(--theme-input--border-color--focus);
   --ag-checkbox-checked-color: var(--theme-input--border-color--focus);
   --ag-control-panel-background-color: var(--theme-color-1);
+
+  @include fonts.typography-body;
 
   .ag-checkbox-input-wrapper::after {
     color: transparent;
@@ -118,7 +118,7 @@
       position: inherit !important;
       white-space: inherit !important;
 
-      @include element-input;
+      @include input.element-input;
     }
   }
 

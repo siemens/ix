@@ -8,27 +8,44 @@
  */
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
-import { makeArgTypes } from './utils/generic-render';
+import { genericRender, makeArgTypes } from './utils/generic-render';
 
-type Elements = Components.IxMenu &
-  Components.IxMenuCategory &
-  Components.IxMenuItem;
+type Elements = Components.IxMenuCategory & {
+  items: number;
+};
 
 const meta = {
-  title: 'Example/ApplicationMenu',
+  title: 'Example/MenuCategory',
   tags: [],
   render: (args) => {
-    return html`<ix-menu expand="${args.expand}">
-      <ix-menu-item home icon="home">Home</ix-menu-item>
-      <ix-menu-item icon="globe">Item 1</ix-menu-item>
-      <ix-menu-category label="Top level Category" icon="rocket">
-        <ix-menu-item icon="globe">Item 2</ix-menu-item>
-        <ix-menu-item active="${args.active}" icon="globe">Item 3</ix-menu-item>
-      </ix-menu-category>
-    </ix-menu>`;
+    const container = genericRender('ix-menu-category', args, ['items']);
+    const categoryMenu = container.querySelector(
+      'ix-menu-category'
+    ) as HTMLIxMenuCategoryElement;
+
+    categoryMenu.ariaLabel = 'my-category-menu';
+
+    const menu = document.createElement('ix-menu');
+    menu.appendChild(categoryMenu);
+
+    for (let i = 0; i < args.items; i++) {
+      const menuItem = document.createElement('ix-menu-item');
+      menuItem.label = `Item ${i + 1}`;
+      menuItem.tooltipText = `Tooltip for Item ${i + 1}`;
+      categoryMenu.appendChild(menuItem);
+    }
+
+    return menu;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu'),
+  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu', {
+    items: {
+      control: 'number',
+      name: 'items*',
+    },
+  }),
+  args: {
+    items: 3,
+  },
   parameters: {
     design: {
       type: 'figma',
@@ -42,7 +59,6 @@ type Story = StoryObj<Elements>;
 
 export const Default: Story = {
   args: {
-    expand: true,
-    active: false,
+    label: 'Menu Category',
   },
 };

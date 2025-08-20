@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
+  @include component.ix-component;
 
   .card {
     background-color: var(--theme-menu--background);
@@ -49,7 +49,7 @@
       width: 100%;
 
       .header {
-        padding: $default-space;
+        padding: vars.$default-space;
         flex: 0 1 auto;
       }
     }
@@ -61,22 +61,22 @@
     }
 
     .content {
-      &--time-picker {
-        padding: 0 $default-space;
-      }
-
-      padding: 0 $default-space $default-space $default-space;
+      padding: 0 vars.$default-space vars.$default-space vars.$default-space;
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      &--time-picker {
+        padding: 0 vars.$default-space;
+      }
     }
 
     .footer-container {
       width: 100%;
 
       .footer {
-        padding: $default-space;
+        padding: vars.$default-space;
       }
     }
   }

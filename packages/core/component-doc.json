@@ -764,6 +764,7 @@
         "ix-menu-avatar"
       ],
       "dependencies": [
+        "ix-tooltip",
         "ix-dropdown",
         "ix-divider",
         "ix-typography",
@@ -771,10 +772,14 @@
       ],
       "dependencyGraph": {
         "ix-avatar": [
+          "ix-tooltip",
           "ix-dropdown",
           "ix-divider",
           "ix-typography",
           "ix-spinner"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ],
         "ix-menu-avatar": [
           "ix-avatar"
@@ -800,6 +805,37 @@
             }
           ],
           "deprecation": "Set the native `aria-label` on the ix-avatar host element",
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelTooltip",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-tooltip",
+          "reflectToAttr": false,
+          "docs": "aria-label for the tooltip",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -878,6 +914,37 @@
           "reflectToAttr": false,
           "docs": "Display the initials of the user. Will be overwritten by image",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Text to display in a tooltip when hovering over the avatar",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -1831,6 +1898,37 @@
           "reflectToAttr": false,
           "docs": "Icon name",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "iconRight",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon-right",
+          "reflectToAttr": false,
+          "docs": "Icon name for the right side of the button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -15444,10 +15542,14 @@
           "ix-menu-avatar-item"
         ],
         "ix-avatar": [
+          "ix-tooltip",
           "ix-dropdown",
           "ix-divider",
           "ix-typography",
           "ix-spinner"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ],
         "ix-menu-avatar-item": [
           "ix-dropdown-item"
@@ -15859,6 +15961,37 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Will be shown as tooltip text, if not provided menu text content will be used.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
@@ -16103,6 +16236,37 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Will be shown as tooltip text, if not provided menu text content will be used.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
             },
             {
               "type": "undefined"
@@ -26115,6 +26279,37 @@
           "setter": false
         },
         {
+          "name": "iconRight",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon-right",
+          "reflectToAttr": false,
+          "docs": "Icon name for the right side of the button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "loading",
           "type": "boolean",
           "complexType": {
@@ -26290,6 +26485,7 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-avatar",
         "ix-chip",
         "ix-field-wrapper",
         "ix-menu-item",
@@ -26303,6 +26499,9 @@
       "dependencyGraph": {
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-avatar": [
+          "ix-tooltip"
         ],
         "ix-chip": [
           "ix-tooltip"

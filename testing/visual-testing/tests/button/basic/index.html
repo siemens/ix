@@ -18,6 +18,15 @@ SPDX-License-Identifier: MIT
         margin: 0 0.25rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconBulb, iconStar } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconBulb,
+        iconStar,
+      });
+    </script>
   </head>
   <body>
     <ix-button>Hallo</ix-button>
@@ -39,6 +48,10 @@ SPDX-License-Identifier: MIT
     <ix-button disabled ghost>Hallo</ix-button>
     <ix-button disabled variant="secondary" ghost>Hallo</ix-button>
     <ix-button disabled variant="danger" ghost>Hallo</ix-button>
+
+    <ix-button icon="star">Hallo</ix-button>
+    <ix-button icon="star" icon-right="bulb">Hallo</ix-button>
+    <ix-button icon-right="bulb">Hallo</ix-button>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
   </body>
 </html>
