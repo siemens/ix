@@ -48,7 +48,7 @@ body:
   - type: textarea
     id: attachments
     attributes:
-      label: Screenshots / video (optional)
-      description: Drag & drop images or paste a Loom link.
+      label: Screenshots (optional)
+      description: Drag & drop images.
     validations:
       required: false
