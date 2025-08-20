@@ -8,7 +8,8 @@
  */
 
 import { Component, Element, h, Host, Listen, State } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
+import type { AnimationParams } from 'animejs';
 import Animation from '../utils/animation';
 
 /** @internal */
@@ -27,8 +28,7 @@ export class ApplicationSidebar {
   })
   listenToggleEvent() {
     const visibility = !this.visible;
-    const animation: anime.AnimeParams = {
-      targets: this.hostElement,
+    const animation: AnimationParams = {
       width: visibility ? ['0', '22rem'] : ['22rem', '0'],
       opacity: visibility ? [0, 1] : [1, 0],
       easing: 'easeInSine',
@@ -45,7 +45,7 @@ export class ApplicationSidebar {
       animation.complete = changeVisibility.bind(this);
     }
 
-    anime(animation);
+    animate(this.hostElement, animation);
   }
 
   render() {

@@ -230,6 +230,11 @@ export namespace Components {
          */
         "a11yLabel"?: string;
         /**
+          * aria-label for the tooltip
+          * @since 3.3.0
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
          */
         "extra"?: string;
@@ -241,6 +246,11 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Text to display in a tooltip when hovering over the avatar
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
@@ -825,8 +835,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Date format string. See
-          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format": string;
@@ -941,7 +950,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format": string;
@@ -1052,7 +1061,7 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format": string;
@@ -1150,7 +1159,7 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "dateFormat": string;
@@ -1170,7 +1179,7 @@ export namespace Components {
          */
         "i18nTime": string;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "locale"?: string;
         /**
@@ -1221,7 +1230,7 @@ export namespace Components {
          */
         "time"?: string;
         /**
-          * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Time format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'HH:mm:ss'
          */
         "timeFormat": string;
@@ -1509,8 +1518,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
          */
         "itemColor"?: string;
         /**
@@ -2376,6 +2384,11 @@ export namespace Components {
           * Show notification count on the category
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuExpandIcon {
         /**
@@ -2420,8 +2433,7 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
          */
         "icon"?: string;
         /**
@@ -2436,6 +2448,11 @@ export namespace Components {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuSettings {
         /**
@@ -3185,8 +3202,7 @@ export namespace Components {
          */
         "min": number;
         /**
-          * Legal number intervals
-          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * Legal number intervals  {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}
           * @default 1
          */
         "step": number;
@@ -3480,7 +3496,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
          */
         "format": string;
@@ -3612,7 +3628,7 @@ export namespace Components {
          */
         "dateTimePickerAppearance": boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
         "format": string;
@@ -3997,7 +4013,7 @@ export namespace Components {
     }
     interface IxUpload {
         /**
-          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
+          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). See {@link https://www.w3schools.com/tags/att_input_accept.asp}
          */
         "accept"?: string;
         /**
@@ -6091,6 +6107,11 @@ declare namespace LocalJSX {
          */
         "a11yLabel"?: string;
         /**
+          * aria-label for the tooltip
+          * @since 3.3.0
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
          */
         "extra"?: string;
@@ -6102,6 +6123,11 @@ declare namespace LocalJSX {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Text to display in a tooltip when hovering over the avatar
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
@@ -6747,8 +6773,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Date format string. See
-          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format"?: string;
@@ -6859,7 +6884,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format"?: string;
@@ -6969,7 +6994,7 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format"?: string;
@@ -7075,7 +7100,7 @@ declare namespace LocalJSX {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "dateFormat"?: string;
@@ -7095,7 +7120,7 @@ declare namespace LocalJSX {
          */
         "i18nTime"?: string;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "locale"?: string;
         /**
@@ -7158,7 +7183,7 @@ declare namespace LocalJSX {
          */
         "time"?: string;
         /**
-          * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Time format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'HH:mm:ss'
          */
         "timeFormat"?: string;
@@ -7451,8 +7476,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
          */
         "itemColor"?: string;
         /**
@@ -8374,6 +8398,11 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuExpandIcon {
         /**
@@ -8418,8 +8447,7 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
          */
         "icon"?: string;
         /**
@@ -8434,6 +8462,11 @@ declare namespace LocalJSX {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuSettings {
         /**
@@ -9238,8 +9271,7 @@ declare namespace LocalJSX {
         "min"?: number;
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
-          * Legal number intervals
-          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * Legal number intervals  {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}
           * @default 1
          */
         "step"?: number;
@@ -9539,7 +9571,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
          */
         "format"?: string;
@@ -9670,7 +9702,7 @@ declare namespace LocalJSX {
          */
         "dateTimePickerAppearance"?: boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
         "format"?: string;
@@ -10082,7 +10114,7 @@ declare namespace LocalJSX {
     }
     interface IxUpload {
         /**
-          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
+          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). See {@link https://www.w3schools.com/tags/att_input_accept.asp}
          */
         "accept"?: string;
         /**
