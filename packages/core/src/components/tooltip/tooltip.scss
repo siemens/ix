@@ -40,6 +40,14 @@
 
   ::slotted(ix-icon) {
     margin-right: 0.35rem;
+    margin-top: 0.1875rem;
+  }
+  ::slotted(ix-icon[size='12']) {
+    margin-top: 0.25rem;
+  }
+
+  ::slotted(ix-icon[size='16']) {
+    margin-top: 0.1875rem;
   }
 }
 
