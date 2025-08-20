@@ -18,7 +18,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { useContextProvider } from '../utils/context';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
@@ -137,26 +137,24 @@ export class MapNavigation {
   }
 
   private closeSidebar() {
-    anime({
-      targets: this.sidebar,
+    animate(this.sidebar, {
       duration: MapNavigation.defaultTime,
       marginLeft: [0, '-29.75rem'],
       opacity: [1, 0],
       easing: 'easeInSine',
-      complete: () => {
+      onComplete: () => {
         this.sidebar.classList.add('display-none');
       },
     });
   }
 
   private openSidebar() {
-    anime({
-      targets: this.sidebar,
+    animate(this.sidebar, {
       duration: MapNavigation.defaultTime,
       marginLeft: ['-29.75rem', 0],
       opacity: [0, 1],
       easing: 'easeOutSine',
-      begin: () => {
+      onBegin: () => {
         this.sidebar.classList.remove('display-none');
       },
     });
@@ -178,14 +176,13 @@ export class MapNavigation {
     icon?: string,
     color?: string
   ) {
-    anime({
-      targets: this.overlay,
+    animate(this.overlay, {
       duration: MapNavigation.slowTime,
       backdropFilter: [0, 'blur(1rem)'],
       translateX: ['-4rem', 0],
       opacity: [0, 1],
       easing: 'easeOutSine',
-      begin: () => {
+      onBegin: () => {
         this.overlay.classList.remove('display-none');
       },
     });
@@ -206,14 +203,13 @@ export class MapNavigation {
    */
   @Method()
   async closeOverlay() {
-    anime({
-      targets: this.overlay,
+    animate(this.overlay, {
       duration: MapNavigation.slowTime,
       backdropFilter: ['blur(1rem)', 0],
       translateX: [0, '-4rem'],
       opacity: [1, 0],
       easing: 'easeInSine',
-      complete: () => {
+      onComplete: () => {
         if (!this.overlay) {
           return;
         }
