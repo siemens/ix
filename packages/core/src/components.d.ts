@@ -3962,7 +3962,7 @@ export namespace Components {
     }
     interface IxUpload {
         /**
-          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link https://www.w3schools.com/tags/att_input_accept.asp}
+          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). See {@link https://www.w3schools.com/tags/att_input_accept.asp}
          */
         "accept"?: string;
         /**
@@ -10012,7 +10012,7 @@ declare namespace LocalJSX {
     }
     interface IxUpload {
         /**
-          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link https://www.w3schools.com/tags/att_input_accept.asp}
+          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). See {@link https://www.w3schools.com/tags/att_input_accept.asp}
          */
         "accept"?: string;
         /**

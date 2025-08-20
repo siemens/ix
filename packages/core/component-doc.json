@@ -27421,7 +27421,7 @@
           "mutable": false,
           "attr": "accept",
           "reflectToAttr": false,
-          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\n[accept]{@link https://www.w3schools.com/tags/att_input_accept.asp}",
+          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\nSee {@link https://www.w3schools.com/tags/att_input_accept.asp}",
           "docsTags": [],
           "values": [
             {
