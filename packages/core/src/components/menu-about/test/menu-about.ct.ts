@@ -9,6 +9,12 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+declare global {
+  interface Window {
+    tabChangeEvents: string[];
+  }
+}
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
@@ -94,19 +100,18 @@ regressionTest('tabChange event should fire exactly once per tab click', async (
   const tabItems = page.locator('ix-tab-item');
   await expect(tabItems.first()).toHaveClass(/hydrated/);
 
-  // Track tabChange events
+
   await about.evaluate((e) => {
-    (window as any).tabChangeEvents = [];
-    (e as any).addEventListener('tabChange', (event: any) => {
-      (window as any).tabChangeEvents.push(event.detail);
+    window.tabChangeEvents = [];
+    e.addEventListener('tabChange', (event) => {
+      window.tabChangeEvents.push((event as CustomEvent).detail);
     });
   });
 
-  // Click Tab 2 and verify exactly one event fires
   await tabItems.nth(1).click();
   await page.waitForTimeout(100);
 
-  const events = await page.evaluate(() => (window as any).tabChangeEvents || []);
+  const events = await page.evaluate(() => window.tabChangeEvents || []);
   expect(events).toHaveLength(1);
   expect(events[0]).toBe('Tab 2');
 });
