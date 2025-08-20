@@ -18,8 +18,9 @@ import {
   State,
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
-import { a11yHostAttributes } from '../utils/a11y';
+import { makeRef } from '../utils/make-ref';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -149,11 +150,27 @@ export class Avatar {
    */
   @Prop() extra?: string;
 
+  /**
+   * Text to display in a tooltip when hovering over the avatar
+   *
+   * @since 3.3.0
+   */
+  @Prop() tooltipText?: string;
+
+  /**
+   * aria-label for the tooltip
+   *
+   * @since 3.3.0
+   */
+  @Prop() ariaLabelTooltip?: string;
+
   @State() isClosestApplicationHeader = false;
   @State() hasSlottedElements = false;
 
   private slotElement?: HTMLSlotElement;
   private dropdownElement?: HTMLIxDropdownElement;
+
+  private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
   componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
@@ -187,6 +204,29 @@ export class Avatar {
     const a11y = a11yHostAttributes(this.hostElement);
     const a11yLabel = a11y['aria-label'];
 
+    const tooltipText = this.tooltipText || this.username;
+    const ariaHidden = tooltipText === this.username;
+
+    const Avatar = (
+      <Fragment>
+        <AvatarImage
+          image={this.image}
+          initials={this.initials}
+          a11yLabel={a11yLabel ?? this.a11yLabel}
+        />
+        {!!tooltipText && (
+          <ix-tooltip
+            ref={this.tooltipRef}
+            for={this.hostElement}
+            aria-hidden={a11yBoolean(ariaHidden)}
+            aria-label={this.ariaLabelTooltip}
+          >
+            {tooltipText}
+          </ix-tooltip>
+        )}
+      </Fragment>
+    );
+
     if (this.isClosestApplicationHeader) {
       return (
         <Host slot="ix-application-header-avatar" class={'avatar-button'}>
@@ -202,17 +242,18 @@ export class Avatar {
             type="button"
             variant="primary"
           >
-            <AvatarImage
-              image={this.image}
-              initials={this.initials}
-              a11yLabel={a11yLabel ?? this.a11yLabel}
-            />
+            {Avatar}
           </BaseButton>
           <ix-dropdown
             ref={(ref) => (this.dropdownElement = ref as HTMLIxDropdownElement)}
             trigger={this.resolveAvatarTrigger()}
             class="avatar-dropdown"
             onClick={(e) => this.onDropdownClick(e)}
+            onShowChanged={(event) => {
+              if (event.detail && this.tooltipRef.current) {
+                this.tooltipRef.current.hideTooltip(0);
+              }
+            }}
           >
             {this.username && (
               <Fragment>
@@ -237,14 +278,6 @@ export class Avatar {
       );
     }
 
-    return (
-      <Host>
-        <AvatarImage
-          image={this.image}
-          initials={this.initials}
-          a11yLabel={a11yLabel ?? this.a11yLabel}
-        />
-      </Host>
-    );
+    return <Host>{Avatar}</Host>;
   }
 }
