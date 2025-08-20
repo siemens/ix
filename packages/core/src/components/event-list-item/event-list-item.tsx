@@ -30,7 +30,7 @@ export class EventListItem {
    * You can find a list of all available colors in our documentation.
    * Example values are `--theme-color-alarm` or `color-alarm`
    *
-   * @link https://ix.siemens.io/docs/theming/colors/
+   * {@link https://ix.siemens.io/docs/theming/colors/}
    */
   @Prop() itemColor?: string;
 
