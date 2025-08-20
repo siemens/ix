@@ -5,4 +5,4 @@
 '@siemens/ix-vue': minor
 ---
 
-The following properties have been added to ix-date-input: minDate, maxDate, weekStartIndex. Fixes #1965
+All components with animations respects the **prefers-reduced-motion** feature and avoid any animation

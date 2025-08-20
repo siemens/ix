@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/input';
+@use 'mixins/input';
 
-@include label('.ix-form-label');
-@include form('.ix-form-control');
-@include element-form('.ix-form-control');
+@include input.label('.ix-form-label');
+@include input.form('.ix-form-control');
+@include input.element-form('.ix-form-control');

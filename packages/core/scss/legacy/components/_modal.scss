@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'legacy/mixins/fonts';
+@use 'legacy/mixins/fonts';
+@use 'common-variables' as vars;
 
 .modal {
   --bs-modal-footer-gap: 1rem;
@@ -15,11 +16,12 @@
 }
 
 .modal-header {
-  @include text-default-title;
   padding: 0;
-  padding-bottom: $tiny-space;
+  padding-bottom: vars.$tiny-space;
   border: none;
   align-items: center;
+
+  @include text-default-title;
 
   [data-close-button] {
     margin-left: 1rem;

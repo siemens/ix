@@ -7,17 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
-
   display: flex;
   position: relative;
   width: 100vw;
   height: 100vh;
 
   flex-direction: column;
+
+  @include component.ix-component;
 
   ix-application-header {
     z-index: calc(var(--theme-z-index-sticky) + 1);

@@ -22,7 +22,6 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { dropdownController } from '../dropdown/dropdown-controller';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -38,6 +37,12 @@ import {
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
+import {
+  closeDropdown as closeDropdownUtil,
+  createValidityState,
+  handleIconClick,
+  openDropdown as openDropdownUtil,
+} from '../utils/input/picker-input.util';
 
 /**
  * @form-ready
@@ -93,7 +98,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   /**
    * Date format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
@@ -316,46 +321,20 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   onCalenderClick(event: Event) {
-    if (!this.show) {
-      event.stopPropagation();
-      event.preventDefault();
-      this.openDropdown();
-    }
-
-    if (this.inputElementRef.current) {
-      this.inputElementRef.current.focus();
-    }
+    handleIconClick(
+      event,
+      this.show,
+      () => this.openDropdown(),
+      this.inputElementRef
+    );
   }
 
   async openDropdown() {
-    const dropdownElement = await this.dropdownElementRef.waitForCurrent();
-    const id = dropdownElement.getAttribute('data-ix-dropdown');
-
-    dropdownController.dismissAll();
-    if (!id) {
-      return;
-    }
-
-    const dropdown = dropdownController.getDropdownById(id);
-    if (!dropdown) {
-      return;
-    }
-    dropdownController.present(dropdown);
+    return openDropdownUtil(this.dropdownElementRef);
   }
 
   async closeDropdown() {
-    const dropdownElement = await this.dropdownElementRef.waitForCurrent();
-    const id = dropdownElement.getAttribute('data-ix-dropdown');
-
-    if (!id) {
-      return;
-    }
-
-    const dropdown = dropdownController.getDropdownById(id);
-    if (!dropdown) {
-      return;
-    }
-    dropdownController.dismiss(dropdown);
+    return closeDropdownUtil(this.dropdownElementRef);
   }
 
   private checkClassList() {
@@ -445,19 +424,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   /** @internal */
   @Method()
   getValidityState(): Promise<ValidityState> {
-    return Promise.resolve({
-      badInput: false,
-      customError: false,
-      patternMismatch: this.isInputInvalid,
-      rangeOverflow: false,
-      rangeUnderflow: false,
-      stepMismatch: false,
-      tooLong: false,
-      tooShort: false,
-      typeMismatch: false,
-      valid: !this.isInputInvalid,
-      valueMissing: !!this.required && !this.value,
-    });
+    return Promise.resolve(
+      createValidityState(this.isInputInvalid, !!this.required, this.value)
+    );
   }
 
   /**

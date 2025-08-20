@@ -17,7 +17,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
 
 @Component({
   tag: 'ix-map-navigation-overlay',
@@ -73,28 +73,26 @@ export class MapNavigationOverlay {
   @Event() closeClick!: EventEmitter;
 
   componentWillLoad() {
-    anime({
-      targets: this.hostElement,
+    animate(this.hostElement, {
       duration: MapNavigationOverlay.slowTime,
       backdropFilter: [0, 'blur(1rem)'],
       translateX: ['-4rem', 0],
       opacity: [0, 1],
       easing: 'easeOutSine',
-      begin: () => {
+      onBegin: () => {
         this.hostElement.classList.remove('display-none');
       },
     });
   }
 
   private closeOverlay() {
-    anime({
-      targets: this.hostElement,
+    animate(this.hostElement, {
       duration: MapNavigationOverlay.slowTime,
       backdropFilter: ['blur(1rem)', 0],
       translateX: [0, '-4rem'],
       opacity: [1, 0],
       easing: 'easeInSine',
-      complete: () => {
+      onComplete: () => {
         this.closeClick.emit();
         this.hostElement.classList.add('display-none');
       },
@@ -131,6 +129,7 @@ export class MapNavigationOverlay {
             class="overlay-close"
             ghost
             icon={iconClose}
+            iconColor="color-soft-text"
             size="24"
             onClick={() => this.closeOverlay()}
             aria-label={this.ariaLabelCloseIconButton}

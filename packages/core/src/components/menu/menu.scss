@@ -7,16 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
-@import '~animate.css/animate.min';
+@use './common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
+@use '~animate.css/animate.min';
 
 $menu-expanded-width: 16rem;
 
 :host {
-  @include ix-component;
-
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -26,6 +24,8 @@ $menu-expanded-width: 16rem;
   width: auto;
 
   bottom: 0;
+
+  @include component.ix-component;
 
   .tabs {
     height: 100%;
@@ -141,11 +141,11 @@ $menu-expanded-width: 16rem;
 
   #cui-imprint {
     .cui-imprint-product-name {
-      margin-bottom: $default-space;
+      margin-bottom: vars.$default-space;
     }
 
     .cui-imprint-product-description {
-      margin-bottom: $x-large-space;
+      margin-bottom: vars.$x-large-space;
     }
 
     .cui-imprint-link-container {

@@ -192,7 +192,9 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = 
         image: 'image',
         initials: 'initials',
         username: 'username',
-        extra: 'extra'
+        extra: 'extra',
+        tooltipText: 'tooltip-text',
+        ariaLabelTooltip: 'aria-label-tooltip'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -303,6 +305,7 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = 
         loading: 'loading',
         form: 'form',
         icon: 'icon',
+        iconRight: 'icon-right',
         alignment: 'alignment',
         iconSize: 'icon-size'
     },
@@ -1572,7 +1575,8 @@ export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenu
     properties: {
         label: 'label',
         icon: 'icon',
-        notifications: 'notifications'
+        notifications: 'notifications',
+        tooltipText: 'tooltip-text'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -1595,6 +1599,7 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         notifications: 'notifications',
         active: 'active',
         disabled: 'disabled',
+        tooltipText: 'tooltip-text',
         isCategory: 'is-category'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -2415,6 +2420,7 @@ export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxTogg
         disabled: 'disabled',
         loading: 'loading',
         icon: 'icon',
+        iconRight: 'icon-right',
         pressed: 'pressed',
         ariaLabelButton: 'aria-label-button'
     },

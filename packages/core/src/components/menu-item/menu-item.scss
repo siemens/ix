@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/hover';
-@import 'mixins/text-truncation';
+@use './common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
 
 $menuItemHeight: 3rem;
 $menuItemPadding: 0.875rem;
@@ -34,7 +34,7 @@ $menuItemPadding: 0.875rem;
     z-index: 500;
     padding-left: $menuItemPadding;
 
-    @include ghost-hover-pressed;
+    @include hover.ghost-hover-pressed;
   }
 
   .tab-icon {
@@ -68,16 +68,17 @@ $menuItemPadding: 0.875rem;
       line-height: 1;
       font-family: Siemens Sans, Arial, sans-serif;
       color: var(--theme-color-primary--contrast);
-      padding: $tiny-space;
+      padding: vars.$tiny-space;
     }
   }
 
   .tab-text {
-    @include ellipsis;
     color: var(--theme-nav-item-primary--color);
     margin: 0 1rem 0 1.25rem;
     user-select: none;
     width: 100%;
+
+    @include text-truncation.ellipsis;
   }
 }
 
