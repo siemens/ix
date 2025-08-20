@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './animejs.mock';
 import { newSpecPage } from '@stencil/core/testing';
 import { fireEvent } from '@testing-library/dom';
 import { Drawer } from '../drawer';

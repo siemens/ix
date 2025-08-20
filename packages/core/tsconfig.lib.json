@@ -24,6 +24,7 @@
     "playwright.config.ts",
     "playwright-ct.config.ts",
     "src/**/*.ct.ts",
-    "src/**/*.e2e.ts"
+    "src/**/*.e2e.ts",
+    "src/**/*.mock.ts"
   ]
 }

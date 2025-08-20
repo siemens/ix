@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxBlind } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxBlind],
   templateUrl: './blind-variants.html',

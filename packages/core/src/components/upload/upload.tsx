@@ -30,7 +30,7 @@ import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 export class Upload {
   /**
    * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).
-   * [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
+   * See {@link https://www.w3schools.com/tags/att_input_accept.asp}
    */
   @Prop() accept?: string;
 
