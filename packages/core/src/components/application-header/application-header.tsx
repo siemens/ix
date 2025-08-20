@@ -140,6 +140,8 @@ export class ApplicationHeader {
   @State() suppressResponsive = false;
 
   @State() hasOverflowSlottedElements = false;
+  @State() hasSecondarySlotElements = false;
+  @State() hasDefaultSlotElements = false;
   @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
@@ -289,8 +291,10 @@ export class ApplicationHeader {
       '.content slot[name="secondary"]'
     );
 
+    this.hasDefaultSlotElements = hasSlottedElements(defaultSlot);
+    this.hasSecondarySlotElements = hasSlottedElements(secondarySlot);
     this.hasOverflowSlottedElements =
-      hasSlottedElements(defaultSlot) || hasSlottedElements(secondarySlot);
+      this.hasDefaultSlotElements || this.hasSecondarySlotElements;
   }
 
   private onContentBgClick(e: MouseEvent) {
@@ -401,9 +405,17 @@ export class ApplicationHeader {
                     onClick={(e) => this.onContentBgClick(e)}
                   >
                     <div class="top">
-                      <slot name="secondary"></slot>
+                      <slot
+                        name="secondary"
+                        onSlotchange={() =>
+                          this.updateHasDefaultSlotAssignedElements()
+                        }
+                      ></slot>
                     </div>
-                    <div class="divider"></div>
+                    {this.hasDefaultSlotElements &&
+                      this.hasSecondarySlotElements && (
+                        <div class="divider"></div>
+                      )}
                     <div class="bottom">
                       <slot
                         onSlotchange={() =>
