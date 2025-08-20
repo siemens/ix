@@ -23,16 +23,28 @@ function getItems(
 }
 
 export function setTab(context: MenuSettings | MenuAbout, label: string) {
+  if (context.activeTabLabel === label) {
+    return;
+  }
   const { defaultPrevented } = context.tabChange.emit(label);
 
   if (defaultPrevented) {
     return;
   }
 
+  context.isInternalTabChange = true;
   context.activeTabLabel = label;
+  context.isInternalTabChange = false;
+  syncTabDisplay(context, label);
+}
+
+export function syncTabDisplay(
+  context: MenuSettings | MenuAbout,
+  label: string
+) {
   context.items.forEach((i) => {
     i.style.display = 'none';
-    if (i.label === context.activeTabLabel) {
+    if (i.label === label) {
       i.style.display = 'block';
     }
   });

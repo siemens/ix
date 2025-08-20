@@ -22,7 +22,7 @@ import { MenuTabs } from '../utils/menu-tabs/menu-tabs-fc';
 import {
   CustomCloseEvent,
   initialize,
-  setTab,
+  syncTabDisplay,
 } from '../utils/menu-tabs/menu-tabs-utils';
 
 @Component({
@@ -60,9 +60,13 @@ export class MenuAbout {
 
   @State() items!: HTMLIxMenuAboutItemElement[];
 
+  @State() isInternalTabChange = false;
+
   @Watch('activeTabLabel')
-  updateTab(label: string) {
-    setTab(this, label);
+  updateTab(newLabel: string, oldLabel: string) {
+    if (!this.isInternalTabChange && newLabel !== oldLabel) {
+      syncTabDisplay(this, newLabel);
+    }
   }
 
   componentWillLoad() {
