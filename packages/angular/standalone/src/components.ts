@@ -2208,7 +2208,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 })
 export class IxNumberInput {
   protected el: HTMLIxNumberInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<number>>();
+  @Output() valueChange = new EventEmitter<CustomEvent<number | undefined>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
