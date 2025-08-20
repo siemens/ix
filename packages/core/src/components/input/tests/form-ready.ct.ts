@@ -164,22 +164,22 @@ regressionTest(
     await expect(textarea).toHaveCSS('--textarea-width', '50%');
     await expect(textarea).toHaveAttribute('rows', '5');
   }
-)
+);
 
 regressionTest(
   'form-ready - height at 3.25rem if no textarearows is used',
-   async ({ mount, page }) => {
+  async ({ mount, page }) => {
     await mount(
       `<form><ix-textarea name="my-field-name"></ix-textarea></form>`
     );
 
     const formElement = page.locator('form');
-    preventFormSubmission(formElement);  
-    const textarea = page.locator('ix-textarea').locator('textarea'); 
+    preventFormSubmission(formElement);
+    const textarea = page.locator('ix-textarea').locator('textarea');
     await expect(textarea).not.toHaveAttribute('rows');
     const computedStyle = await textarea.evaluate((el) => {
       return window.getComputedStyle(el).height;
     });
     expect(computedStyle).toBe('52px');
   }
-)
+);
