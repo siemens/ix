@@ -176,9 +176,7 @@ export class Tabs {
     this.totalItems = tabs.length;
 
     tabs.forEach((element, index) => {
-      if (!element.hasAttribute('placement')) {
-        this.setTabAttributes(element);
-      }
+      this.setTabAttributes(element);
       this.setTabSelectionState(element, index);
     });
 
@@ -216,6 +214,14 @@ export class Tabs {
     if (!isSelected && element.classList.contains('selected')) {
       element.classList.remove('selected');
     }
+
+    if (!this.shouldHaveBottomClass() && element.classList.contains('bottom')) {
+      element.classList.remove('bottom');
+    }
+
+    if (!this.shouldHaveTopClass() && element.classList.contains('top')) {
+      element.classList.remove('top');
+    }
   }
 
   private getRequiredClasses(isSelected: boolean): string[] {
@@ -223,6 +229,10 @@ export class Tabs {
 
     if (this.shouldHaveBottomClass()) {
       classes.push('bottom');
+    }
+
+    if (this.shouldHaveTopClass()) {
+      classes.push('top');
     }
 
     if (isSelected) {
@@ -233,7 +243,11 @@ export class Tabs {
   }
 
   private shouldHaveBottomClass(): boolean {
-    return this.placement === 'bottom' && this.layout !== 'stretched';
+    return this.placement === 'bottom';
+  }
+
+  private shouldHaveTopClass(): boolean {
+    return this.placement === 'top';
   }
 
   private updateTabAttributes() {
