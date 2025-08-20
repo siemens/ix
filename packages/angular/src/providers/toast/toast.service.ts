@@ -13,8 +13,6 @@ import {
   ToastService as BaseToastService,
   ToastConfig,
 } from '@siemens/ix-angular/common';
-import { defineCustomElement } from '@siemens/ix/components/ix-toast.js';
-import { defineCustomElement as defineCustomElementToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 
 @Injectable({
   providedIn: 'root',
@@ -33,8 +31,6 @@ export class ToastService extends BaseToastService {
   }
 
   public show(config: ToastConfig): Promise<ShowToastResult> {
-    defineCustomElement();
-    defineCustomElementToastContainer();
     return super.show(config);
   }
 }
