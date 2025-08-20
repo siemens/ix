@@ -39,44 +39,33 @@ test.describe('validation', () => {
 
       await expect(input).toHaveClass(/ix-invalid/);
     });
+
     test('ix-change event should be emitted on enter keydown', async ({
       mount,
       page,
     }) => {
       await mount('<ix-input></ix-input>');
 
-      const setupEventListener = `
-    window.ixChangeDetail = undefined;
-    const ixInput = document.querySelector('ix-input');
-
-    function handleIxChange(e) {
-      window.ixChangeDetail = e.detail;
-    }
-
-    if (ixInput) {
-      ixInput.addEventListener('ixChange', handleIxChange);
-    }
-  `;
-
-      await page.evaluate(setupEventListener);
-
       const input = page.locator('ix-input');
       const shadowDomInput = input.locator('input');
 
+      await page.evaluate(() => {
+        function handleIxChange(e: any) {
+          // @ts-ignore
+          console.log('ixChange:', e.detail);
+        }
+        const ixInput = document.querySelector('ix-input');
+        if (ixInput) {
+          ixInput.addEventListener('ixChange', handleIxChange);
+        }
+      });
+
       await shadowDomInput.fill('test value');
-      await shadowDomInput.press('Enter');
-
-      const waitForChangeDetail = `
-    () => window.ixChangeDetail !== undefined
-  `;
-
-      await page.waitForFunction(waitForChangeDetail);
-
-      const getEventDetail = `
-    window.ixChangeDetail
-  `;
-
-      const eventDetail = await page.evaluate(getEventDetail);
+      const [msg] = await Promise.all([
+        page.waitForEvent('console', (msg) => msg.text().includes('ixChange:')),
+        shadowDomInput.press('Enter'),
+      ]);
+      const eventDetail = msg.text().replace('ixChange:', '').trim();
       expect(eventDetail).toBe('test value');
     });
 

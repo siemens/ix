@@ -28,7 +28,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
-  handleValueChange,
+  emitCancelableChange,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -296,22 +296,23 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   async onInput(value: string | undefined) {
-    const newValue = handleValueChange(value, this.oldValue, this.ixChange);
-
-    if (newValue !== value) {
-      return;
+    if (value !== this.oldValue) {
+      const prevented = emitCancelableChange(value, this.ixChange);
+      if (prevented) {
+        return;
+      }
     }
-    this.oldValue = newValue;
-    this.value = newValue;
-    this.valueChange.emit(newValue);
+    this.oldValue = value;
+    this.value = value;
+    this.valueChange.emit(value);
 
-    if (!newValue) {
+    if (!value) {
       this.updateFormInternalValue(undefined);
       this.from = undefined;
     } else if (!this.format) {
-      this.updateFormInternalValue(newValue);
+      this.updateFormInternalValue(value);
     } else {
-      const date = DateTime.fromFormat(newValue, this.format);
+      const date = DateTime.fromFormat(value, this.format);
       const minDate = DateTime.fromFormat(this.minDate, this.format);
       const maxDate = DateTime.fromFormat(this.maxDate, this.format);
 
@@ -321,8 +322,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
         this.invalidReason = date.invalidReason || undefined;
         this.from = undefined;
       } else {
-        this.updateFormInternalValue(newValue);
-        this.from = newValue;
+        this.updateFormInternalValue(value);
+        this.from = value;
         this.closeDropdown();
       }
     }

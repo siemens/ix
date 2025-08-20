@@ -172,6 +172,23 @@ export class Textarea implements IxInputFieldComponent<string> {
   private readonly textAreaRef = makeRef<HTMLTextAreaElement>();
   private touched = false;
 
+  private handleInputChange = () => {
+    const textarea = this.textAreaRef.current;
+    if (!textarea) return;
+
+    const newValue = textarea.value;
+    const event = this.ixChange.emit(newValue);
+
+    if (event.defaultPrevented) {
+      textarea.value = this.value;
+      this.updateFormInternalValue(this.value);
+    } else {
+      this.value = newValue;
+      this.updateFormInternalValue(newValue);
+      this.valueChange.emit(newValue);
+    }
+  };
+
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
@@ -275,22 +292,7 @@ export class Textarea implements IxInputFieldComponent<string> {
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
-              onChange={() => {
-                const textarea = this.textAreaRef.current;
-                if (!textarea) return;
-
-                const newValue = textarea.value;
-                const event = this.ixChange.emit(newValue);
-
-                if (event.defaultPrevented) {
-                  textarea.value = this.value;
-                  this.updateFormInternalValue(this.value);
-                } else {
-                  this.value = newValue;
-                  this.updateFormInternalValue(newValue);
-                  this.valueChange.emit(newValue);
-                }
-              }}
+              onChange={this.handleInputChange}
               onBlur={() => {
                 onInputBlur(this, this.textAreaRef.current);
                 this.touched = true;

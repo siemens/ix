@@ -214,6 +214,21 @@ export class NumberInput implements IxInputFieldComponent<number> {
     );
   }
 
+  private handleInputChange = () => {
+    const input = this.inputRef.current;
+    if (!input) return;
+    const newValue = Number(input.value);
+    const event = this.ixChange.emit(newValue);
+    if (event.defaultPrevented) {
+      input.value = this.value.toString();
+      this.updateFormInternalValue(this.value);
+    } else {
+      this.value = newValue;
+      this.updateFormInternalValue(newValue);
+      this.valueChange.emit(newValue);
+    }
+  };
+
   updateFormInternalValue(value: number) {
     this.formInternals.setFormValue(value.toString());
     this.value = value;
@@ -326,20 +341,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
               }}
-              onChange={() => {
-                const input = this.inputRef.current;
-                if (!input) return;
-                const newValue = Number(input.value);
-                const event = this.ixChange.emit(newValue);
-                if (event.defaultPrevented) {
-                  input.value = this.value.toString();
-                  this.updateFormInternalValue(this.value);
-                } else {
-                  this.value = newValue;
-                  this.updateFormInternalValue(newValue);
-                  this.valueChange.emit(newValue);
-                }
-              }}
+              onChange={this.handleInputChange}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

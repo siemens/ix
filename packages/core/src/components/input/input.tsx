@@ -213,6 +213,24 @@ export class Input implements IxInputFieldComponent<string> {
     );
   }
 
+  private handleInputChange = () => {
+    const input = this.inputRef.current;
+    const newValue = input?.value;
+
+    if (!input || newValue === undefined) return;
+
+    const event = this.ixChange.emit(newValue);
+
+    if (event.defaultPrevented) {
+      input.value = this.value;
+      this.updateFormInternalValue(this.value);
+    } else {
+      this.value = newValue;
+      this.valueChange.emit(newValue);
+      this.updateFormInternalValue(newValue);
+    }
+  };
+
   disconnectedCallback(): void {
     this.disposableChangesAndVisibilityObservers?.();
   }
@@ -322,23 +340,7 @@ export class Input implements IxInputFieldComponent<string> {
                 this.touched = true;
               }}
               ariaAttributes={inputAria}
-              onChange={() => {
-                const input = this.inputRef.current;
-                const newValue = input?.value;
-
-                if (!input || newValue === undefined) return;
-
-                const event = this.ixChange.emit(newValue);
-
-                if (event.defaultPrevented) {
-                  input.value = this.value;
-                  this.updateFormInternalValue(this.value);
-                } else {
-                  this.value = newValue;
-                  this.valueChange.emit(newValue);
-                  this.updateFormInternalValue(newValue);
-                }
-              }}
+              onChange={this.handleInputChange}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

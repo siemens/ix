@@ -28,7 +28,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
-  handleValueChange,
+  emitCancelableChange,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -306,27 +306,29 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async onInput(value: string) {
-    const newValue = handleValueChange(value, this.oldValue, this.ixChange);
-    if (newValue !== value) {
-      return;
+    if (value !== this.oldValue) {
+      const prevented = emitCancelableChange(value, this.ixChange);
+      if (prevented) {
+        return;
+      }
     }
-    this.oldValue = newValue;
-    this.value = newValue;
-    this.valueChange.emit(newValue);
-    if (!newValue) {
+    this.oldValue = value;
+    this.value = value;
+    this.valueChange.emit(value);
+    if (!value) {
       this.isInputInvalid = false;
-      this.updateFormInternalValue(newValue);
+      this.updateFormInternalValue(value);
     } else if (!this.format) {
-      this.updateFormInternalValue(newValue);
+      this.updateFormInternalValue(value);
     } else {
-      const time = DateTime.fromFormat(newValue, this.format);
+      const time = DateTime.fromFormat(value, this.format);
       if (time.isValid) {
         this.isInputInvalid = false;
-        this.updateFormInternalValue(newValue);
+        this.updateFormInternalValue(value);
       } else {
         this.isInputInvalid = true;
         this.invalidReason = time.invalidReason;
-        this.updateFormInternalValue(newValue);
+        this.updateFormInternalValue(value);
       }
     }
   }
