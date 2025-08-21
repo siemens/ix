@@ -19,12 +19,6 @@ import {
   selector: 'app-example',
   imports: [IxContentHeader, IxPill, IxButton],
   templateUrl: './content-header-with-slot.html',
-  styles: [
-    `
-      .margin-top {
-        margin-top: 0.375rem;
-      }
-    `,
-  ],
+  styleUrls: ['./content-header-with-slot.css'],
 })
 export default class ContentHeaderWithSlot {}
