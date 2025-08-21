@@ -319,7 +319,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
               }}
-              form={this.formInternals?.form ?? undefined}
+              form={this.formInternals.form ?? undefined}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
