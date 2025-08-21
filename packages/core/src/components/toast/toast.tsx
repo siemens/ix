@@ -170,7 +170,7 @@ export class Toast {
    */
   @Method()
   async isPaused(): Promise<boolean> {
-    return this.paused;
+    return this.paused || this.touched;
   }
 
   render() {
