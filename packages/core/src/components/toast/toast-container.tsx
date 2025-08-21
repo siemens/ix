@@ -123,6 +123,9 @@ export class ToastContainer {
       resume: () => {
         toast.resume();
       },
+      isPaused: () => {
+        return toast.isPaused();
+      },
     };
   }
 

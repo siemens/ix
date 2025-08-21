@@ -25455,6 +25455,28 @@
       ],
       "methods": [
         {
+          "name": "isPaused",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<boolean>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<boolean>"
+          },
+          "signature": "isPaused() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Returns whether the toast is currently paused (auto-close is paused).",
+          "docsTags": []
+        },
+        {
           "name": "pause",
           "returns": {
             "type": "Promise<void>",
@@ -25473,7 +25495,7 @@
           },
           "signature": "pause() => Promise<void>",
           "parameters": [],
-          "docs": "",
+          "docs": "Pause the toast's auto-close progress bar and timer.",
           "docsTags": []
         },
         {
@@ -25495,7 +25517,7 @@
           },
           "signature": "resume() => Promise<void>",
           "parameters": [],
-          "docs": "",
+          "docs": "Resume the toast's auto-close progress bar and timer if previously paused.",
           "docsTags": []
         }
       ],
@@ -28574,7 +28596,7 @@
       "path": "src/components/time-picker/time-picker.types.ts"
     },
     "src/components/toast/toast-container.types.ts::ShowToastResult": {
-      "declaration": "{\n  onClose: TypedEvent<any | undefined>;\n  close: (result?: any) => void;\n  pause: () => void;\n  resume: () => void;\n}",
+      "declaration": "{\n  onClose: TypedEvent<any | undefined>;\n  close: (result?: any) => void;\n  pause: () => void;\n  resume: () => void;\n  isPaused: () => Promise<boolean>;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-container.types.ts"
     },

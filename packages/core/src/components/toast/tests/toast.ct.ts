@@ -71,7 +71,7 @@ regressionTest(
     const toastHandle = await page.evaluateHandle(() => {
       return window.toast({
         message: 'Pause/Resume test',
-        autoCloseDelay: 2000,
+        autoCloseDelay: 1000,
       });
     });
 
@@ -82,14 +82,44 @@ regressionTest(
       handle.pause();
     }, toastHandle);
 
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(1500);
     await expect(toast).toBeVisible();
 
     await page.evaluate((handle) => {
       handle.resume();
     }, toastHandle);
 
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(1500);
     await expect(toast).not.toBeVisible();
   }
 );
+
+regressionTest('verify isPaused method', async ({ mount, page }) => {
+  await mount('');
+  const toastHandle = await page.evaluateHandle(() => {
+    return window.toast({
+      message: 'isPaused test',
+      autoCloseDelay: 2000,
+    });
+  });
+
+  // Should not be paused initially
+  let paused = await page.evaluate(async (handle) => {
+    return await handle.isPaused();
+  }, toastHandle);
+  expect(paused).toBe(false);
+
+  // Pause and check
+  await page.evaluate((handle) => handle.pause(), toastHandle);
+  paused = await page.evaluate(async (handle) => {
+    return await handle.isPaused();
+  }, toastHandle);
+  expect(paused).toBe(true);
+
+  // Resume and check
+  await page.evaluate((handle) => handle.resume(), toastHandle);
+  paused = await page.evaluate(async (handle) => {
+    return await handle.isPaused();
+  }, toastHandle);
+  expect(paused).toBe(false);
+});

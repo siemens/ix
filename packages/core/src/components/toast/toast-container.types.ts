@@ -13,4 +13,5 @@ export type ShowToastResult = {
   close: (result?: any) => void;
   pause: () => void;
   resume: () => void;
+  isPaused: () => Promise<boolean>;
 };

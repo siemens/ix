@@ -149,14 +149,28 @@ export class Toast {
     }, 250);
   }
 
+  /**
+   * Pause the toast's auto-close progress bar and timer.
+   */
   @Method()
   async pause() {
     this.paused = true;
   }
 
+  /**
+   * Resume the toast's auto-close progress bar and timer if previously paused.
+   */
   @Method()
   async resume() {
     this.paused = false;
+  }
+
+  /**
+   * Returns whether the toast is currently paused (auto-close is paused).
+   */
+  @Method()
+  async isPaused(): Promise<boolean> {
+    return this.paused;
   }
 
   render() {

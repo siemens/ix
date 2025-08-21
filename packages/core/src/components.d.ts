@@ -3719,7 +3719,17 @@ export namespace Components {
           * Icon color of toast
          */
         "iconColor"?: string;
+        /**
+          * Returns whether the toast is currently paused (auto-close is paused).
+         */
+        "isPaused": () => Promise<boolean>;
+        /**
+          * Pause the toast's auto-close progress bar and timer.
+         */
         "pause": () => Promise<void>;
+        /**
+          * Resume the toast's auto-close progress bar and timer if previously paused.
+         */
         "resume": () => Promise<void>;
         /**
           * Toast title
