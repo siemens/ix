@@ -31,3 +31,16 @@ export function escapeMarkdown(markdown: string) {
 
   return replacedMarkdown;
 }
+
+export function parseJSDocsToMarkdown(str: string) {
+  const linkRegex = /{\@link (.*?)}/g;
+  const markdown = str.replace(linkRegex, (_, url) => {
+    return `[${url}](${url})`;
+  });
+
+  return markdown;
+}
+
+export function escapeBackticks(str: string) {
+  return str.replaceAll(/`/g, '\\`');
+}
