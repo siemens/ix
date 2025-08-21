@@ -82,6 +82,7 @@ regressionTest(
       handle.pause();
     }, toastHandle);
 
+    // Wait for the toast to be paused and check persistence
     await page.waitForTimeout(1500);
     await expect(toast).toBeVisible();
 
@@ -89,6 +90,7 @@ regressionTest(
       handle.resume();
     }, toastHandle);
 
+    // Wait for the toast to be resumed and check disappearance
     await page.waitForTimeout(1500);
     await expect(toast).not.toBeVisible();
   }
