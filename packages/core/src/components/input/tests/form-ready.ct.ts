@@ -26,6 +26,21 @@ regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
   expect(formData).toBe('my example');
 });
 
+regressionTest.only(
+  `form-ready - ix-input submits form on Enter key`,
+  async ({ mount, page }) => {
+    await mount(`<form><ix-input name="my-field-name"></ix-input></form>`);
+    const formElement = page.locator('form');
+    preventFormSubmission(formElement);
+    const input = page.locator('ix-input').locator('input');
+    await input.fill('abc');
+    await input.focus();
+    await input.press('Enter');
+    const formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe('abc');
+  }
+);
+
 regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   await mount(
     `<form><ix-number-input name="my-field-name"></ix-number-input></form>`
@@ -40,6 +55,23 @@ regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('123');
 });
+
+regressionTest.only(
+  `form-ready - ix-number-input submits form on Enter key`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-number-input name="my-field-name"></ix-number-input></form>`
+    );
+    const formElement = page.locator('form');
+    preventFormSubmission(formElement);
+    const input = page.locator('ix-number-input').locator('input');
+    await input.fill('42');
+    await input.focus();
+    await input.press('Enter');
+    const formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe('42');
+  }
+);
 
 regressionTest(`form-ready - ix-textarea`, async ({ mount, page }) => {
   await mount(`<form><ix-textarea name="my-field-name"></ix-textarea></form>`);

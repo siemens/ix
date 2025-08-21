@@ -316,7 +316,7 @@ export class Input implements IxInputFieldComponent<string> {
                 this.touched = true;
               }}
               ariaAttributes={inputAria}
-              form={this.formInternals?.form ?? undefined}
+              form={this.formInternals.form ?? undefined}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
