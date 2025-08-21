@@ -166,9 +166,11 @@ export class Tabs {
   }
 
   private isTabItemClassMutation(mutation: MutationRecord): boolean {
-    return mutation.type === 'attributes' &&
-           mutation.attributeName === 'class' &&
-           mutation.target.nodeName === 'IX-TAB-ITEM';
+    return (
+      mutation.type === 'attributes' &&
+      mutation.attributeName === 'class' &&
+      mutation.target.nodeName === 'IX-TAB-ITEM'
+    );
   }
 
   private handleSlotChange() {
@@ -205,7 +207,7 @@ export class Tabs {
   private applyTabClasses(element: HTMLIxTabItemElement, isSelected: boolean) {
     const requiredClasses = this.getRequiredClasses(isSelected);
 
-    requiredClasses.forEach(className => {
+    requiredClasses.forEach((className) => {
       if (!element.classList.contains(className)) {
         element.classList.add(className);
       }
@@ -222,6 +224,10 @@ export class Tabs {
     if (!this.shouldHaveTopClass() && element.classList.contains('top')) {
       element.classList.remove('top');
     }
+
+    if (this.layout !== 'stretched' && element.classList.contains('stretched')) {
+      element.classList.remove('stretched');
+    }
   }
 
   private getRequiredClasses(isSelected: boolean): string[] {
@@ -233,6 +239,10 @@ export class Tabs {
 
     if (this.shouldHaveTopClass()) {
       classes.push('top');
+    }
+
+    if (this.layout === 'stretched') {
+      classes.push('stretched');
     }
 
     if (isSelected) {
