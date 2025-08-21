@@ -284,7 +284,13 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    for (const className of ['new', 'hydrated', 'bottom', 'stretched', 'selected']) {
+    for (const className of [
+      'new',
+      'hydrated',
+      'bottom',
+      'stretched',
+      'selected',
+    ]) {
       await expect(tabs.nth(0)).toHaveClass(new RegExp(className));
     }
   }

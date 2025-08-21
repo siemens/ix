@@ -151,7 +151,7 @@ export class Tabs {
       childList: false,
       subtree: true,
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     });
   }
 
@@ -225,7 +225,10 @@ export class Tabs {
       element.classList.remove('top');
     }
 
-    if (this.layout !== 'stretched' && element.classList.contains('stretched')) {
+    if (
+      this.layout !== 'stretched' &&
+      element.classList.contains('stretched')
+    ) {
       element.classList.remove('stretched');
     }
   }
