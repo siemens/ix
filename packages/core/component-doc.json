@@ -764,6 +764,7 @@
         "ix-menu-avatar"
       ],
       "dependencies": [
+        "ix-tooltip",
         "ix-dropdown",
         "ix-divider",
         "ix-typography",
@@ -771,10 +772,14 @@
       ],
       "dependencyGraph": {
         "ix-avatar": [
+          "ix-tooltip",
           "ix-dropdown",
           "ix-divider",
           "ix-typography",
           "ix-spinner"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ],
         "ix-menu-avatar": [
           "ix-avatar"
@@ -800,6 +805,37 @@
             }
           ],
           "deprecation": "Set the native `aria-label` on the ix-avatar host element",
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelTooltip",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-tooltip",
+          "reflectToAttr": false,
+          "docs": "aria-label for the tooltip",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -878,6 +914,37 @@
           "reflectToAttr": false,
           "docs": "Display the initials of the user. Will be overwritten by image",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Text to display in a tooltip when hovering over the avatar",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -5214,12 +5281,8 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
-            {
-              "name": "link",
-              "text": "https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens."
-            },
             {
               "name": "default",
               "text": "'yyyy/LL/dd'"
@@ -5930,7 +5993,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -6703,7 +6766,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -7181,7 +7244,7 @@
           "mutable": false,
           "attr": "date-format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -7298,7 +7361,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Format of time string\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [],
           "values": [
             {
@@ -7599,7 +7662,7 @@
           "mutable": false,
           "attr": "time-format",
           "reflectToAttr": false,
-          "docs": "Time format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Time format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -9678,13 +9741,8 @@
           "mutable": false,
           "attr": "item-color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/theming/colors/"
-            }
-          ],
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`\n\n{@link https://ix.siemens.io/docs/theming/colors/}",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -15475,10 +15533,14 @@
           "ix-menu-avatar-item"
         ],
         "ix-avatar": [
+          "ix-tooltip",
           "ix-dropdown",
           "ix-divider",
           "ix-typography",
           "ix-spinner"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ],
         "ix-menu-avatar-item": [
           "ix-dropdown-item"
@@ -15890,6 +15952,37 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Will be shown as tooltip text, if not provided menu text content will be used.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
@@ -16072,13 +16165,8 @@
           "mutable": true,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/icon-library/icons"
-            }
-          ],
+          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -16134,6 +16222,37 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Will be shown as tooltip text, if not provided menu text content will be used.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
             },
             {
               "type": "undefined"
@@ -21495,12 +21614,8 @@
           "mutable": false,
           "attr": "step",
           "reflectToAttr": false,
-          "docs": "Legal number intervals",
+          "docs": "Legal number intervals\n\n{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}",
           "docsTags": [
-            {
-              "name": "link",
-              "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
-            },
             {
               "name": "default",
               "text": "1"
@@ -23670,7 +23785,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Format of time string\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -24523,7 +24638,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.\nNote: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.",
+          "docs": "Format of time string\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.\nNote: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.",
           "docsTags": [
             {
               "name": "default",
@@ -26419,6 +26534,7 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-avatar",
         "ix-chip",
         "ix-field-wrapper",
         "ix-menu-item",
@@ -26432,6 +26548,9 @@
       "dependencyGraph": {
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-avatar": [
+          "ix-tooltip"
         ],
         "ix-chip": [
           "ix-tooltip"
@@ -27506,7 +27625,7 @@
           "mutable": false,
           "attr": "accept",
           "reflectToAttr": false,
-          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\n[accept]{@link \"https://www.w3schools.com/tags/att_input_accept.asp\"}",
+          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\nSee {@link https://www.w3schools.com/tags/att_input_accept.asp}",
           "docsTags": [],
           "values": [
             {
