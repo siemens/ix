@@ -27,6 +27,7 @@
 @use "./components/btn-outline-secondary" as asComponent_btn-outline-secondary;
 @use "./components/btn-primary" as asComponent_btn-primary;
 @use "./components/btn-secondary" as asComponent_btn-secondary;
+@use "./components/btn-subtle" as asComponent_btn-subtle;
 @use "./components/btn" as asComponent_btn;
 @use "./components/checkbox-checked" as asComponent_checkbox-checked;
 @use "./components/checkbox-label" as asComponent_checkbox-label;
@@ -201,6 +202,7 @@
   @include asComponent_btn-outline-secondary.setVars;
   @include asComponent_btn-primary.setVars;
   @include asComponent_btn-secondary.setVars;
+  @include asComponent_btn-subtle.setVars;
   @include asComponent_btn.setVars;
   @include asComponent_checkbox-checked.setVars;
   @include asComponent_checkbox-label.setVars;
