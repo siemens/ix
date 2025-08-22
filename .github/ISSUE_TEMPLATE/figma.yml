@@ -1,0 +1,54 @@
+name: Figma feedback
+description: Report a bug or suggest a feature for the Siemens Industrial Experience Figma library
+labels: ['figma', 'triage']
+body:
+  # ──────────────────────────────────────────────
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping us improve the Siemens Industrial Experience Figma library!
+
+  # ──────────────────────────────────────────────
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description: Make sure you do not violate these rules
+      options:
+        - label: I have read the [Contributing Guidelines](https://github.com/siemens/ix/blob/main/CONTRIBUTING.md).
+          required: true
+        - label: I have not leaked any internal/restricted information (screenshots, videos, code, links, etc.).
+          required: true
+
+  # ──────────────────────────────────────────────
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Type of feedback
+      options:
+        - Bug
+        - Feature request
+        - Question / other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Detailed description
+      description: |
+        • For a bug: what happened?
+        • For a feature: what problem are you trying to solve?  
+        • Feel free to add any context that helps us understand the issue.
+      placeholder: Tell us more…
+    validations:
+      required: true
+
+  # ──────────────────────────────────────────────
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Screenshots (optional)
+      description: Drag & drop images.
+    validations:
+      required: false
