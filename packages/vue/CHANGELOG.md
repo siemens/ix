@@ -1,5 +1,20 @@
 # @siemens/ix-vue
 
+## 3.3.0
+
+### Minor Changes
+
+- [#2075](https://github.com/siemens/ix/pull/2075) [`ac23f9ea035f8758b0a8076775ce8b6452f71926`](https://github.com/siemens/ix/commit/ac23f9ea035f8758b0a8076775ce8b6452f71926) Thanks [@danielleroux](https://github.com/danielleroux)! - All components with animations respects the **prefers-reduced-motion** feature and avoid any animation
+
+- [#2057](https://github.com/siemens/ix/pull/2057) [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add option `icon-right` to **ix-button** and **ix-toggle-button**
+
+- [#2069](https://github.com/siemens/ix/pull/2069) [`62ef59c6b042f87b1e17c22ec55c5b7131692930`](https://github.com/siemens/ix/commit/62ef59c6b042f87b1e17c22ec55c5b7131692930) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `tooltipText` to **ix-menu-item** and **ix-menu-category**
+
+### Patch Changes
+
+- Updated dependencies [[`ac23f9ea035f8758b0a8076775ce8b6452f71926`](https://github.com/siemens/ix/commit/ac23f9ea035f8758b0a8076775ce8b6452f71926), [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4), [`2fca705485f72455cde6c99fa8d3578cee7bb7c3`](https://github.com/siemens/ix/commit/2fca705485f72455cde6c99fa8d3578cee7bb7c3), [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4), [`4151d42ccd0a80932593796fb3586c0534faaaaf`](https://github.com/siemens/ix/commit/4151d42ccd0a80932593796fb3586c0534faaaaf), [`294dbe56899a9f63582af324d4f9b9efd8c5805b`](https://github.com/siemens/ix/commit/294dbe56899a9f63582af324d4f9b9efd8c5805b), [`1a2eb220d5fe513b3eda2c880d744d2fa1d44ed9`](https://github.com/siemens/ix/commit/1a2eb220d5fe513b3eda2c880d744d2fa1d44ed9), [`62ef59c6b042f87b1e17c22ec55c5b7131692930`](https://github.com/siemens/ix/commit/62ef59c6b042f87b1e17c22ec55c5b7131692930)]:
+  - @siemens/ix@3.3.0
+
 ## 3.2.0
 
 ### Minor Changes
