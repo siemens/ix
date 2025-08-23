@@ -117,6 +117,15 @@ export class ToastContainer {
       close: (result?: any) => {
         removeToast(result);
       },
+      pause: () => {
+        toast.pause();
+      },
+      resume: () => {
+        toast.resume();
+      },
+      isPaused: () => {
+        return toast.isPaused();
+      },
     };
   }
 
