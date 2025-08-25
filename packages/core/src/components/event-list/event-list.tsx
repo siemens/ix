@@ -10,7 +10,7 @@
 import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
-import anime from 'animejs';
+import { animate } from 'animejs';
 
 @Component({
   tag: 'ix-event-list',
@@ -120,15 +120,12 @@ export class EventList {
         resolve();
       }
 
-      const keyframes = [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }];
-
       const listElement = this.hostElement.shadowRoot!.querySelector('ul');
 
-      anime({
-        targets: listElement,
-        opacity: keyframes,
+      animate(listElement!, {
+        opacity: [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }],
         duration: EventList.fadeOutDuration,
-        complete: () => {
+        onComplete: () => {
           resolve();
         },
       });
@@ -144,8 +141,7 @@ export class EventList {
     listItems.forEach((e, i) => {
       const delay = i * 80;
       const offset = delay / (delay + EventList.fadeInDuration);
-      anime({
-        targets: e,
+      animate(e, {
         offset: offset,
         duration: EventList.fadeInDuration + delay,
         opacity: [0, 1],

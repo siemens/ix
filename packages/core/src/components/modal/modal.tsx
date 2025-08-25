@@ -17,7 +17,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
 import { OnListener } from '../utils/listener';
@@ -99,8 +99,7 @@ export class Modal {
     const duration = this.animation ? Animation.mediumTime : 0;
     const translateY = this.centered ? ['-90%', '-50%'] : [0, 40];
 
-    anime({
-      targets: this.dialog,
+    animate(this.dialog!, {
       duration,
       opacity: [0, 1],
       translateY,
@@ -113,8 +112,7 @@ export class Modal {
     const duration = this.animation ? Animation.mediumTime : 0;
     const translateY = this.centered ? ['-50%', '-90%'] : [40, 0];
 
-    anime({
-      targets: this.dialog,
+    animate(this.dialog!, {
       duration,
       opacity: [1, 0],
       translateY,

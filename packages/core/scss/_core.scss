@@ -8,6 +8,7 @@
  */
 @use 'theme/core/common' as common;
 @use 'theme/core/components' as components;
+@use 'mixins/reduce-motion' as rm;
 
 @use 'common-variables' as vars;
 
@@ -47,7 +48,7 @@
 
 :not([data-ix-theme]) body:not([data-ix-theme]),
 [data-ix-theme] {
-  --animate-duration: #{vars.$default-time};
+  --animate-duration: var(--theme-default-time);
   --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
     Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -56,6 +57,7 @@
 
   @include common.setVars;
   @include components.setComponentVars;
+  @include rm.reduce-motion;
 }
 
 body {
