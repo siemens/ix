@@ -32,7 +32,7 @@ regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
   expect(formData).toBe('my example');
 });
 
-regressionTest.only(
+regressionTest(
   `form-ready - ix-input submits form on Enter key`,
   async ({ mount, page }) => {
     await mount(`
@@ -53,7 +53,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only(
+regressionTest(
   `form-ready - multiple ix-inputs doesn't submit form on Enter key`,
   async ({ mount, page }) => {
     await mount(`
@@ -74,7 +74,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only(
+regressionTest(
   `form-ready - multiple ix-input submits form on Enter key when native button is present`,
   async ({ mount, page }) => {
     await mount(`
@@ -95,7 +95,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only(
+regressionTest(
   `form-ready - multiple ix-input submits form on Enter key when ix button is present`,
   async ({ mount, page }) => {
     await mount(`
@@ -131,7 +131,7 @@ regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   expect(formData).toBe('123');
 });
 
-regressionTest.only(
+regressionTest(
   `form-ready - ix-number-input submits form on Enter key`,
   async ({ mount, page }) => {
     await mount(`

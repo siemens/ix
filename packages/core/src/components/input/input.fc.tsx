@@ -120,7 +120,7 @@ export function InputElement(
         if (e.key !== 'Enter' || !props.form) return;
         e.preventDefault();
         const submitButton = props.form.querySelector(
-          'button[type="submit"], input[type="submit"]'
+          'button[type="submit"], ix-button[type="submit"]'
         ) as HTMLElement;
         if (submitButton) {
           submitButton.click();
