@@ -13,6 +13,12 @@ import {
 } from '@utils/test';
 import { expect } from '@playwright/test';
 
+declare global {
+  interface Window {
+    __formSubmitted: boolean;
+  }
+}
+
 regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
   await mount(`<form><ix-input name="my-field-name"></ix-input></form>`);
 
@@ -25,6 +31,86 @@ regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
   const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('my example');
 });
+
+regressionTest(
+  `form-ready - ix-input submits form on Enter key`,
+  async ({ mount, page }) => {
+    await mount(`
+      <form onsubmit="window.__formSubmitted = true; return false;">
+        <ix-input name="my-field-name"></ix-input>
+      </form>
+    `);
+    await page.evaluate(() => {
+      window.__formSubmitted = false;
+    });
+    const input = page.locator('ix-input').locator('input');
+    await input.fill('abc');
+    await input.focus();
+    await input.press('Enter');
+    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    expect(wasSubmitted).toBe(true);
+  }
+);
+
+regressionTest(
+  `form-ready - multiple ix-inputs doesn't submit form on Enter key`,
+  async ({ mount, page }) => {
+    await mount(`
+      <form onsubmit="window.__formSubmitted = true; return false;">
+        <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input>
+      </form>
+    `);
+    await page.evaluate(() => {
+      window.__formSubmitted = false;
+    });
+    const input = page.locator('ix-input').first().locator('input');
+    await input.fill('abc');
+    await input.focus();
+    await input.press('Enter');
+    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    expect(wasSubmitted).toBe(false);
+  }
+);
+
+regressionTest(
+  `form-ready - multiple ix-input submits form on Enter key when native button is present`,
+  async ({ mount, page }) => {
+    await mount(`
+      <form onsubmit="window.__formSubmitted = true; return false;">
+        <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input><button type="submit">Submit</button>
+      </form>
+    `);
+    await page.evaluate(() => {
+      window.__formSubmitted = false;
+    });
+    const input = page.locator('ix-input').first().locator('input');
+    await input.fill('abc');
+    await input.focus();
+    await input.press('Enter');
+    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    expect(wasSubmitted).toBe(true);
+  }
+);
+
+regressionTest(
+  `form-ready - multiple ix-input submits form on Enter key when ix button is present`,
+  async ({ mount, page }) => {
+    await mount(`
+      <form onsubmit="window.__formSubmitted = true; return false;">
+        <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input><ix-button type="submit">Submit</ix-button>
+      </form>
+    `);
+    await page.evaluate(() => {
+      window.__formSubmitted = false;
+    });
+    const input = page.locator('ix-input').first().locator('input');
+    await input.fill('abc');
+    await input.focus();
+    await input.press('Enter');
+    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    expect(wasSubmitted).toBe(true);
+  }
+);
 
 regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   await mount(
@@ -40,6 +126,26 @@ regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('123');
 });
+
+regressionTest(
+  `form-ready - ix-number-input submits form on Enter key`,
+  async ({ mount, page }) => {
+    await mount(`
+      <form onsubmit="window.__formSubmitted = true; return false;">
+        <ix-number-input name="my-field-name"></ix-number-input>
+      </form>
+    `);
+    await page.evaluate(() => {
+      window.__formSubmitted = false;
+    });
+    const input = page.locator('ix-number-input').locator('input');
+    await input.fill('42');
+    await input.focus();
+    await input.press('Enter');
+    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    expect(wasSubmitted).toBe(true);
+  }
+);
 
 regressionTest(`form-ready - ix-textarea`, async ({ mount, page }) => {
   await mount(`<form><ix-textarea name="my-field-name"></ix-textarea></form>`);
