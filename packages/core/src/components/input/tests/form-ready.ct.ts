@@ -39,7 +39,6 @@ regressionTest(
       <form onsubmit="window.__formSubmitted = true; return false;">
         <ix-input name="my-field-name"></ix-input>
       </form>
-      <script>window.__formSubmitted = false;</script>
     `);
     await page.evaluate(() => {
       window.__formSubmitted = false;
@@ -60,7 +59,6 @@ regressionTest(
       <form onsubmit="window.__formSubmitted = true; return false;">
         <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input>
       </form>
-      <script>window.__formSubmitted = false;</script>
     `);
     await page.evaluate(() => {
       window.__formSubmitted = false;
@@ -81,7 +79,6 @@ regressionTest(
       <form onsubmit="window.__formSubmitted = true; return false;">
         <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input><button type="submit">Submit</button>
       </form>
-      <script>window.__formSubmitted = false;</script>
     `);
     await page.evaluate(() => {
       window.__formSubmitted = false;
@@ -102,7 +99,6 @@ regressionTest(
       <form onsubmit="window.__formSubmitted = true; return false;">
         <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input><ix-button type="submit">Submit</ix-button>
       </form>
-      <script>window.__formSubmitted = false;</script>
     `);
     await page.evaluate(() => {
       window.__formSubmitted = false;
@@ -138,7 +134,6 @@ regressionTest(
       <form onsubmit="window.__formSubmitted = true; return false;">
         <ix-number-input name="my-field-name"></ix-number-input>
       </form>
-      <script>window.__formSubmitted = false;</script>
     `);
     await page.evaluate(() => {
       window.__formSubmitted = false;
