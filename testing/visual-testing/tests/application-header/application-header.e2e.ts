@@ -16,6 +16,11 @@ regressionTest.describe('application header: basic', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('without bottom border', async ({ page }) => {
+    await page.goto('application-header/no-border');
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest('should use safe areas', async ({ page }) => {
     await page.goto('application-header/basic');
     const head = page.locator('head');

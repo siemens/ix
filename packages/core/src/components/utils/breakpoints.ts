@@ -23,3 +23,21 @@ export const matchBreakpoint = (breakpoint: Breakpoint) => {
   }
   return false;
 };
+
+export const getCurrentBreakpoint = (): Breakpoint => {
+  if (typeof window === 'undefined' || !window.matchMedia) {
+    return 'lg';
+  }
+
+  if (matchBreakpoint('lg')) {
+    return 'lg';
+  }
+  if (matchBreakpoint('md')) {
+    return 'md';
+  }
+  if (matchBreakpoint('sm')) {
+    return 'sm';
+  }
+
+  return 'lg';
+};
