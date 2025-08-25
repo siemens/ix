@@ -21971,8 +21971,12 @@
           "mutable": false,
           "attr": "disabled-button",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Disables only the main button while keeping the dropdown trigger enabled",
           "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
             {
               "name": "default",
               "text": "false"
@@ -22000,8 +22004,12 @@
           "mutable": false,
           "attr": "disabled-icon",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Disables only the dropdown trigger while keeping the main button enabled",
           "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
             {
               "name": "default",
               "text": "false"

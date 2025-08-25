@@ -3213,10 +3213,14 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Disables only the main button while keeping the dropdown trigger enabled
+          * @since 3.3.0
           * @default false
          */
         "disabledButton": boolean;
         /**
+          * Disables only the dropdown trigger while keeping the main button enabled
+          * @since 3.3.0
           * @default false
          */
         "disabledIcon": boolean;
@@ -9243,10 +9247,14 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Disables only the main button while keeping the dropdown trigger enabled
+          * @since 3.3.0
           * @default false
          */
         "disabledButton"?: boolean;
         /**
+          * Disables only the dropdown trigger while keeping the main button enabled
+          * @since 3.3.0
           * @default false
          */
         "disabledIcon"?: boolean;
