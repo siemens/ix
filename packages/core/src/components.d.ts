@@ -4664,6 +4664,7 @@ declare global {
     interface HTMLIxDateInputElementEventMap {
         "valueChange": string | undefined;
         "validityStateChange": DateInputValidityState;
+        "ixChange": string | undefined;
         "ixFocus": void;
         "ixBlur": void;
     }
@@ -4988,6 +4989,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5334,6 +5336,7 @@ declare global {
         "valueChange": number;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": number;
     }
     /**
      * @form-ready 
@@ -5471,6 +5474,7 @@ declare global {
         "inputChange": string;
         "addItem": string;
         "ixBlur": void;
+        "ixChange": string | string[];
     }
     /**
      * @form-ready 
@@ -5584,6 +5588,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5613,6 +5618,7 @@ declare global {
         "validityStateChange": TimeInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @since 3.2.0
@@ -6866,6 +6872,10 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the date input value with any change is committed
+         */
+        "onIxChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
           * Validation state change event.
@@ -7896,6 +7906,10 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
         /**
+          * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
+         */
+        "onIxChange"?: (event: IxInputCustomEvent<string>) => void;
+        /**
           * Event emitted when the validity state of the text field changes.
          */
         "onValidityStateChange"?: (event: IxInputCustomEvent<ValidityState>) => void;
@@ -8592,6 +8606,10 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
         /**
+          * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
+         */
+        "onIxChange"?: (event: IxNumberInputCustomEvent<number>) => void;
+        /**
           * Event emitted when the validity state of the input field changes
          */
         "onValidityStateChange"?: (event: IxNumberInputCustomEvent<ValidityState>) => void;
@@ -9129,6 +9147,10 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxSelectCustomEvent<void>) => void;
         /**
+          * Event emitted when the selected value is changed
+         */
+        "onIxChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
+        /**
           * Value changed
          */
         "onValueChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
@@ -9431,6 +9453,10 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
         /**
+          * Event emitted when the textarea value with any change is committed (e.g., on blur or enter key)
+         */
+        "onIxChange"?: (event: IxTextareaCustomEvent<string>) => void;
+        /**
           * Event emitted when the validity state of the textarea field changes.
          */
         "onValidityStateChange"?: (event: IxTextareaCustomEvent<ValidityState>) => void;
@@ -9584,6 +9610,10 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the time input value with any change is committed
+         */
+        "onIxChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         "onIxFocus"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
           * Validation state change event.
