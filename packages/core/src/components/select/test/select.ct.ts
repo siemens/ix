@@ -803,13 +803,14 @@ test('last select item can be accessed via scrolling', async ({
   await mount(`
     <ix-select>
       ${Array.from(
-    {
-      length: 20,
-    },
-    (_, i) =>
-      `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${i + 1
-      }</ix-select-item>`
-  ).join('')}
+        {
+          length: 20,
+        },
+        (_, i) =>
+          `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${
+            i + 1
+          }</ix-select-item>`
+      ).join('')}
     </ix-select>
   `);
 
@@ -834,11 +835,12 @@ test('last select item can be accessed via scrolling when select placed at cente
     <div style="height:calc(50vh-1px)"></div>
     <ix-select>
       ${Array.from(
-    { length: 20 },
-    (_, i) =>
-      `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${i + 1
-      }</ix-select-item>`
-  ).join('')}
+        { length: 20 },
+        (_, i) =>
+          `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${
+            i + 1
+          }</ix-select-item>`
+      ).join('')}
     </ix-select>
   `);
 
