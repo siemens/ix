@@ -85,6 +85,18 @@ export class SplitButton {
   @Prop() disabled = false;
 
   /**
+   * Disables only the main button while keeping the dropdown trigger enabled
+   *  @since 3.3.0
+   */
+  @Prop() disabledButton = false;
+
+  /**
+   * Disables only the dropdown trigger while keeping the main button enabled
+   * @since 3.3.0
+   */
+  @Prop() disabledIcon = false;
+
+  /**
    * Placement of the dropdown
    */
   @Prop() placement: AlignedPlacement = 'bottom-start';
@@ -98,6 +110,14 @@ export class SplitButton {
 
   private triggerElement?: HTMLElement;
   private dropdownElement?: HTMLIxDropdownElement;
+
+  private get isDisabledButton() {
+    return this.disabled || this.disabledButton;
+  }
+
+  private get isDisabledIcon() {
+    return this.disabled || this.disabledIcon;
+  }
 
   private linkTriggerRef() {
     if (this.triggerElement && this.dropdownElement) {
@@ -114,10 +134,16 @@ export class SplitButton {
       variant: this.variant,
       outline: this.outline,
       ghost: this.ghost,
-      disabled: this.disabled,
+      disabled: this.disabled || this.isDisabledButton,
       class: {
         'left-button-border': !this.outline,
       },
+    };
+    const iconButtonAttributes = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      disabled: this.disabled || this.isDisabledIcon,
     };
     return (
       <Host>
@@ -139,7 +165,7 @@ export class SplitButton {
             ></ix-icon-button>
           )}
           <ix-icon-button
-            {...buttonAttributes}
+            {...iconButtonAttributes}
             ref={(r) => (this.triggerElement = r)}
             class={'anchor'}
             icon={this.splitIcon ?? iconContextMenu}
