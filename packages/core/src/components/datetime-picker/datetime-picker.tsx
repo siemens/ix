@@ -63,13 +63,13 @@ export class DatetimePicker
 
   /**
    * Date format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() dateFormat: string = 'yyyy/LL/dd';
 
   /**
    * Time format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() timeFormat: string = 'HH:mm:ss';
 
@@ -133,7 +133,7 @@ export class DatetimePicker
 
   /**
    * Format of time string
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() locale?: string;
 
