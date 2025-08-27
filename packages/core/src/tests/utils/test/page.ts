@@ -15,7 +15,6 @@ import {
   expect,
 } from '@playwright/test';
 import type { addIcons as _addIcons } from '@siemens/ix-icons';
-import ICONS from '@siemens/ix-icons/icons';
 
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;
