@@ -14,6 +14,8 @@ import {
   TestInfo as _TestInfo,
   expect,
 } from '@playwright/test';
+import type { addIcons as _addIcons } from '@siemens/ix-icons';
+import ICONS from '@siemens/ix-icons/icons';
 
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;
@@ -80,29 +82,12 @@ async function mountComponent(
       }
 
       if (config?.icons) {
-        const iconImport = Object.keys(config.icons).join(',\n');
-        const addIconsScript = `
-          import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
-          import {
-            ${iconImport}
-          } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
-
-          addIcons({
-            ${iconImport}
-          });
-        `;
-
-        const head = document.querySelector('head');
-
-        if (!head) {
-          throw new Error('No head tag found in the document.');
-        }
-
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.textContent = addIconsScript;
-
-        head.appendChild(script);
+        const moduleImport = await import(
+          //@ts-expect-error - Only existing on runtime
+          '/www/node_modules/@siemens/ix-icons/dist/index.js'
+        );
+        const addIcons: typeof _addIcons = moduleImport.addIcons;
+        addIcons(config.icons);
       }
 
       const loadScript = document.createElement('script');

@@ -176,7 +176,7 @@ regressionTest.describe('date picker tests single', () => {
   regressionTest(
     'keeps previous date and throws console error when invalid date string is provided',
     async ({ page }) => {
-      const datePicker = await page.locator('ix-date-picker');
+      const datePicker = page.locator('ix-date-picker');
 
       const errors: string[] = [];
       page.on('console', (message) => {
