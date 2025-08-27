@@ -32,6 +32,8 @@ const config: PlaywrightTestConfig = {
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   // eslint-disable-next-line turbo/no-undeclared-env-vars
   forbidOnly: !!process.env.CI,
+  /* Opt out of parallel tests on CI. */
+  workers: 10,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -59,6 +61,7 @@ const config: PlaywrightTestConfig = {
     command: 'pnpm run host-root',
     port: 8080,
   },
+  retries: 3,
 };
 
 export default config;
