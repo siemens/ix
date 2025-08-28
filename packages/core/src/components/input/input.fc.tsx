@@ -85,6 +85,8 @@ export function InputElement(
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
     ariaAttributes?: A11yAttributes;
+    form?: HTMLFormElement;
+    submitOnEnter?: boolean;
   }>
 ) {
   return (
@@ -115,6 +117,24 @@ export function InputElement(
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
+      onKeyDown={(e) => {
+        if (!props.submitOnEnter) return;
+        if (e.key !== 'Enter' || !props.form) return;
+        e.preventDefault();
+        const submitButton = props.form.querySelector(
+          'button[type="submit"], ix-button[type="submit"]'
+        ) as HTMLElement;
+        if (submitButton) {
+          submitButton.click();
+        } else {
+          const inputs = props.form.querySelectorAll(
+            'input:not([type="hidden"]), ix-input, ix-number-input'
+          );
+          if (inputs.length === 1) {
+            props.form.requestSubmit();
+          }
+        }
+      }}
     ></input>
   );
 }

@@ -1241,7 +1241,8 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@
         pattern: 'pattern',
         maxLength: 'max-length',
         minLength: 'min-length',
-        allowedCharactersPattern: 'allowed-characters-pattern'
+        allowedCharactersPattern: 'allowed-characters-pattern',
+        submitOnEnter: 'submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -1775,7 +1776,8 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         max: 'max',
         allowedCharactersPattern: 'allowed-characters-pattern',
         showStepperButtons: 'show-stepper-buttons',
-        step: 'step'
+        step: 'step',
+        submitOnEnter: 'submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
