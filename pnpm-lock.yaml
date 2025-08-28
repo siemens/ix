@@ -59,7 +59,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: ^3.2.0
+        specifier: ^4.0.0-alpha.0
         version: link:../core
     devDependencies:
       '@playwright/test':
@@ -111,7 +111,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~3.2.0
+        specifier: ~4.0.0-alpha.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^3.0.0
@@ -815,7 +815,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~3.2.0
+        specifier: ~4.0.0-alpha.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^3.0.0
@@ -1061,7 +1061,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~3.2.0
+        specifier: ~4.0.0-alpha.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^3.0.0
@@ -3147,6 +3147,7 @@ packages:
   '@esbuild/linux-arm64@0.25.1':
     resolution: {integrity: sha512-jaN3dHi0/DDPelk0nLcXRm1q7DNJpjXy7yWaWvbfkPvI+7XNSc/lDOnCLN7gzsyzgu6qSAmgSvP9oXAhP973uQ==}
     engines: {node: '>=18'}
+    cpu: [arm64]
     os: [linux]
 
   '@esbuild/linux-arm64@0.25.5':
@@ -11707,11 +11708,12 @@ packages:
   puppeteer@21.1.1:
     resolution: {integrity: sha512-2TLntjGA4qLrI9/8N0UK/5OoZJ2Ue7QgphN2SD+RsaHiha12AEiVyMGsB+i6LY1IoPAtEgYIjblQ7lw3kWDNRw==}
     engines: {node: '>=16.3.0'}
-    deprecated: < 22.8.2 is no longer supported
+    deprecated: < 24.9.0 is no longer supported
 
   puppeteer@22.15.0:
     resolution: {integrity: sha512-XjCY1SiSEi1T7iSYuxS82ft85kwDJUS7wj1Z0eGVXKdtr5g4xnVcbjwxhq5xBnpK/E7x1VZZoJDxpjAOasHT4Q==}
     engines: {node: '>=18'}
+    deprecated: < 24.9.0 is no longer supported
     hasBin: true
 
   pure-rand@6.0.4:
