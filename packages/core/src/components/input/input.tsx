@@ -147,6 +147,11 @@ export class Input implements IxInputFieldComponent<string> {
   @Prop() allowedCharactersPattern?: string;
 
   /**
+   * If true, pressing Enter will submit the form (if inside a form).
+   */
+  @Prop({ reflect: true }) submitOnEnter: boolean = true;
+
+  /**
    * Event emitted when the value of the text field changes.
    */
   @Event() valueChange!: EventEmitter<string>;
@@ -317,6 +322,7 @@ export class Input implements IxInputFieldComponent<string> {
               }}
               ariaAttributes={inputAria}
               form={this.formInternals.form ?? undefined}
+              submitOnEnter={this.submitOnEnter}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

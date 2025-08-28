@@ -152,6 +152,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop() step?: string | number;
 
   /**
+   * If true, pressing Enter will submit the form (if inside a form).
+   */
+  @Prop({ reflect: true }) submitOnEnter: boolean = true;
+
+  /**
    * Event emitted when the value of the input field changes
    */
   @Event() valueChange!: EventEmitter<number>;
@@ -320,6 +325,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 this.touched = true;
               }}
               form={this.formInternals.form ?? undefined}
+              submitOnEnter={this.submitOnEnter}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

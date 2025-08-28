@@ -1968,6 +1968,11 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default true
+         */
+        "submitOnEnter": boolean;
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -2628,6 +2633,11 @@ export namespace Components {
           * @since 3.0.0
          */
         "step"?: string | number;
+        /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default true
+         */
+        "submitOnEnter": boolean;
         /**
           * The valid text for the input field
          */
@@ -7926,6 +7936,11 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default true
+         */
+        "submitOnEnter"?: boolean;
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -8630,6 +8645,11 @@ declare namespace LocalJSX {
           * @since 3.0.0
          */
         "step"?: string | number;
+        /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default true
+         */
+        "submitOnEnter"?: boolean;
         /**
           * The valid text for the input field
          */

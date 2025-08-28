@@ -755,6 +755,7 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'maxLength',
   'minLength',
   'allowedCharactersPattern',
+  'submitOnEnter',
   'valueChange',
   'validityStateChange',
   'ixBlur'
@@ -1036,6 +1037,7 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'allowedCharactersPattern',
   'showStepperButtons',
   'step',
+  'submitOnEnter',
   'valueChange',
   'validityStateChange',
   'ixBlur'

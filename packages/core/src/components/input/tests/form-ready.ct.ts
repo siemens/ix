@@ -93,22 +93,26 @@ regressionTest(
 );
 
 regressionTest(
-  `form-ready - multiple ix-input submits form on Enter key when ix button is present`,
+  `form-ready - ix-input doesn't submit form on Enter key when submit-on-enter is false`,
   async ({ mount, page }) => {
     await mount(`
       <form onsubmit="window.__formSubmitted = true; return false;">
-        <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input><ix-button type="submit">Submit</ix-button>
+        <ix-input name="my-field-name"></ix-input>
       </form>
     `);
     await page.evaluate(() => {
       window.__formSubmitted = false;
+      const ixInput = document.querySelector('ix-input') as any;
+      if (ixInput) {
+        ixInput.submitOnEnter = false;
+      }
     });
-    const input = page.locator('ix-input').first().locator('input');
+    const input = page.locator('ix-input').locator('input');
     await input.fill('abc');
     await input.focus();
     await input.press('Enter');
     const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
-    expect(wasSubmitted).toBe(true);
+    expect(wasSubmitted).toBe(false);
   }
 );
 

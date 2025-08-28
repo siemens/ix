@@ -86,6 +86,7 @@ export function InputElement(
     onBlur: () => void;
     ariaAttributes?: A11yAttributes;
     form?: HTMLFormElement;
+    submitOnEnter?: boolean;
   }>
 ) {
   return (
@@ -117,6 +118,7 @@ export function InputElement(
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
       onKeyDown={(e) => {
+        if (!props.submitOnEnter) return;
         if (e.key !== 'Enter' || !props.form) return;
         e.preventDefault();
         const submitButton = props.form.querySelector(

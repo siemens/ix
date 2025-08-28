@@ -1460,7 +1460,7 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
 
 @ProxyCmp({
   defineCustomElementFn: defineIxInput,
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'submitOnEnter', 'type', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'getValidityState', 'focusInput']
 })
 @Component({
@@ -1468,7 +1468,7 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'submitOnEnter', 'type', 'validText', 'value', 'warningText'],
   standalone: true
 })
 export class IxInput {
@@ -2202,7 +2202,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 
 @ProxyCmp({
   defineCustomElementFn: defineIxNumberInput,
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'submitOnEnter', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2210,7 +2210,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'submitOnEnter', 'validText', 'value', 'warningText'],
   standalone: true
 })
 export class IxNumberInput {
