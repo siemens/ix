@@ -9,17 +9,14 @@
 
 <script setup lang="ts">
 import { IxButton, IxContentHeader, IxPill } from '@siemens/ix-vue';
-import { addIcons } from '@siemens/ix-icons';
 import { iconInfo } from '@siemens/ix-icons/icons';
-
-addIcons({ iconInfo });
 </script>
 
 <style scoped src="./content-header-with-slot.css"></style>
 
 <template>
   <IxContentHeader has-back-button header-title="Content title" header-subtitle="Subtitle">
-    <IxPill slot="header" icon="info" class="margin-top">Label</IxPill>
+    <IxPill slot="header" :icon="iconInfo" class="margin-top">Label</IxPill>
     <IxButton ghost>Button1</IxButton>
     <IxButton ghost>Button2</IxButton>
     <IxButton ghost>Button3</IxButton>

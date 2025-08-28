@@ -11,6 +11,10 @@ import { iconArrowLeft } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import type { ContentHeaderVariant } from './content-header.types';
 
+/**
+ * @slot header - Content to be placed in the header area next to the title
+ * @slot - Default slot for action buttons or other content
+ */
 @Component({
   tag: 'ix-content-header',
   styleUrl: 'content-header.scss',

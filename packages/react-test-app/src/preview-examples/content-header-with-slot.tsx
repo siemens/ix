@@ -8,11 +8,8 @@
  */
 
 import { IxButton, IxContentHeader, IxPill } from '@siemens/ix-react';
-import { addIcons } from '@siemens/ix-icons';
 import { iconInfo } from '@siemens/ix-icons/icons';
 import './content-header-with-slot.scoped.css';
-
-addIcons({ iconInfo });
 
 export default () => {
   return (
@@ -21,7 +18,7 @@ export default () => {
       headerTitle="Content title"
       headerSubtitle="Subtitle"
     >
-      <IxPill slot="header" icon="info" className="margin-top">
+      <IxPill slot="header" icon={iconInfo} className="margin-top">
         Label
       </IxPill>
       <IxButton ghost>Button1</IxButton>
