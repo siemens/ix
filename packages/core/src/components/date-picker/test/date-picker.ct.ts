@@ -9,27 +9,22 @@
 import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-const DATE_PICKER_REWORK_SELECTOR = 'ix-date-picker';
+const DatePickerSelector = 'ix-date-picker';
 const getDateObj = async (page: Page) => {
-  return await page.$$eval(DATE_PICKER_REWORK_SELECTOR, (elements) => {
+  return await page.$$eval(DatePickerSelector, (elements) => {
     return Promise.all(elements.map((elem) => elem.getCurrentDate()));
   });
 };
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker></ix-date-picker>`);
-  const datePicker = page.locator(DATE_PICKER_REWORK_SELECTOR);
+  const datePicker = page.locator(DatePickerSelector);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
 regressionTest('translation', async ({ mount, page }) => {
-  await mount(`<ix-date-picker from="2023/01/01"></ix-date-picker>`);
-
-  await page.$eval(
-    DATE_PICKER_REWORK_SELECTOR,
-    (el: HTMLIxDatePickerElement) => {
-      el.locale = 'de';
-    }
+  await mount(
+    `<ix-date-picker from="2023/01/01" locale="de"></ix-date-picker>`
   );
 
   const header = page.getByText('Januar 2023').nth(0);
@@ -44,12 +39,17 @@ regressionTest.describe('date picker tests single', () => {
   });
 
   regressionTest('select disabled date with enter', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveClass(/hydrated/);
 
     await page.getByText(/^9$/).focus();
     await page.keyboard.press('Enter');
 
-    expect((await getDateObj(page))[0]).toEqual({
+    const currentDate = datePicker.evaluate(
+      (element: HTMLIxDatePickerElement) => element.getCurrentDate()
+    );
+
+    await expect(currentDate).resolves.toEqual({
       from: '2024/10/10',
       to: undefined,
     });
@@ -176,7 +176,16 @@ regressionTest.describe('date picker tests single', () => {
   regressionTest(
     'keeps previous date and throws console error when invalid date string is provided',
     async ({ page }) => {
-      const datePicker = await page.locator('ix-date-picker');
+      const datePicker = page.locator('ix-date-picker');
+
+      const currentDateOld = datePicker.evaluate(
+        (element: HTMLIxDatePickerElement) => element.getCurrentDate()
+      );
+
+      await expect(currentDateOld).resolves.toEqual({
+        from: '2023/09/05',
+        to: undefined,
+      });
 
       const errors: string[] = [];
       page.on('console', (message) => {
@@ -189,10 +198,15 @@ regressionTest.describe('date picker tests single', () => {
         element.setAttribute('from', 'Aug 6, 2014');
       });
 
-      expect((await getDateObj(page))[0]).toEqual({
+      const currentDate = datePicker.evaluate(
+        (element: HTMLIxDatePickerElement) => element.getCurrentDate()
+      );
+
+      await expect(currentDate).resolves.toEqual({
         from: '2023/09/05',
         to: undefined,
       });
+
       expect(errors).toContain(
         `the input "Aug 6, 2014" can't be parsed as format yyyy/LL/dd`
       );
