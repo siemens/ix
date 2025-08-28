@@ -107,6 +107,9 @@ class ThemeSwitcher {
 
     if (elementsWithThemes.length === 0) {
       document.body.classList.add(this.getOppositeMode(this.defaultTheme));
+      document.documentElement.classList.add(
+        this.getOppositeMode(this.defaultTheme)
+      );
       return;
     }
 
