@@ -96,23 +96,24 @@ class ThemeSwitcher {
       return;
     }
 
-    const oldThemes: string[] = [];
-    Array.from(document.body.classList)
-      .filter((className) => className && this.isThemeClass(className))
-      .forEach((className) => {
-        oldThemes.push(className);
-      });
+    const elementsWithThemes = elements
+      .map((element) => ({
+        element,
+        themes: Array.from(element.classList).filter(
+          (className) => className && this.isThemeClass(className)
+        ),
+      }))
+      .filter((item) => item.themes.length > 0);
 
-    if (oldThemes.length === 0) {
+    if (elementsWithThemes.length === 0) {
       document.body.classList.add(this.getOppositeMode(this.defaultTheme));
       return;
     }
 
-    oldThemes.forEach((themeName) => {
-      document.body.classList.replace(
-        themeName,
-        this.getOppositeMode(themeName)
-      );
+    elementsWithThemes.forEach(({ element, themes }) => {
+      themes.forEach((themeName) => {
+        element.classList.replace(themeName, this.getOppositeMode(themeName));
+      });
     });
   }
 
