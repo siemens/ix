@@ -11,6 +11,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('Animations', () => {
   regressionTest('should have animation variables', async ({ mount, page }) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
     await mount(``);
 
     const animationDuration = await page.evaluate(() => {
