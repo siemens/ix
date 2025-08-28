@@ -92,6 +92,7 @@ regressionTest(
     await expect(step1).toHaveClass(/hydrated/);
 
     const selectedDiv = step1.locator('.step');
+
     await expect(workflowSteps).toHaveClass(/hydrated/);
     await expect(selectedDiv).toHaveClass(/selected/);
 

@@ -43,6 +43,9 @@ const config: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    contextOptions: {
+      reducedMotion: 'reduce',
+    },
   },
   testMatch: path.join(__dirname, 'src', '**', '*.ct.ts'),
   reporter: 'list',
