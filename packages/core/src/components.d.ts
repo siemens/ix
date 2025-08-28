@@ -173,6 +173,12 @@ export namespace Components {
          */
         "appIconAlt"?: string;
         /**
+          * Displays a slide outline around the app icon to ensure are contrast is given
+          * @since 3.3.0
+          * @default false
+         */
+        "appIconOutline": boolean;
+        /**
           * ARIA label for the app switch icon button
           * @since 3.2.0
          */
@@ -6040,6 +6046,12 @@ declare namespace LocalJSX {
           * @since 3.3.0
          */
         "appIconAlt"?: string;
+        /**
+          * Displays a slide outline around the app icon to ensure are contrast is given
+          * @since 3.3.0
+          * @default false
+         */
+        "appIconOutline"?: boolean;
         /**
           * ARIA label for the app switch icon button
           * @since 3.2.0

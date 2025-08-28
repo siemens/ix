@@ -621,6 +621,39 @@
           "setter": false
         },
         {
+          "name": "appIconOutline",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon-outline",
+          "reflectToAttr": false,
+          "docs": "Displays a slide outline around the app icon to ensure are contrast is given",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "ariaLabelAppSwitchIconButton",
           "type": "string | undefined",
           "complexType": {

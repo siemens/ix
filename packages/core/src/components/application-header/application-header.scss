@@ -57,6 +57,11 @@
       max-height: 2rem;
     }
 
+    .app-icon.app-icon-outline {
+      outline: 1px solid var(--theme-color-8);
+      border-radius: 0.125rem;
+    }
+
     .app-icon img {
       position: relative;
       display: block;

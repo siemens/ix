@@ -88,6 +88,13 @@ export class ApplicationHeader {
   @Prop() appIconAlt?: string;
 
   /**
+   * Displays a slide outline around the app icon to ensure are contrast is given
+   *
+   * @since 3.3.0
+   */
+  @Prop() appIconOutline = false;
+
+  /**
    * Hides the bottom border of the header
    *
    * @since 3.3.0
@@ -326,7 +333,12 @@ export class ApplicationHeader {
       >
         <div class="left-side">
           {this.appIcon && this.breakpoint !== 'sm' && (
-            <div class="app-icon">
+            <div
+              class={{
+                'app-icon': true,
+                'app-icon-outline': this.appIconOutline,
+              }}
+            >
               <img src={this.appIcon} alt={this.appIconAlt} />
             </div>
           )}
