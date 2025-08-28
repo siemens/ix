@@ -53,15 +53,6 @@ describe('ThemeSwitcher', () => {
       expect(document.body.getAttribute('data-ix-color-schema')).toBe('light');
     });
 
-    it('should toggle theme CSS class on html element', () => {
-      themeSwitcher.setTheme(themeClass, false, document.documentElement);
-      themeSwitcher.toggleMode();
-
-      expect(
-        document.documentElement.classList.contains('theme-classic-light')
-      ).toBe(true);
-    });
-
     it('should toggle theme on html element', () => {
       themeSwitcher.setTheme(theme, false, document.documentElement);
       themeSwitcher.setVariant('dark');

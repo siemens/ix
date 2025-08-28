@@ -86,7 +86,6 @@ class ThemeSwitcher {
     const elementWithSchema = elements.find((el) =>
       this.getDataColorSchema(el)
     );
-
     if (elementWithSchema) {
       const currentSchema = this.getDataColorSchema(elementWithSchema)!;
       elementWithSchema.setAttribute(
@@ -96,27 +95,23 @@ class ThemeSwitcher {
       return;
     }
 
-    const elementsWithThemes = elements
-      .map((element) => ({
-        element,
-        themes: Array.from(element.classList).filter(
-          (className) => className && this.isThemeClass(className)
-        ),
-      }))
-      .filter((item) => item.themes.length > 0);
+    const oldThemes: string[] = [];
+    Array.from(document.body.classList)
+      .filter((className) => className && this.isThemeClass(className))
+      .forEach((className) => {
+        oldThemes.push(className);
+      });
 
-    if (elementsWithThemes.length === 0) {
+    if (oldThemes.length === 0) {
       document.body.classList.add(this.getOppositeMode(this.defaultTheme));
-      document.documentElement.classList.add(
-        this.getOppositeMode(this.defaultTheme)
-      );
       return;
     }
 
-    elementsWithThemes.forEach(({ element, themes }) => {
-      themes.forEach((themeName) => {
-        element.classList.replace(themeName, this.getOppositeMode(themeName));
-      });
+    oldThemes.forEach((themeName) => {
+      document.body.classList.replace(
+        themeName,
+        this.getOppositeMode(themeName)
+      );
     });
   }
 
