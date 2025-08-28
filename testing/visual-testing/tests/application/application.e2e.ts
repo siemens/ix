@@ -77,11 +77,8 @@ regressionTest.describe('basic navigation', () => {
   regressionTest('content overflow', async ({ page }) => {
     await page.goto('application/content-overflow');
     await page.setViewportSize(viewPorts.md);
-    await page.waitForTimeout(500);
 
     await expect(page.getByText('Example content')).toBeVisible();
-
-    await page.waitForTimeout(1000);
 
     await expect(page).toHaveScreenshot({
       fullPage: true,
