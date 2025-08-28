@@ -54,12 +54,12 @@ describe('ThemeSwitcher', () => {
     });
 
     it('should toggle theme CSS class on html element', () => {
-      themeSwitcher.setTheme(themeClass, false);
+      themeSwitcher.setTheme(themeClass, false, document.documentElement);
       themeSwitcher.toggleMode();
 
-      expect(document.body.classList.contains('theme-classic-light')).toBe(
-        true
-      );
+      expect(
+        document.documentElement.classList.contains('theme-classic-light')
+      ).toBe(true);
     });
 
     it('should toggle theme on html element', () => {
