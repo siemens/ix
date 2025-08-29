@@ -110,7 +110,7 @@
 
     .application-name-suffix {
       flex: 1 1 auto;
-      margin-top: 0.5rem;
+      margin-top: 0.4rem;
       min-width: 0;
       flex-shrink: 1;
     }
@@ -126,6 +126,10 @@
       margin-right: 1rem;
       margin-left: 1rem;
       min-width: fit-content;
+    }
+
+    .logo.hide-logo {
+      display: none;
     }
   }
 
@@ -157,14 +161,15 @@
       overflow: visible;
     }
 
-    .dropdown-content {
-      padding: 1rem;
+    .dropdown-content .top,
+    .dropdown-content .bottom {
+      padding: 0.25rem 1.5rem 0.25rem 1.5rem;
     }
 
     .dropdown-content .divider {
       height: 1px;
       border: 1px solid var(--theme-color-x-weak-bdr);
-      margin: 0.5rem 0px;
+      margin: 0.25rem 0px;
     }
 
     .context-menu {
@@ -191,7 +196,7 @@
   @include break-points.media-breakpoint-match('sm') {
     .logo {
       margin-left: 0.5rem;
-      display: none;
+      display: none !important;
     }
 
     .content,

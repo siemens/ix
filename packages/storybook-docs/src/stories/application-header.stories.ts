@@ -181,6 +181,43 @@ export const NoBorderBottom: Story = {
   },
 };
 
+export const CompanyLogoAsSlot: StoryObj<
+  Element & {
+    hideSlottedLogo: boolean;
+  }
+> = {
+  render: (args) => {
+    const container = genericRender('ix-application-header', args, [
+      'hideSlottedLogo',
+    ]);
+
+    if (!args.hideSlottedLogo) {
+      const companyLogo = document.createElement('img');
+      companyLogo.src = '/images/example-company.svg';
+      companyLogo.slot = 'logo';
+      container
+        .querySelector('ix-application-header')
+        ?.appendChild(companyLogo);
+    }
+
+    return container;
+  },
+  args: {
+    hideSlottedLogo: false,
+  },
+  argTypes: {
+    hideSlottedLogo: {
+      control: 'boolean',
+    },
+  },
+};
+
+export const CompanyLogoAsProperty: Story = {
+  args: {
+    companyLogo: '/images/example-company.svg',
+  },
+};
+
 function generateSomeButtons(prefix: string, count: number, outline = false) {
   return Array.from({ length: count }, (_, i) => {
     const button = document.createElement('ix-icon-button');

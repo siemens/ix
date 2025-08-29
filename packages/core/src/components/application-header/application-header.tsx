@@ -146,6 +146,7 @@ export class ApplicationHeader {
   @State() menuExpanded = false;
   @State() suppressResponsive = false;
 
+  @State() hasSlottedLogo = false;
   @State() hasOverflowSlottedElements = false;
   @State() hasSecondarySlotElements = false;
   @State() hasDefaultSlotElements = false;
@@ -218,12 +219,25 @@ export class ApplicationHeader {
     this.breakpoint = 'md';
   }
 
-  private isLogoSlotted() {
+  private checkLogoSlot() {
     const slotElement = this.hostElement.shadowRoot!.querySelector(
       'slot[name="logo"]'
     ) as HTMLSlotElement;
 
-    return hasSlottedElements(slotElement);
+    const isSiemensLogoDefined =
+      window.customElements.get('ix-siemens-logo') !== undefined;
+
+    if (isSiemensLogoDefined) {
+      return hasSlottedElements(slotElement);
+    }
+
+    let assignedElements = slotElement?.assignedElements({ flatten: true });
+
+    assignedElements = assignedElements?.filter(
+      (element) => element.tagName !== 'IX-SIEMENS-LOGO'
+    );
+
+    return assignedElements?.length !== 0;
   }
 
   private attachSiemensLogoIfLoaded() {
@@ -231,7 +245,7 @@ export class ApplicationHeader {
       return;
     }
 
-    if (!this.isLogoSlotted()) {
+    if (!this.checkLogoSlot()) {
       const logoElement = document.createElement('ix-siemens-logo');
       logoElement.slot = 'logo';
       this.hostElement.appendChild(logoElement);
@@ -323,6 +337,9 @@ export class ApplicationHeader {
       this.breakpoint !== 'sm' &&
       this.suppressResponsive === false;
 
+    const showCompanyLogoByProperty =
+      this.breakpoint !== 'sm' && !!this.companyLogo;
+
     return (
       <Host
         class={{
@@ -361,7 +378,7 @@ export class ApplicationHeader {
               aria-label={this.ariaLabelAppSwitchIconButton}
             ></ix-icon-button>
           )}
-
+          {/*
           {this.breakpoint !== 'sm' && (
             <div class="logo">
               {this.companyLogo ? (
@@ -370,12 +387,28 @@ export class ApplicationHeader {
                 <slot name="logo"></slot>
               )}
             </div>
+          )} */}
+          {showCompanyLogoByProperty && (
+            <div class="logo">
+              <img src={this.companyLogo} alt={this.companyLogoAlt} />
+            </div>
           )}
+          <div
+            class={{
+              logo: true,
+              'hide-logo': !this.hasSlottedLogo,
+            }}
+          >
+            <slot
+              name="logo"
+              onSlotchange={() => (this.hasSlottedLogo = this.checkLogoSlot())}
+            ></slot>
+          </div>
           <div class="name">
             <ix-typography format="body-lg" class="application-name">
               {this.name}
             </ix-typography>
-            {this.nameSuffix && (
+            {this.nameSuffix && this.breakpoint !== 'sm' && (
               <ix-typography
                 format="body-xs"
                 textColor="soft"
