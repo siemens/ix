@@ -4657,7 +4657,16 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "header - Content to be placed in the header area next to the title"
+        },
+        {
+          "name": "slot",
+          "text": "- Default slot for action buttons or other content"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -4820,7 +4829,16 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot for action buttons or other content"
+        },
+        {
+          "name": "header",
+          "docs": "Content to be placed in the header area next to the title"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
