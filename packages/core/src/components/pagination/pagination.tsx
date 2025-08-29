@@ -30,7 +30,7 @@ import {
 })
 export class Pagination {
   private readonly baseButtonConfig: BaseButtonProps = {
-    variant: 'subtle-primary',
+    variant: 'subtle-tertiary',
     iconOnly: true,
     iconOval: false,
     disabled: false,
@@ -230,7 +230,7 @@ export class Pagination {
       <Host>
         <ix-icon-button
           disabled={!this.count || this.selectedPage === 0}
-          variant="tertiary"
+          variant="subtle-tertiary"
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
           aria-label={this.ariaLabelChevronLeftIconButton}
@@ -265,7 +265,7 @@ export class Pagination {
 
         <ix-icon-button
           disabled={!this.count || this.selectedPage === this.count - 1}
-          variant="tertiary"
+          variant="subtle-tertiary"
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
           aria-label={this.ariaLabelChevronRightIconButton}

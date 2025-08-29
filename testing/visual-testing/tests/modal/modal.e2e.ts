@@ -75,7 +75,7 @@ regressionTest('modal with dropdown', async ({ mount, page }) => {
       </ix-dropdown-button>
     </ix-modal-content>
     <ix-modal-footer>
-      <ix-button outline>Cancel</ix-button>
+      <ix-button variant="secondary">Cancel</ix-button>
       <ix-button>Save</ix-button>
     </ix-modal-footer>
   </ix-modal>

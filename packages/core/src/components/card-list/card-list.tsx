@@ -29,7 +29,7 @@ function CardListTitle(props: {
   return (
     <div class="CardList_Title">
       <ix-icon-button
-        ghost
+        variant="tertiary"
         icon={iconChevronDown}
         onClick={props.onClick}
         iconColor="color-primary"
@@ -45,7 +45,7 @@ function CardListTitle(props: {
       {!props.hideShowAll && (
         <ix-button
           class="CardList__Title__Show__All"
-          ghost
+          variant="tertiary"
           onClick={props.onShowAllClick}
         >
           <span>{props.showAllLabel}</span>

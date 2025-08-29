@@ -656,7 +656,7 @@ export class CategoryFilter {
 
     const params: BaseButtonProps = {
       type: 'button',
-      variant: 'tertiary',
+      variant: 'subtle-tertiary',
       iconOnly: true,
       iconOval: false,
       selected: false,

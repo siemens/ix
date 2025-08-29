@@ -49,7 +49,7 @@ export class MenuExpandIcon {
     return (
       <button
         class={{
-          ...getButtonClasses('secondary', true, false, false, false),
+          ...getButtonClasses('subtle-primary', true, false, false, false),
           'menu-expand-button': true,
         }}
       >
@@ -71,7 +71,7 @@ export class MenuExpandIcon {
     return (
       <ix-icon-button
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
-        variant="tertiary"
+        variant="subtle-primary"
       ></ix-icon-button>
     );
   }

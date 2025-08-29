@@ -141,7 +141,7 @@ export class ExpandingSearch
         <ix-icon-button
           size={this.expanded ? '16' : '24'}
           icon={this.icon ?? iconSearch}
-          variant={this.expanded ? 'primary' : this.variant}
+          variant={this.expanded ? 'tertiary' : this.variant}
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
@@ -190,7 +190,7 @@ export class ExpandingSearch
             <ix-icon-button
               class="btn-clear"
               icon={iconClear}
-              variant="tertiary"
+              variant="subtle-tertiary"
               size="16"
               data-testid="clear-button"
               onClick={() => this.clearClicked()}

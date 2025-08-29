@@ -278,7 +278,7 @@ export class ApplicationHeader {
           <ix-icon-button
             onClick={() => this.showAppSwitch()}
             icon={iconApps}
-            variant="tertiary"
+            variant="subtle-tertiary"
             class="app-switch"
             aria-label={this.ariaLabelAppSwitchIconButton}
           ></ix-icon-button>
@@ -300,7 +300,7 @@ export class ApplicationHeader {
                 data-context-menu
                 data-testid="show-more"
                 icon={iconMoreMenu}
-                variant="tertiary"
+                variant="subtle-tertiary"
                 aria-label={this.ariaLabelMoreMenuIconButton}
               ></ix-icon-button>
               <ix-dropdown
