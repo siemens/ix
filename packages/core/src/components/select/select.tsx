@@ -905,7 +905,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       key="clear"
                       class="clear"
                       icon={iconClear}
-                      ghost
+                      variant="tertiary"
                       oval
                       size="16"
                       onClick={(e) => {
@@ -926,7 +926,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                           ? iconChevronUpSmall
                           : iconChevronDownSmall
                       }
-                      ghost
+                      variant="tertiary"
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
                       }}

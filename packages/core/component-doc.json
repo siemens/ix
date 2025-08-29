@@ -1857,35 +1857,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -1972,35 +1943,6 @@
           "setter": false
         },
         {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "type",
           "type": "\"button\" | \"submit\"",
           "complexType": {
@@ -2036,10 +1978,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "local",
@@ -2061,7 +2003,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -2070,6 +2020,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -5329,35 +5295,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "i18nCustomItem",
           "type": "string",
           "complexType": {
@@ -5558,35 +5495,6 @@
           "setter": false
         },
         {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "range",
           "type": "boolean",
           "complexType": {
@@ -5679,10 +5587,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -5704,7 +5612,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -5713,6 +5629,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -8735,35 +8667,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -8811,35 +8714,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -8907,10 +8781,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "DropdownButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "DropdownButtonVariant": {
                 "location": "import",
@@ -8932,7 +8806,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -8941,6 +8823,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -9962,35 +9860,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -10012,35 +9881,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -10105,10 +9945,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -10124,13 +9964,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'primary'"
+              "text": "'tertiary'"
             }
           ],
-          "default": "'primary'",
+          "default": "'tertiary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -10139,6 +9987,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -11630,35 +11494,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -11722,35 +11557,6 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Button outline",
           "docsTags": [
             {
               "name": "default",
@@ -11871,10 +11677,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "IconButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "IconButtonVariant": {
                 "location": "import",
@@ -11890,13 +11696,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'secondary'"
+              "text": "'subtle-primary'"
             }
           ],
-          "default": "'secondary'",
+          "default": "'subtle-primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -11905,6 +11719,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -12218,10 +12048,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -12237,13 +12067,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'secondary'"
+              "text": "'subtle-primary'"
             }
           ],
-          "default": "'secondary'",
+          "default": "'subtle-primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -12252,6 +12090,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -22076,35 +21930,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -22152,35 +21977,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Button outline variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -22277,10 +22073,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "SplitButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "SplitButtonVariant": {
                 "location": "import",
@@ -22302,7 +22098,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -22311,6 +22115,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -26273,35 +26093,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -26388,35 +26179,6 @@
           "setter": false
         },
         {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "pressed",
           "type": "boolean",
           "complexType": {
@@ -26447,10 +26209,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -26466,13 +26228,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'secondary'"
+              "text": "'subtle-primary'"
             }
           ],
-          "default": "'secondary'",
+          "default": "'subtle-primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -26481,6 +26251,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -28480,7 +28266,7 @@
   ],
   "typeLibrary": {
     "src/components/button/button.tsx::ButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;",
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
@@ -28605,7 +28391,7 @@
       "path": "src/components/dropdown/placement.ts"
     },
     "src/components/dropdown-button/dropdown-button.types.ts::DropdownButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.types.ts"
     },
@@ -28625,7 +28411,7 @@
       "path": "src/components/flip-tile/flip-tile-state.ts"
     },
     "src/components/icon-button/icon-button.types.ts::IconButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;",
       "docstring": "",
       "path": "src/components/icon-button/icon-button.types.ts"
     },
@@ -28695,7 +28481,7 @@
       "path": "src/components/slider/slider.types.ts"
     },
     "src/components/split-button/split-button.types.ts::SplitButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;",
       "docstring": "",
       "path": "src/components/split-button/split-button.types.ts"
     },

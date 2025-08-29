@@ -667,7 +667,7 @@ export class Menu {
                     this.showAppSwitch();
                   }}
                   icon={iconApps}
-                  ghost
+                  variant="tertiary"
                 ></ix-icon-button>
               )}
           </div>

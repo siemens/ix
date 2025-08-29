@@ -207,8 +207,6 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
 export const IxButton: StencilVueComponent<JSX.IxButton> = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button', defineIxButton, [
   'ariaLabelButton',
   'variant',
-  'outline',
-  'ghost',
   'disabled',
   'type',
   'loading',
@@ -385,8 +383,6 @@ export const IxDateDropdown: StencilVueComponent<JSX.IxDateDropdown> = /*@__PURE
   'maxDate',
   'dateRangeId',
   'variant',
-  'outline',
-  'ghost',
   'loading',
   'showWeekNumbers',
   'ariaLabelDropdownButton',
@@ -539,8 +535,6 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
 
 export const IxDropdownButton: StencilVueComponent<JSX.IxDropdownButton> = /*@__PURE__*/ defineContainer<JSX.IxDropdownButton>('ix-dropdown-button', defineIxDropdownButton, [
   'variant',
-  'outline',
-  'ghost',
   'disabled',
   'label',
   'icon',
@@ -612,8 +606,6 @@ export const IxExpandingSearch: StencilVueComponent<JSX.IxExpandingSearch> = /*@
   'value',
   'fullWidth',
   'variant',
-  'outline',
-  'ghost',
   'ariaLabelSearchIconButton',
   'ariaLabelClearIconButton',
   'ariaLabelSearchInput',
@@ -707,8 +699,6 @@ export const IxHelperText: StencilVueComponent<JSX.IxHelperText> = /*@__PURE__*/
 export const IxIconButton: StencilVueComponent<JSX.IxIconButton> = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-icon-button', defineIxIconButton, [
   'a11yLabel',
   'variant',
-  'outline',
-  'ghost',
   'oval',
   'icon',
   'size',
@@ -1248,8 +1238,6 @@ export const IxSpinner: StencilVueComponent<JSX.IxSpinner> = /*@__PURE__*/ defin
 export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__*/ defineContainer<JSX.IxSplitButton>('ix-split-button', defineIxSplitButton, [
   'variant',
   'closeBehavior',
-  'outline',
-  'ghost',
   'label',
   'ariaLabelButton',
   'icon',
@@ -1442,8 +1430,6 @@ export const IxToggle: StencilVueComponent<JSX.IxToggle> = /*@__PURE__*/ defineC
 
 export const IxToggleButton: StencilVueComponent<JSX.IxToggleButton> = /*@__PURE__*/ defineContainer<JSX.IxToggleButton>('ix-toggle-button', defineIxToggleButton, [
   'variant',
-  'outline',
-  'ghost',
   'disabled',
   'loading',
   'icon',

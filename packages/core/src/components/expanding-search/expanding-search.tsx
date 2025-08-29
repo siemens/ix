@@ -51,17 +51,7 @@ export class ExpandingSearch
   /**
    * button variant
    */
-  @Prop() variant: ButtonVariant = 'primary';
-
-  /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = true;
+  @Prop() variant: ButtonVariant = 'tertiary';
 
   /**
    * ARIA label for the search icon button
@@ -152,8 +142,6 @@ export class ExpandingSearch
           size={this.expanded ? '16' : '24'}
           icon={this.icon ?? iconSearch}
           variant={this.expanded ? 'primary' : this.variant}
-          ghost={this.ghost || this.expanded}
-          outline={this.outline && !this.expanded}
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
@@ -202,7 +190,7 @@ export class ExpandingSearch
             <ix-icon-button
               class="btn-clear"
               icon={iconClear}
-              ghost={true}
+              variant="tertiary"
               size="16"
               data-testid="clear-button"
               onClick={() => this.clearClicked()}

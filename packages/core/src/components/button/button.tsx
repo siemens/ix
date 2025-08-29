@@ -19,7 +19,9 @@ import {
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
 
-export type ButtonVariant = 'danger' | 'primary' | 'secondary';
+type Variant = 'primary' | 'secondary' | 'tertiary';
+type ButtonStyle = 'subtle' | 'danger';
+export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;
 
 @Component({
   tag: 'ix-button',
@@ -39,16 +41,6 @@ export class Button implements IxButtonComponent {
    * Button variant
    */
   @Prop() variant: ButtonVariant = 'primary';
-
-  /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
 
   /**
    * Disable the button
@@ -158,8 +150,6 @@ export class Button implements IxButtonComponent {
   render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: false,
       iconOval: false,
       selected: false,

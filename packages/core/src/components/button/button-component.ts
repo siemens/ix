@@ -16,16 +16,6 @@ export interface IxButtonComponent {
   variant: ButtonVariant;
 
   /**
-   * Annotate with @Prop() decorator
-   */
-  outline: boolean;
-
-  /**
-   * Annotate with @Prop() decorator
-   */
-  ghost: boolean;
-
-  /**
    * Annotate with @Prop({ reflect: true }) decorator
    */
   disabled: boolean;

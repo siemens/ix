@@ -12,22 +12,8 @@ import { ButtonVariant } from './button';
 
 export type ButtonAlignment = 'center' | 'start';
 
-const isDanger = (variant: string) => {
-  return variant.toUpperCase() === 'Danger'.toUpperCase();
-};
-
-const isPrimary = (variant: string) => {
-  return variant.toUpperCase() === 'Primary'.toUpperCase();
-};
-
-const isSecondary = (variant: string) => {
-  return variant.toUpperCase() === 'Secondary'.toUpperCase();
-};
-
 export const getButtonClasses = (
   variant: ButtonVariant,
-  outline: boolean,
-  ghost: boolean,
   iconOnly = false,
   iconOval = false,
   selected: boolean,
@@ -35,15 +21,19 @@ export const getButtonClasses = (
 ) => {
   return {
     btn: true,
-    'btn-danger': isDanger(variant) && !outline && !ghost,
-    'btn-outline-danger': isDanger(variant) && outline && !ghost,
-    'btn-invisible-danger': isDanger(variant) && !outline && ghost,
-    'btn-primary': isPrimary(variant) && !outline && !ghost,
-    'btn-outline-primary': isPrimary(variant) && outline && !ghost,
-    'btn-invisible-primary': isPrimary(variant) && !outline && ghost,
-    'btn-secondary': isSecondary(variant) && !outline && !ghost,
-    'btn-outline-secondary': isSecondary(variant) && outline && !ghost,
-    'btn-invisible-secondary': isSecondary(variant) && !outline && ghost,
+
+    'btn-primary': variant === 'primary',
+    'btn-outline-primary': variant === 'secondary',
+    'btn-invisible-primary': variant === 'tertiary',
+
+    'btn-secondary': variant === 'subtle-primary',
+    'btn-outline-secondary': variant === 'subtle-secondary',
+    'btn-invisible-secondary': variant === 'subtle-tertiary',
+
+    'btn-danger': variant === 'danger-primary',
+    'btn-outline-danger': variant === 'danger-secondary',
+    'btn-invisible-danger': variant === 'danger-tertiary',
+
     'btn-icon': iconOnly,
     'btn-oval': iconOval,
     selected: selected,
@@ -54,8 +44,6 @@ export const getButtonClasses = (
 export type BaseButtonProps = {
   type: string;
   variant: ButtonVariant;
-  outline: boolean;
-  ghost: boolean;
   iconOnly: boolean;
   iconOval: boolean;
   selected: boolean;
@@ -108,8 +96,6 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
       class={{
         ...getButtonClasses(
           props.variant,
-          props.outline,
-          props.ghost,
           props.iconOnly,
           props.iconOval,
           props.selected,

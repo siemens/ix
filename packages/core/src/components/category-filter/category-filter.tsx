@@ -656,9 +656,7 @@ export class CategoryFilter {
 
     const params: BaseButtonProps = {
       type: 'button',
-      variant: 'secondary',
-      outline: false,
-      ghost: true,
+      variant: 'tertiary',
       iconOnly: true,
       iconOval: false,
       selected: false,
@@ -816,7 +814,7 @@ export class CategoryFilter {
           'hide-reset-button':
             !this.filterTokens.length && this.category === '',
         }}
-        ghost
+        variant="tertiary"
         oval
         icon={iconClear}
         iconColor="color-soft-text"

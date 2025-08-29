@@ -298,8 +298,6 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = 
     properties: {
         ariaLabelButton: 'aria-label-button',
         variant: 'variant',
-        outline: 'outline',
-        ghost: 'ghost',
         disabled: 'disabled',
         type: 'type',
         loading: 'loading',
@@ -627,8 +625,6 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
         maxDate: 'max-date',
         dateRangeId: 'date-range-id',
         variant: 'variant',
-        outline: 'outline',
-        ghost: 'ghost',
         loading: 'loading',
         showWeekNumbers: 'show-week-numbers',
         ariaLabelDropdownButton: 'aria-label-dropdown-button',
@@ -851,8 +847,6 @@ export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, Ix
     tagName: 'ix-dropdown-button',
     properties: {
         variant: 'variant',
-        outline: 'outline',
-        ghost: 'ghost',
         disabled: 'disabled',
         label: 'label',
         icon: 'icon',
@@ -990,8 +984,6 @@ export const IxExpandingSearch: StencilReactComponent<IxExpandingSearchElement, 
         value: 'value',
         fullWidth: 'full-width',
         variant: 'variant',
-        outline: 'outline',
-        ghost: 'ghost',
         ariaLabelSearchIconButton: 'aria-label-search-icon-button',
         ariaLabelClearIconButton: 'aria-label-clear-icon-button',
         ariaLabelSearchInput: 'aria-label-search-input'
@@ -1171,8 +1163,6 @@ export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButt
     properties: {
         a11yLabel: 'a11y-label',
         variant: 'variant',
-        outline: 'outline',
-        ghost: 'ghost',
         oval: 'oval',
         icon: 'icon',
         size: 'size',
@@ -2128,8 +2118,6 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
     properties: {
         variant: 'variant',
         closeBehavior: 'close-behavior',
-        outline: 'outline',
-        ghost: 'ghost',
         label: 'label',
         ariaLabelButton: 'aria-label-button',
         icon: 'icon',
@@ -2415,8 +2403,6 @@ export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxTogg
     tagName: 'ix-toggle-button',
     properties: {
         variant: 'variant',
-        outline: 'outline',
-        ghost: 'ghost',
         disabled: 'disabled',
         loading: 'loading',
         icon: 'icon',

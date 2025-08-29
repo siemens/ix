@@ -646,7 +646,7 @@ export class Pane {
                   ? 'color-soft-text'
                   : undefined
               }
-              ghost
+              variant="tertiary"
               onClick={() => this.dispatchExpandedChangedEvent()}
               aria-controls={`pane-${this.composition}`}
             />

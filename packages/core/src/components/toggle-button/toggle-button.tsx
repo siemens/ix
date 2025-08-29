@@ -21,17 +21,7 @@ export class ToggleButton {
   /**
    * Button variant.
    */
-  @Prop() variant: ButtonVariant = 'secondary';
-
-  /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
+  @Prop() variant: ButtonVariant = 'subtle-primary';
 
   /**
    * Disable the button
@@ -79,8 +69,6 @@ export class ToggleButton {
   render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: false,
       iconOval: false,
       selected: this.pressed,

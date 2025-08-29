@@ -388,7 +388,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           <ix-icon-button
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
-            ghost
+            variant="tertiary"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
             aria-label={this.ariaLabelCalendarButton}
