@@ -13,12 +13,17 @@ const meta = {
       .model=${args.model}
       .root=${args.root}
       .context=${args.context}
+      .toggleOnItemClick=${args.toggleOnItemClick}
     ></ix-tree>
   `,
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-tree', {
     model: { control: false },
     root: { control: false },
     context: { control: false },
+    toggleOnItemClick: {
+      control: 'boolean',
+      description: 'Enable to toggle items by click on the item'
+    },
   }),
   parameters: {
     design: {
@@ -66,12 +71,14 @@ export const Default: Story = {
     root: 'root',
     model: defaultModel,
     context: { sample: { isExpanded: false, isSelected: false } },
+    toggleOnItemClick: false,
   },
   render: (args) => html`
     <ix-tree
       .model=${args.model}
       .root=${args.root}
       .context=${args.context}
+      .toggleOnItemClick=${args.toggleOnItemClick}
     ></ix-tree>
     `,
 };
@@ -82,12 +89,14 @@ export const ExpandOnChevronClick: Story = {
     root: 'root',
     model: defaultModel,
     context: { sample: { isExpanded: false, isSelected: false } },
+    toggleOnItemClick: false,
   },
   render: (args) => html`
     <ix-tree
       .model=${args.model}
       .root=${args.root}
       .context=${args.context}
+      .toggleOnItemClick=${args.toggleOnItemClick}
     ></ix-tree>
   `,
 };
@@ -98,12 +107,14 @@ export const ExpandOnNodeClick: Story = {
     root: 'root',
     model: defaultModel,
     context: { sample: { isExpanded: false, isSelected: false } },
+    toggleOnItemClick: true,
   },
   render: (args) => html`
     <ix-tree
       .model=${args.model}
       .root=${args.root}
       .context=${args.context}
+      .toggleOnItemClick=${args.toggleOnItemClick}
     ></ix-tree>
   `,
 };
@@ -114,13 +125,14 @@ export const SelectableExpandOnChevron: Story = {
     root: 'root',
     model: defaultModel,
     context: { sample: { isExpanded: false, isSelected: false } },
-
+    toggleOnItemClick: false,
   },
   render: (args) => html`
     <ix-tree
       .model=${args.model}
       .root=${args.root}
       .context=${args.context}
+      .toggleOnItemClick=${args.toggleOnItemClick}
     ></ix-tree>
   `,
 };
@@ -131,12 +143,14 @@ export const SelectableExpandOnNode: Story = {
     root: 'root',
     model: defaultModel,
     context: { sample: { isExpanded: true, isSelected: true } },
+    toggleOnItemClick: true,
   },
   render: (args) => html`
     <ix-tree
       .model=${args.model}
       .root=${args.root}
       .context=${args.context}
+      .toggleOnItemClick=${args.toggleOnItemClick}
     ></ix-tree>
   `,
 };
