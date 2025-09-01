@@ -71,11 +71,8 @@ export class DropdownButton {
       <div
         class={{
           triangle: true,
-          hide: this.label !== '',
-          primary: this.variant === 'primary',
-          secondary: this.variant === 'secondary',
-          ghost: this.variant?.toLocaleLowerCase().includes('secondary'),
-          outline: this.variant?.toLocaleLowerCase().includes('tertiary'),
+          [this.variant]: true,
+          hide: !!this.label,
           disabled: this.disabled,
         }}
       ></div>
