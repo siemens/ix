@@ -1,4 +1,5 @@
 @mixin setVars {
+  --theme-btn-secondary--background: var(--theme-color-secondary);
   --theme-btn-secondary--background--hover: var(--theme-color-secondary--hover);
   --theme-btn-secondary--background--active: var(--theme-color-secondary--active);
   --theme-btn-secondary--background--pressed: var(--theme-color-ghost--selected);
