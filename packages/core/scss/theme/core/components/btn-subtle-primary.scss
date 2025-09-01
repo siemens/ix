@@ -1,0 +1,23 @@
+@mixin setVars {
+  --theme-btn-subtle-primary--background: var(--theme-color-component-1);
+  --theme-btn-subtle-primary--background--hover: var(--theme-color-component-1--hover);
+  --theme-btn-subtle-primary--background--active: var(--theme-color-component-1--active);
+  --theme-btn-subtle-primary--background--pressed: var(--theme-color-ghost--selected);
+  --theme-btn-subtle-primary--background--pressed-hover: var(--theme-color-ghost--selected-hover);
+  --theme-btn-subtle-primary--background--pressed-active: var(--theme-color-ghost--selected-active);
+  --theme-btn-subtle-primary--background--disabled: var(--theme-color-component-1);
+  --theme-btn-subtle-primary--color: var(--theme-color-std-text);
+  --theme-btn-subtle-primary--color--hover: var(--theme-color-std-text);
+  --theme-btn-subtle-primary--color--active: var(--theme-color-std-text);
+  --theme-btn-subtle-primary--color--pressed: var(--theme-color-dynamic);
+  --theme-btn-subtle-primary--color--pressed-hover: var(--theme-color-dynamic);
+  --theme-btn-subtle-primary--color--pressed-active: var(--theme-color-dynamic);
+  --theme-btn-subtle-primary--color--disabled: var(--theme-color-weak-text);
+  --theme-btn-subtle-primary--border-color: var(--theme-color-0);
+  --theme-btn-subtle-primary--border-color--hover: var(--theme-color-0);
+  --theme-btn-subtle-primary--border-color--active: var(--theme-color-0);
+  --theme-btn-subtle-primary--border-color--pressed: var(--theme-color-0);
+  --theme-btn-subtle-primary--border-color--pressed-hover: var(--theme-color-0);
+  --theme-btn-subtle-primary--border-color--pressed-active: var(--theme-color-0);
+  --theme-btn-subtle-primary--border-color--disabled: var(--theme-color-0);
+}

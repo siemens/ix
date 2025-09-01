@@ -60,60 +60,60 @@
     color: var(--theme-btn-primary--color);
   }
   .triangle.secondary {
-    color: var(--theme-btn-outline-primary--color);
+    color: var(--theme-btn-secondary--color);
   }
   .triangle.tertiary {
-    color: var(--theme-btn-invisible-primary--color);
+    color: var(--theme-btn-tertiary--color);
   }
 
   .triangle.primary.disabled {
     color: var(--theme-btn-primary--color--disabled);
   }
   .triangle.secondary.disabled {
-    color: var(--theme-btn-outline-primary--color--disabled);
+    color: var(--theme-btn-secondary--color--disabled);
   }
   .triangle.tertiary.disabled {
-    color: var(--theme-btn-invisible-primary--color--disabled);
+    color: var(--theme-btn-tertiary--color--disabled);
   }
 
   .triangle.subtle-primary {
-    color: var(--theme-btn-secondary--color);
+    color: var(--theme-btn-subtle-primary--color);
   }
   .triangle.subtle-secondary {
-    color: var(--theme-btn-outline-secondary--color);
+    color: var(--theme-btn-subtle-secondary--color);
   }
   .triangle.subtle-tertiary {
-    color: var(--theme-btn-invisible-secondary--color);
+    color: var(--theme-btn-subtle-tertiary--color);
   }
 
   .triangle.subtle-primary.disabled {
-    color: var(--theme-btn-secondary--color--disabled);
+    color: var(--theme-btn-subtle-primary--color--disabled);
   }
   .triangle.subtle-secondary.disabled {
-    color: var(--theme-btn-outline-secondary--color--disabled);
+    color: var(--theme-btn-subtle-secondary--color--disabled);
   }
   .triangle.subtle-tertiary.disabled {
-    color: var(--theme-btn-invisible-secondary--color--disabled);
+    color: var(--theme-btn-subtle-tertiary--color--disabled);
   }
 
   .triangle.danger-primary {
-    color: var(--theme-btn-danger--color);
+    color: var(--theme-btn-danger-primary--color);
   }
   .triangle.danger-secondary {
-    color: var(--theme-btn-outline-danger--color);
+    color: var(--theme-btn-danger-secondary--color);
   }
   .triangle.danger-tertiary {
-    color: var(--theme-btn-invisible-danger--color);
+    color: var(--theme-btn-danger-tertiary--color);
   }
 
   .triangle.danger-primary.disabled {
-    color: var(--theme-btn-danger--color--disabled);
+    color: var(--theme-btn-danger-primary--color--disabled);
   }
   .triangle.danger-secondary.disabled {
-    color: var(--theme-btn-outline-danger--color--disabled);
+    color: var(--theme-btn-danger-secondary--color--disabled);
   }
   .triangle.danger-tertiary.disabled {
-    color: var(--theme-btn-invisible-danger--color--disabled);
+    color: var(--theme-btn-danger-tertiary--color--disabled);
   }
 
   .content {

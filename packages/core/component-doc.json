@@ -26209,15 +26209,15 @@
         },
         {
           "name": "variant",
-          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
+          "type": "\"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
-            "original": "ButtonVariant",
-            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
+            "original": "ToggleButtonVariant",
+            "resolved": "\"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
-              "ButtonVariant": {
-                "location": "import",
-                "path": "../button/button",
-                "id": "src/components/button/button.tsx::ButtonVariant"
+              "ToggleButtonVariant": {
+                "location": "local",
+                "path": "src/components/toggle-button/toggle-button.tsx",
+                "id": "src/components/toggle-button/toggle-button.tsx::ToggleButtonVariant"
               }
             }
           },
@@ -26233,18 +26233,6 @@
           ],
           "default": "'subtle-primary'",
           "values": [
-            {
-              "value": "danger-primary",
-              "type": "string"
-            },
-            {
-              "value": "danger-secondary",
-              "type": "string"
-            },
-            {
-              "value": "danger-tertiary",
-              "type": "string"
-            },
             {
               "value": "primary",
               "type": "string"
@@ -28274,6 +28262,11 @@
       "declaration": "export interface CustomCloseEvent {\n  nativeEvent: MouseEvent;\n  name: string;\n}",
       "docstring": "",
       "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
+    },
+    "src/components/toggle-button/toggle-button.tsx::ToggleButtonVariant": {
+      "declaration": "export type ToggleButtonVariant = Exclude<ButtonVariant, OmitButtonVariant>;",
+      "docstring": "",
+      "path": "src/components/toggle-button/toggle-button.tsx"
     },
     "src/components/action-card/action-card.types.ts::ActionCardVariant": {
       "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",

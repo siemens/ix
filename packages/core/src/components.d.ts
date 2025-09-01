@@ -47,6 +47,7 @@ import { TimeInputValidityState } from "./components/time-input/time-input.types
 import { TimePickerCorners } from "./components/time-picker/time-picker.types";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container.types";
+import { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -95,6 +96,7 @@ export { TimeInputValidityState } from "./components/time-input/time-input.types
 export { TimePickerCorners } from "./components/time-picker/time-picker.types";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container.types";
+export { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -3807,7 +3809,7 @@ export namespace Components {
           * Button variant.
           * @default 'subtle-primary'
          */
-        "variant": ButtonVariant1;
+        "variant": ToggleButtonVariant;
     }
     interface IxTooltip {
         /**
@@ -9793,7 +9795,7 @@ declare namespace LocalJSX {
           * Button variant.
           * @default 'subtle-primary'
          */
-        "variant"?: ButtonVariant1;
+        "variant"?: ToggleButtonVariant;
     }
     interface IxTooltip {
         /**

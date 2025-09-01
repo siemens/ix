@@ -1,0 +1,23 @@
+@mixin setVars {
+  --theme-btn-tertiary--background: var(--theme-color-ghost);
+  --theme-btn-tertiary--background--hover: var(--theme-color-ghost-primary--hover);
+  --theme-btn-tertiary--background--active: var(--theme-color-ghost-primary--active);
+  --theme-btn-tertiary--background--pressed: var(--theme-color-ghost--selected);
+  --theme-btn-tertiary--background--pressed-hover: var(--theme-color-ghost--selected-hover);
+  --theme-btn-tertiary--background--pressed-active: var(--theme-color-ghost--selected-active);
+  --theme-btn-tertiary--background--disabled: var(--theme-color-ghost);
+  --theme-btn-tertiary--color: var(--theme-color-primary);
+  --theme-btn-tertiary--color--hover: var(--theme-color-dynamic);
+  --theme-btn-tertiary--color--active: var(--theme-color-dynamic);
+  --theme-btn-tertiary--color--pressed: var(--theme-color-dynamic);
+  --theme-btn-tertiary--color--pressed-hover: var(--theme-color-dynamic);
+  --theme-btn-tertiary--color--pressed-active: var(--theme-color-dynamic);
+  --theme-btn-tertiary--color--disabled: var(--theme-color-weak-text);
+  --theme-btn-tertiary--border-color: var(--theme-color-0);
+  --theme-btn-tertiary--border-color--hover: var(--theme-color-0);
+  --theme-btn-tertiary--border-color--active: var(--theme-color-0);
+  --theme-btn-tertiary--border-color--disabled: var(--theme-color-0);
+  --theme-btn-tertiary--border-color--pressed: var(--theme-color-0);
+  --theme-btn-tertiary--border-color--pressed-hover: var(--theme-color-0);
+  --theme-btn-tertiary--border-color--pressed-active: var(--theme-color-0);
+}

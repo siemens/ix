@@ -21,19 +21,7 @@ export const getButtonClasses = (
 ) => {
   return {
     btn: true,
-
-    'btn-primary': variant === 'primary',
-    'btn-outline-primary': variant === 'secondary',
-    'btn-invisible-primary': variant === 'tertiary',
-
-    'btn-secondary': variant === 'subtle-primary',
-    'btn-outline-secondary': variant === 'subtle-secondary',
-    'btn-invisible-secondary': variant === 'subtle-tertiary',
-
-    'btn-danger': variant === 'danger-primary',
-    'btn-outline-danger': variant === 'danger-secondary',
-    'btn-invisible-danger': variant === 'danger-tertiary',
-
+    [`btn-${variant}`]: true,
     'btn-icon': iconOnly,
     'btn-oval': iconOval,
     selected: selected,

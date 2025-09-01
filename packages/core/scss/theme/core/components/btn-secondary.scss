@@ -1,14 +1,22 @@
 @mixin setVars {
-  --theme-btn-secondary--background: var(--theme-color-component-1);
-  --theme-btn-secondary--background--hover: var(--theme-color-component-1--hover);
-  --theme-btn-secondary--background--active: var(--theme-color-component-1--active);
-  --theme-btn-secondary--background--disabled: var(--theme-color-component-1);
-  --theme-btn-secondary--color: var(--theme-color-std-text);
-  --theme-btn-secondary--color--hover: var(--theme-color-std-text);
-  --theme-btn-secondary--color--active: var(--theme-color-std-text);
+  --theme-btn-secondary--background--hover: var(--theme-color-secondary--hover);
+  --theme-btn-secondary--background--active: var(--theme-color-secondary--active);
+  --theme-btn-secondary--background--pressed: var(--theme-color-ghost--selected);
+  --theme-btn-secondary--background--pressed-hover: var(--theme-color-ghost--selected-hover);
+  --theme-btn-secondary--background--pressed-active: var(--theme-color-ghost--selected-active);
+  --theme-btn-secondary--background--disabled: var(--theme-color-ghost);
+  --theme-btn-secondary--color: var(--theme-color-primary);
+  --theme-btn-secondary--color--hover: var(--theme-color-dynamic);
+  --theme-btn-secondary--color--active: var(--theme-color-dynamic);
+  --theme-btn-secondary--color--pressed: var(--theme-color-dynamic);
+  --theme-btn-secondary--color--pressed-hover: var(--theme-color-dynamic);
+  --theme-btn-secondary--color--pressed-active: var(--theme-color-dynamic);
   --theme-btn-secondary--color--disabled: var(--theme-color-weak-text);
-  --theme-btn-secondary--border-color: var(--theme-color-0);
-  --theme-btn-secondary--border-color--hover: var(--theme-color-0);
-  --theme-btn-secondary--border-color--active: var(--theme-color-0);
-  --theme-btn-secondary--border-color--disabled: var(--theme-color-0);
+  --theme-btn-secondary--border-color: var(--theme-color-primary);
+  --theme-btn-secondary--border-color--hover: var(--theme-color-dynamic);
+  --theme-btn-secondary--border-color--active: var(--theme-color-dynamic);
+  --theme-btn-secondary--border-color--pressed: var(--theme-color-dynamic);
+  --theme-btn-secondary--border-color--pressed-hover: var(--theme-color-dynamic);
+  --theme-btn-secondary--border-color--pressed-active: var(--theme-color-dynamic);
+  --theme-btn-secondary--border-color--disabled: var(--theme-color-component-4);
 }

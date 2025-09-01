@@ -12,6 +12,10 @@ import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
 import { a11yBoolean } from '../utils/a11y';
 
+type Variant = 'primary' | 'secondary' | 'tertiary';
+type OmitButtonVariant = `danger-${Variant}`;
+export type ToggleButtonVariant = Exclude<ButtonVariant, OmitButtonVariant>;
+
 @Component({
   tag: 'ix-toggle-button',
   shadow: true,
@@ -21,7 +25,7 @@ export class ToggleButton {
   /**
    * Button variant.
    */
-  @Prop() variant: ButtonVariant = 'subtle-primary';
+  @Prop() variant: ToggleButtonVariant = 'subtle-primary';
 
   /**
    * Disable the button
