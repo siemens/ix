@@ -370,6 +370,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
 
     this.updateSelection();
+    if (this.isMultipleMode) {
+      this.clearInput();
+      this.removeHiddenFromItems();
+    }
   }
 
   private emitAddItem(value: string) {
