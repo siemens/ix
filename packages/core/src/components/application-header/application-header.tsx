@@ -33,7 +33,7 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
 
 /**
- * @slot Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
+ * @slot default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
  * @slot secondary - Place additional items inside the header. If the screen size is small, the items will be shown inside a dropdown.
  * @slot logo - Place a company logo inside the header. As alternative checkout the companyLogo property.
  */
