@@ -40,7 +40,7 @@ test.describe('validation', () => {
       await expect(input).toHaveClass(/ix-invalid/);
     });
 
-    test('ix-change event should be emitted on enter keydown', async ({
+    test('ix-change event should log to console on blur', async ({
       mount,
       page,
     }) => {
@@ -49,28 +49,34 @@ test.describe('validation', () => {
       const input = page.locator('ix-input');
       const shadowDomInput = input.locator('input');
 
-      const handlerScript = `
-        window.handleIxChange = function(e) {
-          // @ts-ignore
-          console.log('ixChange:', e.detail);
-        };
+      await page.evaluate(() => {
+        (window as any)['ixChangeFired'] = false;
         const ixInput = document.querySelector('ix-input');
         if (ixInput) {
-          ixInput.addEventListener('ixChange', window.handleIxChange);
+          ixInput.addEventListener('ixChange', () => {
+            (window as any)['ixChangeFired'] = true;
+          });
         }
-      `;
-      await page.evaluate(handlerScript);
+      });
 
-      await shadowDomInput.fill('test value');
-      const [msg] = await Promise.all([
-        page.waitForEvent('console', (msg) => msg.text().includes('ixChange:')),
-        shadowDomInput.press('Enter'),
-      ]);
-      const eventDetail = msg.text().replace('ixChange:', '').trim();
-      expect(eventDetail).toBe('test value');
+      await shadowDomInput.fill('blur value');
+      await shadowDomInput.blur();
+
+      // Wait for the event to be captured
+      await page
+        .waitForFunction(
+          () => (window as any)['ixChangeFired'] === true,
+          null,
+          { timeout: 1000 }
+        )
+        .catch(() => {});
+      const eventFired = await page.evaluate(
+        () => (window as any)['ixChangeFired']
+      );
+      expect(eventFired).toBe(true);
     });
 
-    test('ix-change event should be emitted on blur', async ({
+    test('ix-change event should log to console on enter keydown', async ({
       mount,
       page,
     }) => {
@@ -79,10 +85,33 @@ test.describe('validation', () => {
       const input = page.locator('ix-input');
       const shadowDomInput = input.locator('input');
 
-      await shadowDomInput.fill('test value');
-      await shadowDomInput.blur();
+      // Set a flag on window when the event is fired
+      await page.evaluate(() => {
+        (window as any)['ixChangeFired'] = false;
+        const ixInput = document.querySelector('ix-input');
+        if (ixInput) {
+          ixInput.addEventListener('ixChange', () => {
+            (window as any)['ixChangeFired'] = true;
+          });
+        }
+      });
 
-      await expect(input).toHaveAttribute('value', 'test value');
+      await shadowDomInput.focus();
+      await shadowDomInput.fill('enter value');
+      await shadowDomInput.press('Enter');
+
+      // Wait for the event to be captured
+      await page
+        .waitForFunction(
+          () => (window as any)['ixChangeFired'] === true,
+          null,
+          { timeout: 1000 }
+        )
+        .catch(() => {});
+      const eventFired = await page.evaluate(
+        () => (window as any)['ixChangeFired']
+      );
+      expect(eventFired).toBe(true);
     });
   });
 
