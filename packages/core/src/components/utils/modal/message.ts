@@ -121,8 +121,7 @@ export async function showMessage<T>(config: MessageConfig<T>) {
       );
       return;
     } else if (type === 'cancel') {
-      button.variant = 'primary';
-      button.outline = true;
+      button.variant = 'secondary';
       button.addEventListener('click', () =>
         dialog.dismissModal({
           actionId: id,

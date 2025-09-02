@@ -44,18 +44,18 @@
     left: 0;
     margin: auto 0;
     border-radius: 4px;
-    color: var(--theme-btn-invisible-primary--color);
-    background-color: var(--theme-btn-invisible-primary--background);
+    color: var(--theme-btn-tertiary--color);
+    background-color: var(--theme-btn-tertiary--background);
     z-index: 2;
 
     &:hover {
-      color: var(--theme-btn-invisible-primary--color--hover);
-      background-color: var(--theme-btn-invisible-primary--background--hover);
+      color: var(--theme-btn-tertiary--color--hover);
+      background-color: var(--theme-btn-tertiary--background--hover);
     }
 
     &:active {
-      color: var(--theme-btn-invisible-primary--color--active);
-      background-color: var(--theme-btn-invisible-primary--background--active);
+      color: var(--theme-btn-tertiary--color--active);
+      background-color: var(--theme-btn-tertiary--background--active);
     }
 
     &.right {

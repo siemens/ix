@@ -29,7 +29,7 @@ import {
     <ix-tile size="big">
       <div class="tile-header" slot="header">
         Tile header
-        <ix-icon-button ghost icon="context-menu"></ix-icon-button>
+        <ix-icon-button variant="tertiary" icon="context-menu"></ix-icon-button>
       </div>
       <div slot="subheader">Temperature</div>
       <div
@@ -44,7 +44,7 @@ import {
         <span>92.8 °C</span>
       </div>
       <div class="tile-footer" slot="footer">
-        <ix-button ghost slot="footer">
+        <ix-button variant="tertiary" slot="footer">
           <ix-icon name="chevron-right-small"></ix-icon>Details
         </ix-button>
       </div>

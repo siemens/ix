@@ -90,9 +90,7 @@ export class BreadcrumbItem {
 
   render() {
     const props: BaseButtonProps = {
-      variant: this.ghost ? 'primary' : 'secondary',
-      outline: false,
-      ghost: this.ghost,
+      variant: this.ghost ? 'tertiary' : 'subtle-primary',
       iconOnly: false,
       iconOval: false,
       disabled: false,

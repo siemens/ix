@@ -15,9 +15,9 @@ import { IxButton } from '@siemens/ix-angular/standalone';
   imports: [IxButton],
   template: `
     <ix-button icon="star"> Button </ix-button>
-    <ix-button variant="secondary" icon="star"> Button </ix-button>
-    <ix-button outline icon="star"> Button </ix-button>
-    <ix-button ghost icon="star"> Button </ix-button>
+    <ix-button variant="subtle-primary" icon="star"> Button </ix-button>
+    <ix-button variant="subtle-primary" icon="star"> Button </ix-button>
+    <ix-button variant="tertiary" icon="star"> Button </ix-button>
   `,
   styleUrls: ['./button-text-icon.css'],
 })

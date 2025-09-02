@@ -21,7 +21,7 @@ export default () => {
             <IxPill icon={iconInfo}>Primary</IxPill>
           </IxCol>
           <IxCol>
-            <IxPill icon={iconInfo} outline>
+            <IxPill variant="subtle-primary" icon={iconInfo}>
               Primary
             </IxPill>
           </IxCol>
@@ -34,7 +34,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="alarm" icon={iconInfo} outline>
+            <IxPill variant="alarm" icon={iconInfo}>
               Alarm
             </IxPill>
           </IxCol>
@@ -47,7 +47,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="critical" icon={iconInfo} outline>
+            <IxPill variant="critical" icon={iconInfo}>
               Critical
             </IxPill>
           </IxCol>
@@ -60,7 +60,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="warning" icon={iconInfo} outline>
+            <IxPill variant="warning" icon={iconInfo}>
               Warning
             </IxPill>
           </IxCol>
@@ -73,7 +73,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="success" icon={iconInfo} outline>
+            <IxPill variant="success" icon={iconInfo}>
               Success
             </IxPill>
           </IxCol>
@@ -86,7 +86,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="info" icon={iconInfo} outline>
+            <IxPill variant="info" icon={iconInfo}>
               Info
             </IxPill>
           </IxCol>
@@ -99,7 +99,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="neutral" icon={iconInfo} outline>
+            <IxPill variant="neutral" icon={iconInfo}>
               Neutral
             </IxPill>
           </IxCol>
@@ -117,13 +117,7 @@ export default () => {
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill
-              variant="custom"
-              color="color-soft-text"
-              background="purple"
-              icon={iconInfo}
-              outline
-            >
+            <IxPill variant="custom" color="color-soft-text" background="purple" icon={iconInfo}>
               Custom
             </IxPill>
           </IxCol>

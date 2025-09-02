@@ -21,13 +21,7 @@ import { IxBlind, IxDropdown, IxIconButton } from '@siemens/ix-vue';
 
 <template>
   <IxBlind label="Example" :icon="iconInfo">
-    <IxIconButton
-      id="context-menu"
-      slot="header-actions"
-      ghost
-      :icon="iconContextMenu"
-      iconColor="color-primary"
-    ></IxIconButton>
+    <IxIconButton variant="tertiary" id="context-menu" slot="header-actions" :icon="iconContextMenu" iconColor="color-primary"></IxIconButton>
     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet

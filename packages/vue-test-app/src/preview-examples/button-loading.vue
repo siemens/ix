@@ -33,17 +33,12 @@ function load(value: string) {
 
 <template>
   <div>
-    <IxButton :loading="toggle1" @click="load('1')" outline> Button </IxButton>
-    <IxButton :loading="toggle2" @click="load('2')" outline :icon="iconStar">
+    <IxButton variant="subtle-primary" :loading="toggle1" @click="load('1')"> Button </IxButton>
+    <IxButton variant="subtle-primary" :loading="toggle2" @click="load('2')" :icon="iconStar">
       Button
     </IxButton>
-    <IxIconButton
-      :loading="toggle3"
-      @click="load('3')"
-      outline
-      :icon="iconStar"
-    ></IxIconButton>
-    <IxButton loading outline> Button </IxButton>
-    <IxIconButton loading outline></IxIconButton>
+    <IxIconButton variant="subtle-primary" :loading="toggle3" @click="load('3')" :icon="iconStar"></IxIconButton>
+    <IxButton variant="subtle-primary" loading> Button </IxButton>
+    <IxIconButton variant="subtle-primary" loading></IxIconButton>
   </div>
 </template>

@@ -18,25 +18,25 @@ import { IxPill } from '@siemens/ix-vue';
   <IxPill variant="custom" color="white" background="purple">Label</IxPill>
 
   <IxPill tooltip-text="Custom tooltip text">Label</IxPill>
-  <IxPill tooltip-text outline>Label</IxPill>
+  <IxPill variant="subtle-primary" tooltip-text>Label</IxPill>
   <IxPill class="styled">Label</IxPill>
 
   <IxPill :icon="iconStar">Label</IxPill>
   <IxPill :icon="iconStar"></IxPill>
   <IxPill :icon="iconStar" class="styled">Label</IxPill>
-  <IxPill outline alignLeft :icon="iconStar" class="styled">Label</IxPill>
+  <IxPill variant="subtle-primary" alignLeft :icon="iconStar" class="styled">Label</IxPill>
 
   <IxPill variant="alarm">Label</IxPill>
-  <IxPill variant="alarm" outline>Label</IxPill>
+  <IxPill variant="alarm">Label</IxPill>
   <IxPill variant="alarm" class="styled">Label</IxPill>
 
   <IxPill variant="alarm" :icon="iconStar">Label</IxPill>
   <IxPill variant="alarm" :icon="iconStar" class="styled">Label</IxPill>
-  <IxPill variant="alarm" outline alignLeft :icon="iconStar" class="styled">
+  <IxPill variant="alarm" alignLeft :icon="iconStar" class="styled">
     Label
   </IxPill>
   <IxPill :icon="iconStar" class="styled-ellipsis-4">Label</IxPill>
-  <IxPill outline :icon="iconStar" class="styled-ellipsis-4">Label</IxPill>
+  <IxPill variant="subtle-primary" :icon="iconStar" class="styled-ellipsis-4">Label</IxPill>
   <IxPill class="styled-ellipsis-3">Label</IxPill>
-  <IxPill outline class="styled-ellipsis-3">Label</IxPill>
+  <IxPill variant="subtle-primary" class="styled-ellipsis-3">Label</IxPill>
 </template>

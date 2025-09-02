@@ -55,7 +55,7 @@ export const MenuTabs: FunctionalComponent<MenuTabsProps> = ({ context }) => {
       >
         <h2 class="text-h2">{context.label}</h2>
         <ix-icon-button
-          ghost
+          variant="tertiary"
           size="24"
           icon={iconClose}
           iconColor="color-soft-text"

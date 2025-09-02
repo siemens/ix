@@ -27,14 +27,7 @@ function clearInput() {
       </span>
       <input class="ix-form-control" id="input-string" type="string" v-model="text" />
       <span slot="input-end">
-        <IxIconButton
-          @click="clearInput"
-          id="clear-button"
-          :icon="iconClear"
-          ghost
-          size="16"
-          :style="[text === '' ? { display: 'none' } : { display: 'block' }]"
-        ></IxIconButton>
+        <IxIconButton variant="tertiary" @click="clearInput" id="clear-button" :icon="iconClear" size="16" :style="[text === '' ? { display: 'none' } : { display: 'block' }]"></IxIconButton>
       </span>
     </IxInputGroup>
   </form>

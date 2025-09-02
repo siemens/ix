@@ -17,7 +17,7 @@ function CustomToastMessage() {
 function CustomToastAction() {
   return (
     <div>
-      <IxButton ghost icon={iconUndo}>
+      <IxButton variant="tertiary" icon={iconUndo}>
         Undo
       </IxButton>
     </div>
