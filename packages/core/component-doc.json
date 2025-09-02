@@ -514,7 +514,7 @@
       "docsTags": [
         {
           "name": "slot",
-          "text": "Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown."
+          "text": "default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown."
         },
         {
           "name": "slot",
@@ -970,8 +970,8 @@
       "styles": [],
       "slots": [
         {
-          "name": "Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.",
-          "docs": ""
+          "name": "default",
+          "docs": "Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown."
         },
         {
           "name": "logo",
