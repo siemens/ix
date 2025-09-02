@@ -139,11 +139,11 @@ migrate(
   path.join(
     process.cwd(),
     'node_modules',
-    'react-test-app',
+    'vue-test-app',
     'src',
     'preview-examples',
     '**',
-    '*.tsx'
+    '*.vue'
   )
 );
 

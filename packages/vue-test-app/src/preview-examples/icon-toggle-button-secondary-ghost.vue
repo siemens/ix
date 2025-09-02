@@ -17,49 +17,16 @@ import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
 <template>
   <IxLayoutGrid>
     <IxRow>
-      <IxIconToggleButton ghost :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton
-        ghost
-        pressed
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        ghost
-        disabled
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        ghost
-        disabled
-        loading
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="tertiary" :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="tertiary" pressed :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="tertiary" disabled :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="tertiary" disabled loading :icon="iconCheckboxes"></IxIconToggleButton>
     </IxRow>
     <IxRow>
-      <IxIconToggleButton
-        ghost
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        ghost
-        pressed
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        ghost
-        disabled
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        ghost
-        disabled
-        loading
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="tertiary" :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="tertiary" pressed :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="tertiary" disabled :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="tertiary" disabled loading :icon="iconCheckboxes" oval></IxIconToggleButton>
     </IxRow>
   </IxLayoutGrid>
 </template>
