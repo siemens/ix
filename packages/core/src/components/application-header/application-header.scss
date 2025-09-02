@@ -162,11 +162,12 @@
       overflow: visible;
     }
 
-    .dropdown-content .slot-content {
+    .dropdown-content > .slot-content-active {
       padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      border-top: none;
     }
 
-    .dropdown-content .slot-content:not(:first-child) {
+    .dropdown-content .slot-content-active ~ .slot-content-active {
       border-top: 1px solid var(--theme-color-x-weak-bdr);
     }
 

@@ -450,7 +450,12 @@ export class ApplicationHeader {
                 onClick={(e) => this.onContentBgClick(e)}
               >
                 {this.breakpoint === 'sm' && (
-                  <div class="slot-content">
+                  <div
+                    class={{
+                      'slot-content': true,
+                      'slot-content-active': this.hasSecondarySlotElements,
+                    }}
+                  >
                     <slot
                       name="secondary"
                       onSlotchange={() =>
@@ -460,7 +465,12 @@ export class ApplicationHeader {
                   </div>
                 )}
                 {this.breakpoint === 'sm' && (
-                  <div class="slot-content">
+                  <div
+                    class={{
+                      'slot-content': true,
+                      'slot-content-active': this.hasDefaultSlotElements,
+                    }}
+                  >
                     <slot
                       onSlotchange={() =>
                         this.updateHasDefaultSlotAssignedElements()
@@ -468,7 +478,12 @@ export class ApplicationHeader {
                     ></slot>
                   </div>
                 )}
-                <div class="slot-content">
+                <div
+                  class={{
+                    'slot-content': true,
+                    'slot-content-active': this.hasOverflowSlotElements,
+                  }}
+                >
                   <slot
                     name="overflow"
                     onSlotchange={() =>
