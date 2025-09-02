@@ -1218,18 +1218,15 @@ importers:
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
-      angular-standalone-test-app:
-        specifier: workspace:*
-        version: link:../../packages/angular-standalone-test-app
-      angular-test-app:
-        specifier: workspace:*
-        version: link:../../packages/angular-test-app
       fs-extra:
         specifier: ^11.3.1
         version: 11.3.1
       glob:
         specifier: ^11.0.1
         version: 11.0.1
+      react-test-app:
+        specifier: workspace:*
+        version: link:../../packages/react-test-app
       tsx:
         specifier: ^4.20.5
         version: 4.20.5

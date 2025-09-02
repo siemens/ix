@@ -16,60 +16,16 @@ export default () => {
   return (
     <IxLayoutGrid>
       <IxRow>
-        <IxIconToggleButton
-          variant="primary"
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          variant="primary"
-          pressed
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          variant="primary"
-          disabled
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          variant="primary"
-          disabled
-          loading
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" pressed icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" disabled icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" disabled loading icon={iconCheckboxes}></IxIconToggleButton>
       </IxRow>
       <IxRow>
-        <IxIconToggleButton
-          variant="primary"
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          variant="primary"
-          pressed
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          variant="primary"
-          disabled
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          variant="primary"
-          disabled
-          loading
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" pressed icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" disabled icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" disabled loading icon={iconCheckboxes} oval></IxIconToggleButton>
       </IxRow>
     </IxLayoutGrid>
   );

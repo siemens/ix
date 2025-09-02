@@ -139,22 +139,22 @@ migrate(
   path.join(
     process.cwd(),
     'node_modules',
-    'angular-test-app',
+    'react-test-app',
     'src',
     'preview-examples',
     '**',
-    '*.ts'
+    '*.tsx'
   )
 );
 
-migrate(
-  path.join(
-    process.cwd(),
-    'node_modules',
-    'angular-standalone-test-app',
-    'src',
-    'preview-examples',
-    '**',
-    '*.ts'
-  )
-);
+// migrate(
+//   path.join(
+//     process.cwd(),
+//     'node_modules',
+//     'angular-standalone-test-app',
+//     'src',
+//     'preview-examples',
+//     '**',
+//     '*.ts'
+//   )
+// );

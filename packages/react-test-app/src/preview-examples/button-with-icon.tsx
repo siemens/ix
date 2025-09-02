@@ -18,17 +18,17 @@ export default () => {
       <div>
         <IxIconButton icon={iconInfo} variant="primary"></IxIconButton>
         <IxIconButton icon={iconInfo}></IxIconButton>
-        <IxIconButton icon={iconInfo} variant="danger"></IxIconButton>
-        <IxIconButton icon={iconInfo} outline></IxIconButton>
-        <IxIconButton icon={iconInfo} ghost></IxIconButton>
+        <IxIconButton icon={iconInfo} variant="danger-primary"></IxIconButton>
+        <IxIconButton variant="subtle-primary" icon={iconInfo}></IxIconButton>
+        <IxIconButton variant="tertiary" icon={iconInfo}></IxIconButton>
       </div>
 
       <div>
         <IxIconButton icon={iconInfo} oval variant="primary"></IxIconButton>
         <IxIconButton icon={iconInfo} oval></IxIconButton>
-        <IxIconButton icon={iconInfo} oval variant="danger"></IxIconButton>
-        <IxIconButton icon={iconInfo} oval outline></IxIconButton>
-        <IxIconButton icon={iconInfo} oval ghost></IxIconButton>
+        <IxIconButton icon={iconInfo} oval variant="danger-primary"></IxIconButton>
+        <IxIconButton variant="subtle-primary" icon={iconInfo} oval></IxIconButton>
+        <IxIconButton variant="tertiary" icon={iconInfo} oval></IxIconButton>
       </div>
 
       <div>
