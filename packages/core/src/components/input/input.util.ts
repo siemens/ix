@@ -63,7 +63,7 @@ export async function checkInternalValidity<T>(
     return;
   }
 
-  if (!comp.value) {
+  if (comp.value === null || comp.value === undefined) {
     return;
   }
 
@@ -73,7 +73,7 @@ export async function checkInternalValidity<T>(
   }
 
   const { valid } = validityState;
-  comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
+  comp.hostElement.classList.toggle('ix-invalid', !valid);
 }
 
 export function onInputBlur<T>(
