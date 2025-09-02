@@ -27,6 +27,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  emitCancelableChange,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -201,6 +202,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
 
+  /**
+   * Event emitted when the date input value with any change is committed
+   */
+  @Event({ cancelable: true }) ixChange!: EventEmitter<string | undefined>;
+
   /** @internal */
   @Event() ixFocus!: EventEmitter<void>;
 
@@ -226,6 +232,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private oldValue: string | undefined;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -251,6 +258,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   componentWillLoad(): void {
+    this.oldValue = this.value;
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -293,31 +301,37 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   async onInput(value: string | undefined) {
+    if (value !== this.oldValue) {
+      const prevented = emitCancelableChange(value, this.ixChange);
+      if (prevented) {
+        return;
+      }
+    }
+    this.oldValue = value;
     this.value = value;
-    if (!value) {
-      this.valueChange.emit(value);
-      return;
-    }
-
-    if (!this.format) {
-      return;
-    }
-
-    const date = DateTime.fromFormat(value, this.format);
-    const minDate = DateTime.fromFormat(this.minDate, this.format);
-    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
-
-    this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
-
-    if (this.isInputInvalid) {
-      this.invalidReason = date.invalidReason || undefined;
-      this.from = undefined;
-    } else {
-      this.updateFormInternalValue(value);
-      this.closeDropdown();
-    }
-
     this.valueChange.emit(value);
+
+    if (!value) {
+      this.updateFormInternalValue(undefined);
+      this.from = undefined;
+    } else if (!this.format) {
+      this.updateFormInternalValue(value);
+    } else {
+      const date = DateTime.fromFormat(value, this.format);
+      const minDate = DateTime.fromFormat(this.minDate, this.format);
+      const maxDate = DateTime.fromFormat(this.maxDate, this.format);
+
+      this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
+
+      if (this.isInputInvalid) {
+        this.invalidReason = date.invalidReason || undefined;
+        this.from = undefined;
+      } else {
+        this.updateFormInternalValue(value);
+        this.from = value;
+        this.closeDropdown();
+      }
+    }
   }
 
   onCalenderClick(event: Event) {

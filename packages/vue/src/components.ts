@@ -430,11 +430,13 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'ariaLabelNextMonthButton',
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixFocus',
   'ixBlur'
 ], [
   'valueChange',
   'validityStateChange',
+  'ixChange',
   'ixFocus',
   'ixBlur'
 ],
@@ -757,11 +759,13 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'allowedCharactersPattern',
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange');
 
@@ -1038,11 +1042,13 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'step',
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange');
 
@@ -1201,12 +1207,14 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'valueChange',
   'inputChange',
   'addItem',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'inputChange',
   'addItem',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange');
 
@@ -1315,11 +1323,13 @@ export const IxTextarea: StencilVueComponent<JSX.IxTextarea, JSX.IxTextarea["val
   'minLength',
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ],
 'value', 'valueChange');
 
@@ -1358,12 +1368,14 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'valueChange',
   'validityStateChange',
   'ixFocus',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ], [
   'valueChange',
   'validityStateChange',
   'ixFocus',
-  'ixBlur'
+  'ixBlur',
+  'ixChange'
 ]);
 
 
