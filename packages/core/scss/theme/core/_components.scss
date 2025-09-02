@@ -1,7 +1,9 @@
 @use "./components/animated-tab-circle" as asComponent_animated-tab-circle;
 @use "./components/animated-tab-icon" as asComponent_animated-tab-icon;
 @use "./components/animated-tab-indicator" as asComponent_animated-tab-indicator;
+@use "./components/app-header-app-icon" as asComponent_app-header-app-icon;
 @use "./components/app-header-logo" as asComponent_app-header-logo;
+@use "./components/app-header-name-suffix" as asComponent_app-header-name-suffix;
 @use "./components/app-header" as asComponent_app-header;
 @use "./components/avatar-btn" as asComponent_avatar-btn;
 @use "./components/avatar" as asComponent_avatar;
@@ -27,6 +29,7 @@
 @use "./components/btn-outline-secondary" as asComponent_btn-outline-secondary;
 @use "./components/btn-primary" as asComponent_btn-primary;
 @use "./components/btn-secondary" as asComponent_btn-secondary;
+@use "./components/btn-subtle" as asComponent_btn-subtle;
 @use "./components/btn" as asComponent_btn;
 @use "./components/checkbox-checked" as asComponent_checkbox-checked;
 @use "./components/checkbox-label" as asComponent_checkbox-label;
@@ -175,7 +178,9 @@
   @include asComponent_animated-tab-circle.setVars;
   @include asComponent_animated-tab-icon.setVars;
   @include asComponent_animated-tab-indicator.setVars;
+  @include asComponent_app-header-app-icon.setVars;
   @include asComponent_app-header-logo.setVars;
+  @include asComponent_app-header-name-suffix.setVars;
   @include asComponent_app-header.setVars;
   @include asComponent_avatar-btn.setVars;
   @include asComponent_avatar.setVars;
@@ -201,6 +206,7 @@
   @include asComponent_btn-outline-secondary.setVars;
   @include asComponent_btn-primary.setVars;
   @include asComponent_btn-secondary.setVars;
+  @include asComponent_btn-subtle.setVars;
   @include asComponent_btn.setVars;
   @include asComponent_checkbox-checked.setVars;
   @include asComponent_checkbox-label.setVars;

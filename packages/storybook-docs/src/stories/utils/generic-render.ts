@@ -11,39 +11,55 @@ import jsonFile from '@siemens/ix/component-doc.json';
 import { ArgTypes } from '@storybook/web-components';
 import type { JsonDocsProp } from '@stencil/core/internal';
 
-export function genericRender(
+export type GenericArgs<A = Record<string, any>> = {
+  styles: Partial<CSSStyleDeclaration>;
+  defaultSlot: string;
+  previewWidth: string;
+} & A;
+
+export type GenericRenderComponent<T, A> = T & GenericArgs<A>;
+
+export function genericRender<A extends GenericArgs>(
   selector: string,
-  args: any,
-  ignoreArgs: string[] = []
+  args: A,
+  ignoreArgs: string[] = [],
+  afterRender?: (element: HTMLElement, args: A) => HTMLElement
 ) {
   const rootInner = document.createElement('div');
   rootInner.id = 'root-inner';
-  const element = document.createElement(selector);
+  let element = document.createElement(selector);
 
-  if ('defaultSlot' in args) {
-    element.textContent = args.defaultSlot;
-    delete args.defaultSlot;
+  // Create a copy to avoid mutating the original
+  const processedArgs = { ...args };
+  const specialKeys = ['defaultSlot', 'styles', 'previewWidth'];
+
+  if (processedArgs.defaultSlot) {
+    element.textContent = processedArgs.defaultSlot;
   }
 
-  if (args['styles']) {
-    Object.assign(element.style, args['styles']);
-    delete args['styles'];
-  }
-  if (args['previewWidth']) {
-    element.style.width = `${args['previewWidth']}`;
-    delete args['previewWidth'];
+  if (processedArgs.styles) {
+    Object.assign(element.style, processedArgs.styles);
   }
 
-  Object.keys(args)
-    .filter((key) => !ignoreArgs.includes(key))
+  if (processedArgs.previewWidth) {
+    element.style.width = processedArgs.previewWidth;
+  }
+
+  // Process remaining properties, excluding the special ones
+  Object.keys(processedArgs)
+    .filter((key) => !ignoreArgs.includes(key) && !specialKeys.includes(key))
     .forEach((key) => {
       const prop = getProp(selector, key);
-      if (prop.type === 'boolean' && args[key] === false) {
+      if (prop.type === 'boolean' && processedArgs[key] === false) {
         element.removeAttribute((prop as any).attr ?? prop.name);
         return;
       }
-      element.setAttribute((prop as any).attr ?? prop.name, args[key]);
+      element.setAttribute((prop as any).attr ?? prop.name, processedArgs[key]);
     });
+
+  if (afterRender) {
+    element = afterRender(element, args);
+  }
 
   rootInner.appendChild(element);
   return rootInner;

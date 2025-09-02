@@ -19,8 +19,8 @@ import {
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
-import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
 import { makeRef } from '../utils/make-ref';
+import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -28,7 +28,11 @@ function DefaultAvatar(
   const { initials } = props;
 
   if (initials) {
-    return <div class={'avatar-initials'}>{initials}</div>;
+    return (
+      <div class={'avatar-initials'}>
+        <ix-typography format="label-lg">{initials}</ix-typography>
+      </div>
+    );
   }
 
   return (
