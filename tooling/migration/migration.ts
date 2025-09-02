@@ -143,7 +143,7 @@ migrate(
     'src',
     'preview-examples',
     '**',
-    '*.ts|*.html'
+    '*.ts'
   )
 );
 
@@ -155,6 +155,6 @@ migrate(
     'src',
     'preview-examples',
     '**',
-    '*.ts|*.html'
+    '*.ts'
   )
 );

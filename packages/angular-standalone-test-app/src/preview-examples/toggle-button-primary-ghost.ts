@@ -14,14 +14,14 @@ import { IxToggleButton } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxToggleButton],
   template: `
-    <ix-toggle-button variant="primary" ghost> Normal</ix-toggle-button>
-    <ix-toggle-button variant="primary" ghost pressed>
+    <ix-toggle-button variant="tertiary"> Normal</ix-toggle-button>
+    <ix-toggle-button variant="tertiary" pressed>
       Pressed
     </ix-toggle-button>
-    <ix-toggle-button variant="primary" ghost disabled>
+    <ix-toggle-button variant="tertiary" disabled>
       Disabled
     </ix-toggle-button>
-    <ix-toggle-button variant="primary" ghost disabled loading>
+    <ix-toggle-button variant="tertiary" disabled loading>
       Loading
     </ix-toggle-button>
   `,

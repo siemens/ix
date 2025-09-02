@@ -14,8 +14,8 @@ import { IxButton } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxButton],
   template: `
-    <ix-button ghost> Button </ix-button>
-    <ix-button disabled ghost> Button </ix-button>
+    <ix-button variant="tertiary"> Button </ix-button>
+    <ix-button variant="tertiary" disabled> Button </ix-button>
   `,
   styleUrls: ['./button-ghost.css'],
 })
