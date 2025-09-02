@@ -1213,27 +1213,6 @@ importers:
         specifier: ^7.0.4
         version: 7.0.4(@types/node@24.0.14)(jiti@1.21.7)(less@4.3.0)(sass@1.89.2)(terser@5.43.1)(tsx@4.20.5)(yaml@2.8.0)
 
-  tooling/migration:
-    devDependencies:
-      '@types/fs-extra':
-        specifier: ^11.0.4
-        version: 11.0.4
-      fs-extra:
-        specifier: ^11.3.1
-        version: 11.3.1
-      glob:
-        specifier: ^11.0.1
-        version: 11.0.1
-      ionic-test-app:
-        specifier: workspace:*
-        version: link:../../packages/ionic-test-app
-      tsx:
-        specifier: ^4.20.5
-        version: 4.20.5
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.2
-
   tooling/oss-clearing:
     dependencies:
       '@siemens/ix':
@@ -8579,10 +8558,6 @@ packages:
 
   fs-extra@11.3.0:
     resolution: {integrity: sha512-Z4XaCL6dUDHfP/jT25jJKMmtxvuwbkrD1vNSMFlo9lNLY2c5FHYSQgHPRZUjAB26TpDEoW9HCOgplrdbaPV/ew==}
-    engines: {node: '>=14.14'}
-
-  fs-extra@11.3.1:
-    resolution: {integrity: sha512-eXvGGwZ5CL17ZSwHWd3bbgk7UUpF6IFHtP57NYYakPvHOs8GDgDe5KJI36jIJzDkJ6eJjuzRA8eBQb6SkKue0g==}
     engines: {node: '>=14.14'}
 
   fs-extra@4.0.3:
@@ -23705,12 +23680,6 @@ snapshots:
       jsonfile: 6.1.0
       universalify: 2.0.0
 
-  fs-extra@11.3.1:
-    dependencies:
-      graceful-fs: 4.2.11
-      jsonfile: 6.1.0
-      universalify: 2.0.0
-
   fs-extra@4.0.3:
     dependencies:
       graceful-fs: 4.2.11
@@ -29891,6 +29860,7 @@ snapshots:
       get-tsconfig: 4.7.5
     optionalDependencies:
       fsevents: 2.3.3
+    optional: true
 
   tuf-js@3.1.0:
     dependencies:
