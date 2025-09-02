@@ -485,56 +485,6 @@ test.describe('cross app navigation', () => {
     await expect(avatar).toBeVisible();
   });
 
-  test(`should show divider only if both slots are filled`, async ({
-    page,
-    mount,
-  }) => {
-    await mount(
-      `
-      <ix-application-header name="Test">
-      </ix-application-header>
-      `
-    );
-    await page.setViewportSize(viewPorts.sm);
-
-    const applicationHeader = page.locator('ix-application-header');
-    await applicationHeader.evaluate((header) => {
-      const elem = document.createElement('ix-button');
-      elem.id = 'secondary';
-      elem.slot = 'secondary';
-      header.appendChild(elem);
-
-      return () => {
-        elem.remove();
-      };
-    });
-
-    const moreMenuButton = page.locator('.context-menu');
-    await moreMenuButton.click();
-
-    const dropdown = applicationHeader.locator('.dropdown-content');
-    const divider = dropdown.locator('.divider');
-    await expect(divider).not.toBeVisible();
-
-    await applicationHeader.evaluate((header) => {
-      const elem = document.createElement('ix-button');
-      elem.id = 'default';
-
-      header.appendChild(elem);
-
-      return () => {
-        elem.remove();
-      };
-    });
-
-    await expect(divider).toBeVisible();
-
-    await applicationHeader
-      .locator('#secondary')
-      .evaluate((elm) => elm.remove());
-    await expect(divider).not.toBeVisible();
-  });
-
   test(`should show slotted components inside overflow`, async ({
     page,
     mount,

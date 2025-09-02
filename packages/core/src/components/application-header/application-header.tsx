@@ -12,7 +12,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Fragment,
   h,
   Host,
   Prop,
@@ -31,10 +30,12 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
  * @slot secondary - Place additional items inside the header. If the screen size is small, the items will be shown inside a dropdown.
+ * @slot overflow - Use this slot to display additional items that do not fit in the default or secondary slot.
  * @slot logo - Place a company logo inside the header. As alternative checkout the companyLogo property.
  */
 @Component({
@@ -147,9 +148,10 @@ export class ApplicationHeader {
   @State() suppressResponsive = false;
 
   @State() hasSlottedLogo = false;
-  @State() hasOverflowSlottedElements = false;
+  @State() hasOverflowContextMenu = false;
   @State() hasSecondarySlotElements = false;
   @State() hasDefaultSlotElements = false;
+  @State() hasOverflowSlotElements = false;
   @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
@@ -312,9 +314,15 @@ export class ApplicationHeader {
       '.content slot[name="secondary"]'
     );
 
+    const overflowSlot = this.hostElement.shadowRoot!.querySelector(
+      '.content slot[name="overflow"]'
+    );
+
     this.hasDefaultSlotElements = hasSlottedElements(defaultSlot);
     this.hasSecondarySlotElements = hasSlottedElements(secondarySlot);
-    this.hasOverflowSlottedElements =
+    this.hasOverflowSlotElements = hasSlottedElements(overflowSlot);
+
+    this.hasOverflowContextMenu =
       this.hasDefaultSlotElements || this.hasSecondarySlotElements;
   }
 
@@ -378,16 +386,6 @@ export class ApplicationHeader {
               aria-label={this.ariaLabelAppSwitchIconButton}
             ></ix-icon-button>
           )}
-          {/*
-          {this.breakpoint !== 'sm' && (
-            <div class="logo">
-              {this.companyLogo ? (
-                <img src={this.companyLogo} alt={this.companyLogoAlt} />
-              ) : (
-                <slot name="logo"></slot>
-              )}
-            </div>
-          )} */}
           {showCompanyLogoByProperty && (
             <div class="logo">
               <img src={this.companyLogo} alt={this.companyLogoAlt} />
@@ -409,11 +407,7 @@ export class ApplicationHeader {
               {this.name}
             </ix-typography>
             {this.nameSuffix && this.breakpoint !== 'sm' && (
-              <ix-typography
-                format="body-xs"
-                textColor="soft"
-                class="application-name-suffix"
-              >
+              <ix-typography format="body-xs" class="application-name-suffix">
                 {this.nameSuffix}
               </ix-typography>
             )}
@@ -426,56 +420,64 @@ export class ApplicationHeader {
             </div>
           )}
           <div class="content">
-            {this.breakpoint === 'sm' ? (
-              <Fragment>
-                <ix-icon-button
-                  class={{
-                    ['context-menu']: true,
-                    ['context-menu-visible']: this.hasOverflowSlottedElements,
-                  }}
-                  data-context-menu
-                  data-testid="show-more"
-                  icon={iconMoreMenu}
-                  ghost
-                  aria-label={this.ariaLabelMoreMenuIconButton}
-                ></ix-icon-button>
-                <ix-dropdown
-                  data-overflow-dropdown
-                  class="dropdown"
-                  discoverAllSubmenus
-                  trigger={this.resolveContextMenuButton()}
-                >
-                  <div
-                    class="dropdown-content"
-                    onClick={(e) => this.onContentBgClick(e)}
-                  >
-                    <div class="top">
-                      <slot
-                        name="secondary"
-                        onSlotchange={() =>
-                          this.updateHasDefaultSlotAssignedElements()
-                        }
-                      ></slot>
-                    </div>
-                    {this.hasDefaultSlotElements &&
-                      this.hasSecondarySlotElements && (
-                        <div class="divider"></div>
-                      )}
-                    <div class="bottom">
-                      <slot
-                        onSlotchange={() =>
-                          this.updateHasDefaultSlotAssignedElements()
-                        }
-                      ></slot>
-                    </div>
+            {this.breakpoint !== 'sm' && <slot></slot>}
+            <ix-icon-button
+              class={{
+                'context-menu': true,
+                'context-menu-visible':
+                  this.hasOverflowContextMenu || this.hasOverflowSlotElements,
+              }}
+              data-context-menu
+              data-testid="show-more"
+              icon={iconMoreMenu}
+              ghost
+              aria-label={this.ariaLabelMoreMenuIconButton}
+              aria-hidden={a11yBoolean(
+                !(this.hasOverflowContextMenu || this.hasOverflowSlotElements)
+              )}
+            ></ix-icon-button>
+            <ix-dropdown
+              data-overflow-dropdown
+              class="dropdown"
+              discoverAllSubmenus
+              trigger={this.resolveContextMenuButton()}
+              aria-hidden={a11yBoolean(
+                !(this.hasOverflowContextMenu || this.hasOverflowSlotElements)
+              )}
+            >
+              <div
+                class="dropdown-content"
+                onClick={(e) => this.onContentBgClick(e)}
+              >
+                {this.breakpoint === 'sm' && (
+                  <div class="slot-content">
+                    <slot
+                      name="secondary"
+                      onSlotchange={() =>
+                        this.updateHasDefaultSlotAssignedElements()
+                      }
+                    ></slot>
                   </div>
-                </ix-dropdown>
-              </Fragment>
-            ) : (
-              <slot
-                onSlotchange={() => this.updateHasDefaultSlotAssignedElements()}
-              ></slot>
-            )}
+                )}
+                {this.breakpoint === 'sm' && (
+                  <div class="slot-content">
+                    <slot
+                      onSlotchange={() =>
+                        this.updateHasDefaultSlotAssignedElements()
+                      }
+                    ></slot>
+                  </div>
+                )}
+                <div class="slot-content">
+                  <slot
+                    name="overflow"
+                    onSlotchange={() =>
+                      this.updateHasDefaultSlotAssignedElements()
+                    }
+                  ></slot>
+                </div>
+              </div>
+            </ix-dropdown>
             <slot name="ix-application-header-avatar"></slot>
           </div>
         </div>

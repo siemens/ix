@@ -522,6 +522,10 @@
         },
         {
           "name": "slot",
+          "text": "overflow - Use this slot to display additional items that do not fit in the default or secondary slot."
+        },
+        {
+          "name": "slot",
           "text": "logo - Place a company logo inside the header. As alternative checkout the companyLogo property."
         }
       ],
@@ -976,6 +980,10 @@
         {
           "name": "logo",
           "docs": "Place a company logo inside the header. As alternative checkout the companyLogo property."
+        },
+        {
+          "name": "overflow",
+          "docs": "Use this slot to display additional items that do not fit in the default or secondary slot."
         },
         {
           "name": "secondary",

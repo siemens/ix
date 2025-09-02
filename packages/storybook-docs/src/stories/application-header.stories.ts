@@ -66,8 +66,9 @@ export const AppIcon: Story = {
 
 type OverflowStory = StoryObj<
   Element & {
-    defaultButtons: number;
-    overflowButtons: number;
+    defaultContent: number;
+    secondaryContent: number;
+    overflowContent: number;
   }
 >;
 export const Overflow: OverflowStory = {
@@ -78,17 +79,23 @@ export const Overflow: OverflowStory = {
     companyLogoAlt: 'Example Company Logo',
     nameSuffix: 'Powered by XZY',
 
-    defaultButtons: 3,
-    overflowButtons: 2,
+    defaultContent: 3,
+    secondaryContent: 3,
+    overflowContent: 2,
   },
 
   argTypes: {
-    defaultButtons: {
+    defaultContent: {
       control: {
         type: 'number',
       },
     },
-    overflowButtons: {
+    secondaryContent: {
+      control: {
+        type: 'number',
+      },
+    },
+    overflowContent: {
       control: {
         type: 'number',
       },
@@ -100,7 +107,12 @@ export const Overflow: OverflowStory = {
     const container = genericRender(
       'ix-application-header',
       args,
-      ['defaultButtons', 'overflowButtons', 'showAppSwitch'],
+      [
+        'defaultContent',
+        'secondaryContent',
+        'overflowContent',
+        'showAppSwitch',
+      ],
       (header, args) => {
         if (args.showAppSwitch) {
           appframe.appSwitchConfig = {
@@ -124,14 +136,27 @@ export const Overflow: OverflowStory = {
       'ix-application-header'
     ) as HTMLIxApplicationHeaderElement;
 
-    generateSomeButtons('Item', args.defaultButtons, true).forEach((button) => {
+    generateSomeButtons('Item', args.defaultContent, true).forEach((button) => {
       applicationHeader.appendChild(button);
     });
 
-    generateSomeButtons('Slot item', args.overflowButtons).forEach((button) => {
-      button.slot = 'secondary';
-      applicationHeader.appendChild(button);
-    });
+    generateSomeButtons('Slot item', args.secondaryContent).forEach(
+      (button) => {
+        button.slot = 'secondary';
+        applicationHeader.appendChild(button);
+      }
+    );
+
+    generateSomeButtons('Overflow item', args.overflowContent).forEach(
+      (button) => {
+        button.slot = 'overflow';
+        applicationHeader.appendChild(button);
+      }
+    );
+
+    const avatar = document.createElement('ix-avatar');
+    avatar.initials = 'JD';
+    applicationHeader.appendChild(avatar);
 
     appframe.appendChild(applicationHeader);
 
@@ -223,7 +248,9 @@ function generateSomeButtons(prefix: string, count: number, outline = false) {
     const button = document.createElement('ix-icon-button');
     button.icon = 'star';
     button.innerText = `${prefix} Button ${i + 1}`;
-    button.style.marginRight = '0.5rem';
+    if (i !== count - 1) {
+      button.style.marginRight = '0.5rem';
+    }
     if (outline) {
       button.setAttribute('outline', 'true');
     }
