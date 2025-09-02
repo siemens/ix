@@ -139,11 +139,10 @@ migrate(
   path.join(
     process.cwd(),
     'node_modules',
-    'vue-test-app',
+    'ionic-test-app',
     'src',
-    'preview-examples',
     '**',
-    '*.vue'
+    '*.tsx'
   )
 );
 
