@@ -71,6 +71,9 @@ export type BaseButtonProps = {
   alignment?: ButtonAlignment;
   tabIndex?: number;
   afterContent?: any;
+  href?: string;
+  target?: '_self' | '_blank' | '_parent' | '_top';
+  rel?: string;
 };
 
 const getSpinnerSize = (btnProps: BaseButtonProps) => {
@@ -99,53 +102,87 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     ariaAttributes['aria-disabled'] = 'true';
   }
 
-  return (
-    <button
-      {...ariaAttributes}
-      onClick={(e: Event) => (props.onClick ? props.onClick(e) : undefined)}
-      tabindex={props.disabled ? -1 : (props.tabIndex ?? 0)}
-      type={props.type}
+  const commonAttributes = {
+    ...ariaAttributes,
+    tabindex: props.disabled ? -1 : props.tabIndex ?? 0,
+    class: {
+      ...getButtonClasses(
+        props.variant,
+        props.outline,
+        props.ghost,
+        props.iconOnly,
+        props.iconOval,
+        props.selected,
+        props.disabled || props.loading
+      ),
+      ...extraClasses,
+    },
+  };
+
+  const buttonContent = [
+    props.loading ? (
+      <ix-spinner size={getSpinnerSize(props)} hideTrack></ix-spinner>
+    ) : null,
+    props.icon && !props.loading ? (
+      <ix-icon
+        class="icon"
+        name={props.icon}
+        size={props.iconSize as any}
+        color={props.iconColor}
+      ></ix-icon>
+    ) : null,
+    <div
       class={{
-        ...getButtonClasses(
-          props.variant,
-          props.outline,
-          props.ghost,
-          props.iconOnly,
-          props.iconOval,
-          props.selected,
-          props.disabled || props.loading
-        ),
-        ...extraClasses,
+        content: true,
+        [`content-${props.alignment}`]: !!props.alignment,
       }}
     >
-      {props.loading ? (
-        <ix-spinner size={getSpinnerSize(props)} hideTrack></ix-spinner>
-      ) : null}
-      {props.icon && !props.loading ? (
-        <ix-icon
-          class="icon"
-          name={props.icon}
-          size={props.iconSize as any}
-          color={props.iconColor}
-        ></ix-icon>
-      ) : null}
-      <div
-        class={{
-          content: true,
-          [`content-${props.alignment}`]: !!props.alignment,
+      {children}
+    </div>,
+    props.iconRight ? (
+      <ix-icon
+        class="icon-right"
+        name={props.iconRight}
+        size={props.iconSize as any}
+        color={props.iconColor}
+      ></ix-icon>
+    ) : null,
+    props.afterContent ? props.afterContent : null,
+  ];
+
+  // If href is provided, render as an anchor tag
+  if (props.href) {
+    return (
+      <a
+        {...commonAttributes}
+        href={props.disabled ? undefined : props.href}
+        target={props.target}
+        role="button"
+        rel={props.rel}
+        onClick={(e: Event) => {
+          if (props.disabled || props.loading) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+          if (props.onClick) {
+            props.onClick(e);
+          }
         }}
       >
-        {children}
-      </div>
-      {props.iconRight ? (
-        <ix-icon
-          class="icon-right"
-          name={props.iconRight}
-          size={props.iconSize as any}
-          color={props.iconColor}
-        ></ix-icon>
-      ) : null}
-      {props.afterContent ? props.afterContent : null}
+        {buttonContent}
+      </a>
+    );
+  }
+
+  // Otherwise, render as a button
+  return (
+    <button
+      {...commonAttributes}
+      onClick={(e: Event) => (props.onClick ? props.onClick(e) : undefined)}
+      type={props.type}
+    >
+      {buttonContent}
     </button>
   );
 };

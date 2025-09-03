@@ -67,7 +67,7 @@ export const getDevAssets = () => {
       });
     }
   } catch (e) {
-    console.warn('No additional theme fround');
+    console.warn('No additional theme found');
   }
 
   return copyAssets;

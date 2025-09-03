@@ -72,6 +72,13 @@ export class MenuItem implements IxMenuItemBase {
    */
   @Prop() tooltipText?: string;
 
+  /**
+   * URL for the menu item link. When provided, the menu item will render as an anchor tag.
+   *
+   * @since 3.3.0
+   */
+  @Prop() href?: string;
+
   /** @internal */
   @Prop() isCategory: boolean = false;
 
@@ -86,7 +93,7 @@ export class MenuItem implements IxMenuItemBase {
     sequenceId++
   );
 
-  private readonly buttonRef = makeRef<HTMLButtonElement>();
+  private readonly buttonRef = makeRef<HTMLButtonElement | HTMLAnchorElement>();
   private isHostedInsideCategory = false;
   private menuExpandedDisposer?: Disposable;
 
@@ -161,6 +168,24 @@ export class MenuItem implements IxMenuItemBase {
       };
     }
 
+    const commonAttributes = {
+      class: 'tab',
+      tabIndex: this.disabled ? -1 : 0,
+    };
+
+    const menuContent = [
+      this.icon && <ix-icon class={'tab-icon'} name={this.icon}></ix-icon>,
+      this.notifications ? (
+        <div class="notification">
+          <div class="pill">{this.notifications}</div>
+        </div>
+      ) : null,
+      <span id={this.internalItemId} class="tab-text text-default">
+        {this.label}
+        <slot></slot>
+      </span>,
+    ];
+
     return (
       <Host
         class={{
@@ -172,22 +197,27 @@ export class MenuItem implements IxMenuItemBase {
         }}
         {...extendedAttributes}
       >
-        <button
-          class="tab"
-          tabIndex={this.disabled ? -1 : 0}
-          ref={this.buttonRef}
-        >
-          {this.icon && <ix-icon class={'tab-icon'} name={this.icon}></ix-icon>}
-          {this.notifications ? (
-            <div class="notification">
-              <div class="pill">{this.notifications}</div>
-            </div>
-          ) : null}
-          <span id={this.internalItemId} class="tab-text text-default">
-            {this.label}
-            <slot></slot>
-          </span>
-        </button>
+        {this.href ? (
+          <a
+            {...commonAttributes}
+            href={this.disabled ? undefined : this.href}
+            role="button"
+            ref={this.buttonRef}
+            onClick={(e: Event) => {
+              if (this.disabled) {
+                e.preventDefault();
+                e.stopPropagation();
+                return;
+              }
+            }}
+          >
+            {menuContent}
+          </a>
+        ) : (
+          <button {...commonAttributes} ref={this.buttonRef}>
+            {menuContent}
+          </button>
+        )}
         <ix-tooltip
           for={this.buttonRef.waitForCurrent()}
           placement={'right'}

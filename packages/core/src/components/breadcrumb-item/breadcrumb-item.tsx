@@ -50,6 +50,13 @@ export class BreadcrumbItem {
    */
   @Prop() icon?: string;
 
+  /**
+   * URL for the breadcrumb link. When provided, the breadcrumb will render as an anchor tag.
+   *
+   * @since 3.3.0
+   */
+  @Prop() href?: string;
+
   /**@internal */
   @Prop() ghost: boolean = true;
 
@@ -107,6 +114,7 @@ export class BreadcrumbItem {
         'dropdown-trigger': this.isDropdownTrigger,
       },
       ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabelButton },
+      href: this.href,
     };
 
     if (!this.visible) {

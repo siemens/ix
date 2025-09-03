@@ -277,6 +277,7 @@ export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, Ix
         ariaLabelButton: 'aria-label-button',
         label: 'label',
         icon: 'icon',
+        href: 'href',
         ghost: 'ghost',
         visible: 'visible',
         showChevron: 'show-chevron',
@@ -307,7 +308,10 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = 
         icon: 'icon',
         iconRight: 'icon-right',
         alignment: 'alignment',
-        iconSize: 'icon-size'
+        iconSize: 'icon-size',
+        href: 'href',
+        target: 'target',
+        rel: 'rel'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -1600,6 +1604,7 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         active: 'active',
         disabled: 'disabled',
         tooltipText: 'tooltip-text',
+        href: 'href',
         isCategory: 'is-category'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
