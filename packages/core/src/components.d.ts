@@ -997,6 +997,11 @@ export namespace Components {
          */
         "showWeekNumbers": boolean;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter": boolean;
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -1968,6 +1973,11 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter": boolean;
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -2629,6 +2639,11 @@ export namespace Components {
          */
         "step"?: string | number;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter": boolean;
+        /**
           * The valid text for the input field
          */
         "validText"?: string;
@@ -3109,6 +3124,11 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter": boolean;
+        /**
           * Valid text for the select component
          */
         "validText"?: string;
@@ -3572,6 +3592,11 @@ export namespace Components {
           * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter": boolean;
         /**
           * Valid text below the input field
          */
@@ -6911,6 +6936,11 @@ declare namespace LocalJSX {
          */
         "showWeekNumbers"?: boolean;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter"?: boolean;
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -7938,6 +7968,11 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter"?: boolean;
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -8643,6 +8678,11 @@ declare namespace LocalJSX {
          */
         "step"?: string | number;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter"?: boolean;
+        /**
           * The valid text for the input field
          */
         "validText"?: string;
@@ -9159,6 +9199,11 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter"?: boolean;
+        /**
           * Valid text for the select component
          */
         "validText"?: string;
@@ -9627,6 +9672,11 @@ declare namespace LocalJSX {
           * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * If true, pressing Enter will submit the form (if inside a form).
+          * @default false
+         */
+        "submitOnEnter"?: boolean;
         /**
           * Valid text below the input field
          */
