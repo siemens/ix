@@ -16,6 +16,21 @@ regressionTest.describe('application header: basic', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('should use safe areas', async ({ page }) => {
+    await page.goto('application-header/basic');
+    const head = page.locator('head');
+    await head.evaluate(() => {
+      const style = document.createElement('style');
+      style.textContent = `
+        :root {
+          --ix-safe-area-inset-top: 10rem;
+        }
+      `;
+      document.head.appendChild(style);
+    });
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest(
     'should not have visual regressions - svg',
     async ({ page }) => {

@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-Increase active area of __ix-radio__.
+Increase active area of __ix-radio__
