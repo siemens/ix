@@ -32,8 +32,8 @@
     height: 100%;
   }
 
-  slot[name='header'] {
-    display: block;
+  .slot-header-content {
+    display: inline-block;
     position: relative;
     max-height: 2rem;
   }
@@ -167,6 +167,16 @@
     overflow: auto;
     height: 100%;
     width: 100%;
+  }
+
+  .slot-header {
+    max-height: 2rem;
+    max-width: unset;
+  }
+
+  .slot-header.rotate {
+    max-height: unset;
+    max-width: 2rem;
   }
 }
 

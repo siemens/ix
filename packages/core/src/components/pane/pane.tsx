@@ -614,6 +614,7 @@ export class Pane {
   }
 
   render() {
+    const rotate = !this.expanded && !this.isMobile && this.isLeftRightPane;
     return (
       <Host
         class={{
@@ -691,25 +692,28 @@ export class Pane {
               aria-controls={`pane-${this.composition}`}
               aria-label={this.ariaLabelCollapseCloseButton}
             />
-            <span
+            <div
               class={{
                 'title-text': true,
-                rotate:
-                  !this.expanded && !this.isMobile && this.isLeftRightPane,
+                rotate: rotate,
               }}
             >
-              {this.icon ? (
+              {this.icon && (
                 <ix-icon
                   size="24"
                   name={this.icon}
                   aria-label={this.ariaLabelIcon}
                 ></ix-icon>
-              ) : null}
+              )}
               <div class="title-text-overflow">
                 <ix-typography format="h4">{this.heading}</ix-typography>
               </div>
-            </span>
-            <slot name="header"></slot>
+              {this.expanded && (
+                <div class="slot-header">
+                  <slot name="header"></slot>
+                </div>
+              )}
+            </div>
           </div>
           <div class="side-pane-content" hidden={!this.showContent}>
             <slot></slot>
