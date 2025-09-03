@@ -55,7 +55,7 @@ export const Notification: Story = {
     label: 'Menu Item',
     icon: 'home',
     notifications: 5,
-    href: 'http://ix.siemens.com',
+    href: 'https://ix.siemens.com',
   },
 };
 
