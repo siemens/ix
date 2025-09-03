@@ -32,12 +32,12 @@ regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
   expect(formData).toBe('my example');
 });
 
-regressionTest(
+regressionTest.only(
   `form-ready - ix-input submits form on Enter key`,
   async ({ mount, page }) => {
     await mount(`
       <form onsubmit="window.__formSubmitted = true; return false;">
-        <ix-input name="my-field-name"></ix-input>
+        <ix-input name="my-field-name" submit-on-enter></ix-input>
       </form>
     `);
     await page.evaluate(() => {
@@ -52,7 +52,7 @@ regressionTest(
   }
 );
 
-regressionTest(
+regressionTest.only(
   `form-ready - multiple ix-inputs doesn't submit form on Enter key`,
   async ({ mount, page }) => {
     await mount(`
@@ -72,12 +72,32 @@ regressionTest(
   }
 );
 
-regressionTest(
+regressionTest.only(
   `form-ready - multiple ix-input submits form on Enter key when native button is present`,
   async ({ mount, page }) => {
     await mount(`
       <form onsubmit="window.__formSubmitted = true; return false;">
-        <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input><button type="submit">Submit</button>
+        <ix-input name="field-1" submit-on-enter></ix-input><ix-input name="field-2"></ix-input><button type="submit">Submit</button>
+      </form>
+    `);
+    await page.evaluate(() => {
+      window.__formSubmitted = false;
+    });
+    const input = page.locator('ix-input').first().locator('input');
+    await input.fill('abc');
+    await input.focus();
+    await input.press('Enter');
+    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    expect(wasSubmitted).toBe(true);
+  }
+);
+
+regressionTest.only(
+  `form-ready - multiple ix-input submits form on Enter key when ix button is present`,
+  async ({ mount, page }) => {
+    await mount(`
+      <form onsubmit="window.__formSubmitted = true; return false;">
+        <ix-input name="field-1" submit-on-enter></ix-input><ix-input name="field-2"></ix-input><ix-button type="submit">Submit</ix-button>
       </form>
     `);
     await page.evaluate(() => {
@@ -131,7 +151,7 @@ regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   expect(formData).toBe('123');
 });
 
-regressionTest(
+regressionTest.only(
   `form-ready - ix-number-input submits form on Enter key`,
   async ({ mount, page }) => {
     await mount(`

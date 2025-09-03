@@ -149,7 +149,7 @@ export class Input implements IxInputFieldComponent<string> {
   /**
    * If true, pressing Enter will submit the form (if inside a form).
    */
-  @Prop({ reflect: true }) submitOnEnter: boolean = true;
+  @Prop({ reflect: true }) submitOnEnter: boolean = false;
 
   /**
    * Event emitted when the value of the text field changes.

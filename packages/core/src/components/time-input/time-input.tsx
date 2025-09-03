@@ -200,6 +200,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
+   * If true, pressing Enter will submit the form (if inside a form).
+   */
+  @Prop({ reflect: true }) submitOnEnter: boolean = false;
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -236,6 +241,27 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  private handleInputKeyDown(e: KeyboardEvent) {
+    if (!this.submitOnEnter) return;
+    if (e.key !== 'Enter') return;
+    const form = this.formInternals.form;
+    if (!form) return;
+    e.preventDefault();
+    const submitButton = form.querySelector(
+      'button[type="submit"], ix-button[type="submit"]'
+    ) as HTMLElement;
+    if (submitButton) {
+      submitButton.click();
+    } else {
+      const inputs = form.querySelectorAll(
+        'input:not([type="hidden"]), ix-input, ix-number-input, ix-date-input, ix-time-input'
+      );
+      if (inputs.length === 1) {
+        form.requestSubmit();
+      }
+    }
+  }
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -390,6 +416,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             this.ixBlur.emit();
             this.touched = true;
           }}
+          onKeyDown={this.handleInputKeyDown.bind(this)}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}

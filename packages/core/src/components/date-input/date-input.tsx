@@ -192,6 +192,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() ariaLabelNextMonthButton?: string;
 
   /**
+   * If true, pressing Enter will submit the form (if inside a form).
+   */
+  @Prop({ reflect: true }) submitOnEnter: boolean = false;
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -341,6 +346,27 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
+  private handleInputKeyDown(e: KeyboardEvent) {
+    if (!this.submitOnEnter) return;
+    if (e.key !== 'Enter') return;
+    const form = this.formInternals.form;
+    if (!form) return;
+    e.preventDefault();
+    const submitButton = form.querySelector(
+      'button[type="submit"], ix-button[type="submit"]'
+    ) as HTMLElement;
+    if (submitButton) {
+      submitButton.click();
+    } else {
+      const inputs = form.querySelectorAll(
+        'input:not([type="hidden"]), ix-input, ix-number-input, ix-date-input'
+      );
+      if (inputs.length === 1) {
+        form.requestSubmit();
+      }
+    }
+  }
+
   private renderInput() {
     return (
       <div class="input-wrapper">
@@ -380,6 +406,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.ixBlur.emit();
             this.touched = true;
           }}
+          onKeyDown={this.handleInputKeyDown.bind(this)}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}

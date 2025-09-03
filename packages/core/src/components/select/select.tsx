@@ -183,6 +183,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() dropdownMaxWidth?: string;
 
   /**
+   * If true, pressing Enter will submit the form (if inside a form).
+   */
+  @Prop({ reflect: true }) submitOnEnter: boolean = false;
+
+  /**
    * Value changed
    */
   @Event() valueChange!: EventEmitter<string | string[]>;
@@ -232,6 +237,27 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
+
+  private handleInputKeyDown(e: KeyboardEvent) {
+    if (!this.submitOnEnter) return;
+    if (e.key !== 'Enter') return;
+    const form = this.formInternals.form;
+    if (!form) return;
+    e.preventDefault();
+    const submitButton = form.querySelector(
+      'button[type="submit"], ix-button[type="submit"]'
+    ) as HTMLElement;
+    if (submitButton) {
+      submitButton.click();
+    } else {
+      const inputs = form.querySelectorAll(
+        'input:not([type="hidden"]), ix-input, ix-number-input, ix-date-input, ix-time-input, ix-select'
+      );
+      if (inputs.length === 1) {
+        form.requestSubmit();
+      }
+    }
+  }
   private readonly focusControllerCallbackBind =
     this.focusDropdownItem.bind(this);
 
@@ -895,7 +921,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       this.navigationItem = undefined;
                     }}
                     onInput={() => this.filterItemsWithTypeahead()}
-                    onKeyDown={(e) => this.onKeyDown(e)}
+                    onKeyDown={(e) => {
+                      this.handleInputKeyDown(e);
+                      this.onKeyDown(e);
+                    }}
                   />
                   {this.allowClear &&
                   !this.disabled &&
