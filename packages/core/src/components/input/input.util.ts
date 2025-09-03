@@ -192,9 +192,6 @@ function observeElementUntilVisible(
   return intersectionObserver;
 }
 
-/**
- * Utility to handle Enter keydown for form submit on custom inputs.
- */
 export function handleSubmitOnEnterKeydown(
   e: KeyboardEvent,
   submitOnEnter: boolean,

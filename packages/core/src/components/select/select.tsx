@@ -240,11 +240,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   });
 
   private handleInputKeyDown(e: KeyboardEvent) {
-    handleSubmitOnEnterKeydown(
-      e,
-      this.submitOnEnter,
-      this.formInternals.form
-    );
+    handleSubmitOnEnterKeydown(e, this.submitOnEnter, this.formInternals.form);
   }
   private readonly focusControllerCallbackBind =
     this.focusDropdownItem.bind(this);
