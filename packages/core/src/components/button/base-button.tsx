@@ -104,7 +104,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
 
   const commonAttributes = {
     ...ariaAttributes,
-    tabindex: props.disabled ? -1 : props.tabIndex ?? 0,
+    tabindex: props.disabled ? -1 : (props.tabIndex ?? 0),
     class: {
       ...getButtonClasses(
         props.variant,
