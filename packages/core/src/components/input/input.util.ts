@@ -191,3 +191,30 @@ function observeElementUntilVisible(
   intersectionObserver.observe(hostElement);
   return intersectionObserver;
 }
+
+/**
+ * Utility to handle Enter keydown for form submit on custom inputs.
+ */
+export function handleSubmitOnEnterKeydown(
+  e: KeyboardEvent,
+  submitOnEnter: boolean,
+  form: HTMLFormElement | null | undefined
+) {
+  if (!submitOnEnter) return;
+  if (e.key !== 'Enter') return;
+  if (!form) return;
+  e.preventDefault();
+  const submitButton = form.querySelector(
+    'button[type="submit"], ix-button[type="submit"]'
+  ) as HTMLElement;
+  if (submitButton) {
+    submitButton.click();
+  } else {
+    const inputs = form.querySelectorAll(
+      'input:not([type="hidden"]), ix-input, ix-number-input, ix-date-input, ix-time-input, ix-select'
+    );
+    if (inputs.length === 1) {
+      form.requestSubmit();
+    }
+  }
+}

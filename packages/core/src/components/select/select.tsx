@@ -30,6 +30,7 @@ import {
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
+import { handleSubmitOnEnterKeydown } from '../input/input.util';
 import { ArrowFocusController } from '../utils/focus';
 import {
   HookValidationLifecycle,
@@ -239,24 +240,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   });
 
   private handleInputKeyDown(e: KeyboardEvent) {
-    if (!this.submitOnEnter) return;
-    if (e.key !== 'Enter') return;
-    const form = this.formInternals.form;
-    if (!form) return;
-    e.preventDefault();
-    const submitButton = form.querySelector(
-      'button[type="submit"], ix-button[type="submit"]'
-    ) as HTMLElement;
-    if (submitButton) {
-      submitButton.click();
-    } else {
-      const inputs = form.querySelectorAll(
-        'input:not([type="hidden"]), ix-input, ix-number-input, ix-date-input, ix-time-input, ix-select'
-      );
-      if (inputs.length === 1) {
-        form.requestSubmit();
-      }
-    }
+    handleSubmitOnEnterKeydown(
+      e,
+      this.submitOnEnter,
+      this.formInternals.form
+    );
   }
   private readonly focusControllerCallbackBind =
     this.focusDropdownItem.bind(this);

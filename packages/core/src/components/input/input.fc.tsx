@@ -9,6 +9,7 @@
 import { h, FunctionalComponent } from '@stencil/core';
 import { MakeRef } from '../utils/make-ref';
 import { A11yAttributes } from '../utils/a11y';
+import { handleSubmitOnEnterKeydown } from './input.util';
 
 export function TextareaElement(
   props: Readonly<{
@@ -117,24 +118,7 @@ export function InputElement(
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
-      onKeyDown={(e) => {
-        if (!props.submitOnEnter) return;
-        if (e.key !== 'Enter' || !props.form) return;
-        e.preventDefault();
-        const submitButton = props.form.querySelector(
-          'button[type="submit"], ix-button[type="submit"]'
-        ) as HTMLElement;
-        if (submitButton) {
-          submitButton.click();
-        } else {
-          const inputs = props.form.querySelectorAll(
-            'input:not([type="hidden"]), ix-input, ix-number-input'
-          );
-          if (inputs.length === 1) {
-            props.form.requestSubmit();
-          }
-        }
-      }}
+  onKeyDown={(e) => handleSubmitOnEnterKeydown(e, !!props.submitOnEnter, props.form)}
     ></input>
   );
 }

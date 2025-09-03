@@ -27,6 +27,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -243,24 +244,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleInputKeyDown(e: KeyboardEvent) {
-    if (!this.submitOnEnter) return;
-    if (e.key !== 'Enter') return;
-    const form = this.formInternals.form;
-    if (!form) return;
-    e.preventDefault();
-    const submitButton = form.querySelector(
-      'button[type="submit"], ix-button[type="submit"]'
-    ) as HTMLElement;
-    if (submitButton) {
-      submitButton.click();
-    } else {
-      const inputs = form.querySelectorAll(
-        'input:not([type="hidden"]), ix-input, ix-number-input, ix-date-input, ix-time-input'
-      );
-      if (inputs.length === 1) {
-        form.requestSubmit();
-      }
-    }
+    handleSubmitOnEnterKeydown(e, this.submitOnEnter, this.formInternals.form);
   }
 
   updateFormInternalValue(value: string): void {
