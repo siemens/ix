@@ -26,13 +26,37 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 ## Table of Contents
 
-- [Code of Conduct](#code-of-conduct)
-- [I Want To Contribute](#i-want-to-contribute)
-- [Issue workflow](#issue-workflow)
-- [Reporting Bugs](#reporting-bugs)
-- [Suggesting Enhancements](#suggesting-enhancements)
-- [Your First Code Contribution](#your-first-code-contribution)
-- [Improving The Documentation](#modify-and-preview-documentation)
+- [Contributing to Siemens Industrial Experience](#contributing-to-siemens-industrial-experience)
+  - [Table of Contents](#table-of-contents)
+  - [Code of Conduct](#code-of-conduct)
+  - [I Want To Contribute](#i-want-to-contribute)
+    - [Reporting Bugs](#reporting-bugs)
+      - [How Do I Submit a Good Bug Report?](#how-do-i-submit-a-good-bug-report)
+      - [Issue workflow](#issue-workflow)
+    - [Suggesting Enhancements](#suggesting-enhancements)
+      - [Before Submitting an Enhancement](#before-submitting-an-enhancement)
+      - [How Do I Submit a Good Enhancement Suggestion?](#how-do-i-submit-a-good-enhancement-suggestion)
+  - [Your First Code Contribution](#your-first-code-contribution)
+    - [I want to contribute a new component](#i-want-to-contribute-a-new-component)
+    - [I want to contribute a bugfix or an component enhancement](#i-want-to-contribute-a-bugfix-or-an-component-enhancement)
+  - [Setup](#setup)
+    - [Modifying Core Components](#modifying-core-components)
+    - [Modifying Angular, React, and Vue](#modifying-angular-react-and-vue)
+      - [Modifying Files](#modifying-files)
+    - [Preview Changes](#preview-changes)
+      - [Core](#core)
+      - [Angular](#angular)
+      - [React](#react)
+      - [Vue](#vue)
+      - [Web Components](#web-components)
+      - [Lint changes](#lint-changes)
+      - [Building changes](#building-changes)
+    - [Unit testing](#unit-testing)
+    - [Visual regression testing](#visual-regression-testing)
+    - [Modify and preview documentation](#modify-and-preview-documentation)
+      - [Preview and example code](#preview-and-example-code)
+    - [Submit Pull Request](#submit-pull-request)
+  - [Attribution](#attribution)
 
 ## Code of Conduct
 
@@ -107,9 +131,11 @@ Contributions are always welcome. Here's how to get started to make sure your co
 
 - Before you dive in, open a GitHub issue. This helps us stay in sync and avoid duplicate work.
 
-### Setup
+## Setup
 
-1. [Download the installer](https://nodejs.org/) for the LTS version of Node.js. This is the best way to also [install pnpm](https://pnpm.io/installation).
+1. **Node.js Setup**: This project uses [Volta](https://volta.sh/) to pin Node.js version 22.18.0. You can either:
+   - Install [Volta](https://volta.sh/) and let it automatically manage the correct Node.js version when you enter the project directory
+   - Or manually [download the installer](https://nodejs.org/) for Node.js and [install pnpm](https://pnpm.io/installation). Checkout `<root>/package.json` the property `volta` for the defined versions.
 2. Fork this repository.
 3. Clone your fork.
 4. Create a new branch from main for your change.
@@ -117,15 +143,19 @@ Contributions are always welcome. Here's how to get started to make sure your co
 6. Navigate into the directory of the package you wish to modify (core, angular, etc.).
 7. Follow the steps for the specific package below.
 
+> **Architecture Note**: IX is a multi-framework design system built on Stencil Web Components with auto-generated framework wrappers. The `packages/core/` contains the source of truth, while `packages/react/`, `packages/angular/`, and `packages/vue/` are auto-generated - never edit these directly.
+
 ### Modifying Core Components
 
-1. Locate the component(s) to modify inside `/packages/core/src/components/`.
-2. Take a look at the [Stencil Documentation](https://stenciljs.com/docs/introduction/) and other components to understand the implementation of these components.
-3. Make your changes to the component. If the change is overly complex or out of the ordinary, add comments so we can understand the changes.
-4. [Preview your changes](#preview-changes) locally.
-5. [Modify the documentation](#modify-and-preview-documentation) if needed.
-6. [Run lint](#lint-changes) on the directory and make sure there are no errors.
-7. [Build the project](#building-changes).
+1. Locate the component(s) to modify inside `/packages/core/src/components/[component-name]/`.
+2. Each component follows this structure: `[component].tsx`, `[component].scss`, tests, and documentation.
+3. Take a look at the [Stencil Documentation](https://stenciljs.com/docs/introduction/) and other components to understand the implementation. Use `@Component`, `@Prop`, `@Event`, `@Listen` decorators from Stencil.
+4. Make your changes to the component. If the change is overly complex or out of the ordinary, add comments so we can understand the changes.
+5. Use SPDX license headers in all source files.
+6. [Preview your changes](#preview-changes) locally.
+7. [Modify the documentation](#modify-and-preview-documentation) if needed.
+8. [Run lint](#lint-changes) on the directory and make sure there are no errors.
+9. [Build the project](#building-changes).
 
 ### Modifying Angular, React, and Vue
 
@@ -155,6 +185,19 @@ Read more about the [Stencil Output Targets here](https://stenciljs.com/docs/ove
 6. [Submit a Pull Request](#submit-pull-request) of your changes.
 
 ### Preview Changes
+
+**Quick Development Commands**:
+
+```bash
+# Development server with watch mode
+pnpm storybook                     # Component development
+
+# Package-specific development
+pnpm start --filter angular-test-app    # Angular examples
+pnpm start --filter react-test-app      # React examples
+pnpm start --filter vue-test-app        # Vue examples
+pnpm start --filter html-test-app       # Web Components examples
+```
 
 #### Core
 
@@ -196,17 +239,33 @@ Read more about the [Stencil Output Targets here](https://stenciljs.com/docs/ove
 #### Building changes
 
 1. Run `pnpm build` from within the `root` directory.
-2. Make sure you have committed all changes.
+2. For single packages: `pnpm build --filter @siemens/ix`
+3. Make sure you have committed all changes.
+
+> **Important**: Always build before running tests, especially visual regression tests.
 
 ### Unit testing
 
 ```sh
+# All tests (requires build first)
 pnpm test
+
+# Specific package tests
+pnpm test --filter @siemens/ix          # Core Stencil tests (Jest)
+pnpm test --filter @siemens/ix-react    # React tests (Vitest)
 ```
+
+**Test Types**:
+
+- **Unit Tests**: `.spec.ts` files (Jest for Stencil)
+- **Component Tests**: `.ct.ts` files (Playwright)
+- **Visual Regression**: `.e2e.ts` files (Docker-based Playwright)
 
 ### Visual regression testing
 
 **_Docker cli must be installed on your system_**  
+Visual regression tests run across multiple themes: `theme-classic-light`, `theme-classic-dark`, and brand variants.
+
 If you execute the visual-regression tests, please be sure to execute the build step before.
 
 1. Build the library: `pnpm build --filter \!documentation`
@@ -225,16 +284,17 @@ docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.50.0-no
 
 - Run all tests: `pnpm visual-regression`
 
-Workspace:
+**Package-specific tests**:
 
 - `@siemens/ix-aggrid` => `pnpm visual-regression --filter @siemens/ix-aggrid`
-- `@siemens/ix` => `pnpm visual-regression --filter visual-testing`
+- `@siemens/ix-echarts` => `pnpm visual-regression --filter @siemens/ix-echarts`
+- `@siemens/ix` (core) => `pnpm visual-regression --filter visual-testing`
 
-1. Adapt and update snapshots with: `pnpm --filter visual-testing run visual-regression <test name> -u`
+6. Adapt and update snapshots with: `pnpm --filter visual-testing run visual-regression <test name> -u`
 
-2. Check the results by opening the test report in your browser: `packages/<workspace>/playwright-report/index.html`
+7. Check the results by opening the test report in your browser: `packages/<workspace>/playwright-report/index.html`
 
-3. Check the git diff and commit changes 🎉
+8. Check the git diff and commit changes 🎉
 
 ### Modify and preview documentation
 
@@ -258,7 +318,9 @@ These preview-examples will be translated to markdown files and get copied into 
 1. [Create a new pull request](https://github.com/siemens/ix/compare) with the `main` branch as the `base`. You may need to click on `compare across forks` to find your changes.
 2. See the [Creating a pull request from a fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) GitHub help article for more information.
 3. Please fill out the provided Pull Request template to the best of your ability and include any issues that are related.
-4. Create a [changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) to help us prepare a release. If you are not sure what to do just skip this step, a maintainer will comment on the pull request.
+4. Create a [changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) using `pnpm changeset` to help us prepare a release. If you are not sure what to do just skip this step, a maintainer will comment on the pull request.
+
+**Release Process**: This project uses changesets for version management. Snapshot releases are available for PR testing, and version bumps automatically regenerate framework wrappers.
 
 ## Attribution
 
