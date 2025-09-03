@@ -26,13 +26,37 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 ## Table of Contents
 
-- [Code of Conduct](#code-of-conduct)
-- [I Want To Contribute](#i-want-to-contribute)
-- [Issue workflow](#issue-workflow)
-- [Reporting Bugs](#reporting-bugs)
-- [Suggesting Enhancements](#suggesting-enhancements)
-- [Your First Code Contribution](#your-first-code-contribution)
-- [Improving The Documentation](#modify-and-preview-documentation)
+- [Contributing to Siemens Industrial Experience](#contributing-to-siemens-industrial-experience)
+  - [Table of Contents](#table-of-contents)
+  - [Code of Conduct](#code-of-conduct)
+  - [I Want To Contribute](#i-want-to-contribute)
+    - [Reporting Bugs](#reporting-bugs)
+      - [How Do I Submit a Good Bug Report?](#how-do-i-submit-a-good-bug-report)
+      - [Issue workflow](#issue-workflow)
+    - [Suggesting Enhancements](#suggesting-enhancements)
+      - [Before Submitting an Enhancement](#before-submitting-an-enhancement)
+      - [How Do I Submit a Good Enhancement Suggestion?](#how-do-i-submit-a-good-enhancement-suggestion)
+  - [Your First Code Contribution](#your-first-code-contribution)
+    - [I want to contribute a new component](#i-want-to-contribute-a-new-component)
+    - [I want to contribute a bugfix or an component enhancement](#i-want-to-contribute-a-bugfix-or-an-component-enhancement)
+  - [Setup](#setup)
+    - [Modifying Core Components](#modifying-core-components)
+    - [Modifying Angular, React, and Vue](#modifying-angular-react-and-vue)
+      - [Modifying Files](#modifying-files)
+    - [Preview Changes](#preview-changes)
+      - [Core](#core)
+      - [Angular](#angular)
+      - [React](#react)
+      - [Vue](#vue)
+      - [Web Components](#web-components)
+      - [Lint changes](#lint-changes)
+      - [Building changes](#building-changes)
+    - [Unit testing](#unit-testing)
+    - [Visual regression testing](#visual-regression-testing)
+    - [Modify and preview documentation](#modify-and-preview-documentation)
+      - [Preview and example code](#preview-and-example-code)
+    - [Submit Pull Request](#submit-pull-request)
+  - [Attribution](#attribution)
 
 ## Code of Conduct
 
@@ -94,7 +118,20 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/siemen
 
 ## Your First Code Contribution
 
-### Setup
+### I want to contribute a new component
+
+Contributions are always welcome. Here's how to get started to make sure your contribution fits seamlessly into the Siemens Industrial Experience design system:
+
+- Before you dive in, open a GitHub issue or drop us an email at team.ix.industry@siemens.com. This helps us stay in sync and avoid duplicate work.
+- Design the component in Figma specifyin the anatomy, options, variants, overflow and resizing behavior, plus interaction and accessibility. Use iX design tokens for consistency.
+- Share your design with us to discuss and refine it before you start coding.
+- Once the design is approved, you can start building your component. See [#setup](#setup).
+
+### I want to contribute a bugfix or an component enhancement
+
+- Before you dive in, open a GitHub issue. This helps us stay in sync and avoid duplicate work.
+
+## Setup
 
 1. **Node.js Setup**: This project uses [Volta](https://volta.sh/) to pin Node.js version 22.18.0. You can either:
    - Install [Volta](https://volta.sh/) and let it automatically manage the correct Node.js version when you enter the project directory
