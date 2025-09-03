@@ -12,7 +12,9 @@
 
 @mixin set-border($composition) {
   @if $composition {
-    border-#{$composition}: var(--theme-app-header--border-width) solid var(--theme-color-soft-bdr);
+    border-#{$composition}: var(--theme-app-header--border-width)
+      solid
+      var(--theme-color-soft-bdr);
   }
 }
 
@@ -28,6 +30,12 @@
   aside {
     width: 100%;
     height: 100%;
+  }
+
+  .slot-header-content {
+    display: inline-block;
+    position: relative;
+    max-height: 2rem;
   }
 
   .title-text {
@@ -62,12 +70,14 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin: var(--theme-space--1) var(--theme-space-2) var(--theme-space--1) var(--theme-space-2);
+      margin: var(--theme-space--1) var(--theme-space-2) var(--theme-space--1)
+        var(--theme-space-2);
     }
 
     .title-finished {
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
+        var(--theme-space-2);
     }
 
     .title-expanded {
@@ -80,7 +90,8 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
+        var(--theme-space-2);
     }
   }
 
@@ -92,7 +103,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: var(--theme-space-2) var(--theme-space--1)  var(--theme-space-2) var(--theme-space--1);
+      margin: var(--theme-space-2) var(--theme-space--1) var(--theme-space-2)
+        var(--theme-space--1);
 
       .title-text {
         flex-direction: row-reverse;
@@ -114,7 +126,8 @@
 
     .title-finished {
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
+        var(--theme-space-2);
     }
 
     .title-expanded {
@@ -127,7 +140,8 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
+        var(--theme-space-2);
     }
   }
 
@@ -154,6 +168,16 @@
     height: 100%;
     width: 100%;
   }
+
+  .slot-header {
+    max-height: 2rem;
+    max-width: unset;
+  }
+
+  .slot-header.rotate {
+    max-height: unset;
+    max-width: 2rem;
+  }
 }
 
 :host(.not-visible) {
@@ -169,7 +193,8 @@
 }
 
 :host(.nav-left-border) {
-  border-left: var(--theme-app-header--border-width) solid var(--theme-color-weak-bdr);
+  border-left: var(--theme-app-header--border-width) solid
+    var(--theme-color-weak-bdr);
 }
 
 :host(.left-pane-border) {

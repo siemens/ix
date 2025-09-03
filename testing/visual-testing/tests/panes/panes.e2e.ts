@@ -165,4 +165,20 @@ regressionTest.describe('pane', () => {
       await expect(page).toHaveScreenshot();
     }
   );
+
+  regressionTest('header slot', async ({ page }) => {
+    await page.goto('panes/header-slot');
+    await expect(page).toHaveScreenshot();
+  });
+
+  ['pane-left', 'pane-top', 'pane-right', 'pane-bottom'].forEach((paneName) => {
+    regressionTest(`header slot expanded ${paneName}`, async ({ page }) => {
+      await page.goto('panes/header-slot');
+
+      const expandCollapseButton = page.getByLabel(paneName);
+      await expandCollapseButton.click();
+
+      await expect(page).toHaveScreenshot();
+    });
+  });
 });
