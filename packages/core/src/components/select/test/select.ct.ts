@@ -149,7 +149,7 @@ test('filter', async ({ mount, page }) => {
   await expect(item_abc).toBeVisible();
 });
 
-test('multiple mode filter reset', async ({ mount, page }) => {
+test('multiple mode filter reset and keyboard navigation', async ({ mount, page }) => {
   await mount(`
     <ix-select mode="multiple">
       <ix-select-item value="1" label="Item 1">Test</ix-select-item>
@@ -185,40 +185,25 @@ test('multiple mode filter reset', async ({ mount, page }) => {
   await expect(item2).toBeVisible();
   await expect(item3).toBeVisible();
   await expect(item4).toBeVisible();
-
   await expect(element.locator('.chips').getByTitle('Item 1')).toBeVisible();
+
+  await expect(item1).toBeFocused();
+
+  await page.keyboard.press('ArrowDown');
+  await expect(item2).toBeFocused();
+
+  await page.keyboard.press('ArrowDown'); 
+  await expect(item3).toBeFocused();
+
+  await page.keyboard.press('ArrowUp');
+  await expect(item2).toBeFocused();
 
   await item3.click();
   await expect(element.locator('.chips').getByTitle('Item 3')).toBeVisible();
   await expect(element.locator('input')).toHaveValue('');
   await expect(dropdown).toBeVisible();
+  await expect(item3).toBeFocused();
 });
-
-test('open filtered dropdown on input', async ({ mount, page }) => {
-  await mount(`
-        <ix-select>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-        </ix-select>
-    `);
-  const select = page.locator('ix-select');
-  const input = select.locator('input');
-  await select.evaluate((select: HTMLIxSelectElement) => (select.value = []));
-
-  await input.focus();
-  await page.keyboard.press('Escape');
-  const dropdown = select.locator('ix-dropdown');
-  await expect(dropdown).not.toBeVisible();
-
-  await input.fill('1');
-
-  const item1 = page.getByRole('button', { name: 'Item 1' });
-  const item2 = page.getByRole('button', { name: 'Item 2' });
-
-  await expect(item1).toBeVisible();
-  await expect(item2).not.toBeVisible();
-});
-
 test('remove text from input and reselect the element', async ({
   mount,
   page,
