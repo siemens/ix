@@ -171,13 +171,20 @@ export class Tabs {
 
     element.setAttribute('layout', this.layout);
     element.setAttribute('placement', this.placement);
-    if (isSelected) {
-      element.setAttribute('selected', '');
-    } else {
-      element.removeAttribute('selected');
-    }
+
+    this.setBooleanAttribute(element, 'small', this.small);
+    this.setBooleanAttribute(element, 'rounded', this.rounded);
+    this.setBooleanAttribute(element, 'selected', isSelected);
 
     this.applyRequiredClasses(element, isSelected);
+  }
+
+  private setBooleanAttribute(element: HTMLElement, attribute: string, condition: boolean) {
+    if (condition) {
+      element.setAttribute(attribute, '');
+    } else {
+      element.removeAttribute(attribute);
+    }
   }
 
   private applyRequiredClasses(
@@ -209,9 +216,22 @@ export class Tabs {
     return classes;
   }
 
+  private validateSelectedIndex() {
+    const tabs = this.getTabs();
+    if (this.selected >= tabs.length) {
+      const newSelected = 0;
+      if (this.selected !== newSelected) {
+        this.selected = newSelected;
+        this.selectedChange.emit(newSelected);
+      }
+    }
+  }
+
   private updateTabAttributes() {
     const tabs = this.getTabs();
     this.totalItems = tabs.length;
+
+    this.validateSelectedIndex();
 
     tabs.forEach((element, index) => {
       this.setTabAttributes(element, index);
@@ -369,15 +389,6 @@ export class Tabs {
 
   componentWillRender() {
     this.renderArrows();
-
-    const tabs = this.getTabs();
-    if (this.selected >= tabs.length) {
-      const newSelected = 0;
-      if (this.selected !== newSelected) {
-        this.selected = newSelected;
-        this.selectedChange.emit(newSelected);
-      }
-    }
   }
 
   private renderArrows() {
