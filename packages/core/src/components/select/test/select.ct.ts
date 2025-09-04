@@ -120,35 +120,6 @@ test('multiple selection', async ({ mount, page }) => {
   await expect(chip3).toBeVisible();
 });
 
-test('filter', async ({ mount, page }) => {
-  await mount(`
-        <ix-select mode="multiple">
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-          <ix-select-item value="abc" label="abc">Test</ix-select-item>
-          <ix-select-item value="4" label="Item 4">Test</ix-select-item>
-        </ix-select>
-    `);
-  const element = page.locator('ix-select');
-  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
-
-  await page.locator('[data-select-dropdown]').click();
-  const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
-
-  await element.locator('input').fill('abc');
-
-  const item1 = page.getByRole('button', { name: 'Item 1' });
-  const item2 = page.getByRole('button', { name: 'Item 2' });
-  const item4 = page.getByRole('button', { name: 'Item 4' });
-  const item_abc = page.getByRole('button', { name: 'abc' });
-
-  await expect(item1).not.toBeVisible();
-  await expect(item2).not.toBeVisible();
-  await expect(item4).not.toBeVisible();
-  await expect(item_abc).toBeVisible();
-});
-
 test('multiple mode filter reset and keyboard navigation', async ({ mount, page }) => {
   await mount(`
     <ix-select mode="multiple">
@@ -204,6 +175,61 @@ test('multiple mode filter reset and keyboard navigation', async ({ mount, page 
   await expect(dropdown).toBeVisible();
   await expect(item3).toBeFocused();
 });
+
+test('filter', async ({ mount, page }) => {
+  await mount(`
+        <ix-select mode="multiple">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="abc" label="abc">Test</ix-select-item>
+          <ix-select-item value="4" label="Item 4">Test</ix-select-item>
+        </ix-select>
+    `);
+  const element = page.locator('ix-select');
+  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
+
+  await page.locator('[data-select-dropdown]').click();
+  const dropdown = element.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  await element.locator('input').fill('abc');
+
+  const item1 = page.getByRole('button', { name: 'Item 1' });
+  const item2 = page.getByRole('button', { name: 'Item 2' });
+  const item4 = page.getByRole('button', { name: 'Item 4' });
+  const item_abc = page.getByRole('button', { name: 'abc' });
+
+  await expect(item1).not.toBeVisible();
+  await expect(item2).not.toBeVisible();
+  await expect(item4).not.toBeVisible();
+  await expect(item_abc).toBeVisible();
+});
+
+test('open filtered dropdown on input', async ({ mount, page }) => {
+  await mount(`
+        <ix-select>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+    `);
+  const select = page.locator('ix-select');
+  const input = select.locator('input');
+  await select.evaluate((select: HTMLIxSelectElement) => (select.value = []));
+
+  await input.focus();
+  await page.keyboard.press('Escape');
+  const dropdown = select.locator('ix-dropdown');
+  await expect(dropdown).not.toBeVisible();
+
+  await input.fill('1');
+
+  const item1 = page.getByRole('button', { name: 'Item 1' });
+  const item2 = page.getByRole('button', { name: 'Item 2' });
+
+  await expect(item1).toBeVisible();
+  await expect(item2).not.toBeVisible();
+});
+
 test('remove text from input and reselect the element', async ({
   mount,
   page,
