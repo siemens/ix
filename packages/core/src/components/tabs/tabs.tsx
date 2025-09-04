@@ -25,14 +25,6 @@ import {
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
-interface HTMLIxTabItemElementWithProps extends HTMLIxTabItemElement {
-  selected: boolean;
-  small: boolean;
-  rounded: boolean;
-  layout: 'auto' | 'stretched';
-  placement: 'bottom' | 'top';
-}
-
 const TAB_MANAGED_CLASSES = {
   SELECTED: 'selected',
   DISABLED: 'disabled',
@@ -175,14 +167,7 @@ export class Tabs {
   }
 
   private setTabAttributes(element: HTMLIxTabItemElement, index: number) {
-    const tabElement = element as HTMLIxTabItemElementWithProps;
     const isSelected = index === this.selected;
-
-    tabElement.small = this.small;
-    tabElement.rounded = this.rounded;
-    tabElement.layout = this.layout;
-    tabElement.placement = this.placement;
-    tabElement.selected = isSelected;
 
     element.setAttribute('layout', this.layout);
     element.setAttribute('placement', this.placement);
@@ -307,8 +292,6 @@ export class Tabs {
 
   @Watch('selected')
   onSelectedChange(newValue: number) {
-    this.updateTabAttributes();
-
     if (!this.showArrows()) return;
 
     const tabRect = this.getTab(newValue).getBoundingClientRect();
@@ -413,6 +396,10 @@ export class Tabs {
     });
 
     this.observeSlotChanges();
+  }
+
+  componentDidRender() {
+    this.updateTabAttributes();
   }
 
   disconnectedCallback() {
