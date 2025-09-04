@@ -396,15 +396,15 @@ export class Tabs {
     this.renderArrows();
   }
 
+  componentDidRender() {
+    this.updateTabAttributes();
+  }
+
   private renderArrows() {
     requestAnimationFrameNoNgZone(() => {
       this.showArrowNext = this.showNextArrow();
       this.showArrowPrevious = this.showPreviousArrow();
     });
-  }
-
-  componentDidRender() {
-    this.updateTabAttributes();
   }
 
   componentDidLoad() {
