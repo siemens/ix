@@ -107,6 +107,18 @@ test.describe('validation', () => {
 
       await expect(invalidText).toBeVisible();
     });
+
+    test('"0" input triggers validation', async ({ mount, page }) => {
+      await mount(`<ix-number-input max="-1" value="-1"></ix-number-input>`);
+
+      const ixInput = page.locator('ix-number-input');
+      const shadowDomInput = ixInput.locator('input');
+
+      await shadowDomInput.fill('0');
+      await shadowDomInput.blur();
+
+      await expect(ixInput).toHaveClass(/ix-invalid--validity-invalid/);
+    });
   });
 });
 
