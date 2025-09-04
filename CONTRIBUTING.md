@@ -94,6 +94,19 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/siemen
 
 ## Your First Code Contribution
 
+### I want to contribute a new component
+
+Contributions are always welcome. Here's how to get started to make sure your contribution fits seamlessly into the Siemens Industrial Experience design system:
+
+- Before you dive in, open a GitHub issue or drop us an email at team.ix.industry@siemens.com. This helps us stay in sync and avoid duplicate work.
+- Design the component in Figma specifyin the anatomy, options, variants, overflow and resizing behavior, plus interaction and accessibility. Use iX design tokens for consistency.
+- Share your design with us to discuss and refine it before you start coding.
+- Once the design is approved, you can start building your component. See [#setup](#setup).
+
+### I want to contribute a bugfix or an component enhancement
+
+- Before you dive in, open a GitHub issue. This helps us stay in sync and avoid duplicate work.
+
 ### Setup
 
 1. [Download the installer](https://nodejs.org/) for the LTS version of Node.js. This is the best way to also [install pnpm](https://pnpm.io/installation).
