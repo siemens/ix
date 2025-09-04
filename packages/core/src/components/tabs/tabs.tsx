@@ -392,12 +392,12 @@ export class Tabs {
     this.initResizeObserver();
   }
 
-  componentWillRender() {
-    this.renderArrows();
-  }
-
   componentDidRender() {
     this.updateTabAttributes();
+  }
+
+  componentWillRender() {
+    this.renderArrows();
   }
 
   private renderArrows() {
