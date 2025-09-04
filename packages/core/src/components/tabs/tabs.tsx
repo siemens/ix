@@ -25,6 +25,26 @@ import {
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
+interface HTMLIxTabItemElementWithProps extends HTMLIxTabItemElement {
+  selected: boolean;
+  small: boolean;
+  rounded: boolean;
+  layout: 'auto' | 'stretched';
+  placement: 'bottom' | 'top';
+}
+
+const TAB_MANAGED_CLASSES = {
+  SELECTED: 'selected',
+  DISABLED: 'disabled',
+  SMALL_TAB: 'small-tab',
+  ICON: 'icon',
+  STRETCHED: 'stretched',
+  BOTTOM: 'bottom',
+  TOP: 'top',
+  CIRCLE: 'circle',
+  HYDRATED: 'hydrated',
+} as const;
+
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',
@@ -87,6 +107,7 @@ export class Tabs {
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
   private classObserver?: MutationObserver;
+  private updateScheduled = false;
 
   private clickAction: {
     timeout: NodeJS.Timeout | null;
@@ -128,139 +149,79 @@ export class Tabs {
     this.resizeObserver.observe(parentElement);
   }
 
-  private initMutationObserver() {
-    this.setupSlotChangeListener();
-    this.setupClassObserver();
-  }
+  private observeSlotChanges() {
+    this.classObserver?.disconnect();
 
-  private setupSlotChangeListener() {
-    const slotEl = this.hostElement.shadowRoot?.querySelector('slot');
-    if (!slotEl) return;
-
-    slotEl.addEventListener('slotchange', () => {
-      setTimeout(() => this.handleSlotChange(), 0);
-    });
-  }
-
-  private setupClassObserver() {
-    this.classObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => this.handleClassMutation(mutation));
+    this.classObserver = new MutationObserver(() => {
+      this.scheduleTabUpdate();
     });
 
     this.classObserver.observe(this.hostElement, {
-      childList: false,
+      childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ['class', 'selected', 'layout', 'placement'],
     });
   }
 
-  private handleClassMutation(mutation: MutationRecord) {
-    if (!this.isTabItemClassMutation(mutation)) return;
+  private scheduleTabUpdate() {
+    if (this.updateScheduled) return;
+    this.updateScheduled = true;
 
-    const element = mutation.target as HTMLIxTabItemElement;
-    const index = this.getTabs().indexOf(element);
-    if (index !== -1) {
-      this.setTabSelectionState(element, index);
-    }
-  }
-
-  private isTabItemClassMutation(mutation: MutationRecord): boolean {
-    return (
-      mutation.type === 'attributes' &&
-      mutation.attributeName === 'class' &&
-      mutation.target.nodeName === 'IX-TAB-ITEM'
-    );
-  }
-
-  private handleSlotChange() {
-    const tabs = this.getTabs();
-    this.totalItems = tabs.length;
-
-    tabs.forEach((element, index) => {
-      this.setTabAttributes(element);
-      this.setTabSelectionState(element, index);
+    requestAnimationFrame(() => {
+      this.updateTabAttributes();
+      this.updateScheduled = false;
     });
-
-    this.renderArrows();
   }
 
-  private setTabAttributes(element: HTMLIxTabItemElement) {
-    if (this.small) element.setAttribute('small', 'true');
-    if (this.rounded) element.setAttribute('rounded', 'true');
-    element.setAttribute('layout', this.layout);
-    element.setAttribute('placement', this.placement);
-  }
-
-  private setTabSelectionState(element: HTMLIxTabItemElement, index: number) {
+  private setTabAttributes(element: HTMLIxTabItemElement, index: number) {
+    const tabElement = element as HTMLIxTabItemElementWithProps;
     const isSelected = index === this.selected;
 
-    this.setTabProperties(element, isSelected);
-    this.applyTabClasses(element, isSelected);
-  }
+    tabElement.small = this.small;
+    tabElement.rounded = this.rounded;
+    tabElement.layout = this.layout;
+    tabElement.placement = this.placement;
+    tabElement.selected = isSelected;
 
-  private setTabProperties(element: HTMLIxTabItemElement, isSelected: boolean) {
-    (element as any).selected = isSelected;
-    element.setAttribute('selected', isSelected ? 'true' : 'false');
-  }
-
-  private applyTabClasses(element: HTMLIxTabItemElement, isSelected: boolean) {
-    const requiredClasses = this.getRequiredClasses(isSelected);
-
-    requiredClasses.forEach((className) => {
-      if (!element.classList.contains(className)) {
-        element.classList.add(className);
-      }
-    });
-
-    if (!isSelected && element.classList.contains('selected')) {
-      element.classList.remove('selected');
-    }
-
-    if (!this.shouldHaveBottomClass() && element.classList.contains('bottom')) {
-      element.classList.remove('bottom');
-    }
-
-    if (!this.shouldHaveTopClass() && element.classList.contains('top')) {
-      element.classList.remove('top');
-    }
-
-    if (
-      this.layout !== 'stretched' &&
-      element.classList.contains('stretched')
-    ) {
-      element.classList.remove('stretched');
-    }
-  }
-
-  private getRequiredClasses(isSelected: boolean): string[] {
-    const classes = ['hydrated'];
-
-    if (this.shouldHaveBottomClass()) {
-      classes.push('bottom');
-    }
-
-    if (this.shouldHaveTopClass()) {
-      classes.push('top');
-    }
-
-    if (this.layout === 'stretched') {
-      classes.push('stretched');
-    }
-
+    element.setAttribute('layout', this.layout);
+    element.setAttribute('placement', this.placement);
     if (isSelected) {
-      classes.push('selected');
+      element.setAttribute('selected', '');
+    } else {
+      element.removeAttribute('selected');
     }
+
+    this.applyRequiredClasses(element, isSelected);
+  }
+
+  private applyRequiredClasses(
+    element: HTMLIxTabItemElement,
+    isSelected: boolean
+  ) {
+    const existingClasses = Array.from(element.classList);
+    const customClasses = this.extractCustomClasses(existingClasses);
+    const requiredClasses = this.buildRequiredClasses(isSelected);
+
+    element.className = [...customClasses, ...requiredClasses].join(' ');
+  }
+
+  private extractCustomClasses(existingClasses: string[]): string[] {
+    const managedClasses = Object.values(TAB_MANAGED_CLASSES) as string[];
+    return existingClasses.filter((cls) => !managedClasses.includes(cls));
+  }
+
+  private buildRequiredClasses(isSelected: boolean): string[] {
+    const classes: string[] = [TAB_MANAGED_CLASSES.HYDRATED];
+
+    if (isSelected) classes.push(TAB_MANAGED_CLASSES.SELECTED);
+    if (this.small) classes.push(TAB_MANAGED_CLASSES.SMALL_TAB);
+    if (this.layout === 'stretched') classes.push(TAB_MANAGED_CLASSES.STRETCHED);
+    if (this.placement === 'bottom') classes.push(TAB_MANAGED_CLASSES.BOTTOM);
+    if (this.placement === 'top') classes.push(TAB_MANAGED_CLASSES.TOP);
+    if (this.rounded) classes.push(TAB_MANAGED_CLASSES.CIRCLE);
 
     return classes;
-  }
-
-  private shouldHaveBottomClass(): boolean {
-    return this.placement === 'bottom';
-  }
-
-  private shouldHaveTopClass(): boolean {
-    return this.placement === 'top';
   }
 
   private updateTabAttributes() {
@@ -268,8 +229,7 @@ export class Tabs {
     this.totalItems = tabs.length;
 
     tabs.forEach((element, index) => {
-      this.setTabAttributes(element);
-      this.setTabSelectionState(element, index);
+      this.setTabAttributes(element, index);
     });
 
     this.renderArrows();
@@ -347,6 +307,8 @@ export class Tabs {
 
   @Watch('selected')
   onSelectedChange(newValue: number) {
+    this.updateTabAttributes();
+
     if (!this.showArrows()) return;
 
     const tabRect = this.getTab(newValue).getBoundingClientRect();
@@ -422,15 +384,6 @@ export class Tabs {
     this.initResizeObserver();
   }
 
-  componentDidRender() {
-    const tabs = this.getTabs();
-    this.totalItems = tabs.length;
-
-    tabs.forEach((element, index) => {
-      this.setTabSelectionState(element, index);
-    });
-  }
-
   componentWillRender() {
     this.renderArrows();
 
@@ -459,7 +412,7 @@ export class Tabs {
       );
     });
 
-    this.initMutationObserver();
+    this.observeSlotChanges();
   }
 
   disconnectedCallback() {
