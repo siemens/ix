@@ -9,6 +9,7 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import { ButtonVariant } from './button';
+import { AnchorInterface } from './button.interface';
 
 export type ButtonAlignment = 'center' | 'start';
 
@@ -71,10 +72,7 @@ export type BaseButtonProps = {
   alignment?: ButtonAlignment;
   tabIndex?: number;
   afterContent?: any;
-  href?: string;
-  target?: '_self' | '_blank' | '_parent' | '_top';
-  rel?: string;
-};
+} & AnchorInterface;
 
 const getSpinnerSize = (btnProps: BaseButtonProps) => {
   if (!btnProps.icon) {

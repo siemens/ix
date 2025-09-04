@@ -23,13 +23,14 @@ import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import Animation from '../utils/animation';
+import { AnchorInterface, AnchorTarget } from '../button/button.interface';
 
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
   shadow: true,
 })
-export class BreadcrumbItem {
+export class BreadcrumbItem implements AnchorInterface {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
@@ -51,11 +52,25 @@ export class BreadcrumbItem {
   @Prop() icon?: string;
 
   /**
-   * URL for the breadcrumb link. When provided, the breadcrumb will render as an anchor tag.
+   * URL for the button link. When provided, the button will render as an anchor tag.
    *
    * @since 3.3.0
    */
   @Prop() href?: string;
+
+  /**
+   * Specifies where to open the linked document when href is provided.
+   *
+   * @since 3.3.0
+   */
+  @Prop() target?: AnchorTarget = '_self';
+
+  /**
+   * Specifies the relationship between the current document and the linked document when href is provided.
+   *
+   * @since 3.3.0
+   */
+  @Prop() rel?: string;
 
   /**@internal */
   @Prop() ghost: boolean = true;
@@ -115,6 +130,8 @@ export class BreadcrumbItem {
       },
       ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabelButton },
       href: this.href,
+      target: this.target,
+      rel: this.rel,
     };
 
     if (!this.visible) {

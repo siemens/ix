@@ -18,6 +18,7 @@ import {
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
+import { AnchorTarget } from './button.interface';
 
 export type ButtonVariant = 'danger' | 'primary' | 'secondary';
 
@@ -101,7 +102,7 @@ export class Button implements IxButtonComponent {
    *
    * @since 3.3.0
    */
-  @Prop() target?: '_self' | '_blank' | '_parent' | '_top' = '_self';
+  @Prop() target?: AnchorTarget = '_self';
 
   /**
    * Specifies the relationship between the current document and the linked document when href is provided.

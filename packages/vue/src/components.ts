@@ -195,6 +195,8 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
   'label',
   'icon',
   'href',
+  'target',
+  'rel',
   'ghost',
   'visible',
   'showChevron',
@@ -952,6 +954,8 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
   'disabled',
   'tooltipText',
   'href',
+  'target',
+  'rel',
   'isCategory'
 ]);
 

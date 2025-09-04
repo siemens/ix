@@ -1653,11 +1653,11 @@
           "mutable": false,
           "attr": "href",
           "reflectToAttr": false,
-          "docs": "URL for the breadcrumb link. When provided, the breadcrumb will render as an anchor tag.",
+          "docs": "URL for the button link. When provided, the button will render as an anchor tag.",
           "docsTags": [
             {
               "name": "since",
-              "text": "3.4.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -1714,6 +1714,92 @@
           "docsTags": [],
           "values": [
             {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "rel",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "rel",
+          "reflectToAttr": false,
+          "docs": "Specifies the relationship between the current document and the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+          "complexType": {
+            "original": "AnchorTarget",
+            "resolved": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+            "references": {
+              "AnchorTarget": {
+                "location": "import",
+                "path": "../button/button.interface",
+                "id": "src/components/button/button.interface.ts::AnchorTarget"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "'_self'"
+            }
+          ],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
               "type": "string"
             },
             {
@@ -1931,7 +2017,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.4.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -2077,7 +2163,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.4.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -2097,9 +2183,15 @@
           "name": "target",
           "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
           "complexType": {
-            "original": "'_self' | '_blank' | '_parent' | '_top'",
+            "original": "AnchorTarget",
             "resolved": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
-            "references": {}
+            "references": {
+              "AnchorTarget": {
+                "location": "import",
+                "path": "button.interface",
+                "id": "src/components/button/button.interface.ts::AnchorTarget"
+              }
+            }
           },
           "mutable": false,
           "attr": "target",
@@ -2108,7 +2200,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.4.0"
+              "text": "3.3.0"
             },
             {
               "name": "default",
@@ -16307,11 +16399,11 @@
           "mutable": false,
           "attr": "href",
           "reflectToAttr": false,
-          "docs": "URL for the menu item link. When provided, the menu item will render as an anchor tag.",
+          "docs": "URL for the button link. When provided, the button will render as an anchor tag.",
           "docsTags": [
             {
               "name": "since",
-              "text": "3.4.0"
+              "text": "3.3.0"
             }
           ],
           "values": [
@@ -16395,6 +16487,92 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "rel",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "rel",
+          "reflectToAttr": false,
+          "docs": "Specifies the relationship between the current document and the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+          "complexType": {
+            "original": "AnchorTarget",
+            "resolved": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+            "references": {
+              "AnchorTarget": {
+                "location": "import",
+                "path": "../button/button.interface",
+                "id": "src/components/button/button.interface.ts::AnchorTarget"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "'_self'"
+            }
+          ],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
+              "type": "string"
             },
             {
               "type": "undefined"
@@ -28656,6 +28834,11 @@
       "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/button/button.tsx"
+    },
+    "src/components/button/button.interface.ts::AnchorTarget": {
+      "declaration": "export type AnchorTarget = '_self' | '_blank' | '_parent' | '_top';",
+      "docstring": "",
+      "path": "src/components/button/button.interface.ts"
     },
     "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent": {
       "declaration": "export interface CustomCloseEvent {\n  nativeEvent: MouseEvent;\n  name: string;\n}",

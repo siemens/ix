@@ -278,6 +278,8 @@ export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, Ix
         label: 'label',
         icon: 'icon',
         href: 'href',
+        target: 'target',
+        rel: 'rel',
         ghost: 'ghost',
         visible: 'visible',
         showChevron: 'show-chevron',
@@ -1605,6 +1607,8 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         disabled: 'disabled',
         tooltipText: 'tooltip-text',
         href: 'href',
+        target: 'target',
+        rel: 'rel',
         isCategory: 'is-category'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
