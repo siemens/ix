@@ -403,6 +403,10 @@ export class Tabs {
     });
   }
 
+  componentDidRender() {
+    this.updateTabAttributes();
+  }
+
   componentDidLoad() {
     const tabs = this.getTabs();
     tabs.forEach((element) => {
@@ -412,10 +416,6 @@ export class Tabs {
     });
 
     this.observeSlotChanges();
-  }
-
-  componentDidRender() {
-    this.updateTabAttributes();
   }
 
   disconnectedCallback() {
