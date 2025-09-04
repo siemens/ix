@@ -13,10 +13,10 @@ import checkboxStyles from './checkbox.style.css';
 
 type AgGridModule = typeof AgGridCommunity;
 
-const applyIxTheme = async (
-  importedAggridModule: () => Promise<AgGridModule> | AgGridModule
+const useIxTheme = async (
+  importModule: () => Promise<AgGridModule> | AgGridModule
 ) => {
-  const { createTheme, createPart, themeAlpine } = await importedAggridModule();
+  const { createTheme, createPart, themeAlpine } = await importModule();
   const base = themeAlpine.withParams({
     backgroundColor: 'var(--theme-color-1)',
     foregroundColor: 'var(--theme-color-std-text)',
@@ -50,4 +50,4 @@ const applyIxTheme = async (
   return checkboxPart();
 };
 
-export { applyIxTheme };
+export { useIxTheme };
