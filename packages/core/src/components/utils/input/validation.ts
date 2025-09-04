@@ -148,6 +148,7 @@ export function HookValidationLifecycle(options?: {
       };
 
       host.addEventListener('checkedChange', checkIfRequiredFunction);
+      host.addEventListener('valueChange', checkIfRequiredFunction);
       host.addEventListener('ixBlur', checkIfRequiredFunction);
       setTimeout(checkIfRequiredFunction);
       return connectedCallback?.call(this);
