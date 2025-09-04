@@ -20,7 +20,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
 import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
 import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
@@ -38,6 +38,7 @@ import {
   iconNavigationLeft,
   iconNavigationRight,
 } from '@siemens/ix-icons/icons';
+import Animation from '../utils/animation';
 
 @Component({
   tag: 'ix-menu',
@@ -569,14 +570,13 @@ export class Menu {
 
   private animateOverlayFadeIn() {
     requestAnimationFrame(() => {
-      anime({
-        targets: this.overlayContainer,
-        duration: 300,
+      animate(this.overlayContainer!, {
+        duration: Animation.mediumTime,
         backdropFilter: [0, 'blur(1rem)'],
         translateX: ['-4rem', 0],
         opacity: [0, 1],
         easing: 'easeInSine',
-        begin: () => {
+        onBegin: () => {
           if (this.showPinned) {
             return;
           }
@@ -589,14 +589,13 @@ export class Menu {
 
   private animateOverlayFadeOut(onComplete: Function) {
     requestAnimationFrame(() => {
-      anime({
-        targets: this.overlayContainer,
-        duration: 300,
+      animate(this.overlayContainer!, {
+        duration: Animation.mediumTime,
         backdropFilter: ['blur(1rem)', 0],
         translateX: [0, '-4rem'],
         opacity: [1, 0],
         easing: 'easeInSine',
-        complete: () => onComplete(),
+        onComplete: () => onComplete(),
       });
     });
   }
@@ -727,11 +726,30 @@ export class Menu {
               label={this.i18nSettings}
             ></ix-menu-item>
           ) : null}
+          {this.enableToggleTheme ? (
+            <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
+              id="toggleTheme"
+              onClick={() => themeSwitcher.toggleMode()}
+              class="internal-tab bottom-tab"
+              icon={iconLightDark}
+              label={this.i18nToggleTheme}
+            ></ix-menu-item>
+          ) : null}
           <div onClick={(e) => this.onMenuItemsClick(e)}>
             <slot name="bottom"></slot>
           </div>
-
           <div id="popover-area"></div>
+          {this.enableMapExpand || this.applicationLayoutContext?.sidebar ? (
+            <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
+              id="menu-collapse"
+              onClick={() => this.sidebarToggle()}
+              class="internal-tab bottom-tab"
+              icon={`${this.getCollapseIcon()}`}
+              label={this.getCollapseText()}
+            ></ix-menu-item>
+          ) : null}
           {this.about ? (
             <ix-menu-item
               disabled={this.isHiddenFromViewport()}
@@ -744,26 +762,6 @@ export class Menu {
               icon={iconInfo}
               onClick={async () => this.toggleAbout(!this.showAbout)}
               label={this.i18nLegal}
-            ></ix-menu-item>
-          ) : null}
-          {this.enableToggleTheme ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="toggleTheme"
-              onClick={() => themeSwitcher.toggleMode()}
-              class="internal-tab bottom-tab"
-              icon={iconLightDark}
-              label={this.i18nToggleTheme}
-            ></ix-menu-item>
-          ) : null}
-          {this.enableMapExpand || this.applicationLayoutContext?.sidebar ? (
-            <ix-menu-item
-              disabled={this.isHiddenFromViewport()}
-              id="menu-collapse"
-              onClick={() => this.sidebarToggle()}
-              class="internal-tab bottom-tab"
-              icon={`${this.getCollapseIcon()}`}
-              label={this.getCollapseText()}
             ></ix-menu-item>
           ) : null}
         </nav>

@@ -1,0 +1,25 @@
+@mixin setVars {
+  --theme-switch-thumb-off--background: var(--theme-color-1);
+  --theme-switch-thumb-off--background--hover: var(--theme-color-1);
+  --theme-switch-thumb-off--background--active: var(--theme-color-1);
+  --theme-switch-thumb-off--background--disabled: var(--theme-color-component-3);
+  --theme-switch-thumb-off--background--invalid: var(--theme-color-1);
+  --theme-switch-thumb-off--background--invalid--hover: var(--theme-color-1);
+  --theme-switch-thumb-off--background--invalid--active: var(--theme-color-1);
+  --theme-switch-thumb-off--background--warning: var(--theme-color-1);
+  --theme-switch-thumb-off--background--warning--hover: var(--theme-color-1);
+  --theme-switch-thumb-off--background--warning--active: var(--theme-color-1);
+  --theme-switch-thumb-off--background--info: var(--theme-color-1);
+  --theme-switch-thumb-off--background--info--hover: var(--theme-color-1);
+  --theme-switch-thumb-off--background--info--active: var(--theme-color-1);
+  --theme-switch-thumb-off--border-color: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--hover: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--active: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--disabled: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--invalid: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--invalid--hover: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--invalid--active: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--warning: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--warning--hover: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--warning--active: var(--theme-color-0);
+}

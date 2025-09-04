@@ -1,0 +1,9 @@
+@mixin setVars {
+  --theme-tree-item--background: var(--theme-color-ghost);
+  --theme-tree-item--background--hover: var(--theme-color-ghost--hover);
+  --theme-tree-item--background--active: var(--theme-color-ghost--active);
+  --theme-tree-item--background--selected: var(--theme-color-ghost--selected);
+  --theme-tree-item--background--selected-hover: var(--theme-color-ghost--selected-hover);
+  --theme-tree-item--background--selected-active: var(--theme-color-ghost--selected-active);
+  --theme-tree-item--color: var(--theme-color-std-text);
+}

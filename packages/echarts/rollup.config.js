@@ -9,7 +9,8 @@
 
 import path from 'path';
 import typescript from '@rollup/plugin-typescript';
-import pkg from './package.json';
+
+const __dirname = path.resolve();
 
 /** @type {import('rollup').RollupOptions} */
 export default {

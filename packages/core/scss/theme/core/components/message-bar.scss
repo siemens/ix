@@ -1,0 +1,4 @@
+@mixin setVars {
+  --theme-message-bar--border-thickness: var(--theme-border-width-thick);
+  --theme-message-bar--border-radius: var(--theme-default-border-radius);
+}

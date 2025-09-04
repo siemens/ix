@@ -26,7 +26,7 @@ jobs:
       startsWith(github.event.comment.body, '/release:pr')
 
     steps:
-      - uses: danielleroux/pull-request-comment-branch@vef3408c9757d05f89cb525036383033a313758a0
+      - uses: danielleroux/pull-request-comment-branch@ef3408c9757d05f89cb525036383033a313758a0
         id: comment-branch
 
       - name: Get sha

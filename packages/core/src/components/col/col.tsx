@@ -9,23 +9,9 @@
 
 import { Component, forceUpdate, h, Host, Listen, Prop } from '@stencil/core';
 import { Breakpoint, matchBreakpoint } from '../utils/breakpoints';
+import type { ColumnSize } from './col.types';
 
 type GridBreakpoint = Breakpoint | '';
-
-export type ColumnSize =
-  | '1'
-  | '2'
-  | '3'
-  | '4'
-  | '5'
-  | '6'
-  | '7'
-  | '8'
-  | '9'
-  | '10'
-  | '11'
-  | '12'
-  | 'auto';
 
 @Component({
   tag: 'ix-col',

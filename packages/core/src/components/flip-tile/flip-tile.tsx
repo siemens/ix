@@ -21,6 +21,8 @@ import {
 import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileState } from './flip-tile-state';
 import { iconEye } from '@siemens/ix-icons/icons';
+import { animate } from 'animejs';
+import Animation from '../utils/animation';
 
 @Component({
   tag: 'ix-flip-tile',
@@ -52,6 +54,14 @@ export class FlipTile {
   @Prop() index = 0;
 
   /**
+   * ARIA label for the eye icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelEyeIconButton?: string;
+
+  /**
    * Event emitted when the index changes
    * @since 3.0.0
    */
@@ -59,7 +69,6 @@ export class FlipTile {
 
   @State() isFlipAnimationActive: boolean = false;
 
-  private readonly ANIMATION_DURATION = 150;
   private contentItems: Array<HTMLIxFlipTileContentElement> = [];
   private observer?: MutationObserver;
 
@@ -105,6 +114,8 @@ export class FlipTile {
   private toggleIndex() {
     let newIndex;
 
+    const oldIndex = this.index;
+
     if (this.index >= this.contentItems.length - 1) {
       newIndex = 0;
     } else {
@@ -114,6 +125,7 @@ export class FlipTile {
     const { defaultPrevented } = this.toggle.emit(newIndex);
 
     if (defaultPrevented) {
+      this.index = oldIndex;
       return;
     }
 
@@ -127,15 +139,35 @@ export class FlipTile {
 
     this.isFlipAnimationActive = true;
 
-    setTimeout(() => {
-      this.index = index;
-
-      this.updateContentVisibility(this.index);
-    }, this.ANIMATION_DURATION);
+    animate(
+      this.hostElement.shadowRoot!.querySelector('.flip-tile-container')!,
+      {
+        keyframes: {
+          '0%': {
+            transform: 'rotateY(0)',
+          },
+          '50%': {
+            transform: 'rotateY(90deg)',
+          },
+          '51%': {
+            transform: 'rotateY(270deg)',
+          },
+          '100%': {
+            transform: 'rotateY(360deg)',
+          },
+        },
+        duration: Animation.defaultTime,
+        easing: 'ease-in-out',
+        onComplete: () => {
+          this.index = index;
+          this.updateContentVisibility(this.index);
+        },
+      }
+    );
 
     setTimeout(() => {
       this.isFlipAnimationActive = false;
-    }, 2 * this.ANIMATION_DURATION);
+    }, 2 * Animation.defaultTime);
   }
 
   render() {
@@ -157,7 +189,6 @@ export class FlipTile {
             warning: this.state === FlipTileState.Warning,
             alarm: this.state === FlipTileState.Alarm,
             primary: this.state === FlipTileState.Primary,
-            'flip-animation-active': this.isFlipAnimationActive,
           }}
         >
           <div class="flip-tile-header">
@@ -169,6 +200,7 @@ export class FlipTile {
               variant="primary"
               ghost
               onClick={() => this.toggleIndex()}
+              aria-label={this.ariaLabelEyeIconButton}
             ></ix-icon-button>
           </div>
 

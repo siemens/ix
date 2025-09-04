@@ -8,8 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-
-export type KeyValueLabelPosition = 'top' | 'left';
+import type { KeyValueLabelPosition } from './key-value.types';
 
 /**
  * @slot custom-value - Optional custom value at key value instead of text value
@@ -24,6 +23,13 @@ export class KeyValue {
    * Optional key value icon
    */
   @Prop() icon?: string;
+
+  /**
+   * ARIA label for the icon
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelIcon?: string;
 
   /**
    * Key value label
@@ -48,7 +54,12 @@ export class KeyValue {
         }`}
       >
         {this.icon && (
-          <ix-icon name={this.icon} size="24" class="keyValue__icon"></ix-icon>
+          <ix-icon
+            name={this.icon}
+            size="24"
+            class="keyValue__icon"
+            aria-label={this.ariaLabelIcon}
+          ></ix-icon>
         )}
         <div class="keyValue__content">
           <div class="content__label">{this.label}</div>

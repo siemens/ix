@@ -28,6 +28,14 @@ export type ButtonVariant = 'danger' | 'primary' | 'secondary';
 })
 export class Button implements IxButtonComponent {
   /**
+   * ARIA label for the button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelButton?: string;
+
+  /**
    * Button variant
    */
   @Prop() variant: ButtonVariant = 'primary';
@@ -68,6 +76,12 @@ export class Button implements IxButtonComponent {
    * Icon name
    */
   @Prop() icon?: string;
+
+  /**
+   * Icon name for the right side of the button
+   * @since 3.3.0
+   */
+  @Prop() iconRight?: string;
 
   /** @internal */
   @Prop() alignment: 'center' | 'start' = 'center';
@@ -151,12 +165,16 @@ export class Button implements IxButtonComponent {
       selected: false,
       disabled: this.disabled || this.loading,
       icon: this.icon,
+      iconRight: this.iconRight,
       iconSize: this.iconSize,
       loading: this.loading,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
       tabIndex: this.hostElement.tabIndex,
+      ariaAttributes: {
+        'aria-label': this.ariaLabelButton,
+      },
     };
 
     return (

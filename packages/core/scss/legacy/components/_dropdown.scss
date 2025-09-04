@@ -7,7 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'mixins/hover';
+@use 'mixins/hover';
+@use 'legacy/mixins/fonts';
+@use 'common-variables' as vars;
 
 .dropdown-group {
   margin: 0.687rem;
@@ -51,14 +53,15 @@
   position: absolute;
 
   background-color: var(--theme-menu--background);
-  @include text-default-single;
   border: var(--theme-menu--border-thickness) solid
     var(--theme-menu--border--color);
   border-radius: var(--theme-menu--border-radius);
   max-width: 100vw;
-  padding: $tiny-space 0;
+  padding: vars.$tiny-space 0;
   transition: background-color var(--theme-default-time);
   box-shadow: var(--theme-menu--box-shadow);
+
+  @include fonts.text-default-single;
 
   &.xl > .dropdown-item {
     height: 2.5rem;
@@ -69,17 +72,17 @@
 .dropdown-header {
   display: flex;
   align-items: center;
-  height: $large-control-height;
+  height: vars.$large-control-height;
   color: var(--theme-menu-header--color);
-  padding: 0 $default-space;
+  padding: 0 vars.$default-space;
 }
 
 .dropdown-buttons {
   display: flex;
-  padding: $tiny-space $small-space;
+  padding: vars.$tiny-space vars.$small-space;
 
   ix-icon-button + ix-icon-button {
-    margin-inline-start: $small-space;
+    margin-inline-start: vars.$small-space;
   }
 }
 
@@ -89,7 +92,7 @@
   position: relative;
   align-items: center;
   cursor: pointer;
-  padding: 0 $x-large-space;
+  padding: 0 vars.$x-large-space;
   border: 1px solid transparent;
   color: var(--theme-menu-item--color);
   background-color: transparent;
@@ -106,12 +109,12 @@
     color: var(--theme-menu-item--color--focus);
   }
 
-  @include hover {
+  @include hover.hover {
     color: var(--theme-menu-item--color--hover);
     background-color: var(--theme-menu-item--background--hover);
   }
 
-  @include active {
+  @include hover.active {
     color: var(--theme-menu-item--color--active);
     background-color: var(--theme-menu-item--background--active);
   }
@@ -139,7 +142,7 @@
       color: var(--theme-menu-item-icon-check--color);
     }
 
-    margin-inline-end: $small-space;
+    margin-inline-end: vars.$small-space;
   }
 }
 
@@ -155,7 +158,7 @@
 
 .dropdown-divider {
   border-top: 1px solid var(--theme-menu-separator--background);
-  margin: $tiny-space 0;
+  margin: vars.$tiny-space 0;
 }
 
 button.dropdown-toggle {

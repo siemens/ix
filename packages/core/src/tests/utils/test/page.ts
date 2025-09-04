@@ -14,6 +14,7 @@ import {
   TestInfo as _TestInfo,
   expect,
 } from '@playwright/test';
+import type { addIcons as _addIcons } from '@siemens/ix-icons';
 
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;
@@ -30,9 +31,11 @@ export type Mount = (
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
   const originalScreenshot = page.screenshot.bind(page);
-  const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
+  const dataIxTheme = testInfo.project.metadata?.['data-ix-theme'] ?? 'classic';
+  const dataIxColorSchema =
+    testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
   testInfo.annotations.push({
-    type: theme,
+    type: `${dataIxTheme} ${dataIxColorSchema}`,
   });
   page.goto = async (url: string, options) => {
     if (testInfo.componentTest === true) {
@@ -40,7 +43,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     }
 
     const response = await originalGoto(
-      `http://127.0.0.1:8080/src/tests/${url}?theme=${theme}`,
+      `http://127.0.0.1:8080/src/tests/${url}?data-ix-theme=${dataIxTheme}&data-ix-color-schema=${dataIxColorSchema}`,
       options
     );
 
@@ -78,29 +81,12 @@ async function mountComponent(
       }
 
       if (config?.icons) {
-        const iconImport = Object.keys(config.icons).join(',\n');
-        const addIconsScript = `
-          import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
-          import {
-            ${iconImport}
-          } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
-
-          addIcons({
-            ${iconImport}
-          });
-        `;
-
-        const head = document.querySelector('head');
-
-        if (!head) {
-          throw new Error('No head tag found in the document.');
-        }
-
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.textContent = addIconsScript;
-
-        head.appendChild(script);
+        const moduleImport = await import(
+          //@ts-expect-error - Only existing on runtime
+          '/www/node_modules/@siemens/ix-icons/dist/index.js'
+        );
+        const addIcons: typeof _addIcons = moduleImport.addIcons;
+        addIcons(config.icons);
       }
 
       const loadScript = document.createElement('script');
@@ -182,12 +168,15 @@ export const regressionTest = testBase.extend<{
   },
   mount: async ({ page }, use, testInfo: TestInfo) => {
     testInfo.componentTest = true;
-    const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
+    const dataIxTheme =
+      testInfo.project.metadata?.['data-ix-theme'] ?? 'classic';
+    const dataIxColorSchema =
+      testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
     testInfo.annotations.push({
-      type: theme,
+      type: `${dataIxTheme} ${dataIxColorSchema}`,
     });
     await page.goto(
-      `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
+      `http://127.0.0.1:8080/src/tests/utils/ct/index.html?data-ix-theme=${dataIxTheme}&data-ix-color-schema=${dataIxColorSchema}`
     );
     await use((selector, config) => mountComponent(page, selector, config));
   },

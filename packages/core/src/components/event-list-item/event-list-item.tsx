@@ -30,7 +30,7 @@ export class EventListItem {
    * You can find a list of all available colors in our documentation.
    * Example values are `--theme-color-alarm` or `color-alarm`
    *
-   * @link https://ix.siemens.io/docs/theming/colors/
+   * {@link https://ix.siemens.io/docs/theming/colors/}
    */
   @Prop() itemColor?: string;
 
@@ -96,6 +96,7 @@ export class EventListItem {
                 name={iconChevronRight}
                 size="16"
                 class="chevron-icon"
+                aria-hidden="true"
               ></ix-icon>
             )}
           </div>

@@ -9,6 +9,7 @@
 
 import {
   iconChevronDownSmall,
+  iconChevronUpSmall,
   iconClear,
   iconPlus,
 } from '@siemens/ix-icons/icons';
@@ -67,6 +68,22 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * Label for the select component
    */
   @Prop() label?: string;
+
+  /**
+   * ARIA label for the chevron down icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelChevronDownIconButton?: string;
+
+  /**
+   * ARIA label for the clear icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelClearIconButton?: string;
 
   /**
    * Warning text for the select component
@@ -896,6 +913,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                         e.stopPropagation();
                         this.clear();
                       }}
+                      aria-label={this.ariaLabelClearIconButton}
                     />
                   ) : null}
                   {this.disabled || this.readonly ? null : (
@@ -903,11 +921,16 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       data-select-dropdown
                       key="dropdown"
                       class={{ 'dropdown-visible': this.dropdownShow }}
-                      icon={iconChevronDownSmall}
+                      icon={
+                        this.dropdownShow
+                          ? iconChevronUpSmall
+                          : iconChevronDownSmall
+                      }
                       ghost
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
                       }}
+                      aria-label={this.ariaLabelChevronDownIconButton}
                     ></ix-icon-button>
                   )}
                 </div>

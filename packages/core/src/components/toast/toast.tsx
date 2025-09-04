@@ -14,6 +14,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Method,
   Prop,
   State,
 } from '@stencil/core';
@@ -63,12 +64,21 @@ export class Toast {
   @Prop() iconColor?: string;
 
   /**
+   * ARIA label for the close icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCloseIconButton?: string;
+
+  /**
    * Toast closed
    */
   @Event() closeToast!: EventEmitter;
 
   @State() progress = 0;
   @State() touched = false;
+  @State() paused = false;
 
   @Element() hostElement!: HTMLIxToastElement;
 
@@ -139,6 +149,30 @@ export class Toast {
     }, 250);
   }
 
+  /**
+   * Pause the toast's auto-close progress bar and timer.
+   */
+  @Method()
+  async pause() {
+    this.paused = true;
+  }
+
+  /**
+   * Resume the toast's auto-close progress bar and timer if previously paused.
+   */
+  @Method()
+  async resume() {
+    this.paused = false;
+  }
+
+  /**
+   * Returns whether the toast is currently paused (auto-close is paused).
+   */
+  @Method()
+  async isPaused(): Promise<boolean> {
+    return this.paused || this.touched;
+  }
+
   render() {
     let progressBarStyle: Record<string, string> = {};
 
@@ -146,7 +180,7 @@ export class Toast {
 
     progressBarStyle = {
       animationDuration: `${this.autoCloseDelay}ms`,
-      animationPlayState: this.touched ? 'paused' : 'running',
+      animationPlayState: this.touched || this.paused ? 'paused' : 'running',
     };
 
     progressBarClass.push('toast-progress-bar--animated');
@@ -167,18 +201,25 @@ export class Toast {
           ) : null}
           <div class="toast-content">
             {this.toastTitle ? (
-              <div class="toast-title">{this.toastTitle}</div>
+              <ix-typography class="toast-title" format="h5">
+                {this.toastTitle}
+              </ix-typography>
             ) : null}
             <div class="toast-message">
               <slot></slot>
+            </div>
+            <div class="toast-action">
+              <slot name="action"></slot>
             </div>
           </div>
           <div class="toast-close">
             <ix-icon-button
               icon={iconClose}
+              iconColor="color-soft-text"
               size="24"
               ghost
               onClick={() => this.closeToast.emit()}
+              aria-label={this.ariaLabelCloseIconButton}
             />
           </div>
         </div>

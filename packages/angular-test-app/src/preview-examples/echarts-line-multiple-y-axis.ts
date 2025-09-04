@@ -10,11 +10,12 @@
 import { Component, OnInit } from '@angular/core';
 import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts';
 import { EChartsOption, SeriesOption } from 'echarts';
 import { YAXisOption } from 'echarts/types/dist/shared';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './echarts-line-multiple-y-axis.html',
   styleUrls: ['./echarts-line-multiple-y-axis.css'],

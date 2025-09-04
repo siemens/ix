@@ -18,9 +18,13 @@ import {
   State,
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+import { makeRef } from '../utils/make-ref';
 
-function DefaultAvatar(props: { initials?: string }) {
+function DefaultAvatar(
+  props: Readonly<{ initials?: string; a11yLabel?: string }>
+) {
   const { initials } = props;
 
   if (initials) {
@@ -34,6 +38,7 @@ function DefaultAvatar(props: { initials?: string }) {
       width="32"
       height="32"
       viewBox="0 0 32 32"
+      aria-label={props.a11yLabel}
     >
       <g fill="none" fill-rule="evenodd">
         <path
@@ -53,28 +58,45 @@ function DefaultAvatar(props: { initials?: string }) {
   );
 }
 
-function AvatarImage(props: { image?: string; initials?: string }) {
+function AvatarImage(
+  props: Readonly<{
+    image?: string;
+    initials?: string;
+    a11yLabel?: string;
+  }>
+) {
   return (
     <div class="avatar">
       {props.image ? (
-        <img src={props.image} class="avatar-image"></img>
+        <img
+          src={props.image}
+          class="avatar-image"
+          aria-label={props.a11yLabel}
+        ></img>
       ) : (
-        <DefaultAvatar initials={props.initials} />
+        <DefaultAvatar initials={props.initials} a11yLabel={props.a11yLabel} />
       )}
     </div>
   );
 }
 
-function UserInfo(props: {
-  image?: string;
-  initials?: string;
-  userName: string;
-  extra?: string;
-}) {
+function UserInfo(
+  props: Readonly<{
+    image?: string;
+    initials?: string;
+    userName: string;
+    extra?: string;
+    a11yLabel?: string;
+  }>
+) {
   return (
     <Fragment>
       <div class="user-info" onClick={(event) => event.preventDefault()}>
-        <AvatarImage image={props.image} initials={props.initials} />
+        <AvatarImage
+          image={props.image}
+          initials={props.initials}
+          a11yLabel={props.a11yLabel}
+        />
         <div class="user">
           <div class="username">{props.userName}</div>
           {props.extra && (
@@ -95,6 +117,14 @@ function UserInfo(props: {
 })
 export class Avatar {
   @Element() hostElement!: HTMLIxAvatarElement;
+
+  /**
+   * Accessibility label for the image
+   * Will be set as aria-label on the nested HTML img element
+   *
+   * @deprecated Set the native `aria-label` on the ix-avatar host element
+   */
+  @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
   /**
    * Display an avatar image
@@ -120,11 +150,27 @@ export class Avatar {
    */
   @Prop() extra?: string;
 
+  /**
+   * Text to display in a tooltip when hovering over the avatar
+   *
+   * @since 3.3.0
+   */
+  @Prop() tooltipText?: string;
+
+  /**
+   * aria-label for the tooltip
+   *
+   * @since 3.3.0
+   */
+  @Prop() ariaLabelTooltip?: string;
+
   @State() isClosestApplicationHeader = false;
   @State() hasSlottedElements = false;
 
   private slotElement?: HTMLSlotElement;
   private dropdownElement?: HTMLIxDropdownElement;
+
+  private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
   componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
@@ -155,6 +201,32 @@ export class Avatar {
   }
 
   render() {
+    const a11y = a11yHostAttributes(this.hostElement);
+    const a11yLabel = a11y['aria-label'];
+
+    const tooltipText = this.tooltipText || this.username;
+    const ariaHidden = tooltipText === this.username;
+
+    const Avatar = (
+      <Fragment>
+        <AvatarImage
+          image={this.image}
+          initials={this.initials}
+          a11yLabel={a11yLabel ?? this.a11yLabel}
+        />
+        {!!tooltipText && (
+          <ix-tooltip
+            ref={this.tooltipRef}
+            for={this.hostElement}
+            aria-hidden={a11yBoolean(ariaHidden)}
+            aria-label={this.ariaLabelTooltip}
+          >
+            {tooltipText}
+          </ix-tooltip>
+        )}
+      </Fragment>
+    );
+
     if (this.isClosestApplicationHeader) {
       return (
         <Host slot="ix-application-header-avatar" class={'avatar-button'}>
@@ -170,13 +242,18 @@ export class Avatar {
             type="button"
             variant="primary"
           >
-            <AvatarImage image={this.image} initials={this.initials} />
+            {Avatar}
           </BaseButton>
           <ix-dropdown
             ref={(ref) => (this.dropdownElement = ref as HTMLIxDropdownElement)}
             trigger={this.resolveAvatarTrigger()}
             class="avatar-dropdown"
             onClick={(e) => this.onDropdownClick(e)}
+            onShowChanged={(event) => {
+              if (event.detail && this.tooltipRef.current) {
+                this.tooltipRef.current.hideTooltip(0);
+              }
+            }}
           >
             {this.username && (
               <Fragment>
@@ -185,6 +262,7 @@ export class Avatar {
                   image={this.image}
                   initials={this.initials}
                   userName={this.username}
+                  a11yLabel={a11yLabel ?? this.a11yLabel}
                 />
                 {this.hasSlottedElements && (
                   <ix-divider onClick={(e) => e.preventDefault()}></ix-divider>
@@ -200,10 +278,6 @@ export class Avatar {
       );
     }
 
-    return (
-      <Host>
-        <AvatarImage image={this.image} initials={this.initials} />
-      </Host>
-    );
+    return <Host>{Avatar}</Host>;
   }
 }

@@ -32,8 +32,10 @@
       "dependsOn": ["build"],
       "cache": false
     },
+    "test.setup": {
+      "cache": false
+    },
     "test": {
-      "dependsOn": ["^build"],
       "cache": false
     },
     "test.memlab": {

@@ -7,15 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/hover';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
-@import 'legacy/mixins/fonts';
+@use './common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+@use 'legacy/mixins/fonts';
 
 :host {
-  @include ix-component;
-
   display: flex;
   flex-direction: column;
   position: relative;
@@ -28,10 +26,15 @@
   background-color: var(--theme-toast--background);
   border: var(--theme-toast--border-thickness) solid
     var(--theme-toast--border-color);
-  border-radius: var(--theme-toast--border-radius);
+  border-radius: var(
+    --theme-toast--border-radius,
+    var(--theme-toast--border-radus)
+  );
   box-shadow: var(--theme-toast--box-shadow);
 
-  --animate-duration: #{$medium-time};
+  --animate-duration: var(--theme-medium-time);
+
+  @include component.ix-component;
 
   .toast-body {
     display: flex;
@@ -44,7 +47,7 @@
     .toast-icon {
       display: flex;
       align-items: flex-start;
-      margin-right: $default-space;
+      margin-right: 0.5rem;
     }
 
     .toast-content {
@@ -54,14 +57,17 @@
       width: 100%;
 
       .toast-title {
-        @include text-default-title-single;
         margin: 0.25rem 0px;
       }
 
       .toast-message {
         min-width: 0;
 
-        @include text-default;
+        @include fonts.text-default;
+      }
+
+      .toast-action {
+        margin-top: 0.5rem;
       }
     }
 
@@ -76,12 +82,16 @@
     pointer-events: all;
     margin-left: auto;
     margin-right: 0px;
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .toast-progress-bar {
     position: absolute;
     bottom: 0;
-    height: $tiny-space;
+    height: 0.125rem;
     width: 100%;
     background-color: var(--theme-toast-timer-value--background);
     transform-origin: left;

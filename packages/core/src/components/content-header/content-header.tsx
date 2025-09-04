@@ -9,8 +9,7 @@
 
 import { iconArrowLeft } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-
-export type ContentHeaderVariant = 'primary' | 'secondary';
+import type { ContentHeaderVariant } from './content-header.types';
 
 @Component({
   tag: 'ix-content-header',
@@ -59,7 +58,11 @@ export class ContentHeader {
         <div class="titleGroup">
           <ix-typography
             format={this.variant === 'secondary' ? 'h4' : 'h3'}
-            class={this.variant === 'secondary' ? 'secondary' : ''}
+            class={{
+              secondary: this.variant === 'secondary',
+              titleOverflow: true,
+            }}
+            title={this.headerTitle}
           >
             {this.headerTitle}
           </ix-typography>
@@ -67,7 +70,11 @@ export class ContentHeader {
             <ix-typography
               format={'h6'}
               text-color={'soft'}
-              class={this.variant === 'secondary' ? 'subtitle' : ''}
+              class={{
+                subtitle: this.variant === 'secondary',
+                titleOverflow: true,
+              }}
+              title={this.headerSubtitle}
             >
               {this.headerSubtitle}
             </ix-typography>

@@ -27,19 +27,10 @@ import { makeRef } from '../utils/make-ref';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { iconHistory } from '@siemens/ix-icons/icons';
-
-export type DateDropdownOption = {
-  id: string;
-  label: string;
-  from?: string;
-  to?: string;
-};
-
-export type DateRangeChangeEvent = {
-  id: string;
-  from?: string;
-  to?: string;
-};
+import type {
+  DateDropdownOption,
+  DateRangeChangeEvent,
+} from './date-dropdown.types';
 
 @Component({
   tag: 'ix-date-dropdown',
@@ -60,7 +51,7 @@ export class DateDropdown
 
   /**
    * Date format string.
-   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format = 'yyyy/LL/dd';
 
@@ -129,6 +120,12 @@ export class DateDropdown
    * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
+
+  /**
+   * ARIA label for the dropdown
+   * Will be set as aria-label on the nested HTML button element that will trigger the dropdown
+   */
+  @Prop() ariaLabelDropdownButton?: string;
 
   @Watch('dateRangeId')
   @Watch('to')
@@ -362,6 +359,7 @@ export class DateDropdown
           icon={iconHistory}
           ref={this.triggerRef}
           disabled={this.disabled}
+          ariaLabel={this.ariaLabelDropdownButton}
         >
           {this.getButtonLabel()}
         </ix-button>

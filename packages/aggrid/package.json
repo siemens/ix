@@ -8,7 +8,7 @@
     "directory": "packages/aggrid"
   },
   "description": "AG Grid theme based on ix theme variables",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "files": [
     "LICENSE",
     "README.md",
@@ -25,13 +25,14 @@
   },
   "scripts": {
     "build.watch": "rollup -c -w",
+    "test.setup": "playwright install chromium --with-deps",
     "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
     "compile": "rollup -c",
     "test": "playwright test"
   },
   "devDependencies": {
-    "@playwright/test": "^1.53.0",
+    "@playwright/test": "^1.54.1",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-icons": "^3.0.0",
@@ -45,7 +46,7 @@
   },
   "dependencies": {
     "@rollup/plugin-typescript": "^8.5.0",
-    "@siemens/ix": "^3.1.0",
+    "@siemens/ix": "^3.2.0",
     "rollup": "^4.43.0"
   },
   "peerDependencies": {

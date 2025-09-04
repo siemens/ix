@@ -32,7 +32,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
-    "sass": "^1.77.8"
+    "sass": "^1.89.2"
   },
   "devDependencies": {
     "@capacitor/cli": "6.1.1",

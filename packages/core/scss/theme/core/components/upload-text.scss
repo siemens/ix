@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-upload-text--color: var(--theme-color-std-text);
+  --theme-upload-text--color--checking: var(--theme-color-std-text);
+  --theme-upload-text--color--disabled: var(--theme-color-weak-text);
+}

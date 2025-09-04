@@ -1,0 +1,11 @@
+@mixin setVars {
+  --theme-upload--background: var(--theme-color-1);
+  --theme-upload--background--dragover: var(--theme-color-1);
+  --theme-upload--border-color: var(--theme-color-soft-bdr);
+  --theme-upload--border-color--dragover: var(--theme-color-dynamic);
+  --theme-upload--background--checking: var(--theme-color-1);
+  --theme-upload--background--disabled: var(--theme-color-0);
+  --theme-upload--border-color--checking: var(--theme-color-soft-bdr);
+  --theme-upload--border-color--disabled: var(--theme-color-soft-bdr);
+  --theme-upload--border-radius: var(--theme-default-border-radius);
+}

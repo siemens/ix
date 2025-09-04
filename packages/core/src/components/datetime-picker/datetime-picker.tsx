@@ -8,18 +8,12 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import type { DateChangeEvent } from '../date-picker/date-picker';
+import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-
-export type DateTimeSelectEvent = {
-  from?: string;
-  to?: string;
-  time: string;
-};
-
-export type DateTimeDateChangeEvent =
-  | string
-  | Omit<DateTimeSelectEvent, 'time'>;
+import type {
+  DateTimeDateChangeEvent,
+  DateTimeSelectEvent,
+} from './datetime-picker.types';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -36,16 +30,22 @@ export class DatetimePicker
 
   /**
    * Show hour input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showHour = true;
 
   /**
    * Show minutes input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showMinutes = true;
 
   /**
    * Show seconds input
+   *
+   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
    */
   @Prop() showSeconds = true;
 
@@ -63,13 +63,13 @@ export class DatetimePicker
 
   /**
    * Date format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() dateFormat: string = 'yyyy/LL/dd';
 
   /**
    * Time format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() timeFormat: string = 'HH:mm:ss';
 
@@ -114,6 +114,18 @@ export class DatetimePicker
   @Prop() i18nTime: string = 'Time';
 
   /**
+   * ARIA label for the previous month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelPreviousMonthButton?: string;
+
+  /**
+   * ARIA label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelNextMonthButton?: string;
+
+  /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
    */
@@ -121,7 +133,7 @@ export class DatetimePicker
 
   /**
    * Format of time string
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() locale?: string;
 
@@ -197,6 +209,8 @@ export class DatetimePicker
                 standaloneAppearance={false}
                 locale={this.locale}
                 showWeekNumbers={this.showWeekNumbers}
+                ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
+                ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
               ></ix-date-picker>
             </ix-col>
 
@@ -205,13 +219,14 @@ export class DatetimePicker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
                 standaloneAppearance={false}
-                showHour={this.showHour}
-                showMinutes={this.showMinutes}
-                showSeconds={this.showSeconds}
+                dateTimePickerAppearance={true}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
                 textTime={this.i18nTime}
                 time={this.time}
+                showHour={this.showHour}
+                showMinutes={this.showMinutes}
+                showSeconds={this.showSeconds}
               ></ix-time-picker>
               <div class="btn-select-date-container">
                 <ix-button

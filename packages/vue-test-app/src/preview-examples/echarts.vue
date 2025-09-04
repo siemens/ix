@@ -12,7 +12,7 @@ import { ref } from 'vue';
 import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts';
 import * as charts from 'echarts/charts';
 import * as components from 'echarts/components';
 import * as renderer from 'echarts/renderers';
