@@ -69,7 +69,7 @@ export type ValidationResultProperty =
   | 'isWarning';
 export type ValidationResults = Record<ValidationResultProperty, boolean>;
 
-function containsClass(
+function classListContains(
   hostElement: HTMLIxFormComponentElement<unknown>,
   className: string,
   includeChildren: boolean
@@ -86,20 +86,20 @@ export function checkFieldClasses(
 ): ValidationResults {
   return {
     isInvalid:
-      containsClass(hostElement, 'ix-invalid', includeChildren) ||
-      containsClass(
+      classListContains(hostElement, 'ix-invalid', includeChildren) ||
+      classListContains(
         hostElement,
         'ix-invalid--validity-invalid',
         includeChildren
       ),
-    isInvalidByRequired: containsClass(
+    isInvalidByRequired: classListContains(
       hostElement,
       'ix-invalid--required',
       includeChildren
     ),
-    isValid: containsClass(hostElement, 'ix-valid', includeChildren),
-    isInfo: containsClass(hostElement, 'ix-info', includeChildren),
-    isWarning: containsClass(hostElement, 'ix-warning', includeChildren),
+    isValid: classListContains(hostElement, 'ix-valid', includeChildren),
+    isInfo: classListContains(hostElement, 'ix-info', includeChildren),
+    isWarning: classListContains(hostElement, 'ix-warning', includeChildren),
   };
 }
 
