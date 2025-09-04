@@ -377,8 +377,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       }
       this.navigationItem = undefined;
     }
-     
-     
   }
 
   private emitAddItem(value: string) {
