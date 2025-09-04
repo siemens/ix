@@ -88,6 +88,37 @@ test.describe('validation', () => {
 
       await expect(ixInput).toHaveAttribute('value', '8');
     });
+
+    test('invalid number input should display error message', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<ix-number-input max="1" invalid-text="Invalid text"></ix-number-input>`
+      );
+
+      const ixInput = page.locator('ix-number-input');
+      const shadowDomInput = ixInput.locator('input');
+
+      await shadowDomInput.fill('2');
+      await shadowDomInput.blur();
+
+      const invalidText = page.getByText('Invalid text');
+
+      await expect(invalidText).toBeVisible();
+    });
+
+    test('"0" input triggers validation', async ({ mount, page }) => {
+      await mount(`<ix-number-input max="-1" value="-1"></ix-number-input>`);
+
+      const ixInput = page.locator('ix-number-input');
+      const shadowDomInput = ixInput.locator('input');
+
+      await shadowDomInput.fill('0');
+      await shadowDomInput.blur();
+
+      await expect(ixInput).toHaveClass(/ix-invalid--validity-invalid/);
+    });
   });
 });
 
