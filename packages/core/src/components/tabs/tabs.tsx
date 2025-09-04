@@ -179,7 +179,11 @@ export class Tabs {
     this.applyRequiredClasses(element, isSelected);
   }
 
-  private setBooleanAttribute(element: HTMLElement, attribute: string, condition: boolean) {
+  private setBooleanAttribute(
+    element: HTMLElement,
+    attribute: string,
+    condition: boolean
+  ) {
     if (condition) {
       element.setAttribute(attribute, '');
     } else {
@@ -208,7 +212,8 @@ export class Tabs {
 
     if (isSelected) classes.push(TAB_MANAGED_CLASSES.SELECTED);
     if (this.small) classes.push(TAB_MANAGED_CLASSES.SMALL_TAB);
-    if (this.layout === 'stretched') classes.push(TAB_MANAGED_CLASSES.STRETCHED);
+    if (this.layout === 'stretched')
+      classes.push(TAB_MANAGED_CLASSES.STRETCHED);
     if (this.placement === 'bottom') classes.push(TAB_MANAGED_CLASSES.BOTTOM);
     if (this.placement === 'top') classes.push(TAB_MANAGED_CLASSES.TOP);
     if (this.rounded) classes.push(TAB_MANAGED_CLASSES.CIRCLE);
