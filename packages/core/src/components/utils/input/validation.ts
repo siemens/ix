@@ -85,7 +85,13 @@ export function checkFieldClasses(
   includeChildren = false
 ): ValidationResults {
   return {
-    isInvalid: containsClass(hostElement, 'ix-invalid', includeChildren),
+    isInvalid:
+      containsClass(hostElement, 'ix-invalid', includeChildren) ||
+      containsClass(
+        hostElement,
+        'ix-invalid--validity-invalid',
+        includeChildren
+      ),
     isInvalidByRequired: containsClass(
       hostElement,
       'ix-invalid--required',
@@ -142,7 +148,6 @@ export function HookValidationLifecycle(options?: {
       };
 
       host.addEventListener('checkedChange', checkIfRequiredFunction);
-      host.addEventListener('valueChange', checkIfRequiredFunction);
       host.addEventListener('ixBlur', checkIfRequiredFunction);
       setTimeout(checkIfRequiredFunction);
       return connectedCallback?.call(this);
