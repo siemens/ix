@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build.watch": "storybook dev -p 6007",
+    "build.watch": "storybook dev -p 6006",
     "build.watch.no-open": "storybook dev -p 6006 --no-open",
     "build": "storybook build",
     "test.a11y": "start-server-and-test build.watch.no-open http://localhost:6006 test-storybook"
