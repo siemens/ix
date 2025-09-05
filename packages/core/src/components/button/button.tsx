@@ -175,9 +175,9 @@ export class Button implements IxButtonComponent {
 
   setFocus() {
     this.hostElement
-      .shadowRoot!.querySelector<HTMLButtonElement | HTMLAnchorElement>(
-        this.href ? 'a' : 'button'
-      )
+      .shadowRoot!.querySelector<
+        HTMLButtonElement | HTMLAnchorElement
+      >(this.href ? 'a' : 'button')
       ?.focus();
   }
 
