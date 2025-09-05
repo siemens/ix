@@ -1,4 +1,14 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { IxButton } from '@siemens/ix-react';
+import { iconHome, iconOpenExternal } from '@siemens/ix-icons/icons';
 import React from 'react';
 
 export const ButtonWithLink: React.FC = () => {
@@ -44,12 +54,12 @@ export const ButtonWithLink: React.FC = () => {
 
       <div style={{ marginBottom: '1rem' }}>
         <h3>Icon Links</h3>
-        <IxButton href="https://siemens.com" icon="home">
+        <IxButton href="https://siemens.com" icon={iconHome}>
           Home
         </IxButton>
         <IxButton
           href="https://siemens.com"
-          iconRight="external-link"
+          iconRight={iconOpenExternal}
           target="_blank"
         >
           External
