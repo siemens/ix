@@ -89,6 +89,17 @@ const getSpinnerSize = (btnProps: BaseButtonProps) => {
   }
 };
 
+const handleOnClick = (e: Event, props: BaseButtonProps) => {
+  if (props.disabled || props.loading) {
+    e.preventDefault();
+    e.stopPropagation();
+    return;
+  }
+  if (props.onClick) {
+    props.onClick(e);
+  }
+};
+
 export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   props: BaseButtonProps,
   children
@@ -102,7 +113,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
 
   const commonAttributes = {
     ...ariaAttributes,
-    tabindex: props.disabled ? -1 : (props.tabIndex ?? 0),
+    tabindex: props.disabled ? -1 : props.tabIndex ?? 0,
     class: {
       ...getButtonClasses(
         props.variant,
@@ -157,16 +168,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
         target={props.target}
         role="button"
         rel={props.rel}
-        onClick={(e: Event) => {
-          if (props.disabled || props.loading) {
-            e.preventDefault();
-            e.stopPropagation();
-            return;
-          }
-          if (props.onClick) {
-            props.onClick(e);
-          }
-        }}
+        onClick={(e: Event) => handleOnClick(e, props)}
       >
         {buttonContent}
       </a>
@@ -177,7 +179,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   return (
     <button
       {...commonAttributes}
-      onClick={(e: Event) => (props.onClick ? props.onClick(e) : undefined)}
+      onClick={(e: Event) => handleOnClick(e, props)}
       type={props.type}
     >
       {buttonContent}
