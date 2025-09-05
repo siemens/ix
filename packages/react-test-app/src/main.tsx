@@ -233,6 +233,7 @@ import ProgressIndicatorCircularSizes from './preview-examples/progress-indicato
 import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-linear-sizes.tsx';
 import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.tsx';
 import ProgressIndicatorLinearStatus from './preview-examples/progress-indicator-linear-status.tsx';
+import ButtonWithLink from './preview-examples/button-with-link.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -301,6 +302,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/button-secondary" element={<ButtonSecondary />} />
         <Route path="/preview/button-text-icon" element={<ButtonTextIcon />} />
         <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
+        <Route path="/preview/button-with-Link" element={<ButtonWithLink />} />
         <Route path="/preview/buttons" element={<Buttons />} />
         <Route path="/preview/card" element={<Card />} />
         <Route path="/preview/card-list" element={<CardList />} />
