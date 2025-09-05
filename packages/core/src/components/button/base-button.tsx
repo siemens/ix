@@ -179,6 +179,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   return (
     <button
       {...commonAttributes}
+      role="button"
       onClick={(e: Event) => handleOnClick(e, props)}
       type={props.type}
     >
