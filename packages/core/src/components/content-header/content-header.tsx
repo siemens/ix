@@ -11,6 +11,10 @@ import { iconArrowLeft } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import type { ContentHeaderVariant } from './content-header.types';
 
+/**
+ * @slot header - Content to be placed in the header area next to the title
+ * @slot - Default slot for action buttons or other content
+ */
 @Component({
   tag: 'ix-content-header',
   styleUrl: 'content-header.scss',
@@ -56,12 +60,17 @@ export class ContentHeader {
         ) : null}
 
         <div class="titleGroup">
-          <ix-typography
-            format={this.variant === 'secondary' ? 'h4' : 'h3'}
-            class={this.variant === 'secondary' ? 'secondary' : ''}
-          >
-            {this.headerTitle}
-          </ix-typography>
+          <div class="headerTitleRow">
+            <ix-typography
+              format={this.variant === 'secondary' ? 'h4' : 'h3'}
+              class={this.variant === 'secondary' ? 'secondary' : ''}
+            >
+              {this.headerTitle}
+            </ix-typography>
+            <div class="headerSlot">
+              <slot name="header" />
+            </div>
+          </div>
           {!!this.headerSubtitle && (
             <ix-typography
               format={'h6'}
