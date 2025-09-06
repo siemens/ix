@@ -25,6 +25,18 @@ import {
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
+const TAB_MANAGED_CLASSES = {
+  SELECTED: 'selected',
+  DISABLED: 'disabled',
+  SMALL_TAB: 'small-tab',
+  ICON: 'icon',
+  STRETCHED: 'stretched',
+  BOTTOM: 'bottom',
+  TOP: 'top',
+  CIRCLE: 'circle',
+  HYDRATED: 'hydrated',
+} as const;
+
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',
@@ -86,6 +98,8 @@ export class Tabs {
 
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
+  private classObserver?: MutationObserver;
+  private updateScheduled = false;
 
   private clickAction: {
     timeout: NodeJS.Timeout | null;
@@ -125,6 +139,110 @@ export class Tabs {
       this.renderArrows();
     });
     this.resizeObserver.observe(parentElement);
+  }
+
+  private observeSlotChanges() {
+    this.classObserver?.disconnect();
+
+    this.classObserver = new MutationObserver(() => {
+      this.scheduleTabUpdate();
+    });
+
+    this.classObserver.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'selected', 'layout', 'placement'],
+    });
+  }
+
+  private scheduleTabUpdate() {
+    if (this.updateScheduled) return;
+    this.updateScheduled = true;
+
+    requestAnimationFrame(() => {
+      this.updateTabAttributes();
+      this.updateScheduled = false;
+    });
+  }
+
+  private setTabAttributes(element: HTMLIxTabItemElement, index: number) {
+    const isSelected = index === this.selected;
+
+    element.setAttribute('layout', this.layout);
+    element.setAttribute('placement', this.placement);
+
+    this.setBooleanAttribute(element, 'small', this.small);
+    this.setBooleanAttribute(element, 'rounded', this.rounded);
+    this.setBooleanAttribute(element, 'selected', isSelected);
+
+    this.applyRequiredClasses(element, isSelected);
+  }
+
+  private setBooleanAttribute(
+    element: HTMLElement,
+    attribute: string,
+    condition: boolean
+  ) {
+    if (condition) {
+      element.setAttribute(attribute, '');
+    } else {
+      element.removeAttribute(attribute);
+    }
+  }
+
+  private applyRequiredClasses(
+    element: HTMLIxTabItemElement,
+    isSelected: boolean
+  ) {
+    const existingClasses = Array.from(element.classList);
+    const customClasses = this.extractCustomClasses(existingClasses);
+    const requiredClasses = this.buildRequiredClasses(isSelected);
+
+    element.className = [...customClasses, ...requiredClasses].join(' ');
+  }
+
+  private extractCustomClasses(existingClasses: string[]): string[] {
+    const managedClasses = Object.values(TAB_MANAGED_CLASSES) as string[];
+    return existingClasses.filter((cls) => !managedClasses.includes(cls));
+  }
+
+  private buildRequiredClasses(isSelected: boolean): string[] {
+    const classes: string[] = [TAB_MANAGED_CLASSES.HYDRATED];
+
+    if (isSelected) classes.push(TAB_MANAGED_CLASSES.SELECTED);
+    if (this.small) classes.push(TAB_MANAGED_CLASSES.SMALL_TAB);
+    if (this.layout === 'stretched')
+      classes.push(TAB_MANAGED_CLASSES.STRETCHED);
+    if (this.placement === 'bottom') classes.push(TAB_MANAGED_CLASSES.BOTTOM);
+    if (this.placement === 'top') classes.push(TAB_MANAGED_CLASSES.TOP);
+    if (this.rounded) classes.push(TAB_MANAGED_CLASSES.CIRCLE);
+
+    return classes;
+  }
+
+  private validateSelectedIndex() {
+    const tabs = this.getTabs();
+    if (this.selected >= tabs.length) {
+      const newSelected = 0;
+      if (this.selected !== newSelected) {
+        this.selected = newSelected;
+        this.selectedChange.emit(newSelected);
+      }
+    }
+  }
+
+  private updateTabAttributes() {
+    const tabs = this.getTabs();
+    this.totalItems = tabs.length;
+
+    this.validateSelectedIndex();
+
+    tabs.forEach((element, index) => {
+      this.setTabAttributes(element, index);
+    });
+
+    this.renderArrows();
   }
 
   private showArrows() {
@@ -270,35 +388,12 @@ export class Tabs {
   }
 
   componentWillLoad() {
-    const tabs = this.getTabs();
-
-    tabs.map((element, index) => {
-      if (this.small) element.setAttribute('small', 'true');
-
-      if (this.rounded) element.setAttribute('rounded', 'true');
-
-      element.setAttribute('layout', this.layout);
-      element.setAttribute(
-        'selected',
-        index === this.selected ? 'true' : 'false'
-      );
-
-      element.setAttribute('placement', this.placement);
-    });
-
+    this.updateTabAttributes();
     this.initResizeObserver();
   }
 
   componentDidRender() {
-    const tabs = this.getTabs();
-    this.totalItems = tabs.length;
-
-    tabs.map((element, index) => {
-      element.setAttribute(
-        'selected',
-        index === this.selected ? 'true' : 'false'
-      );
-    });
+    this.updateTabAttributes();
   }
 
   componentWillRender() {
@@ -319,10 +414,13 @@ export class Tabs {
         this.dragStart(element, event)
       );
     });
+
+    this.observeSlotChanges();
   }
 
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
+    this.classObserver?.disconnect();
   }
 
   @Listen('tabClick')
