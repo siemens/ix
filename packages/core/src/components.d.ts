@@ -10,6 +10,7 @@ import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 import { BlindVariant } from "./components/blind/blind.types";
+import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card.types";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
@@ -58,6 +59,7 @@ export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 export { BlindVariant } from "./components/blind/blind.types";
+export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card.types";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
@@ -303,6 +305,11 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
@@ -315,9 +322,20 @@ export namespace Components {
          */
         "label"?: string;
         /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
           * @default true
          */
         "showChevron": boolean;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * @default true
          */
@@ -349,6 +367,11 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon name
          */
         "icon"?: string;
@@ -371,6 +394,17 @@ export namespace Components {
           * @default false
          */
         "outline": boolean;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Type of the button
           * @default 'button'
@@ -2402,6 +2436,11 @@ export namespace Components {
          */
         "home": boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
          */
         "icon"?: string;
@@ -2417,6 +2456,17 @@ export namespace Components {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 3.3.0
@@ -6173,6 +6223,11 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
@@ -6186,9 +6241,20 @@ declare namespace LocalJSX {
         "label"?: string;
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
         /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
           * @default true
          */
         "showChevron"?: boolean;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * @default true
          */
@@ -6220,6 +6286,11 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon name
          */
         "icon"?: string;
@@ -6242,6 +6313,17 @@ declare namespace LocalJSX {
           * @default false
          */
         "outline"?: boolean;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Type of the button
           * @default 'button'
@@ -8397,6 +8479,11 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
          */
         "icon"?: string;
@@ -8412,6 +8499,17 @@ declare namespace LocalJSX {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 3.3.0

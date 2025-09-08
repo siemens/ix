@@ -46,6 +46,7 @@ import ButtonLoading from './preview-examples/button-loading.vue';
 import ButtonSecondary from './preview-examples/button-secondary.vue';
 import ButtonTextIcon from './preview-examples/button-text-icon.vue';
 import ButtonWithIcon from './preview-examples/button-with-icon.vue';
+import ButtonWithLink from './preview-examples/button-with-link.vue';
 import Buttons from './preview-examples/buttons.vue';
 import CardList from './preview-examples/card-list.vue';
 import Card from './preview-examples/card.vue';
@@ -268,6 +269,7 @@ const routes: any = {
   '/preview/button-secondary': ButtonSecondary,
   '/preview/button-text-icon': ButtonTextIcon,
   '/preview/button-with-icon': ButtonWithIcon,
+  '/preview/button-with-link': ButtonWithLink,
   '/preview/buttons': Buttons,
   '/preview/card': Card,
   '/preview/card-list': CardList,
