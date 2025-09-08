@@ -70,7 +70,9 @@ export class IxActionCard {
           class={'pointer'}
           aria-label={this.ariaLabelCard}
           aria-labelledby={
-            !this.ariaLabelCard ? 'ix-action-card-heading' : undefined
+            !this.ariaLabelCard && this.heading
+              ? 'ix-action-card-heading'
+              : undefined
           }
         >
           <ix-card-content>
