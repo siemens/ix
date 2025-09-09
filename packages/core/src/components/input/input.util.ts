@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { EventEmitter } from '@stencil/core';
 import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   IxFormComponent,
@@ -190,4 +191,24 @@ function observeElementUntilVisible(
 
   intersectionObserver.observe(hostElement);
   return intersectionObserver;
+}
+
+export function emitCancelableChange<T>(
+  newValue: T,
+  emitter: EventEmitter<T>
+): boolean {
+  const event = emitter.emit(newValue);
+  return event.defaultPrevented;
+}
+
+export function handleEnterKey<T>(
+  currentValue: string,
+  propValue: T,
+  valueType: 'string' | 'number'
+): boolean {
+  if (valueType === 'number') {
+    const numericCurrent = currentValue === '' ? 0 : Number(currentValue);
+    return numericCurrent !== (propValue as number);
+  }
+  return currentValue !== (propValue as string);
 }
