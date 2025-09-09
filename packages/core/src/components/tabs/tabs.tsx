@@ -169,26 +169,16 @@ export class Tabs {
   private setTabAttributes(element: HTMLIxTabItemElement, index: number) {
     const isSelected = index === this.selected;
 
+    if (this.small) element.setAttribute('small', 'true');
+
+    if (this.rounded) element.setAttribute('rounded', 'true');
+
     element.setAttribute('layout', this.layout);
+    element.setAttribute('selected', isSelected ? 'true' : 'false');
+
     element.setAttribute('placement', this.placement);
 
-    this.setBooleanAttribute(element, 'small', this.small);
-    this.setBooleanAttribute(element, 'rounded', this.rounded);
-    this.setBooleanAttribute(element, 'selected', isSelected);
-
     this.applyRequiredClasses(element, isSelected);
-  }
-
-  private setBooleanAttribute(
-    element: HTMLElement,
-    attribute: string,
-    condition: boolean
-  ) {
-    if (condition) {
-      element.setAttribute(attribute, '');
-    } else {
-      element.removeAttribute(attribute);
-    }
   }
 
   private applyRequiredClasses(
