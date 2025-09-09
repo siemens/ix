@@ -18,10 +18,11 @@ import {
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
+import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 
-type Variant = 'primary' | 'secondary' | 'tertiary';
-type ButtonStyle = 'subtle' | 'danger';
-export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;
+export type ButtonVariant =
+  | `${BaseButtonVariant}`
+  | `${BaseButtonStyle}-${BaseButtonVariant}`;
 
 @Component({
   tag: 'ix-button',

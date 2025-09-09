@@ -9,12 +9,14 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
+import { BaseButtonVariant } from '../button/base-button.types';
 import { ButtonVariant } from '../button/button';
 import { a11yBoolean } from '../utils/a11y';
 
-type Variant = 'primary' | 'secondary' | 'tertiary';
-type OmitButtonVariant = `danger-${Variant}`;
-export type ToggleButtonVariant = Exclude<ButtonVariant, OmitButtonVariant>;
+export type ToggleButtonVariant = Exclude<
+  ButtonVariant,
+  `danger-${BaseButtonVariant}`
+>;
 
 @Component({
   tag: 'ix-toggle-button',

@@ -28254,7 +28254,7 @@
   ],
   "typeLibrary": {
     "src/components/button/button.tsx::ButtonVariant": {
-      "declaration": "export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
@@ -28264,7 +28264,7 @@
       "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
     },
     "src/components/toggle-button/toggle-button.tsx::ToggleButtonVariant": {
-      "declaration": "export type ToggleButtonVariant = Exclude<ButtonVariant, OmitButtonVariant>;",
+      "declaration": "export type ToggleButtonVariant = Exclude<\n  ButtonVariant,\n  `danger-${BaseButtonVariant}`\n>;",
       "docstring": "",
       "path": "src/components/toggle-button/toggle-button.tsx"
     },
@@ -28384,7 +28384,7 @@
       "path": "src/components/dropdown/placement.ts"
     },
     "src/components/dropdown-button/dropdown-button.types.ts::DropdownButtonVariant": {
-      "declaration": "export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.types.ts"
     },
@@ -28404,7 +28404,7 @@
       "path": "src/components/flip-tile/flip-tile-state.ts"
     },
     "src/components/icon-button/icon-button.types.ts::IconButtonVariant": {
-      "declaration": "export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/icon-button/icon-button.types.ts"
     },
@@ -28474,7 +28474,7 @@
       "path": "src/components/slider/slider.types.ts"
     },
     "src/components/split-button/split-button.types.ts::SplitButtonVariant": {
-      "declaration": "export type ButtonVariant = `${Variant}` | `${ButtonStyle}-${Variant}`;",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/split-button/split-button.types.ts"
     },
