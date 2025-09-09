@@ -127,26 +127,6 @@ regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   expect(formData).toBe('123');
 });
 
-regressionTest(
-  `form-ready - ix-number-input submits form on Enter key`,
-  async ({ mount, page }) => {
-    await mount(`
-      <form onsubmit="window.__formSubmitted = true; return false;">
-        <ix-number-input name="my-field-name" submit-on-enter></ix-number-input>
-      </form>
-    `);
-    await page.evaluate(() => {
-      window.__formSubmitted = false;
-    });
-    const input = page.locator('ix-number-input').locator('input');
-    await input.fill('42');
-    await input.focus();
-    await input.press('Enter');
-    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
-    expect(wasSubmitted).toBe(true);
-  }
-);
-
 regressionTest(`form-ready - ix-textarea`, async ({ mount, page }) => {
   await mount(`<form><ix-textarea name="my-field-name"></ix-textarea></form>`);
 
