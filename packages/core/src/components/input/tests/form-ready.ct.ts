@@ -150,3 +150,33 @@ regressionTest(
     await expect(counter).toHaveText('1/20');
   }
 );
+
+regressionTest(
+  'ix-input - textAlignment property applies correct style',
+  async ({ mount, page }) => {
+    await mount(`<ix-input text-alignment="end"></ix-input>`);
+    const input = page.locator('ix-input').locator('input');
+    await expect(input).toHaveCSS('text-align', 'right');
+
+    await mount(`<ix-input text-alignment="start"></ix-input>`);
+    const inputStart = page.locator('ix-input').locator('input');
+    await expect(inputStart).toHaveCSS('text-align', 'left');
+  }
+);
+
+regressionTest(
+  'ix-number-input - textAlignment property applies correct style',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-number-input text-alignment="end" value="123"></ix-number-input>`
+    );
+    const input = page.locator('ix-number-input').locator('input');
+    await expect(input).toHaveCSS('text-align', 'right');
+
+    await mount(
+      `<ix-number-input text-alignment="start" value="456"></ix-number-input>`
+    );
+    const inputStart = page.locator('ix-number-input').locator('input');
+    await expect(inputStart).toHaveCSS('text-align', 'left');
+  }
+);

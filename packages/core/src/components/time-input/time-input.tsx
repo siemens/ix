@@ -200,6 +200,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
+   * Alignment of the input time. 'start' = left, 'end' = right.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -363,6 +368,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
+          }}
+          style={{
+            textAlign: this.textAlignment === 'end' ? 'right' : 'left',
           }}
           disabled={this.disabled}
           readOnly={this.readonly}

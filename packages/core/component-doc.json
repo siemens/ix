@@ -6629,6 +6629,40 @@
           "setter": false
         },
         {
+          "name": "textAlignment",
+          "type": "\"end\" | \"start\"",
+          "complexType": {
+            "original": "'start' | 'end'",
+            "resolved": "\"end\" | \"start\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "Alignment of the input date. 'start' = left, 'end' = right.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'start'"
+            }
+          ],
+          "default": "'start'",
+          "values": [
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "validText",
           "type": "string | undefined",
           "complexType": {
@@ -12943,6 +12977,40 @@
           "setter": false
         },
         {
+          "name": "textAlignment",
+          "type": "\"end\" | \"start\"",
+          "complexType": {
+            "original": "'start' | 'end'",
+            "resolved": "\"end\" | \"start\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "Alignment of the input text. 'start' = left, 'end' = right.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'start'"
+            }
+          ],
+          "default": "'start'",
+          "values": [
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "type",
           "type": "\"email\" | \"password\" | \"tel\" | \"text\" | \"url\"",
           "complexType": {
@@ -18114,6 +18182,40 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textAlignment",
+          "type": "\"end\" | \"start\"",
+          "complexType": {
+            "original": "'start' | 'end'",
+            "resolved": "\"end\" | \"start\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "Alignment of the input number. 'start' = left, 'end' = right.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'end'"
+            }
+          ],
+          "default": "'end'",
+          "values": [
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -24706,6 +24808,40 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textAlignment",
+          "type": "\"end\" | \"start\"",
+          "complexType": {
+            "original": "'start' | 'end'",
+            "resolved": "\"end\" | \"start\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "Alignment of the input time. 'start' = left, 'end' = right.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'start'"
+            }
+          ],
+          "default": "'start'",
+          "values": [
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
