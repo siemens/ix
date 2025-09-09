@@ -48,6 +48,7 @@ import ButtonLoading from '../preview-examples/button-loading';
 import ButtonSecondary from '../preview-examples/button-secondary';
 import ButtonTextIcon from '../preview-examples/button-text-icon';
 import ButtonWithIcon from '../preview-examples/button-with-icon';
+import ButtonWithLink from '../preview-examples/button-with-link';
 import Buttons from '../preview-examples/buttons';
 import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
@@ -284,6 +285,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     ButtonSecondary,
     ButtonTextIcon,
     ButtonWithIcon,
+    ButtonWithLink,
     Buttons,
     Card,
     CardList,

@@ -114,6 +114,8 @@ export class FlipTile {
   private toggleIndex() {
     let newIndex;
 
+    const oldIndex = this.index;
+
     if (this.index >= this.contentItems.length - 1) {
       newIndex = 0;
     } else {
@@ -123,6 +125,7 @@ export class FlipTile {
     const { defaultPrevented } = this.toggle.emit(newIndex);
 
     if (defaultPrevented) {
+      this.index = oldIndex;
       return;
     }
 
