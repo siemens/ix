@@ -1220,7 +1220,7 @@ export namespace Components {
     interface IxDivider {
     }
     /**
-     * @deprecated Will be removed with v5, use ix-pane as successor
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
      */
     interface IxDrawer {
         /**
@@ -4763,7 +4763,7 @@ declare global {
         "drawerClose": any;
     }
     /**
-     * @deprecated Will be removed with v5, use ix-pane as successor
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
      */
     interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDrawerElementEventMap>(type: K, listener: (this: HTMLIxDrawerElement, ev: IxDrawerCustomEvent<HTMLIxDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7169,7 +7169,7 @@ declare namespace LocalJSX {
     interface IxDivider {
     }
     /**
-     * @deprecated Will be removed with v5, use ix-pane as successor
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
      */
     interface IxDrawer {
         /**
@@ -10384,7 +10384,7 @@ declare module "@stencil/core" {
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             /**
-             * @deprecated Will be removed with v5, use ix-pane as successor
+             * @deprecated Will be removed with 5.0.0, use ix-pane as successor
              */
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;

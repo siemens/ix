@@ -23,7 +23,7 @@ import { animate } from 'animejs';
 import Animation from '../utils/animation';
 
 /**
- * @deprecated Will be removed with v5, use ix-pane as successor
+ * @deprecated Will be removed with 5.0.0, use ix-pane as successor
  */
 @Component({
   tag: 'ix-drawer',

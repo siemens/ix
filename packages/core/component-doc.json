@@ -7875,7 +7875,7 @@
       "docsTags": [
         {
           "name": "deprecated",
-          "text": "Will be removed with v5, use ix-pane as successor"
+          "text": "Will be removed with 5.0.0, use ix-pane as successor"
         }
       ],
       "encapsulation": "shadow",
@@ -7891,7 +7891,7 @@
           "ix-spinner"
         ]
       },
-      "deprecation": "Will be removed with v5, use ix-pane as successor",
+      "deprecation": "Will be removed with 5.0.0, use ix-pane as successor",
       "props": [
         {
           "name": "ariaLabelCloseButton",
