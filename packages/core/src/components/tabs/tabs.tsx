@@ -152,7 +152,7 @@ export class Tabs {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['class', 'selected', 'layout', 'placement'],
+      attributeFilter: ['class'],
     });
   }
 
