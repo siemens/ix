@@ -64,13 +64,68 @@ export const AppIcon: Story = {
   },
 };
 
-type OverflowStory = StoryObj<
-  Element & {
-    defaultContent: number;
-    secondaryContent: number;
-    overflowContent: number;
-  }
->;
+type OverflowArgs = Element & {
+  defaultContent: number;
+  secondaryContent: number;
+  overflowContent: number;
+};
+
+type OverflowStory = StoryObj<OverflowArgs>;
+
+const overflowRender = (args: OverflowArgs) => {
+  const appframe = document.createElement('ix-application');
+  const container = genericRender(
+    'ix-application-header',
+    args,
+    ['defaultContent', 'secondaryContent', 'overflowContent', 'showAppSwitch'],
+    (header, args) => {
+      if (args.showAppSwitch) {
+        appframe.appSwitchConfig = {
+          apps: [
+            {
+              description: 'test',
+              iconSrc: '',
+              id: '1',
+              name: 'Test App',
+              target: '_blank',
+              url: 'https://example.com',
+            },
+          ],
+          currentAppId: '1',
+        };
+      }
+      return header;
+    }
+  );
+  const applicationHeader = container.querySelector(
+    'ix-application-header'
+  ) as HTMLIxApplicationHeaderElement;
+
+  generateSomeButtons('Item', args.defaultContent, true).forEach((button) => {
+    applicationHeader.appendChild(button);
+  });
+
+  generateSomeButtons('Slot item', args.secondaryContent).forEach((button) => {
+    button.slot = 'secondary';
+    applicationHeader.appendChild(button);
+  });
+
+  generateSomeButtons('Overflow item', args.overflowContent).forEach(
+    (button) => {
+      button.slot = 'overflow';
+      applicationHeader.appendChild(button);
+    }
+  );
+
+  const avatar = document.createElement('ix-avatar');
+  avatar.initials = 'JD';
+  applicationHeader.appendChild(avatar);
+
+  appframe.appendChild(applicationHeader);
+
+  return appframe;
+};
+
 export const Overflow: OverflowStory = {
   args: {
     appIcon: '/images/example-app-icon.svg',
@@ -102,66 +157,7 @@ export const Overflow: OverflowStory = {
     },
   },
 
-  render: (args) => {
-    const appframe = document.createElement('ix-application');
-    const container = genericRender(
-      'ix-application-header',
-      args,
-      [
-        'defaultContent',
-        'secondaryContent',
-        'overflowContent',
-        'showAppSwitch',
-      ],
-      (header, args) => {
-        if (args.showAppSwitch) {
-          appframe.appSwitchConfig = {
-            apps: [
-              {
-                description: 'test',
-                iconSrc: '',
-                id: '1',
-                name: 'Test App',
-                target: '_blank',
-                url: 'https://example.com',
-              },
-            ],
-            currentAppId: '1',
-          };
-        }
-        return header;
-      }
-    );
-    const applicationHeader = container.querySelector(
-      'ix-application-header'
-    ) as HTMLIxApplicationHeaderElement;
-
-    generateSomeButtons('Item', args.defaultContent, true).forEach((button) => {
-      applicationHeader.appendChild(button);
-    });
-
-    generateSomeButtons('Slot item', args.secondaryContent).forEach(
-      (button) => {
-        button.slot = 'secondary';
-        applicationHeader.appendChild(button);
-      }
-    );
-
-    generateSomeButtons('Overflow item', args.overflowContent).forEach(
-      (button) => {
-        button.slot = 'overflow';
-        applicationHeader.appendChild(button);
-      }
-    );
-
-    const avatar = document.createElement('ix-avatar');
-    avatar.initials = 'JD';
-    applicationHeader.appendChild(avatar);
-
-    appframe.appendChild(applicationHeader);
-
-    return appframe;
-  },
+  render: (args) => overflowRender(args),
 };
 
 export const withAvatar: Story = {
@@ -257,3 +253,14 @@ function generateSomeButtons(prefix: string, count: number, outline = false) {
     return button;
   });
 }
+
+export const SafeArea: OverflowStory = {
+  args: {
+    name: 'Application Header',
+  },
+  render: (args) => {
+    const container = overflowRender(args);
+    container.style.setProperty('--ix-safe-area-inset-top', '5rem');
+    return container;
+  },
+};

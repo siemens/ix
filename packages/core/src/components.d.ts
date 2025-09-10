@@ -163,7 +163,7 @@ export namespace Components {
     }
     interface IxApplicationHeader {
         /**
-          * App icon will be shown on the first element inside the header. It will be hidden on smaller screens.
+          * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
           * @since 3.3.0
          */
         "appIcon"?: string;
@@ -173,7 +173,7 @@ export namespace Components {
          */
         "appIconAlt"?: string;
         /**
-          * Displays a slide outline around the app icon to ensure are contrast is given
+          * Render subtle outline around app icon to ensure proper contrast.
           * @since 3.3.0
           * @default false
          */
@@ -214,7 +214,7 @@ export namespace Components {
          */
         "name"?: string;
         /**
-          * Define a suffix which will be displayed aside of the application name
+          * Define a suffix which will be displayed next to the application name
           * @since 3.3.0
          */
         "nameSuffix"?: string;
@@ -6049,7 +6049,7 @@ declare namespace LocalJSX {
     }
     interface IxApplicationHeader {
         /**
-          * App icon will be shown on the first element inside the header. It will be hidden on smaller screens.
+          * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
           * @since 3.3.0
          */
         "appIcon"?: string;
@@ -6059,7 +6059,7 @@ declare namespace LocalJSX {
          */
         "appIconAlt"?: string;
         /**
-          * Displays a slide outline around the app icon to ensure are contrast is given
+          * Render subtle outline around app icon to ensure proper contrast.
           * @since 3.3.0
           * @default false
          */
@@ -6100,7 +6100,7 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
-          * Define a suffix which will be displayed aside of the application name
+          * Define a suffix which will be displayed next to the application name
           * @since 3.3.0
          */
         "nameSuffix"?: string;

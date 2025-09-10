@@ -34,9 +34,9 @@ import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
- * @slot secondary - Place additional items inside the header. If the screen size is small, the items will be shown inside a dropdown.
+ * @slot secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown.
  * @slot overflow - Use this slot to display additional items that do not fit in the default or secondary slot.
- * @slot logo - Place a company logo inside the header. As alternative checkout the companyLogo property.
+ * @slot logo - Place a company logo inside the header. Alternatively the companyLogo property can be set.
  */
 @Component({
   tag: 'ix-application-header',
@@ -52,7 +52,7 @@ export class ApplicationHeader {
   @Prop() name?: string;
 
   /**
-   * Define a suffix which will be displayed aside of the application name
+   * Define a suffix which will be displayed next to the application name
    *
    * @since 3.3.0
    */
@@ -74,7 +74,7 @@ export class ApplicationHeader {
   @Prop() companyLogoAlt?: string;
 
   /**
-   * App icon will be shown on the first element inside the header.
+   * The app icon will be shown as the first element inside the header.
    * It will be hidden on smaller screens.
    *
    * @since 3.3.0
@@ -89,7 +89,7 @@ export class ApplicationHeader {
   @Prop() appIconAlt?: string;
 
   /**
-   * Displays a slide outline around the app icon to ensure are contrast is given
+   * Render subtle outline around app icon to ensure proper contrast.
    *
    * @since 3.3.0
    */
@@ -198,7 +198,7 @@ export class ApplicationHeader {
       this.breakpoint = mode;
     });
 
-    this.updateHasDefaultSlotAssignedElements();
+    this.updateHasSlotAssignedElementsStates();
   }
 
   componentDidLoad() {
@@ -305,7 +305,7 @@ export class ApplicationHeader {
     );
   }
 
-  private updateHasDefaultSlotAssignedElements() {
+  private updateHasSlotAssignedElementsStates() {
     const defaultSlot = this.hostElement.shadowRoot!.querySelector(
       '.content slot:not([name])'
     );
@@ -459,7 +459,7 @@ export class ApplicationHeader {
                     <slot
                       name="secondary"
                       onSlotchange={() =>
-                        this.updateHasDefaultSlotAssignedElements()
+                        this.updateHasSlotAssignedElementsStates()
                       }
                     ></slot>
                   </div>
@@ -473,7 +473,7 @@ export class ApplicationHeader {
                   >
                     <slot
                       onSlotchange={() =>
-                        this.updateHasDefaultSlotAssignedElements()
+                        this.updateHasSlotAssignedElementsStates()
                       }
                     ></slot>
                   </div>
@@ -487,7 +487,7 @@ export class ApplicationHeader {
                   <slot
                     name="overflow"
                     onSlotchange={() =>
-                      this.updateHasDefaultSlotAssignedElements()
+                      this.updateHasSlotAssignedElementsStates()
                     }
                   ></slot>
                 </div>

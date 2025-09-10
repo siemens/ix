@@ -518,7 +518,7 @@
         },
         {
           "name": "slot",
-          "text": "secondary - Place additional items inside the header. If the screen size is small, the items will be shown inside a dropdown."
+          "text": "secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown."
         },
         {
           "name": "slot",
@@ -526,7 +526,7 @@
         },
         {
           "name": "slot",
-          "text": "logo - Place a company logo inside the header. As alternative checkout the companyLogo property."
+          "text": "logo - Place a company logo inside the header. Alternatively the companyLogo property can be set."
         }
       ],
       "encapsulation": "shadow",
@@ -573,7 +573,7 @@
           "mutable": false,
           "attr": "app-icon",
           "reflectToAttr": false,
-          "docs": "App icon will be shown on the first element inside the header.\nIt will be hidden on smaller screens.",
+          "docs": "The app icon will be shown as the first element inside the header.\nIt will be hidden on smaller screens.",
           "docsTags": [
             {
               "name": "since",
@@ -635,7 +635,7 @@
           "mutable": false,
           "attr": "app-icon-outline",
           "reflectToAttr": false,
-          "docs": "Displays a slide outline around the app icon to ensure are contrast is given",
+          "docs": "Render subtle outline around app icon to ensure proper contrast.",
           "docsTags": [
             {
               "name": "since",
@@ -882,7 +882,7 @@
           "mutable": false,
           "attr": "name-suffix",
           "reflectToAttr": false,
-          "docs": "Define a suffix which will be displayed aside of the application name",
+          "docs": "Define a suffix which will be displayed next to the application name",
           "docsTags": [
             {
               "name": "since",
@@ -979,7 +979,7 @@
         },
         {
           "name": "logo",
-          "docs": "Place a company logo inside the header. As alternative checkout the companyLogo property."
+          "docs": "Place a company logo inside the header. Alternatively the companyLogo property can be set."
         },
         {
           "name": "overflow",
@@ -987,7 +987,7 @@
         },
         {
           "name": "secondary",
-          "docs": "Place additional items inside the header. If the screen size is small, the items will be shown inside a dropdown."
+          "docs": "Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown."
         }
       ],
       "parts": [],
