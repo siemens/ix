@@ -165,6 +165,22 @@ export namespace Components {
     }
     interface IxApplicationHeader {
         /**
+          * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
+          * @since 3.3.0
+         */
+        "appIcon"?: string;
+        /**
+          * Alt text for the app icon
+          * @since 3.3.0
+         */
+        "appIconAlt"?: string;
+        /**
+          * Render subtle outline around app icon to ensure proper contrast.
+          * @since 3.3.0
+          * @default false
+         */
+        "appIconOutline": boolean;
+        /**
           * ARIA label for the app switch icon button
           * @since 3.2.0
          */
@@ -180,9 +196,30 @@ export namespace Components {
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
+          * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
+          * @since 3.3.0
+         */
+        "companyLogo"?: string;
+        /**
+          * Alt text for the company logo
+          * @since 3.3.0
+         */
+        "companyLogoAlt"?: string;
+        /**
+          * Hides the bottom border of the header
+          * @since 3.3.0
+          * @default false
+         */
+        "hideBottomBorder": boolean;
+        /**
           * Application name
          */
         "name"?: string;
+        /**
+          * Define a suffix which will be displayed next to the application name
+          * @since 3.3.0
+         */
+        "nameSuffix"?: string;
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
           * @default false
@@ -5944,6 +5981,22 @@ declare namespace LocalJSX {
     }
     interface IxApplicationHeader {
         /**
+          * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
+          * @since 3.3.0
+         */
+        "appIcon"?: string;
+        /**
+          * Alt text for the app icon
+          * @since 3.3.0
+         */
+        "appIconAlt"?: string;
+        /**
+          * Render subtle outline around app icon to ensure proper contrast.
+          * @since 3.3.0
+          * @default false
+         */
+        "appIconOutline"?: boolean;
+        /**
           * ARIA label for the app switch icon button
           * @since 3.2.0
          */
@@ -5959,9 +6012,30 @@ declare namespace LocalJSX {
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
+          * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
+          * @since 3.3.0
+         */
+        "companyLogo"?: string;
+        /**
+          * Alt text for the company logo
+          * @since 3.3.0
+         */
+        "companyLogoAlt"?: string;
+        /**
+          * Hides the bottom border of the header
+          * @since 3.3.0
+          * @default false
+         */
+        "hideBottomBorder"?: boolean;
+        /**
           * Application name
          */
         "name"?: string;
+        /**
+          * Define a suffix which will be displayed next to the application name
+          * @since 3.3.0
+         */
+        "nameSuffix"?: string;
         /**
           * Event emitted when the menu toggle button is clicked
          */

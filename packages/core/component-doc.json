@@ -514,7 +514,19 @@
       "docsTags": [
         {
           "name": "slot",
-          "text": "logo - Location of the logo"
+          "text": "default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown."
+        },
+        {
+          "name": "slot",
+          "text": "secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown."
+        },
+        {
+          "name": "slot",
+          "text": "overflow - Use this slot to display additional items that do not fit in the default or secondary slot."
+        },
+        {
+          "name": "slot",
+          "text": "logo - Place a company logo inside the header. Alternatively the companyLogo property can be set."
         }
       ],
       "encapsulation": "shadow",
@@ -550,6 +562,101 @@
         ]
       },
       "props": [
+        {
+          "name": "appIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon",
+          "reflectToAttr": false,
+          "docs": "The app icon will be shown as the first element inside the header.\nIt will be hidden on smaller screens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "appIconAlt",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon-alt",
+          "reflectToAttr": false,
+          "docs": "Alt text for the app icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "appIconOutline",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon-outline",
+          "reflectToAttr": false,
+          "docs": "Render subtle outline around app icon to ensure proper contrast.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "ariaLabelAppSwitchIconButton",
           "type": "string | undefined",
@@ -644,6 +751,101 @@
           "setter": false
         },
         {
+          "name": "companyLogo",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "company-logo",
+          "reflectToAttr": false,
+          "docs": "Company logo will be show on the left side of the application name.\nIt will be hidden on smaller screens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "companyLogoAlt",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "company-logo-alt",
+          "reflectToAttr": false,
+          "docs": "Alt text for the company logo",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hideBottomBorder",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-bottom-border",
+          "reflectToAttr": false,
+          "docs": "Hides the bottom border of the header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "name",
           "type": "string | undefined",
           "complexType": {
@@ -656,6 +858,37 @@
           "reflectToAttr": false,
           "docs": "Application name",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "nameSuffix",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name-suffix",
+          "reflectToAttr": false,
+          "docs": "Define a suffix which will be displayed next to the application name",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -741,8 +974,20 @@
       "styles": [],
       "slots": [
         {
+          "name": "default",
+          "docs": "Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown."
+        },
+        {
           "name": "logo",
-          "docs": "Location of the logo"
+          "docs": "Place a company logo inside the header. Alternatively the companyLogo property can be set."
+        },
+        {
+          "name": "overflow",
+          "docs": "Use this slot to display additional items that do not fit in the default or secondary slot."
+        },
+        {
+          "name": "secondary",
+          "docs": "Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown."
         }
       ],
       "parts": [],
