@@ -8,12 +8,12 @@
  */
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
-import { genericRender, makeArgTypes } from '../utils/generic-render';
+import { genericRender, makeArgTypes } from '@utils/generic-render';
 
 type Element = Components.IxActionCard & { defaultSlot: string };
 
 const meta = {
-  title: 'AccessibilityTests/ActionCard',
+  title: 'Example/ActionCard',
   tags: [],
   render: (args) => genericRender('ix-action-card', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-action-card', {}),
@@ -31,10 +31,30 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
-/**
- * Selected
- */
-export const IconSelected: Story = {
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const Default: Story = {
+  args: {
+    defaultSlot: 'Button',
+  },
+};
+
+export const SubHeading: Story = {
+  args: {
+    defaultSlot: 'Some content',
+    subheading: 'I am a subheading',
+    heading: 'I am a heading',
+    icon: 'add-circle-filled',
+  },
+};
+
+export const HeadingWithoutSlottedContent: Story = {
+  args: {
+    defaultSlot: '',
+    heading: 'I am a heading',
+  },
+};
+
+export const Selected: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
@@ -43,82 +63,82 @@ export const IconSelected: Story = {
   },
 };
 
-export const VariantAlarmSelected: Story = {
+export const Icon: Story = {
+  args: {
+    defaultSlot: 'Some content',
+    heading: 'I am a heading',
+    icon: 'add-circle-filled',
+  },
+};
+
+export const VariantAlarm: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
     variant: 'alarm',
-    selected: true,
   },
 };
 
-export const VariantCriticalSelected: Story = {
+export const VariantCritical: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
     variant: 'critical',
-    selected: true,
   },
 };
 
-export const VariantSuccessSelected: Story = {
+export const VariantSuccess: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
     variant: 'success',
-    selected: true,
   },
 };
 
-export const VariantWarningSelected: Story = {
+export const VariantWarning: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
     variant: 'warning',
-    selected: true,
   },
 };
 
-export const VariantInfoSelected: Story = {
+export const VariantInfo: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
     variant: 'info',
-    selected: true,
   },
 };
 
-export const VariantNeutralSelected: Story = {
+export const VariantNeutral: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
     variant: 'neutral',
-    selected: true,
   },
 };
 
-export const VariantOutlineSelected: Story = {
+export const VariantOutline: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
     variant: 'outline',
-    selected: true,
   },
 };
 
-export const VariantPrimarySelected: Story = {
+export const VariantPrimary: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
     variant: 'primary',
-    selected: true,
   },
 };
