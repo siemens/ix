@@ -264,3 +264,61 @@ export const SafeArea: OverflowStory = {
     return container;
   },
 };
+
+export const WindowControls: OverflowStory = {
+  args: {
+    name: 'Application Header',
+  },
+  render: (args) => {
+    const container = genericRender('ix-application-header', args);
+
+    const applicationHeader = container.querySelector(
+      'ix-application-header'
+    ) as HTMLIxApplicationHeaderElement;
+
+    applicationHeader.style.width = '100%';
+
+    const avatar = document.createElement('ix-avatar');
+    avatar.initials = 'JD';
+    applicationHeader.appendChild(avatar);
+
+    const other = document.createElement('div');
+    other.style.backgroundColor = 'var(--theme-app-header--background)';
+    other.style.minHeight = '3rem';
+    other.style.width = 'auto';
+    other.style.borderBottom =
+      'var(--theme-app-header--border-width) solid var(--theme-app-header--border-color)';
+
+    other.style.display = 'flex';
+    other.style.flexDirection = 'row';
+    other.style.justifyContent = 'flex-end';
+    other.style.alignItems = 'center';
+    other.style.paddingRight = '1rem';
+    other.style.gap = '0.5rem';
+
+    let button = document.createElement('ix-icon-button');
+    button.variant = 'secondary';
+    button.ghost = true;
+    button.icon = 'minus';
+    other.appendChild(button);
+
+    button = document.createElement('ix-icon-button');
+    button.variant = 'secondary';
+    button.ghost = true;
+    button.icon = 'editor-grid-none';
+    other.appendChild(button);
+
+    button = document.createElement('ix-icon-button');
+    button.variant = 'secondary';
+    button.ghost = true;
+    button.icon = 'close';
+    other.appendChild(button);
+
+    container.appendChild(other);
+
+    container.style.display = 'flex';
+    container.style.height = '3rem';
+
+    return container;
+  },
+};
