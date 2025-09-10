@@ -1850,7 +1850,9 @@ export const IxPane: StencilReactComponent<IxPaneElement, IxPaneEvents> = /*@__P
         expanded: 'expanded',
         composition: 'composition',
         icon: 'icon',
+        closeOnClickOutside: 'close-on-click-outside',
         ariaLabelIcon: 'aria-label-icon',
+        ariaLabelCollapseCloseButton: 'aria-label-collapse-close-button',
         ignoreLayoutSettings: 'ignore-layout-settings',
         isMobile: 'is-mobile'
     },
