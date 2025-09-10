@@ -196,22 +196,21 @@ export class Pane {
 
   @Watch('expanded')
   onExpandedChange() {
-    if (this.closeOnClickOutside) {
-      if (this.expanded) {
-        this.disposableWindowClick = addDisposableEventListener(
-          window,
-          'click',
-          (event) => {
-            const path = event.composedPath?.() || [];
-            if (!path.includes(this.hostElement)) {
-              this.dispatchExpandedChangedEvent();
-            }
-          }
-        );
-        return;
-      }
+    if (!this.closeOnClickOutside || !this.expanded) {
+      this.disposableWindowClick?.();
+      return;
     }
-    this.disposableWindowClick?.();
+
+    this.disposableWindowClick = addDisposableEventListener(
+      window,
+      'click',
+      (event) => {
+        const path = event.composedPath?.() || [];
+        if (!path.includes(this.hostElement)) {
+          this.dispatchExpandedChangedEvent();
+        }
+      }
+    );
   }
 
   componentWillLoad() {
