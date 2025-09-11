@@ -56,7 +56,7 @@
   color: var(--theme-color-std-text);
 
   @include common.setVars;
-  @include components.setVars;
+  @include components.setComponentVars;
   @include rm.reduce-motion;
 }
 

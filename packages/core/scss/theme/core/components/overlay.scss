@@ -1,0 +1,5 @@
+@mixin setVars {
+  --theme-overlay--background: var(--theme-color-backdrop);
+  --theme-overlay-header--background: var(--theme-color-0);
+  --theme-overlay-header--color: var(--theme-color-std-text);
+}

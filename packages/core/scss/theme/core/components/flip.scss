@@ -1,0 +1,8 @@
+@mixin setVars {
+  --theme-flip--color: var(--theme-color-std-text);
+  --theme-flip--background: var(--theme-color-component-1);
+  --theme-flip--border-color: var(--theme-color-0);
+  --theme-flip-footer--background: var(--theme-color-component-1);
+  --theme-flip-footer--color: var(--theme-color-std-text);
+  --theme-flip-tile--border-radius: var(--theme-default-border-radius);
+}
