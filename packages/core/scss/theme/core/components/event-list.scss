@@ -1,0 +1,25 @@
+@mixin setVars {
+  --theme-event-item-indicator-opacity--disabled: 0.3;
+  --theme-event-item-filled--border: var(--theme-color-0);
+  --theme-event-item-filled--border--hover: var(--theme-color-0);
+  --theme-event-item-filled--border--active: var(--theme-color-0);
+  --theme-event-item-filled--border--selected: var(--theme-color-dynamic);
+  --theme-event-item-filled--border--disabled: var(--theme-color-0);
+  --theme-event-item-indicator--width: var(--theme-size--2);
+  --theme-event-item-outline--background: var(--theme-color-ghost);
+  --theme-event-item-outline--background--disabled: var(--theme-color-ghost);
+  --theme-event-item-outline--border: var(--theme-color-soft-bdr);
+  --theme-event-item-outline--border--hover: var(--theme-color-soft-bdr);
+  --theme-event-item-outline--border--active: var(--theme-color-soft-bdr);
+  --theme-event-item-outline--border--selected: var(--theme-color-dynamic);
+  --theme-event-item-outline--border--disabled: var(--theme-color-weak-bdr);
+  --theme-event-item-chevron--color: var(--theme-color-soft-text);
+  --theme-event-item-filled--background: var(--theme-color-component-1);
+  --theme-event-item-filled--background--hover: var(--theme-color-component-1--hover);
+  --theme-event-item-filled--background--active: var(--theme-color-component-1--active);
+  --theme-event-item-filled--background--selected: var(--theme-color-component-1--active);
+  --theme-event-item-filled--background--disabled: var(--theme-color-component-1);
+  --theme-event-item-outline--background--hover: var(--theme-color-ghost--hover);
+  --theme-event-item-outline--background--active: var(--theme-color-ghost--active);
+  --theme-event-item-outline--background--selected: var(--theme-color-ghost--active);
+}

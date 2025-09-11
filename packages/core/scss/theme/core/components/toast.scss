@@ -1,4 +1,6 @@
 @mixin setVars {
+  --theme-toast-timer-track--background: var(--theme-color-0);
+  --theme-toast-timer-value--background: var(--theme-color-component-4);
   --theme-toast--background: var(--theme-color-2);
   --theme-toast--border-color: var(--theme-color-0);
   --theme-toast--color: var(--theme-color-std-text);

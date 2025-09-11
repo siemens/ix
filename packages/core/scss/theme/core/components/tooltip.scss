@@ -2,4 +2,9 @@
   --theme-tooltip--background: var(--theme-color-2);
   --theme-tooltip--border-color: var(--theme-color-0);
   --theme-tooltip--color: var(--theme-color-std-text);
+  --theme-tooltip-close--color: var(--theme-color-soft-text);
+  --theme-tooltip-close-btn--background: var(--theme-color-ghost);
+  --theme-tootlip--background: var(--theme-tooltip--background);
+  --theme-tooltip-close-btn--background--hover: var(--theme-color-ghost--hover);
+  --theme-tooltip-close-btn--background--active: var(--theme-color-ghost--active);
 }
