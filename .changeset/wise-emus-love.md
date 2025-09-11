@@ -2,4 +2,4 @@
 '@siemens/ix-aggrid': major
 ---
 
-require peerDependency to use latest siemens ix v4
+require dependency to use latest siemens ix v4
