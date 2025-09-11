@@ -9,6 +9,32 @@
 @use './common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
+@mixin triangle($name: '') {
+  @if ($name != '') {
+    $name: '#{$name}-';
+  }
+
+  .triangle.#{$name}primary {
+    color: var(--theme-btn-#{$name}primary--color);
+  }
+  .triangle.#{$name}secondary {
+    color: var(--theme-btn-#{$name}secondary--color);
+  }
+  .triangle.#{$name}tertiary {
+    color: var(--theme-btn-#{$name}tertiary--color);
+  }
+
+  .triangle.#{$name}primary.disabled {
+    color: var(--theme-btn-#{$name}primary--color--disabled);
+  }
+  .triangle.#{$name}secondary.disabled {
+    color: var(--theme-btn-#{$name}secondary--color--disabled);
+  }
+  .triangle.#{$name}tertiary.disabled {
+    color: var(--theme-btn-#{$name}tertiary--color--disabled);
+  }
+}
+
 :host {
   display: inline-block;
   position: relative;
@@ -56,65 +82,9 @@
     color: var(--theme-btn-primary--color);
   }
 
-  .triangle.primary {
-    color: var(--theme-btn-primary--color);
-  }
-  .triangle.secondary {
-    color: var(--theme-btn-secondary--color);
-  }
-  .triangle.tertiary {
-    color: var(--theme-btn-tertiary--color);
-  }
-
-  .triangle.primary.disabled {
-    color: var(--theme-btn-primary--color--disabled);
-  }
-  .triangle.secondary.disabled {
-    color: var(--theme-btn-secondary--color--disabled);
-  }
-  .triangle.tertiary.disabled {
-    color: var(--theme-btn-tertiary--color--disabled);
-  }
-
-  .triangle.subtle-primary {
-    color: var(--theme-btn-subtle-primary--color);
-  }
-  .triangle.subtle-secondary {
-    color: var(--theme-btn-subtle-secondary--color);
-  }
-  .triangle.subtle-tertiary {
-    color: var(--theme-btn-subtle-tertiary--color);
-  }
-
-  .triangle.subtle-primary.disabled {
-    color: var(--theme-btn-subtle-primary--color--disabled);
-  }
-  .triangle.subtle-secondary.disabled {
-    color: var(--theme-btn-subtle-secondary--color--disabled);
-  }
-  .triangle.subtle-tertiary.disabled {
-    color: var(--theme-btn-subtle-tertiary--color--disabled);
-  }
-
-  .triangle.danger-primary {
-    color: var(--theme-btn-danger-primary--color);
-  }
-  .triangle.danger-secondary {
-    color: var(--theme-btn-danger-secondary--color);
-  }
-  .triangle.danger-tertiary {
-    color: var(--theme-btn-danger-tertiary--color);
-  }
-
-  .triangle.danger-primary.disabled {
-    color: var(--theme-btn-danger-primary--color--disabled);
-  }
-  .triangle.danger-secondary.disabled {
-    color: var(--theme-btn-danger-secondary--color--disabled);
-  }
-  .triangle.danger-tertiary.disabled {
-    color: var(--theme-btn-danger-tertiary--color--disabled);
-  }
+  @include triangle();
+  @include triangle('subtle');
+  @include triangle('danger');
 
   .content {
     display: flex;
