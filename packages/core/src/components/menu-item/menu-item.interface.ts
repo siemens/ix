@@ -6,7 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export interface IxMenuItemBase {
+import { AnchorInterface } from '../button/button.interface';
+export interface IxMenuItemBase extends AnchorInterface {
   // Annotate with @Prop to provide a tooltip
   tooltipText?: string;
 }

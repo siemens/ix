@@ -124,7 +124,8 @@
     @include fonts.text-default-title;
     @include component.ix-component;
 
-    button {
+    button,
+    a {
       @include btn-base();
     }
 

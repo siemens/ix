@@ -189,6 +189,11 @@ export const routes: Routes = [
           import('../preview-examples/button-with-icon').then((m) => m.default),
       },
       {
+        path: 'button-with-link',
+        loadComponent: () =>
+          import('../preview-examples/button-with-link').then((m) => m.default),
+      },
+      {
         path: 'buttons',
         loadComponent: () =>
           import('../preview-examples/buttons').then((m) => m.default),
@@ -246,6 +251,13 @@ export const routes: Routes = [
         path: 'content-header-no-back',
         loadComponent: () =>
           import('../preview-examples/content-header-no-back').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'content-header-with-slot',
+        loadComponent: () =>
+          import('../preview-examples/content-header-with-slot').then(
             (m) => m.default
           ),
       },
