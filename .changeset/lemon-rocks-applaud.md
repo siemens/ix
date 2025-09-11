@@ -7,4 +7,4 @@
 - Remove **ghost** and **outline** property from `ix-button`, `ix-toggle-button`, `ix-dropdown-button`, `ix-icon-button` and other button components to get replaced with new introduced variants.
 - Remove button tokens for `ghost` and `outline` variants.
 
-More information see BREAKING_CHANGES for version v4.
+For more information please read BREAKING_CHANGES for version 4.
