@@ -10185,6 +10185,44 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"filled\" | \"outline\"",
+          "complexType": {
+            "original": "'outline' | 'filled'",
+            "resolved": "\"filled\" | \"outline\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Variant of the event list item",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "'outline'"
+            }
+          ],
+          "default": "'outline'",
+          "values": [
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],

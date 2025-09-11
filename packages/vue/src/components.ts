@@ -603,6 +603,7 @@ export const IxEventList: StencilVueComponent<JSX.IxEventList> = /*@__PURE__*/ d
 
 
 export const IxEventListItem: StencilVueComponent<JSX.IxEventListItem> = /*@__PURE__*/ defineContainer<JSX.IxEventListItem>('ix-event-list-item', defineIxEventListItem, [
+  'variant',
   'itemColor',
   'selected',
   'disabled',

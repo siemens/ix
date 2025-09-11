@@ -973,6 +973,7 @@ export type IxEventListItemEvents = { onItemClick: EventName<CustomEvent<any>> }
 export const IxEventListItem: StencilReactComponent<IxEventListItemElement, IxEventListItemEvents> = /*@__PURE__*/ createComponent<IxEventListItemElement, IxEventListItemEvents>({
     tagName: 'ix-event-list-item',
     properties: {
+        variant: 'variant',
         itemColor: 'item-color',
         selected: 'selected',
         disabled: 'disabled',

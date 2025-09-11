@@ -1119,14 +1119,14 @@ export declare interface IxEventList extends Components.IxEventList {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxEventListItem,
-  inputs: ['chevron', 'disabled', 'itemColor', 'selected']
+  inputs: ['chevron', 'disabled', 'itemColor', 'selected', 'variant']
 })
 @Component({
   selector: 'ix-event-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['chevron', 'disabled', 'itemColor', 'selected'],
+  inputs: ['chevron', 'disabled', 'itemColor', 'selected', 'variant'],
   outputs: ['itemClick'],
 })
 export class IxEventListItem {

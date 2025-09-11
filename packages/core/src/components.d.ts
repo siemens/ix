@@ -1541,6 +1541,12 @@ export namespace Components {
           * @default false
          */
         "selected": boolean;
+        /**
+          * Variant of the event list item
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant": 'outline' | 'filled';
     }
     interface IxExpandingSearch {
         /**
@@ -7514,6 +7520,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "selected"?: boolean;
+        /**
+          * Variant of the event list item
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant"?: 'outline' | 'filled';
     }
     interface IxExpandingSearch {
         /**
