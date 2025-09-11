@@ -1,0 +1,23 @@
+@mixin setVars {
+  --theme-btn-subtle-tertiary--background: var(--theme-color-ghost);
+  --theme-btn-subtle-tertiary--background--hover: var(--theme-color-ghost--hover);
+  --theme-btn-subtle-tertiary--background--active: var(--theme-color-ghost--active);
+  --theme-btn-subtle-tertiary--background--disabled: var(--theme-color-ghost);
+  --theme-btn-subtle-tertiary--background--pressed: var(--theme-color-component-7);
+  --theme-btn-subtle-tertiary--background--pressed-hover: var(--theme-color-component-7--hover);
+  --theme-btn-subtle-tertiary--background--pressed-active: var(--theme-color-component-7--active);
+  --theme-btn-subtle-tertiary--color: var(--theme-color-std-text);
+  --theme-btn-subtle-tertiary--color--hover: var(--theme-color-std-text);
+  --theme-btn-subtle-tertiary--color--active: var(--theme-color-std-text);
+  --theme-btn-subtle-tertiary--color--pressed: var(--theme-color-dynamic);
+  --theme-btn-subtle-tertiary--color--pressed-hover: var(--theme-color-dynamic);
+  --theme-btn-subtle-tertiary--color--pressed-active: var(--theme-color-dynamic);
+  --theme-btn-subtle-tertiary--color--disabled: var(--theme-color-weak-text);
+  --theme-btn-subtle-tertiary--border-color: var(--theme-color-0);
+  --theme-btn-subtle-tertiary--border-color--hover: var(--theme-color-0);
+  --theme-btn-subtle-tertiary--border-color--active: var(--theme-color-0);
+  --theme-btn-subtle-tertiary--border-color--disabled: var(--theme-color-0);
+  --theme-btn-subtle-tertiary--border-color--pressed: var(--theme-color-0);
+  --theme-btn-subtle-tertiary--border-color--pressed-hover: var(--theme-color-0);
+  --theme-btn-subtle-tertiary--border-color--pressed-active: var(--theme-color-0);
+}

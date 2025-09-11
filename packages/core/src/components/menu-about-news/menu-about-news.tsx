@@ -83,7 +83,7 @@ export class MenuAboutNews {
           size="24"
           icon={iconClose}
           iconColor="color-soft-text"
-          ghost
+          variant="tertiary"
           onClick={() => {
             this.show = false;
             this.closePopover.emit();

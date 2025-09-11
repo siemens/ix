@@ -378,7 +378,7 @@ export class ApplicationHeader {
             <ix-icon-button
               onClick={() => this.showAppSwitch()}
               icon={iconApps}
-              ghost
+              variant="subtle-tertiary"
               class={{
                 'app-switch': true,
                 'without-app-icon': !this.appIcon,
@@ -430,7 +430,7 @@ export class ApplicationHeader {
               data-context-menu
               data-testid="show-more"
               icon={iconMoreMenu}
-              ghost
+              variant="subtle-tertiary"
               aria-label={this.ariaLabelMoreMenuIconButton}
               aria-hidden={a11yBoolean(
                 !(this.hasOverflowContextMenu || this.hasOverflowSlotElements)

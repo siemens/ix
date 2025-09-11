@@ -18,8 +18,11 @@ import {
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
+import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 
-export type ButtonVariant = 'danger' | 'primary' | 'secondary';
+export type ButtonVariant =
+  | `${BaseButtonVariant}`
+  | `${BaseButtonStyle}-${BaseButtonVariant}`;
 
 @Component({
   tag: 'ix-button',
@@ -39,16 +42,6 @@ export class Button implements IxButtonComponent {
    * Button variant
    */
   @Prop() variant: ButtonVariant = 'primary';
-
-  /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
 
   /**
    * Disable the button
@@ -158,8 +151,6 @@ export class Button implements IxButtonComponent {
   render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: false,
       iconOval: false,
       selected: false,

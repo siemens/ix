@@ -28,8 +28,7 @@ import { ToastService } from '@siemens/ix-angular';
 
     <ng-template #customToastAction let-toast>
       <div>
-        <ix-button ghost icon="undo" (click)="toast.close('Action')"
-          >Undo</ix-button
+        <ix-button variant="tertiary" icon="undo" (click)="toast.close('Action')">Undo</ix-button
         >
       </div>
     </ng-template>

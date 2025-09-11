@@ -236,15 +236,13 @@ export class Avatar {
         <Host slot="ix-application-header-avatar" class={'avatar-button'}>
           <BaseButton
             disabled={false}
-            ghost={true}
             iconOval={false}
             icon={undefined}
             iconOnly={false}
             loading={false}
-            outline={false}
             selected={false}
             type="button"
-            variant="primary"
+            variant="tertiary"
           >
             {Avatar}
           </BaseButton>

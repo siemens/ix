@@ -47,6 +47,7 @@ import { TimeInputValidityState } from "./components/time-input/time-input.types
 import { TimePickerCorners } from "./components/time-picker/time-picker.types";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container.types";
+import { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -95,6 +96,7 @@ export { TimeInputValidityState } from "./components/time-input/time-input.types
 export { TimePickerCorners } from "./components/time-picker/time-picker.types";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container.types";
+export { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -381,11 +383,6 @@ export namespace Components {
          */
         "form"?: string;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
@@ -403,11 +400,6 @@ export namespace Components {
           * @default false
          */
         "loading": boolean;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Type of the button
           * @default 'button'
@@ -855,11 +847,6 @@ export namespace Components {
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Text for custom dropdown item. Will be used for translation.
           * @default 'Custom...'
          */
@@ -893,11 +880,6 @@ export namespace Components {
           * @default ''
          */
         "minDate": string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
         /**
           * If true a range of dates can be selected.
           * @default true
@@ -1383,11 +1365,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -1395,11 +1372,6 @@ export namespace Components {
           * Set label
          */
         "label"?: string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Placement of the dropdown
          */
@@ -1555,19 +1527,9 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
-          * Button with no background or outline
-          * @default true
-         */
-        "ghost": boolean;
-        /**
           * Search icon
          */
         "icon"?: string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Placeholder text
           * @default 'Enter text here'
@@ -1580,7 +1542,7 @@ export namespace Components {
         "value": string;
         /**
           * button variant
-          * @default 'primary'
+          * @default 'tertiary'
          */
         "variant": ButtonVariant1;
     }
@@ -1828,11 +1790,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
@@ -1845,11 +1802,6 @@ export namespace Components {
           * @default false
          */
         "loading": boolean;
-        /**
-          * Button outline
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Button in oval shape
           * @default false
@@ -1867,7 +1819,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Variant of button
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant": IconButtonVariant;
     }
@@ -1919,7 +1871,7 @@ export namespace Components {
         "size": '24' | '16' | '12';
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant": ButtonVariant1;
     }
@@ -3266,11 +3218,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -3278,11 +3225,6 @@ export namespace Components {
           * Button label
          */
         "label"?: string;
-        /**
-          * Button outline variant
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Placement of the dropdown
           * @default 'bottom-start'
@@ -3882,11 +3824,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
@@ -3901,20 +3838,15 @@ export namespace Components {
          */
         "loading": boolean;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
-        /**
           * Show button as pressed
           * @default false
          */
         "pressed": boolean;
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
-        "variant": ButtonVariant1;
+        "variant": ToggleButtonVariant;
     }
     interface IxTooltip {
         /**
@@ -6289,11 +6221,6 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
@@ -6311,11 +6238,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "loading"?: boolean;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Type of the button
           * @default 'button'
@@ -6807,11 +6729,6 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Text for custom dropdown item. Will be used for translation.
           * @default 'Custom...'
          */
@@ -6849,11 +6766,6 @@ declare namespace LocalJSX {
           * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * If true a range of dates can be selected.
           * @default true
@@ -7356,11 +7268,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -7368,11 +7275,6 @@ declare namespace LocalJSX {
           * Set label
          */
         "label"?: string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Placement of the dropdown
          */
@@ -7535,11 +7437,6 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
-          * Button with no background or outline
-          * @default true
-         */
-        "ghost"?: boolean;
-        /**
           * Search icon
          */
         "icon"?: string;
@@ -7547,11 +7444,6 @@ declare namespace LocalJSX {
           * Value changed
          */
         "onValueChange"?: (event: IxExpandingSearchCustomEvent<string>) => void;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Placeholder text
           * @default 'Enter text here'
@@ -7564,7 +7456,7 @@ declare namespace LocalJSX {
         "value"?: string;
         /**
           * button variant
-          * @default 'primary'
+          * @default 'tertiary'
          */
         "variant"?: ButtonVariant1;
     }
@@ -7837,11 +7729,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
@@ -7854,11 +7741,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "loading"?: boolean;
-        /**
-          * Button outline
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Button in oval shape
           * @default false
@@ -7876,7 +7758,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Variant of button
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant"?: IconButtonVariant;
     }
@@ -7932,7 +7814,7 @@ declare namespace LocalJSX {
         "size"?: '24' | '16' | '12';
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant"?: ButtonVariant1;
     }
@@ -9353,11 +9235,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -9369,11 +9246,6 @@ declare namespace LocalJSX {
           * Button clicked
          */
         "onButtonClick"?: (event: IxSplitButtonCustomEvent<MouseEvent>) => void;
-        /**
-          * Button outline variant
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Placement of the dropdown
           * @default 'bottom-start'
@@ -9971,11 +9843,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
@@ -9994,20 +9861,15 @@ declare namespace LocalJSX {
          */
         "onPressedChange"?: (event: IxToggleButtonCustomEvent<boolean>) => void;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
-        /**
           * Show button as pressed
           * @default false
          */
         "pressed"?: boolean;
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
-        "variant"?: ButtonVariant1;
+        "variant"?: ToggleButtonVariant;
     }
     interface IxTooltip {
         /**
