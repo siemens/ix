@@ -1,3 +1,23 @@
 @mixin setVars {
+  --theme-breadcrumb-btn--background: var(--theme-color-component-1);
+  --theme-breadcrumb-btn--background--hover: var(--theme-color-component-1--hover);
+  --theme-breadcrumb-btn--background--active: var(--theme-color-component-1--active);
+  --theme-breadcrumb-btn--color: var(--theme-color-soft-text);
+  --theme-breadcrumb-btn--color--hover: var(--theme-color-std-text);
+  --theme-breadcrumb-btn--color--active: var(--theme-color-std-text);
+  --theme-breadcrumb-btn-arrow--color: var(--theme-color-soft-text);
+  --theme-breadcrumb-btn-arrow--color--hover: var(--theme-color-std-text);
+  --theme-breadcrumb-btn-arrow--color--active: var(--theme-color-std-text);
+  --theme-breadcrumb-btn-last--color: var(--theme-color-soft-text);
+  --theme-breadcrumb-ghost--color: var(--theme-color-primary);
+  --theme-breadcrumb-ghost--color--hover: var(--theme-color-dynamic);
+  --theme-breadcrumb-ghost--color--active: var(--theme-color-dynamic);
+  --theme-breadcrumb-ghost-arrow--color: var(--theme-color-soft-text);
+  --theme-breadcrumb-ghost-arrow--color--hover: var(--theme-color-dynamic);
+  --theme-breadcrumb-ghost-arrow--color--active: var(--theme-color-dynamic);
+  --theme-breadcrumb-ghost--background: var(--theme-color-ghost);
+  --theme-breadcrumb-ghost--background--hover: var(--theme-color-ghost--hover);
+  --theme-breadcrumb-ghost--background--active: var(--theme-color-ghost--active);
+  --theme-breadcrumb-ghost-last--color: var(--theme-color-soft-text);
   --theme-breadcrumb--border-radius: var(--theme-min-border-radius);
 }
