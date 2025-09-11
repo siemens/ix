@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,11 +8,11 @@
  */
 
 import { Component } from '@angular/core';
+import { IxButton } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './content-header-with-slot.html',
-  styleUrls: ['./content-header-with-slot.css'],
-  standalone: false,
+  templateUrl: './button-with-link.html',
+  imports: [IxButton],
 })
-export default class ContentHeaderWithSlot {}
+export default class ButtonWithLink {}
