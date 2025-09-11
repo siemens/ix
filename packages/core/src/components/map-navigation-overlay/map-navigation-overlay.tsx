@@ -127,7 +127,7 @@ export class MapNavigationOverlay {
           </div>
           <ix-icon-button
             class="overlay-close"
-            ghost
+            variant="tertiary"
             icon={iconClose}
             iconColor="color-soft-text"
             size="24"

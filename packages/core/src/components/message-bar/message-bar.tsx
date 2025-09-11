@@ -129,7 +129,7 @@ export class MessageBar {
               icon={iconClose}
               iconColor="color-soft-text"
               size="24"
-              ghost={true}
+              variant="tertiary"
               onClick={() => {
                 if (this.divElement) {
                   this.closeAlert(this.divElement);

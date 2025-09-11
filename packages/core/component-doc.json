@@ -514,7 +514,19 @@
       "docsTags": [
         {
           "name": "slot",
-          "text": "logo - Location of the logo"
+          "text": "default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown."
+        },
+        {
+          "name": "slot",
+          "text": "secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown."
+        },
+        {
+          "name": "slot",
+          "text": "overflow - Use this slot to display additional items that do not fit in the default or secondary slot."
+        },
+        {
+          "name": "slot",
+          "text": "logo - Place a company logo inside the header. Alternatively the companyLogo property can be set."
         }
       ],
       "encapsulation": "shadow",
@@ -550,6 +562,101 @@
         ]
       },
       "props": [
+        {
+          "name": "appIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon",
+          "reflectToAttr": false,
+          "docs": "The app icon will be shown as the first element inside the header.\nIt will be hidden on smaller screens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "appIconAlt",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon-alt",
+          "reflectToAttr": false,
+          "docs": "Alt text for the app icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "appIconOutline",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon-outline",
+          "reflectToAttr": false,
+          "docs": "Render subtle outline around app icon to ensure proper contrast.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "ariaLabelAppSwitchIconButton",
           "type": "string | undefined",
@@ -644,6 +751,101 @@
           "setter": false
         },
         {
+          "name": "companyLogo",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "company-logo",
+          "reflectToAttr": false,
+          "docs": "Company logo will be show on the left side of the application name.\nIt will be hidden on smaller screens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "companyLogoAlt",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "company-logo-alt",
+          "reflectToAttr": false,
+          "docs": "Alt text for the company logo",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hideBottomBorder",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-bottom-border",
+          "reflectToAttr": false,
+          "docs": "Hides the bottom border of the header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "name",
           "type": "string | undefined",
           "complexType": {
@@ -656,6 +858,37 @@
           "reflectToAttr": false,
           "docs": "Application name",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "nameSuffix",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name-suffix",
+          "reflectToAttr": false,
+          "docs": "Define a suffix which will be displayed next to the application name",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -741,8 +974,20 @@
       "styles": [],
       "slots": [
         {
+          "name": "default",
+          "docs": "Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown."
+        },
+        {
           "name": "logo",
-          "docs": "Location of the logo"
+          "docs": "Place a company logo inside the header. Alternatively the companyLogo property can be set."
+        },
+        {
+          "name": "overflow",
+          "docs": "Use this slot to display additional items that do not fit in the default or secondary slot."
+        },
+        {
+          "name": "secondary",
+          "docs": "Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown."
         }
       ],
       "parts": [],
@@ -1643,6 +1888,37 @@
           "setter": false
         },
         {
+          "name": "href",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "href",
+          "reflectToAttr": false,
+          "docs": "URL for the button link. When provided, the button will render as an anchor tag.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -1683,6 +1959,92 @@
           "docsTags": [],
           "values": [
             {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "rel",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "rel",
+          "reflectToAttr": false,
+          "docs": "Specifies the relationship between the current document and the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+          "complexType": {
+            "original": "AnchorTarget",
+            "resolved": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+            "references": {
+              "AnchorTarget": {
+                "location": "import",
+                "path": "../button/button.interface",
+                "id": "src/components/button/button.interface.ts::AnchorTarget"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "'_self'"
+            }
+          ],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
               "type": "string"
             },
             {
@@ -1857,30 +2219,32 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
+          "name": "href",
+          "type": "string | undefined",
           "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
+            "original": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
-          "attr": "ghost",
+          "attr": "href",
           "reflectToAttr": false,
-          "docs": "Button with no background or outline",
+          "docs": "URL for the button link. When provided, the button will render as an anchor tag.",
           "docsTags": [
             {
-              "name": "default",
-              "text": "false"
+              "name": "since",
+              "text": "3.3.0"
             }
           ],
-          "default": "false",
           "values": [
             {
-              "type": "boolean"
+              "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -1972,30 +2336,87 @@
           "setter": false
         },
         {
-          "name": "outline",
-          "type": "boolean",
+          "name": "rel",
+          "type": "string | undefined",
           "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
+            "original": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
-          "attr": "outline",
+          "attr": "rel",
           "reflectToAttr": false,
-          "docs": "Outline button",
+          "docs": "Specifies the relationship between the current document and the linked document when href is provided.",
           "docsTags": [
             {
-              "name": "default",
-              "text": "false"
+              "name": "since",
+              "text": "3.3.0"
             }
           ],
-          "default": "false",
           "values": [
             {
-              "type": "boolean"
+              "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
-          "optional": false,
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+          "complexType": {
+            "original": "AnchorTarget",
+            "resolved": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+            "references": {
+              "AnchorTarget": {
+                "location": "import",
+                "path": "button.interface",
+                "id": "src/components/button/button.interface.ts::AnchorTarget"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "'_self'"
+            }
+          ],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -2036,10 +2457,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "local",
@@ -2061,7 +2482,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -2070,6 +2499,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -4657,7 +5102,16 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "header - Content to be placed in the header area next to the title"
+        },
+        {
+          "name": "slot",
+          "text": "- Default slot for action buttons or other content"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -4820,7 +5274,16 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot for action buttons or other content"
+        },
+        {
+          "name": "header",
+          "docs": "Content to be placed in the header area next to the title"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -5329,35 +5792,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "i18nCustomItem",
           "type": "string",
           "complexType": {
@@ -5558,35 +5992,6 @@
           "setter": false
         },
         {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "range",
           "type": "boolean",
           "complexType": {
@@ -5679,10 +6084,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -5704,7 +6109,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -5713,6 +6126,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -7872,7 +8301,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "Will be removed with 5.0.0, use ix-pane as successor"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -7886,6 +8320,7 @@
           "ix-spinner"
         ]
       },
+      "deprecation": "Will be removed with 5.0.0, use ix-pane as successor",
       "props": [
         {
           "name": "ariaLabelCloseButton",
@@ -8735,35 +9170,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -8811,35 +9217,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -8907,10 +9284,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "DropdownButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "DropdownButtonVariant": {
                 "location": "import",
@@ -8932,7 +9309,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -8941,6 +9326,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -9962,35 +10363,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -10012,35 +10384,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -10105,10 +10448,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -10124,13 +10467,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'primary'"
+              "text": "'tertiary'"
             }
           ],
-          "default": "'primary'",
+          "default": "'tertiary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -10139,6 +10490,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -11630,35 +11997,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -11722,35 +12060,6 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Button outline",
           "docsTags": [
             {
               "name": "default",
@@ -11871,10 +12180,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "IconButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "IconButtonVariant": {
                 "location": "import",
@@ -11890,13 +12199,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'secondary'"
+              "text": "'subtle-primary'"
             }
           ],
-          "default": "'secondary'",
+          "default": "'subtle-primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -11905,6 +12222,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -12218,10 +12551,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -12237,13 +12570,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'secondary'"
+              "text": "'subtle-primary'"
             }
           ],
-          "default": "'secondary'",
+          "default": "'subtle-primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -12252,6 +12593,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -16155,6 +16512,37 @@
           "setter": false
         },
         {
+          "name": "href",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "href",
+          "reflectToAttr": false,
+          "docs": "URL for the button link. When provided, the button will render as an anchor tag.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -16222,6 +16610,92 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "rel",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "rel",
+          "reflectToAttr": false,
+          "docs": "Specifies the relationship between the current document and the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+          "complexType": {
+            "original": "AnchorTarget",
+            "resolved": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+            "references": {
+              "AnchorTarget": {
+                "location": "import",
+                "path": "../button/button.interface",
+                "id": "src/components/button/button.interface.ts::AnchorTarget"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "'_self'"
+            }
+          ],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
+              "type": "string"
             },
             {
               "type": "undefined"
@@ -18361,7 +18835,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "header - Additional slot for the header content"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -18378,6 +18857,32 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelCollapseCloseButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-collapse-close-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label close or collapse button",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "ariaLabelIcon",
           "type": "string | undefined",
@@ -18416,6 +18921,35 @@
           "attr": "borderless",
           "reflectToAttr": false,
           "docs": "Toggle the border of the pane.\nDefaults to the borderless attribute of the pane layout. If used standalone it defaults to false.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "closeOnClickOutside",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "close-on-click-outside",
+          "reflectToAttr": false,
+          "docs": "If true, the pane will close when clicking outside of it",
           "docsTags": [
             {
               "name": "default",
@@ -18744,7 +19278,12 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "header",
+          "docs": "Additional slot for the header content"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -22076,35 +22615,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -22152,35 +22662,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Button outline variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -22277,10 +22758,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "SplitButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "SplitButtonVariant": {
                 "location": "import",
@@ -22302,7 +22783,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -22311,6 +22800,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -25568,7 +26073,74 @@
           "setter": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "isPaused",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<boolean>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<boolean>"
+          },
+          "signature": "isPaused() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Returns whether the toast is currently paused (auto-close is paused).",
+          "docsTags": []
+        },
+        {
+          "name": "pause",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "pause() => Promise<void>",
+          "parameters": [],
+          "docs": "Pause the toast's auto-close progress bar and timer.",
+          "docsTags": []
+        },
+        {
+          "name": "resume",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "resume() => Promise<void>",
+          "parameters": [],
+          "docs": "Resume the toast's auto-close progress bar and timer if previously paused.",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "closeToast",
@@ -26206,35 +26778,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -26321,35 +26864,6 @@
           "setter": false
         },
         {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "pressed",
           "type": "boolean",
           "complexType": {
@@ -26380,15 +26894,15 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
-            "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "original": "ToggleButtonVariant",
+            "resolved": "\"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
-              "ButtonVariant": {
-                "location": "import",
-                "path": "../button/button",
-                "id": "src/components/button/button.tsx::ButtonVariant"
+              "ToggleButtonVariant": {
+                "location": "local",
+                "path": "src/components/toggle-button/toggle-button.tsx",
+                "id": "src/components/toggle-button/toggle-button.tsx::ToggleButtonVariant"
               }
             }
           },
@@ -26399,21 +26913,33 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'secondary'"
+              "text": "'subtle-primary'"
             }
           ],
-          "default": "'secondary'",
+          "default": "'subtle-primary'",
           "values": [
-            {
-              "value": "danger",
-              "type": "string"
-            },
             {
               "value": "primary",
               "type": "string"
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -28413,14 +28939,24 @@
   ],
   "typeLibrary": {
     "src/components/button/button.tsx::ButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/button/button.tsx"
+    },
+    "src/components/button/button.interface.ts::AnchorTarget": {
+      "declaration": "export type AnchorTarget = '_self' | '_blank' | '_parent' | '_top';",
+      "docstring": "",
+      "path": "src/components/button/button.interface.ts"
     },
     "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent": {
       "declaration": "export interface CustomCloseEvent {\n  nativeEvent: MouseEvent;\n  name: string;\n}",
       "docstring": "",
       "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
+    },
+    "src/components/toggle-button/toggle-button.tsx::ToggleButtonVariant": {
+      "declaration": "export type ToggleButtonVariant = Exclude<\n  ButtonVariant,\n  `danger-${BaseButtonVariant}`\n>;",
+      "docstring": "",
+      "path": "src/components/toggle-button/toggle-button.tsx"
     },
     "src/components/action-card/action-card.types.ts::ActionCardVariant": {
       "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
@@ -28538,7 +29074,7 @@
       "path": "src/components/dropdown/placement.ts"
     },
     "src/components/dropdown-button/dropdown-button.types.ts::DropdownButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.types.ts"
     },
@@ -28558,7 +29094,7 @@
       "path": "src/components/flip-tile/flip-tile-state.ts"
     },
     "src/components/icon-button/icon-button.types.ts::IconButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/icon-button/icon-button.types.ts"
     },
@@ -28628,7 +29164,7 @@
       "path": "src/components/slider/slider.types.ts"
     },
     "src/components/split-button/split-button.types.ts::SplitButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/split-button/split-button.types.ts"
     },
@@ -28648,7 +29184,7 @@
       "path": "src/components/time-picker/time-picker.types.ts"
     },
     "src/components/toast/toast-container.types.ts::ShowToastResult": {
-      "declaration": "{\n  onClose: TypedEvent<any | undefined>;\n  close: (result?: any) => void;\n}",
+      "declaration": "{\n  onClose: TypedEvent<any | undefined>;\n  close: (result?: any) => void;\n  pause: () => void;\n  resume: () => void;\n  isPaused: () => Promise<boolean>;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-container.types.ts"
     },

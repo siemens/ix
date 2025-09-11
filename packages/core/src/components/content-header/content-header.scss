@@ -17,6 +17,23 @@
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
+    min-width: 0;
+    white-space: nowrap;
+    margin-right: 0.5rem;
+
+    .titleOverflow {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .headerTitleRow {
+      display: flex;
+
+      .headerSlot {
+        display: inline-flex;
+        margin-left: 0.5rem;
+      }
+    }
 
     .secondary {
       padding: 0.25rem 0;

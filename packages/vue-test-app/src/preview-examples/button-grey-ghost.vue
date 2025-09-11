@@ -14,6 +14,6 @@ import { IxButton } from '@siemens/ix-vue';
 <style scoped src="./button-grey-ghost.css"></style>
 
 <template>
-  <IxButton ghost variant="secondary"> Button </IxButton>
-  <IxButton disabled ghost variant="secondary"> Button </IxButton>
+  <IxButton variant="subtle-tertiary"> Button </IxButton>
+  <IxButton disabled variant="subtle-tertiary"> Button </IxButton>
 </template>

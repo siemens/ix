@@ -10,17 +10,25 @@ import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
-type Element = Components.IxActionCard & { defaultSlot: string };
+type Element = Components.IxLinkButton & {
+  defaultSlot: string;
+  styles?: Record<string, string>;
+};
 
 const meta = {
-  title: 'Example/ActionCard',
+  title: 'Example/LinkButton',
   tags: [],
-  render: (args) => genericRender('ix-action-card', args),
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-action-card', {}),
+  render: (args) => genericRender('ix-link-button', args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-link-button', {
+    styles: {
+      control: { type: 'object' },
+    },
+  }),
+  args: {},
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=6396-139860&m=dev',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=225-5535&m=dev',
     },
   },
 } satisfies Meta<Element>;
@@ -28,9 +36,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   args: {
-    defaultSlot: 'Button',
+    defaultSlot: 'My link',
   },
 };
