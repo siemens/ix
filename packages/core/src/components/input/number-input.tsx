@@ -152,6 +152,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop() step?: string | number;
 
   /**
+   * Alignment of the input number. 'start' = left, 'end' = right.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'end';
+
+  /**
    * Event emitted when the value of the input field changes
    */
   @Event() valueChange!: EventEmitter<number>;
@@ -319,6 +324,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
               }}
+              textAlignment={this.textAlignment}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

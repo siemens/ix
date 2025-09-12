@@ -201,3 +201,20 @@ regressionTest(
     await expect(input).not.toHaveClass(/is-invalid/);
   }
 );
+
+regressionTest(
+  'ix-date-input - textAlignment property applies correct style',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input text-alignment="end" value="2024/01/01"></ix-date-input>`
+    );
+    const input = page.locator('ix-date-input').locator('input');
+    await expect(input).toHaveCSS('text-align', 'right');
+
+    await mount(
+      `<ix-date-input text-alignment="start" value="2024/02/02"></ix-date-input>`
+    );
+    const inputStart = page.locator('ix-date-input').locator('input');
+    await expect(inputStart).toHaveCSS('text-align', 'left');
+  }
+);

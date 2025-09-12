@@ -147,6 +147,11 @@ export class Input implements IxInputFieldComponent<string> {
   @Prop() allowedCharactersPattern?: string;
 
   /**
+   * Alignment of the input text. 'start' = left, 'end' = right.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
    * Event emitted when the value of the text field changes.
    */
   @Event() valueChange!: EventEmitter<string>;
@@ -316,6 +321,7 @@ export class Input implements IxInputFieldComponent<string> {
                 this.touched = true;
               }}
               ariaAttributes={inputAria}
+              textAlignment={this.textAlignment}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
