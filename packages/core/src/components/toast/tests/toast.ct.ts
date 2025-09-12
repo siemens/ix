@@ -63,3 +63,65 @@ regressionTest(
     await expect(toast).not.toBeVisible();
   }
 );
+
+regressionTest(
+  'verify functionality of pause and resume api',
+  async ({ mount, page }) => {
+    await mount('');
+    const toastHandle = await page.evaluateHandle(() => {
+      return window.toast({
+        message: 'Pause/Resume test',
+        autoCloseDelay: 1000,
+      });
+    });
+
+    const toast = page.locator('ix-toast');
+    await expect(toast).toBeVisible();
+
+    await page.evaluate((handle) => {
+      handle.pause();
+    }, toastHandle);
+
+    // Wait for the toast to be paused and check persistence
+    await page.waitForTimeout(1500);
+    await expect(toast).toBeVisible();
+
+    await page.evaluate((handle) => {
+      handle.resume();
+    }, toastHandle);
+
+    // Wait for the toast to be resumed and check disappearance
+    await page.waitForTimeout(1500);
+    await expect(toast).not.toBeVisible();
+  }
+);
+
+regressionTest('verify isPaused method', async ({ mount, page }) => {
+  await mount('');
+  const toastHandle = await page.evaluateHandle(() => {
+    return window.toast({
+      message: 'isPaused test',
+      autoCloseDelay: 2000,
+    });
+  });
+
+  // Should not be paused initially
+  let paused = await page.evaluate(async (handle) => {
+    return await handle.isPaused();
+  }, toastHandle);
+  expect(paused).toBe(false);
+
+  // Pause and check
+  await page.evaluate((handle) => handle.pause(), toastHandle);
+  paused = await page.evaluate(async (handle) => {
+    return await handle.isPaused();
+  }, toastHandle);
+  expect(paused).toBe(true);
+
+  // Resume and check
+  await page.evaluate((handle) => handle.resume(), toastHandle);
+  paused = await page.evaluate(async (handle) => {
+    return await handle.isPaused();
+  }, toastHandle);
+  expect(paused).toBe(false);
+});

@@ -9,6 +9,7 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import { ButtonVariant } from './button';
+import { AnchorInterface } from './button.interface';
 
 export type ButtonAlignment = 'center' | 'start';
 
@@ -71,7 +72,7 @@ export type BaseButtonProps = {
   alignment?: ButtonAlignment;
   tabIndex?: number;
   afterContent?: any;
-};
+} & AnchorInterface;
 
 const getSpinnerSize = (btnProps: BaseButtonProps) => {
   if (!btnProps.icon) {
@@ -88,6 +89,17 @@ const getSpinnerSize = (btnProps: BaseButtonProps) => {
   }
 };
 
+const handleOnClick = (e: Event, props: BaseButtonProps) => {
+  if (props.disabled || props.loading) {
+    e.preventDefault();
+    e.stopPropagation();
+    return;
+  }
+  if (props.onClick) {
+    props.onClick(e);
+  }
+};
+
 export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   props: BaseButtonProps,
   children
@@ -99,53 +111,78 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     ariaAttributes['aria-disabled'] = 'true';
   }
 
-  return (
-    <button
-      {...ariaAttributes}
-      onClick={(e: Event) => (props.onClick ? props.onClick(e) : undefined)}
-      tabindex={props.disabled ? -1 : (props.tabIndex ?? 0)}
-      type={props.type}
+  const commonAttributes = {
+    ...ariaAttributes,
+    tabindex: props.disabled ? -1 : (props.tabIndex ?? 0),
+    class: {
+      ...getButtonClasses(
+        props.variant,
+        props.outline,
+        props.ghost,
+        props.iconOnly,
+        props.iconOval,
+        props.selected,
+        props.disabled || props.loading
+      ),
+      ...extraClasses,
+    },
+  };
+
+  const buttonContent = [
+    props.loading ? (
+      <ix-spinner size={getSpinnerSize(props)} hideTrack></ix-spinner>
+    ) : null,
+    props.icon && !props.loading ? (
+      <ix-icon
+        class="icon"
+        name={props.icon}
+        size={props.iconSize as any}
+        color={props.iconColor}
+      ></ix-icon>
+    ) : null,
+    <div
       class={{
-        ...getButtonClasses(
-          props.variant,
-          props.outline,
-          props.ghost,
-          props.iconOnly,
-          props.iconOval,
-          props.selected,
-          props.disabled || props.loading
-        ),
-        ...extraClasses,
+        content: true,
+        [`content-${props.alignment}`]: !!props.alignment,
       }}
     >
-      {props.loading ? (
-        <ix-spinner size={getSpinnerSize(props)} hideTrack></ix-spinner>
-      ) : null}
-      {props.icon && !props.loading ? (
-        <ix-icon
-          class="icon"
-          name={props.icon}
-          size={props.iconSize as any}
-          color={props.iconColor}
-        ></ix-icon>
-      ) : null}
-      <div
-        class={{
-          content: true,
-          [`content-${props.alignment}`]: !!props.alignment,
-        }}
+      {children}
+    </div>,
+    props.iconRight ? (
+      <ix-icon
+        class="icon-right"
+        name={props.iconRight}
+        size={props.iconSize as any}
+        color={props.iconColor}
+      ></ix-icon>
+    ) : null,
+    props.afterContent ? props.afterContent : null,
+  ];
+
+  // If href is provided, render as an anchor tag
+  if (props.href) {
+    return (
+      <a
+        {...commonAttributes}
+        href={props.disabled ? undefined : props.href}
+        target={props.target}
+        role="button"
+        rel={props.rel}
+        onClick={(e: Event) => handleOnClick(e, props)}
       >
-        {children}
-      </div>
-      {props.iconRight ? (
-        <ix-icon
-          class="icon-right"
-          name={props.iconRight}
-          size={props.iconSize as any}
-          color={props.iconColor}
-        ></ix-icon>
-      ) : null}
-      {props.afterContent ? props.afterContent : null}
+        {buttonContent}
+      </a>
+    );
+  }
+
+  // Otherwise, render as a button
+  return (
+    <button
+      {...commonAttributes}
+      onClick={(e: Event) => handleOnClick(e, props)}
+      type={props.type}
+    >
+      {buttonContent}
     </button>
   );
 };

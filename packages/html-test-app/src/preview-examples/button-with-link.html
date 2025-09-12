@@ -1,0 +1,94 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button with link example</title>
+    <link rel="stylesheet" href="./button-with-icon.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconOpenExternal, iconHome } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconOpenExternal,
+        iconHome,
+      });
+    </script>
+  </head>
+
+  <body>
+    <div style="padding: 2rem; max-width: 800px">
+      <h2>Button Link Examples</h2>
+
+      <div style="margin-bottom: 1rem">
+        <h3>Basic Link Buttons</h3>
+        <ix-button href="https://siemens.com">Visit Siemens</ix-button>
+        <ix-button
+          href="https://siemens.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in New Tab
+        </ix-button>
+        <ix-button href="/dashboard">Dashboard</ix-button>
+      </div>
+
+      <div style="margin-bottom: 1rem">
+        <h3>Styled Link Buttons</h3>
+        <ix-button href="https://siemens.com" variant="primary"
+          >Primary Link</ix-button
+        >
+        <ix-button href="https://siemens.com" variant="secondary"
+          >Secondary Link</ix-button
+        >
+        <ix-button href="https://siemens.com" variant="danger"
+          >Danger Link</ix-button
+        >
+      </div>
+
+      <div style="margin-bottom: 1rem">
+        <h3>Outline and Ghost Links</h3>
+        <ix-button href="https://siemens.com" outline> Outline Link </ix-button>
+        <ix-button href="https://siemens.com" ghost> Ghost Link </ix-button>
+      </div>
+
+      <div style="margin-bottom: 1rem">
+        <h3>Icon Links</h3>
+        <ix-button href="https://siemens.com" icon="home"> Home </ix-button>
+        <ix-button
+          href="https://siemens.com"
+          target="_blank"
+          icon-right="open-external"
+        >
+          External
+        </ix-button>
+      </div>
+
+      <div style="margin-bottom: 1rem">
+        <h3>Disabled Link</h3>
+        <ix-button
+          href="https://siemens.com"
+          class="ix-button ix-button--disabled"
+          disabled
+        >
+          Disabled Link
+        </ix-button>
+      </div>
+
+      <div style="margin-bottom: 1rem">
+        <h3>Comparison</h3>
+        <button class="ix-button">Regular Button</button>
+        <ix-button href="#section" class="ix-button">Link Button</ix-button>
+      </div>
+    </div>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
