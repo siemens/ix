@@ -168,17 +168,17 @@ export namespace Components {
     interface IxApplicationHeader {
         /**
           * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "appIcon"?: string;
         /**
           * Alt text for the app icon
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "appIconAlt"?: string;
         /**
           * Render subtle outline around app icon to ensure proper contrast.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default false
          */
         "appIconOutline": boolean;
@@ -199,17 +199,17 @@ export namespace Components {
         "ariaLabelMoreMenuIconButton"?: string;
         /**
           * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "companyLogo"?: string;
         /**
           * Alt text for the company logo
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "companyLogoAlt"?: string;
         /**
           * Hides the bottom border of the header
-          * @since 3.3.0
+          * @since 4.0.0
           * @default false
          */
         "hideBottomBorder": boolean;
@@ -219,7 +219,7 @@ export namespace Components {
         "name"?: string;
         /**
           * Define a suffix which will be displayed next to the application name
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "nameSuffix"?: string;
         /**
@@ -241,7 +241,7 @@ export namespace Components {
         "a11yLabel"?: string;
         /**
           * aria-label for the tooltip
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -258,7 +258,7 @@ export namespace Components {
         "initials"?: string;
         /**
           * Text to display in a tooltip when hovering over the avatar
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
         /**
@@ -345,7 +345,7 @@ export namespace Components {
         "ghost": boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -362,7 +362,7 @@ export namespace Components {
         "label"?: string;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
@@ -371,7 +371,7 @@ export namespace Components {
         "showChevron": boolean;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -402,7 +402,7 @@ export namespace Components {
         "form"?: string;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -411,7 +411,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -425,12 +425,12 @@ export namespace Components {
         "loading": boolean;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -2381,7 +2381,7 @@ export namespace Components {
         "notifications"?: number;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -2429,7 +2429,7 @@ export namespace Components {
         "home": boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -2450,18 +2450,18 @@ export namespace Components {
         "notifications"?: number;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -3891,7 +3891,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -6047,17 +6047,17 @@ declare namespace LocalJSX {
     interface IxApplicationHeader {
         /**
           * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "appIcon"?: string;
         /**
           * Alt text for the app icon
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "appIconAlt"?: string;
         /**
           * Render subtle outline around app icon to ensure proper contrast.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default false
          */
         "appIconOutline"?: boolean;
@@ -6078,17 +6078,17 @@ declare namespace LocalJSX {
         "ariaLabelMoreMenuIconButton"?: string;
         /**
           * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "companyLogo"?: string;
         /**
           * Alt text for the company logo
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "companyLogoAlt"?: string;
         /**
           * Hides the bottom border of the header
-          * @since 3.3.0
+          * @since 4.0.0
           * @default false
          */
         "hideBottomBorder"?: boolean;
@@ -6098,7 +6098,7 @@ declare namespace LocalJSX {
         "name"?: string;
         /**
           * Define a suffix which will be displayed next to the application name
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "nameSuffix"?: string;
         /**
@@ -6129,7 +6129,7 @@ declare namespace LocalJSX {
         "a11yLabel"?: string;
         /**
           * aria-label for the tooltip
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -6146,7 +6146,7 @@ declare namespace LocalJSX {
         "initials"?: string;
         /**
           * Text to display in a tooltip when hovering over the avatar
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
         /**
@@ -6245,7 +6245,7 @@ declare namespace LocalJSX {
         "ghost"?: boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -6263,7 +6263,7 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
@@ -6272,7 +6272,7 @@ declare namespace LocalJSX {
         "showChevron"?: boolean;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -6303,7 +6303,7 @@ declare namespace LocalJSX {
         "form"?: string;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -6312,7 +6312,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -6326,12 +6326,12 @@ declare namespace LocalJSX {
         "loading"?: boolean;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -8406,7 +8406,7 @@ declare namespace LocalJSX {
         "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -8454,7 +8454,7 @@ declare namespace LocalJSX {
         "home"?: boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -8475,18 +8475,18 @@ declare namespace LocalJSX {
         "notifications"?: number;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -9973,7 +9973,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
