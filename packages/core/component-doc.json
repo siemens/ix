@@ -6647,6 +6647,35 @@
           "setter": false
         },
         {
+          "name": "submitOnEnter",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "submit-on-enter",
+          "reflectToAttr": true,
+          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "validText",
           "type": "string | undefined",
           "complexType": {
@@ -12967,6 +12996,35 @@
           "setter": false
         },
         {
+          "name": "submitOnEnter",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "submit-on-enter",
+          "reflectToAttr": true,
+          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "type",
           "type": "\"email\" | \"password\" | \"tel\" | \"text\" | \"url\"",
           "complexType": {
@@ -18143,6 +18201,35 @@
           "setter": false
         },
         {
+          "name": "submitOnEnter",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "submit-on-enter",
+          "reflectToAttr": true,
+          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "validText",
           "type": "string | undefined",
           "complexType": {
@@ -21514,6 +21601,35 @@
           "setter": false
         },
         {
+          "name": "submitOnEnter",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "submit-on-enter",
+          "reflectToAttr": true,
+          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "validText",
           "type": "string | undefined",
           "complexType": {
@@ -24795,6 +24911,35 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "submitOnEnter",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "submit-on-enter",
+          "reflectToAttr": true,
+          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false

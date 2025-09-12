@@ -27,6 +27,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -192,6 +193,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() ariaLabelNextMonthButton?: string;
 
   /**
+   * If true, pressing Enter will submit the form (if inside a form).
+   */
+  @Prop({ reflect: true }) submitOnEnter: boolean = false;
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -341,6 +347,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
+  private handleInputKeyDown(e: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(e, this.submitOnEnter, this.formInternals.form);
+  }
+
   private renderInput() {
     return (
       <div class="input-wrapper">
@@ -380,6 +390,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.ixBlur.emit();
             this.touched = true;
           }}
+          onKeyDown={this.handleInputKeyDown.bind(this)}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
