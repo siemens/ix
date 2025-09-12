@@ -10,6 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: ` <ix-toggle [(ngModel)]="checked"></ix-toggle>`,
 })

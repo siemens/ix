@@ -23,16 +23,10 @@
 }
 
 @mixin base-icon-button {
-  $button-categories: (danger, primary, secondary);
-
   @include button-mixin.btn;
-  @include component.ix-component;
+  @include button-mixin.all-btn-variants;
 
-  @each $category in $button-categories {
-    @include button-mixin.btn-variant($category);
-    @include button-mixin.btn-variant('outline-#{$category}');
-    @include button-mixin.btn-variant('invisible-#{$category}', false);
-  }
+  @include component.ix-component;
 
   :host {
     display: inline-flex;

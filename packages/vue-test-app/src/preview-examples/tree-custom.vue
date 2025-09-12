@@ -90,7 +90,7 @@ onMounted(() => {
 
 <template>
   <div style="display: block; position: relative; width: 100%; height: 40rem">
-    <IxButton @click="expandAndSelect" ghost style="margin-bottom: 2rem">
+    <IxButton variant="tertiary" @click="expandAndSelect" style="margin-bottom: 2rem">
       Expand Tree
     </IxButton>
     <IxTree

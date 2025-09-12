@@ -8,15 +8,8 @@
  */
 @use './button-mixin';
 
-$button-categories: (danger, primary, secondary);
-
 @include button-mixin.btn;
-
-@each $category in $button-categories {
-  @include button-mixin.btn-variant($category);
-  @include button-mixin.btn-variant('outline-#{$category}');
-  @include button-mixin.btn-variant('invisible-#{$category}', false);
-}
+@include button-mixin.all-btn-variants;
 
 :host {
   min-width: 5rem;

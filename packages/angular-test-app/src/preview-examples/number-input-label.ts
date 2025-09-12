@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './number-input-label.html'
+  templateUrl: './number-input-label.html',
 })
 export default class NumberInputLabel {}

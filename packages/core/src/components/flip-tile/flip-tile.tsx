@@ -197,8 +197,7 @@ export class FlipTile {
             </div>
             <ix-icon-button
               icon={iconEye}
-              variant="primary"
-              ghost
+              variant="tertiary"
               onClick={() => this.toggleIndex()}
               aria-label={this.ariaLabelEyeIconButton}
             ></ix-icon-button>

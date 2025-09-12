@@ -232,11 +232,7 @@ export default function FormValidation() {
             }}
             name="upload"
           />
-          <IxIconButton
-            outline
-            variant="primary"
-            icon={iconStar}
-            onClick={() => uploadRef.current?.click()}
+          <IxIconButton variant="subtle-primary" icon={iconStar} onClick={() => uploadRef.current?.click()}
           ></IxIconButton>
         </IxCustomField>
 

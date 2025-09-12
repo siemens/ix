@@ -17,7 +17,6 @@ import {
  * Value Accessor for ix-select
  */
 @Directive({
-  standalone: true,
   selector: 'ix-select',
   providers: [createValueAccessorProvider(IxSelectValueAccessorDirective)],
 })

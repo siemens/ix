@@ -30,16 +30,6 @@ export class DropdownButton {
   @Prop() variant: DropdownButtonVariant = 'primary';
 
   /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
-
-  /**
    * Disable button
    */
   @Prop() disabled = false;
@@ -81,11 +71,8 @@ export class DropdownButton {
       <div
         class={{
           triangle: true,
-          hide: this.label !== '',
-          primary: this.variant === 'primary',
-          secondary: this.variant === 'secondary',
-          ghost: this.ghost,
-          outline: this.outline,
+          [this.variant]: true,
+          hide: !!this.label,
           disabled: this.disabled,
         }}
       ></div>
@@ -108,8 +95,6 @@ export class DropdownButton {
           {this.label ? (
             <ix-button
               variant={this.variant}
-              outline={this.outline}
-              ghost={this.ghost}
               disabled={this.disabled}
               alignment="start"
               ariaLabel={this.ariaLabelDropdownButton}
@@ -138,8 +123,6 @@ export class DropdownButton {
               <ix-icon-button
                 icon={this.icon}
                 variant={this.variant}
-                outline={this.outline}
-                ghost={this.ghost}
                 disabled={this.disabled}
               ></ix-icon-button>
               {this.getTriangle()}

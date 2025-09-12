@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxInputGroup } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxInputGroup],
   template: `

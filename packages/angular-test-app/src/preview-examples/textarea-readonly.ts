@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './textarea-readonly.html'
+  templateUrl: './textarea-readonly.html',
 })
 export default class TextareaReadonly {}

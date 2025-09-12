@@ -16,7 +16,6 @@ import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   providers: [provideEchartsCore({ echarts })],
   imports: [NgxEchartsDirective],

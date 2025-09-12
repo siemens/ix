@@ -25,6 +25,7 @@ import { Component } from '@angular/core';
       </ix-input>
     </form>
   `,
+  standalone: false,
 })
 export class TestInputFormRequired {
   public form = new FormGroup({

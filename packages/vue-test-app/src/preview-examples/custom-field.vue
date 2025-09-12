@@ -20,12 +20,7 @@ const openFileBrowser = () => {
 <template>
   <IxCustomField helper-text="Choose file">
     <IxInput value="Enter text here" readonly></IxInput>
-    <IxIconButton
-      icon="open-file"
-      variant="primary"
-      outline
-      @click="openFileBrowser()"
-    ></IxIconButton>
+    <IxIconButton icon="open-file" variant="subtle-primary" @click="openFileBrowser()"></IxIconButton>
     <input
       ref="input"
       id="file-upload"

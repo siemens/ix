@@ -189,6 +189,11 @@ export const routes: Routes = [
           import('../preview-examples/button-with-icon').then((m) => m.default),
       },
       {
+        path: 'button-with-link',
+        loadComponent: () =>
+          import('../preview-examples/button-with-link').then((m) => m.default),
+      },
+      {
         path: 'buttons',
         loadComponent: () =>
           import('../preview-examples/buttons').then((m) => m.default),

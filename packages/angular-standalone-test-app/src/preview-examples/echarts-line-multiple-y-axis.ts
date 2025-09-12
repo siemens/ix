@@ -12,12 +12,11 @@ import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
 import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts';
 import { EChartsOption, SeriesOption } from 'echarts';
 import { YAXisOption } from 'echarts/types/dist/shared';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   providers: [provideEchartsCore({ echarts })],
   imports: [NgxEchartsDirective],

@@ -398,7 +398,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           <ix-icon-button
             data-testid="open-time-picker"
             class={{ 'time-icon-hidden': this.disabled || this.readonly }}
-            ghost
+            variant="subtle-tertiary"
             icon={iconClock}
             onClick={(event) => this.onTimeIconClick(event)}
             aria-label="Toggle time picker"

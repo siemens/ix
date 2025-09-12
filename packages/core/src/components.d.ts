@@ -48,6 +48,7 @@ import { TimeInputValidityState } from "./components/time-input/time-input.types
 import { TimePickerCorners } from "./components/time-picker/time-picker.types";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container.types";
+import { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -97,6 +98,7 @@ export { TimeInputValidityState } from "./components/time-input/time-input.types
 export { TimePickerCorners } from "./components/time-picker/time-picker.types";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container.types";
+export { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -165,6 +167,22 @@ export namespace Components {
     }
     interface IxApplicationHeader {
         /**
+          * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
+          * @since 4.0.0
+         */
+        "appIcon"?: string;
+        /**
+          * Alt text for the app icon
+          * @since 4.0.0
+         */
+        "appIconAlt"?: string;
+        /**
+          * Render subtle outline around app icon to ensure proper contrast.
+          * @since 4.0.0
+          * @default false
+         */
+        "appIconOutline": boolean;
+        /**
           * ARIA label for the app switch icon button
           * @since 3.2.0
          */
@@ -180,9 +198,30 @@ export namespace Components {
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
+          * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
+          * @since 4.0.0
+         */
+        "companyLogo"?: string;
+        /**
+          * Alt text for the company logo
+          * @since 4.0.0
+         */
+        "companyLogoAlt"?: string;
+        /**
+          * Hides the bottom border of the header
+          * @since 4.0.0
+          * @default false
+         */
+        "hideBottomBorder": boolean;
+        /**
           * Application name
          */
         "name"?: string;
+        /**
+          * Define a suffix which will be displayed next to the application name
+          * @since 4.0.0
+         */
+        "nameSuffix"?: string;
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
           * @default false
@@ -202,7 +241,7 @@ export namespace Components {
         "a11yLabel"?: string;
         /**
           * aria-label for the tooltip
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -219,7 +258,7 @@ export namespace Components {
         "initials"?: string;
         /**
           * Text to display in a tooltip when hovering over the avatar
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
         /**
@@ -306,7 +345,7 @@ export namespace Components {
         "ghost": boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -323,7 +362,7 @@ export namespace Components {
         "label"?: string;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
@@ -332,7 +371,7 @@ export namespace Components {
         "showChevron": boolean;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -362,13 +401,8 @@ export namespace Components {
          */
         "form"?: string;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -377,7 +411,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -390,18 +424,13 @@ export namespace Components {
          */
         "loading": boolean;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
-        /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -852,11 +881,6 @@ export namespace Components {
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Text for custom dropdown item. Will be used for translation.
           * @default 'Custom...'
          */
@@ -890,11 +914,6 @@ export namespace Components {
           * @default ''
          */
         "minDate": string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
         /**
           * If true a range of dates can be selected.
           * @default true
@@ -1383,11 +1402,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -1395,11 +1409,6 @@ export namespace Components {
           * Set label
          */
         "label"?: string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Placement of the dropdown
          */
@@ -1555,19 +1564,9 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
-          * Button with no background or outline
-          * @default true
-         */
-        "ghost": boolean;
-        /**
           * Search icon
          */
         "icon"?: string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Placeholder text
           * @default 'Enter text here'
@@ -1580,7 +1579,7 @@ export namespace Components {
         "value": string;
         /**
           * button variant
-          * @default 'primary'
+          * @default 'tertiary'
          */
         "variant": ButtonVariant1;
     }
@@ -1828,11 +1827,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
@@ -1845,11 +1839,6 @@ export namespace Components {
           * @default false
          */
         "loading": boolean;
-        /**
-          * Button outline
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Button in oval shape
           * @default false
@@ -1867,7 +1856,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Variant of button
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant": IconButtonVariant;
     }
@@ -1919,7 +1908,7 @@ export namespace Components {
         "size": '24' | '16' | '12';
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant": ButtonVariant1;
     }
@@ -2392,7 +2381,7 @@ export namespace Components {
         "notifications"?: number;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -2440,7 +2429,7 @@ export namespace Components {
         "home": boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -2461,18 +2450,18 @@ export namespace Components {
         "notifications"?: number;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -3291,11 +3280,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -3303,11 +3287,6 @@ export namespace Components {
           * Button label
          */
         "label"?: string;
-        /**
-          * Button outline variant
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Placement of the dropdown
           * @default 'bottom-start'
@@ -3907,17 +3886,12 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -3926,20 +3900,15 @@ export namespace Components {
          */
         "loading": boolean;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
-        /**
           * Show button as pressed
           * @default false
          */
         "pressed": boolean;
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
-        "variant": ButtonVariant1;
+        "variant": ToggleButtonVariant;
     }
     interface IxTooltip {
         /**
@@ -6077,6 +6046,22 @@ declare namespace LocalJSX {
     }
     interface IxApplicationHeader {
         /**
+          * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
+          * @since 4.0.0
+         */
+        "appIcon"?: string;
+        /**
+          * Alt text for the app icon
+          * @since 4.0.0
+         */
+        "appIconAlt"?: string;
+        /**
+          * Render subtle outline around app icon to ensure proper contrast.
+          * @since 4.0.0
+          * @default false
+         */
+        "appIconOutline"?: boolean;
+        /**
           * ARIA label for the app switch icon button
           * @since 3.2.0
          */
@@ -6092,9 +6077,30 @@ declare namespace LocalJSX {
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
+          * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
+          * @since 4.0.0
+         */
+        "companyLogo"?: string;
+        /**
+          * Alt text for the company logo
+          * @since 4.0.0
+         */
+        "companyLogoAlt"?: string;
+        /**
+          * Hides the bottom border of the header
+          * @since 4.0.0
+          * @default false
+         */
+        "hideBottomBorder"?: boolean;
+        /**
           * Application name
          */
         "name"?: string;
+        /**
+          * Define a suffix which will be displayed next to the application name
+          * @since 4.0.0
+         */
+        "nameSuffix"?: string;
         /**
           * Event emitted when the menu toggle button is clicked
          */
@@ -6123,7 +6129,7 @@ declare namespace LocalJSX {
         "a11yLabel"?: string;
         /**
           * aria-label for the tooltip
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -6140,7 +6146,7 @@ declare namespace LocalJSX {
         "initials"?: string;
         /**
           * Text to display in a tooltip when hovering over the avatar
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
         /**
@@ -6239,7 +6245,7 @@ declare namespace LocalJSX {
         "ghost"?: boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -6257,7 +6263,7 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
@@ -6266,7 +6272,7 @@ declare namespace LocalJSX {
         "showChevron"?: boolean;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -6296,13 +6302,8 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -6311,7 +6312,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -6324,18 +6325,13 @@ declare namespace LocalJSX {
          */
         "loading"?: boolean;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
-        /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -6830,11 +6826,6 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Text for custom dropdown item. Will be used for translation.
           * @default 'Custom...'
          */
@@ -6872,11 +6863,6 @@ declare namespace LocalJSX {
           * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * If true a range of dates can be selected.
           * @default true
@@ -7382,11 +7368,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -7394,11 +7375,6 @@ declare namespace LocalJSX {
           * Set label
          */
         "label"?: string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Placement of the dropdown
          */
@@ -7561,11 +7537,6 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
-          * Button with no background or outline
-          * @default true
-         */
-        "ghost"?: boolean;
-        /**
           * Search icon
          */
         "icon"?: string;
@@ -7573,11 +7544,6 @@ declare namespace LocalJSX {
           * Value changed
          */
         "onValueChange"?: (event: IxExpandingSearchCustomEvent<string>) => void;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Placeholder text
           * @default 'Enter text here'
@@ -7590,7 +7556,7 @@ declare namespace LocalJSX {
         "value"?: string;
         /**
           * button variant
-          * @default 'primary'
+          * @default 'tertiary'
          */
         "variant"?: ButtonVariant1;
     }
@@ -7863,11 +7829,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
@@ -7880,11 +7841,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "loading"?: boolean;
-        /**
-          * Button outline
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Button in oval shape
           * @default false
@@ -7902,7 +7858,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Variant of button
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant"?: IconButtonVariant;
     }
@@ -7958,7 +7914,7 @@ declare namespace LocalJSX {
         "size"?: '24' | '16' | '12';
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant"?: ButtonVariant1;
     }
@@ -8450,7 +8406,7 @@ declare namespace LocalJSX {
         "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -8498,7 +8454,7 @@ declare namespace LocalJSX {
         "home"?: boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -8519,18 +8475,18 @@ declare namespace LocalJSX {
         "notifications"?: number;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -9404,11 +9360,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -9420,11 +9371,6 @@ declare namespace LocalJSX {
           * Button clicked
          */
         "onButtonClick"?: (event: IxSplitButtonCustomEvent<MouseEvent>) => void;
-        /**
-          * Button outline variant
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Placement of the dropdown
           * @default 'bottom-start'
@@ -10022,17 +9968,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -10045,20 +9986,15 @@ declare namespace LocalJSX {
          */
         "onPressedChange"?: (event: IxToggleButtonCustomEvent<boolean>) => void;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
-        /**
           * Show button as pressed
           * @default false
          */
         "pressed"?: boolean;
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
-        "variant"?: ButtonVariant1;
+        "variant"?: ToggleButtonVariant;
     }
     interface IxTooltip {
         /**

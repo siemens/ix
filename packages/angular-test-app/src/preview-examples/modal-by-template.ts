@@ -11,6 +11,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ModalService } from '@siemens/ix-angular';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-button (click)="openModal()">Show modal</ix-button>
@@ -22,11 +23,7 @@ import { ModalService } from '@siemens/ix-angular';
           >Message text lorem ipsum: {{ modal.data }}</ix-modal-content
         >
         <ix-modal-footer>
-          <ix-button
-            outline
-            class="dismiss-modal"
-            (click)="modal.dismiss('dismiss')"
-          >
+          <ix-button variant="subtle-primary" class="dismiss-modal" (click)="modal.dismiss('dismiss')">
             Cancel
           </ix-button>
           <ix-button class="close-modal" (click)="modal.close('okay')">

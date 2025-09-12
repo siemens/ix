@@ -331,7 +331,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 }}
               >
                 <ix-icon-button
-                  ghost
+                  variant="subtle-tertiary"
                   icon={iconMinus}
                   size="16"
                   class="number-stepper-button step-minus"
@@ -349,7 +349,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   }}
                 ></ix-icon-button>
                 <ix-icon-button
-                  ghost
+                  variant="subtle-tertiary"
                   icon={iconPlus}
                   size="16"
                   class="number-stepper-button step-plus"
