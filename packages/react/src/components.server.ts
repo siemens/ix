@@ -192,7 +192,9 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = 
         image: 'image',
         initials: 'initials',
         username: 'username',
-        extra: 'extra'
+        extra: 'extra',
+        tooltipText: 'tooltip-text',
+        ariaLabelTooltip: 'aria-label-tooltip'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -275,6 +277,9 @@ export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, Ix
         ariaLabelButton: 'aria-label-button',
         label: 'label',
         icon: 'icon',
+        href: 'href',
+        target: 'target',
+        rel: 'rel',
         ghost: 'ghost',
         visible: 'visible',
         showChevron: 'show-chevron',
@@ -305,7 +310,10 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = 
         icon: 'icon',
         iconRight: 'icon-right',
         alignment: 'alignment',
-        iconSize: 'icon-size'
+        iconSize: 'icon-size',
+        href: 'href',
+        target: 'target',
+        rel: 'rel'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -1573,7 +1581,8 @@ export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenu
     properties: {
         label: 'label',
         icon: 'icon',
-        notifications: 'notifications'
+        notifications: 'notifications',
+        tooltipText: 'tooltip-text'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -1596,6 +1605,10 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         notifications: 'notifications',
         active: 'active',
         disabled: 'disabled',
+        tooltipText: 'tooltip-text',
+        href: 'href',
+        target: 'target',
+        rel: 'rel',
         isCategory: 'is-category'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1834,7 +1847,9 @@ export const IxPane: StencilReactComponent<IxPaneElement, IxPaneEvents> = /*@__P
         expanded: 'expanded',
         composition: 'composition',
         icon: 'icon',
+        closeOnClickOutside: 'close-on-click-outside',
         ariaLabelIcon: 'aria-label-icon',
+        ariaLabelCollapseCloseButton: 'aria-label-collapse-close-button',
         ignoreLayoutSettings: 'ignore-layout-settings',
         isMobile: 'is-mobile'
     },

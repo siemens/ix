@@ -11,4 +11,7 @@ import { TypedEvent } from '../utils/typed-event';
 export type ShowToastResult = {
   onClose: TypedEvent<any | undefined>;
   close: (result?: any) => void;
+  pause: () => void;
+  resume: () => void;
+  isPaused: () => Promise<boolean>;
 };
