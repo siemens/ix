@@ -172,3 +172,126 @@ regressionTest(
     await expect(lastTab).not.toBeInViewport();
   }
 );
+
+regressionTest(
+  'dynamic tabs - should preserve default classes when adding custom classes during re-render',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-tabs>
+        <ix-tab-item>Item 1</ix-tab-item>
+        <ix-tab-item>Item 2</ix-tab-item>
+      </ix-tabs>
+    `);
+
+    await page.evaluate(() => {
+      const tabsElement = document.querySelector('ix-tabs');
+      tabsElement!.innerHTML = `
+        <ix-tab-item class="new">Item 1</ix-tab-item>
+        <ix-tab-item class="new">Item 2</ix-tab-item>
+      `;
+    });
+
+    const tabs = page.locator('ix-tab-item');
+
+    for (const className of ['new', 'hydrated', 'bottom']) {
+      await expect(tabs.nth(0)).toHaveClass(new RegExp(className));
+      await expect(tabs.nth(1)).toHaveClass(new RegExp(className));
+    }
+    await expect(tabs.nth(0)).toHaveClass(/selected/);
+
+    await tabs.nth(1).click();
+    await expect(tabs.nth(0)).not.toHaveClass(/selected/);
+    await expect(tabs.nth(1)).toHaveClass(/selected/);
+  }
+);
+
+regressionTest(
+  'dynamic tabs - should preserve top placement classes when adding custom classes',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-tabs placement="top">
+        <ix-tab-item>Item 1</ix-tab-item>
+        <ix-tab-item>Item 2</ix-tab-item>
+      </ix-tabs>
+    `);
+
+    await page.evaluate(() => {
+      const tabsElement = document.querySelector('ix-tabs');
+      tabsElement!.innerHTML = `
+        <ix-tab-item class="new">Item 1</ix-tab-item>
+        <ix-tab-item class="new">Item 2</ix-tab-item>
+      `;
+    });
+
+    const tabs = page.locator('ix-tab-item');
+
+    for (const className of ['new', 'hydrated', 'top']) {
+      await expect(tabs.nth(0)).toHaveClass(new RegExp(className));
+      await expect(tabs.nth(1)).toHaveClass(new RegExp(className));
+    }
+    await expect(tabs.nth(0)).toHaveClass(/selected/);
+  }
+);
+
+regressionTest(
+  'dynamic tabs - should preserve stretched layout classes when adding custom classes',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-tabs layout="stretched">
+        <ix-tab-item>Item 1</ix-tab-item>
+        <ix-tab-item>Item 2</ix-tab-item>
+      </ix-tabs>
+    `);
+
+    await page.evaluate(() => {
+      const tabsElement = document.querySelector('ix-tabs');
+      tabsElement!.innerHTML = `
+        <ix-tab-item class="new">Item 1</ix-tab-item>
+        <ix-tab-item class="new">Item 2</ix-tab-item>
+      `;
+    });
+
+    const tabs = page.locator('ix-tab-item');
+
+    for (const className of ['new', 'hydrated', 'bottom', 'stretched']) {
+      await expect(tabs.nth(0)).toHaveClass(new RegExp(className));
+      await expect(tabs.nth(1)).toHaveClass(new RegExp(className));
+    }
+    await expect(tabs.nth(0)).toHaveClass(/selected/);
+  }
+);
+
+regressionTest(
+  'dynamic tabs - should preserve classes and reselect when reducing tab count with new class',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-tabs placement="bottom" layout="stretched">
+        <ix-tab-item>Tab 1</ix-tab-item>
+        <ix-tab-item>Tab 2</ix-tab-item>
+      </ix-tabs>
+    `);
+
+    const secondTab = page.locator('ix-tab-item').nth(1);
+    await secondTab.click();
+    await expect(secondTab).toHaveClass(/selected/);
+
+    await page.evaluate(() => {
+      const tabsElement = document.querySelector('ix-tabs');
+      tabsElement!.innerHTML = `
+        <ix-tab-item class="new">Tab 1</ix-tab-item>
+      `;
+    });
+
+    const tabs = page.locator('ix-tab-item');
+
+    for (const className of [
+      'new',
+      'hydrated',
+      'bottom',
+      'stretched',
+      'selected',
+    ]) {
+      await expect(tabs.nth(0)).toHaveClass(new RegExp(className));
+    }
+  }
+);
