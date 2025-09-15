@@ -16,7 +16,7 @@
   "packageManager": "pnpm@9.3.0",
   "engines": {
     "pnpm": ">=9.x.x",
-    "node": ">=18.x.x"
+    "node": "22.18.0"
   },
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
@@ -60,5 +60,8 @@
       "cheerio": "1.0.0-rc.12",
       "rollup": "npm:@rollup/wasm-node"
     }
+  },
+  "volta": {
+    "node": "22.18.0"
   }
 }
