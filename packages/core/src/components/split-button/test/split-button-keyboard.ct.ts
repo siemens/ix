@@ -58,7 +58,7 @@ function splitButtonController(splitBtn: Locator) {
   };
 }
 
-regressionTest.only(
+regressionTest(
   'ArrowDown cycles through dropdown items',
   async ({ mount, page }) => {
     await mount(`
@@ -85,7 +85,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only('ArrowUp cycles backwards', async ({ mount, page }) => {
+regressionTest('ArrowUp cycles backwards', async ({ mount, page }) => {
   await mount(`
       <ix-split-button>
         Action
@@ -105,7 +105,7 @@ regressionTest.only('ArrowUp cycles backwards', async ({ mount, page }) => {
   await expect(focused).toHaveText('Item A');
 });
 
-regressionTest.only(
+regressionTest(
   'Tab from dropdown item moves focus to next component',
   async ({ mount, page }) => {
     await mount(`
