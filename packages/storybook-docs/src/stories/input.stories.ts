@@ -36,6 +36,26 @@ export const Required: Story = {
   },
 };
 
+export const Slotted: Story = {
+  args: {
+    label: 'Required',
+    value: 'Test',
+    required: true,
+  },
+
+  render: (args) => {
+    const container = genericRender('ix-input', args);
+    const input = container.querySelector('ix-input') as HTMLIxInputElement;
+
+    const icon = document.createElement('ix-icon-button');
+    icon.icon = 'search';
+    icon.slot = 'start';
+    input.appendChild(icon);
+
+    return container;
+  },
+};
+
 export const MinLength: Story = {
   args: {
     label: 'MinLength',
