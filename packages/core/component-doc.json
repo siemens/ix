@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.36.2",
+    "version": "4.37.0",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -577,7 +577,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -608,7 +608,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -639,7 +639,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             },
             {
               "name": "default",
@@ -765,7 +765,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -796,7 +796,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -827,7 +827,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             },
             {
               "name": "default",
@@ -886,7 +886,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -1078,7 +1078,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -1187,7 +1187,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -1902,7 +1902,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -1985,7 +1985,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -2022,7 +2022,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             },
             {
               "name": "default",
@@ -2233,7 +2233,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -2290,7 +2290,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -2350,7 +2350,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -2387,7 +2387,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             },
             {
               "name": "default",
@@ -16363,7 +16363,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -16564,7 +16564,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -16673,7 +16673,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -16710,7 +16710,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             },
             {
               "name": "default",
@@ -16759,7 +16759,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -26856,7 +26856,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -29241,10 +29241,10 @@
       "docstring": "",
       "path": "src/components.d.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.36.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "../../node_modules/.pnpm/@stencil+core@4.37.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.36.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "../../node_modules/.pnpm/@stencil+core@4.37.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

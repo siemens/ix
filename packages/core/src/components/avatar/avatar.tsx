@@ -157,14 +157,14 @@ export class Avatar {
   /**
    * Text to display in a tooltip when hovering over the avatar
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() tooltipText?: string;
 
   /**
    * aria-label for the tooltip
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() ariaLabelTooltip?: string;
 
