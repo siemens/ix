@@ -194,6 +194,9 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
   'ariaLabelButton',
   'label',
   'icon',
+  'href',
+  'target',
+  'rel',
   'ghost',
   'visible',
   'showChevron',
@@ -216,7 +219,10 @@ export const IxButton: StencilVueComponent<JSX.IxButton> = /*@__PURE__*/ defineC
   'icon',
   'iconRight',
   'alignment',
-  'iconSize'
+  'iconSize',
+  'href',
+  'target',
+  'rel'
 ]);
 
 
@@ -947,6 +953,9 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
   'active',
   'disabled',
   'tooltipText',
+  'href',
+  'target',
+  'rel',
   'isCategory'
 ]);
 

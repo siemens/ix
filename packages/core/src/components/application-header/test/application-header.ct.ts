@@ -337,6 +337,7 @@ test.describe('cross app navigation', () => {
     );
 
     const application = page.locator('ix-application');
+    await expect(application).toHaveClass(/hydrated/);
     await application.evaluate((app) => {
       (app as any).appSwitchConfig = {
         i18nAppSwitch: 'some other language',
