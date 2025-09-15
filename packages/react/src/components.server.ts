@@ -352,7 +352,8 @@ export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCa
     tagName: 'ix-card-accordion',
     properties: {
         ariaLabelExpandButton: 'aria-label-expand-button',
-        collapse: 'collapse'
+        collapse: 'collapse',
+        variant: 'variant'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,

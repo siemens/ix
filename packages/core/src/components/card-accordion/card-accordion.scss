@@ -8,6 +8,7 @@
  */
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
+@use './../card/card-vars' as card-vars;
 
 :host {
   display: flex;
@@ -28,17 +29,8 @@
     height: 2.5rem;
     width: 100%;
 
-    background-color: var(--theme-color-component-1);
     align-items: center;
     justify-content: flex-start;
-
-    &:hover {
-      background: var(--theme-color-component-1--hover);
-    }
-
-    &:active {
-      background: var(--theme-color-component-1--active);
-    }
 
     @include hover.focus-visible {
       outline: 1px solid var(--theme-color-focus-bdr);
@@ -57,8 +49,8 @@
 
   .expand-action:not(.show),
   .expand-action:not(.show)::before {
-    border-bottom-left-radius: var(--theme-default-border-radius);
-    border-bottom-right-radius: var(--theme-default-border-radius);
+    // border-bottom-left-radius: var(--theme-default-border-radius);
+    // border-bottom-right-radius: var(--theme-default-border-radius);
   }
 
   .expand-icon {
@@ -78,7 +70,7 @@
     width: 100%;
     max-height: 14.75rem;
     opacity: 0;
-    background-color: var(--theme-color-component-1);
+    // background-color: var(--theme-color-component-1);
   }
 
   .expand-content.show {
@@ -116,5 +108,37 @@
     background-color: var(--theme-color-component-1);
     border-bottom-left-radius: var(--theme-default-border-radius);
     border-bottom-right-radius: var(--theme-default-border-radius);
+  }
+}
+
+@each $variant in card-vars.$ix-card-variants {
+  :host(.variant-#{$variant}) {
+    .expand-action {
+      background-color: var(--theme-push-card-#{$variant}--background);
+
+      &:hover {
+        background: var(--theme-push-card-#{$variant}--background--hover);
+      }
+
+      &:active {
+        background: var(--theme-push-card-#{$variant}--background--active);
+      }
+    }
+
+    .expand-content {
+      background-color: var(
+        --theme-push-card-#{$variant}-accordion--background
+      );
+    }
+
+    .expand-content.show .expand-content-body {
+      color: var(--theme-push-card-#{$variant}-accordion--color);
+    }
+
+    .expand-content-footer {
+      background-color: var(
+        --theme-push-card-#{$variant}-accordion-footer--background
+      );
+    }
   }
 }

@@ -2753,6 +2753,78 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "complexType": {
+            "original": "CardAccordionVariant",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "references": {
+              "CardAccordionVariant": {
+                "location": "import",
+                "path": "card-accordion.types",
+                "id": "src/components/card-accordion/card-accordion.types.ts::CardAccordionVariant"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Show accordion with different color variants",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "'outline'"
+            }
+          ],
+          "default": "'outline'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
@@ -29295,6 +29367,11 @@
       "declaration": "export type Side = 'top' | 'right' | 'bottom' | 'left';",
       "docstring": "",
       "path": "src/components/dropdown/placement.ts"
+    },
+    "src/components/card-accordion/card-accordion.types.ts::CardAccordionVariant": {
+      "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
+      "docstring": "",
+      "path": "src/components/card-accordion/card-accordion.types.ts"
     }
   }
 }

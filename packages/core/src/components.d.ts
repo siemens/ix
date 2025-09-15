@@ -13,7 +13,7 @@ import { BlindVariant } from "./components/blind/blind.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card.types";
-import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
+import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
@@ -63,7 +63,7 @@ export { BlindVariant } from "./components/blind/blind.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card.types";
-export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
+export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
@@ -468,6 +468,12 @@ export namespace Components {
           * @default false
          */
         "collapse": boolean;
+        /**
+          * Show accordion with different color variants
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant": CardAccordionVariant;
     }
     interface IxCardContent {
     }
@@ -6376,6 +6382,12 @@ declare namespace LocalJSX {
          */
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
+        /**
+          * Show accordion with different color variants
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant"?: CardAccordionVariant;
     }
     interface IxCardContent {
     }

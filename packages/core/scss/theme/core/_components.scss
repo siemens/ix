@@ -1,10 +1,13 @@
+@use "./components/action-card" as asComponent_action-card;
 @use "./components/app-header" as asComponent_app-header;
 @use "./components/avatar" as asComponent_avatar;
 @use "./components/blind" as asComponent_blind;
 @use "./components/breadcrumb" as asComponent_breadcrumb;
 @use "./components/button" as asComponent_button;
+@use "./components/card" as asComponent_card;
 @use "./components/checkbox" as asComponent_checkbox;
 @use "./components/chip" as asComponent_chip;
+@use "./components/content-header" as asComponent_content-header;
 @use "./components/datepicker" as asComponent_datepicker;
 @use "./components/event-list" as asComponent_event-list;
 @use "./components/flip" as asComponent_flip;
@@ -21,7 +24,11 @@
 @use "./components/modal-dialog" as asComponent_modal-dialog;
 @use "./components/navigation" as asComponent_navigation;
 @use "./components/overlay" as asComponent_overlay;
+@use "./components/pagination" as asComponent_pagination;
+@use "./components/pane" as asComponent_pane;
 @use "./components/pill" as asComponent_pill;
+@use "./components/progress-indicator" as asComponent_progress-indicator;
+@use "./components/push-card" as asComponent_push-card;
 @use "./components/radiobutton" as asComponent_radiobutton;
 @use "./components/scrollbar" as asComponent_scrollbar;
 @use "./components/select-list" as asComponent_select-list;
@@ -37,13 +44,16 @@
 @use "./components/workflow" as asComponent_workflow;
 
 @mixin setComponentVars {
+  @include asComponent_action-card.setVars;
   @include asComponent_app-header.setVars;
   @include asComponent_avatar.setVars;
   @include asComponent_blind.setVars;
   @include asComponent_breadcrumb.setVars;
   @include asComponent_button.setVars;
+  @include asComponent_card.setVars;
   @include asComponent_checkbox.setVars;
   @include asComponent_chip.setVars;
+  @include asComponent_content-header.setVars;
   @include asComponent_datepicker.setVars;
   @include asComponent_event-list.setVars;
   @include asComponent_flip.setVars;
@@ -60,7 +70,11 @@
   @include asComponent_modal-dialog.setVars;
   @include asComponent_navigation.setVars;
   @include asComponent_overlay.setVars;
+  @include asComponent_pagination.setVars;
+  @include asComponent_pane.setVars;
   @include asComponent_pill.setVars;
+  @include asComponent_progress-indicator.setVars;
+  @include asComponent_push-card.setVars;
   @include asComponent_radiobutton.setVars;
   @include asComponent_scrollbar.setVars;
   @include asComponent_select-list.setVars;

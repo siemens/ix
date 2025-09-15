@@ -373,14 +373,14 @@ export declare interface IxCard extends Components.IxCard {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCardAccordion,
-  inputs: ['ariaLabelExpandButton', 'collapse']
+  inputs: ['ariaLabelExpandButton', 'collapse', 'variant']
 })
 @Component({
   selector: 'ix-card-accordion',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelExpandButton', 'collapse'],
+  inputs: ['ariaLabelExpandButton', 'collapse', 'variant'],
 })
 export class IxCardAccordion {
   protected el: HTMLIxCardAccordionElement;
