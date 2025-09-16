@@ -16,9 +16,6 @@ export const ixPlugin: Plugin = {
       rel(el: HTMLElement, name, cb, opts) {
         el.removeEventListener(toKebabCase(name), cb, opts);
       },
-      ce(name, opts) {
-        return new CustomEvent(toKebabCase(name), opts);
-      },
     });
   },
 };

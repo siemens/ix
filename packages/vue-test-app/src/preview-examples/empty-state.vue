@@ -18,5 +18,6 @@ import { IxEmptyState } from '@siemens/ix-vue';
     subHeader="Create an element first"
     :icon="iconAdd"
     action="Create element"
+    @action-click="console.log"
   ></IxEmptyState>
 </template>
