@@ -84,7 +84,7 @@ regressionTest.describe('input', () => {
   });
 
   regressionTest('text-alignment property', async ({ page }) => {
-    await page.goto('input/textAlignment');
+    await page.goto('input/text-alignment');
     await expect(page).toHaveScreenshot();
   });
 });
