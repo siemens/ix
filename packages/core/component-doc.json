@@ -6584,7 +6584,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nIt also determines the default order of weekdays based on the locale's conventions.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
           "docsTags": [],
           "values": [
             {
@@ -7279,7 +7279,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
+          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nIt also determines the default order of weekdays based on the locale's conventions.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
           "docsTags": [],
           "values": [
             {
