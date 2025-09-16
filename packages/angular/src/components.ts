@@ -188,14 +188,14 @@ export declare interface IxBreadcrumb extends Components.IxBreadcrumb {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelButton', 'icon', 'label']
+  inputs: ['ariaLabelButton', 'href', 'icon', 'label', 'rel', 'target']
 })
 @Component({
   selector: 'ix-breadcrumb-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelButton', 'icon', 'label'],
+  inputs: ['ariaLabelButton', 'href', 'icon', 'label', 'rel', 'target'],
 })
 export class IxBreadcrumbItem {
   protected el: HTMLIxBreadcrumbItemElement;
@@ -210,14 +210,14 @@ export declare interface IxBreadcrumbItem extends Components.IxBreadcrumbItem {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelButton', 'disabled', 'form', 'ghost', 'icon', 'iconRight', 'loading', 'outline', 'type', 'variant']
+  inputs: ['ariaLabelButton', 'disabled', 'form', 'ghost', 'href', 'icon', 'iconRight', 'loading', 'outline', 'rel', 'target', 'type', 'variant']
 })
 @Component({
   selector: 'ix-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelButton', 'disabled', 'form', 'ghost', 'icon', 'iconRight', 'loading', 'outline', 'type', 'variant'],
+  inputs: ['ariaLabelButton', 'disabled', 'form', 'ghost', 'href', 'icon', 'iconRight', 'loading', 'outline', 'rel', 'target', 'type', 'variant'],
 })
 export class IxButton {
   protected el: HTMLIxButtonElement;
@@ -1732,14 +1732,14 @@ export declare interface IxMenuCategory extends Components.IxMenuCategory {}
 
 
 @ProxyCmp({
-  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'label', 'notifications', 'tooltipText']
+  inputs: ['active', 'bottom', 'disabled', 'home', 'href', 'icon', 'label', 'notifications', 'rel', 'target', 'tooltipText']
 })
 @Component({
   selector: 'ix-menu-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'label', 'notifications', 'tooltipText'],
+  inputs: ['active', 'bottom', 'disabled', 'home', 'href', 'icon', 'label', 'notifications', 'rel', 'target', 'tooltipText'],
 })
 export class IxMenuItem {
   protected el: HTMLIxMenuItemElement;
@@ -2023,14 +2023,14 @@ export declare interface IxPagination extends Components.IxPagination {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelIcon', 'borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant']
+  inputs: ['ariaLabelCollapseCloseButton', 'ariaLabelIcon', 'borderless', 'closeOnClickOutside', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant']
 })
 @Component({
   selector: 'ix-pane',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelIcon', 'borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant'],
+  inputs: ['ariaLabelCollapseCloseButton', 'ariaLabelIcon', 'borderless', 'closeOnClickOutside', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant'],
 })
 export class IxPane {
   protected el: HTMLIxPaneElement;

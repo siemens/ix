@@ -10,6 +10,7 @@ import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 import { BlindVariant } from "./components/blind/blind.types";
+import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card.types";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
@@ -58,6 +59,7 @@ export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 export { BlindVariant } from "./components/blind/blind.types";
+export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card.types";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
@@ -303,6 +305,11 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
@@ -315,9 +322,20 @@ export namespace Components {
          */
         "label"?: string;
         /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
           * @default true
          */
         "showChevron": boolean;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * @default true
          */
@@ -349,6 +367,11 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon name
          */
         "icon"?: string;
@@ -371,6 +394,17 @@ export namespace Components {
           * @default false
          */
         "outline": boolean;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Type of the button
           * @default 'button'
@@ -1219,6 +1253,9 @@ export namespace Components {
     }
     interface IxDivider {
     }
+    /**
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+     */
     interface IxDrawer {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -2402,6 +2439,11 @@ export namespace Components {
          */
         "home": boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
          */
         "icon"?: string;
@@ -2417,6 +2459,17 @@ export namespace Components {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 3.3.0
@@ -2696,6 +2749,10 @@ export namespace Components {
     }
     interface IxPane {
         /**
+          * ARIA label close or collapse button
+         */
+        "ariaLabelCollapseCloseButton"?: string;
+        /**
           * ARIA label for the icon
          */
         "ariaLabelIcon"?: string;
@@ -2704,6 +2761,11 @@ export namespace Components {
           * @default false
          */
         "borderless": boolean;
+        /**
+          * If true, the pane will close when clicking outside of it
+          * @default false
+         */
+        "closeOnClickOutside": boolean;
         /**
           * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
           * @default 'top'
@@ -4750,6 +4812,9 @@ declare global {
         "open": any;
         "drawerClose": any;
     }
+    /**
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+     */
     interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDrawerElementEventMap>(type: K, listener: (this: HTMLIxDrawerElement, ev: IxDrawerCustomEvent<HTMLIxDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6173,6 +6238,11 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
@@ -6186,9 +6256,20 @@ declare namespace LocalJSX {
         "label"?: string;
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
         /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
           * @default true
          */
         "showChevron"?: boolean;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * @default true
          */
@@ -6220,6 +6301,11 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon name
          */
         "icon"?: string;
@@ -6242,6 +6328,17 @@ declare namespace LocalJSX {
           * @default false
          */
         "outline"?: boolean;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Type of the button
           * @default 'button'
@@ -7153,6 +7250,9 @@ declare namespace LocalJSX {
     }
     interface IxDivider {
     }
+    /**
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+     */
     interface IxDrawer {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -8397,6 +8497,11 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
          */
         "icon"?: string;
@@ -8412,6 +8517,17 @@ declare namespace LocalJSX {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 3.3.0
@@ -8718,6 +8834,10 @@ declare namespace LocalJSX {
     }
     interface IxPane {
         /**
+          * ARIA label close or collapse button
+         */
+        "ariaLabelCollapseCloseButton"?: string;
+        /**
           * ARIA label for the icon
          */
         "ariaLabelIcon"?: string;
@@ -8726,6 +8846,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "borderless"?: boolean;
+        /**
+          * If true, the pane will close when clicking outside of it
+          * @default false
+         */
+        "closeOnClickOutside"?: boolean;
         /**
           * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
           * @default 'top'
@@ -10356,6 +10481,9 @@ declare module "@stencil/core" {
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
+            /**
+             * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+             */
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
