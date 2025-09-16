@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use './../card/card-vars' as card-vars;
 
 :host {
   display: block;
@@ -16,6 +17,7 @@
   }
 
   ix-card-accordion {
+    margin-top: 1px;
     cursor: pointer;
   }
 
@@ -30,5 +32,18 @@
 
   ix-card-content {
     height: 11rem;
+
+    //border-start-start-radius: var(--theme-push-card--border-radius);
+    //border-start-end-radius: var(--theme-push-card--border-radius);
+  }
+}
+
+@each $variant in card-vars.$ix-card-variants {
+  :host(.card-#{$variant}) {
+    ix-card-content {
+      border-bottom: var(--theme-push-card--border-width)
+        solid
+        var(--theme-push-card-#{$variant}--border-color);
+    }
   }
 }

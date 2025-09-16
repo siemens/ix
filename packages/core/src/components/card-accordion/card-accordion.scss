@@ -114,14 +114,20 @@
 @each $variant in card-vars.$ix-card-variants {
   :host(.variant-#{$variant}) {
     .expand-action {
-      background-color: var(--theme-push-card-#{$variant}--background);
+      background-color: var(
+        --theme-push-card-#{$variant}-accordion--background
+      );
 
       &:hover {
-        background: var(--theme-push-card-#{$variant}--background--hover);
+        background: var(
+          --theme-push-card-#{$variant}-accordion--background--hover
+        );
       }
 
       &:active {
-        background: var(--theme-push-card-#{$variant}--background--active);
+        background: var(
+          --theme-push-card-#{$variant}-accordion--background--active
+        );
       }
     }
 

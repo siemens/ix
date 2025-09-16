@@ -64,8 +64,9 @@
   --theme-card-success--background--selected: var(--theme-color-success);
   --theme-card-success--border-color: var(--theme-color-0);
   --theme-card-success--border-color--hover: var(--theme-color-0);
-  --theme-card-success--border-color--active: var(--theme-color-0);
   --theme-card-success--border-color--selected: var(--theme-color-dynamic);
+  --theme-card-success--border-color--active: var(--theme-color-0);
+  --theme-card-success--color: var(--theme-color-success--contrast);
   --theme-card-neutral--background: var(--theme-color-neutral);
   --theme-card-neutral--background--hover: var(--theme-color-neutral--hover);
   --theme-card-neutral--background--active: var(--theme-color-neutral--active);
