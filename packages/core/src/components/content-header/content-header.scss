@@ -17,6 +17,16 @@
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
+    margin-right: 0.5rem;
+
+    .headerTitleRow {
+      display: flex;
+
+      .headerSlot {
+        display: inline-flex;
+        margin-left: 0.5rem;
+      }
+    }
 
     .secondary {
       padding: 0.25rem 0;

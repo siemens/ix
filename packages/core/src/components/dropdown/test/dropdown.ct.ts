@@ -761,6 +761,10 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
   await trigger.click();
 
   const dropdown = page.locator('#dropdown');
+  await expect(trigger).toHaveClass(/hydrated/);
+  await expect(dropdown).toHaveClass(/hydrated/);
+  await expect(trigger).toBeVisible();
+  await expect(dropdown).toBeVisible();
 
   const dropdownRect = (await dropdown.boundingBox())!;
   const triggerRect = (await trigger.boundingBox())!;

@@ -21,7 +21,8 @@ class ThemeSwitcher {
   readonly suffixDark = '-dark';
   readonly defaultTheme = 'theme-classic-dark';
 
-  mutationObserver?: MutationObserver;
+  mutationObserverDocumentElement?: MutationObserver;
+  mutationObserverBody?: MutationObserver;
   mutationObserverData?: MutationObserver;
   _themeChanged = new TypedEvent<string>();
   _schemaChanged = new TypedEvent<string>();
@@ -85,7 +86,6 @@ class ThemeSwitcher {
     const elementWithSchema = elements.find((el) =>
       this.getDataColorSchema(el)
     );
-
     if (elementWithSchema) {
       const currentSchema = this.getDataColorSchema(elementWithSchema)!;
       elementWithSchema.setAttribute(
@@ -175,7 +175,21 @@ class ThemeSwitcher {
     return '';
   }
 
-  private handleMutations(mutations: MutationRecord[]) {
+  private splitMutations(mutations: MutationRecord[]) {
+    const classMutations = mutations.filter(
+      (mutation) => mutation.attributeName === 'class'
+    );
+
+    const dataMutations = mutations.filter(
+      (mutation) =>
+        mutation.attributeName === dataIxTheme ||
+        mutation.attributeName === dataIxColorSchema
+    );
+
+    return { classMutations, dataMutations };
+  }
+
+  private handleClassMutations(mutations: MutationRecord[]) {
     return mutations.forEach((mutation) => {
       const { target } = mutation;
       (target as HTMLElement).classList.forEach((className) => {
@@ -186,6 +200,23 @@ class ThemeSwitcher {
           this._themeChanged.emit(className);
         }
       });
+    });
+  }
+
+  private handleDataMutations(mutations: MutationRecord[]) {
+    return mutations.forEach((mutation) => {
+      const { target } = mutation;
+      const theme = (target as Element).attributes.getNamedItem(dataIxTheme);
+      if (theme?.value && mutation.oldValue !== theme.value) {
+        this._themeChanged.emit(theme.value);
+      }
+
+      const colorSchema = (target as Element).attributes.getNamedItem(
+        dataIxColorSchema
+      );
+      if (colorSchema?.value && mutation.oldValue !== colorSchema.value) {
+        this._schemaChanged.emit(colorSchema.value);
+      }
     });
   }
 
@@ -201,36 +232,28 @@ class ThemeSwitcher {
       return;
     }
 
-    this.mutationObserver = new MutationObserver((mutations) => {
-      this.handleMutations(mutations);
-    });
-
-    this.mutationObserver.observe(document.documentElement, {
-      attributeFilter: ['class'],
+    const mutationObserverConfig = {
+      attributeFilter: ['class', dataIxTheme, dataIxColorSchema],
       attributeOldValue: true,
-    });
+    };
 
-    this.mutationObserverData = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        const { target } = mutation;
-        const theme = (target as Element).attributes.getNamedItem(dataIxTheme);
-        if (theme?.value && mutation.oldValue !== theme.value) {
-          this._themeChanged.emit(theme.value);
-        }
+    const handleMutations = (mutations: MutationRecord[]) => {
+      const { classMutations, dataMutations } = this.splitMutations(mutations);
 
-        const colorSchema = (target as Element).attributes.getNamedItem(
-          dataIxColorSchema
-        );
-        if (colorSchema?.value && mutation.oldValue !== colorSchema.value) {
-          this._schemaChanged.emit(colorSchema.value);
-        }
-      });
-    });
+      this.handleClassMutations(classMutations);
+      this.handleDataMutations(dataMutations);
+    };
 
-    this.mutationObserverData.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: [dataIxTheme, dataIxColorSchema],
-    });
+    this.mutationObserverDocumentElement = new MutationObserver(
+      handleMutations
+    );
+    this.mutationObserverDocumentElement.observe(
+      document.documentElement,
+      mutationObserverConfig
+    );
+
+    this.mutationObserverBody = new MutationObserver(handleMutations);
+    this.mutationObserverBody.observe(document.body, mutationObserverConfig);
   }
 
   public constructor() {

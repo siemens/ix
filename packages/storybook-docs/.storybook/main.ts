@@ -44,6 +44,8 @@ const config: StorybookConfig = {
   },
   staticDirs: ['../public'],
   async viteFinal(config) {
+    const { mergeConfig } = await import('vite');
+
     config.plugins!.push({
       name: 'vite-plugin-load-ix-brand-theme',
       transformIndexHtml: {
@@ -64,7 +66,13 @@ const config: StorybookConfig = {
         },
       },
     });
-    return config;
+    return mergeConfig(config, {
+      resolve: {
+        alias: {
+          '@utils': path.resolve(__dirname, '../src/stories/utils'),
+        },
+      },
+    });
   },
 
   previewHead: (head) => {

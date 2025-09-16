@@ -151,7 +151,9 @@ export const IxAvatar: StencilVueComponent<JSX.IxAvatar> = /*@__PURE__*/ defineC
   'image',
   'initials',
   'username',
-  'extra'
+  'extra',
+  'tooltipText',
+  'ariaLabelTooltip'
 ]);
 
 
@@ -192,6 +194,9 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
   'ariaLabelButton',
   'label',
   'icon',
+  'href',
+  'target',
+  'rel',
   'ghost',
   'visible',
   'showChevron',
@@ -214,7 +219,10 @@ export const IxButton: StencilVueComponent<JSX.IxButton> = /*@__PURE__*/ defineC
   'icon',
   'iconRight',
   'alignment',
-  'iconSize'
+  'iconSize',
+  'href',
+  'target',
+  'rel'
 ]);
 
 
@@ -929,6 +937,7 @@ export const IxMenuCategory: StencilVueComponent<JSX.IxMenuCategory> = /*@__PURE
   'label',
   'icon',
   'notifications',
+  'tooltipText',
   'closeOtherCategories'
 ], [
   'closeOtherCategories'
@@ -943,6 +952,10 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
   'notifications',
   'active',
   'disabled',
+  'tooltipText',
+  'href',
+  'target',
+  'rel',
   'isCategory'
 ]);
 
@@ -1071,7 +1084,9 @@ export const IxPane: StencilVueComponent<JSX.IxPane> = /*@__PURE__*/ defineConta
   'expanded',
   'composition',
   'icon',
+  'closeOnClickOutside',
   'ariaLabelIcon',
+  'ariaLabelCollapseCloseButton',
   'ignoreLayoutSettings',
   'isMobile',
   'expandedChanged',
