@@ -36,9 +36,22 @@ export class ModalService extends BaseModalService {
     super(appRef, componentFactoryResolver, injector);
   }
 
+
   public open<TData = any, TReason = any>(
     config: ModalConfig<TData>
   ): Promise<ModalInstance<TReason>> {
     return super.open(config);
+  }
+
+
+  /**
+   * Closes the given modal instance, optionally passing a result/reason.
+   */
+  public close<TReason = any>(instance: ModalInstance<TReason>, reason?: TReason): void {
+    if (instance && instance.htmlElement && typeof instance.htmlElement.closeModal === 'function') {
+      instance.htmlElement.closeModal(reason);
+    } else {
+      throw new Error('Invalid modal instance: cannot close');
+    }
   }
 }
