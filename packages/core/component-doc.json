@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.37.0",
+    "version": "4.36.0",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -7474,21 +7474,26 @@
         {
           "name": "getCurrentDate",
           "returns": {
-            "type": "Promise<{ from: string | undefined; to: string | undefined; }>",
+            "type": "Promise<DateChangeEvent>",
             "docs": ""
           },
           "complexType": {
-            "signature": "() => Promise<{ from: string | undefined; to: string | undefined; }>",
+            "signature": "() => Promise<DateChangeEvent>",
             "parameters": [],
             "references": {
               "Promise": {
                 "location": "global",
                 "id": "global::Promise"
+              },
+              "DateChangeEvent": {
+                "location": "import",
+                "path": "date-picker.events",
+                "id": "src/components/date-picker/date-picker.events.ts::DateChangeEvent"
               }
             },
-            "return": "Promise<{ from: string | undefined; to: string | undefined; }>"
+            "return": "Promise<DateChangeEvent>"
           },
-          "signature": "getCurrentDate() => Promise<{ from: string | undefined; to: string | undefined; }>",
+          "signature": "getCurrentDate() => Promise<DateChangeEvent>",
           "parameters": [],
           "docs": "Get the currently selected date or range. The object returned contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.",
           "docsTags": []
@@ -24335,6 +24340,39 @@
           "setter": false
         },
         {
+          "name": "hideHeader",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-header",
+          "reflectToAttr": false,
+          "docs": "Hides the header of the picker.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "hourInterval",
           "type": "number",
           "complexType": {
@@ -29203,10 +29241,10 @@
       "docstring": "",
       "path": "src/components.d.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.37.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "../../node_modules/.pnpm/@stencil+core@4.36.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.37.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "../../node_modules/.pnpm/@stencil+core@4.36.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

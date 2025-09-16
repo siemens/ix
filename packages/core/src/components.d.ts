@@ -1094,7 +1094,7 @@ export namespace Components {
         /**
           * Get the currently selected date or range. The object returned contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
          */
-        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
+        "getCurrentDate": () => Promise<DateChangeEvent>;
         /**
           * Text of date select button
           * @default 'Done'
@@ -3521,6 +3521,12 @@ export namespace Components {
           * Helper text below the input field
          */
         "helperText"?: string;
+        /**
+          * Hides the header of the picker.
+          * @since 4.0.0
+          * @default false
+         */
+        "hideHeader": boolean;
         /**
           * Interval for hour selection
           * @default 1
@@ -9600,6 +9606,12 @@ declare namespace LocalJSX {
           * Helper text below the input field
          */
         "helperText"?: string;
+        /**
+          * Hides the header of the picker.
+          * @since 4.0.0
+          * @default false
+         */
+        "hideHeader"?: boolean;
         /**
           * Interval for hour selection
           * @default 1

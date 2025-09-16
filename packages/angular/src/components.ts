@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* auto-generated angular directive proxies */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Output, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, NgZone } from '@angular/core';
 
-import { ProxyCmp } from './angular-component-lib/utils';
+import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 
 import { Components } from '@siemens/ix';
 
@@ -16,7 +16,6 @@ import { Components } from '@siemens/ix';
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'selected', 'subheading', 'variant'],
-  standalone: false
 })
 export class IxActionCard {
   protected el: HTMLIxActionCardElement;
@@ -39,7 +38,6 @@ export declare interface IxActionCard extends Components.IxActionCard {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance'],
-  standalone: false
 })
 export class IxApplication {
   protected el: HTMLIxApplicationElement;
@@ -62,16 +60,13 @@ export declare interface IxApplication extends Components.IxApplication {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['appIcon', 'appIconAlt', 'appIconOutline', 'ariaLabelAppSwitchIconButton', 'ariaLabelMenuExpandIconButton', 'ariaLabelMoreMenuIconButton', 'companyLogo', 'companyLogoAlt', 'hideBottomBorder', 'name', 'nameSuffix', 'showMenu'],
-  outputs: ['menuToggle', 'openAppSwitch'],
-  standalone: false
 })
 export class IxApplicationHeader {
   protected el: HTMLIxApplicationHeaderElement;
-  @Output() menuToggle = new EventEmitter<CustomEvent<boolean>>();
-  @Output() openAppSwitch = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['menuToggle', 'openAppSwitch']);
   }
 }
 
@@ -97,7 +92,6 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['a11yLabel', 'ariaLabelTooltip', 'extra', 'image', 'initials', 'tooltipText', 'username'],
-  standalone: false
 })
 export class IxAvatar {
   protected el: HTMLIxAvatarElement;
@@ -120,7 +114,6 @@ export declare interface IxAvatar extends Components.IxAvatar {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['applicationName', 'breakpoints', 'forceBreakpoint', 'hideHeader'],
-  standalone: false
 })
 export class IxBasicNavigation {
   protected el: HTMLIxBasicNavigationElement;
@@ -143,15 +136,13 @@ export declare interface IxBasicNavigation extends Components.IxBasicNavigation 
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant'],
-  outputs: ['collapsedChange'],
-  standalone: false
 })
 export class IxBlind {
   protected el: HTMLIxBlindElement;
-  @Output() collapsedChange = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['collapsedChange']);
   }
 }
 
@@ -173,16 +164,13 @@ export declare interface IxBlind extends Components.IxBlind {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelPreviousButton', 'ghost', 'nextItems', 'visibleItemCount'],
-  outputs: ['itemClick', 'nextClick'],
-  standalone: false
 })
 export class IxBreadcrumb {
   protected el: HTMLIxBreadcrumbElement;
-  @Output() itemClick = new EventEmitter<CustomEvent<string>>();
-  @Output() nextClick = new EventEmitter<CustomEvent<{ event: UIEvent; item: string }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['itemClick', 'nextClick']);
   }
 }
 
@@ -208,7 +196,6 @@ export declare interface IxBreadcrumb extends Components.IxBreadcrumb {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelButton', 'href', 'icon', 'label', 'rel', 'target'],
-  standalone: false
 })
 export class IxBreadcrumbItem {
   protected el: HTMLIxBreadcrumbItemElement;
@@ -231,7 +218,6 @@ export declare interface IxBreadcrumbItem extends Components.IxBreadcrumbItem {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelButton', 'disabled', 'form', 'href', 'icon', 'iconRight', 'loading', 'rel', 'target', 'type', 'variant'],
-  standalone: false
 })
 export class IxButton {
   protected el: HTMLIxButtonElement;
@@ -254,7 +240,6 @@ export declare interface IxButton extends Components.IxButton {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['selected', 'variant'],
-  standalone: false
 })
 export class IxCard {
   protected el: HTMLIxCardElement;
@@ -277,7 +262,6 @@ export declare interface IxCard extends Components.IxCard {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelExpandButton', 'collapse'],
-  standalone: false
 })
 export class IxCardAccordion {
   protected el: HTMLIxCardAccordionElement;
@@ -299,7 +283,6 @@ export declare interface IxCardAccordion extends Components.IxCardAccordion {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxCardContent {
   protected el: HTMLIxCardContentElement;
@@ -322,17 +305,13 @@ export declare interface IxCardContent extends Components.IxCardContent {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelExpandButton', 'collapse', 'hideShowAll', 'i18nMoreCards', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling'],
-  outputs: ['collapseChanged', 'showAllClick', 'showMoreCardClick'],
-  standalone: false
 })
 export class IxCardList {
   protected el: HTMLIxCardListElement;
-  @Output() collapseChanged = new EventEmitter<CustomEvent<boolean>>();
-  @Output() showAllClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>();
-  @Output() showMoreCardClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['collapseChanged', 'showAllClick', 'showMoreCardClick']);
   }
 }
 
@@ -361,7 +340,6 @@ export declare interface IxCardList extends Components.IxCardList {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxCardTitle {
   protected el: HTMLIxCardTitleElement;
@@ -384,18 +362,13 @@ export declare interface IxCardTitle extends Components.IxCardTitle {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelFilterInput', 'ariaLabelOperatorButton', 'ariaLabelResetButton', 'categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'staticOperator', 'suggestions'],
-  outputs: ['categoryChanged', 'inputChanged', 'filterChanged', 'filterCleared'],
-  standalone: false
 })
 export class IxCategoryFilter {
   protected el: HTMLIxCategoryFilterElement;
-  @Output() categoryChanged = new EventEmitter<CustomEvent<string>>();
-  @Output() inputChanged = new EventEmitter<CustomEvent<IIxCategoryFilterInputState>>();
-  @Output() filterChanged = new EventEmitter<CustomEvent<IIxCategoryFilterFilterState>>();
-  @Output() filterCleared = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['categoryChanged', 'inputChanged', 'filterChanged', 'filterCleared']);
   }
 }
 
@@ -432,17 +405,13 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value'],
-  outputs: ['checkedChange', 'valueChange', 'ixBlur'],
-  standalone: false
 })
 export class IxCheckbox {
   protected el: HTMLIxCheckboxElement;
-  @Output() checkedChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['checkedChange', 'valueChange', 'ixBlur']);
   }
 }
 
@@ -472,7 +441,6 @@ export declare interface IxCheckbox extends Components.IxCheckbox {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'warningText'],
-  standalone: false
 })
 export class IxCheckboxGroup {
   protected el: HTMLIxCheckboxGroupElement;
@@ -495,15 +463,13 @@ export declare interface IxCheckboxGroup extends Components.IxCheckboxGroup {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['active', 'ariaLabelCloseButton', 'background', 'centerContent', 'chipColor', 'closable', 'icon', 'outline', 'tooltipText', 'variant'],
-  outputs: ['closeChip'],
-  standalone: false
 })
 export class IxChip {
   protected el: HTMLIxChipElement;
-  @Output() closeChip = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['closeChip']);
   }
 }
 
@@ -525,7 +491,6 @@ export declare interface IxChip extends Components.IxChip {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['size', 'sizeLg', 'sizeMd', 'sizeSm'],
-  standalone: false
 })
 export class IxCol {
   protected el: HTMLIxColElement;
@@ -547,7 +512,6 @@ export declare interface IxCol extends Components.IxCol {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxContent {
   protected el: HTMLIxContentElement;
@@ -570,15 +534,13 @@ export declare interface IxContent extends Components.IxContent {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
-  outputs: ['backButtonClick'],
-  standalone: false
 })
 export class IxContentHeader {
   protected el: HTMLIxContentHeaderElement;
-  @Output() backButtonClick = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['backButtonClick']);
   }
 }
 
@@ -600,7 +562,6 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['helperText', 'infoText', 'invalidText', 'label', 'required', 'showTextAsTooltip', 'validText', 'warningText'],
-  standalone: false
 })
 export class IxCustomField {
   protected el: HTMLIxCustomFieldElement;
@@ -624,15 +585,13 @@ export declare interface IxCustomField extends Components.IxCustomField {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelDropdownButton', 'customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'range', 'showWeekNumbers', 'to', 'variant', 'weekStartIndex'],
-  outputs: ['dateRangeChange'],
-  standalone: false
 })
 export class IxDateDropdown {
   protected el: HTMLIxDateDropdownElement;
-  @Output() dateRangeChange = new EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dateRangeChange']);
   }
 }
 
@@ -660,16 +619,13 @@ The event payload contains information about the selected date range.
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'validText', 'value', 'warningText', 'weekStartIndex'],
-  outputs: ['valueChange', 'validityStateChange'],
-  standalone: false
 })
 export class IxDateInput {
   protected el: HTMLIxDateInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string | undefined>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange']);
   }
 }
 
@@ -698,17 +654,13 @@ export declare interface IxDateInput extends Components.IxDateInput {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'corners', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'range', 'showWeekNumbers', 'to', 'weekStartIndex'],
-  outputs: ['dateChange', 'dateRangeChange', 'dateSelect'],
-  standalone: false
 })
 export class IxDatePicker {
   protected el: HTMLIxDatePickerElement;
-  @Output() dateChange = new EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>();
-  @Output() dateRangeChange = new EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>();
-  @Output() dateSelect = new EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dateChange', 'dateRangeChange', 'dateSelect']);
   }
 }
 
@@ -747,17 +699,13 @@ The locale applied is always `en-US`.
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'showWeekNumbers', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
-  outputs: ['timeChange', 'dateChange', 'dateSelect'],
-  standalone: false
 })
 export class IxDatetimePicker {
   protected el: HTMLIxDatetimePickerElement;
-  @Output() timeChange = new EventEmitter<CustomEvent<string>>();
-  @Output() dateChange = new EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>();
-  @Output() dateSelect = new EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['timeChange', 'dateChange', 'dateSelect']);
   }
 }
 
@@ -789,7 +737,6 @@ export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxDivider {
   protected el: HTMLIxDividerElement;
@@ -813,16 +760,13 @@ export declare interface IxDivider extends Components.IxDivider {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCloseButton', 'closeOnClickOutside', 'fullHeight', 'maxWidth', 'minWidth', 'show', 'width'],
-  outputs: ['open', 'drawerClose'],
-  standalone: false
 })
 export class IxDrawer {
   protected el: HTMLIxDrawerElement;
-  @Output() open = new EventEmitter<CustomEvent<any>>();
-  @Output() drawerClose = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['open', 'drawerClose']);
   }
 }
 
@@ -849,15 +793,13 @@ export declare interface IxDrawer extends Components.IxDrawer {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
-  outputs: ['showChanged'],
-  standalone: false
 })
 export class IxDropdown {
   protected el: HTMLIxDropdownElement;
-  @Output() showChanged = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['showChanged']);
   }
 }
 
@@ -879,7 +821,6 @@ export declare interface IxDropdown extends Components.IxDropdown {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'icon', 'label', 'placement', 'variant'],
-  standalone: false
 })
 export class IxDropdownButton {
   protected el: HTMLIxDropdownButtonElement;
@@ -902,7 +843,6 @@ export declare interface IxDropdownButton extends Components.IxDropdownButton {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['label'],
-  standalone: false
 })
 export class IxDropdownHeader {
   protected el: HTMLIxDropdownHeaderElement;
@@ -925,7 +865,6 @@ export declare interface IxDropdownHeader extends Components.IxDropdownHeader {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelButton', 'ariaLabelIcon', 'checked', 'disabled', 'hover', 'icon', 'label'],
-  standalone: false
 })
 export class IxDropdownItem {
   protected el: HTMLIxDropdownItemElement;
@@ -947,7 +886,6 @@ export declare interface IxDropdownItem extends Components.IxDropdownItem {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxDropdownQuickActions {
   protected el: HTMLIxDropdownQuickActionsElement;
@@ -969,16 +907,14 @@ export declare interface IxDropdownQuickActions extends Components.IxDropdownQui
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['action', 'ariaLabelEmptyStateIcon', { name: 'header', required: true }, 'icon', 'layout', 'subHeader'],
-  outputs: ['actionClick'],
-  standalone: false
+  inputs: ['action', 'ariaLabelEmptyStateIcon', 'header', 'icon', 'layout', 'subHeader'],
 })
 export class IxEmptyState {
   protected el: HTMLIxEmptyStateElement;
-  @Output() actionClick = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['actionClick']);
   }
 }
 
@@ -1000,7 +936,6 @@ export declare interface IxEmptyState extends Components.IxEmptyState {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['animated', 'chevron', 'compact', 'itemHeight'],
-  standalone: false
 })
 export class IxEventList {
   protected el: HTMLIxEventListElement;
@@ -1023,15 +958,13 @@ export declare interface IxEventList extends Components.IxEventList {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['chevron', 'disabled', 'itemColor', 'selected'],
-  outputs: ['itemClick'],
-  standalone: false
 })
 export class IxEventListItem {
   protected el: HTMLIxEventListItemElement;
-  @Output() itemClick = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['itemClick']);
   }
 }
 
@@ -1053,15 +986,13 @@ export declare interface IxEventListItem extends Components.IxEventListItem {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelClearIconButton', 'ariaLabelSearchIconButton', 'ariaLabelSearchInput', 'fullWidth', 'icon', 'placeholder', 'value', 'variant'],
-  outputs: ['valueChange'],
-  standalone: false
 })
 export class IxExpandingSearch {
   protected el: HTMLIxExpandingSearchElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange']);
   }
 }
 
@@ -1083,7 +1014,6 @@ export declare interface IxExpandingSearch extends Components.IxExpandingSearch 
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['htmlFor', 'required'],
-  standalone: false
 })
 export class IxFieldLabel {
   protected el: HTMLIxFieldLabelElement;
@@ -1106,15 +1036,13 @@ export declare interface IxFieldLabel extends Components.IxFieldLabel {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCloseIconButton', 'disabled', 'readonly'],
-  outputs: ['closeClick'],
-  standalone: false
 })
 export class IxFilterChip {
   protected el: HTMLIxFilterChipElement;
-  @Output() closeClick = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['closeClick']);
   }
 }
 
@@ -1136,15 +1064,13 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelEyeIconButton', 'height', 'index', 'state', 'width'],
-  outputs: ['toggle'],
-  standalone: false
 })
 export class IxFlipTile {
   protected el: HTMLIxFlipTileElement;
-  @Output() toggle = new EventEmitter<CustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['toggle']);
   }
 }
 
@@ -1165,7 +1091,6 @@ export declare interface IxFlipTile extends Components.IxFlipTile {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxFlipTileContent {
   protected el: HTMLIxFlipTileContentElement;
@@ -1188,17 +1113,13 @@ export declare interface IxFlipTileContent extends Components.IxFlipTileContent 
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['collapsed', 'expandOnHeaderClick', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection'],
-  outputs: ['selectGroup', 'selectItem', 'collapsedChanged'],
-  standalone: false
 })
 export class IxGroup {
   protected el: HTMLIxGroupElement;
-  @Output() selectGroup = new EventEmitter<CustomEvent<boolean>>();
-  @Output() selectItem = new EventEmitter<CustomEvent<number>>();
-  @Output() collapsedChanged = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['selectGroup', 'selectItem', 'collapsedChanged']);
   }
 }
 
@@ -1227,7 +1148,6 @@ export declare interface IxGroup extends Components.IxGroup {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxGroupContextMenu {
   protected el: HTMLIxGroupContextMenuElement;
@@ -1250,15 +1170,13 @@ export declare interface IxGroupContextMenu extends Components.IxGroupContextMen
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelIcon', 'focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text'],
-  outputs: ['selectedChanged'],
-  standalone: false
 })
 export class IxGroupItem {
   protected el: HTMLIxGroupItemElement;
-  @Output() selectedChanged = new EventEmitter<CustomEvent<HTMLIxGroupItemElement>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['selectedChanged']);
   }
 }
 
@@ -1280,7 +1198,6 @@ export declare interface IxGroupItem extends Components.IxGroupItem {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['helperText', 'htmlFor', 'infoText', 'invalidText', 'validText', 'warningText'],
-  standalone: false
 })
 export class IxHelperText {
   protected el: HTMLIxHelperTextElement;
@@ -1303,7 +1220,6 @@ export declare interface IxHelperText extends Components.IxHelperText {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['a11yLabel', 'disabled', 'icon', 'iconColor', 'loading', 'oval', 'size', 'type', 'variant'],
-  standalone: false
 })
 export class IxIconButton {
   protected el: HTMLIxIconButtonElement;
@@ -1326,15 +1242,13 @@ export declare interface IxIconButton extends Components.IxIconButton {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelIconButton', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'pressed', 'size', 'variant'],
-  outputs: ['pressedChange'],
-  standalone: false
 })
 export class IxIconToggleButton {
   protected el: HTMLIxIconToggleButtonElement;
-  @Output() pressedChange = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pressedChange']);
   }
 }
 
@@ -1357,17 +1271,13 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange', 'ixBlur'],
-  standalone: false
 })
 export class IxInput {
   protected el: HTMLIxInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
   }
 }
 
@@ -1396,7 +1306,6 @@ export declare interface IxInput extends Components.IxInput {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxInputGroup {
   protected el: HTMLIxInputGroupElement;
@@ -1418,8 +1327,7 @@ export declare interface IxInputGroup extends Components.IxInputGroup {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelIcon', 'icon', { name: 'label', required: true }, 'labelPosition', 'value'],
-  standalone: false
+  inputs: ['ariaLabelIcon', 'icon', 'label', 'labelPosition', 'value'],
 })
 export class IxKeyValue {
   protected el: HTMLIxKeyValueElement;
@@ -1442,7 +1350,6 @@ export declare interface IxKeyValue extends Components.IxKeyValue {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['striped'],
-  standalone: false
 })
 export class IxKeyValueList {
   protected el: HTMLIxKeyValueListElement;
@@ -1465,7 +1372,6 @@ export declare interface IxKeyValueList extends Components.IxKeyValueList {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelAlarmIcon', 'ariaLabelWarningIcon', 'label', 'orientation', 'state', 'unit', 'value'],
-  standalone: false
 })
 export class IxKpi {
   protected el: HTMLIxKpiElement;
@@ -1488,7 +1394,6 @@ export declare interface IxKpi extends Components.IxKpi {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['layout'],
-  standalone: false
 })
 export class IxLayoutAuto {
   protected el: HTMLIxLayoutAutoElement;
@@ -1511,7 +1416,6 @@ export declare interface IxLayoutAuto extends Components.IxLayoutAuto {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['columns', 'gap', 'noMargin'],
-  standalone: false
 })
 export class IxLayoutGrid {
   protected el: HTMLIxLayoutGridElement;
@@ -1534,7 +1438,6 @@ export declare interface IxLayoutGrid extends Components.IxLayoutGrid {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'target', 'url'],
-  standalone: false
 })
 export class IxLinkButton {
   protected el: HTMLIxLinkButtonElement;
@@ -1558,16 +1461,13 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['applicationName', 'ariaLabelContextIconButton', 'hideContextMenu', 'navigationTitle'],
-  outputs: ['navigationToggled', 'contextMenuClick'],
-  standalone: false
 })
 export class IxMapNavigation {
   protected el: HTMLIxMapNavigationElement;
-  @Output() navigationToggled = new EventEmitter<CustomEvent<boolean>>();
-  @Output() contextMenuClick = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['navigationToggled', 'contextMenuClick']);
   }
 }
 
@@ -1593,15 +1493,13 @@ export declare interface IxMapNavigation extends Components.IxMapNavigation {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'color', 'icon', 'iconColor', 'name'],
-  outputs: ['closeClick'],
-  standalone: false
 })
 export class IxMapNavigationOverlay {
   protected el: HTMLIxMapNavigationOverlayElement;
-  @Output() closeClick = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['closeClick']);
   }
 }
 
@@ -1624,19 +1522,13 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['applicationDescription', 'applicationName', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
-  outputs: ['expandChange', 'mapExpandChange', 'openAppSwitch', 'openSettings', 'openAbout'],
-  standalone: false
 })
 export class IxMenu {
   protected el: HTMLIxMenuElement;
-  @Output() expandChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() mapExpandChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() openAppSwitch = new EventEmitter<CustomEvent<void>>();
-  @Output() openSettings = new EventEmitter<CustomEvent<void>>();
-  @Output() openAbout = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange', 'openAppSwitch', 'openSettings', 'openAbout']);
   }
 }
 
@@ -1674,16 +1566,13 @@ export declare interface IxMenu extends Components.IxMenu {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['activeTabLabel', 'label'],
-  outputs: ['tabChange', 'close'],
-  standalone: false
 })
 export class IxMenuAbout {
   protected el: HTMLIxMenuAboutElement;
-  @Output() tabChange = new EventEmitter<CustomEvent<string>>();
-  @Output() close = new EventEmitter<CustomEvent<IIxMenuAboutCustomCloseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['tabChange', 'close']);
   }
 }
 
@@ -1711,15 +1600,13 @@ export declare interface IxMenuAbout extends Components.IxMenuAbout {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['label'],
-  outputs: ['labelChange'],
-  standalone: false
 })
 export class IxMenuAboutItem {
   protected el: HTMLIxMenuAboutItemElement;
-  @Output() labelChange = new EventEmitter<CustomEvent<IIxMenuAboutItemCustomLabelChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['labelChange']);
   }
 }
 
@@ -1743,16 +1630,13 @@ export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['aboutItemLabel', 'i18nShowMore', 'label', 'offsetBottom', 'show'],
-  outputs: ['showMore', 'closePopover'],
-  standalone: false
 })
 export class IxMenuAboutNews {
   protected el: HTMLIxMenuAboutNewsElement;
-  @Output() showMore = new EventEmitter<CustomEvent<MouseEvent>>();
-  @Output() closePopover = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['showMore', 'closePopover']);
   }
 }
 
@@ -1778,15 +1662,13 @@ export declare interface IxMenuAboutNews extends Components.IxMenuAboutNews {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'showLogoutButton', 'top'],
-  outputs: ['logoutClick'],
-  standalone: false
 })
 export class IxMenuAvatar {
   protected el: HTMLIxMenuAvatarElement;
-  @Output() logoutClick = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['logoutClick']);
   }
 }
 
@@ -1808,15 +1690,13 @@ export declare interface IxMenuAvatar extends Components.IxMenuAvatar {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['icon', 'label'],
-  outputs: ['itemClick'],
-  standalone: false
 })
 export class IxMenuAvatarItem {
   protected el: HTMLIxMenuAvatarItemElement;
-  @Output() itemClick = new EventEmitter<CustomEvent<MouseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['itemClick']);
   }
 }
 
@@ -1838,7 +1718,6 @@ export declare interface IxMenuAvatarItem extends Components.IxMenuAvatarItem {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['icon', 'label', 'notifications', 'tooltipText'],
-  standalone: false
 })
 export class IxMenuCategory {
   protected el: HTMLIxMenuCategoryElement;
@@ -1861,7 +1740,6 @@ export declare interface IxMenuCategory extends Components.IxMenuCategory {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['active', 'bottom', 'disabled', 'home', 'href', 'icon', 'label', 'notifications', 'rel', 'target', 'tooltipText'],
-  standalone: false
 })
 export class IxMenuItem {
   protected el: HTMLIxMenuItemElement;
@@ -1884,16 +1762,13 @@ export declare interface IxMenuItem extends Components.IxMenuItem {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['activeTabLabel', 'label'],
-  outputs: ['tabChange', 'close'],
-  standalone: false
 })
 export class IxMenuSettings {
   protected el: HTMLIxMenuSettingsElement;
-  @Output() tabChange = new EventEmitter<CustomEvent<string>>();
-  @Output() close = new EventEmitter<CustomEvent<IIxMenuSettingsCustomCloseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['tabChange', 'close']);
   }
 }
 
@@ -1921,15 +1796,13 @@ export declare interface IxMenuSettings extends Components.IxMenuSettings {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['label'],
-  outputs: ['labelChange'],
-  standalone: false
 })
 export class IxMenuSettingsItem {
   protected el: HTMLIxMenuSettingsItemElement;
-  @Output() labelChange = new EventEmitter<CustomEvent<IIxMenuSettingsItemCustomLabelChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['labelChange']);
   }
 }
 
@@ -1953,16 +1826,13 @@ export declare interface IxMenuSettingsItem extends Components.IxMenuSettingsIte
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['dismissible', 'type'],
-  outputs: ['closedChange', 'closeAnimationCompleted'],
-  standalone: false
 })
 export class IxMessageBar {
   protected el: HTMLIxMessageBarElement;
-  @Output() closedChange = new EventEmitter<CustomEvent<any>>();
-  @Output() closeAnimationCompleted = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['closedChange', 'closeAnimationCompleted']);
   }
 }
 
@@ -1989,16 +1859,13 @@ export declare interface IxMessageBar extends Components.IxMessageBar {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['animation', 'backdrop', 'beforeDismiss', 'centered', 'closeOnBackdropClick', 'closeOnEscape', 'size'],
-  outputs: ['dialogClose', 'dialogDismiss'],
-  standalone: false
 })
 export class IxModal {
   protected el: HTMLIxModalElement;
-  @Output() dialogClose = new EventEmitter<CustomEvent<any>>();
-  @Output() dialogDismiss = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dialogClose', 'dialogDismiss']);
   }
 }
 
@@ -2023,7 +1890,6 @@ export declare interface IxModal extends Components.IxModal {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxModalContent {
   protected el: HTMLIxModalContentElement;
@@ -2045,7 +1911,6 @@ export declare interface IxModalContent extends Components.IxModalContent {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxModalFooter {
   protected el: HTMLIxModalFooterElement;
@@ -2068,15 +1933,13 @@ export declare interface IxModalFooter extends Components.IxModalFooter {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'hideClose', 'icon', 'iconColor'],
-  outputs: ['closeClick'],
-  standalone: false
 })
 export class IxModalHeader {
   protected el: HTMLIxModalHeaderElement;
-  @Output() closeClick = new EventEmitter<CustomEvent<MouseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['closeClick']);
   }
 }
 
@@ -2100,17 +1963,13 @@ Can be prevented, in which case only the event is triggered, and the modal remai
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange', 'ixBlur'],
-  standalone: false
 })
 export class IxNumberInput {
   protected el: HTMLIxNumberInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<number>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
   }
 }
 
@@ -2140,16 +1999,13 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount'],
-  outputs: ['pageSelected', 'itemCountChanged'],
-  standalone: false
 })
 export class IxPagination {
   protected el: HTMLIxPaginationElement;
-  @Output() pageSelected = new EventEmitter<CustomEvent<number>>();
-  @Output() itemCountChanged = new EventEmitter<CustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pageSelected', 'itemCountChanged']);
   }
 }
 
@@ -2175,17 +2031,13 @@ export declare interface IxPagination extends Components.IxPagination {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCollapseCloseButton', 'ariaLabelIcon', 'borderless', 'closeOnClickOutside', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant'],
-  outputs: ['expandedChanged', 'variantChanged', 'borderlessChanged'],
-  standalone: false
 })
 export class IxPane {
   protected el: HTMLIxPaneElement;
-  @Output() expandedChanged = new EventEmitter<CustomEvent<IIxPaneExpandedChangedEvent>>();
-  @Output() variantChanged = new EventEmitter<CustomEvent<IIxPaneVariantChangedEvent>>();
-  @Output() borderlessChanged = new EventEmitter<CustomEvent<IIxPaneBorderlessChangedEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['expandedChanged', 'variantChanged', 'borderlessChanged']);
   }
 }
 
@@ -2219,7 +2071,6 @@ export declare interface IxPane extends Components.IxPane {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['borderless', 'layout', 'variant'],
-  standalone: false
 })
 export class IxPaneLayout {
   protected el: HTMLIxPaneLayoutElement;
@@ -2242,7 +2093,6 @@ export declare interface IxPaneLayout extends Components.IxPaneLayout {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'icon', 'outline', 'pillColor', 'tooltipText', 'variant'],
-  standalone: false
 })
 export class IxPill {
   protected el: HTMLIxPillElement;
@@ -2265,7 +2115,6 @@ export declare interface IxPill extends Components.IxPill {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['helperText', 'label', 'max', 'min', 'showTextAsTooltip', 'size', 'status', 'textAlignment', 'type', 'value'],
-  standalone: false
 })
 export class IxProgressIndicator {
   protected el: HTMLIxProgressIndicatorElement;
@@ -2288,7 +2137,6 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelIcon', 'collapse', 'heading', 'icon', 'notification', 'subheading', 'variant'],
-  standalone: false
 })
 export class IxPushCard {
   protected el: HTMLIxPushCardElement;
@@ -2311,17 +2159,13 @@ export declare interface IxPushCard extends Components.IxPushCard {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['checked', 'disabled', 'label', 'name', 'required', 'value'],
-  outputs: ['checkedChange', 'valueChange', 'ixBlur'],
-  standalone: false
 })
 export class IxRadio {
   protected el: HTMLIxRadioElement;
-  @Output() checkedChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['checkedChange', 'valueChange', 'ixBlur']);
   }
 }
 
@@ -2351,15 +2195,13 @@ export declare interface IxRadio extends Components.IxRadio {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange'],
-  standalone: false
 })
 export class IxRadioGroup {
   protected el: HTMLIxRadioGroupElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange']);
   }
 }
 
@@ -2380,7 +2222,6 @@ export declare interface IxRadioGroup extends Components.IxRadioGroup {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  standalone: false
 })
 export class IxRow {
   protected el: HTMLIxRowElement;
@@ -2404,18 +2245,13 @@ export declare interface IxRow extends Components.IxRow {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowClear', 'ariaLabelChevronDownIconButton', 'ariaLabelClearIconButton', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'inputChange', 'addItem', 'ixBlur'],
-  standalone: false
 })
 export class IxSelect {
   protected el: HTMLIxSelectElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string | string[]>>();
-  @Output() inputChange = new EventEmitter<CustomEvent<string>>();
-  @Output() addItem = new EventEmitter<CustomEvent<string>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'inputChange', 'addItem', 'ixBlur']);
   }
 }
 
@@ -2448,16 +2284,14 @@ export declare interface IxSelect extends Components.IxSelect {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['label', 'selected', { name: 'value', required: true }],
-  outputs: ['itemClick'],
-  standalone: false
+  inputs: ['label', 'selected', 'value'],
 })
 export class IxSelectItem {
   protected el: HTMLIxSelectItemElement;
-  @Output() itemClick = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['itemClick']);
   }
 }
 
@@ -2479,15 +2313,13 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'error', 'marker', 'max', 'min', 'step', 'trace', 'traceReference', 'value'],
-  outputs: ['valueChange'],
-  standalone: false
 })
 export class IxSlider {
   protected el: HTMLIxSliderElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange']);
   }
 }
 
@@ -2507,7 +2339,6 @@ export declare interface IxSlider extends Components.IxSlider {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['size', 'variant'],
-  standalone: false
 })
 export class IxSpinner {
   protected el: HTMLIxSpinnerElement;
@@ -2530,15 +2361,13 @@ export declare interface IxSpinner extends Components.IxSpinner {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disabled', 'icon', 'label', 'placement', 'splitIcon', 'variant'],
-  outputs: ['buttonClick'],
-  standalone: false
 })
 export class IxSplitButton {
   protected el: HTMLIxSplitButtonElement;
-  @Output() buttonClick = new EventEmitter<CustomEvent<MouseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['buttonClick']);
   }
 }
 
@@ -2560,15 +2389,13 @@ export declare interface IxSplitButton extends Components.IxSplitButton {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['counter', 'disabled', 'icon', 'layout', 'placement', 'rounded', 'selected', 'small'],
-  outputs: ['tabClick'],
-  standalone: false
 })
 export class IxTabItem {
   protected el: HTMLIxTabItemElement;
-  @Output() tabClick = new EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['tabClick']);
   }
 }
 
@@ -2592,15 +2419,13 @@ export declare interface IxTabItem extends Components.IxTabItem {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'layout', 'placement', 'rounded', 'selected', 'small'],
-  outputs: ['selectedChange'],
-  standalone: false
 })
 export class IxTabs {
   protected el: HTMLIxTabsElement;
-  @Output() selectedChange = new EventEmitter<CustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['selectedChange']);
   }
 }
 
@@ -2623,17 +2448,13 @@ export declare interface IxTabs extends Components.IxTabs {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange', 'ixBlur'],
-  standalone: false
 })
 export class IxTextarea {
   protected el: HTMLIxTextareaElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
   }
 }
 
@@ -2663,7 +2484,6 @@ export declare interface IxTextarea extends Components.IxTextarea {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['size'],
-  standalone: false
 })
 export class IxTile {
   protected el: HTMLIxTileElement;
@@ -2678,7 +2498,7 @@ export declare interface IxTile extends Components.IxTile {}
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['disabled', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2686,17 +2506,14 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'format', 'helperText', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
-  outputs: ['valueChange', 'validityStateChange'],
-  standalone: false
+  inputs: ['disabled', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
 })
 export class IxTimeInput {
   protected el: HTMLIxTimeInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
-  @Output() validityStateChange = new EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange']);
   }
 }
 
@@ -2725,16 +2542,13 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['corners', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
-  outputs: ['timeSelect', 'timeChange'],
-  standalone: false
 })
 export class IxTimePicker {
   protected el: HTMLIxTimePickerElement;
-  @Output() timeSelect = new EventEmitter<CustomEvent<string>>();
-  @Output() timeChange = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['timeSelect', 'timeChange']);
   }
 }
 
@@ -2761,15 +2575,13 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelCloseIconButton', 'autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type'],
-  outputs: ['closeToast'],
-  standalone: false
 })
 export class IxToast {
   protected el: HTMLIxToastElement;
-  @Output() closeToast = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['closeToast']);
   }
 }
 
@@ -2792,7 +2604,6 @@ export declare interface IxToast extends Components.IxToast {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['containerClass', 'containerId', 'position'],
-  standalone: false
 })
 export class IxToastContainer {
   protected el: HTMLIxToastContainerElement;
@@ -2815,16 +2626,13 @@ export declare interface IxToastContainer extends Components.IxToastContainer {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['checked', 'disabled', 'hideText', 'indeterminate', 'name', 'required', 'textIndeterminate', 'textOff', 'textOn', 'value'],
-  outputs: ['checkedChange', 'ixBlur'],
-  standalone: false
 })
 export class IxToggle {
   protected el: HTMLIxToggleElement;
-  @Output() checkedChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['checkedChange', 'ixBlur']);
   }
 }
 
@@ -2850,15 +2658,13 @@ export declare interface IxToggle extends Components.IxToggle {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelButton', 'disabled', 'icon', 'iconRight', 'loading', 'pressed', 'variant'],
-  outputs: ['pressedChange'],
-  standalone: false
 })
 export class IxToggleButton {
   protected el: HTMLIxToggleButtonElement;
-  @Output() pressedChange = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pressedChange']);
   }
 }
 
@@ -2880,7 +2686,6 @@ export declare interface IxToggleButton extends Components.IxToggleButton {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['for', 'interactive', 'placement', 'titleContent'],
-  standalone: false
 })
 export class IxTooltip {
   protected el: HTMLIxTooltipElement;
@@ -2903,16 +2708,13 @@ export declare interface IxTooltip extends Components.IxTooltip {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaLabelChevronIcon', 'context', 'hasChildren', 'text'],
-  outputs: ['toggle', 'itemClick'],
-  standalone: false
 })
 export class IxTreeItem {
   protected el: HTMLIxTreeItemElement;
-  @Output() toggle = new EventEmitter<CustomEvent<void>>();
-  @Output() itemClick = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['toggle', 'itemClick']);
   }
 }
 
@@ -2938,7 +2740,6 @@ export declare interface IxTreeItem extends Components.IxTreeItem {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['bold', 'format', 'textColor', 'textDecoration'],
-  standalone: false
 })
 export class IxTypography {
   protected el: HTMLIxTypographyElement;
@@ -2962,15 +2763,13 @@ export declare interface IxTypography extends Components.IxTypography {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['accept', 'disabled', 'i18nUploadDisabled', 'i18nUploadFile', 'loadingText', 'multiline', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText'],
-  outputs: ['filesChanged'],
-  standalone: false
 })
 export class IxUpload {
   protected el: HTMLIxUploadElement;
-  @Output() filesChanged = new EventEmitter<CustomEvent<Array<File>>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['filesChanged']);
   }
 }
 
@@ -2992,7 +2791,6 @@ export declare interface IxUpload extends Components.IxUpload {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['message', 'placement', 'suppressAutomaticPlacement'],
-  standalone: false
 })
 export class IxValidationTooltip {
   protected el: HTMLIxValidationTooltipElement;
@@ -3015,7 +2813,6 @@ export declare interface IxValidationTooltip extends Components.IxValidationTool
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['clickable', 'disabled', 'selected', 'status', 'vertical'],
-  standalone: false
 })
 export class IxWorkflowStep {
   protected el: HTMLIxWorkflowStepElement;
@@ -3038,15 +2835,13 @@ export declare interface IxWorkflowStep extends Components.IxWorkflowStep {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['clickable', 'selectedIndex', 'vertical'],
-  outputs: ['stepSelected'],
-  standalone: false
 })
 export class IxWorkflowSteps {
   protected el: HTMLIxWorkflowStepsElement;
-  @Output() stepSelected = new EventEmitter<CustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['stepSelected']);
   }
 }
 

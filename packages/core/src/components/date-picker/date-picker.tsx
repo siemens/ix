@@ -194,7 +194,7 @@ export class DatePicker implements IxDatePickerComponent {
    * The locale applied is always `en-US`.
    */
   @Method()
-  async getCurrentDate() {
+  async getCurrentDate(): Promise<DateChangeEvent> {
     const _from = this.currFromDate?.isValid
       ? this.currFromDate?.toFormat(this.format)
       : undefined;
