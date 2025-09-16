@@ -38,7 +38,7 @@ import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
-import { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator.types";
+import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -88,7 +88,7 @@ export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
-export { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator.types";
+export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -2917,12 +2917,7 @@ export namespace Components {
           * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
           * @default 'default'
          */
-        "status": | 'default'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'paused';
+        "status": ProgressIndicatorStatus;
         /**
           * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
           * @default 'left'
@@ -8997,12 +8992,7 @@ declare namespace LocalJSX {
           * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
           * @default 'default'
          */
-        "status"?: | 'default'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'paused';
+        "status"?: ProgressIndicatorStatus;
         /**
           * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
           * @default 'left'

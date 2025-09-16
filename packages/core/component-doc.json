@@ -20071,9 +20071,15 @@
           "name": "status",
           "type": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "| 'default'\n    | 'success'\n    | 'error'\n    | 'info'\n    | 'warning'\n    | 'paused'",
+            "original": "ProgressIndicatorStatus",
             "resolved": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
-            "references": {}
+            "references": {
+              "ProgressIndicatorStatus": {
+                "location": "import",
+                "path": "progress-indicator.types",
+                "id": "src/components/progress-indicator/progress-indicator.types.ts::ProgressIndicatorStatus"
+              }
+            }
           },
           "mutable": false,
           "attr": "status",
@@ -29281,6 +29287,11 @@
     },
     "src/components/progress-indicator/progress-indicator.types.ts::ProgressIndicatorSize": {
       "declaration": "export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';",
+      "docstring": "",
+      "path": "src/components/progress-indicator/progress-indicator.types.ts"
+    },
+    "src/components/progress-indicator/progress-indicator.types.ts::ProgressIndicatorStatus": {
+      "declaration": "export type ProgressIndicatorStatus =\n  | 'default'\n  | 'success'\n  | 'error'\n  | 'info'\n  | 'warning'\n  | 'paused';",
       "docstring": "",
       "path": "src/components/progress-indicator/progress-indicator.types.ts"
     },
