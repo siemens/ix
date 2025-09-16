@@ -997,10 +997,10 @@ export namespace Components {
          */
         "showWeekNumbers": boolean;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter": boolean;
+        "suppressSubmitOnEnter": boolean;
         /**
           * Valid text below the input field
          */
@@ -1973,10 +1973,10 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter": boolean;
+        "suppressSubmitOnEnter": boolean;
         /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
@@ -2639,10 +2639,10 @@ export namespace Components {
          */
         "step"?: string | number;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter": boolean;
+        "suppressSubmitOnEnter": boolean;
         /**
           * The valid text for the input field
          */
@@ -3124,10 +3124,10 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter": boolean;
+        "suppressSubmitOnEnter": boolean;
         /**
           * Valid text for the select component
          */
@@ -3593,10 +3593,10 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter": boolean;
+        "suppressSubmitOnEnter": boolean;
         /**
           * Valid text below the input field
          */
@@ -6924,10 +6924,10 @@ declare namespace LocalJSX {
          */
         "showWeekNumbers"?: boolean;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter"?: boolean;
+        "suppressSubmitOnEnter"?: boolean;
         /**
           * Valid text below the input field
          */
@@ -7956,10 +7956,10 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter"?: boolean;
+        "suppressSubmitOnEnter"?: boolean;
         /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
@@ -8666,10 +8666,10 @@ declare namespace LocalJSX {
          */
         "step"?: string | number;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter"?: boolean;
+        "suppressSubmitOnEnter"?: boolean;
         /**
           * The valid text for the input field
          */
@@ -9187,10 +9187,10 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter"?: boolean;
+        "suppressSubmitOnEnter"?: boolean;
         /**
           * Valid text for the select component
          */
@@ -9661,10 +9661,10 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * If true, pressing Enter will submit the form (if inside a form).
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
-        "submitOnEnter"?: boolean;
+        "suppressSubmitOnEnter"?: boolean;
         /**
           * Valid text below the input field
          */

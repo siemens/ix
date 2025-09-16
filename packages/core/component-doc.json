@@ -6395,7 +6395,7 @@
           "setter": false
         },
         {
-          "name": "submitOnEnter",
+          "name": "suppressSubmitOnEnter",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -6403,9 +6403,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "submit-on-enter",
+          "attr": "suppress-submit-on-enter",
           "reflectToAttr": true,
-          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docs": "If false, pressing Enter will submit the form (if inside a form).\nSet to true to suppress submit on Enter.",
           "docsTags": [
             {
               "name": "default",
@@ -12738,7 +12738,7 @@
           "setter": false
         },
         {
-          "name": "submitOnEnter",
+          "name": "suppressSubmitOnEnter",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -12746,9 +12746,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "submit-on-enter",
+          "attr": "suppress-submit-on-enter",
           "reflectToAttr": true,
-          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docs": "If false, pressing Enter will submit the form (if inside a form).\nSet to true to suppress submit on Enter.",
           "docsTags": [
             {
               "name": "default",
@@ -17826,7 +17826,7 @@
           "setter": false
         },
         {
-          "name": "submitOnEnter",
+          "name": "suppressSubmitOnEnter",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -17834,9 +17834,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "submit-on-enter",
+          "attr": "suppress-submit-on-enter",
           "reflectToAttr": true,
-          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docs": "If false, pressing Enter will submit the form (if inside a form).\nSet to true to suppress submit on Enter.",
           "docsTags": [
             {
               "name": "default",
@@ -21161,7 +21161,7 @@
           "setter": false
         },
         {
-          "name": "submitOnEnter",
+          "name": "suppressSubmitOnEnter",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -21169,9 +21169,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "submit-on-enter",
+          "attr": "suppress-submit-on-enter",
           "reflectToAttr": true,
-          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docs": "If false, pressing Enter will submit the form (if inside a form).\nSet to true to suppress submit on Enter.",
           "docsTags": [
             {
               "name": "default",
@@ -24476,7 +24476,7 @@
           "setter": false
         },
         {
-          "name": "submitOnEnter",
+          "name": "suppressSubmitOnEnter",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -24484,9 +24484,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "submit-on-enter",
+          "attr": "suppress-submit-on-enter",
           "reflectToAttr": true,
-          "docs": "If true, pressing Enter will submit the form (if inside a form).",
+          "docs": "If false, pressing Enter will submit the form (if inside a form).\nSet to true to suppress submit on Enter.",
           "docsTags": [
             {
               "name": "default",

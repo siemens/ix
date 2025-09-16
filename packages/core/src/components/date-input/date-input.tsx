@@ -193,9 +193,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() ariaLabelNextMonthButton?: string;
 
   /**
-   * If true, pressing Enter will submit the form (if inside a form).
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
    */
-  @Prop({ reflect: true }) submitOnEnter: boolean = false;
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
 
   /**
    * Input change event.
@@ -348,7 +349,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(e: KeyboardEvent) {
-    handleSubmitOnEnterKeydown(e, this.submitOnEnter, this.formInternals.form);
+    handleSubmitOnEnterKeydown(
+      e,
+      !this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
   }
 
   private renderInput() {

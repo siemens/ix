@@ -201,9 +201,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
-   * If true, pressing Enter will submit the form (if inside a form).
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
    */
-  @Prop({ reflect: true }) submitOnEnter: boolean = false;
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
 
   /**
    * Input change event.
@@ -244,7 +245,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleInputKeyDown(e: KeyboardEvent) {
-    handleSubmitOnEnterKeydown(e, this.submitOnEnter, this.formInternals.form);
+    handleSubmitOnEnterKeydown(
+      e,
+      !this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
   }
 
   updateFormInternalValue(value: string): void {

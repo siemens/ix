@@ -197,15 +197,15 @@ export function handleSubmitOnEnterKeydown(
   submitOnEnter: boolean,
   form: HTMLFormElement | null | undefined
 ) {
-  if (!submitOnEnter) return;
-  if (e.key !== 'Enter') return;
-  if (!form) return;
+  if (!submitOnEnter || e.key !== 'Enter' || !form) {
+    return;
+  }
   e.preventDefault();
   const submitButton = form.querySelector(
     'button[type="submit"], ix-button[type="submit"]'
   ) as HTMLElement;
   if (submitButton) {
-    submitButton.click();
+    form.requestSubmit(submitButton);
   } else {
     const inputs = form.querySelectorAll(
       'input:not([type="hidden"]), ix-input, ix-number-input, ix-date-input, ix-time-input, ix-select'

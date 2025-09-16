@@ -37,7 +37,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`
       <form onsubmit="window.__formSubmitted = true; return false;">
-        <ix-input name="my-field-name" submit-on-enter></ix-input>
+        <ix-input name="my-field-name"></ix-input>
       </form>
     `);
     await page.evaluate(() => {
@@ -77,7 +77,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`
       <form onsubmit="window.__formSubmitted = true; return false;">
-        <ix-input name="field-1" submit-on-enter></ix-input><ix-input name="field-2"></ix-input><button type="submit">Submit</button>
+        <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input><button type="submit">Submit</button>
       </form>
     `);
     await page.evaluate(() => {
@@ -93,11 +93,11 @@ regressionTest(
 );
 
 regressionTest(
-  `form-ready - ix-input doesn't submit form on Enter key when submit-on-enter is false`,
+  `form-ready - ix-input doesn't submit form on Enter key when supress submit on enter is true`,
   async ({ mount, page }) => {
     await mount(`
       <form onsubmit="window.__formSubmitted = true; return false;">
-        <ix-input name="my-field-name"></ix-input>
+        <ix-input name="my-field-name"  suppress-submit-on-enter="true"></ix-input>
       </form>
     `);
     await page.evaluate(() => {

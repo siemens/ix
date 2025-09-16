@@ -681,7 +681,7 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         weekStartIndex: 'week-start-index',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
-        submitOnEnter: 'submit-on-enter'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -1243,7 +1243,7 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@
         maxLength: 'max-length',
         minLength: 'min-length',
         allowedCharactersPattern: 'allowed-characters-pattern',
-        submitOnEnter: 'submit-on-enter'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -1778,7 +1778,7 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         allowedCharactersPattern: 'allowed-characters-pattern',
         showStepperButtons: 'show-stepper-buttons',
         step: 'step',
-        submitOnEnter: 'submit-on-enter'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -2048,7 +2048,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         hideListHeader: 'hide-list-header',
         dropdownWidth: 'dropdown-width',
         dropdownMaxWidth: 'dropdown-max-width',
-        submitOnEnter: 'submit-on-enter'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,
@@ -2286,7 +2286,7 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         i18nMinuteColumnHeader: 'i18n-minute-column-header',
         i18nSecondColumnHeader: 'i18n-second-column-header',
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
-        submitOnEnter: 'submit-on-enter'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     serializeShadowRoot,

@@ -147,9 +147,10 @@ export class Input implements IxInputFieldComponent<string> {
   @Prop() allowedCharactersPattern?: string;
 
   /**
-   * If true, pressing Enter will submit the form (if inside a form).
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
    */
-  @Prop({ reflect: true }) submitOnEnter: boolean = false;
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
 
   /**
    * Event emitted when the value of the text field changes.
@@ -322,7 +323,7 @@ export class Input implements IxInputFieldComponent<string> {
               }}
               ariaAttributes={inputAria}
               form={this.formInternals.form ?? undefined}
-              submitOnEnter={this.submitOnEnter}
+              suppressSubmitOnEnter={this.suppressSubmitOnEnter}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
