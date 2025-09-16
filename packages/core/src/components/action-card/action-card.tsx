@@ -9,6 +9,7 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import type { ActionCardVariant } from './action-card.types';
+import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-action-card',
@@ -62,6 +63,11 @@ export class IxActionCard {
   }
 
   render() {
+    const ariaLabelledBy =
+      !this.ariaLabelCard && this.heading
+        ? 'ix-action-card-heading'
+        : undefined;
+
     return (
       <Host>
         <ix-card
@@ -69,9 +75,8 @@ export class IxActionCard {
           variant={this.variant}
           class={'pointer'}
           aria-label={this.ariaLabelCard}
-          aria-labelledby={
-            !this.ariaLabelCard ? 'ix-action-card-heading' : undefined
-          }
+          aria-labelledby={ariaLabelledBy}
+          role={ariaLabelledBy ? 'group' : undefined}
         >
           <ix-card-content>
             {this.icon ? (
@@ -86,7 +91,7 @@ export class IxActionCard {
               {this.heading ? (
                 <ix-typography
                   id="ix-action-card-heading"
-                  aria-hidden="true"
+                  aria-hidden={a11yBoolean(!ariaLabelledBy)}
                   format="h4"
                 >
                   {this.heading}
