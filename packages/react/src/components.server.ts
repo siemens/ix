@@ -1054,7 +1054,7 @@ export type IxFlipTileEvents = { onToggle: EventName<CustomEvent<number>> };
 export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEvents> = /*@__PURE__*/ createComponent<IxFlipTileElement, IxFlipTileEvents>({
     tagName: 'ix-flip-tile',
     properties: {
-        state: 'state',
+        variant: 'variant',
         height: 'height',
         width: 'width',
         index: 'index',

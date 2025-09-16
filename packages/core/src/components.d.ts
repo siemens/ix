@@ -32,7 +32,7 @@ import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
-import { FlipTileState } from "./components/flip-tile/flip-tile-state";
+import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
@@ -82,7 +82,7 @@ export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
-export { FlipTileState } from "./components/flip-tile/flip-tile-state";
+export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
@@ -1713,8 +1713,10 @@ export namespace Components {
         "index": number;
         /**
           * Variation of the Flip
+          * @since 4.0.0
+          * @default 'filled'
          */
-        "state"?: FlipTileState;
+        "variant": FlipTileVariant;
         /**
           * Width interpreted as REM
           * @default 16
@@ -7711,8 +7713,10 @@ declare namespace LocalJSX {
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
           * Variation of the Flip
+          * @since 4.0.0
+          * @default 'filled'
          */
-        "state"?: FlipTileState;
+        "variant"?: FlipTileVariant;
         /**
           * Width interpreted as REM
           * @default 16

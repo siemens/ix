@@ -649,7 +649,7 @@ export const IxFilterChip: StencilVueComponent<JSX.IxFilterChip> = /*@__PURE__*/
 
 
 export const IxFlipTile: StencilVueComponent<JSX.IxFlipTile> = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', defineIxFlipTile, [
-  'state',
+  'variant',
   'height',
   'width',
   'index',
