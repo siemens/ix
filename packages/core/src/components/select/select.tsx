@@ -30,6 +30,7 @@ import {
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
+import { handleSubmitOnEnterKeydown } from '../input/input.util';
 import { ArrowFocusController } from '../utils/focus';
 import {
   HookValidationLifecycle,
@@ -183,6 +184,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() dropdownMaxWidth?: string;
 
   /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
    * Value changed
    */
   @Event() valueChange!: EventEmitter<string | string[]>;
@@ -232,6 +239,14 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
+
+  private handleInputKeyDown(e: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      e,
+      !this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
+  }
   private readonly focusControllerCallbackBind =
     this.focusDropdownItem.bind(this);
 
@@ -895,7 +910,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       this.navigationItem = undefined;
                     }}
                     onInput={() => this.filterItemsWithTypeahead()}
-                    onKeyDown={(e) => this.onKeyDown(e)}
+                    onKeyDown={(e) => {
+                      this.handleInputKeyDown(e);
+                      this.onKeyDown(e);
+                    }}
                   />
                   {this.allowClear &&
                   !this.disabled &&
