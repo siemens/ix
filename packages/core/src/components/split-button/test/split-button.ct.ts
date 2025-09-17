@@ -10,33 +10,37 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest(
-  'should disable only the dropdown trigger when disabled-icon is set',
+regressionTest.only(
+  'should disable only the dropdown trigger when disableDropdownButton is set',
   async ({ mount, page }) => {
     await mount(`
-    <ix-split-button label="Test" disabled-icon="true">
+    <ix-split-button label="Test" disable-Dropdown-Button>
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>
   `);
 
     const splitButton = page.locator('ix-split-button');
-    const iconButton = splitButton.locator('ix-icon-button');
-    await expect(iconButton).toHaveClass(/disabled/);
+    const mainButton = splitButton.locator('ix-button');
+    const dropdownButton = splitButton.locator('ix-icon-button');
+    await expect(mainButton).toHaveAttribute('tabindex', '0');
+    await expect(dropdownButton).toHaveClass(/disabled/);
   }
 );
 
-regressionTest(
-  'should disable only the main button when disabled-button is set',
+regressionTest.only(
+  'should disable only the main button when disable-button is set',
   async ({ mount, page }) => {
     await mount(`
-    <ix-split-button label="Test" disabled-button="true">
+    <ix-split-button label="Test" disable-button>
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>
   `);
     const splitButton = page.locator('ix-split-button');
     const mainButton = splitButton.locator('ix-button');
+    const dropdownButton = splitButton.locator('ix-icon-button');
     await expect(mainButton).toHaveClass(/disabled/);
+    await expect(dropdownButton).not.toHaveClass(/disabled/);
   }
 );
