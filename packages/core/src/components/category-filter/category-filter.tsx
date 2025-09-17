@@ -300,10 +300,6 @@ export class CategoryFilter {
       this.addToken(category.value, category.id, category.operator, false);
     }
 
-    if (document.activeElement === this.textInput?.current) {
-      this.textInput?.current?.focus();
-    }
-
     this.emitFilterEvent();
   }
 
@@ -344,6 +340,7 @@ export class CategoryFilter {
         if (this.hasCategorySelection()) {
           if (this.category !== '') {
             this.addToken(token, this.category);
+            this.textInput?.current?.focus();
           } else if (
             document.activeElement.classList.contains('category-item-id')
           ) {
@@ -495,10 +492,6 @@ export class CategoryFilter {
 
     this.isScrollStateDirty = true;
 
-    if (document.activeElement === this.textInput?.current) {
-      this.textInput?.current?.focus();
-    }
-
     if (emitEvent) {
       this.emitFilterEvent();
     }
@@ -644,7 +637,10 @@ export class CategoryFilter {
           <button
             class="dropdown-item"
             data-id={suggestion}
-            onClick={() => this.addToken(suggestion)}
+            onClick={() => {
+              this.addToken(suggestion);
+              this.textInput?.current?.focus();
+            }}
             key={suggestion}
             title={suggestion}
           >
@@ -724,6 +720,7 @@ export class CategoryFilter {
               onClick={(e) => {
                 e.preventDefault();
                 this.addToken(id, this.category);
+                this.textInput?.current?.focus();
               }}
             >
               {`${this.getFilterOperatorString()} ${id}`}
