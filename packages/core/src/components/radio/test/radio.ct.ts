@@ -120,3 +120,49 @@ test('Clicking label (including padding) checks the radio', async ({
   await label.waitFor({ state: 'visible' });
   await expect(radio).toHaveAttribute('aria-checked', 'true');
 });
+
+test('Clicking the custom circle triggers only one checkedChange event', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-radio label="Test"></ix-radio>`);
+  const radio = page.locator('ix-radio');
+  const button = radio.locator('button');
+
+  const checkedChangePromise = radio.evaluate((element: HTMLElement) => {
+    return new Promise<number>((resolve) => {
+      let count = 0;
+      element.addEventListener('checkedChange', () => {
+        count++;
+        setTimeout(() => resolve(count), 100);
+      });
+    });
+  });
+
+  await button.click();
+  const eventCount = await checkedChangePromise;
+  expect(eventCount).toBe(1);
+});
+
+test('Clicking the label triggers only one checkedChange event', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-radio label="Test"></ix-radio>`);
+  const radio = page.locator('ix-radio');
+  const label = radio.locator('label');
+
+  const checkedChangePromise = radio.evaluate((element: HTMLElement) => {
+    return new Promise<number>((resolve) => {
+      let count = 0;
+      element.addEventListener('checkedChange', () => {
+        count++;
+        setTimeout(() => resolve(count), 100);
+      });
+    });
+  });
+
+  await label.click();
+  const eventCount = await checkedChangePromise;
+  expect(eventCount).toBe(1);
+});

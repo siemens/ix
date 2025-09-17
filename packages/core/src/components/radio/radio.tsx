@@ -192,10 +192,13 @@ export class Radio implements IxFormComponent<string> {
             />
             <button
               disabled={this.disabled}
-              class={{
-                checked: this.checked,
+              class={{ checked: this.checked }}
+              onClick={(event) => {
+                event.stopPropagation();
+                if (!this.disabled && this.inputRef.current) {
+                  this.inputRef.current.click();
+                }
               }}
-              onClick={() => this.setCheckedState(!this.checked)}
             >
               <div
                 class="checkmark"
