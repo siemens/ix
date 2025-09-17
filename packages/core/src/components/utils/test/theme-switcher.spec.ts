@@ -35,6 +35,34 @@ describe('ThemeSwitcher', () => {
         theme
       );
     });
+
+    it('should toggle theme CSS class', () => {
+      themeSwitcher.setTheme(themeClass);
+      themeSwitcher.toggleMode();
+      expect(document.body.classList.contains('theme-classic-light')).toBe(
+        true
+      );
+    });
+
+    it('should toggle theme attribute', () => {
+      themeSwitcher.setTheme(theme);
+      themeSwitcher.setVariant('dark');
+      themeSwitcher.toggleMode();
+
+      expect(document.body.getAttribute('data-ix-theme')).toBe(theme);
+      expect(document.body.getAttribute('data-ix-color-schema')).toBe('light');
+    });
+
+    it('should toggle theme on html element', () => {
+      themeSwitcher.setTheme(theme, false, document.documentElement);
+      themeSwitcher.setVariant('dark');
+      themeSwitcher.toggleMode();
+
+      expect(document.documentElement.getAttribute('data-ix-theme')).toBe(
+        theme
+      );
+      expect(document.body.getAttribute('data-ix-color-schema')).toBe('light');
+    });
   });
 
   describe('schema', () => {

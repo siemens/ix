@@ -8,6 +8,13 @@
  */
 
 import {
+  iconClose,
+  iconDoubleChevronDown,
+  iconDoubleChevronLeft,
+  iconDoubleChevronRight,
+  iconDoubleChevronUp,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -18,18 +25,15 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
 import type { JSAnimation } from 'animejs';
+import { animate } from 'animejs';
 import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 import {
-  iconClose,
-  iconDoubleChevronDown,
-  iconDoubleChevronLeft,
-  iconDoubleChevronRight,
-  iconDoubleChevronUp,
-} from '@siemens/ix-icons/icons';
+  addDisposableEventListener,
+  DisposableEventListener,
+} from '../utils/disposable-event-listener';
 import type {
   BorderlessChangedEvent,
   Composition,
@@ -39,6 +43,9 @@ import type {
   VariantChangedEvent,
 } from './pane.types';
 
+/**
+ * @slot header - Additional slot for the header content
+ */
 @Component({
   tag: 'ix-pane',
   styleUrl: 'pane.scss',
@@ -98,9 +105,19 @@ export class Pane {
   @Prop() icon?: string;
 
   /**
+   * If true, the pane will close when clicking outside of it
+   */
+  @Prop() closeOnClickOutside = false;
+
+  /**
    * ARIA label for the icon
    */
   @Prop() ariaLabelIcon?: string;
+
+  /**
+   * ARIA label close or collapse button
+   */
+  @Prop() ariaLabelCollapseCloseButton?: string;
 
   /**
    * @internal
@@ -153,6 +170,7 @@ export class Pane {
 
   private mutationObserver?: MutationObserver;
   private resizeObserver?: ResizeObserver;
+  private disposableWindowClick?: DisposableEventListener;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -170,7 +188,33 @@ export class Pane {
     return this.composition === 'top' || this.composition === 'left';
   }
 
+  disconnectedCallback() {
+    this.mutationObserver?.disconnect();
+    this.resizeObserver?.disconnect();
+    this.disposableWindowClick?.();
+  }
+
+  @Watch('expanded')
+  onExpandedChange() {
+    if (!this.closeOnClickOutside || !this.expanded) {
+      this.disposableWindowClick?.();
+      return;
+    }
+
+    this.disposableWindowClick = addDisposableEventListener(
+      window,
+      'click',
+      (event) => {
+        const path = event.composedPath?.() || [];
+        if (!path.includes(this.hostElement)) {
+          this.dispatchExpandedChangedEvent();
+        }
+      }
+    );
+  }
+
   componentWillLoad() {
+    this.onExpandedChange();
     this.setIcons();
 
     this.floating = this.variant === 'floating';
@@ -221,11 +265,6 @@ export class Pane {
       this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
     });
     if (parentElement) this.resizeObserver.observe(parentElement);
-  }
-
-  disconnectedCallback() {
-    this.mutationObserver?.disconnect();
-    this.resizeObserver?.disconnect();
   }
 
   private setPosition(value: string) {
@@ -574,6 +613,7 @@ export class Pane {
   }
 
   render() {
+    const rotate = !this.expanded && !this.isMobile && this.isLeftRightPane;
     return (
       <Host
         class={{
@@ -649,25 +689,30 @@ export class Pane {
               ghost
               onClick={() => this.dispatchExpandedChangedEvent()}
               aria-controls={`pane-${this.composition}`}
+              aria-label={this.ariaLabelCollapseCloseButton}
             />
-            <span
+            <div
               class={{
                 'title-text': true,
-                rotate:
-                  !this.expanded && !this.isMobile && this.isLeftRightPane,
+                rotate: rotate,
               }}
             >
-              {this.icon ? (
+              {this.icon && (
                 <ix-icon
                   size="24"
                   name={this.icon}
                   aria-label={this.ariaLabelIcon}
                 ></ix-icon>
-              ) : null}
+              )}
               <div class="title-text-overflow">
                 <ix-typography format="h4">{this.heading}</ix-typography>
               </div>
-            </span>
+              {this.expanded && (
+                <div class="slot-header">
+                  <slot name="header"></slot>
+                </div>
+              )}
+            </div>
           </div>
           <div class="side-pane-content" hidden={!this.showContent}>
             <slot></slot>
