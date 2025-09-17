@@ -22,3 +22,15 @@ export async function showModal(
 ) {
   return _showModal(config);
 }
+
+/**
+ * Dismisses a modal instance returned by showModal.
+ * @param modalInstance The modal instance returned by showModal
+ * @param dismissResult Optional result to pass to the dismiss event
+ */
+export function dismissModal(
+  modalInstance: { htmlElement: any },
+  dismissResult?: any
+) {
+  modalInstance?.htmlElement?.dismissModal?.(dismissResult);
+}
