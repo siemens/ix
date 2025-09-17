@@ -22,11 +22,11 @@ import { Component } from '@angular/core';
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>
-    <ix-split-button label="Action text" splitIcon="chevron-down-small" disabledButton="true">
+    <ix-split-button label="Action text" splitIcon="chevron-down-small" disableButton>
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>
-    <ix-split-button label="Action text" splitIcon="chevron-down-small" disabledIcon="true">
+    <ix-split-button label="Action text" splitIcon="chevron-down-small" disableDropdownButton>
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>

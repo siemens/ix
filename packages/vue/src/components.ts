@@ -1256,8 +1256,8 @@ export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__
   'splitIcon',
   'ariaLabelSplitIconButton',
   'disabled',
-  'disabledButton',
-  'disabledIcon',
+  'disableButton',
+  'disableDropdownButton',
   'placement',
   'buttonClick'
 ], [

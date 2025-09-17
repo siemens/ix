@@ -22,11 +22,11 @@ import { IxSplitButton, IxDropdownItem } from '@siemens/ix-vue';
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxSplitButton>
-    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" :disabledButton="true">
+    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" disableButton>
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxSplitButton>
-    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" :disabledIcon="true">
+    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" disableDropdownButton>
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxSplitButton>
