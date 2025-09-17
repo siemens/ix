@@ -10,7 +10,7 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest.only(
+regressionTest(
   'should disable only the dropdown trigger when disableDropdownButton is set',
   async ({ mount, page }) => {
     await mount(`
@@ -28,7 +28,7 @@ regressionTest.only(
   }
 );
 
-regressionTest.only(
+regressionTest(
   'should disable only the main button when disable-button is set',
   async ({ mount, page }) => {
     await mount(`
