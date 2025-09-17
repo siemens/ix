@@ -152,7 +152,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop() step?: string | number;
 
   /**
-   * Alignment of the input number. 'start' = left, 'end' = right.
+   * Alignment of the input number. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
    */
   @Prop() textAlignment: 'start' | 'end' = 'end';
 

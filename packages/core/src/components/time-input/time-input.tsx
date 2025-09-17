@@ -200,7 +200,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
-   * Alignment of the input time. 'start' = left, 'end' = right.
+   * Alignment of the input time. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
    */
   @Prop() textAlignment: 'start' | 'end' = 'start';
 

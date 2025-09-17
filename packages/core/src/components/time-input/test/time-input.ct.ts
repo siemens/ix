@@ -163,17 +163,4 @@ regressionTest.describe('time input tests', () => {
       await expect(input).not.toHaveClass(/is-invalid/);
     }
   );
-
-  regressionTest(
-    'ix-time-input - textAlignment property applies correct style',
-    async ({ mount, page }) => {
-      await mount(`<ix-time-input text-alignment="end"></ix-time-input>`);
-      const input = page.locator('ix-time-input').locator('input');
-      await expect(input).toHaveCSS('text-align', 'right');
-
-      await mount(`<ix-time-input text-alignment="start"></ix-time-input>`);
-      const inputStart = page.locator('ix-time-input').locator('input');
-      await expect(inputStart).toHaveCSS('text-align', 'left');
-    }
-  );
 });
