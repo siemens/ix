@@ -9,7 +9,7 @@
 
 import './flip-tile.scoped.css';
 
-import { FlipTileState } from '@siemens/ix';
+import { FlipTileVariant } from '@siemens/ix';
 import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-react';
 import { iconInfo } from '@siemens/ix-icons/icons';
 
@@ -30,7 +30,7 @@ export default () => {
         <IxFlipTileContent> Example 2 </IxFlipTileContent>
       </IxFlipTile>
 
-      <IxFlipTile state={FlipTileState.Primary}>
+      <IxFlipTile variant={'primary'}>
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
@@ -42,7 +42,7 @@ export default () => {
         <IxFlipTileContent> Example 2 </IxFlipTileContent>
       </IxFlipTile>
 
-      <IxFlipTile state={FlipTileState.Info}>
+      <IxFlipTile variant={'info'}>
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
@@ -54,7 +54,7 @@ export default () => {
         <IxFlipTileContent> Example 2 </IxFlipTileContent>
       </IxFlipTile>
 
-      <IxFlipTile state={FlipTileState.Warning}>
+      <IxFlipTile variant={'warning'}>
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
@@ -66,7 +66,7 @@ export default () => {
         <IxFlipTileContent> Example 2 </IxFlipTileContent>
       </IxFlipTile>
 
-      <IxFlipTile state={FlipTileState.Alarm}>
+      <IxFlipTile variant={'alarm'}>
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>

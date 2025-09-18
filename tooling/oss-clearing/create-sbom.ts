@@ -75,7 +75,13 @@ async function resolveComponentData(
       { shell: true }
     );
 
-    resolve(JSON.parse(stdout.toString()));
+    try {
+      resolve(JSON.parse(stdout.toString()));
+    } catch (error) {
+      throw new Error(
+        `Failed to fetch package data for ${packageName}@${version}: ${error}`
+      );
+    }
   });
 }
 
