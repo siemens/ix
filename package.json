@@ -13,10 +13,10 @@
   "bugs": {
     "url": "https://www.github.com/siemens/ix/issues"
   },
-  "packageManager": "pnpm@9.3.0",
+  "packageManager": "pnpm@10.17.0",
   "engines": {
     "pnpm": ">=9.x.x",
-    "node": "22.18.0"
+    "node": "22.19.0"
   },
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
@@ -62,6 +62,6 @@
     }
   },
   "volta": {
-    "node": "22.18.0"
+    "node": "22.19.0"
   }
 }
