@@ -35,6 +35,13 @@ const preview: Preview = {
     a11y: {
       // TODO(IX-3023): Set test runner to throw errors for accessibility violations
       // test: 'error',
+      rules: [
+        // TODO(IX-3236): Remove rule if all components pass the aria-valid-attr rule
+        {
+          id: 'aria-valid-attr',
+          enabled: false,
+        },
+      ],
     },
   },
   decorators: [

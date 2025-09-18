@@ -11,7 +11,10 @@ import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 import { action } from 'storybook/actions';
 
-type Element = Components.IxButton & { defaultSlot: string };
+type Element = Components.IxButton & {
+  defaultSlot: string;
+  styles?: Record<string, string>;
+};
 
 const meta = {
   title: 'Example/Button',
@@ -21,6 +24,9 @@ const meta = {
     variant: {
       options: ['primary', 'secondary'],
       control: { type: 'select' },
+    },
+    styles: {
+      control: { type: 'object' },
     },
   }),
   args: {},
@@ -59,6 +65,25 @@ export const ButtonOutlineWithIcon: Story = {
     loading: false,
     outline: true,
     variant: 'primary',
+  },
+};
+
+export const ButtonIconRight: Story = {
+  args: {
+    defaultSlot: 'Button',
+    iconRight: 'eye',
+    variant: 'primary',
+  },
+};
+
+export const ButtonCustomWidth: Story = {
+  args: {
+    defaultSlot: 'Button',
+    iconRight: 'eye',
+    variant: 'primary',
+    styles: {
+      width: '400px',
+    },
   },
 };
 

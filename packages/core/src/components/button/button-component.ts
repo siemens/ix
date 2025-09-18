@@ -8,8 +8,9 @@
  */
 
 import { ButtonVariant } from './button';
+import { AnchorInterface } from './button.interface';
 
-export interface IxButtonComponent {
+export interface IxButtonComponent extends AnchorInterface {
   /**
    * Annotate with @Prop() decorator
    */

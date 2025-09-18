@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import '../button/button-mixin.scss';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use '../button/button-mixin.scss';
+@use 'mixins/shadow-dom/component';
 
 @mixin icon-button-size($sizeName, $size) {
   :host(.btn-icon-#{$sizeName}) {
@@ -23,15 +23,15 @@
 }
 
 @mixin base-icon-button {
-  @include btn;
-  @include ix-component;
-
   $button-categories: (danger, primary, secondary);
 
+  @include button-mixin.btn;
+  @include component.ix-component;
+
   @each $category in $button-categories {
-    @include btn-variant($category);
-    @include btn-variant('outline-#{$category}');
-    @include btn-variant('invisible-#{$category}', false);
+    @include button-mixin.btn-variant($category);
+    @include button-mixin.btn-variant('outline-#{$category}');
+    @include button-mixin.btn-variant('invisible-#{$category}', false);
   }
 
   :host {
@@ -50,7 +50,7 @@
       border-radius: 6.25rem;
     }
 
-    ix-icon {
+    .icon {
       color: var(--ix-icon-button-color, currentColor);
       margin: 0;
     }

@@ -764,6 +764,7 @@
         "ix-menu-avatar"
       ],
       "dependencies": [
+        "ix-tooltip",
         "ix-dropdown",
         "ix-divider",
         "ix-typography",
@@ -771,10 +772,14 @@
       ],
       "dependencyGraph": {
         "ix-avatar": [
+          "ix-tooltip",
           "ix-dropdown",
           "ix-divider",
           "ix-typography",
           "ix-spinner"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ],
         "ix-menu-avatar": [
           "ix-avatar"
@@ -800,6 +805,37 @@
             }
           ],
           "deprecation": "Set the native `aria-label` on the ix-avatar host element",
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "ariaLabelTooltip",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-tooltip",
+          "reflectToAttr": false,
+          "docs": "aria-label for the tooltip",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -878,6 +914,37 @@
           "reflectToAttr": false,
           "docs": "Display the initials of the user. Will be overwritten by image",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Text to display in a tooltip when hovering over the avatar",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -1576,6 +1643,37 @@
           "setter": false
         },
         {
+          "name": "href",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "href",
+          "reflectToAttr": false,
+          "docs": "URL for the button link. When provided, the button will render as an anchor tag.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -1616,6 +1714,92 @@
           "docsTags": [],
           "values": [
             {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "rel",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "rel",
+          "reflectToAttr": false,
+          "docs": "Specifies the relationship between the current document and the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+          "complexType": {
+            "original": "AnchorTarget",
+            "resolved": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+            "references": {
+              "AnchorTarget": {
+                "location": "import",
+                "path": "../button/button.interface",
+                "id": "src/components/button/button.interface.ts::AnchorTarget"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "'_self'"
+            }
+          ],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
               "type": "string"
             },
             {
@@ -1819,6 +2003,37 @@
           "setter": false
         },
         {
+          "name": "href",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "href",
+          "reflectToAttr": false,
+          "docs": "URL for the button link. When provided, the button will render as an anchor tag.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -1831,6 +2046,37 @@
           "reflectToAttr": false,
           "docs": "Icon name",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "iconRight",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon-right",
+          "reflectToAttr": false,
+          "docs": "Icon name for the right side of the button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -1898,6 +2144,92 @@
             }
           ],
           "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "rel",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "rel",
+          "reflectToAttr": false,
+          "docs": "Specifies the relationship between the current document and the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+          "complexType": {
+            "original": "AnchorTarget",
+            "resolved": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+            "references": {
+              "AnchorTarget": {
+                "location": "import",
+                "path": "button.interface",
+                "id": "src/components/button/button.interface.ts::AnchorTarget"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "'_self'"
+            }
+          ],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -4559,7 +4891,16 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "header - Content to be placed in the header area next to the title"
+        },
+        {
+          "name": "slot",
+          "text": "- Default slot for action buttons or other content"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -4722,7 +5063,16 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot for action buttons or other content"
+        },
+        {
+          "name": "header",
+          "docs": "Content to be placed in the header area next to the title"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -5183,12 +5533,8 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
-            {
-              "name": "link",
-              "text": "https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens."
-            },
             {
               "name": "default",
               "text": "'yyyy/LL/dd'"
@@ -5899,7 +6245,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -6672,7 +7018,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -7150,7 +7496,7 @@
           "mutable": false,
           "attr": "date-format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -7267,7 +7613,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Format of time string\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [],
           "values": [
             {
@@ -7568,7 +7914,7 @@
           "mutable": false,
           "attr": "time-format",
           "reflectToAttr": false,
-          "docs": "Time format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Time format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -7778,7 +8124,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "Will be removed with 5.0.0, use ix-pane as successor"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -7792,6 +8143,7 @@
           "ix-spinner"
         ]
       },
+      "deprecation": "Will be removed with 5.0.0, use ix-pane as successor",
       "props": [
         {
           "name": "ariaLabelCloseButton",
@@ -9647,13 +9999,8 @@
           "mutable": false,
           "attr": "item-color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/theming/colors/"
-            }
-          ],
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`\n\n{@link https://ix.siemens.io/docs/theming/colors/}",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -15444,10 +15791,14 @@
           "ix-menu-avatar-item"
         ],
         "ix-avatar": [
+          "ix-tooltip",
           "ix-dropdown",
           "ix-divider",
           "ix-typography",
           "ix-spinner"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ],
         "ix-menu-avatar-item": [
           "ix-dropdown-item"
@@ -15859,6 +16210,37 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Will be shown as tooltip text, if not provided menu text content will be used.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
@@ -16031,6 +16413,37 @@
           "setter": false
         },
         {
+          "name": "href",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "href",
+          "reflectToAttr": false,
+          "docs": "URL for the button link. When provided, the button will render as an anchor tag.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -16041,13 +16454,8 @@
           "mutable": true,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/icon-library/icons"
-            }
-          ],
+          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -16103,6 +16511,123 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "rel",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "rel",
+          "reflectToAttr": false,
+          "docs": "Specifies the relationship between the current document and the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+          "complexType": {
+            "original": "AnchorTarget",
+            "resolved": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\" | undefined",
+            "references": {
+              "AnchorTarget": {
+                "location": "import",
+                "path": "../button/button.interface",
+                "id": "src/components/button/button.interface.ts::AnchorTarget"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the linked document when href is provided.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            },
+            {
+              "name": "default",
+              "text": "'_self'"
+            }
+          ],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Will be shown as tooltip text, if not provided menu text content will be used.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
             },
             {
               "type": "undefined"
@@ -18211,7 +18736,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "header - Additional slot for the header content"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -18228,6 +18758,32 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelCollapseCloseButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-collapse-close-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label close or collapse button",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "ariaLabelIcon",
           "type": "string | undefined",
@@ -18266,6 +18822,35 @@
           "attr": "borderless",
           "reflectToAttr": false,
           "docs": "Toggle the border of the pane.\nDefaults to the borderless attribute of the pane layout. If used standalone it defaults to false.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "closeOnClickOutside",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "close-on-click-outside",
+          "reflectToAttr": false,
+          "docs": "If true, the pane will close when clicking outside of it",
           "docsTags": [
             {
               "name": "default",
@@ -18594,7 +19179,12 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "header",
+          "docs": "Additional slot for the header content"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -21464,12 +22054,8 @@
           "mutable": false,
           "attr": "step",
           "reflectToAttr": false,
-          "docs": "Legal number intervals",
+          "docs": "Legal number intervals\n\n{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}",
           "docsTags": [
-            {
-              "name": "link",
-              "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
-            },
             {
               "name": "default",
               "text": "1"
@@ -23639,7 +24225,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Format of time string\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "default",
@@ -24492,7 +25078,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.\nNote: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.",
+          "docs": "Format of time string\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.\nNote: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.",
           "docsTags": [
             {
               "name": "default",
@@ -25422,7 +26008,74 @@
           "setter": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "isPaused",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<boolean>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<boolean>"
+          },
+          "signature": "isPaused() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Returns whether the toast is currently paused (auto-close is paused).",
+          "docsTags": []
+        },
+        {
+          "name": "pause",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "pause() => Promise<void>",
+          "parameters": [],
+          "docs": "Pause the toast's auto-close progress bar and timer.",
+          "docsTags": []
+        },
+        {
+          "name": "resume",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "resume() => Promise<void>",
+          "parameters": [],
+          "docs": "Resume the toast's auto-close progress bar and timer if previously paused.",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "closeToast",
@@ -26115,6 +26768,37 @@
           "setter": false
         },
         {
+          "name": "iconRight",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon-right",
+          "reflectToAttr": false,
+          "docs": "Icon name for the right side of the button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.3.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "loading",
           "type": "boolean",
           "complexType": {
@@ -26290,6 +26974,7 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-avatar",
         "ix-chip",
         "ix-field-wrapper",
         "ix-menu-item",
@@ -26303,6 +26988,9 @@
       "dependencyGraph": {
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-avatar": [
+          "ix-tooltip"
         ],
         "ix-chip": [
           "ix-tooltip"
@@ -27377,7 +28065,7 @@
           "mutable": false,
           "attr": "accept",
           "reflectToAttr": false,
-          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\n[accept]{@link \"https://www.w3schools.com/tags/att_input_accept.asp\"}",
+          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\nSee {@link https://www.w3schools.com/tags/att_input_accept.asp}",
           "docsTags": [],
           "values": [
             {
@@ -28236,6 +28924,11 @@
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
+    "src/components/button/button.interface.ts::AnchorTarget": {
+      "declaration": "export type AnchorTarget = '_self' | '_blank' | '_parent' | '_top';",
+      "docstring": "",
+      "path": "src/components/button/button.interface.ts"
+    },
     "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent": {
       "declaration": "export interface CustomCloseEvent {\n  nativeEvent: MouseEvent;\n  name: string;\n}",
       "docstring": "",
@@ -28467,7 +29160,7 @@
       "path": "src/components/time-picker/time-picker.types.ts"
     },
     "src/components/toast/toast-container.types.ts::ShowToastResult": {
-      "declaration": "{\n  onClose: TypedEvent<any | undefined>;\n  close: (result?: any) => void;\n}",
+      "declaration": "{\n  onClose: TypedEvent<any | undefined>;\n  close: (result?: any) => void;\n  pause: () => void;\n  resume: () => void;\n  isPaused: () => Promise<boolean>;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-container.types.ts"
     },

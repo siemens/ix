@@ -7,73 +7,74 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
-@import 'legacy/mixins/fonts';
-@import 'components/fonts';
-@import 'mixins/fonts';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
+@use 'legacy/mixins/fonts' as legacy-fonts;
+@use 'components/fonts';
+@use 'mixins/fonts' as font-mixins;
 
 :host {
-  @include ix-component;
-
   display: block;
   position: relative;
+
+  @include component.ix-component;
+
 }
 
 :host(.text-xs) {
-  @include text-xs;
+  @include legacy-fonts.text-xs;
 }
 
 :host(.text-s) {
-  @include text-s;
+  @include legacy-fonts.text-s;
 }
 
 :host(.text-caption) {
-  @include text-caption;
+  @include legacy-fonts.text-caption;
 }
 
 :host(.text-caption-single) {
-  @include text-caption-single;
+  @include legacy-fonts.text-caption-single;
 }
 
 :host(.text-default) {
-  @include text-default;
+  @include legacy-fonts.text-default;
 }
 
 :host(.text-default-single) {
-  @include text-default-single;
+  @include legacy-fonts.text-default-single;
 }
 
 :host(.text-default-title) {
-  @include text-default-title;
+  @include legacy-fonts.text-default-title;
 }
 
 :host(.text-default-title-single) {
-  @include text-default-title-single;
+  @include legacy-fonts.text-default-title-single;
 }
 
 :host(.text-l) {
-  @include text-l;
+  @include legacy-fonts.text-l;
 }
 
 :host(.text-l-single) {
-  @include text-l-single;
+  @include legacy-fonts.text-l-single;
 }
 
 :host(.text-l-title) {
-  @include text-l-title;
+  @include legacy-fonts.text-l-title;
 }
 
 :host(.text-l-title-single) {
-  @include text-l-title-single;
+  @include legacy-fonts.text-l-title-single;
 }
 
 :host(.text-h2) {
-  @include text-h2;
+  @include legacy-fonts.text-h2;
 }
 
 :host(.text-xl) {
-  @include text-xl;
+  @include legacy-fonts.text-xl;
 }
 
 $typography-formats: label, label-xs, label-sm, label-lg, body, body-xs, body-sm,

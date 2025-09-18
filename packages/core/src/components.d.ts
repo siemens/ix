@@ -10,6 +10,7 @@ import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 import { BlindVariant } from "./components/blind/blind.types";
+import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card.types";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
@@ -58,6 +59,7 @@ export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 export { BlindVariant } from "./components/blind/blind.types";
+export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card.types";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
@@ -199,6 +201,11 @@ export namespace Components {
          */
         "a11yLabel"?: string;
         /**
+          * aria-label for the tooltip
+          * @since 3.3.0
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
          */
         "extra"?: string;
@@ -210,6 +217,11 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Text to display in a tooltip when hovering over the avatar
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
@@ -293,6 +305,11 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
@@ -305,9 +322,20 @@ export namespace Components {
          */
         "label"?: string;
         /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
           * @default true
          */
         "showChevron": boolean;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * @default true
          */
@@ -339,9 +367,19 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon name
          */
         "icon"?: string;
+        /**
+          * Icon name for the right side of the button
+          * @since 3.3.0
+         */
+        "iconRight"?: string;
         /**
           * @default '24'
          */
@@ -356,6 +394,17 @@ export namespace Components {
           * @default false
          */
         "outline": boolean;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Type of the button
           * @default 'button'
@@ -789,8 +838,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Date format string. See
-          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format": string;
@@ -905,7 +953,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format": string;
@@ -1016,7 +1064,7 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format": string;
@@ -1114,7 +1162,7 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "dateFormat": string;
@@ -1134,7 +1182,7 @@ export namespace Components {
          */
         "i18nTime": string;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "locale"?: string;
         /**
@@ -1185,7 +1233,7 @@ export namespace Components {
          */
         "time"?: string;
         /**
-          * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Time format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'HH:mm:ss'
          */
         "timeFormat": string;
@@ -1205,6 +1253,9 @@ export namespace Components {
     }
     interface IxDivider {
     }
+    /**
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+     */
     interface IxDrawer {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -1473,8 +1524,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
          */
         "itemColor"?: string;
         /**
@@ -2340,6 +2390,11 @@ export namespace Components {
           * Show notification count on the category
          */
         "notifications"?: number;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuExpandIcon {
         /**
@@ -2384,8 +2439,12 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
+          * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
          */
         "icon"?: string;
         /**
@@ -2400,6 +2459,22 @@ export namespace Components {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuSettings {
         /**
@@ -2674,6 +2749,10 @@ export namespace Components {
     }
     interface IxPane {
         /**
+          * ARIA label close or collapse button
+         */
+        "ariaLabelCollapseCloseButton"?: string;
+        /**
           * ARIA label for the icon
          */
         "ariaLabelIcon"?: string;
@@ -2682,6 +2761,11 @@ export namespace Components {
           * @default false
          */
         "borderless": boolean;
+        /**
+          * If true, the pane will close when clicking outside of it
+          * @default false
+         */
+        "closeOnClickOutside": boolean;
         /**
           * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
           * @default 'top'
@@ -3149,8 +3233,7 @@ export namespace Components {
          */
         "min": number;
         /**
-          * Legal number intervals
-          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * Legal number intervals  {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}
           * @default 1
          */
         "step": number;
@@ -3444,7 +3527,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
          */
         "format": string;
@@ -3576,7 +3659,7 @@ export namespace Components {
          */
         "dateTimePickerAppearance": boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
         "format": string;
@@ -3715,6 +3798,18 @@ export namespace Components {
          */
         "iconColor"?: string;
         /**
+          * Returns whether the toast is currently paused (auto-close is paused).
+         */
+        "isPaused": () => Promise<boolean>;
+        /**
+          * Pause the toast's auto-close progress bar and timer.
+         */
+        "pause": () => Promise<void>;
+        /**
+          * Resume the toast's auto-close progress bar and timer if previously paused.
+         */
+        "resume": () => Promise<void>;
+        /**
           * Toast title
          */
         "toastTitle"?: string;
@@ -3820,6 +3915,11 @@ export namespace Components {
           * Icon name
          */
         "icon"?: string;
+        /**
+          * Icon name for the right side of the button
+          * @since 3.3.0
+         */
+        "iconRight"?: string;
         /**
           * Loading button
           * @default false
@@ -3956,7 +4056,7 @@ export namespace Components {
     }
     interface IxUpload {
         /**
-          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
+          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). See {@link https://www.w3schools.com/tags/att_input_accept.asp}
          */
         "accept"?: string;
         /**
@@ -4712,6 +4812,9 @@ declare global {
         "open": any;
         "drawerClose": any;
     }
+    /**
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+     */
     interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDrawerElementEventMap>(type: K, listener: (this: HTMLIxDrawerElement, ev: IxDrawerCustomEvent<HTMLIxDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6019,6 +6122,11 @@ declare namespace LocalJSX {
          */
         "a11yLabel"?: string;
         /**
+          * aria-label for the tooltip
+          * @since 3.3.0
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
          */
         "extra"?: string;
@@ -6030,6 +6138,11 @@ declare namespace LocalJSX {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Text to display in a tooltip when hovering over the avatar
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
@@ -6125,6 +6238,11 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
@@ -6138,9 +6256,20 @@ declare namespace LocalJSX {
         "label"?: string;
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
         /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
           * @default true
          */
         "showChevron"?: boolean;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * @default true
          */
@@ -6172,9 +6301,19 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
           * Icon name
          */
         "icon"?: string;
+        /**
+          * Icon name for the right side of the button
+          * @since 3.3.0
+         */
+        "iconRight"?: string;
         /**
           * @default '24'
          */
@@ -6189,6 +6328,17 @@ declare namespace LocalJSX {
           * @default false
          */
         "outline"?: boolean;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
         /**
           * Type of the button
           * @default 'button'
@@ -6670,8 +6820,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Date format string. See
-          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format"?: string;
@@ -6782,7 +6931,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format"?: string;
@@ -6892,7 +7041,7 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "format"?: string;
@@ -6998,7 +7147,7 @@ declare namespace LocalJSX {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
         "dateFormat"?: string;
@@ -7018,7 +7167,7 @@ declare namespace LocalJSX {
          */
         "i18nTime"?: string;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "locale"?: string;
         /**
@@ -7081,7 +7230,7 @@ declare namespace LocalJSX {
          */
         "time"?: string;
         /**
-          * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Time format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'HH:mm:ss'
          */
         "timeFormat"?: string;
@@ -7101,6 +7250,9 @@ declare namespace LocalJSX {
     }
     interface IxDivider {
     }
+    /**
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+     */
     interface IxDrawer {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -7374,8 +7526,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
          */
         "itemColor"?: string;
         /**
@@ -8297,6 +8448,11 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuExpandIcon {
         /**
@@ -8341,8 +8497,12 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
+          * URL for the button link. When provided, the button will render as an anchor tag.
+          * @since 3.3.0
+         */
+        "href"?: string;
+        /**
+          * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
          */
         "icon"?: string;
         /**
@@ -8357,6 +8517,22 @@ declare namespace LocalJSX {
           * Show notification count on tab
          */
         "notifications"?: number;
+        /**
+          * Specifies the relationship between the current document and the linked document when href is provided.
+          * @since 3.3.0
+         */
+        "rel"?: string;
+        /**
+          * Specifies where to open the linked document when href is provided.
+          * @since 3.3.0
+          * @default '_self'
+         */
+        "target"?: AnchorTarget;
+        /**
+          * Will be shown as tooltip text, if not provided menu text content will be used.
+          * @since 3.3.0
+         */
+        "tooltipText"?: string;
     }
     interface IxMenuSettings {
         /**
@@ -8658,6 +8834,10 @@ declare namespace LocalJSX {
     }
     interface IxPane {
         /**
+          * ARIA label close or collapse button
+         */
+        "ariaLabelCollapseCloseButton"?: string;
+        /**
           * ARIA label for the icon
          */
         "ariaLabelIcon"?: string;
@@ -8666,6 +8846,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "borderless"?: boolean;
+        /**
+          * If true, the pane will close when clicking outside of it
+          * @default false
+         */
+        "closeOnClickOutside"?: boolean;
         /**
           * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
           * @default 'top'
@@ -9161,8 +9346,7 @@ declare namespace LocalJSX {
         "min"?: number;
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
-          * Legal number intervals
-          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * Legal number intervals  {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}
           * @default 1
          */
         "step"?: number;
@@ -9462,7 +9646,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
          */
         "format"?: string;
@@ -9593,7 +9777,7 @@ declare namespace LocalJSX {
          */
         "dateTimePickerAppearance"?: boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
+          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
         "format"?: string;
@@ -9847,6 +10031,11 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
+          * Icon name for the right side of the button
+          * @since 3.3.0
+         */
+        "iconRight"?: string;
+        /**
           * Loading button
           * @default false
          */
@@ -10000,7 +10189,7 @@ declare namespace LocalJSX {
     }
     interface IxUpload {
         /**
-          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
+          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). See {@link https://www.w3schools.com/tags/att_input_accept.asp}
          */
         "accept"?: string;
         /**
@@ -10292,6 +10481,9 @@ declare module "@stencil/core" {
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
+            /**
+             * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+             */
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
