@@ -11,10 +11,25 @@ export type ToastType = 'info' | 'success' | 'error' | 'warning';
 export type ToastPosition = 'bottom-right' | 'top-right';
 
 export interface ToastConfig {
+  /**
+   * Title of the toast
+   */
   title?: string;
+  /**
+   * Message of the toast
+   */
   message?: string | HTMLElement;
+  /**
+   * Action element that is displayed below the toast message/title
+   */
   action?: HTMLElement;
+  /**
+   * Type of the toast
+   */
   type?: ToastType;
+  /**
+   *
+   */
   autoClose?: boolean;
   autoCloseDelay?: number;
   icon?: string;
