@@ -9,7 +9,6 @@
 
 import './flip-tile.scoped.css';
 
-import { FlipTileVariant } from '@siemens/ix';
 import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-react';
 import { iconInfo } from '@siemens/ix-icons/icons';
 
