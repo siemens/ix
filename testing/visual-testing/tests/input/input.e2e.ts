@@ -82,4 +82,9 @@ regressionTest.describe('input', () => {
     await expect(page.locator('ix-tooltip')).toHaveClass(/visible/);
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('text-alignment property', async ({ page }) => {
+    await page.goto('input/text-alignment');
+    await expect(page).toHaveScreenshot();
+  });
 });
