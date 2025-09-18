@@ -7,7 +7,6 @@
 @use "./components/card" as asComponent_card;
 @use "./components/checkbox" as asComponent_checkbox;
 @use "./components/chip" as asComponent_chip;
-@use "./components/content-header" as asComponent_content-header;
 @use "./components/datepicker" as asComponent_datepicker;
 @use "./components/event-list" as asComponent_event-list;
 @use "./components/flip" as asComponent_flip;
@@ -53,7 +52,6 @@
   @include asComponent_card.setVars;
   @include asComponent_checkbox.setVars;
   @include asComponent_chip.setVars;
-  @include asComponent_content-header.setVars;
   @include asComponent_datepicker.setVars;
   @include asComponent_event-list.setVars;
   @include asComponent_flip.setVars;

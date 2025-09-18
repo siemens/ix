@@ -47,12 +47,6 @@
     z-index: -1;
   }
 
-  .expand-action:not(.show),
-  .expand-action:not(.show)::before {
-    // border-bottom-left-radius: var(--theme-default-border-radius);
-    // border-bottom-right-radius: var(--theme-default-border-radius);
-  }
-
   .expand-icon {
     margin-left: 0.5rem;
     transition: var(--theme-default-time) transform ease-in-out;
@@ -70,7 +64,6 @@
     width: 100%;
     max-height: 14.75rem;
     opacity: 0;
-    // background-color: var(--theme-color-component-1);
   }
 
   .expand-content.show {
@@ -133,8 +126,14 @@
 
     .expand-content {
       background-color: var(
-        --theme-push-card-#{$variant}-accordion--background
+        --theme-push-card-#{$variant}-accordion-frame--background
       );
+    }
+
+    .expand-content.show {
+      border: 1px
+        solid
+        var(--theme-push-card-#{$variant}-accordion-frame--border-color);
     }
 
     .expand-content.show .expand-content-body {
