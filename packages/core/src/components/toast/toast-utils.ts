@@ -11,6 +11,9 @@ export type ToastType = 'info' | 'success' | 'error' | 'warning';
 export type ToastPosition = 'bottom-right' | 'top-right';
 
 export interface ToastConfig {
+  /**
+   * Title of the toast
+   */
   title?: string;
   message?: string | HTMLElement;
   action?: HTMLElement;
