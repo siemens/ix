@@ -21,4 +21,8 @@ export default class AboutAndLegal implements AfterViewInit {
     const { nativeElement } = this.menuRef;
     nativeElement.toggleAbout(true);
   }
+
+  onTabChange(event: any) {
+    console.log('Tab change event:', event);
+  }
 }
