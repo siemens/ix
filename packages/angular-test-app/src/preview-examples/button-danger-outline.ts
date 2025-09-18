@@ -10,6 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './button-danger-outline.html',
   styleUrls: ['./button-danger-outline.css'],

@@ -30,9 +30,9 @@ import {
     <IxButton id="iconTriggerId">Open</IxButton>
     <IxDropdown trigger="iconTriggerId">
       <IxDropdownQuickActions>
-        <IxIconButton :icon="iconCut" ghost></IxIconButton>
-        <IxIconButton :icon="iconBulb" ghost></IxIconButton>
-        <IxIconButton :icon="iconTrashcan" ghost></IxIconButton>
+        <IxIconButton variant="tertiary" :icon="iconCut"></IxIconButton>
+        <IxIconButton variant="tertiary" :icon="iconBulb"></IxIconButton>
+        <IxIconButton variant="tertiary" :icon="iconTrashcan"></IxIconButton>
       </IxDropdownQuickActions>
 
       <IxDivider></IxDivider>

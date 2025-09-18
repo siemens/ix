@@ -10,8 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: `./form-checkbox-group.html`,
 })
-export default class FormCheckboxGroup {
-}
+export default class FormCheckboxGroup {}

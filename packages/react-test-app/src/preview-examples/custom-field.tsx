@@ -16,11 +16,7 @@ export default () => {
   return (
     <IxCustomField helper-text="Choose file">
       <IxInput value="Enter text here" readonly></IxInput>
-      <IxIconButton
-        icon="open-file"
-        variant="primary"
-        outline
-        onClick={() => {
+      <IxIconButton icon="open-file" variant="subtle-primary" onClick={() => {
           ref.current?.click();
         }}
       ></IxIconButton>

@@ -114,7 +114,7 @@ const Home: React.FC = () => {
         headerTitle="My Phone"
         headerSubtitle="Show information about your phone"
       >
-        <IxButton outline onClick={onNewEntryClick}>
+        <IxButton variant="subtle-primary" onClick={onNewEntryClick}>
           Create new entry
         </IxButton>
       </IxContentHeader>

@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './textarea-rows-cols.html'
+  templateUrl: './textarea-rows-cols.html',
 })
 export default class TextareaRowsCols {}

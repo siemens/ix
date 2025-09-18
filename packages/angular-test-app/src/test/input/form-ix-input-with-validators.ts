@@ -18,6 +18,7 @@ import { Component } from '@angular/core';
       <ix-input formControlName="name" [required]="true"> </ix-input>
     </form>
   `,
+  standalone: false,
 })
 export class TestInputFormWithValidators {
   public form = new FormGroup({

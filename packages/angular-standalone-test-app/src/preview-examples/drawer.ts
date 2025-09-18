@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxDrawer, IxButton } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxDrawer, IxButton],
   template: `

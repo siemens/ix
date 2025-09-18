@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { AppSwitchConfiguration } from '@siemens/ix';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './application-app-switch.html',
 })

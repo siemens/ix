@@ -9,8 +9,14 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
+import { BaseButtonVariant } from '../button/base-button.types';
 import { ButtonVariant } from '../button/button';
 import { a11yBoolean } from '../utils/a11y';
+
+export type ToggleButtonVariant = Exclude<
+  ButtonVariant,
+  `danger-${BaseButtonVariant}`
+>;
 
 @Component({
   tag: 'ix-toggle-button',
@@ -21,17 +27,7 @@ export class ToggleButton {
   /**
    * Button variant.
    */
-  @Prop() variant: ButtonVariant = 'secondary';
-
-  /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
+  @Prop() variant: ToggleButtonVariant = 'subtle-primary';
 
   /**
    * Disable the button
@@ -50,7 +46,7 @@ export class ToggleButton {
 
   /**
    * Icon name for the right side of the button
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() iconRight?: string;
 
@@ -79,8 +75,6 @@ export class ToggleButton {
   render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: false,
       iconOval: false,
       selected: this.pressed,

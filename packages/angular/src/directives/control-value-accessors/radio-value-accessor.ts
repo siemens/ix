@@ -16,6 +16,7 @@ import {
 @Directive({
   selector: 'ix-radio',
   providers: [createValueAccessorProvider(IxRadioValueAccessorDirective)],
+  standalone: false,
 })
 export class IxRadioValueAccessorDirective extends RadioValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {

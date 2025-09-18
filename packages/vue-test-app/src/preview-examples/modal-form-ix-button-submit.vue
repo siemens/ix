@@ -41,7 +41,7 @@ const submitForm = (event: Event) => {
     </IxModalContent>
 
     <IxModalFooter>
-      <IxButton outline @click="dismiss">Cancel</IxButton>
+      <IxButton variant="subtle-primary" @click="dismiss">Cancel</IxButton>
       <IxButton form="create-resource-form" type="submit">Submit</IxButton>
     </IxModalFooter>
   </IxDialog>

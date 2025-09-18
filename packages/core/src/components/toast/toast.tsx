@@ -217,7 +217,7 @@ export class Toast {
               icon={iconClose}
               iconColor="color-soft-text"
               size="24"
-              ghost
+              variant="tertiary"
               onClick={() => this.closeToast.emit()}
               aria-label={this.ariaLabelCloseIconButton}
             />

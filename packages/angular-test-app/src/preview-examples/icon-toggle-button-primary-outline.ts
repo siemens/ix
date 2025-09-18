@@ -10,64 +10,21 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-layout-grid>
       <ix-row>
-        <ix-icon-toggle-button
-          variant="primary"
-          outline
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          outline
-          pressed
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          outline
-          disabled
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          outline
-          disabled
-          loading
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" pressed icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" disabled icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" disabled loading icon="checkboxes"></ix-icon-toggle-button>
       </ix-row>
       <ix-row>
-        <ix-icon-toggle-button
-          variant="primary"
-          outline
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          outline
-          pressed
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          outline
-          disabled
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          outline
-          disabled
-          loading
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" pressed icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" disabled icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" disabled loading icon="checkboxes" oval></ix-icon-toggle-button>
       </ix-row>
     </ix-layout-grid>
   `,

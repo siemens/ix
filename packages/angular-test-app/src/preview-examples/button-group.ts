@@ -10,12 +10,13 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <div class="ix-button-group">
-      <ix-button outline> Left </ix-button>
+      <ix-button variant="subtle-primary"> Left </ix-button>
       <ix-button>Middle</ix-button>
-      <ix-button outline> Right </ix-button>
+      <ix-button variant="subtle-primary"> Right </ix-button>
     </div>
   `,
 })

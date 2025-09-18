@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxPill } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxPill],
   styleUrls: ['./pill.css'],
@@ -21,20 +20,20 @@ import { IxPill } from '@siemens/ix-angular/standalone';
     </ix-pill>
 
     <ix-pill>Label</ix-pill>
-    <ix-pill outline>Label</ix-pill>
+    <ix-pill variant="subtle-primary">Label</ix-pill>
     <ix-pill class="styled">Label</ix-pill>
 
     <ix-pill icon="star">Label</ix-pill>
     <ix-pill icon="star" class="styled"> Label </ix-pill>
-    <ix-pill outline alignLeft icon="star" class="styled"> Label </ix-pill>
+    <ix-pill variant="subtle-primary" alignLeft icon="star" class="styled"> Label </ix-pill>
 
     <ix-pill variant="alarm">Label</ix-pill>
-    <ix-pill variant="alarm" outline> Label </ix-pill>
+    <ix-pill variant="alarm"> Label </ix-pill>
     <ix-pill variant="alarm" class="styled"> Label </ix-pill>
 
     <ix-pill variant="alarm" icon="star"> Label </ix-pill>
     <ix-pill variant="alarm" icon="star" class="styled"> Label </ix-pill>
-    <ix-pill variant="alarm" outline alignLeft icon="star" class="styled">
+    <ix-pill variant="alarm" alignLeft icon="star" class="styled">
       Label
     </ix-pill>
   `,

@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './input-pattern.html'
+  templateUrl: './input-pattern.html',
 })
 export default class InputPattern {}

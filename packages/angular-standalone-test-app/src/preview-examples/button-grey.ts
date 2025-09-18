@@ -11,12 +11,11 @@ import { Component } from '@angular/core';
 import { IxButton } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxButton],
   template: `
-    <ix-button variant="secondary"> Button </ix-button>
-    <ix-button disabled variant="secondary"> Button </ix-button>
+    <ix-button variant="subtle-primary"> Button </ix-button>
+    <ix-button disabled variant="subtle-primary"> Button </ix-button>
   `,
   styleUrls: ['./button-grey.css'],
 })

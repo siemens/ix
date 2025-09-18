@@ -10,6 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: ` <textarea placeholder="Enter text here"></textarea> `,
 })

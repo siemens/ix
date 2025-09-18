@@ -79,13 +79,18 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`
       <ix-workflow-steps clickable vertical>
-      <ix-workflow-step id="step1" status='open'>Step 1</ix-workflow-step>
-      <ix-workflow-step status='success'>Step 2</ix-workflow-step>
-      <ix-workflow-step status='error'>Step 3</ix-workflow-step>
+        <ix-workflow-step id="step1" status='open'>Step 1</ix-workflow-step>
+        <ix-workflow-step status='success'>Step 2</ix-workflow-step>
+        <ix-workflow-step status='error'>Step 3</ix-workflow-step>
       </ix-workflow-steps>
     `);
+
     const workflowSteps = page.locator('ix-workflow-steps');
+    await expect(workflowSteps).toHaveClass(/hydrated/);
+
     const step1 = page.locator('#step1');
+    await expect(step1).toHaveClass(/hydrated/);
+
     const selectedDiv = step1.locator('.step');
 
     await expect(workflowSteps).toHaveClass(/hydrated/);
@@ -95,8 +100,8 @@ regressionTest(
     await step1.evaluate((el) => {
       el.setAttribute('status', 'error');
     });
-    await expect(step1).toHaveAttribute('status', 'error');
 
+    await expect(step1).toHaveAttribute('status', 'error');
     await expect(icon).toHaveAttribute('aria-label', 'Error');
 
     await step1.evaluate((el) => {

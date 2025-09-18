@@ -29,7 +29,7 @@ import { IxButton, IxIconButton, IxTile } from '@siemens/ix-vue';
     <IxTile size="big">
       <div className="tile-header" slot="header">
         Tile header
-        <IxIconButton ghost :icon="iconContextMenu"></IxIconButton>
+        <IxIconButton variant="tertiary" :icon="iconContextMenu"></IxIconButton>
       </div>
       <div slot="subheader">Temperature</div>
       <div
@@ -44,7 +44,7 @@ import { IxButton, IxIconButton, IxTile } from '@siemens/ix-vue';
         <span>92.8 °C</span>
       </div>
       <div className="tile-footer" slot="footer">
-        <IxButton :icon="iconChevronRightSmall" ghost slot="footer">
+        <IxButton variant="tertiary" :icon="iconChevronRightSmall" slot="footer">
           Details
         </IxButton>
       </div>

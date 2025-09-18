@@ -757,6 +757,9 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
     dialog.showModal();
   });
 
+  // Animation timeout
+  await page.waitForTimeout(250);
+
   const trigger = page.locator('#trigger');
   await trigger.click();
 
@@ -766,13 +769,23 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
   await expect(trigger).toBeVisible();
   await expect(dropdown).toBeVisible();
 
-  const dropdownRect = (await dropdown.boundingBox())!;
-  const triggerRect = (await trigger.boundingBox())!;
+  await expect(dropdown).toBeVisible();
 
-  expect(Math.round(dropdownRect.x)).toBe(Math.round(triggerRect.x));
-  expect(Math.round(dropdownRect.y)).toBe(
-    Math.round(triggerRect.y + triggerRect.height)
-  );
+  // Animation timeout
+  await page.waitForTimeout(250);
+
+  await expect(async () => {
+    const dropdownRect = await dropdown.boundingBox();
+    const triggerRect = await trigger.boundingBox();
+
+    expect(dropdownRect).toBeTruthy();
+    expect(triggerRect).toBeTruthy();
+
+    expect(Math.round(dropdownRect!.x)).toBe(Math.round(triggerRect!.x));
+    expect(Math.round(dropdownRect!.y)).toBe(
+      Math.round(triggerRect!.y + triggerRect!.height)
+    );
+  }).toPass({ timeout: 2000 });
 });
 
 regressionTest(

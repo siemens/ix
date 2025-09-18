@@ -154,9 +154,9 @@
   }
 
   .ag-paging-button {
-    color: var(--theme-btn-invisible-primary--color);
+    color: var(--theme-btn-tertiary--color);
     &.ag-disabled {
-      color: var(--theme-btn-invisible-primary--color--disabled);
+      color: var(--theme-btn-tertiary--color--disabled);
 
       .ag-icon {
         color: inherit;
