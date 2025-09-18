@@ -199,8 +199,6 @@ test('filter works when typing exact text of manually selected item', async ({
   await page.locator('input').clear();
   await page.locator('input').pressSequentially('Item 3');
 
-  await page.waitForTimeout(100);
-
   await expect(page.getByRole('button', { name: 'Item 1' })).not.toBeVisible();
   await expect(page.getByRole('button', { name: 'Item 2' })).not.toBeVisible();
   await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
