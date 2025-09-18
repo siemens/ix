@@ -9,4 +9,6 @@ updates:
     directory: '/' # Location of package manifests
     schedule:
       interval: 'weekly'
-
+    cooldown:
+      # Wait two days between updates for dependencies that are not excluded
+      default-days: 2
