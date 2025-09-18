@@ -13,6 +13,7 @@
   --theme-push-card-primary-accordion--background--hover: var(--theme-color-primary--hover);
   --theme-push-card-primary-accordion--background--active: var(--theme-color-primary--active);
   --theme-push-card-primary-accordion-frame--border-color: var(--theme-color-soft-bdr);
+  --theme-push-card-primary-accordion-frame--border-width: var(--theme-border-width-default);
   --theme-push-card-filled--border-color: var(--theme-color-0);
   --theme-push-card-filled--border-color--hover: var(--theme-color-0);
   --theme-push-card-filled--border-color--active: var(--theme-color-0);
@@ -21,6 +22,7 @@
   --theme-push-card-filled-accordion--border-color: var(--theme-color-1);
   --theme-push-card-filled-accordion--color: var(--theme-color-std-text);
   --theme-push-card-filled-accordion-frame--border-color: var(--theme-color-0);
+  --theme-push-card-filled-accordion-frame--border-width: var(--theme-border-width-default);
   --theme-push-card-outline--background: var(--theme-color-ghost);
   --theme-push-card-outline--border-color: var(--theme-color-soft-bdr);
   --theme-push-card-outline--border-color--hover: var(--theme-color-soft-bdr);
@@ -30,6 +32,7 @@
   --theme-push-card-outline-accordion--border-color: var(--theme-color-1);
   --theme-push-card-outline-accordion--color: var(--theme-color-std-text);
   --theme-push-card-outline-accordion-frame--border-color: var(--theme-color-0);
+  --theme-push-card-outline-accordion-frame--border-width: var(--theme-border-width-none);
   --theme-push-card-alarm--background: var(--theme-color-alarm);
   --theme-push-card-alarm--background--hover: var(--theme-color-alarm--hover);
   --theme-push-card-alarm--background--active: var(--theme-color-alarm--active);
@@ -44,6 +47,7 @@
   --theme-push-card-alarm-accordion--background--hover: var(--theme-color-alarm--hover);
   --theme-push-card-alarm-accordion--background--active: var(--theme-color-alarm--active);
   --theme-push-card-alarm-accordion-frame--border-color: var(--theme-color-soft-bdr);
+  --theme-push-card-alarm-accordion-frame--border-width: var(--theme-border-width-default);
   --theme-push-card-warning--background: var(--theme-color-warning);
   --theme-push-card-warning--background--hover: var(--theme-color-warning--hover);
   --theme-push-card-warning--background--active: var(--theme-color-warning--active);
@@ -58,6 +62,7 @@
   --theme-push-card-warning-accordion--background--hover: var(--theme-color-warning--hover);
   --theme-push-card-warning-accordion--background--active: var(--theme-color-warning--active);
   --theme-push-card-warning-accordion-frame--border-color: var(--theme-color-soft-bdr);
+  --theme-push-card-warning-accordion-frame--border-width: var(--theme-border-width-default);
   --theme-push-card-info--background: var(--theme-color-info);
   --theme-push-card-info--background--hover: var(--theme-color-info--hover);
   --theme-push-card-info--background--active: var(--theme-color-info--active);
@@ -72,6 +77,7 @@
   --theme-push-card-info-accordion--background--hover: var(--theme-color-info--hover);
   --theme-push-card-info-accordion--background--active: var(--theme-color-info--active);
   --theme-push-card-info-accordion-frame--border-color: var(--theme-color-soft-bdr);
+  --theme-push-card-info-accordion-frame--border-width: var(--theme-border-width-default);
   --theme-push-card-critical--background: var(--theme-color-critical);
   --theme-push-card-critical--background--hover: var(--theme-color-critical--hover);
   --theme-push-card-critical--background--active: var(--theme-color-critical--active);
@@ -86,6 +92,7 @@
   --theme-push-card-critical-accordion--background--hover: var(--theme-color-critical--hover);
   --theme-push-card-critical-accordion--background--active: var(--theme-color-critical--active);
   --theme-push-card-critical-accordion-frame--border-color: var(--theme-color-soft-bdr);
+  --theme-push-card-critical-accordion-frame--border-width: var(--theme-border-width-default);
   --theme-push-card-success--background: var(--theme-color-success);
   --theme-push-card-success--background--hover: var(--theme-color-success--hover);
   --theme-push-card-success--background--active: var(--theme-color-success--active);
@@ -100,6 +107,7 @@
   --theme-push-card-success-accordion--background--hover: var(--theme-color-success--hover);
   --theme-push-card-success-accordion--background--active: var(--theme-color-success--active);
   --theme-push-card-success-accordion-frame--border-color: var(--theme-color-soft-bdr);
+  --theme-push-card-success-accordion-frame--border-width: var(--theme-border-width-default);
   --theme-push-card-neutral--background: var(--theme-color-neutral);
   --theme-push-card-neutral--background--hover: var(--theme-color-neutral--hover);
   --theme-push-card-neutral--background--active: var(--theme-color-neutral--active);
@@ -114,6 +122,7 @@
   --theme-push-card-neutral-accordion--background--hover: var(--theme-color-neutral--hover);
   --theme-push-card-neutral-accordion--background--active: var(--theme-color-neutral--active);
   --theme-push-card-neutral-accordion-frame--border-color: var(--theme-color-soft-bdr);
+  --theme-push-card-neutral-accordion-frame--border-width: var(--theme-border-width-default);
   --theme-push-card--border-radius: var(--theme-default-border-radius);
   --theme-push-card--border-width: var(--theme-border-width-default);
   --theme-push-card--focus--outline-offset: var(--theme-focus-outline-offset);

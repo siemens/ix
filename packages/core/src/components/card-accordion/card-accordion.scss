@@ -131,7 +131,10 @@
     }
 
     .expand-content.show {
-      border: 1px
+      border: var(
+          --theme-push-card-#{$variant}-accordion-frame--border-width,
+          0px
+        )
         solid
         var(--theme-push-card-#{$variant}-accordion-frame--border-color);
     }
