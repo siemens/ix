@@ -9,12 +9,6 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-declare global {
-  interface Window {
-    tabChangeEvents: string[];
-  }
-}
-
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
