@@ -93,6 +93,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
+   * The locale is used to translate the labels for weekdays and months.
+   * It also determines the default order of weekdays based on the locale's conventions.
+   * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
+   * It does not affect the values returned by methods and events.
    */
   @Prop() locale?: string;
 

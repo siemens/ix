@@ -200,6 +200,13 @@ export class TimeInput implements IxInputFieldComponent<string> {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
+   * Hides the header of the picker.
+   *
+   * @since 4.0.0
+   */
+  @Prop() hideHeader: boolean = false;
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -514,6 +521,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             secondInterval={this.secondInterval}
             millisecondInterval={this.millisecondInterval}
             standaloneAppearance={false}
+            hideHeader={this.hideHeader}
             i18nConfirmTime={this.i18nSelectTime}
             i18nHeader={this.i18nTime}
             i18nHourColumnHeader={this.i18nHourColumnHeader}
