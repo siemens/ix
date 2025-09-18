@@ -60,13 +60,9 @@ export class MenuAbout {
 
   @State() items!: HTMLIxMenuAboutItemElement[];
 
-  // Flag to prevent circular calls from internal tab changes
-  @State() isInternalTabChange = false;
-
   @Watch('activeTabLabel')
   updateTab(newLabel: string, oldLabel: string) {
-    // Only respond to external changes, not internal ones from setTab()
-    if (!this.isInternalTabChange && newLabel !== oldLabel) {
+    if (newLabel !== oldLabel) {
       syncTabDisplay(this, newLabel);
     }
   }

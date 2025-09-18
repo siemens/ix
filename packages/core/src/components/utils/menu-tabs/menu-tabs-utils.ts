@@ -23,7 +23,6 @@ function getItems(
 }
 
 export function setTab(context: MenuSettings | MenuAbout, label: string) {
-
   if (context.activeTabLabel === label) {
     return;
   }
@@ -32,11 +31,7 @@ export function setTab(context: MenuSettings | MenuAbout, label: string) {
   if (defaultPrevented) {
     return;
   }
-
-  context.isInternalTabChange = true;
   context.activeTabLabel = label;
-  context.isInternalTabChange = false;
-  syncTabDisplay(context, label);
 }
 
 export function syncTabDisplay(
