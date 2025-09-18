@@ -14,6 +14,8 @@ import {
   ToastConfig as IxToastConfig,
 } from '@siemens/ix';
 import { ToastConfig } from './toast.config';
+import { defineCustomElement } from '@siemens/ix/components/ix-toast.js';
+import { defineCustomElement as defineCustomElementToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +30,8 @@ export class ToastService {
   }
 
   public async show(config: ToastConfig) {
+    defineCustomElement();
+    defineCustomElementToastContainer();
     if (typeof config.message === 'string' && !config.action) {
       return toast(config as IxToastConfig);
     }
