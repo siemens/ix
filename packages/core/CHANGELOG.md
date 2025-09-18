@@ -1,5 +1,66 @@
 # @siemens/ix
 
+## 3.3.0
+
+### Minor Changes
+
+- [#2075](https://github.com/siemens/ix/pull/2075) [`ac23f9ea035f8758b0a8076775ce8b6452f71926`](https://github.com/siemens/ix/commit/ac23f9ea035f8758b0a8076775ce8b6452f71926) Thanks [@danielleroux](https://github.com/danielleroux)! - All components with animations respects the **prefers-reduced-motion** feature and avoid any animation
+
+- [#2111](https://github.com/siemens/ix/pull/2111) [`ffa50a961498753dde31ba9e77953d966fdcca4d`](https://github.com/siemens/ix/commit/ffa50a961498753dde31ba9e77953d966fdcca4d) Thanks [@danielleroux](https://github.com/danielleroux)! - **ix-pane** improvements:
+
+  - add `header` slot to additional content inside the header like ix-pills
+  - `closeOnClickOutside` property to close pane if user clicked outside of an pane
+
+- [#2057](https://github.com/siemens/ix/pull/2057) [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add option `icon-right` to **ix-button** and **ix-toggle-button**
+
+- [#2069](https://github.com/siemens/ix/pull/2069) [`62ef59c6b042f87b1e17c22ec55c5b7131692930`](https://github.com/siemens/ix/commit/62ef59c6b042f87b1e17c22ec55c5b7131692930) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `tooltipText` to **ix-menu-item** and **ix-menu-category**
+
+- [#2115](https://github.com/siemens/ix/pull/2115) [`b5c479fc224b1a02b431b7f4cb5b82e7b8d608bd`](https://github.com/siemens/ix/commit/b5c479fc224b1a02b431b7f4cb5b82e7b8d608bd) Thanks [@philSixZero](https://github.com/philSixZero)! - The **ix-buttpm** component now renders as an anchor (<a>) tag when an href property is provided
+
+  - New properties `target` and `rel` were added to support enhanced link behavior
+  - Related components (**ix-breadcrumb-item**, **ix-menu-item**) were updated to support the `href` property
+
+  Fixes #2011
+
+- [#2058](https://github.com/siemens/ix/pull/2058) [`f620eb52672cb5208fa971dc4db2861d6ca455d8`](https://github.com/siemens/ix/commit/f620eb52672cb5208fa971dc4db2861d6ca455d8) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add methods **pause** and **resume** to the `ix-toast`.
+  Which make it possible to pause/resume the logic of the autoClose feature.
+
+### Patch Changes
+
+- [#2106](https://github.com/siemens/ix/pull/2106) [`d25492c57edb9e7f60c970cb26de4d5b8bdf8ee8`](https://github.com/siemens/ix/commit/d25492c57edb9e7f60c970cb26de4d5b8bdf8ee8) Thanks [@lzeiml](https://github.com/lzeiml)! - - Fixed validation logic incorrectly treating 0 as an invalid value due to falsy evaluation
+
+  - Fixed invalid-text not displaying when native HTML5 validation fails (e.g., min/max constraints)
+
+  Fixes #2061
+
+- [#2092](https://github.com/siemens/ix/pull/2092) [`db2bbf5e55d5f7aca2c9e255dae917b746048d09`](https://github.com/siemens/ix/commit/db2bbf5e55d5f7aca2c9e255dae917b746048d09) Thanks [@lzeiml](https://github.com/lzeiml)! - Fix **theme-switcher** to detect and toggle theme changes on both document.body and document.documentElement.
+
+- [#1984](https://github.com/siemens/ix/pull/1984) [`ace22d0fd9a126891ef2f6ad60c35751488b81a1`](https://github.com/siemens/ix/commit/ace22d0fd9a126891ef2f6ad60c35751488b81a1) Thanks [@Raghavendra5577](https://github.com/Raghavendra5577)! - Update margins to match design for **ix-toggle**.
+
+- [#1998](https://github.com/siemens/ix/pull/1998) [`a2f040aaf72b90ba230daf747092d1844d7aff6a`](https://github.com/siemens/ix/commit/a2f040aaf72b90ba230daf747092d1844d7aff6a) Thanks [@RamVinayMandal](https://github.com/RamVinayMandal)! - Add header slot to **ix-content-header** to allow adding elements next to title text.
+
+- [#1928](https://github.com/siemens/ix/pull/1928) [`2fca705485f72455cde6c99fa8d3578cee7bb7c3`](https://github.com/siemens/ix/commit/2fca705485f72455cde6c99fa8d3578cee7bb7c3) Thanks [@Raghavendra5577](https://github.com/Raghavendra5577)! - Increase active area of **ix-radio**
+
+- [#2057](https://github.com/siemens/ix/pull/2057) [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Adapt border radius (2px) to fit to latest design specs
+
+- [#2054](https://github.com/siemens/ix/pull/2054) [`4151d42ccd0a80932593796fb3586c0534faaaaf`](https://github.com/siemens/ix/commit/4151d42ccd0a80932593796fb3586c0534faaaaf) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Decrease vertical gap of **ix-radio** group
+
+- [#1995](https://github.com/siemens/ix/pull/1995) [`294dbe56899a9f63582af324d4f9b9efd8c5805b`](https://github.com/siemens/ix/commit/294dbe56899a9f63582af324d4f9b9efd8c5805b) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Update close button color to match Figma design for:
+
+  - **ix-category-filter**
+  - **ix-drawer**
+  - **ix-map-navigation-overlay**
+  - **ix-menu-about-news**
+  - **ix-menu-tabs**
+  - **ix-message-bar**
+  - **ix-modal-header**
+  - **ix-pane**
+  - **ix-toast**
+
+- [#2059](https://github.com/siemens/ix/pull/2059) [`1a2eb220d5fe513b3eda2c880d744d2fa1d44ed9`](https://github.com/siemens/ix/commit/1a2eb220d5fe513b3eda2c880d744d2fa1d44ed9) Thanks [@danielleroux](https://github.com/danielleroux)! - Move safeArea variables to `:root` level
+
+- [#2118](https://github.com/siemens/ix/pull/2118) [`9b1d1ceb9fc17cd956d60a5e0bf02fb8a1482a06`](https://github.com/siemens/ix/commit/9b1d1ceb9fc17cd956d60a5e0bf02fb8a1482a06) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Add `aria-labelledby` to **ix-action-card** only when `ariaLabelCard` property is not set and `heading` property is set.
+
 ## 3.2.0
 
 ### Minor Changes
