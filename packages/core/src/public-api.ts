@@ -9,7 +9,7 @@
 export * from './components/category-filter/filter-state';
 export * from './components/category-filter/input-state';
 export * from './components/category-filter/logical-filter-operator';
-export { FlipTileState } from './components/flip-tile/flip-tile-state';
+export { FlipTileVariant } from './components/flip-tile/flip-tile.types';
 export * from './components/toast/toast-utils';
 export * from './components/tree-item/default-tree-item';
 export * from './components/tree/tree-model';

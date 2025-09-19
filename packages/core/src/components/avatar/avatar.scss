@@ -43,6 +43,11 @@
       border-radius: 100px;
       background-color: var(--theme-avatar--background);
       color: var(--theme-avatar--color);
+
+      > ix-typography {
+        // Fix to get the text vertically centered
+        margin-top: 1px;
+      }
     }
 
     #avatar-path-background {

@@ -34,6 +34,6 @@ export const Default: Story = {
     notification: '99',
     heading: 'Heading content',
     subheading: 'Subheading',
-    variant: 'insight',
+    variant: 'outline',
   },
 };

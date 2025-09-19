@@ -33,7 +33,7 @@ import {
         <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
       </ix-flip-tile>
 
-      <ix-flip-tile state="primary">
+      <ix-flip-tile variant="primary">
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
@@ -45,7 +45,7 @@ import {
         <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
       </ix-flip-tile>
 
-      <ix-flip-tile state="info">
+      <ix-flip-tile variant="info">
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
@@ -57,7 +57,7 @@ import {
         <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
       </ix-flip-tile>
 
-      <ix-flip-tile state="warning">
+      <ix-flip-tile variant="warning">
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
@@ -69,7 +69,7 @@ import {
         <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
       </ix-flip-tile>
 
-      <ix-flip-tile state="alarm">
+      <ix-flip-tile variant="alarm">
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>

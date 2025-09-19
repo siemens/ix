@@ -16,7 +16,10 @@ import {
   iconWarning,
 } from '@siemens/ix-icons/icons';
 import { CircularProgress } from './circular';
-import type { ProgressIndicatorSize } from './progress-indicator.types';
+import type {
+  ProgressIndicatorSize,
+  ProgressIndicatorStatus,
+} from './progress-indicator.types';
 
 /**
  * @since 3.2.0
@@ -58,13 +61,7 @@ export class ProgressIndicator {
    * The state of the progress indicator.
    * This is used to indicate the current state of the progress indicator.
    */
-  @Prop() status:
-    | 'default'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'paused' = 'default';
+  @Prop() status: ProgressIndicatorStatus = 'default';
 
   /**
    * The label for the progress indicator.
@@ -174,13 +171,17 @@ export class ProgressIndicator {
           <div class="progress-container">
             {this.type === 'linear' ? (
               <Fragment>
-                <LinearBar value={clampedValue}></LinearBar>
+                <LinearBar
+                  value={clampedValue}
+                  status={this.status}
+                ></LinearBar>
                 <div class="linear-slot">
                   <slot></slot>
                 </div>
               </Fragment>
             ) : (
               <CircularProgress
+                status={this.status}
                 alignment={this.textAlignment}
                 value={clampedValue}
                 size={this.size}

@@ -617,7 +617,8 @@ export class Pane {
     return (
       <Host
         class={{
-          'inline-color': !this.floating,
+          'floating-pane': this.floating,
+          'inline-pane': !this.floating,
           'mobile-overlay': this.expanded && this.isMobile,
           'top-expanded': this.expanded && this.isMobileTop && this.isMobile,
           'bottom-expanded':
@@ -699,6 +700,7 @@ export class Pane {
             >
               {this.icon && (
                 <ix-icon
+                  class="pane-icon"
                   size="24"
                   name={this.icon}
                   aria-label={this.ariaLabelIcon}

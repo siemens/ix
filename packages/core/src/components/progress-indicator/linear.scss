@@ -6,15 +6,24 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use './progress-indicator-vars' as progress-vars;
 
 @mixin linear {
   .linear-progress-container {
     width: 100%;
     height: var(--ix-progress-indicator-height);
-    background-color: var(--theme-color-component-4);
+    background-color: var(--theme-progress-indicator-track--background);
     border-radius: 2px;
     overflow: hidden;
     margin: var(--ix-progress-indicator-margin, 0.5rem 0);
+  }
+
+  @each $state in progress-vars.$progress-indicator-states {
+    .linear-progress-container.#{$state} {
+      background-color: var(
+        --theme-progress-indicator-track-#{$state}--background
+      );
+    }
   }
 
   .progress {

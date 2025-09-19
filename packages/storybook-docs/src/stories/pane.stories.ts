@@ -22,6 +22,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
+export const Default: Story = {
+  args: {
+    heading: 'Headline text',
+    icon: 'alarm-bell-cancelled',
+  },
+};
+
 export const HeaderSlot: Story = {
   args: {},
   render: (args) => {
@@ -34,5 +41,13 @@ export const HeaderSlot: Story = {
     pane.appendChild(button);
 
     return container;
+  },
+};
+
+export const Floating: Story = {
+  args: {
+    heading: 'Headline text',
+    icon: 'alarm-bell-cancelled',
+    variant: 'floating',
   },
 };

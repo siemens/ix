@@ -14,12 +14,23 @@
   @if $composition {
     border-#{$composition}: var(--theme-app-header--border-width)
       solid
-      var(--theme-color-soft-bdr);
+      var(--ix-pane--border-color);
   }
 }
 
+:host(.floating-pane) {
+  --ix-pane--background: var(--theme-pane-floating--background);
+  --ix-pane--border-color: var(--theme-pane-floating--border-color);
+}
+
+:host(.inline-pane) {
+  --ix-pane--background: var(--theme-pane-inline--background);
+  --ix-pane--border-color: var(--theme-pane-inline--border-color);
+  --ix-pane--color: var(--theme-pane-inline--color);
+}
+
 :host {
-  background-color: var(--theme-color-2);
+  background-color: var(--ix-pane--background);
   display: flex;
   position: relative;
   overflow: hidden;
@@ -30,6 +41,10 @@
   aside {
     width: 100%;
     height: 100%;
+  }
+
+  .pane-icon {
+    color: var(--ix-pane--color);
   }
 
   .slot-header-content {
@@ -184,8 +199,8 @@
   display: none;
 }
 
-:host(.inline-color) {
-  background-color: var(--theme-color-1);
+:host(.inline-pane) {
+  background-color: var(--ix-pane--background);
 }
 
 :host(.box-shadow) {
@@ -194,7 +209,7 @@
 
 :host(.nav-left-border) {
   border-left: var(--theme-app-header--border-width) solid
-    var(--theme-color-weak-bdr);
+    var(--ix-pane--border-color);
 }
 
 :host(.left-pane-border) {
