@@ -1253,6 +1253,9 @@ export namespace Components {
     }
     interface IxDivider {
     }
+    /**
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+     */
     interface IxDrawer {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -2746,6 +2749,10 @@ export namespace Components {
     }
     interface IxPane {
         /**
+          * ARIA label close or collapse button
+         */
+        "ariaLabelCollapseCloseButton"?: string;
+        /**
           * ARIA label for the icon
          */
         "ariaLabelIcon"?: string;
@@ -2754,6 +2761,11 @@ export namespace Components {
           * @default false
          */
         "borderless": boolean;
+        /**
+          * If true, the pane will close when clicking outside of it
+          * @default false
+         */
+        "closeOnClickOutside": boolean;
         /**
           * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
           * @default 'top'
@@ -4834,6 +4846,9 @@ declare global {
         "open": any;
         "drawerClose": any;
     }
+    /**
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+     */
     interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDrawerElementEventMap>(type: K, listener: (this: HTMLIxDrawerElement, ev: IxDrawerCustomEvent<HTMLIxDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7272,6 +7287,9 @@ declare namespace LocalJSX {
     }
     interface IxDivider {
     }
+    /**
+     * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+     */
     interface IxDrawer {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -8853,6 +8871,10 @@ declare namespace LocalJSX {
     }
     interface IxPane {
         /**
+          * ARIA label close or collapse button
+         */
+        "ariaLabelCollapseCloseButton"?: string;
+        /**
           * ARIA label for the icon
          */
         "ariaLabelIcon"?: string;
@@ -8861,6 +8883,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "borderless"?: boolean;
+        /**
+          * If true, the pane will close when clicking outside of it
+          * @default false
+         */
+        "closeOnClickOutside"?: boolean;
         /**
           * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
           * @default 'top'
@@ -10523,6 +10550,9 @@ declare module "@stencil/core" {
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
+            /**
+             * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+             */
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
