@@ -91,6 +91,7 @@
   display: flex;
   flex-direction: column;
   min-height: 2rem;
+  justify-content: center;
   --thumb-size: 1rem;
   --value: 0;
   --trace-start: 0;
@@ -124,22 +125,26 @@
     display: block;
     z-index: -1;
 
-    width: calc(
-      calc(7px + calc(100% * var(--trace-end)) - calc(16px * var(--trace-end))) -
-        calc(
-          7px + calc(100% * var(--trace-start)) -
-            calc(16px * var(--trace-start))
-        )
-    );
-
-    left: calc(
-      7px + calc(100% * var(--trace-start)) - calc(16px * var(--trace-start))
-    );
+    width: calc((var(--trace-end) - var(--trace-start)) * (100% - 1rem));
+    left: calc(0.5rem + var(--trace-start) * (100% - 1rem));
+    margin: 0;
 
     height: 4px;
     background-color: var(--trace-color);
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  .slider-container {
+    width: 100%;
+
+    .slider {
+      width: 100%;
+
+      input[type='range'] {
+        width: 100%;
+      }
+    }
   }
 
   // Trace reference
@@ -224,8 +229,7 @@
     position: absolute;
     background-color: var(--track-color);
     height: 4px;
-    width: calc(100% - 1rem);
-    margin-left: 0.5rem;
+    width: 100%;
     top: 50%;
     transform: translateY(-50%);
     left: 0px;
@@ -257,21 +261,10 @@
 
     min-height: 0px;
   }
-
-  .label-start {
-    margin-left: 0.5rem;
-  }
-
-  .label-end {
-    margin-right: 0.5rem;
-  }
-
-  .label-error {
-    margin-left: 0.5rem;
-  }
 }
 
-:host(.error) {
+:host(.error),
+:host(.invalid) {
   --trace-color: var(--theme-color-alarm-40);
   --tick-color--active: var(--theme-color-alarm);
 
@@ -290,5 +283,32 @@
 
   @include thumb() {
     background-color: var(--theme-color-7);
+  }
+}
+
+:host(.warning) {
+  --trace-color: var(--theme-color-warning-40);
+  --tick-color--active: var(--theme-color-warning);
+
+  @include thumb() {
+    background-color: var(--theme-color-warning);
+  }
+}
+
+:host(.info) {
+  --trace-color: var(--theme-color-info-40);
+  --tick-color--active: var(--theme-color-info);
+
+  @include thumb() {
+    background-color: var(--theme-color-info);
+  }
+}
+
+:host(.valid) {
+  --trace-color: var(--theme-color-success-40);
+  --tick-color--active: var(--theme-color-success);
+
+  @include thumb() {
+    background-color: var(--theme-color-success);
   }
 }
