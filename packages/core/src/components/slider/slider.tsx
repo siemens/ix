@@ -437,9 +437,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
               </div>
             )}
             {this.error ? (
-              <ix-typography textColor="alarm">
-                {this.error}
-              </ix-typography>
+              <ix-typography textColor="alarm">{this.error}</ix-typography>
             ) : null}
           </div>
         </ix-field-wrapper>
