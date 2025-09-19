@@ -37,4 +37,11 @@ export class ModalService extends BaseModalService {
     defineCustomElement();
     return super.open(config);
   }
+
+  public close<TReason = any>(
+    instance: ModalInstance<TReason>,
+    reason?: TReason
+  ): void {
+    super.close(instance, reason);
+  }
 }
