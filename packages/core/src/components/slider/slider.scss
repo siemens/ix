@@ -125,8 +125,8 @@
     display: block;
     z-index: -1;
 
-    width: calc((var(--trace-end) - var(--trace-start)) * (100% - 1rem));
-    left: calc(0.5rem + var(--trace-start) * (100% - 1rem));
+    width: calc((var(--trace-end) - var(--trace-start)) * 100%);
+    left: calc(var(--trace-start) * 100%);
     margin: 0;
 
     height: 4px;
@@ -157,10 +157,7 @@
     background-color: var(--trace-reference-color);
     top: 50%;
     transform: translateY(-50%);
-    left: calc(
-      7px + calc(100% * var(--trace-reference)) -
-        calc(16px * var(--trace-reference))
-    );
+    left: calc(100% * var(--trace-reference));
   }
 
   @include track() {
@@ -211,7 +208,7 @@
     border-radius: 100px;
     top: 50%;
     transform: translateY(-50%);
-    left: calc(var(--tick-value) * 100% - 4px);
+    left: calc(var(--tick-value) * 100%);
   }
 
   .ticks .tick.tick-active {
