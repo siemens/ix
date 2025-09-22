@@ -2933,7 +2933,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-more-cards",
+          "attr": "i18n-more-cards",
           "reflectToAttr": false,
           "docs": "i18n More cards available",
           "docsTags": [
@@ -2962,7 +2962,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-show-all",
+          "attr": "i18n-show-all",
           "reflectToAttr": false,
           "docs": "i18n Show all button",
           "docsTags": [
@@ -3456,7 +3456,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-plain-text",
+          "attr": "i18n-plain-text",
           "reflectToAttr": false,
           "docs": "i18n",
           "docsTags": [
@@ -7755,7 +7755,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-time",
+          "attr": "i18n-time",
           "reflectToAttr": false,
           "docs": "Top label of time picker",
           "docsTags": [
@@ -14905,7 +14905,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-collapse",
+          "attr": "i18n-collapse",
           "reflectToAttr": false,
           "docs": "",
           "docsTags": [
@@ -14934,7 +14934,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-expand",
+          "attr": "i18n-expand",
           "reflectToAttr": false,
           "docs": "",
           "docsTags": [
@@ -14963,7 +14963,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-expand-sidebar",
+          "attr": "i18n-expand-sidebar",
           "reflectToAttr": false,
           "docs": "Accessibility i18n label for the burger menu of the sidebar",
           "docsTags": [
@@ -14992,7 +14992,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-legal",
+          "attr": "i18n-legal",
           "reflectToAttr": false,
           "docs": "",
           "docsTags": [
@@ -15021,7 +15021,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-settings",
+          "attr": "i18n-settings",
           "reflectToAttr": false,
           "docs": "",
           "docsTags": [
@@ -15050,7 +15050,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-toggle-theme",
+          "attr": "i18n-toggle-theme",
           "reflectToAttr": false,
           "docs": "",
           "docsTags": [
@@ -15719,7 +15719,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-show-more",
+          "attr": "i18n-show-more",
           "reflectToAttr": false,
           "docs": "",
           "docsTags": [
@@ -15939,7 +15939,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-logout",
+          "attr": "i18n-logout",
           "reflectToAttr": false,
           "docs": "Use for translation",
           "docsTags": [
@@ -18623,9 +18623,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-items",
+          "attr": "i18n-items",
           "reflectToAttr": false,
-          "docs": "/**\n  i18n",
+          "docs": "i18n",
           "docsTags": [
             {
               "name": "default",
@@ -18652,7 +18652,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-of",
+          "attr": "i18n-of",
           "reflectToAttr": false,
           "docs": "i18n",
           "docsTags": [
@@ -18681,7 +18681,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-page",
+          "attr": "i18n-page",
           "reflectToAttr": false,
           "docs": "i18n",
           "docsTags": [
@@ -21283,7 +21283,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-no-matches",
+          "attr": "i18n-no-matches",
           "reflectToAttr": false,
           "docs": "Information inside of dropdown if no items where found with current filter text",
           "docsTags": [
@@ -21312,7 +21312,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-placeholder",
+          "attr": "i18n-placeholder",
           "reflectToAttr": false,
           "docs": "Input field placeholder",
           "docsTags": [
@@ -21341,7 +21341,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-placeholder-editable",
+          "attr": "i18n-placeholder-editable",
           "reflectToAttr": false,
           "docs": "Input field placeholder for editable select",
           "docsTags": [
@@ -21370,7 +21370,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-select-list-header",
+          "attr": "i18n-select-list-header",
           "reflectToAttr": false,
           "docs": "Select list header",
           "docsTags": [
@@ -28137,7 +28137,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-upload-disabled",
+          "attr": "i18n-upload-disabled",
           "reflectToAttr": false,
           "docs": "Text for disabled state",
           "docsTags": [
@@ -28166,7 +28166,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-upload-file",
+          "attr": "i18n-upload-file",
           "reflectToAttr": false,
           "docs": "Label for upload file button",
           "docsTags": [
