@@ -85,6 +85,7 @@ export function InputElement(
     placeholder?: string;
     inputRef: (el: HTMLInputElement | undefined) => void;
     onKeyPress: (event: KeyboardEvent) => void;
+    onKeyDown?: (event: KeyboardEvent) => void;
     valueChange: (value: string) => void;
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
@@ -121,21 +122,24 @@ export function InputElement(
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
       onChange={() => props.onChange()}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-          const input = e.target as HTMLInputElement;
-          const currentValue = input.value;
-          const hasChanged = handleEnterKey(
-            currentValue,
-            props.value,
-            props.valueType ?? 'string'
-          );
-
-          if (hasChanged) {
-            props.onChange();
-          }
-        }
-      }}
+      onKeyDown={
+        props.onKeyDown
+          ? props.onKeyDown
+          : (e) => {
+              if (e.key === 'Enter') {
+                const input = e.target as HTMLInputElement;
+                const currentValue = input.value;
+                const hasChanged = handleEnterKey(
+                  currentValue,
+                  props.value,
+                  props.valueType ?? 'string'
+                );
+                if (hasChanged) {
+                  props.onChange();
+                }
+              }
+            }
+      }
     ></input>
   );
 }

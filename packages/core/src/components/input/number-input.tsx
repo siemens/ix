@@ -176,6 +176,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @State() isInfo = false;
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
+  @State() tempValue: string = '';
 
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
@@ -217,15 +218,24 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly handleInputChange = () => {
     const input = this.inputRef.current;
     if (!input) return;
-    const newValue = Number(input.value);
-    const event = this.ixChange.emit(newValue);
-    if (event.defaultPrevented) {
-      input.value = this.value.toString();
-      this.updateFormInternalValue(this.value);
-    } else {
-      this.value = newValue;
-      this.updateFormInternalValue(newValue);
-      this.valueChange.emit(newValue);
+    this.tempValue = input.value;
+  };
+
+  private readonly handleInputCommit = () => {
+    const newValue = this.tempValue === '' ? 0 : Number(this.tempValue);
+    if (newValue !== this.value) {
+      const event = this.ixChange.emit(newValue);
+      if (!event.defaultPrevented) {
+        this.value = newValue;
+        this.updateFormInternalValue(newValue);
+        this.valueChange.emit(newValue);
+      } else {
+        // revert tempValue to actual value
+        this.tempValue = this.value.toString();
+        if (this.inputRef.current) {
+          this.inputRef.current.value = this.value.toString();
+        }
+      }
     }
   };
 
@@ -328,20 +338,29 @@ export class NumberInput implements IxInputFieldComponent<number> {
               isInvalid={this.isInvalid}
               required={this.required}
               valueType="number"
-              value={this.value}
+              value={
+                this.tempValue !== '' ? this.tempValue : this.value.toString()
+              }
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
-              valueChange={(value) => this.valueChange.emit(Number(value))}
+              valueChange={(value) => {
+                this.tempValue = value;
+              }}
               updateFormInternalValue={(value) => {
-                const numericValue = value === '' ? 0 : Number(value);
-                this.updateFormInternalValue(numericValue);
+                this.tempValue = value;
               }}
               onBlur={() => {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
+                this.handleInputCommit();
               }}
               onChange={this.handleInputChange}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  this.handleInputCommit();
+                }
+              }}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

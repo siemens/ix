@@ -304,6 +304,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     if (value !== this.oldValue) {
       const prevented = emitCancelableChange(value, this.ixChange);
       if (prevented) {
+        if (this.inputElementRef.current) {
+          this.inputElementRef.current.value = this.oldValue ?? '';
+        }
         return;
       }
     }

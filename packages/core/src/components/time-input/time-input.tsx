@@ -314,6 +314,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
     if (value !== this.oldValue) {
       const prevented = emitCancelableChange(value, this.ixChange);
       if (prevented) {
+        if (this.inputElementRef.current) {
+          this.inputElementRef.current.value = this.oldValue ?? '';
+        }
         return;
       }
     }
