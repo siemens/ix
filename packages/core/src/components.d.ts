@@ -563,7 +563,7 @@ export namespace Components {
          */
         "hideIcon": boolean;
         /**
-          * i18n
+          * i18n label for 'Filter by text'
           * @default 'Filter by text'
          */
         "i18nPlainText": string;
@@ -2333,7 +2333,7 @@ export namespace Components {
          */
         "bottom"?: string;
         /**
-          * Use for translation
+          * i18n label for 'Logout' button
           * @default 'Logout'
          */
         "i18nLogout": string;
@@ -2711,12 +2711,12 @@ export namespace Components {
          */
         "i18nItems": string;
         /**
-          * i18n
+          * i18n label for 'of'
           * @default 'of'
          */
         "i18nOf": string;
         /**
-          * i18n
+          * i18n label for 'Page'
           * @default 'Page'
          */
         "i18nPage": string;
@@ -6481,7 +6481,7 @@ declare namespace LocalJSX {
          */
         "hideIcon"?: boolean;
         /**
-          * i18n
+          * i18n label for 'Filter by text'
           * @default 'Filter by text'
          */
         "i18nPlainText"?: string;
@@ -8350,7 +8350,7 @@ declare namespace LocalJSX {
          */
         "bottom"?: string;
         /**
-          * Use for translation
+          * i18n label for 'Logout' button
           * @default 'Logout'
          */
         "i18nLogout"?: string;
@@ -8755,12 +8755,12 @@ declare namespace LocalJSX {
          */
         "i18nItems"?: string;
         /**
-          * i18n
+          * i18n label for 'of'
           * @default 'of'
          */
         "i18nOf"?: string;
         /**
-          * i18n
+          * i18n label for 'Page'
           * @default 'Page'
          */
         "i18nPage"?: string;

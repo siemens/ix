@@ -3458,7 +3458,7 @@
           "mutable": false,
           "attr": "i18n-plain-text",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'Filter by text'",
           "docsTags": [
             {
               "name": "default",
@@ -15941,7 +15941,7 @@
           "mutable": false,
           "attr": "i18n-logout",
           "reflectToAttr": false,
-          "docs": "Use for translation",
+          "docs": "i18n label for 'Logout' button",
           "docsTags": [
             {
               "name": "default",
@@ -18625,7 +18625,7 @@
           "mutable": false,
           "attr": "i18n-items",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'Items'",
           "docsTags": [
             {
               "name": "default",
@@ -18654,7 +18654,7 @@
           "mutable": false,
           "attr": "i18n-of",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'of'",
           "docsTags": [
             {
               "name": "default",
@@ -18683,7 +18683,7 @@
           "mutable": false,
           "attr": "i18n-page",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'Page'",
           "docsTags": [
             {
               "name": "default",
