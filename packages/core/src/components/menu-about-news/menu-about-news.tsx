@@ -27,7 +27,7 @@ export class MenuAboutNews {
   @Prop() label?: string;
 
   /**
-   *
+   * i18n label for 'Show more' button
    */
   @Prop({ attribute: 'i18n-show-more' }) i18nShowMore = 'Show more';
 

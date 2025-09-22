@@ -119,22 +119,27 @@ export class Menu {
   }
 
   /**
+   *  i18n label for 'About & legal information' button
    */
   @Prop({ attribute: 'i18n-legal' }) i18nLegal = 'About & legal information';
 
   /**
+   * i18n label for 'Settings' button
    */
   @Prop({ attribute: 'i18n-settings' }) i18nSettings = 'Settings';
 
   /**
+   * i18n label for 'Toggle theme' button
    */
   @Prop({ attribute: 'i18n-toggle-theme' }) i18nToggleTheme = 'Toggle theme';
 
   /**
+   * i18n label for 'Expand' button
    */
   @Prop({ attribute: 'i18n-expand' }) i18nExpand = ' Expand';
 
   /**
+   * i18n label for 'Collapse' button
    */
   @Prop({ attribute: 'i18n-collapse' }) i18nCollapse = 'Collapse';
 

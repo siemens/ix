@@ -2213,10 +2213,12 @@ export namespace Components {
          */
         "expand": boolean;
         /**
+          * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
         "i18nCollapse": string;
         /**
+          * i18n label for 'Expand' button
           * @default ' Expand'
          */
         "i18nExpand": string;
@@ -2226,14 +2228,17 @@ export namespace Components {
          */
         "i18nExpandSidebar": string;
         /**
+          * i18n label for 'About & legal information' button
           * @default 'About & legal information'
          */
         "i18nLegal": string;
         /**
+          * i18n label for 'Settings' button
           * @default 'Settings'
          */
         "i18nSettings": string;
         /**
+          * i18n label for 'Toggle theme' button
           * @default 'Toggle theme'
          */
         "i18nToggleTheme": string;
@@ -2309,6 +2314,7 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
+          * i18n label for 'Show more' button
           * @default 'Show more'
          */
         "i18nShowMore": string;
@@ -8206,10 +8212,12 @@ declare namespace LocalJSX {
          */
         "expand"?: boolean;
         /**
+          * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
         "i18nCollapse"?: string;
         /**
+          * i18n label for 'Expand' button
           * @default ' Expand'
          */
         "i18nExpand"?: string;
@@ -8219,14 +8227,17 @@ declare namespace LocalJSX {
          */
         "i18nExpandSidebar"?: string;
         /**
+          * i18n label for 'About & legal information' button
           * @default 'About & legal information'
          */
         "i18nLegal"?: string;
         /**
+          * i18n label for 'Settings' button
           * @default 'Settings'
          */
         "i18nSettings"?: string;
         /**
+          * i18n label for 'Toggle theme' button
           * @default 'Toggle theme'
          */
         "i18nToggleTheme"?: string;
@@ -8318,6 +8329,7 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
+          * i18n label for 'Show more' button
           * @default 'Show more'
          */
         "i18nShowMore"?: string;

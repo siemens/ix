@@ -14907,7 +14907,7 @@
           "mutable": false,
           "attr": "i18n-collapse",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Collapse' button",
           "docsTags": [
             {
               "name": "default",
@@ -14936,7 +14936,7 @@
           "mutable": false,
           "attr": "i18n-expand",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Expand' button",
           "docsTags": [
             {
               "name": "default",
@@ -14994,7 +14994,7 @@
           "mutable": false,
           "attr": "i18n-legal",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'About & legal information' button",
           "docsTags": [
             {
               "name": "default",
@@ -15023,7 +15023,7 @@
           "mutable": false,
           "attr": "i18n-settings",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Settings' button",
           "docsTags": [
             {
               "name": "default",
@@ -15052,7 +15052,7 @@
           "mutable": false,
           "attr": "i18n-toggle-theme",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Toggle theme' button",
           "docsTags": [
             {
               "name": "default",
@@ -15721,7 +15721,7 @@
           "mutable": false,
           "attr": "i18n-show-more",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Show more' button",
           "docsTags": [
             {
               "name": "default",
