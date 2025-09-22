@@ -73,18 +73,17 @@ export class Pagination {
   /**
    * i18n
    */
-  @Prop() i18nPage = 'Page';
+  @Prop({ attribute: 'i18n-page' }) i18nPage = 'Page';
 
   /**
    * i18n
    */
-  @Prop() i18nOf = 'of';
+  @Prop({ attribute: 'i18n-of' }) i18nOf = 'of';
 
-  /**
   /**
    * i18n
    */
-  @Prop() i18nItems = 'Items';
+  @Prop({ attribute: 'i18n-items' }) i18nItems = 'Items';
 
   /**
    * ARIA label for the chevron left icon button

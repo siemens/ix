@@ -29,7 +29,7 @@ export class MenuAboutNews {
   /**
    *
    */
-  @Prop() i18nShowMore = 'Show more';
+  @Prop({ attribute: 'i18n-show-more' }) i18nShowMore = 'Show more';
 
   /**
    * Subtitle of the about news

@@ -50,7 +50,7 @@ export class MenuAvatar {
   /**
    * Use for translation
    */
-  @Prop() i18nLogout: string = 'Logout';
+  @Prop({ attribute: 'i18n-logout' }) i18nLogout: string = 'Logout';
 
   /**
    *  Control the visibility of the logout button

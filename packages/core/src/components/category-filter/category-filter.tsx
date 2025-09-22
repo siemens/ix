@@ -149,7 +149,7 @@ export class CategoryFilter {
   /**
    * i18n
    */
-  @Prop() i18nPlainText = 'Filter by text';
+  @Prop({ attribute: 'i18n-plain-text' }) i18nPlainText = 'Filter by text';
 
   /**
    * ARIA label for the reset button
