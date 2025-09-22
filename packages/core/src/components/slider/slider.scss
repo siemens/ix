@@ -205,7 +205,7 @@
     border-radius: 100px;
     top: 50%;
     transform: translateY(-50%);
-    left: calc(var(--tick-value) * 100%);
+    left: calc(var(--tick-value) * (100% - 0.5rem));
   }
 
   .ticks .tick.tick-active {
