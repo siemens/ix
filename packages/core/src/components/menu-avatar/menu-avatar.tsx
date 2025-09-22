@@ -48,7 +48,7 @@ export class MenuAvatar {
   @Prop() initials?: string;
 
   /**
-   * Use for translation
+   * i18n label for 'Logout' button
    */
   @Prop({ attribute: 'i18n-logout' }) i18nLogout: string = 'Logout';
 

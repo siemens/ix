@@ -2706,7 +2706,7 @@ export namespace Components {
          */
         "count": number;
         /**
-          * i18n
+          * i18n label for 'Items'
           * @default 'Items'
          */
         "i18nItems": string;
@@ -8750,7 +8750,7 @@ declare namespace LocalJSX {
          */
         "count"?: number;
         /**
-          * i18n
+          * i18n label for 'Items'
           * @default 'Items'
          */
         "i18nItems"?: string;

@@ -147,7 +147,7 @@ export class CategoryFilter {
   @Prop() labelCategories = 'Categories';
 
   /**
-   * i18n
+   * i18n label for 'Filter by text'
    */
   @Prop({ attribute: 'i18n-plain-text' }) i18nPlainText = 'Filter by text';
 

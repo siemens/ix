@@ -71,17 +71,17 @@ export class Pagination {
   @Prop({ mutable: true }) selectedPage = 0;
 
   /**
-   * i18n
+   * i18n label for 'Page'
    */
   @Prop({ attribute: 'i18n-page' }) i18nPage = 'Page';
 
   /**
-   * i18n
+   * i18n label for 'of'
    */
   @Prop({ attribute: 'i18n-of' }) i18nOf = 'of';
 
   /**
-   * i18n
+   * i18n label for 'Items'
    */
   @Prop({ attribute: 'i18n-items' }) i18nItems = 'Items';
 
