@@ -19,7 +19,7 @@
     "angular-test-app": "workspace:*",
     "angular-standalone-test-app": "workspace:*",
     "autoprefixer": "10.4.5",
-    "axios": "^1.8.2",
+    "axios": "^1.12.2",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.1",
     "html-test-app": "workspace:*",
