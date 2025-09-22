@@ -123,22 +123,21 @@ export function InputElement(
       {...props.ariaAttributes}
       onChange={() => props.onChange()}
       onKeyDown={
-        props.onKeyDown
-          ? props.onKeyDown
-          : (e) => {
-              if (e.key === 'Enter') {
-                const input = e.target as HTMLInputElement;
-                const currentValue = input.value;
-                const hasChanged = handleEnterKey(
-                  currentValue,
-                  props.value,
-                  props.valueType ?? 'string'
-                );
-                if (hasChanged) {
-                  props.onChange();
-                }
-              }
+        props.onKeyDown ??
+        ((e) => {
+          if (e.key === 'Enter') {
+            const input = e.target as HTMLInputElement;
+            const currentValue = input.value;
+            const hasChanged = handleEnterKey(
+              currentValue,
+              props.value,
+              props.valueType ?? 'string'
+            );
+            if (hasChanged) {
+              props.onChange();
             }
+          }
+        })
       }
     ></input>
   );
