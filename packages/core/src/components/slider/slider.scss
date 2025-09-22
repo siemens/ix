@@ -124,11 +124,8 @@
     position: absolute;
     display: block;
     z-index: -1;
-
     width: calc((var(--trace-end) - var(--trace-start)) * 100%);
     left: calc(var(--trace-start) * 100%);
-    margin: 0;
-
     height: 4px;
     background-color: var(--trace-color);
     top: 50%;
@@ -239,9 +236,9 @@
     height: 1rem;
     width: 1rem;
     border-radius: 100px;
-    left: 0px;
     top: 50%;
     transform: translateY(-50%);
+    margin-left: -0.5rem;
   }
 
   .hide-tooltip {
