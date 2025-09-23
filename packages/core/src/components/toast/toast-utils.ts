@@ -28,11 +28,20 @@ export interface ToastConfig {
    */
   type?: ToastType;
   /**
-   *
+   * Controls whether the toast closes automatically after a delay
    */
   autoClose?: boolean;
+  /**
+   * Sets the delay for autoClose in milliseconds
+   */
   autoCloseDelay?: number;
+  /**
+   * Icon that is displayed with the toast
+   */
   icon?: string;
+  /**
+   * Color of the icon
+   */
   iconColor?: string;
 }
 

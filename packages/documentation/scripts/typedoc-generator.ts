@@ -105,14 +105,22 @@ function extractCommentTags(
 }
 
 function getCommentSummary(property: any): string {
-  if (!property?.comment?.summary) {
-    return '';
+  if (property?.comment?.summary) {
+    return property.comment.summary
+      .filter((summary: any) => summary.kind === 'text')
+      .map((summary: any) => summary.text)
+      .join('');
   }
 
-  return property.comment.summary
-    .filter((summary: any) => summary.kind === 'text')
-    .map((summary: any) => summary.text)
-    .join('');
+  // For methods, check the signature comment
+  if (property.signatures && property.signatures[0]?.comment?.summary) {
+    return property.signatures[0].comment.summary
+      .filter((summary: any) => summary.kind === 'text')
+      .map((summary: any) => summary.text)
+      .join('');
+  }
+
+  return '';
 }
 
 function processProperties(child: any): TypeDocProperty[] {

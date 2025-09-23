@@ -29165,7 +29165,7 @@
       "path": "src/components/toast/toast-container.types.ts"
     },
     "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  /**\n   * Title of the toast\n   */\n  title?: string;\n  message?: string | HTMLElement;\n  action?: HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "declaration": "export interface ToastConfig {\n  /**\n   * Title of the toast\n   */\n  title?: string;\n  /**\n   * Message of the toast\n   */\n  message?: string | HTMLElement;\n  /**\n   * Action element that is displayed below the toast message/title\n   */\n  action?: HTMLElement;\n  /**\n   * Type of the toast\n   */\n  type?: ToastType;\n  /**\n   * Controls whether the toast closes automatically after a delay\n   */\n  autoClose?: boolean;\n  /**\n   * Sets the delay for autoClose in milliseconds\n   */\n  autoCloseDelay?: number;\n  /**\n   * Icon that is displayed with the toast\n   */\n  icon?: string;\n  /**\n   * Color of the icon\n   */\n  iconColor?: string;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
     },
