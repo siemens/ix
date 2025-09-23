@@ -26,16 +26,17 @@ const renderEventList = (args: Element) => {
     ...eventListProps
   } = args;
 
+  const colors = [
+    'color-primary',
+    'color-success',
+    'color-warning',
+    'color-alarm',
+  ];
+
   const items = Array.from({ length: itemCount }, (_, i) => {
     const itemProps: any = {};
 
     if (showItemColors) {
-      const colors = [
-        'color-primary',
-        'color-success',
-        'color-warning',
-        'color-alarm',
-      ];
       itemProps.itemColor = colors[i % colors.length];
     } else {
       itemProps.itemColor = 'color-primary';
