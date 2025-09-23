@@ -48,7 +48,7 @@ class ThemeSwitcher {
 
   public setTheme(themeName: string, systemAppearance = false) {
     if (this.isThemeClass(themeName)) {
-      this.replaceBodyThemeClass(themeName);
+      this.replaceThemeClass(themeName);
     } else {
       document.documentElement.setAttribute(dataIxTheme, themeName);
     }
@@ -59,7 +59,7 @@ class ThemeSwitcher {
     }
   }
 
-  private replaceBodyThemeClass(themeName: string) {
+  private replaceThemeClass(themeName: string) {
     const oldThemes: string[] = [];
     Array.from(document.documentElement.classList)
       .filter((className) => className && this.isThemeClass(className))
