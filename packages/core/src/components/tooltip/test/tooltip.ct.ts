@@ -308,4 +308,75 @@ regressionTest.describe('handles multiple references', () => {
 
     await testMultipleButtons(page);
   });
+  regressionTest(
+    'arrow position for top placement',
+    async ({ mount, page }) => {
+      await mount(`
+    <div style="margin-top: 100px; margin-left: 100px;">
+      <ix-tooltip for=".test-arrow-top" placement="top" id="arrow-tooltip-top">Tooltip content</ix-tooltip>
+      <ix-button class="test-arrow-top">Hover me</ix-button>
+    </div>
+  `);
+      const button = page.locator('.test-arrow-top');
+      await button.hover();
+      const tooltip = page.locator('ix-tooltip#arrow-tooltip-top');
+      await expect(tooltip).toHaveClass(/visible/);
+      const dialog = tooltip.locator('dialog');
+      await expect(dialog).toBeVisible();
+      const arrowBottomStyle = await page.evaluate((tooltipId) => {
+        const host = document.getElementById(tooltipId) as HTMLElement;
+        const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
+        const style = window.getComputedStyle(arrow);
+        return style.bottom;
+      }, 'arrow-tooltip-top');
+      expect(arrowBottomStyle).toBe('-6px');
+      const arrowLeftStyle = await page.evaluate((tooltipId) => {
+        const host = document.getElementById(tooltipId) as HTMLElement;
+        const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
+        const style = window.getComputedStyle(arrow);
+        return style.left;
+      }, 'arrow-tooltip-top');
+      expect(arrowLeftStyle).not.toBe('unset');
+      expect(arrowLeftStyle).toMatch(/\d+(\.\d+)?px/);
+    }
+  );
+  regressionTest(
+    'arrow position for bottom placement',
+    async ({ mount, page }) => {
+      await mount(`
+    <div style="margin-top: 100px; margin-left: 100px;">
+      <ix-tooltip for=".test-arrow-bottom" placement="bottom" id="arrow-tooltip-bottom">Tooltip content</ix-tooltip>
+      <ix-button class="test-arrow-bottom">Hover me</ix-button>
+    </div>
+  `);
+
+      const button = page.locator('.test-arrow-bottom');
+      await button.hover();
+
+      const tooltip = page.locator('ix-tooltip#arrow-tooltip-bottom');
+      await expect(tooltip).toHaveClass(/visible/);
+
+      const dialog = tooltip.locator('dialog');
+      await expect(dialog).toBeVisible();
+
+      const arrowTopStyle = await page.evaluate((tooltipId) => {
+        const host = document.getElementById(tooltipId) as HTMLElement;
+        const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
+        const style = window.getComputedStyle(arrow);
+        return style.top;
+      }, 'arrow-tooltip-bottom');
+
+      expect(arrowTopStyle).toBe('-6px');
+
+      const arrowLeftStyle = await page.evaluate((tooltipId) => {
+        const host = document.getElementById(tooltipId) as HTMLElement;
+        const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
+        const style = window.getComputedStyle(arrow);
+        return style.left;
+      }, 'arrow-tooltip-bottom');
+
+      expect(arrowLeftStyle).not.toBe('unset');
+      expect(arrowLeftStyle).toMatch(/\d+(\.\d+)?px/);
+    }
+  );
 });
