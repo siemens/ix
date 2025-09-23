@@ -10,13 +10,32 @@ import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
-type Element = Components.IxInput;
+type Element = Components.IxInput & {
+  validation: 'default' | 'info' | 'warning' | 'invalid' | 'valid';
+};
+
+function genericInputRender(args: Partial<Element>) {
+  const container = genericRender('ix-input', args, ['validation']);
+  const input = container.querySelector('ix-input') as HTMLIxInputElement;
+
+  input.classList.remove('ix-info', 'ix-warning', 'ix-invalid', 'ix-valid');
+
+  if (args.validation !== 'default') {
+    input.classList.add(`ix-${args.validation}`);
+  }
+  return container;
+}
 
 const meta = {
   title: 'Example/Input',
   tags: [],
-  render: (args) => genericRender('ix-input', args),
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-input', {}),
+  render: (args) => genericInputRender(args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-input', {
+    validation: {
+      options: ['default', 'info', 'warning', 'invalid', 'valid'],
+      control: { type: 'select' },
+    },
+  }),
   parameters: {
     design: {
       type: 'figma',
@@ -63,4 +82,8 @@ export const MinLength: Story = {
     maxLength: 5,
     value: '1234567',
   },
+};
+
+export const ValidationState: Story = {
+  args: {},
 };

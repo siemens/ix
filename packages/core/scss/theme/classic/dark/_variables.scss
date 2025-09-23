@@ -29,6 +29,8 @@
   --theme-color-focus-bdr: #199fff;
   --theme-color-contrast-bdr: #ffffff;
   --theme-color-hard-bdr: #6b7c85;
+  --theme-color-alarm-bdr: #ff2453;
+  --theme-color-warning-bdr: #ffbb00;
   --theme-color-ghost: rgba(255, 255, 255, 0);
   --theme-color-ghost--hover: rgba(140, 161, 171, 0.2);
   --theme-color-ghost--active: rgba(140, 161, 171, 0.15);
@@ -69,6 +71,7 @@
   --theme-color-component-7: rgba(0, 234, 255, 0.15);
   --theme-color-component-7--active: #16565c;
   --theme-color-component-error: #4b1a28;
+  --theme-color-component-warning: #4b463a;
   --theme-color-component-info: #001c4d;
   --theme-color-component-8--hover: #002639;
   --theme-color-component-8: #00273b;
@@ -124,6 +127,7 @@
   --theme-color-inv-soft-text: rgba(0, 13, 20, 0.6);
   --theme-color-inv-weak-text: rgba(0, 13, 20, 0.45);
   --theme-color-alarm-text: #ff7694;
+  --theme-color-warning-text: #ffbb00;
   --theme-color-lightbox: rgba(0, 0, 0, 0.65);
   --theme-color-backdrop: rgba(0, 0, 0, 0.85);
   --theme-color-backdrop-3: rgba(55, 70, 77, 0.85);

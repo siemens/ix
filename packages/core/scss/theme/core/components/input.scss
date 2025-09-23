@@ -22,6 +22,9 @@
   --theme-input--background--invalid: var(--theme-color-component-error);
   --theme-input--background--invalid--hover: var(--theme-color-component-error);
   --theme-input--background--invalid--focus: var(--theme-color-component-error);
+  --theme-input--background--warning: var(--theme-color-component-warning);
+  --theme-input--background--warning--hover: var(--theme-color-component-warning);
+  --theme-input--background--warning--focus: var(--theme-color-component-warning);
   --theme-input--border-color: var(--theme-color-std-bdr);
   --theme-input--border-color--hover: var(--theme-color-dynamic);
   --theme-input--border-color--focus: var(--theme-color-dynamic);
@@ -30,12 +33,12 @@
   --theme-input--border-color--disabled: var(--theme-color-0);
   --theme-input--border-color-bottom--readonly: var(--theme-color-soft-bdr);
   --theme-input--border-color-bottom--disabled: var(--theme-color-weak-bdr);
-  --theme-input--border-color--invalid: var(--theme-color-alarm);
-  --theme-input--border-color--invalid--hover: var(--theme-color-alarm);
-  --theme-input--border-color--invalid--active: var(--theme-color-alarm);
-  --theme-input--border-color--warning: var(--theme-color-warning);
-  --theme-input--border-color--warning--hover: var(--theme-color-warning);
-  --theme-input--border-color--warning--active: var(--theme-color-warning);
+  --theme-input--border-color--invalid: var(--theme-color-alarm-bdr);
+  --theme-input--border-color--invalid--hover: var(--theme-color-alarm-bdr);
+  --theme-input--border-color--invalid--active: var(--theme-color-alarm-bdr);
+  --theme-input--border-color--warning: var(--theme-color-warning-bdr);
+  --theme-input--border-color--warning--hover: var(--theme-color-warning-bdr);
+  --theme-input--border-color--warning--active: var(--theme-color-warning-bdr);
   --theme-input--border-color--info: var(--theme-color-info);
   --theme-input--border-color--info--hover: var(--theme-color-info);
   --theme-input--border-color--info--active: var(--theme-color-info);
