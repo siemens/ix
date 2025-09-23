@@ -40,11 +40,7 @@ export class ModalService {
     instance: { htmlElement: any },
     reason?: TReason
   ): void {
-    if (
-      instance &&
-      instance.htmlElement &&
-      typeof instance.htmlElement.closeModal === 'function'
-    ) {
+    if (typeof instance?.htmlElement?.closeModal === 'function') {
       instance.htmlElement.closeModal(reason);
     } else {
       throw new Error('Invalid modal instance: cannot close');
