@@ -24,5 +24,5 @@ export async function showModal(
 }
 
 export function close(modalInstance: { htmlElement: any }, closeResult?: any) {
-  modalInstance?.htmlElement?.close?.(closeResult);
+  modalInstance?.htmlElement?.closeModal?.(closeResult);
 }
