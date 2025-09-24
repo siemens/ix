@@ -14,9 +14,7 @@ import {
 import { expect } from '@playwright/test';
 
 declare global {
-  interface Window {
-    __formSubmitted: boolean;
-  }
+  var __formSubmitted: boolean;
 }
 
 regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
@@ -36,18 +34,18 @@ regressionTest(
   `form-ready - ix-input submits form on Enter key`,
   async ({ mount, page }) => {
     await mount(`
-      <form onsubmit="window.__formSubmitted = true; return false;">
+  <form onsubmit="globalThis.__formSubmitted = true; return false;">
         <ix-input name="my-field-name"></ix-input>
       </form>
     `);
     await page.evaluate(() => {
-      window.__formSubmitted = false;
+      globalThis.__formSubmitted = false;
     });
     const input = page.locator('ix-input').locator('input');
     await input.fill('abc');
     await input.focus();
     await input.press('Enter');
-    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    const wasSubmitted = await page.evaluate(() => globalThis.__formSubmitted);
     expect(wasSubmitted).toBe(true);
   }
 );
@@ -56,18 +54,18 @@ regressionTest(
   `form-ready - multiple ix-inputs doesn't submit form on Enter key`,
   async ({ mount, page }) => {
     await mount(`
-      <form onsubmit="window.__formSubmitted = true; return false;">
+  <form onsubmit="globalThis.__formSubmitted = true; return false;">
         <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input>
       </form>
     `);
     await page.evaluate(() => {
-      window.__formSubmitted = false;
+      globalThis.__formSubmitted = false;
     });
     const input = page.locator('ix-input').first().locator('input');
     await input.fill('abc');
     await input.focus();
     await input.press('Enter');
-    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    const wasSubmitted = await page.evaluate(() => globalThis.__formSubmitted);
     expect(wasSubmitted).toBe(false);
   }
 );
@@ -76,18 +74,18 @@ regressionTest(
   `form-ready - multiple ix-input submits form on Enter key when submit button is present`,
   async ({ mount, page }) => {
     await mount(`
-      <form onsubmit="window.__formSubmitted = true; return false;">
+  <form onsubmit="globalThis.__formSubmitted = true; return false;">
         <ix-input name="field-1"></ix-input><ix-input name="field-2"></ix-input><button type="submit">Submit</button>
       </form>
     `);
     await page.evaluate(() => {
-      window.__formSubmitted = false;
+      globalThis.__formSubmitted = false;
     });
     const input = page.locator('ix-input').first().locator('input');
     await input.fill('abc');
     await input.focus();
     await input.press('Enter');
-    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    const wasSubmitted = await page.evaluate(() => globalThis.__formSubmitted);
     expect(wasSubmitted).toBe(true);
   }
 );
@@ -96,18 +94,18 @@ regressionTest(
   `form-ready - ix-input doesn't submit form on Enter key when supress submit on enter is true`,
   async ({ mount, page }) => {
     await mount(`
-      <form onsubmit="window.__formSubmitted = true; return false;">
+  <form onsubmit="globalThis.__formSubmitted = true; return false;">
         <ix-input name="my-field-name"  suppress-submit-on-enter="true"></ix-input>
       </form>
     `);
     await page.evaluate(() => {
-      window.__formSubmitted = false;
+      globalThis.__formSubmitted = false;
     });
     const input = page.locator('ix-input').locator('input');
     await input.fill('abc');
     await input.focus();
     await input.press('Enter');
-    const wasSubmitted = await page.evaluate(() => window.__formSubmitted);
+    const wasSubmitted = await page.evaluate(() => globalThis.__formSubmitted);
     expect(wasSubmitted).toBe(false);
   }
 );
