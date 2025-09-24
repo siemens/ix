@@ -243,7 +243,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private handleInputKeyDown(e: KeyboardEvent) {
     handleSubmitOnEnterKeydown(
       e,
-      !this.suppressSubmitOnEnter,
+      this.suppressSubmitOnEnter,
       this.formInternals.form
     );
   }

@@ -194,16 +194,16 @@ function observeElementUntilVisible(
 
 export function handleSubmitOnEnterKeydown(
   e: KeyboardEvent,
-  submitOnEnter: boolean,
+  suppressSubmitOnEnter: boolean,
   form: HTMLFormElement | null | undefined
 ) {
-  if (!submitOnEnter || e.key !== 'Enter' || !form) {
+  if (suppressSubmitOnEnter || e.key !== 'Enter' || !form) {
     return;
   }
   e.preventDefault();
-  const submitButton = form.querySelector(
+  const submitButton = form.querySelector<HTMLElement>(
     'button[type="submit"], ix-button[type="submit"]'
-  ) as HTMLElement;
+  );
   if (submitButton) {
     form.requestSubmit(submitButton);
   } else {

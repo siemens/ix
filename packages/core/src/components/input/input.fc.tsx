@@ -119,7 +119,7 @@ export function InputElement(
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
       onKeyDown={(e) =>
-        handleSubmitOnEnterKeydown(e, !props.suppressSubmitOnEnter, props.form)
+        handleSubmitOnEnterKeydown(e, !!props.suppressSubmitOnEnter, props.form)
       }
     ></input>
   );

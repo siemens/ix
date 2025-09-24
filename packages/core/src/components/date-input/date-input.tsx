@@ -351,7 +351,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private handleInputKeyDown(e: KeyboardEvent) {
     handleSubmitOnEnterKeydown(
       e,
-      !this.suppressSubmitOnEnter,
+      this.suppressSubmitOnEnter,
       this.formInternals.form
     );
   }
