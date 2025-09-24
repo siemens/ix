@@ -7,8 +7,8 @@
 
 Multiple **ix-breadcrumb-item** properties have been renamed:
 
-`ghost` -> `subtlePrimary``
-`visible` -> `invisible``
-`showChevron` -> `hideChevron``
+`ghost` -> `subtlePrimary`
+`visible` -> `invisible`
+`showChevron` -> `hideChevron`
 
 All used to have a default value of `true`. They all default to `false` now.
