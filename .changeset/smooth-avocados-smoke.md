@@ -11,4 +11,4 @@ Multiple **ix-modal** boolean properties have been renamed:
 `backdrop` -> `hideBackdrop`
 `closeOnEscape` -> `disableEscapeClose`
 
-All used to have a deafult value of `true`. They all default to `false` now.
+All used to have a default value of `true`. They all default to `false` now.
