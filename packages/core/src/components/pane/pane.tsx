@@ -42,6 +42,7 @@ import type {
   SlotChangedEvent,
   VariantChangedEvent,
 } from './pane.types';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot header - Additional slot for the header content
@@ -644,8 +645,6 @@ export class Pane {
             this.isMobile &&
             !this.expanded &&
             !this.floating,
-          'box-shadow': this.floating,
-          'aria-expanded': this.expanded,
           'not-visible': this.hideOnCollapse && !this.expanded,
         }}
       >
@@ -657,6 +656,7 @@ export class Pane {
             'mobile-pane': this.isMobile,
             expanded: this.expanded,
           }}
+          aria-expanded={a11yBoolean(this.expanded)}
         >
           <div
             id="title-div"

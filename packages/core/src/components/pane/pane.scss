@@ -21,20 +21,24 @@
 :host(.floating-pane) {
   --ix-pane--background: var(--theme-pane-floating--background);
   --ix-pane--border-color: var(--theme-pane-floating--border-color);
+  --ix-pane--color: var(--theme-pane-floating--color);
+  --ix-pane--box-shadow: var(--theme-pane-floating--box-shadow);
 }
 
 :host(.inline-pane) {
   --ix-pane--background: var(--theme-pane-inline--background);
   --ix-pane--border-color: var(--theme-pane-inline--border-color);
   --ix-pane--color: var(--theme-pane-inline--color);
+  --ix-pane--box-shadow: var(--theme-pane-inline--box-shadow);
 }
 
 :host {
-  background-color: var(--ix-pane--background);
   display: flex;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  box-shadow: var(--ix-pane--box-shadow);
+  background-color: var(--ix-pane--background);
 
   @include component.ix-component;
 
@@ -178,7 +182,8 @@
   }
 
   .side-pane-content {
-    padding: var(--theme-space-1) var(--theme-space-2);
+    padding: var(--theme-space-1) var(--theme-space-2) var(--theme-space-3)
+      var(--theme-space-2);
     overflow: auto;
     height: 100%;
     width: 100%;
@@ -197,14 +202,6 @@
 
 :host(.not-visible) {
   display: none;
-}
-
-:host(.inline-pane) {
-  background-color: var(--ix-pane--background);
-}
-
-:host(.box-shadow) {
-  box-shadow: 0 0 1rem black;
 }
 
 :host(.nav-left-border) {
