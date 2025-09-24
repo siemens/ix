@@ -647,6 +647,7 @@ export class Pane {
             !this.floating,
           'not-visible': this.hideOnCollapse && !this.expanded,
         }}
+        aria-expanded={a11yBoolean(this.expanded)}
       >
         <aside
           id={`pane-${this.composition}`}
@@ -656,7 +657,6 @@ export class Pane {
             'mobile-pane': this.isMobile,
             expanded: this.expanded,
           }}
-          aria-expanded={a11yBoolean(this.expanded)}
         >
           <div
             id="title-div"
