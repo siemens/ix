@@ -105,16 +105,11 @@ function extractCommentTags(
 }
 
 function getCommentSummary(property: any): string {
-  if (property?.comment?.summary) {
-    return property.comment.summary
-      .filter((summary: any) => summary.kind === 'text')
-      .map((summary: any) => summary.text)
-      .join('');
-  }
+  const summary =
+    property?.comment?.summary ?? property?.signatures?.[0]?.comment?.summary;
 
-  // For methods, check the signature comment
-  if (property.signatures && property.signatures[0]?.comment?.summary) {
-    return property.signatures[0].comment.summary
+  if (summary) {
+    return summary
       .filter((summary: any) => summary.kind === 'text')
       .map((summary: any) => summary.text)
       .join('');
