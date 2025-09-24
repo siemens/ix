@@ -95,7 +95,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`
   <form onsubmit="globalThis.__formSubmitted = true; return false;">
-        <ix-input name="my-field-name"  suppress-submit-on-enter="true"></ix-input>
+        <ix-input name="my-field-name"  suppress-submit-on-enter></ix-input>
       </form>
     `);
     await page.evaluate(() => {
