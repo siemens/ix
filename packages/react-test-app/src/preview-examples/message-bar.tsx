@@ -17,7 +17,7 @@ export default () => {
       <div className="message-bar">
         <IxMessageBar persistent>Message text</IxMessageBar>
         <IxMessageBar persistent>Message text</IxMessageBar>
-        <IxMessageBar persistent type="danger">
+        <IxMessageBar persistent type="alarm">
           <div className="message-bar-danger">
             Message text <IxButton>Action</IxButton>
           </div>

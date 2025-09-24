@@ -5,4 +5,4 @@
 '@siemens/ix-vue': major
 ---
 
-Removed depreacted type value `danger` in **ix-message-bar**.
+Removed deprecated type value `danger` in **ix-message-bar**.
