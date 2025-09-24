@@ -5,6 +5,7 @@ on:
     branches:
       # Target release-x.x branches
       - 'release-*'
+      - '!release-3.3.0'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 

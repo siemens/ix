@@ -8124,7 +8124,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "Will be removed with 5.0.0, use ix-pane as successor"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -8138,6 +8143,7 @@
           "ix-spinner"
         ]
       },
+      "deprecation": "Will be removed with 5.0.0, use ix-pane as successor",
       "props": [
         {
           "name": "ariaLabelCloseButton",
@@ -18730,7 +18736,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "header - Additional slot for the header content"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -18747,6 +18758,32 @@
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelCollapseCloseButton",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "aria-label-collapse-close-button",
+          "reflectToAttr": false,
+          "docs": "ARIA label close or collapse button",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "ariaLabelIcon",
           "type": "string | undefined",
@@ -18785,6 +18822,35 @@
           "attr": "borderless",
           "reflectToAttr": false,
           "docs": "Toggle the border of the pane.\nDefaults to the borderless attribute of the pane layout. If used standalone it defaults to false.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "closeOnClickOutside",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "close-on-click-outside",
+          "reflectToAttr": false,
+          "docs": "If true, the pane will close when clicking outside of it",
           "docsTags": [
             {
               "name": "default",
@@ -19113,7 +19179,12 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "header",
+          "docs": "Additional slot for the header content"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
