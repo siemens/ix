@@ -100,3 +100,8 @@ $focusBorderWidth: 1px;
 :host(.selected:active) {
   background-color: var(--theme-color-ghost--selected-active);
 }
+
+:host([disabled]) {
+  pointer-events: none;
+  color: var(--theme-color-weak-text);
+}

@@ -125,11 +125,7 @@ import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-sec
 import InputDisabled from './preview-examples/input-disabled.vue';
 import InputLabel from './preview-examples/input-label.vue';
 import InputLegacyDisabled from './preview-examples/input-legacy-disabled.vue';
-import InputLegacyLabels from './preview-examples/input-legacy-labels.vue';
 import InputLegacyReadonly from './preview-examples/input-legacy-readonly.vue';
-import InputLegacySearch from './preview-examples/input-legacy-search.vue';
-import InputLegacyTypes from './preview-examples/input-legacy-types.vue';
-import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon.vue';
 import InputLegacy from './preview-examples/input-legacy.vue';
 import InputPattern from './preview-examples/input-pattern.vue';
 import InputReadonly from './preview-examples/input-readonly.vue';
@@ -342,11 +338,7 @@ const routes: any = {
     IconToggleButtonSecondaryOutline,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
   '/preview/input-legacy-disabled': InputLegacyDisabled,
-  '/preview/input-legacy-labels': InputLegacyLabels,
   '/preview/input-legacy-readonly': InputLegacyReadonly,
-  '/preview/input-legacy-search': InputLegacySearch,
-  '/preview/input-legacy-types': InputLegacyTypes,
-  '/preview/input-legacy-with-icon': InputLegacyWithIcon,
   '/preview/message-bar': MessageBar,
   '/preview/message-bar-removal': MessageBarRemoval,
   '/preview/pill': Pill,

@@ -73,13 +73,13 @@ export class BreadcrumbItem implements AnchorInterface {
   @Prop() rel?: string;
 
   /**@internal */
-  @Prop() ghost: boolean = true;
+  @Prop() subtlePrimary: boolean = false;
 
   /**@internal */
-  @Prop() visible = true;
+  @Prop() invisible = false;
 
   /**@internal */
-  @Prop() showChevron = true;
+  @Prop() hideChevron = false;
 
   /** @internal */
   @Prop() isDropdownTrigger = false;
@@ -112,7 +112,7 @@ export class BreadcrumbItem implements AnchorInterface {
 
   render() {
     const props: BaseButtonProps = {
-      variant: this.ghost ? 'tertiary' : 'subtle-primary',
+      variant: this.subtlePrimary ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
       iconOval: false,
       disabled: false,
@@ -132,14 +132,14 @@ export class BreadcrumbItem implements AnchorInterface {
       rel: this.rel,
     };
 
-    if (!this.visible) {
+    if (this.invisible) {
       return <Host class={'invisible'}></Host>;
     }
 
     return (
       <Host
         class={{
-          'hide-chevron': !this.showChevron,
+          'hide-chevron': this.hideChevron,
         }}
         onClick={() => this.itemClick.emit(this.label)}
       >
@@ -148,13 +148,13 @@ export class BreadcrumbItem implements AnchorInterface {
             {...props}
             afterContent={
               <Fragment>
-                {this.showChevron ? (
+                {!this.hideChevron && (
                   <ix-icon
                     name={iconChevronRightSmall}
                     size="16"
                     class={'chevron'}
                   ></ix-icon>
-                ) : null}
+                )}
               </Fragment>
             }
           >

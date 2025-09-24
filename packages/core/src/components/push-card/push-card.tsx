@@ -49,9 +49,9 @@ export class PushCard {
   @Prop() variant: PushCardVariant = 'outline';
 
   /**
-   * Collapse the card
+   * Expand the card
    */
-  @Prop() collapse: boolean = true;
+  @Prop() expanded: boolean = false;
 
   render() {
     return (
@@ -75,7 +75,7 @@ export class PushCard {
             <ix-typography format="h4">{this.heading}</ix-typography>
             <ix-typography>{this.subheading}</ix-typography>
           </ix-card-content>
-          <ix-card-accordion collapse={this.collapse}>
+          <ix-card-accordion collapse={!this.expanded}>
             <slot></slot>
           </ix-card-accordion>
         </ix-card>

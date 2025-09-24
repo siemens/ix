@@ -513,7 +513,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             minuteInterval={this.minuteInterval}
             secondInterval={this.secondInterval}
             millisecondInterval={this.millisecondInterval}
-            standaloneAppearance={false}
+            embedded
             i18nConfirmTime={this.i18nSelectTime}
             i18nHeader={this.i18nTime}
             i18nHourColumnHeader={this.i18nHourColumnHeader}
