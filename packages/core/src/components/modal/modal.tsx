@@ -40,14 +40,14 @@ export class Modal {
   @Prop() size: IxModalSize = '360';
 
   /**
-   * Should the modal be animated
+   * Should the modal animation be disabled
    */
-  @Prop() animation = true;
+  @Prop() disableAnimation = false;
 
   /**
-   * Show a backdrop behind the modal dialog
+   * Hide the backdrop behind the modal dialog
    */
-  @Prop() backdrop = true;
+  @Prop() hideBackdrop = false;
 
   /**
    * Dismiss modal on backdrop click
@@ -60,7 +60,7 @@ export class Modal {
    * - Return `true` to proceed in dismissing the modal
    * - Return `false` to abort in dismissing the modal
    */
-  @Prop() beforeDismiss?: (reason?: any) => boolean | Promise<boolean>;
+  @Prop() beforeDismiss?: (reason?: unknown) => boolean | Promise<boolean>;
 
   /**
    * Centered modal
@@ -68,9 +68,9 @@ export class Modal {
   @Prop() centered = false;
 
   /**
-   * If set to true the modal can be closed by pressing the Escape key
+   * If set to true the modal cannot be closed by pressing the Escape key
    */
-  @Prop() closeOnEscape = true;
+  @Prop() disableEscapeClose = false;
 
   /**
    * Dialog close
@@ -84,7 +84,7 @@ export class Modal {
 
   @State() modalVisible = false;
 
-  @OnListener<Modal>('keydown', (self) => !self.closeOnEscape)
+  @OnListener<Modal>('keydown', (self) => self.disableEscapeClose)
   onKey(e: KeyboardEvent) {
     if (e.key === 'Escape') {
       e.preventDefault();
@@ -96,7 +96,7 @@ export class Modal {
   }
 
   private slideInModal() {
-    const duration = this.animation ? Animation.mediumTime : 0;
+    const duration = this.disableAnimation ? 0 : Animation.mediumTime;
     const translateY = this.centered ? ['-90%', '-50%'] : [0, 40];
 
     animate(this.dialog!, {
@@ -109,7 +109,7 @@ export class Modal {
   }
 
   private slideOutModal(completeCallback: Function) {
-    const duration = this.animation ? Animation.mediumTime : 0;
+    const duration = this.disableAnimation ? 0 : Animation.mediumTime;
     const translateY = this.centered ? ['-50%', '-90%'] : [40, 0];
 
     animate(this.dialog!, {
@@ -175,7 +175,7 @@ export class Modal {
    * Dismiss the dialog
    */
   @Method()
-  async dismissModal<T = any>(reason?: T) {
+  async dismissModal<T = unknown>(reason?: T) {
     if (!this.modalVisible) {
       return;
     }
@@ -210,7 +210,7 @@ export class Modal {
    * Close the dialog
    */
   @Method()
-  async closeModal<T = any>(reason: T) {
+  async closeModal<T = unknown>(reason: T) {
     if (!this.modalVisible) {
       return;
     }
@@ -245,7 +245,7 @@ export class Modal {
       <Host
         class={{
           visible: this.modalVisible,
-          'no-backdrop': this.backdrop === false,
+          'no-backdrop': this.hideBackdrop,
           'align-center': this.centered,
         }}
       >

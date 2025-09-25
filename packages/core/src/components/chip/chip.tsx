@@ -41,10 +41,10 @@ export class Chip {
     | 'custom' = 'primary';
 
   /**
-   * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation)
+   * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation)
    * will be possible and also the close button will not be present.
    */
-  @Prop() active = true;
+  @Prop() inactive = false;
 
   /**
    * Show close icon
@@ -140,8 +140,6 @@ export class Chip {
   }
 
   render() {
-    const isInactive = this.active === false;
-
     let customStyle = {};
 
     if (this.variant === 'custom') {
@@ -155,7 +153,7 @@ export class Chip {
       <Host
         tabIndex="-1"
         class={{
-          inactive: isInactive,
+          inactive: this.inactive,
         }}
         style={
           this.variant === 'custom'
@@ -171,7 +169,7 @@ export class Chip {
           class={{
             container: true,
             outline: this.outline,
-            inactive: isInactive,
+            inactive: this.inactive,
             alarm: this.variant === 'alarm',
             critical: this.variant === 'critical',
             info: this.variant === 'info',
@@ -204,7 +202,7 @@ export class Chip {
               <slot></slot>
             </span>
           </div>
-          {isInactive === false && this.closable ? this.getCloseButton() : null}
+          {this.inactive === false && this.closable && this.getCloseButton()}
         </div>
         {this.getTooltip()}
       </Host>

@@ -18,7 +18,7 @@ export interface IxDatePickerComponent {
   /**
    * Annotate with @Prop() decorator
    */
-  range: boolean;
+  singleSelection: boolean;
 
   /**
    * Annotate with @Prop() decorator

@@ -13,7 +13,7 @@ import { test } from '@utils/test';
 test.describe('ix-message-bar', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-message-bar type="danger" dismissible>Content</ix-message-bar>`
+      `<ix-message-bar type="danger" persistent="false">Content</ix-message-bar>`
     );
   });
 

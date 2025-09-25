@@ -15,9 +15,9 @@ export default () => {
   return (
     <>
       <div className="message-bar">
-        <IxMessageBar dismissible={false}>Message text</IxMessageBar>
-        <IxMessageBar dismissible={false} type="warning">Message text</IxMessageBar>
-        <IxMessageBar dismissible={false} type="danger">
+        <IxMessageBar persistent>Message text</IxMessageBar>
+        <IxMessageBar persistent>Message text</IxMessageBar>
+        <IxMessageBar persistent type="alarm">
           <div className="message-bar-danger">
             Message text <IxButton>Action</IxButton>
           </div>
