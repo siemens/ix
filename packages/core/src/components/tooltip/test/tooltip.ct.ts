@@ -340,7 +340,7 @@ regressionTest.describe('handles multiple references', () => {
       expect(arrowLeftStyle).toContain('px');
     }
   );
-  regressionTest.only(
+  regressionTest(
     'arrow position for bottom placement',
     async ({ mount, page }) => {
       await mount(`
