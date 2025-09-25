@@ -71,20 +71,19 @@ export class Pagination {
   @Prop({ mutable: true }) selectedPage = 0;
 
   /**
-   * i18n
+   * i18n label for 'Page'
    */
-  @Prop() i18nPage = 'Page';
+  @Prop({ attribute: 'i18n-page' }) i18nPage = 'Page';
 
   /**
-   * i18n
+   * i18n label for 'of'
    */
-  @Prop() i18nOf = 'of';
+  @Prop({ attribute: 'i18n-of' }) i18nOf = 'of';
 
   /**
-  /**
-   * i18n
+   * i18n label for 'Items'
    */
-  @Prop() i18nItems = 'Items';
+  @Prop({ attribute: 'i18n-items' }) i18nItems = 'Items';
 
   /**
    * ARIA label for the chevron left icon button
