@@ -21,9 +21,7 @@ class ThemeSwitcher {
   readonly suffixDark = '-dark';
   readonly defaultTheme = 'theme-classic-dark';
 
-  mutationObserverDocumentElement?: MutationObserver;
-  mutationObserverBody?: MutationObserver;
-  mutationObserverData?: MutationObserver;
+  mutationObserver?: MutationObserver;
   _themeChanged = new TypedEvent<string>();
   _schemaChanged = new TypedEvent<string>();
 
@@ -48,19 +46,11 @@ class ThemeSwitcher {
     );
   }
 
-  public setTheme(
-    themeName: string,
-    systemAppearance = false,
-    /**
-     * @deprecated In v4 setTheme will always target the document.
-     * TODO: IX-3024
-     */
-    target = document.body
-  ) {
+  public setTheme(themeName: string, systemAppearance = false) {
     if (this.isThemeClass(themeName)) {
-      this.replaceBodyThemeClass(themeName);
+      this.replaceThemeClass(themeName);
     } else {
-      target.setAttribute(dataIxTheme, themeName);
+      document.documentElement.setAttribute(dataIxTheme, themeName);
     }
 
     if (systemAppearance) {
@@ -69,26 +59,22 @@ class ThemeSwitcher {
     }
   }
 
-  private replaceBodyThemeClass(themeName: string) {
+  private replaceThemeClass(themeName: string) {
     const oldThemes: string[] = [];
-    Array.from(document.body.classList)
+    Array.from(document.documentElement.classList)
       .filter((className) => className && this.isThemeClass(className))
       .forEach((className) => {
         oldThemes.push(className);
       });
 
-    document.body.classList.remove(...oldThemes);
-    document.body.classList.add(themeName);
+    document.documentElement.classList.remove(...oldThemes);
+    document.documentElement.classList.add(themeName);
   }
 
   public toggleMode() {
-    const elements = [document.body, document.documentElement];
-    const elementWithSchema = elements.find((el) =>
-      this.getDataColorSchema(el)
-    );
-    if (elementWithSchema) {
-      const currentSchema = this.getDataColorSchema(elementWithSchema)!;
-      elementWithSchema.setAttribute(
+    if (document.documentElement.hasAttribute(dataIxColorSchema)) {
+      const currentSchema = this.getDataColorSchema(document.documentElement)!;
+      document.documentElement.setAttribute(
         dataIxColorSchema,
         currentSchema === 'dark' ? 'light' : 'dark'
       );
@@ -96,19 +82,21 @@ class ThemeSwitcher {
     }
 
     const oldThemes: string[] = [];
-    Array.from(document.body.classList)
+    Array.from(document.documentElement.classList)
       .filter((className) => className && this.isThemeClass(className))
       .forEach((className) => {
         oldThemes.push(className);
       });
 
     if (oldThemes.length === 0) {
-      document.body.classList.add(this.getOppositeMode(this.defaultTheme));
+      document.documentElement.classList.add(
+        this.getOppositeMode(this.defaultTheme)
+      );
       return;
     }
 
     oldThemes.forEach((themeName) => {
-      document.body.classList.replace(
+      document.documentElement.classList.replace(
         themeName,
         this.getOppositeMode(themeName)
       );
@@ -121,46 +109,40 @@ class ThemeSwitcher {
 
   public getCurrentTheme() {
     return (
-      Array.from(document.body.classList).find((className) =>
+      Array.from(document.documentElement.classList).find((className) =>
         this.isThemeClass(className)
       ) ??
       `theme-${
-        document.body.getAttribute(dataIxTheme) ||
-        document.documentElement.getAttribute(dataIxTheme) ||
-        'classic'
+        document.documentElement.getAttribute(dataIxTheme) || 'classic'
       }-${
-        document.body.getAttribute(dataIxColorSchema) ||
         document.documentElement.getAttribute(dataIxColorSchema) ||
         getCurrentSystemAppearance()
       }`
     );
   }
 
-  public setVariant(
-    variant: ThemeVariant = getCurrentSystemAppearance(),
-    target = document.body
-  ) {
-    if (this.getDataColorSchema(target)) {
-      target.setAttribute(dataIxColorSchema, variant);
+  public setVariant(variant: ThemeVariant = getCurrentSystemAppearance()) {
+    if (this.getDataColorSchema(document.documentElement)) {
+      document.documentElement.setAttribute(dataIxColorSchema, variant);
       return;
     }
 
     const currentTheme = this.getCurrentTheme();
-    document.body.classList.remove(currentTheme);
+    document.documentElement.classList.remove(currentTheme);
 
     if (currentTheme.endsWith(this.suffixDark)) {
-      document.body.classList.add(
+      document.documentElement.classList.add(
         currentTheme.replace(/-dark$/g, `-${variant}`)
       );
     }
 
     if (currentTheme.endsWith(this.suffixLight)) {
-      document.body.classList.add(
+      document.documentElement.classList.add(
         currentTheme.replace(/-light$/g, `-${variant}`)
       );
     }
 
-    target.setAttribute(dataIxColorSchema, variant);
+    document.documentElement.setAttribute(dataIxColorSchema, variant);
   }
 
   private getOppositeMode(themeName: string) {
@@ -244,16 +226,11 @@ class ThemeSwitcher {
       this.handleDataMutations(dataMutations);
     };
 
-    this.mutationObserverDocumentElement = new MutationObserver(
-      handleMutations
-    );
-    this.mutationObserverDocumentElement.observe(
+    this.mutationObserver = new MutationObserver(handleMutations);
+    this.mutationObserver.observe(
       document.documentElement,
       mutationObserverConfig
     );
-
-    this.mutationObserverBody = new MutationObserver(handleMutations);
-    this.mutationObserverBody.observe(document.body, mutationObserverConfig);
   }
 
   public constructor() {
