@@ -9,11 +9,11 @@
 @use './fonts';
 @use './validation/form-component';
 
-@mixin element-input($feature-read-only: true) {
+@mixin element-input($feature-read-only: true, $padding: 0.25rem 0.5rem) {
   & {
     min-height: 2rem;
     width: auto;
-    padding: 0.25rem 0.5rem;
+    padding: $padding;
     background-color: var(--theme-input--background);
     color: var(--theme-input--color);
     appearance: textfield;
