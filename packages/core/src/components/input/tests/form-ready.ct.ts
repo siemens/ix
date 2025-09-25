@@ -33,8 +33,8 @@ regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
 const inputTags = [
   { tag: 'ix-input', fill: 'abc' },
   { tag: 'ix-number-input', fill: '123' },
-  { tag: 'ix-date-input', fill: '2025-09-25' }, // ISO date format
-  { tag: 'ix-time-input', fill: '12:34' }, // HH:mm format
+  { tag: 'ix-date-input', fill: '2025-09-25' },
+  { tag: 'ix-time-input', fill: '13:45:30' },
 ];
 
 for (const { tag, fill } of inputTags) {
