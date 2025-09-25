@@ -35,7 +35,7 @@ type ArrowPosition = {
   top?: string;
   left?: string;
   right?: string;
-  bottom?:string;
+  bottom?: string;
 };
 
 const numberToPixel = (value?: number | null) =>
@@ -172,7 +172,7 @@ export class Tooltip {
       return {
         ...resetPosition,
         left: numberToPixel(x),
-        bottom:numberToPixel(-6),
+        bottom: numberToPixel(-6),
       };
     }
 
