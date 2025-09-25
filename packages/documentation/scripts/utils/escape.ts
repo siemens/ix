@@ -32,6 +32,14 @@ export function escapeMarkdown(markdown: string) {
   return replacedMarkdown;
 }
 
+export function removeTypescriptHeaderComments(str: string) {
+  return str.replace(/\/\*[\s\S]*?\*\//g, '');
+}
+
+export function removeHTMLComments(str: string) {
+  return str.replace(/<!--[\s\S]*?-->/g, '');
+}
+
 export function parseJSDocsToMarkdown(str: string) {
   const linkRegex = /{\@link (.*?)}/g;
   const markdown = str.replace(linkRegex, (_, url) => {
