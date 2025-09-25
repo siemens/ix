@@ -11,7 +11,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
-    <ix-flip-tile state="none">
+    <ix-flip-tile variant="none">
       <div slot="header">Flip header</div>
       <div slot="footer">
         Some footer content
@@ -35,7 +35,7 @@ regressionTest('renders', async ({ mount, page }) => {
 
 regressionTest('should change content', async ({ mount, page }) => {
   await mount(`
-    <ix-flip-tile state="none">
+    <ix-flip-tile variant="none">
       <div slot="header">Flip header</div>
       <div slot="footer">
         Some footer content

@@ -42,6 +42,7 @@ import type {
   SlotChangedEvent,
   VariantChangedEvent,
 } from './pane.types';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot header - Additional slot for the header content
@@ -617,7 +618,8 @@ export class Pane {
     return (
       <Host
         class={{
-          'inline-color': !this.floating,
+          'floating-pane': this.floating,
+          'inline-pane': !this.floating,
           'mobile-overlay': this.expanded && this.isMobile,
           'top-expanded': this.expanded && this.isMobileTop && this.isMobile,
           'bottom-expanded':
@@ -643,10 +645,9 @@ export class Pane {
             this.isMobile &&
             !this.expanded &&
             !this.floating,
-          'box-shadow': this.floating,
-          'aria-expanded': this.expanded,
           'not-visible': this.hideOnCollapse && !this.expanded,
         }}
+        aria-expanded={a11yBoolean(this.expanded)}
       >
         <aside
           id={`pane-${this.composition}`}
@@ -699,6 +700,7 @@ export class Pane {
             >
               {this.icon && (
                 <ix-icon
+                  class="pane-icon"
                   size="24"
                   name={this.icon}
                   aria-label={this.ariaLabelIcon}

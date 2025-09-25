@@ -6,20 +6,31 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
-import { makeArgTypes } from './utils/generic-render';
-import { html } from 'lit';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
+import { genericRender, makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxSlider;
 
 const meta = {
   title: 'Example/Slider',
   tags: [],
-  render: () => {
-    return html`<ix-slider min="0" max="10" count="10"></ix-slider>`;
+  render: (args) => {
+    const container = genericRender('ix-slider', args);
+
+    const slider = container.querySelector('ix-slider') as HTMLIxSliderElement;
+    slider.marker = args.marker;
+
+    return container;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-slider'),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-slider', {
+    marker: {
+      control: 'object',
+    },
+  }),
+  args: {
+    value: 25,
+  },
   parameters: {
     design: {
       type: 'figma',
@@ -33,3 +44,35 @@ type Story = StoryObj<Element>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {};
+
+export const Reference: Story = {
+  args: {
+    traceReference: 50,
+    trace: true,
+  },
+};
+
+export const Marker: Story = {
+  args: {
+    marker: [0, 25, 50, 75, 100],
+  },
+};
+
+export const MarkerWithReference: Story = {
+  args: {
+    value: 15,
+    traceReference: 50,
+    trace: true,
+    marker: [0, 25, 50, 75, 100],
+  },
+};
+
+export const LegacyError: Story = {
+  args: {
+    error: 'Some error message',
+    value: 10,
+    traceReference: 50,
+    trace: true,
+    marker: [0, 25, 50, 75, 100],
+  },
+};

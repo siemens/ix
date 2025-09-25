@@ -297,20 +297,17 @@ export const WindowControls: OverflowStory = {
     other.style.gap = '0.5rem';
 
     let button = document.createElement('ix-icon-button');
-    button.variant = 'secondary';
-    button.ghost = true;
+    button.variant = 'subtle-tertiary';
     button.icon = 'minus';
     other.appendChild(button);
 
     button = document.createElement('ix-icon-button');
-    button.variant = 'secondary';
-    button.ghost = true;
+    button.variant = 'subtle-tertiary';
     button.icon = 'editor-grid-none';
     other.appendChild(button);
 
     button = document.createElement('ix-icon-button');
-    button.variant = 'secondary';
-    button.ghost = true;
+    button.variant = 'subtle-tertiary';
     button.icon = 'close';
     other.appendChild(button);
 

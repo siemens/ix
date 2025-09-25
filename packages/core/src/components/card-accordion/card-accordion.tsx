@@ -10,7 +10,10 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import type { CardAccordionExpandChangeEvent } from './card-accordion.types';
+import type {
+  CardAccordionExpandChangeEvent,
+  CardAccordionVariant,
+} from './card-accordion.types';
 
 let accordionControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
@@ -35,6 +38,13 @@ export class CardAccordion {
    * Collapse the card
    */
   @Prop() collapse = false;
+
+  /**
+   * Show accordion with different color variants
+   *
+   * @since 4.0.0
+   */
+  @Prop() variant: CardAccordionVariant = 'outline';
 
   @Element() hostElement!: HTMLIxCardAccordionElement;
 
@@ -85,7 +95,12 @@ export class CardAccordion {
 
   render() {
     return (
-      <Host slot="card-accordion">
+      <Host
+        slot="card-accordion"
+        class={{
+          [`variant-${this.variant}`]: true,
+        }}
+      >
         <button
           tabIndex={0}
           class={{ 'expand-action': true, show: this.expandContent }}

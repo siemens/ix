@@ -12,9 +12,9 @@ import { ArgTypes } from '@storybook/web-components';
 import type { JsonDocsProp } from '@stencil/core/internal';
 
 export type GenericArgs<A = Record<string, any>> = {
-  styles: Partial<CSSStyleDeclaration>;
-  defaultSlot: string;
-  previewWidth: string;
+  styles?: Partial<CSSStyleDeclaration>;
+  defaultSlot?: string;
+  previewWidth?: string;
 } & A;
 
 export type GenericRenderComponent<T, A> = T & GenericArgs<A>;
