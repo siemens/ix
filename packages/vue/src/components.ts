@@ -185,7 +185,7 @@ export const IxBlind: StencilVueComponent<JSX.IxBlind> = /*@__PURE__*/ defineCon
 export const IxBreadcrumb: StencilVueComponent<JSX.IxBreadcrumb> = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-breadcrumb', defineIxBreadcrumb, [
   'visibleItemCount',
   'nextItems',
-  'subtlePrimary',
+  'subtle',
   'ariaLabelPreviousButton',
   'itemClick',
   'nextClick'
@@ -202,7 +202,7 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
   'href',
   'target',
   'rel',
-  'subtlePrimary',
+  'subtle',
   'invisible',
   'hideChevron',
   'isDropdownTrigger',

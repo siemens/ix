@@ -73,7 +73,7 @@ export class BreadcrumbItem implements AnchorInterface {
   @Prop() rel?: string;
 
   /**@internal */
-  @Prop() subtlePrimary: boolean = false;
+  @Prop() subtle: boolean = false;
 
   /**@internal */
   @Prop() invisible = false;
@@ -112,7 +112,7 @@ export class BreadcrumbItem implements AnchorInterface {
 
   render() {
     const props: BaseButtonProps = {
-      variant: this.subtlePrimary ? 'subtle-primary' : 'tertiary',
+      variant: this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
       iconOval: false,
       disabled: false,

@@ -165,14 +165,14 @@ export declare interface IxBlind extends Components.IxBlind {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelPreviousButton', 'nextItems', 'subtlePrimary', 'visibleItemCount']
+  inputs: ['ariaLabelPreviousButton', 'nextItems', 'subtle', 'visibleItemCount']
 })
 @Component({
   selector: 'ix-breadcrumb',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelPreviousButton', 'nextItems', 'subtlePrimary', 'visibleItemCount'],
+  inputs: ['ariaLabelPreviousButton', 'nextItems', 'subtle', 'visibleItemCount'],
   outputs: ['itemClick', 'nextClick'],
   standalone: false
 })

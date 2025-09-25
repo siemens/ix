@@ -5,4 +5,4 @@
 '@siemens/ix-vue': major
 ---
 
-Renamed property `ghost` to `subtlePrimary` and changed default value from `true` to `false` in **ix-breadcrumb**.
+Renamed property `ghost` to `subtle` and changed default value from `true` to `false` in **ix-breadcrumb**.

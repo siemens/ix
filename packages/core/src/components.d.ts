@@ -326,7 +326,7 @@ export namespace Components {
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
           * @default false
          */
-        "subtlePrimary": boolean;
+        "subtle": boolean;
         /**
           * Excess items will get hidden inside of dropdown
           * @default 9
@@ -372,7 +372,7 @@ export namespace Components {
         /**
           * @default false
          */
-        "subtlePrimary": boolean;
+        "subtle": boolean;
         /**
           * Specifies where to open the linked document when href is provided.
           * @since 4.0.0
@@ -6111,7 +6111,7 @@ declare namespace LocalJSX {
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
           * @default false
          */
-        "subtlePrimary"?: boolean;
+        "subtle"?: boolean;
         /**
           * Excess items will get hidden inside of dropdown
           * @default 9
@@ -6158,7 +6158,7 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
-        "subtlePrimary"?: boolean;
+        "subtle"?: boolean;
         /**
           * Specifies where to open the linked document when href is provided.
           * @since 4.0.0

@@ -1730,7 +1730,7 @@
           "setter": false
         },
         {
-          "name": "subtlePrimary",
+          "name": "subtle",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -1738,7 +1738,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "subtle-primary",
+          "attr": "subtle",
           "reflectToAttr": false,
           "docs": "Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)",
           "docsTags": [

@@ -53,7 +53,7 @@ export class Breadcrumb {
   /**
    * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
    */
-  @Prop() subtlePrimary = false;
+  @Prop() subtle = false;
 
   /**
    * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list
@@ -112,7 +112,7 @@ export class Breadcrumb {
       const shouldShowDropdown =
         this.nextItems.length !== 0 && updatedItems.length - 1 === index;
 
-      bc.subtlePrimary = this.subtlePrimary;
+      bc.subtle = this.subtle;
       bc.hideChevron = updatedItems.length - 1 !== index || !shouldShowDropdown;
       bc.isDropdownTrigger = shouldShowDropdown;
 

@@ -234,7 +234,7 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
     properties: {
         visibleItemCount: 'visible-item-count',
         nextItems: 'next-items',
-        subtlePrimary: 'subtle-primary',
+        subtle: 'subtle',
         ariaLabelPreviousButton: 'aria-label-previous-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -253,7 +253,7 @@ export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, Ix
         href: 'href',
         target: 'target',
         rel: 'rel',
-        subtlePrimary: 'subtle-primary',
+        subtle: 'subtle',
         invisible: 'invisible',
         hideChevron: 'hide-chevron',
         isDropdownTrigger: 'is-dropdown-trigger'

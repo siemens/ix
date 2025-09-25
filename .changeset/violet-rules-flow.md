@@ -7,7 +7,7 @@
 
 Multiple **ix-breadcrumb-item** properties have been renamed:
 
-`ghost` -> `subtlePrimary`
+`ghost` -> `subtle`
 `visible` -> `invisible`
 `showChevron` -> `hideChevron`
 
