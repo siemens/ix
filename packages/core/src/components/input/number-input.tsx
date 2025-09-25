@@ -166,11 +166,17 @@ export class NumberInput implements IxInputFieldComponent<number> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
+   */
+  @Event({ cancelable: true }) ixChange!: EventEmitter<number>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
+  @State() tempValue: string = '';
 
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
@@ -208,6 +214,30 @@ export class NumberInput implements IxInputFieldComponent<number> {
       this.inputRef.current
     );
   }
+
+  private readonly handleInputChange = () => {
+    const input = this.inputRef.current;
+    if (!input) return;
+    this.tempValue = input.value;
+  };
+
+  private readonly handleInputCommit = () => {
+    const newValue = this.tempValue === '' ? 0 : Number(this.tempValue);
+    if (newValue !== this.value) {
+      const event = this.ixChange.emit(newValue);
+      if (!event.defaultPrevented) {
+        this.value = newValue;
+        this.updateFormInternalValue(newValue);
+        this.valueChange.emit(newValue);
+      } else {
+        // revert tempValue to actual value
+        this.tempValue = this.value.toString();
+        if (this.inputRef.current) {
+          this.inputRef.current.value = this.value.toString();
+        }
+      }
+    }
+  };
 
   updateFormInternalValue(value: number) {
     this.formInternals.setFormValue(value.toString());
@@ -307,17 +337,29 @@ export class NumberInput implements IxInputFieldComponent<number> {
               type={'number'}
               isInvalid={this.isInvalid}
               required={this.required}
-              value={this.value}
+              valueType="number"
+              value={
+                this.tempValue !== '' ? this.tempValue : this.value.toString()
+              }
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
-              valueChange={(value) => this.valueChange.emit(Number(value))}
-              updateFormInternalValue={(value) =>
-                this.updateFormInternalValue(Number(value))
-              }
+              valueChange={(value) => {
+                this.tempValue = value;
+              }}
+              updateFormInternalValue={(value) => {
+                this.tempValue = value;
+              }}
               onBlur={() => {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
+                this.handleInputCommit();
+              }}
+              onChange={this.handleInputChange}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  this.handleInputCommit();
+                }
               }}
             ></InputElement>
             <SlotEnd

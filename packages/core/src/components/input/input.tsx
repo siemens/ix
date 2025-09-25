@@ -161,12 +161,17 @@ export class Input implements IxInputFieldComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the input value with any change is committed (e.g., on blur or enter key)
+   */
+  @Event({ cancelable: true }) ixChange!: EventEmitter<string>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
-
+  @State() tempValue: string = '';
   @State() inputType = 'text';
 
   private readonly inputRef = makeRef<HTMLInputElement>();
@@ -207,6 +212,30 @@ export class Input implements IxInputFieldComponent<string> {
       this.inputRef.current
     );
   }
+
+  private readonly handleInputChange = () => {
+    const input = this.inputRef.current;
+    const newValue = input?.value;
+    if (!input || newValue === undefined) return;
+    this.tempValue = newValue;
+  };
+
+  private readonly handleInputCommit = () => {
+    if (this.tempValue !== this.value) {
+      const event = this.ixChange.emit(this.tempValue);
+      if (!event.defaultPrevented) {
+        this.value = this.tempValue;
+        this.valueChange.emit(this.tempValue);
+        this.updateFormInternalValue(this.tempValue);
+      } else {
+        // revert tempValue to actual value
+        this.tempValue = this.value;
+        if (this.inputRef.current) {
+          this.inputRef.current.value = this.value;
+        }
+      }
+    }
+  };
 
   disconnectedCallback(): void {
     this.disposableChangesAndVisibilityObservers?.();
@@ -303,19 +332,29 @@ export class Input implements IxInputFieldComponent<string> {
               type={this.inputType}
               isInvalid={this.isInvalid}
               required={this.required}
-              value={this.value}
+              valueType="string"
+              value={this.tempValue !== '' ? this.tempValue : this.value}
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
-              valueChange={(value) => this.valueChange.emit(value)}
-              updateFormInternalValue={(value) =>
-                this.updateFormInternalValue(value)
-              }
+              valueChange={(value) => {
+                this.tempValue = value;
+              }}
+              updateFormInternalValue={(value) => {
+                this.tempValue = value;
+              }}
               onBlur={() => {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
+                this.handleInputCommit();
               }}
               ariaAttributes={inputAria}
+              onChange={this.handleInputChange}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  this.handleInputCommit();
+                }
+              }}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

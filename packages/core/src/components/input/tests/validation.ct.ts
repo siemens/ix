@@ -39,6 +39,80 @@ test.describe('validation', () => {
 
       await expect(input).toHaveClass(/ix-invalid/);
     });
+
+    test('ix-change event should log to console on blur', async ({
+      mount,
+      page,
+    }) => {
+      await mount('<ix-input></ix-input>');
+
+      const input = page.locator('ix-input');
+      const shadowDomInput = input.locator('input');
+
+      await page.evaluate(() => {
+        (window as any)['ixChangeFired'] = false;
+        const ixInput = document.querySelector('ix-input');
+        if (ixInput) {
+          ixInput.addEventListener('ixChange', () => {
+            (window as any)['ixChangeFired'] = true;
+          });
+        }
+      });
+
+      await shadowDomInput.fill('blur value');
+      await shadowDomInput.blur();
+
+      // Wait for the event to be captured
+      await page
+        .waitForFunction(
+          () => (window as any)['ixChangeFired'] === true,
+          null,
+          { timeout: 1000 }
+        )
+        .catch(() => {});
+      const eventFired = await page.evaluate(
+        () => (window as any)['ixChangeFired']
+      );
+      expect(eventFired).toBe(true);
+    });
+
+    test('ix-change event should log to console on enter keydown', async ({
+      mount,
+      page,
+    }) => {
+      await mount('<ix-input></ix-input>');
+
+      const input = page.locator('ix-input');
+      const shadowDomInput = input.locator('input');
+
+      // Set a flag on window when the event is fired
+      await page.evaluate(() => {
+        (window as any)['ixChangeFired'] = false;
+        const ixInput = document.querySelector('ix-input');
+        if (ixInput) {
+          ixInput.addEventListener('ixChange', () => {
+            (window as any)['ixChangeFired'] = true;
+          });
+        }
+      });
+
+      await shadowDomInput.focus();
+      await shadowDomInput.fill('enter value');
+      await shadowDomInput.press('Enter');
+
+      // Wait for the event to be captured
+      await page
+        .waitForFunction(
+          () => (window as any)['ixChangeFired'] === true,
+          null,
+          { timeout: 1000 }
+        )
+        .catch(() => {});
+      const eventFired = await page.evaluate(
+        () => (window as any)['ixChangeFired']
+      );
+      expect(eventFired).toBe(true);
+    });
   });
 
   test.describe('ix-number-input', () => {

@@ -9,6 +9,7 @@
 import { h, FunctionalComponent } from '@stencil/core';
 import { MakeRef } from '../utils/make-ref';
 import { A11yAttributes } from '../utils/a11y';
+import { handleEnterKey } from './input.util';
 
 export function TextareaElement(
   props: Readonly<{
@@ -30,6 +31,7 @@ export function TextareaElement(
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
     ariaAttributes?: A11yAttributes;
+    onChange: () => void;
   }>
 ) {
   return (
@@ -59,6 +61,7 @@ export function TextareaElement(
         width: props.textareaWidth,
       }}
       {...props.ariaAttributes}
+      onChange={() => props.onChange()}
     ></textarea>
   );
 }
@@ -77,14 +80,17 @@ export function InputElement(
     type: string;
     isInvalid: boolean;
     required: boolean;
+    valueType?: 'string' | 'number';
     value: string | number;
     placeholder?: string;
     inputRef: (el: HTMLInputElement | undefined) => void;
     onKeyPress: (event: KeyboardEvent) => void;
+    onKeyDown?: (event: KeyboardEvent) => void;
     valueChange: (value: string) => void;
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
     ariaAttributes?: A11yAttributes;
+    onChange: () => void;
   }>
 ) {
   return (
@@ -115,6 +121,24 @@ export function InputElement(
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
+      onChange={() => props.onChange()}
+      onKeyDown={
+        props.onKeyDown ??
+        ((e) => {
+          if (e.key === 'Enter') {
+            const input = e.target as HTMLInputElement;
+            const currentValue = input.value;
+            const hasChanged = handleEnterKey(
+              currentValue,
+              props.value,
+              props.valueType ?? 'string'
+            );
+            if (hasChanged) {
+              props.onChange();
+            }
+          }
+        })
+      }
     ></input>
   );
 }
