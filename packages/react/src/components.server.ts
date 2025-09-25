@@ -346,8 +346,8 @@ export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEven
         showAllCount: 'show-all-count',
         suppressOverflowHandling: 'suppress-overflow-handling',
         hideShowAll: 'hide-show-all',
-        i18nShowAll: 'i-1-8n-show-all',
-        i18nMoreCards: 'i-1-8n-more-cards'
+        i18nShowAll: 'i18n-show-all',
+        i18nMoreCards: 'i18n-more-cards'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxCardList as ReactWebComponent<IxCardListElement, IxCardListEvents>,
@@ -387,7 +387,7 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
         repeatCategories: 'repeat-categories',
         tmpDisableScrollIntoView: 'tmp-disable-scroll-into-view',
         labelCategories: 'label-categories',
-        i18nPlainText: 'i-1-8n-plain-text',
+        i18nPlainText: 'i18n-plain-text',
         ariaLabelResetButton: 'aria-label-reset-button',
         ariaLabelOperatorButton: 'aria-label-operator-button',
         ariaLabelFilterInput: 'aria-label-filter-input'
@@ -640,7 +640,7 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
         showTimeReference: 'show-time-reference',
         timeReference: 'time-reference',
         i18nDone: 'i18n-done',
-        i18nTime: 'i-1-8n-time',
+        i18nTime: 'i18n-time',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
         weekStartIndex: 'week-start-index',
@@ -1173,15 +1173,15 @@ export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = /*@__P
         enableMapExpand: 'enable-map-expand',
         applicationName: 'application-name',
         applicationDescription: 'application-description',
-        i18nExpandSidebar: 'i-1-8n-expand-sidebar',
+        i18nExpandSidebar: 'i18n-expand-sidebar',
         expand: 'expand',
         startExpanded: 'start-expanded',
         pinned: 'pinned',
-        i18nLegal: 'i-1-8n-legal',
-        i18nSettings: 'i-1-8n-settings',
-        i18nToggleTheme: 'i-1-8n-toggle-theme',
-        i18nExpand: 'i-1-8n-expand',
-        i18nCollapse: 'i-1-8n-collapse'
+        i18nLegal: 'i18n-legal',
+        i18nSettings: 'i18n-settings',
+        i18nToggleTheme: 'i18n-toggle-theme',
+        i18nExpand: 'i18n-expand',
+        i18nCollapse: 'i18n-collapse'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxMenu as ReactWebComponent<IxMenuElement, IxMenuEvents>,
@@ -1225,7 +1225,7 @@ export const IxMenuAboutNews: StencilReactComponent<IxMenuAboutNewsElement, IxMe
     properties: {
         show: 'show',
         label: 'label',
-        i18nShowMore: 'i-1-8n-show-more',
+        i18nShowMore: 'i18n-show-more',
         aboutItemLabel: 'about-item-label',
         offsetBottom: 'offset-bottom',
         expanded: 'expanded'
@@ -1244,7 +1244,7 @@ export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvat
         bottom: 'bottom',
         image: 'image',
         initials: 'initials',
-        i18nLogout: 'i-1-8n-logout',
+        i18nLogout: 'i18n-logout',
         showLogoutButton: 'show-logout-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1450,9 +1450,9 @@ export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginati
         showItemCount: 'show-item-count',
         count: 'count',
         selectedPage: 'selected-page',
-        i18nPage: 'i-1-8n-page',
-        i18nOf: 'i-1-8n-of',
-        i18nItems: 'i-1-8n-items',
+        i18nPage: 'i18n-page',
+        i18nOf: 'i18n-of',
+        i18nItems: 'i18n-items',
         ariaLabelChevronLeftIconButton: 'aria-label-chevron-left-icon-button',
         ariaLabelChevronRightIconButton: 'aria-label-chevron-right-icon-button'
     },
@@ -1640,10 +1640,10 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         editable: 'editable',
         disabled: 'disabled',
         readonly: 'readonly',
-        i18nPlaceholder: 'i-1-8n-placeholder',
-        i18nPlaceholderEditable: 'i-1-8n-placeholder-editable',
-        i18nSelectListHeader: 'i-1-8n-select-list-header',
-        i18nNoMatches: 'i-1-8n-no-matches',
+        i18nPlaceholder: 'i18n-placeholder',
+        i18nPlaceholderEditable: 'i18n-placeholder-editable',
+        i18nSelectListHeader: 'i18n-select-list-header',
+        i18nNoMatches: 'i18n-no-matches',
         hideListHeader: 'hide-list-header',
         dropdownWidth: 'dropdown-width',
         dropdownMaxWidth: 'dropdown-max-width'
@@ -2000,8 +2000,8 @@ export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = 
         loadingText: 'loading-text',
         uploadFailedText: 'upload-failed-text',
         uploadSuccessText: 'upload-success-text',
-        i18nUploadFile: 'i-1-8n-upload-file',
-        i18nUploadDisabled: 'i-1-8n-upload-disabled'
+        i18nUploadFile: 'i18n-upload-file',
+        i18nUploadDisabled: 'i18n-upload-disabled'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxUpload as ReactWebComponent<IxUploadElement, IxUploadEvents>,
