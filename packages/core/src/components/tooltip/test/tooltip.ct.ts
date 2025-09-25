@@ -326,14 +326,14 @@ regressionTest.describe('handles multiple references', () => {
       const arrowBottomStyle = await page.evaluate((tooltipId) => {
         const host = document.getElementById(tooltipId) as HTMLElement;
         const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
-        const style = window.getComputedStyle(arrow);
+        const style = globalThis.getComputedStyle(arrow);
         return style.bottom;
       }, 'arrow-tooltip-top');
       expect(arrowBottomStyle).toBe('-6px');
       const arrowLeftStyle = await page.evaluate((tooltipId) => {
         const host = document.getElementById(tooltipId) as HTMLElement;
         const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
-        const style = window.getComputedStyle(arrow);
+        const style = globalThis.getComputedStyle(arrow);
         return style.left;
       }, 'arrow-tooltip-top');
       expect(arrowLeftStyle).not.toBe('unset');
@@ -362,7 +362,7 @@ regressionTest.describe('handles multiple references', () => {
       const arrowTopStyle = await page.evaluate((tooltipId) => {
         const host = document.getElementById(tooltipId) as HTMLElement;
         const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
-        const style = window.getComputedStyle(arrow);
+        const style = globalThis.getComputedStyle(arrow);
         return style.top;
       }, 'arrow-tooltip-bottom');
 
@@ -371,7 +371,7 @@ regressionTest.describe('handles multiple references', () => {
       const arrowLeftStyle = await page.evaluate((tooltipId) => {
         const host = document.getElementById(tooltipId) as HTMLElement;
         const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
-        const style = window.getComputedStyle(arrow);
+        const style = globalThis.getComputedStyle(arrow);
         return style.left;
       }, 'arrow-tooltip-bottom');
 
