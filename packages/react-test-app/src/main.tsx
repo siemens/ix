@@ -19,6 +19,7 @@ import ActionCard from './preview-examples/action-card';
 import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
 import Application from './preview-examples/application';
+import ApplicationAdvanced from './preview-examples/application-advanced';
 import ApplicationAppSwitch from './preview-examples/application-app-switch';
 import ApplicationBreakpoints from './preview-examples/application-breakpoints';
 import ApplicationHeader from './preview-examples/application-header';
@@ -249,6 +250,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/add-icons" element={<AddIcons />} />
         <Route path="/preview/aggrid" element={<AgGrid />} />
         <Route path="/preview/application" element={<Application />} />
+        <Route
+          path="/preview/application-advanced"
+          element={<ApplicationAdvanced />}
+        />
         <Route
           path="/preview/application-breakpoints"
           element={<ApplicationBreakpoints />}

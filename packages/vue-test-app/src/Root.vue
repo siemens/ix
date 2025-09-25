@@ -22,6 +22,7 @@ import ApplicationAppSwitch from './preview-examples/application-app-switch.vue'
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
 import ApplicationHeader from './preview-examples/application-header.vue';
 import Application from './preview-examples/application.vue';
+import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
@@ -245,6 +246,7 @@ const routes: any = {
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
   '/preview/application': Application,
+  '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-header': ApplicationHeader,
   '/preview/application-breakpoints': ApplicationBreakpoints,
   '/preview/application-app-switch': ApplicationAppSwitch,
