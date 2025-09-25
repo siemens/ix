@@ -168,6 +168,7 @@ export class Tabs {
 
   private setTabAttributes(element: HTMLIxTabItemElement, index: number) {
     const isSelected = index === this.selected;
+    const isDisabled = element.disabled;
 
     if (this.small) element.setAttribute('small', 'true');
 
@@ -176,31 +177,42 @@ export class Tabs {
     element.setAttribute('layout', this.layout);
     element.setAttribute('selected', isSelected ? 'true' : 'false');
 
+    element.toggleAttribute('disabled', isDisabled);
     element.setAttribute('placement', this.placement);
 
-    this.applyRequiredClasses(element, isSelected);
+    this.applyRequiredClasses(element, isSelected, isDisabled);
   }
 
   private applyRequiredClasses(
     element: HTMLIxTabItemElement,
-    isSelected: boolean
+    isSelected: boolean,
+    isDisabled: boolean
   ) {
     const existingClasses = Array.from(element.classList);
     const customClasses = this.extractCustomClasses(existingClasses);
-    const requiredClasses = this.buildRequiredClasses(isSelected);
+    const requiredClasses = this.buildRequiredClasses(isSelected, isDisabled);
 
     element.className = [...customClasses, ...requiredClasses].join(' ');
   }
 
   private extractCustomClasses(existingClasses: string[]): string[] {
-    const managedClasses = Object.values(TAB_MANAGED_CLASSES) as string[];
-    return existingClasses.filter((cls) => !managedClasses.includes(cls));
+    const managedClasses = Object.values(TAB_MANAGED_CLASSES);
+    return existingClasses.filter(
+      (cls) =>
+        !managedClasses.includes(
+          cls as (typeof TAB_MANAGED_CLASSES)[keyof typeof TAB_MANAGED_CLASSES]
+        )
+    );
   }
 
-  private buildRequiredClasses(isSelected: boolean): string[] {
+  private buildRequiredClasses(
+    isSelected: boolean,
+    isDisabled: boolean
+  ): string[] {
     const classes: string[] = [TAB_MANAGED_CLASSES.HYDRATED];
 
     if (isSelected) classes.push(TAB_MANAGED_CLASSES.SELECTED);
+    if (isDisabled) classes.push(TAB_MANAGED_CLASSES.DISABLED);
     if (this.small) classes.push(TAB_MANAGED_CLASSES.SMALL_TAB);
     if (this.layout === 'stretched')
       classes.push(TAB_MANAGED_CLASSES.STRETCHED);
@@ -213,12 +225,15 @@ export class Tabs {
 
   private validateSelectedIndex() {
     const tabs = this.getTabs();
-    if (this.selected >= tabs.length) {
-      const newSelected = 0;
-      if (this.selected !== newSelected) {
-        this.selected = newSelected;
-        this.selectedChange.emit(newSelected);
-      }
+    const tabCount = tabs.length;
+
+    if (tabCount === 0) {
+      return;
+    }
+
+    if (this.selected >= tabCount) {
+      this.selected = tabCount - 1;
+      this.selectedChange.emit(tabCount - 1);
     }
   }
 
@@ -378,7 +393,6 @@ export class Tabs {
   }
 
   componentWillLoad() {
-    this.updateTabAttributes();
     this.initResizeObserver();
   }
 

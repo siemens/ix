@@ -20,8 +20,8 @@ regressionTest('renders', async ({ mount, page }) => {
   const tabs = page.locator('ix-tabs');
   const tab = page.locator('ix-tab-item').nth(0);
 
-  await expect(tabs).toHaveClass(/hydrated/);
-  await expect(tab).toHaveClass(/selected/);
+  await expect(tabs).toHaveClass(/\bhydrated\b/);
+  await expect(tab).toHaveClass(/\bselected\b/);
 });
 
 regressionTest('should change tab', async ({ mount, page }) => {
@@ -37,8 +37,8 @@ regressionTest('should change tab', async ({ mount, page }) => {
 
   await tab.click();
 
-  await expect(tabs).toHaveClass(/hydrated/);
-  await expect(tab).toHaveClass(/selected/);
+  await expect(tabs).toHaveClass(/\bhydrated\b/);
+  await expect(tab).toHaveClass(/\bselected\b/);
 });
 
 regressionTest(
@@ -63,9 +63,9 @@ regressionTest(
 
     await lastTab.click();
 
-    await expect(tabs).toHaveClass(/hydrated/);
-    await expect(firstTab).toHaveClass(/selected/);
-    await expect(lastTab).not.toHaveClass(/selected/);
+    await expect(tabs).toHaveClass(/\bhydrated\b/);
+    await expect(firstTab).toHaveClass(/\bselected\b/);
+    await expect(lastTab).not.toHaveClass(/\bselected\b/);
   }
 );
 
@@ -94,14 +94,14 @@ regressionTest(
       );
     });
 
-    await expect(tabs).toHaveClass(/hydrated/);
-    await expect(firstTab).toHaveClass(/selected/);
+    await expect(tabs).toHaveClass(/\bhydrated\b/);
+    await expect(firstTab).toHaveClass(/\bselected\b/);
 
     await secondTab.click();
     await lastTab.click();
 
-    await expect(secondTab).toHaveClass(/selected/);
-    await expect(lastTab).not.toHaveClass(/selected/);
+    await expect(secondTab).toHaveClass(/\bselected\b/);
+    await expect(lastTab).not.toHaveClass(/\bselected\b/);
   }
 );
 
@@ -119,7 +119,7 @@ regressionTest(
     const firstTab = page.locator('ix-tab-item').nth(0);
     const lastTab = page.locator('ix-tab-item').nth(2);
 
-    tabs.evaluate((tabElement) => {
+    await tabs.evaluate((tabElement) => {
       tabElement.addEventListener('selectedChange', (event) =>
         event.preventDefault()
       );
@@ -127,9 +127,9 @@ regressionTest(
 
     await lastTab.click();
 
-    await expect(tabs).toHaveClass(/hydrated/);
-    await expect(firstTab).toHaveClass(/selected/);
-    await expect(lastTab).not.toHaveClass(/selected/);
+    await expect(tabs).toHaveClass(/\bhydrated\b/);
+    await expect(firstTab).toHaveClass(/\bselected\b/);
+    await expect(lastTab).not.toHaveClass(/\bselected\b/);
   }
 );
 
@@ -194,14 +194,14 @@ regressionTest(
     const tabs = page.locator('ix-tab-item');
 
     for (const className of ['new', 'hydrated', 'bottom']) {
-      await expect(tabs.nth(0)).toHaveClass(new RegExp(className));
-      await expect(tabs.nth(1)).toHaveClass(new RegExp(className));
+      await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
+      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
     }
-    await expect(tabs.nth(0)).toHaveClass(/selected/);
+    await expect(tabs.nth(0)).toHaveClass(/\bselected\b/);
 
     await tabs.nth(1).click();
-    await expect(tabs.nth(0)).not.toHaveClass(/selected/);
-    await expect(tabs.nth(1)).toHaveClass(/selected/);
+    await expect(tabs.nth(0)).not.toHaveClass(/\bselected\b/);
+    await expect(tabs.nth(1)).toHaveClass(/\bselected\b/);
   }
 );
 
@@ -226,10 +226,10 @@ regressionTest(
     const tabs = page.locator('ix-tab-item');
 
     for (const className of ['new', 'hydrated', 'top']) {
-      await expect(tabs.nth(0)).toHaveClass(new RegExp(className));
-      await expect(tabs.nth(1)).toHaveClass(new RegExp(className));
+      await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
+      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
     }
-    await expect(tabs.nth(0)).toHaveClass(/selected/);
+    await expect(tabs.nth(0)).toHaveClass(/\bselected\b/);
   }
 );
 
@@ -254,10 +254,10 @@ regressionTest(
     const tabs = page.locator('ix-tab-item');
 
     for (const className of ['new', 'hydrated', 'bottom', 'stretched']) {
-      await expect(tabs.nth(0)).toHaveClass(new RegExp(className));
-      await expect(tabs.nth(1)).toHaveClass(new RegExp(className));
+      await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
+      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
     }
-    await expect(tabs.nth(0)).toHaveClass(/selected/);
+    await expect(tabs.nth(0)).toHaveClass(/\bselected\b/);
   }
 );
 
@@ -268,17 +268,19 @@ regressionTest(
       <ix-tabs placement="bottom" layout="stretched">
         <ix-tab-item>Tab 1</ix-tab-item>
         <ix-tab-item>Tab 2</ix-tab-item>
+        <ix-tab-item>Tab 3</ix-tab-item>
       </ix-tabs>
     `);
 
-    const secondTab = page.locator('ix-tab-item').nth(1);
-    await secondTab.click();
-    await expect(secondTab).toHaveClass(/selected/);
+    const thirdTab = page.locator('ix-tab-item').nth(2);
+    await thirdTab.click();
+    await expect(thirdTab).toHaveClass(/\bselected\b/);
 
     await page.evaluate(() => {
       const tabsElement = document.querySelector('ix-tabs');
       tabsElement!.innerHTML = `
         <ix-tab-item class="new">Tab 1</ix-tab-item>
+        <ix-tab-item class="new">Tab 2</ix-tab-item>
       `;
     });
 
@@ -291,7 +293,46 @@ regressionTest(
       'stretched',
       'selected',
     ]) {
-      await expect(tabs.nth(0)).toHaveClass(new RegExp(className));
+      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
     }
+  }
+);
+
+regressionTest(
+  'dynamic tabs - should handle disabled state and class changes',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-tabs>
+        <ix-tab-item>Tab 1</ix-tab-item>
+        <ix-tab-item>Tab 2</ix-tab-item>
+      </ix-tabs>
+    `);
+
+    await page.evaluate(() => {
+      const tabsElement = document.querySelector('ix-tabs');
+      tabsElement!.innerHTML = `
+        <ix-tab-item disabled class="new">Tab 1</ix-tab-item>
+        <ix-tab-item class="new">Tab 2</ix-tab-item>
+      `;
+    });
+
+    const tabs = page.locator('ix-tab-item');
+
+    for (const className of ['new', 'hydrated', 'bottom']) {
+      await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
+      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
+    }
+
+    await expect(tabs.nth(0)).toHaveAttribute('disabled', '');
+    await expect(tabs.nth(0)).toHaveClass(/\bdisabled\b/);
+    await expect(tabs.nth(0)).toHaveClass(/\bselected\b/);
+
+    await expect(tabs.nth(1)).not.toHaveAttribute('disabled');
+    await expect(tabs.nth(1)).not.toHaveClass(/\bdisabled\b/);
+    await expect(tabs.nth(1)).not.toHaveClass(/\bselected\b/);
+
+    await tabs.nth(1).click();
+    await expect(tabs.nth(0)).not.toHaveClass(/\bselected\b/);
+    await expect(tabs.nth(1)).toHaveClass(/\bselected\b/);
   }
 );
