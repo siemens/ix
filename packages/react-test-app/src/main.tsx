@@ -156,6 +156,7 @@ import Message from './preview-examples/message';
 import MessageBar from './preview-examples/message-bar';
 import MessageBarRemoval from './preview-examples/message-bar-removal.tsx';
 import Modal from './preview-examples/modal';
+import ModalClose from './preview-examples/modal-close.tsx';
 import ModalSizes from './preview-examples/modal-sizes';
 import NumberInput from './preview-examples/number-input';
 import NumberInputDisabled from './preview-examples/number-input-disabled';
@@ -580,6 +581,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
 
         <Route path="/preview/modal" element={<Modal />} />
+        <Route path="/preview/modal-close" element={<ModalClose />} />
         <Route
           path="/preview/pagination-advanced"
           element={<PaginationAdvanced />}

@@ -22,3 +22,7 @@ export async function showModal(
 ) {
   return _showModal(config);
 }
+
+export function close(modalInstance: { htmlElement: any }, closeResult?: any) {
+  modalInstance?.htmlElement?.closeModal?.(closeResult);
+}

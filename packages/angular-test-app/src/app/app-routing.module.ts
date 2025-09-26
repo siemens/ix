@@ -158,8 +158,10 @@ import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
+import ModalCloseByInstance from '../preview-examples/modal-close-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
+import ModalCloseByTemplate from '../preview-examples/modal-close-by-template';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
@@ -758,8 +760,16 @@ const routes: Routes = [
         component: ModalByInstance,
       },
       {
+        path: 'modal-close-by-instance',
+        component: ModalCloseByInstance,
+      },
+      {
         path: 'modal-by-template',
         component: ModalByTemplate,
+      },
+      {
+        path: 'modal-close-by-template',
+        component: ModalCloseByTemplate,
       },
       {
         path: 'modal-form-ix-button-submit',
