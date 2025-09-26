@@ -19,11 +19,11 @@ export default () => {
         <IxDropdownItem label="Item 1"></IxDropdownItem>
         <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
-      <IxDropdownButton label="" outline icon={iconCheckboxes}>
+      <IxDropdownButton variant="subtle-primary" label="" icon={iconCheckboxes}>
         <IxDropdownItem label="Item 1"></IxDropdownItem>
         <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
-      <IxDropdownButton label="" ghost icon={iconCheckboxes}>
+      <IxDropdownButton variant="tertiary" label="" icon={iconCheckboxes}>
         <IxDropdownItem label="Item 1"></IxDropdownItem>
         <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>

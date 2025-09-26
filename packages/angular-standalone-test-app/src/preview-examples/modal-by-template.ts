@@ -19,7 +19,6 @@ import {
 import { ModalService } from '@siemens/ix-angular';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxButton, IxModal, IxModalHeader, IxModalContent, IxModalFooter],
   template: `
@@ -32,11 +31,7 @@ import { ModalService } from '@siemens/ix-angular';
           >Message text lorem ipsum: {{ modal.data }}</ix-modal-content
         >
         <ix-modal-footer>
-          <ix-button
-            outline
-            class="dismiss-modal"
-            (click)="modal.dismiss('dismiss')"
-          >
+          <ix-button variant="subtle-primary" class="dismiss-modal" (click)="modal.dismiss('dismiss')">
             Cancel
           </ix-button>
           <ix-button class="close-modal" (click)="modal.close('okay')">

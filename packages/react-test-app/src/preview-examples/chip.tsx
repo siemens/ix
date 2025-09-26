@@ -16,37 +16,31 @@ export default () => {
   return (
     <div className="chip">
       <div className="chip-column">
-        <IxChip icon={iconPrint} variant="primary" outline closable>
+        <IxChip icon={iconPrint} variant="subtle-primary" closable>
           Primary
         </IxChip>
-        <IxChip icon={iconPrint} variant="alarm" outline closable>
+        <IxChip icon={iconPrint} variant="alarm" closable>
           Alarm
         </IxChip>
-        <IxChip icon={iconPrint} variant="critical" outline>
+        <IxChip icon={iconPrint} variant="critical">
           Critical
         </IxChip>
-        <IxChip icon={iconPrint} variant="warning" outline>
+        <IxChip icon={iconPrint} variant="warning">
           Warning
         </IxChip>
-        <IxChip icon={iconPrint} variant="info" outline>
+        <IxChip icon={iconPrint} variant="info">
           Info
         </IxChip>
-        <IxChip icon={iconPrint} variant="success" outline>
+        <IxChip icon={iconPrint} variant="success">
           Success
         </IxChip>
-        <IxChip icon={iconPrint} variant="neutral" outline>
+        <IxChip icon={iconPrint} variant="neutral">
           Neutral
         </IxChip>
-        <IxChip
-          icon={iconPrint}
-          variant="custom"
-          background="#FF00FF"
-          outline
-          closable
-        >
+        <IxChip icon={iconPrint} variant="custom" background="#FF00FF" closable>
           Custom
         </IxChip>
-        <IxChip icon={iconPrint} variant="primary" outline closable>
+        <IxChip icon={iconPrint} variant="subtle-primary" closable>
           Chip with icon
         </IxChip>
       </div>
@@ -80,7 +74,7 @@ export default () => {
         >
           Custom
         </IxChip>
-        <IxChip variant="primary" outline closable>
+        <IxChip variant="subtle-primary" closable>
           Chip without icon
         </IxChip>
       </div>

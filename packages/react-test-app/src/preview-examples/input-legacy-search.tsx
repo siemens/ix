@@ -40,14 +40,7 @@ export default () => {
           value={message}
         />
         <span slot="input-end">
-          <IxIconButton
-            onClick={reset}
-            id="clear-button"
-            icon={iconClear}
-            ghost
-            size="16"
-            style={{ display: display }}
-          ></IxIconButton>
+          <IxIconButton variant="tertiary" onClick={reset} id="clear-button" icon={iconClear} size="16" style={{ display: display }}></IxIconButton>
         </span>
       </IxInputGroup>
     </form>

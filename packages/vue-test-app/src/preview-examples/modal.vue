@@ -25,7 +25,7 @@ function show() {
         <IxModalHeader>Message headline</IxModalHeader>,
         <IxModalContent>Message text lorem ipsum</IxModalContent>,
         <IxModalFooter>
-          <IxButton outline onClick={() => dismissModal()}>Cancel</IxButton>
+          <IxButton variant="subtle-primary" onClick={() => dismissModal()}>Cancel</IxButton>
           <IxButton onClick={() => closeModal()}>OK</IxButton>
         </IxModalFooter>
       ]

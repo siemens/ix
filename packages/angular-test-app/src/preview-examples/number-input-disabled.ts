@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './number-input-disabled.html'
+  templateUrl: './number-input-disabled.html',
 })
 export default class NumberInputDisabled {}

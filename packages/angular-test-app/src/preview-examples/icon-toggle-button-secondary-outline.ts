@@ -10,164 +10,41 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-layout-grid>
       <ix-row>
-        <ix-icon-toggle-button
-          outline
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          pressed
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          disabled
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          disabled
-          loading
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" pressed icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" disabled icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" disabled loading icon="checkboxes"></ix-icon-toggle-button>
 
-        <ix-icon-toggle-button
-          outline
-          size="16"
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="16"
-          pressed
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="16"
-          disabled
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="16"
-          disabled
-          loading
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="16" icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="16" pressed icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="16" disabled icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="16" disabled loading icon="checkboxes"></ix-icon-toggle-button>
 
-        <ix-icon-toggle-button
-          outline
-          size="12"
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="12"
-          pressed
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="12"
-          disabled
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="12"
-          disabled
-          loading
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="12" icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="12" pressed icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="12" disabled icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="12" disabled loading icon="checkboxes"></ix-icon-toggle-button>
       </ix-row>
       <ix-row>
-        <ix-icon-toggle-button
-          outline
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          pressed
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          disabled
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          disabled
-          loading
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" pressed icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" disabled icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" disabled loading icon="checkboxes" oval></ix-icon-toggle-button>
 
-        <ix-icon-toggle-button
-          outline
-          size="16"
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="16"
-          pressed
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="16"
-          disabled
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="16"
-          disabled
-          loading
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="16" icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="16" pressed icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="16" disabled icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="16" disabled loading icon="checkboxes" oval></ix-icon-toggle-button>
 
-        <ix-icon-toggle-button
-          outline
-          size="12"
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="12"
-          pressed
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="12"
-          disabled
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          outline
-          size="12"
-          disabled
-          loading
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="12" icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="12" pressed icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="12" disabled icon="checkboxes" oval></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="subtle-primary" size="12" disabled loading icon="checkboxes" oval></ix-icon-toggle-button>
       </ix-row>
     </ix-layout-grid>
   `,

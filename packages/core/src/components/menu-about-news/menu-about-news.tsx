@@ -27,9 +27,9 @@ export class MenuAboutNews {
   @Prop() label?: string;
 
   /**
-   *
+   * i18n label for 'Show more' button
    */
-  @Prop() i18nShowMore = 'Show more';
+  @Prop({ attribute: 'i18n-show-more' }) i18nShowMore = 'Show more';
 
   /**
    * Subtitle of the about news
@@ -83,7 +83,7 @@ export class MenuAboutNews {
           size="24"
           icon={iconClose}
           iconColor="color-soft-text"
-          ghost
+          variant="tertiary"
           onClick={() => {
             this.show = false;
             this.closePopover.emit();

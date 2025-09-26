@@ -96,17 +96,17 @@ function ButtonExample() {
   return (
     <div className={classNames(styles.Example, styles.ButtonExample)}>
       <IxButton>Button primary</IxButton>
-      <IxButton variant="secondary">Button primary</IxButton>
-      <IxButton outline>Button primary</IxButton>
-      <IxButton outline variant="secondary">
+      <IxButton variant="subtle-primary">Button primary</IxButton>
+      <IxButton variant="subtle-primary">Button primary</IxButton>
+      <IxButton variant="subtle-secondary">
         Button primary
       </IxButton>
-      <IxButton ghost>Button primary</IxButton>
-      <IxButton ghost variant="secondary">
+      <IxButton variant="tertiary">Button primary</IxButton>
+      <IxButton variant="subtle-tertiary">
         Button primary
       </IxButton>
       <IxButton disabled>Button primary</IxButton>
-      <IxButton disabled variant="secondary">
+      <IxButton disabled variant="subtle-primary">
         Button primary
       </IxButton>
     </div>

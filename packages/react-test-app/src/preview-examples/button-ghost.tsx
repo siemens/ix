@@ -14,10 +14,10 @@ import { IxButton } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxButton ghost>
+      <IxButton variant="tertiary">
         Button
       </IxButton>
-      <IxButton disabled ghost>
+      <IxButton variant="tertiary" disabled>
         Button
       </IxButton>
     </>

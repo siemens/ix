@@ -77,12 +77,13 @@ export class Upload {
   /**
    * Label for upload file button
    */
-  @Prop() i18nUploadFile = 'Upload file…';
+  @Prop({ attribute: 'i18n-upload-file' }) i18nUploadFile = 'Upload file…';
 
   /**
    * Text for disabled state
    */
-  @Prop() i18nUploadDisabled = 'File upload currently not possible.';
+  @Prop({ attribute: 'i18n-upload-disabled' }) i18nUploadDisabled =
+    'File upload currently not possible.';
 
   /**
    * You get an array of Files after drop-action or browse action is finished
@@ -276,8 +277,8 @@ export class Upload {
               disabled={disabled}
             />
             <ix-button
+              variant="secondary"
               aria-disabled={disabled}
-              outline
               onClick={() => this.inputElement.click()}
               disabled={disabled}
             >

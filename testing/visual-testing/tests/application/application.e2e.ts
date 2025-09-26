@@ -74,6 +74,18 @@ regressionTest.describe('basic navigation', () => {
     });
   });
 
+  regressionTest('content overflow', async ({ page }) => {
+    await page.goto('application/content-overflow');
+    await page.setViewportSize(viewPorts.md);
+
+    await expect(page.getByText('Example content')).toBeVisible();
+
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
+    });
+  });
+
   regressionTest('expanded', async ({ page }) => {
     await page.goto('application/basic');
     await page.setViewportSize(viewPorts.md);

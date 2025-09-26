@@ -17,7 +17,6 @@ import {
  * Value Accessor for ix-input, ix-number-input and ix-textarea
  */
 @Directive({
-  standalone: true,
   selector: 'ix-input,ix-number-input,ix-textarea',
   providers: [createValueAccessorProvider(IxTextValueAccessorDirective)],
 })

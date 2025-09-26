@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxSplitButton, IxDropdownItem } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxSplitButton, IxDropdownItem],
   template: `

@@ -699,15 +699,14 @@ export class DatePicker implements IxDatePickerComponent {
           <div class="header" slot="header">
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(-1)}
-              ghost
               icon={iconChevronLeftSmall}
-              variant="primary"
+              variant="tertiary"
               class="arrows"
               aria-label={this.ariaLabelPreviousMonthButton}
             ></ix-icon-button>
             <div class="selector">
               <ix-button
-                ghost
+                variant="tertiary"
                 ref={this.dropdownButtonRef}
                 data-testid="year-month-button"
               >
@@ -775,9 +774,8 @@ export class DatePicker implements IxDatePickerComponent {
             </div>
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(1)}
-              ghost
               icon={iconChevronRightSmall}
-              variant="primary"
+              variant="tertiary"
               class="arrows"
               aria-label={this.ariaLabelNextMonthButton}
             ></ix-icon-button>

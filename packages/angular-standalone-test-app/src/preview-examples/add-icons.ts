@@ -16,7 +16,6 @@ import { iconStar, iconStarFilled } from '@siemens/ix-icons/icons';
   selector: 'app-example',
   templateUrl: './add-icons.html',
   styleUrls: ['./add-icons.css'],
-  standalone: true,
   imports: [IxIcon],
 })
 export default class AddIcons {

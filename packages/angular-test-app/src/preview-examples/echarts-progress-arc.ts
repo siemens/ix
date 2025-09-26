@@ -10,10 +10,11 @@
 import { Component, OnInit } from '@angular/core';
 import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './echarts-progress-arc.html',
   styleUrls: ['./echarts-progress-arc.css'],

@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './input-with-slots.html'
+  templateUrl: './input-with-slots.html',
 })
 export default class InputWithSlots {}

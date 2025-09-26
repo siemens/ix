@@ -69,10 +69,10 @@ export default () => {
         outline
         icon={iconStar}
       ></IxIconButton>
-      <IxButton loading outline>
+      <IxButton variant="subtle-primary" loading>
         Button
       </IxButton>
-      <IxIconButton loading outline></IxIconButton>
+      <IxIconButton variant="subtle-primary" loading></IxIconButton>
     </>
   );
 };

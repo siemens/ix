@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxButton } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxButton],
   template: buttonGreyGhost(),
@@ -21,10 +20,10 @@ export default class Buttons {}
 
 function buttonGreyGhost(): string | undefined {
   return `
-      <ix-button ghost variant="secondary">
+      <ix-button variant="subtle-tertiary">
         Button
       </ix-button>
-      <ix-button disabled ghost variant="secondary">
+      <ix-button disabled variant="subtle-tertiary">
         Button
       </ix-button>
   `;

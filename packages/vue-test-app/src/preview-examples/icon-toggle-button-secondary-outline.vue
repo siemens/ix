@@ -17,157 +17,36 @@ import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
 <template>
   <IxLayoutGrid>
     <IxRow>
-      <IxIconToggleButton outline :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        :icon="iconCheckboxes"
-        pressed
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        disabled
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        disabled
-        loading
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes" pressed></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" disabled :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" disabled loading :icon="iconCheckboxes"></IxIconToggleButton>
 
-      <IxIconToggleButton
-        outline
-        size="16"
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="16"
-        pressed
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="16"
-        disabled
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="16"
-        disabled
-        loading
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="16" :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="16" pressed :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="16" disabled :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="16" disabled loading :icon="iconCheckboxes"></IxIconToggleButton>
 
-      <IxIconToggleButton
-        outline
-        size="12"
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="12"
-        pressed
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="12"
-        disabled
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="12"
-        disabled
-        loading
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="12" :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="12" pressed :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="12" disabled :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="12" disabled loading :icon="iconCheckboxes"></IxIconToggleButton>
     </IxRow>
     <IxRow>
-      <IxIconToggleButton
-        outline
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        :icon="iconCheckboxes"
-        pressed
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        disabled
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        disabled
-        loading
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes" pressed oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" disabled :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" disabled loading :icon="iconCheckboxes" oval></IxIconToggleButton>
 
-      <IxIconToggleButton
-        outline
-        size="16"
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="16"
-        pressed
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="16"
-        disabled
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="16"
-        disabled
-        loading
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="16" :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="16" pressed :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="16" disabled :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="16" disabled loading :icon="iconCheckboxes" oval></IxIconToggleButton>
 
-      <IxIconToggleButton
-        outline
-        size="12"
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="12"
-        pressed
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="12"
-        disabled
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        outline
-        size="12"
-        disabled
-        loading
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="12" :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="12" pressed :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="12" disabled :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" size="12" disabled loading :icon="iconCheckboxes" oval></IxIconToggleButton>
     </IxRow>
   </IxLayoutGrid>
 </template>

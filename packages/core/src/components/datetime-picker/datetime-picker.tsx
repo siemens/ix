@@ -111,7 +111,7 @@ export class DatetimePicker
    *
    * @since 3.0.0
    */
-  @Prop() i18nTime: string = 'Time';
+  @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
    * ARIA label for the previous month icon button

@@ -21,7 +21,7 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
         <IxPill :icon="iconInfo"> Primary </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill :icon="iconInfo" outline> Primary </IxPill>
+        <IxPill variant="subtle-primary" :icon="iconInfo"> Primary </IxPill>
       </IxCol>
     </IxRow>
 
@@ -30,7 +30,7 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
         <IxPill variant="alarm" :icon="iconInfo"> Alarm </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="alarm" :icon="iconInfo" outline> Alarm </IxPill>
+        <IxPill variant="alarm" :icon="iconInfo"> Alarm </IxPill>
       </IxCol>
     </IxRow>
 
@@ -39,7 +39,7 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
         <IxPill variant="critical" :icon="iconInfo"> Critical </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="critical" :icon="iconInfo" outline> Critical </IxPill>
+        <IxPill variant="critical" :icon="iconInfo"> Critical </IxPill>
       </IxCol>
     </IxRow>
 
@@ -48,7 +48,7 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
         <IxPill variant="warning" :icon="iconInfo"> Warning </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="warning" :icon="iconInfo" outline> Warning </IxPill>
+        <IxPill variant="warning" :icon="iconInfo"> Warning </IxPill>
       </IxCol>
     </IxRow>
 
@@ -57,7 +57,7 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
         <IxPill variant="success" :icon="iconInfo"> Success </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="success" :icon="iconInfo" outline> Success </IxPill>
+        <IxPill variant="success" :icon="iconInfo"> Success </IxPill>
       </IxCol>
     </IxRow>
 
@@ -66,7 +66,7 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
         <IxPill variant="info" :icon="iconInfo"> Info </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="info" :icon="iconInfo" outline> Info </IxPill>
+        <IxPill variant="info" :icon="iconInfo"> Info </IxPill>
       </IxCol>
     </IxRow>
 
@@ -75,7 +75,7 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
         <IxPill variant="neutral" :icon="iconInfo"> Neutral </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="neutral" :icon="iconInfo" outline> Neutral </IxPill>
+        <IxPill variant="neutral" :icon="iconInfo"> Neutral </IxPill>
       </IxCol>
     </IxRow>
 
@@ -91,13 +91,7 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
         </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill
-          variant="custom"
-          color="color-soft-text"
-          background="purple"
-          :icon="iconInfo"
-          outline
-        >
+        <IxPill variant="custom" color="color-soft-text" background="purple" :icon="iconInfo">
           Custom
         </IxPill>
       </IxCol>

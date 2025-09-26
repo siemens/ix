@@ -13,7 +13,6 @@ import { IxButton } from '@siemens/ix-angular/standalone';
 import { ToastService } from '@siemens/ix-angular';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxButton],
   template: `

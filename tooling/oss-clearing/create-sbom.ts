@@ -24,12 +24,18 @@ function getPkg(pkgPath: string) {
 }
 
 function modifyDependenciesByIxMetaProperty(pnpmJson: any, pkg: any) {
+  const storeOriginalDependencies = { ...pnpmJson['dependencies'] };
   pnpmJson['dependencies'] = pnpmJson['devDependencies'];
   Object.keys(pnpmJson['dependencies']).forEach((key) => {
     if (!pkg['siemensix']['dependencies'].includes(key)) {
       delete pnpmJson['dependencies'][key];
     }
   });
+
+  pnpmJson['dependencies'] = {
+    ...storeOriginalDependencies,
+    ...pnpmJson['dependencies'],
+  };
 
   return pnpmJson;
 }

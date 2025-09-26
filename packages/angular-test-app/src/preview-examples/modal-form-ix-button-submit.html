@@ -19,12 +19,7 @@
       </form>
     </ix-modal-content>
     <ix-modal-footer>
-      <ix-button
-        outline
-        (click)="modal.dismiss('dismiss')"
-        (keydown.enter)="modal.dismiss('dismiss')"
-        (keydown.space)="modal.dismiss('dismiss')"
-      >
+      <ix-button variant="subtle-primary" (click)="modal.dismiss('dismiss')" (keydown.enter)="modal.dismiss('dismiss')" (keydown.space)="modal.dismiss('dismiss')">
         Cancel
       </ix-button>
       <ix-button form="create-resource-form" type="submit"> Submit </ix-button>

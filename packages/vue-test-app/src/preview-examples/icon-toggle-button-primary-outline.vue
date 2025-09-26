@@ -17,60 +17,16 @@ import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
 <template>
   <IxLayoutGrid>
     <IxRow>
-      <IxIconToggleButton
-        variant="primary"
-        outline
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        variant="primary"
-        outline
-        pressed
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        variant="primary"
-        outline
-        disabled
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        variant="primary"
-        outline
-        disabled
-        loading
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" pressed :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" disabled :icon="iconCheckboxes"></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" disabled loading :icon="iconCheckboxes"></IxIconToggleButton>
     </IxRow>
     <IxRow>
-      <IxIconToggleButton
-        variant="primary"
-        outline
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        variant="primary"
-        outline
-        pressed
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        variant="primary"
-        outline
-        disabled
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        variant="primary"
-        outline
-        disabled
-        loading
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" pressed :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" disabled :icon="iconCheckboxes" oval></IxIconToggleButton>
+      <IxIconToggleButton variant="subtle-primary" disabled loading :icon="iconCheckboxes" oval></IxIconToggleButton>
     </IxRow>
   </IxLayoutGrid>
 </template>

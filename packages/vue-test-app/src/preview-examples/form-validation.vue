@@ -254,12 +254,7 @@ export default {
           @change="uploadPath = ($event.target as HTMLInputElement).value"
         />
 
-        <IxIconButton
-          outline
-          variant="primary"
-          :icon="iconStar"
-          @click="uploadRef?.click()"
-        ></IxIconButton>
+        <IxIconButton variant="subtle-primary" :icon="iconStar" @click="uploadRef?.click()"></IxIconButton>
       </IxCustomField>
 
       <IxInput
