@@ -250,6 +250,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'content-header-with-slot',
+        loadComponent: () =>
+          import('../preview-examples/content-header-with-slot').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'custom-field',
         loadComponent: () =>
           import('../preview-examples/custom-field').then((m) => m.default),
