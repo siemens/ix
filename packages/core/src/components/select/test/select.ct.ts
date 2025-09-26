@@ -174,6 +174,36 @@ test('open filtered dropdown on input', async ({ mount, page }) => {
   await expect(item2).not.toBeVisible();
 });
 
+test('filter works when typing exact text of manually selected item', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByRole('button', { name: 'Item 3' }).click();
+
+  await expect(page.locator('input')).toHaveValue('Item 3');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const dropdown = page.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  await page.locator('input').clear();
+  await page.locator('input').pressSequentially('Item 3');
+
+  await expect(page.getByRole('button', { name: 'Item 1' })).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
+});
+
 test('remove text from input and reselect the element', async ({
   mount,
   page,
