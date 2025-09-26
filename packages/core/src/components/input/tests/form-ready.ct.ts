@@ -38,7 +38,7 @@ const inputTags = [
 ];
 
 for (const { tag, fill } of inputTags) {
-  regressionTest.only(
+  regressionTest(
     `form-ready - ${tag} submits form on Enter key`,
     async ({ mount, page }) => {
       await mount(`
@@ -60,7 +60,7 @@ for (const { tag, fill } of inputTags) {
     }
   );
 
-  regressionTest.only(
+  regressionTest(
     `form-ready - multiple ${tag}s doesn't submit form on Enter key`,
     async ({ mount, page }) => {
       await mount(`
@@ -82,7 +82,7 @@ for (const { tag, fill } of inputTags) {
     }
   );
 
-  regressionTest.only(
+  regressionTest(
     `form-ready - multiple ${tag}s submits form on Enter key when submit button is present`,
     async ({ mount, page }) => {
       await mount(`
@@ -104,7 +104,7 @@ for (const { tag, fill } of inputTags) {
     }
   );
 
-  regressionTest.only(
+  regressionTest(
     `form-ready - ${tag} doesn't submit form on Enter key when suppress submit on enter is true`,
     async ({ mount, page }) => {
       await mount(`
