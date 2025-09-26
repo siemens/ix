@@ -21,6 +21,7 @@ import { AlignedPlacement } from '../dropdown/placement';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
 import type { SplitButtonVariant } from './split-button.types';
+import { ArrowFocusController } from '../utils/focus';
 
 @Component({
   tag: 'ix-split-button',
@@ -98,11 +99,77 @@ export class SplitButton {
 
   private triggerElement?: HTMLElement;
   private dropdownElement?: HTMLIxDropdownElement;
+  private arrowFocusController: ArrowFocusController | undefined;
 
   private linkTriggerRef() {
     if (this.triggerElement && this.dropdownElement) {
       this.dropdownElement.trigger = this.triggerElement;
     }
+  }
+
+  private get dropdownItems(): HTMLElement[] {
+    return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
+  }
+  private onDropdownShowChanged(event: CustomEvent<boolean>) {
+    if (event.detail) {
+      this.arrowFocusController = new ArrowFocusController(
+        this.dropdownItems,
+        this.dropdownElement!,
+        (index: number) => this.focusDropdownItem(index)
+      );
+      this.arrowFocusController.wrap = true;
+      requestAnimationFrame(() => this.focusDropdownItem(0));
+      this.dropdownElement?.addEventListener('keydown', this.handleKeyDown);
+    } else {
+      this.arrowFocusController?.disconnect();
+      this.arrowFocusController = undefined;
+      this.dropdownElement?.removeEventListener('keydown', this.handleKeyDown);
+    }
+  }
+
+  private handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key !== 'Tab') {
+      return;
+    }
+    this.dropdownItems.forEach((item) => item.setAttribute('tabindex', '-1'));
+    this.dropdownElement!.show = false;
+    if (!event.shiftKey) {
+      return;
+    }
+    const actionButton = this.hostElement.shadowRoot?.querySelector(
+      'ix-button, ix-icon-button:not(.anchor)'
+    ) as HTMLElement | null;
+
+    const anchorButton = this.hostElement.shadowRoot?.querySelector(
+      'ix-icon-button.anchor'
+    ) as HTMLElement | null;
+
+    const isDisabled = actionButton?.classList.contains('disabled');
+
+    if (actionButton && !isDisabled) {
+      event.preventDefault();
+      requestAnimationFrame(() => {
+        const shadowBtn = actionButton.shadowRoot?.querySelector('button');
+        (shadowBtn ?? actionButton).focus();
+      });
+    } else if (anchorButton) {
+      anchorButton.setAttribute('tabindex', '-1');
+      requestAnimationFrame(() => {
+        anchorButton.removeAttribute('tabindex');
+      });
+    }
+  };
+
+  private focusDropdownItem(index: number) {
+    if (index < 0) return;
+    const items = this.dropdownItems;
+    items.forEach((item, i) =>
+      item.setAttribute('tabindex', i === index ? '0' : '-1')
+    );
+    const item = items[index];
+    requestAnimationFrame(() => {
+      item.shadowRoot?.querySelector('button')?.focus();
+    });
   }
 
   componentDidLoad() {
@@ -150,6 +217,7 @@ export class SplitButton {
         <ix-dropdown
           ref={(r) => (this.dropdownElement = r)}
           closeBehavior={this.closeBehavior}
+          onShowChanged={(e) => this.onDropdownShowChanged(e)}
         >
           <slot></slot>
         </ix-dropdown>
