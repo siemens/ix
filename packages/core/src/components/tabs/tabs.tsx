@@ -25,6 +25,9 @@ import {
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
+type ManagedClass =
+  (typeof TAB_MANAGED_CLASSES)[keyof typeof TAB_MANAGED_CLASSES];
+
 const TAB_MANAGED_CLASSES = {
   SELECTED: 'selected',
   DISABLED: 'disabled',
@@ -36,6 +39,10 @@ const TAB_MANAGED_CLASSES = {
   CIRCLE: 'circle',
   HYDRATED: 'hydrated',
 } as const;
+
+const MANAGED_CLASSES_SET = new Set(
+  Object.values(TAB_MANAGED_CLASSES) as ManagedClass[]
+);
 
 @Component({
   tag: 'ix-tabs',
@@ -176,9 +183,8 @@ export class Tabs {
 
     element.setAttribute('layout', this.layout);
     element.setAttribute('selected', isSelected ? 'true' : 'false');
-
-    element.toggleAttribute('disabled', isDisabled);
     element.setAttribute('placement', this.placement);
+    element.toggleAttribute('disabled', isDisabled);
 
     this.applyRequiredClasses(element, isSelected, isDisabled);
   }
@@ -189,38 +195,32 @@ export class Tabs {
     isDisabled: boolean
   ) {
     const existingClasses = Array.from(element.classList);
-    const customClasses = this.extractCustomClasses(existingClasses);
+    const customClasses = existingClasses.filter(
+      (className) => !MANAGED_CLASSES_SET.has(className as ManagedClass)
+    );
     const requiredClasses = this.buildRequiredClasses(isSelected, isDisabled);
 
     element.className = [...customClasses, ...requiredClasses].join(' ');
-  }
-
-  private extractCustomClasses(existingClasses: string[]): string[] {
-    const managedClasses = Object.values(TAB_MANAGED_CLASSES);
-    return existingClasses.filter(
-      (cls) =>
-        !managedClasses.includes(
-          cls as (typeof TAB_MANAGED_CLASSES)[keyof typeof TAB_MANAGED_CLASSES]
-        )
-    );
   }
 
   private buildRequiredClasses(
     isSelected: boolean,
     isDisabled: boolean
   ): string[] {
-    const classes: string[] = [TAB_MANAGED_CLASSES.HYDRATED];
+    const classConditions = {
+      [TAB_MANAGED_CLASSES.HYDRATED]: true,
+      [TAB_MANAGED_CLASSES.SELECTED]: isSelected,
+      [TAB_MANAGED_CLASSES.DISABLED]: isDisabled,
+      [TAB_MANAGED_CLASSES.SMALL_TAB]: this.small,
+      [TAB_MANAGED_CLASSES.STRETCHED]: this.layout === 'stretched',
+      [TAB_MANAGED_CLASSES.BOTTOM]: this.placement === 'bottom',
+      [TAB_MANAGED_CLASSES.TOP]: this.placement === 'top',
+      [TAB_MANAGED_CLASSES.CIRCLE]: this.rounded,
+    };
 
-    if (isSelected) classes.push(TAB_MANAGED_CLASSES.SELECTED);
-    if (isDisabled) classes.push(TAB_MANAGED_CLASSES.DISABLED);
-    if (this.small) classes.push(TAB_MANAGED_CLASSES.SMALL_TAB);
-    if (this.layout === 'stretched')
-      classes.push(TAB_MANAGED_CLASSES.STRETCHED);
-    if (this.placement === 'bottom') classes.push(TAB_MANAGED_CLASSES.BOTTOM);
-    if (this.placement === 'top') classes.push(TAB_MANAGED_CLASSES.TOP);
-    if (this.rounded) classes.push(TAB_MANAGED_CLASSES.CIRCLE);
-
-    return classes;
+    return Object.entries(classConditions)
+      .filter(([, condition]) => condition)
+      .map(([className]) => className);
   }
 
   private validateSelectedIndex() {
