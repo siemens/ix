@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -15,7 +15,7 @@ import {
   Modal,
   ModalRef,
   showModal,
-  close,
+  dismissModal,
 } from '@siemens/ix-react';
 import { useRef } from 'react';
 
@@ -50,15 +50,14 @@ export default () => {
     const modalInstance = await showModal({
       content: <CustomModal />,
     });
-    // Auto-close after 5 seconds
     setTimeout(() => {
-      close(modalInstance, 'closed after 5 seconds');
+      dismissModal(modalInstance);
     }, 5000);
   }
 
   return (
     <>
-      <IxButton onClick={show}>Show modal for 5 seconds</IxButton>
+      <IxButton onClick={show}>Show modal (auto-dismiss)</IxButton>
     </>
   );
 };

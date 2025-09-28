@@ -1,5 +1,5 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -16,7 +16,7 @@ import {
   Modal,
   ModalSlotProps,
   showModal,
-  close,
+  dismissModal,
 } from '@siemens/ix-vue';
 
 function show() {
@@ -37,12 +37,12 @@ function show() {
     ),
   }).then((modalInstance) => {
     setTimeout(() => {
-      close(modalInstance, 'closed after 5 seconds');
+      dismissModal(modalInstance);
     }, 5000);
   });
 }
 </script>
 
 <template>
-  <IxButton @click="show()">Show modal for 5 seconds</IxButton>
+  <IxButton @click="show()">Show modal (auto-dismiss)</IxButton>
 </template>

@@ -17,7 +17,8 @@ import ModalByInstanceExample from './modal-by-instance-content';
   standalone: true,
   selector: 'app-example',
   imports: [IxButton],
-  template: '<ix-button (click)="openModal()">Show modal for 5 seconds</ix-button>',
+  template:
+    '<ix-button (click)="openModal()">Show modal (auto-dismiss)</ix-button>',
 })
 export default class ModalCloseByInstance {
   constructor(private readonly modalService: ModalService) {}

@@ -910,23 +910,14 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'modal-close-by-instance',
+        path: 'modal-close',
         loadComponent: () =>
-          import('../preview-examples/modal-close-by-instance').then(
-            (m) => m.default
-          ),
+          import('../preview-examples/modal-close').then((m) => m.default),
       },
       {
         path: 'modal-by-template',
         loadComponent: () =>
           import('../preview-examples/modal-by-template').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'modal-close-by-template',
-        loadComponent: () =>
-          import('../preview-examples/modal-close-by-template').then(
             (m) => m.default
           ),
       },

@@ -169,8 +169,7 @@ import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
-import ModalCloseByInstance from '../preview-examples/modal-close-by-instance';
-import ModalCloseByTemplate from '../preview-examples/modal-close-by-template';
+import ModalClose from '../preview-examples/modal-close';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
 import NumberInputDisabled from '../preview-examples/number-input-disabled';
@@ -394,8 +393,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     ModalByInstanceContent,
     ModalByInstance,
     ModalByTemplate,
-    ModalCloseByInstance,
-    ModalCloseByTemplate,
+    ModalClose,
     ModalFormIxButtonSubmit,
     ModalSizes,
     PaginationAdvanced,

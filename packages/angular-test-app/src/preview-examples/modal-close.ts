@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -13,7 +13,8 @@ import ModalByInstanceExample from './modal-by-instance-content';
 
 @Component({
   selector: 'app-example',
-  template: '<ix-button (click)="openModal()">Show modal for 5 seconds</ix-button>',
+  template:
+    '<ix-button (click)="openModal()">Show modal (auto-dismiss)</ix-button>',
 })
 export default class ModalCloseByInstance {
   constructor(private readonly modalService: ModalService) {}
