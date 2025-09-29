@@ -63,24 +63,23 @@ LICENSE file in the root directory of this source tree.
         const menuItems = document.querySelectorAll('ix-menu-item');
 
         function registerClickListener(itemElement) {
-          itemElement.addEventListener('click', (menuItemClickEvent) => {
-            const menuItemList = document.querySelectorAll('ix-menu-item');
-            const contentHeaderElement =
-              document.getElementById('contentHeaderId');
-            menuItemList.forEach((menuItem) => {
-              if (menuItemClickEvent.target === menuItem) {
-                menuItem.setAttribute('active', '');
-                contentHeaderElement.setAttribute(
-                  'header-title',
-                  `Example ${menuItem.innerText.toLowerCase()} content`
-                );
-              } else {
-                menuItem.removeAttribute('active');
-              }
-            });
+          itemElement.addEventListener('click', () => {
+            for (const item of menuItems) {
+              item.removeAttribute('active');
+            }
+
+            itemElement.setAttribute('active', '');
+            document
+              .getElementById('contentHeaderId')
+              .setAttribute(
+                'header-title',
+                `Example ${itemElement.innerText.toLowerCase()} content`
+              );
           });
         }
-        menuItems.forEach(registerClickListener);
+        for (const element of menuItems) {
+          registerClickListener(element);
+        }
       })();
     </script>
     <script type="module" src="./init.js"></script>
