@@ -100,9 +100,7 @@
   --trace-reference: 0;
 
   // Theme colors:
-  --trace-reference-color: var(
-    --theme-slider-track-marker--background
-  ); // Neu token
+  --trace-reference-color: var(--theme-slider-track-marker--background);
   --trace-color: var(--theme-slider-trace--background);
   --tick-color: var(--theme-slider-track-marker--background);
   --tick-color--active: var(--theme-slider-trace-marker--background);
