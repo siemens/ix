@@ -17,7 +17,6 @@
 @use "./components/app-header" as asComponent_app-header;
 @use "./components/avatar" as asComponent_avatar;
 @use "./components/blind" as asComponent_blind;
-@use "./components/breadcrumb" as asComponent_breadcrumb;
 @use "./components/button" as asComponent_button;
 @use "./components/card" as asComponent_card;
 @use "./components/checkbox" as asComponent_checkbox;
@@ -62,7 +61,6 @@
   @include asComponent_app-header.setVars;
   @include asComponent_avatar.setVars;
   @include asComponent_blind.setVars;
-  @include asComponent_breadcrumb.setVars;
   @include asComponent_button.setVars;
   @include asComponent_card.setVars;
   @include asComponent_checkbox.setVars;

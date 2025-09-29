@@ -18,14 +18,8 @@
   --theme-checkbox-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-checkbox-unchecked--background--disabled: var(--theme-color-ghost);
   --theme-checkbox-unchecked--background--invalid: var(--theme-color-component-error);
-  --theme-checkbox-unchecked--background--invalid--hover: var(--theme-color-component-error);
-  --theme-checkbox-unchecked--background--invalid--active: var(--theme-color-component-error);
   --theme-checkbox-unchecked--background--warning: var(--theme-color-component-warning);
-  --theme-checkbox-unchecked--background--warning--hover: var(--theme-color-component-warning);
-  --theme-checkbox-unchecked--background--warning--active: var(--theme-color-component-warning);
   --theme-checkbox-unchecked--background--info: var(--theme-color-secondary);
-  --theme-checkbox-unchecked--background--info--hover: var(--theme-color-secondary--hover);
-  --theme-checkbox-unchecked--background--info--active: var(--theme-color-secondary--active);
   --theme-checkbox-unchecked--border-color: var(--theme-color-contrast-bdr);
   --theme-checkbox-unchecked--border-color--hover: var(--theme-color-dynamic);
   --theme-checkbox-unchecked--border-color--active: var(--theme-color-dynamic);
@@ -56,9 +50,9 @@
   --theme-checkbox-checked--border-color--hover: var(--theme-color-0);
   --theme-checkbox-checked--border-color--active: var(--theme-color-0);
   --theme-checkbox-checked--border-color--disabled: var(--theme-color-0);
-  --theme-checkbox-checked--border-color--invalid: var(--theme-color-0);
-  --theme-checkbox-checked--border-color--invalid--hover: var(--theme-color-0);
-  --theme-checkbox-checked--border-color--invalid--active: var(--theme-color-0);
+  --theme-checkbox-checked--border-color--invalid: var(--theme-color-alarm-bdr);
+  --theme-checkbox-checked--border-color--invalid--hover: var(--theme-color-alarm-bdr);
+  --theme-checkbox-checked--border-color--invalid--active: var(--theme-color-alarm-bdr);
   --theme-checkbox-checked--border-color--warning: var(--theme-color-warning-bdr);
   --theme-checkbox-checked--border-color--warning--hover: var(--theme-color-warning-bdr);
   --theme-checkbox-checked--border-color--warning--active: var(--theme-color-warning-bdr);
@@ -92,9 +86,9 @@
   --theme-checkbox-mixed--border-color--hover: var(--theme-color-0);
   --theme-checkbox-mixed--border-color--active: var(--theme-color-0);
   --theme-checkbox-mixed--border-color--disabled: var(--theme-color-0);
-  --theme-checkbox-mixed--border-color--invalid: var(--theme-color-0);
-  --theme-checkbox-mixed--border-color--invalid--hover: var(--theme-color-0);
-  --theme-checkbox-mixed--border-color--invalid--active: var(--theme-color-0);
+  --theme-checkbox-mixed--border-color--invalid: var(--theme-color-alarm-bdr);
+  --theme-checkbox-mixed--border-color--invalid--hover: var(--theme-color-alarm-bdr);
+  --theme-checkbox-mixed--border-color--invalid--active: var(--theme-color-alarm-bdr);
   --theme-checkbox-mixed--border-color--warning: var(--theme-color-warning-bdr);
   --theme-checkbox-mixed--border-color--warning--hover: var(--theme-color-warning-bdr);
   --theme-checkbox-mixed--border-color--warning--active: var(--theme-color-warning-bdr);
@@ -118,4 +112,10 @@
   --theme-checkbox-label--color--disabled: var(--theme-color-weak-text);
   --theme-checkbox--focus--outline-offset: var(--theme-focus-outline-offset);
   --theme-checkbox--border-thickness: var(--theme-border-width-default);
+  --theme-checkbox-unchecked--background--invalid--hover: var(--theme-color-ghost--hover);
+  --theme-checkbox-unchecked--background--invalid--active: var(--theme-color-ghost--active);
+  --theme-checkbox-unchecked--background--warning--hover: var(--theme-color-ghost--hover);
+  --theme-checkbox-unchecked--background--warning--active: var(--theme-color-ghost--active);
+  --theme-checkbox-unchecked--background--info--hover: var(--theme-color-ghost--hover);
+  --theme-checkbox-unchecked--background--info--active: var(--theme-color-ghost--active);
 }

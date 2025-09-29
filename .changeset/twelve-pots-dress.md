@@ -11,4 +11,4 @@ Introduced new `variant` for **ix-flip-tile**
 BREAKING-CHANGES:
 
 - Rename `state`to `variant`
-- Rename `FlipTileState` to `FlipTileVariant`
+- Rename `FlipTileState` to `FlipTileVariant` and renamed type member `none` to `outline`.

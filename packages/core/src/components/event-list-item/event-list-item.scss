@@ -36,7 +36,7 @@ $default-event-list-item-height: 2.5rem;
         --theme-event-item-#{$variant}--background--selected
       );
 
-      //Borders
+      // Borders
       --ix-event-list-item--border--hover: var(
         --theme-event-item-#{$variant}--border--hover
       );

@@ -36,7 +36,7 @@ regressionTest.describe('avatar', () => {
     const avatar = page.locator('ix-avatar');
     await avatar.click();
 
-    await expect(avatar).toHaveScreenshot();
+    await expect(page).toHaveScreenshot();
   });
 
   regressionTest('scrollbar', async ({ page }) => {

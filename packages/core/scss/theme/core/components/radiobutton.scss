@@ -18,21 +18,15 @@
   --theme-radiobtn-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-radiobtn-unchecked--background--disabled: var(--theme-color-ghost);
   --theme-radiobtn-unchecked--background--invalid: var(--theme-color-component-error);
-  --theme-radiobtn-unchecked--background--invalid--hover: var(--theme-color-component-error);
-  --theme-radiobtn-unchecked--background--invalid--active: var(--theme-color-component-error);
   --theme-radiobtn-unchecked--background--warning: var(--theme-color-component-warning);
-  --theme-radiobtn-unchecked--background--warning--hover: var(--theme-color-component-warning);
-  --theme-radiobtn-unchecked--background--warning--active: var(--theme-color-component-warning);
   --theme-radiobtn-unchecked--background--info: var(--theme-color-secondary);
-  --theme-radiobtn-unchecked--background--info--hover: var(--theme-color-secondary--hover);
-  --theme-radiobtn-unchecked--background--info--active: var(--theme-color-secondary--active);
   --theme-radiobtn-unchecked--border-color: var(--theme-color-contrast-bdr);
   --theme-radiobtn-unchecked--border-color--hover: var(--theme-color-dynamic);
   --theme-radiobtn-unchecked--border-color--active: var(--theme-color-dynamic);
   --theme-radiobtn-unchecked--border-color--disabled: var(--theme-color-component-4);
-  --theme-radiobtn-unchecked--border-color--invalid: var(--theme-color-alarm);
-  --theme-radiobtn-unchecked--border-color--invalid--hover: var(--theme-color-alarm--hover);
-  --theme-radiobtn-unchecked--border-color--invalid--active: var(--theme-color-alarm--active);
+  --theme-radiobtn-unchecked--border-color--invalid: var(--theme-color-alarm-bdr);
+  --theme-radiobtn-unchecked--border-color--invalid--hover: var(--theme-color-alarm-bdr);
+  --theme-radiobtn-unchecked--border-color--invalid--active: var(--theme-color-alarm-bdr);
   --theme-radiobtn-unchecked--border-color--warning: var(--theme-color-warning-bdr);
   --theme-radiobtn-unchecked--border-color--warning--hover: var(--theme-color-warning-bdr);
   --theme-radiobtn-unchecked--border-color--warning--active: var(--theme-color-warning-bdr);
@@ -56,9 +50,9 @@
   --theme-radiobtn-checked--border-color--hover: var(--theme-color-0);
   --theme-radiobtn-checked--border-color--active: var(--theme-color-0);
   --theme-radiobtn-checked--border-color--disabled: var(--theme-color-0);
-  --theme-radiobtn-checked--border-color--invalid: var(--theme-color-0);
-  --theme-radiobtn-checked--border-color--invalid--hover: var(--theme-color-0);
-  --theme-radiobtn-checked--border-color--invalid--active: var(--theme-color-0);
+  --theme-radiobtn-checked--border-color--invalid: var(--theme-color-alarm-bdr);
+  --theme-radiobtn-checked--border-color--invalid--hover: var(--theme-color-alarm-bdr);
+  --theme-radiobtn-checked--border-color--invalid--active: var(--theme-color-alarm-bdr);
   --theme-radiobtn-checked--border-color--warning: var(--theme-color-warning-bdr);
   --theme-radiobtn-checked--border-color--warning--hover: var(--theme-color-warning-bdr);
   --theme-radiobtn-checked--border-color--warning--active: var(--theme-color-warning-bdr);
@@ -82,4 +76,10 @@
   --theme-radiobtn-label--color--disabled: var(--theme-color-weak-text);
   --theme-radiobtn--focus--outline-offset: var(--theme-focus-outline-offset);
   --theme-radiobtn--border-thickness: var(--theme-border-width-default);
+  --theme-radiobtn-unchecked--background--invalid--hover: var(--theme-color-ghost--hover);
+  --theme-radiobtn-unchecked--background--invalid--active: var(--theme-color-ghost--active);
+  --theme-radiobtn-unchecked--background--warning--hover: var(--theme-color-ghost--hover);
+  --theme-radiobtn-unchecked--background--warning--active: var(--theme-color-ghost--active);
+  --theme-radiobtn-unchecked--background--info--hover: var(--theme-color-ghost--hover);
+  --theme-radiobtn-unchecked--background--info--active: var(--theme-color-ghost--active);
 }
