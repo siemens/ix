@@ -47,6 +47,6 @@ regressionTest.describe('avatar', () => {
     await avatar.click();
     await page.locator('ix-dropdown-item').last().hover();
 
-    await expect(avatar).toHaveScreenshot();
+    await expect(page).toHaveScreenshot();
   });
 });
