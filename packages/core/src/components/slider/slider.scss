@@ -100,7 +100,9 @@
   --trace-reference: 0;
 
   // Theme colors:
-  --trace-reference-color: var(--theme-color-8); // Neu token
+  --trace-reference-color: var(
+    --theme-slider-track-marker--background
+  ); // Neu token
   --trace-color: var(--theme-slider-trace--background);
   --tick-color: var(--theme-slider-track-marker--background);
   --tick-color--active: var(--theme-slider-trace-marker--background);
@@ -171,7 +173,7 @@
 
   @include thumb() {
     border-radius: 100px;
-    background-color: var(--theme-color-dynamic);
+    background-color: var(--theme-slider-thumb--background);
     height: var(--thumb-size);
     width: var(--thumb-size);
     transition: all var(--theme-default-time) ease-in-out;
