@@ -16,6 +16,7 @@ import {
 @Directive({
   selector: 'ix-select',
   providers: [createValueAccessorProvider(IxSelectValueAccessorDirective)],
+  standalone: false,
 })
 export class IxSelectValueAccessorDirective extends SelectValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {

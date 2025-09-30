@@ -32,6 +32,13 @@ export const Default: Story = {
   args: {},
 };
 
+export const Initials: Story = {
+  args: {
+    initials: 'JD',
+    username: 'John Doe',
+  },
+};
+
 export const withAvatar: Story = {
   render: (args) => {
     const container = genericRender('ix-avatar', args);

@@ -27,12 +27,7 @@ const Other: React.FC = () => {
         headerSubtitle="Explain what this page is about"
       ></IxContentHeader>
       <IxBlind label="Example" sublabel="Sublabel">
-        <IxIconButton
-          id="context-menu"
-          slot="header-actions"
-          ghost
-          icon={iconContextMenu}
-        ></IxIconButton>
+        <IxIconButton variant="tertiary" id="context-menu" slot="header-actions" icon={iconContextMenu}></IxIconButton>
         <IxTypography format="body">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,

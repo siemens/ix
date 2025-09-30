@@ -10,9 +10,10 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-message-bar-single-removal',
   templateUrl: './message-bar-removal.html',
-  styleUrls: ['./message-bar.css']
+  styleUrls: ['./message-bar.css'],
 })
 export default class MessageBarRemoval {
   messageBarVisible = true;

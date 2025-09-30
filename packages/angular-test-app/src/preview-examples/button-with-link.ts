@@ -12,5 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './button-with-link.html',
+  standalone: false,
 })
 export default class ButtonWithLink {}

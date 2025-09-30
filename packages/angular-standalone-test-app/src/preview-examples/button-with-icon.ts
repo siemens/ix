@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxIconButton } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxIconButton],
   templateUrl: './button-with-icon.html',
