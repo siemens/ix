@@ -1,5 +1,92 @@
 # @siemens/ix-vue
 
+## 4.0.0-alpha.0
+
+### Major Changes
+
+- [#2077](https://github.com/siemens/ix/pull/2077) [`092d491c8dbcba62bade8bc4a3d1e6d4ea6eccad`](https://github.com/siemens/ix/commit/092d491c8dbcba62bade8bc4a3d1e6d4ea6eccad) Thanks [@lzeiml](https://github.com/lzeiml)! - Fixed an issue that caused the content-area in **ix-application** to grow beyond screen width for wide content. For more information check out BREAKING_CHANGES.md
+
+  Added text truncation with ellipsis and a title tooltip to `header-title` and `header-subtitle` in **ix-content-header**.
+
+  Fixes #2010
+
+- [#2160](https://github.com/siemens/ix/pull/2160) [`7b016f7a85df558c3042d58a88093ecc55cf85be`](https://github.com/siemens/ix/commit/7b016f7a85df558c3042d58a88093ecc55cf85be) Thanks [@danielleroux](https://github.com/danielleroux)! - Rename attribute names for all `i18n-*` properties.
+
+  New name:
+  From `i-1-8-n-my-attribute` to `i18n-my-attribute`.
+
+  Components:
+
+  - `ix-card-list`
+  - `ix-category-filter`
+  - `ix-datetime-picker`
+  - `ix-menu`
+  - `ix-menu-about-news`
+  - `ix-menu-avatar`
+  - `ix-pagination`
+  - `ix-select`
+  - `ix-update`
+
+- [#2155](https://github.com/siemens/ix/pull/2155) [`cd14905100a62b9e8ee2eb7e1f357e49e4e4f519`](https://github.com/siemens/ix/commit/cd14905100a62b9e8ee2eb7e1f357e49e4e4f519) Thanks [@danielleroux](https://github.com/danielleroux)! - Introduced new `variant` for **ix-flip-tile**
+
+  BREAKING-CHANGES:
+
+  - Rename `state`to `variant`
+  - Rename `FlipTileState` to `FlipTileVariant` and renamed type member `none` to `outline`.
+
+### Minor Changes
+
+- [#2075](https://github.com/siemens/ix/pull/2075) [`ac23f9ea035f8758b0a8076775ce8b6452f71926`](https://github.com/siemens/ix/commit/ac23f9ea035f8758b0a8076775ce8b6452f71926) Thanks [@danielleroux](https://github.com/danielleroux)! - All components with animations respects the **prefers-reduced-motion** feature and avoid any animation
+
+- [#2155](https://github.com/siemens/ix/pull/2155) [`d6faa3105d70647b1d8f71731c661a8dc29e1b98`](https://github.com/siemens/ix/commit/d6faa3105d70647b1d8f71731c661a8dc29e1b98) Thanks [@danielleroux](https://github.com/danielleroux)! - Introduced new `variant` for **ix-card-accordion**
+
+- [#2130](https://github.com/siemens/ix/pull/2130) [`4a46b3eaf48dc583cd28085d3695f90389d438fb`](https://github.com/siemens/ix/commit/4a46b3eaf48dc583cd28085d3695f90389d438fb) Thanks [@danielleroux](https://github.com/danielleroux)! - **ix-pane** improvements:
+
+  - add `header` slot to additional content inside the header like ix-pills
+  - `closeOnClickOutside` property to close pane if user clicked outside of an pane
+
+- [#2057](https://github.com/siemens/ix/pull/2057) [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add option `icon-right` to **ix-button** and **ix-toggle-button**
+
+- [#2068](https://github.com/siemens/ix/pull/2068) [`12951cce1836ec91e784a133cbfdb861c8d2e564`](https://github.com/siemens/ix/commit/12951cce1836ec91e784a133cbfdb861c8d2e564) Thanks [@danielleroux](https://github.com/danielleroux)! - Added new `properties` to **ix-application-header**
+
+  - `nameSuffix` text to show next to the application name
+  - `companyLogo` an alternative to logo slot just for an image path
+  - `companyAlt` alt property to company logo `img` tag
+  - `appIcon` image path for the app icon
+  - `appIconAlt` alt property of the app icon `img` tag
+  - `hideBottomBorder` disable button border to create an extended header
+
+  Added new `slot` to **ix-application-header**
+
+  - `secondary` Additional slot to render content. Similar to the default slot the content will be hidden on smaller screens.
+
+  Align basic styling of **ix-application-header** e.g. gaps and margins
+
+- [#2155](https://github.com/siemens/ix/pull/2155) [`ff575ce5521c0aebcce0c817020121b7d81c4978`](https://github.com/siemens/ix/commit/ff575ce5521c0aebcce0c817020121b7d81c4978) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `outline` and `filled` to **ix-event-list-item**
+
+- [#2069](https://github.com/siemens/ix/pull/2069) [`62ef59c6b042f87b1e17c22ec55c5b7131692930`](https://github.com/siemens/ix/commit/62ef59c6b042f87b1e17c22ec55c5b7131692930) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `tooltipText` to **ix-menu-item** and **ix-menu-category**
+
+- [#2130](https://github.com/siemens/ix/pull/2130) [`4a46b3eaf48dc583cd28085d3695f90389d438fb`](https://github.com/siemens/ix/commit/4a46b3eaf48dc583cd28085d3695f90389d438fb) Thanks [@danielleroux](https://github.com/danielleroux)! - The **ix-buttpm** component now renders as an anchor (<a>) tag when an href property is provided
+
+  - New properties `target` and `rel` were added to support enhanced link behavior
+  - Related components (**ix-breadcrumb-item**, **ix-menu-item**) were updated to support the `href` property
+
+  Fixes #2011
+
+- [#2058](https://github.com/siemens/ix/pull/2058) [`f620eb52672cb5208fa971dc4db2861d6ca455d8`](https://github.com/siemens/ix/commit/f620eb52672cb5208fa971dc4db2861d6ca455d8) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add methods **pause** and **resume** to the `ix-toast`.
+  Which make it possible to pause/resume the logic of the autoClose feature.
+
+### Patch Changes
+
+- [#2130](https://github.com/siemens/ix/pull/2130) [`4a46b3eaf48dc583cd28085d3695f90389d438fb`](https://github.com/siemens/ix/commit/4a46b3eaf48dc583cd28085d3695f90389d438fb) Thanks [@danielleroux](https://github.com/danielleroux)! - - Fixed validation logic incorrectly treating 0 as an invalid value due to falsy evaluation
+
+  - Fixed invalid-text not displaying when native HTML5 validation fails (e.g., min/max constraints)
+
+  Fixes #2061
+
+- Updated dependencies [[`ac23f9ea035f8758b0a8076775ce8b6452f71926`](https://github.com/siemens/ix/commit/ac23f9ea035f8758b0a8076775ce8b6452f71926), [`092d491c8dbcba62bade8bc4a3d1e6d4ea6eccad`](https://github.com/siemens/ix/commit/092d491c8dbcba62bade8bc4a3d1e6d4ea6eccad), [`d6faa3105d70647b1d8f71731c661a8dc29e1b98`](https://github.com/siemens/ix/commit/d6faa3105d70647b1d8f71731c661a8dc29e1b98), [`4a46b3eaf48dc583cd28085d3695f90389d438fb`](https://github.com/siemens/ix/commit/4a46b3eaf48dc583cd28085d3695f90389d438fb), [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4), [`12951cce1836ec91e784a133cbfdb861c8d2e564`](https://github.com/siemens/ix/commit/12951cce1836ec91e784a133cbfdb861c8d2e564), [`4a46b3eaf48dc583cd28085d3695f90389d438fb`](https://github.com/siemens/ix/commit/4a46b3eaf48dc583cd28085d3695f90389d438fb), [`db2bbf5e55d5f7aca2c9e255dae917b746048d09`](https://github.com/siemens/ix/commit/db2bbf5e55d5f7aca2c9e255dae917b746048d09), [`4a46b3eaf48dc583cd28085d3695f90389d438fb`](https://github.com/siemens/ix/commit/4a46b3eaf48dc583cd28085d3695f90389d438fb), [`7b016f7a85df558c3042d58a88093ecc55cf85be`](https://github.com/siemens/ix/commit/7b016f7a85df558c3042d58a88093ecc55cf85be), [`aecc8b764bbea9bdc3c9358981201a813074eb48`](https://github.com/siemens/ix/commit/aecc8b764bbea9bdc3c9358981201a813074eb48), [`4a46b3eaf48dc583cd28085d3695f90389d438fb`](https://github.com/siemens/ix/commit/4a46b3eaf48dc583cd28085d3695f90389d438fb), [`2fca705485f72455cde6c99fa8d3578cee7bb7c3`](https://github.com/siemens/ix/commit/2fca705485f72455cde6c99fa8d3578cee7bb7c3), [`5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4`](https://github.com/siemens/ix/commit/5bd1466e8bd0516b4f28b5bfc0e21752c2e959d4), [`4151d42ccd0a80932593796fb3586c0534faaaaf`](https://github.com/siemens/ix/commit/4151d42ccd0a80932593796fb3586c0534faaaaf), [`ff575ce5521c0aebcce0c817020121b7d81c4978`](https://github.com/siemens/ix/commit/ff575ce5521c0aebcce0c817020121b7d81c4978), [`294dbe56899a9f63582af324d4f9b9efd8c5805b`](https://github.com/siemens/ix/commit/294dbe56899a9f63582af324d4f9b9efd8c5805b), [`1a2eb220d5fe513b3eda2c880d744d2fa1d44ed9`](https://github.com/siemens/ix/commit/1a2eb220d5fe513b3eda2c880d744d2fa1d44ed9), [`4a46b3eaf48dc583cd28085d3695f90389d438fb`](https://github.com/siemens/ix/commit/4a46b3eaf48dc583cd28085d3695f90389d438fb), [`62ef59c6b042f87b1e17c22ec55c5b7131692930`](https://github.com/siemens/ix/commit/62ef59c6b042f87b1e17c22ec55c5b7131692930), [`cd14905100a62b9e8ee2eb7e1f357e49e4e4f519`](https://github.com/siemens/ix/commit/cd14905100a62b9e8ee2eb7e1f357e49e4e4f519), [`4a46b3eaf48dc583cd28085d3695f90389d438fb`](https://github.com/siemens/ix/commit/4a46b3eaf48dc583cd28085d3695f90389d438fb), [`f620eb52672cb5208fa971dc4db2861d6ca455d8`](https://github.com/siemens/ix/commit/f620eb52672cb5208fa971dc4db2861d6ca455d8)]:
+  - @siemens/ix@4.0.0-alpha.0
+
 ## 3.2.0
 
 ### Minor Changes
