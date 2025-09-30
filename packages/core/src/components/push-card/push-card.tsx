@@ -55,7 +55,7 @@ export class PushCard {
 
   render() {
     return (
-      <Host>
+      <Host class={`card-${this.variant}`}>
         <ix-card variant={this.variant}>
           <ix-card-content>
             <ix-card-title>
@@ -75,7 +75,7 @@ export class PushCard {
             <ix-typography format="h4">{this.heading}</ix-typography>
             <ix-typography>{this.subheading}</ix-typography>
           </ix-card-content>
-          <ix-card-accordion collapse={!this.expanded}>
+          <ix-card-accordion collapse={!this.expanded} variant={this.variant}>
             <slot></slot>
           </ix-card-accordion>
         </ix-card>

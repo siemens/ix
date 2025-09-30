@@ -2753,6 +2753,78 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "complexType": {
+            "original": "CardAccordionVariant",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "references": {
+              "CardAccordionVariant": {
+                "location": "import",
+                "path": "card-accordion.types",
+                "id": "src/components/card-accordion/card-accordion.types.ts::CardAccordionVariant"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Show accordion with different color variants",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "'outline'"
+            }
+          ],
+          "default": "'outline'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
@@ -10083,6 +10155,44 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"filled\" | \"outline\"",
+          "complexType": {
+            "original": "'outline' | 'filled'",
+            "resolved": "\"filled\" | \"outline\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Variant of the event list item",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "'outline'"
+            }
+          ],
+          "default": "'outline'",
+          "values": [
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
@@ -10786,45 +10896,61 @@
           "setter": false
         },
         {
-          "name": "state",
-          "type": "FlipTileState.Alarm | FlipTileState.Info | FlipTileState.None | FlipTileState.Primary | FlipTileState.Warning | undefined",
+          "name": "variant",
+          "type": "\"alarm\" | \"filled\" | \"info\" | \"outline\" | \"primary\" | \"warning\"",
           "complexType": {
-            "original": "FlipTileState",
-            "resolved": "FlipTileState.Alarm | FlipTileState.Info | FlipTileState.None | FlipTileState.Primary | FlipTileState.Warning | undefined",
+            "original": "FlipTileVariant",
+            "resolved": "\"alarm\" | \"filled\" | \"info\" | \"outline\" | \"primary\" | \"warning\"",
             "references": {
-              "FlipTileState": {
+              "FlipTileVariant": {
                 "location": "import",
-                "path": "flip-tile-state",
-                "id": "src/components/flip-tile/flip-tile-state.ts::FlipTileState"
+                "path": "flip-tile.types",
+                "id": "src/components/flip-tile/flip-tile.types.ts::FlipTileVariant"
               }
             }
           },
           "mutable": false,
-          "attr": "state",
+          "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variation of the Flip",
-          "docsTags": [],
-          "values": [
+          "docsTags": [
             {
-              "type": "FlipTileState.Alarm"
+              "name": "since",
+              "text": "4.0.0"
             },
             {
-              "type": "FlipTileState.Info"
-            },
-            {
-              "type": "FlipTileState.None"
-            },
-            {
-              "type": "FlipTileState.Primary"
-            },
-            {
-              "type": "FlipTileState.Warning"
-            },
-            {
-              "type": "undefined"
+              "name": "default",
+              "text": "'filled'"
             }
           ],
-          "optional": true,
+          "default": "'filled'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -19776,9 +19902,15 @@
           "name": "status",
           "type": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "| 'default'\n    | 'success'\n    | 'error'\n    | 'info'\n    | 'warning'\n    | 'paused'",
+            "original": "ProgressIndicatorStatus",
             "resolved": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
-            "references": {}
+            "references": {
+              "ProgressIndicatorStatus": {
+                "location": "import",
+                "path": "progress-indicator.types",
+                "id": "src/components/progress-indicator/progress-indicator.types.ts::ProgressIndicatorStatus"
+              }
+            }
           },
           "mutable": false,
           "attr": "status",
@@ -28470,6 +28602,11 @@
       "docstring": "",
       "path": "src/components/card/card.types.ts"
     },
+    "src/components/card-accordion/card-accordion.types.ts::CardAccordionVariant": {
+      "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
+      "docstring": "",
+      "path": "src/components/card-accordion/card-accordion.types.ts"
+    },
     "src/components/card-accordion/card-accordion.types.ts::CardAccordionExpandChangeEvent": {
       "declaration": "{\n  expand: boolean;\n  nativeEvent: Event;\n}",
       "docstring": "",
@@ -28570,10 +28707,10 @@
       "docstring": "",
       "path": "src/components/utils/make-ref.ts"
     },
-    "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
-      "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
+    "src/components/flip-tile/flip-tile.types.ts::FlipTileVariant": {
+      "declaration": "export type FlipTileVariant =\n  | 'outline'\n  | 'filled'\n  | 'info'\n  | 'warning'\n  | 'alarm'\n  | 'primary';",
       "docstring": "",
-      "path": "src/components/flip-tile/flip-tile-state.ts"
+      "path": "src/components/flip-tile/flip-tile.types.ts"
     },
     "src/components/icon-button/icon-button.types.ts::IconButtonVariant": {
       "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
@@ -28635,6 +28772,11 @@
       "docstring": "",
       "path": "src/components/progress-indicator/progress-indicator.types.ts"
     },
+    "src/components/progress-indicator/progress-indicator.types.ts::ProgressIndicatorStatus": {
+      "declaration": "export type ProgressIndicatorStatus =\n  | 'default'\n  | 'success'\n  | 'error'\n  | 'info'\n  | 'warning'\n  | 'paused';",
+      "docstring": "",
+      "path": "src/components/progress-indicator/progress-indicator.types.ts"
+    },
     "src/components/push-card/push-card.types.ts::PushCardVariant": {
       "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
@@ -28671,7 +28813,7 @@
       "path": "src/components/toast/toast-container.types.ts"
     },
     "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  title?: string;\n  message?: string | HTMLElement;\n  action?: HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "declaration": "export interface ToastConfig {\n  /**\n   * Title of the toast\n   */\n  title?: string;\n  /**\n   * Message of the toast\n   */\n  message?: string | HTMLElement;\n  /**\n   * Action element that is displayed below the toast message/title\n   */\n  action?: HTMLElement;\n  /**\n   * Type of the toast\n   */\n  type?: ToastType;\n  /**\n   * Controls whether the toast closes automatically after a delay\n   */\n  autoClose?: boolean;\n  /**\n   * Sets the delay for autoClose in milliseconds\n   */\n  autoCloseDelay?: number;\n  /**\n   * Icon that is displayed with the toast\n   */\n  icon?: string;\n  /**\n   * Color of the icon\n   */\n  iconColor?: string;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
     },

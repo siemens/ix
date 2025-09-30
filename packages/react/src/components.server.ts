@@ -306,7 +306,8 @@ export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCa
     tagName: 'ix-card-accordion',
     properties: {
         ariaLabelExpandButton: 'aria-label-expand-button',
-        collapse: 'collapse'
+        collapse: 'collapse',
+        variant: 'variant'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxCardAccordion as ReactWebComponent<IxCardAccordionElement, IxCardAccordionEvents>,
@@ -796,6 +797,7 @@ export type IxEventListItemEvents = { onItemClick: EventName<CustomEvent<any>> }
 export const IxEventListItem: StencilReactComponent<IxEventListItemElement, IxEventListItemEvents> = /*@__PURE__*/ createComponent<IxEventListItemElement, IxEventListItemEvents>({
     tagName: 'ix-event-list-item',
     properties: {
+        variant: 'variant',
         itemColor: 'item-color',
         selected: 'selected',
         disabled: 'disabled',
@@ -859,7 +861,7 @@ export type IxFlipTileEvents = { onToggle: EventName<CustomEvent<number>> };
 export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEvents> = /*@__PURE__*/ createComponent<IxFlipTileElement, IxFlipTileEvents>({
     tagName: 'ix-flip-tile',
     properties: {
-        state: 'state',
+        variant: 'variant',
         height: 'height',
         width: 'width',
         index: 'index',
