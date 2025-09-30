@@ -7,7 +7,7 @@
     "build": "tsx create-sbom.ts"
   },
   "devDependencies": {
-    "@cyclonedx/cyclonedx-library": "^8.0.0",
+    "@cyclonedx/cyclonedx-library": "^9.0.0",
     "@types/node": "^22.15.16",
     "@types/fs-extra": "^11.0.4",
     "fs-extra": "^11.3.0",
