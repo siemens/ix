@@ -28,7 +28,7 @@ import {
 } from '@siemens/ix-icons/icons';
 import { useState } from 'react';
 
-export default () => {
+export default function ApplicationAdvancedExample() {
   const [activeContent, setActiveContent] = useState('home');
 
   return (
