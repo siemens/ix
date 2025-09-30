@@ -74,18 +74,9 @@ export default () => {
         <IxMenuAbout></IxMenuAbout>
       </IxMenu>
       <IxContent>
-        {activeContent === 'home' && (
-          <IxContentHeader headerTitle="Example home content"></IxContentHeader>
-        )}
-        {activeContent === 'alarm' && (
-          <IxContentHeader headerTitle="Example alarm content"></IxContentHeader>
-        )}
-        {activeContent === 'plant' && (
-          <IxContentHeader headerTitle="Example plant content"></IxContentHeader>
-        )}
-        {activeContent === 'network' && (
-          <IxContentHeader headerTitle="Example network content"></IxContentHeader>
-        )}
+        <IxContentHeader
+          headerTitle={`Example ${activeContent} content`}
+        ></IxContentHeader>
       </IxContent>
     </IxApplication>
   );
