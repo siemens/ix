@@ -17,20 +17,12 @@ regressionTest.describe('icon-button', () => {
   });
 
   regressionTest('variant danger', async ({ page }) => {
-    await page.goto('icon-button/basic');
-    const iconButtons = await page.$$('ix-icon-button');
-    iconButtons.every(async (iconButton) => {
-      iconButton.evaluate((iconButton) => (iconButton.variant = 'danger'));
-    });
+    await page.goto('icon-button/danger');
     expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
 
   regressionTest('variant primary', async ({ page }) => {
-    await page.goto('icon-button/basic');
-    const iconButtons = await page.$$('ix-icon-button');
-    iconButtons.every(async (iconButton) => {
-      iconButton.evaluate((iconButton) => (iconButton.variant = 'primary'));
-    });
+    await page.goto('icon-button/primary');
     expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
 
@@ -40,20 +32,12 @@ regressionTest.describe('icon-button', () => {
   });
 
   regressionTest('loading variant danger', async ({ page }) => {
-    await page.goto('icon-button/loading');
-    const iconButtons = await page.$$('ix-icon-button');
-    iconButtons.every(async (iconButton) => {
-      iconButton.evaluate((iconButton) => (iconButton.variant = 'danger'));
-    });
+    await page.goto('icon-button/loading-danger');
     expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
 
   regressionTest('loading variant primary', async ({ page }) => {
-    await page.goto('icon-button/loading');
-    const iconButtons = await page.$$('ix-icon-button');
-    iconButtons.every(async (iconButton) => {
-      iconButton.evaluate((iconButton) => (iconButton.variant = 'primary'));
-    });
+    await page.goto('icon-button/loading-primary');
     expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
 });

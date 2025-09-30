@@ -18,7 +18,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxInputGroup, IxIcon, IxIconButton, FormsModule],
   template: `
@@ -36,14 +35,7 @@ import {
           type="string"
         />
         <span slot="input-end">
-          <ix-icon-button
-            (click)="clearInput()"
-            id="clear-button"
-            icon="clear"
-            ghost="{true}"
-            size="16"
-            [style.display]="display"
-          ></ix-icon-button>
+          <ix-icon-button variant="tertiary" (click)="clearInput()" id="clear-button" icon="clear"="{true}" size="16" [style.display]="display"></ix-icon-button>
         </span>
       </ix-input-group>
     </form>

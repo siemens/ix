@@ -16,157 +16,36 @@ export default () => {
   return (
     <IxLayoutGrid>
       <IxRow>
-        <IxIconToggleButton outline icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton
-          outline
-          pressed
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          outline
-          disabled
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          outline
-          disabled
-          loading
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" pressed icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" disabled icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" disabled loading icon={iconCheckboxes}></IxIconToggleButton>
 
-        <IxIconToggleButton
-          size="16"
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="16"
-          pressed
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="16"
-          outline
-          disabled
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="16"
-          disabled
-          loading
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="16" icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="16" pressed icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="16" disabled icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="16" disabled loading icon={iconCheckboxes}></IxIconToggleButton>
 
-        <IxIconToggleButton
-          size="12"
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="12"
-          pressed
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="12"
-          outline
-          disabled
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="12"
-          disabled
-          loading
-          outline
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="12" icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="12" pressed icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="12" disabled icon={iconCheckboxes}></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="12" disabled loading icon={iconCheckboxes}></IxIconToggleButton>
       </IxRow>
       <IxRow>
-        <IxIconToggleButton
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          outline
-          pressed
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          outline
-          disabled
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          outline
-          disabled
-          loading
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" pressed icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" disabled icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" disabled loading icon={iconCheckboxes} oval></IxIconToggleButton>
 
-        <IxIconToggleButton
-          size="16"
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="16"
-          pressed
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="16"
-          outline
-          disabled
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="16"
-          disabled
-          loading
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="16" icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="16" pressed icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="16" disabled icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="16" disabled loading icon={iconCheckboxes} oval></IxIconToggleButton>
 
-        <IxIconToggleButton
-          size="12"
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="12"
-          pressed
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="12"
-          outline
-          disabled
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          size="12"
-          disabled
-          loading
-          outline
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="12" icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="12" pressed icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="12" disabled icon={iconCheckboxes} oval></IxIconToggleButton>
+        <IxIconToggleButton variant="subtle-primary" size="12" disabled loading icon={iconCheckboxes} oval></IxIconToggleButton>
       </IxRow>
     </IxLayoutGrid>
   );
