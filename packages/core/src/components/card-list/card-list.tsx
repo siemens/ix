@@ -112,12 +112,13 @@ export class CardList {
   /**
    * i18n Show all button
    */
-  @Prop() i18nShowAll = 'Show all';
+  @Prop({ attribute: 'i18n-show-all' }) i18nShowAll = 'Show all';
 
   /**
    * i18n More cards available
    */
-  @Prop() i18nMoreCards = 'There are more cards available';
+  @Prop({ attribute: 'i18n-more-cards' }) i18nMoreCards =
+    'There are more cards available';
 
   /**
    * Fire event when the collapse state is changed by the user

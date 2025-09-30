@@ -13,7 +13,7 @@ import { BlindVariant } from "./components/blind/blind.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card.types";
-import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
+import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
@@ -32,13 +32,13 @@ import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
-import { FlipTileState } from "./components/flip-tile/flip-tile-state";
+import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
-import { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator.types";
+import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -63,7 +63,7 @@ export { BlindVariant } from "./components/blind/blind.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card.types";
-export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
+export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
@@ -82,13 +82,13 @@ export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
-export { FlipTileState } from "./components/flip-tile/flip-tile-state";
+export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
-export { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator.types";
+export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -468,6 +468,12 @@ export namespace Components {
           * @default false
          */
         "collapse": boolean;
+        /**
+          * Show accordion with different color variants
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant": CardAccordionVariant;
     }
     interface IxCardContent {
     }
@@ -563,7 +569,7 @@ export namespace Components {
          */
         "hideIcon": boolean;
         /**
-          * i18n
+          * i18n label for 'Filter by text'
           * @default 'Filter by text'
          */
         "i18nPlainText": string;
@@ -1541,6 +1547,12 @@ export namespace Components {
           * @default false
          */
         "selected": boolean;
+        /**
+          * Variant of the event list item
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant": 'outline' | 'filled';
     }
     interface IxExpandingSearch {
         /**
@@ -1701,8 +1713,10 @@ export namespace Components {
         "index": number;
         /**
           * Variation of the Flip
+          * @since 4.0.0
+          * @default 'filled'
          */
-        "state"?: FlipTileState;
+        "variant": FlipTileVariant;
         /**
           * Width interpreted as REM
           * @default 16
@@ -2213,10 +2227,12 @@ export namespace Components {
          */
         "expand": boolean;
         /**
+          * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
         "i18nCollapse": string;
         /**
+          * i18n label for 'Expand' button
           * @default ' Expand'
          */
         "i18nExpand": string;
@@ -2226,14 +2242,17 @@ export namespace Components {
          */
         "i18nExpandSidebar": string;
         /**
+          * i18n label for 'About & legal information' button
           * @default 'About & legal information'
          */
         "i18nLegal": string;
         /**
+          * i18n label for 'Settings' button
           * @default 'Settings'
          */
         "i18nSettings": string;
         /**
+          * i18n label for 'Toggle theme' button
           * @default 'Toggle theme'
          */
         "i18nToggleTheme": string;
@@ -2309,6 +2328,7 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
+          * i18n label for 'Show more' button
           * @default 'Show more'
          */
         "i18nShowMore": string;
@@ -2333,7 +2353,7 @@ export namespace Components {
          */
         "bottom"?: string;
         /**
-          * Use for translation
+          * i18n label for 'Logout' button
           * @default 'Logout'
          */
         "i18nLogout": string;
@@ -2706,17 +2726,17 @@ export namespace Components {
          */
         "count": number;
         /**
-          * /**   i18n
+          * i18n label for 'Items'
           * @default 'Items'
          */
         "i18nItems": string;
         /**
-          * i18n
+          * i18n label for 'of'
           * @default 'of'
          */
         "i18nOf": string;
         /**
-          * i18n
+          * i18n label for 'Page'
           * @default 'Page'
          */
         "i18nPage": string;
@@ -2903,12 +2923,7 @@ export namespace Components {
           * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
           * @default 'default'
          */
-        "status": | 'default'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'paused';
+        "status": ProgressIndicatorStatus;
         /**
           * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
           * @default 'left'
@@ -6370,6 +6385,12 @@ declare namespace LocalJSX {
          */
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
+        /**
+          * Show accordion with different color variants
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant"?: CardAccordionVariant;
     }
     interface IxCardContent {
     }
@@ -6481,7 +6502,7 @@ declare namespace LocalJSX {
          */
         "hideIcon"?: boolean;
         /**
-          * i18n
+          * i18n label for 'Filter by text'
           * @default 'Filter by text'
          */
         "i18nPlainText"?: string;
@@ -7514,6 +7535,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "selected"?: boolean;
+        /**
+          * Variant of the event list item
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant"?: 'outline' | 'filled';
     }
     interface IxExpandingSearch {
         /**
@@ -7687,8 +7714,10 @@ declare namespace LocalJSX {
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
           * Variation of the Flip
+          * @since 4.0.0
+          * @default 'filled'
          */
-        "state"?: FlipTileState;
+        "variant"?: FlipTileVariant;
         /**
           * Width interpreted as REM
           * @default 16
@@ -8206,10 +8235,12 @@ declare namespace LocalJSX {
          */
         "expand"?: boolean;
         /**
+          * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
         "i18nCollapse"?: string;
         /**
+          * i18n label for 'Expand' button
           * @default ' Expand'
          */
         "i18nExpand"?: string;
@@ -8219,14 +8250,17 @@ declare namespace LocalJSX {
          */
         "i18nExpandSidebar"?: string;
         /**
+          * i18n label for 'About & legal information' button
           * @default 'About & legal information'
          */
         "i18nLegal"?: string;
         /**
+          * i18n label for 'Settings' button
           * @default 'Settings'
          */
         "i18nSettings"?: string;
         /**
+          * i18n label for 'Toggle theme' button
           * @default 'Toggle theme'
          */
         "i18nToggleTheme"?: string;
@@ -8318,6 +8352,7 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
+          * i18n label for 'Show more' button
           * @default 'Show more'
          */
         "i18nShowMore"?: string;
@@ -8350,7 +8385,7 @@ declare namespace LocalJSX {
          */
         "bottom"?: string;
         /**
-          * Use for translation
+          * i18n label for 'Logout' button
           * @default 'Logout'
          */
         "i18nLogout"?: string;
@@ -8750,17 +8785,17 @@ declare namespace LocalJSX {
          */
         "count"?: number;
         /**
-          * /**   i18n
+          * i18n label for 'Items'
           * @default 'Items'
          */
         "i18nItems"?: string;
         /**
-          * i18n
+          * i18n label for 'of'
           * @default 'of'
          */
         "i18nOf"?: string;
         /**
-          * i18n
+          * i18n label for 'Page'
           * @default 'Page'
          */
         "i18nPage"?: string;
@@ -8969,12 +9004,7 @@ declare namespace LocalJSX {
           * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
           * @default 'default'
          */
-        "status"?: | 'default'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'paused';
+        "status"?: ProgressIndicatorStatus;
         /**
           * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
           * @default 'left'

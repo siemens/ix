@@ -149,22 +149,24 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   /**
    * Input field placeholder
    */
-  @Prop() i18nPlaceholder = 'Select an option';
+  @Prop({ attribute: 'i18n-placeholder' }) i18nPlaceholder = 'Select an option';
 
   /**
    * Input field placeholder for editable select
    */
-  @Prop() i18nPlaceholderEditable = 'Type of select option';
+  @Prop({ attribute: 'i18n-placeholder-editable' }) i18nPlaceholderEditable =
+    'Type of select option';
 
   /**
    * Select list header
    */
-  @Prop() i18nSelectListHeader = 'Select an option';
+  @Prop({ attribute: 'i18n-select-list-header' }) i18nSelectListHeader =
+    'Select an option';
 
   /**
    * Information inside of dropdown if no items where found with current filter text
    */
-  @Prop() i18nNoMatches = 'No matches';
+  @Prop({ attribute: 'i18n-no-matches' }) i18nNoMatches = 'No matches';
 
   /**
    * Hide list header
