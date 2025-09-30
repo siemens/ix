@@ -71,20 +71,9 @@ const activeContent = ref('home');
       <IxMenuAbout></IxMenuAbout>
     </IxMenu>
     <IxContent>
-      <div v-if="activeContent === 'home'">
-        <IxContentHeader header-title="Example home content"></IxContentHeader>
-      </div>
-      <div v-if="activeContent === 'alarm'">
-        <IxContentHeader header-title="Example alarm content"></IxContentHeader>
-      </div>
-      <div v-if="activeContent === 'plant'">
-        <IxContentHeader header-title="Example plant content"></IxContentHeader>
-      </div>
-      <div v-if="activeContent === 'network'">
-        <IxContentHeader
-          header-title="Example network content"
-        ></IxContentHeader>
-      </div>
+      <IxContentHeader
+        :header-title="`Example ${activeContent} content`"
+      ></IxContentHeader>
     </IxContent>
   </IxApplication>
 </template>
