@@ -45,23 +45,7 @@ LICENSE file in the root directory of this source tree.
     <ix-menu-about></ix-menu-about>
   </ix-menu>
 
-  @if (activeContent === 'home') {
   <ix-content>
-    <ix-content-header header-title="Example home content"></ix-content-header>
+    <ix-content-header headerTitle="Example {{ activeContent }} content"></ix-content-header>
   </ix-content>
-  } @if (activeContent === 'alarm') {
-  <ix-content>
-    <ix-content-header header-title="Example alarm content"></ix-content-header>
-  </ix-content>
-  } @if (activeContent === 'plant') {
-  <ix-content>
-    <ix-content-header header-title="Example plant content"></ix-content-header>
-  </ix-content>
-  } @if (activeContent === 'network') {
-  <ix-content>
-    <ix-content-header
-      header-title="Example network content"
-    ></ix-content-header>
-  </ix-content>
-  }
 </ix-application>
