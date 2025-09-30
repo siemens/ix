@@ -22,14 +22,23 @@ export class ToastService extends BaseToastService {
     super();
   }
 
+  /**
+   * Gets the current toast position
+   */
   public getPosition(): ToastPosition {
     return super.getPosition();
   }
 
+  /**
+   * Sets the current toast position
+   */
   public setPosition(position: ToastPosition): void {
     super.setPosition(position);
   }
 
+  /**
+   * Shows the toast
+   */
   public show(config: ToastConfig): Promise<ShowToastResult> {
     return super.show(config);
   }
