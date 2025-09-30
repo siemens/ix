@@ -22,7 +22,8 @@ $focusBorderWidth: 1px;
 
   @include component.ix-component;
 
-  > button {
+  > button,
+  > .group-footer {
     display: flex;
     height: 100%;
     width: 100%;
@@ -40,6 +41,16 @@ $focusBorderWidth: 1px;
     &:focus-visible {
       border: $focusBorderWidth solid var(--theme-color-focus-bdr);
     }
+
+    &:disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  .group-footer {
+    cursor: default;
+    border: none;
   }
 
   ix-icon {
@@ -83,21 +94,23 @@ $focusBorderWidth: 1px;
   }
 }
 
-:host(:hover) {
+:host(:not(.suppress-mouse-states):hover) {
   background-color: var(--theme-color-ghost--selected-hover);
   border-color: var(--theme-group-item--border-color--hover);
 }
 
-:host(.selected:hover) {
+:host(:not(.suppress-mouse-states).selected:hover) {
   background-color: var(--theme-color-ghost--selected-hover);
 }
 
-:host(:active) {
+:host(:not(.suppress-mouse-states):active):not(.suppress-mouse-states) {
   background-color: var(--theme-color-ghost--selected-active);
   border-color: var(--theme-group-item--border-color--active);
 }
 
-:host(.selected:active) {
+:host(:not(.suppress-mouse-states).selected:active):not(
+    .suppress-mouse-states
+  ) {
   background-color: var(--theme-color-ghost--selected-active);
 }
 

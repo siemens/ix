@@ -922,6 +922,7 @@ export const IxGroupItem: StencilReactComponent<IxGroupItemElement, IxGroupItemE
         text: 'text',
         secondaryText: 'secondary-text',
         suppressSelection: 'suppress-selection',
+        groupFooter: 'group-footer',
         selected: 'selected',
         disabled: 'disabled',
         index: 'index'

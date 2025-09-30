@@ -684,6 +684,7 @@ export const IxGroupItem: StencilVueComponent<JSX.IxGroupItem> = /*@__PURE__*/ d
   'text',
   'secondaryText',
   'suppressSelection',
+  'groupFooter',
   'selected',
   'disabled',
   'index',

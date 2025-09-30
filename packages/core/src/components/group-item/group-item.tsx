@@ -52,6 +52,12 @@ export class GroupItem {
   @Prop() suppressSelection = false;
 
   /**
+   * @internal
+   * Item represents the footer of the group
+   */
+  @Prop() groupFooter = false;
+
+  /**
    * Show selected state
    */
   @Prop() selected: boolean = false;
@@ -76,17 +82,30 @@ export class GroupItem {
 
   @Listen('click', { passive: true })
   clickListen() {
+    if (this.suppressSelection || this.disabled) {
+      return;
+    }
     this.selectedChanged.emit(this.hostElement);
   }
 
   render() {
+    if (this.groupFooter) {
+      return (
+        <Host class="suppress-mouse-states">
+          <div class="group-footer">
+            <slot></slot>
+          </div>
+        </Host>
+      );
+    }
+
     return (
       <Host
         class={{
           selected: this.selected && !this.suppressSelection,
         }}
       >
-        <button tabindex={this.disabled ? -1 : 0}>
+        <button tabindex={this.disabled ? -1 : 0} disabled={this.disabled}>
           <div class="group-entry-selection-indicator"></div>
           {this.icon ? (
             <ix-icon

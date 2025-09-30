@@ -297,12 +297,12 @@ export class Group {
               }}
             ></slot>
             <ix-group-item
-              suppressSelection={true}
-              disabled={false}
               class={{
                 footer: true,
                 'footer-visible': this.footerVisible,
               }}
+              groupFooter
+              suppressSelection
             >
               <slot
                 name="footer"

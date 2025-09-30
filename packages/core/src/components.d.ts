@@ -1736,6 +1736,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * @default false
+         */
+        "groupFooter": boolean;
+        /**
           * Group item icon
          */
         "icon"?: string;
@@ -7624,6 +7628,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "groupFooter"?: boolean;
         /**
           * Group item icon
          */
