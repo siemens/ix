@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconEye } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -18,11 +19,11 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { createMutationObserver } from '../utils/mutation-observer';
-import { FlipTileState } from './flip-tile-state';
-import { iconEye } from '@siemens/ix-icons/icons';
 import { animate } from 'animejs';
 import Animation from '../utils/animation';
+import { createMutationObserver } from '../utils/mutation-observer';
+import { FlipTileVariant } from './flip-tile.types';
+import { hasSlottedElements } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-flip-tile',
@@ -34,8 +35,10 @@ export class FlipTile {
 
   /**
    * Variation of the Flip
+   *
+   * @since 4.0.0
    */
-  @Prop() state?: FlipTileState;
+  @Prop() variant: FlipTileVariant = 'filled';
 
   /**
    * Height interpreted as REM
@@ -69,6 +72,8 @@ export class FlipTile {
 
   @State() isFlipAnimationActive: boolean = false;
 
+  @State() hasFooterSlot = false;
+
   private contentItems: Array<HTMLIxFlipTileContentElement> = [];
   private observer?: MutationObserver;
 
@@ -97,6 +102,12 @@ export class FlipTile {
     if (this.observer) {
       this.observer.disconnect();
     }
+  }
+
+  private handleFooterSlotChange(event: Event) {
+    const { target } = event;
+    const slot = target as HTMLSlotElement;
+    this.hasFooterSlot = hasSlottedElements(slot);
   }
 
   private updateContentItems() {
@@ -173,6 +184,9 @@ export class FlipTile {
   render() {
     return (
       <Host
+        class={{
+          [`flip-tile-variant-${this.variant}`]: true,
+        }}
         style={{
           height: `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
           'min-height': `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
@@ -182,15 +196,7 @@ export class FlipTile {
           'max-width': `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
         }}
       >
-        <div
-          class={{
-            'flip-tile-container': true,
-            info: this.state === FlipTileState.Info,
-            warning: this.state === FlipTileState.Warning,
-            alarm: this.state === FlipTileState.Alarm,
-            primary: this.state === FlipTileState.Primary,
-          }}
-        >
+        <div class="flip-tile-container">
           <div class="flip-tile-header">
             <div class="header-slot-container text-l-title">
               <slot name="header"></slot>
@@ -209,13 +215,13 @@ export class FlipTile {
           <div
             class={{
               footer: true,
-              'contrast-light': this.state === FlipTileState.Warning,
-              'contrast-dark':
-                this.state === FlipTileState.Info ||
-                this.state === FlipTileState.Alarm,
+              'show-footer': this.hasFooterSlot,
             }}
           >
-            <slot name="footer"></slot>
+            <slot
+              name="footer"
+              onSlotchange={(event) => this.handleFooterSlotChange(event)}
+            ></slot>
           </div>
         </div>
       </Host>

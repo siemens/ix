@@ -373,14 +373,14 @@ export declare interface IxCard extends Components.IxCard {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCardAccordion,
-  inputs: ['ariaLabelExpandButton', 'collapse']
+  inputs: ['ariaLabelExpandButton', 'collapse', 'variant']
 })
 @Component({
   selector: 'ix-card-accordion',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelExpandButton', 'collapse'],
+  inputs: ['ariaLabelExpandButton', 'collapse', 'variant'],
 })
 export class IxCardAccordion {
   protected el: HTMLIxCardAccordionElement;
@@ -1119,14 +1119,14 @@ export declare interface IxEventList extends Components.IxEventList {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxEventListItem,
-  inputs: ['chevron', 'disabled', 'itemColor', 'selected']
+  inputs: ['chevron', 'disabled', 'itemColor', 'selected', 'variant']
 })
 @Component({
   selector: 'ix-event-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['chevron', 'disabled', 'itemColor', 'selected'],
+  inputs: ['chevron', 'disabled', 'itemColor', 'selected', 'variant'],
   outputs: ['itemClick'],
 })
 export class IxEventListItem {
@@ -1232,14 +1232,14 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxFlipTile,
-  inputs: ['ariaLabelEyeIconButton', 'height', 'index', 'state', 'width']
+  inputs: ['ariaLabelEyeIconButton', 'height', 'index', 'variant', 'width']
 })
 @Component({
   selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelEyeIconButton', 'height', 'index', 'state', 'width'],
+  inputs: ['ariaLabelEyeIconButton', 'height', 'index', 'variant', 'width'],
   outputs: ['toggle'],
 })
 export class IxFlipTile {

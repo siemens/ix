@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.37.0",
+    "version": "4.37.1",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -2753,6 +2753,78 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "complexType": {
+            "original": "CardAccordionVariant",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "references": {
+              "CardAccordionVariant": {
+                "location": "import",
+                "path": "card-accordion.types",
+                "id": "src/components/card-accordion/card-accordion.types.ts::CardAccordionVariant"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Show accordion with different color variants",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "'outline'"
+            }
+          ],
+          "default": "'outline'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
@@ -2933,7 +3005,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-more-cards",
+          "attr": "i18n-more-cards",
           "reflectToAttr": false,
           "docs": "i18n More cards available",
           "docsTags": [
@@ -2962,7 +3034,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-show-all",
+          "attr": "i18n-show-all",
           "reflectToAttr": false,
           "docs": "i18n Show all button",
           "docsTags": [
@@ -3456,9 +3528,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-plain-text",
+          "attr": "i18n-plain-text",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'Filter by text'",
           "docsTags": [
             {
               "name": "default",
@@ -7760,7 +7832,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-time",
+          "attr": "i18n-time",
           "reflectToAttr": false,
           "docs": "Top label of time picker",
           "docsTags": [
@@ -10190,6 +10262,44 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"filled\" | \"outline\"",
+          "complexType": {
+            "original": "'outline' | 'filled'",
+            "resolved": "\"filled\" | \"outline\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Variant of the event list item",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "'outline'"
+            }
+          ],
+          "default": "'outline'",
+          "values": [
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
@@ -10893,45 +11003,61 @@
           "setter": false
         },
         {
-          "name": "state",
-          "type": "FlipTileState.Alarm | FlipTileState.Info | FlipTileState.None | FlipTileState.Primary | FlipTileState.Warning | undefined",
+          "name": "variant",
+          "type": "\"alarm\" | \"filled\" | \"info\" | \"outline\" | \"primary\" | \"warning\"",
           "complexType": {
-            "original": "FlipTileState",
-            "resolved": "FlipTileState.Alarm | FlipTileState.Info | FlipTileState.None | FlipTileState.Primary | FlipTileState.Warning | undefined",
+            "original": "FlipTileVariant",
+            "resolved": "\"alarm\" | \"filled\" | \"info\" | \"outline\" | \"primary\" | \"warning\"",
             "references": {
-              "FlipTileState": {
+              "FlipTileVariant": {
                 "location": "import",
-                "path": "flip-tile-state",
-                "id": "src/components/flip-tile/flip-tile-state.ts::FlipTileState"
+                "path": "flip-tile.types",
+                "id": "src/components/flip-tile/flip-tile.types.ts::FlipTileVariant"
               }
             }
           },
           "mutable": false,
-          "attr": "state",
+          "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variation of the Flip",
-          "docsTags": [],
-          "values": [
+          "docsTags": [
             {
-              "type": "FlipTileState.Alarm"
+              "name": "since",
+              "text": "4.0.0"
             },
             {
-              "type": "FlipTileState.Info"
-            },
-            {
-              "type": "FlipTileState.None"
-            },
-            {
-              "type": "FlipTileState.Primary"
-            },
-            {
-              "type": "FlipTileState.Warning"
-            },
-            {
-              "type": "undefined"
+              "name": "default",
+              "text": "'filled'"
             }
           ],
-          "optional": true,
+          "default": "'filled'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -14910,9 +15036,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-collapse",
+          "attr": "i18n-collapse",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Collapse' button",
           "docsTags": [
             {
               "name": "default",
@@ -14939,9 +15065,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-expand",
+          "attr": "i18n-expand",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Expand' button",
           "docsTags": [
             {
               "name": "default",
@@ -14968,7 +15094,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-expand-sidebar",
+          "attr": "i18n-expand-sidebar",
           "reflectToAttr": false,
           "docs": "Accessibility i18n label for the burger menu of the sidebar",
           "docsTags": [
@@ -14997,9 +15123,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-legal",
+          "attr": "i18n-legal",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'About & legal information' button",
           "docsTags": [
             {
               "name": "default",
@@ -15026,9 +15152,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-settings",
+          "attr": "i18n-settings",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Settings' button",
           "docsTags": [
             {
               "name": "default",
@@ -15055,9 +15181,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-toggle-theme",
+          "attr": "i18n-toggle-theme",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Toggle theme' button",
           "docsTags": [
             {
               "name": "default",
@@ -15724,9 +15850,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-show-more",
+          "attr": "i18n-show-more",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Show more' button",
           "docsTags": [
             {
               "name": "default",
@@ -15944,9 +16070,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-logout",
+          "attr": "i18n-logout",
           "reflectToAttr": false,
-          "docs": "Use for translation",
+          "docs": "i18n label for 'Logout' button",
           "docsTags": [
             {
               "name": "default",
@@ -18628,9 +18754,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-items",
+          "attr": "i18n-items",
           "reflectToAttr": false,
-          "docs": "/**\n  i18n",
+          "docs": "i18n label for 'Items'",
           "docsTags": [
             {
               "name": "default",
@@ -18657,9 +18783,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-of",
+          "attr": "i18n-of",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'of'",
           "docsTags": [
             {
               "name": "default",
@@ -18686,9 +18812,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-page",
+          "attr": "i18n-page",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'Page'",
           "docsTags": [
             {
               "name": "default",
@@ -19950,9 +20076,15 @@
           "name": "status",
           "type": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "| 'default'\n    | 'success'\n    | 'error'\n    | 'info'\n    | 'warning'\n    | 'paused'",
+            "original": "ProgressIndicatorStatus",
             "resolved": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
-            "references": {}
+            "references": {
+              "ProgressIndicatorStatus": {
+                "location": "import",
+                "path": "progress-indicator.types",
+                "id": "src/components/progress-indicator/progress-indicator.types.ts::ProgressIndicatorStatus"
+              }
+            }
           },
           "mutable": false,
           "attr": "status",
@@ -21288,7 +21420,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-no-matches",
+          "attr": "i18n-no-matches",
           "reflectToAttr": false,
           "docs": "Information inside of dropdown if no items where found with current filter text",
           "docsTags": [
@@ -21317,7 +21449,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-placeholder",
+          "attr": "i18n-placeholder",
           "reflectToAttr": false,
           "docs": "Input field placeholder",
           "docsTags": [
@@ -21346,7 +21478,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-placeholder-editable",
+          "attr": "i18n-placeholder-editable",
           "reflectToAttr": false,
           "docs": "Input field placeholder for editable select",
           "docsTags": [
@@ -21375,7 +21507,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-select-list-header",
+          "attr": "i18n-select-list-header",
           "reflectToAttr": false,
           "docs": "Select list header",
           "docsTags": [
@@ -28175,7 +28307,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-upload-disabled",
+          "attr": "i18n-upload-disabled",
           "reflectToAttr": false,
           "docs": "Text for disabled state",
           "docsTags": [
@@ -28204,7 +28336,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-upload-file",
+          "attr": "i18n-upload-file",
           "reflectToAttr": false,
           "docs": "Label for upload file button",
           "docsTags": [
@@ -29026,6 +29158,11 @@
       "docstring": "",
       "path": "src/components/card/card.types.ts"
     },
+    "src/components/card-accordion/card-accordion.types.ts::CardAccordionVariant": {
+      "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
+      "docstring": "",
+      "path": "src/components/card-accordion/card-accordion.types.ts"
+    },
     "src/components/card-accordion/card-accordion.types.ts::CardAccordionExpandChangeEvent": {
       "declaration": "{\n  expand: boolean;\n  nativeEvent: Event;\n}",
       "docstring": "",
@@ -29126,10 +29263,10 @@
       "docstring": "",
       "path": "src/components/utils/make-ref.ts"
     },
-    "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
-      "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
+    "src/components/flip-tile/flip-tile.types.ts::FlipTileVariant": {
+      "declaration": "export type FlipTileVariant =\n  | 'outline'\n  | 'filled'\n  | 'info'\n  | 'warning'\n  | 'alarm'\n  | 'primary';",
       "docstring": "",
-      "path": "src/components/flip-tile/flip-tile-state.ts"
+      "path": "src/components/flip-tile/flip-tile.types.ts"
     },
     "src/components/icon-button/icon-button.types.ts::IconButtonVariant": {
       "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
@@ -29191,6 +29328,11 @@
       "docstring": "",
       "path": "src/components/progress-indicator/progress-indicator.types.ts"
     },
+    "src/components/progress-indicator/progress-indicator.types.ts::ProgressIndicatorStatus": {
+      "declaration": "export type ProgressIndicatorStatus =\n  | 'default'\n  | 'success'\n  | 'error'\n  | 'info'\n  | 'warning'\n  | 'paused';",
+      "docstring": "",
+      "path": "src/components/progress-indicator/progress-indicator.types.ts"
+    },
     "src/components/push-card/push-card.types.ts::PushCardVariant": {
       "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
@@ -29227,7 +29369,7 @@
       "path": "src/components/toast/toast-container.types.ts"
     },
     "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  title?: string;\n  message?: string | HTMLElement;\n  action?: HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "declaration": "export interface ToastConfig {\n  /**\n   * Title of the toast\n   */\n  title?: string;\n  /**\n   * Message of the toast\n   */\n  message?: string | HTMLElement;\n  /**\n   * Action element that is displayed below the toast message/title\n   */\n  action?: HTMLElement;\n  /**\n   * Type of the toast\n   */\n  type?: ToastType;\n  /**\n   * Controls whether the toast closes automatically after a delay\n   */\n  autoClose?: boolean;\n  /**\n   * Sets the delay for autoClose in milliseconds\n   */\n  autoCloseDelay?: number;\n  /**\n   * Icon that is displayed with the toast\n   */\n  icon?: string;\n  /**\n   * Color of the icon\n   */\n  iconColor?: string;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
     },
@@ -29241,10 +29383,10 @@
       "docstring": "",
       "path": "src/components.d.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.37.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "../../node_modules/.pnpm/@stencil+core@4.37.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.37.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "../../node_modules/.pnpm/@stencil+core@4.37.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

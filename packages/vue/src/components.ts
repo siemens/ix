@@ -240,6 +240,7 @@ export const IxCard: StencilVueComponent<JSX.IxCard> = /*@__PURE__*/ defineConta
 export const IxCardAccordion: StencilVueComponent<JSX.IxCardAccordion> = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', defineIxCardAccordion, [
   'ariaLabelExpandButton',
   'collapse',
+  'variant',
   'accordionExpand'
 ], [
   'accordionExpand'
@@ -319,7 +320,7 @@ export const IxCheckbox: StencilVueComponent<JSX.IxCheckbox, JSX.IxCheckbox["che
   'valueChange',
   'ixBlur'
 ],
-'checked', 'checkedChange');
+'checked', 'checkedChange', undefined);
 
 
 export const IxCheckboxGroup: StencilVueComponent<JSX.IxCheckboxGroup> = /*@__PURE__*/ defineContainer<JSX.IxCheckboxGroup>('ix-checkbox-group', defineIxCheckboxGroup, [
@@ -447,7 +448,7 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'ixFocus',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
@@ -603,6 +604,7 @@ export const IxEventList: StencilVueComponent<JSX.IxEventList> = /*@__PURE__*/ d
 
 
 export const IxEventListItem: StencilVueComponent<JSX.IxEventListItem> = /*@__PURE__*/ defineContainer<JSX.IxEventListItem>('ix-event-list-item', defineIxEventListItem, [
+  'variant',
   'itemColor',
   'selected',
   'disabled',
@@ -647,7 +649,7 @@ export const IxFilterChip: StencilVueComponent<JSX.IxFilterChip> = /*@__PURE__*/
 
 
 export const IxFlipTile: StencilVueComponent<JSX.IxFlipTile> = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', defineIxFlipTile, [
-  'state',
+  'variant',
   'height',
   'width',
   'index',
@@ -766,7 +768,7 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxInputGroup: StencilVueComponent<JSX.IxInputGroup> = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', defineIxInputGroup);
@@ -1050,7 +1052,7 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxPagination: StencilVueComponent<JSX.IxPagination> = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', defineIxPagination, [
@@ -1216,7 +1218,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'addItem',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
@@ -1327,7 +1329,7 @@ export const IxTextarea: StencilVueComponent<JSX.IxTextarea, JSX.IxTextarea["val
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxTile: StencilVueComponent<JSX.IxTile> = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defineIxTile, [
