@@ -113,7 +113,7 @@ export class Breadcrumb {
         this.nextItems.length !== 0 && updatedItems.length - 1 === index;
 
       bc.subtle = this.subtle;
-      bc.hideChevron = updatedItems.length - 1 !== index || !shouldShowDropdown;
+      bc.hideChevron = updatedItems.length - 1 === index && !shouldShowDropdown;
       bc.isDropdownTrigger = shouldShowDropdown;
 
       if (shouldShowDropdown) {
