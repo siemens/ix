@@ -134,11 +134,7 @@ import InputFormValidation from '../preview-examples/input-form-validation';
 import InputLabel from '../preview-examples/input-label';
 import InputLegacy from '../preview-examples/input-legacy';
 import InputLegacyDisabled from '../preview-examples/input-legacy-disabled';
-import InputLegacyLabels from '../preview-examples/input-legacy-labels';
 import InputLegacyReadonly from '../preview-examples/input-legacy-readonly';
-import InputLegacySearch from '../preview-examples/input-legacy-search';
-import InputLegacyTypes from '../preview-examples/input-legacy-types';
-import InputLegacyWithIcon from '../preview-examples/input-legacy-with-icon';
 import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
 import InputTypes from '../preview-examples/input-types';
@@ -364,11 +360,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     IconToggleButtonSecondaryOutline,
     IconToggleButtonSecondary,
     InputLegacyDisabled,
-    InputLegacyLabels,
     InputLegacyReadonly,
-    InputLegacySearch,
-    InputLegacyTypes,
-    InputLegacyWithIcon,
     InputLegacy,
     KeyValueListStriped,
     KeyValueListWithCustomValue,

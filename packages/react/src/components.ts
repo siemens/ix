@@ -55,7 +55,6 @@ import { IxGroup as IxGroupElement, defineCustomElement as defineIxGroup } from 
 import { IxHelperText as IxHelperTextElement, defineCustomElement as defineIxHelperText } from "@siemens/ix/components/ix-helper-text.js";
 import { IxIconButton as IxIconButtonElement, defineCustomElement as defineIxIconButton } from "@siemens/ix/components/ix-icon-button.js";
 import { IxIconToggleButton as IxIconToggleButtonElement, defineCustomElement as defineIxIconToggleButton } from "@siemens/ix/components/ix-icon-toggle-button.js";
-import { IxInputGroup as IxInputGroupElement, defineCustomElement as defineIxInputGroup } from "@siemens/ix/components/ix-input-group.js";
 import { IxInput as IxInputElement, defineCustomElement as defineIxInput } from "@siemens/ix/components/ix-input.js";
 import { IxKeyValueList as IxKeyValueListElement, defineCustomElement as defineIxKeyValueList } from "@siemens/ix/components/ix-key-value-list.js";
 import { IxKeyValue as IxKeyValueElement, defineCustomElement as defineIxKeyValue } from "@siemens/ix/components/ix-key-value.js";
@@ -108,7 +107,6 @@ import { IxToggle as IxToggleElement, defineCustomElement as defineIxToggle } fr
 import { IxTooltip as IxTooltipElement, defineCustomElement as defineIxTooltip } from "@siemens/ix/components/ix-tooltip.js";
 import { IxTypography as IxTypographyElement, defineCustomElement as defineIxTypography } from "@siemens/ix/components/ix-typography.js";
 import { IxUpload as IxUploadElement, defineCustomElement as defineIxUpload } from "@siemens/ix/components/ix-upload.js";
-import { IxValidationTooltip as IxValidationTooltipElement, defineCustomElement as defineIxValidationTooltip } from "@siemens/ix/components/ix-validation-tooltip.js";
 import { IxWorkflowStep as IxWorkflowStepElement, defineCustomElement as defineIxWorkflowStep } from "@siemens/ix/components/ix-workflow-step.js";
 import { IxWorkflowSteps as IxWorkflowStepsElement, defineCustomElement as defineIxWorkflowSteps } from "@siemens/ix/components/ix-workflow-steps.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
@@ -639,7 +637,7 @@ export const IxFlipTileContent: StencilReactComponent<IxFlipTileContentElement, 
 export type IxGroupEvents = {
     onSelectGroup: EventName<CustomEvent<boolean>>,
     onSelectItem: EventName<CustomEvent<number>>,
-    onCollapsedChanged: EventName<CustomEvent<boolean>>
+    onExpandedChanged: EventName<CustomEvent<boolean>>
 };
 
 export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents> = /*@__PURE__*/ createComponent<IxGroupElement, IxGroupEvents>({
@@ -650,7 +648,7 @@ export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents> = /*@
     events: {
         onSelectGroup: 'selectGroup',
         onSelectItem: 'selectItem',
-        onCollapsedChanged: 'collapsedChanged'
+        onExpandedChanged: 'expandedChanged'
     } as IxGroupEvents,
     defineCustomElement: defineIxGroup
 });
@@ -727,17 +725,6 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@
         onIxBlur: 'ixBlur'
     } as IxInputEvents,
     defineCustomElement: defineIxInput
-});
-
-export type IxInputGroupEvents = NonNullable<unknown>;
-
-export const IxInputGroup: StencilReactComponent<IxInputGroupElement, IxInputGroupEvents> = /*@__PURE__*/ createComponent<IxInputGroupElement, IxInputGroupEvents>({
-    tagName: 'ix-input-group',
-    elementClass: IxInputGroupElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
-    react: React,
-    events: {} as IxInputGroupEvents,
-    defineCustomElement: defineIxInputGroup
 });
 
 export type IxKeyValueEvents = NonNullable<unknown>;
@@ -1413,17 +1400,6 @@ export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = 
     react: React,
     events: { onFilesChanged: 'filesChanged' } as IxUploadEvents,
     defineCustomElement: defineIxUpload
-});
-
-export type IxValidationTooltipEvents = NonNullable<unknown>;
-
-export const IxValidationTooltip: StencilReactComponent<IxValidationTooltipElement, IxValidationTooltipEvents> = /*@__PURE__*/ createComponent<IxValidationTooltipElement, IxValidationTooltipEvents>({
-    tagName: 'ix-validation-tooltip',
-    elementClass: IxValidationTooltipElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
-    react: React,
-    events: {} as IxValidationTooltipEvents,
-    defineCustomElement: defineIxValidationTooltip
 });
 
 export type IxWorkflowStepEvents = NonNullable<unknown>;

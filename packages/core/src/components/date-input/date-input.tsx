@@ -498,7 +498,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ref={this.datepickerRef}
             format={this.format}
             locale={this.locale}
-            range={false}
+            singleSelection
             from={this.from ?? ''}
             minDate={this.minDate}
             maxDate={this.maxDate}
@@ -509,7 +509,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             showWeekNumbers={this.showWeekNumbers}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-            standaloneAppearance={false}
+            embedded
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

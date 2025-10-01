@@ -120,12 +120,12 @@ regressionTest(
     const expandIcon = group.getByTestId('expand-collapsed-icon');
 
     await group.evaluate((item) => {
-      item.addEventListener('collapsedChanged', (e) => e.preventDefault());
+      item.addEventListener('expandedChanged', (e) => e.preventDefault());
     });
 
     await expandIcon.click();
 
-    await expect(group).toHaveAttribute('collapsed');
+    await expect(group).not.toHaveAttribute('expanded');
   }
 );
 

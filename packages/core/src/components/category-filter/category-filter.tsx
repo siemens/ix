@@ -129,17 +129,10 @@ export class CategoryFilter {
   @Prop() staticOperator?: LogicalFilterOperator;
 
   /**
-   * If set to true, allows that a single category can be set more than once.
-   * An already set category will not appear in the category dropdown if set to false.
-   *
-   * Defaults to true
+   * If set to true, prevents that a single category can be set more than once.
+   * An already set category will not appear in the category dropdown if set to true.
    */
-  @Prop() repeatCategories = true;
-
-  /**
-   * @internal For debugging purposes only!
-   */
-  @Prop() tmpDisableScrollIntoView = true;
+  @Prop() uniqueCategories = false;
 
   /**
    * i18n
@@ -543,7 +536,7 @@ export class CategoryFilter {
   }
 
   private filterMultiples(value: string) {
-    if (this.repeatCategories) {
+    if (!this.uniqueCategories) {
       return true;
     }
 
@@ -777,9 +770,7 @@ export class CategoryFilter {
 
   componentDidRender() {
     if (this.isScrollStateDirty) {
-      if (!this.tmpDisableScrollIntoView) {
-        this.textInput?.current?.scrollIntoView();
-      }
+      this.textInput?.current?.scrollIntoView();
       this.isScrollStateDirty = false;
     }
   }

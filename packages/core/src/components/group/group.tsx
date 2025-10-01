@@ -50,9 +50,9 @@ export class Group {
   @Prop() subHeader?: string;
 
   /**
-   * Whether the group is collapsed or expanded. Defaults to true.
+   * Whether the group is expanded or collapsed. Defaults to false.
    */
-  @Prop({ mutable: true, reflect: true }) collapsed = true;
+  @Prop({ mutable: true, reflect: true }) expanded = false;
 
   /**
    * Whether the group is selected.
@@ -81,9 +81,9 @@ export class Group {
   @Event() selectItem!: EventEmitter<number>;
 
   /**
-   * Group collapsed
+   * Group expanded
    */
-  @Event() collapsedChanged!: EventEmitter<boolean>;
+  @Event() expandedChanged!: EventEmitter<boolean>;
 
   @State() itemSelected = false;
   @State() slotSize = this.groupItems.length;
@@ -119,13 +119,13 @@ export class Group {
   }
 
   private onExpandClick(event: Event) {
-    const oldCollapsed = this.collapsed;
-    this.collapsed = !this.collapsed;
-    const { defaultPrevented } = this.collapsedChanged.emit(this.collapsed);
+    const oldExpanded = this.expanded;
+    this.expanded = !this.expanded;
+    const { defaultPrevented } = this.expandedChanged.emit(this.expanded);
     event.stopPropagation();
 
     if (defaultPrevented) {
-      this.collapsed = oldCollapsed;
+      this.expanded = oldExpanded;
     }
   }
 
@@ -230,7 +230,7 @@ export class Group {
         <div
           class={{
             'group-header': true,
-            expand: !this.collapsed,
+            expand: this.expanded,
             selected: this.selected,
           }}
           tabindex="0"
@@ -252,9 +252,7 @@ export class Group {
                 class={{
                   hidden: !this.showExpandCollapsedIcon,
                 }}
-                name={
-                  this.collapsed ? iconChevronDownSmall : iconChevronUpSmall
-                }
+                name={this.expanded ? iconChevronUpSmall : iconChevronDownSmall}
                 onClick={(event: Event) => this.onExpandClick(event)}
               ></ix-icon>
             </div>
@@ -286,7 +284,7 @@ export class Group {
         >
           <div
             style={{
-              display: this.collapsed ? 'none' : 'contents',
+              display: this.expanded ? 'contents' : 'none',
             }}
           >
             <slot
@@ -299,12 +297,12 @@ export class Group {
               }}
             ></slot>
             <ix-group-item
-              suppressSelection={true}
-              focusable={false}
               class={{
                 footer: true,
                 'footer-visible': this.footerVisible,
               }}
+              groupFooter
+              suppressSelection
             >
               <slot
                 name="footer"
