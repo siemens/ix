@@ -42,16 +42,6 @@ export class SplitButton {
   @Prop() closeBehavior: CloseBehavior = 'both';
 
   /**
-   * Button outline variant
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button invisible
-   */
-  @Prop() ghost = false;
-
-  /**
    * Button label
    */
   @Prop() label?: string;
@@ -177,18 +167,17 @@ export class SplitButton {
   }
 
   render() {
+    const hasOutline = this.variant.toLocaleLowerCase().includes('secondary');
     const buttonAttributes = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       disabled: this.disabled,
       class: {
-        'left-button-border': !this.outline,
+        'left-button-border': !hasOutline,
       },
     };
     return (
       <Host>
-        <div class={{ 'btn-group': true, 'middle-gap': !this.outline }}>
+        <div class={{ 'btn-group': true, 'middle-gap': !hasOutline }}>
           {this.label ? (
             <ix-button
               {...buttonAttributes}

@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxContent, IxContentHeader } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxContent, IxContentHeader],
   templateUrl: './content.html',

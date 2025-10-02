@@ -240,7 +240,7 @@ export class Drawer {
               icon={iconClose}
               iconColor="color-soft-text"
               size="24"
-              ghost
+              variant="tertiary"
               onClick={() => this.onCloseClicked()}
               data-testid="close-button"
               aria-label={this.ariaLabelCloseButton}

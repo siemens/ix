@@ -44,6 +44,7 @@
     height: calc(100% - var(--ix-safe-area-inset-bottom, 0px));
     width: 100%;
     margin-left: var(--ix-application-menu-margin-left);
+    min-width: 0;
   }
 
   main {
