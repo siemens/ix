@@ -211,6 +211,12 @@
   );
 }
 
+@include toggle-variant($selector: '.ix-valid') {
+  @include define-toggle-vars('off', 'valid');
+  @include define-toggle-vars('on', 'valid');
+  @include define-toggle-vars('mixed', 'valid');
+}
+
 @include toggle-variant($selector: '.ix-info') {
   @include define-toggle-vars('off', 'info');
   @include define-toggle-vars('on', 'info');
