@@ -10,6 +10,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './custom-field.html',
 })

@@ -13,35 +13,40 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('avatar', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('avatar/basic');
-    await expect(page).toHaveScreenshot({ fullPage: true });
+    const avatar = page.locator('ix-avatar');
+    await expect(avatar).toHaveScreenshot();
   });
 
   regressionTest('image', async ({ page }) => {
     await page.goto('avatar/image');
-    await expect(page).toHaveScreenshot({ fullPage: true });
+
+    const avatar = page.locator('ix-avatar');
+    await expect(avatar).toHaveScreenshot();
   });
 
   regressionTest('initials', async ({ page }) => {
     await page.goto('avatar/initials');
-    await expect(page).toHaveScreenshot({ fullPage: true });
+    const avatar = page.locator('ix-avatar');
+    await expect(avatar).toHaveScreenshot();
   });
 
   regressionTest('user-info', async ({ page }) => {
     await page.goto('avatar/user-info');
 
     const avatar = page.locator('ix-avatar');
-
     await avatar.click();
 
-    await expect(page).toHaveScreenshot({ fullPage: true });
+    await expect(page).toHaveScreenshot();
   });
 
   regressionTest('scrollbar', async ({ page }) => {
     await page.goto('avatar/scrollbar');
 
-    await page.locator('ix-avatar').click();
+    const avatar = page.locator('ix-avatar');
+
+    await avatar.click();
     await page.locator('ix-dropdown-item').last().hover();
 
-    await expect(page).toHaveScreenshot({ fullPage: true });
+    await expect(page).toHaveScreenshot();
   });
 });

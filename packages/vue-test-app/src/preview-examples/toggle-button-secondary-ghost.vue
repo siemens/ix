@@ -14,8 +14,8 @@ import { IxToggleButton } from '@siemens/ix-vue';
 <style scoped src="./toggle-button-secondary-ghost.css"></style>
 
 <template>
-  <IxToggleButton ghost>Normal</IxToggleButton>
-  <IxToggleButton ghost pressed>Pressed</IxToggleButton>
-  <IxToggleButton ghost disabled>Disabled</IxToggleButton>
-  <IxToggleButton ghost disabled loading>Loading</IxToggleButton>
+  <IxToggleButton variant="tertiary">Normal</IxToggleButton>
+  <IxToggleButton variant="tertiary" pressed>Pressed</IxToggleButton>
+  <IxToggleButton variant="tertiary" disabled>Disabled</IxToggleButton>
+  <IxToggleButton variant="tertiary" disabled loading>Loading</IxToggleButton>
 </template>

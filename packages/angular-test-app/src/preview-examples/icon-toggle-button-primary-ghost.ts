@@ -10,64 +10,21 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-layout-grid>
       <ix-row>
-        <ix-icon-toggle-button
-          variant="primary"
-          ghost
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          ghost
-          pressed
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          ghost
-          disabled
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          ghost
-          disabled
-          loading
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="tertiary" icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="tertiary" pressed icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="tertiary" disabled icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="tertiary" disabled loading icon="checkboxes"></ix-icon-toggle-button>
       </ix-row>
       <ix-row>
-        <ix-icon-toggle-button
-          variant="primary"
-          ghost
-          oval
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          ghost
-          pressed
-          oval
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          ghost
-          disabled
-          oval
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          variant="primary"
-          ghost
-          disabled
-          loading
-          oval
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="tertiary" oval icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="tertiary" pressed oval icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="tertiary" disabled oval icon="checkboxes"></ix-icon-toggle-button>
+        <ix-icon-toggle-button variant="tertiary" disabled loading oval icon="checkboxes"></ix-icon-toggle-button>
       </ix-row>
     </ix-layout-grid>
   `,
