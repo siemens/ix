@@ -18,6 +18,13 @@ regressionTest.describe('category-filter', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('basic-no-icon', async ({ page }) => {
+    await page.goto('category-filter/basic-no-icon');
+    await page.locator('input').click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('categories', async ({ page }) => {
     await page.goto('category-filter/categories');
     await page.locator('input').first().click();
