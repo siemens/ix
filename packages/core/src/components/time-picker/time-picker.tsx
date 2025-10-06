@@ -76,7 +76,7 @@ export class TimePicker {
 
   /**
    * Format of time string
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    * Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
    */
   @Prop() format: string = 'TT';
@@ -301,7 +301,7 @@ export class TimePicker {
    * Get the current time based on the wanted format
    */
   @Method()
-  async getCurrentTime() {
+  async getCurrentTime(): Promise<string | undefined> {
     return this._time?.toFormat(this.format);
   }
 

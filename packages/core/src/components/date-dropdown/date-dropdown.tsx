@@ -51,7 +51,7 @@ export class DateDropdown
 
   /**
    * Date format string.
-   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format = 'yyyy/LL/dd';
 
@@ -98,16 +98,6 @@ export class DateDropdown
    * Button variant
    */
   @Prop() variant: ButtonVariant = 'primary';
-
-  /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
 
   /**
    * Loading button
@@ -353,8 +343,6 @@ export class DateDropdown
           data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
           variant={this.variant}
-          ghost={this.ghost}
-          outline={this.outline}
           loading={this.loading}
           icon={iconHistory}
           ref={this.triggerRef}

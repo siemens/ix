@@ -11,7 +11,6 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { IxButton, ToastService } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxButton],
   providers: [ToastService],
@@ -19,7 +18,7 @@ import { IxButton, ToastService } from '@siemens/ix-angular/standalone';
     <ix-button (click)="showToastMessage()" style="margin-right: 0.5rem">
       Trigger toast with custom message
     </ix-button>
-    
+
     <ix-button (click)="showToastMessageAction()">
       Trigger toast with action button
     </ix-button>
@@ -30,7 +29,8 @@ import { IxButton, ToastService } from '@siemens/ix-angular/standalone';
 
     <ng-template #customToastAction let-toast>
       <div>
-        <ix-button ghost icon="undo" (click)="toast.close('Action')">Undo</ix-button>
+        <ix-button variant="tertiary" icon="undo" (click)="toast.close('Action')">Undo</ix-button
+        >
       </div>
     </ng-template>
   `,

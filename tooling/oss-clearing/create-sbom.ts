@@ -24,12 +24,18 @@ function getPkg(pkgPath: string) {
 }
 
 function modifyDependenciesByIxMetaProperty(pnpmJson: any, pkg: any) {
+  const storeOriginalDependencies = { ...pnpmJson['dependencies'] };
   pnpmJson['dependencies'] = pnpmJson['devDependencies'];
   Object.keys(pnpmJson['dependencies']).forEach((key) => {
     if (!pkg['siemensix']['dependencies'].includes(key)) {
       delete pnpmJson['dependencies'][key];
     }
   });
+
+  pnpmJson['dependencies'] = {
+    ...storeOriginalDependencies,
+    ...pnpmJson['dependencies'],
+  };
 
   return pnpmJson;
 }
@@ -69,14 +75,19 @@ async function resolveComponentData(
   version: string
 ): Promise<any> {
   return new Promise((resolve) => {
-    const { stdout } = spawnSync('pnpm', [
-      'v',
-      '--json',
-      '--long',
-      `${packageName}@${version}`,
-    ]);
+    const { stdout } = spawnSync(
+      'pnpm',
+      ['v', '--json', '--long', `${packageName}@${version}`],
+      { shell: true }
+    );
 
-    resolve(JSON.parse(stdout.toString()));
+    try {
+      resolve(JSON.parse(stdout.toString()));
+    } catch (error) {
+      throw new Error(
+        `Failed to fetch package data for ${packageName}@${version}: ${error}`
+      );
+    }
   });
 }
 
@@ -103,6 +114,7 @@ class CustomPUrlFactory extends CDX.Factories.PackageUrlFactory {
 async function createSBom(packageName: string) {
   const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
     cwd: path.join(__dirname, 'node_modules', packageName),
+    shell: true,
   });
 
   let [npmJson] = JSON.parse(stdout.toString());
@@ -110,6 +122,7 @@ async function createSBom(packageName: string) {
   if (packageName === '@siemens/ix-angular') {
     const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
       cwd: path.join(npmJson.path, '..'),
+      shell: true,
     });
     const [npmJsonParent] = JSON.parse(stdout.toString());
     npmJson = npmJsonParent;

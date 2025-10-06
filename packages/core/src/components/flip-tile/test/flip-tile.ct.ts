@@ -11,7 +11,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
-    <ix-flip-tile state="none">
+    <ix-flip-tile variant="none">
       <div slot="header">Flip header</div>
       <div slot="footer">
         Some footer content
@@ -35,7 +35,7 @@ regressionTest('renders', async ({ mount, page }) => {
 
 regressionTest('should change content', async ({ mount, page }) => {
   await mount(`
-    <ix-flip-tile state="none">
+    <ix-flip-tile variant="none">
       <div slot="header">Flip header</div>
       <div slot="footer">
         Some footer content
@@ -78,20 +78,22 @@ regressionTest('change index programmatically', async ({ mount, page }) => {
 regressionTest('toggle - prevent default', async ({ mount, page }) => {
   await mount(`
     <ix-flip-tile>
-      <ix-flip-tile-content>Page 1</ix-flip-tile-content>
-      <ix-flip-tile-content>Page 2</ix-flip-tile-content>
-    </ix-flip-tile`);
+      <ix-flip-tile-content aria-label="page-1">Page 1</ix-flip-tile-content>
+      <ix-flip-tile-content aria-label="page-2">Page 2</ix-flip-tile-content>
+    </ix-flip-tile>`);
   const flipTile = page.locator('ix-flip-tile');
   await expect(flipTile).toHaveClass(/hydrated/);
-  await flipTile.evaluate((d: HTMLIxFlipTileElement) =>
-    d.addEventListener('toggle', (event) => {
+
+  await flipTile.evaluate((tileElement: HTMLIxFlipTileElement) =>
+    tileElement.addEventListener('toggle', (event) => {
       event.preventDefault();
     })
   );
   await flipTile.locator('ix-icon-button').click();
-  await flipTile.evaluate((d: HTMLIxFlipTileElement) => (d.index = 1));
-  const pageOne = flipTile.locator('ix-flip-tile-content').nth(0);
-  const pageTwo = flipTile.locator('ix-flip-tile-content').nth(1);
+
+  const pageOne = page.getByLabel('page-1');
+  const pageTwo = page.getByLabel('page-2');
+
   await expect(pageOne).toBeVisible();
   await expect(pageTwo).not.toBeVisible();
 });

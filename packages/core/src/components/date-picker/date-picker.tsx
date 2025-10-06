@@ -47,7 +47,7 @@ export class DatePicker implements IxDatePickerComponent {
 
   /**
    * Date format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
@@ -143,6 +143,7 @@ export class DatePicker implements IxDatePickerComponent {
   /**
    * Locale identifier (e.g. 'en' or 'de').
    * The locale is used to translate the labels for weekdays and months.
+   * It also determines the default order of weekdays based on the locale's conventions.
    * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
    * It does not affect the values returned by methods and events.
    */
@@ -194,7 +195,7 @@ export class DatePicker implements IxDatePickerComponent {
    * The locale applied is always `en-US`.
    */
   @Method()
-  async getCurrentDate() {
+  async getCurrentDate(): Promise<DateChangeEvent> {
     const _from = this.currFromDate?.isValid
       ? this.currFromDate?.toFormat(this.format)
       : undefined;
@@ -699,15 +700,14 @@ export class DatePicker implements IxDatePickerComponent {
           <div class="header" slot="header">
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(-1)}
-              ghost
               icon={iconChevronLeftSmall}
-              variant="primary"
+              variant="tertiary"
               class="arrows"
               aria-label={this.ariaLabelPreviousMonthButton}
             ></ix-icon-button>
             <div class="selector">
               <ix-button
-                ghost
+                variant="tertiary"
                 ref={this.dropdownButtonRef}
                 data-testid="year-month-button"
               >
@@ -775,9 +775,8 @@ export class DatePicker implements IxDatePickerComponent {
             </div>
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(1)}
-              ghost
               icon={iconChevronRightSmall}
-              variant="primary"
+              variant="tertiary"
               class="arrows"
               aria-label={this.ariaLabelNextMonthButton}
             ></ix-icon-button>

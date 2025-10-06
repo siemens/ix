@@ -63,13 +63,13 @@ export class DatetimePicker
 
   /**
    * Date format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() dateFormat: string = 'yyyy/LL/dd';
 
   /**
    * Time format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() timeFormat: string = 'HH:mm:ss';
 
@@ -111,7 +111,7 @@ export class DatetimePicker
    *
    * @since 3.0.0
    */
-  @Prop() i18nTime: string = 'Time';
+  @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
    * ARIA label for the previous month icon button
@@ -133,7 +133,7 @@ export class DatetimePicker
 
   /**
    * Format of time string
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() locale?: string;
 

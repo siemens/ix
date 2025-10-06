@@ -8,6 +8,13 @@
  */
 
 import {
+  iconClose,
+  iconDoubleChevronDown,
+  iconDoubleChevronLeft,
+  iconDoubleChevronRight,
+  iconDoubleChevronUp,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -18,17 +25,15 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import anime from 'animejs';
+import type { JSAnimation } from 'animejs';
+import { animate } from 'animejs';
 import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 import {
-  iconClose,
-  iconDoubleChevronDown,
-  iconDoubleChevronLeft,
-  iconDoubleChevronRight,
-  iconDoubleChevronUp,
-} from '@siemens/ix-icons/icons';
+  addDisposableEventListener,
+  DisposableEventListener,
+} from '../utils/disposable-event-listener';
 import type {
   BorderlessChangedEvent,
   Composition,
@@ -37,7 +42,11 @@ import type {
   SlotChangedEvent,
   VariantChangedEvent,
 } from './pane.types';
+import { a11yBoolean } from '../utils/a11y';
 
+/**
+ * @slot header - Additional slot for the header content
+ */
 @Component({
   tag: 'ix-pane',
   styleUrl: 'pane.scss',
@@ -97,9 +106,19 @@ export class Pane {
   @Prop() icon?: string;
 
   /**
+   * If true, the pane will close when clicking outside of it
+   */
+  @Prop() closeOnClickOutside = false;
+
+  /**
    * ARIA label for the icon
    */
   @Prop() ariaLabelIcon?: string;
+
+  /**
+   * ARIA label close or collapse button
+   */
+  @Prop() ariaLabelCollapseCloseButton?: string;
 
   /**
    * @internal
@@ -147,11 +166,12 @@ export class Pane {
   private static readonly validPositions = ['top', 'left', 'bottom', 'right'];
   private static readonly collapsedPane = '40px';
   private static readonly collapsedPaneMobile = '48px';
-  private readonly animations: Map<string, anime.AnimeInstance> = new Map();
+  private readonly animations: Map<string, JSAnimation> = new Map();
   private animationCounter = 0;
 
   private mutationObserver?: MutationObserver;
   private resizeObserver?: ResizeObserver;
+  private disposableWindowClick?: DisposableEventListener;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -169,7 +189,33 @@ export class Pane {
     return this.composition === 'top' || this.composition === 'left';
   }
 
+  disconnectedCallback() {
+    this.mutationObserver?.disconnect();
+    this.resizeObserver?.disconnect();
+    this.disposableWindowClick?.();
+  }
+
+  @Watch('expanded')
+  onExpandedChange() {
+    if (!this.closeOnClickOutside || !this.expanded) {
+      this.disposableWindowClick?.();
+      return;
+    }
+
+    this.disposableWindowClick = addDisposableEventListener(
+      window,
+      'click',
+      (event) => {
+        const path = event.composedPath?.() || [];
+        if (!path.includes(this.hostElement)) {
+          this.dispatchExpandedChangedEvent();
+        }
+      }
+    );
+  }
+
   componentWillLoad() {
+    this.onExpandedChange();
     this.setIcons();
 
     this.floating = this.variant === 'floating';
@@ -220,11 +266,6 @@ export class Pane {
       this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
     });
     if (parentElement) this.resizeObserver.observe(parentElement);
-  }
-
-  disconnectedCallback() {
-    this.mutationObserver?.disconnect();
-    this.resizeObserver?.disconnect();
   }
 
   private setPosition(value: string) {
@@ -321,8 +362,7 @@ export class Pane {
 
   private animateVerticalFadeIn(size: string) {
     let key = this.getKey();
-    let animation = anime({
-      targets: this.hostElement,
+    let animation = animate(this.hostElement, {
       duration: Animation.mediumTime,
       width: size,
       easing: 'easeInOutSine',
@@ -349,13 +389,12 @@ export class Pane {
 
   private animateHorizontalFadeIn(size: string) {
     let key = this.getKey();
-    let animation = anime({
-      targets: this.hostElement,
+    let animation = animate(this.hostElement, {
       duration: Animation.mediumTime,
       height: size,
       easing: 'easeInOutSine',
       delay: 0,
-      begin: () => {
+      onBegin: () => {
         if (!this.expanded) {
           this.showContent = false;
           if (!this.isMobile) this.animateHorizontalPadding('0px');
@@ -363,7 +402,7 @@ export class Pane {
           if (!this.isMobile) this.animateHorizontalPadding('8px');
         }
       },
-      complete: () => {
+      onComplete: () => {
         if (this.expanded) {
           this.showContent = true;
         }
@@ -376,8 +415,7 @@ export class Pane {
   }
 
   private removePadding() {
-    anime({
-      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
+    animate(this.hostElement.shadowRoot!.querySelector('#title-div')!, {
       duration: 0,
       paddingTop: 0,
       paddingBottom: 0,
@@ -392,17 +430,19 @@ export class Pane {
     duration = Animation.mediumTime
   ) {
     let key = this.getKey();
-    let animation = anime({
-      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
-      duration: duration,
-      paddingTop: size,
-      paddingBottom: size,
-      easing: 'easeInOutSine',
-      delay: 0,
-      complete: () => {
-        this.animations.delete(key);
-      },
-    });
+    let animation = animate(
+      this.hostElement.shadowRoot!.querySelector('#title-div')!,
+      {
+        duration: duration,
+        paddingTop: size,
+        paddingBottom: size,
+        easing: 'easeInOutSine',
+        delay: 0,
+        onComplete: () => {
+          this.animations.delete(key);
+        },
+      }
+    );
 
     this.animations.set(key, animation);
   }
@@ -412,17 +452,19 @@ export class Pane {
     duration = Animation.mediumTime
   ) {
     let key = this.getKey();
-    let animation = anime({
-      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
-      duration: duration,
-      paddingLeft: size,
-      paddingRight: size,
-      easing: 'easeInOutSine',
-      delay: 0,
-      complete: () => {
-        this.animations.delete(key);
-      },
-    });
+    let animation = animate(
+      this.hostElement.shadowRoot!.querySelector('#title-div')!,
+      {
+        duration: duration,
+        paddingLeft: size,
+        paddingRight: size,
+        easing: 'easeInOutSine',
+        delay: 0,
+        onComplete: () => {
+          this.animations.delete(key);
+        },
+      }
+    );
 
     this.animations.set(key, animation);
   }
@@ -572,10 +614,12 @@ export class Pane {
   }
 
   render() {
+    const rotate = !this.expanded && !this.isMobile && this.isLeftRightPane;
     return (
       <Host
         class={{
-          'inline-color': !this.floating,
+          'floating-pane': this.floating,
+          'inline-pane': !this.floating,
           'mobile-overlay': this.expanded && this.isMobile,
           'top-expanded': this.expanded && this.isMobileTop && this.isMobile,
           'bottom-expanded':
@@ -601,10 +645,9 @@ export class Pane {
             this.isMobile &&
             !this.expanded &&
             !this.floating,
-          'box-shadow': this.floating,
-          'aria-expanded': this.expanded,
           'not-visible': this.hideOnCollapse && !this.expanded,
         }}
+        aria-expanded={a11yBoolean(this.expanded)}
       >
         <aside
           id={`pane-${this.composition}`}
@@ -644,28 +687,34 @@ export class Pane {
                   ? 'color-soft-text'
                   : undefined
               }
-              ghost
+              variant="subtle-tertiary"
               onClick={() => this.dispatchExpandedChangedEvent()}
               aria-controls={`pane-${this.composition}`}
+              aria-label={this.ariaLabelCollapseCloseButton}
             />
-            <span
+            <div
               class={{
                 'title-text': true,
-                rotate:
-                  !this.expanded && !this.isMobile && this.isLeftRightPane,
+                rotate: rotate,
               }}
             >
-              {this.icon ? (
+              {this.icon && (
                 <ix-icon
+                  class="pane-icon"
                   size="24"
                   name={this.icon}
                   aria-label={this.ariaLabelIcon}
                 ></ix-icon>
-              ) : null}
+              )}
               <div class="title-text-overflow">
                 <ix-typography format="h4">{this.heading}</ix-typography>
               </div>
-            </span>
+              {this.expanded && (
+                <div class="slot-header">
+                  <slot name="header"></slot>
+                </div>
+              )}
+            </div>
           </div>
           <div class="side-pane-content" hidden={!this.showContent}>
             <slot></slot>

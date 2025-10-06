@@ -12,7 +12,6 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { GridOptions } from 'ag-grid-community';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [AgGridAngular],
   templateUrl: './aggrid.html',

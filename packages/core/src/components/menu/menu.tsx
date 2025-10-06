@@ -20,7 +20,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
 import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
 import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
@@ -38,6 +38,7 @@ import {
   iconNavigationLeft,
   iconNavigationRight,
 } from '@siemens/ix-icons/icons';
+import Animation from '../utils/animation';
 
 @Component({
   tag: 'ix-menu',
@@ -83,7 +84,8 @@ export class Menu {
   /**
    * Accessibility i18n label for the burger menu of the sidebar
    */
-  @Prop() i18nExpandSidebar = 'Expand sidebar';
+  @Prop({ attribute: 'i18n-expand-sidebar' }) i18nExpandSidebar =
+    'Expand sidebar';
 
   /**
    *  Toggle the expand state of the menu
@@ -117,24 +119,29 @@ export class Menu {
   }
 
   /**
+   *  i18n label for 'About & legal information' button
    */
-  @Prop() i18nLegal = 'About & legal information';
+  @Prop({ attribute: 'i18n-legal' }) i18nLegal = 'About & legal information';
 
   /**
+   * i18n label for 'Settings' button
    */
-  @Prop() i18nSettings = 'Settings';
+  @Prop({ attribute: 'i18n-settings' }) i18nSettings = 'Settings';
 
   /**
+   * i18n label for 'Toggle theme' button
    */
-  @Prop() i18nToggleTheme = 'Toggle theme';
+  @Prop({ attribute: 'i18n-toggle-theme' }) i18nToggleTheme = 'Toggle theme';
 
   /**
+   * i18n label for 'Expand' button
    */
-  @Prop() i18nExpand = ' Expand';
+  @Prop({ attribute: 'i18n-expand' }) i18nExpand = ' Expand';
 
   /**
+   * i18n label for 'Collapse' button
    */
-  @Prop() i18nCollapse = 'Collapse';
+  @Prop({ attribute: 'i18n-collapse' }) i18nCollapse = 'Collapse';
 
   /**
    * Menu expanded
@@ -569,14 +576,13 @@ export class Menu {
 
   private animateOverlayFadeIn() {
     requestAnimationFrame(() => {
-      anime({
-        targets: this.overlayContainer,
-        duration: 300,
+      animate(this.overlayContainer!, {
+        duration: Animation.mediumTime,
         backdropFilter: [0, 'blur(1rem)'],
         translateX: ['-4rem', 0],
         opacity: [0, 1],
         easing: 'easeInSine',
-        begin: () => {
+        onBegin: () => {
           if (this.showPinned) {
             return;
           }
@@ -589,14 +595,13 @@ export class Menu {
 
   private animateOverlayFadeOut(onComplete: Function) {
     requestAnimationFrame(() => {
-      anime({
-        targets: this.overlayContainer,
-        duration: 300,
+      animate(this.overlayContainer!, {
+        duration: Animation.mediumTime,
         backdropFilter: ['blur(1rem)', 0],
         translateX: [0, '-4rem'],
         opacity: [1, 0],
         easing: 'easeInSine',
-        complete: () => onComplete(),
+        onComplete: () => onComplete(),
       });
     });
   }
@@ -668,7 +673,7 @@ export class Menu {
                     this.showAppSwitch();
                   }}
                   icon={iconApps}
-                  ghost
+                  variant="subtle-tertiary"
                 ></ix-icon-button>
               )}
           </div>

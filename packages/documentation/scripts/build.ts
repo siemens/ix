@@ -10,10 +10,10 @@
 import path from 'path';
 import fs from 'fs-extra';
 import Mustache from 'mustache';
-import { fetchChangelog } from './utils/fetch-changelog';
 import componentDoc from '@siemens/ix/component-doc.json';
 import { convertDocsTagsToTSXElement } from './utils/docs-tags';
 import { generateTypeScriptDocs } from './typedoc-generator';
+import { escapeBackticks, parseJSDocsToMarkdown } from './utils/escape';
 
 type OutputType = 'html' | 'react' | 'angular' | 'angular_standalone' | 'vue';
 
@@ -330,7 +330,7 @@ async function generateApiMarkdown() {
       props: props.map((prop) => ({
         ...prop,
         docsTags: convertDocsTagsToTSXElement(component.tag, prop.docsTags),
-        docs: prop.docs.replace(/\n/g, ''),
+        docs: parseJSDocsToMarkdown(escapeBackticks(prop.docs)),
       })),
     });
 
@@ -339,6 +339,7 @@ async function generateApiMarkdown() {
       events: events.map((event) => ({
         ...event,
         docsTags: convertDocsTagsToTSXElement(component.tag, event.docsTags),
+        docs: parseJSDocsToMarkdown(escapeBackticks(event.docs)),
       })),
     });
 
@@ -346,6 +347,7 @@ async function generateApiMarkdown() {
       slots: slots.map((tag) => ({
         ...tag,
         docsTags: convertDocsTagsToTSXElement(component.tag, []),
+        docs: parseJSDocsToMarkdown(escapeBackticks(tag.docs)),
       })),
     });
 
@@ -371,24 +373,6 @@ async function generateApiMarkdown() {
     await fs.writeFile(path.join(__component, `api.mdx`), apiOutput);
     await fs.writeFile(path.join(__component, `tags.mdx`), tagsOutput);
   }
-}
-
-async function generateChangelog() {
-  console.log('Generating changelog...');
-
-  const changeLogExist = fs.existsSync(__changelog);
-
-  if (!process.env.GITHUB_TOKEN) {
-    if (changeLogExist) {
-      return;
-    }
-    console.error('No GITHUB_TOKEN provided, creating empty changelog');
-    return;
-  }
-
-  const changelog = await fetchChangelog();
-  await fs.ensureDir(path.join(__changelog, '..'));
-  await fs.writeFile(__changelog, changelog);
 }
 
 async function copyStorybook() {
@@ -450,7 +434,6 @@ async function copyStorybook() {
       copyStorybook(),
       generatePlaygroundMarkdown(['form-validation']),
       generateApiMarkdown(),
-      generateChangelog(),
     ];
 
     await Promise.all([typeScriptDocsPromise, ...mainTasksPromise]);

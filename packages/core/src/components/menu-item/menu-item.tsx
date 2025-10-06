@@ -16,6 +16,7 @@ import { iconDocument } from '@siemens/ix-icons/icons';
 import { a11yBoolean } from '../utils/a11y';
 import { createSequentialId } from '../utils/uuid';
 import { IxMenuItemBase } from './menu-item.interface';
+import { AnchorTarget } from '../button/button.interface';
 
 let sequenceId = 0;
 
@@ -46,7 +47,7 @@ export class MenuItem implements IxMenuItemBase {
   @Prop() bottom = false;
 
   /**
-   * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
+   * Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
    */
   @Prop({ mutable: true }) icon?: string;
 
@@ -68,9 +69,30 @@ export class MenuItem implements IxMenuItemBase {
   /**
    * Will be shown as tooltip text, if not provided menu text content will be used.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() tooltipText?: string;
+
+  /**
+   * URL for the button link. When provided, the button will render as an anchor tag.
+   *
+   * @since 4.0.0
+   */
+  @Prop() href?: string;
+
+  /**
+   * Specifies where to open the linked document when href is provided.
+   *
+   * @since 4.0.0
+   */
+  @Prop() target?: AnchorTarget = '_self';
+
+  /**
+   * Specifies the relationship between the current document and the linked document when href is provided.
+   *
+   * @since 4.0.0
+   */
+  @Prop() rel?: string;
 
   /** @internal */
   @Prop() isCategory: boolean = false;
@@ -86,7 +108,7 @@ export class MenuItem implements IxMenuItemBase {
     sequenceId++
   );
 
-  private readonly buttonRef = makeRef<HTMLButtonElement>();
+  private readonly buttonRef = makeRef<HTMLButtonElement | HTMLAnchorElement>();
   private isHostedInsideCategory = false;
   private menuExpandedDisposer?: Disposable;
 
@@ -161,6 +183,24 @@ export class MenuItem implements IxMenuItemBase {
       };
     }
 
+    const commonAttributes = {
+      class: 'tab',
+      tabIndex: this.disabled ? -1 : 0,
+    };
+
+    const menuContent = [
+      this.icon && <ix-icon class={'tab-icon'} name={this.icon}></ix-icon>,
+      this.notifications ? (
+        <div class="notification">
+          <div class="pill">{this.notifications}</div>
+        </div>
+      ) : null,
+      <span id={this.internalItemId} class="tab-text text-default">
+        {this.label}
+        <slot></slot>
+      </span>,
+    ];
+
     return (
       <Host
         class={{
@@ -172,22 +212,28 @@ export class MenuItem implements IxMenuItemBase {
         }}
         {...extendedAttributes}
       >
-        <button
-          class="tab"
-          tabIndex={this.disabled ? -1 : 0}
-          ref={this.buttonRef}
-        >
-          {this.icon && <ix-icon class={'tab-icon'} name={this.icon}></ix-icon>}
-          {this.notifications ? (
-            <div class="notification">
-              <div class="pill">{this.notifications}</div>
-            </div>
-          ) : null}
-          <span id={this.internalItemId} class="tab-text text-default">
-            {this.label}
-            <slot></slot>
-          </span>
-        </button>
+        {this.href ? (
+          <a
+            {...commonAttributes}
+            href={this.disabled ? undefined : this.href}
+            target={this.target}
+            rel={this.rel}
+            role="button"
+            ref={this.buttonRef}
+            onClick={(e: Event) => {
+              if (this.disabled) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            }}
+          >
+            {menuContent}
+          </a>
+        ) : (
+          <button {...commonAttributes} ref={this.buttonRef}>
+            {menuContent}
+          </button>
+        )}
         <ix-tooltip
           for={this.buttonRef.waitForCurrent()}
           placement={'right'}

@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './input.html'
+  templateUrl: './input.html',
 })
 export default class Input {}

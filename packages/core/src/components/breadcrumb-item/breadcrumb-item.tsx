@@ -18,17 +18,19 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import animejs from 'animejs';
+import { animate } from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
+import Animation from '../utils/animation';
+import { AnchorInterface, AnchorTarget } from '../button/button.interface';
 
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
   shadow: true,
 })
-export class BreadcrumbItem {
+export class BreadcrumbItem implements AnchorInterface {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
@@ -48,6 +50,27 @@ export class BreadcrumbItem {
    * Icon to be displayed next ot the label
    */
   @Prop() icon?: string;
+
+  /**
+   * URL for the button link. When provided, the button will render as an anchor tag.
+   *
+   * @since 4.0.0
+   */
+  @Prop() href?: string;
+
+  /**
+   * Specifies where to open the linked document when href is provided.
+   *
+   * @since 4.0.0
+   */
+  @Prop() target?: AnchorTarget = '_self';
+
+  /**
+   * Specifies the relationship between the current document and the linked document when href is provided.
+   *
+   * @since 4.0.0
+   */
+  @Prop() rel?: string;
 
   /**@internal */
   @Prop() ghost: boolean = true;
@@ -79,9 +102,8 @@ export class BreadcrumbItem {
   }
 
   animationFadeIn() {
-    animejs({
-      targets: this.hostElement,
-      duration: 150,
+    animate(this.hostElement, {
+      duration: Animation.defaultTime,
       opacity: [0, 1],
       translateX: ['-100%', '0%'],
       easing: 'linear',
@@ -90,9 +112,7 @@ export class BreadcrumbItem {
 
   render() {
     const props: BaseButtonProps = {
-      variant: this.ghost ? 'primary' : 'secondary',
-      outline: false,
-      ghost: this.ghost,
+      variant: this.ghost ? 'tertiary' : 'subtle-primary',
       iconOnly: false,
       iconOval: false,
       disabled: false,
@@ -107,6 +127,9 @@ export class BreadcrumbItem {
         'dropdown-trigger': this.isDropdownTrigger,
       },
       ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabelButton },
+      href: this.href,
+      target: this.target,
+      rel: this.rel,
     };
 
     if (!this.visible) {
