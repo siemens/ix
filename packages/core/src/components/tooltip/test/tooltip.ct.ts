@@ -323,21 +323,18 @@ regressionTest.describe('handles multiple references', () => {
       await expect(tooltip).toHaveClass(/visible/);
       const dialog = tooltip.locator('dialog');
       await expect(dialog).toBeVisible();
-      const arrowBottomStyle = await page.evaluate((tooltipId) => {
+      const arrowStyle = await page.evaluate((tooltipId) => {
         const host = document.getElementById(tooltipId) as HTMLElement;
         const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
         const style = globalThis.getComputedStyle(arrow);
-        return style.bottom;
+        return {
+          bottom: style.bottom,
+          left: style.left,
+        };
       }, 'arrow-tooltip-top');
-      expect(arrowBottomStyle).toBe('-6px');
-      const arrowLeftStyle = await page.evaluate((tooltipId) => {
-        const host = document.getElementById(tooltipId) as HTMLElement;
-        const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
-        const style = globalThis.getComputedStyle(arrow);
-        return style.left;
-      }, 'arrow-tooltip-top');
-      expect(arrowLeftStyle).not.toBe('unset');
-      expect(arrowLeftStyle).toContain('px');
+      expect(arrowStyle.bottom).toBe('-6px');
+      expect(arrowStyle.left).not.toBe('unset');
+      expect(arrowStyle.left).toContain('px');
     }
   );
   regressionTest(
@@ -359,24 +356,19 @@ regressionTest.describe('handles multiple references', () => {
       const dialog = tooltip.locator('dialog');
       await expect(dialog).toBeVisible();
 
-      const arrowTopStyle = await page.evaluate((tooltipId) => {
+      const arrowStyle = await page.evaluate((tooltipId) => {
         const host = document.getElementById(tooltipId) as HTMLElement;
         const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
         const style = globalThis.getComputedStyle(arrow);
-        return style.top;
+        return {
+          top: style.top,
+          left: style.left,
+        };
       }, 'arrow-tooltip-bottom');
 
-      expect(arrowTopStyle).toBe('-6px');
-
-      const arrowLeftStyle = await page.evaluate((tooltipId) => {
-        const host = document.getElementById(tooltipId) as HTMLElement;
-        const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
-        const style = globalThis.getComputedStyle(arrow);
-        return style.left;
-      }, 'arrow-tooltip-bottom');
-
-      expect(arrowLeftStyle).not.toBe('unset');
-      expect(arrowLeftStyle).toContain('px');
+      expect(arrowStyle.top).toBe('-6px');
+      expect(arrowStyle.left).not.toBe('unset');
+      expect(arrowStyle.left).toContain('px');
     }
   );
 });
