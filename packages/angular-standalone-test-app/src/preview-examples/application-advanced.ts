@@ -23,7 +23,6 @@ import {
 
 @Component({
   selector: 'app-example',
-  standalone: true,
   imports: [
     IxApplication,
     IxApplicationHeader,

@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './application-advanced.html',
+  standalone: false,
 })
 export default class ApplicationAdvancedExample {
   activeContent: string = 'home';
