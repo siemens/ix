@@ -22,6 +22,9 @@ import {
 import { animate } from 'animejs';
 import Animation from '../utils/animation';
 
+/**
+ * @deprecated Will be removed with 5.0.0, use ix-pane as successor
+ */
 @Component({
   tag: 'ix-drawer',
   styleUrl: 'drawer.scss',
@@ -237,7 +240,7 @@ export class Drawer {
               icon={iconClose}
               iconColor="color-soft-text"
               size="24"
-              ghost
+              variant="tertiary"
               onClick={() => this.onCloseClicked()}
               data-testid="close-button"
               aria-label={this.ariaLabelCloseButton}

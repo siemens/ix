@@ -10,10 +10,11 @@
 import { Component, OnInit } from '@angular/core';
 import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './echarts-empty-state.html',
   styleUrls: ['./echarts-empty-state.css'],

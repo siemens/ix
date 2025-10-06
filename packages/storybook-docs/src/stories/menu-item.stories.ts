@@ -25,7 +25,7 @@ const meta = {
     menu.appendChild(menuItem);
     return menu;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu'),
+  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu-item'),
   parameters: {
     design: {
       type: 'figma',

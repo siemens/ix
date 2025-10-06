@@ -10,6 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   styleUrls: ['./pill.css'],
   templateUrl: './pill.html',

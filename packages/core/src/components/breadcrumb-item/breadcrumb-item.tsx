@@ -54,21 +54,21 @@ export class BreadcrumbItem implements AnchorInterface {
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() href?: string;
 
   /**
    * Specifies where to open the linked document when href is provided.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() target?: AnchorTarget = '_self';
 
   /**
    * Specifies the relationship between the current document and the linked document when href is provided.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() rel?: string;
 
@@ -112,9 +112,7 @@ export class BreadcrumbItem implements AnchorInterface {
 
   render() {
     const props: BaseButtonProps = {
-      variant: this.ghost ? 'primary' : 'secondary',
-      outline: false,
-      ghost: this.ghost,
+      variant: this.ghost ? 'tertiary' : 'subtle-primary',
       iconOnly: false,
       iconOval: false,
       disabled: false,
