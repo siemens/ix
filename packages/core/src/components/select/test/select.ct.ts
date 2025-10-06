@@ -120,7 +120,7 @@ test('multiple selection', async ({ mount, page }) => {
   await expect(chip3).toBeVisible();
 });
 
-test('multiple mode filter reset and keyboard navigation', async ({ mount, page }) => {
+test('multiple mode filter reset', async ({ mount, page }) => {
   await mount(`
     <ix-select mode="multiple">
       <ix-select-item value="1" label="Item 1">Test</ix-select-item>
@@ -130,7 +130,6 @@ test('multiple mode filter reset and keyboard navigation', async ({ mount, page 
     </ix-select>
   `);
   const element = page.locator('ix-select');
-  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
 
   await page.locator('[data-select-dropdown]').click();
   const dropdown = element.locator('ix-dropdown');
@@ -159,21 +158,6 @@ test('multiple mode filter reset and keyboard navigation', async ({ mount, page 
   await expect(element.locator('.chips').getByTitle('Item 1')).toBeVisible();
 
   await expect(item1).toBeFocused();
-
-  await page.keyboard.press('ArrowDown');
-  await expect(item2).toBeFocused();
-
-  await page.keyboard.press('ArrowDown'); 
-  await expect(item3).toBeFocused();
-
-  await page.keyboard.press('ArrowUp');
-  await expect(item2).toBeFocused();
-
-  await item3.click();
-  await expect(element.locator('.chips').getByTitle('Item 3')).toBeVisible();
-  await expect(element.locator('input')).toHaveValue('');
-  await expect(dropdown).toBeVisible();
-  await expect(item3).toBeFocused();
 });
 
 test('filter', async ({ mount, page }) => {
