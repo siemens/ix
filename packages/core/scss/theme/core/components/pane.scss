@@ -13,12 +13,12 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-pane-inline--box-shadow: none;
-  --theme-pane-inline--background: var(--theme-color-1);
-  --theme-pane-inline--border-color: var(--theme-color-soft-bdr);
-  --theme-pane-inline--color: var(--theme-color-std-text);
   --theme-pane-floating--background: var(--theme-color-2);
   --theme-pane-floating--border-color: var(--theme-color-weak-bdr);
-  --theme-pane-floating--color: var(--theme-color-std-text);
   --theme-pane-floating--box-shadow: var(--theme-shadow-2);
+  --theme-pane-floating--color: var(--theme-color-std-text);
+  --theme-pane-inline--background: var(--theme-color-1);
+  --theme-pane-inline--border-color: var(--theme-color-soft-bdr);
+  --theme-pane-inline--box-shadow: none;
+  --theme-pane-inline--color: var(--theme-color-std-text);
 }

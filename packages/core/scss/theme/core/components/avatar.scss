@@ -13,12 +13,12 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-avatar-btn--background: var(--theme-color-ghost);
-  --theme-avatar-btn--color: var(--theme-color-std-text);
-  --theme-avatar-btn--color--hover: var(--theme-color-std-text);
-  --theme-avatar-btn--color--active: var(--theme-color-std-text);
   --theme-avatar--background: var(--theme-color-component-3);
   --theme-avatar--color: var(--theme-color-std-text);
-  --theme-avatar-btn--background--hover: var(--theme-color-ghost--hover);
+  --theme-avatar-btn--background: var(--theme-color-ghost);
   --theme-avatar-btn--background--active: var(--theme-color-ghost--active);
+  --theme-avatar-btn--background--hover: var(--theme-color-ghost--hover);
+  --theme-avatar-btn--color: var(--theme-color-std-text);
+  --theme-avatar-btn--color--active: var(--theme-color-std-text);
+  --theme-avatar-btn--color--hover: var(--theme-color-std-text);
 }
