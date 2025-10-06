@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-Update toggle design tokens
+Add thumb border and valid state styling and update design tokens for **ix-toggle**.
