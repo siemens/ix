@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { IxActiveModal } from '@siemens/ix-angular';
 
 @Component({
+  standalone: false,
   selector: 'app-example-content',
   template: `
     <ix-modal-header> Message headline </ix-modal-header>
@@ -18,11 +19,7 @@ import { IxActiveModal } from '@siemens/ix-angular';
       Message text lorem ipsum: {{ activeModal.data }}
     </ix-modal-content>
     <ix-modal-footer>
-      <ix-button
-        outline
-        class="dismiss-modal"
-        (click)="activeModal.dismiss('dismiss')"
-      >
+      <ix-button variant="subtle-primary" class="dismiss-modal" (click)="activeModal.dismiss('dismiss')">
         Cancel
       </ix-button>
       <ix-button

@@ -149,22 +149,24 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   /**
    * Input field placeholder
    */
-  @Prop() i18nPlaceholder = 'Select an option';
+  @Prop({ attribute: 'i18n-placeholder' }) i18nPlaceholder = 'Select an option';
 
   /**
    * Input field placeholder for editable select
    */
-  @Prop() i18nPlaceholderEditable = 'Type of select option';
+  @Prop({ attribute: 'i18n-placeholder-editable' }) i18nPlaceholderEditable =
+    'Type of select option';
 
   /**
    * Select list header
    */
-  @Prop() i18nSelectListHeader = 'Select an option';
+  @Prop({ attribute: 'i18n-select-list-header' }) i18nSelectListHeader =
+    'Select an option';
 
   /**
    * Information inside of dropdown if no items where found with current filter text
    */
-  @Prop() i18nNoMatches = 'No matches';
+  @Prop({ attribute: 'i18n-no-matches' }) i18nNoMatches = 'No matches';
 
   /**
    * Hide list header
@@ -686,10 +688,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private filterItemsWithTypeahead() {
     this.inputFilterText = this.inputElement?.value.trim() ?? '';
 
-    if (this.isSingleMode && this.inputFilterText === this.selectedLabels[0]) {
-      return;
-    }
-
     if (this.inputFilterText) {
       this.items.forEach((item) => {
         item.classList.remove('display-none');
@@ -912,7 +910,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       key="clear"
                       class="clear"
                       icon={iconClear}
-                      ghost
+                      variant="subtle-tertiary"
                       oval
                       size="16"
                       onClick={(e) => {
@@ -933,7 +931,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                           ? iconChevronUpSmall
                           : iconChevronDownSmall
                       }
-                      ghost
+                      variant="subtle-tertiary"
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
                       }}

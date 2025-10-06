@@ -30,7 +30,7 @@ export class IconToggleButton {
   /**
    * Button variant.
    */
-  @Prop() variant: ButtonVariant = 'secondary';
+  @Prop() variant: ButtonVariant = 'subtle-primary';
 
   /**
    * Outline button
@@ -105,8 +105,6 @@ export class IconToggleButton {
   render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: true,
       iconOval: this.oval,
       selected: this.pressed,

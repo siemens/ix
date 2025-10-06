@@ -10,6 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <form class="needs-validation">
@@ -27,14 +28,7 @@ import { Component } from '@angular/core';
           class="ix-form-control"
         />
         <span slot="input-end">
-          <ix-icon-button
-            (click)="clearInput()"
-            id="clear-button"
-            icon="clear"
-            ghost="{true}"
-            size="16"
-            [style.display]="display"
-          ></ix-icon-button>
+          <ix-icon-button variant="tertiary" (click)="clearInput()" id="clear-button" icon="clear"="{true}" size="16" [style.display]="display"></ix-icon-button>
         </span>
       </ix-input-group>
     </form>
