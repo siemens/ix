@@ -26,6 +26,13 @@ import { a11yBoolean } from '../utils/a11y';
 })
 export class EventListItem {
   /**
+   * Variant of the event list item
+   *
+   * @since 4.0.0
+   */
+  @Prop() variant: 'outline' | 'filled' = 'outline';
+
+  /**
    * Color of the status indicator.
    * You can find a list of all available colors in our documentation.
    * Example values are `--theme-color-alarm` or `color-alarm`
@@ -68,6 +75,7 @@ export class EventListItem {
       <Host
         class={{
           disabled: this.disabled,
+          [`event-list-item-${this.variant}`]: true,
         }}
       >
         <div

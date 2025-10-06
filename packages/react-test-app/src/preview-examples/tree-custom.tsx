@@ -80,11 +80,7 @@ export default () => {
         height: '40rem',
       }}
     >
-      <IxButton
-        onClick={expandAndSelect}
-        ghost
-        style={{ marginBottom: '2rem' }}
-      >
+      <IxButton variant="tertiary" onClick={expandAndSelect} style={{ marginBottom: '2rem' }}>
         Expand Tree
       </IxButton>
       <IxTree

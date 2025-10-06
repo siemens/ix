@@ -20,7 +20,6 @@ import { ProxyCmp } from './angular-component-lib/utils';
 export declare interface IxIcon extends Components.IxIcon {}
 
 @ProxyCmp({
-  defineCustomElementFn: undefined,
   inputs: ['color', 'name', 'size'],
 })
 @Component({
@@ -28,9 +27,10 @@ export declare interface IxIcon extends Components.IxIcon {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['color', 'name', 'size'],
+  standalone: false,
 })
 export class IxIcon {
-  protected el: HTMLElement;
+  protected el: HTMLIxIconElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;

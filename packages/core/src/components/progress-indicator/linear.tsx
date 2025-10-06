@@ -7,14 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { h } from '@stencil/core';
+import { ProgressIndicatorStatus } from './progress-indicator.types';
 
 export function LinearBar({
   value,
+  status,
 }: Readonly<{
   value: number;
+  status: ProgressIndicatorStatus;
 }>) {
   return (
-    <div class="linear-progress-container">
+    <div class={`linear-progress-container ${status}`}>
       <div
         class="progress"
         role="progressbar"

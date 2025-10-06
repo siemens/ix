@@ -10,7 +10,6 @@ import { Directive, ElementRef, Input } from '@angular/core';
 import { DropdownTriggerBaseDirective } from '@siemens/ix-angular/common';
 
 @Directive({
-  standalone: true,
   selector: '[ixDropdownTrigger]',
 })
 export class IxDropdownTriggerDirective extends DropdownTriggerBaseDirective {

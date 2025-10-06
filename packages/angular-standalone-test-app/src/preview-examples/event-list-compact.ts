@@ -11,15 +11,14 @@ import { Component } from '@angular/core';
 import { IxEventList, IxEventListItem } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxEventList, IxEventListItem],
   template: `
     <ix-event-list compact>
-      <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 2</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 4</ix-event-list-item>
     </ix-event-list>
   `,
 })
