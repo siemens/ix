@@ -10,11 +10,12 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-event-list item-height="L">
-      <ix-event-list-item color="color-primary">Test 1</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Test 2</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Test 1</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Test 2</ix-event-list-item>
     </ix-event-list>
   `,
 })

@@ -143,14 +143,12 @@ describe('button', () => {
     it('preserves all button styling classes', async () => {
       const page = await newSpecPage({
         components: [Button],
-        html: `<ix-button href="https://example.com" variant="primary" outline>Styled Link</ix-button>`,
+        html: `<ix-button href="https://example.com" variant="secondary">Styled Link</ix-button>`,
       });
 
       const anchorElement = page.root?.shadowRoot?.querySelector('a');
       expect(anchorElement?.classList.contains('btn')).toBe(true);
-      expect(anchorElement?.classList.contains('btn-outline-primary')).toBe(
-        true
-      );
+      expect(anchorElement?.classList.contains('btn-secondary')).toBe(true);
     });
   });
 });
