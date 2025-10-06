@@ -12,11 +12,12 @@ import { ModalService } from '@siemens/ix-angular';
 import ModalByInstanceExample from './modal-by-instance-content';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template:
     '<ix-button (click)="openModal()">Show modal (auto-dismiss)</ix-button>',
 })
-export default class ModalCloseByInstance {
+export default class ModalClose {
   constructor(private readonly modalService: ModalService) {}
 
   async openModal() {

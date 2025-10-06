@@ -24,18 +24,12 @@ function getPkg(pkgPath: string) {
 }
 
 function modifyDependenciesByIxMetaProperty(pnpmJson: any, pkg: any) {
-  const storeOriginalDependencies = { ...pnpmJson['dependencies'] };
   pnpmJson['dependencies'] = pnpmJson['devDependencies'];
   Object.keys(pnpmJson['dependencies']).forEach((key) => {
     if (!pkg['siemensix']['dependencies'].includes(key)) {
       delete pnpmJson['dependencies'][key];
     }
   });
-
-  pnpmJson['dependencies'] = {
-    ...storeOriginalDependencies,
-    ...pnpmJson['dependencies'],
-  };
 
   return pnpmJson;
 }
@@ -75,19 +69,17 @@ async function resolveComponentData(
   version: string
 ): Promise<any> {
   return new Promise((resolve) => {
-    const { stdout } = spawnSync(
-      'pnpm',
-      ['v', '--json', '--long', `${packageName}@${version}`],
-      { shell: true }
-    );
+    const { stdout } = spawnSync('pnpm', [
+      'v',
+      '--json',
+      '--long',
+      `${packageName}@${version}`,
+    ], {
+      encoding: 'utf-8',
+      shell: true,
+    });
 
-    try {
-      resolve(JSON.parse(stdout.toString()));
-    } catch (error) {
-      throw new Error(
-        `Failed to fetch package data for ${packageName}@${version}: ${error}`
-      );
-    }
+    resolve(JSON.parse(stdout.toString()));
   });
 }
 
@@ -114,6 +106,7 @@ class CustomPUrlFactory extends CDX.Factories.PackageUrlFactory {
 async function createSBom(packageName: string) {
   const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
     cwd: path.join(__dirname, 'node_modules', packageName),
+    encoding: 'utf-8',
     shell: true,
   });
 
@@ -122,6 +115,7 @@ async function createSBom(packageName: string) {
   if (packageName === '@siemens/ix-angular') {
     const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
       cwd: path.join(npmJson.path, '..'),
+      encoding: 'utf-8',
       shell: true,
     });
     const [npmJsonParent] = JSON.parse(stdout.toString());
@@ -129,10 +123,6 @@ async function createSBom(packageName: string) {
   }
 
   if (packageName === '@siemens/ix') {
-    npmJson = await handleCoreLibraryDependencies(npmJson);
-  }
-
-  if (packageName === '@siemens/ix-brand-theme') {
     npmJson = await handleCoreLibraryDependencies(npmJson);
   }
 
@@ -254,10 +244,14 @@ async function createSBom(packageName: string) {
 }
 
 async function main() {
-  const { dependencies } = getPkg(path.join(__dirname, 'package.json'));
-  const packages = Object.keys(dependencies);
-
-  console.log('Creating SBOMs for packages:', packages);
+  const packages = [
+    '@siemens/ix',
+    '@siemens/ix-react',
+    '@siemens/ix-angular',
+    '@siemens/ix-vue',
+    '@siemens/ix-echarts',
+    '@siemens/ix-aggrid',
+  ];
 
   const sbomPromises = packages.map(async (pkg) => {
     const { version } = getPkg(

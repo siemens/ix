@@ -22,5 +22,7 @@ export async function showModal(
 }
 
 export function dismissModal(modalInstance: IxModalInstance) {
-  _dismissModal(modalInstance.htmlElement);
+  if (modalInstance?.htmlElement) {
+    _dismissModal(modalInstance.htmlElement);
+  }
 }
