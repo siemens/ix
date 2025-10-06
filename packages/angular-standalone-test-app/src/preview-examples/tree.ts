@@ -13,7 +13,6 @@ import { IxTree } from '@siemens/ix-angular/standalone';
 import { TreeModel } from '@siemens/ix';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxTree],
   template: ` <div class="example">
