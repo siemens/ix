@@ -13,8 +13,8 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-map-navigation-logo--color: var(--theme-color-logo);
-  --theme-map-navigation-header--color: var(--theme-color-std-text);
-  --theme-map-navigation-separator--background: var(--theme-color-soft-bdr);
   --theme-map-navigation--background: var(--theme-color-1);
+  --theme-map-navigation-header--color: var(--theme-color-std-text);
+  --theme-map-navigation-logo--color: var(--theme-color-logo);
+  --theme-map-navigation-separator--background: var(--theme-color-soft-bdr);
 }

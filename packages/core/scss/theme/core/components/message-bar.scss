@@ -13,8 +13,8 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-messagebar--color: var(--theme-color-std-text);
-  --theme-messagebar--background: var(--theme-color-1);
-  --theme-message-bar--border-thickness: var(--theme-border-width-thick);
   --theme-message-bar--border-radius: var(--theme-default-border-radius);
+  --theme-message-bar--border-thickness: var(--theme-border-width-thick);
+  --theme-messagebar--background: var(--theme-color-1);
+  --theme-messagebar--color: var(--theme-color-std-text);
 }
