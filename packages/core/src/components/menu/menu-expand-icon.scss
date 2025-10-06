@@ -6,11 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'legacy/components/buttons';
+@use './../button/button-mixin';
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 
 $focus-bdr-width: 0.0625rem;
+
+@include button-mixin.btn;
+@include button-mixin.btn-variant(subtle-tertiary);
 
 :host {
   display: flex;
@@ -32,8 +35,9 @@ $focus-bdr-width: 0.0625rem;
     fill: var(--theme-menu-btn--color);
     opacity: 1;
     x: 2px;
-    transition: x 0.075s ease-in var(--theme-default-time), transform 0.075s ease-in-out 0.075s,
-      y 0.075s ease-in-out, opacity 0.075s linear 0.075s;
+    transition: x 0.075s ease-in var(--theme-default-time),
+      transform 0.075s ease-in-out 0.075s, y 0.075s ease-in-out,
+      opacity 0.075s linear 0.075s;
     transform-origin: center;
   }
 }
@@ -46,7 +50,7 @@ $focus-bdr-width: 0.0625rem;
 
 .menu-expand-button {
   width: 2rem;
-  padding: 0;
+  padding: 0px !important;
   cursor: pointer;
 }
 

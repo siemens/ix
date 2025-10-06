@@ -52,9 +52,8 @@ export class ContentHeader {
         {this.hasBackButton ? (
           <ix-icon-button
             class={'backButton'}
-            variant="primary"
+            variant="tertiary"
             icon={iconArrowLeft}
-            ghost={true}
             onClick={() => this.backButtonClick.emit()}
           ></ix-icon-button>
         ) : null}
@@ -63,7 +62,10 @@ export class ContentHeader {
           <div class="headerTitleRow">
             <ix-typography
               format={this.variant === 'secondary' ? 'h4' : 'h3'}
-              class={this.variant === 'secondary' ? 'secondary' : ''}
+              class={{
+                secondary: this.variant === 'secondary',
+                titleOverflow: true,
+              }}
             >
               {this.headerTitle}
             </ix-typography>
@@ -75,7 +77,11 @@ export class ContentHeader {
             <ix-typography
               format={'h6'}
               text-color={'soft'}
-              class={this.variant === 'secondary' ? 'subtitle' : ''}
+              class={{
+                subtitle: this.variant === 'secondary',
+                titleOverflow: true,
+              }}
+              title={this.headerSubtitle}
             >
               {this.headerSubtitle}
             </ix-typography>

@@ -249,9 +249,8 @@ export class MapNavigation {
                 ) : (
                   <ix-icon-button
                     icon={iconContextMenu}
-                    ghost
                     size="24"
-                    variant="secondary"
+                    variant="subtle-primary"
                     onClick={(_) => this.contextMenuClick.emit()}
                     aria-label={this.ariaLabelContextIconButton}
                   ></ix-icon-button>

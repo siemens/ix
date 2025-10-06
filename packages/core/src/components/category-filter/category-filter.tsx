@@ -147,9 +147,9 @@ export class CategoryFilter {
   @Prop() labelCategories = 'Categories';
 
   /**
-   * i18n
+   * i18n label for 'Filter by text'
    */
-  @Prop() i18nPlainText = 'Filter by text';
+  @Prop({ attribute: 'i18n-plain-text' }) i18nPlainText = 'Filter by text';
 
   /**
    * ARIA label for the reset button
@@ -658,9 +658,7 @@ export class CategoryFilter {
 
     const params: BaseButtonProps = {
       type: 'button',
-      variant: 'secondary',
-      outline: false,
-      ghost: true,
+      variant: 'subtle-tertiary',
       iconOnly: true,
       iconOval: false,
       selected: false,
@@ -819,7 +817,7 @@ export class CategoryFilter {
           'hide-reset-button':
             !this.filterTokens.length && this.category === '',
         }}
-        ghost
+        variant="tertiary"
         oval
         icon={iconClear}
         iconColor="color-soft-text"
