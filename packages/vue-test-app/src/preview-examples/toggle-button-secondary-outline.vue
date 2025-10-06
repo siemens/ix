@@ -8,14 +8,55 @@
 -->
 
 <script setup lang="ts">
+import { ref, computed } from 'vue';
+import {
+  iconTextBold,
+  iconTextItalic,
+  iconTextUnderline,
+} from '@siemens/ix-icons/icons';
 import { IxToggleButton } from '@siemens/ix-vue';
+
+const boldPressed = ref(false);
+const underlinePressed = ref(true);
+
+const handleBoldClick = () => {
+  boldPressed.value = !boldPressed.value;
+};
+
+const handleUnderlineClick = () => {
+  underlinePressed.value = !underlinePressed.value;
+};
+
+const paragraphStyle = computed(() => ({
+  fontWeight: boldPressed.value ? 'bold' : 'normal',
+  textDecoration: underlinePressed.value ? 'underline' : 'none',
+}));
 </script>
 
 <style scoped src="./toggle-button-secondary-outline.css"></style>
 
 <template>
-  <IxToggleButton variant="subtle-primary">Normal</IxToggleButton>
-  <IxToggleButton variant="subtle-primary">Pressed</IxToggleButton>
-  <IxToggleButton variant="subtle-primary" disabled>Disabled</IxToggleButton>
-  <IxToggleButton variant="subtle-primary" disabled loading>Loading</IxToggleButton>
+  <div class="button-container">
+    <IxToggleButton
+      outline
+      :icon="iconTextBold"
+      :pressed="boldPressed"
+      @click="handleBoldClick"
+    >
+      Bold
+    </IxToggleButton>
+    <IxToggleButton outline disabled :icon="iconTextItalic">
+      Italic
+    </IxToggleButton>
+    <IxToggleButton
+      outline
+      :icon="iconTextUnderline"
+      :pressed="underlinePressed"
+      @click="handleUnderlineClick"
+    >
+      Underline
+    </IxToggleButton>
+    <IxToggleButton outline disabled loading> Strikethrough </IxToggleButton>
+  </div>
+  <p :style="paragraphStyle">Lorem ipsum text</p>
 </template>

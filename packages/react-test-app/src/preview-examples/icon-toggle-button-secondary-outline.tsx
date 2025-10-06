@@ -7,46 +7,61 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconCheckboxes } from '@siemens/ix-icons/icons';
+import {
+  iconTextBold,
+  iconTextItalic,
+  iconTextUnderline,
+} from '@siemens/ix-icons/icons';
 import './icon-toggle-button-secondary-outline.scoped.css';
 
-import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-react';
+import { IxIconToggleButton } from '@siemens/ix-react';
+import { useState } from 'react';
 
 export default () => {
+  const [boldPressed, setBoldPressed] = useState(false);
+  const [underlinePressed, setUnderlinePressed] = useState(true);
+
+  const handleBoldClick = () => {
+    setBoldPressed(!boldPressed);
+  };
+
+  const handleUnderlineClick = () => {
+    setUnderlinePressed(!underlinePressed);
+  };
   return (
-    <IxLayoutGrid>
-      <IxRow>
-        <IxIconToggleButton variant="subtle-primary" icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" pressed icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" disabled icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" disabled loading icon={iconCheckboxes}></IxIconToggleButton>
-
-        <IxIconToggleButton variant="subtle-primary" size="16" icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="16" pressed icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="16" disabled icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="16" disabled loading icon={iconCheckboxes}></IxIconToggleButton>
-
-        <IxIconToggleButton variant="subtle-primary" size="12" icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="12" pressed icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="12" disabled icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="12" disabled loading icon={iconCheckboxes}></IxIconToggleButton>
-      </IxRow>
-      <IxRow>
-        <IxIconToggleButton variant="subtle-primary" icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" pressed icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" disabled icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" disabled loading icon={iconCheckboxes} oval></IxIconToggleButton>
-
-        <IxIconToggleButton variant="subtle-primary" size="16" icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="16" pressed icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="16" disabled icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="16" disabled loading icon={iconCheckboxes} oval></IxIconToggleButton>
-
-        <IxIconToggleButton variant="subtle-primary" size="12" icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="12" pressed icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="12" disabled icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="subtle-primary" size="12" disabled loading icon={iconCheckboxes} oval></IxIconToggleButton>
-      </IxRow>
-    </IxLayoutGrid>
+    <>
+      <div className="button-container">
+        <IxIconToggleButton
+          outline
+          icon={iconTextBold}
+          pressed={boldPressed}
+          onClick={handleBoldClick}
+        >
+          Bold
+        </IxIconToggleButton>
+        <IxIconToggleButton outline disabled icon={iconTextItalic}>
+          Italic
+        </IxIconToggleButton>
+        <IxIconToggleButton
+          outline
+          icon={iconTextUnderline}
+          pressed={underlinePressed}
+          onClick={handleUnderlineClick}
+        >
+          Underline
+        </IxIconToggleButton>
+        <IxIconToggleButton outline disabled loading>
+          Strikethrough
+        </IxIconToggleButton>
+      </div>
+      <p
+        style={{
+          fontWeight: boldPressed ? 'bold' : 'normal',
+          textDecoration: underlinePressed ? 'underline' : 'none',
+        }}
+      >
+        Lorem ipsum text
+      </p>
+    </>
   );
 };

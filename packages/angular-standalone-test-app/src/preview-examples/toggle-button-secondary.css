@@ -13,6 +13,12 @@
 
 body {
   display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+  margin-bottom: 1rem;
 }
 
 ix-toggle-button {
