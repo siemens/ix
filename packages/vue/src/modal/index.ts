@@ -1,6 +1,8 @@
 import {
   ModalConfig as IxModalConfig,
   showModal as _showModal,
+  dismissModal as _dismissModal,
+  ModalInstance as IxModalInstance,
 } from '@siemens/ix';
 import { VNode } from 'vue';
 
@@ -17,4 +19,10 @@ export async function showModal(
   config: Omit<IxModalConfig, 'content'> & ModalConfig
 ) {
   return _showModal(config);
+}
+
+export function dismissModal(modalInstance: IxModalInstance) {
+  if (modalInstance?.htmlElement) {
+    _dismissModal(modalInstance.htmlElement);
+  }
 }
