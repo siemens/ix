@@ -13,11 +13,11 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-app-header--color: var(--theme-color-std-text);
   --theme-app-header--background: var(--theme-color-2);
   --theme-app-header--border-color: var(--theme-color-weak-bdr);
+  --theme-app-header--border-width: var(--theme-blind--border-thickness);
+  --theme-app-header--color: var(--theme-color-std-text);
+  --theme-app-header-app-icon--outline-color: var(--theme-color-8);
   --theme-app-header-logo--color: var(--theme-color-logo);
   --theme-app-header-name-suffix--color: var(--theme-color-soft-text);
-  --theme-app-header-app-icon--outline-color: var(--theme-color-8);
-  --theme-app-header--border-width: var(--theme-blind--border-thickness);
 }
