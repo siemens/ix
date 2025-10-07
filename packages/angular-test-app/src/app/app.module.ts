@@ -24,6 +24,7 @@ import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
 import ApplicationExample from '../preview-examples/application';
+import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
@@ -48,6 +49,7 @@ import ButtonLoading from '../preview-examples/button-loading';
 import ButtonSecondary from '../preview-examples/button-secondary';
 import ButtonTextIcon from '../preview-examples/button-text-icon';
 import ButtonWithIcon from '../preview-examples/button-with-icon';
+import ButtonWithLink from '../preview-examples/button-with-link';
 import Buttons from '../preview-examples/buttons';
 import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
@@ -59,6 +61,7 @@ import Chip from '../preview-examples/chip';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import ContentHeaderWithSlot from '../preview-examples/content-header-with-slot';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
@@ -260,6 +263,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     AddIcons,
     AgGrid,
     ApplicationExample,
+    ApplicationAdvancedExample,
     ApplicationBreakpointExample,
     ApplicationAppSwitchExample,
     ApplicationHeaderExample,
@@ -284,6 +288,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     ButtonSecondary,
     ButtonTextIcon,
     ButtonWithIcon,
+    ButtonWithLink,
     Buttons,
     Card,
     CardList,
@@ -303,10 +308,9 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     DateInputValidation,
     DateInputWithSlots,
     ContentExample,
-    DateDropdown,
-    DateDropdownUserRange,
-    ContentHeaderNoBack,
     ContentHeader,
+    ContentHeaderNoBack,
+    ContentHeaderWithSlot,
     DatepickerRange,
     Datepicker,
     DatepickerLocale,
@@ -463,8 +467,6 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     VerticalTabsWithAvatar,
     VerticalTabs,
     WorkflowVertical,
-    MapNavigation,
-    MapNavigationOverlay,
     MapNavigationMigration,
     NumberInput,
     NumberInputDisabled,
@@ -473,36 +475,6 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     NumberInputStepperButton,
     NumberInputValidation,
     NumberInputWithSlots,
-    TabsRounded,
-    DatepickerRange,
-    Tooltip,
-    PushCard,
-    ActionCard,
-    Card,
-    CardList,
-    EmptyState,
-    EmptyStateCompact,
-    EmptyStateCompactBreak,
-    KeyValue,
-    KeyValueWithCustomValue,
-    KeyValueWithIcon,
-    KeyValueWithLabelLeft,
-    KeyValueList,
-    KeyValueListWithCustomValue,
-    KeyValueListWithIcon,
-    KeyValueListStriped,
-    ContentHeader,
-    ContentHeaderNoBack,
-    MenuCategory,
-    Slider,
-    SliderTrace,
-    SliderMarker,
-    SliderError,
-    Grid,
-    GridSize,
-    GridPadding,
-    ModalSizes,
-    DatepickerLocale,
     ValidationSelect,
     LayoutAuto,
     LayoutAutoCustom,

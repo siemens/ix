@@ -48,6 +48,7 @@ export function customRequiredValidator(): ValidatorFn {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: `./form-validation.html`,
   styles: [

@@ -10,10 +10,11 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
-    <ix-button outline variant="secondary"> Button </ix-button>
-    <ix-button disabled outline variant="secondary"> Button </ix-button>
+    <ix-button variant="subtle-secondary"> Button </ix-button>
+    <ix-button disabled variant="subtle-secondary"> Button </ix-button>
   `,
   styleUrls: ['./button-grey-secondary.css'],
 })

@@ -63,7 +63,7 @@ export async function checkInternalValidity<T>(
     return;
   }
 
-  if (!comp.value) {
+  if (comp.value === null || comp.value === undefined) {
     return;
   }
 

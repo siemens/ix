@@ -11,14 +11,13 @@ import { Component } from '@angular/core';
 import { IxButton } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxButton],
   template: `
     <div class="ix-button-group">
-      <ix-button outline> Left </ix-button>
+      <ix-button variant="subtle-primary"> Left </ix-button>
       <ix-button>Middle</ix-button>
-      <ix-button outline> Right </ix-button>
+      <ix-button variant="subtle-primary"> Right </ix-button>
     </div>
   `,
 })

@@ -18,14 +18,14 @@ import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 import { TreeBaseDirective } from '@siemens/ix-angular/common';
 
 @ProxyCmp({
-  defineCustomElementFn: undefined,
-  inputs: ['context', 'model', 'root'],
+  inputs: ['context', 'model', 'root', 'renderItem'],
 })
 @Component({
   selector: 'ix-tree',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['context', 'model', 'root', 'renderItem'],
+  standalone: false,
 })
 export class IxTree extends TreeBaseDirective {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {

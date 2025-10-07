@@ -10,13 +10,32 @@ import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
-type Element = Components.IxTextarea;
+type Element = Components.IxTextarea & {
+  validation: 'default' | 'info' | 'warning' | 'invalid' | 'valid';
+};
+
+function genericInputRender(args: Partial<Element>) {
+  const container = genericRender('ix-textarea', args, ['validation']);
+  const input = container.querySelector('ix-textarea') as HTMLIxTextareaElement;
+
+  input.classList.remove('ix-info', 'ix-warning', 'ix-invalid', 'ix-valid');
+
+  if (args.validation !== 'default') {
+    input.classList.add(`ix-${args.validation}`);
+  }
+  return container;
+}
 
 const meta = {
   title: 'Example/Textarea',
   tags: [],
-  render: (args) => genericRender('ix-textarea', args),
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-textarea', {}),
+  render: (args) => genericInputRender(args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-textarea', {
+    validation: {
+      options: ['default', 'info', 'warning', 'invalid', 'valid'],
+      control: { type: 'select' },
+    },
+  }),
   parameters: {
     design: {
       type: 'figma',
@@ -37,5 +56,14 @@ export const Required: Story = {
     label: 'Required',
     value: '',
     required: true,
+  },
+};
+
+export const ValidationStates: Story = {
+  args: {
+    label: 'Validation States',
+    value: 'Test',
+    required: true,
+    validation: 'invalid',
   },
 };

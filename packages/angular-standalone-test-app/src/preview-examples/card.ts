@@ -16,7 +16,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxCard, IxCardContent, IxIcon, IxTypography],
   templateUrl: './card.html',
