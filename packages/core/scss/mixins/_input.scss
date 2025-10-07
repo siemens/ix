@@ -165,15 +165,15 @@
 
   @include form-component.input-warning {
     & {
+      background-color: var(--theme-input--background--warning);
       border-color: var(
         --theme-input--border-color--warning--active
       ) !important;
     }
 
     &:hover {
-      border-color: var(
-        --theme-input--border-color--warning--active
-      ) !important;
+      background-color: var(--theme-input--background--warning--hover);
+      border-color: var(--theme-input--border-color--warning--hover) !important;
     }
 
     &:active {
@@ -190,6 +190,7 @@
     }
 
     &:hover {
+      background-color: var(--theme-input--background--invalid--hover);
       border-color: var(--theme-input--border-color--invalid--hover) !important;
     }
 

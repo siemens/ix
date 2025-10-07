@@ -44,6 +44,7 @@ import { checkForError } from '../utils/check-for-error';
       ></ix-select-item>
     </ix-select>
   `,
+  standalone: false,
 })
 class SelectFormComponent {
   public form = new FormGroup({ select: new FormControl('1') });

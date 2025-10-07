@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxLayoutAuto, IxTypography } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxLayoutAuto, IxTypography],
   templateUrl: './layout-auto.html',

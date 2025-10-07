@@ -10,7 +10,6 @@
 import path from 'path';
 import fs from 'fs-extra';
 import Mustache from 'mustache';
-import { fetchChangelog } from './utils/fetch-changelog';
 import componentDoc from '@siemens/ix/component-doc.json';
 import { convertDocsTagsToTSXElement } from './utils/docs-tags';
 import { generateTypeScriptDocs } from './typedoc-generator';
@@ -376,24 +375,6 @@ async function generateApiMarkdown() {
   }
 }
 
-async function generateChangelog() {
-  console.log('Generating changelog...');
-
-  const changeLogExist = fs.existsSync(__changelog);
-
-  if (!process.env.GITHUB_TOKEN) {
-    if (changeLogExist) {
-      return;
-    }
-    console.error('No GITHUB_TOKEN provided, creating empty changelog');
-    return;
-  }
-
-  const changelog = await fetchChangelog();
-  await fs.ensureDir(path.join(__changelog, '..'));
-  await fs.writeFile(__changelog, changelog);
-}
-
 async function copyStorybook() {
   await fs.copy(__storybookStatic, __previewStorybook, { overwrite: true });
 }
@@ -453,7 +434,6 @@ async function copyStorybook() {
       copyStorybook(),
       generatePlaygroundMarkdown(['form-validation']),
       generateApiMarkdown(),
-      generateChangelog(),
     ];
 
     await Promise.all([typeScriptDocsPromise, ...mainTasksPromise]);

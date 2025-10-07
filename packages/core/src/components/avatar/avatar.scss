@@ -8,9 +8,9 @@
  */
 
 @use './common-variables' as vars;
+@use './../button/button-mixin';
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
-@use './../button/button-mixin';
 @use 'mixins/scrollbar';
 
 :host {
@@ -43,6 +43,11 @@
       border-radius: 100px;
       background-color: var(--theme-avatar--background);
       color: var(--theme-avatar--color);
+
+      > ix-typography {
+        // Fix to get the text vertically centered
+        margin-top: 1px;
+      }
     }
 
     #avatar-path-background {
@@ -50,7 +55,7 @@
     }
 
     #avatar-path-person {
-      fill:var(--theme-avatar--color);
+      fill: var(--theme-avatar--color);
     }
   }
 }
@@ -108,7 +113,7 @@
     }
   }
 
-  @include button-mixin.btn-base-variant('invisible-primary', false);
+  @include button-mixin.btn-base-variant('tertiary');
 
   .avatar {
     transform: scale(0.8);

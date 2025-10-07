@@ -11,14 +11,13 @@ import { Component } from '@angular/core';
 import { IxToggleButton } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxToggleButton],
   template: `
-    <ix-toggle-button ghost> Normal</ix-toggle-button>
-    <ix-toggle-button pressed ghost> Pressed</ix-toggle-button>
-    <ix-toggle-button disabled ghost> Disabled</ix-toggle-button>
-    <ix-toggle-button disabled loading ghost> Loading</ix-toggle-button>
+    <ix-toggle-button variant="tertiary"> Normal</ix-toggle-button>
+    <ix-toggle-button variant="tertiary" pressed> Pressed</ix-toggle-button>
+    <ix-toggle-button variant="tertiary" disabled> Disabled</ix-toggle-button>
+    <ix-toggle-button variant="tertiary" disabled loading> Loading</ix-toggle-button>
   `,
   styleUrls: ['./toggle-button-secondary-ghost.css'],
 })
