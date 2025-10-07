@@ -207,6 +207,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Prop() hideHeader: boolean = false;
 
   /**
+   * Alignment of the input time. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -370,6 +375,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
+          }}
+          style={{
+            textAlign: this.textAlignment === 'end' ? 'right' : 'left',
           }}
           disabled={this.disabled}
           readOnly={this.readonly}

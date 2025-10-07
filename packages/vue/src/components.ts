@@ -438,6 +438,7 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'weekStartIndex',
   'ariaLabelPreviousMonthButton',
   'ariaLabelNextMonthButton',
+  'textAlignment',
   'valueChange',
   'validityStateChange',
   'ixFocus',
@@ -760,6 +761,7 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'maxLength',
   'minLength',
   'allowedCharactersPattern',
+  'textAlignment',
   'valueChange',
   'validityStateChange',
   'ixBlur'
@@ -1044,6 +1046,7 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'allowedCharactersPattern',
   'showStepperButtons',
   'step',
+  'textAlignment',
   'valueChange',
   'validityStateChange',
   'ixBlur'
@@ -1364,6 +1367,7 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'i18nSecondColumnHeader',
   'i18nMillisecondColumnHeader',
   'hideHeader',
+  'textAlignment',
   'valueChange',
   'validityStateChange',
   'ixFocus',
