@@ -9,7 +9,6 @@
 
 import { IxButton, IxContentHeader } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxContentHeader
@@ -17,9 +16,9 @@ export default () => {
       header-title="Content title"
       header-subtitle="Subtitle"
     >
-      <IxButton ghost>Button1</IxButton>
-      <IxButton ghost>Button2</IxButton>
-      <IxButton ghost>Button3</IxButton>
+      <IxButton variant="tertiary">Button1</IxButton>
+      <IxButton variant="tertiary">Button2</IxButton>
+      <IxButton variant="tertiary">Button3</IxButton>
     </IxContentHeader>
   );
 };

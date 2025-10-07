@@ -10,6 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-key-value icon="location" label="Label" value="Value"></ix-key-value>

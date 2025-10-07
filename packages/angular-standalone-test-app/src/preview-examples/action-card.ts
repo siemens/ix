@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxActionCard } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxActionCard],
   templateUrl: './action-card.html',

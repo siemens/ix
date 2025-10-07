@@ -13,7 +13,7 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tree custom example</title>
-    <script>
+    <script type="module">
       import { addIcons } from '@siemens/ix-icons';
       import { iconStar, iconCut, iconPrint } from '@siemens/ix-icons/icons';
 
@@ -22,8 +22,7 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
     <div style="height: 8rem; width: 100%">
-      <ix-button id="expand" ghost style="margin-bottom: 2rem"
-        >Expand Tree</ix-button
+      <ix-button variant="tertiary" id="expand" style="margin-bottom: 2rem">Expand Tree</ix-button
       >
       <ix-tree root="root" id="tree"></ix-tree>
     </div>

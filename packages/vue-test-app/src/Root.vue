@@ -22,6 +22,7 @@ import ApplicationAppSwitch from './preview-examples/application-app-switch.vue'
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
 import ApplicationHeader from './preview-examples/application-header.vue';
 import Application from './preview-examples/application.vue';
+import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
@@ -46,6 +47,7 @@ import ButtonLoading from './preview-examples/button-loading.vue';
 import ButtonSecondary from './preview-examples/button-secondary.vue';
 import ButtonTextIcon from './preview-examples/button-text-icon.vue';
 import ButtonWithIcon from './preview-examples/button-with-icon.vue';
+import ButtonWithLink from './preview-examples/button-with-link.vue';
 import Buttons from './preview-examples/buttons.vue';
 import CardList from './preview-examples/card-list.vue';
 import Card from './preview-examples/card.vue';
@@ -56,6 +58,7 @@ import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
+import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.vue';
 import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
 import CustomField from './preview-examples/custom-field.vue';
@@ -243,6 +246,7 @@ const routes: any = {
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
   '/preview/application': Application,
+  '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-header': ApplicationHeader,
   '/preview/application-breakpoints': ApplicationBreakpoints,
   '/preview/application-app-switch': ApplicationAppSwitch,
@@ -268,6 +272,7 @@ const routes: any = {
   '/preview/button-secondary': ButtonSecondary,
   '/preview/button-text-icon': ButtonTextIcon,
   '/preview/button-with-icon': ButtonWithIcon,
+  '/preview/button-with-link': ButtonWithLink,
   '/preview/buttons': Buttons,
   '/preview/card': Card,
   '/preview/card-list': CardList,
@@ -283,6 +288,7 @@ const routes: any = {
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
+  '/preview/content-header-with-slot': ContentHeaderWithSlot,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
