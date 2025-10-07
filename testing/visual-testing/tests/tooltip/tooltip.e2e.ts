@@ -70,7 +70,6 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
-    await page.setViewportSize({ height: 200, width: 450 });
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
