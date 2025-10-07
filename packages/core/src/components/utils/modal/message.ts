@@ -205,7 +205,7 @@ showMessage.warning = (
     message,
     messageTitle: title,
     icon: iconWarning,
-    iconColor: 'color-warning',
+    iconColor: 'color-warning-text',
     actions: createConfirmButtons(
       textOkay,
       textCancel,

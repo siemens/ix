@@ -15,6 +15,9 @@ export type NotificationColor =
   | 'color-info'
   | 'color-critical'
   | 'color-warning'
+  //TODO(IX-3400): Remove warning-text when proper CSS variable is available
+  | 'color-warning-text'
+  | 'color-warning'
   | 'color-success'
   | 'color-alarm'
   | 'color-neutral'
