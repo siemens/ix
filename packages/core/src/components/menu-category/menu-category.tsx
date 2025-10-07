@@ -52,7 +52,7 @@ export class MenuCategory implements IxMenuItemBase {
   /**
    * Will be shown as tooltip text, if not provided menu text content will be used.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() tooltipText?: string;
 

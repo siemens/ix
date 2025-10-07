@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 export default function EchartsLineAdvanced() {

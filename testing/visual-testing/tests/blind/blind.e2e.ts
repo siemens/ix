@@ -48,7 +48,7 @@ regressionTest.describe('blind', () => {
       `
       <ix-blind label="Example label" style="width: 25rem">
           <ix-button
-            ghost
+            variant="tertiary"
             data-testid="slot"
             slot="header-actions"
             icon="context-menu"

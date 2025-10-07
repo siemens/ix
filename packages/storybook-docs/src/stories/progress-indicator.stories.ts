@@ -45,7 +45,9 @@ export const Circular: Story = {
     label: 'Progress Indicator',
     helperText: 'This is a progress indicator',
     value: 50,
-    defaultSlot: 'Upload 1/2',
+    defaultSlot: '1/2',
+    type: 'circular',
+    size: 'xl',
   },
 };
 

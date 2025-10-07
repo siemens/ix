@@ -24,6 +24,8 @@ const meta = {
         <ix-menu-item icon="globe">Item 2</ix-menu-item>
         <ix-menu-item icon="globe">Item 3</ix-menu-item>
       </ix-menu-category>
+      <ix-menu-about></ix-menu-about>
+      <ix-menu-settings></ix-menu-settings>
     </ix-menu>`;
   },
   argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu'),
