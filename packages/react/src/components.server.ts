@@ -2286,6 +2286,7 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         i18nMinuteColumnHeader: 'i18n-minute-column-header',
         i18nSecondColumnHeader: 'i18n-second-column-header',
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
         hideHeader: 'hide-header'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
