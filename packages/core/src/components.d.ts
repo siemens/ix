@@ -3501,6 +3501,12 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
+          * Hides the header of the picker.
+          * @since 4.0.0
+          * @default false
+         */
+        "hideHeader": boolean;
+        /**
           * Interval for hour selection
           * @default 1
          */
@@ -9562,6 +9568,12 @@ declare namespace LocalJSX {
           * Helper text below the input field
          */
         "helperText"?: string;
+        /**
+          * Hides the header of the picker.
+          * @since 4.0.0
+          * @default false
+         */
+        "hideHeader"?: boolean;
         /**
           * Interval for hour selection
           * @default 1

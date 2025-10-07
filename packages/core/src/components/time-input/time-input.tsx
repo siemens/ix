@@ -207,6 +207,13 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
 
   /**
+   * Hides the header of the picker.
+   *
+   * @since 4.0.0
+   */
+  @Prop() hideHeader: boolean = false;
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -414,7 +421,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           <ix-icon-button
             data-testid="open-time-picker"
             class={{ 'time-icon-hidden': this.disabled || this.readonly }}
-            ghost
+            variant="subtle-tertiary"
             icon={iconClock}
             onClick={(event) => this.onTimeIconClick(event)}
             aria-label="Toggle time picker"
@@ -530,6 +537,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             secondInterval={this.secondInterval}
             millisecondInterval={this.millisecondInterval}
             standaloneAppearance={false}
+            hideHeader={this.hideHeader}
             i18nConfirmTime={this.i18nSelectTime}
             i18nHeader={this.i18nTime}
             i18nHourColumnHeader={this.i18nHourColumnHeader}
