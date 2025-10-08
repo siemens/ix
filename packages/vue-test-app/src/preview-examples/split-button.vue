@@ -13,8 +13,24 @@ import { IxSplitButton, IxDropdownItem } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall">
-    <IxDropdownItem label="Item 1"></IxDropdownItem>
-    <IxDropdownItem label="Item 2"></IxDropdownItem>
-  </IxSplitButton>
+  <div>
+    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall">
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxSplitButton>
+    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" disabled>
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxSplitButton>
+    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" disableButton>
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxSplitButton>
+    <IxSplitButton label="Action text" :splitIcon="iconChevronDownSmall" disableDropdownButton>
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxSplitButton>
+</div>
 </template>
+
+<style scoped src="./split-button.css"></style>
