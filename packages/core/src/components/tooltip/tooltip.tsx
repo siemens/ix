@@ -29,6 +29,7 @@ import {
 import { resolveSelector } from '../utils/find-element';
 import { ElementReference } from 'src/components';
 import { makeRef } from '../utils/make-ref';
+import { getSlottedElements } from '../utils/shadow-dom';
 import { addDisposableEventListenerAsArray } from '../utils/disposable-event-listener';
 
 type ArrowPosition = {
@@ -43,7 +44,7 @@ const numberToPixel = (value?: number | null) =>
 let tooltipInstance = 0;
 
 /**
- * @slot title-icon - Icon of tooltip title
+ * @slot title-icon - Icon of tooltip title.Icon will be displayed as 16x16px always
  * @slot title-content - Content of tooltip title
  */
 @Component({
@@ -471,6 +472,16 @@ export class Tooltip {
     this.disposeDomChangeListener?.();
   }
 
+  private handleTitleIconSlotChange(e: Event) {
+    const slot = e.target as HTMLSlotElement;
+    const elements = getSlottedElements<HTMLElement>(slot);
+
+    elements.forEach((element) => {
+      if (element.tagName.toLowerCase() === 'ix-icon') {
+        (element as HTMLIxIconElement).size = '16';
+      }
+    });
+  }
   render() {
     return (
       <Host role="tooltip" class={{ visible: this.visible }}>
@@ -484,7 +495,10 @@ export class Tooltip {
           <div class="tooltip-container">
             <div class="content-wrapper">
               <div class={'tooltip-title'}>
-                <slot name="title-icon"></slot>
+                <slot
+                  name="title-icon"
+                  onSlotchange={(e) => this.handleTitleIconSlotChange(e)}
+                ></slot>
                 <ix-typography format="h5">
                   {this.titleContent}
                   <slot name="title-content"></slot>
