@@ -205,6 +205,7 @@ showMessage.warning = (
     message,
     messageTitle: title,
     icon: iconWarning,
+    //TODO(IX-3400): Remove warning-text when proper CSS variable is available
     iconColor: 'color-warning-text',
     actions: createConfirmButtons(
       textOkay,
