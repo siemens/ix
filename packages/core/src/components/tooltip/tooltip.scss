@@ -40,11 +40,7 @@
   display: flex;
 
   ::slotted(ix-icon) {
-    margin:0.125rem 0.25rem 0.125rem 0; 
-    height:1rem;
-    width:1rem;
-    min-width:1rem;
-    min-height: 1rem;
+    margin: 0.125rem 0.25rem 0.125rem 0;
   }
 }
 
