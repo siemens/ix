@@ -108,7 +108,8 @@ export class WorkflowStep {
         break;
       case 'warning':
         this.iconName = iconWarning;
-        this.iconColor = 'color-warning';
+        //TODO(IX-3400): Replace icon colors with proper CSS variables when available
+        this.iconColor = 'color-warning-text';
         break;
       case 'error':
         this.iconName = iconError;

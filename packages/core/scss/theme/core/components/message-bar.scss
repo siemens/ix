@@ -15,6 +15,6 @@
 @mixin setVars {
   --theme-message-bar--border-radius: var(--theme-default-border-radius);
   --theme-message-bar--border-thickness: var(--theme-border-width-thick);
-  --theme-messagebar--background: var(--theme-color-1);
+  --theme-messagebar--background: var(--theme-color-secondary);
   --theme-messagebar--color: var(--theme-color-std-text);
 }

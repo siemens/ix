@@ -13,6 +13,6 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-pill-outline--background: var(--theme-color-1);
+  --theme-pill-outline--background: var(--theme-color-secondary);
   --theme-pill-outline--color: var(--theme-color-std-text);
 }

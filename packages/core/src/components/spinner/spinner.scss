@@ -96,7 +96,8 @@
     position: absolute;
     inset: 8.33%;
     border-radius: 100%;
-    border: $track-size solid var(--theme-color-ghost--hover);
+    //TODO(IX-3400): Replace track color with proper CSS variables when available
+    border: $track-size solid var(--theme-color-component-3);
   }
 
   .primary::after {
