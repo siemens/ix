@@ -17,7 +17,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",
     "@siemens/ix": "workspace:*",
-    "@siemens/ix-icons": "^3.0.0",
+    "@siemens/ix-icons": "^3.2.0",
     "@stencil/core": "~4.17.0",
     "@storybook/addon-a11y": "^9.0.18",
     "@storybook/addon-designs": "^10.0.2",
