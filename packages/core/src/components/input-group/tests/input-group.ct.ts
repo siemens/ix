@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of thi  s source tree.
  */
 import { expect } from '@playwright/test';
-import { iconEye } from '@siemens/ix-icons/icons';
+import { iconEye, iconSuccess } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -215,3 +215,35 @@ regressionTest(
     await expect(input).toHaveCSS('padding-left', '49px');
   }
 );
+
+regressionTest('drawer displays input-group with correct icon padding and no overlap', async ({ mount, page }) => {
+  await mount(
+    `
+    <div>
+      <ix-button id="toggle-drawer">Toggle drawer</ix-button>
+      <ix-drawer>
+        <ix-input-group>
+          <ix-icon slot="input-start" name="success" size="16"></ix-icon>
+          <input type="text" value="input text" />
+        </ix-input-group>
+      </ix-drawer>
+    </div>
+    `,
+    {
+      icons: { iconSuccess },
+    }
+  );
+ 
+  const button = page.locator('#toggle-drawer');
+  const drawer = page.locator('ix-drawer');
+  const inputGroup = drawer.locator('ix-input-group');
+  const input = inputGroup.locator('input');
+ 
+  await button.click();
+  await drawer.evaluate((drawerElement: HTMLIxDrawerElement) => {
+    drawerElement.show = true;
+  });
+ 
+  await expect(inputGroup).toHaveClass(/hydrated/);
+  await expect(input).toHaveCSS('padding-left', '27px');
+});
