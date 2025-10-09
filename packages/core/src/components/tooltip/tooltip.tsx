@@ -44,8 +44,8 @@ const numberToPixel = (value?: number | null) =>
 let tooltipInstance = 0;
 
 /**
- * @slot title-icon - Icon of tooltip title
- * @slot title-icon - Icon of tooltip title.Icon will be displayed as 16x16px always
+ * @slot title-icon - Icon of tooltip title. The icon will be displayed as 16x16px.
+ * @slot title-content - Content of tooltip title
  */
 @Component({
   tag: 'ix-tooltip',

@@ -10,8 +10,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
-import { IxApplicationContext } from "@siemens/ix-vue"
-
+import { IxApplicationContext } from '@siemens/ix-vue';
 
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
@@ -222,6 +221,7 @@ import ToggleDisabled from './preview-examples/toggle-disabled.vue';
 import ToggleIndeterminate from './preview-examples/toggle-indeterminate.vue';
 import Toggle from './preview-examples/toggle.vue';
 import Tooltip from './preview-examples/tooltip.vue';
+import TooltipWithIcon from './preview-examples/tooltip-with-icon.vue';
 import TreeCustom from './preview-examples/tree-custom.vue';
 import Tree from './preview-examples/tree.vue';
 import Upload from './preview-examples/upload.vue';
@@ -414,6 +414,7 @@ const routes: any = {
   '/preview/map-navigation-overlay': MapNavigationOverlay,
   '/preview/map-navigation-migration': MapNavigationMigration,
   '/preview/tooltip': Tooltip,
+  '/preview/tooltip-with-icon': TooltipWithIcon,
   '/preview/push-card': PushCard,
   '/preview/page-header': ContentHeader,
   '/preview/page-header-no-back': ContentHeaderNoBack,
