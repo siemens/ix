@@ -7,52 +7,81 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
-import {
-  IxIconToggleButton,
-  IxLayoutGrid,
-  IxRow,
-} from '@siemens/ix-angular/standalone';
+import { Component, OnInit } from '@angular/core';
+import { IxIconToggleButton } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
-  imports: [IxIconToggleButton, IxLayoutGrid, IxRow],
+  imports: [IxIconToggleButton],
   template: `
-    <ix-layout-grid>
-      <ix-row>
-        <ix-icon-toggle-button variant="subtle-primary" icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" pressed icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" disabled icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" disabled loading icon="checkboxes"></ix-icon-toggle-button>
-
-        <ix-icon-toggle-button variant="subtle-primary" size="16" icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="16" pressed icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="16" disabled icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="16" disabled loading icon="checkboxes"></ix-icon-toggle-button>
-
-        <ix-icon-toggle-button variant="subtle-primary" size="12" icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="12" pressed icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="12" disabled icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="12" disabled loading icon="checkboxes"></ix-icon-toggle-button>
-      </ix-row>
-      <ix-row>
-        <ix-icon-toggle-button variant="subtle-primary" icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" pressed icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" disabled icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" disabled loading icon="checkboxes" oval></ix-icon-toggle-button>
-
-        <ix-icon-toggle-button variant="subtle-primary" size="16" icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="16" pressed icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="16" disabled icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="16" disabled loading icon="checkboxes" oval></ix-icon-toggle-button>
-
-        <ix-icon-toggle-button variant="subtle-primary" size="12" icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="12" pressed icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="12" disabled icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button variant="subtle-primary" size="12" disabled loading icon="checkboxes" oval></ix-icon-toggle-button>
-      </ix-row>
-    </ix-layout-grid>
+    <div class="button-container">
+      <ix-icon-toggle-button
+        id="boldButton"
+        outline
+        icon="text-bold"
+        (click)="handleBoldClick()"
+        >Bold</ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button outline disabled icon="text-italic"
+        >Italic</ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button
+        id="underlineButton"
+        outline
+        icon="text-underline"
+        pressed
+        (click)="handleUnderlineClick()"
+        >Underline</ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button outline disabled loading>
+        Strikethrough
+      </ix-icon-toggle-button>
+    </div>
+    <p id="loremIpsum">Lorem ipsum text</p>
   `,
   styleUrls: ['./icon-toggle-button-secondary-outline.css'],
 })
-export default class Buttons {}
+export default class Buttons implements OnInit {
+  boldPressed = false;
+  underlinePressed = true;
+
+  ngOnInit() {
+    const loremIpsum = document.getElementById('loremIpsum');
+    if (loremIpsum) {
+      loremIpsum.style.fontWeight = this.boldPressed ? 'bold' : 'normal';
+      loremIpsum.style.textDecoration = this.underlinePressed
+        ? 'underline'
+        : 'none';
+    }
+  }
+
+  handleBoldClick() {
+    const boldButton = document.getElementById('boldButton');
+    const loremIpsum = document.getElementById('loremIpsum');
+    if (boldButton && loremIpsum) {
+      this.boldPressed = !this.boldPressed;
+      if (this.boldPressed) {
+        boldButton.setAttribute('pressed', '');
+      } else {
+        boldButton.removeAttribute('pressed');
+      }
+      loremIpsum.style.fontWeight = this.boldPressed ? 'bold' : 'normal';
+    }
+  }
+
+  handleUnderlineClick() {
+    const underlineButton = document.getElementById('underlineButton');
+    const loremIpsum = document.getElementById('loremIpsum');
+    if (underlineButton && loremIpsum) {
+      this.underlinePressed = !this.underlinePressed;
+      if (this.underlinePressed) {
+        underlineButton.setAttribute('pressed', '');
+      } else {
+        underlineButton.removeAttribute('pressed');
+      }
+      loremIpsum.style.textDecoration = this.underlinePressed
+        ? 'underline'
+        : 'none';
+    }
+  }
+}

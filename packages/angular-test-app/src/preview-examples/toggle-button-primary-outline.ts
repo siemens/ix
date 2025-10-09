@@ -7,23 +7,82 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   standalone: false,
   selector: 'app-example',
   template: `
-    <ix-toggle-button variant="subtle-primary">Normal</ix-toggle-button>
-    <ix-toggle-button pressed variant="subtle-primary">
-      Pressed
-    </ix-toggle-button>
-    <ix-toggle-button disabled variant="subtle-primary">
-      Disabled
-    </ix-toggle-button>
-    <ix-toggle-button disabled loading variant="subtle-primary">
-      Loading
-    </ix-toggle-button>
+    <div class="button-container">
+      <ix-toggle-button
+        id="boldButton"
+        variant="primary"
+        outline
+        icon="text-bold"
+        (click)="handleBoldClick()"
+        >Bold</ix-toggle-button
+      >
+      <ix-toggle-button variant="primary" outline disabled icon="text-italic"
+        >Italic</ix-toggle-button
+      >
+      <ix-toggle-button
+        id="underlineButton"
+        variant="primary"
+        outline
+        icon="text-underline"
+        pressed
+        (click)="handleUnderlineClick()"
+        >Underline</ix-toggle-button
+      >
+      <ix-toggle-button variant="primary" outline disabled loading>
+        Strikethrough
+      </ix-toggle-button>
+    </div>
+    <p id="loremIpsum">Lorem ipsum text</p>
   `,
   styleUrls: ['./toggle-button-primary-outline.css'],
 })
-export default class Buttons {}
+export default class Buttons implements OnInit {
+  boldPressed = false;
+  underlinePressed = true;
+
+  ngOnInit() {
+    const loremIpsum = document.getElementById('loremIpsum');
+    if (loremIpsum) {
+      loremIpsum.style.fontWeight = this.boldPressed ? 'bold' : 'normal';
+      loremIpsum.style.textDecoration = this.underlinePressed
+        ? 'underline'
+        : 'none';
+    }
+  }
+
+  handleBoldClick() {
+    const boldButton = document.getElementById('boldButton');
+    const loremIpsum = document.getElementById('loremIpsum');
+    if (boldButton && loremIpsum) {
+      this.boldPressed = !this.boldPressed;
+      if (this.boldPressed) {
+        boldButton.setAttribute('pressed', '');
+      } else {
+        boldButton.removeAttribute('pressed');
+      }
+      loremIpsum.style.fontWeight = this.boldPressed ? 'bold' : 'normal';
+    }
+  }
+
+  handleUnderlineClick() {
+    const underlineButton = document.getElementById('underlineButton');
+    const loremIpsum = document.getElementById('loremIpsum');
+    if (underlineButton && loremIpsum) {
+      this.underlinePressed = !this.underlinePressed;
+      if (this.underlinePressed) {
+        underlineButton.setAttribute('pressed', '');
+      } else {
+        underlineButton.removeAttribute('pressed');
+      }
+      loremIpsum.style.textDecoration = this.underlinePressed
+        ? 'underline'
+        : 'none';
+    }
+  }
+}

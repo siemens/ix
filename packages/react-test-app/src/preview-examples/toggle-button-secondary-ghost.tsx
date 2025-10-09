@@ -10,20 +10,58 @@
 import './toggle-button-secondary-ghost.scoped.css';
 
 import { IxToggleButton } from '@siemens/ix-react';
+import { useState } from 'react';
+import {
+  iconTextBold,
+  iconTextItalic,
+  iconTextUnderline,
+} from '@siemens/ix-icons/icons';
 
 export default () => {
+  const [boldPressed, setBoldPressed] = useState(false);
+  const [underlinePressed, setUnderlinePressed] = useState(true);
+
+  const handleBoldClick = () => {
+    setBoldPressed(!boldPressed);
+  };
+
+  const handleUnderlineClick = () => {
+    setUnderlinePressed(!underlinePressed);
+  };
   return (
     <>
-      <IxToggleButton variant="tertiary">Normal</IxToggleButton>
-      <IxToggleButton variant="tertiary" pressed>
-        Pressed
-      </IxToggleButton>
-      <IxToggleButton variant="tertiary" disabled>
-        Disabled
-      </IxToggleButton>
-      <IxToggleButton variant="tertiary" disabled loading>
-        Loading
-      </IxToggleButton>
+      <div className="button-container">
+        <IxToggleButton
+          ghost
+          icon={iconTextBold}
+          pressed={boldPressed}
+          onClick={handleBoldClick}
+        >
+          Bold
+        </IxToggleButton>
+        <IxToggleButton ghost disabled icon={iconTextItalic}>
+          Italic
+        </IxToggleButton>
+        <IxToggleButton
+          ghost
+          icon={iconTextUnderline}
+          pressed={underlinePressed}
+          onClick={handleUnderlineClick}
+        >
+          Underline
+        </IxToggleButton>
+        <IxToggleButton ghost disabled loading>
+          Strikethrough
+        </IxToggleButton>
+      </div>
+      <p
+        style={{
+          fontWeight: boldPressed ? 'bold' : 'normal',
+          textDecoration: underlinePressed ? 'underline' : 'none',
+        }}
+      >
+        Lorem ipsum text
+      </p>
     </>
   );
 };

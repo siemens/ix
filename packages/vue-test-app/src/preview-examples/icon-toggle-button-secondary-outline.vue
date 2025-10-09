@@ -8,45 +8,57 @@
 -->
 
 <script setup lang="ts">
-import { iconCheckboxes } from '@siemens/ix-icons/icons';
-import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
+import { ref, computed } from 'vue';
+import {
+  iconTextBold,
+  iconTextItalic,
+  iconTextUnderline,
+} from '@siemens/ix-icons/icons';
+import { IxIconToggleButton } from '@siemens/ix-vue';
+
+const boldPressed = ref(false);
+const underlinePressed = ref(true);
+
+const handleBoldClick = () => {
+  boldPressed.value = !boldPressed.value;
+};
+
+const handleUnderlineClick = () => {
+  underlinePressed.value = !underlinePressed.value;
+};
+
+const paragraphStyle = computed(() => ({
+  fontWeight: boldPressed.value ? 'bold' : 'normal',
+  textDecoration: underlinePressed.value ? 'underline' : 'none',
+}));
 </script>
 
 <style scoped src="./icon-toggle-button-secondary-outline.css"></style>
 
 <template>
-  <IxLayoutGrid>
-    <IxRow>
-      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes" pressed></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" disabled :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" disabled loading :icon="iconCheckboxes"></IxIconToggleButton>
-
-      <IxIconToggleButton variant="subtle-primary" size="16" :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="16" pressed :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="16" disabled :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="16" disabled loading :icon="iconCheckboxes"></IxIconToggleButton>
-
-      <IxIconToggleButton variant="subtle-primary" size="12" :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="12" pressed :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="12" disabled :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="12" disabled loading :icon="iconCheckboxes"></IxIconToggleButton>
-    </IxRow>
-    <IxRow>
-      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes" oval></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" :icon="iconCheckboxes" pressed oval></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" disabled :icon="iconCheckboxes" oval></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" disabled loading :icon="iconCheckboxes" oval></IxIconToggleButton>
-
-      <IxIconToggleButton variant="subtle-primary" size="16" :icon="iconCheckboxes" oval></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="16" pressed :icon="iconCheckboxes" oval></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="16" disabled :icon="iconCheckboxes" oval></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="16" disabled loading :icon="iconCheckboxes" oval></IxIconToggleButton>
-
-      <IxIconToggleButton variant="subtle-primary" size="12" :icon="iconCheckboxes" oval></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="12" pressed :icon="iconCheckboxes" oval></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="12" disabled :icon="iconCheckboxes" oval></IxIconToggleButton>
-      <IxIconToggleButton variant="subtle-primary" size="12" disabled loading :icon="iconCheckboxes" oval></IxIconToggleButton>
-    </IxRow>
-  </IxLayoutGrid>
+  <div class="button-container">
+    <IxIconToggleButton
+      outline
+      :icon="iconTextBold"
+      :pressed="boldPressed"
+      @click="handleBoldClick"
+    >
+      Bold
+    </IxIconToggleButton>
+    <IxIconToggleButton outline disabled :icon="iconTextItalic">
+      Italic
+    </IxIconToggleButton>
+    <IxIconToggleButton
+      outline
+      :icon="iconTextUnderline"
+      :pressed="underlinePressed"
+      @click="handleUnderlineClick"
+    >
+      Underline
+    </IxIconToggleButton>
+    <IxIconToggleButton outline disabled loading>
+      Strikethrough
+    </IxIconToggleButton>
+  </div>
+  <p :style="paragraphStyle">Lorem ipsum text</p>
 </template>

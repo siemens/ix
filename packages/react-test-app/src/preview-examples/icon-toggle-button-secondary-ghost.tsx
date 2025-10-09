@@ -7,26 +7,61 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconCheckboxes } from '@siemens/ix-icons/icons';
+import {
+  iconTextBold,
+  iconTextItalic,
+  iconTextUnderline,
+} from '@siemens/ix-icons/icons';
 import './icon-toggle-button-secondary-ghost.scoped.css';
 
-import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-react';
+import { IxIconToggleButton } from '@siemens/ix-react';
+import { useState } from 'react';
 
 export default () => {
+  const [boldPressed, setBoldPressed] = useState(false);
+  const [underlinePressed, setUnderlinePressed] = useState(true);
+
+  const handleBoldClick = () => {
+    setBoldPressed(!boldPressed);
+  };
+
+  const handleUnderlineClick = () => {
+    setUnderlinePressed(!underlinePressed);
+  };
   return (
-    <IxLayoutGrid>
-      <IxRow>
-        <IxIconToggleButton variant="tertiary" icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="tertiary" pressed icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="tertiary" disabled icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton variant="tertiary" disabled loading icon={iconCheckboxes}></IxIconToggleButton>
-      </IxRow>
-      <IxRow>
-        <IxIconToggleButton variant="tertiary" icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="tertiary" pressed icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="tertiary" disabled icon={iconCheckboxes} oval></IxIconToggleButton>
-        <IxIconToggleButton variant="tertiary" disabled loading icon={iconCheckboxes} oval></IxIconToggleButton>
-      </IxRow>
-    </IxLayoutGrid>
+    <>
+      <div className="button-container">
+        <IxIconToggleButton
+          ghost
+          icon={iconTextBold}
+          pressed={boldPressed}
+          onClick={handleBoldClick}
+        >
+          Bold
+        </IxIconToggleButton>
+        <IxIconToggleButton ghost disabled icon={iconTextItalic}>
+          Italic
+        </IxIconToggleButton>
+        <IxIconToggleButton
+          ghost
+          icon={iconTextUnderline}
+          pressed={underlinePressed}
+          onClick={handleUnderlineClick}
+        >
+          Underline
+        </IxIconToggleButton>
+        <IxIconToggleButton ghost disabled loading>
+          Strikethrough
+        </IxIconToggleButton>
+      </div>
+      <p
+        style={{
+          fontWeight: boldPressed ? 'bold' : 'normal',
+          textDecoration: underlinePressed ? 'underline' : 'none',
+        }}
+      >
+        Lorem ipsum text
+      </p>
+    </>
   );
 };
