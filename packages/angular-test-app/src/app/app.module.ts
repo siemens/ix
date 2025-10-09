@@ -234,6 +234,7 @@ import ToggleDisabled from '../preview-examples/toggle-disabled';
 import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 import ToggleNgModel from '../preview-examples/toggle-ng-model';
 import Tooltip from '../preview-examples/tooltip';
+import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import Tree from '../preview-examples/tree';
 import TreeCustom from '../preview-examples/tree-custom';
 import Upload from '../preview-examples/upload';
@@ -460,6 +461,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     ToggleNgModel,
     Toggle,
     Tooltip,
+    TooltipWithIcon,
     TreeCustom,
     Tree,
     Upload,

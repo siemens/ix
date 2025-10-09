@@ -13,6 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('tooltip', () => {
   regressionTest('Long Text long words', async ({ page }) => {
     await page.goto('tooltip/basic');
+    await page.setViewportSize({ height: 200, width: 400 });
 
     const tooltipTriggerHandler = await page.waitForSelector(
       '[data-tooltip="Test1"]'
@@ -22,12 +23,14 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      threshold: 0.05,
       maxDiffPixelRatio: 0.01,
     });
   });
 
   regressionTest('Short', async ({ page }) => {
     await page.goto('tooltip/basic');
+    await page.setViewportSize({ height: 200, width: 400 });
 
     const tooltipTriggerHandler = await page.waitForSelector(
       '[data-tooltip="Test2"]'
@@ -37,12 +40,14 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      threshold: 0.05,
       maxDiffPixelRatio: 0.01,
     });
   });
 
   regressionTest('Long text short words', async ({ page }) => {
     await page.goto('tooltip/basic');
+    await page.setViewportSize({ height: 200, width: 450 });
 
     const tooltipTriggerHandler = await page.waitForSelector(
       '[data-tooltip="Test3"]'
@@ -52,12 +57,14 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      threshold: 0.05,
       maxDiffPixelRatio: 0.01,
     });
   });
 
   regressionTest('fallback placement', async ({ page }) => {
     await page.goto('tooltip/placement-fallback');
+    await page.setViewportSize({ height: 200, width: 450 });
 
     const tooltipTriggerHandler = await page.waitForSelector(
       '[data-tooltip="Test3"]'
@@ -67,6 +74,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      threshold: 0.05,
       maxDiffPixelRatio: 0.01,
     });
   });
@@ -89,7 +97,9 @@ regressionTest.describe('tooltip', () => {
       await tooltipTriggerHandler.hover();
       await page.waitForTimeout(500);
 
-      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+        threshold: 0.05,
+      });
     }
   });
 
@@ -101,7 +111,9 @@ regressionTest.describe('tooltip', () => {
     await tooltipTriggerHandler.hover();
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      threshold: 0.05,
+    });
   });
 
   regressionTest('tooltip position top', async ({ mount, page }) => {
@@ -118,7 +130,9 @@ regressionTest.describe('tooltip', () => {
     await trigger.hover();
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      threshold: 0.05,
+    });
   });
 
   regressionTest('tooltip position right', async ({ mount, page }) => {
@@ -135,7 +149,9 @@ regressionTest.describe('tooltip', () => {
     await trigger.hover();
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      threshold: 0.05,
+    });
   });
 
   regressionTest('tooltip position bottom', async ({ mount, page }) => {
@@ -152,7 +168,9 @@ regressionTest.describe('tooltip', () => {
     await trigger.hover();
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      threshold: 0.05,
+    });
   });
 
   regressionTest('tooltip position left', async ({ mount, page }) => {
@@ -169,7 +187,9 @@ regressionTest.describe('tooltip', () => {
     await trigger.hover();
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      threshold: 0.05,
+    });
   });
 
   regressionTest('tooltip inside dropdown', async ({ page }) => {
@@ -180,7 +200,9 @@ regressionTest.describe('tooltip', () => {
 
     await page.locator('#item1').hover();
 
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({
+      threshold: 0.05,
+    });
   });
 });
 
@@ -210,7 +232,9 @@ regressionTest.describe('tooltip delay', () => {
 
         await page.waitForTimeout(testDelayToShowTooltip);
 
-        expect(await page.screenshot()).toMatchSnapshot();
+        expect(await page.screenshot()).toMatchSnapshot({
+          threshold: 0.05,
+        });
       }
     );
   });
