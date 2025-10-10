@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxUpload } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxUpload],
   template: ` <ix-upload></ix-upload> `,

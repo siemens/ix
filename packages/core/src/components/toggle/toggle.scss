@@ -40,6 +40,7 @@
     margin-block-start: 0.125rem;
     margin-inline-start: 0.5rem;
     min-height: 1rem;
+    margin-left: 0.625rem;
   }
 
   .switch {
@@ -74,6 +75,7 @@
     background-color: var(--theme-switch-thumb-off--background);
     transition: var(--theme-default-time);
     border-radius: 50%;
+    border: 1px solid var(--theme-switch-thumb-off--border-color);
   }
 
   .switch.checked > .slider::before {
@@ -92,6 +94,7 @@
 
   .switch:hover > .slider:before {
     background-color: var(--theme-switch-thumb-off--background--hover);
+    border: 1px solid var(--theme-switch-thumb-off--border-color--hover);
   }
 
   .switch:active > .slider {
@@ -101,11 +104,16 @@
 
   .switch:active > .slider:before {
     background-color: var(--theme-switch-thumb-off--background--active);
+    border: 1px solid var(--theme-switch-thumb-off--border-color--active);
   }
 
   .switch.checked > .slider {
     background-color: var(--theme-switch-on--background);
     border-color: var(--theme-switch-on--border-color);
+  }
+
+  .switch.checked > .slider:before {
+    border: 1px solid var(--theme-switch-thumb-on--border-color);
   }
 
   .switch.checked:hover > .slider {
@@ -115,6 +123,7 @@
 
   .switch.checked:hover > .slider:before {
     background-color: var(--theme-switch-thumb-on--background--hover);
+    border: 1px solid var(--theme-switch-thumb-on--border-color--hover);
   }
 
   .switch.checked:active > .slider {
@@ -124,6 +133,7 @@
 
   .switch.checked:active > .slider:before {
     background-color: var(--theme-switch-thumb-on--background--active);
+    border: 1px solid var(--theme-switch-thumb-on--border-color--active);
   }
 
   .switch.indeterminate > .slider::before {
@@ -189,6 +199,16 @@
     --theme-switch-#{$state}--background--#{$type}--active
   );
 
+  --theme-switch-thumb-#{$state}--border-color: var(
+    --theme-switch-thumb-#{$state}--border-color--#{$type}
+  );
+  --theme-switch-thumb-#{$state}--border-color--hover: var(
+    --theme-switch-thumb-#{$state}--border-color--#{$type}--hover
+  );
+  --theme-switch-thumb-#{$state}--border-color--active: var(
+    --theme-switch-thumb-#{$state}--border-color--#{$type}--active
+  );
+
   --theme-switch-thumb-#{$state}--background: var(
     --theme-switch-thumb-#{$state}--background--#{$type}
   );
@@ -208,6 +228,12 @@
   --theme-switch-#{$state}--border-color--active: var(
     --theme-switch-#{$state}--border-color--#{$type}--active
   );
+}
+
+@include toggle-variant($selector: '.ix-valid') {
+  @include define-toggle-vars('off', 'valid');
+  @include define-toggle-vars('on', 'valid');
+  @include define-toggle-vars('mixed', 'valid');
 }
 
 @include toggle-variant($selector: '.ix-info') {

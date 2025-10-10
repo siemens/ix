@@ -16,7 +16,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxApplication, IxApplicationHeader, IxMenu, IxMenuItem],
   templateUrl: './basic-navigation-migration.html',

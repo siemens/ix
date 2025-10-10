@@ -106,13 +106,12 @@ export class Chip {
       <div class="close-button-container">
         <ix-icon-button
           type="button"
-          variant="secondary"
+          variant="subtle-tertiary"
           icon={iconCloseSmall}
           class="close-button"
           oval
           size="16"
           style={this.variant === 'custom' ? { color: this.chipColor } : {}}
-          ghost
           onClick={(event) => {
             this.closeChip.emit(event);
             event.stopPropagation();

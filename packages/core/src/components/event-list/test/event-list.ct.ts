@@ -22,10 +22,10 @@ import { expect } from '@playwright/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
-      <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 2</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 4</ix-event-list-item>
     </ix-event-list>
   `);
 
@@ -36,10 +36,10 @@ regressionTest('renders', async ({ mount, page }) => {
 regressionTest('check if items still clickable', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
-      <ix-event-list-item color="color-primary" selected>Text 1</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 2</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary" selected>Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 4</ix-event-list-item>
     </ix-event-list>
   `);
 
@@ -76,10 +76,10 @@ regressionTest(
 
     await mount(`
     <ix-event-list item-height="${itemHeight}">
-      <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 2</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary">Text 4</ix-event-list-item>
     </ix-event-list>
   `);
 

@@ -21,13 +21,13 @@ describe('button', () => {
     expect(btn.className).toContain('disabled');
   });
 
-  it('should not render submit button if normal button is requirers', async () => {
+  it('should not render submit button if normal button is required', async () => {
     const page = await newSpecPage({
       components: [Button],
       html: `
       <form>
         <input type="text" />
-        <ix-button>Submit</ix-button>s
+        <ix-button>Submit</ix-button>
       </form>
       `,
     });
@@ -51,7 +51,7 @@ describe('button', () => {
       html: `
       <form>
         <input type="text" />
-        <ix-button type="submit">Submit</ix-button>s
+        <ix-button type="submit">Submit</ix-button>
       </form>
       `,
     });
@@ -77,5 +77,78 @@ describe('button', () => {
 
     btn.click();
     expect(onClick).toHaveBeenCalled();
+  });
+
+  describe('link functionality', () => {
+    it('renders as anchor when href is provided', async () => {
+      const page = await newSpecPage({
+        components: [Button],
+        html: `<ix-button href="https://example.com">Link Button</ix-button>`,
+      });
+
+      const anchorElement = page.root?.shadowRoot?.querySelector('a');
+      const buttonElement = page.root?.shadowRoot?.querySelector('button');
+
+      expect(anchorElement).not.toBeNull();
+      expect(buttonElement).toBeNull();
+      expect(anchorElement?.getAttribute('href')).toBe('https://example.com');
+      expect(anchorElement?.getAttribute('role')).toBe('button');
+    });
+
+    it('renders as button when href is not provided', async () => {
+      const page = await newSpecPage({
+        components: [Button],
+        html: `<ix-button>Regular Button</ix-button>`,
+      });
+
+      const anchorElement = page.root?.shadowRoot?.querySelector('a');
+      const buttonElement = page.root?.shadowRoot?.querySelector('button');
+
+      expect(anchorElement).toBeNull();
+      expect(buttonElement).not.toBeNull();
+      expect(buttonElement?.getAttribute('type')).toBe('button');
+    });
+
+    it('applies target attribute correctly', async () => {
+      const page = await newSpecPage({
+        components: [Button],
+        html: `<ix-button href="https://example.com" target="_blank">New Tab</ix-button>`,
+      });
+
+      const anchorElement = page.root?.shadowRoot?.querySelector('a');
+      expect(anchorElement?.getAttribute('target')).toBe('_blank');
+    });
+
+    it('disables link when disabled prop is true', async () => {
+      const page = await newSpecPage({
+        components: [Button],
+        html: `<ix-button href="https://example.com" disabled>Disabled Link</ix-button>`,
+      });
+
+      const anchorElement = page.root?.shadowRoot?.querySelector('a');
+      expect(anchorElement?.getAttribute('href')).toBeNull();
+      expect(anchorElement?.hasAttribute('href')).toBe(false);
+    });
+
+    it('applies rel attribute for security', async () => {
+      const page = await newSpecPage({
+        components: [Button],
+        html: `<ix-button href="https://example.com" target="_blank" rel="noopener noreferrer">Secure Link</ix-button>`,
+      });
+
+      const anchorElement = page.root?.shadowRoot?.querySelector('a');
+      expect(anchorElement?.getAttribute('rel')).toBe('noopener noreferrer');
+    });
+
+    it('preserves all button styling classes', async () => {
+      const page = await newSpecPage({
+        components: [Button],
+        html: `<ix-button href="https://example.com" variant="secondary">Styled Link</ix-button>`,
+      });
+
+      const anchorElement = page.root?.shadowRoot?.querySelector('a');
+      expect(anchorElement?.classList.contains('btn')).toBe(true);
+      expect(anchorElement?.classList.contains('btn-secondary')).toBe(true);
+    });
   });
 });

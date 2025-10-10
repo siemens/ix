@@ -11,6 +11,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { IxModalSize, ModalService } from '@siemens/ix-angular';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   styleUrls: ['./modal-sizes.css'],
   templateUrl: './modal-sizes.html',

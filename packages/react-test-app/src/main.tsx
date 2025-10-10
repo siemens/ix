@@ -19,6 +19,7 @@ import ActionCard from './preview-examples/action-card';
 import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
 import Application from './preview-examples/application';
+import ApplicationAdvanced from './preview-examples/application-advanced';
 import ApplicationAppSwitch from './preview-examples/application-app-switch';
 import ApplicationBreakpoints from './preview-examples/application-breakpoints';
 import ApplicationHeader from './preview-examples/application-header';
@@ -54,6 +55,7 @@ import Chip from './preview-examples/chip';
 import Content from './preview-examples/content';
 import ContentHeader from './preview-examples/content-header';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
+import ContentHeaderWithSlot from './preview-examples/content-header-with-slot';
 import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
@@ -233,6 +235,7 @@ import ProgressIndicatorCircularSizes from './preview-examples/progress-indicato
 import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-linear-sizes.tsx';
 import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.tsx';
 import ProgressIndicatorLinearStatus from './preview-examples/progress-indicator-linear-status.tsx';
+import ButtonWithLink from './preview-examples/button-with-link.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -247,6 +250,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/add-icons" element={<AddIcons />} />
         <Route path="/preview/aggrid" element={<AgGrid />} />
         <Route path="/preview/application" element={<Application />} />
+        <Route
+          path="/preview/application-advanced"
+          element={<ApplicationAdvanced />}
+        />
         <Route
           path="/preview/application-breakpoints"
           element={<ApplicationBreakpoints />}
@@ -301,6 +308,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/button-secondary" element={<ButtonSecondary />} />
         <Route path="/preview/button-text-icon" element={<ButtonTextIcon />} />
         <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
+        <Route path="/preview/button-with-Link" element={<ButtonWithLink />} />
         <Route path="/preview/buttons" element={<Buttons />} />
         <Route path="/preview/card" element={<Card />} />
         <Route path="/preview/card-list" element={<CardList />} />
@@ -331,6 +339,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<ContentHeaderNoBack />}
         />
         <Route path="/preview/content-header" element={<ContentHeader />} />
+        <Route
+          path="/preview/content-header-with-slot"
+          element={<ContentHeaderWithSlot />}
+        />
         <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
         <Route path="/preview/datepicker" element={<Datepicker />} />
         <Route

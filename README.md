@@ -47,6 +47,8 @@ Adopt major frameworks for seamless integration into your project.
 
 You can find a getting started guide [here](https://ix.siemens.io/docs/home/getting-started/developers)
 
+Looking for a deeper technical overview? See the [Architecture & Tooling Overview](./ARCHITECTURE.md).
+
 <!-- CONTRIBUTING -->
 
 ## 🤝 Contributing

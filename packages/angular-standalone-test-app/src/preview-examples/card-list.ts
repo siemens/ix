@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { IxCardList, IxPushCard } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxCardList, IxPushCard],
   templateUrl: './card-list.html',

@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { h, type FunctionalComponent } from '@stencil/core';
-import type { ProgressIndicatorSize } from './progress-indicator.types';
+import type {
+  ProgressIndicatorSize,
+  ProgressIndicatorStatus,
+} from './progress-indicator.types';
 
 function getCircularSize(size: ProgressIndicatorSize) {
   switch (size) {
@@ -29,6 +32,7 @@ function getCircularSize(size: ProgressIndicatorSize) {
 export type CircularProgressProps = {
   value: number;
   size: ProgressIndicatorSize;
+  status: ProgressIndicatorStatus;
   alignment?: 'left' | 'center' | 'right';
 };
 
@@ -49,6 +53,7 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
       class={{
         'circular-progress-container': true,
         [`align-${alignment}`]: !!alignment,
+        [props.status]: true,
       }}
     >
       <svg
@@ -66,7 +71,7 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
           cx={radius}
           cy={radius}
           fill="transparent"
-          stroke="var(--theme-color-component-4)"
+          stroke="var(--ix-progress-indicator-track-color)"
           stroke-width={`3px`}
         ></circle>
         {percentage > 0 && (

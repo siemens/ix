@@ -7,3 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type ProgressIndicatorStatus =
+  | 'default'
+  | 'success'
+  | 'error'
+  | 'info'
+  | 'warning'
+  | 'paused';
