@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: space-between;
   height: vars.$large-space;
+  line-height: vars.$large-space;
   padding-left: vars.$small-space;
   border: var(--theme-focus--border-thickness) solid
     var(--theme-chip-primary-outline--border-color);
