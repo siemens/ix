@@ -17,23 +17,23 @@ import { IxToggleButton } from '@siemens/ix-angular/standalone';
     <div class="button-container">
       <ix-toggle-button
         id="boldButton"
-        outline
+        variant="subtle-primary"
         icon="text-bold"
         (click)="handleBoldClick()"
         >Bold</ix-toggle-button
       >
-      <ix-toggle-button outline disabled icon="text-italic"
+      <ix-toggle-button variant="subtle-primary" disabled icon="text-italic"
         >Italic</ix-toggle-button
       >
       <ix-toggle-button
         id="underlineButton"
-        outline
+        variant="subtle-primary"
         icon="text-underline"
         pressed
         (click)="handleUnderlineClick()"
         >Underline</ix-toggle-button
       >
-      <ix-toggle-button outline disabled loading>
+      <ix-toggle-button variant="subtle-primary" disabled loading>
         Strikethrough
       </ix-toggle-button>
     </div>

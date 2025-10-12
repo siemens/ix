@@ -32,25 +32,25 @@ export default () => {
     <>
       <div className="button-container">
         <IxToggleButton
-          ghost
+          variant="tertiary"
           icon={iconTextBold}
           pressed={boldPressed}
           onClick={handleBoldClick}
         >
           Bold
         </IxToggleButton>
-        <IxToggleButton ghost disabled icon={iconTextItalic}>
+        <IxToggleButton variant="tertiary" disabled icon={iconTextItalic}>
           Italic
         </IxToggleButton>
         <IxToggleButton
-          ghost
+          variant="tertiary"
           icon={iconTextUnderline}
           pressed={underlinePressed}
           onClick={handleUnderlineClick}
         >
           Underline
         </IxToggleButton>
-        <IxToggleButton ghost disabled loading>
+        <IxToggleButton variant="tertiary" disabled loading>
           Strikethrough
         </IxToggleButton>
       </div>

@@ -15,22 +15,24 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <div class="button-container">
       <ix-icon-toggle-button
+        variant="secondary"
         id="boldButton"
         icon="text-bold"
         (click)="handleBoldClick()"
         >Bold</ix-icon-toggle-button
       >
-      <ix-icon-toggle-button disabled icon="text-italic"
+      <ix-icon-toggle-button variant="secondary" disabled icon="text-italic"
         >Italic</ix-icon-toggle-button
       >
       <ix-icon-toggle-button
+        variant="secondary"
         id="underlineButton"
         icon="text-underline"
         pressed
         (click)="handleUnderlineClick()"
         >Underline</ix-icon-toggle-button
       >
-      <ix-icon-toggle-button disabled loading>
+      <ix-icon-toggle-button variant="secondary" disabled loading>
         Strikethrough
       </ix-icon-toggle-button>
     </div>

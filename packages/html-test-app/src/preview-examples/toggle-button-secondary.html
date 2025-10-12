@@ -30,12 +30,22 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
     <div class="button-container">
-      <ix-toggle-button id="boldButton" icon="text-bold">Bold</ix-toggle-button>
-      <ix-toggle-button disabled icon="text-italic">Italic</ix-toggle-button>
-      <ix-toggle-button id="underlineButton" icon="text-underline" pressed
+      <ix-toggle-button variant="secondary" id="boldButton" icon="text-bold"
+        >Bold</ix-toggle-button
+      >
+      <ix-toggle-button variant="secondary" disabled icon="text-italic"
+        >Italic</ix-toggle-button
+      >
+      <ix-toggle-button
+        variant="secondary"
+        id="underlineButton"
+        icon="text-underline"
+        pressed
         >Underline</ix-toggle-button
       >
-      <ix-toggle-button disabled loading> Strikethrough </ix-toggle-button>
+      <ix-toggle-button variant="secondary" disabled loading>
+        Strikethrough
+      </ix-toggle-button>
     </div>
     <p id="loremIpsum">Lorem ipsum text</p>
     <script type="module">

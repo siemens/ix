@@ -16,23 +16,23 @@ import { Component, OnInit } from '@angular/core';
     <div class="button-container">
       <ix-toggle-button
         id="boldButton"
-        ghost
+        variant="tertiary"
         icon="text-bold"
         (click)="handleBoldClick()"
         >Bold</ix-toggle-button
       >
-      <ix-toggle-button ghost disabled icon="text-italic"
+      <ix-toggle-button variant="tertiary" disabled icon="text-italic"
         >Italic</ix-toggle-button
       >
       <ix-toggle-button
         id="underlineButton"
-        ghost
+        variant="tertiary"
         icon="text-underline"
         pressed
         (click)="handleUnderlineClick()"
         >Underline</ix-toggle-button
       >
-      <ix-toggle-button ghost disabled loading>
+      <ix-toggle-button variant="tertiary" disabled loading>
         Strikethrough
       </ix-toggle-button>
     </div>

@@ -32,8 +32,7 @@ export default () => {
     <>
       <div className="button-container">
         <IxIconToggleButton
-          variant="primary"
-          outline
+          variant="subtle-primary"
           icon={iconTextBold}
           pressed={boldPressed}
           onClick={handleBoldClick}
@@ -41,23 +40,21 @@ export default () => {
           Bold
         </IxIconToggleButton>
         <IxIconToggleButton
-          variant="primary"
-          outline
+          variant="subtle-primary"
           disabled
           icon={iconTextItalic}
         >
           Italic
         </IxIconToggleButton>
         <IxIconToggleButton
-          variant="primary"
-          outline
+          variant="subtle-primary"
           icon={iconTextUnderline}
           pressed={underlinePressed}
           onClick={handleUnderlineClick}
         >
           Underline
         </IxIconToggleButton>
-        <IxIconToggleButton variant="primary" outline disabled loading>
+        <IxIconToggleButton variant="subtle-primary" disabled loading>
           Strikethrough
         </IxIconToggleButton>
       </div>
