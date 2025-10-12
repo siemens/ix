@@ -38,42 +38,94 @@ type Story = StoryObj<Element>;
 
 export const Primary: Story = {
   args: {
-    defaultSlot: 'Button',
+    defaultSlot: 'Toggle Button',
     variant: 'primary',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    defaultSlot: 'Button',
+    defaultSlot: 'Toggle Button',
     variant: 'secondary',
+    pressed: true,
   },
 };
 
 export const Tertiary: Story = {
   args: {
-    defaultSlot: 'Button',
+    defaultSlot: 'Toggle Button',
     variant: 'tertiary',
   },
 };
 
 export const SubtlePrimary: Story = {
   args: {
-    defaultSlot: 'Button',
+    defaultSlot: 'Toggle Button',
     variant: 'subtle-primary',
   },
 };
 
 export const SubtleSecondary: Story = {
   args: {
-    defaultSlot: 'Button',
+    defaultSlot: 'Toggle Button',
     variant: 'subtle-secondary',
   },
 };
 
 export const SubtleTertiary: Story = {
   args: {
-    defaultSlot: 'Button',
+    defaultSlot: 'Toggle Button',
     variant: 'subtle-tertiary',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    defaultSlot: 'Toggle Button',
+    variant: 'primary',
+    disabled: true,
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    defaultSlot: 'Toggle Button',
+    variant: 'primary',
+    loading: true,
+  },
+};
+
+export const DisabledLoading: Story = {
+  args: {
+    defaultSlot: 'Toggle Button',
+    variant: 'primary',
+    disabled: true,
+    loading: true,
+  },
+};
+
+export const ToggleBehavior: Story = {
+  args: {
+    defaultSlot: 'Toggle Me',
+    variant: 'primary',
+    pressed: true,
+  },
+  render: (args) => {
+    const container = genericRender('ix-toggle-button', args);
+    const toggleButton = container.querySelector('ix-toggle-button')!;
+
+    const loremIpsumText = document.createElement('p');
+    loremIpsumText.textContent = 'Lorem ipsum text';
+    loremIpsumText.style.textDecoration = 'underline';
+    container.appendChild(loremIpsumText);
+
+    toggleButton.addEventListener('click', () => {
+      toggleButton.pressed = !toggleButton.pressed;
+      loremIpsumText.style.textDecoration = toggleButton.pressed
+        ? 'underline'
+        : 'none';
+    });
+
+    return container;
   },
 };
