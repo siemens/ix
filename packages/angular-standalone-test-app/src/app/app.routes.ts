@@ -49,6 +49,13 @@ export const routes: Routes = [
           import('../preview-examples/application').then((m) => m.default),
       },
       {
+        path: 'application-advanced',
+        loadComponent: () =>
+          import('../preview-examples/application-advanced').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'application-app-switch',
         loadComponent: () =>
           import('../preview-examples/application-app-switch').then(
