@@ -100,6 +100,19 @@ export class SplitButton {
   private get dropdownItems(): HTMLElement[] {
     return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
   }
+
+  private get actionButton() {
+    return this.hostElement.shadowRoot?.querySelector(
+      'ix-button, ix-icon-button:not(.anchor)'
+    ) as HTMLElement | null;
+  }
+
+  private get anchorButton() {
+    return this.hostElement.shadowRoot?.querySelector(
+      'ix-icon-button.anchor'
+    ) as HTMLElement | null;
+  }
+
   private onDropdownShowChanged(event: CustomEvent<boolean>) {
     if (event.detail) {
       this.arrowFocusController = new ArrowFocusController(
@@ -116,7 +129,6 @@ export class SplitButton {
       this.dropdownElement?.removeEventListener('keydown', this.handleKeyDown);
     }
   }
-
   private handleKeyDown = (event: KeyboardEvent) => {
     if (event.key !== 'Tab') {
       return;
@@ -126,26 +138,24 @@ export class SplitButton {
     if (!event.shiftKey) {
       return;
     }
-    const actionButton = this.hostElement.shadowRoot?.querySelector(
-      'ix-button, ix-icon-button:not(.anchor)'
-    ) as HTMLElement | null;
 
-    const anchorButton = this.hostElement.shadowRoot?.querySelector(
-      'ix-icon-button.anchor'
-    ) as HTMLElement | null;
+    const isDisabled = this.actionButton?.classList.contains('disabled');
 
-    const isDisabled = actionButton?.classList.contains('disabled');
-
-    if (actionButton && !isDisabled) {
+    if (this.actionButton && !isDisabled) {
       event.preventDefault();
       requestAnimationFrame(() => {
-        const shadowBtn = actionButton.shadowRoot?.querySelector('button');
-        (shadowBtn ?? actionButton).focus();
+        if (this.actionButton) {
+          const shadowBtn =
+            this.actionButton.shadowRoot?.querySelector('button');
+          (shadowBtn ?? this.actionButton).focus();
+        }
       });
-    } else if (anchorButton) {
-      anchorButton.setAttribute('tabindex', '-1');
+    } else if (this.anchorButton) {
+      this.anchorButton.setAttribute('tabindex', '-1');
       requestAnimationFrame(() => {
-        anchorButton.removeAttribute('tabindex');
+        if (this.anchorButton) {
+          this.anchorButton.removeAttribute('tabindex');
+        }
       });
     }
   };
@@ -157,9 +167,16 @@ export class SplitButton {
       item.setAttribute('tabindex', i === index ? '0' : '-1')
     );
     const item = items[index];
-    requestAnimationFrame(() => {
-      item.shadowRoot?.querySelector('button')?.focus();
-    });
+    if (item) {
+      requestAnimationFrame(() => {
+        const button =
+          item.shadowRoot?.querySelector('button') ??
+          item.querySelector('button');
+        if (button) {
+          button.focus();
+        }
+      });
+    }
   }
 
   componentDidLoad() {
@@ -196,7 +213,11 @@ export class SplitButton {
           )}
           <ix-icon-button
             {...buttonAttributes}
-            ref={(r) => (this.triggerElement = r)}
+            ref={(r) => {
+              if (r) {
+                this.triggerElement = r;
+              }
+            }}
             class={'anchor'}
             icon={this.splitIcon ?? iconContextMenu}
             aria-label={this.ariaLabelSplitIconButton}
