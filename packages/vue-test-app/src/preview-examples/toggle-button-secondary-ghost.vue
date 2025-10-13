@@ -38,25 +38,25 @@ const paragraphStyle = computed(() => ({
 <template>
   <div class="button-container">
     <IxToggleButton
-      variant="tertiary"
+      variant="subtle-tertiary"
       :icon="iconTextBold"
       :pressed="boldPressed"
       @click="handleBoldClick"
     >
       Bold
     </IxToggleButton>
-    <IxToggleButton variant="tertiary" disabled :icon="iconTextItalic">
+    <IxToggleButton variant="subtle-tertiary" disabled :icon="iconTextItalic">
       Italic
     </IxToggleButton>
     <IxToggleButton
-      variant="tertiary"
+      variant="subtle-tertiary"
       :icon="iconTextUnderline"
       :pressed="underlinePressed"
       @click="handleUnderlineClick"
     >
       Underline
     </IxToggleButton>
-    <IxToggleButton variant="tertiary" disabled loading> Strikethrough </IxToggleButton>
+    <IxToggleButton variant="subtle-tertiary" disabled loading> Strikethrough </IxToggleButton>
   </div>
   <p :style="paragraphStyle">Lorem ipsum text</p>
 </template>
