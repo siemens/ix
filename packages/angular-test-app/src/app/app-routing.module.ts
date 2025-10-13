@@ -15,6 +15,7 @@ import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
 import ApplicationExample from '../preview-examples/application';
+import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
@@ -260,6 +261,10 @@ const routes: Routes = [
       {
         path: 'application',
         component: ApplicationExample,
+      },
+      {
+        path: 'application-advanced',
+        component: ApplicationAdvancedExample,
       },
       {
         path: 'application-breakpoints',
