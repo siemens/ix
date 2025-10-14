@@ -76,10 +76,11 @@ export class MessageBar {
     string,
     MessageTypeConfig
   > = {
+    //TODO(IX-3400): Replace icon colors with proper CSS variables when available
     alarm: { icon: iconError, color: 'color-alarm' },
     danger: { icon: iconError, color: 'color-alarm' },
     critical: { icon: iconWarningRhomb, color: 'color-critical' },
-    warning: { icon: iconWarning, color: 'color-warning' },
+    warning: { icon: iconWarning, color: 'color-warning-text' },
     success: { icon: iconSuccess, color: 'color-success' },
     info: { icon: iconInfo, color: 'color-info' },
     neutral: { icon: iconNotification, color: 'color-neutral' },
@@ -129,7 +130,7 @@ export class MessageBar {
               icon={iconClose}
               iconColor="color-soft-text"
               size="24"
-              ghost={true}
+              variant="tertiary"
               onClick={() => {
                 if (this.divElement) {
                   this.closeAlert(this.divElement);

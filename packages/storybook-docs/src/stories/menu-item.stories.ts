@@ -25,7 +25,7 @@ const meta = {
     menu.appendChild(menuItem);
     return menu;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu'),
+  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu-item'),
   parameters: {
     design: {
       type: 'figma',
@@ -55,6 +55,7 @@ export const Notification: Story = {
     label: 'Menu Item',
     icon: 'home',
     notifications: 5,
+    href: 'https://ix.siemens.com',
   },
 };
 

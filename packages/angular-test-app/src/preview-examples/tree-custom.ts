@@ -29,12 +29,7 @@ type TreeData = {
     `,
   ],
   template: `<div class="example">
-    <ix-button
-      id="expand"
-      ghost
-      style="margin-bottom: 2rem"
-      (click)="expandAndSelect()"
-      >Expand Tree</ix-button
+    <ix-button variant="tertiary" id="expand" style="margin-bottom: 2rem" (click)="expandAndSelect()">Expand Tree</ix-button
     >
     <ix-tree
       root="root"

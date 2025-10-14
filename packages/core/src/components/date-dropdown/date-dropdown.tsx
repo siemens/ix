@@ -100,16 +100,6 @@ export class DateDropdown
   @Prop() variant: ButtonVariant = 'primary';
 
   /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
-
-  /**
    * Loading button
    */
   @Prop() loading: boolean = false;
@@ -353,8 +343,6 @@ export class DateDropdown
           data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
           variant={this.variant}
-          ghost={this.ghost}
-          outline={this.outline}
           loading={this.loading}
           icon={iconHistory}
           ref={this.triggerRef}

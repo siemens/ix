@@ -121,8 +121,7 @@ export async function showMessage<T>(config: MessageConfig<T>) {
       );
       return;
     } else if (type === 'cancel') {
-      button.variant = 'primary';
-      button.outline = true;
+      button.variant = 'secondary';
       button.addEventListener('click', () =>
         dialog.dismissModal({
           actionId: id,
@@ -206,7 +205,8 @@ showMessage.warning = (
     message,
     messageTitle: title,
     icon: iconWarning,
-    iconColor: 'color-warning',
+    //TODO(IX-3400): Remove warning-text when proper CSS variable is available
+    iconColor: 'color-warning-text',
     actions: createConfirmButtons(
       textOkay,
       textCancel,

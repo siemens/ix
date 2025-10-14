@@ -41,7 +41,7 @@ export default () => {
         <div className="placeholder-logo" slot="logo"></div>
 
         {/*{KEEP} Compare context menu */}
-        <IxDropdownButton variant="secondary" label="Select config" ghost>
+        <IxDropdownButton variant="subtle-tertiary" label="Select config">
           <IxDropdownItem label="Config 1"></IxDropdownItem>
           <IxDropdownItem label="Config 2"></IxDropdownItem>
           <IxDropdownItem label="Config 3"></IxDropdownItem>
