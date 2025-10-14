@@ -27154,7 +27154,7 @@
       "docsTags": [
         {
           "name": "slot",
-          "text": "title-icon - Icon of tooltip title. The icon will be displayed as 16x16px."
+          "text": "title-icon - Icon displayed next to the of tooltip title. The icon will be displayed as 16x16px."
         },
         {
           "name": "slot",
@@ -27350,7 +27350,7 @@
         },
         {
           "name": "title-icon",
-          "docs": "Icon of tooltip title. The icon will be displayed as 16x16px."
+          "docs": "Icon displayed next to the of tooltip title. The icon will be displayed as 16x16px."
         }
       ],
       "parts": [],

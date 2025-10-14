@@ -44,7 +44,7 @@ const numberToPixel = (value?: number | null) =>
 let tooltipInstance = 0;
 
 /**
- * @slot title-icon - Icon of tooltip title. The icon will be displayed as 16x16px.
+ * @slot title-icon - Icon displayed next to the of tooltip title. The icon will be displayed as 16x16px.
  * @slot title-content - Content of tooltip title
  */
 @Component({
@@ -475,11 +475,11 @@ export class Tooltip {
     const slot = e.target as HTMLSlotElement;
     const elements = getSlottedElements<HTMLElement>(slot);
 
-    elements.forEach((element) => {
+    for (const element of elements) {
       if (element.tagName.toLowerCase() === 'ix-icon') {
         (element as HTMLIxIconElement).size = '16';
       }
-    });
+    }
   }
 
   render() {

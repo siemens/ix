@@ -17,7 +17,7 @@ import { iconInfo } from '@siemens/ix-icons/icons';
 <template>
   <IxButton class="any-class" aria-describedby="tooltip-1"> Hover me </IxButton>
   <IxTooltip id="tooltip-1" for=".any-class">
-    <IxIcon slot="title-icon" :name="iconInfo"></IxIcon>
+    <IxIcon slot="title-icon" :name="iconInfo" :size="16"></IxIcon>
     <div slot="title-content">Tooltip Title</div>
     Simple selector with icon</IxTooltip
   >
