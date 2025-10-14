@@ -70,7 +70,12 @@ $border-radius: 100px;
         @each $color in $predefined-chips {
           &.#{$color} {
             .with-icon {
-              color: var(--theme-color-#{$color});
+              //TODO(IX-3400): Replace warning check with proper CSS variable when available
+              @if $color == 'warning' {
+                color: var(--theme-color-warning-text);
+              } @else {
+                color: var(--theme-color-#{$color});
+              }
             }
           }
         }
@@ -81,7 +86,8 @@ $border-radius: 100px;
       &.closable:not(.inactive) {
         padding-right: calc(0.25rem - 1px);
       }
-      &.closable.inactive, &:not(.closable) {
+      &.closable.inactive,
+      &:not(.closable) {
         padding-right: calc(0.5rem - 1px);
       }
       &.icon:not(.closable) {
@@ -112,7 +118,6 @@ $border-radius: 100px;
       }
     }
   }
-
 
   .container.primary {
     background-color: var(--theme-color-primary);
