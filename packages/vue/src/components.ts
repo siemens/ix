@@ -320,7 +320,7 @@ export const IxCheckbox: StencilVueComponent<JSX.IxCheckbox, JSX.IxCheckbox["che
   'valueChange',
   'ixBlur'
 ],
-'checked', 'checkedChange');
+'checked', 'checkedChange', undefined);
 
 
 export const IxCheckboxGroup: StencilVueComponent<JSX.IxCheckboxGroup> = /*@__PURE__*/ defineContainer<JSX.IxCheckboxGroup>('ix-checkbox-group', defineIxCheckboxGroup, [
@@ -448,7 +448,7 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'ixFocus',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
@@ -768,7 +768,7 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxInputGroup: StencilVueComponent<JSX.IxInputGroup> = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', defineIxInputGroup);
@@ -1052,7 +1052,7 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxPagination: StencilVueComponent<JSX.IxPagination> = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', defineIxPagination, [
@@ -1218,7 +1218,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'addItem',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
@@ -1329,7 +1329,7 @@ export const IxTextarea: StencilVueComponent<JSX.IxTextarea, JSX.IxTextarea["val
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxTile: StencilVueComponent<JSX.IxTile> = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defineIxTile, [

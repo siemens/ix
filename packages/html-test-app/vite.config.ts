@@ -41,6 +41,7 @@ export default defineConfig(() => {
       __THEME__: JSON.stringify(additionalTheme),
     },
     build: {
+      target: 'esnext',
       emptyOutDir: true,
       minify: false,
       rollupOptions: {
