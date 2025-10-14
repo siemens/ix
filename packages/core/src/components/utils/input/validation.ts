@@ -44,7 +44,6 @@ export function createClassMutationObserver(
   callback: () => void,
   options?: {
     includeChildren?: boolean;
-    attributeFilter?: string[];
   }
 ): ClassMutationObserver {
   const observer = new MutationObserver(callback);
@@ -52,7 +51,7 @@ export function createClassMutationObserver(
     subtree: options?.includeChildren,
     childList: options?.includeChildren,
     attributes: true,
-    attributeFilter: options?.attributeFilter || ['class'],
+    attributeFilter: ['class'],
   });
 
   return {

@@ -18,10 +18,6 @@ import {
 import { IxComponent } from '../utils/internal';
 import { MakeRef, makeRef } from '../utils/make-ref';
 
-function asFormElement(element: HTMLElement) {
-  return element as HTMLInputElement | HTMLTextAreaElement;
-}
-
 @Component({
   tag: 'ix-field-label',
   styleUrl: 'field-label.scss',
@@ -74,9 +70,12 @@ export class FormFieldLabel implements IxComponent {
     }
   }
 
+  componentWillRender() {
+    this.checkForInternalState();
+  }
+
   componentWillLoad(): void | Promise<void> {
     this.a11yAttributes = a11yHostAttributes(this.hostElement);
-    this.checkForInternalState();
   }
 
   @Watch('htmlFor')
@@ -110,12 +109,8 @@ export class FormFieldLabel implements IxComponent {
     if (this.controlRef) {
       const input = await this.controlRef.waitForCurrent();
 
-      this.controlRefClassObserver = createClassMutationObserver(
-        input,
-        () => this.checkForInvalidState(input),
-        {
-          attributeFilter: ['class', 'disabled'],
-        }
+      this.controlRefClassObserver = createClassMutationObserver(input, () =>
+        this.checkForInvalidState(input)
       );
     }
   }
@@ -127,22 +122,15 @@ export class FormFieldLabel implements IxComponent {
       this.htmlForClassObserver.destroy();
     }
 
-    this.htmlForClassObserver = createClassMutationObserver(
-      forElement,
-      () => this.checkForInvalidState(forElement),
-      {
-        attributeFilter: ['class', 'disabled'],
-      }
+    this.htmlForClassObserver = createClassMutationObserver(forElement, () =>
+      this.checkForInvalidState(forElement)
     );
   }
 
   private checkForInvalidState(elementToCheck: HTMLElement) {
-    const isDisabled = asFormElement(elementToCheck)?.disabled;
-    const classList = elementToCheck.classList;
-    const hasInvalidClass =
-      classList.contains('is-invalid') ||
-      Array.from(classList).some((cls) => cls.startsWith('ix-invalid'));
-    this.isInvalid = !isDisabled && hasInvalidClass;
+    this.isInvalid =
+      elementToCheck.classList.contains('is-invalid') ||
+      elementToCheck.classList.contains('ix-invalid');
   }
 
   private async checkForInternalState() {
@@ -155,16 +143,16 @@ export class FormFieldLabel implements IxComponent {
           this.required = forElement.required;
         }
 
-        if (!this.htmlForClassObserver) {
-          this.registerHtmlForClassObserver(forElement);
-        }
+        this.registerHtmlForClassObserver(forElement);
         this.checkForInvalidState(forElement);
       }
     }
 
     if (this.controlRef) {
       const input = await this.controlRef.waitForCurrent();
-      this.required = asFormElement(input)?.required;
+      this.required = (
+        input as HTMLInputElement | HTMLTextAreaElement
+      ).required;
     }
   }
 

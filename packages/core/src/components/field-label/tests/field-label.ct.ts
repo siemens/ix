@@ -196,25 +196,3 @@ regressionTest(
     );
   }
 );
-
-regressionTest(
-  'label shows disabled color when input is invalid and disabled',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-input label="label" required value="some value">field</ix-input>
-    `);
-    const fieldElement = page.locator('ix-input');
-    const inputElement = fieldElement.locator('input');
-    const labelElement = page.locator('ix-field-label');
-    await inputElement.fill('');
-    await inputElement.blur();
-    await expect(fieldElement).toHaveClass(/ix-invalid--required/);
-    await fieldElement.evaluate((el: HTMLIxInputElement) => {
-      el.disabled = true;
-    });
-    await expect(labelElement.locator('ix-typography')).toHaveAttribute(
-      'style',
-      'color: var(--theme-color-soft-text);'
-    );
-  }
-);
