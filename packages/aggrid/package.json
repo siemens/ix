@@ -42,12 +42,12 @@
     "rimraf": "^6.0.1",
     "rollup-plugin-import-css": "^4.0.1",
     "typescript": "^5.8.3",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "rollup": "^4.43.0",
+    "@rollup/plugin-typescript": "^8.5.0"
   },
   "dependencies": {
-    "@rollup/plugin-typescript": "^8.5.0",
-    "@siemens/ix": "^3.2.0",
-    "rollup": "^4.43.0"
+    "@siemens/ix": "^3.2.0"
   },
   "peerDependencies": {
     "ag-grid-community": "^33"

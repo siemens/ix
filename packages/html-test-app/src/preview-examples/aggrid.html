@@ -15,36 +15,55 @@ LICENSE file in the root directory of this source tree.
     <title>AG Grid example</title>
   </head>
   <body>
-    <div
-      style="height: 12rem; width: 100%"
-      id="grid-container"
-      class="ag-theme-alpine-dark ag-theme-ix"
-    ></div>
+    <div style="height: 12rem; width: 100%" id="grid-container"></div>
 
     <script type="module">
       import {
         AllCommunityModule,
         ModuleRegistry,
         provideGlobalGridOptions,
+        DragAndDropModule,
+        RowDragModule,
+        RowSelectionModule,
       } from 'ag-grid-community';
+      import { useIxTheme } from '@siemens/ix-aggrid';
       import * as agGrid from 'ag-grid-community';
 
       // Register all community features
-      ModuleRegistry.registerModules([AllCommunityModule]);
+      ModuleRegistry.registerModules([
+        AllCommunityModule,
+        DragAndDropModule,
+        RowDragModule,
+        RowSelectionModule,
+      ]);
 
-      // Mark all grids as using legacy themes
-      provideGlobalGridOptions({ theme: 'legacy' });
+      const ixTheme = await useIxTheme(async () => {
+        return await import('ag-grid-community');
+      });
+
+      provideGlobalGridOptions({
+        theme: ixTheme,
+      });
 
       (async function () {
         const container = document.querySelector('#grid-container');
 
         const gridOptions = {
+          rowDragManaged: true,
+          tooltipShowDelay: 500,
+          rowSelection: {
+            mode: 'multiRow',
+            checkboxes: true,
+            headerCheckbox: true,
+            selectAll: 'filtered',
+          },
           columnDefs: [
             {
               field: 'type',
               headerName: 'Type',
               resizable: true,
-              checkboxSelection: true,
+              rowDrag: true,
+              tooltipField: 'type',
             },
             {
               field: 'status',
@@ -52,32 +71,40 @@ LICENSE file in the root directory of this source tree.
               resizable: true,
               sortable: true,
               filter: true,
+              tooltipValueGetter: (params) => {
+                return `Status: ${params.value} - Type: ${params.data.type}`;
+              },
             },
-            { field: 'hwVersion', headerName: 'HW version', resizable: true },
+            {
+              field: 'hwVersion',
+              headerName: 'HW version',
+              resizable: true,
+              tooltipValueGetter: (params) => {
+                if (params.value === 'N/A') {
+                  return 'Hardware version not available';
+                }
+                return `Hardware Version ${params.value}`;
+              },
+            },
           ],
           rowData: [
             {
               type: 'Equipment',
               status: 'Normal',
               hwVersion: '2.0',
-              checked: false,
             },
             {
               type: 'Positioner',
               status: 'Maintenance',
               hwVersion: '1.0',
-              checked: true,
             },
             {
               type: 'Pressure sensor',
               status: 'Unknown',
               hwVersion: 'N/A',
-              checked: false,
             },
           ],
-          rowSelection: 'multiple',
           suppressCellFocus: true,
-          checkboxSelection: true,
         };
 
         agGrid.createGrid(container, gridOptions);

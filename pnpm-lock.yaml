@@ -58,22 +58,19 @@ importers:
 
   packages/aggrid:
     dependencies:
-      '@rollup/plugin-typescript':
-        specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.50.0)(tslib@2.8.1)(typescript@5.8.3)
       '@siemens/ix':
         specifier: ^3.2.0
         version: link:../core
-      rollup:
-        specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.50.0'
     devDependencies:
       '@playwright/test':
         specifier: ^1.54.1
         version: 1.54.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.1(@rollup/wasm-node@4.50.0)
+        version: 16.0.1(@rollup/wasm-node@4.52.3)
+      '@rollup/plugin-typescript':
+        specifier: ^8.5.0
+        version: 8.5.0(@rollup/wasm-node@4.52.3)(tslib@2.8.1)(typescript@5.8.3)
       '@siemens/ix-icons':
         specifier: ^3.0.0
         version: 3.0.0
@@ -89,9 +86,12 @@ importers:
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
+      rollup:
+        specifier: npm:@rollup/wasm-node
+        version: '@rollup/wasm-node@4.52.3'
       rollup-plugin-import-css:
         specifier: ^4.0.1
-        version: 4.0.2(@rollup/wasm-node@4.50.0)
+        version: 4.0.2(@rollup/wasm-node@4.52.3)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -645,7 +645,7 @@ importers:
     dependencies:
       ag-grid-community:
         specifier: ^33.1.1
-        version: 33.1.1
+        version: 33.3.2
     devDependencies:
       '@siemens/ix':
         specifier: workspace:*
@@ -5073,8 +5073,8 @@ packages:
       rollup:
         optional: true
 
-  '@rollup/pluginutils@5.2.0':
-    resolution: {integrity: sha512-qWJ2ZTbmumwiLFomfzTyt5Kng4hwPi9rwCYN4SHb6eaRU1KNO4ccxINHr/VhH4GgPlt1XfSTLX2LBTme8ne4Zw==}
+  '@rollup/pluginutils@5.3.0':
+    resolution: {integrity: sha512-5EdhGZtnu3V88ces7s53hhfK5KSASnJZv8Lulpc04cWO3REESroJXg73DFsOmgbU2BhwV0E20bu2IDZb3VKW4Q==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: npm:@rollup/wasm-node
@@ -5134,6 +5134,11 @@ packages:
 
   '@rollup/wasm-node@4.50.0':
     resolution: {integrity: sha512-mCzoNeR8ynLTHJ5VQ9J/GzSKPJjEC4/nCmGw2y3NSCZoc4sbSVdNe5x4S7+bda6QIEUrk6lR1FE7FEDo+p/u1Q==}
+    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
+    hasBin: true
+
+  '@rollup/wasm-node@4.52.3':
+    resolution: {integrity: sha512-Vltzfan6IBSm4dG3w8ArFVUMhBABbW/9uYMPnbYyv2Vk+Jry9qzlXKvxSZhDbvwtb0GJHDWwPOMj6d8G2cb9Tw==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -6274,9 +6279,6 @@ packages:
   ag-charts-types@10.1.0:
     resolution: {integrity: sha512-pk9ft8hbgTXJ/thI/SEUR1BoauNplYExpcHh7tMOqVikoDsta1O15TB1ZL4XWnl4TPIzROBmONKsz7d8a2HBuQ==}
 
-  ag-charts-types@11.1.1:
-    resolution: {integrity: sha512-bRmUcf5VVhEEekhX8Vk0NSwa8Te8YM/zchjyYKR2CX4vDYiwoohM1Jg9RFvbIhVbLC1S6QrPEbx5v2C6RDfpSA==}
-
   ag-charts-types@11.3.2:
     resolution: {integrity: sha512-trPGqgGYiTeLgtf9nLuztDYOPOFOLbqHn1g2D99phf7QowcwdX0TPx0wfWG8Hm90LjB8IH+G2s3AZe2vrdAtMQ==}
 
@@ -6292,9 +6294,6 @@ packages:
 
   ag-grid-community@32.1.0:
     resolution: {integrity: sha512-RVvkjRH61nuCXwIqTKQPqNbKR+8cGBKw7S1qmmMXsy0pCBAJaQn4kL3v31hKHxDtV4bPscBXLFKGnKzHuss0GQ==}
-
-  ag-grid-community@33.1.1:
-    resolution: {integrity: sha512-CNubIro0ipj4nfQ5WJPG9Isp7UI6MMDvNzrPdHNf3W+IoM8Uv3RUhjEn7xQqpQHuu6o/tMjrqpacipMUkhzqnw==}
 
   ag-grid-community@33.3.2:
     resolution: {integrity: sha512-9bx0e/+ykOyLvUxHqmdy0cRVANH6JAtv0yZdnBZEXYYqBAwN+G5a4NY+2I1KvoOCYzbk8SnStG7y4hCdVAAWOQ==}
@@ -18471,15 +18470,15 @@ snapshots:
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.50.0'
 
-  '@rollup/plugin-node-resolve@16.0.1(@rollup/wasm-node@4.50.0)':
+  '@rollup/plugin-node-resolve@16.0.1(@rollup/wasm-node@4.52.3)':
     dependencies:
-      '@rollup/pluginutils': 5.1.2(@rollup/wasm-node@4.50.0)
+      '@rollup/pluginutils': 5.1.2(@rollup/wasm-node@4.52.3)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.10
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.50.0'
+      rollup: '@rollup/wasm-node@4.52.3'
 
   '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.45.1)(tslib@2.8.1)(typescript@4.9.5)':
     dependencies:
@@ -18499,11 +18498,11 @@ snapshots:
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.50.0)(tslib@2.8.1)(typescript@5.8.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.52.3)(tslib@2.8.1)(typescript@5.8.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.50.0)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.52.3)
       resolve: 1.22.8
-      rollup: '@rollup/wasm-node@4.50.0'
+      rollup: '@rollup/wasm-node@4.52.3'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.8.1
@@ -18515,12 +18514,12 @@ snapshots:
       picomatch: 2.3.1
       rollup: '@rollup/wasm-node@4.45.1'
 
-  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.50.0)':
+  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.52.3)':
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.1
-      rollup: '@rollup/wasm-node@4.50.0'
+      rollup: '@rollup/wasm-node@4.52.3'
 
   '@rollup/pluginutils@5.1.2(@rollup/wasm-node@4.45.1)':
     dependencies:
@@ -18538,13 +18537,21 @@ snapshots:
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.50.0'
 
-  '@rollup/pluginutils@5.2.0(@rollup/wasm-node@4.50.0)':
+  '@rollup/pluginutils@5.1.2(@rollup/wasm-node@4.52.3)':
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
-      picomatch: 4.0.2
+      picomatch: 2.3.1
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.50.0'
+      rollup: '@rollup/wasm-node@4.52.3'
+
+  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.52.3)':
+    dependencies:
+      '@types/estree': 1.0.8
+      estree-walker: 2.0.2
+      picomatch: 4.0.3
+    optionalDependencies:
+      rollup: '@rollup/wasm-node@4.52.3'
 
   '@rollup/rollup-darwin-arm64@4.34.9':
     optional: true
@@ -18583,6 +18590,12 @@ snapshots:
       fsevents: 2.3.3
 
   '@rollup/wasm-node@4.50.0':
+    dependencies:
+      '@types/estree': 1.0.8
+    optionalDependencies:
+      fsevents: 2.3.3
+
+  '@rollup/wasm-node@4.52.3':
     dependencies:
       '@types/estree': 1.0.8
     optionalDependencies:
@@ -20051,8 +20064,6 @@ snapshots:
 
   ag-charts-types@10.1.0: {}
 
-  ag-charts-types@11.1.1: {}
-
   ag-charts-types@11.3.2: {}
 
   ag-grid-angular@32.3.3(@angular/common@20.2.4(@angular/core@20.2.4(@angular/compiler@20.2.4)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.2.4(@angular/compiler@20.2.4)(rxjs@7.8.2)(zone.js@0.15.1))(ag-grid-community@32.1.0):
@@ -20067,10 +20078,6 @@ snapshots:
   ag-grid-community@32.1.0:
     dependencies:
       ag-charts-types: 10.1.0
-
-  ag-grid-community@33.1.1:
-    dependencies:
-      ag-charts-types: 11.1.1
 
   ag-grid-community@33.3.2:
     dependencies:
@@ -27195,10 +27202,10 @@ snapshots:
     optionalDependencies:
       '@babel/code-frame': 7.27.1
 
-  rollup-plugin-import-css@4.0.2(@rollup/wasm-node@4.50.0):
+  rollup-plugin-import-css@4.0.2(@rollup/wasm-node@4.52.3):
     dependencies:
-      '@rollup/pluginutils': 5.2.0(@rollup/wasm-node@4.50.0)
-      rollup: '@rollup/wasm-node@4.50.0'
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.52.3)
+      rollup: '@rollup/wasm-node@4.52.3'
 
   rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.45.1):
     dependencies:
