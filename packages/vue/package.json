@@ -39,7 +39,7 @@
     "rimraf": "^3.0.2",
     "typescript": "^5.8.3",
     "vue": "^3.4.34",
-    "vite": "^6.3.5",
+    "vite": "^7.1.9",
     "vue-tsc": "^2.2.10",
     "@vitejs/plugin-vue": "^5.2.3"
   },
