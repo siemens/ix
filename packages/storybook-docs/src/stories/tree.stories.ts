@@ -29,6 +29,24 @@ const defaultModel = {
   'sample-child-1': {
     id: 'sample-child-1',
     data: { name: 'Sample Child 1' },
+    hasChildren: true,
+    children: ['sample-grandchild-1', 'sample-grandchild-2'],
+  },
+  'sample-grandchild-1': {
+    id: 'sample-grandchild-1',
+    data: { name: 'Sample Grandchild 1' },
+    hasChildren: true,
+    children: ['sample-greatgrandchild-1'],
+  },
+  'sample-greatgrandchild-1': {
+    id: 'sample-greatgrandchild-1',
+    data: { name: 'Sample Great Grandchild 1' },
+    hasChildren: false,
+    children: [],
+  },
+  'sample-grandchild-2': {
+    id: 'sample-grandchild-2',
+    data: { name: 'Sample Grandchild 2' },
     hasChildren: false,
     children: [],
   },
@@ -104,6 +122,28 @@ export const SelectableExpandOnNode: Story = {
   name: 'Selectable parent nodes both expand and change to selected when entire node is clicked',
   args: {
     context: { sample: { isExpanded: true, isSelected: true } },
+    toggleOnItemClick: true,
+  },
+};
+
+export const IntermediateNodeExpandOnClick: Story = {
+  name: 'Intermediate node expands only when the chevron is clicked',
+  args: {
+    context: {
+      sample: { isExpanded: true, isSelected: false },
+      'sample-child-1': { isExpanded: true, isSelected: false },
+    },
+    toggleOnItemClick: false,
+  },
+};
+
+export const IntermediateNodeExpand: Story = {
+  name: 'Intermediate node expands and change to selected only when the entire  intermediate node is clicked',
+  args: {
+    context: {
+      sample: { isExpanded: true, isSelected: false },
+      'sample-child-1': { isExpanded: true, isSelected: true },
+    },
     toggleOnItemClick: true,
   },
 };
