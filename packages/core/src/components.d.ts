@@ -3290,6 +3290,18 @@ export namespace Components {
          */
         "closeBehavior": CloseBehavior;
         /**
+          * Disables only the main button while keeping the dropdown trigger enabled
+          * @since 4.0.0
+          * @default false
+         */
+        "disableButton": boolean;
+        /**
+          * Disables only the dropdown trigger while keeping the main button enabled
+          * @since 4.0.0
+          * @default false
+         */
+        "disableDropdownButton": boolean;
+        /**
           * Disabled
           * @default false
          */
@@ -9390,6 +9402,18 @@ declare namespace LocalJSX {
           * @default 'both'
          */
         "closeBehavior"?: CloseBehavior;
+        /**
+          * Disables only the main button while keeping the dropdown trigger enabled
+          * @since 4.0.0
+          * @default false
+         */
+        "disableButton"?: boolean;
+        /**
+          * Disables only the dropdown trigger while keeping the main button enabled
+          * @since 4.0.0
+          * @default false
+         */
+        "disableDropdownButton"?: boolean;
         /**
           * Disabled
           * @default false
