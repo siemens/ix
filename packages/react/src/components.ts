@@ -1042,7 +1042,7 @@ export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalH
 });
 
 export type IxNumberInputEvents = {
-    onValueChange: EventName<CustomEvent<number>>,
+    onValueChange: EventName<CustomEvent<number | undefined>>,
     onValidityStateChange: EventName<IxNumberInputCustomEvent<ValidityState>>,
     onIxBlur: EventName<CustomEvent<void>>
 };

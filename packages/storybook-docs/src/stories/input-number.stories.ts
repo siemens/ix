@@ -81,3 +81,21 @@ export const Step: Story = {
     max: 10,
   },
 };
+
+export const ScientificNotationPositiveExponent: Story = {
+  args: {
+    label: 'Stepper',
+    showStepperButtons: true,
+    step: '1',
+    value: 1e3,
+  },
+};
+
+export const ScientificNotationNegativeExponent: Story = {
+  args: {
+    label: 'Stepper',
+    showStepperButtons: true,
+    step: '1',
+    value: 1e-3,
+  },
+};
