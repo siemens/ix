@@ -15,7 +15,6 @@ import {
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { useIxTheme } from '@siemens/ix-aggrid';
 
-console.log('This is a setup file for Playwright tests.');
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const gridOptions: GridOptions = {
