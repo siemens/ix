@@ -20,12 +20,10 @@ import {
 
 <template>
   <div class="ix-button-group">
-    <IxButton variant="subtle-secondary" :icon="iconCar"> A </IxButton>
-    <IxButton :icon="iconJigsaw"> B </IxButton>
-    <IxButton variant="subtle-secondary" :icon="iconDashboard"> C </IxButton>
-    <IxButton variant="subtle-secondary" :icon="iconDetails"> D </IxButton>
-    <IxButton variant="subtle-secondary" :icon="iconCogwheelFilled">
-      E
-    </IxButton>
+    <IxButton variant="subtle-secondary" :icon="iconCar">A</IxButton>
+    <IxButton :icon="iconJigsaw">B</IxButton>
+    <IxButton variant="subtle-secondary" :icon="iconDashboard">C</IxButton>
+    <IxButton variant="subtle-secondary" :icon="iconDetails">D</IxButton>
+    <IxButton variant="subtle-secondary" :icon="iconCogwheelFilled">E</IxButton>
   </div>
 </template>
