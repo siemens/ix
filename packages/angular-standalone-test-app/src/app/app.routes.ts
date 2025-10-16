@@ -915,6 +915,13 @@ export const routes: Routes = [
           import('../preview-examples/message-bar').then((m) => m.default),
       },
       {
+        path: 'message-bar-removal',
+        loadComponent: () =>
+          import('../preview-examples/message-bar-removal').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'modal-by-instance',
         loadComponent: () =>
           import('../preview-examples/modal-by-instance').then(
