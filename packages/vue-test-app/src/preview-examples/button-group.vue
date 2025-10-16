@@ -9,13 +9,6 @@
 
 <script setup lang="ts">
 import { IxButton } from '@siemens/ix-vue';
-import {
-  iconCar,
-  iconCogwheelFilled,
-  iconDashboard,
-  iconDetails,
-  iconJigsaw,
-} from '@siemens/ix-icons/icons';
 </script>
 
 <template>
