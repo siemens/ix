@@ -18,6 +18,7 @@ import {
   Prop,
   State,
   h,
+  Watch,
 } from '@stencil/core';
 import {
   HookValidationLifecycle,
@@ -172,13 +173,28 @@ export class Textarea implements IxInputFieldComponent<string> {
     mapValidationResult(this, result);
   }
 
+  @Watch('textareaWidth') onTextareaWidthChange() {
+    this.setTextareaWidth();
+  }
+
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+    this.setTextareaWidth();
   }
 
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
+  }
+
+  private setTextareaWidth() {
+    if (this.textareaWidth) {
+      this.hostElement.style.setProperty(
+        '--textarea-width',
+        this.textareaWidth
+      );
+      this.hostElement.setAttribute('textarea-width', '');
+    }
   }
 
   /** @internal */
