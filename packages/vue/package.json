@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@siemens/ix": "~3.2.0",
-    "@stencil/vue-output-target": "^0.10.8"
+    "@stencil/vue-output-target": "^0.11.8"
   },
   "devDependencies": {
     "@siemens/ix": "workspace:*",
@@ -44,7 +44,7 @@
     "@vitejs/plugin-vue": "^5.2.3"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "^3.0.0",
+    "@siemens/ix-icons": "^3.2.0",
     "vue": ">=3.2.45"
   }
 }

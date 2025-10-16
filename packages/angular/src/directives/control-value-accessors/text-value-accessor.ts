@@ -16,6 +16,7 @@ import {
 @Directive({
   selector: 'ix-input,ix-number-input,ix-textarea',
   providers: [createValueAccessorProvider(IxTextValueAccessorDirective)],
+  standalone: false,
 })
 export class IxTextValueAccessorDirective extends TextValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {

@@ -126,12 +126,13 @@ export class Toast {
         );
 
       case 'warning':
+        //TODO(IX-3400): Replace icon colors with proper CSS variables when available
         return (
           <ix-icon
             data-testid="toast-icon"
             name={iconWarning}
             size="24"
-            color="color-warning"
+            color="color-warning-text"
           />
         );
 
@@ -217,7 +218,7 @@ export class Toast {
               icon={iconClose}
               iconColor="color-soft-text"
               size="24"
-              ghost
+              variant="tertiary"
               onClick={() => this.closeToast.emit()}
               aria-label={this.ariaLabelCloseIconButton}
             />

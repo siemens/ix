@@ -13,8 +13,8 @@ import { IxButton } from '@siemens/ix-vue';
 
 <template>
   <div className="ix-button-group">
-    <IxButton outline> Left </IxButton>
+    <IxButton variant="subtle-primary"> Left </IxButton>
     <IxButton>Middle</IxButton>
-    <IxButton outline> Right </IxButton>
+    <IxButton variant="subtle-primary"> Right </IxButton>
   </div>
 </template>

@@ -1,3 +1,7 @@
+minimumReleaseAge: 2880
+minimumReleaseAgeExclude:
+  - '@siemens/*'
+
 packages:
   - 'packages/*'
   - 'tooling/*'

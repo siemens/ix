@@ -20,7 +20,7 @@ export default () => {
       </IxPill>
 
       <IxPill tooltipText="Custom tooltip text">Label</IxPill>
-      <IxPill tooltipText outline>
+      <IxPill variant="subtle-primary" tooltipText>
         Label
       </IxPill>
       <IxPill className="styled">Label</IxPill>
@@ -30,12 +30,12 @@ export default () => {
       <IxPill icon={iconStar} className="styled">
         Label
       </IxPill>
-      <IxPill outline alignLeft icon={iconStar} className="styled">
+      <IxPill variant="subtle-primary" alignLeft icon={iconStar} className="styled">
         Label
       </IxPill>
 
       <IxPill variant="alarm">Label</IxPill>
-      <IxPill variant="alarm" outline>
+      <IxPill variant="alarm">
         Label
       </IxPill>
       <IxPill variant="alarm" className="styled">
@@ -48,24 +48,18 @@ export default () => {
       <IxPill variant="alarm" icon={iconStar} className="styled">
         Label
       </IxPill>
-      <IxPill
-        variant="alarm"
-        outline
-        alignLeft
-        icon={iconStar}
-        className="styled"
-      >
+      <IxPill variant="alarm" alignLeft icon={iconStar} className="styled">
         Label
       </IxPill>
 
       <IxPill icon={iconStar} className="styled-ellipsis-4">
         Label
       </IxPill>
-      <IxPill outline icon={iconStar} className="styled-ellipsis-4">
+      <IxPill variant="subtle-primary" icon={iconStar} className="styled-ellipsis-4">
         Label
       </IxPill>
       <IxPill className="styled-ellipsis-3">Label</IxPill>
-      <IxPill outline className="styled-ellipsis-3">
+      <IxPill variant="subtle-primary" className="styled-ellipsis-3">
         Label
       </IxPill>
     </>

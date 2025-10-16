@@ -14,7 +14,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxDropdownButton, IxDropdownItem],
   styleUrls: ['./dropdown-button-icon.css'],
@@ -24,11 +23,11 @@ import {
         <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
       </ix-dropdown-button>
-      <ix-dropdown-button label="" outline icon="checkboxes">
+      <ix-dropdown-button variant="subtle-primary" label="" icon="checkboxes">
         <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
       </ix-dropdown-button>
-      <ix-dropdown-button label="" ghost icon="checkboxes">
+      <ix-dropdown-button variant="tertiary" label="" icon="checkboxes">
         <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
       </ix-dropdown-button>

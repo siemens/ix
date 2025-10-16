@@ -69,28 +69,28 @@ export class MenuItem implements IxMenuItemBase {
   /**
    * Will be shown as tooltip text, if not provided menu text content will be used.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() tooltipText?: string;
 
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() href?: string;
 
   /**
    * Specifies where to open the linked document when href is provided.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() target?: AnchorTarget = '_self';
 
   /**
    * Specifies the relationship between the current document and the linked document when href is provided.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() rel?: string;
 
