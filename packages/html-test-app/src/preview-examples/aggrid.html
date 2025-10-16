@@ -37,9 +37,7 @@ LICENSE file in the root directory of this source tree.
         RowSelectionModule,
       ]);
 
-      const ixTheme = await useIxTheme(async () => {
-        return await import('ag-grid-community');
-      });
+      const ixTheme = await useIxTheme(() => import('ag-grid-community'));
 
       provideGlobalGridOptions({
         theme: ixTheme,

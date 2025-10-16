@@ -32,7 +32,7 @@ regressionTest.describe('aggrid', () => {
 
     const inputHandle = filterMenu.getByPlaceholder('Filter...');
     await inputHandle.click();
-    await inputHandle.fill('Test');
+    await inputHandle.fill('regressionTest');
 
     expect(
       await page.screenshot({ fullPage: true, animations: 'disabled' })
@@ -111,7 +111,7 @@ regressionTest.describe('aggrid', () => {
       await page.screenshot({
         fullPage: true,
         animations: 'disabled',
-      }),
+      })
     ).toMatchSnapshot();
   });
 });

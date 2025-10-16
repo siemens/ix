@@ -19,7 +19,7 @@ import { devices } from '@playwright/test';
 let THEMES = ['theme-classic-light', 'theme-classic-dark'];
 
 function buildProjectsWithThemes() {
-  return THEMES.flatMap(theme => {
+  return THEMES.flatMap((theme) => {
     return [
       {
         name: `chromium - ${theme}`,
