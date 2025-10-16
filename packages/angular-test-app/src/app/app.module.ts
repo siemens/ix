@@ -124,11 +124,11 @@ import Group from '../preview-examples/group';
 import GroupContextMenu from '../preview-examples/group-context-menu';
 import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
-import IconToggleButtonPrimaryGhost from '../preview-examples/icon-toggle-button-primary-ghost';
-import IconToggleButtonPrimaryOutline from '../preview-examples/icon-toggle-button-primary-outline';
+import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSecondaryGhost from '../preview-examples/icon-toggle-button-secondary-ghost';
-import IconToggleButtonSecondaryOutline from '../preview-examples/icon-toggle-button-secondary-outline';
+import IconToggleButtonSubtlePrimary from '../preview-examples/icon-toggle-button-subtle-primary';
+import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
+import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
 import InputFormValidation from '../preview-examples/input-form-validation';
@@ -223,11 +223,11 @@ import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
 import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
-import ToggleButtonPrimaryGhost from '../preview-examples/toggle-button-primary-ghost';
-import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primary-outline';
+import ToggleButtonTertiary from '../preview-examples/toggle-button-tertiary';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
-import ToggleButtonSecondaryGhost from '../preview-examples/toggle-button-secondary-ghost';
-import ToggleButtonSecondaryOutline from '../preview-examples/toggle-button-secondary-outline';
+import ToggleButtonSubtlePrimary from '../preview-examples/toggle-button-subtle-primary';
+import ToggleButtonSubtleTertiary from '../preview-examples/toggle-button-subtle-tertiary';
+import ToggleButtonSubtleSecondary from '../preview-examples/toggle-button-subtle-secondary';
 import ToggleChecked from '../preview-examples/toggle-checked';
 import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
 import ToggleDisabled from '../preview-examples/toggle-disabled';
@@ -360,11 +360,11 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     GroupCustomEntry,
     GroupHeaderSuppressed,
     Group,
-    IconToggleButtonPrimaryGhost,
-    IconToggleButtonPrimaryOutline,
-    IconToggleButtonSecondaryGhost,
-    IconToggleButtonSecondaryOutline,
+    IconToggleButtonTertiary,
     IconToggleButtonSecondary,
+    IconToggleButtonSubtlePrimary,
+    IconToggleButtonSubtleTertiary,
+    IconToggleButtonSubtleSecondary,
     InputLegacyDisabled,
     InputLegacyLabels,
     InputLegacyReadonly,
@@ -447,12 +447,12 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     ToastCustom,
     ToastPosition,
     Toast,
-    ToggleButtonPrimaryGhost,
-    ToggleButtonPrimaryOutline,
     ToggleButtonPrimary,
-    ToggleButtonSecondaryGhost,
-    ToggleButtonSecondaryOutline,
+    ToggleButtonTertiary,
     ToggleButtonSecondary,
+    ToggleButtonSubtlePrimary,
+    ToggleButtonSubtleTertiary,
+    ToggleButtonSubtleSecondary,
     ToggleChecked,
     ToggleCustomLabel,
     ToggleDisabled,

@@ -659,16 +659,9 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'icon-toggle-button-primary-ghost',
+        path: 'icon-toggle-button-tertiary',
         loadComponent: () =>
-          import('../preview-examples/icon-toggle-button-primary-ghost').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'icon-toggle-button-primary-outline',
-        loadComponent: () =>
-          import('../preview-examples/icon-toggle-button-primary-outline').then(
+          import('../preview-examples/icon-toggle-button-tertiary').then(
             (m) => m.default
           ),
       },
@@ -680,17 +673,24 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'icon-toggle-button-secondary-ghost',
+        path: 'icon-toggle-button-subtle-primary',
         loadComponent: () =>
-          import('../preview-examples/icon-toggle-button-secondary-ghost').then(
+          import('../preview-examples/icon-toggle-button-subtle-primary').then(
             (m) => m.default
           ),
       },
       {
-        path: 'icon-toggle-button-secondary-outline',
+        path: 'icon-toggle-button-subtle-tertiary',
+        loadComponent: () =>
+          import('../preview-examples/icon-toggle-button-subtle-tertiary').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'icon-toggle-button-subtle-secondary',
         loadComponent: () =>
           import(
-            '../preview-examples/icon-toggle-button-secondary-outline'
+            '../preview-examples/icon-toggle-button-subtle-secondary'
           ).then((m) => m.default),
       },
       {
@@ -1226,16 +1226,9 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'toggle-button-primary-ghost',
+        path: 'toggle-button-tertiary',
         loadComponent: () =>
-          import('../preview-examples/toggle-button-primary-ghost').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'toggle-button-primary-outline',
-        loadComponent: () =>
-          import('../preview-examples/toggle-button-primary-outline').then(
+          import('../preview-examples/toggle-button-tertiary').then(
             (m) => m.default
           ),
       },
@@ -1247,16 +1240,23 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'toggle-button-secondary-ghost',
+        path: 'toggle-button-subtle-primary',
         loadComponent: () =>
-          import('../preview-examples/toggle-button-secondary-ghost').then(
+          import('../preview-examples/toggle-button-subtle-primary').then(
             (m) => m.default
           ),
       },
       {
-        path: 'toggle-button-secondary-outline',
+        path: 'toggle-button-subtle-tertiary',
         loadComponent: () =>
-          import('../preview-examples/toggle-button-secondary-outline').then(
+          import('../preview-examples/toggle-button-subtle-tertiary').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'toggle-button-subtle-secondary',
+        loadComponent: () =>
+          import('../preview-examples/toggle-button-subtle-secondary').then(
             (m) => m.default
           ),
       },

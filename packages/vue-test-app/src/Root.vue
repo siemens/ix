@@ -118,11 +118,11 @@ import GroupContextMenu from './preview-examples/group-context-menu.vue';
 import GroupCustomEntry from './preview-examples/group-custom-entry.vue';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed.vue';
 import Group from './preview-examples/group.vue';
-import IconToggleButtonPrimaryGhost from './preview-examples/icon-toggle-button-primary-ghost.vue';
-import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-button-primary-outline.vue';
-import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost.vue';
-import IconToggleButtonSecondaryOutline from './preview-examples/icon-toggle-button-secondary-outline.vue';
+import IconToggleButtonTertiary from './preview-examples/icon-toggle-button-tertiary.vue';
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary.vue';
+import IconToggleButtonSubtleTertiary from './preview-examples/icon-toggle-button-subtle-tertiary.vue';
+import IconToggleButtonSubtleSecondary from './preview-examples/icon-toggle-button-subtle-secondary.vue';
+import IconToggleButtonSubtlePrimary from './preview-examples/icon-toggle-button-subtle-primary.vue';
 import InputDisabled from './preview-examples/input-disabled.vue';
 import InputLabel from './preview-examples/input-label.vue';
 import InputLegacyDisabled from './preview-examples/input-legacy-disabled.vue';
@@ -210,12 +210,12 @@ import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
 import Toast from './preview-examples/toast.vue';
-import ToggleButtonPrimaryGhost from './preview-examples/toggle-button-primary-ghost.vue';
-import ToggleButtonPrimaryOutline from './preview-examples/toggle-button-primary-outline.vue';
-import ToggleButtonPrimary from './preview-examples/toggle-button-primary.vue';
-import ToggleButtonSecondaryGhost from './preview-examples/toggle-button-secondary-ghost.vue';
-import ToggleButtonSecondaryOutline from './preview-examples/toggle-button-secondary-outline.vue';
+import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary.vue';
 import ToggleButtonSecondary from './preview-examples/toggle-button-secondary.vue';
+import ToggleButtonPrimary from './preview-examples/toggle-button-primary.vue';
+import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary.vue';
+import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary.vue';
+import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary.vue';
 import ToggleChecked from './preview-examples/toggle-checked.vue';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label.vue';
 import ToggleDisabled from './preview-examples/toggle-disabled.vue';
@@ -337,12 +337,12 @@ const routes: any = {
   '/preview/group-context-menu': GroupContextMenu,
   '/preview/group-custom-entry': GroupCustomEntry,
   '/preview/group-header-suppressed': GroupHeaderSuppressed,
-  '/preview/icon-toggle-button-primary-ghost': IconToggleButtonPrimaryGhost,
-  '/preview/icon-toggle-button-primary-outline': IconToggleButtonPrimaryOutline,
-  '/preview/icon-toggle-button-secondary-ghost': IconToggleButtonSecondaryGhost,
-  '/preview/icon-toggle-button-secondary-outline':
-    IconToggleButtonSecondaryOutline,
+  '/preview/icon-toggle-button-tertiary': IconToggleButtonTertiary,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
+  '/preview/icon-toggle-button-subtle-tertiary': IconToggleButtonSubtleTertiary,
+  '/preview/icon-toggle-button-subtle-secondary':
+    IconToggleButtonSubtleSecondary,
+  '/preview/icon-toggle-button-subtle-primary': IconToggleButtonSubtlePrimary,
   '/preview/input-legacy-disabled': InputLegacyDisabled,
   '/preview/input-legacy-labels': InputLegacyLabels,
   '/preview/input-legacy-readonly': InputLegacyReadonly,
@@ -445,12 +445,12 @@ const routes: any = {
   '/preview/slider': Slider,
   '/preview/tabs-rounded': TabsRounded,
   '/preview/theme-switcher': ThemeSwitcher,
-  '/preview/toggle-button-primary-ghost': ToggleButtonPrimaryGhost,
-  '/preview/toggle-button-primary-outline': ToggleButtonPrimaryOutline,
-  '/preview/toggle-button-primary': ToggleButtonPrimary,
-  '/preview/toggle-button-secondary-ghost': ToggleButtonSecondaryGhost,
-  '/preview/toggle-button-secondary-outline': ToggleButtonSecondaryOutline,
+  '/preview/toggle-button-tertiary': ToggleButtonTertiary,
   '/preview/toggle-button-secondary': ToggleButtonSecondary,
+  '/preview/toggle-button-primary': ToggleButtonPrimary,
+  '/preview/toggle-button-subtle-tertiary': ToggleButtonSubtleTertiary,
+  '/preview/toggle-button-subtle-secondary': ToggleButtonSubtleSecondary,
+  '/preview/toggle-button-subtle-primary': ToggleButtonSubtlePrimary,
   '/preview/toggle-checked': ToggleChecked,
   '/preview/toggle-custom-label': ToggleCustomLabel,
   '/preview/toggle-indeterminate': ToggleIndeterminate,

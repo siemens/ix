@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,38 +8,37 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { IxToggleButton } from '@siemens/ix-angular/standalone';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  imports: [IxToggleButton],
   template: `
     <div class="button-container">
       <ix-toggle-button
         id="boldButton"
-        variant="secondary"
+        variant="tertiary"
         icon="text-bold"
         (click)="handleBoldClick()"
         >Bold</ix-toggle-button
       >
-      <ix-toggle-button variant="secondary" disabled icon="text-italic"
+      <ix-toggle-button variant="tertiary" disabled icon="text-italic"
         >Italic</ix-toggle-button
       >
       <ix-toggle-button
         id="underlineButton"
-        variant="secondary"
+        variant="tertiary"
         icon="text-underline"
         pressed
         (click)="handleUnderlineClick()"
         >Underline</ix-toggle-button
       >
-      <ix-toggle-button variant="secondary" disabled loading>
+      <ix-toggle-button variant="tertiary" disabled loading>
         Strikethrough
       </ix-toggle-button>
     </div>
     <p id="loremIpsum">Lorem ipsum text</p>
   `,
-  styleUrls: ['./toggle-button-secondary.css'],
+  styleUrls: ['./toggle-button-tertiary.css'],
 })
 export default class Buttons implements OnInit {
   boldPressed = false;

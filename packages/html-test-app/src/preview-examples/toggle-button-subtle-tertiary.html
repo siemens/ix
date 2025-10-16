@@ -12,8 +12,8 @@ LICENSE file in the root directory of this source tree.
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toggle button secondary example</title>
-    <link rel="stylesheet" href="./toggle-button-secondary.css" />
+    <title>Toggle button subtle tertiary example</title>
+    <link rel="stylesheet" href="./toggle-button-subtle-tertiary.css" />
     <script type="module">
       import { addIcons } from '@siemens/ix-icons';
       import {
@@ -30,20 +30,16 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
     <div class="button-container">
-      <ix-toggle-button variant="secondary" id="boldButton" icon="text-bold"
+      <ix-toggle-button id="boldButton" variant="subtle-tertiary" icon="text-bold"
         >Bold</ix-toggle-button
       >
-      <ix-toggle-button variant="secondary" disabled icon="text-italic"
+      <ix-toggle-button variant="subtle-tertiary" disabled icon="text-italic"
         >Italic</ix-toggle-button
       >
-      <ix-toggle-button
-        variant="secondary"
-        id="underlineButton"
-        icon="text-underline"
-        pressed
+      <ix-toggle-button id="underlineButton" variant="subtle-tertiary" icon="text-underline" pressed
         >Underline</ix-toggle-button
       >
-      <ix-toggle-button variant="secondary" disabled loading>
+      <ix-toggle-button variant="subtle-tertiary" disabled loading>
         Strikethrough
       </ix-toggle-button>
     </div>

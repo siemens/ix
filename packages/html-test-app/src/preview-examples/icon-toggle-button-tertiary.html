@@ -12,8 +12,8 @@ LICENSE file in the root directory of this source tree.
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toggle button secondary example</title>
-    <link rel="stylesheet" href="./toggle-button-secondary.css" />
+    <title>Icon toggle button tertiary example</title>
+    <link rel="stylesheet" href="./icon-toggle-button-tertiary.css" />
     <script type="module">
       import { addIcons } from '@siemens/ix-icons';
       import {
@@ -30,24 +30,29 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
     <div class="button-container">
-      <ix-toggle-button variant="secondary" id="boldButton" icon="text-bold"
-        >Bold</ix-toggle-button
+      <ix-icon-toggle-button
+        id="boldButton"
+        variant="tertiary"
+        icon="text-bold"
+        ></ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        variant="tertiary"
+        disabled
+        icon="text-italic"
+        ></ix-icon-toggle-button
       >
-      <ix-toggle-button variant="secondary" disabled icon="text-italic"
-        >Italic</ix-toggle-button
-      >
-      <ix-toggle-button
-        variant="secondary"
+      <ix-icon-toggle-button
         id="underlineButton"
+        variant="tertiary"
         icon="text-underline"
         pressed
-        >Underline</ix-toggle-button
+        ></ix-icon-toggle-button
       >
-      <ix-toggle-button variant="secondary" disabled loading>
-        Strikethrough
-      </ix-toggle-button>
+      <ix-icon-toggle-button variant="tertiary" ghost disabled loading>
+      </ix-icon-toggle-button>
     </div>
     <p id="loremIpsum">Lorem ipsum text</p>
+    </div>
     <script type="module">
       import './init.js';
 
