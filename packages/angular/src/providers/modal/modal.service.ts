@@ -41,4 +41,11 @@ export class ModalService extends BaseModalService {
   ): Promise<ModalInstance<TReason>> {
     return super.open(config);
   }
+
+  public close<TReason = any>(
+    instance: ModalInstance<TReason>,
+    reason?: TReason
+  ): void {
+    super.close(instance, reason);
+  }
 }
