@@ -9,12 +9,23 @@
 
 <script setup lang="ts">
 import { IxButton } from '@siemens/ix-vue';
+import {
+  iconCar,
+  iconCogwheelFilled,
+  iconDashboard,
+  iconDetails,
+  iconJigsaw,
+} from '@siemens/ix-icons/icons';
 </script>
 
 <template>
-  <div className="ix-button-group">
-    <IxButton variant="subtle-primary"> Left </IxButton>
-    <IxButton>Middle</IxButton>
-    <IxButton variant="subtle-primary"> Right </IxButton>
+  <div class="ix-button-group">
+    <IxButton variant="subtle-secondary" :icon="iconCar"> A </IxButton>
+    <IxButton :icon="iconJigsaw"> B </IxButton>
+    <IxButton variant="subtle-secondary" :icon="iconDashboard"> C </IxButton>
+    <IxButton variant="subtle-secondary" :icon="iconDetails"> D </IxButton>
+    <IxButton variant="subtle-secondary" :icon="iconCogwheelFilled">
+      E
+    </IxButton>
   </div>
 </template>
