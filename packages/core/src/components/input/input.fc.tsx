@@ -56,7 +56,6 @@ export function TextareaElement(
       style={{
         resize: props.resizeBehavior,
         height: props.textareaHeight,
-        width: props.textareaWidth,
       }}
       {...props.ariaAttributes}
     ></textarea>

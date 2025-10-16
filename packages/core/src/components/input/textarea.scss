@@ -65,8 +65,8 @@
   }
 }
 :host([textarea-width]) {
-    display: block;
-    width: var(--textarea-width);
+  display: block;
+  width: var(--textarea-width);
 }
 
 .input-wrapper {
