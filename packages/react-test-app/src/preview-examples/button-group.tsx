@@ -7,29 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  iconCar,
-  iconCogwheelFilled,
-  iconDashboard,
-  iconDetails,
-  iconJigsaw,
-} from '@siemens/ix-icons/icons';
 import { IxButton } from '@siemens/ix-react';
 
 export default () => (
   <div className="ix-button-group">
-    <IxButton variant="subtle-secondary" icon={iconCar}>
-      A
-    </IxButton>
-    <IxButton icon={iconJigsaw}>B</IxButton>
-    <IxButton variant="subtle-secondary" icon={iconDashboard}>
-      C
-    </IxButton>
-    <IxButton variant="subtle-secondary" icon={iconDetails}>
-      D
-    </IxButton>
-    <IxButton variant="subtle-secondary" icon={iconCogwheelFilled}>
-      E
-    </IxButton>
+    <IxButton variant="subtle-secondary">Button 1</IxButton>
+    <IxButton> Button 2 </IxButton>
+    <IxButton variant="subtle-secondary">Button 3</IxButton>
+    <IxButton variant="subtle-secondary">Button 4</IxButton>
   </div>
 );

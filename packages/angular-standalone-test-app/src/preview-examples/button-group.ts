@@ -15,11 +15,10 @@ import { IxButton } from '@siemens/ix-angular/standalone';
   imports: [IxButton],
   template: `
     <div class="ix-button-group">
-      <ix-button variant="subtle-secondary" icon="car">A</ix-button>
-      <ix-button icon="jigsaw">B</ix-button>
-      <ix-button variant="subtle-secondary" icon="dashboard">C</ix-button>
-      <ix-button variant="subtle-secondary" icon="details">D</ix-button>
-      <ix-button variant="subtle-secondary" icon="cogwheel-filled">E</ix-button>
+      <ix-button variant="subtle-secondary"> Button 1 </ix-button>
+      <ix-button> Button 2 </ix-button>
+      <ix-button variant="subtle-secondary"> Button 3 </ix-button>
+      <ix-button variant="subtle-secondary"> Button 4 </ix-button>
     </div>
   `,
 })
