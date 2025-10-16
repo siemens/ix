@@ -16,13 +16,13 @@ import { IxButton, IxMessageBar } from '@siemens/ix-angular/standalone';
   template: `
     <div class="message-bar">
       @if (messageBarVisible) {
-      <ix-message-bar
-        (closeAnimationCompleted)="handleCloseAnimationCompleted()"
-      >
-        Message text
-      </ix-message-bar>
-      } @if (!messageBarVisible) {
-      <ix-button (click)="handleShowMessage()">Show message bar</ix-button>
+        <ix-message-bar
+          (closeAnimationCompleted)="handleCloseAnimationCompleted()"
+        >
+          Message text
+        </ix-message-bar>
+      } @else {
+        <ix-button (click)="handleShowMessage()">Show message bar</ix-button>
       }
     </div>
   `,
