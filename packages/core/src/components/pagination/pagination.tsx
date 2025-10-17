@@ -224,6 +224,14 @@ export class Pagination {
     return <span class="page-buttons">{pageButtons}</span>;
   }
 
+  private handlePageInput(inputValue: string) {
+    const value = Number.parseInt(inputValue, 10);
+    if (!Number.isNaN(value)) {
+      const clampedValue = Math.max(1, Math.min(value || 1, this.count));
+      this.selectPage(clampedValue - 1);
+    }
+  }
+
   render() {
     return (
       <Host>
@@ -244,13 +252,22 @@ export class Pagination {
               min="1"
               max={this.count}
               value={this.selectedPage + 1}
-              onChange={(event: Event) => {
-                const eventTarget = event.target as HTMLInputElement;
-                if (eventTarget) {
-                  const index = Number.parseInt(eventTarget.value);
-                  this.selectPage(index - 1);
+              onChange={(e: Event) =>
+                this.handlePageInput((e.target as HTMLInputElement).value)
+              }
+              onKeyDown={(e: KeyboardEvent) => {
+                if (['e', 'E', '+', '-', '.'].includes(e.key))
+                  e.preventDefault();
+                if (e.key === 'Enter') {
+                  this.handlePageInput((e.target as HTMLInputElement).value);
+                  (e.target as HTMLInputElement).blur();
                 }
               }}
+              onBlur={(e: Event) =>
+                ((e.target as HTMLInputElement).value = (
+                  this.selectedPage + 1
+                ).toString())
+              }
             />
             <span class="total-count">
               <ix-typography format="body">
