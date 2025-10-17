@@ -553,6 +553,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'event-list-filled',
+        loadComponent: () =>
+          import('../preview-examples/event-list-filled').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'event-list-selected',
         loadComponent: () =>
           import('../preview-examples/event-list-selected').then(

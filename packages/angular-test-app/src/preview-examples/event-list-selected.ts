@@ -14,13 +14,37 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-event-list>
-      <ix-event-list-item item-color="color-primary">Text 1</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary" selected>
+      <ix-event-list-item
+        item-color="color-primary"
+        [selected]="selectedIndex === 0"
+        (click)="selectedIndex = 0"
+      >
+        Text 1
+      </ix-event-list-item>
+      <ix-event-list-item
+        item-color="color-primary"
+        [selected]="selectedIndex === 1"
+        (click)="selectedIndex = 1"
+      >
         Text 2
       </ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item item-color="color-primary">Text 4</ix-event-list-item>
+      <ix-event-list-item
+        item-color="color-primary"
+        [selected]="selectedIndex === 2"
+        (click)="selectedIndex = 2"
+      >
+        Text 3
+      </ix-event-list-item>
+      <ix-event-list-item
+        item-color="color-primary"
+        [selected]="selectedIndex === 3"
+        (click)="selectedIndex = 3"
+      >
+        Text 4
+      </ix-event-list-item>
     </ix-event-list>
   `,
 })
-export default class EventListSelected {}
+export default class EventListSelected {
+  selectedIndex = 1;
+}

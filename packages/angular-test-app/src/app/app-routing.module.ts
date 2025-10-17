@@ -97,6 +97,7 @@ import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-brea
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
+import EventListFilled from '../preview-examples/event-list-filled';
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
@@ -579,6 +580,10 @@ const routes: Routes = [
         component: EmptyState,
       },
       {
+        path: 'event-list',
+        component: EventList,
+      },
+      {
         path: 'event-list-compact',
         component: EventListCompact,
       },
@@ -587,12 +592,12 @@ const routes: Routes = [
         component: EventListCustomItemHeight,
       },
       {
-        path: 'event-list-selected',
-        component: EventListSelected,
+        path: 'event-list-filled',
+        component: EventListFilled,
       },
       {
-        path: 'event-list',
-        component: EventList,
+        path: 'event-list-selected',
+        component: EventListSelected,
       },
       {
         path: 'expanding-search',

@@ -23,6 +23,19 @@ LICENSE file in the root directory of this source tree.
       <ix-event-list-item item-color="color-primary">Text 3</ix-event-list-item>
       <ix-event-list-item item-color="color-primary">Text 4</ix-event-list-item>
     </ix-event-list>
+
+    <script type="module">
+      (async () => {
+        await window.customElements.whenDefined('ix-event-list-item');
+        const items = document.querySelectorAll('ix-event-list-item');
+        items.forEach((item) => {
+          item.addEventListener('click', () => {
+            items.forEach((i) => (i.selected = false));
+            item.selected = true;
+          });
+        });
+      })();
+    </script>
     <script type="module" src="./init.js"></script>
   </body>
 </html>

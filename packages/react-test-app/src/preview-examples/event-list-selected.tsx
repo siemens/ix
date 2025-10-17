@@ -8,16 +8,25 @@
  */
 
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
+import { useState } from 'react';
 
 export default () => {
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
+  const items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
+
   return (
     <IxEventList>
-      <IxEventListItem itemColor="color-primary">Text 1</IxEventListItem>
-      <IxEventListItem itemColor="color-primary" selected>
-        Text 2
-      </IxEventListItem>
-      <IxEventListItem itemColor="color-primary">Text 3</IxEventListItem>
-      <IxEventListItem itemColor="color-primary">Text 4</IxEventListItem>
+      {items.map((text, index) => (
+        <IxEventListItem
+          key={index}
+          itemColor="color-primary"
+          selected={selectedIndex === index}
+          onClick={() => setSelectedIndex(index)}
+        >
+          {text}
+        </IxEventListItem>
+      ))}
     </IxEventList>
   );
 };

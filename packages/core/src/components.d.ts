@@ -1539,7 +1539,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/styles/colors#status-colors}
          */
         "itemColor"?: string;
         /**
@@ -7529,7 +7529,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/styles/colors#status-colors}
          */
         "itemColor"?: string;
         /**

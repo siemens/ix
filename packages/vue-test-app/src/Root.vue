@@ -10,8 +10,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
-import { IxApplicationContext } from "@siemens/ix-vue"
-
+import { IxApplicationContext } from '@siemens/ix-vue';
 
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
@@ -99,6 +98,7 @@ import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
 import EmptyState from './preview-examples/empty-state.vue';
 import EventListCompact from './preview-examples/event-list-compact.vue';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height.vue';
+import EventListFilled from './preview-examples/event-list-filled.vue';
 import EventListSelected from './preview-examples/event-list-selected.vue';
 import EventList from './preview-examples/event-list.vue';
 import ExpandingSearch from './preview-examples/expanding-search.vue';
@@ -320,10 +320,11 @@ const routes: any = {
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
+  '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
+  '/preview/event-list-filled': EventListFilled,
   '/preview/event-list-selected': EventListSelected,
-  '/preview/event-list': EventList,
   '/preview/expanding-search': ExpandingSearch,
   '/preview/flip-tile': FlipTile,
   '/preview/form-checkbox': FormCheckbox,
