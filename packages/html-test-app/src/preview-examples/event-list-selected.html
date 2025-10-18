@@ -26,14 +26,20 @@ LICENSE file in the root directory of this source tree.
 
     <script type="module">
       (async () => {
-        await window.customElements.whenDefined('ix-event-list-item');
+        await globalThis.customElements.whenDefined('ix-event-list-item');
         const items = document.querySelectorAll('ix-event-list-item');
-        items.forEach((item) => {
+        let selectedItem = document.querySelector(
+          'ix-event-list-item[selected]'
+        );
+        for (const item of items) {
           item.addEventListener('click', () => {
-            items.forEach((i) => (i.selected = false));
+            if (selectedItem) {
+              selectedItem.selected = false;
+            }
             item.selected = true;
+            selectedItem = item;
           });
-        });
+        }
       })();
     </script>
     <script type="module" src="./init.js"></script>

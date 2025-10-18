@@ -12,37 +12,19 @@ import { ref } from 'vue';
 import { IxEventList, IxEventListItem } from '@siemens/ix-vue';
 
 const selectedIndex = ref(1);
+const items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
 </script>
 
 <template>
   <IxEventList>
     <IxEventListItem
+      v-for="(item, index) in items"
+      :key="index"
       itemColor="color-primary"
-      :selected="selectedIndex === 0"
-      @click="selectedIndex = 0"
+      :selected="selectedIndex === index"
+      @click="selectedIndex = index"
     >
-      Text 1
-    </IxEventListItem>
-    <IxEventListItem
-      itemColor="color-primary"
-      :selected="selectedIndex === 1"
-      @click="selectedIndex = 1"
-    >
-      Text 2
-    </IxEventListItem>
-    <IxEventListItem
-      itemColor="color-primary"
-      :selected="selectedIndex === 2"
-      @click="selectedIndex = 2"
-    >
-      Text 3
-    </IxEventListItem>
-    <IxEventListItem
-      itemColor="color-primary"
-      :selected="selectedIndex === 3"
-      @click="selectedIndex = 3"
-    >
-      Text 4
+      {{ item }}
     </IxEventListItem>
   </IxEventList>
 </template>

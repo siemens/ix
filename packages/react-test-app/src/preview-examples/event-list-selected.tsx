@@ -10,7 +10,7 @@
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
 import { useState } from 'react';
 
-export default () => {
+export default function EventListSelected() {
   const [selectedIndex, setSelectedIndex] = useState(1);
 
   const items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
@@ -19,7 +19,7 @@ export default () => {
     <IxEventList>
       {items.map((text, index) => (
         <IxEventListItem
-          key={index}
+          key={text}
           itemColor="color-primary"
           selected={selectedIndex === index}
           onClick={() => setSelectedIndex(index)}
@@ -29,4 +29,4 @@ export default () => {
       ))}
     </IxEventList>
   );
-};
+}

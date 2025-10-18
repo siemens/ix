@@ -9,7 +9,7 @@
 
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
 
-export default () => {
+export default function EventListFilled() {
   return (
     <IxEventList>
       <IxEventListItem variant="filled" itemColor="color-primary">
@@ -26,4 +26,4 @@ export default () => {
       </IxEventListItem>
     </IxEventList>
   );
-};
+}
