@@ -174,6 +174,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   private isManuallyResized = false;
   private manualHeight?: string;
   private manualWidth?: string;
+  private isProgrammaticResize = false;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -188,6 +189,8 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.isManuallyResized = false;
     this.manualHeight = undefined;
     this.manualWidth = undefined;
+    // Flag that the next resize is programmatic (not user-initiated)
+    this.isProgrammaticResize = true;
   }
 
   @Watch('resizeBehavior')
@@ -225,6 +228,12 @@ export class Textarea implements IxInputFieldComponent<string> {
       // Skip the first resize event (initial render)
       if (isInitialResize) {
         isInitialResize = false;
+        return;
+      }
+
+      // If resize was programmatic, ignore it and reset flag
+      if (this.isProgrammaticResize) {
+        this.isProgrammaticResize = false;
         return;
       }
 
