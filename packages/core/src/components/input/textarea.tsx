@@ -165,7 +165,10 @@ export class Textarea implements IxInputFieldComponent<string> {
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
 
-  private readonly textAreaRef = makeRef<HTMLTextAreaElement>();
+  private readonly textAreaRef = makeRef<HTMLTextAreaElement>(() => {
+    // Initialize ResizeObserver when ref is set/updated
+    this.initResizeObserver();
+  });
   private touched = false;
   private resizeObserver?: ResizeObserver;
   private isManuallyResized = false;
@@ -187,12 +190,15 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.manualWidth = undefined;
   }
 
-  componentWillLoad() {
-    this.updateFormInternalValue(this.value);
+  @Watch('resizeBehavior')
+  onResizeBehaviorChange() {
+    // Reinitialize observer when resize behavior changes
+    // This handles enabling/disabling resize observation dynamically
+    this.initResizeObserver();
   }
 
-  componentDidLoad() {
-    this.initResizeObserver();
+  componentWillLoad() {
+    this.updateFormInternalValue(this.value);
   }
 
   disconnectedCallback() {
