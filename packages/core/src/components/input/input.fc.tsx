@@ -6,9 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { h, FunctionalComponent } from '@stencil/core';
-import { MakeRef } from '../utils/make-ref';
+import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
+import { MakeRef } from '../utils/make-ref';
 
 export function TextareaElement(
   props: Readonly<{
@@ -32,6 +32,20 @@ export function TextareaElement(
     ariaAttributes?: A11yAttributes;
   }>
 ) {
+  const refCallback = (el: HTMLTextAreaElement | undefined) => {
+    if (el && !el.hasAttribute('data-dimensions-initialized')) {
+      if (props.textareaHeight) {
+        el.style.height = props.textareaHeight;
+      }
+      if (props.textareaWidth) {
+        el.style.width = props.textareaWidth;
+      }
+      el.setAttribute('data-dimensions-initialized', 'true');
+    }
+    // Call the original ref callback
+    props.textAreaRef(el);
+  };
+
   return (
     <textarea
       readOnly={props.readonly}
@@ -40,7 +54,7 @@ export function TextareaElement(
       minLength={props.minLength}
       cols={props.textareaCols}
       rows={props.textareaRows}
-      ref={props.textAreaRef}
+      ref={refCallback}
       class={{
         'is-invalid': props.isInvalid,
       }}
@@ -55,8 +69,6 @@ export function TextareaElement(
       onBlur={() => props.onBlur()}
       style={{
         resize: props.resizeBehavior,
-        height: props.textareaHeight,
-        width: props.textareaWidth,
       }}
       {...props.ariaAttributes}
     ></textarea>
