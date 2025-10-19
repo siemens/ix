@@ -198,6 +198,8 @@ export class Textarea implements IxInputFieldComponent<string> {
     let isInitialResize = true;
 
     this.resizeObserver = new ResizeObserver(() => {
+      // Get fresh reference to avoid stale closure
+      const textarea = this.textAreaRef.current;
       if (!textarea) return;
 
       // Skip the first resize event (initial render)
