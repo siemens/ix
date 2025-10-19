@@ -166,6 +166,10 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   private readonly textAreaRef = makeRef<HTMLTextAreaElement>();
   private touched = false;
+  private resizeObserver?: ResizeObserver;
+  private isManuallyResized = false;
+  private manualHeight?: string;
+  private manualWidth?: string;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -174,6 +178,41 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+  }
+
+  componentDidLoad() {
+    this.initResizeObserver();
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver?.disconnect();
+  }
+
+  private initResizeObserver() {
+    const textarea = this.textAreaRef.current;
+    if (!textarea) return;
+
+    // Don't observe if resizing is disabled
+    if (this.resizeBehavior === 'none') return;
+
+    let isInitialResize = true;
+
+    this.resizeObserver = new ResizeObserver(() => {
+      if (!textarea) return;
+
+      // Skip the first resize event (initial render)
+      if (isInitialResize) {
+        isInitialResize = false;
+        return;
+      }
+
+      // User has manually resized - store the dimensions
+      this.isManuallyResized = true;
+      this.manualHeight = textarea.style.height;
+      this.manualWidth = textarea.style.width;
+    });
+
+    this.resizeObserver.observe(textarea);
   }
 
   updateFormInternalValue(value: string) {
@@ -256,8 +295,12 @@ export class Textarea implements IxInputFieldComponent<string> {
               maxLength={this.maxLength}
               textareaCols={this.textareaCols}
               textareaRows={this.textareaRows}
-              textareaHeight={this.textareaHeight}
-              textareaWidth={this.textareaWidth}
+              textareaHeight={
+                this.isManuallyResized ? this.manualHeight : this.textareaHeight
+              }
+              textareaWidth={
+                this.isManuallyResized ? this.manualWidth : this.textareaWidth
+              }
               resizeBehavior={this.resizeBehavior}
               readonly={this.readonly}
               disabled={this.disabled}

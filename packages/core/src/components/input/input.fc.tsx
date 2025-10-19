@@ -32,20 +32,6 @@ export function TextareaElement(
     ariaAttributes?: A11yAttributes;
   }>
 ) {
-  const refCallback = (el: HTMLTextAreaElement | undefined) => {
-    if (el && !el.hasAttribute('data-dimensions-initialized')) {
-      if (props.textareaHeight) {
-        el.style.height = props.textareaHeight;
-      }
-      if (props.textareaWidth) {
-        el.style.width = props.textareaWidth;
-      }
-      el.setAttribute('data-dimensions-initialized', 'true');
-    }
-    // Call the original ref callback
-    props.textAreaRef(el);
-  };
-
   return (
     <textarea
       readOnly={props.readonly}
@@ -54,7 +40,7 @@ export function TextareaElement(
       minLength={props.minLength}
       cols={props.textareaCols}
       rows={props.textareaRows}
-      ref={refCallback}
+      ref={props.textAreaRef}
       class={{
         'is-invalid': props.isInvalid,
       }}
@@ -69,6 +55,8 @@ export function TextareaElement(
       onBlur={() => props.onBlur()}
       style={{
         resize: props.resizeBehavior,
+        height: props.textareaHeight,
+        width: props.textareaWidth,
       }}
       {...props.ariaAttributes}
     ></textarea>
