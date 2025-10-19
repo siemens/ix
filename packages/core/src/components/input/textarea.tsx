@@ -17,6 +17,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
   h,
 } from '@stencil/core';
 import {
@@ -176,6 +177,16 @@ export class Textarea implements IxInputFieldComponent<string> {
     mapValidationResult(this, result);
   }
 
+  @Watch('textareaHeight')
+  @Watch('textareaWidth')
+  onDimensionPropsChange() {
+    // Reset manual resize state when props are programmatically changed
+    // This allows props to become reactive again
+    this.isManuallyResized = false;
+    this.manualHeight = undefined;
+    this.manualWidth = undefined;
+  }
+
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
   }
@@ -189,6 +200,9 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   private initResizeObserver() {
+    // Disconnect existing observer if any (prevents memory leaks)
+    this.resizeObserver?.disconnect();
+
     const textarea = this.textAreaRef.current;
     if (!textarea) return;
 
@@ -198,7 +212,7 @@ export class Textarea implements IxInputFieldComponent<string> {
     let isInitialResize = true;
 
     this.resizeObserver = new ResizeObserver(() => {
-      // Get fresh reference to avoid stale closure
+      // Get fresh reference in case the underlying DOM element has changed
       const textarea = this.textAreaRef.current;
       if (!textarea) return;
 
