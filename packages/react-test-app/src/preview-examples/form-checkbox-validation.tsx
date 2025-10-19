@@ -12,7 +12,7 @@ import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <div>
+      <div style={{ marginBottom: '1rem' }}>
         <IxCheckboxGroup label="Terms of something" infoText="Info text">
           <IxCheckbox
             label="I agree everything"
@@ -22,7 +22,7 @@ export default () => {
         </IxCheckboxGroup>
       </div>
 
-      <div>
+      <div style={{ marginBottom: '1rem' }}>
         <IxCheckboxGroup label="Terms of something" warningText="Warning text">
           <IxCheckbox
             label="I agree everything"
@@ -37,7 +37,7 @@ export default () => {
         </IxCheckboxGroup>
       </div>
 
-      <div>
+      <div style={{ marginBottom: '1rem' }}>
         <IxCheckboxGroup label="Terms of something" invalidText="Invalid text">
           <IxCheckbox
             label="I agree everything"
