@@ -1,0 +1,30 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@mixin linear {
+  .linear-progress-container {
+    width: 100%;
+    height: var(--ix-progress-indicator-height);
+    background-color: var(--theme-color-component-4);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background-color: var(--ix-progress-indicator-color);
+    transition: width 0.3s ease;
+  }
+}

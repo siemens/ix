@@ -227,6 +227,12 @@ import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.tsx';
+import ProgressIndicator from './preview-examples/progress-indicator.tsx';
+import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.tsx';
+import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.tsx';
+import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-linear-sizes.tsx';
+import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.tsx';
+import ProgressIndicatorLinearStatus from './preview-examples/progress-indicator-linear-status.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -724,6 +730,31 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/workflow" element={<Workflow />} />
         <Route path="/preview/form-layout-auto" element={<FormLayoutAuto />} />
         <Route path="/preview/form-layout-grid" element={<FormLayoutGrid />} />
+
+        <Route
+          path="/preview/progress-indicator-linear-status"
+          element={<ProgressIndicatorLinearStatus />}
+        />
+        <Route
+          path="/preview/progress-indicator-circular-status"
+          element={<ProgressIndicatorCircularStatus />}
+        />
+        <Route
+          path="/preview/progress-indicator-linear-sizes"
+          element={<ProgressIndicatorLinearSizes />}
+        />
+        <Route
+          path="/preview/progress-indicator-circular-sizes"
+          element={<ProgressIndicatorCircularSizes />}
+        />
+        <Route
+          path="/preview/progress-indicator-circular"
+          element={<ProgressIndicatorCircular />}
+        />
+        <Route
+          path="/preview/progress-indicator"
+          element={<ProgressIndicator />}
+        />
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>

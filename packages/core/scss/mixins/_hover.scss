@@ -90,3 +90,11 @@
     }
   }
 }
+
+@mixin visited() {
+  &:not(.disabled):not(:disabled) {
+    &:visited {
+      @content;
+    }
+  }
+}

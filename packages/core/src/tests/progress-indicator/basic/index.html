@@ -1,0 +1,331 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body style="padding: 1rem 0; width: 100vw; height: 100vh">
+    <!-- Default status -->
+    <h1>0%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="0"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="0"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="0"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="0"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="0"
+      >0%</ix-progress-indicator
+    >
+
+    <h1>75%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="75"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="75"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="75"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="75"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="75"
+      >75%</ix-progress-indicator
+    >
+
+    <h1>100%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="100"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="100"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="100"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="100"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="100"
+      >100%</ix-progress-indicator
+    >
+
+    <!-- Success status -->
+    <h1>Success - 0%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="0" status="success"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="0" status="success"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="0" status="success"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="0" status="success"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="0" status="success"
+      >0%</ix-progress-indicator
+    >
+
+    <h1>Success - 75%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="75" status="success"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="75" status="success"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="75" status="success"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="75" status="success"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="75" status="success"
+      >75%</ix-progress-indicator
+    >
+
+    <h1>Success - 100%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="100" status="success"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="100" status="success"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="100" status="success"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="100" status="success"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="100" status="success"
+      >100%</ix-progress-indicator
+    >
+
+    <!-- Error status -->
+    <h1>Error - 0%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="0" status="error"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="0" status="error"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="0" status="error"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="0" status="error"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="0" status="error"
+      >0%</ix-progress-indicator
+    >
+
+    <h1>Error - 75%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="75" status="error"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="75" status="error"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="75" status="error"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="75" status="error"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="75" status="error"
+      >75%</ix-progress-indicator
+    >
+
+    <h1>Error - 100%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="100" status="error"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="100" status="error"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="100" status="error"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="100" status="error"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="100" status="error"
+      >100%</ix-progress-indicator
+    >
+
+    <!-- Info status -->
+    <h1>Info - 0%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="0" status="info"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="0" status="info"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="0" status="info"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="0" status="info"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="0" status="info"
+      >0%</ix-progress-indicator
+    >
+
+    <h1>Info - 75%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="75" status="info"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="75" status="info"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="75" status="info"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="75" status="info"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="75" status="info"
+      >75%</ix-progress-indicator
+    >
+
+    <h1>Info - 100%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="100" status="info"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="100" status="info"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="100" status="info"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="100" status="info"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="100" status="info"
+      >100%</ix-progress-indicator
+    >
+
+    <!-- Warning status -->
+    <h1>Warning - 0%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="0" status="warning"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="0" status="warning"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="0" status="warning"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="0" status="warning"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="0" status="warning"
+      >0%</ix-progress-indicator
+    >
+
+    <h1>Warning - 75%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="75" status="warning"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="75" status="warning"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="75" status="warning"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="75" status="warning"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="75" status="warning"
+      >75%</ix-progress-indicator
+    >
+
+    <h1>Warning - 100%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="100" status="warning"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="100" status="warning"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="100" status="warning"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="100" status="warning"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="100" status="warning"
+      >100%</ix-progress-indicator
+    >
+
+    <!-- Paused status -->
+    <h1>Paused - 0%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="0" status="paused"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="0" status="paused"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="0" status="paused"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="0" status="paused"
+      >0%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="0" status="paused"
+      >0%</ix-progress-indicator
+    >
+
+    <h1>Paused - 75%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="75" status="paused"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="75" status="paused"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="75" status="paused"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="75" status="paused"
+      >75%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="75" status="paused"
+      >75%</ix-progress-indicator
+    >
+
+    <h1>Paused - 100%</h1>
+    <ix-progress-indicator type="linear" size="xs" value="100" status="paused"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="sm" value="100" status="paused"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="md" value="100" status="paused"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="lg" value="100" status="paused"
+      >100%</ix-progress-indicator
+    >
+    <ix-progress-indicator type="linear" size="xl" value="100" status="paused"
+      >100%</ix-progress-indicator
+    >
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

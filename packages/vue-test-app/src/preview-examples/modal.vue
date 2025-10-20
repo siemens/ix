@@ -7,38 +7,35 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script setup lang="ts">
+<script setup lang="tsx">
 import {
-  HTMLRefElement,
   IxButton,
-  IxModal,
   IxModalHeader,
   IxModalContent,
   IxModalFooter,
+  Modal,
+  ModalSlotProps,
+  showModal
 } from '@siemens/ix-vue';
-import { ref } from 'vue';
 
-const modalRef = ref<HTMLRefElement<HTMLIxModalElement>>();
-const close = () => {
-  modalRef.value?.$el.closeModal('close payload!');
-  show.value = false;
-};
-const dismiss = () => {
-  modalRef.value?.$el.dismissModal('dismiss payload');
-  show.value = false;
-};
+function show() {
+  showModal({
+    content: <Modal>{
+      ({ closeModal, dismissModal }: ModalSlotProps) => [
+        <IxModalHeader>Message headline</IxModalHeader>,
+        <IxModalContent>Message text lorem ipsum</IxModalContent>,
+        <IxModalFooter>
+          <IxButton outline onClick={() => dismissModal()}>Cancel</IxButton>
+          <IxButton onClick={() => closeModal()}>OK</IxButton>
+        </IxModalFooter>
+      ]
+    }
+    </Modal >
+  })
+}
 
-const show = ref(false);
 </script>
 
 <template>
-  <IxButton @click="show = true">Show modal</IxButton>
-  <IxDialog ref="modalRef" v-if="show">
-    <IxModalHeader onclose="dismiss()">Message headline</IxModalHeader>
-    <IxModalContent>Message text lorem ipsum</IxModalContent>
-    <IxModalFooter>
-      <IxButton outline @click="dismiss()"> Cancel </IxButton>
-      <IxButton @click="close()">OK</IxButton>
-    </IxModalFooter>
-  </IxDialog>
+  <IxButton @click="show()">Show modal</IxButton>
 </template>

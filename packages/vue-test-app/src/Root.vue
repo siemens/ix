@@ -10,6 +10,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
+import { IxApplicationContext } from "@siemens/ix-vue"
+
+
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
 import ActionCard from './preview-examples/action-card.vue';
@@ -226,6 +229,12 @@ import VerticalTabs from './preview-examples/vertical-tabs.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.vue';
+import ProgressIndicatorLinearStatus from './preview-examples/progress-indicator-linear-status.vue';
+import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.vue';
+import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-linear-sizes.vue';
+import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.vue';
+import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.vue';
+import ProgressIndicator from './preview-examples/progress-indicator.vue';
 
 const routes: any = {
   '/': App,
@@ -448,6 +457,13 @@ const routes: any = {
   '/preview/button-danger-outline': ButtonDangerOutline,
   '/preview/form-layout-auto': FormLayoutAuto,
   '/preview/form-layout-grid': FormLayoutGrid,
+  '/preview/progress-indicator-linear-status': ProgressIndicatorLinearStatus,
+  '/preview/progress-indicator-circular-status':
+    ProgressIndicatorCircularStatus,
+  '/preview/progress-indicator-linear-sizes': ProgressIndicatorLinearSizes,
+  '/preview/progress-indicator-circular-sizes': ProgressIndicatorCircularSizes,
+  '/preview/progress-indicator-circular': ProgressIndicatorCircular,
+  '/preview/progress-indicator': ProgressIndicator,
 };
 
 const currentPath = ref(window.location.pathname);
@@ -458,6 +474,8 @@ const currentView = computed(() => {
 </script>
 
 <template>
-  <component :is="currentView"></component>
+  <IxApplicationContext>
+    <component :is="currentView"></component>
+  </IxApplicationContext>
 </template>
 import layoutAutoVue from './preview-examples/layout-auto.vue';

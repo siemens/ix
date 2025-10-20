@@ -241,6 +241,12 @@ import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avata
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
+import ProgressIndicator from '../preview-examples/progress-indicator';
+import ProgressIndicatorLinearSizes from '../preview-examples/progress-indicator-linear-sizes';
+import ProgressIndicatorLinearStatus from '../preview-examples/progress-indicator-linear-status';
+import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
+import ProgressIndicatorCircularStatus from '../preview-examples/progress-indicator-circular-status';
+import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
 
 @NgModule({
   declarations: [
@@ -501,6 +507,12 @@ import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-su
     LayoutAuto,
     LayoutAutoCustom,
     Workflow,
+    ProgressIndicator,
+    ProgressIndicatorLinearSizes,
+    ProgressIndicatorLinearStatus,
+    ProgressIndicatorCircularSizes,
+    ProgressIndicatorCircularStatus,
+    ProgressIndicatorCircular,
   ],
   imports: [
     BrowserModule,

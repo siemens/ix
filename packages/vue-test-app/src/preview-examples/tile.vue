@@ -12,7 +12,7 @@ import {
   iconChevronRightSmall,
   iconContextMenu,
 } from '@siemens/ix-icons/icons';
-import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
+import { IxButton, IxIconButton, IxTile } from '@siemens/ix-vue';
 </script>
 
 <style scoped src="./tile.css"></style>
@@ -44,8 +44,8 @@ import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
         <span>92.8 °C</span>
       </div>
       <div className="tile-footer" slot="footer">
-        <IxButton ghost slot="footer">
-          <IxIcon :name="iconChevronRightSmall"></IxIcon>Details
+        <IxButton :icon="iconChevronRightSmall" ghost slot="footer">
+          Details
         </IxButton>
       </div>
     </IxTile>

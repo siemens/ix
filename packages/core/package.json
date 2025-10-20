@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "3.0.0",
+  "version": "3.1.0",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "type": "module",
@@ -19,6 +19,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "READMEOSS.html",
     "components/",
     "dist/",
     "loader/",
@@ -102,7 +103,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.12",
     "@types/luxon": "^3.4.2",
-    "@types/mustache": "^4.2.5",
+    "@types/mustache": "^4.2.6",
     "@types/node": "^20.16.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
@@ -123,7 +124,7 @@
     "postcss": "^8.4.40",
     "puppeteer": "21.1.1",
     "rimraf": "^5.0.9",
-    "sass": "^1.77.8",
+    "sass": "^1.89.2",
     "start-server-and-test": "^2.0.12",
     "tsx": "^4.19.3",
     "typescript": "~5.4.5"

@@ -17,6 +17,11 @@ SPDX-License-Identifier: MIT
     <script type="module" src="./build/siemens-ix.esm.js"></script>
     <script nomodule src="./build/siemens-ix.js"></script>
     <link rel="stylesheet" href="./build/siemens-ix.css" />
+    <script type="module">
+      import { defineCustomElement } from '/node_modules/@siemens/ix-icons/components/ix-icon.js';
+
+      defineCustomElement();
+    </script>
   </head>
-  <body style="margin: 0px; height: 100vh"></body>
+  <body></body>
 </html>

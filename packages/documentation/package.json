@@ -11,7 +11,7 @@
     "@siemens/ix-react": "workspace:*",
     "@siemens/ix": "workspace:*",
     "@types/fs-extra": "^11.0.4",
-    "@types/mustache": "^4.1.1",
+    "@types/mustache": "^4.2.6",
     "@types/node": "^20.16.0",
     "@types/react": "^18.3.10",
     "@types/rimraf": "^4.0.5",
