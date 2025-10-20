@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('aggrid', () => {
   regressionTest.describe('version', () => {
     regressionTest('newest', async ({ page }) => {
-      await page.goto('basic.html');
+      await page.goto('basic/basic.html');
 
       await page.getByRole('columnheader').nth(0).hover();
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -20,7 +20,7 @@ regressionTest.describe('aggrid', () => {
   });
 
   regressionTest('filter', async ({ page }) => {
-    await page.goto('basic.html');
+    await page.goto('basic/basic.html');
 
     await page
       .getByRole('columnheader', { name: 'Model' })
@@ -40,7 +40,7 @@ regressionTest.describe('aggrid', () => {
   });
 
   regressionTest('editor', async ({ page }) => {
-    await page.goto('basic.html');
+    await page.goto('basic/basic.html');
 
     const editorCellHandle = page
       .locator('.ag-cell-not-inline-editing[col-id="price"]')
@@ -53,7 +53,7 @@ regressionTest.describe('aggrid', () => {
   });
 
   regressionTest('pagination', async ({ page }) => {
-    await page.goto('pagination.html');
+    await page.goto('pagination/pagination.html');
     expect(
       await page.screenshot({ fullPage: true, animations: 'disabled' })
     ).toMatchSnapshot();
@@ -61,13 +61,13 @@ regressionTest.describe('aggrid', () => {
 
   regressionTest.describe('header checkbox', () => {
     regressionTest('should be unchecked', async ({ page }) => {
-      await page.goto('basic.html');
+      await page.goto('basic/basic.html');
 
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
 
     regressionTest('should be indeterminate', async ({ page }) => {
-      await page.goto('basic.html');
+      await page.goto('basic/basic.html');
 
       await (
         await page.waitForSelector(
@@ -79,7 +79,7 @@ regressionTest.describe('aggrid', () => {
     });
 
     regressionTest('should be checked', async ({ page }) => {
-      await page.goto('basic.html');
+      await page.goto('basic/basic.html');
 
       await (
         await page.waitForSelector(
@@ -102,7 +102,7 @@ regressionTest.describe('aggrid', () => {
   });
 
   regressionTest('tooltip display', async ({ page }) => {
-    await page.goto('basic.html');
+    await page.goto('basic/basic.html');
     const makeCell = page.locator('.ag-cell[col-id="make"]').first();
     await makeCell.hover();
     await page.waitForSelector('.ag-tooltip');

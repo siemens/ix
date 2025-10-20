@@ -17,20 +17,33 @@ import { useIxTheme } from '@siemens/ix-aggrid';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
+const columnDefs = [
+  { field: 'make', resizable: true, checkboxSelection: true },
+  { field: 'model', resizable: true, sortable: true, filter: true },
+  { field: 'price', resizable: true },
+];
+
+const rowData = (() => {
+  const data = [];
+  for (let i = 0; i < 500; i++) {
+    data.push({
+      make: 'Toyota',
+      model: 'Celica',
+      price: 35000,
+      checked: false,
+    });
+  }
+  return data;
+})();
+
 const gridOptions: GridOptions = {
-  rowData: [
-    { make: 'Tesla', model: 'Model Y', price: 64950, electric: true },
-    { make: 'Ford', model: 'F-Series', price: 33850, electric: false },
-    { make: 'Toyota', model: 'Corolla', price: 29600, electric: false },
-  ],
-  columnDefs: [
-    { field: 'make', filter: true },
-    { field: 'model' },
-    { field: 'price' },
-    { field: 'electric' },
-  ],
+  columnDefs: columnDefs,
+  rowData: rowData,
+  rowSelection: 'multiple',
+  suppressCellFocus: true,
+  pagination: true,
   theme: await useIxTheme(() => import('ag-grid-community')),
 };
 
-const myGridElement = document.querySelector('#myGrid') as HTMLElement;
+const myGridElement = document.querySelector('#testGrid') as HTMLElement;
 createGrid(myGridElement, gridOptions);
