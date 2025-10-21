@@ -14,19 +14,19 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-event-list>
-      <ix-event-list-item variant="filled" item-color="color-primary"
-        >Text 1</ix-event-list-item
-      >
-      <ix-event-list-item variant="filled" item-color="color-primary"
-        >Text 2</ix-event-list-item
-      >
-      <ix-event-list-item variant="filled" item-color="color-alarm"
-        >Text 3</ix-event-list-item
-      >
-      <ix-event-list-item variant="filled" item-color="color-success"
-        >Text 4</ix-event-list-item
-      >
+      @for (item of items; track item.text) {
+      <ix-event-list-item variant="filled" [attr.item-color]="item.color">
+        {{ item.text }}
+      </ix-event-list-item>
+      }
     </ix-event-list>
   `,
 })
-export default class EventListFilled {}
+export default class EventListFilled {
+  items = [
+    { text: 'Text 1', color: 'color-primary' },
+    { text: 'Text 2', color: 'color-primary' },
+    { text: 'Text 3', color: 'color-alarm' },
+    { text: 'Text 4', color: 'color-success' },
+  ];
+}

@@ -9,21 +9,24 @@
 
 <script setup lang="ts">
 import { IxEventList, IxEventListItem } from '@siemens/ix-vue';
+
+const items = [
+  { text: 'Text 1', color: 'color-primary' },
+  { text: 'Text 2', color: 'color-primary' },
+  { text: 'Text 3', color: 'color-alarm' },
+  { text: 'Text 4', color: 'color-success' },
+];
 </script>
 
 <template>
   <IxEventList>
-    <IxEventListItem variant="filled" itemColor="color-primary">
-      Text 1
-    </IxEventListItem>
-    <IxEventListItem variant="filled" itemColor="color-primary">
-      Text 2
-    </IxEventListItem>
-    <IxEventListItem variant="filled" itemColor="color-alarm">
-      Text 3
-    </IxEventListItem>
-    <IxEventListItem variant="filled" itemColor="color-success">
-      Text 4
+    <IxEventListItem
+      v-for="item in items"
+      :key="item.text"
+      variant="filled"
+      :itemColor="item.color"
+    >
+      {{ item.text }}
     </IxEventListItem>
   </IxEventList>
 </template>

@@ -10,20 +10,24 @@
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
 
 export default function EventListFilled() {
+  const items = [
+    { text: 'Text 1', color: 'color-primary' },
+    { text: 'Text 2', color: 'color-primary' },
+    { text: 'Text 3', color: 'color-alarm' },
+    { text: 'Text 4', color: 'color-success' },
+  ];
+
   return (
     <IxEventList>
-      <IxEventListItem variant="filled" itemColor="color-primary">
-        Text 1
-      </IxEventListItem>
-      <IxEventListItem variant="filled" itemColor="color-primary">
-        Text 2
-      </IxEventListItem>
-      <IxEventListItem variant="filled" itemColor="color-alarm">
-        Text 3
-      </IxEventListItem>
-      <IxEventListItem variant="filled" itemColor="color-success">
-        Text 4
-      </IxEventListItem>
+      {items.map((item) => (
+        <IxEventListItem
+          key={item.text}
+          variant="filled"
+          itemColor={item.color}
+        >
+          {item.text}
+        </IxEventListItem>
+      ))}
     </IxEventList>
   );
 }

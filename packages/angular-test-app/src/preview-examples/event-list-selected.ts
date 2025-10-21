@@ -14,37 +14,19 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-event-list>
+      @for (item of items; track item; let i = $index) {
       <ix-event-list-item
         item-color="color-primary"
-        [selected]="selectedIndex === 0"
-        (click)="selectedIndex = 0"
+        [selected]="selectedIndex === i"
+        (click)="selectedIndex = i"
       >
-        Text 1
+        {{ item }}
       </ix-event-list-item>
-      <ix-event-list-item
-        item-color="color-primary"
-        [selected]="selectedIndex === 1"
-        (click)="selectedIndex = 1"
-      >
-        Text 2
-      </ix-event-list-item>
-      <ix-event-list-item
-        item-color="color-primary"
-        [selected]="selectedIndex === 2"
-        (click)="selectedIndex = 2"
-      >
-        Text 3
-      </ix-event-list-item>
-      <ix-event-list-item
-        item-color="color-primary"
-        [selected]="selectedIndex === 3"
-        (click)="selectedIndex = 3"
-      >
-        Text 4
-      </ix-event-list-item>
+      }
     </ix-event-list>
   `,
 })
 export default class EventListSelected {
   selectedIndex = 1;
+  items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
 }
