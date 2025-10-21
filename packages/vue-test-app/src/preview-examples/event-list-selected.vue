@@ -19,7 +19,7 @@ const items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
   <IxEventList>
     <IxEventListItem
       v-for="(item, index) in items"
-      :key="index"
+      :key="item"
       itemColor="color-primary"
       :selected="selectedIndex === index"
       @click="selectedIndex = index"
