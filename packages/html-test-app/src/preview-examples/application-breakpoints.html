@@ -49,9 +49,8 @@ LICENSE file in the root directory of this source tree.
     </ix-application>
 
     <script type="module">
-      const validBreakpoints = ['sm', 'md', 'lg'];
-
       (async () => {
+        const validBreakpoints = ['sm', 'md', 'lg'];
         await globalThis.customElements.whenDefined('ix-application');
         await globalThis.customElements.whenDefined('ix-radio-group');
 
