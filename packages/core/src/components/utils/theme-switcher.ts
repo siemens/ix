@@ -1,7 +1,19 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { type LiteralStringUnion } from './type-helper';
 import { TypedEvent } from './typed-event';
 
 export type ThemeVariant = 'light' | 'dark';
+
+const dataIxTheme = 'data-ix-theme';
+const dataIxColorSchema = 'data-ix-color-schema';
 
 class ThemeSwitcher {
   readonly prefixTheme = 'theme-';
@@ -11,9 +23,14 @@ class ThemeSwitcher {
 
   mutationObserver?: MutationObserver;
   _themeChanged = new TypedEvent<string>();
+  _schemaChanged = new TypedEvent<string>();
 
   public get themeChanged() {
     return this._themeChanged;
+  }
+
+  public get schemaChanged() {
+    return this._schemaChanged;
   }
 
   public hasVariantSuffix(className: string) {
@@ -30,82 +47,102 @@ class ThemeSwitcher {
   }
 
   public setTheme(themeName: string, systemAppearance = false) {
-    if (!this.isThemeClass(themeName) && systemAppearance === false) {
-      throw Error(
-        `Provided theme name ${themeName} does not match our naming conventions. (theme-<name>-(dark,light))`
-      );
+    if (this.isThemeClass(themeName)) {
+      this.replaceThemeClass(themeName);
+    } else {
+      document.documentElement.setAttribute(dataIxTheme, themeName);
     }
 
     if (systemAppearance) {
       const currentSystemAppearance = getCurrentSystemAppearance();
-      this.replaceBodyThemeClass(themeName);
       this.setVariant(currentSystemAppearance);
-      return;
     }
-
-    this.replaceBodyThemeClass(themeName);
   }
 
-  private replaceBodyThemeClass(themeName: string) {
+  private replaceThemeClass(themeName: string) {
     const oldThemes: string[] = [];
-    document.body.classList.forEach((className) => {
-      if (this.isThemeClass(className)) {
+    Array.from(document.documentElement.classList)
+      .filter((className) => className && this.isThemeClass(className))
+      .forEach((className) => {
         oldThemes.push(className);
-      }
-    });
+      });
 
-    document.body.classList.remove(...oldThemes);
-    document.body.classList.add(themeName);
+    document.documentElement.classList.remove(...oldThemes);
+    document.documentElement.classList.add(themeName);
   }
 
   public toggleMode() {
-    const oldThemes: string[] = [];
+    if (document.documentElement.hasAttribute(dataIxColorSchema)) {
+      const currentSchema = this.getDataColorSchema(document.documentElement)!;
+      document.documentElement.setAttribute(
+        dataIxColorSchema,
+        currentSchema === 'dark' ? 'light' : 'dark'
+      );
+      return;
+    }
 
-    document.body.classList.forEach((className) => {
-      if (this.isThemeClass(className)) {
+    const oldThemes: string[] = [];
+    Array.from(document.documentElement.classList)
+      .filter((className) => className && this.isThemeClass(className))
+      .forEach((className) => {
         oldThemes.push(className);
-      }
-    });
+      });
 
     if (oldThemes.length === 0) {
-      document.body.classList.add(this.getOppositeMode(this.defaultTheme));
+      document.documentElement.classList.add(
+        this.getOppositeMode(this.defaultTheme)
+      );
       return;
     }
 
     oldThemes.forEach((themeName) => {
-      document.body.classList.replace(
+      document.documentElement.classList.replace(
         themeName,
         this.getOppositeMode(themeName)
       );
     });
   }
 
+  private getDataColorSchema(target: HTMLElement) {
+    return target.getAttribute(dataIxColorSchema);
+  }
+
   public getCurrentTheme() {
     return (
-      Array.from(document.body.classList).find((className) =>
+      Array.from(document.documentElement.classList).find((className) =>
         this.isThemeClass(className)
       ) ??
-      `theme-${window
-        .getComputedStyle(document.body)
-        .getPropertyValue('--ix-theme-name')}`
+      `theme-${
+        document.documentElement.getAttribute(dataIxTheme) || 'classic'
+      }-${
+        document.documentElement.getAttribute(dataIxColorSchema) ||
+        getCurrentSystemAppearance()
+      }`
     );
   }
 
   public setVariant(variant: ThemeVariant = getCurrentSystemAppearance()) {
+    if (this.getDataColorSchema(document.documentElement)) {
+      document.documentElement.setAttribute(dataIxColorSchema, variant);
+      return;
+    }
+
     const currentTheme = this.getCurrentTheme();
-    document.body.classList.remove(currentTheme);
+    document.documentElement.classList.remove(currentTheme);
 
     if (currentTheme.endsWith(this.suffixDark)) {
-      document.body.classList.add(
+      document.documentElement.classList.add(
         currentTheme.replace(/-dark$/g, `-${variant}`)
       );
     }
 
     if (currentTheme.endsWith(this.suffixLight)) {
-      document.body.classList.add(
+      document.documentElement.classList.add(
         currentTheme.replace(/-light$/g, `-${variant}`)
       );
     }
+
+    document.documentElement.setAttribute(dataIxColorSchema, variant);
   }
 
   private getOppositeMode(themeName: string) {
@@ -120,7 +157,21 @@ class ThemeSwitcher {
     return '';
   }
 
-  private handleMutations(mutations: MutationRecord[]) {
+  private splitMutations(mutations: MutationRecord[]) {
+    const classMutations = mutations.filter(
+      (mutation) => mutation.attributeName === 'class'
+    );
+
+    const dataMutations = mutations.filter(
+      (mutation) =>
+        mutation.attributeName === dataIxTheme ||
+        mutation.attributeName === dataIxColorSchema
+    );
+
+    return { classMutations, dataMutations };
+  }
+
+  private handleClassMutations(mutations: MutationRecord[]) {
     return mutations.forEach((mutation) => {
       const { target } = mutation;
       (target as HTMLElement).classList.forEach((className) => {
@@ -134,7 +185,24 @@ class ThemeSwitcher {
     });
   }
 
-  private registerMutationObserver() {
+  private handleDataMutations(mutations: MutationRecord[]) {
+    return mutations.forEach((mutation) => {
+      const { target } = mutation;
+      const theme = (target as Element).attributes.getNamedItem(dataIxTheme);
+      if (theme?.value && mutation.oldValue !== theme.value) {
+        this._themeChanged.emit(theme.value);
+      }
+
+      const colorSchema = (target as Element).attributes.getNamedItem(
+        dataIxColorSchema
+      );
+      if (colorSchema?.value && mutation.oldValue !== colorSchema.value) {
+        this._schemaChanged.emit(colorSchema.value);
+      }
+    });
+  }
+
+  private registerMutationObservers() {
     if (typeof (window as any) === 'undefined') {
       return;
     }
@@ -146,18 +214,27 @@ class ThemeSwitcher {
       return;
     }
 
-    this.mutationObserver = new MutationObserver((mutations) => {
-      this.handleMutations(mutations);
-    });
-
-    this.mutationObserver.observe(document.body, {
-      attributeFilter: ['class'],
+    const mutationObserverConfig = {
+      attributeFilter: ['class', dataIxTheme, dataIxColorSchema],
       attributeOldValue: true,
-    });
+    };
+
+    const handleMutations = (mutations: MutationRecord[]) => {
+      const { classMutations, dataMutations } = this.splitMutations(mutations);
+
+      this.handleClassMutations(classMutations);
+      this.handleDataMutations(dataMutations);
+    };
+
+    this.mutationObserver = new MutationObserver(handleMutations);
+    this.mutationObserver.observe(
+      document.documentElement,
+      mutationObserverConfig
+    );
   }
 
   public constructor() {
-    this.registerMutationObserver();
+    this.registerMutationObservers();
   }
 }
 

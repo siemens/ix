@@ -17,7 +17,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
-import anime from 'animejs';
+import { animate } from 'animejs';
 
 @Component({
   tag: 'ix-map-navigation-overlay',
@@ -40,6 +40,21 @@ export class MapNavigationOverlay {
   @Prop() icon?: string;
 
   /**
+   * ARIA label for the icon
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
+   * ARIA label for the close icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCloseIconButton?: string;
+
+  /**
    * Color of icon
    *
    * @deprecated since 2.1.0. Use `icon-color`
@@ -58,28 +73,26 @@ export class MapNavigationOverlay {
   @Event() closeClick!: EventEmitter;
 
   componentWillLoad() {
-    anime({
-      targets: this.hostElement,
+    animate(this.hostElement, {
       duration: MapNavigationOverlay.slowTime,
       backdropFilter: [0, 'blur(1rem)'],
       translateX: ['-4rem', 0],
       opacity: [0, 1],
       easing: 'easeOutSine',
-      begin: () => {
+      onBegin: () => {
         this.hostElement.classList.remove('display-none');
       },
     });
   }
 
   private closeOverlay() {
-    anime({
-      targets: this.hostElement,
+    animate(this.hostElement, {
       duration: MapNavigationOverlay.slowTime,
       backdropFilter: ['blur(1rem)', 0],
       translateX: [0, '-4rem'],
       opacity: [1, 0],
       easing: 'easeInSine',
-      complete: () => {
+      onComplete: () => {
         this.closeClick.emit();
         this.hostElement.classList.add('display-none');
       },
@@ -103,17 +116,23 @@ export class MapNavigationOverlay {
             }}
           ></div>
           <div class="overlay-header-content">
-            <ix-icon size="32" name={this.icon}></ix-icon>
+            <ix-icon
+              size="32"
+              name={this.icon}
+              aria-label={this.ariaLabelIcon}
+            ></ix-icon>
             <span class="overlay-header-title" title={this.name}>
               {this.name}
             </span>
           </div>
           <ix-icon-button
             class="overlay-close"
-            ghost
+            variant="tertiary"
             icon={iconClose}
+            iconColor="color-soft-text"
             size="24"
             onClick={() => this.closeOverlay()}
+            aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         </div>
 

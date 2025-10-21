@@ -8,7 +8,7 @@
  */
 
 ::backdrop {
-  --ix-dialog-backdrop: var(--theme-color-lightbox, #0000008c);
+  background: var(--theme-color-lightbox, #0000008c);
 }
 
 :focus-visible {
@@ -37,7 +37,7 @@
   .modal {
     display: flex;
     flex-direction: column;
-    position: relative;
+    position: fixed;
     border: none;
     border-radius: var(--theme-default-border-radius);
     background: var(--theme-modal--background);

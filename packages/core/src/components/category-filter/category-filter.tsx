@@ -147,9 +147,33 @@ export class CategoryFilter {
   @Prop() labelCategories = 'Categories';
 
   /**
-   * i18n
+   * i18n label for 'Filter by text'
    */
-  @Prop() i18nPlainText = 'Filter by text';
+  @Prop({ attribute: 'i18n-plain-text' }) i18nPlainText = 'Filter by text';
+
+  /**
+   * ARIA label for the reset button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelResetButton?: string;
+
+  /**
+   * ARIA label for the operator button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelOperatorButton?: string;
+
+  /**
+   * ARIA label for the filter input
+   * Will be set as aria-label on the nested HTML input element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelFilterInput?: string;
 
   /**
    * Event dispatched whenever a category gets selected in the dropdown
@@ -632,9 +656,7 @@ export class CategoryFilter {
 
     const params: BaseButtonProps = {
       type: 'button',
-      variant: 'secondary',
-      outline: false,
-      ghost: true,
+      variant: 'subtle-tertiary',
       iconOnly: true,
       iconOval: false,
       selected: false,
@@ -649,6 +671,7 @@ export class CategoryFilter {
         'btn-icon-32': true,
         'btn-toggle-operator': true,
       },
+      ariaAttributes: { 'aria-label': this.ariaLabelOperatorButton },
     };
 
     return (
@@ -791,10 +814,12 @@ export class CategoryFilter {
           'hide-reset-button':
             !this.filterTokens.length && this.category === '',
         }}
-        ghost
+        variant="tertiary"
         oval
         icon={iconClear}
+        iconColor="color-soft-text"
         size="16"
+        aria-label={this.ariaLabelResetButton}
       ></ix-icon-button>
     );
   }
@@ -877,6 +902,7 @@ export class CategoryFilter {
                   type="text"
                   placeholder={this.placeholder}
                   {...this.a11yAttributes}
+                  aria-label={this.ariaLabelFilterInput}
                 ></input>
               </div>
             </div>

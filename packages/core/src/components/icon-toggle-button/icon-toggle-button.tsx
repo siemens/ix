@@ -15,7 +15,6 @@ import {
   h,
   Host,
   Prop,
-  Watch,
 } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
@@ -30,9 +29,8 @@ import { a11yBoolean } from '../utils/a11y';
 export class IconToggleButton {
   /**
    * Button variant.
-   * Important: Variant 'primary' can only be combined with either outline or ghost.
    */
-  @Prop() variant: ButtonVariant = 'secondary';
+  @Prop() variant: ButtonVariant = 'subtle-primary';
 
   /**
    * Outline button
@@ -78,42 +76,19 @@ export class IconToggleButton {
   @Prop() loading: boolean = false;
 
   /**
+   * ARIA label for the icon button
+   * Will be set for the native HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelIconButton?: string;
+
+  /**
    * Pressed change event
    */
   @Event() pressedChange!: EventEmitter<boolean>;
 
   @Element() hostElement!: HTMLIxIconToggleButtonElement;
-
-  private isIllegalToggleButtonConfig() {
-    return this.variant === 'primary' && (this.outline || this.ghost);
-  }
-
-  private logIllegalConfig() {
-    console.warn(
-      'iX toggle button with illegal configuration detected. Variant "primary" can only be combined with "outline" or "ghost".'
-    );
-  }
-
-  @Watch('variant')
-  onVariantChange() {
-    if (this.isIllegalToggleButtonConfig()) {
-      this.logIllegalConfig();
-    }
-  }
-
-  @Watch('ghost')
-  onGhostChange() {
-    this.onVariantChange();
-  }
-
-  @Watch('outline')
-  onOutlineChange() {
-    this.onVariantChange();
-  }
-
-  componentDidLoad() {
-    this.onVariantChange();
-  }
 
   private dispatchPressedChange() {
     this.pressedChange.emit(!this.pressed);
@@ -130,8 +105,6 @@ export class IconToggleButton {
   render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: true,
       iconOval: this.oval,
       selected: this.pressed,
@@ -143,6 +116,7 @@ export class IconToggleButton {
       type: 'button',
       ariaAttributes: {
         'aria-pressed': a11yBoolean(this.pressed),
+        'aria-label': this.ariaLabelIconButton,
       },
       extraClasses: {
         'icon-button': true,

@@ -10,11 +10,12 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <ix-event-list [itemHeight]="itemHeight">
       <ng-container *ngFor="let item of items">
-        <ix-event-list-item color="color-primary"
+        <ix-event-list-item item-color="color-primary"
           >Text {{ item }}</ix-event-list-item
         >
       </ng-container>

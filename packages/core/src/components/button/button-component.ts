@@ -8,22 +8,13 @@
  */
 
 import { ButtonVariant } from './button';
+import { AnchorInterface } from './button.interface';
 
-export interface IxButtonComponent {
+export interface IxButtonComponent extends AnchorInterface {
   /**
    * Annotate with @Prop() decorator
    */
   variant: ButtonVariant;
-
-  /**
-   * Annotate with @Prop() decorator
-   */
-  outline: boolean;
-
-  /**
-   * Annotate with @Prop() decorator
-   */
-  ghost: boolean;
 
   /**
    * Annotate with @Prop({ reflect: true }) decorator
@@ -44,4 +35,9 @@ export interface IxButtonComponent {
    * Annotate with @Prop() decorator
    */
   icon?: string;
+
+  /**
+   * Annotate with @Prop() decorator
+   */
+  ariaLabelButton?: string;
 }

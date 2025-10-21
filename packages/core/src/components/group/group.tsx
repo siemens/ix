@@ -23,7 +23,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import {
   iconChevronDownSmall,
-  iconChevronRightSmall,
+  iconChevronUpSmall,
 } from '@siemens/ix-icons/icons';
 
 @Component({
@@ -90,6 +90,8 @@ export class Group {
   @State() footerVisible = false;
 
   @State() showExpandCollapsedIcon = false;
+
+  @State() hasDropdown = false;
 
   private observer: MutationObserver = null!;
 
@@ -182,11 +184,16 @@ export class Group {
     }
   }
 
+  private checkDropdownSlot() {
+    this.hasDropdown = !!this.hostElement.querySelector('[slot="dropdown"]');
+  }
+
   componentWillRender() {
     this.groupItems.forEach((item, index) => {
       item.selected = index === this.index;
       item.index = index;
     });
+    this.checkDropdownSlot();
   }
 
   componentDidLoad() {
@@ -199,6 +206,7 @@ export class Group {
     this.observer.observe(this.groupContent, {
       childList: true,
     });
+    this.checkDropdownSlot();
   }
 
   disconnectedCallback() {
@@ -245,7 +253,7 @@ export class Group {
                   hidden: !this.showExpandCollapsedIcon,
                 }}
                 name={
-                  this.collapsed ? iconChevronRightSmall : iconChevronDownSmall
+                  this.collapsed ? iconChevronDownSmall : iconChevronUpSmall
                 }
                 onClick={(event: Event) => this.onExpandClick(event)}
               ></ix-icon>
@@ -265,9 +273,11 @@ export class Group {
               <slot name="header"></slot>
             </div>
           </div>
-          <ix-group-context-menu>
-            <slot name="dropdown"></slot>
-          </ix-group-context-menu>
+          {this.hasDropdown && (
+            <ix-group-context-menu>
+              <slot name="dropdown"></slot>
+            </ix-group-context-menu>
+          )}
         </div>
         <div
           class={{

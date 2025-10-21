@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './number-input-stepper-button.html'
+  templateUrl: './number-input-stepper-button.html',
 })
 export default class NumberInputStepperButton {}

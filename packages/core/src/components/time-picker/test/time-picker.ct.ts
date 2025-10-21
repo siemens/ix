@@ -167,12 +167,12 @@ regressionTest.describe('time picker tests', () => {
       await page.keyboard.press('Enter');
 
       // Change minutes
-      await page.keyboard.press('ArrowRight');
+      await page.keyboard.press('Tab');
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('Enter');
 
       // Change seconds
-      await page.keyboard.press('ArrowRight');
+      await page.keyboard.press('Tab');
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('Enter');
 

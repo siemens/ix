@@ -1,0 +1,111 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { expect } from '@playwright/test';
+import { regressionTest, viewPorts } from '@utils/test';
+
+regressionTest.describe('application header: basic', () => {
+  regressionTest('should not have visual regressions', async ({ page }) => {
+    await page.goto('application-header/basic');
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('without bottom border', async ({ page }) => {
+    await page.goto('application-header/no-border');
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('should use safe areas', async ({ page }) => {
+    await page.goto('application-header/basic');
+    const head = page.locator('head');
+    await head.evaluate(() => {
+      const style = document.createElement('style');
+      style.textContent = `
+        :root {
+          --ix-safe-area-inset-top: 10rem;
+        }
+      `;
+      document.head.appendChild(style);
+    });
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest(
+    'should not have visual regressions - svg',
+    async ({ page }) => {
+      await page.goto('application-header/basic-svg');
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest('should content', async ({ page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await page.goto('application-header/overflow');
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('should content - sm', async ({ page }) => {
+    await page.setViewportSize(viewPorts.sm);
+    await page.goto('application-header/overflow');
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest(
+    'should content - sm - click context menu',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.sm);
+      await page.goto('application-header/overflow');
+
+      const contextMenu = page
+        .locator('ix-application-header')
+        .locator('[data-context-menu]');
+
+      await expect(contextMenu).toBeVisible();
+      await contextMenu.click();
+
+      const dropdown = page
+        .locator('ix-application-header')
+        .locator('[data-overflow-dropdown]');
+
+      await expect(dropdown).toBeVisible();
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest('company logo and app icon', async ({ page }) => {
+    await page.goto('application-header/app-icon');
+
+    const applicationHeader = page.locator('ix-application-header');
+    await expect(applicationHeader).toHaveScreenshot();
+  });
+
+  regressionTest('app icon with outline', async ({ page }) => {
+    await page.goto('application-header/app-icon');
+
+    const applicationHeader = page.locator('ix-application-header');
+    await applicationHeader.evaluate((el: HTMLIxApplicationHeaderElement) => {
+      el.appIconOutline = true;
+    });
+
+    const appIcon = applicationHeader.locator('.app-icon');
+
+    await expect(appIcon).toHaveClass(/app-icon-outline/);
+    await expect(applicationHeader).toHaveScreenshot();
+  });
+});
+
+regressionTest.describe('application header: standalone', () => {
+  (Object.keys(viewPorts) as Array<keyof typeof viewPorts>).forEach((name) => {
+    regressionTest(`viewport ${name}`, async ({ page }) => {
+      await page.setViewportSize(viewPorts[name]);
+      await page.goto('application-header/standalone');
+      await expect(page).toHaveScreenshot();
+    });
+  });
+});

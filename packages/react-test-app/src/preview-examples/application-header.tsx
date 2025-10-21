@@ -21,11 +21,11 @@ export default () => {
     <IxApplicationHeader name="My Application">
       <div className="placeholder-logo" slot="logo"></div>
 
-      <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
-      <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
-      <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
+      <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
+      <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
+      <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
 
-      <IxDropdownButton variant="secondary" label="Select config" ghost>
+      <IxDropdownButton variant="subtle-tertiary" label="Select config">
         <IxDropdownItem label="Config 1"></IxDropdownItem>
         <IxDropdownItem label="Config 2"></IxDropdownItem>
         <IxDropdownItem label="Config 3"></IxDropdownItem>

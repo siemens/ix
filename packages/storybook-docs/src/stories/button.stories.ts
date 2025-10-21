@@ -9,18 +9,20 @@
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
-type Element = Components.IxButton & { defaultSlot: string };
+type Element = Components.IxButton & {
+  defaultSlot: string;
+  styles?: Record<string, string>;
+};
 
 const meta = {
   title: 'Example/Button',
   tags: [],
   render: (args) => genericRender('ix-button', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-button', {
-    variant: {
-      options: ['primary', 'secondary'],
-      control: { type: 'select' },
+    styles: {
+      control: { type: 'object' },
     },
   }),
   args: {},
@@ -35,10 +37,66 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
     defaultSlot: 'Button',
+    variant: 'primary',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'secondary',
+  },
+};
+
+export const Tertiary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'tertiary',
+  },
+};
+
+export const SubtlePrimary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'subtle-primary',
+  },
+};
+
+export const SubtleSecondary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'subtle-secondary',
+  },
+};
+
+export const SubtleTertiary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'subtle-tertiary',
+  },
+};
+
+export const DangerPrimary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'danger-primary',
+  },
+};
+
+export const DangerSecondary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'danger-secondary',
+  },
+};
+
+export const DangerTertiary: Story = {
+  args: {
+    defaultSlot: 'Button',
+    variant: 'danger-tertiary',
   },
 };
 
@@ -46,19 +104,35 @@ export const Loading: Story = {
   args: {
     defaultSlot: 'Button',
     loading: true,
-    ghost: false,
   },
 };
 
-export const ButtonOutlineWithIcon: Story = {
+export const SecondaryWithIcon: Story = {
   args: {
     defaultSlot: 'Button',
     disabled: false,
-    ghost: false,
     icon: 'eye',
     loading: false,
-    outline: true,
+    variant: 'secondary',
+  },
+};
+
+export const ButtonIconRight: Story = {
+  args: {
+    defaultSlot: 'Button',
+    iconRight: 'eye',
     variant: 'primary',
+  },
+};
+
+export const ButtonCustomWidth: Story = {
+  args: {
+    defaultSlot: 'Button',
+    iconRight: 'eye',
+    variant: 'primary',
+    styles: {
+      width: '400px',
+    },
   },
 };
 

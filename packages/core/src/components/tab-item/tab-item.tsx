@@ -8,10 +8,7 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-
-export type TabClickDetail = {
-  nativeEvent: MouseEvent;
-};
+import type { TabClickDetail } from './tab-item.types';
 
 @Component({
   tag: 'ix-tab-item',

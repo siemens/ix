@@ -6,17 +6,42 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ShowToastResult } from './toast-container';
+import type { ShowToastResult } from './toast-container.types';
 export type ToastType = 'info' | 'success' | 'error' | 'warning';
 export type ToastPosition = 'bottom-right' | 'top-right';
 
 export interface ToastConfig {
+  /**
+   * Title of the toast
+   */
   title?: string;
-  message: string | HTMLElement;
+  /**
+   * Message of the toast
+   */
+  message?: string | HTMLElement;
+  /**
+   * Action element that is displayed below the toast message/title
+   */
+  action?: HTMLElement;
+  /**
+   * Type of the toast
+   */
   type?: ToastType;
+  /**
+   * Controls whether the toast closes automatically after a delay
+   */
   autoClose?: boolean;
+  /**
+   * Sets the delay for autoClose in milliseconds
+   */
   autoCloseDelay?: number;
+  /**
+   * Icon that is displayed with the toast
+   */
   icon?: string;
+  /**
+   * Color of the icon
+   */
   iconColor?: string;
 }
 

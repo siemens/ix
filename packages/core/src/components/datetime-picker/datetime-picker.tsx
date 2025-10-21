@@ -8,18 +8,12 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import type { DateChangeEvent } from '../date-picker/date-picker';
+import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-
-export type DateTimeSelectEvent = {
-  from?: string;
-  to?: string;
-  time: string;
-};
-
-export type DateTimeDateChangeEvent =
-  | string
-  | Omit<DateTimeSelectEvent, 'time'>;
+import type {
+  DateTimeDateChangeEvent,
+  DateTimeSelectEvent,
+} from './datetime-picker.types';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -69,13 +63,13 @@ export class DatetimePicker
 
   /**
    * Date format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() dateFormat: string = 'yyyy/LL/dd';
 
   /**
    * Time format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() timeFormat: string = 'HH:mm:ss';
 
@@ -117,7 +111,19 @@ export class DatetimePicker
    *
    * @since 3.0.0
    */
-  @Prop() i18nTime: string = 'Time';
+  @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
+
+  /**
+   * ARIA label for the previous month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelPreviousMonthButton?: string;
+
+  /**
+   * ARIA label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelNextMonthButton?: string;
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
@@ -127,7 +133,7 @@ export class DatetimePicker
 
   /**
    * Format of time string
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() locale?: string;
 
@@ -203,6 +209,8 @@ export class DatetimePicker
                 standaloneAppearance={false}
                 locale={this.locale}
                 showWeekNumbers={this.showWeekNumbers}
+                ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
+                ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
               ></ix-date-picker>
             </ix-col>
 

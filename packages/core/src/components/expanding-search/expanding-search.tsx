@@ -51,17 +51,31 @@ export class ExpandingSearch
   /**
    * button variant
    */
-  @Prop() variant: ButtonVariant = 'primary';
+  @Prop() variant: ButtonVariant = 'tertiary';
 
   /**
-   * Outline button
+   * ARIA label for the search icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
    */
-  @Prop() outline = false;
+  @Prop() ariaLabelSearchIconButton?: string;
 
   /**
-   * Button with no background or outline
+   * ARIA label for the clear icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
    */
-  @Prop() ghost = true;
+  @Prop() ariaLabelClearIconButton?: string;
+
+  /**
+   * ARIA label for the search input
+   * Will be set as aria-label on the nested HTML input element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelSearchInput?: string;
 
   @State() isFieldChanged = false;
   @State() expanded = false;
@@ -127,9 +141,7 @@ export class ExpandingSearch
         <ix-icon-button
           size={this.expanded ? '16' : '24'}
           icon={this.icon ?? iconSearch}
-          variant={this.expanded ? 'primary' : this.variant}
-          ghost={this.ghost || this.expanded}
-          outline={this.outline && !this.expanded}
+          variant={this.expanded ? 'tertiary' : this.variant}
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
@@ -138,6 +150,7 @@ export class ExpandingSearch
             'btn-search': true,
             'btn-search--expanded': this.expanded,
           }}
+          aria-label={this.ariaLabelSearchIconButton}
         ></ix-icon-button>
 
         <div
@@ -170,16 +183,18 @@ export class ExpandingSearch
             onFocus={() => (this.hasFocus = true)}
             onInput={(e: InputEvent) => this.onChange(e)}
             tabindex={this.expanded ? 0 : -1}
+            aria-label={this.ariaLabelSearchInput}
           />
 
           {this.isFieldChanged ? (
             <ix-icon-button
               class="btn-clear"
               icon={iconClear}
-              ghost={true}
+              variant="subtle-tertiary"
               size="16"
               data-testid="clear-button"
               onClick={() => this.clearClicked()}
+              aria-label={this.ariaLabelClearIconButton}
             />
           ) : null}
         </div>

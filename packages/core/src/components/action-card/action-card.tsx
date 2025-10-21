@@ -8,9 +8,8 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { CardVariant } from '../card/card';
-
-export type ActionCardVariant = CardVariant;
+import type { ActionCardVariant } from './action-card.types';
+import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
 
 @Component({
   tag: 'ix-action-card',
@@ -29,6 +28,13 @@ export class IxActionCard {
   @Prop() icon: string | undefined = undefined;
 
   /**
+   * ARIA label for the icon
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelIcon?: string;
+
+  /**
    * Card heading
    */
   @Prop() heading?: string;
@@ -43,24 +49,63 @@ export class IxActionCard {
    */
   @Prop() selected = false;
 
+  /**
+   * ARIA label for the card
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelCard?: string;
+
+  private getSubheadingTextColor() {
+    return this.variant === 'outline' || this.variant === 'filled'
+      ? 'soft'
+      : undefined;
+  }
+
   render() {
+    const ariaLabelledBy =
+      !this.ariaLabelCard && this.heading
+        ? 'ix-action-card-heading'
+        : undefined;
+
     return (
       <Host>
         <ix-card
           selected={this.selected}
           variant={this.variant}
           class={'pointer'}
+          aria-label={this.ariaLabelCard}
+          aria-labelledby={ariaLabelledBy}
+          role={ariaLabelledBy ? 'group' : undefined}
         >
           <ix-card-content>
             {this.icon ? (
-              <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
+              <ix-icon
+                class={'icon'}
+                name={this.icon}
+                size="32"
+                aria-label={
+                  this.ariaLabelIcon || getFallbackLabelFromIconName(this.icon)
+                }
+              ></ix-icon>
             ) : null}
             <div>
               {this.heading ? (
-                <ix-typography format="h4">{this.heading}</ix-typography>
+                <ix-typography
+                  id="ix-action-card-heading"
+                  aria-hidden={a11yBoolean(!ariaLabelledBy)}
+                  format="h4"
+                >
+                  {this.heading}
+                </ix-typography>
               ) : null}
               {this.subheading ? (
-                <ix-typography format="h5">{this.subheading}</ix-typography>
+                <ix-typography
+                  format="h5"
+                  text-color={this.getSubheadingTextColor()}
+                >
+                  {this.subheading}
+                </ix-typography>
               ) : null}
               <slot></slot>
             </div>

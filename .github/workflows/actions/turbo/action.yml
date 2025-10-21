@@ -3,37 +3,24 @@ description: 'PNPM & Turbo Cache'
 runs:
   using: 'composite'
   steps:
+    - name: Cache turbo build setup
+      uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809
+      with:
+        path: .turbo
+        key: ${{ runner.os }}-turbo-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-turbo-
+
     - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda
       name: Install pnpm
       with:
         run_install: false
 
     - name: Setup Node.js environment
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
       with:
-        node-version: 22
+        node-version-file: './package.json'
         cache: 'pnpm'
-
-    - name: Get pnpm store directory
-      run: |
-        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-      shell: bash
-
-    - uses: actions/cache@v3
-      name: Setup pnpm cache
-      with:
-        path: ${{ env.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-
-
-    - name: Cache turbo build setup
-      uses: actions/cache@v3
-      with:
-        path: .turbo
-        key: ${{ runner.os }}-turbo-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-turbo-
 
     - name: Install dependencies
       run: pnpm install

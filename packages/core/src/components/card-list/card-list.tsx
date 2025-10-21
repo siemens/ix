@@ -14,6 +14,7 @@ import { iconChevronDown, iconMoreMenu } from '@siemens/ix-icons/icons';
 
 function CardListTitle(props: {
   label?: string;
+  ariaLabelExpandButton?: string;
   isCollapsed: boolean;
   onClick: (e: MouseEvent) => void;
   onShowAllClick: (e: MouseEvent) => void;
@@ -28,7 +29,7 @@ function CardListTitle(props: {
   return (
     <div class="CardList_Title">
       <ix-icon-button
-        ghost
+        variant="tertiary"
         icon={iconChevronDown}
         onClick={props.onClick}
         iconColor="color-primary"
@@ -36,6 +37,7 @@ function CardListTitle(props: {
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,
         }}
+        aria-label={props.ariaLabelExpandButton}
       ></ix-icon-button>
       <ix-typography class="CardList_Title__Label" format="body-lg">
         {props.label}
@@ -43,7 +45,7 @@ function CardListTitle(props: {
       {!props.hideShowAll && (
         <ix-button
           class="CardList__Title__Show__All"
-          ghost
+          variant="tertiary"
           onClick={props.onShowAllClick}
         >
           <span>{props.showAllLabel}</span>
@@ -62,6 +64,14 @@ function CardListTitle(props: {
   shadow: true,
 })
 export class CardList {
+  /**
+   * ARIA label for the card's expand button.
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelExpandButton?: string;
+
   /**
    * Name the card list
    */
@@ -102,12 +112,13 @@ export class CardList {
   /**
    * i18n Show all button
    */
-  @Prop() i18nShowAll = 'Show all';
+  @Prop({ attribute: 'i18n-show-all' }) i18nShowAll = 'Show all';
 
   /**
    * i18n More cards available
    */
-  @Prop() i18nMoreCards = 'There are more cards available';
+  @Prop({ attribute: 'i18n-more-cards' }) i18nMoreCards =
+    'There are more cards available';
 
   /**
    * Fire event when the collapse state is changed by the user

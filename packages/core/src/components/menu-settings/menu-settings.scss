@@ -7,28 +7,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/fonts';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'legacy/fonts';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
-
   display: block;
   background-color: var(--theme-nav-overlay--background);
-  padding: $medium-space $default-space $default-space $x-large-space;
+  padding: vars.$medium-space vars.$default-space vars.$default-space vars.$x-large-space;
   flex-grow: 1;
   position: absolute;
   width: 100%;
   height: 100%;
+
+  @include component.ix-component;
 
   .settings-header {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    height: $x-large-space;
-    margin-bottom: $small-space;
+    height: vars.$x-large-space;
+    margin-bottom: vars.$small-space;
 
     h2 {
       color: var(--theme-nav-overlay-header--color);
@@ -41,6 +41,6 @@
   }
 
   .settings-tabs {
-    margin-bottom: $large-space;
+    margin-bottom: vars.$large-space;
   }
 }

@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { h, type FunctionalComponent } from '@stencil/core';
-import { ProgressIndicatorSize } from './progress-indicator';
+import type {
+  ProgressIndicatorSize,
+  ProgressIndicatorStatus,
+} from './progress-indicator.types';
 
 function getCircularSize(size: ProgressIndicatorSize) {
   switch (size) {
@@ -29,13 +32,15 @@ function getCircularSize(size: ProgressIndicatorSize) {
 export type CircularProgressProps = {
   value: number;
   size: ProgressIndicatorSize;
+  status: ProgressIndicatorStatus;
+  alignment?: 'left' | 'center' | 'right';
 };
 
 export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
   props: Readonly<CircularProgressProps>,
   children
 ) => {
-  const { value, size } = props;
+  const { value, size, alignment } = props;
   const sizeInPixel = getCircularSize(size);
   const radius = sizeInPixel / 2;
   const circumference = 2 * Math.PI * radius;
@@ -44,7 +49,13 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
   const slotInsideCircular = size === 'lg' || size === 'xl';
 
   return (
-    <div class="circular-progress-container">
+    <div
+      class={{
+        'circular-progress-container': true,
+        [`align-${alignment}`]: !!alignment,
+        [props.status]: true,
+      }}
+    >
       <svg
         width={sizeInPixel}
         height={sizeInPixel}
@@ -60,7 +71,7 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
           cx={radius}
           cy={radius}
           fill="transparent"
-          stroke="var(--theme-color-component-4)"
+          stroke="var(--ix-progress-indicator-track-color)"
           stroke-width={`3px`}
         ></circle>
         {percentage > 0 && (
@@ -70,7 +81,6 @@ export const CircularProgress: FunctionalComponent<CircularProgressProps> = (
             cy={radius}
             stroke="var(--ix-progress-indicator-color)"
             stroke-width="3px"
-            stroke-linecap="round"
             stroke-dashoffset={`${percentage}px`}
             fill="transparent"
             stroke-dasharray={`${circumference}px`}

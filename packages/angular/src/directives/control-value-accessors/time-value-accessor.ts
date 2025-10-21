@@ -16,6 +16,8 @@ import {
 @Directive({
   selector: 'ix-time-input',
   providers: [createValueAccessorProvider(IxTimeValueAccessorDirective)],
+  standalone: false,
+
 })
 export class IxTimeValueAccessorDirective extends TimeValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {

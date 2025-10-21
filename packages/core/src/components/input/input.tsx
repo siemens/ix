@@ -325,9 +325,9 @@ export class Input implements IxInputFieldComponent<string> {
                 color="color-weak-text"
                 class={{
                   'password-eye': true,
-                  'eye-hidden': this.type !== 'password',
+                  'eye-hidden': this.type !== 'password' || this.disabled,
                 }}
-                ghost
+                variant="tertiary"
                 icon={
                   this.inputType === 'password' ? iconEye : iconEyeCancelled
                 }
@@ -348,7 +348,7 @@ export class Input implements IxInputFieldComponent<string> {
               slot="bottom-right"
               textColor="soft"
             >
-              {this.value?.length}/{this.maxLength}
+              {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>
           )}
         </ix-field-wrapper>

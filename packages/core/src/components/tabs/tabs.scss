@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
   width: auto;
   display: flex;
   align-items: center;
   position: relative;
+
+  @include component.ix-component;
 
   .tab-items {
     overflow: hidden;
@@ -30,6 +30,9 @@
   }
 
   .arrow {
+    // unset button styles first
+    all: unset;
+
     position: absolute;
     display: flex;
     align-items: center;
@@ -41,18 +44,18 @@
     left: 0;
     margin: auto 0;
     border-radius: 4px;
-    color: var(--theme-btn-invisible-primary--color);
-    background-color: var(--theme-btn-invisible-primary--background);
+    color: var(--theme-btn-tertiary--color);
+    background-color: var(--theme-btn-tertiary--background);
     z-index: 2;
 
     &:hover {
-      color: var(--theme-btn-invisible-primary--color--hover);
-      background-color: var(--theme-btn-invisible-primary--background--hover);
+      color: var(--theme-btn-tertiary--color--hover);
+      background-color: var(--theme-btn-tertiary--background--hover);
     }
 
     &:active {
-      color: var(--theme-btn-invisible-primary--color--active);
-      background-color: var(--theme-btn-invisible-primary--background--active);
+      color: var(--theme-btn-tertiary--color--active);
+      background-color: var(--theme-btn-tertiary--background--active);
     }
 
     &.right {

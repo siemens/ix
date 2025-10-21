@@ -17,12 +17,10 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
-
-export type SplitButtonVariant = ButtonVariant;
+import type { SplitButtonVariant } from './split-button.types';
 
 @Component({
   tag: 'ix-split-button',
@@ -43,19 +41,16 @@ export class SplitButton {
   @Prop() closeBehavior: CloseBehavior = 'both';
 
   /**
-   * Button outline variant
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button invisible
-   */
-  @Prop() ghost = false;
-
-  /**
    * Button label
    */
   @Prop() label?: string;
+
+  /**
+   * ARIA label for the button (use if no label and icon button)
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelButton?: string;
 
   /**
    * Button icon
@@ -66,6 +61,13 @@ export class SplitButton {
    * Icon of the button on the right
    */
   @Prop() splitIcon?: string;
+
+  /**
+   * ARIA label for the split icon button
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelSplitIconButton?: string;
 
   /**
    * Disabled
@@ -98,18 +100,17 @@ export class SplitButton {
   }
 
   render() {
+    const hasOutline = this.variant.toLocaleLowerCase().includes('secondary');
     const buttonAttributes = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       disabled: this.disabled,
       class: {
-        'left-button-border': !this.outline,
+        'left-button-border': !hasOutline,
       },
     };
     return (
       <Host>
-        <div class={{ 'btn-group': true, 'middle-gap': !this.outline }}>
+        <div class={{ 'btn-group': true, 'middle-gap': !hasOutline }}>
           {this.label ? (
             <ix-button
               {...buttonAttributes}
@@ -123,6 +124,7 @@ export class SplitButton {
               {...buttonAttributes}
               icon={this.icon}
               onClick={(e) => this.buttonClick.emit(e)}
+              aria-label={this.ariaLabelButton}
             ></ix-icon-button>
           )}
           <ix-icon-button
@@ -130,6 +132,7 @@ export class SplitButton {
             ref={(r) => (this.triggerElement = r)}
             class={'anchor'}
             icon={this.splitIcon ?? iconContextMenu}
+            aria-label={this.ariaLabelSplitIconButton}
           ></ix-icon-button>
         </div>
 

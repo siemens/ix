@@ -16,8 +16,10 @@ import {
   iconWarning,
 } from '@siemens/ix-icons/icons';
 import { CircularProgress } from './circular';
-
-export type ProgressIndicatorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+import type {
+  ProgressIndicatorSize,
+  ProgressIndicatorStatus,
+} from './progress-indicator.types';
 
 /**
  * @since 3.2.0
@@ -59,13 +61,7 @@ export class ProgressIndicator {
    * The state of the progress indicator.
    * This is used to indicate the current state of the progress indicator.
    */
-  @Prop() status:
-    | 'default'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'paused' = 'default';
+  @Prop() status: ProgressIndicatorStatus = 'default';
 
   /**
    * The label for the progress indicator.
@@ -120,13 +116,19 @@ export class ProgressIndicator {
         class={{
           'helper-text': true,
           [this.status]: true,
-          'text-left': this.textAlignment === 'left',
-          'text-center': this.textAlignment === 'center',
-          'text-right': this.textAlignment === 'right',
         }}
       >
         {icon && <ix-icon name={icon} size="16"></ix-icon>}
-        <div class="text">{this.helperText}</div>
+        <div
+          class={{
+            text: true,
+            'align-left': this.textAlignment === 'left',
+            'align-center': this.textAlignment === 'center',
+            'align-right': this.textAlignment === 'right',
+          }}
+        >
+          {this.helperText}
+        </div>
         <slot name="helper-text"></slot>
       </div>
     );
@@ -151,6 +153,9 @@ export class ProgressIndicator {
             'progress-indicator': true,
             [this.size]: true,
             [this.status]: true,
+            ['text-center']: this.textAlignment === 'center',
+            ['text-left']: this.textAlignment === 'left',
+            ['text-right']: this.textAlignment === 'right',
           }}
         >
           {this.label && (
@@ -166,13 +171,21 @@ export class ProgressIndicator {
           <div class="progress-container">
             {this.type === 'linear' ? (
               <Fragment>
-                <LinearBar value={clampedValue}></LinearBar>
+                <LinearBar
+                  value={clampedValue}
+                  status={this.status}
+                ></LinearBar>
                 <div class="linear-slot">
                   <slot></slot>
                 </div>
               </Fragment>
             ) : (
-              <CircularProgress value={clampedValue} size={this.size}>
+              <CircularProgress
+                status={this.status}
+                alignment={this.textAlignment}
+                value={clampedValue}
+                size={this.size}
+              >
                 <slot></slot>
               </CircularProgress>
             )}

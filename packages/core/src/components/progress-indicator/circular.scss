@@ -6,15 +6,42 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use './progress-indicator-vars' as progress-vars;
+
 @mixin circular {
   .circular-progress-container {
+    --ix-progress-indicator-track-color: var(
+      --theme-progress-indicator-track--background
+    );
+
     display: flex;
     align-items: center;
     width: 100%;
     gap: 0.25rem;
+    margin: var(--ix-progress-indicator-margin, 0.5rem 0);
+
+    &.align-left {
+      justify-content: flex-start;
+    }
+
+    &.align-center {
+      justify-content: center;
+    }
+
+    &.align-right {
+      justify-content: flex-end;
+    }
   }
+
+  @each $state in progress-vars.$progress-indicator-states {
+    .circular-progress-container.#{$state} {
+      --ix-progress-indicator-track-color: var(
+        --theme-progress-indicator-track-#{$state}--background
+      );
+    }
+  }
+
   .slotted-container {
-    width: 100%;
     height: 100%;
   }
 

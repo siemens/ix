@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconEye } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -18,9 +19,11 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { animate } from 'animejs';
+import Animation from '../utils/animation';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { FlipTileState } from './flip-tile-state';
-import { iconEye } from '@siemens/ix-icons/icons';
+import { FlipTileVariant } from './flip-tile.types';
+import { hasSlottedElements } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-flip-tile',
@@ -32,8 +35,10 @@ export class FlipTile {
 
   /**
    * Variation of the Flip
+   *
+   * @since 4.0.0
    */
-  @Prop() state?: FlipTileState;
+  @Prop() variant: FlipTileVariant = 'filled';
 
   /**
    * Height interpreted as REM
@@ -52,6 +57,14 @@ export class FlipTile {
   @Prop() index = 0;
 
   /**
+   * ARIA label for the eye icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelEyeIconButton?: string;
+
+  /**
    * Event emitted when the index changes
    * @since 3.0.0
    */
@@ -59,7 +72,8 @@ export class FlipTile {
 
   @State() isFlipAnimationActive: boolean = false;
 
-  private readonly ANIMATION_DURATION = 150;
+  @State() hasFooterSlot = false;
+
   private contentItems: Array<HTMLIxFlipTileContentElement> = [];
   private observer?: MutationObserver;
 
@@ -90,6 +104,12 @@ export class FlipTile {
     }
   }
 
+  private handleFooterSlotChange(event: Event) {
+    const { target } = event;
+    const slot = target as HTMLSlotElement;
+    this.hasFooterSlot = hasSlottedElements(slot);
+  }
+
   private updateContentItems() {
     this.contentItems = Array.from(
       this.hostElement.querySelectorAll('ix-flip-tile-content')
@@ -105,6 +125,8 @@ export class FlipTile {
   private toggleIndex() {
     let newIndex;
 
+    const oldIndex = this.index;
+
     if (this.index >= this.contentItems.length - 1) {
       newIndex = 0;
     } else {
@@ -114,6 +136,7 @@ export class FlipTile {
     const { defaultPrevented } = this.toggle.emit(newIndex);
 
     if (defaultPrevented) {
+      this.index = oldIndex;
       return;
     }
 
@@ -127,20 +150,43 @@ export class FlipTile {
 
     this.isFlipAnimationActive = true;
 
-    setTimeout(() => {
-      this.index = index;
-
-      this.updateContentVisibility(this.index);
-    }, this.ANIMATION_DURATION);
+    animate(
+      this.hostElement.shadowRoot!.querySelector('.flip-tile-container')!,
+      {
+        keyframes: {
+          '0%': {
+            transform: 'rotateY(0)',
+          },
+          '50%': {
+            transform: 'rotateY(90deg)',
+          },
+          '51%': {
+            transform: 'rotateY(270deg)',
+          },
+          '100%': {
+            transform: 'rotateY(360deg)',
+          },
+        },
+        duration: Animation.defaultTime,
+        easing: 'ease-in-out',
+        onComplete: () => {
+          this.index = index;
+          this.updateContentVisibility(this.index);
+        },
+      }
+    );
 
     setTimeout(() => {
       this.isFlipAnimationActive = false;
-    }, 2 * this.ANIMATION_DURATION);
+    }, 2 * Animation.defaultTime);
   }
 
   render() {
     return (
       <Host
+        class={{
+          [`flip-tile-variant-${this.variant}`]: true,
+        }}
         style={{
           height: `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
           'min-height': `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
@@ -150,25 +196,16 @@ export class FlipTile {
           'max-width': `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
         }}
       >
-        <div
-          class={{
-            'flip-tile-container': true,
-            info: this.state === FlipTileState.Info,
-            warning: this.state === FlipTileState.Warning,
-            alarm: this.state === FlipTileState.Alarm,
-            primary: this.state === FlipTileState.Primary,
-            'flip-animation-active': this.isFlipAnimationActive,
-          }}
-        >
+        <div class="flip-tile-container">
           <div class="flip-tile-header">
             <div class="header-slot-container text-l-title">
               <slot name="header"></slot>
             </div>
             <ix-icon-button
               icon={iconEye}
-              variant="primary"
-              ghost
+              variant="tertiary"
               onClick={() => this.toggleIndex()}
+              aria-label={this.ariaLabelEyeIconButton}
             ></ix-icon-button>
           </div>
 
@@ -178,13 +215,13 @@ export class FlipTile {
           <div
             class={{
               footer: true,
-              'contrast-light': this.state === FlipTileState.Warning,
-              'contrast-dark':
-                this.state === FlipTileState.Info ||
-                this.state === FlipTileState.Alarm,
+              'show-footer': this.hasFooterSlot,
             }}
           >
-            <slot name="footer"></slot>
+            <slot
+              name="footer"
+              onSlotchange={(event) => this.handleFooterSlotChange(event)}
+            ></slot>
           </div>
         </div>
       </Host>

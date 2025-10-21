@@ -115,9 +115,11 @@ import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/compon
 export const IxActionCard: StencilVueComponent<JSX.IxActionCard> = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', defineIxActionCard, [
   'variant',
   'icon',
+  'ariaLabelIcon',
   'heading',
   'subheading',
-  'selected'
+  'selected',
+  'ariaLabelCard'
 ]);
 
 
@@ -132,7 +134,17 @@ export const IxApplication: StencilVueComponent<JSX.IxApplication> = /*@__PURE__
 
 export const IxApplicationHeader: StencilVueComponent<JSX.IxApplicationHeader> = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', defineIxApplicationHeader, [
   'name',
+  'nameSuffix',
+  'companyLogo',
+  'companyLogoAlt',
+  'appIcon',
+  'appIconAlt',
+  'appIconOutline',
+  'hideBottomBorder',
   'showMenu',
+  'ariaLabelMenuExpandIconButton',
+  'ariaLabelAppSwitchIconButton',
+  'ariaLabelMoreMenuIconButton',
   'menuToggle',
   'openAppSwitch'
 ], [
@@ -142,10 +154,13 @@ export const IxApplicationHeader: StencilVueComponent<JSX.IxApplicationHeader> =
 
 
 export const IxAvatar: StencilVueComponent<JSX.IxAvatar> = /*@__PURE__*/ defineContainer<JSX.IxAvatar>('ix-avatar', defineIxAvatar, [
+  'a11yLabel',
   'image',
   'initials',
   'username',
-  'extra'
+  'extra',
+  'tooltipText',
+  'ariaLabelTooltip'
 ]);
 
 
@@ -183,8 +198,12 @@ export const IxBreadcrumb: StencilVueComponent<JSX.IxBreadcrumb> = /*@__PURE__*/
 
 
 export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumbItem>('ix-breadcrumb-item', defineIxBreadcrumbItem, [
+  'ariaLabelButton',
   'label',
   'icon',
+  'href',
+  'target',
+  'rel',
   'ghost',
   'visible',
   'showChevron',
@@ -196,16 +215,19 @@ export const IxBreadcrumbItem: StencilVueComponent<JSX.IxBreadcrumbItem> = /*@__
 
 
 export const IxButton: StencilVueComponent<JSX.IxButton> = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button', defineIxButton, [
+  'ariaLabelButton',
   'variant',
-  'outline',
-  'ghost',
   'disabled',
   'type',
   'loading',
   'form',
   'icon',
+  'iconRight',
   'alignment',
-  'iconSize'
+  'iconSize',
+  'href',
+  'target',
+  'rel'
 ]);
 
 
@@ -216,7 +238,9 @@ export const IxCard: StencilVueComponent<JSX.IxCard> = /*@__PURE__*/ defineConta
 
 
 export const IxCardAccordion: StencilVueComponent<JSX.IxCardAccordion> = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', defineIxCardAccordion, [
+  'ariaLabelExpandButton',
   'collapse',
+  'variant',
   'accordionExpand'
 ], [
   'accordionExpand'
@@ -227,6 +251,7 @@ export const IxCardContent: StencilVueComponent<JSX.IxCardContent> = /*@__PURE__
 
 
 export const IxCardList: StencilVueComponent<JSX.IxCardList> = /*@__PURE__*/ defineContainer<JSX.IxCardList>('ix-card-list', defineIxCardList, [
+  'ariaLabelExpandButton',
   'label',
   'collapse',
   'listStyle',
@@ -264,6 +289,9 @@ export const IxCategoryFilter: StencilVueComponent<JSX.IxCategoryFilter> = /*@__
   'tmpDisableScrollIntoView',
   'labelCategories',
   'i18nPlainText',
+  'ariaLabelResetButton',
+  'ariaLabelOperatorButton',
+  'ariaLabelFilterInput',
   'categoryChanged',
   'inputChanged',
   'filterChanged',
@@ -292,7 +320,7 @@ export const IxCheckbox: StencilVueComponent<JSX.IxCheckbox, JSX.IxCheckbox["che
   'valueChange',
   'ixBlur'
 ],
-'checked', 'checkedChange');
+'checked', 'checkedChange', undefined);
 
 
 export const IxCheckboxGroup: StencilVueComponent<JSX.IxCheckboxGroup> = /*@__PURE__*/ defineContainer<JSX.IxCheckboxGroup>('ix-checkbox-group', defineIxCheckboxGroup, [
@@ -318,6 +346,7 @@ export const IxChip: StencilVueComponent<JSX.IxChip> = /*@__PURE__*/ defineConta
   'outline',
   'tooltipText',
   'centerContent',
+  'ariaLabelCloseButton',
   'closeChip'
 ], [
   'closeChip'
@@ -368,10 +397,9 @@ export const IxDateDropdown: StencilVueComponent<JSX.IxDateDropdown> = /*@__PURE
   'maxDate',
   'dateRangeId',
   'variant',
-  'outline',
-  'ghost',
   'loading',
   'showWeekNumbers',
+  'ariaLabelDropdownButton',
   'customRangeAllowed',
   'dateRangeOptions',
   'locale',
@@ -390,11 +418,14 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'name',
   'placeholder',
   'value',
+  'minDate',
+  'maxDate',
   'locale',
   'format',
   'required',
   'helperText',
   'label',
+  'ariaLabelCalendarButton',
   'invalidText',
   'readonly',
   'disabled',
@@ -404,6 +435,9 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'showTextAsTooltip',
   'i18nErrorDateUnparsable',
   'showWeekNumbers',
+  'weekStartIndex',
+  'ariaLabelPreviousMonthButton',
+  'ariaLabelNextMonthButton',
   'valueChange',
   'validityStateChange',
   'ixFocus',
@@ -414,7 +448,7 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'ixFocus',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
@@ -426,6 +460,8 @@ export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/
   'minDate',
   'maxDate',
   'i18nDone',
+  'ariaLabelPreviousMonthButton',
+  'ariaLabelNextMonthButton',
   'weekStartIndex',
   'locale',
   'showWeekNumbers',
@@ -457,6 +493,8 @@ export const IxDatetimePicker: StencilVueComponent<JSX.IxDatetimePicker> = /*@__
   'timeReference',
   'i18nDone',
   'i18nTime',
+  'ariaLabelPreviousMonthButton',
+  'ariaLabelNextMonthButton',
   'weekStartIndex',
   'locale',
   'showWeekNumbers',
@@ -480,6 +518,7 @@ export const IxDrawer: StencilVueComponent<JSX.IxDrawer> = /*@__PURE__*/ defineC
   'minWidth',
   'maxWidth',
   'width',
+  'ariaLabelCloseButton',
   'open',
   'drawerClose'
 ], [
@@ -510,13 +549,12 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
 
 export const IxDropdownButton: StencilVueComponent<JSX.IxDropdownButton> = /*@__PURE__*/ defineContainer<JSX.IxDropdownButton>('ix-dropdown-button', defineIxDropdownButton, [
   'variant',
-  'outline',
-  'ghost',
   'disabled',
   'label',
   'icon',
   'closeBehavior',
-  'placement'
+  'placement',
+  'ariaLabelDropdownButton'
 ]);
 
 
@@ -528,6 +566,8 @@ export const IxDropdownHeader: StencilVueComponent<JSX.IxDropdownHeader> = /*@__
 export const IxDropdownItem: StencilVueComponent<JSX.IxDropdownItem> = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>('ix-dropdown-item', defineIxDropdownItem, [
   'label',
   'icon',
+  'ariaLabelIcon',
+  'ariaLabelButton',
   'hover',
   'disabled',
   'checked',
@@ -548,6 +588,7 @@ export const IxEmptyState: StencilVueComponent<JSX.IxEmptyState> = /*@__PURE__*/
   'header',
   'subHeader',
   'action',
+  'ariaLabelEmptyStateIcon',
   'actionClick'
 ], [
   'actionClick'
@@ -563,6 +604,7 @@ export const IxEventList: StencilVueComponent<JSX.IxEventList> = /*@__PURE__*/ d
 
 
 export const IxEventListItem: StencilVueComponent<JSX.IxEventListItem> = /*@__PURE__*/ defineContainer<JSX.IxEventListItem>('ix-event-list-item', defineIxEventListItem, [
+  'variant',
   'itemColor',
   'selected',
   'disabled',
@@ -579,8 +621,9 @@ export const IxExpandingSearch: StencilVueComponent<JSX.IxExpandingSearch> = /*@
   'value',
   'fullWidth',
   'variant',
-  'outline',
-  'ghost',
+  'ariaLabelSearchIconButton',
+  'ariaLabelClearIconButton',
+  'ariaLabelSearchInput',
   'valueChange'
 ], [
   'valueChange'
@@ -598,6 +641,7 @@ export const IxFieldLabel: StencilVueComponent<JSX.IxFieldLabel> = /*@__PURE__*/
 export const IxFilterChip: StencilVueComponent<JSX.IxFilterChip> = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-filter-chip', defineIxFilterChip, [
   'disabled',
   'readonly',
+  'ariaLabelCloseIconButton',
   'closeClick'
 ], [
   'closeClick'
@@ -605,10 +649,11 @@ export const IxFilterChip: StencilVueComponent<JSX.IxFilterChip> = /*@__PURE__*/
 
 
 export const IxFlipTile: StencilVueComponent<JSX.IxFlipTile> = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', defineIxFlipTile, [
-  'state',
+  'variant',
   'height',
   'width',
   'index',
+  'ariaLabelEyeIconButton',
   'toggle'
 ], [
   'toggle'
@@ -643,6 +688,7 @@ export const IxGroupContextMenu: StencilVueComponent<JSX.IxGroupContextMenu> = /
 
 export const IxGroupItem: StencilVueComponent<JSX.IxGroupItem> = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-group-item', defineIxGroupItem, [
   'icon',
+  'ariaLabelIcon',
   'text',
   'secondaryText',
   'suppressSelection',
@@ -668,8 +714,6 @@ export const IxHelperText: StencilVueComponent<JSX.IxHelperText> = /*@__PURE__*/
 export const IxIconButton: StencilVueComponent<JSX.IxIconButton> = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-icon-button', defineIxIconButton, [
   'a11yLabel',
   'variant',
-  'outline',
-  'ghost',
   'oval',
   'icon',
   'size',
@@ -690,6 +734,7 @@ export const IxIconToggleButton: StencilVueComponent<JSX.IxIconToggleButton> = /
   'size',
   'disabled',
   'loading',
+  'ariaLabelIconButton',
   'pressedChange'
 ], [
   'pressedChange'
@@ -723,7 +768,7 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxInputGroup: StencilVueComponent<JSX.IxInputGroup> = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', defineIxInputGroup);
@@ -731,6 +776,7 @@ export const IxInputGroup: StencilVueComponent<JSX.IxInputGroup> = /*@__PURE__*/
 
 export const IxKeyValue: StencilVueComponent<JSX.IxKeyValue> = /*@__PURE__*/ defineContainer<JSX.IxKeyValue>('ix-key-value', defineIxKeyValue, [
   'icon',
+  'ariaLabelIcon',
   'label',
   'labelPosition',
   'value'
@@ -744,6 +790,8 @@ export const IxKeyValueList: StencilVueComponent<JSX.IxKeyValueList> = /*@__PURE
 
 export const IxKpi: StencilVueComponent<JSX.IxKpi> = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', defineIxKpi, [
   'label',
+  'ariaLabelAlarmIcon',
+  'ariaLabelWarningIcon',
   'value',
   'unit',
   'state',
@@ -774,6 +822,7 @@ export const IxMapNavigation: StencilVueComponent<JSX.IxMapNavigation> = /*@__PU
   'applicationName',
   'navigationTitle',
   'hideContextMenu',
+  'ariaLabelContextIconButton',
   'navigationToggled',
   'contextMenuClick'
 ], [
@@ -785,6 +834,8 @@ export const IxMapNavigation: StencilVueComponent<JSX.IxMapNavigation> = /*@__PU
 export const IxMapNavigationOverlay: StencilVueComponent<JSX.IxMapNavigationOverlay> = /*@__PURE__*/ defineContainer<JSX.IxMapNavigationOverlay>('ix-map-navigation-overlay', defineIxMapNavigationOverlay, [
   'name',
   'icon',
+  'ariaLabelIcon',
+  'ariaLabelCloseIconButton',
   'color',
   'iconColor',
   'closeClick'
@@ -885,6 +936,7 @@ export const IxMenuCategory: StencilVueComponent<JSX.IxMenuCategory> = /*@__PURE
   'label',
   'icon',
   'notifications',
+  'tooltipText',
   'closeOtherCategories'
 ], [
   'closeOtherCategories'
@@ -899,6 +951,10 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
   'notifications',
   'active',
   'disabled',
+  'tooltipText',
+  'href',
+  'target',
+  'rel',
   'isCategory'
 ]);
 
@@ -959,6 +1015,8 @@ export const IxModalFooter: StencilVueComponent<JSX.IxModalFooter> = /*@__PURE__
 export const IxModalHeader: StencilVueComponent<JSX.IxModalHeader> = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('ix-modal-header', defineIxModalHeader, [
   'hideClose',
   'icon',
+  'ariaLabelIcon',
+  'ariaLabelCloseIconButton',
   'iconColor',
   'closeClick'
 ], [
@@ -994,7 +1052,7 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxPagination: StencilVueComponent<JSX.IxPagination> = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', defineIxPagination, [
@@ -1006,6 +1064,8 @@ export const IxPagination: StencilVueComponent<JSX.IxPagination> = /*@__PURE__*/
   'i18nPage',
   'i18nOf',
   'i18nItems',
+  'ariaLabelChevronLeftIconButton',
+  'ariaLabelChevronRightIconButton',
   'pageSelected',
   'itemCountChanged'
 ], [
@@ -1023,6 +1083,9 @@ export const IxPane: StencilVueComponent<JSX.IxPane> = /*@__PURE__*/ defineConta
   'expanded',
   'composition',
   'icon',
+  'closeOnClickOutside',
+  'ariaLabelIcon',
+  'ariaLabelCollapseCloseButton',
   'ignoreLayoutSettings',
   'isMobile',
   'expandedChanged',
@@ -1050,6 +1113,7 @@ export const IxPill: StencilVueComponent<JSX.IxPill> = /*@__PURE__*/ defineConta
   'variant',
   'outline',
   'icon',
+  'ariaLabelIcon',
   'background',
   'pillColor',
   'alignLeft',
@@ -1073,6 +1137,7 @@ export const IxProgressIndicator: StencilVueComponent<JSX.IxProgressIndicator> =
 
 export const IxPushCard: StencilVueComponent<JSX.IxPushCard> = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push-card', defineIxPushCard, [
   'icon',
+  'ariaLabelIcon',
   'notification',
   'heading',
   'subheading',
@@ -1122,6 +1187,8 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'name',
   'required',
   'label',
+  'ariaLabelChevronDownIconButton',
+  'ariaLabelClearIconButton',
   'warningText',
   'infoText',
   'invalidText',
@@ -1152,7 +1219,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'addItem',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
@@ -1192,11 +1259,11 @@ export const IxSpinner: StencilVueComponent<JSX.IxSpinner> = /*@__PURE__*/ defin
 export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__*/ defineContainer<JSX.IxSplitButton>('ix-split-button', defineIxSplitButton, [
   'variant',
   'closeBehavior',
-  'outline',
-  'ghost',
   'label',
+  'ariaLabelButton',
   'icon',
   'splitIcon',
+  'ariaLabelSplitIconButton',
   'disabled',
   'placement',
   'buttonClick'
@@ -1226,6 +1293,8 @@ export const IxTabs: StencilVueComponent<JSX.IxTabs> = /*@__PURE__*/ defineConta
   'selected',
   'layout',
   'placement',
+  'ariaLabelChevronLeftIconButton',
+  'ariaLabelChevronRightIconButton',
   'selectedChange'
 ], [
   'selectedChange'
@@ -1261,7 +1330,7 @@ export const IxTextarea: StencilVueComponent<JSX.IxTextarea, JSX.IxTextarea["val
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'valueChange');
+'value', 'valueChange', undefined);
 
 
 export const IxTile: StencilVueComponent<JSX.IxTile> = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defineIxTile, [
@@ -1273,7 +1342,6 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'name',
   'placeholder',
   'value',
-  'locale',
   'format',
   'required',
   'helperText',
@@ -1296,6 +1364,7 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'i18nMinuteColumnHeader',
   'i18nSecondColumnHeader',
   'i18nMillisecondColumnHeader',
+  'hideHeader',
   'valueChange',
   'validityStateChange',
   'ixFocus',
@@ -1346,6 +1415,7 @@ export const IxToast: StencilVueComponent<JSX.IxToast> = /*@__PURE__*/ defineCon
   'autoClose',
   'icon',
   'iconColor',
+  'ariaLabelCloseIconButton',
   'closeToast'
 ], [
   'closeToast'
@@ -1382,12 +1452,12 @@ export const IxToggle: StencilVueComponent<JSX.IxToggle> = /*@__PURE__*/ defineC
 
 export const IxToggleButton: StencilVueComponent<JSX.IxToggleButton> = /*@__PURE__*/ defineContainer<JSX.IxToggleButton>('ix-toggle-button', defineIxToggleButton, [
   'variant',
-  'outline',
-  'ghost',
   'disabled',
   'loading',
   'icon',
+  'iconRight',
   'pressed',
+  'ariaLabelButton',
   'pressedChange'
 ], [
   'pressedChange'
@@ -1427,6 +1497,7 @@ export const IxTreeItem: StencilVueComponent<JSX.IxTreeItem> = /*@__PURE__*/ def
   'text',
   'hasChildren',
   'context',
+  'ariaLabelChevronIcon',
   'toggle',
   'itemClick'
 ], [

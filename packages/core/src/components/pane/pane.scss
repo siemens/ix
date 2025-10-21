@@ -7,27 +7,54 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
 
 @mixin set-border($composition) {
   @if $composition {
-    border-#{$composition}: var(--theme-app-header--border-width) solid var(--theme-color-soft-bdr);
+    border-#{$composition}: var(--theme-app-header--border-width)
+      solid
+      var(--ix-pane--border-color);
   }
 }
 
+:host(.floating-pane) {
+  --ix-pane--background: var(--theme-pane-floating--background);
+  --ix-pane--border-color: var(--theme-pane-floating--border-color);
+  --ix-pane--color: var(--theme-pane-floating--color);
+  --ix-pane--box-shadow: var(--theme-pane-floating--box-shadow);
+}
+
+:host(.inline-pane) {
+  --ix-pane--background: var(--theme-pane-inline--background);
+  --ix-pane--border-color: var(--theme-pane-inline--border-color);
+  --ix-pane--color: var(--theme-pane-inline--color);
+  --ix-pane--box-shadow: var(--theme-pane-inline--box-shadow);
+}
+
 :host {
-  @include ix-component;
-  background-color: var(--theme-color-2);
   display: flex;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  box-shadow: var(--ix-pane--box-shadow);
+  background-color: var(--ix-pane--background);
+
+  @include component.ix-component;
 
   aside {
     width: 100%;
     height: 100%;
+  }
+
+  .pane-icon {
+    color: var(--ix-pane--color);
+  }
+
+  .slot-header-content {
+    display: inline-block;
+    position: relative;
+    max-height: 2rem;
   }
 
   .title-text {
@@ -62,12 +89,14 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin: var(--theme-space--1) var(--theme-space-2) var(--theme-space--1) var(--theme-space-2);
+      margin: var(--theme-space--1) var(--theme-space-2) var(--theme-space--1)
+        var(--theme-space-2);
     }
 
     .title-finished {
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
+        var(--theme-space-2);
     }
 
     .title-expanded {
@@ -80,7 +109,8 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
+        var(--theme-space-2);
     }
   }
 
@@ -92,7 +122,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: var(--theme-space-2) var(--theme-space--1)  var(--theme-space-2) var(--theme-space--1);
+      margin: var(--theme-space-2) var(--theme-space--1) var(--theme-space-2)
+        var(--theme-space--1);
 
       .title-text {
         flex-direction: row-reverse;
@@ -114,7 +145,8 @@
 
     .title-finished {
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
+        var(--theme-space-2);
     }
 
     .title-expanded {
@@ -127,7 +159,8 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2)
+        var(--theme-space-2);
     }
   }
 
@@ -149,10 +182,21 @@
   }
 
   .side-pane-content {
-    padding: var(--theme-space-1) var(--theme-space-2);
+    padding: var(--theme-space-1) var(--theme-space-2) var(--theme-space-3)
+      var(--theme-space-2);
     overflow: auto;
     height: 100%;
     width: 100%;
+  }
+
+  .slot-header {
+    max-height: 2rem;
+    max-width: unset;
+  }
+
+  .slot-header.rotate {
+    max-height: unset;
+    max-width: 2rem;
   }
 }
 
@@ -160,16 +204,9 @@
   display: none;
 }
 
-:host(.inline-color) {
-  background-color: var(--theme-color-1);
-}
-
-:host(.box-shadow) {
-  box-shadow: 0 0 1rem black;
-}
-
 :host(.nav-left-border) {
-  border-left: var(--theme-app-header--border-width) solid var(--theme-color-weak-bdr);
+  border-left: var(--theme-app-header--border-width) solid
+    var(--ix-pane--border-color);
 }
 
 :host(.left-pane-border) {

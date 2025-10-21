@@ -10,6 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   styleUrls: ['./dropdown-button-icon.css'],
   template: `
@@ -18,11 +19,11 @@ import { Component } from '@angular/core';
         <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
       </ix-dropdown-button>
-      <ix-dropdown-button label="" outline icon="checkboxes">
+      <ix-dropdown-button variant="subtle-primary" label="" icon="checkboxes">
         <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
       </ix-dropdown-button>
-      <ix-dropdown-button label="" ghost icon="checkboxes">
+      <ix-dropdown-button variant="tertiary" label="" icon="checkboxes">
         <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
       </ix-dropdown-button>

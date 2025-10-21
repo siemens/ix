@@ -72,10 +72,10 @@ function EventListExample() {
   return (
     <div className={styles.Example}>
       <IxEventList compact>
-        <IxEventListItem color="color-primary">Text 1</IxEventListItem>
-        <IxEventListItem color="color-primary">Text 2</IxEventListItem>
-        <IxEventListItem color="color-primary">Text 3</IxEventListItem>
-        <IxEventListItem color="color-primary">Text 4</IxEventListItem>
+        <IxEventListItem itemColor="color-primary">Text 1</IxEventListItem>
+        <IxEventListItem itemColor="color-primary">Text 2</IxEventListItem>
+        <IxEventListItem itemColor="color-primary">Text 3</IxEventListItem>
+        <IxEventListItem itemColor="color-primary">Text 4</IxEventListItem>
       </IxEventList>
     </div>
   );
@@ -96,17 +96,17 @@ function ButtonExample() {
   return (
     <div className={classNames(styles.Example, styles.ButtonExample)}>
       <IxButton>Button primary</IxButton>
-      <IxButton variant="secondary">Button primary</IxButton>
-      <IxButton outline>Button primary</IxButton>
-      <IxButton outline variant="secondary">
+      <IxButton variant="subtle-primary">Button primary</IxButton>
+      <IxButton variant="subtle-primary">Button primary</IxButton>
+      <IxButton variant="subtle-secondary">
         Button primary
       </IxButton>
-      <IxButton ghost>Button primary</IxButton>
-      <IxButton ghost variant="secondary">
+      <IxButton variant="tertiary">Button primary</IxButton>
+      <IxButton variant="subtle-tertiary">
         Button primary
       </IxButton>
       <IxButton disabled>Button primary</IxButton>
-      <IxButton disabled variant="secondary">
+      <IxButton disabled variant="subtle-primary">
         Button primary
       </IxButton>
     </div>
@@ -141,7 +141,7 @@ function IconExamples() {
               <IxCol
                 key={`${row}_${col}_${icon}`}
                 size="3"
-                class={styles.IconCol}
+                className={styles.IconCol}
               >
                 <IxIcon name={icon}></IxIcon>
               </IxCol>

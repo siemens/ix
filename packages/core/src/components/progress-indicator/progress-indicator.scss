@@ -8,6 +8,7 @@
  */
 @use './linear' as linear;
 @use './circular' as circular;
+@use './progress-indicator-vars' as progress-vars;
 
 :host {
   display: block;
@@ -17,81 +18,81 @@
 
   .progress-container {
     display: flex;
+    width: 100%;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
     flex-wrap: nowrap;
   }
 
   .label {
-    margin: 0.25rem 0px;
+    margin: 0.5rem 0 0.25rem 0;
   }
 
   .helper-text {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     margin: 0.25rem 0px;
     gap: 0.25rem;
+    color: var(--theme-progress-indicator-helper--color);
 
     ix-icon {
       margin: 0.125rem;
+      color: var(--theme-progress-indicator-helper-icon--color);
     }
 
-    &.success {
-      ix-icon {
-        color: var(--theme-color-success);
+    @each $state in progress-vars.$progress-indicator-states {
+      &.#{$state} {
+        color: var(--theme-progress-indicator-helper-#{$state}--color);
+
+        ix-icon {
+          color: var(--theme-progress-indicator-helper-icon-#{$state}--color);
+        }
       }
     }
 
-    &.error {
-      color: var(--theme-color-alarm-text);
-
-      ix-icon {
-        color: var(--theme-color-alarm);
+    .text {
+      &.align-left {
+        text-align: start;
       }
-    }
 
-    &.info {
-      ix-icon {
-        color: var(--theme-color-info);
+      &.align-right {
+        text-align: end;
       }
-    }
 
-    &.warning {
-      ix-icon {
-        color: var(--theme-color-warning);
+      &.align-center {
+        text-align: center;
       }
-    }
-
-    &.paused {
-      ix-icon {
-        color: var(--theme-color-neutral);
-      }
-    }
-
-    &.text-left {
-      justify-content: flex-start;
-    }
-
-    &.text-right {
-      justify-content: flex-end;
-    }
-
-    &.text-center {
-      justify-content: center;
     }
   }
 
   .progress-indicator {
-    --ix-progress-indicator-color: var(--theme-color-success);
+    display: flex;
+    flex-direction: column;
+
+    &.text-center {
+      align-items: center;
+    }
+
+    &.text-left {
+      align-items: flex-start;
+    }
+
+    &.text-right {
+      align-items: flex-end;
+    }
+
+    --ix-progress-indicator-margin: 0.5rem 0;
 
     height: 100%;
 
     &.xs {
       --ix-progress-indicator-height: 0.125rem;
+      --ix-progress-indicator-margin: 0.25rem 0;
     }
 
     &.sm {
       --ix-progress-indicator-height: 0.25rem;
+      --ix-progress-indicator-margin: 0.375rem 0;
     }
 
     &.md {
@@ -106,24 +107,16 @@
       --ix-progress-indicator-height: 1.5rem;
     }
 
-    &.success {
-      --ix-progress-indicator-color: var(--theme-color-success);
-    }
+    --ix-progress-indicator-color: var(
+      --theme-progress-indicator-fill--background
+    );
 
-    &.error {
-      --ix-progress-indicator-color: var(--theme-color-alarm);
-    }
-
-    &.info {
-      --ix-progress-indicator-color: var(--theme-color-info);
-    }
-
-    &.warning {
-      --ix-progress-indicator-color: var(--theme-color-warning);
-    }
-
-    &.paused {
-      --ix-progress-indicator-color: var(--theme-color-neutral);
+    @each $state in progress-vars.$progress-indicator-states {
+      &.#{$state} {
+        --ix-progress-indicator-color: var(
+          --theme-progress-indicator-fill-#{$state}--background
+        );
+      }
     }
   }
 }

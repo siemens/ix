@@ -89,6 +89,12 @@ export class Chip {
   @Prop() centerContent = false;
 
   /**
+   * ARIA label for the close button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelCloseButton?: string;
+
+  /**
    * Fire event if close button is clicked
    */
   @Event() closeChip!: EventEmitter;
@@ -100,17 +106,17 @@ export class Chip {
       <div class="close-button-container">
         <ix-icon-button
           type="button"
-          variant="secondary"
+          variant="subtle-tertiary"
           icon={iconCloseSmall}
           class="close-button"
           oval
           size="16"
           style={this.variant === 'custom' ? { color: this.chipColor } : {}}
-          ghost
           onClick={(event) => {
             this.closeChip.emit(event);
             event.stopPropagation();
           }}
+          aria-label={this.ariaLabelCloseButton}
         ></ix-icon-button>
       </div>
     );

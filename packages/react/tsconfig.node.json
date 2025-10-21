@@ -18,5 +18,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.mts"]
+  "include": ["vite.browser.config.ts"]
 }

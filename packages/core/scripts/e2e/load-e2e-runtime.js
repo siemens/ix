@@ -1,4 +1,13 @@
 /*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
@@ -54,10 +63,21 @@ function loadResources() {
 }
 
 function detectThemeSwitching() {
+  const dataIxTheme ='data-ix-theme';
+  const dataIxColorSchema ='data-ix-color-schema';
   const searchParams = new URLSearchParams(location.search);
+
   if (searchParams.has('theme')) {
     const theme = searchParams.get('theme');
     document.body.classList.add(theme);
+  } else if (searchParams.has(dataIxTheme)) {
+    const ixTheme = searchParams.get(dataIxTheme);
+    document.body.setAttribute(dataIxTheme, ixTheme);
+  }
+
+  if (searchParams.has(dataIxColorSchema)) {
+    const colorSchema = searchParams.get(dataIxColorSchema);
+    document.body.setAttribute(dataIxColorSchema, colorSchema);
   }
 }
 

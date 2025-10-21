@@ -30,9 +30,7 @@ import {
 })
 export class Pagination {
   private readonly baseButtonConfig: BaseButtonProps = {
-    variant: 'secondary',
-    outline: false,
-    ghost: true,
+    variant: 'subtle-tertiary',
     iconOnly: true,
     iconOval: false,
     disabled: false,
@@ -73,20 +71,35 @@ export class Pagination {
   @Prop({ mutable: true }) selectedPage = 0;
 
   /**
-   * i18n
+   * i18n label for 'Page'
    */
-  @Prop() i18nPage = 'Page';
+  @Prop({ attribute: 'i18n-page' }) i18nPage = 'Page';
 
   /**
-   * i18n
+   * i18n label for 'of'
    */
-  @Prop() i18nOf = 'of';
+  @Prop({ attribute: 'i18n-of' }) i18nOf = 'of';
 
   /**
-  /**
-   * i18n
+   * i18n label for 'Items'
    */
-  @Prop() i18nItems = 'Items';
+  @Prop({ attribute: 'i18n-items' }) i18nItems = 'Items';
+
+  /**
+   * ARIA label for the chevron left icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelChevronLeftIconButton?: string;
+
+  /**
+   * ARIA label for the chevron right icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelChevronRightIconButton?: string;
 
   /**
    * Page selection event
@@ -216,9 +229,10 @@ export class Pagination {
       <Host>
         <ix-icon-button
           disabled={!this.count || this.selectedPage === 0}
-          ghost
+          variant="subtle-tertiary"
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
+          aria-label={this.ariaLabelChevronLeftIconButton}
         ></ix-icon-button>
 
         {this.advanced ? (
@@ -250,9 +264,10 @@ export class Pagination {
 
         <ix-icon-button
           disabled={!this.count || this.selectedPage === this.count - 1}
-          ghost
+          variant="subtle-tertiary"
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
+          aria-label={this.ariaLabelChevronRightIconButton}
         ></ix-icon-button>
 
         {this.advanced && this.showItemCount ? (

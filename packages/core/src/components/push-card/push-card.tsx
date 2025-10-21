@@ -8,9 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { CardVariant } from '../card/card';
-
-export type PushCardVariant = CardVariant;
+import type { PushCardVariant } from './push-card.types';
 
 @Component({
   tag: 'ix-push-card',
@@ -22,6 +20,13 @@ export class PushCard {
    * Card icon
    */
   @Prop() icon?: string;
+
+  /**
+   * ARIA label for the icon
+   *
+   * @since 3.2.0
+   */
+  @Prop() ariaLabelIcon?: string;
 
   /**
    * Card KPI value
@@ -50,20 +55,27 @@ export class PushCard {
 
   render() {
     return (
-      <Host>
+      <Host class={`card-${this.variant}`}>
         <ix-card variant={this.variant}>
           <ix-card-content>
             <ix-card-title>
               {this.icon ? (
-                <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
+                <ix-icon
+                  class={'icon'}
+                  name={this.icon}
+                  size="32"
+                  aria-label={this.ariaLabelIcon}
+                ></ix-icon>
               ) : null}
-              <span class={'notification'}>{this.notification ?? 0}</span>
+              <ix-typography format="display-xxl">
+                {this.notification ?? 0}
+              </ix-typography>
               <slot name="title-action"></slot>
             </ix-card-title>
             <ix-typography format="h4">{this.heading}</ix-typography>
             <ix-typography>{this.subheading}</ix-typography>
           </ix-card-content>
-          <ix-card-accordion collapse={this.collapse}>
+          <ix-card-accordion collapse={this.collapse} variant={this.variant}>
             <slot></slot>
           </ix-card-accordion>
         </ix-card>
