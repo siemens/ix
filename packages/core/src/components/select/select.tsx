@@ -859,7 +859,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                         this.clear();
                       }}
                     >
-                      {this.i18nAllSelected}
+                      {`${this.i18nAllSelected} (${this.selectedItems.length})`}
                     </ix-filter-chip>
                   ) : (
                     // Display individual chips for selected items
