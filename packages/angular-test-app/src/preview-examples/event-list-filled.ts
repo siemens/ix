@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-event-list>
-      @for (item of items; track item.text) {
+      @for (item of items; track i; let i = $index) {
         <ix-event-list-item variant="filled" [itemColor]="item.color">
           {{ item.text }}
         </ix-event-list-item>
