@@ -26,13 +26,13 @@ LICENSE file in the root directory of this source tree.
       ];
 
       const eventList = document.getElementById('event-list');
-      items.forEach((item) => {
+      for (const item of items) {
         const listItem = document.createElement('ix-event-list-item');
         listItem.setAttribute('variant', 'filled');
         listItem.setAttribute('item-color', item.color);
         listItem.textContent = item.text;
         eventList.appendChild(listItem);
-      });
+      }
     </script>
   </body>
 </html>

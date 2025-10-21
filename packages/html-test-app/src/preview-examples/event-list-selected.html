@@ -28,7 +28,7 @@ LICENSE file in the root directory of this source tree.
         const eventList = document.getElementById('event-list');
         let selectedItem = null;
 
-        items.forEach((text, index) => {
+        for (const [index, text] of items.entries()) {
           const listItem = document.createElement('ix-event-list-item');
           listItem.setAttribute('item-color', 'color-primary');
           listItem.textContent = text;
@@ -47,7 +47,7 @@ LICENSE file in the root directory of this source tree.
           });
 
           eventList.appendChild(listItem);
-        });
+        }
       })();
     </script>
   </body>
