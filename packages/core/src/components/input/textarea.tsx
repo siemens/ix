@@ -166,7 +166,6 @@ export class Textarea implements IxInputFieldComponent<string> {
   @State() isInvalidByRequired = false;
 
   private readonly textAreaRef = makeRef<HTMLTextAreaElement>(() => {
-    // Initialize ResizeObserver when ref is set/updated
     this.initResizeObserver();
   });
   private touched = false;
@@ -184,19 +183,14 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Watch('textareaHeight')
   @Watch('textareaWidth')
   onDimensionPropsChange() {
-    // Reset manual resize state when props are programmatically changed
-    // This allows props to become reactive again
     this.isManuallyResized = false;
     this.manualHeight = undefined;
     this.manualWidth = undefined;
-    // Flag that the next resize is programmatic (not user-initiated)
     this.isProgrammaticResize = true;
   }
 
   @Watch('resizeBehavior')
   onResizeBehaviorChange() {
-    // Reinitialize observer when resize behavior changes
-    // This handles enabling/disabling resize observation dynamically
     this.initResizeObserver();
   }
 
@@ -209,35 +203,29 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   private initResizeObserver() {
-    // Disconnect existing observer if any (prevents memory leaks)
     this.resizeObserver?.disconnect();
 
     const textarea = this.textAreaRef.current;
     if (!textarea) return;
 
-    // Don't observe if resizing is disabled
     if (this.resizeBehavior === 'none') return;
 
     let isInitialResize = true;
 
     this.resizeObserver = new ResizeObserver(() => {
-      // Get fresh reference in case the underlying DOM element has changed
       const textarea = this.textAreaRef.current;
       if (!textarea) return;
 
-      // Skip the first resize event (initial render)
       if (isInitialResize) {
         isInitialResize = false;
         return;
       }
 
-      // If resize was programmatic, ignore it and reset flag
       if (this.isProgrammaticResize) {
         this.isProgrammaticResize = false;
         return;
       }
 
-      // User has manually resized - store the dimensions
       this.isManuallyResized = true;
       this.manualHeight = textarea.style.height;
       this.manualWidth = textarea.style.width;
