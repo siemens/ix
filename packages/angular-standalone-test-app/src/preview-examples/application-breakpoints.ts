@@ -44,9 +44,9 @@ export default class ApplicationBreakpointExample {
   breakpoints: Breakpoint[] = ['md'];
   private readonly validBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
 
-  onCheckedChange(breakpoint: Breakpoint) {
-    if (this.validBreakpoints.includes(breakpoint)) {
-      this.breakpoints = [breakpoint];
+  onCheckedChange(breakpoint: string) {
+    if (this.validBreakpoints.includes(breakpoint as Breakpoint)) {
+      this.breakpoints = [breakpoint as Breakpoint];
     } else {
       console.warn(
         `Invalid breakpoint value: ${breakpoint}. Expected one of: ${this.validBreakpoints.join(

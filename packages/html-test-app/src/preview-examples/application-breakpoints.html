@@ -61,7 +61,6 @@ LICENSE file in the root directory of this source tree.
         const radioGroup = document.getElementById('radio-group');
         radioGroup.addEventListener('valueChange', ({ detail }) => {
           if (validBreakpoints.includes(detail)) {
-            console.log('Breakpoint changed to:', detail);
             nav.breakpoints = [detail];
           } else {
             console.warn(
