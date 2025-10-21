@@ -115,6 +115,8 @@ import Group from '../preview-examples/group';
 import GroupContextMenu from '../preview-examples/group-context-menu';
 import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
+import HtmlTable from '../preview-examples/html-table';
+import HtmlTableStriped from '../preview-examples/html-table-striped';
 import IconToggleButtonPrimaryGhost from '../preview-examples/icon-toggle-button-primary-ghost';
 import IconToggleButtonPrimaryOutline from '../preview-examples/icon-toggle-button-primary-outline';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
@@ -629,6 +631,14 @@ const routes: Routes = [
       {
         path: 'group',
         component: Group,
+      },
+      {
+        path: 'html-table',
+        component: HtmlTable,
+      },
+      {
+        path: 'html-table-striped',
+        component: HtmlTableStriped,
       },
       {
         path: 'icon-toggle-button-primary-ghost',

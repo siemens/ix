@@ -638,6 +638,18 @@ export const routes: Routes = [
           import('../preview-examples/group').then((m) => m.default),
       },
       {
+        path: 'html-table',
+        loadComponent: () =>
+          import('../preview-examples/html-table').then((m) => m.default),
+      },
+      {
+        path: 'html-table-striped',
+        loadComponent: () =>
+          import('../preview-examples/html-table-striped').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'group-context-menu',
         loadComponent: () =>
           import('../preview-examples/group-context-menu').then(
