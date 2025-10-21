@@ -114,4 +114,15 @@ regressionTest.describe('aggrid', () => {
       })
     ).toMatchSnapshot();
   });
+
+  regressionTest('test', async ({ page }) => {
+    await page.goto('test/test.html');
+
+    expect(
+      await page.screenshot({
+        fullPage: true,
+        animations: 'disabled',
+      })
+    ).toMatchSnapshot();
+  });
 });
