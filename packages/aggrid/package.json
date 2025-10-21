@@ -29,7 +29,7 @@
     "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
     "compile": "rollup -c",
-    "visual-regression": "playwright test --config=playwright.config.ts"
+    "visual-regression": "DEBUG=pw:browser* playwright test --config=playwright.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.54.1",
