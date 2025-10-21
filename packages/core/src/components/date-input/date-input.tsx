@@ -34,6 +34,8 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  handleFormNoValidateAttribute,
+  handleInternalValidationOnSubmit,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -76,6 +78,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   @Watch('value') watchValuePropHandler(newValue: string) {
+    if (newValue === null || newValue === undefined) {
+      this.touched = false;
+    }
     this.onInput(newValue);
   }
 
@@ -232,6 +237,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+  private formValidationCleanup?: () => void;
+  private internalValidationCleanup?: () => void;
 
   updateFormInternalValue(value: string | undefined): void {
     if (value) {
@@ -240,6 +247,34 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.formInternals.setFormValue(null);
     }
     this.value = value;
+  }
+
+  private updateFormValidity(): void {
+    if (!this.formInternals) return;
+
+    const valueMissing = this.required && !this.value;
+    const patternMismatch = this.isInputInvalid && !!this.value;
+
+    if (valueMissing || patternMismatch) {
+      let message = '';
+      if (valueMissing) {
+        message = 'Please fill out this field.';
+      } else if (patternMismatch) {
+        message = 'Please enter a valid value. The field is incomplete or has an invalid date.';
+      }
+
+      const inputElement = this.inputElementRef.current;
+      this.formInternals.setValidity(
+        {
+          valueMissing,
+          patternMismatch,
+        },
+        message,
+        inputElement || undefined
+      );
+    } else {
+      this.formInternals.setValidity({});
+    }
   }
 
   connectedCallback(): void {
@@ -265,6 +300,21 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.checkClassList();
     this.updateFormInternalValue(this.value);
   }
+  async componentDidLoad(): Promise<void> {
+    this.updateFormValidity();
+    this.formValidationCleanup = handleFormNoValidateAttribute(this.formInternals);
+
+    // Set up internal validation handling when HTML5 validation is disabled
+    const component = this;
+    this.internalValidationCleanup = handleInternalValidationOnSubmit(this.formInternals, {
+      required: this.required,
+      get value() { return component.value; },
+      get touched() { return component.touched; },
+      set touched(value) { component.touched = value; },
+      updateFormValidity: () => component.updateFormValidity(),
+      syncValidationClasses: () => component.syncValidationClasses(),
+    });
+  }
 
   private updatePaddings() {
     adjustPaddingForStartAndEnd(
@@ -277,6 +327,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+    this.formValidationCleanup?.();
+    this.internalValidationCleanup?.();
   }
 
   @Watch('value')
@@ -299,7 +351,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
+      this.isInputInvalid = this.required === true && this.touched;
       this.valueChange.emit(value);
+      this.updateFormValidity();
+      await this.syncValidationClasses();
       return;
     }
 
@@ -322,6 +377,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     }
 
     this.valueChange.emit(value);
+    this.updateFormValidity();
+    await this.syncValidationClasses();
   }
 
   onCalenderClick(event: Event) {
@@ -366,23 +423,35 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           value={this.value ?? ''}
           placeholder={this.placeholder}
           name={this.name}
-          onInput={(event) => {
+          onInput={async (event) => {
             const target = event.target as HTMLInputElement;
+
+            // Clear HTML5 custom validity when user starts typing (for both validation modes)
+            target.setCustomValidity('');
+
             this.onInput(target.value);
           }}
           onClick={(event) => {
             if (this.show) {
               event.stopPropagation();
               event.preventDefault();
+            } else if (!this.readonly && !this.disabled) {
+              // Open dropdown on click if not already open
+              this.openDropdown();
             }
           }}
           onFocus={async () => {
-            this.openDropdown();
+            // Always open dropdown on focus to align with Figma design
+            if (!this.readonly && !this.disabled) {
+              this.openDropdown();
+            }
             this.ixFocus.emit();
           }}
-          onBlur={() => {
+          onBlur={async () => {
             this.ixBlur.emit();
             this.touched = true;
+            await this.updateFormValidity();
+            await this.syncValidationClasses();
           }}
         ></input>
         <SlotEnd
@@ -403,13 +472,15 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   @HookValidationLifecycle()
-  hookValidationLifecycle({
+  async hookValidationLifecycle({
     isInfo,
     isInvalid,
     isInvalidByRequired,
     isValid,
     isWarning,
   }: ValidationResults) {
+    // Always apply IX validation styling for consistent appearance
+    // Internal validation (JS validation) works alongside HTML5 validation
     this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
@@ -456,6 +527,35 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  @Method()
+  async syncValidationClasses(): Promise<void> {
+    const [hasValue, touched] = await Promise.all([
+      this.hasValidValue(),
+      this.isTouched(),
+    ]);
+
+    // Handle required validation
+    if (this.required) {
+      const isRequiredInvalid = !hasValue && touched;
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        isRequiredInvalid
+      );
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+    }
+
+    // Handle pattern/format validation
+    const validityState = await this.getValidityState();
+    this.hostElement.classList.toggle(
+      'ix-invalid--validity-patternMismatch',
+      validityState.patternMismatch
+    );
+
+    // Sync with HTML5 validation
+    await this.updateFormValidity();
   }
 
   render() {

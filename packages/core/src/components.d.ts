@@ -1055,6 +1055,7 @@ export namespace Components {
           * @default false
          */
         "showWeekNumbers": boolean;
+        "syncValidationClasses": () => Promise<void>;
         /**
           * Valid text below the input field
          */
@@ -3635,6 +3636,10 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Sync validation CSS classes with the component state
+         */
+        "syncValidationClasses": () => Promise<void>;
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -3642,7 +3647,7 @@ export namespace Components {
           * Value of the input element
           * @default ''
          */
-        "value": string;
+        "value"?: string;
         /**
           * Warning text below the input field
          */

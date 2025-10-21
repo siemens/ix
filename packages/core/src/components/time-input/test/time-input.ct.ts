@@ -163,4 +163,200 @@ regressionTest.describe('time input tests', () => {
       await expect(input).not.toHaveClass(/is-invalid/);
     }
   );
+  regressionTest(
+    'Not Required input: After entering invalid-time, removing the value with the keyboard, the field should remain valid.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('25:99:99');
+      await expect(timeInputElement).toHaveAttribute('value', '25:99:99');
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.fill('');
+      await input.blur();
+      await expect(timeInputElement).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not Required input: After entering invalid-time, clearing the touched state (simulating clear button) should make the field valid again.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('25:99:99');
+      await expect(timeInputElement).toHaveAttribute('value', '25:99:99');
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.blur();
+      await timeInputElement.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = undefined;
+      });
+      await expect(timeInputElement).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not Required input: After entering invalid-time, programmatically setting value to empty should keep field valid.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('25:99:99');
+      await expect(timeInputElement).toHaveAttribute('value', '25:99:99');
+      await timeInputElement.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+      await expect(timeInputElement).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not Required input: After entering valid-time, removing the value with the keyboard, the field should remain valid.',
+    async ({ mount, page }) => {
+      await mount(`<ix-time-input label="MyLabel"></ix-time-input>`);
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('12:34:56');
+      await expect(timeInputElement).toHaveAttribute('value', '12:34:56');
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.fill('');
+      await input.blur();
+      await expect(timeInputElement).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not Required input: After entering valid-time, clearing the touched state (simulating clear button) should make the field valid again.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('12:34:56');
+      await expect(timeInputElement).toHaveAttribute('value', '12:34:56');
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.blur();
+      await timeInputElement.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+      await expect(timeInputElement).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not Required input: After entering valid-time, programmatically setting value to empty should keep field valid.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('12:34:56');
+      await expect(timeInputElement).toHaveAttribute('value', '12:34:56');
+      await timeInputElement.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+      await expect(timeInputElement).not.toHaveClass(/is-invalid/);
+    }
+  );
+});
+
+regressionTest.describe('required time input tests', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
+    await mount(`<ix-time-input required label="MyLabel"></ix-time-input>`);
+  });
+
+  regressionTest(
+    'Required input: After entering invalid-time, removing the value with the keyboard, the field should remain invalid.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('25:99:99');
+      await expect(timeInputElement).toHaveAttribute('value', '25:99:99');
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.fill('');
+      await input.blur();
+      await expect(timeInputElement).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Required input: After entering invalid-time, clearing the touched state (simulating clear button) should make the field valid again.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('25:99:99');
+      await expect(timeInputElement).toHaveAttribute('value', '25:99:99');
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.blur();
+      await timeInputElement.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = undefined;
+      });
+      await expect(timeInputElement).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Required input: After entering invalid-time, programmatically setting value to empty should keep field invalid.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('25:99:99');
+      await expect(timeInputElement).toHaveAttribute('value', '25:99:99');
+      await timeInputElement.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.blur();
+      await expect(timeInputElement).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Required input: After entering valid-time, removing the value with the keyboard, the field should remain invalid.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('12:34:56');
+      await expect(timeInputElement).toHaveAttribute('value', '12:34:56');
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.fill('');
+      await input.blur();
+      await expect(timeInputElement).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Required input: After entering valid-time, clearing the touched state (simulating clear button) should make the field valid again.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('12:34:56');
+      await expect(timeInputElement).toHaveAttribute('value', '12:34:56');
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.blur();
+      await timeInputElement.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = undefined;
+      });
+      await expect(timeInputElement).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Required input: After entering valid-time, programmatically setting value to empty should keep field invalid.',
+    async ({ mount, page }) => {
+      const timeInputElement = page.locator('ix-time-input');
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('12:34:56');
+      await expect(timeInputElement).toHaveAttribute('value', '12:34:56');
+      await timeInputElement.evaluate((el: HTMLIxTimeInputElement) => {
+        el.value = '';
+      });
+      const input = timeInputElement.locator('input');
+      await input.focus();
+      await input.blur();
+      await expect(timeInputElement).toHaveClass(/ix-invalid--required/);
+    }
+  );
 });

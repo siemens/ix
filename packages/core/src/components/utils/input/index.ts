@@ -11,6 +11,76 @@ import { IxComponent } from '../internal';
 
 export * from './validation';
 
+/**
+ * Handle form validation setup for HTML5 validation mode
+ */
+export function handleFormNoValidateAttribute(formInternals: ElementInternals): (() => void) | undefined {
+  const form = formInternals.form;
+  if (!form?.noValidate) {
+    const submitHandler = async (e: Event) => {
+      const input = await (formInternals as any).getNativeInputElement?.();
+      if (input && !input.validity.valid) {
+        e.preventDefault();
+        input.reportValidity();
+      }
+    };
+
+    form?.addEventListener('submit', submitHandler);
+    return () => form?.removeEventListener('submit', submitHandler);
+  }
+}
+
+/**
+ * Handle internal validation on form submit for security
+ * This always runs regardless of HTML5 validation to prevent tampering
+ */
+export function handleInternalValidationOnSubmit(
+  formInternals: ElementInternals,
+  component: {
+    required?: boolean;
+    value?: any;
+    touched?: boolean;
+    updateFormValidity?: () => void;
+    syncValidationClasses?: () => Promise<void>;
+  }
+): (() => void) | undefined {
+  const form = formInternals.form;
+  if (!form) return;
+
+  const submitHandler = async (event: Event) => {
+    // Always check internal validation for security (prevent tampering)
+    let hasValidationError = false;
+
+    // Check required field validation
+    if (component.required && !component.value) {
+      (component as any).touched = true;
+      component.updateFormValidity?.();
+      await component.syncValidationClasses?.();
+      hasValidationError = true;
+    }
+
+    // Check format validation (if component has getValidityState)
+    if ((component as any).isInputInvalid) {
+      hasValidationError = true;
+    }
+
+    // Prevent form submission if validation fails
+    if (hasValidationError) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      // Focus the invalid field for better UX
+      const input = await (formInternals as any).getNativeInputElement?.();
+      if (input) {
+        input.focus();
+      }
+    }
+  };
+
+  form.addEventListener('submit', submitHandler);
+  return () => form.removeEventListener('submit', submitHandler);
+}
+
 export interface FieldWrapperInterface {
   /**
    * Label for the field component
