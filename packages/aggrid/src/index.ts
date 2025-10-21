@@ -40,64 +40,60 @@ const useIxTheme = async (
     ...aggridIxThemeParams,
   });
 
-  function modifyParts() {
-    const iconCSS = iconOverrides({
-      type: 'image',
-      mask: true,
-      icons: {
-        filter: {
-          svg: extractSvgFromDataUri(iconFilter),
-        },
-        asc: {
-          svg: extractSvgFromDataUri(iconSortAscending),
-        },
-        desc: {
-          svg: extractSvgFromDataUri(iconSortDescending),
-        },
-        menu: {
-          svg: extractSvgFromDataUri(iconAppMenu),
-        },
-        grip: {
-          svg: extractSvgFromDataUri(iconDragGripper),
-        },
+  const iconCSS = iconOverrides({
+    type: 'image',
+    mask: true,
+    icons: {
+      filter: {
+        svg: extractSvgFromDataUri(iconFilter),
       },
-    });
+      asc: {
+        svg: extractSvgFromDataUri(iconSortAscending),
+      },
+      desc: {
+        svg: extractSvgFromDataUri(iconSortDescending),
+      },
+      menu: {
+        svg: extractSvgFromDataUri(iconAppMenu),
+      },
+      grip: {
+        svg: extractSvgFromDataUri(iconDragGripper),
+      },
+    },
+  });
 
-    const theme = base
-      .withoutPart('checkboxStyle')
-      .withPart(
-        createPart({
-          feature: 'checkboxStyle',
-          params: {},
-          css: checkboxStyles,
-        })
-      )
-      .withPart(
-        createPart({
-          feature: 'headerCustomStyles',
-          params: {},
-          css: headerStyles,
-        })
-      )
-      .withPart(
-        createPart({
-          feature: 'tooltipCustomStyles',
-          params: {},
-          css: tooltipStyles,
-        })
-      )
-      .withPart(
-        createPart({
-          feature: 'iconOverrides',
-          params: {},
-          css: iconCSS.css,
-        })
-      );
+  const theme = base
+    .withoutPart('checkboxStyle')
+    .withPart(
+      createPart({
+        feature: 'checkboxStyle',
+        params: {},
+        css: checkboxStyles,
+      })
+    )
+    .withPart(
+      createPart({
+        feature: 'headerCustomStyles',
+        params: {},
+        css: headerStyles,
+      })
+    )
+    .withPart(
+      createPart({
+        feature: 'tooltipCustomStyles',
+        params: {},
+        css: tooltipStyles,
+      })
+    )
+    .withPart(
+      createPart({
+        feature: 'iconOverrides',
+        params: {},
+        css: iconCSS.css,
+      })
+    );
 
-    return theme;
-  }
-
-  return modifyParts();
+  return theme;
 };
 
 export { useIxTheme };
