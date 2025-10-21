@@ -1,4 +1,4 @@
-const searchParams = new URLSearchParams(window.location.search);
+const searchParams = new URLSearchParams(location.search);
 
 if (searchParams.has('theme')) {
   const theme = searchParams.get('theme');
