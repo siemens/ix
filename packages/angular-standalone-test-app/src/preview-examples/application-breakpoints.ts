@@ -10,13 +10,15 @@ import { Component } from '@angular/core';
 import {
   IxApplication,
   IxApplicationHeader,
-  IxDropdownButton,
-  IxDropdownItem,
   IxAvatar,
-  IxMenu,
-  IxMenuItem,
   IxContent,
   IxContentHeader,
+  IxDropdownButton,
+  IxDropdownItem,
+  IxMenu,
+  IxMenuItem,
+  IxRadio,
+  IxRadioGroup,
 } from '@siemens/ix-angular/standalone';
 
 import { Breakpoint } from '@siemens/ix';
@@ -33,6 +35,8 @@ import { Breakpoint } from '@siemens/ix';
     IxMenuItem,
     IxContent,
     IxContentHeader,
+    IxRadioGroup,
+    IxRadio,
   ],
   templateUrl: './application-breakpoints.html',
 })
