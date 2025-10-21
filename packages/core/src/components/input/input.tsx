@@ -147,7 +147,7 @@ export class Input implements IxInputFieldComponent<string> {
   @Prop() allowedCharactersPattern?: string;
 
   /**
-   * Alignment of the input text. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
    */
   @Prop() textAlignment: 'start' | 'end' = 'start';
 

@@ -106,7 +106,7 @@ export function InputElement(
         'is-invalid': props.isInvalid,
       }}
       style={{
-        textAlign: props.textAlignment === 'end' ? 'right' : 'left',
+        textAlign: props.textAlignment,
       }}
       required={props.required}
       value={props.value}

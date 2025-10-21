@@ -196,7 +196,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() ariaLabelNextMonthButton?: string;
 
   /**
-   * Alignment of the input date. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
    */
   @Prop() textAlignment: 'start' | 'end' = 'start';
 
@@ -390,7 +390,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.touched = true;
           }}
           style={{
-            textAlign: this.textAlignment === 'end' ? 'right' : 'left',
+            textAlign: this.textAlignment,
           }}
         ></input>
         <SlotEnd

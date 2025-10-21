@@ -6906,7 +6906,7 @@
           "mutable": false,
           "attr": "text-alignment",
           "reflectToAttr": false,
-          "docs": "Alignment of the input date. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
+          "docs": "Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
           "docsTags": [
             {
               "name": "default",
@@ -13241,7 +13241,7 @@
           "mutable": false,
           "attr": "text-alignment",
           "reflectToAttr": false,
-          "docs": "Alignment of the input text. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
+          "docs": "Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
           "docsTags": [
             {
               "name": "default",
@@ -18451,7 +18451,7 @@
           "mutable": false,
           "attr": "text-alignment",
           "reflectToAttr": false,
-          "docs": "Alignment of the input number. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
+          "docs": "Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
           "docsTags": [
             {
               "name": "default",
@@ -25147,7 +25147,7 @@
           "mutable": false,
           "attr": "text-alignment",
           "reflectToAttr": false,
-          "docs": "Alignment of the input time. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
+          "docs": "Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
           "docsTags": [
             {
               "name": "default",
