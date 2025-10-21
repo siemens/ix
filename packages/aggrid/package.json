@@ -29,8 +29,7 @@
     "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
     "compile": "rollup -c",
-    "visual-regression": "playwright test",
-    "host-root": "http-server -a 127.0.0.1"
+    "visual-regression": "playwright test --config=playwright.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.54.1",
