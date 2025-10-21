@@ -9,14 +9,14 @@
 
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
 
-export default function EventListFilled() {
-  const items = [
-    { text: 'Text 1', color: 'color-primary' },
-    { text: 'Text 2', color: 'color-primary' },
-    { text: 'Text 3', color: 'color-alarm' },
-    { text: 'Text 4', color: 'color-success' },
-  ];
+const items = [
+  { text: 'Text 1', color: 'color-primary' },
+  { text: 'Text 2', color: 'color-primary' },
+  { text: 'Text 3', color: 'color-alarm' },
+  { text: 'Text 4', color: 'color-success' },
+];
 
+export default function EventListFilled() {
   return (
     <IxEventList>
       {items.map((item) => (

@@ -26,6 +26,8 @@ LICENSE file in the root directory of this source tree.
       ];
 
       const eventList = document.getElementById('event-list');
+      if (!eventList) return;
+
       for (const item of items) {
         const listItem = document.createElement('ix-event-list-item');
         listItem.setAttribute('variant', 'filled');

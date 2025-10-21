@@ -26,6 +26,8 @@ LICENSE file in the root directory of this source tree.
         await globalThis.customElements.whenDefined('ix-event-list-item');
 
         const eventList = document.getElementById('event-list');
+        if (!eventList) return;
+
         let selectedItem = null;
 
         for (const [index, text] of items.entries()) {

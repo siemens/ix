@@ -10,10 +10,10 @@
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
 import { useState } from 'react';
 
+const items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
+
 export default function EventListSelected() {
   const [selectedIndex, setSelectedIndex] = useState(1);
-
-  const items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
 
   return (
     <IxEventList>
