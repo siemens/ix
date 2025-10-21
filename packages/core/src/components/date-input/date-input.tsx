@@ -260,7 +260,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       if (valueMissing) {
         message = 'Please fill out this field.';
       } else if (patternMismatch) {
-        message = 'Please enter a valid value. The field is incomplete or has an invalid date.';
+        message =
+          'Please enter a valid value. The field is incomplete or has an invalid date.';
       }
 
       const inputElement = this.inputElementRef.current;
@@ -302,18 +303,29 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
   async componentDidLoad(): Promise<void> {
     this.updateFormValidity();
-    this.formValidationCleanup = handleFormNoValidateAttribute(this.formInternals);
+    this.formValidationCleanup = handleFormNoValidateAttribute(
+      this.formInternals
+    );
 
     // Set up internal validation handling when HTML5 validation is disabled
     const component = this;
-    this.internalValidationCleanup = handleInternalValidationOnSubmit(this.formInternals, {
-      required: this.required,
-      get value() { return component.value; },
-      get touched() { return component.touched; },
-      set touched(value) { component.touched = value; },
-      updateFormValidity: () => component.updateFormValidity(),
-      syncValidationClasses: () => component.syncValidationClasses(),
-    });
+    this.internalValidationCleanup = handleInternalValidationOnSubmit(
+      this.formInternals,
+      {
+        required: this.required,
+        get value() {
+          return component.value;
+        },
+        get touched() {
+          return component.touched;
+        },
+        set touched(value) {
+          component.touched = value;
+        },
+        updateFormValidity: () => component.updateFormValidity(),
+        syncValidationClasses: () => component.syncValidationClasses(),
+      }
+    );
   }
 
   private updatePaddings() {
