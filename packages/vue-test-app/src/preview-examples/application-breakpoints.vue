@@ -25,6 +25,8 @@ import {
 </script>
 
 <script lang="ts">
+const validBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
+
 export default {
   data(): {
     breakpoints: Breakpoint[];
@@ -36,7 +38,6 @@ export default {
   methods: {
     setBreakpoint(event: CustomEvent) {
       const value = event.detail;
-      const validBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
 
       if (validBreakpoints.includes(value)) {
         this.breakpoints = [value as Breakpoint];
