@@ -24,8 +24,24 @@ import {
 
 import { useState } from 'react';
 
+const validBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
+
 export default () => {
   const [breakpoints, setBreakpoints] = useState<Breakpoint[]>(['md']);
+
+  const handleBreakpointChange = (event: CustomEvent) => {
+    const value = event.detail;
+
+    if (validBreakpoints.includes(value)) {
+      setBreakpoints([value as Breakpoint]);
+    } else {
+      console.warn(
+        `Invalid breakpoint value: ${value}. Expected one of: ${validBreakpoints.join(
+          ', '
+        )}`
+      );
+    }
+  };
 
   return (
     <IxApplication breakpoints={breakpoints}>
@@ -57,9 +73,7 @@ export default () => {
         ></IxContentHeader>
         <IxRadioGroup
           value={breakpoints[0]}
-          onValueChange={(event) =>
-            setBreakpoints([event.detail as Breakpoint])
-          }
+          onValueChange={handleBreakpointChange}
         >
           <IxRadio value="sm" label="Small"></IxRadio>
           <IxRadio value="md" label="Medium"></IxRadio>

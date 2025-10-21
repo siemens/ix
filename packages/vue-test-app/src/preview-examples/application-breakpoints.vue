@@ -35,7 +35,18 @@ export default {
   },
   methods: {
     setBreakpoint(event: CustomEvent) {
-      this.breakpoints = [event.detail as Breakpoint];
+      const value = event.detail;
+      const validBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
+
+      if (validBreakpoints.includes(value)) {
+        this.breakpoints = [value as Breakpoint];
+      } else {
+        console.warn(
+          `Invalid breakpoint value: ${value}. Expected one of: ${validBreakpoints.join(
+            ', '
+          )}`
+        );
+      }
     },
   },
 };

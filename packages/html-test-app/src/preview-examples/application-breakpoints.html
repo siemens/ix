@@ -51,12 +51,15 @@ LICENSE file in the root directory of this source tree.
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-application');
+        await window.customElements.whenDefined('ix-radio-group');
+
         const nav = document.querySelector('ix-application');
         nav.breakpoints = ['md'];
 
         const radioGroup = document.getElementById('radio-group');
-        radioGroup.addEventListener('valueChange', (event) => {
-          nav.breakpoints = [event.detail];
+        radioGroup.addEventListener('valueChange', ({ detail }) => {
+          console.log('Breakpoint changed to:', detail);
+          nav.breakpoints = [detail];
         });
       })();
     </script>
