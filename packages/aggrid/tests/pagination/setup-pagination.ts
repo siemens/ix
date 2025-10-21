@@ -12,6 +12,7 @@ import {
   createGrid,
   ModuleRegistry,
 } from 'ag-grid-community';
+import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { useIxTheme } from '@siemens/ix-aggrid';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
