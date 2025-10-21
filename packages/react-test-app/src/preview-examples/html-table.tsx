@@ -1,21 +1,15 @@
-<!--
-SPDX-FileCopyrightText: 2024 Siemens AG
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-SPDX-License-Identifier: MIT
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
--->
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Html table striped example</title>
-  </head>
-  <body>
-    <table class="ix-table ix-table-striped">
+export default () => {
+  return (
+    <table className="ix-table">
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -45,6 +39,5 @@ LICENSE file in the root directory of this source tree.
         </tr>
       </tbody>
     </table>
-    <script type="module" src="./init.js"></script>
-  </body>
-</html>
+  );
+};
