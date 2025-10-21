@@ -29,10 +29,10 @@ const validBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
 export default () => {
   const [breakpoints, setBreakpoints] = useState<Breakpoint[]>(['md']);
 
-  const handleBreakpointChange = (event: CustomEvent) => {
+  const handleBreakpointChange = (event: CustomEvent<string>) => {
     const value = event.detail;
 
-    if (validBreakpoints.includes(value)) {
+    if (validBreakpoints.includes(value as Breakpoint)) {
       setBreakpoints([value as Breakpoint]);
     } else {
       console.warn(
