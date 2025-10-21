@@ -857,7 +857,7 @@ test('should display "All" chip when all items are selected in multiple mode', a
 
   const allChip = chipsContainer
     .locator('ix-filter-chip')
-    .filter({ hasText: 'All' });
+    .filter({ hasText: 'All (3)' });
   await expect(allChip).toBeVisible();
 
   const chip1 = chipsContainer
