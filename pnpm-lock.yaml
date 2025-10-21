@@ -73,7 +73,7 @@ importers:
         version: 8.5.0(@rollup/wasm-node@4.52.4)(tslib@2.8.1)(typescript@5.8.3)
       '@siemens/ix-icons':
         specifier: ^3.0.0
-        version: 3.0.0
+        version: 3.2.0
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.14
