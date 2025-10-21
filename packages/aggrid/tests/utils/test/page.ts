@@ -18,12 +18,13 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
   const originalSceenshot = page.screenshot.bind(page);
   const theme = testInfo.project.metadata.theme;
+  const colorSchema = testInfo.project.metadata.colorSchema;
   testInfo.annotations.push({
     type: theme,
   });
   page.goto = async (url: string, options) => {
     const response = await originalGoto(
-      `http://localhost:5173/tests/${url}?theme=${theme}`,
+      `http://localhost:5173/tests/${url}?theme=${theme}&colorSchema=${colorSchema}`,
       options
     );
     // Initial timeout for webKit to render Web Components
@@ -45,3 +46,17 @@ export const regressionTest = base.extend({
     await use(page);
   },
 });
+
+export function setTheme() {
+  const searchParams = new URLSearchParams(window.location.search);
+  console.log(searchParams);
+  if (searchParams.has('theme')) {
+    const theme = searchParams.get('theme');
+    document.documentElement.setAttribute('data-ix-theme', theme!);
+  }
+
+  if (searchParams.has('colorSchema')) {
+    const colorSchema = searchParams.get('colorSchema');
+    document.documentElement.setAttribute('data-ix-color-schema', colorSchema!);
+  }
+}
