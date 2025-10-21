@@ -36,10 +36,10 @@ export default {
     };
   },
   methods: {
-    setBreakpoint(event: CustomEvent) {
+    setBreakpoint(event: CustomEvent<string>) {
       const value = event.detail;
 
-      if (validBreakpoints.includes(value)) {
+      if (validBreakpoints.includes(value as Breakpoint)) {
         this.breakpoints = [value as Breakpoint];
       } else {
         console.warn(
