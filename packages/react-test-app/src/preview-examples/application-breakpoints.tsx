@@ -34,12 +34,6 @@ export default () => {
 
     if (validBreakpoints.has(value as Breakpoint)) {
       setBreakpoints([value as Breakpoint]);
-    } else {
-      console.warn(
-        `Invalid breakpoint value: ${value}. Expected one of: ${Array.from(
-          validBreakpoints
-        ).join(', ')}`
-      );
     }
   };
 

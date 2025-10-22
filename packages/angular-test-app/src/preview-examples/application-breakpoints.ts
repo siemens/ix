@@ -22,12 +22,6 @@ export default class ApplicationBreakpointExample {
     const breakpoint = event.detail as Breakpoint;
     if (this.validBreakpoints.has(breakpoint)) {
       this.breakpoints = [breakpoint];
-    } else {
-      console.warn(
-        `Invalid breakpoint value: ${breakpoint}. Expected one of: ${Array.from(
-          this.validBreakpoints
-        ).join(', ')}`
-      );
     }
   }
 }

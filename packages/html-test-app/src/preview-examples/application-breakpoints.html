@@ -61,12 +61,6 @@ LICENSE file in the root directory of this source tree.
         radioGroup.addEventListener('valueChange', ({ detail }) => {
           if (validBreakpoints.has(detail)) {
             nav.breakpoints = [detail];
-          } else {
-            console.warn(
-              `Invalid breakpoint value: ${detail}. Expected one of: ${Array.from(
-                validBreakpoints
-              ).join(', ')}`
-            );
           }
         });
       })();
