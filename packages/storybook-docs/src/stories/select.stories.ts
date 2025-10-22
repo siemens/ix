@@ -34,9 +34,10 @@ export const Default: Story = {
 };
 
 export const editableSelect: Story = {
-  render: ({ value, editable, allowClear, disabled }) => {
+  render: ({ value, editable, allowClear, disabled, mode }) => {
     return html` <ix-select
       value=${value}
+      mode=${mode}
       ?editable=${editable}
       ?allow-clear=${allowClear}
       disabled=${disabled}
@@ -52,6 +53,7 @@ export const editableSelect: Story = {
     editable: true,
     allowClear: true,
     disabled: false,
+    mode: 'single',
   },
 };
 
@@ -84,5 +86,21 @@ export const Required: Story = {
   args: {
     required: true,
     label: 'Required',
+  },
+};
+
+export const multiSelect: Story = {
+  render: ({ mode, allowClear }) => {
+    return html` <ix-select mode=${mode} ?allow-clear=${allowClear}>
+      <ix-select-item label="Item 1" value="1"></ix-select-item>
+      <ix-select-item label="Item 2" value="2"></ix-select-item>
+      <ix-select-item label="Item 3" value="3"></ix-select-item>
+      <ix-select-item label="Item 4" value="4"></ix-select-item>
+      <ix-select-item label="Item 5" value="5"></ix-select-item>
+    </ix-select>`;
+  },
+  args: {
+    mode: 'multiple',
+    allowClear: true,
   },
 };
