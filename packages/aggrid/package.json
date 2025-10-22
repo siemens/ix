@@ -35,7 +35,7 @@
     "@playwright/test": "^1.54.1",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@siemens/ix": "workspace:*",
-    "@siemens/ix-icons": "^3.0.0",
+    "@siemens/ix-icons": "^3.2.0",
     "@types/node": "^24.0.3",
     "ag-grid-community": "^33.3.2",
     "http-server": "^14.1.1",
