@@ -166,12 +166,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   /**
    * Information inside of dropdown if no items where found with current filter text
    */
-  @Prop() i18nNoMatches = 'No matches';
+  @Prop({ attribute: 'i18n-no-matches' }) i18nNoMatches = 'No matches';
 
   /**
    * Chip label for all selected items in multiple mode.
    */
-  @Prop() i18nAllSelected = 'All';
+  @Prop({ attribute: 'i18n-all-selected' }) i18nAllSelected = 'All';
 
   /**
    * Hide list header
