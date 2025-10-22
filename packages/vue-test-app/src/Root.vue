@@ -10,8 +10,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
-import { IxApplicationContext } from "@siemens/ix-vue"
-
+import { IxApplicationContext } from '@siemens/ix-vue';
 
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
@@ -22,6 +21,7 @@ import ApplicationAppSwitch from './preview-examples/application-app-switch.vue'
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
 import ApplicationHeader from './preview-examples/application-header.vue';
 import Application from './preview-examples/application.vue';
+import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
@@ -117,6 +117,8 @@ import GroupContextMenu from './preview-examples/group-context-menu.vue';
 import GroupCustomEntry from './preview-examples/group-custom-entry.vue';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed.vue';
 import Group from './preview-examples/group.vue';
+import HtmlTable from './preview-examples/html-table.vue';
+import HtmlTableStriped from './preview-examples/html-table-striped.vue';
 import IconToggleButtonPrimaryGhost from './preview-examples/icon-toggle-button-primary-ghost.vue';
 import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-button-primary-outline.vue';
 import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost.vue';
@@ -245,6 +247,7 @@ const routes: any = {
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
   '/preview/application': Application,
+  '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-header': ApplicationHeader,
   '/preview/application-breakpoints': ApplicationBreakpoints,
   '/preview/application-app-switch': ApplicationAppSwitch,
@@ -334,6 +337,8 @@ const routes: any = {
   '/preview/grid': Grid,
   '/preview/group-context-menu': GroupContextMenu,
   '/preview/group-custom-entry': GroupCustomEntry,
+  '/preview/html-table': HtmlTable,
+  '/preview/html-table-striped': HtmlTableStriped,
   '/preview/group-header-suppressed': GroupHeaderSuppressed,
   '/preview/icon-toggle-button-primary-ghost': IconToggleButtonPrimaryGhost,
   '/preview/icon-toggle-button-primary-outline': IconToggleButtonPrimaryOutline,
