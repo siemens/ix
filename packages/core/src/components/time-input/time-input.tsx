@@ -45,6 +45,8 @@ import {
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  updateFormInternalValue as updateFormInternalValueUtil,
+  updateFormValidity as updateFormValidityUtil,
 } from '../utils/input/picker-input.util';
 
 /**
@@ -252,41 +254,19 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private internalValidationCleanup?: () => void;
 
   updateFormInternalValue(value: string | undefined): void {
-    if (value) {
-      this.formInternals.setFormValue(value);
-    } else {
-      this.formInternals.setFormValue(null);
-    }
-    this.value = value;
+    updateFormInternalValueUtil(this.formInternals, value, (val) => {
+      this.value = val;
+    });
   }
 
   private updateFormValidity(): void {
-    if (!this.formInternals) return;
-
-    const valueMissing = this.required && !this.value;
-    const patternMismatch = this.isInputInvalid && !!this.value;
-
-    if (valueMissing || patternMismatch) {
-      let message = '';
-      if (valueMissing) {
-        message = 'Please fill out this field.';
-      } else if (patternMismatch) {
-        message =
-          'Please enter a valid value. The field is incomplete or has an invalid time.';
-      }
-
-      const inputElement = this.inputElementRef.current;
-      this.formInternals.setValidity(
-        {
-          valueMissing,
-          patternMismatch,
-        },
-        message,
-        inputElement || undefined
-      );
-    } else {
-      this.formInternals.setValidity({});
-    }
+    updateFormValidityUtil(
+      this.formInternals,
+      this.required,
+      this.value,
+      this.isInputInvalid,
+      this.inputElementRef
+    );
   }
 
   connectedCallback(): void {

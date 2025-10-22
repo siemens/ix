@@ -12,27 +12,45 @@ import { IxComponent } from '../internal';
 export * from './validation';
 
 /**
- * Handle form validation setup for HTML5 validation mode
+ * Sets up HTML5 validation behavior on form submit.
+ * When the form does not have noValidate attribute, this ensures
+ * the browser's native validation UI is triggered.
+ *
+ * @param formInternals - The ElementInternals instance of the form-associated custom element
+ * @returns Cleanup function to remove the event listener, or undefined if not needed
  */
-export function handleFormNoValidateAttribute(formInternals: ElementInternals): (() => void) | undefined {
+export function handleFormNoValidateAttribute(
+  formInternals: ElementInternals
+): (() => void) | undefined {
   const form = formInternals.form;
-  if (!form?.noValidate) {
-    const submitHandler = async (e: Event) => {
-      const input = await (formInternals as any).getNativeInputElement?.();
-      if (input && !input.validity.valid) {
-        e.preventDefault();
-        input.reportValidity();
-      }
-    };
 
-    form?.addEventListener('submit', submitHandler);
-    return () => form?.removeEventListener('submit', submitHandler);
+  // Only set up HTML5 validation if form exists and noValidate is not set
+  if (!form || form.noValidate) {
+    return undefined;
   }
+
+  const submitHandler = async (event: Event) => {
+    const input = await (formInternals as any).getNativeInputElement?.();
+
+    // If input is invalid, prevent submission and show browser validation UI
+    if (input && !input.validity.valid) {
+      event.preventDefault();
+      input.reportValidity();
+    }
+  };
+
+  form.addEventListener('submit', submitHandler);
+  return () => form.removeEventListener('submit', submitHandler);
 }
 
 /**
- * Handle internal validation on form submit for security
- * This always runs regardless of HTML5 validation to prevent tampering
+ * Sets up internal JavaScript validation on form submit for security.
+ * This always runs to prevent validation bypass through browser DevTools,
+ * providing a server-side-like validation layer on the client.
+ *
+ * @param formInternals - The ElementInternals instance
+ * @param component - Component instance with validation properties
+ * @returns Cleanup function to remove the event listener, or undefined if no form
  */
 export function handleInternalValidationOnSubmit(
   formInternals: ElementInternals,
@@ -45,36 +63,34 @@ export function handleInternalValidationOnSubmit(
   }
 ): (() => void) | undefined {
   const form = formInternals.form;
-  if (!form) return;
+
+  if (!form) {
+    return undefined;
+  }
 
   const submitHandler = async (event: Event) => {
-    // Always check internal validation for security (prevent tampering)
-    let hasValidationError = false;
+    const hasRequiredError = component.required && !component.value;
+    const hasFormatError = (component as any).isInputInvalid;
 
-    // Check required field validation
-    if (component.required && !component.value) {
+    // No validation errors - allow submission
+    if (!hasRequiredError && !hasFormatError) {
+      return;
+    }
+
+    // Prevent form submission
+    event.preventDefault();
+    event.stopPropagation();
+
+    // Mark as touched and update validation state for required errors
+    if (hasRequiredError) {
       (component as any).touched = true;
       component.updateFormValidity?.();
       await component.syncValidationClasses?.();
-      hasValidationError = true;
     }
 
-    // Check format validation (if component has getValidityState)
-    if ((component as any).isInputInvalid) {
-      hasValidationError = true;
-    }
-
-    // Prevent form submission if validation fails
-    if (hasValidationError) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      // Focus the invalid field for better UX
-      const input = await (formInternals as any).getNativeInputElement?.();
-      if (input) {
-        input.focus();
-      }
-    }
+    // Focus the invalid field for better UX
+    const input = await (formInternals as any).getNativeInputElement?.();
+    input?.focus();
   };
 
   form.addEventListener('submit', submitHandler);
