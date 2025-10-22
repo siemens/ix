@@ -8,7 +8,7 @@
 -->
 
 <script setup lang="ts">
-import { Breakpoint } from '@siemens/ix';
+import type { Breakpoint } from '@siemens/ix';
 import {
   IxApplication,
   IxApplicationHeader,
@@ -19,8 +19,8 @@ import {
   IxDropdownItem,
   IxMenu,
   IxMenuItem,
-  IxRadioGroup,
   IxRadio,
+  IxRadioGroup,
 } from '@siemens/ix-vue';
 </script>
 
@@ -36,17 +36,9 @@ export default {
     };
   },
   methods: {
-    setBreakpoint(event: CustomEvent<string>) {
-      const value = event.detail;
-
-      if (validBreakpoints.includes(value as Breakpoint)) {
-        this.breakpoints = [value as Breakpoint];
-      } else {
-        console.warn(
-          `Invalid breakpoint value: ${value}. Expected one of: ${validBreakpoints.join(
-            ', '
-          )}`
-        );
+    setBreakpoint(value: Breakpoint) {
+      if (validBreakpoints.includes(value)) {
+        this.breakpoints = [value];
       }
     },
   },
@@ -81,10 +73,22 @@ export default {
         slot="header"
         header-title="Choose breakpoint"
       ></IxContentHeader>
-      <IxRadioGroup :value="breakpoints[0]" @valueChange="setBreakpoint">
-        <IxRadio value="sm" label="Small"></IxRadio>
-        <IxRadio value="md" label="Medium"></IxRadio>
-        <IxRadio value="lg" label="Large"></IxRadio>
+      <IxRadioGroup :value="breakpoints[0]">
+        <IxRadio
+          value="sm"
+          label="Small"
+          @click="setBreakpoint('sm')"
+        ></IxRadio>
+        <IxRadio
+          value="md"
+          label="Medium"
+          @click="setBreakpoint('md')"
+        ></IxRadio>
+        <IxRadio
+          value="lg"
+          label="Large"
+          @click="setBreakpoint('lg')"
+        ></IxRadio>
       </IxRadioGroup>
     </IxContent>
   </IxApplication>
