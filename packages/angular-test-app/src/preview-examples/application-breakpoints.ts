@@ -18,8 +18,8 @@ export default class ApplicationBreakpointExample {
   breakpoints: Breakpoint[] = ['md'];
   private readonly validBreakpoints = new Set<Breakpoint>(['sm', 'md', 'lg']);
 
-  onCheckedChange(event: CustomEvent<string>) {
-    const breakpoint = event.detail as Breakpoint;
+  onCheckedChange(value: string) {
+    const breakpoint = value as Breakpoint;
     if (this.validBreakpoints.has(breakpoint)) {
       this.breakpoints = [breakpoint];
     }
