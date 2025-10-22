@@ -24,7 +24,7 @@ import {
 
 import { useState } from 'react';
 
-const validBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
+const validBreakpoints = new Set<Breakpoint>(['sm', 'md', 'lg']);
 
 export default () => {
   const [breakpoints, setBreakpoints] = useState<Breakpoint[]>(['md']);
@@ -32,13 +32,13 @@ export default () => {
   const handleBreakpointChange = (event: CustomEvent<string>) => {
     const value = event.detail;
 
-    if (validBreakpoints.includes(value as Breakpoint)) {
+    if (validBreakpoints.has(value as Breakpoint)) {
       setBreakpoints([value as Breakpoint]);
     } else {
       console.warn(
-        `Invalid breakpoint value: ${value}. Expected one of: ${validBreakpoints.join(
-          ', '
-        )}`
+        `Invalid breakpoint value: ${value}. Expected one of: ${Array.from(
+          validBreakpoints
+        ).join(', ')}`
       );
     }
   };

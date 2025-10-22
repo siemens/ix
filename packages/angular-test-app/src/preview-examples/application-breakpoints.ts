@@ -16,17 +16,17 @@ import { Breakpoint } from '@siemens/ix';
 })
 export default class ApplicationBreakpointExample {
   breakpoints: Breakpoint[] = ['md'];
-  private readonly validBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
+  private readonly validBreakpoints = new Set<Breakpoint>(['sm', 'md', 'lg']);
 
   onCheckedChange(event: CustomEvent<string>) {
     const breakpoint = event.detail as Breakpoint;
-    if (this.validBreakpoints.includes(breakpoint)) {
+    if (this.validBreakpoints.has(breakpoint)) {
       this.breakpoints = [breakpoint];
     } else {
       console.warn(
-        `Invalid breakpoint value: ${breakpoint}. Expected one of: ${this.validBreakpoints.join(
-          ', '
-        )}`
+        `Invalid breakpoint value: ${breakpoint}. Expected one of: ${Array.from(
+          this.validBreakpoints
+        ).join(', ')}`
       );
     }
   }
