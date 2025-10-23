@@ -15,18 +15,18 @@ import { Component } from '@angular/core';
   template: `
     <ix-event-list>
       @for (item of items; track i; let i = $index) {
-      <ix-event-list-item
-        item-color="color-primary"
-        [selected]="selectedIndex === i"
-        (click)="selectedIndex = i"
-      >
-        {{ item }}
-      </ix-event-list-item>
+        <ix-event-list-item variant="filled" [itemColor]="item.color">
+          {{ item.text }}
+        </ix-event-list-item>
       }
     </ix-event-list>
   `,
 })
-export default class EventListSelected {
-  selectedIndex = 1;
-  items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
+export default class EventListFilled {
+  items = [
+    { text: 'Text 1', color: 'color-primary' },
+    { text: 'Text 2', color: 'color-primary' },
+    { text: 'Text 3', color: 'color-alarm' },
+    { text: 'Text 4', color: 'color-success' },
+  ];
 }

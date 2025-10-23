@@ -106,6 +106,7 @@ import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-brea
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
+import EventListFilled from '../preview-examples/event-list-filled';
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
@@ -346,6 +347,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     EmptyState,
     EventListCompact,
     EventListCustomItemHeight,
+    EventListFilled,
     EventListSelected,
     EventList,
     ExpandingSearch,

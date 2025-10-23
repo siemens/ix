@@ -8,23 +8,24 @@
  */
 
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
-import { useState } from 'react';
 
-const items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
+const items = [
+  { text: 'Text 1', color: 'color-primary' },
+  { text: 'Text 2', color: 'color-primary' },
+  { text: 'Text 3', color: 'color-alarm' },
+  { text: 'Text 4', color: 'color-success' },
+];
 
-export default function EventListSelected() {
-  const [selectedIndex, setSelectedIndex] = useState(1);
-
+export default function EventListFilled() {
   return (
     <IxEventList>
-      {items.map((text, index) => (
+      {items.map((item) => (
         <IxEventListItem
-          key={text}
-          itemColor="color-primary"
-          selected={selectedIndex === index}
-          onClick={() => setSelectedIndex(index)}
+          key={item.text}
+          variant="filled"
+          itemColor={item.color}
         >
-          {text}
+          {item.text}
         </IxEventListItem>
       ))}
     </IxEventList>
