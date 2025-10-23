@@ -12,7 +12,6 @@
   height: 1rem;
   margin: 0;
   appearance: none;
-  -webkit-appearance: none;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -49,11 +48,6 @@
   pointer-events: none;
 }
 
-.ag-checked:hover:not(:disabled)::before {
-  background-color: var(--theme-checkbox-checked--background--hover);
-  border-color: var(--theme-checkbox-checked--border-color--hover);
-}
-
 .ag-indeterminate {
   position: relative;
 }
@@ -72,7 +66,6 @@
   pointer-events: none;
 }
 
-/* Disabled state */
 .ag-checkbox-input:disabled {
   cursor: not-allowed;
   opacity: 0.5;
