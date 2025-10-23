@@ -13,9 +13,14 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Custom field validation example</title>
+    <style>
+      .custom-field-wrapper {
+        margin-bottom: 1rem;
+      }
+    </style>
   </head>
   <body>
-    <div>
+    <div class="custom-field-wrapper">
       <ix-custom-field
         helper-text="Add your first name here"
         valid-text="Valid first name"
@@ -30,7 +35,7 @@ LICENSE file in the root directory of this source tree.
       </ix-custom-field>
     </div>
 
-    <div>
+    <div class="custom-field-wrapper">
       <ix-custom-field info-text="Family name" label="Last name">
         <input
           id="last-name"
@@ -41,7 +46,7 @@ LICENSE file in the root directory of this source tree.
       </ix-custom-field>
     </div>
 
-    <div>
+    <div class="custom-field-wrapper">
       <ix-custom-field warning-Text="Not a valid email address" label="Email">
         <input
           id="email"
@@ -52,7 +57,7 @@ LICENSE file in the root directory of this source tree.
       </ix-custom-field>
     </div>
 
-    <div>
+    <div class="custom-field-wrapper">
       <ix-custom-field invalid-text="Required" label="Address">
         <input id="address" type="text" class="ix-form-control ix-invalid" />
       </ix-custom-field>
