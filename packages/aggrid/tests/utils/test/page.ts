@@ -7,17 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Page, PageScreenshotOptions, TestInfo, test as base } from '@playwright/test';
+import {
+  Page,
+  PageScreenshotOptions,
+  TestInfo,
+  test as base,
+} from '@playwright/test';
 
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
   const originalSceenshot = page.screenshot.bind(page);
   const theme = testInfo.project.metadata.theme;
+  const colorSchema = testInfo.project.metadata.colorSchema;
   testInfo.annotations.push({
     type: theme,
   });
   page.goto = async (url: string, options) => {
-    const response = await originalGoto(`http://127.0.0.1:8080/tests/${url}?theme=${theme}`, options);
+    const response = await originalGoto(
+      `http://localhost:5173/tests/${url}?theme=${theme}&colorSchema=${colorSchema}`,
+      options
+    );
     // Initial timeout for webKit to render Web Components
     await page.waitForTimeout(1000);
     return response;
