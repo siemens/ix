@@ -10,6 +10,7 @@ import type AgGridCommunity from 'ag-grid-community';
 import checkboxStyles from './checkbox.style.css';
 import headerStyles from './header.style.css';
 import tooltipStyles from './tooltip.style.css';
+import radioStyles from './radio.style.css';
 import { aggridIxThemeParams } from './aggrid-ix-theme-params.ts';
 import { iconOverrides } from 'ag-grid-community';
 import {
@@ -69,6 +70,13 @@ const useIxTheme = async (
         feature: 'checkboxStyle',
         params: {},
         css: checkboxStyles,
+      })
+    )
+    .withPart(
+      createPart({
+        feature: 'radioStyle',
+        params: {},
+        css: radioStyles,
       })
     )
     .withPart(
