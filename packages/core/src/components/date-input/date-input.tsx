@@ -34,8 +34,6 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
-  handleFormNoValidateAttribute,
-  handleInternalValidationOnSubmit,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -239,8 +237,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
-  private formValidationCleanup?: () => void;
-  private internalValidationCleanup?: () => void;
 
   updateFormInternalValue(value: string | undefined): void {
     updateFormInternalValueUtil(this.formInternals, value, (val) => {
@@ -283,29 +279,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
   async componentDidLoad(): Promise<void> {
     this.updateFormValidity();
-    this.formValidationCleanup = handleFormNoValidateAttribute(
-      this.formInternals
-    );
-
-    // Set up internal validation handling when HTML5 validation is disabled
-    const component = this;
-    this.internalValidationCleanup = handleInternalValidationOnSubmit(
-      this.formInternals,
-      {
-        required: this.required,
-        get value() {
-          return component.value;
-        },
-        get touched() {
-          return component.touched;
-        },
-        set touched(value) {
-          component.touched = value;
-        },
-        updateFormValidity: () => component.updateFormValidity(),
-        syncValidationClasses: () => component.syncValidationClasses(),
-      }
-    );
+    // No need for HTML5 validation handling - using internal validation only
   }
 
   private updatePaddings() {
@@ -319,8 +293,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
-    this.formValidationCleanup?.();
-    this.internalValidationCleanup?.();
+    // No validation cleanup needed - using internal validation only
   }
 
   @Watch('value')
@@ -417,10 +390,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           name={this.name}
           onInput={async (event) => {
             const target = event.target as HTMLInputElement;
-
-            // Clear HTML5 custom validity when user starts typing (for both validation modes)
-            target.setCustomValidity('');
-
             this.onInput(target.value);
           }}
           onClick={(event) => {
@@ -442,6 +411,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onBlur={async () => {
             this.ixBlur.emit();
             this.touched = true;
+
             await this.updateFormValidity();
             await this.syncValidationClasses();
           }}

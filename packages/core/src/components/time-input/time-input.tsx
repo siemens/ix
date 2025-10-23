@@ -34,8 +34,6 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
-  handleFormNoValidateAttribute,
-  handleInternalValidationOnSubmit,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
@@ -250,8 +248,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
-  private formValidationCleanup?: () => void;
-  private internalValidationCleanup?: () => void;
 
   updateFormInternalValue(value: string | undefined): void {
     updateFormInternalValueUtil(this.formInternals, value, (val) => {
@@ -283,28 +279,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   async componentDidLoad(): Promise<void> {
     this.updateFormValidity();
-    this.formValidationCleanup = handleFormNoValidateAttribute(
-      this.formInternals
-    );
-
-    const component = this;
-    this.internalValidationCleanup = handleInternalValidationOnSubmit(
-      this.formInternals,
-      {
-        required: this.required,
-        get value() {
-          return component.value;
-        },
-        get touched() {
-          return component.touched;
-        },
-        set touched(value) {
-          component.touched = value;
-        },
-        updateFormValidity: () => component.updateFormValidity(),
-        syncValidationClasses: () => component.syncValidationClasses(),
-      }
-    );
+    // No need for HTML5 validation handling - using internal validation only
   }
 
   componentWillLoad(): void {
@@ -337,8 +312,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
-    this.formValidationCleanup?.();
-    this.internalValidationCleanup?.();
+    // No validation cleanup needed - using internal validation only
   }
 
   @Watch('value')
@@ -372,10 +346,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.value = value;
     // Mark field as touched when user interacts
     this.touched = true;
-
-    // Clear HTML5 custom validity when user starts typing (for both validation modes)
-    const input = await this.getNativeInputElement();
-    input.setCustomValidity('');
 
     if (!value) {
       this.isInputInvalid = this.required === true && this.touched;
@@ -496,9 +466,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
             }
             this.ixFocus.emit();
           }}
-          onBlur={() => {
+          onBlur={async () => {
             this.ixBlur.emit();
             this.touched = true;
+
+            await this.updateFormValidity();
+            await this.syncValidationClasses();
           }}
         ></input>
         <SlotEnd
