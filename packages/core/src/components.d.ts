@@ -2337,11 +2337,6 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Bottom offset
-          * @default 0
-         */
-        "offsetBottom": number;
-        /**
           * Show about news
           * @default false
          */
@@ -8366,11 +8361,6 @@ declare namespace LocalJSX {
           * Title of the about news
          */
         "label"?: string;
-        /**
-          * Bottom offset
-          * @default 0
-         */
-        "offsetBottom"?: number;
         /**
           * Popover closed
          */

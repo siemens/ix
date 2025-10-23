@@ -15897,35 +15897,6 @@
           "setter": false
         },
         {
-          "name": "offsetBottom",
-          "type": "number",
-          "complexType": {
-            "original": "number",
-            "resolved": "number",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "offset-bottom",
-          "reflectToAttr": false,
-          "docs": "Bottom offset",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
-          "default": "0",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "show",
           "type": "boolean",
           "complexType": {
