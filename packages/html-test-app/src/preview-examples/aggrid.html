@@ -43,70 +43,68 @@ LICENSE file in the root directory of this source tree.
         theme: ixTheme,
       });
 
-      (async function () {
-        const container = document.querySelector('#grid-container');
+      const container = document.querySelector('#grid-container');
 
-        const gridOptions = {
-          rowDragManaged: true,
-          tooltipShowDelay: 500,
-          rowSelection: {
-            mode: 'multiRow',
-            checkboxes: true,
-            headerCheckbox: true,
-            selectAll: 'filtered',
+      const gridOptions = {
+        rowDragManaged: true,
+        tooltipShowDelay: 500,
+        rowSelection: {
+          mode: 'multiRow',
+          checkboxes: true,
+          headerCheckbox: true,
+          selectAll: 'filtered',
+        },
+        columnDefs: [
+          {
+            field: 'type',
+            headerName: 'Type',
+            resizable: true,
+            rowDrag: true,
+            tooltipField: 'type',
           },
-          columnDefs: [
-            {
-              field: 'type',
-              headerName: 'Type',
-              resizable: true,
-              rowDrag: true,
-              tooltipField: 'type',
+          {
+            field: 'status',
+            headerName: 'Status',
+            resizable: true,
+            sortable: true,
+            filter: true,
+            tooltipValueGetter: (params) => {
+              return `Status: ${params.value} - Type: ${params.data.type}`;
             },
-            {
-              field: 'status',
-              headerName: 'Status',
-              resizable: true,
-              sortable: true,
-              filter: true,
-              tooltipValueGetter: (params) => {
-                return `Status: ${params.value} - Type: ${params.data.type}`;
-              },
+          },
+          {
+            field: 'hwVersion',
+            headerName: 'HW version',
+            resizable: true,
+            tooltipValueGetter: (params) => {
+              if (params.value === 'N/A') {
+                return 'Hardware version not available';
+              }
+              return `Hardware Version ${params.value}`;
             },
-            {
-              field: 'hwVersion',
-              headerName: 'HW version',
-              resizable: true,
-              tooltipValueGetter: (params) => {
-                if (params.value === 'N/A') {
-                  return 'Hardware version not available';
-                }
-                return `Hardware Version ${params.value}`;
-              },
-            },
-          ],
-          rowData: [
-            {
-              type: 'Equipment',
-              status: 'Normal',
-              hwVersion: '2.0',
-            },
-            {
-              type: 'Positioner',
-              status: 'Maintenance',
-              hwVersion: '1.0',
-            },
-            {
-              type: 'Pressure sensor',
-              status: 'Unknown',
-              hwVersion: 'N/A',
-            },
-          ],
-          suppressCellFocus: true,
-        };
+          },
+        ],
+        rowData: [
+          {
+            type: 'Equipment',
+            status: 'Normal',
+            hwVersion: '2.0',
+          },
+          {
+            type: 'Positioner',
+            status: 'Maintenance',
+            hwVersion: '1.0',
+          },
+          {
+            type: 'Pressure sensor',
+            status: 'Unknown',
+            hwVersion: 'N/A',
+          },
+        ],
+        suppressCellFocus: true,
+      };
 
-        agGrid.createGrid(container, gridOptions);
-      })();
+      agGrid.createGrid(container, gridOptions);
     </script>
     <script type="module" src="./init.js"></script>
   </body>
