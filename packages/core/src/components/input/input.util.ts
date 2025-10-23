@@ -56,12 +56,12 @@ export async function checkInternalValidity<T>(
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
   const validityState = input.validity;
-  const currentValid = !comp.hostElement.classList.contains(
+  const currentValidityState = !comp.hostElement.classList.contains(
     'ix-invalid--validity-invalid'
   );
-  const newValid = validityState.valid;
+  const newValidityState = validityState.valid;
 
-  if (currentValid !== newValid) {
+  if (currentValidityState !== newValidityState) {
     const eventResult = comp.validityStateChange.emit(validityState);
     if (eventResult.defaultPrevented) {
       return;
