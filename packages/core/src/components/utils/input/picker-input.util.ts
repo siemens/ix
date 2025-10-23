@@ -9,7 +9,7 @@
 
 import { dropdownController } from '../../dropdown/dropdown-controller';
 
-export async function openDropdown(dropdownElementRef: any) {
+export async function openDropdown(dropdownElementRef: { waitForCurrent: () => Promise<HTMLIxDropdownElement> }) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
   const id = dropdownElement.getAttribute('data-ix-dropdown');
 
@@ -25,7 +25,7 @@ export async function openDropdown(dropdownElementRef: any) {
   dropdownController.present(dropdown);
 }
 
-export async function closeDropdown(dropdownElementRef: any) {
+export async function closeDropdown(dropdownElementRef: { waitForCurrent: () => Promise<HTMLIxDropdownElement> }) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
   const id = dropdownElement.getAttribute('data-ix-dropdown');
 
@@ -44,7 +44,7 @@ export function handleIconClick(
   event: Event,
   show: boolean,
   openDropdownFn: () => void,
-  inputElementRef: any
+  inputElementRef: { current: HTMLInputElement | null }
 ) {
   if (!show) {
     event.stopPropagation();
@@ -96,40 +96,27 @@ export function updateFormInternalValue(
   componentValueSetter(value);
 }
 
-/**
- * Updates form validity state based on validation flags
- * Delegates message generation to the browser for proper localization and pattern support
- * @param formInternals - ElementInternals instance
- * @param required - Whether the field is required
- * @param value - Current field value
- * @param isInputInvalid - Whether the input has a pattern mismatch or format error
- * @param inputElementRef - Reference to the native input element
- */
 export function updateFormValidity(
   formInternals: ElementInternals | undefined,
   required: boolean | undefined,
   value: string | undefined,
   isInputInvalid: boolean,
-  inputElementRef: any
+  inputElementRef: { current: HTMLInputElement | null }
 ): void {
   if (!formInternals) return;
 
   const valueMissing = required && !value;
   const patternMismatch = isInputInvalid && !!value;
 
-  // Set FormInternals validity for form submission validation
-  // BUT use an empty string as message to avoid HTML5 validation popups
   if (valueMissing || patternMismatch) {
     const inputElement = inputElementRef.current;
 
-    // Set validity flags but with empty message to prevent browser popups
-    // This allows form submission prevention while avoiding HTML5 validation UI
     formInternals.setValidity(
       {
         valueMissing,
         patternMismatch,
       },
-      ' ', // Minimal message to satisfy API but prevent visible popups
+      ' ',
       inputElement || undefined
     );
   } else {

@@ -279,7 +279,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   async componentDidLoad(): Promise<void> {
     this.updateFormValidity();
-    // No need for HTML5 validation handling - using internal validation only
   }
 
   componentWillLoad(): void {
@@ -312,18 +311,15 @@ export class TimeInput implements IxInputFieldComponent<string> {
   disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
-    // No validation cleanup needed - using internal validation only
   }
 
   @Watch('value')
   watchValue() {
-    // Only update time picker value with valid time formats
     if (this.value && this.format) {
       const time = DateTime.fromFormat(this.value, this.format);
       if (time.isValid) {
         this.time = this.value;
       }
-      // If invalid, don't update this.time to prevent time-picker errors
     } else {
       this.time = this.value ?? null;
     }
@@ -344,7 +340,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   async onInput(value: string | undefined) {
     console.log('DEBUG: onInput called with value:', value);
     this.value = value;
-    // Mark field as touched when user interacts
     this.touched = true;
 
     if (!value) {
@@ -371,24 +366,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
     const time = DateTime.fromFormat(value, this.format);
     if (time.isValid) {
       this.isInputInvalid = false;
-      // Only update time when valid
       this.time = value;
-      console.log(
-        'DEBUG: Valid time input - isInputInvalid:',
-        this.isInputInvalid
-      );
     } else {
       this.isInputInvalid = true;
       this.invalidReason = time.invalidReason;
-      // Don't update this.time for invalid input to prevent time-picker errors
-      console.log(
-        'DEBUG: Invalid time input - isInputInvalid:',
-        this.isInputInvalid,
-        'value:',
-        value,
-        'reason:',
-        time.invalidReason
-      );
     }
 
     this.updateFormInternalValue(value);
@@ -407,13 +388,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async openDropdown() {
-    // Only keep picker in sync with input if the current value is valid
     if (this.value && this.format) {
       const time = DateTime.fromFormat(this.value, this.format);
       if (time.isValid) {
         this.time = this.value;
       }
-      // If invalid, keep the last valid time or null
     } else {
       this.time = this.value ?? null;
     }
@@ -460,7 +439,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
             }
           }}
           onFocus={async () => {
-            // Always open dropdown on focus to align with Figma design
             if (!this.readonly && !this.disabled) {
               this.openDropdown();
             }
@@ -500,16 +478,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
     isValid,
     isWarning,
   }: ValidationResults) {
-    // Always apply IX validation styling for consistent appearance
-    // Internal validation (JS validation) works alongside HTML5 validation
     this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
-    console.log(
-      'DEBUG: ValidationLifecycle - always apply IX styling. Final isInvalid:',
-      this.isInvalid
-    );
   }
 
   @Watch('isInputInvalid')
@@ -529,10 +501,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
     );
   }
 
-  /**
-   * Sync validation CSS classes with the component state
-   * @internal
-   */
+  /** @internal */
   @Method()
   async syncValidationClasses(): Promise<void> {
     const [hasValue, touched] = await Promise.all([
@@ -540,7 +509,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
       this.isTouched(),
     ]);
 
-    // Handle required validation
     if (this.required) {
       const isRequiredInvalid = !hasValue && touched;
       this.hostElement.classList.toggle(
@@ -551,13 +519,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
       this.hostElement.classList.remove('ix-invalid--required');
     }
 
-    // Handle pattern/format validation (invalid time format)
     this.hostElement.classList.toggle(
       'ix-invalid--validity-patternMismatch',
       this.isInputInvalid
     );
 
-    // Sync with HTML5 validation
     await this.updateFormValidity();
   }
 

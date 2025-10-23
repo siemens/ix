@@ -279,7 +279,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
   async componentDidLoad(): Promise<void> {
     this.updateFormValidity();
-    // No need for HTML5 validation handling - using internal validation only
   }
 
   private updatePaddings() {
@@ -293,7 +292,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
-    // No validation cleanup needed - using internal validation only
   }
 
   @Watch('value')
@@ -397,12 +395,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
               event.stopPropagation();
               event.preventDefault();
             } else if (!this.readonly && !this.disabled) {
-              // Open dropdown on click if not already open
               this.openDropdown();
             }
           }}
           onFocus={async () => {
-            // Always open dropdown on focus to align with Figma design
             if (!this.readonly && !this.disabled) {
               this.openDropdown();
             }
@@ -441,8 +437,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     isValid,
     isWarning,
   }: ValidationResults) {
-    // Always apply IX validation styling for consistent appearance
-    // Internal validation (JS validation) works alongside HTML5 validation
     this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
@@ -498,7 +492,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.isTouched(),
     ]);
 
-    // Handle required validation
     if (this.required) {
       const isRequiredInvalid = !hasValue && touched;
       this.hostElement.classList.toggle(
@@ -509,14 +502,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.hostElement.classList.remove('ix-invalid--required');
     }
 
-    // Handle pattern/format validation
     const validityState = await this.getValidityState();
     this.hostElement.classList.toggle(
       'ix-invalid--validity-patternMismatch',
       validityState.patternMismatch
     );
 
-    // Sync with HTML5 validation
     await this.updateFormValidity();
   }
 
