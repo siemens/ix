@@ -35,7 +35,7 @@
   position: relative;
 }
 
-.ag-checked::before {
+.ag-checkbox-input-wrapper.ag-checked::before {
   content: '';
   position: absolute;
   inset: 0;
