@@ -17,6 +17,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
   h,
 } from '@stencil/core';
 import {
@@ -164,16 +165,73 @@ export class Textarea implements IxInputFieldComponent<string> {
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
 
-  private readonly textAreaRef = makeRef<HTMLTextAreaElement>();
+  private readonly textAreaRef = makeRef<HTMLTextAreaElement>(() => {
+    this.initResizeObserver();
+  });
   private touched = false;
+  private resizeObserver?: ResizeObserver;
+  private isManuallyResized = false;
+  private manualHeight?: string;
+  private manualWidth?: string;
+  private isProgrammaticResize = false;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
   }
 
+  @Watch('textareaHeight')
+  @Watch('textareaWidth')
+  onDimensionPropsChange() {
+    this.isManuallyResized = false;
+    this.manualHeight = undefined;
+    this.manualWidth = undefined;
+    this.isProgrammaticResize = true;
+  }
+
+  @Watch('resizeBehavior')
+  onResizeBehaviorChange() {
+    this.initResizeObserver();
+  }
+
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver?.disconnect();
+  }
+
+  private initResizeObserver() {
+    this.resizeObserver?.disconnect();
+
+    const textarea = this.textAreaRef.current;
+    if (!textarea) return;
+
+    if (this.resizeBehavior === 'none') return;
+
+    let isInitialResize = true;
+
+    this.resizeObserver = new ResizeObserver(() => {
+      const textarea = this.textAreaRef.current;
+      if (!textarea) return;
+
+      if (isInitialResize) {
+        isInitialResize = false;
+        return;
+      }
+
+      if (this.isProgrammaticResize) {
+        this.isProgrammaticResize = false;
+        return;
+      }
+
+      this.isManuallyResized = true;
+      this.manualHeight = textarea.style.height;
+      this.manualWidth = textarea.style.width;
+    });
+
+    this.resizeObserver.observe(textarea);
   }
 
   updateFormInternalValue(value: string) {
@@ -256,8 +314,12 @@ export class Textarea implements IxInputFieldComponent<string> {
               maxLength={this.maxLength}
               textareaCols={this.textareaCols}
               textareaRows={this.textareaRows}
-              textareaHeight={this.textareaHeight}
-              textareaWidth={this.textareaWidth}
+              textareaHeight={
+                this.isManuallyResized ? this.manualHeight : this.textareaHeight
+              }
+              textareaWidth={
+                this.isManuallyResized ? this.manualWidth : this.textareaWidth
+              }
               resizeBehavior={this.resizeBehavior}
               readonly={this.readonly}
               disabled={this.disabled}
