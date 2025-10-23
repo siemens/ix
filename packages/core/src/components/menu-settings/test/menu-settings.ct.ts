@@ -35,3 +35,40 @@ test('should not change tab', async ({ mount, page }) => {
   await expect(tabItems.first()).toHaveAttribute('selected', 'true');
   await expect(tabItems.last()).not.toHaveAttribute('selected', 'true');
 });
+
+test('tabChange event should fire exactly once per tab click', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-menu>
+        <ix-menu-settings>
+          <ix-menu-settings-item label="Tab 1">Content 1</ix-menu-settings-item>
+          <ix-menu-settings-item label="Tab 2">Content 2</ix-menu-settings-item>
+        </ix-menu-settings>
+      </ix-menu>
+    `);
+
+  const settings = page.locator('ix-menu-settings');
+  const element = page.locator('ix-menu-item#settings');
+  await element.click();
+
+  const tabItems = page.locator('ix-tab-item');
+  await expect(tabItems.first()).toHaveClass(/hydrated/);
+
+  const eventPromise = settings.evaluate((e) => {
+    return new Promise<string>((resolve) => {
+      const handleTabChange = (event: Event) => {
+        const detail = (event as CustomEvent<string>).detail;
+        resolve(detail);
+      };
+
+      e.addEventListener('tabChange', handleTabChange);
+    });
+  });
+
+  await tabItems.nth(1).click();
+
+  const eventDetail = await eventPromise;
+  expect(eventDetail).toBe('Tab 2');
+});
