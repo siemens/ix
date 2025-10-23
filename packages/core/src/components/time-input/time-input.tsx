@@ -43,7 +43,6 @@ import {
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
-  updateFormInternalValue as updateFormInternalValueUtil,
   updateFormValidity as updateFormValidityUtil,
 } from '../utils/input/picker-input.util';
 
@@ -250,9 +249,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string | undefined): void {
-    updateFormInternalValueUtil(this.formInternals, value, (val) => {
-      this.value = val;
-    });
+    if (value) {
+      this.formInternals.setFormValue(value);
+    } else {
+      this.formInternals.setFormValue(null);
+    }
+    this.value = value;
   }
 
   private updateFormValidity(): void {
@@ -315,14 +317,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   @Watch('value')
   watchValue() {
-    if (this.value && this.format) {
-      const time = DateTime.fromFormat(this.value, this.format);
-      if (time.isValid) {
-        this.time = this.value;
-      }
-    } else {
-      this.time = this.value ?? null;
-    }
+    this.time = this.value ?? null;
   }
 
   /** @internal */
@@ -338,20 +333,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async onInput(value: string | undefined) {
-    console.log('DEBUG: onInput called with value:', value);
     this.value = value;
     this.touched = true;
 
     if (!value) {
       this.isInputInvalid = this.required === true && this.touched;
-      console.log(
-        'DEBUG: Empty value - isInputInvalid:',
-        this.isInputInvalid,
-        'required:',
-        this.required,
-        'touched:',
-        this.touched
-      );
       this.updateFormInternalValue(value);
       this.valueChange.emit(value);
       this.updateFormValidity();
@@ -388,14 +374,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async openDropdown() {
-    if (this.value && this.format) {
-      const time = DateTime.fromFormat(this.value, this.format);
-      if (time.isValid) {
-        this.time = this.value;
-      }
-    } else {
-      this.time = this.value ?? null;
-    }
+    this.time = this.value ?? null;
 
     return openDropdownUtil(this.dropdownElementRef);
   }
@@ -471,7 +450,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   @HookValidationLifecycle()
-  async hookValidationLifecycle({
+  hookValidationLifecycle({
     isInfo,
     isInvalid,
     isInvalidByRequired,

@@ -9,7 +9,9 @@
 
 import { dropdownController } from '../../dropdown/dropdown-controller';
 
-export async function openDropdown(dropdownElementRef: { waitForCurrent: () => Promise<HTMLIxDropdownElement> }) {
+export async function openDropdown(dropdownElementRef: {
+  waitForCurrent: () => Promise<HTMLIxDropdownElement>;
+}) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
   const id = dropdownElement.getAttribute('data-ix-dropdown');
 
@@ -25,7 +27,9 @@ export async function openDropdown(dropdownElementRef: { waitForCurrent: () => P
   dropdownController.present(dropdown);
 }
 
-export async function closeDropdown(dropdownElementRef: { waitForCurrent: () => Promise<HTMLIxDropdownElement> }) {
+export async function closeDropdown(dropdownElementRef: {
+  waitForCurrent: () => Promise<HTMLIxDropdownElement>;
+}) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
   const id = dropdownElement.getAttribute('data-ix-dropdown');
 
@@ -75,25 +79,6 @@ export function createValidityState(
     valid: !isInputInvalid,
     valueMissing: !!required && !value,
   };
-}
-
-/**
- * Updates the form internal value for form-associated custom elements
- * @param formInternals - ElementInternals instance
- * @param value - The value to set
- * @param componentValueSetter - Callback to set the component's value property
- */
-export function updateFormInternalValue(
-  formInternals: ElementInternals,
-  value: string | undefined,
-  componentValueSetter: (val: string | undefined) => void
-): void {
-  if (value) {
-    formInternals.setFormValue(value);
-  } else {
-    formInternals.setFormValue(null);
-  }
-  componentValueSetter(value);
 }
 
 export function updateFormValidity(

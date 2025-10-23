@@ -42,7 +42,6 @@ import {
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
-  updateFormInternalValue as updateFormInternalValueUtil,
   updateFormValidity as updateFormValidityUtil,
 } from '../utils/input/picker-input.util';
 
@@ -239,9 +238,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string | undefined): void {
-    updateFormInternalValueUtil(this.formInternals, value, (val) => {
-      this.value = val;
-    });
+    if (value) {
+      this.formInternals.setFormValue(value);
+    } else {
+      this.formInternals.setFormValue(null);
+    }
+    this.value = value;
   }
 
   private updateFormValidity(): void {
@@ -277,7 +279,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.checkClassList();
     this.updateFormInternalValue(this.value);
   }
-  async componentDidLoad(): Promise<void> {
+
+  componentDidLoad(): void {
     this.updateFormValidity();
   }
 
@@ -386,7 +389,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           value={this.value ?? ''}
           placeholder={this.placeholder}
           name={this.name}
-          onInput={async (event) => {
+          onInput={(event) => {
             const target = event.target as HTMLInputElement;
             this.onInput(target.value);
           }}
@@ -408,7 +411,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.ixBlur.emit();
             this.touched = true;
 
-            await this.updateFormValidity();
+            this.updateFormValidity();
             await this.syncValidationClasses();
           }}
         ></input>
@@ -430,7 +433,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   @HookValidationLifecycle()
-  async hookValidationLifecycle({
+  hookValidationLifecycle({
     isInfo,
     isInvalid,
     isInvalidByRequired,
@@ -508,7 +511,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       validityState.patternMismatch
     );
 
-    await this.updateFormValidity();
+    this.updateFormValidity();
   }
 
   render() {
