@@ -1056,6 +1056,11 @@ export namespace Components {
          */
         "showWeekNumbers": boolean;
         /**
+          * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -2008,6 +2013,11 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -2685,6 +2695,11 @@ export namespace Components {
           * @since 3.0.0
          */
         "step"?: string | number;
+        /**
+          * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'end'
+         */
+        "textAlignment": 'start' | 'end';
         /**
           * The valid text for the input field
          */
@@ -3629,6 +3644,11 @@ export namespace Components {
           * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
         /**
           * Valid text below the input field
          */
@@ -7016,6 +7036,11 @@ declare namespace LocalJSX {
          */
         "showWeekNumbers"?: boolean;
         /**
+          * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -8024,6 +8049,11 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -8745,6 +8775,11 @@ declare namespace LocalJSX {
           * @since 3.0.0
          */
         "step"?: string | number;
+        /**
+          * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'end'
+         */
+        "textAlignment"?: 'start' | 'end';
         /**
           * The valid text for the input field
          */
@@ -9730,6 +9765,11 @@ declare namespace LocalJSX {
           * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
         /**
           * Valid text below the input field
          */
