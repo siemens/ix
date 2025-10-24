@@ -30,13 +30,20 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
     <div class="button-container">
-      <ix-toggle-button id="boldButton" variant="subtle-tertiary" icon="text-bold"
+      <ix-toggle-button
+        id="boldButton"
+        variant="subtle-tertiary"
+        icon="text-bold"
         >Bold</ix-toggle-button
       >
       <ix-toggle-button variant="subtle-tertiary" disabled icon="text-italic"
         >Italic</ix-toggle-button
       >
-      <ix-toggle-button id="underlineButton" variant="subtle-tertiary" icon="text-underline" pressed
+      <ix-toggle-button
+        id="underlineButton"
+        variant="subtle-tertiary"
+        icon="text-underline"
+        pressed
         >Underline</ix-toggle-button
       >
       <ix-toggle-button variant="subtle-tertiary" disabled loading>
@@ -62,22 +69,14 @@ LICENSE file in the root directory of this source tree.
           : 'none';
 
         boldButton.addEventListener('click', function () {
-          if (boldButton.hasAttribute('pressed')) {
-            boldButton.removeAttribute('pressed');
-          } else {
-            boldButton.setAttribute('pressed', '');
-          }
+          boldButton.toggleAttribute('pressed');
           loremIpsum.style.fontWeight = boldButton.hasAttribute('pressed')
             ? 'bold'
             : 'normal';
         });
 
         underlineButton.addEventListener('click', function () {
-          if (underlineButton.hasAttribute('pressed')) {
-            underlineButton.removeAttribute('pressed');
-          } else {
-            underlineButton.setAttribute('pressed', '');
-          }
+          underlineButton.toggleAttribute('pressed');
           loremIpsum.style.textDecoration = underlineButton.hasAttribute(
             'pressed'
           )

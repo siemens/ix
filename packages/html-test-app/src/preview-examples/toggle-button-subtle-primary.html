@@ -30,7 +30,10 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
     <div class="button-container">
-      <ix-toggle-button variant="subtle-primary" id="boldButton" icon="text-bold"
+      <ix-toggle-button
+        variant="subtle-primary"
+        id="boldButton"
+        icon="text-bold"
         >Bold</ix-toggle-button
       >
       <ix-toggle-button variant="subtle-primary" disabled icon="text-italic"
@@ -66,22 +69,14 @@ LICENSE file in the root directory of this source tree.
           : 'none';
 
         boldButton.addEventListener('click', function () {
-          if (boldButton.hasAttribute('pressed')) {
-            boldButton.removeAttribute('pressed');
-          } else {
-            boldButton.setAttribute('pressed', '');
-          }
+          boldButton.toggleAttribute('pressed');
           loremIpsum.style.fontWeight = boldButton.hasAttribute('pressed')
             ? 'bold'
             : 'normal';
         });
 
         underlineButton.addEventListener('click', function () {
-          if (underlineButton.hasAttribute('pressed')) {
-            underlineButton.removeAttribute('pressed');
-          } else {
-            underlineButton.setAttribute('pressed', '');
-          }
+          underlineButton.toggleAttribute('pressed');
           loremIpsum.style.textDecoration = underlineButton.hasAttribute(
             'pressed'
           )
