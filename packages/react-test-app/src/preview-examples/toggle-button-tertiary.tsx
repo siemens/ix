@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './toggle-button-secondary.scoped.css';
+import './toggle-button-tertiary.scoped.css';
 
 import { IxToggleButton } from '@siemens/ix-react';
 import { useState } from 'react';
@@ -32,25 +32,25 @@ export default () => {
     <>
       <div className="button-container">
         <IxToggleButton
-          variant="secondary"
+          variant="tertiary"
           icon={iconTextBold}
           pressed={boldPressed}
           onClick={handleBoldClick}
         >
           Bold
         </IxToggleButton>
-        <IxToggleButton variant="secondary" disabled icon={iconTextItalic}>
+        <IxToggleButton variant="tertiary" disabled icon={iconTextItalic}>
           Italic
         </IxToggleButton>
         <IxToggleButton
-          variant="secondary"
+          variant="tertiary"
           icon={iconTextUnderline}
           pressed={underlinePressed}
           onClick={handleUnderlineClick}
         >
           Underline
         </IxToggleButton>
-        <IxToggleButton variant="secondary" disabled loading>
+        <IxToggleButton variant="tertiary" disabled loading>
           Strikethrough
         </IxToggleButton>
       </div>

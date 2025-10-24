@@ -15,29 +15,29 @@ import { Component } from '@angular/core';
   template: `
     <div class="button-container">
       <ix-toggle-button
-        variant="primary"
+        variant="subtle-tertiary"
         icon="text-bold"
         [pressed]="boldPressed"
         (click)="handleBoldClick()"
         >Bold</ix-toggle-button
       >
-      <ix-toggle-button variant="primary" disabled icon="text-italic"
+      <ix-toggle-button variant="subtle-tertiary" disabled icon="text-italic"
         >Italic</ix-toggle-button
       >
       <ix-toggle-button
-        variant="primary"
+        variant="subtle-tertiary"
         icon="text-underline"
         [pressed]="underlinePressed"
         (click)="handleUnderlineClick()"
         >Underline</ix-toggle-button
       >
-      <ix-toggle-button variant="primary" disabled loading>
+      <ix-toggle-button variant="subtle-tertiary" disabled loading>
         Strikethrough
       </ix-toggle-button>
     </div>
     <p [style.fontWeight]="boldPressed ? 'bold' : 'normal'" [style.text-decoration]="underlinePressed ? 'underline' : 'none'">Lorem ipsum text</p>
   `,
-  styleUrls: ['./toggle-button-primary.css'],
+  styleUrls: ['./toggle-button-subtle-tertiary.css'],
 })
 export default class Buttons {
   boldPressed = false;

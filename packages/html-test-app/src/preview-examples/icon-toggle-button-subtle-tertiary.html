@@ -12,8 +12,8 @@ LICENSE file in the root directory of this source tree.
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toggle button primary example</title>
-    <link rel="stylesheet" href="./toggle-button-primary.css" />
+    <title>Icon toggle button subtle tertiary example</title>
+    <link rel="stylesheet" href="./icon-toggle-button-subtle-tertiary.css" />
     <script type="module">
       import { addIcons } from '@siemens/ix-icons';
       import {
@@ -30,28 +30,31 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
     <div class="button-container">
-      <ix-toggle-button id="boldButton" variant="primary" icon="text-bold"
-        >Bold</ix-toggle-button
+      <ix-icon-toggle-button
+        id="boldButton"
+        variant="subtle-tertiary"
+        icon="text-bold"
+        ></ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        variant="subtle-tertiary"
+        disabled
+        icon="text-italic"
+        ></ix-icon-toggle-button
       >
-      <ix-toggle-button variant="primary" disabled icon="text-italic"
-        >Italic</ix-toggle-button
-      >
-      <ix-toggle-button
+      <ix-icon-toggle-button
         id="underlineButton"
-        variant="primary"
+        variant="subtle-tertiary"
         icon="text-underline"
         pressed
-        >Underline</ix-toggle-button
+        ></ix-icon-toggle-button
       >
-      <ix-toggle-button variant="primary" disabled loading>
-        Strikethrough
-      </ix-toggle-button>
+      <ix-icon-toggle-button variant="subtle-tertiary" disabled loading>
+      </ix-icon-toggle-button>
     </div>
     <p id="loremIpsum">Lorem ipsum text</p>
-
+    </div>
     <script type="module">
       import './init.js';
-
       document.addEventListener('DOMContentLoaded', function () {
         const boldButton = document.getElementById('boldButton');
         const underlineButton = document.getElementById('underlineButton');
