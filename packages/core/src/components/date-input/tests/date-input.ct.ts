@@ -485,56 +485,68 @@ regressionTest(
   }
 );
 
-regressionTest('HTML5 validation - novalidate false (default browser validation)', async ({ mount, page }) => {
-  // Setup form with HTML5 validation enabled (default)
-  await mount(`
+regressionTest(
+  'HTML5 validation - novalidate false (default browser validation)',
+  async ({ mount, page }) => {
+    // Setup form with HTML5 validation enabled (default)
+    await mount(`
     <form>
       <ix-date-input required name="date" label="Date"></ix-date-input>
       <button id="submit-btn" type="submit">Submit</button>
     </form>
   `);
 
-  const dateInput = page.locator('ix-date-input');
-  const submitBtn = page.locator('#submit-btn');
+    const dateInput = page.locator('ix-date-input');
+    const submitBtn = page.locator('#submit-btn');
 
-  // Wait for hydration
-  await expect(dateInput).toHaveClass(/hydrated/);
+    // Wait for hydration
+    await expect(dateInput).toHaveClass(/hydrated/);
 
-  // Test HTML5 validation
-  await page.evaluate(() => {
-    window.addEventListener('invalid', () => {
-      (window as any).__validationCalled = true;
-    }, true);
+    // Test HTML5 validation
+    await page.evaluate(() => {
+      window.addEventListener(
+        'invalid',
+        () => {
+          (window as any).__validationCalled = true;
+        },
+        true
+      );
 
-    // Ensure form has normal HTML5 validation
-    const form = document.querySelector('form');
-    if (form) {
-      form.removeAttribute('novalidate');
-    }
-  });
+      // Ensure form has normal HTML5 validation
+      const form = document.querySelector('form');
+      if (form) {
+        form.removeAttribute('novalidate');
+      }
+    });
 
-  // Submit form
-  await submitBtn.click();
+    // Submit form
+    await submitBtn.click();
 
-  // Wait for validation event to fire
-  await page.waitForFunction(() => (window as any).__validationCalled === true, {
-    timeout: 1000
-  });
+    // Wait for validation event to fire
+    await page.waitForFunction(
+      () => (window as any).__validationCalled === true,
+      {
+        timeout: 1000,
+      }
+    );
 
-  // Check native validity state
-  const validationState = await dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
-    const input = await el.getNativeInputElement();
-    return {
-      valid: input.validity.valid,
-      valueMissing: input.validity.valueMissing,
-      validationMessage: input.validationMessage
-    };
-  });
+    // Check native validity state
+    const validationState = await dateInput.evaluate(
+      async (el: HTMLIxDateInputElement) => {
+        const input = await el.getNativeInputElement();
+        return {
+          valid: input.validity.valid,
+          valueMissing: input.validity.valueMissing,
+          validationMessage: input.validationMessage,
+        };
+      }
+    );
 
-  expect(validationState.valid).toBeFalsy();
-  expect(validationState.valueMissing).toBeTruthy();
-  expect(validationState.validationMessage).not.toBe('');
-});
+    expect(validationState.valid).toBeFalsy();
+    expect(validationState.valueMissing).toBeTruthy();
+    expect(validationState.validationMessage).not.toBe('');
+  }
+);
 
 regressionTest('Form with novalidate=true', async ({ mount, page }) => {
   // Setup form with HTML5 validation disabled
@@ -573,38 +585,45 @@ regressionTest('Form with novalidate=true', async ({ mount, page }) => {
   await submitBtn.click();
 
   // Should have bypassed HTML5 validation
-  wasSubmitted = await form.evaluate((form: HTMLFormElement) => (form as any).wasSubmitted);
+  wasSubmitted = await form.evaluate(
+    (form: HTMLFormElement) => (form as any).wasSubmitted
+  );
   expect(wasSubmitted).toBeTruthy();
 });
 
-regressionTest('Individual date input validation (outside form)', async ({ mount, page }) => {
-  await mount(`<ix-date-input required label="Date"></ix-date-input>`);
-  const dateInput = page.locator('ix-date-input');
+regressionTest(
+  'Individual date input validation (outside form)',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-input required label="Date"></ix-date-input>`);
+    const dateInput = page.locator('ix-date-input');
 
-  // Set validation state properly
-  await dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
-    const input = await el.getNativeInputElement();
-    input.focus();
-    input.blur();
-    await el.syncValidationClasses();
-  });
+    // Set validation state properly
+    await dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
+      const input = await el.getNativeInputElement();
+      input.focus();
+      input.blur();
+      await el.syncValidationClasses();
+    });
 
-  // Component validation should work regardless of form context
-  await expect(dateInput).toHaveClass(/ix-invalid--required/);
+    // Component validation should work regardless of form context
+    await expect(dateInput).toHaveClass(/ix-invalid--required/);
 
-  // Test pattern validation
-  await dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
-    el.value = 'invalid-date';
-    await el.syncValidationClasses();
-  });
+    // Test pattern validation
+    await dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
+      el.value = 'invalid-date';
+      await el.syncValidationClasses();
+    });
 
-  // Should show pattern mismatch
-  await expect(dateInput).toHaveClass(/ix-invalid--validity-patternMismatch/);
-});
+    // Should show pattern mismatch
+    await expect(dateInput).toHaveClass(/ix-invalid--validity-patternMismatch/);
+  }
+);
 
-regressionTest('Framework form validation (Angular/React/Vue)', async ({ mount, page }) => {
-  // Test with ngNoValidate attribute (Angular)
-  await mount(`
+regressionTest(
+  'Framework form validation (Angular/React/Vue)',
+  async ({ mount, page }) => {
+    // Test with ngNoValidate attribute (Angular)
+    await mount(`
     <div id="test-container">
       <form ngNoValidate>
         <ix-date-input required name="date" label="Date"></ix-date-input>
@@ -612,36 +631,36 @@ regressionTest('Framework form validation (Angular/React/Vue)', async ({ mount, 
     </div>
   `);
 
-  let dateInput = page.locator('ix-date-input');
-  let form = page.locator('form');
+    let dateInput = page.locator('ix-date-input');
+    let form = page.locator('form');
 
-  // Wait for hydration and setup
-  await expect(dateInput).toHaveClass(/hydrated/);
+    // Wait for hydration and setup
+    await expect(dateInput).toHaveClass(/hydrated/);
 
-  // Check that form validation is working with ngNoValidate
-  const hasNgNoValidate = await form.evaluate((form: HTMLFormElement) => {
-    return form.hasAttribute('ngNoValidate');
-  });
-  expect(hasNgNoValidate).toBeTruthy();
+    // Check that form validation is working with ngNoValidate
+    const hasNgNoValidate = await form.evaluate((form: HTMLFormElement) => {
+      return form.hasAttribute('ngNoValidate');
+    });
+    expect(hasNgNoValidate).toBeTruthy();
 
-  // Trigger validation
-  await dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
-    const input = await el.getNativeInputElement();
-    input.focus();
-    input.blur();
-    await el.syncValidationClasses();
-  });
+    // Trigger validation
+    await dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
+      const input = await el.getNativeInputElement();
+      input.focus();
+      input.blur();
+      await el.syncValidationClasses();
+    });
 
-  // Should use component validation, not HTML5
-  await expect(dateInput).toHaveClass(/ix-invalid--required/);
+    // Should use component validation, not HTML5
+    await expect(dateInput).toHaveClass(/ix-invalid--required/);
 
-  // Clean up
-  await page.evaluate(() => {
-    document.getElementById('test-container')?.remove();
-  });
+    // Clean up
+    await page.evaluate(() => {
+      document.getElementById('test-container')?.remove();
+    });
 
-  // Test with data-novalidate attribute (React)
-  await mount(`
+    // Test with data-novalidate attribute (React)
+    await mount(`
     <div id="test-container">
       <form>
         <ix-date-input required name="date" label="Date"></ix-date-input>
@@ -649,43 +668,44 @@ regressionTest('Framework form validation (Angular/React/Vue)', async ({ mount, 
     </div>
   `);
 
-  dateInput = page.locator('ix-date-input');
-  form = page.locator('form');
+    dateInput = page.locator('ix-date-input');
+    form = page.locator('form');
 
-  // Wait for hydration and setup
-  await expect(dateInput).toHaveClass(/hydrated/);
+    // Wait for hydration and setup
+    await expect(dateInput).toHaveClass(/hydrated/);
 
-  // Set data-novalidate after hydration to ensure MutationObserver is set up
-  await form.evaluate((form: HTMLFormElement) => {
-    form.setAttribute('data-novalidate', '');
-  });
+    // Set data-novalidate after hydration to ensure MutationObserver is set up
+    await form.evaluate((form: HTMLFormElement) => {
+      form.setAttribute('data-novalidate', '');
+    });
 
-  // Check that form validation is working with data-novalidate
-  const hasDataNoValidate = await form.evaluate((form: HTMLFormElement) => {
-    return form.hasAttribute('data-novalidate');
-  });
-  expect(hasDataNoValidate).toBeTruthy();
+    // Check that form validation is working with data-novalidate
+    const hasDataNoValidate = await form.evaluate((form: HTMLFormElement) => {
+      return form.hasAttribute('data-novalidate');
+    });
+    expect(hasDataNoValidate).toBeTruthy();
 
-  // Should use component validation
-  await dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
-    const input = await el.getNativeInputElement();
-    input.focus();
-    input.blur();
-    await el.syncValidationClasses();
-  });
+    // Should use component validation
+    await dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
+      const input = await el.getNativeInputElement();
+      input.focus();
+      input.blur();
+      await el.syncValidationClasses();
+    });
 
-  // Should show required validation even with data-novalidate
-  await expect(dateInput).toHaveClass(/ix-invalid--required/);
+    // Should show required validation even with data-novalidate
+    await expect(dateInput).toHaveClass(/ix-invalid--required/);
 
-  // Test that native validation is disabled
-  const formHasNoValidate = await form.evaluate((form: HTMLFormElement) => {
-    return form.hasAttribute('novalidate');
-  });
-  expect(formHasNoValidate).toBeTruthy();
-  // The form submission was already checked in the Promise.all above
+    // Test that native validation is disabled
+    const formHasNoValidate = await form.evaluate((form: HTMLFormElement) => {
+      return form.hasAttribute('novalidate');
+    });
+    expect(formHasNoValidate).toBeTruthy();
+    // The form submission was already checked in the Promise.all above
 
-  // Clean up
-  await page.evaluate(() => {
-    document.getElementById('test-container')?.remove();
-  });
-});
+    // Clean up
+    await page.evaluate(() => {
+      document.getElementById('test-container')?.remove();
+    });
+  }
+);

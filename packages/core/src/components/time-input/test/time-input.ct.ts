@@ -165,7 +165,7 @@ regressionTest.describe('time input tests', () => {
   );
   regressionTest(
     'Not Required input: After entering invalid-time, removing the value with the keyboard, the field should remain valid.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('25:99:99');
@@ -180,7 +180,7 @@ regressionTest.describe('time input tests', () => {
 
   regressionTest(
     'Not Required input: After entering invalid-time, clearing the touched state (simulating clear button) should make the field valid again.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('25:99:99');
@@ -197,7 +197,7 @@ regressionTest.describe('time input tests', () => {
 
   regressionTest(
     'Not Required input: After entering invalid-time, programmatically setting value to empty should keep field valid.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('25:99:99');
@@ -227,7 +227,7 @@ regressionTest.describe('time input tests', () => {
 
   regressionTest(
     'Not Required input: After entering valid-time, clearing the touched state (simulating clear button) should make the field valid again.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('12:34:56');
@@ -244,7 +244,7 @@ regressionTest.describe('time input tests', () => {
 
   regressionTest(
     'Not Required input: After entering valid-time, programmatically setting value to empty should keep field valid.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('12:34:56');
@@ -264,7 +264,7 @@ regressionTest.describe('required time input tests', () => {
 
   regressionTest(
     'Required input: After entering invalid-time, removing the value with the keyboard, the field should remain invalid.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('25:99:99');
@@ -279,7 +279,7 @@ regressionTest.describe('required time input tests', () => {
 
   regressionTest(
     'Required input: After entering invalid-time, clearing the touched state (simulating clear button) should make the field valid again.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('25:99:99');
@@ -296,7 +296,7 @@ regressionTest.describe('required time input tests', () => {
 
   regressionTest(
     'Required input: After entering invalid-time, programmatically setting value to empty should keep field invalid.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('25:99:99');
@@ -313,7 +313,7 @@ regressionTest.describe('required time input tests', () => {
 
   regressionTest(
     'Required input: After entering valid-time, removing the value with the keyboard, the field should remain invalid.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('12:34:56');
@@ -328,7 +328,7 @@ regressionTest.describe('required time input tests', () => {
 
   regressionTest(
     'Required input: After entering valid-time, clearing the touched state (simulating clear button) should make the field valid again.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('12:34:56');
@@ -345,7 +345,7 @@ regressionTest.describe('required time input tests', () => {
 
   regressionTest(
     'Required input: After entering valid-time, programmatically setting value to empty should keep field invalid.',
-    async ({ mount, page }) => {
+    async ({ page }) => {
       const timeInputElement = page.locator('ix-time-input');
       await expect(timeInputElement).toHaveClass(/hydrated/);
       await timeInputElement.locator('input').fill('12:34:56');
