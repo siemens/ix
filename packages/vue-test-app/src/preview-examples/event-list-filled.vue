@@ -8,23 +8,25 @@
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { IxEventList, IxEventListItem } from '@siemens/ix-vue';
 
-const selectedIndex = ref(1);
-const items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
+const items = [
+  { text: 'Text 1', color: 'color-primary' },
+  { text: 'Text 2', color: 'color-primary' },
+  { text: 'Text 3', color: 'color-alarm' },
+  { text: 'Text 4', color: 'color-success' },
+];
 </script>
 
 <template>
   <IxEventList>
     <IxEventListItem
-      v-for="(item, index) in items"
-      :key="item"
-      itemColor="color-primary"
-      :selected="selectedIndex === index"
-      @click="selectedIndex = index"
+      v-for="item in items"
+      :key="item.text"
+      variant="filled"
+      :itemColor="item.color"
     >
-      {{ item }}
+      {{ item.text }}
     </IxEventListItem>
   </IxEventList>
 </template>

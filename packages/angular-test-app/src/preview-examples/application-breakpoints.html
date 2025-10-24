@@ -35,7 +35,7 @@ LICENSE file in the root directory of this source tree.
 
     <ix-radio-group
       [value]="breakpoints[0]"
-      (valueChange)="onCheckedChange($event)"
+      (valueChange)="onCheckedChange($event.detail)"
     >
       <ix-radio value="sm" label="Small"></ix-radio>
       <ix-radio value="md" label="Medium"></ix-radio>

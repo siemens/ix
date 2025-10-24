@@ -97,6 +97,7 @@ import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break
 import EventList from './preview-examples/event-list';
 import EventListCompact from './preview-examples/event-list-compact';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height';
+import EventListFilled from './preview-examples/event-list-filled';
 import EventListSelected from './preview-examples/event-list-selected';
 import ExpandingSearch from './preview-examples/expanding-search';
 import FlipTile from './preview-examples/flip-tile';
@@ -432,11 +433,15 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/event-list-custom-item-height"
           element={<EventListCustomItemHeight />}
         />
+        <Route path="/preview/event-list" element={<EventList />} />
+        <Route
+          path="/preview/event-list-filled"
+          element={<EventListFilled />}
+        />
         <Route
           path="/preview/event-list-selected"
           element={<EventListSelected />}
         />
-        <Route path="/preview/event-list" element={<EventList />} />
         <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
         <Route path="/preview/flip-tile" element={<FlipTile />} />
         <Route path="/preview/form-checkbox" element={<FormCheckbox />} />
