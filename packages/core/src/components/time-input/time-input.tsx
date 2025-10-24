@@ -245,15 +245,13 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private formSubmissionAttempted = false;
+  private formSubmitHandler?: () => void;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string | undefined): void {
-    if (value) {
-      this.formInternals.setFormValue(value);
-    } else {
-      this.formInternals.setFormValue(null);
-    }
+    this.formInternals.setFormValue(value ?? null);
     this.value = value;
   }
 
@@ -300,6 +298,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
+    this.setupFormSubmissionTracking();
   }
 
   private updatePaddings() {
@@ -313,6 +312,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
   disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+
+    // Clean up form submit event listener
+    if (this.formSubmitHandler) {
+      const form = this.hostElement.closest('form');
+      if (form) {
+        form.removeEventListener('submit', this.formSubmitHandler);
+      }
+    }
   }
 
   @Watch('value')
@@ -337,7 +344,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.touched = true;
 
     if (!value) {
-      this.isInputInvalid = this.required === true && this.touched;
+      this.isInputInvalid = this.required === true && (this.touched || this.formSubmissionAttempted);
       this.updateFormInternalValue(value);
       this.valueChange.emit(value);
       this.updateFormValidity();
@@ -529,6 +536,17 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  private setupFormSubmissionTracking(): void {
+    // Find the form that contains this component
+    const form = this.hostElement.closest('form');
+    if (form) {
+      this.formSubmitHandler = () => {
+        this.formSubmissionAttempted = true;
+      };
+      form.addEventListener('submit', this.formSubmitHandler);
+    }
   }
 
   render() {

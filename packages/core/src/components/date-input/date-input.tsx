@@ -234,6 +234,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private formSubmissionAttempted = false;
+  private formSubmitHandler?: () => void;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -282,6 +284,24 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   componentDidLoad(): void {
     this.updateFormValidity();
+    this.setupFormSubmissionTracking();
+  }
+
+  private setupFormSubmissionTracking(): void {
+    // Use a global form submission event to detect any form submission
+    const form = this.formInternals?.form;
+    if (form) {
+      const handleSubmit = () => {
+        this.formSubmissionAttempted = true;
+        // Re-trigger validation to show errors
+        this.onInput(this.value);
+      };
+
+      form.addEventListener('submit', handleSubmit);
+
+      // Store handler for cleanup
+      this.formSubmitHandler = handleSubmit;
+    }
   }
 
   private updatePaddings() {
@@ -295,6 +315,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+
+    // Clean up form submit listener
+    const form = this.formInternals?.form;
+    if (form && this.formSubmitHandler) {
+      form.removeEventListener('submit', this.formSubmitHandler);
+    }
   }
 
   @Watch('value')
@@ -317,7 +343,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
-      this.isInputInvalid = this.required === true && this.touched;
+      // Show validation error if required and either touched OR form submission was attempted
+      this.isInputInvalid = this.required === true && (this.touched || this.formSubmissionAttempted);
       this.valueChange.emit(value);
       this.updateFormValidity();
       await this.syncValidationClasses();
