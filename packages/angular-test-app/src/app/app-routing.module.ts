@@ -97,6 +97,7 @@ import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-brea
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
+import EventListFilled from '../preview-examples/event-list-filled';
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
@@ -116,6 +117,8 @@ import GroupContextMenu from '../preview-examples/group-context-menu';
 import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
 import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
+import HtmlTable from '../preview-examples/html-table';
+import HtmlTableStriped from '../preview-examples/html-table-striped';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
 import IconToggleButtonSubtlePrimary from '../preview-examples/icon-toggle-button-subtle-primary';
 import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
@@ -579,6 +582,10 @@ const routes: Routes = [
         component: EmptyState,
       },
       {
+        path: 'event-list',
+        component: EventList,
+      },
+      {
         path: 'event-list-compact',
         component: EventListCompact,
       },
@@ -587,12 +594,12 @@ const routes: Routes = [
         component: EventListCustomItemHeight,
       },
       {
-        path: 'event-list-selected',
-        component: EventListSelected,
+        path: 'event-list-filled',
+        component: EventListFilled,
       },
       {
-        path: 'event-list',
-        component: EventList,
+        path: 'event-list-selected',
+        component: EventListSelected,
       },
       {
         path: 'expanding-search',
@@ -633,6 +640,14 @@ const routes: Routes = [
       {
         path: 'icon-toggle-button-tertiary',
         component: IconToggleButtonTertiary,
+      },
+      {
+        path: 'html-table',
+        component: HtmlTable,
+      },
+      {
+        path: 'html-table-striped',
+        component: HtmlTableStriped,
       },
       {
         path: 'icon-toggle-button-secondary',
