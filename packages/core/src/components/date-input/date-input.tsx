@@ -42,6 +42,7 @@ import {
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  updateFormValidity as updateFormValidityUtil,
 } from '../utils/input/picker-input.util';
 
 /**
@@ -76,6 +77,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   @Watch('value') watchValuePropHandler(newValue: string) {
+    if (newValue === null || newValue === undefined) {
+      this.touched = false;
+    }
     this.onInput(newValue);
   }
 
@@ -230,6 +234,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private formSubmissionAttempted = false;
+  private formSubmitHandler?: () => void;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -240,6 +246,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.formInternals.setFormValue(null);
     }
     this.value = value;
+  }
+
+  private updateFormValidity(): void {
+    updateFormValidityUtil(
+      this.formInternals,
+      this.required,
+      this.value,
+      this.isInputInvalid,
+      this.inputElementRef
+    );
   }
 
   connectedCallback(): void {
@@ -266,6 +282,28 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.updateFormInternalValue(this.value);
   }
 
+  componentDidLoad(): void {
+    this.updateFormValidity();
+    this.setupFormSubmissionTracking();
+  }
+
+  private setupFormSubmissionTracking(): void {
+    // Use a global form submission event to detect any form submission
+    const form = this.formInternals?.form;
+    if (form) {
+      const handleSubmit = () => {
+        this.formSubmissionAttempted = true;
+        // Re-trigger validation to show errors
+        this.onInput(this.value);
+      };
+
+      form.addEventListener('submit', handleSubmit);
+
+      // Store handler for cleanup
+      this.formSubmitHandler = handleSubmit;
+    }
+  }
+
   private updatePaddings() {
     adjustPaddingForStartAndEnd(
       this.slotStartRef.current,
@@ -277,6 +315,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+
+    // Clean up form submit listener
+    const form = this.formInternals?.form;
+    if (form && this.formSubmitHandler) {
+      form.removeEventListener('submit', this.formSubmitHandler);
+    }
   }
 
   @Watch('value')
@@ -299,7 +343,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
+      // Show validation error if required and either touched OR form submission was attempted
+      this.isInputInvalid = this.required === true && (this.touched || this.formSubmissionAttempted);
       this.valueChange.emit(value);
+      this.updateFormValidity();
+      await this.syncValidationClasses();
       return;
     }
 
@@ -322,6 +370,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     }
 
     this.valueChange.emit(value);
+    this.updateFormValidity();
+    await this.syncValidationClasses();
   }
 
   onCalenderClick(event: Event) {
@@ -374,15 +424,22 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             if (this.show) {
               event.stopPropagation();
               event.preventDefault();
+            } else if (!this.readonly && !this.disabled) {
+              this.openDropdown();
             }
           }}
           onFocus={async () => {
-            this.openDropdown();
+            if (!this.readonly && !this.disabled) {
+              this.openDropdown();
+            }
             this.ixFocus.emit();
           }}
-          onBlur={() => {
+          onBlur={async () => {
             this.ixBlur.emit();
             this.touched = true;
+
+            this.updateFormValidity();
+            await this.syncValidationClasses();
           }}
         ></input>
         <SlotEnd
@@ -456,6 +513,32 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  @Method()
+  async syncValidationClasses(): Promise<void> {
+    const [hasValue, touched] = await Promise.all([
+      this.hasValidValue(),
+      this.isTouched(),
+    ]);
+
+    if (this.required) {
+      const isRequiredInvalid = !hasValue && touched;
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        isRequiredInvalid
+      );
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+    }
+
+    const validityState = await this.getValidityState();
+    this.hostElement.classList.toggle(
+      'ix-invalid--validity-patternMismatch',
+      validityState.patternMismatch
+    );
+
+    this.updateFormValidity();
   }
 
   render() {

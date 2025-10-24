@@ -9,7 +9,9 @@
 
 import { dropdownController } from '../../dropdown/dropdown-controller';
 
-export async function openDropdown(dropdownElementRef: any) {
+export async function openDropdown(dropdownElementRef: {
+  waitForCurrent: () => Promise<HTMLIxDropdownElement>;
+}) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
   const id = dropdownElement.getAttribute('data-ix-dropdown');
 
@@ -25,7 +27,9 @@ export async function openDropdown(dropdownElementRef: any) {
   dropdownController.present(dropdown);
 }
 
-export async function closeDropdown(dropdownElementRef: any) {
+export async function closeDropdown(dropdownElementRef: {
+  waitForCurrent: () => Promise<HTMLIxDropdownElement>;
+}) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
   const id = dropdownElement.getAttribute('data-ix-dropdown');
 
@@ -44,7 +48,7 @@ export function handleIconClick(
   event: Event,
   show: boolean,
   openDropdownFn: () => void,
-  inputElementRef: any
+  inputElementRef: { current: HTMLInputElement | null }
 ) {
   if (!show) {
     event.stopPropagation();
@@ -75,4 +79,32 @@ export function createValidityState(
     valid: !isInputInvalid,
     valueMissing: !!required && !value,
   };
+}
+
+export function updateFormValidity(
+  formInternals: ElementInternals | undefined,
+  required: boolean | undefined,
+  value: string | undefined,
+  isInputInvalid: boolean,
+  inputElementRef: { current: HTMLInputElement | null }
+): void {
+  if (!formInternals) return;
+
+  const valueMissing = required && !value;
+  const patternMismatch = isInputInvalid && !!value;
+
+  if (valueMissing || patternMismatch) {
+    const inputElement = inputElementRef.current;
+
+    formInternals.setValidity(
+      {
+        valueMissing,
+        patternMismatch,
+      },
+      ' ',
+      inputElement || undefined
+    );
+  } else {
+    formInternals.setValidity({});
+  }
 }
