@@ -33,32 +33,30 @@ const paragraphStyle = computed(() => ({
 }));
 </script>
 
-<style scoped src="./toggle-button-secondary.css"></style>
+<style scoped src="./toggle-button-subtle-tertiary.css"></style>
 
 <template>
   <div class="button-container">
     <IxToggleButton
-      variant="secondary"
+      variant="subtle-tertiary"
       :icon="iconTextBold"
       :pressed="boldPressed"
       @click="handleBoldClick"
     >
       Bold
     </IxToggleButton>
-    <IxToggleButton variant="secondary" disabled :icon="iconTextItalic">
+    <IxToggleButton variant="subtle-tertiary" disabled :icon="iconTextItalic">
       Italic
     </IxToggleButton>
     <IxToggleButton
-      variant="secondary"
+      variant="subtle-tertiary"
       :icon="iconTextUnderline"
       :pressed="underlinePressed"
       @click="handleUnderlineClick"
     >
       Underline
     </IxToggleButton>
-    <IxToggleButton variant="secondary" disabled loading>
-      Strikethrough
-    </IxToggleButton>
+    <IxToggleButton variant="subtle-tertiary" disabled loading> Strikethrough </IxToggleButton>
   </div>
   <p :style="paragraphStyle">Lorem ipsum text</p>
 </template>

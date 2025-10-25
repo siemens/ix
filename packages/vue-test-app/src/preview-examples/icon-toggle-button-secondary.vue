@@ -8,42 +8,57 @@
 -->
 
 <script setup lang="ts">
-import { iconCheckboxes } from '@siemens/ix-icons/icons';
-import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
+import { ref, computed } from 'vue';
+import {
+  iconTextBold,
+  iconTextItalic,
+  iconTextUnderline,
+} from '@siemens/ix-icons/icons';
+import { IxIconToggleButton } from '@siemens/ix-vue';
+
+const boldPressed = ref(false);
+const underlinePressed = ref(true);
+
+const handleBoldClick = () => {
+  boldPressed.value = !boldPressed.value;
+};
+
+const handleUnderlineClick = () => {
+  underlinePressed.value = !underlinePressed.value;
+};
+
+const paragraphStyle = computed(() => ({
+  fontWeight: boldPressed.value ? 'bold' : 'normal',
+  textDecoration: underlinePressed.value ? 'underline' : 'none',
+}));
 </script>
 
 <style scoped src="./icon-toggle-button-secondary.css"></style>
 
 <template>
-  <IxLayoutGrid>
-    <IxRow>
-      <IxIconToggleButton :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton pressed :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton disabled :icon="iconCheckboxes"></IxIconToggleButton>
-      <IxIconToggleButton
-        disabled
-        loading
-        :icon="iconCheckboxes"
-      ></IxIconToggleButton>
-    </IxRow>
-    <IxRow>
-      <IxIconToggleButton :icon="iconCheckboxes" oval></IxIconToggleButton>
-      <IxIconToggleButton
-        pressed
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        disabled
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        disabled
-        loading
-        :icon="iconCheckboxes"
-        oval
-      ></IxIconToggleButton>
-    </IxRow>
-  </IxLayoutGrid>
+  <div class="button-container">
+    <IxIconToggleButton
+      variant="secondary"
+      :icon="iconTextBold"
+      :pressed="boldPressed"
+      @click="handleBoldClick"
+    >
+      Bold
+    </IxIconToggleButton>
+    <IxIconToggleButton variant="secondary" disabled :icon="iconTextItalic">
+      Italic
+    </IxIconToggleButton>
+    <IxIconToggleButton
+      variant="secondary"
+      :icon="iconTextUnderline"
+      :pressed="underlinePressed"
+      @click="handleUnderlineClick"
+    >
+      Underline
+    </IxIconToggleButton>
+    <IxIconToggleButton variant="secondary" disabled loading>
+      Strikethrough
+    </IxIconToggleButton>
+  </div>
+  <p :style="paragraphStyle">Lorem ipsum text</p>
 </template>

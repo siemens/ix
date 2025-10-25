@@ -8,37 +8,42 @@
  */
 
 import { Component } from '@angular/core';
-import { IxIconToggleButton } from '@siemens/ix-angular/standalone';
+import { IxToggleButton } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
-  imports: [IxIconToggleButton],
+  imports: [IxToggleButton],
   template: `
     <div class="button-container">
-      <ix-icon-toggle-button
-        variant="secondary"
+      <ix-toggle-button
+        variant="subtle-primary"
         icon="text-bold"
         [pressed]="boldPressed"
         (click)="handleBoldClick()"
-        >Bold</ix-icon-toggle-button
+        >Bold</ix-toggle-button
       >
-      <ix-icon-toggle-button variant="secondary" disabled icon="text-italic"
-        >Italic</ix-icon-toggle-button
+      <ix-toggle-button variant="subtle-primary" disabled icon="text-italic"
+        >Italic</ix-toggle-button
       >
-      <ix-icon-toggle-button
-        variant="secondary"
+      <ix-toggle-button
+        variant="subtle-primary"
         icon="text-underline"
         [pressed]="underlinePressed"
         (click)="handleUnderlineClick()"
-        >Underline</ix-icon-toggle-button
+        >Underline</ix-toggle-button
       >
-      <ix-icon-toggle-button variant="secondary" disabled loading>
+      <ix-toggle-button variant="subtle-primary" disabled loading>
         Strikethrough
-      </ix-icon-toggle-button>
+      </ix-toggle-button>
     </div>
-    <p [style.fontWeight]="boldPressed ? 'bold' : 'normal'" [style.text-decoration]="underlinePressed ? 'underline' : 'none'">Lorem ipsum text</p>
+    <p
+      [style.fontWeight]="boldPressed ? 'bold' : 'normal'"
+      [style.text-decoration]="underlinePressed ? 'underline' : 'none'"
+    >
+      Lorem ipsum text
+    </p>
   `,
-  styleUrls: ['./icon-toggle-button-secondary.css'],
+  styleUrls: ['./toggle-button-subtle-primary.css'],
 })
 export default class Buttons {
   boldPressed = false;

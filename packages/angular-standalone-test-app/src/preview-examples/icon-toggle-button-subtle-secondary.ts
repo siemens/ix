@@ -16,29 +16,29 @@ import { IxIconToggleButton } from '@siemens/ix-angular/standalone';
   template: `
     <div class="button-container">
       <ix-icon-toggle-button
-        variant="secondary"
+        variant="subtle-secondary"
         icon="text-bold"
         [pressed]="boldPressed"
         (click)="handleBoldClick()"
         >Bold</ix-icon-toggle-button
       >
-      <ix-icon-toggle-button variant="secondary" disabled icon="text-italic"
+      <ix-icon-toggle-button variant="subtle-secondary" disabled icon="text-italic"
         >Italic</ix-icon-toggle-button
       >
       <ix-icon-toggle-button
-        variant="secondary"
+        variant="subtle-secondary"
         icon="text-underline"
         [pressed]="underlinePressed"
         (click)="handleUnderlineClick()"
         >Underline</ix-icon-toggle-button
       >
-      <ix-icon-toggle-button variant="secondary" disabled loading>
+      <ix-icon-toggle-button variant="subtle-secondary" disabled loading>
         Strikethrough
       </ix-icon-toggle-button>
     </div>
     <p [style.fontWeight]="boldPressed ? 'bold' : 'normal'" [style.text-decoration]="underlinePressed ? 'underline' : 'none'">Lorem ipsum text</p>
   `,
-  styleUrls: ['./icon-toggle-button-secondary.css'],
+  styleUrls: ['./icon-toggle-button-subtle-secondary.css'],
 })
 export default class Buttons {
   boldPressed = false;
