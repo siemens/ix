@@ -10219,7 +10219,7 @@
           "mutable": false,
           "attr": "item-color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`\n\n{@link https://ix.siemens.io/docs/theming/colors/}",
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`\n\n{@link https://ix.siemens.io/docs/styles/colors}",
           "docsTags": [],
           "values": [
             {
@@ -15892,35 +15892,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "offsetBottom",
-          "type": "number",
-          "complexType": {
-            "original": "number",
-            "resolved": "number",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "offset-bottom",
-          "reflectToAttr": false,
-          "docs": "Bottom offset",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
-          "default": "0",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false

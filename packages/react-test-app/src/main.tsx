@@ -44,6 +44,7 @@ import ButtonLoading from './preview-examples/button-loading';
 import ButtonSecondary from './preview-examples/button-secondary';
 import ButtonTextIcon from './preview-examples/button-text-icon';
 import ButtonWithIcon from './preview-examples/button-with-icon';
+import ButtonWithLink from './preview-examples/button-with-link.tsx';
 import Buttons from './preview-examples/buttons';
 import Card from './preview-examples/card';
 import CardList from './preview-examples/card-list';
@@ -96,6 +97,7 @@ import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break
 import EventList from './preview-examples/event-list';
 import EventListCompact from './preview-examples/event-list-compact';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height';
+import EventListFilled from './preview-examples/event-list-filled';
 import EventListSelected from './preview-examples/event-list-selected';
 import ExpandingSearch from './preview-examples/expanding-search';
 import FlipTile from './preview-examples/flip-tile';
@@ -114,6 +116,8 @@ import Group from './preview-examples/group';
 import GroupContextMenu from './preview-examples/group-context-menu';
 import GroupCustomEntry from './preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed';
+import HtmlTable from './preview-examples/html-table';
+import HtmlTableStriped from './preview-examples/html-table-striped';
 import IconToggleButtonPrimaryGhost from './preview-examples/icon-toggle-button-primary-ghost';
 import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-button-primary-outline';
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary';
@@ -157,6 +161,7 @@ import Message from './preview-examples/message';
 import MessageBar from './preview-examples/message-bar';
 import MessageBarRemoval from './preview-examples/message-bar-removal.tsx';
 import Modal from './preview-examples/modal';
+import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.tsx';
 import ModalSizes from './preview-examples/modal-sizes';
 import NumberInput from './preview-examples/number-input';
 import NumberInputDisabled from './preview-examples/number-input-disabled';
@@ -172,6 +177,12 @@ import PaneLayout from './preview-examples/pane-layout';
 import Pill from './preview-examples/pill';
 import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
+import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.tsx';
+import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.tsx';
+import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.tsx';
+import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-linear-sizes.tsx';
+import ProgressIndicatorLinearStatus from './preview-examples/progress-indicator-linear-status.tsx';
+import ProgressIndicator from './preview-examples/progress-indicator.tsx';
 import PushCard from './preview-examples/push-card';
 import Radio from './preview-examples/radio';
 import RadioButton from './preview-examples/radio-button';
@@ -228,14 +239,6 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
-import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.tsx';
-import ProgressIndicator from './preview-examples/progress-indicator.tsx';
-import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.tsx';
-import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.tsx';
-import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-linear-sizes.tsx';
-import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.tsx';
-import ProgressIndicatorLinearStatus from './preview-examples/progress-indicator-linear-status.tsx';
-import ButtonWithLink from './preview-examples/button-with-link.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -430,11 +433,15 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/event-list-custom-item-height"
           element={<EventListCustomItemHeight />}
         />
+        <Route path="/preview/event-list" element={<EventList />} />
+        <Route
+          path="/preview/event-list-filled"
+          element={<EventListFilled />}
+        />
         <Route
           path="/preview/event-list-selected"
           element={<EventListSelected />}
         />
-        <Route path="/preview/event-list" element={<EventList />} />
         <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
         <Route path="/preview/flip-tile" element={<FlipTile />} />
         <Route path="/preview/form-checkbox" element={<FormCheckbox />} />
@@ -467,6 +474,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<GroupHeaderSuppressed />}
         />
         <Route path="/preview/group" element={<Group />} />
+        <Route path="/preview/html-table" element={<HtmlTable />} />
+        <Route
+          path="/preview/html-table-striped"
+          element={<HtmlTableStriped />}
+        />
         <Route
           path="/preview/icon-toggle-button-primary-ghost"
           element={<IconToggleButtonPrimaryGhost />}
