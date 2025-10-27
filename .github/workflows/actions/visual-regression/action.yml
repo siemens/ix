@@ -36,11 +36,11 @@ runs:
       shell: bash
       env:
         PROJECT_NAME: ${{ inputs.projectName }}
-        SHARED_INDEX: ${{ inputs.shardIndex}}
-        SHARED_TOTAL: ${{ inputs.shardTotal }}
+        SHARD_INDEX: ${{ inputs.shardIndex }}
+        SHARD_TOTAL: ${{ inputs.shardTotal }}
       run: |
-        if [ -n "$SHARED_INDEX" ] && [ -n "$SHARED_TOTAL" ]; then
-          pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME -- --shard=$SHARED_INDEX/$SHARED_TOTAL
+        if [ -n "$SHARD_INDEX" ] && [ -n "$SHARD_TOTAL" ]; then
+          pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME -- --shard=$SHARD_INDEX/$SHARD_TOTAL
         else
           pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME
         fi
