@@ -9,9 +9,9 @@
 
 import { useEffect, useState } from 'react';
 import {
+  ModuleRegistry,
   AllCommunityModule,
   GridOptions,
-  ModuleRegistry,
 } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import { useIxTheme } from '@siemens/ix-aggrid';
@@ -20,15 +20,14 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 export default () => {
   const [gridOptions, setGridOptions] = useState<GridOptions | null>(null);
+  const ixTheme = useIxTheme(async () => await import('ag-grid-community'));
 
   useEffect(() => {
     const initializeGrid = async () => {
-      const ixTheme = await useIxTheme(
-        async () => await import('ag-grid-community')
-      );
+      const theme = await ixTheme;
 
       setGridOptions({
-        theme: ixTheme,
+        theme: theme,
         rowDragManaged: true,
         tooltipShowDelay: 500,
         rowSelection: {
@@ -89,7 +88,7 @@ export default () => {
     };
 
     initializeGrid();
-  }, []);
+  }, [ixTheme]);
 
   if (!gridOptions) {
     return null;
