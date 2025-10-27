@@ -15,7 +15,7 @@ type Element = Components.IxTimePicker;
 const meta = {
   title: 'Example/TimePicker',
   tags: [],
-  render: (args) => genericRender('ix-time-picker', args as any),
+  render: (args) => genericRender('ix-time-picker', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-time-picker', {}),
   parameters: {},
 } satisfies Meta<Element>;
