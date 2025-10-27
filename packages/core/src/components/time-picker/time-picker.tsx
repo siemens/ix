@@ -259,7 +259,7 @@ export class TimePicker {
    * Get the current time based on the wanted format
    */
   @Method()
-  async getCurrentTime() {
+  async getCurrentTime(): Promise<string | undefined> {
     return this._time?.toFormat(this.format);
   }
 

@@ -1213,7 +1213,6 @@ export const IxMenuAboutNews: StencilReactComponent<IxMenuAboutNewsElement, IxMe
         label: 'label',
         i18nShowMore: 'i18n-show-more',
         aboutItemLabel: 'about-item-label',
-        offsetBottom: 'offset-bottom',
         expanded: 'expanded'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1822,7 +1821,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         i18nHourColumnHeader: 'i18n-hour-column-header',
         i18nMinuteColumnHeader: 'i18n-minute-column-header',
         i18nSecondColumnHeader: 'i18n-second-column-header',
-        i18nMillisecondColumnHeader: 'i18n-millisecond-column-header'
+        i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
+        hideHeader: 'hide-header'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxTimeInput as ReactWebComponent<IxTimeInputElement, IxTimeInputEvents>,

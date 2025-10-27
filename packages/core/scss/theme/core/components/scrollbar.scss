@@ -13,9 +13,9 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-scrollbar-track--background: var(--theme-color-2);
-  --theme-scrollbar-track--border: var(--theme-color-1);
   --theme-scrollbar-thumb--background: var(--theme-color-5);
-  --theme-scrollbar-track--background--hover: var(--theme-color-3);
   --theme-scrollbar-thumb--background--hover: var(--theme-color-7);
+  --theme-scrollbar-track--background: var(--theme-color-2);
+  --theme-scrollbar-track--background--hover: var(--theme-color-3);
+  --theme-scrollbar-track--border: var(--theme-color-1);
 }

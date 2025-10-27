@@ -6656,7 +6656,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nIt also determines the default order of weekdays based on the locale's conventions.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
           "docsTags": [],
           "values": [
             {
@@ -7351,7 +7351,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
+          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nIt also determines the default order of weekdays based on the locale's conventions.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
           "docsTags": [],
           "values": [
             {
@@ -7546,21 +7546,26 @@
         {
           "name": "getCurrentDate",
           "returns": {
-            "type": "Promise<{ from: string | undefined; to: string | undefined; }>",
+            "type": "Promise<DateChangeEvent>",
             "docs": ""
           },
           "complexType": {
-            "signature": "() => Promise<{ from: string | undefined; to: string | undefined; }>",
+            "signature": "() => Promise<DateChangeEvent>",
             "parameters": [],
             "references": {
               "Promise": {
                 "location": "global",
                 "id": "global::Promise"
+              },
+              "DateChangeEvent": {
+                "location": "import",
+                "path": "date-picker.events",
+                "id": "src/components/date-picker/date-picker.events.ts::DateChangeEvent"
               }
             },
-            "return": "Promise<{ from: string | undefined; to: string | undefined; }>"
+            "return": "Promise<DateChangeEvent>"
           },
-          "signature": "getCurrentDate() => Promise<{ from: string | undefined; to: string | undefined; }>",
+          "signature": "getCurrentDate() => Promise<DateChangeEvent>",
           "parameters": [],
           "docs": "Get the currently selected date or range. The object returned contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.",
           "docsTags": []
@@ -10112,7 +10117,7 @@
           "mutable": false,
           "attr": "item-color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`\n\n{@link https://ix.siemens.io/docs/theming/colors/}",
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`\n\n{@link https://ix.siemens.io/docs/styles/colors}",
           "docsTags": [],
           "values": [
             {
@@ -15727,35 +15732,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "offsetBottom",
-          "type": "number",
-          "complexType": {
-            "original": "number",
-            "resolved": "number",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "offset-bottom",
-          "reflectToAttr": false,
-          "docs": "Bottom offset",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
-          "default": "0",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -24293,6 +24269,39 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hideHeader",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-header",
+          "reflectToAttr": false,
+          "docs": "Hides the header of the picker.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false

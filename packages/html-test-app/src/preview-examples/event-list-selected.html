@@ -15,14 +15,42 @@ LICENSE file in the root directory of this source tree.
     <title>Event list selected example</title>
   </head>
   <body>
-    <ix-event-list>
-      <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
-      <ix-event-list-item color="color-primary" selected>
-        Text 2
-      </ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
-    </ix-event-list>
+    <ix-event-list id="event-list"></ix-event-list>
+
     <script type="module" src="./init.js"></script>
+    <script type="module">
+      (async () => {
+        const items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
+        const selectedIndex = 1;
+
+        await globalThis.customElements.whenDefined('ix-event-list-item');
+
+        const eventList = document.getElementById('event-list');
+        if (!eventList) return;
+
+        let selectedItem = null;
+
+        for (const [index, text] of items.entries()) {
+          const listItem = document.createElement('ix-event-list-item');
+          listItem.setAttribute('item-color', 'color-primary');
+          listItem.textContent = text;
+
+          if (index === selectedIndex) {
+            listItem.selected = true;
+            selectedItem = listItem;
+          }
+
+          listItem.addEventListener('click', () => {
+            if (selectedItem) {
+              selectedItem.selected = false;
+            }
+            listItem.selected = true;
+            selectedItem = listItem;
+          });
+
+          eventList.appendChild(listItem);
+        }
+      })();
+    </script>
   </body>
 </html>

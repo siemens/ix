@@ -891,7 +891,6 @@ export const IxMenuAboutNews: StencilVueComponent<JSX.IxMenuAboutNews> = /*@__PU
   'label',
   'i18nShowMore',
   'aboutItemLabel',
-  'offsetBottom',
   'expanded',
   'showMore',
   'closePopover'
@@ -1354,6 +1353,7 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'i18nMinuteColumnHeader',
   'i18nSecondColumnHeader',
   'i18nMillisecondColumnHeader',
+  'hideHeader',
   'valueChange',
   'validityStateChange',
   'ixFocus',

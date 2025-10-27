@@ -49,6 +49,13 @@ export const routes: Routes = [
           import('../preview-examples/application').then((m) => m.default),
       },
       {
+        path: 'application-advanced',
+        loadComponent: () =>
+          import('../preview-examples/application-advanced').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'application-app-switch',
         loadComponent: () =>
           import('../preview-examples/application-app-switch').then(
@@ -546,6 +553,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'event-list-filled',
+        loadComponent: () =>
+          import('../preview-examples/event-list-filled').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'event-list-selected',
         loadComponent: () =>
           import('../preview-examples/event-list-selected').then(
@@ -629,6 +643,18 @@ export const routes: Routes = [
         path: 'group',
         loadComponent: () =>
           import('../preview-examples/group').then((m) => m.default),
+      },
+      {
+        path: 'html-table',
+        loadComponent: () =>
+          import('../preview-examples/html-table').then((m) => m.default),
+      },
+      {
+        path: 'html-table-striped',
+        loadComponent: () =>
+          import('../preview-examples/html-table-striped').then(
+            (m) => m.default
+          ),
       },
       {
         path: 'group-context-menu',
@@ -878,6 +904,13 @@ export const routes: Routes = [
         path: 'message-bar',
         loadComponent: () =>
           import('../preview-examples/message-bar').then((m) => m.default),
+      },
+      {
+        path: 'message-bar-removal',
+        loadComponent: () =>
+          import('../preview-examples/message-bar-removal').then(
+            (m) => m.default
+          ),
       },
       {
         path: 'modal-by-instance',
