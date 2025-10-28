@@ -6896,6 +6896,40 @@
           "setter": false
         },
         {
+          "name": "textAlignment",
+          "type": "\"end\" | \"start\"",
+          "complexType": {
+            "original": "'start' | 'end'",
+            "resolved": "\"end\" | \"start\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'start'"
+            }
+          ],
+          "default": "'start'",
+          "values": [
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "validText",
           "type": "string | undefined",
           "complexType": {
@@ -13197,6 +13231,40 @@
           "setter": false
         },
         {
+          "name": "textAlignment",
+          "type": "\"end\" | \"start\"",
+          "complexType": {
+            "original": "'start' | 'end'",
+            "resolved": "\"end\" | \"start\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'start'"
+            }
+          ],
+          "default": "'start'",
+          "values": [
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "type",
           "type": "\"email\" | \"password\" | \"tel\" | \"text\" | \"url\"",
           "complexType": {
@@ -18339,6 +18407,40 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textAlignment",
+          "type": "\"end\" | \"start\"",
+          "complexType": {
+            "original": "'start' | 'end'",
+            "resolved": "\"end\" | \"start\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'end'"
+            }
+          ],
+          "default": "'end'",
+          "values": [
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -25001,6 +25103,40 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "textAlignment",
+          "type": "\"end\" | \"start\"",
+          "complexType": {
+            "original": "'start' | 'end'",
+            "resolved": "\"end\" | \"start\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-alignment",
+          "reflectToAttr": false,
+          "docs": "Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'start'"
+            }
+          ],
+          "default": "'start'",
+          "values": [
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
