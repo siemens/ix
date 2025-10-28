@@ -26,12 +26,12 @@ LICENSE file in the root directory of this source tree.
         RowDragModule,
         RowSelectionModule,
       } from 'ag-grid-community';
-      import { useIxTheme } from '@siemens/ix-aggrid';
+      import { getIxTheme } from '@siemens/ix-aggrid';
       import * as agGrid from 'ag-grid-community';
 
       ModuleRegistry.registerModules([AllCommunityModule]);
 
-      const ixTheme = await useIxTheme(() => import('ag-grid-community'));
+      const ixTheme = await getIxTheme(() => import('ag-grid-community'));
 
       const container = document.querySelector('#grid-container');
 

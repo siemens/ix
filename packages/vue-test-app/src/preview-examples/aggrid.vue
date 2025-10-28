@@ -15,14 +15,14 @@ import {
   GridOptions,
 } from 'ag-grid-community';
 import { AgGridVue } from 'ag-grid-vue3';
-import { useIxTheme } from '@siemens/ix-aggrid';
+import { getIxTheme } from '@siemens/ix-aggrid';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const gridOptions = ref<GridOptions | null>(null);
 
 onMounted(async () => {
-  const ixTheme = await useIxTheme(
+  const ixTheme = await getIxTheme(
     async () => await import('ag-grid-community')
   );
 

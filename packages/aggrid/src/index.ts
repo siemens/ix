@@ -33,7 +33,7 @@ function extractSvgFromDataUri(dataUri: string): string {
   return svgString.trim();
 }
 
-const useIxTheme = async (
+const getIxTheme = async (
   importModule: () => Promise<AgGridModule> | AgGridModule
 ) => {
   const { createPart, themeAlpine } = await importModule();
@@ -104,4 +104,4 @@ const useIxTheme = async (
   return theme;
 };
 
-export { useIxTheme };
+export { getIxTheme };

@@ -12,7 +12,7 @@ import {
   ModuleRegistry,
 } from 'ag-grid-community';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-import { useIxTheme } from '@siemens/ix-aggrid';
+import { getIxTheme } from '@siemens/ix-aggrid';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -32,7 +32,7 @@ const rowData = [
   { make: 'Porsche', model: 'Boxster', price: 72000, checked: false },
 ];
 
-const theme = await useIxTheme(() => import('ag-grid-community'));
+const theme = await getIxTheme(() => import('ag-grid-community'));
 
 const gridOptions = {
   columnDefs: columnDefs,

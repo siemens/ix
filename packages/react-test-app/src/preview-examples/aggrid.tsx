@@ -14,20 +14,21 @@ import {
   GridOptions,
 } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
-import { useIxTheme } from '@siemens/ix-aggrid';
+import { getIxTheme } from '@siemens/ix-aggrid';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export default () => {
   const [gridOptions, setGridOptions] = useState<GridOptions | null>(null);
-  const ixTheme = useIxTheme(async () => await import('ag-grid-community'));
 
   useEffect(() => {
     const initializeGrid = async () => {
-      const theme = await ixTheme;
+      const ixTheme = await getIxTheme(
+        async () => await import('ag-grid-community')
+      );
 
       setGridOptions({
-        theme: theme,
+        theme: ixTheme,
         rowDragManaged: true,
         tooltipShowDelay: 500,
         rowSelection: {
@@ -88,7 +89,7 @@ export default () => {
     };
 
     initializeGrid();
-  }, [ixTheme]);
+  }, []);
 
   if (!gridOptions) {
     return null;

@@ -8,7 +8,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { useIxTheme } from '@siemens/ix-aggrid';
+import { getIxTheme } from '@siemens/ix-aggrid';
 import { AgGridAngular } from 'ag-grid-angular';
 import {
   GridOptions,
@@ -27,7 +27,7 @@ export default class AGGrid implements OnInit {
   gridOptions: GridOptions | null = null;
 
   async ngOnInit() {
-    const ixTheme = await useIxTheme(
+    const ixTheme = await getIxTheme(
       async () => await import('ag-grid-community')
     );
 

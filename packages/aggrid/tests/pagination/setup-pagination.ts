@@ -13,7 +13,7 @@ import {
   ModuleRegistry,
 } from 'ag-grid-community';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-import { useIxTheme } from '@siemens/ix-aggrid';
+import { getIxTheme } from '@siemens/ix-aggrid';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -42,7 +42,7 @@ const gridOptions: GridOptions = {
   rowSelection: 'multiple',
   suppressCellFocus: true,
   pagination: true,
-  theme: await useIxTheme(() => import('ag-grid-community')),
+  theme: await getIxTheme(() => import('ag-grid-community')),
 };
 
 const myGridElement = document.querySelector('#testGrid') as HTMLElement;
