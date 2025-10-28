@@ -11,8 +11,15 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('aggrid', () => {
   regressionTest.describe('version', () => {
-    regressionTest('newest', async ({ page }) => {
+    regressionTest('v33', async ({ page }) => {
       await page.goto('basic/basic.html');
+
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+
+    regressionTest('v34', async ({ page }) => {
+      await page.goto('basic-v34/basic-v34.html');
 
       await page.getByRole('columnheader').nth(0).hover();
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
