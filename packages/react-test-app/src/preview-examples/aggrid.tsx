@@ -23,9 +23,7 @@ export default () => {
 
   useEffect(() => {
     const initializeGrid = async () => {
-      const ixTheme = await getIxTheme(
-        async () => await import('ag-grid-community')
-      );
+      const ixTheme = await getIxTheme(() => import('ag-grid-community'));
 
       setGridOptions({
         theme: ixTheme,

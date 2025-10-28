@@ -22,9 +22,7 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 const gridOptions = ref<GridOptions | null>(null);
 
 onMounted(async () => {
-  const ixTheme = await getIxTheme(
-    async () => await import('ag-grid-community')
-  );
+  const ixTheme = await getIxTheme(() => import('ag-grid-community'));
 
   gridOptions.value = {
     theme: ixTheme,

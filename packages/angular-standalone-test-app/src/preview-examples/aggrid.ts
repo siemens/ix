@@ -27,9 +27,7 @@ export default class AGGrid implements OnInit {
   gridOptions: GridOptions | null = null;
 
   async ngOnInit() {
-    const ixTheme = await getIxTheme(
-      async () => await import('ag-grid-community')
-    );
+    const ixTheme = await getIxTheme(() => import('ag-grid-community'));
 
     this.gridOptions = {
       theme: ixTheme,
