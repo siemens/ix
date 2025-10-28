@@ -2003,6 +2003,13 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
+     * Not maintained anymore.
+     * Use the 'ix-input' component instead
+     */
+    interface IxInputGroup {
+    }
     interface IxKeyValue {
         /**
           * ARIA label for the icon
@@ -4978,6 +4985,17 @@ declare global {
         prototype: HTMLIxInputElement;
         new (): HTMLIxInputElement;
     };
+    /**
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
+     * Not maintained anymore.
+     * Use the 'ix-input' component instead
+     */
+    interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
+    }
+    var HTMLIxInputGroupElement: {
+        prototype: HTMLIxInputGroupElement;
+        new (): HTMLIxInputGroupElement;
+    };
     interface HTMLIxKeyValueElement extends Components.IxKeyValue, HTMLStencilElement {
     }
     var HTMLIxKeyValueElement: {
@@ -5830,6 +5848,7 @@ declare global {
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
         "ix-input": HTMLIxInputElement;
+        "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
@@ -7907,6 +7926,13 @@ declare namespace LocalJSX {
           * The warning text for the text field.
          */
         "warningText"?: string;
+    }
+    /**
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
+     * Not maintained anymore.
+     * Use the 'ix-input' component instead
+     */
+    interface IxInputGroup {
     }
     interface IxKeyValue {
         /**
@@ -10142,6 +10168,7 @@ declare namespace LocalJSX {
         "ix-icon-button": IxIconButton;
         "ix-icon-toggle-button": IxIconToggleButton;
         "ix-input": IxInput;
+        "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
@@ -10274,6 +10301,12 @@ declare module "@stencil/core" {
              * @form-ready 
              */
             "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
+            /**
+             * @deprecated Since 3.0.0. Will be removed with 5.0.0
+             * Not maintained anymore.
+             * Use the 'ix-input' component instead
+             */
+            "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             "ix-key-value": LocalJSX.IxKeyValue & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;

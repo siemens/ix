@@ -13362,6 +13362,35 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/input-group",
+      "filePath": "src/components/input-group/input-group.tsx",
+      "fileName": "input-group.tsx",
+      "readmePath": "src/components/input-group/readme.md",
+      "usagesDir": "src/components/input-group/usage",
+      "tag": "ix-input-group",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "Since 3.0.0. Will be removed with 5.0.0\nNot maintained anymore.\nUse the 'ix-input' component instead"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "deprecation": "Since 3.0.0. Will be removed with 5.0.0\nNot maintained anymore.\nUse the 'ix-input' component instead",
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/key-value",
       "filePath": "src/components/key-value/key-value.tsx",
       "fileName": "key-value.tsx",

@@ -1389,6 +1389,28 @@ export declare interface IxInput extends Components.IxInput {
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'ix-input-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxInputGroup {
+  protected el: HTMLIxInputGroupElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxInputGroup extends Components.IxInputGroup {}
+
+
+@ProxyCmp({
   inputs: ['ariaLabelIcon', 'icon', 'label', 'labelPosition', 'value']
 })
 @Component({
