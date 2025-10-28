@@ -11,6 +11,7 @@ import checkboxStyles from './checkbox.style.css';
 import headerStyles from './header.style.css';
 import tooltipStyles from './tooltip.style.css';
 import radioStyles from './radio.style.css';
+import inputStyles from './input.style.css';
 import { aggridIxThemeParams } from './aggrid-ix-theme-params.ts';
 import { iconOverrides } from 'ag-grid-community';
 import {
@@ -91,6 +92,13 @@ const getIxTheme = async (
         feature: 'tooltipCustomStyles',
         params: {},
         css: tooltipStyles,
+      })
+    )
+    .withPart(
+      createPart({
+        feature: 'inputCustomStyles',
+        params: {},
+        css: inputStyles,
       })
     )
     .withPart(
