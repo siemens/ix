@@ -28271,6 +28271,148 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/validation-tooltip",
+      "filePath": "src/components/validation-tooltip/validation-tooltip.tsx",
+      "fileName": "validation-tooltip.tsx",
+      "readmePath": "src/components/validation-tooltip/readme.md",
+      "usagesDir": "src/components/validation-tooltip/usage",
+      "tag": "ix-validation-tooltip",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "tooltip-message - Custom tooltip message with html support"
+        },
+        {
+          "name": "deprecated",
+          "text": "Since 3.0.0. Will be removed with 4.0.0\nNot maintained anymore."
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "deprecation": "Since 3.0.0. Will be removed with 4.0.0\nNot maintained anymore.",
+      "props": [
+        {
+          "name": "message",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "message",
+          "reflectToAttr": false,
+          "docs": "Message of the tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "placement",
+          "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+          "complexType": {
+            "original": "Side",
+            "resolved": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+            "references": {
+              "Side": {
+                "location": "import",
+                "path": "../dropdown/placement",
+                "id": "src/components/dropdown/placement.ts::Side"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Placement of the tooltip",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'top'"
+            }
+          ],
+          "default": "'top'",
+          "values": [
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "suppressAutomaticPlacement",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "suppress-automatic-placement",
+          "reflectToAttr": false,
+          "docs": "Suppress the automatic placement of the dropdown.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "tooltip-message",
+          "docs": "Custom tooltip message with html support"
+        }
+      ],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/workflow-step",
       "filePath": "src/components/workflow-step/workflow-step.tsx",
       "fileName": "workflow-step.tsx",
@@ -28914,6 +29056,11 @@
       "declaration": "export enum UploadFileState {\n  SELECT_FILE = 'SELECT_FILE',\n  LOADING = 'LOADING',\n  UPLOAD_FAILED = 'UPLOAD_FAILED',\n  UPLOAD_SUCCESSED = 'UPLOAD_SUCCESSED',\n}",
       "docstring": "",
       "path": "src/components/upload/upload-file-state.ts"
+    },
+    "src/components/dropdown/placement.ts::Side": {
+      "declaration": "export type Side = 'top' | 'right' | 'bottom' | 'left';",
+      "docstring": "",
+      "path": "src/components/dropdown/placement.ts"
     }
   }
 }

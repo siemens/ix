@@ -28,7 +28,7 @@ import { DateChangeEvent } from "./components/date-picker/date-picker.events";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
-import { AlignedPlacement } from "./components/dropdown/placement";
+import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
@@ -78,7 +78,7 @@ export { DateChangeEvent } from "./components/date-picker/date-picker.events";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
-export { AlignedPlacement } from "./components/dropdown/placement";
+export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
@@ -4036,6 +4036,26 @@ export namespace Components {
          */
         "uploadSuccessText": string;
     }
+    /**
+     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * Not maintained anymore.
+     */
+    interface IxValidationTooltip {
+        /**
+          * Message of the tooltip
+         */
+        "message"?: string;
+        /**
+          * Placement of the tooltip
+          * @default 'top'
+         */
+        "placement": Side;
+        /**
+          * Suppress the automatic placement of the dropdown.
+          * @default false
+         */
+        "suppressAutomaticPlacement": boolean;
+    }
     interface IxWorkflowStep {
         /**
           * Activate navigation click
@@ -5759,6 +5779,16 @@ declare global {
         prototype: HTMLIxUploadElement;
         new (): HTMLIxUploadElement;
     };
+    /**
+     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * Not maintained anymore.
+     */
+    interface HTMLIxValidationTooltipElement extends Components.IxValidationTooltip, HTMLStencilElement {
+    }
+    var HTMLIxValidationTooltipElement: {
+        prototype: HTMLIxValidationTooltipElement;
+        new (): HTMLIxValidationTooltipElement;
+    };
     interface HTMLIxWorkflowStepElementEventMap {
         "selectedChanged": HTMLIxWorkflowStepElement;
     }
@@ -5904,6 +5934,7 @@ declare global {
         "ix-tree-item": HTMLIxTreeItemElement;
         "ix-typography": HTMLIxTypographyElement;
         "ix-upload": HTMLIxUploadElement;
+        "ix-validation-tooltip": HTMLIxValidationTooltipElement;
         "ix-workflow-step": HTMLIxWorkflowStepElement;
         "ix-workflow-steps": HTMLIxWorkflowStepsElement;
     }
@@ -10059,6 +10090,26 @@ declare namespace LocalJSX {
          */
         "uploadSuccessText"?: string;
     }
+    /**
+     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * Not maintained anymore.
+     */
+    interface IxValidationTooltip {
+        /**
+          * Message of the tooltip
+         */
+        "message"?: string;
+        /**
+          * Placement of the tooltip
+          * @default 'top'
+         */
+        "placement"?: Side;
+        /**
+          * Suppress the automatic placement of the dropdown.
+          * @default false
+         */
+        "suppressAutomaticPlacement"?: boolean;
+    }
     interface IxWorkflowStep {
         /**
           * Activate navigation click
@@ -10224,6 +10275,7 @@ declare namespace LocalJSX {
         "ix-tree-item": IxTreeItem;
         "ix-typography": IxTypography;
         "ix-upload": IxUpload;
+        "ix-validation-tooltip": IxValidationTooltip;
         "ix-workflow-step": IxWorkflowStep;
         "ix-workflow-steps": IxWorkflowSteps;
     }
@@ -10387,6 +10439,11 @@ declare module "@stencil/core" {
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
             "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
+            /**
+             * @deprecated Since 3.0.0. Will be removed with 4.0.0
+             * Not maintained anymore.
+             */
+            "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
             "ix-workflow-steps": LocalJSX.IxWorkflowSteps & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
         }

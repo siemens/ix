@@ -109,6 +109,7 @@ import { IxToggle as IxToggleElement } from "@siemens/ix/components/ix-toggle.js
 import { IxTooltip as IxTooltipElement } from "@siemens/ix/components/ix-tooltip.js";
 import { IxTypography as IxTypographyElement } from "@siemens/ix/components/ix-typography.js";
 import { IxUpload as IxUploadElement } from "@siemens/ix/components/ix-upload.js";
+import { IxValidationTooltip as IxValidationTooltipElement } from "@siemens/ix/components/ix-validation-tooltip.js";
 import { IxWorkflowStep as IxWorkflowStepElement } from "@siemens/ix/components/ix-workflow-step.js";
 import { IxWorkflowSteps as IxWorkflowStepsElement } from "@siemens/ix/components/ix-workflow-steps.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
@@ -1996,6 +1997,20 @@ export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = 
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxUpload as ReactWebComponent<IxUploadElement, IxUploadEvents>,
+    serializeShadowRoot,
+});
+
+export type IxValidationTooltipEvents = NonNullable<unknown>;
+
+export const IxValidationTooltip: StencilReactComponent<IxValidationTooltipElement, IxValidationTooltipEvents> = /*@__PURE__*/ createComponent<IxValidationTooltipElement, IxValidationTooltipEvents>({
+    tagName: 'ix-validation-tooltip',
+    properties: {
+        message: 'message',
+        placement: 'placement',
+        suppressAutomaticPlacement: 'suppress-automatic-placement'
+    },
+    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    clientModule: clientComponents.IxValidationTooltip as ReactWebComponent<IxValidationTooltipElement, IxValidationTooltipEvents>,
     serializeShadowRoot,
 });
 

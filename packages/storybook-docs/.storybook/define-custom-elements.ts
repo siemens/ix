@@ -102,6 +102,7 @@ import { defineCustomElement as ixTree } from '@siemens/ix/components/ix-tree.js
 import { defineCustomElement as ixTreeItem } from '@siemens/ix/components/ix-tree-item.js';
 import { defineCustomElement as ixTypography } from '@siemens/ix/components/ix-typography.js';
 import { defineCustomElement as ixUpload } from '@siemens/ix/components/ix-upload.js';
+import { defineCustomElement as ixValidationTooltip } from '@siemens/ix/components/ix-validation-tooltip.js';
 import { defineCustomElement as ixWorkflowStep } from '@siemens/ix/components/ix-workflow-step.js';
 import { defineCustomElement as ixWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
 ixActionCard();
@@ -206,5 +207,6 @@ ixTree();
 ixTreeItem();
 ixTypography();
 ixUpload();
+ixValidationTooltip();
 ixWorkflowStep();
 ixWorkflowSteps();

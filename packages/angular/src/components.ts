@@ -2984,6 +2984,29 @@ export declare interface IxUpload extends Components.IxUpload {
 
 
 @ProxyCmp({
+  inputs: ['message', 'placement', 'suppressAutomaticPlacement']
+})
+@Component({
+  selector: 'ix-validation-tooltip',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['message', 'placement', 'suppressAutomaticPlacement'],
+  standalone: false
+})
+export class IxValidationTooltip {
+  protected el: HTMLIxValidationTooltipElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxValidationTooltip extends Components.IxValidationTooltip {}
+
+
+@ProxyCmp({
   inputs: ['clickable', 'disabled', 'selected', 'status', 'vertical']
 })
 @Component({

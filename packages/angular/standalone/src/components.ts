@@ -107,6 +107,7 @@ import { defineCustomElement as defineIxTooltip } from '@siemens/ix/components/i
 import { defineCustomElement as defineIxTreeItem } from '@siemens/ix/components/ix-tree-item.js';
 import { defineCustomElement as defineIxTypography } from '@siemens/ix/components/ix-typography.js';
 import { defineCustomElement as defineIxUpload } from '@siemens/ix/components/ix-upload.js';
+import { defineCustomElement as defineIxValidationTooltip } from '@siemens/ix/components/ix-validation-tooltip.js';
 import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/components/ix-workflow-step.js';
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
 @ProxyCmp({
@@ -3083,6 +3084,29 @@ export declare interface IxUpload extends Components.IxUpload {
    */
   filesChanged: EventEmitter<CustomEvent<Array<File>>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxValidationTooltip,
+  inputs: ['message', 'placement', 'suppressAutomaticPlacement']
+})
+@Component({
+  selector: 'ix-validation-tooltip',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['message', 'placement', 'suppressAutomaticPlacement'],
+})
+export class IxValidationTooltip {
+  protected el: HTMLIxValidationTooltipElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxValidationTooltip extends Components.IxValidationTooltip {}
 
 
 @ProxyCmp({

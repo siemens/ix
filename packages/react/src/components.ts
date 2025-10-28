@@ -108,6 +108,7 @@ import { IxToggle as IxToggleElement, defineCustomElement as defineIxToggle } fr
 import { IxTooltip as IxTooltipElement, defineCustomElement as defineIxTooltip } from "@siemens/ix/components/ix-tooltip.js";
 import { IxTypography as IxTypographyElement, defineCustomElement as defineIxTypography } from "@siemens/ix/components/ix-typography.js";
 import { IxUpload as IxUploadElement, defineCustomElement as defineIxUpload } from "@siemens/ix/components/ix-upload.js";
+import { IxValidationTooltip as IxValidationTooltipElement, defineCustomElement as defineIxValidationTooltip } from "@siemens/ix/components/ix-validation-tooltip.js";
 import { IxWorkflowStep as IxWorkflowStepElement, defineCustomElement as defineIxWorkflowStep } from "@siemens/ix/components/ix-workflow-step.js";
 import { IxWorkflowSteps as IxWorkflowStepsElement, defineCustomElement as defineIxWorkflowSteps } from "@siemens/ix/components/ix-workflow-steps.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
@@ -1412,6 +1413,17 @@ export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = 
     react: React,
     events: { onFilesChanged: 'filesChanged' } as IxUploadEvents,
     defineCustomElement: defineIxUpload
+});
+
+export type IxValidationTooltipEvents = NonNullable<unknown>;
+
+export const IxValidationTooltip: StencilReactComponent<IxValidationTooltipElement, IxValidationTooltipEvents> = /*@__PURE__*/ createComponent<IxValidationTooltipElement, IxValidationTooltipEvents>({
+    tagName: 'ix-validation-tooltip',
+    elementClass: IxValidationTooltipElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxValidationTooltipEvents,
+    defineCustomElement: defineIxValidationTooltip
 });
 
 export type IxWorkflowStepEvents = NonNullable<unknown>;

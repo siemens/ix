@@ -107,6 +107,7 @@ import { defineCustomElement as defineIxTree } from '@siemens/ix/components/ix-t
 import { defineCustomElement as defineIxTreeItem } from '@siemens/ix/components/ix-tree-item.js';
 import { defineCustomElement as defineIxTypography } from '@siemens/ix/components/ix-typography.js';
 import { defineCustomElement as defineIxUpload } from '@siemens/ix/components/ix-upload.js';
+import { defineCustomElement as defineIxValidationTooltip } from '@siemens/ix/components/ix-validation-tooltip.js';
 import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/components/ix-workflow-step.js';
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
 
@@ -1516,6 +1517,13 @@ export const IxUpload: StencilVueComponent<JSX.IxUpload> = /*@__PURE__*/ defineC
   'filesChanged'
 ], [
   'filesChanged'
+]);
+
+
+export const IxValidationTooltip: StencilVueComponent<JSX.IxValidationTooltip> = /*@__PURE__*/ defineContainer<JSX.IxValidationTooltip>('ix-validation-tooltip', defineIxValidationTooltip, [
+  'message',
+  'placement',
+  'suppressAutomaticPlacement'
 ]);
 
 
