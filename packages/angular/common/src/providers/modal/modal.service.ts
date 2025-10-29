@@ -36,6 +36,17 @@ export class ModalService {
     private injector: Injector
   ) {}
 
+  public close<TReason = any>(
+    instance: { htmlElement: any },
+    reason?: TReason
+  ): void {
+    if (typeof instance?.htmlElement?.closeModal === 'function') {
+      instance.htmlElement.closeModal(reason);
+    } else {
+      throw new TypeError('Invalid modal instance: cannot close');
+    }
+  }
+
   public async open<TData = any, TReason = any>(config: ModalConfig<TData>) {
     const context: ModalContext<TData> = {
       close: null,
