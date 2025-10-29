@@ -119,12 +119,15 @@ export const ToggleBehavior: Story = {
     loremIpsumText.style.textDecoration = 'underline';
     container.appendChild(loremIpsumText);
 
-    toggleButton.addEventListener('click', () => {
-      toggleButton.pressed = !toggleButton.pressed;
-      loremIpsumText.style.textDecoration = toggleButton.pressed
-        ? 'underline'
-        : 'none';
-    });
+    toggleButton.addEventListener(
+      'pressedChange',
+      (event: CustomEvent<boolean>) => {
+        toggleButton.pressed = event.detail;
+        loremIpsumText.style.textDecoration = toggleButton.pressed
+          ? 'underline'
+          : 'none';
+      }
+    );
 
     return container;
   },
