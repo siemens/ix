@@ -128,10 +128,10 @@ import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
 import HtmlTable from '../preview-examples/html-table';
 import HtmlTableStriped from '../preview-examples/html-table-striped';
 import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
-import IconToggleButtonsubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
+import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
 import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
-import IconToggleButtonsubtlePrimary from '../preview-examples/icon-toggle-button-subtle-primary';
+import IconToggleButtonSubtlePrimary from '../preview-examples/icon-toggle-button-subtle-primary';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
 import InputFormValidation from '../preview-examples/input-form-validation';
@@ -367,9 +367,9 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     HtmlTable,
     HtmlTableStriped,
     IconToggleButtonTertiary,
-    IconToggleButtonsubtleTertiary,
+    IconToggleButtonSubtleTertiary,
     IconToggleButtonSubtleSecondary,
-    IconToggleButtonsubtlePrimary,
+    IconToggleButtonSubtlePrimary,
     IconToggleButtonSecondary,
     InputLegacyDisabled,
     InputLegacyLabels,
