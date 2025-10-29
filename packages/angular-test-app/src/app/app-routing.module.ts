@@ -15,6 +15,7 @@ import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
 import ApplicationExample from '../preview-examples/application';
+import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
@@ -96,6 +97,7 @@ import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-brea
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
+import EventListFilled from '../preview-examples/event-list-filled';
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
@@ -114,6 +116,8 @@ import Group from '../preview-examples/group';
 import GroupContextMenu from '../preview-examples/group-context-menu';
 import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
+import HtmlTable from '../preview-examples/html-table';
+import HtmlTableStriped from '../preview-examples/html-table-striped';
 import IconToggleButtonPrimaryGhost from '../preview-examples/icon-toggle-button-primary-ghost';
 import IconToggleButtonPrimaryOutline from '../preview-examples/icon-toggle-button-primary-outline';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
@@ -261,6 +265,10 @@ const routes: Routes = [
       {
         path: 'application',
         component: ApplicationExample,
+      },
+      {
+        path: 'application-advanced',
+        component: ApplicationAdvancedExample,
       },
       {
         path: 'application-breakpoints',
@@ -575,6 +583,10 @@ const routes: Routes = [
         component: EmptyState,
       },
       {
+        path: 'event-list',
+        component: EventList,
+      },
+      {
         path: 'event-list-compact',
         component: EventListCompact,
       },
@@ -583,12 +595,12 @@ const routes: Routes = [
         component: EventListCustomItemHeight,
       },
       {
-        path: 'event-list-selected',
-        component: EventListSelected,
+        path: 'event-list-filled',
+        component: EventListFilled,
       },
       {
-        path: 'event-list',
-        component: EventList,
+        path: 'event-list-selected',
+        component: EventListSelected,
       },
       {
         path: 'expanding-search',
@@ -625,6 +637,14 @@ const routes: Routes = [
       {
         path: 'group',
         component: Group,
+      },
+      {
+        path: 'html-table',
+        component: HtmlTable,
+      },
+      {
+        path: 'html-table-striped',
+        component: HtmlTableStriped,
       },
       {
         path: 'icon-toggle-button-primary-ghost',

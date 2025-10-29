@@ -24,6 +24,7 @@ import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
 import ApplicationExample from '../preview-examples/application';
+import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
@@ -105,6 +106,7 @@ import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-brea
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
+import EventListFilled from '../preview-examples/event-list-filled';
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
@@ -123,6 +125,8 @@ import Group from '../preview-examples/group';
 import GroupContextMenu from '../preview-examples/group-context-menu';
 import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
+import HtmlTable from '../preview-examples/html-table';
+import HtmlTableStriped from '../preview-examples/html-table-striped';
 import IconToggleButtonPrimaryGhost from '../preview-examples/icon-toggle-button-primary-ghost';
 import IconToggleButtonPrimaryOutline from '../preview-examples/icon-toggle-button-primary-outline';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
@@ -170,6 +174,7 @@ import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalClose from '../preview-examples/modal-close';
+import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
 import NumberInputDisabled from '../preview-examples/number-input-disabled';
@@ -185,6 +190,12 @@ import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
+import ProgressIndicator from '../preview-examples/progress-indicator';
+import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
+import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
+import ProgressIndicatorCircularStatus from '../preview-examples/progress-indicator-circular-status';
+import ProgressIndicatorLinearSizes from '../preview-examples/progress-indicator-linear-sizes';
+import ProgressIndicatorLinearStatus from '../preview-examples/progress-indicator-linear-status';
 import PushCard from '../preview-examples/push-card';
 import Radio from '../preview-examples/radio';
 import Radiobutton from '../preview-examples/radio-button';
@@ -243,13 +254,6 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
-import ProgressIndicator from '../preview-examples/progress-indicator';
-import ProgressIndicatorLinearSizes from '../preview-examples/progress-indicator-linear-sizes';
-import ProgressIndicatorLinearStatus from '../preview-examples/progress-indicator-linear-status';
-import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
-import ProgressIndicatorCircularStatus from '../preview-examples/progress-indicator-circular-status';
-import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
 
 @NgModule({
   declarations: [
@@ -263,6 +267,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     AddIcons,
     AgGrid,
     ApplicationExample,
+    ApplicationAdvancedExample,
     ApplicationBreakpointExample,
     ApplicationAppSwitchExample,
     ApplicationHeaderExample,
@@ -343,6 +348,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     EmptyState,
     EventListCompact,
     EventListCustomItemHeight,
+    EventListFilled,
     EventListSelected,
     EventList,
     ExpandingSearch,
@@ -359,6 +365,8 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     GroupCustomEntry,
     GroupHeaderSuppressed,
     Group,
+    HtmlTable,
+    HtmlTableStriped,
     IconToggleButtonPrimaryGhost,
     IconToggleButtonPrimaryOutline,
     IconToggleButtonSecondaryGhost,

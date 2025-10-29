@@ -12,7 +12,7 @@ import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <div>
+  <div class="checkbox-group-wrapper">
     <IxCheckboxGroup label="Terms of something" info-text="Info text">
       <IxCheckbox
         label="I agree everything"
@@ -22,7 +22,7 @@ import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
     </IxCheckboxGroup>
   </div>
 
-  <div>
+  <div class="checkbox-group-wrapper">
     <IxCheckboxGroup label="Terms of something" warning-text="Warning text">
       <IxCheckbox
         label="I agree everything"
@@ -37,7 +37,7 @@ import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
     </IxCheckboxGroup>
   </div>
 
-  <div>
+  <div class="checkbox-group-wrapper">
     <IxCheckboxGroup label="Terms of something" invalid-text="Invalid text">
       <IxCheckbox
         label="I agree everything"
@@ -52,7 +52,7 @@ import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
     </IxCheckboxGroup>
   </div>
 
-  <div>
+  <div class="checkbox-group-wrapper">
     <IxCheckboxGroup label="Terms of something" valid-text="Valid text">
       <IxCheckbox
         label="I agree everything"
@@ -67,3 +67,9 @@ import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
     </IxCheckboxGroup>
   </div>
 </template>
+
+<style scoped>
+.checkbox-group-wrapper {
+  margin-bottom: 1rem;
+}
+</style>
