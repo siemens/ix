@@ -28,6 +28,7 @@
 
   .slot-container {
     @include text-truncation.ellipsis;
+    line-height: vars.$large-space;
 
     :host-context(.disabled) {
       background-color: var(--theme-color-ghost);

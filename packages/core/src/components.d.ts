@@ -1544,7 +1544,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -2346,11 +2346,6 @@ export namespace Components {
           * Title of the about news
          */
         "label"?: string;
-        /**
-          * Bottom offset
-          * @default 0
-         */
-        "offsetBottom": number;
         /**
           * Show about news
           * @default false
@@ -7559,7 +7554,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -8401,11 +8396,6 @@ declare namespace LocalJSX {
           * Title of the about news
          */
         "label"?: string;
-        /**
-          * Bottom offset
-          * @default 0
-         */
-        "offsetBottom"?: number;
         /**
           * Popover closed
          */

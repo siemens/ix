@@ -6,10 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { h, FunctionalComponent } from '@stencil/core';
-import { MakeRef } from '../utils/make-ref';
+import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import { handleSubmitOnEnterKeydown } from './input.util';
+import { MakeRef } from '../utils/make-ref';
 
 export function TextareaElement(
   props: Readonly<{
