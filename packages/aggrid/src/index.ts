@@ -25,11 +25,11 @@ import {
 type AgGridModule = typeof AgGridCommunity;
 
 function extractSvgFromDataUri(dataUri: string): string {
-  let svgString = dataUri.replace(/^data:image\/svg\+xml;utf8,/, '');
+  let svgString = dataUri.replaceAll(/^data:image\/svg\+xml;utf8,/g, '');
   svgString = decodeURIComponent(svgString);
-  svgString = svgString.replace(/<\?xml[^?]*\?>/g, '');
-  svgString = svgString.replace(/fill='none'/g, "fill='currentColor'");
-  svgString = svgString.replace(/stroke='none'/g, "stroke='currentColor'");
+  svgString = svgString.replaceAll(/<\?xml[^?]*\?>/g, '');
+  svgString = svgString.replaceAll(/fill='none'/g, "fill='currentColor'");
+  svgString = svgString.replaceAll(/stroke='none'/g, "stroke='currentColor'");
 
   return svgString.trim();
 }

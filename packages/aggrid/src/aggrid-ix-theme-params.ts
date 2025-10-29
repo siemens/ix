@@ -38,9 +38,7 @@ export const aggridIxThemeParams = {
   valueChangeDeltaDownColor: `var(--theme-color-alarm)`,
   inputBackgroundColor: `var(--theme-color-component-8)`,
   inputDisabledBackgroundColor: `var(--theme-color-ghost)`,
-  inputBorder: `var(--theme-border-width-default) solid var(--theme-input--border-color)`,
   inputDisabledBorder: `var(--theme-color-weak-bdr)`,
-  inputFocusBorder: `var(--theme-focus-border-thickness) solid var(--theme-input--border-color--focus)`,
   inputInvalidBorderColor: `var(--theme-color-alarm)`,
   inputTextColor: `var(--theme-color-std-text)`,
   inputDisabledTextColor: `var(--theme-color-weak-text)`,
@@ -129,4 +127,6 @@ export const aggridIxThemeParams = {
   dragAndDropImageBorder: `false`,
   menuBorder: `false`,
   headerFontWeight: `700`,
+  inputBorder: `0.0625rem solid var(--theme-color-std-bdr)`,
+  inputFocusBorder: `0.0625rem solid var(--theme-color-focus-bdr)`,
 };
