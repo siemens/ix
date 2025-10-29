@@ -64,4 +64,60 @@ regressionTest.describe('pane-layout with floating pane', () => {
     const textOne = page.getByText('Text 1');
     await expect(textOne).toBeVisible();
   });
+  regressionTest(
+    'should reconfigure panes when switching between mobile and desktop',
+    async ({ mount, page }) => {
+      await page.setViewportSize({ width: 1024, height: 768 });
+
+      await mount(`
+      <ix-pane-layout>
+        <ix-pane slot="left" heading="Left">Left Content</ix-pane>
+        <ix-pane slot="top" heading="Top">Top Content</ix-pane>
+        <div slot="content">Main Content</div>
+      </ix-pane-layout>
+    `);
+
+      const desktopWrapper = page.locator('.side-panes-wrapper');
+      await expect(desktopWrapper).toBeVisible();
+
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      await page.waitForTimeout(100);
+
+      const mobileLayout = page.locator('.col');
+      await expect(mobileLayout).toBeVisible();
+
+      const topPane = page.locator('ix-pane[slot="top"]');
+      await expect(topPane).toHaveCSS('z-index', '3');
+    }
+  );
+
+  regressionTest(
+    'should maintain pane configuration after multiple layout changes',
+    async ({ mount, page }) => {
+      await mount(`
+      <ix-pane-layout>
+        <ix-pane slot="left" heading="Left">Left Content</ix-pane>
+        <ix-pane slot="top" heading="Top">Top Content</ix-pane>
+        <div slot="content">Main Content</div>
+      </ix-pane-layout>
+    `);
+
+      await page.setViewportSize({ width: 1024, height: 768 });
+      await page.waitForTimeout(100);
+
+      await page.setViewportSize({ width: 375, height: 667 });
+      await page.waitForTimeout(100);
+
+      await page.setViewportSize({ width: 1024, height: 768 });
+      await page.waitForTimeout(100);
+
+      const leftPane = page.locator('ix-pane[slot="left"]');
+      const topPane = page.locator('ix-pane[slot="top"]');
+
+      await expect(leftPane).toHaveCSS('z-index', '3');
+      await expect(topPane).toHaveCSS('z-index', '1');
+      await expect(page.locator('.side-panes-wrapper')).toBeVisible();
+    }
+  );
 });
