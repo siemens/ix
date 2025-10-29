@@ -152,6 +152,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop() step?: string | number;
 
   /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
    * Event emitted when the value of the input field changes
    */
   @Event() valueChange!: EventEmitter<number>;
@@ -319,6 +325,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 onInputBlur(this, this.inputRef.current);
                 this.touched = true;
               }}
+              form={this.formInternals.form ?? undefined}
+              suppressSubmitOnEnter={this.suppressSubmitOnEnter}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
