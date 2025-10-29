@@ -28,8 +28,8 @@ function extractSvgFromDataUri(dataUri: string): string {
   let svgString = dataUri.replaceAll(/^data:image\/svg\+xml;utf8,/g, '');
   svgString = decodeURIComponent(svgString);
   svgString = svgString.replaceAll(/<\?xml[^?]*\?>/g, '');
-  svgString = svgString.replaceAll(/fill='none'/g, "fill='currentColor'");
-  svgString = svgString.replaceAll(/stroke='none'/g, "stroke='currentColor'");
+  svgString = svgString.replaceAll(/fill=\'none\'/g, "fill='currentColor'");
+  svgString = svgString.replaceAll(/stroke=\'none\'/g, "stroke='currentColor'");
 
   return svgString.trim();
 }
