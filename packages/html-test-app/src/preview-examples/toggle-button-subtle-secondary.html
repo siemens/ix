@@ -59,29 +59,27 @@ LICENSE file in the root directory of this source tree.
         const underlineButton = document.getElementById('underlineButton');
         const loremIpsum = document.getElementById('loremIpsum');
 
-        loremIpsum.style.fontWeight = boldButton.hasAttribute('pressed')
-          ? 'bold'
-          : 'normal';
-        loremIpsum.style.textDecoration = underlineButton.hasAttribute(
-          'pressed'
-        )
-          ? 'underline'
-          : 'none';
-
-        boldButton.addEventListener('click', function () {
-          boldButton.toggleAttribute('pressed');
+        function updateStyle() {
           loremIpsum.style.fontWeight = boldButton.hasAttribute('pressed')
             ? 'bold'
             : 'normal';
-        });
-
-        underlineButton.addEventListener('click', function () {
-          underlineButton.toggleAttribute('pressed');
           loremIpsum.style.textDecoration = underlineButton.hasAttribute(
             'pressed'
           )
             ? 'underline'
             : 'none';
+        }
+
+        updateStyle();
+
+        boldButton.addEventListener('click', function () {
+          boldButton.toggleAttribute('pressed');
+          updateStyle();
+        });
+
+        underlineButton.addEventListener('click', function () {
+          underlineButton.toggleAttribute('pressed');
+          updateStyle();
         });
       });
     </script>
