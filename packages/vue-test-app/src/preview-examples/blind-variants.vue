@@ -15,8 +15,8 @@ import { IxBlind } from '@siemens/ix-vue';
 <style scoped src="./blind-variants.css"></style>
 
 <template>
-  <IxBlind :icon="iconBulb" label="Insight" sublabel="sublabel">
-    <div>Insight content</div>
+  <IxBlind :icon="iconBulb" label="Example" sublabel="sublabel">
+    <div>Filled content</div>
   </IxBlind>
   <IxBlind
     variant="outline"
