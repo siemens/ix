@@ -76,6 +76,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   @Watch('value') watchValuePropHandler(newValue: string) {
+    // For programmatic changes that result in invalid states (empty required fields),
+    // set touched state to ensure validation errors are shown
+    // BUT only if we're not in a clearTouchedState operation
+    if (!newValue && this.required && !this.isClearing) {
+      this.touched = true;
+    }
     this.onInput(newValue);
   }
 
@@ -230,6 +236,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private isClearing = false; // Flag to track clearTouchedState operations
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -287,6 +294,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   /** @internal */
   @Method()
   hasValidValue(): Promise<boolean> {
+    // For non-required fields, empty value is considered valid
+    // For required fields, empty value is considered invalid
+    if (!this.required) {
+      return Promise.resolve(true);
+    }
+
     return Promise.resolve(!!this.value);
   }
 
@@ -299,6 +312,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
+      // When value is empty, clear format validation errors
+      // BUT don't clear isInputInvalid if this is a required field that will stay invalid
+      // The validation lifecycle will handle the required validation
+      this.isInputInvalid = false;
+      this.invalidReason = undefined;
       this.valueChange.emit(value);
       return;
     }
@@ -458,6 +476,24 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     return Promise.resolve(this.touched);
   }
 
+  /**
+   * Clears the value and touched state of the input field.
+   * @internal
+   */
+  @Method()
+  async clearValueAndTouchedState(): Promise<void> {
+    this.isClearing = true;
+
+    this.touched = false;
+    this.value = '';
+
+    this.valueChange.emit('');
+
+    queueMicrotask(() => {
+      this.isClearing = false;
+    });
+  }
+
   render() {
     const invalidText = this.isInputInvalid
       ? this.i18nErrorDateUnparsable
@@ -484,6 +520,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           showTextAsTooltip={this.showTextAsTooltip}
           required={this.required}
           controlRef={this.inputElementRef}
+          htmlForLabel={this.hostElement.id}
         >
           {this.renderInput()}
         </ix-field-wrapper>
