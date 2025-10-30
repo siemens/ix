@@ -9,7 +9,7 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import type { ActionCardVariant } from './action-card.types';
-import { a11yBoolean } from '../utils/a11y';
+import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
 
 @Component({
   tag: 'ix-action-card',
@@ -84,7 +84,9 @@ export class IxActionCard {
                 class={'icon'}
                 name={this.icon}
                 size="32"
-                aria-label={this.ariaLabelIcon}
+                aria-label={
+                  this.ariaLabelIcon || getFallbackLabelFromIconName(this.icon)
+                }
               ></ix-icon>
             ) : null}
             <div>

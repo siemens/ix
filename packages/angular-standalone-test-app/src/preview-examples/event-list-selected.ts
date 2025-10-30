@@ -11,18 +11,23 @@ import { Component } from '@angular/core';
 import { IxEventList, IxEventListItem } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxEventList, IxEventListItem],
   template: `
     <ix-event-list>
-      <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
-      <ix-event-list-item color="color-primary" selected>
-        Text 2
-      </ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
-      <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
+      @for (item of items; track item; let i = $index) {
+        <ix-event-list-item
+          item-color="color-primary"
+          [selected]="selectedIndex === i"
+          (click)="selectedIndex = i"
+        >
+          {{ item }}
+        </ix-event-list-item>
+      }
     </ix-event-list>
   `,
 })
-export default class EventListSelected {}
+export default class EventListSelected {
+  selectedIndex = 1;
+  items = ['Text 1', 'Text 2', 'Text 3', 'Text 4'];
+}

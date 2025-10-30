@@ -35,17 +35,7 @@ export class IconButton {
   /**
    * Variant of button
    */
-  @Prop() variant: IconButtonVariant = 'secondary';
-
-  /**
-   * Button outline
-   */
-  @Prop() outline: boolean = false;
-
-  /**
-   * Button invisible
-   */
-  @Prop() ghost: boolean = false;
+  @Prop() variant: IconButtonVariant = 'subtle-primary';
 
   /**
    * Button in oval shape
@@ -125,8 +115,6 @@ export class IconButton {
           getFallbackLabelFromIconName(this.icon),
       },
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: true,
       iconOval: this.oval,
       selected: false,

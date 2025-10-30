@@ -105,14 +105,17 @@ function extractCommentTags(
 }
 
 function getCommentSummary(property: any): string {
-  if (!property?.comment?.summary) {
-    return '';
+  const summary =
+    property?.comment?.summary ?? property?.signatures?.[0]?.comment?.summary;
+
+  if (summary) {
+    return summary
+      .filter((summary: any) => summary.kind === 'text')
+      .map((summary: any) => summary.text)
+      .join('');
   }
 
-  return property.comment.summary
-    .filter((summary: any) => summary.kind === 'text')
-    .map((summary: any) => summary.text)
-    .join('');
+  return '';
 }
 
 function processProperties(child: any): TypeDocProperty[] {

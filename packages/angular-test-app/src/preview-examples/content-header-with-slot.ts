@@ -13,5 +13,6 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   templateUrl: './content-header-with-slot.html',
   styleUrls: ['./content-header-with-slot.css'],
+  standalone: false,
 })
 export default class ContentHeaderWithSlot {}

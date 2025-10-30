@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('event-list', () => {
@@ -33,6 +33,51 @@ regressionTest.describe('event-list', () => {
 
   regressionTest('hover', async ({ page }) => {
     await page.goto('event-list/basic');
+    await (await page.waitForSelector('text="Text 3"')).hover();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+});
+
+regressionTest.describe('event-list filled', () => {
+  function changeToFilled(page: Page) {
+    return page
+      .locator('ix-event-list-item')
+      .evaluateAll((items: HTMLIxEventListItemElement[]) =>
+        items.forEach((item) => (item.variant = 'filled'))
+      );
+  }
+
+  regressionTest('basic', async ({ page }) => {
+    await page.goto('event-list/basic');
+    await changeToFilled(page);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('compact', async ({ page }) => {
+    await page.goto('event-list/compact');
+    await changeToFilled(page);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('chevron', async ({ page }) => {
+    await page.goto('event-list/chevron');
+    await changeToFilled(page);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('custom-height', async ({ page }) => {
+    await page.goto('event-list/custom-height');
+    await changeToFilled(page);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('hover', async ({ page }) => {
+    await page.goto('event-list/basic');
+    await changeToFilled(page);
+
     await (await page.waitForSelector('text="Text 3"')).hover();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

@@ -20,13 +20,13 @@ export default () => {
         Button
       </IxButton>
       <IxButton iconRight={iconBulb}>Button</IxButton>
-      <IxButton variant="secondary" icon={iconStar}>
+      <IxButton variant="subtle-primary" icon={iconStar}>
         Button
       </IxButton>
-      <IxButton outline icon={iconStar}>
+      <IxButton variant="subtle-primary" icon={iconStar}>
         Button
       </IxButton>
-      <IxButton ghost icon={iconStar}>
+      <IxButton variant="tertiary" icon={iconStar}>
         Button
       </IxButton>
     </>

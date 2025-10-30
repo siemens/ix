@@ -17,16 +17,6 @@ export interface IxButtonComponent extends AnchorInterface {
   variant: ButtonVariant;
 
   /**
-   * Annotate with @Prop() decorator
-   */
-  outline: boolean;
-
-  /**
-   * Annotate with @Prop() decorator
-   */
-  ghost: boolean;
-
-  /**
    * Annotate with @Prop({ reflect: true }) decorator
    */
   disabled: boolean;
