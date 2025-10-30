@@ -15,8 +15,8 @@ import { IxBlind } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxBlind icon={iconBulb} label="Insight" sublabel="sublabel">
-        <div>Insight content</div>
+      <IxBlind icon={iconBulb} label="Example" sublabel="sublabel">
+        <div>Filled content</div>
       </IxBlind>
       <IxBlind
         variant="outline"
