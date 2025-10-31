@@ -1839,14 +1839,14 @@ export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMenuAboutNews,
-  inputs: ['aboutItemLabel', 'i18nShowMore', 'label', 'offsetBottom', 'show']
+  inputs: ['aboutItemLabel', 'i18nShowMore', 'label', 'show']
 })
 @Component({
   selector: 'ix-menu-about-news',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['aboutItemLabel', 'i18nShowMore', 'label', 'offsetBottom', 'show'],
+  inputs: ['aboutItemLabel', 'i18nShowMore', 'label', 'show'],
   outputs: ['showMore', 'closePopover'],
 })
 export class IxMenuAboutNews {

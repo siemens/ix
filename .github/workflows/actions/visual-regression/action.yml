@@ -24,7 +24,9 @@ runs:
   steps:
     - name: Install Playwright Browsers
       shell: bash
-      run: pnpm run test.setup --cache-dir=.turbo --filter ${{ inputs.projectName }}
+      env:
+        PROJECT_NAME: ${{ inputs.projectName }}
+      run: pnpm run test.setup --cache-dir=.turbo --filter $PROJECT_NAME
 
     - name: Build
       shell: bash
@@ -32,11 +34,15 @@ runs:
 
     - name: Test
       shell: bash
+      env:
+        PROJECT_NAME: ${{ inputs.projectName }}
+        SHARD_INDEX: ${{ inputs.shardIndex }}
+        SHARD_TOTAL: ${{ inputs.shardTotal }}
       run: |
-        if [ -n "${{ inputs.shardIndex }}" ] && [ -n "${{ inputs.shardTotal }}" ]; then
-          pnpm run visual-regression --cache-dir=.turbo --filter ${{ inputs.projectName }} -- --shard=${{ inputs.shardIndex }}/${{ inputs.shardTotal }}
+        if [ -n "$SHARD_INDEX" ] && [ -n "$SHARD_TOTAL" ]; then
+          pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME -- --shard=$SHARD_INDEX/$SHARD_TOTAL
         else
-          pnpm run visual-regression --cache-dir=.turbo --filter ${{ inputs.projectName }}
+          pnpm run visual-regression --cache-dir=.turbo --filter $PROJECT_NAME
         fi
 
     - uses: actions/upload-artifact@v4
