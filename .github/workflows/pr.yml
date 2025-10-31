@@ -63,7 +63,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Build
-        run: pnpm build --cache-dir=.turbo
+        run: pnpm build --cache-dir=.turbo --force
 
       - name: Lint
         run: pnpm lint
