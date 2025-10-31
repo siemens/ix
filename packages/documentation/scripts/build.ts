@@ -24,46 +24,47 @@ type OutputType = 'html' | 'react' | 'angular' | 'angular_standalone' | 'vue';
 const version = 'v2';
 
 const __root = path.resolve(__dirname, '../');
-const __node_modules = path.resolve(__dirname, '../node_modules');
 
-const __core = path.join(__node_modules, '@siemens', 'ix');
+const __core = path.join(__dirname, '../node_modules', '@siemens', 'ix');
 
-const __htmlTestAppRoot = path.join(__node_modules, 'html-test-app');
+const __packages = path.join(__root, '..');
+
+const __htmlTestAppRoot = path.join(__packages, 'html-test-app');
 const __htmlTestAppDist = path.join(__htmlTestAppRoot, 'dist');
 
-const __mobileTestAppDist = path.join(__node_modules, 'ionic-test-app', 'dist');
+const __mobileTestAppDist = path.join(__packages, 'ionic-test-app', 'dist');
 
 const __htmlTestApp = path.join(
-  __node_modules,
+  __packages,
   'html-test-app',
   'src',
   'preview-examples'
 );
 
-const __reactTestAppRoot = path.join(__node_modules, 'react-test-app');
+const __reactTestAppRoot = path.join(__packages, 'react-test-app');
 const __reactTestApp = path.join(__reactTestAppRoot, 'src', 'preview-examples');
 
 const __angularTestApp = path.join(
-  __node_modules,
+  __packages,
   'angular-test-app',
   'src',
   'preview-examples'
 );
 const __angularStandaloneTestApp = path.join(
-  __node_modules,
+  __packages,
   'angular-standalone-test-app',
   'src',
   'preview-examples'
 );
 const __vueTestApp = path.join(
-  __node_modules,
+  __packages,
   'vue-test-app',
   'src',
   'preview-examples'
 );
 
 const __storybookStatic = path.join(
-  __node_modules,
+  __packages,
   'storybook-docs',
   'storybook-static'
 );
