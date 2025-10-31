@@ -70,7 +70,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
-        run: pnpm build --cache-dir=.turbo --filter \!documentation
+        run: pnpm build --cache-dir=.turbo --filter \!@siemens/ix-docs
 
       - name: Publish to npm + GitHub
         id: changesets

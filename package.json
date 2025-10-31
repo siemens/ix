@@ -43,8 +43,8 @@
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
-    "@changesets/changelog-github": "^0.4.8",
-    "@changesets/cli": "^2.27.7",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.7",
     "dotenv-cli": "^7.4.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.10.0",
