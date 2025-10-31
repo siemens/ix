@@ -846,7 +846,7 @@ export class TimePicker {
       (d) => d.unit === descriptorUnit
     );
 
-    if (descriptor && number === descriptor.focusedValue) {
+    if (number === descriptor?.focusedValue) {
       return '0';
     }
 
