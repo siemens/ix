@@ -130,7 +130,7 @@ export const regressionTest = testBase.extend<{
     page = await extendPageFixture(page, testInfo);
 
     await page.route('*/**/svg/*.svg', async (route, request) => {
-      if (process.env.CI !== 'true') {
+      if (!process.env.CI) {
         const [, svg] = request.url().split('/svg/');
         console.warn(
           testInfo.file,
