@@ -1,10 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { getExampleNameFromRelativePath } from './util';
-import {
-  removeHTMLComments,
-  removeTypescriptHeaderComments,
-} from '../utils/escape';
+import { removeHTMLComments } from '../utils/escape';
 
 export async function collectVueExamples(
   __componentUsageByComponentJson: string,
