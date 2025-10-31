@@ -7,7 +7,7 @@ export async function collectReactExamples(
   __componentUsageByComponentJson: string,
   __reactTestAppRoot: string,
   tag: string
-) {
+): Promise<string> {
   const exampleUsage = await fs.readFile(
     __componentUsageByComponentJson,
     'utf-8'
@@ -19,7 +19,7 @@ export async function collectReactExamples(
 
   if (!examples) {
     console.log(`No examples found for ${tag}`);
-    return [];
+    return '';
   }
 
   const markdownExamples: {
