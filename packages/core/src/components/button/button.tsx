@@ -17,8 +17,8 @@ import {
   Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
-import { IxButtonComponent } from './button-component';
 import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
+import { IxButtonComponent } from './button-component';
 import { AnchorTarget } from './button.interface';
 
 export type ButtonVariant =
@@ -27,7 +27,9 @@ export type ButtonVariant =
 
 @Component({
   tag: 'ix-button',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   styleUrl: './button.scss',
 })
 export class Button implements IxButtonComponent {
@@ -188,7 +190,7 @@ export class Button implements IxButtonComponent {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
-      tabIndex: this.hostElement.tabIndex,
+      tabIndex: 0,
       ariaAttributes: {
         'aria-label': this.ariaLabelButton,
       },
@@ -199,11 +201,9 @@ export class Button implements IxButtonComponent {
 
     return (
       <Host
-        tabindex={this.disabled ? -1 : 0}
         class={{
           disabled: this.disabled || this.loading,
         }}
-        onFocus={() => this.setFocus()}
       >
         <BaseButton {...baseButtonProps}>
           <slot></slot>
