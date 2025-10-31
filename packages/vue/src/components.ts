@@ -900,7 +900,6 @@ export const IxMenuAboutNews: StencilVueComponent<JSX.IxMenuAboutNews> = /*@__PU
   'label',
   'i18nShowMore',
   'aboutItemLabel',
-  'offsetBottom',
   'expanded',
   'showMore',
   'closePopover'

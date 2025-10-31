@@ -1229,7 +1229,6 @@ export const IxMenuAboutNews: StencilReactComponent<IxMenuAboutNewsElement, IxMe
         label: 'label',
         i18nShowMore: 'i18n-show-more',
         aboutItemLabel: 'about-item-label',
-        offsetBottom: 'offset-bottom',
         expanded: 'expanded'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
