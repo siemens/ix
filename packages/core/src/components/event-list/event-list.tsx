@@ -41,9 +41,9 @@ export class EventList {
   @Prop() compact = false;
 
   /**
-   * Animate state change transitions. Defaults to 'true'.
+   * Animate state change transitions. Defaults to 'false'.
    */
-  @Prop() animated = true;
+  @Prop() animated = false;
 
   /**
    * Display a chevron icon in list items. Defaults to 'false'

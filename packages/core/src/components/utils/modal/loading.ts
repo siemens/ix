@@ -12,7 +12,7 @@ import { getCoreDelegate } from '../delegate';
 
 export function showModalLoading(message: string) {
   const modal = document.createElement('ix-modal');
-  modal.closeOnEscape = false;
+  modal.disableEscapeClose = true;
 
   const loading = document.createElement('ix-modal-loading');
   loading.innerText = message;

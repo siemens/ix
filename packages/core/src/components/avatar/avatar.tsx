@@ -126,7 +126,7 @@ export class Avatar {
    * Accessibility label for the image
    * Will be set as aria-label on the nested HTML img element
    *
-   * @deprecated Set the native `aria-label` on the ix-avatar host element
+   * @deprecated Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0
    */
   @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 

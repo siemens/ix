@@ -39,6 +39,7 @@ export class Drawer {
   /**
    * Fired in case of an outside click during drawer showed state
    */
+  // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() closeOnClickOutside = true;
 
   /**

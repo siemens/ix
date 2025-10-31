@@ -12,7 +12,7 @@
     "@stencil-community/own-props-must-be-private": 0,
     "@stencil-community/own-methods-must-be-private": 0,
     "@stencil-community/strict-boolean-conditions": 0,
-    "@stencil-community/ban-default-true": ["warn"],
+    "@stencil-community/ban-default-true": ["error"],
     "@stencil-community/decorators-style": [
       "error",
       { "prop": "inline", "method": "multiline" }

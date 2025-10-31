@@ -47,6 +47,7 @@ export class MapNavigation {
   /**
    * Hide the sidebar context menu button when set to true
    */
+  // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() hideContextMenu = true;
 
   /**
@@ -251,7 +252,7 @@ export class MapNavigation {
                     icon={iconContextMenu}
                     size="24"
                     variant="subtle-primary"
-                    onClick={(_) => this.contextMenuClick.emit()}
+                    onClick={() => this.contextMenuClick.emit()}
                     aria-label={this.ariaLabelContextIconButton}
                   ></ix-icon-button>
                 )}

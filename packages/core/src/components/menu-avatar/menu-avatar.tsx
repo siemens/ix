@@ -55,7 +55,7 @@ export class MenuAvatar {
   /**
    *  Control the visibility of the logout button
    */
-  @Prop() showLogoutButton: boolean = true;
+  @Prop() hideLogoutButton: boolean = false;
 
   /**
    * Control the visibility of the dropdown menu
@@ -101,13 +101,13 @@ export class MenuAvatar {
         <ix-dropdown
           trigger={this.hostElement}
           placement={'right-start'}
-          hidden={!this.showContextMenu && !this.showLogoutButton}
+          hidden={!this.showContextMenu && this.hideLogoutButton}
           offset={{
             mainAxis: 16,
           }}
         >
           <slot onSlotchange={() => this.onSlotChange()}></slot>
-          {this.showLogoutButton ? (
+          {!this.hideLogoutButton && (
             <ix-menu-avatar-item
               label={this.i18nLogout}
               icon={iconLogOut}
@@ -115,7 +115,7 @@ export class MenuAvatar {
                 this.logoutClick.emit(e);
               }}
             ></ix-menu-avatar-item>
-          ) : null}
+          )}
         </ix-dropdown>
       </Host>
     );

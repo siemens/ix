@@ -51,7 +51,7 @@ export class Toast {
   /**
    * Autoclose behavior
    */
-  @Prop() autoClose = true;
+  @Prop() preventAutoClose = false;
 
   /**
    * Icon of toast
@@ -224,7 +224,7 @@ export class Toast {
             />
           </div>
         </div>
-        {this.autoClose ? (
+        {!this.preventAutoClose && (
           <div
             class={progressBarClass.join(' ')}
             style={progressBarStyle}
@@ -237,7 +237,7 @@ export class Toast {
               }
             }}
           ></div>
-        ) : null}
+        )}
       </Host>
     );
   }

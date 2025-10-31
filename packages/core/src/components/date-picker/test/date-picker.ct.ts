@@ -34,7 +34,7 @@ regressionTest('translation', async ({ mount, page }) => {
 regressionTest.describe('date picker tests single', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-date-picker min-date="2024/10/10" from="2024/10/10" range="false"></ix-date-picker>`
+      `<ix-date-picker min-date="2024/10/10" from="2024/10/10" single-selection></ix-date-picker>`
     );
   });
 
@@ -70,7 +70,7 @@ regressionTest.describe('date picker tests single', () => {
 regressionTest.describe('date picker tests single', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-date-picker from="2023/09/05" range="false"></ix-date-picker>`
+      `<ix-date-picker from="2023/09/05" single-selection></ix-date-picker>`
     );
   });
 
@@ -246,7 +246,7 @@ regressionTest.describe('date picker tests range', () => {
     regressionTest(
       'dateSelect event with undefined from and to values',
       async ({ mount, page }) => {
-        await mount(`<ix-date-picker range="true"></ix-date-picker>`);
+        await mount(`<ix-date-picker></ix-date-picker>`);
 
         await page.waitForSelector('ix-date-time-card');
 

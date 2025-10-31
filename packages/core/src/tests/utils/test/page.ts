@@ -131,7 +131,7 @@ export const regressionTest = testBase.extend<{
 
     await page.route('*/**/svg/*.svg', async (route, request) => {
       if (!process.env.CI) {
-        const [__, svg] = request.url().split('/svg/');
+        const [, svg] = request.url().split('/svg/');
         console.warn(
           testInfo.file,
           testInfo.title,
