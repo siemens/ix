@@ -169,6 +169,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop({ attribute: 'i18n-no-matches' }) i18nNoMatches = 'No matches';
 
   /**
+   * Chip label for all selected items in multiple mode.
+   */
+  @Prop({ attribute: 'i18n-all-selected' }) i18nAllSelected = 'All';
+
+  /**
    * Hide list header
    */
   @Prop() hideListHeader = false;
@@ -767,6 +772,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     );
   }
 
+  private shouldDisplayAllChip(): boolean {
+    return this.selectedItems.length === this.items.length;
+  }
+
   @HookValidationLifecycle()
   onValidationChange({
     isInvalid,
@@ -855,8 +864,23 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           >
             <div class="input-container">
               <div class="chips">
-                {this.isMultipleMode
-                  ? this.selectedItems?.map((item) => (
+                {this.isMultipleMode && this.items.length !== 0 ? (
+                  this.shouldDisplayAllChip() ? (
+                    // Display "All" chip when all items are selected
+                    <ix-filter-chip
+                      disabled={this.disabled || this.readonly}
+                      key="all-selection"
+                      onCloseClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.clear();
+                      }}
+                    >
+                      {`${this.i18nAllSelected} (${this.selectedItems.length})`}
+                    </ix-filter-chip>
+                  ) : (
+                    // Display individual chips for selected items
+                    this.selectedItems?.map((item) => (
                       <ix-filter-chip
                         disabled={this.disabled || this.readonly}
                         key={item.value}
@@ -869,7 +893,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                         {item.label}
                       </ix-filter-chip>
                     ))
-                  : ''}
+                  )
+                ) : (
+                  ''
+                )}
                 <div class="trigger">
                   <input
                     autocomplete="off"
