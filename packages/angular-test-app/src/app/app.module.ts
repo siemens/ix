@@ -31,9 +31,6 @@ import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
-import BasicNavigation from '../preview-examples/basic-navigation';
-import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
-import BasicNavigationWithoutHeader from '../preview-examples/basic-navigation-without-header';
 import Blind from '../preview-examples/blind';
 import BlindHeaderActions from '../preview-examples/blind-header-actions';
 import BlindVariants from '../preview-examples/blind-variants';
@@ -162,9 +159,6 @@ import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
-import MapNavigation from '../preview-examples/map-navigation';
-import MapNavigationMigration from '../preview-examples/map-navigation-migration';
-import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
 import Message from '../preview-examples/message';
@@ -273,9 +267,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     AvatarImage,
     AvatarInitials,
     Avatar,
-    BasicNavigationWithoutHeader,
-    BasicNavigation,
-    BasicNavigationMigration,
     BlindHeaderActions,
     BlindVariants,
     Blind,
@@ -390,8 +381,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     LinkButtonDisabled,
     LinkButton,
     Loading,
-    MapNavigationOverlay,
-    MapNavigation,
     MenuCategory,
     MenuWithBottomTabs,
     Message,
@@ -473,7 +462,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     VerticalTabsWithAvatar,
     VerticalTabs,
     WorkflowVertical,
-    MapNavigationMigration,
     NumberInput,
     NumberInputDisabled,
     NumberInputLabel,

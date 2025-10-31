@@ -172,12 +172,6 @@ export class ApplicationHeader {
       this.hostElement,
       ApplicationLayoutContext,
       (ctx) => {
-        if (ctx?.host === 'map-navigation') {
-          this.suppressResponsive = true;
-          this.breakpoint = 'md';
-          return;
-        }
-
         this.breakpoint = applicationLayoutService.breakpoint;
         this.applicationLayoutContext = ctx;
 

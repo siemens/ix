@@ -12,7 +12,6 @@ import {
   HTMLRefElement,
   IxApplication,
   IxApplicationHeader,
-  IxBasicNavigation,
   IxMenu,
   IxMenuSettings,
   IxMenuSettingsItem,

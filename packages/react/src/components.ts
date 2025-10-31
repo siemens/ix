@@ -12,7 +12,6 @@ import { IxActionCard as IxActionCardElement, defineCustomElement as defineIxAct
 import { IxApplicationHeader as IxApplicationHeaderElement, defineCustomElement as defineIxApplicationHeader } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement, defineCustomElement as defineIxApplication } from "@siemens/ix/components/ix-application.js";
 import { IxAvatar as IxAvatarElement, defineCustomElement as defineIxAvatar } from "@siemens/ix/components/ix-avatar.js";
-import { IxBasicNavigation as IxBasicNavigationElement, defineCustomElement as defineIxBasicNavigation } from "@siemens/ix/components/ix-basic-navigation.js";
 import { IxBlind as IxBlindElement, defineCustomElement as defineIxBlind } from "@siemens/ix/components/ix-blind.js";
 import { IxBreadcrumbItem as IxBreadcrumbItemElement, defineCustomElement as defineIxBreadcrumbItem } from "@siemens/ix/components/ix-breadcrumb-item.js";
 import { IxBreadcrumb as IxBreadcrumbElement, defineCustomElement as defineIxBreadcrumb } from "@siemens/ix/components/ix-breadcrumb.js";
@@ -63,8 +62,6 @@ import { IxKpi as IxKpiElement, defineCustomElement as defineIxKpi } from "@siem
 import { IxLayoutAuto as IxLayoutAutoElement, defineCustomElement as defineIxLayoutAuto } from "@siemens/ix/components/ix-layout-auto.js";
 import { IxLayoutGrid as IxLayoutGridElement, defineCustomElement as defineIxLayoutGrid } from "@siemens/ix/components/ix-layout-grid.js";
 import { IxLinkButton as IxLinkButtonElement, defineCustomElement as defineIxLinkButton } from "@siemens/ix/components/ix-link-button.js";
-import { IxMapNavigationOverlay as IxMapNavigationOverlayElement, defineCustomElement as defineIxMapNavigationOverlay } from "@siemens/ix/components/ix-map-navigation-overlay.js";
-import { IxMapNavigation as IxMapNavigationElement, defineCustomElement as defineIxMapNavigation } from "@siemens/ix/components/ix-map-navigation.js";
 import { IxMenuAboutItem as IxMenuAboutItemElement, defineCustomElement as defineIxMenuAboutItem } from "@siemens/ix/components/ix-menu-about-item.js";
 import { IxMenuAboutNews as IxMenuAboutNewsElement, defineCustomElement as defineIxMenuAboutNews } from "@siemens/ix/components/ix-menu-about-news.js";
 import { IxMenuAbout as IxMenuAboutElement, defineCustomElement as defineIxMenuAbout } from "@siemens/ix/components/ix-menu-about.js";
@@ -163,17 +160,6 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = 
     react: React,
     events: {} as IxAvatarEvents,
     defineCustomElement: defineIxAvatar
-});
-
-export type IxBasicNavigationEvents = NonNullable<unknown>;
-
-export const IxBasicNavigation: StencilReactComponent<IxBasicNavigationElement, IxBasicNavigationEvents> = /*@__PURE__*/ createComponent<IxBasicNavigationElement, IxBasicNavigationEvents>({
-    tagName: 'ix-basic-navigation',
-    elementClass: IxBasicNavigationElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
-    react: React,
-    events: {} as IxBasicNavigationEvents,
-    defineCustomElement: defineIxBasicNavigation
 });
 
 export type IxBlindEvents = { onCollapsedChange: EventName<CustomEvent<boolean>> };
@@ -804,34 +790,6 @@ export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButt
     react: React,
     events: {} as IxLinkButtonEvents,
     defineCustomElement: defineIxLinkButton
-});
-
-export type IxMapNavigationEvents = {
-    onNavigationToggled: EventName<CustomEvent<boolean>>,
-    onContextMenuClick: EventName<CustomEvent<void>>
-};
-
-export const IxMapNavigation: StencilReactComponent<IxMapNavigationElement, IxMapNavigationEvents> = /*@__PURE__*/ createComponent<IxMapNavigationElement, IxMapNavigationEvents>({
-    tagName: 'ix-map-navigation',
-    elementClass: IxMapNavigationElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
-    react: React,
-    events: {
-        onNavigationToggled: 'navigationToggled',
-        onContextMenuClick: 'contextMenuClick'
-    } as IxMapNavigationEvents,
-    defineCustomElement: defineIxMapNavigation
-});
-
-export type IxMapNavigationOverlayEvents = { onCloseClick: EventName<CustomEvent<any>> };
-
-export const IxMapNavigationOverlay: StencilReactComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents> = /*@__PURE__*/ createComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents>({
-    tagName: 'ix-map-navigation-overlay',
-    elementClass: IxMapNavigationOverlayElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
-    react: React,
-    events: { onCloseClick: 'closeClick' } as IxMapNavigationOverlayEvents,
-    defineCustomElement: defineIxMapNavigationOverlay
 });
 
 export type IxMenuEvents = {

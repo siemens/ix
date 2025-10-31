@@ -112,29 +112,6 @@ export declare interface IxAvatar extends Components.IxAvatar {}
 
 
 @ProxyCmp({
-  inputs: ['applicationName', 'breakpoints', 'forceBreakpoint', 'hideHeader']
-})
-@Component({
-  selector: 'ix-basic-navigation',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'breakpoints', 'forceBreakpoint', 'hideHeader'],
-  standalone: false
-})
-export class IxBasicNavigation {
-  protected el: HTMLIxBasicNavigationElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxBasicNavigation extends Components.IxBasicNavigation {}
-
-
-@ProxyCmp({
   inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant']
 })
 @Component({
@@ -1546,72 +1523,6 @@ export class IxLinkButton {
 
 
 export declare interface IxLinkButton extends Components.IxLinkButton {}
-
-
-@ProxyCmp({
-  inputs: ['applicationName', 'ariaLabelContextIconButton', 'hideContextMenu', 'navigationTitle'],
-  methods: ['toggleSidebar', 'openOverlay', 'closeOverlay']
-})
-@Component({
-  selector: 'ix-map-navigation',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'ariaLabelContextIconButton', 'hideContextMenu', 'navigationTitle'],
-  outputs: ['navigationToggled', 'contextMenuClick'],
-  standalone: false
-})
-export class IxMapNavigation {
-  protected el: HTMLIxMapNavigationElement;
-  @Output() navigationToggled = new EventEmitter<CustomEvent<boolean>>();
-  @Output() contextMenuClick = new EventEmitter<CustomEvent<void>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxMapNavigation extends Components.IxMapNavigation {
-  /**
-   * Navigation toggled
-   */
-  navigationToggled: EventEmitter<CustomEvent<boolean>>;
-  /**
-   * Context menu clicked
-   */
-  contextMenuClick: EventEmitter<CustomEvent<void>>;
-}
-
-
-@ProxyCmp({
-  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'color', 'icon', 'iconColor', 'name']
-})
-@Component({
-  selector: 'ix-map-navigation-overlay',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCloseIconButton', 'ariaLabelIcon', 'color', 'icon', 'iconColor', 'name'],
-  outputs: ['closeClick'],
-  standalone: false
-})
-export class IxMapNavigationOverlay {
-  protected el: HTMLIxMapNavigationOverlayElement;
-  @Output() closeClick = new EventEmitter<CustomEvent<any>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxMapNavigationOverlay extends Components.IxMapNavigationOverlay {
-  /**
-   * Event closed
-   */
-  closeClick: EventEmitter<CustomEvent<any>>;
-}
 
 
 @ProxyCmp({

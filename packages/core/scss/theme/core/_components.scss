@@ -31,7 +31,6 @@
 @use "./components/kpi" as asComponent_kpi;
 @use "./components/label" as asComponent_label;
 @use "./components/link" as asComponent_link;
-@use "./components/map-navigation" as asComponent_map-navigation;
 @use "./components/menu" as asComponent_menu;
 @use "./components/message-bar" as asComponent_message-bar;
 @use "./components/modal-dialog" as asComponent_modal-dialog;
@@ -75,7 +74,6 @@
   @include asComponent_kpi.setVars;
   @include asComponent_label.setVars;
   @include asComponent_link.setVars;
-  @include asComponent_map-navigation.setVars;
   @include asComponent_menu.setVars;
   @include asComponent_message-bar.setVars;
   @include asComponent_modal-dialog.setVars;

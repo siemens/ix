@@ -100,7 +100,7 @@ regressionTest.describe('menu', () => {
       await page.setViewportSize(viewPorts.lg);
       await page.goto('menu/active');
 
-      const basicNavigationElement = page.locator('ix-basic-navigation');
+      const basicNavigationElement = page.locator('ix-application');
 
       const category = page.locator('ix-menu-category');
       await category.click();
