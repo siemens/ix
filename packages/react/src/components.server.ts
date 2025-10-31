@@ -13,7 +13,6 @@ import { IxActionCard as IxActionCardElement } from "@siemens/ix/components/ix-a
 import { IxApplicationHeader as IxApplicationHeaderElement } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement } from "@siemens/ix/components/ix-application.js";
 import { IxAvatar as IxAvatarElement } from "@siemens/ix/components/ix-avatar.js";
-import { IxBasicNavigation as IxBasicNavigationElement } from "@siemens/ix/components/ix-basic-navigation.js";
 import { IxBlind as IxBlindElement } from "@siemens/ix/components/ix-blind.js";
 import { IxBreadcrumbItem as IxBreadcrumbItemElement } from "@siemens/ix/components/ix-breadcrumb-item.js";
 import { IxBreadcrumb as IxBreadcrumbElement } from "@siemens/ix/components/ix-breadcrumb.js";
@@ -64,8 +63,6 @@ import { IxKpi as IxKpiElement } from "@siemens/ix/components/ix-kpi.js";
 import { IxLayoutAuto as IxLayoutAutoElement } from "@siemens/ix/components/ix-layout-auto.js";
 import { IxLayoutGrid as IxLayoutGridElement } from "@siemens/ix/components/ix-layout-grid.js";
 import { IxLinkButton as IxLinkButtonElement } from "@siemens/ix/components/ix-link-button.js";
-import { IxMapNavigationOverlay as IxMapNavigationOverlayElement } from "@siemens/ix/components/ix-map-navigation-overlay.js";
-import { IxMapNavigation as IxMapNavigationElement } from "@siemens/ix/components/ix-map-navigation.js";
 import { IxMenuAboutItem as IxMenuAboutItemElement } from "@siemens/ix/components/ix-menu-about-item.js";
 import { IxMenuAboutNews as IxMenuAboutNewsElement } from "@siemens/ix/components/ix-menu-about-news.js";
 import { IxMenuAbout as IxMenuAboutElement } from "@siemens/ix/components/ix-menu-about.js";
@@ -192,21 +189,6 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = 
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxAvatar as ReactWebComponent<IxAvatarElement, IxAvatarEvents>,
-    serializeShadowRoot,
-});
-
-export type IxBasicNavigationEvents = NonNullable<unknown>;
-
-export const IxBasicNavigation: StencilReactComponent<IxBasicNavigationElement, IxBasicNavigationEvents> = /*@__PURE__*/ createComponent<IxBasicNavigationElement, IxBasicNavigationEvents>({
-    tagName: 'ix-basic-navigation',
-    properties: {
-        applicationName: 'application-name',
-        hideHeader: 'hide-header',
-        forceBreakpoint: 'force-breakpoint',
-        breakpoints: 'breakpoints'
-    },
-    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxBasicNavigation as ReactWebComponent<IxBasicNavigationElement, IxBasicNavigationEvents>,
     serializeShadowRoot,
 });
 
@@ -1119,41 +1101,6 @@ export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButt
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxLinkButton as ReactWebComponent<IxLinkButtonElement, IxLinkButtonEvents>,
-    serializeShadowRoot,
-});
-
-export type IxMapNavigationEvents = {
-    onNavigationToggled: EventName<CustomEvent<boolean>>,
-    onContextMenuClick: EventName<CustomEvent<void>>
-};
-
-export const IxMapNavigation: StencilReactComponent<IxMapNavigationElement, IxMapNavigationEvents> = /*@__PURE__*/ createComponent<IxMapNavigationElement, IxMapNavigationEvents>({
-    tagName: 'ix-map-navigation',
-    properties: {
-        applicationName: 'application-name',
-        navigationTitle: 'navigation-title',
-        hideContextMenu: 'hide-context-menu',
-        ariaLabelContextIconButton: 'aria-label-context-icon-button'
-    },
-    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMapNavigation as ReactWebComponent<IxMapNavigationElement, IxMapNavigationEvents>,
-    serializeShadowRoot,
-});
-
-export type IxMapNavigationOverlayEvents = { onCloseClick: EventName<CustomEvent<any>> };
-
-export const IxMapNavigationOverlay: StencilReactComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents> = /*@__PURE__*/ createComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents>({
-    tagName: 'ix-map-navigation-overlay',
-    properties: {
-        name: 'name',
-        icon: 'icon',
-        ariaLabelIcon: 'aria-label-icon',
-        ariaLabelCloseIconButton: 'aria-label-close-icon-button',
-        color: 'color',
-        iconColor: 'icon-color'
-    },
-    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
-    clientModule: clientComponents.IxMapNavigationOverlay as ReactWebComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents>,
     serializeShadowRoot,
 });
 

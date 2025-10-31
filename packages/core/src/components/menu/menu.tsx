@@ -104,10 +104,6 @@ export class Menu {
 
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
-    if (this.applicationLayoutContext?.host === 'map-navigation') {
-      console.warn('ix-map-navigation does not support pinning of the menu');
-      return;
-    }
     this.setPinned(this.pinned);
     if (newPinned) {
       applicationLayoutService.disableBreakpointDetection();
@@ -342,10 +338,7 @@ export class Menu {
     if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }
-    if (this.applicationLayoutContext?.host === 'map-navigation') {
-      this.breakpoint = 'md';
-      return;
-    }
+
     if (!this.applicationLayoutContext) {
       return;
     }
