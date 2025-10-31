@@ -17,8 +17,17 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
+      - name: Determine build flags
+        id: build_flags
+        run: |
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.event.head_commit.message }}" == *"[force-build]"* ]]; then
+            echo "flags=--force" >> $GITHUB_OUTPUT
+          else
+            echo "flags=" >> $GITHUB_OUTPUT
+          fi
+
       - name: Build
-        run: pnpm build --cache-dir=.turbo
+        run: pnpm build --cache-dir=.turbo ${{ steps.build_flags.outputs.flags }}
 
       - name: Lint
         run: pnpm lint
