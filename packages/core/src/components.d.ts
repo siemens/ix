@@ -1007,6 +1007,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns whether the text field has been modified from its initial value.
+         */
+        "isDirty": () => Promise<boolean>;
+        /**
           * Returns whether the text field has been touched.
          */
         "isTouched": () => Promise<boolean>;
@@ -1046,6 +1050,11 @@ export namespace Components {
          */
         "required"?: boolean;
         /**
+          * Resets the input field to its original untouched state and initial value. This clears the value, removes touched and dirty states, and recomputes validity.
+          * @example ```typescript // React await dateInputRef.current?.reset();  // Angular await this.dateInput.nativeElement.reset();  // Vue await this.$refs.dateInput.reset();  // HTML/JavaScript const dateInput = document.querySelector('ix-date-input'); await dateInput.reset(); ```
+         */
+        "reset": () => Promise<void>;
+        /**
           * Show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
@@ -1055,6 +1064,10 @@ export namespace Components {
           * @default false
          */
         "showWeekNumbers": boolean;
+        /**
+          * Synchronizes CSS validation classes with the component's validation state. This method ensures proper visual styling based on validation status, particularly for Vue.
+         */
+        "syncValidationClasses": () => Promise<void>;
         /**
           * Valid text below the input field
          */

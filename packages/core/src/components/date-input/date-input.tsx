@@ -76,12 +76,15 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   @Watch('value') watchValuePropHandler(newValue: string) {
-    // For programmatic changes that result in invalid states (empty required fields),
-    // set touched state to ensure validation errors are shown
-    // BUT only if we're not in a clearTouchedState operation
-    if (!newValue && this.required && !this.isClearing) {
+    if (this.isResetting) {
+      this.onInput(newValue);
+      return;
+    }
+
+    if (!newValue && this.required) {
       this.touched = true;
     }
+    this.dirty = newValue !== this.initialValue;
     this.onInput(newValue);
   }
 
@@ -236,7 +239,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private isClearing = false; // Flag to track clearTouchedState operations
+  private dirty = false;
+  private isResetting = false;
+  private initialValue?: string;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -262,6 +267,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   componentWillLoad(): void {
+    this.initialValue = this.value;
+
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -310,6 +317,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   async onInput(value: string | undefined) {
+    if (!this.isResetting) {
+      this.dirty = value !== this.initialValue;
+    }
+
     this.value = value;
     if (!value) {
       // When value is empty, clear format validation errors
@@ -318,6 +329,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
       this.valueChange.emit(value);
+      await this.syncValidationClasses();
       return;
     }
 
@@ -340,6 +352,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     }
 
     this.valueChange.emit(value);
+    await this.syncValidationClasses();
   }
 
   onCalenderClick(event: Event) {
@@ -386,6 +399,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           name={this.name}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
+            if (!this.isResetting) {
+              this.touched = true;
+            }
             this.onInput(target.value);
           }}
           onClick={(event) => {
@@ -398,9 +414,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.openDropdown();
             this.ixFocus.emit();
           }}
-          onBlur={() => {
+          onBlur={async () => {
             this.ixBlur.emit();
             this.touched = true;
+            await this.syncValidationClasses();
           }}
         ></input>
         <SlotEnd
@@ -477,21 +494,82 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   /**
-   * Clears the value and touched state of the input field.
+   * Returns whether the text field has been modified from its initial value.
    * @internal
    */
   @Method()
-  async clearValueAndTouchedState(): Promise<void> {
-    this.isClearing = true;
+  isDirty(): Promise<boolean> {
+    return Promise.resolve(this.dirty);
+  }
+
+  /**
+   * Synchronizes CSS validation classes with the component's validation state.
+   * This method ensures proper visual styling based on validation status, particularly for Vue.
+   * @internal
+   */
+  @Method()
+  async syncValidationClasses(): Promise<void> {
+    const [hasValue, touched] = await Promise.all([
+      this.hasValidValue(),
+      this.isTouched(),
+    ]);
+
+    if (this.required) {
+      const isRequiredInvalid = !hasValue && touched;
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        isRequiredInvalid
+      );
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+    }
+
+    const validityState = await this.getValidityState();
+    this.hostElement.classList.toggle(
+      'ix-invalid--validity-patternMismatch',
+      validityState.patternMismatch
+    );
+  }
+
+  /**
+   * Resets the input field to its original untouched state and initial value.
+   * This clears the value, removes touched and dirty states, and recomputes validity.
+   *
+   * @example
+   * ```typescript
+   * // React
+   * await dateInputRef.current?.reset();
+   *
+   * // Angular
+   * await this.dateInput.nativeElement.reset();
+   *
+   * // Vue
+   * await this.$refs.dateInput.reset();
+   *
+   * // HTML/JavaScript
+   * const dateInput = document.querySelector('ix-date-input');
+   * await dateInput.reset();
+   * ```
+   */
+  @Method()
+  async reset(): Promise<void> {
+    this.isResetting = true;
 
     this.touched = false;
-    this.value = '';
+    this.dirty = false;
+    this.isInputInvalid = false;
+    this.invalidReason = undefined;
+    this.from = undefined;
 
-    this.valueChange.emit('');
+    const resetValue = this.initialValue || '';
+    this.value = resetValue;
+    this.updateFormInternalValue(resetValue);
 
-    queueMicrotask(() => {
-      this.isClearing = false;
-    });
+    await this.onInput(resetValue);
+    await this.syncValidationClasses();
+
+    this.isResetting = false;
+    this.valueChange.emit(resetValue);
   }
 
   render() {
