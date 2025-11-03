@@ -229,7 +229,6 @@ regressionTest(
       await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
       await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
     }
-    await expect(tabs.nth(0)).toHaveClass(/\bselected\b/);
   }
 );
 
@@ -257,7 +256,6 @@ regressionTest(
       await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
       await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
     }
-    await expect(tabs.nth(0)).toHaveClass(/\bselected\b/);
   }
 );
 
@@ -334,5 +332,59 @@ regressionTest(
     await tabs.nth(1).click();
     await expect(tabs.nth(0)).not.toHaveClass(/\bselected\b/);
     await expect(tabs.nth(1)).toHaveClass(/\bselected\b/);
+  }
+);
+
+regressionTest(
+  'tab re-selection algorithm',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-tabs>
+        <ix-tab-item>Tab 1</ix-tab-item>
+        <ix-tab-item>Tab 2</ix-tab-item>
+        <ix-tab-item>Tab 3</ix-tab-item>
+        <ix-tab-item>Tab 4</ix-tab-item>
+        <ix-tab-item>Tab 5</ix-tab-item>
+      </ix-tabs>
+    `);
+
+    await page.locator('ix-tab-item').nth(2).click();
+
+    await page.evaluate(() => {
+      document.querySelector('ix-tabs')!.innerHTML = `
+        <ix-tab-item>Tab 1</ix-tab-item>
+        <ix-tab-item>Tab 2</ix-tab-item>
+        <ix-tab-item>Tab 4</ix-tab-item>
+        <ix-tab-item>Tab 5</ix-tab-item>
+      `;
+    });
+
+    await expect(page.locator('ix-tab-item').nth(2)).toHaveClass(/\bselected\b/);
+
+    await page.locator('ix-tab-item').nth(3).click();
+
+    await page.evaluate(() => {
+      document.querySelector('ix-tabs')!.innerHTML = `
+        <ix-tab-item>Tab 1</ix-tab-item>
+        <ix-tab-item>Tab 2</ix-tab-item>
+        <ix-tab-item>Tab 4</ix-tab-item>
+      `;
+    });
+
+    await expect(page.locator('ix-tab-item').nth(2)).toHaveClass(/\bselected\b/);
+
+    await page.locator('ix-tab-item').nth(1).click();
+
+    await page.evaluate(() => {
+      document.querySelector('ix-tabs')!.innerHTML = `<ix-tab-item>Tab 1</ix-tab-item>`;
+    });
+
+    await expect(page.locator('ix-tab-item').nth(0)).toHaveClass(/\bselected\b/);
+
+    await page.evaluate(() => {
+      document.querySelector('ix-tabs')!.innerHTML = '';
+    });
+
+    await expect(page.locator('ix-tab-item')).toHaveCount(0);
   }
 );

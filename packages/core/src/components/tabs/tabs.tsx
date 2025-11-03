@@ -182,7 +182,7 @@ export class Tabs {
     if (this.rounded) element.setAttribute('rounded', 'true');
 
     element.setAttribute('layout', this.layout);
-    element.setAttribute('selected', isSelected ? 'true' : 'false');
+    element.setAttribute('selected', isSelected.toString());
     element.setAttribute('placement', this.placement);
     element.toggleAttribute('disabled', isDisabled);
 
@@ -223,25 +223,40 @@ export class Tabs {
       .map(([className]) => className);
   }
 
-  private validateSelectedIndex() {
-    const tabs = this.getTabs();
-    const tabCount = tabs.length;
-
-    if (tabCount === 0) {
+  private ensureSelectedIndex() {
+    if (this.totalItems === 0) {
+      console.warn('ix-tabs: No tabs available for selection');
+      this.selected = -1;
       return;
     }
 
-    if (this.selected >= tabCount) {
-      this.selected = tabCount - 1;
-      this.selectedChange.emit(tabCount - 1);
+    if (this.selected < this.totalItems) {
+      return;
     }
+
+    const originalIndex = this.selected;
+    const previousIndex = originalIndex - 1;
+
+    if (previousIndex >= 0 && previousIndex < this.totalItems) {
+      this.updateSelected(previousIndex);
+      return;
+    }
+
+    if (this.totalItems > 0) {
+      this.updateSelected(0);
+    }
+  }
+
+  private updateSelected(index: number) {
+    this.selected = index;
+    this.selectedChange.emit(index);
   }
 
   private updateTabAttributes() {
     const tabs = this.getTabs();
     this.totalItems = tabs.length;
 
-    this.validateSelectedIndex();
+    this.ensureSelectedIndex();
 
     tabs.forEach((element, index) => {
       this.setTabAttributes(element, index);
