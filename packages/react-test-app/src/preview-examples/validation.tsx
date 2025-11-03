@@ -12,7 +12,6 @@ import {
   IxCol,
   IxLayoutGrid,
   IxRow,
-  IxValidationTooltip,
 } from '@siemens/ix-react';
 
 import { useForm } from 'react-hook-form';
@@ -68,7 +67,6 @@ export default () => {
 
           <IxRow>
             <IxCol size="4">
-              <IxValidationTooltip message="Cannot be empty!">
                 <label className="ix-form-label" htmlFor="validationCustom02">
                   Last name
                 </label>
@@ -82,7 +80,7 @@ export default () => {
                     required: true,
                   })}
                 />
-              </IxValidationTooltip>
+              <div className="invalid-feedback">Please choose a last name.</div>
             </IxCol>
           </IxRow>
 
