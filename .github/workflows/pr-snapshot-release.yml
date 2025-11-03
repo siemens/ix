@@ -105,7 +105,7 @@ jobs:
         if: ${{ steps.added-files.outputs.changesets != '' }}
         run: |
           pnpm changeset version --snapshot pr-${{ github.event.issue.number }} && pnpm i --lockfile-only
-          pnpm build --filter \!documentation
+          pnpm build
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
           pnpm changeset publish --no-git-tag --snapshot --tag snapshot
         env:
