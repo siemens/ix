@@ -26,8 +26,7 @@ const version = 'v2';
 const __root = path.resolve(__dirname, '../');
 
 const __core = path.join(__dirname, '../node_modules', '@siemens', 'ix');
-
-const __packages = path.join(__root, '..');
+const __packages = path.join(__dirname, '../node_modules');
 
 const __htmlTestAppRoot = path.join(__packages, 'html-test-app');
 const __htmlTestAppDist = path.join(__htmlTestAppRoot, 'dist');

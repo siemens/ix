@@ -1,25 +1,33 @@
 {
   "name": "@siemens/ix-docs",
-  "version": "3.2.0",
-  "private": true,
+  "version": "0.0.0",
   "scripts": {
     "build": "tsx --tsconfig ./tsconfig.json ./scripts/build.ts"
   },
-  "files": [
-    "build"
-  ],
   "dependencies": {},
   "devDependencies": {
+    "@siemens/ix-angular": "workspace:*",
+    "@siemens/ix-react": "workspace:*",
     "@siemens/ix": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/mustache": "^4.2.6",
     "@types/node": "^20.16.0",
+    "@types/react": "^18.3.10",
     "@types/rimraf": "^4.0.5",
+    "@types/tar": "^6.1.13",
+    "angular-test-app": "workspace:*",
+    "angular-standalone-test-app": "workspace:*",
     "fs-extra": "^11.3.0",
+    "glob": "^11.0.1",
+    "html-test-app": "workspace:*",
+    "ionic-test-app": "workspace:*",
     "mustache": "^4.2.0",
+    "react-test-app": "workspace:*",
     "rimraf": "^6.0.1",
+    "storybook-docs": "workspace:*",
     "tsx": "^4.15.4",
     "typedoc": "^0.27.9",
-    "typescript": "~5.5.2"
+    "typescript": "~5.5.2",
+    "vue-test-app": "workspace:*"
   }
 }
