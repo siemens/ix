@@ -52,8 +52,9 @@ jobs:
         run: |
           pnpm changeset version --snapshot $SNAPSHOT_NAME && pnpm i --lockfile-only
           pnpm build
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
           pnpm changeset publish --no-git-tag --snapshot --tag $SNAPSHOT_NAME
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           SNAPSHOT_NAME: ${{ github.event.inputs.snapshot_name }}
