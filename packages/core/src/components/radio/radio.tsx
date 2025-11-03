@@ -165,11 +165,13 @@ export class Radio implements IxFormComponent<string> {
       <Host
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
+        aria-label={this.label}
         role="radio"
         class={{
           disabled: this.disabled,
           checked: this.checked,
         }}
+        onClick={() => !this.disabled && this.setCheckedState(true)}
         onBlur={() => this.ixBlur.emit()}
       >
         <label>

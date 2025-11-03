@@ -36,7 +36,8 @@ export default {
     };
   },
   methods: {
-    setBreakpoint(value: Breakpoint) {
+    setBreakpoint(event: CustomEvent<Breakpoint>) {
+      const value = event?.detail;
       if (validBreakpoints.has(value)) {
         this.breakpoints = [value];
       }
@@ -73,22 +74,10 @@ export default {
         slot="header"
         header-title="Choose breakpoint"
       ></IxContentHeader>
-      <IxRadioGroup :value="breakpoints[0]">
-        <IxRadio
-          value="sm"
-          label="Small"
-          @click="setBreakpoint('sm')"
-        ></IxRadio>
-        <IxRadio
-          value="md"
-          label="Medium"
-          @click="setBreakpoint('md')"
-        ></IxRadio>
-        <IxRadio
-          value="lg"
-          label="Large"
-          @click="setBreakpoint('lg')"
-        ></IxRadio>
+      <IxRadioGroup :value="breakpoints[0]" @valueChange="setBreakpoint">
+        <IxRadio value="sm" label="Small"></IxRadio>
+        <IxRadio value="md" label="Medium"></IxRadio>
+        <IxRadio value="lg" label="Large"></IxRadio>
       </IxRadioGroup>
     </IxContent>
   </IxApplication>
