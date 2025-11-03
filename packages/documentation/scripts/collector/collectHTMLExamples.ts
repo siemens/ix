@@ -1,49 +1,29 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { removeHTMLComments } from '../utils/escape';
-import { getExampleNameFromRelativePath } from './util';
+import { collectExamplesForTag } from './util';
 
 export async function collectHTMLExamples(
   __componentUsageByComponentJson: string,
   __htmlTestAppRoot: string,
   tag: string
 ): Promise<string> {
-  const exampleUsage = await fs.readFile(
+  return collectExamplesForTag(
     __componentUsageByComponentJson,
-    'utf-8'
-  );
-
-  const usage = JSON.parse(exampleUsage) as Record<string, string[]>;
-
-  const examples = usage[tag];
-
-  if (!examples) {
-    console.log(`No examples found for ${tag}`);
-    return '';
-  }
-
-  const markdownExamples: {
-    exampleName: string;
-    example: string;
-  }[] = [];
-
-  for (const relativeExamplePath of examples) {
-    const exampleName = getExampleNameFromRelativePath(relativeExamplePath);
-    const example = await fs.readFile(
-      path.join(__htmlTestAppRoot, relativeExamplePath),
-      'utf-8'
-    );
-    if (exampleName) {
-      markdownExamples.push({
+    tag,
+    async (exampleName, relativeExamplePath) => {
+      const filePath = path.join(__htmlTestAppRoot, relativeExamplePath);
+      if (!fs.existsSync(filePath)) {
+        console.warn(`Example file not found: ${filePath}`);
+        return null;
+      }
+      const content = await fs.readFile(filePath, 'utf-8');
+      return {
         exampleName,
-        example: removeHTMLComments(example).trim(),
-      });
+        example: ['```html', removeHTMLComments(content).trim(), '```'].join(
+          '\n'
+        ),
+      };
     }
-  }
-
-  return markdownExamples
-    .map(({ example, exampleName }) =>
-      [`### Example: ${exampleName}`, '```html', example, '```'].join('\n')
-    )
-    .join('\n\n');
+  );
 }
