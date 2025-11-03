@@ -156,6 +156,16 @@ export function getAriaAttributesForInput(
   return inputAria;
 }
 
+export function checkValidityIfTouched<T>(
+  comp: IxFormComponent<T>,
+  inputRef: { current: HTMLInputElement | HTMLTextAreaElement | null },
+  touched: boolean
+) {
+  if (touched && inputRef.current) {
+    checkInternalValidity(comp, inputRef.current);
+  }
+}
+
 export type DisposableChangesAndVisibilityObservers = () => void;
 
 export const addDisposableChangesAndVisibilityObservers = (

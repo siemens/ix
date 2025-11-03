@@ -35,6 +35,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputBlur,
+  checkValidityIfTouched,
 } from './input.util';
 
 let numberInputIds = 0;
@@ -311,7 +312,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
-              valueChange={(value) => this.valueChange.emit(Number(value))}
+              valueChange={(value) => {
+                this.valueChange.emit(Number(value));
+                checkValidityIfTouched(this, this.inputRef, this.touched);
+              }}
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(Number(value))
               }

@@ -37,6 +37,7 @@ import {
   getAriaAttributesForInput,
   mapValidationResult,
   onInputBlur,
+  checkValidityIfTouched,
 } from './input.util';
 
 let inputIds = 0;
@@ -307,7 +308,10 @@ export class Input implements IxInputFieldComponent<string> {
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
-              valueChange={(value) => this.valueChange.emit(value)}
+              valueChange={(value) => {
+                this.valueChange.emit(value);
+                checkValidityIfTouched(this, this.inputRef, this.touched);
+              }}
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
