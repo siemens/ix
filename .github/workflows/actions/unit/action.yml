@@ -9,8 +9,8 @@ runs:
 
     - name: Build
       shell: bash
-      run: pnpm run build --cache-dir=.turbo --filter \!@siemens/ix-docs
+      run: pnpm run build --cache-dir=.turbo
 
     - name: Test
       shell: bash
-      run: pnpm run test --cache-dir=.turbo --filter \!@siemens/ix-docs
+      run: pnpm run test --cache-dir=.turbo
