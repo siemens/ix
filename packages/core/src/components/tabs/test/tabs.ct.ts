@@ -119,7 +119,7 @@ regressionTest(
     const firstTab = page.locator('ix-tab-item').nth(0);
     const lastTab = page.locator('ix-tab-item').nth(2);
 
-    await tabs.evaluate((tabElement) => {
+    tabs.evaluate((tabElement) => {
       tabElement.addEventListener('selectedChange', (event) =>
         event.preventDefault()
       );
