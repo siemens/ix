@@ -199,13 +199,15 @@ export class Tabs {
     );
     const { classList } = element;
 
-    requiredClasses.forEach((cls) => classList.add(cls));
+    for (const cls of requiredClasses) {
+      classList.add(cls);
+    }
 
-    MANAGED_CLASSES_SET.forEach((managedClass) => {
+    for (const managedClass of MANAGED_CLASSES_SET) {
       if (!requiredClasses.has(managedClass)) {
         classList.remove(managedClass);
       }
-    });
+    }
   }
 
   private buildRequiredClasses(
@@ -263,9 +265,9 @@ export class Tabs {
 
     this.ensureSelectedIndex();
 
-    tabs.forEach((element, index) => {
+    for (const [index, element] of tabs.entries()) {
       this.setTabAttributes(element, index);
-    });
+    }
 
     this.renderArrows();
   }

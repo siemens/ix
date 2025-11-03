@@ -374,9 +374,8 @@ regressionTest('tab re-selection algorithm', async ({ mount, page }) => {
   await page.locator('ix-tab-item').nth(1).click();
 
   await page.evaluate(() => {
-    document.querySelector(
-      'ix-tabs'
-    )!.innerHTML = `<ix-tab-item>Tab 1</ix-tab-item>`;
+    document.querySelector('ix-tabs')!.innerHTML =
+      `<ix-tab-item>Tab 1</ix-tab-item>`;
   });
 
   await expect(page.locator('ix-tab-item').nth(0)).toHaveClass(/\bselected\b/);
