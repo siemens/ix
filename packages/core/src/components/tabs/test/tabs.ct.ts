@@ -335,10 +335,8 @@ regressionTest(
   }
 );
 
-regressionTest(
-  'tab re-selection algorithm',
-  async ({ mount, page }) => {
-    await mount(`
+regressionTest('tab re-selection algorithm', async ({ mount, page }) => {
+  await mount(`
       <ix-tabs>
         <ix-tab-item>Tab 1</ix-tab-item>
         <ix-tab-item>Tab 2</ix-tab-item>
@@ -348,43 +346,44 @@ regressionTest(
       </ix-tabs>
     `);
 
-    await page.locator('ix-tab-item').nth(2).click();
+  await page.locator('ix-tab-item').nth(2).click();
 
-    await page.evaluate(() => {
-      document.querySelector('ix-tabs')!.innerHTML = `
+  await page.evaluate(() => {
+    document.querySelector('ix-tabs')!.innerHTML = `
         <ix-tab-item>Tab 1</ix-tab-item>
         <ix-tab-item>Tab 2</ix-tab-item>
         <ix-tab-item>Tab 4</ix-tab-item>
         <ix-tab-item>Tab 5</ix-tab-item>
       `;
-    });
+  });
 
-    await expect(page.locator('ix-tab-item').nth(2)).toHaveClass(/\bselected\b/);
+  await expect(page.locator('ix-tab-item').nth(2)).toHaveClass(/\bselected\b/);
 
-    await page.locator('ix-tab-item').nth(3).click();
+  await page.locator('ix-tab-item').nth(3).click();
 
-    await page.evaluate(() => {
-      document.querySelector('ix-tabs')!.innerHTML = `
+  await page.evaluate(() => {
+    document.querySelector('ix-tabs')!.innerHTML = `
         <ix-tab-item>Tab 1</ix-tab-item>
         <ix-tab-item>Tab 2</ix-tab-item>
         <ix-tab-item>Tab 4</ix-tab-item>
       `;
-    });
+  });
 
-    await expect(page.locator('ix-tab-item').nth(2)).toHaveClass(/\bselected\b/);
+  await expect(page.locator('ix-tab-item').nth(2)).toHaveClass(/\bselected\b/);
 
-    await page.locator('ix-tab-item').nth(1).click();
+  await page.locator('ix-tab-item').nth(1).click();
 
-    await page.evaluate(() => {
-      document.querySelector('ix-tabs')!.innerHTML = `<ix-tab-item>Tab 1</ix-tab-item>`;
-    });
+  await page.evaluate(() => {
+    document.querySelector(
+      'ix-tabs'
+    )!.innerHTML = `<ix-tab-item>Tab 1</ix-tab-item>`;
+  });
 
-    await expect(page.locator('ix-tab-item').nth(0)).toHaveClass(/\bselected\b/);
+  await expect(page.locator('ix-tab-item').nth(0)).toHaveClass(/\bselected\b/);
 
-    await page.evaluate(() => {
-      document.querySelector('ix-tabs')!.innerHTML = '';
-    });
+  await page.evaluate(() => {
+    document.querySelector('ix-tabs')!.innerHTML = '';
+  });
 
-    await expect(page.locator('ix-tab-item')).toHaveCount(0);
-  }
-);
+  await expect(page.locator('ix-tab-item')).toHaveCount(0);
+});
