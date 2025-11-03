@@ -4,6 +4,9 @@
   "scripts": {
     "build": "tsx --tsconfig ./tsconfig.json ./scripts/build.ts"
   },
+  "files": [
+    "build"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@siemens/ix-angular": "workspace:*",
