@@ -49,8 +49,6 @@ jobs:
         run: rm .changeset/pre.json
 
       - name: Release to pr tag
-        env:
-          SNAPSHOT_NAME: ${{ github.event.inputs.snapshot_name }}
         run: |
           pnpm changeset version --snapshot $SNAPSHOT_NAME && pnpm i --lockfile-only
           pnpm build
@@ -58,3 +56,4 @@ jobs:
           pnpm changeset publish --no-git-tag --snapshot --tag $SNAPSHOT_NAME
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SNAPSHOT_NAME: ${{ github.event.inputs.snapshot_name }}
