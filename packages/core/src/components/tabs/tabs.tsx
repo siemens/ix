@@ -194,13 +194,18 @@ export class Tabs {
     isSelected: boolean,
     isDisabled: boolean
   ) {
-    const existingClasses = Array.from(element.classList);
-    const customClasses = existingClasses.filter(
-      (className) => !MANAGED_CLASSES_SET.has(className as ManagedClass)
+    const requiredClasses = new Set(
+      this.buildRequiredClasses(isSelected, isDisabled)
     );
-    const requiredClasses = this.buildRequiredClasses(isSelected, isDisabled);
+    const { classList } = element;
 
-    element.className = [...customClasses, ...requiredClasses].join(' ');
+    requiredClasses.forEach((cls) => classList.add(cls));
+
+    MANAGED_CLASSES_SET.forEach((managedClass) => {
+      if (!requiredClasses.has(managedClass)) {
+        classList.remove(managedClass);
+      }
+    });
   }
 
   private buildRequiredClasses(
