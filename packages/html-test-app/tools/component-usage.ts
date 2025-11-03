@@ -129,7 +129,6 @@ export function componentUsagePlugin(
 
   return {
     name: 'component-usage-plugin',
-
     transform(code: string, id: string) {
       if (!id) return null;
 

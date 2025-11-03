@@ -34,17 +34,17 @@ function traverse(value: unknown, opts: TraverseOptions): void {
     }
 
     if (opts.deleteKeys.has(key)) {
-      delete (value as Record<string, unknown>)[key];
+      delete value[key];
       continue;
     }
 
     if (opts.normalizeKeys.has(key)) {
-      const current = (value as Record<string, unknown>)[key];
+      const current = value[key];
       if (typeof current === 'string' && current.length > 0) {
         try {
           const rel = path.relative(opts.baseDir, current);
           const posixPath = rel.split(path.sep).join('/');
-          (value as Record<string, unknown>)[key] = posixPath;
+          value[key] = posixPath;
         } catch {
           // Silently ignore values that cannot be normalized
         }

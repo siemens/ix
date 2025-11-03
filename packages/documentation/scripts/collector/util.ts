@@ -7,12 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import fs from 'fs-extra';
-import path from 'path';
+import path from 'node:path';
 
 export function getExampleNameFromRelativePath(relativeExamplePath: string) {
   const lastSegment = relativeExamplePath.split('/').pop();
   if (!lastSegment) {
-    throw Error(`Invalid example path: ${relativeExamplePath}`);
+    throw new Error(`Invalid example path: ${relativeExamplePath}`);
   }
   return lastSegment.replace('.html', '');
 }
