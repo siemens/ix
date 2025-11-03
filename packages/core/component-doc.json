@@ -1050,10 +1050,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Set the native `aria-label` on the ix-avatar host element"
+              "text": "Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0"
             }
           ],
-          "deprecation": "Set the native `aria-label` on the ix-avatar host element",
+          "deprecation": "Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0",
           "values": [
             {
               "type": "string"
@@ -1708,35 +1708,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "nextItems",
           "type": "string[]",
           "complexType": {
@@ -1758,6 +1729,35 @@
           "values": [
             {
               "type": "string[]"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "subtle",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "subtle",
+          "reflectToAttr": false,
+          "docs": "Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -3706,35 +3706,6 @@
           "setter": false
         },
         {
-          "name": "repeatCategories",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "repeat-categories",
-          "reflectToAttr": false,
-          "docs": "If set to true, allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "staticOperator",
           "type": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL | undefined",
           "complexType": {
@@ -3791,6 +3762,35 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "uniqueCategories",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "unique-categories",
+          "reflectToAttr": false,
+          "docs": "If set to true, prevents that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to true.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -4444,35 +4444,6 @@
       },
       "props": [
         {
-          "name": "active",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "active",
-          "reflectToAttr": false,
-          "docs": "Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation)\nwill be possible and also the close button will not be present.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "ariaLabelCloseButton",
           "type": "string | undefined",
           "complexType": {
@@ -4634,6 +4605,35 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "inactive",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "inactive",
+          "reflectToAttr": false,
+          "docs": "Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation)\nwill be possible and also the close button will not be present.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -5707,7 +5707,7 @@
           "setter": false
         },
         {
-          "name": "customRangeAllowed",
+          "name": "customRangeDisabled",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -5715,16 +5715,16 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "custom-range-allowed",
+          "attr": "custom-range-disabled",
           "reflectToAttr": false,
-          "docs": "Controls whether the user is allowed to pick custom date ranges in the component.\nWhen set to 'true', the user can select a custom date range using the date picker.\nWhen set to 'false', only predefined time date ranges are available for selection.",
+          "docs": "Controls whether custom date range selection is disabled in the component.\nWhen set to 'false', the user can select a custom date range using the date picker.\nWhen set to 'true', only predefined time date ranges are available for selection.",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6087,35 +6087,6 @@
           "setter": false
         },
         {
-          "name": "range",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "range",
-          "reflectToAttr": false,
-          "docs": "If true a range of dates can be selected.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "showWeekNumbers",
           "type": "boolean",
           "complexType": {
@@ -6132,6 +6103,35 @@
               "name": "since",
               "text": "3.0.0"
             },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "singleSelection",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "single-selection",
+          "reflectToAttr": false,
+          "docs": "If true disables date range selection (from/to).",
+          "docsTags": [
             {
               "name": "default",
               "text": "false"
@@ -7450,35 +7450,6 @@
           "setter": false
         },
         {
-          "name": "range",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "range",
-          "reflectToAttr": false,
-          "docs": "If true a date-range can be selected (from/to).",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "showWeekNumbers",
           "type": "boolean",
           "complexType": {
@@ -7495,6 +7466,35 @@
               "name": "since",
               "text": "3.0.0"
             },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "singleSelection",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "single-selection",
+          "reflectToAttr": false,
+          "docs": "If true disables date range selection (from/to).",
+          "docsTags": [
             {
               "name": "default",
               "text": "false"
@@ -7961,137 +7961,6 @@
           "setter": false
         },
         {
-          "name": "range",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "range",
-          "reflectToAttr": false,
-          "docs": "If true a date-range can be selected (from/to).",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showHour",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-hour",
-          "reflectToAttr": false,
-          "docs": "Show hour input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showMinutes",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-minutes",
-          "reflectToAttr": false,
-          "docs": "Show minutes input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showSeconds",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-seconds",
-          "reflectToAttr": false,
-          "docs": "Show seconds input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "showTimeReference",
           "type": "boolean",
           "complexType": {
@@ -8141,6 +8010,35 @@
               "name": "since",
               "text": "3.0.0"
             },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "singleSelection",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "single-selection",
+          "reflectToAttr": false,
+          "docs": "If true disables date range selection (from/to).",
+          "docsTags": [
             {
               "name": "default",
               "text": "false"
@@ -10047,14 +9945,14 @@
           "mutable": false,
           "attr": "animated",
           "reflectToAttr": false,
-          "docs": "Animate state change transitions. Defaults to 'true'.",
+          "docs": "Animate state change transitions. Defaults to 'false'.",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -11218,35 +11116,6 @@
       },
       "props": [
         {
-          "name": "collapsed",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": true,
-          "attr": "collapsed",
-          "reflectToAttr": true,
-          "docs": "Whether the group is collapsed or expanded. Defaults to true.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "expandOnHeaderClick",
           "type": "boolean",
           "complexType": {
@@ -11258,6 +11127,35 @@
           "attr": "expand-on-header-click",
           "reflectToAttr": false,
           "docs": "Expand the group if the header is clicked",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "expanded",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "expanded",
+          "reflectToAttr": true,
+          "docs": "Whether the group is expanded or collapsed. Defaults to false.",
           "docsTags": [
             {
               "name": "default",
@@ -11415,7 +11313,7 @@
       "methods": [],
       "events": [
         {
-          "event": "collapsedChanged",
+          "event": "expandedChanged",
           "detail": "boolean",
           "bubbles": true,
           "complexType": {
@@ -11425,7 +11323,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Group collapsed",
+          "docs": "Group expanded",
           "docsTags": []
         },
         {
@@ -11556,7 +11454,7 @@
           "setter": false
         },
         {
-          "name": "focusable",
+          "name": "disabled",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -11564,16 +11462,16 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "focusable",
+          "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "The elements tabindex attribute will get set accordingly.\nIf true tabindex will be 0, -1 otherwise.",
+          "docs": "Disable the group item.\nThe elements tabindex attribute will get set accordingly.\n\nIf false tabindex will be 0, -1 otherwise.",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -12126,10 +12024,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Set the native `aria-label` on the ix-icon-button host element"
+              "text": "Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0"
             }
           ],
-          "deprecation": "Set the native `aria-label` on the ix-icon-button host element",
+          "deprecation": "Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0",
           "values": [
             {
               "type": "string"
@@ -13524,14 +13422,14 @@
       "docsTags": [
         {
           "name": "deprecated",
-          "text": "Will be removed with 4.0.0\nUse the 'ix-input' component instead"
+          "text": "Since 3.0.0. Will be removed with 5.0.0\nNot maintained anymore.\nUse the 'ix-input' component instead"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
-      "deprecation": "Will be removed with 4.0.0\nUse the 'ix-input' component instead",
+      "deprecation": "Since 3.0.0. Will be removed with 5.0.0\nNot maintained anymore.\nUse the 'ix-input' component instead",
       "props": [],
       "methods": [],
       "events": [],
@@ -14998,35 +14896,6 @@
           "setter": false
         },
         {
-          "name": "enableSettings",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "enable-settings",
-          "reflectToAttr": false,
-          "docs": "Is settings tab is visible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "enableToggleTheme",
           "type": "boolean",
           "complexType": {
@@ -16094,6 +15963,35 @@
           "setter": false
         },
         {
+          "name": "hideLogoutButton",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-logout-button",
+          "reflectToAttr": false,
+          "docs": "Control the visibility of the logout button",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "i18nLogout",
           "type": "string",
           "complexType": {
@@ -16170,35 +16068,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showLogoutButton",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-logout-button",
-          "reflectToAttr": false,
-          "docs": "Control the visibility of the logout button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -17148,7 +17017,7 @@
       },
       "props": [
         {
-          "name": "dismissible",
+          "name": "persistent",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -17156,16 +17025,16 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "dismissible",
+          "attr": "persistent",
           "reflectToAttr": false,
-          "docs": "If true, close button is enabled and alert can be dismissed by the user",
+          "docs": "If true, close button is disabled and alert cannot be dismissed by the user",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -17178,10 +17047,10 @@
         },
         {
           "name": "type",
-          "type": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "| 'alarm'\n    | 'danger'\n    | 'critical'\n    | 'warning'\n    | 'success'\n    | 'info'\n    | 'neutral'\n    | 'primary'",
-            "resolved": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+            "original": "| 'alarm'\n    | 'critical'\n    | 'warning'\n    | 'success'\n    | 'info'\n    | 'neutral'\n    | 'primary'",
+            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
             "references": {}
           },
           "mutable": false,
@@ -17190,16 +17059,11 @@
           "docs": "Specifies the type of the alert.",
           "docsTags": [
             {
-              "name": "deprecated",
-              "text": "Type `danger` will be removed in 4.0. Use `alarm` instead."
-            },
-            {
               "name": "default",
               "text": "'info'"
             }
           ],
           "default": "'info'",
-          "deprecation": "Type `danger` will be removed in 4.0. Use `alarm` instead.",
           "values": [
             {
               "value": "alarm",
@@ -17207,10 +17071,6 @@
             },
             {
               "value": "critical",
-              "type": "string"
-            },
-            {
-              "value": "danger",
               "type": "string"
             },
             {
@@ -17294,69 +17154,11 @@
       "dependencyGraph": {},
       "props": [
         {
-          "name": "animation",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "animation",
-          "reflectToAttr": false,
-          "docs": "Should the modal be animated",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "backdrop",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "backdrop",
-          "reflectToAttr": false,
-          "docs": "Show a backdrop behind the modal dialog",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "beforeDismiss",
-          "type": "((reason?: any) => boolean | Promise<boolean>) | undefined",
+          "type": "((reason?: unknown) => boolean | Promise<boolean>) | undefined",
           "complexType": {
-            "original": "(reason?: any) => boolean | Promise<boolean>",
-            "resolved": "((reason?: any) => boolean | Promise<boolean>) | undefined",
+            "original": "(reason?: unknown) => boolean | Promise<boolean>",
+            "resolved": "((reason?: unknown) => boolean | Promise<boolean>) | undefined",
             "references": {
               "Promise": {
                 "location": "global",
@@ -17371,7 +17173,7 @@
           "docsTags": [],
           "values": [
             {
-              "type": "((reason?: any) => boolean"
+              "type": "((reason?: unknown) => boolean"
             },
             {
               "type": "Promise<boolean>)"
@@ -17444,7 +17246,7 @@
           "setter": false
         },
         {
-          "name": "closeOnEscape",
+          "name": "disableAnimation",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -17452,16 +17254,74 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "close-on-escape",
+          "attr": "disable-animation",
           "reflectToAttr": false,
-          "docs": "If set to true the modal can be closed by pressing the Escape key",
+          "docs": "Should the modal animation be disabled",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "disableEscapeClose",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disable-escape-close",
+          "reflectToAttr": false,
+          "docs": "If set to true the modal cannot be closed by pressing the Escape key",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hideBackdrop",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-backdrop",
+          "reflectToAttr": false,
+          "docs": "Hide the backdrop behind the modal dialog",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -17541,7 +17401,7 @@
             "docs": ""
           },
           "complexType": {
-            "signature": "<T = any>(reason: T) => Promise<void>",
+            "signature": "<T = unknown>(reason: T) => Promise<void>",
             "parameters": [
               {
                 "name": "reason",
@@ -17561,7 +17421,7 @@
             },
             "return": "Promise<void>"
           },
-          "signature": "closeModal<T = any>(reason: T) => Promise<void>",
+          "signature": "closeModal<T = unknown>(reason: T) => Promise<void>",
           "parameters": [
             {
               "name": "reason",
@@ -17579,7 +17439,7 @@
             "docs": ""
           },
           "complexType": {
-            "signature": "<T = any>(reason?: T) => Promise<void>",
+            "signature": "<T = unknown>(reason?: T) => Promise<void>",
             "parameters": [
               {
                 "name": "reason",
@@ -17599,7 +17459,7 @@
             },
             "return": "Promise<void>"
           },
-          "signature": "dismissModal<T = any>(reason?: T) => Promise<void>",
+          "signature": "dismissModal<T = unknown>(reason?: T) => Promise<void>",
           "parameters": [
             {
               "name": "reason",
@@ -18790,6 +18650,35 @@
           "setter": false
         },
         {
+          "name": "hideItemCount",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-item-count",
+          "reflectToAttr": false,
+          "docs": "Hide item count in advanced mode",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "i18nItems",
           "type": "string",
           "complexType": {
@@ -18927,35 +18816,6 @@
           "values": [
             {
               "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showItemCount",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-item-count",
-          "reflectToAttr": false,
-          "docs": "Show item count in advanced mode",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -20348,7 +20208,7 @@
           "setter": false
         },
         {
-          "name": "collapse",
+          "name": "expanded",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -20356,16 +20216,16 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "collapse",
+          "attr": "expanded",
           "reflectToAttr": false,
-          "docs": "Collapse the card",
+          "docs": "Expand the card",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -25366,6 +25226,35 @@
           "setter": false
         },
         {
+          "name": "embedded",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "embedded",
+          "reflectToAttr": false,
+          "docs": "Embedded style (for use in other components)",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "format",
           "type": "string",
           "complexType": {
@@ -25734,205 +25623,6 @@
           "setter": false
         },
         {
-          "name": "showHour",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-hour",
-          "reflectToAttr": false,
-          "docs": "Show hour input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showMinutes",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-minutes",
-          "reflectToAttr": false,
-          "docs": "Show minutes input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showSeconds",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-seconds",
-          "reflectToAttr": false,
-          "docs": "Show seconds input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "standaloneAppearance",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "standalone-appearance",
-          "reflectToAttr": false,
-          "docs": "Controls the visual presentation and styling of the component when it is displayed as a standalone element",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textSelectTime",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-select-time",
-          "reflectToAttr": false,
-          "docs": "Text of time select button",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Use `i18nConfirmTime` instead. Will be removed in 4.0.0."
-            },
-            {
-              "name": "default",
-              "text": "CONFIRM_BUTTON_DEFAULT"
-            }
-          ],
-          "default": "CONFIRM_BUTTON_DEFAULT",
-          "deprecation": "Use `i18nConfirmTime` instead. Will be removed in 4.0.0.",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textTime",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-time",
-          "reflectToAttr": false,
-          "docs": "Text for top label",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Use `i18nHeader` instead. Will be removed in 4.0.0."
-            },
-            {
-              "name": "default",
-              "text": "HEADER_DEFAULT"
-            }
-          ],
-          "default": "HEADER_DEFAULT",
-          "deprecation": "Use `i18nHeader` instead. Will be removed in 4.0.0.",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "time",
           "type": "string",
           "complexType": {
@@ -25954,43 +25644,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "timeReference",
-          "type": "\"AM\" | \"PM\" | undefined",
-          "complexType": {
-            "original": "'AM' | 'PM' | undefined",
-            "resolved": "\"AM\" | \"PM\" | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "time-reference",
-          "reflectToAttr": false,
-          "docs": "Set time reference",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is determined by the currently set time. Will be removed in 4.0.0."
-            }
-          ],
-          "deprecation": "This is determined by the currently set time. Will be removed in 4.0.0.",
-          "values": [
-            {
-              "value": "AM",
-              "type": "string"
-            },
-            {
-              "value": "PM",
-              "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -26123,35 +25776,6 @@
           "setter": false
         },
         {
-          "name": "autoClose",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "auto-close",
-          "reflectToAttr": false,
-          "docs": "Autoclose behavior",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "autoCloseDelay",
           "type": "number",
           "complexType": {
@@ -26228,6 +25852,35 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "preventAutoClose",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "prevent-auto-close",
+          "reflectToAttr": false,
+          "docs": "Autoclose behavior",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -28736,14 +28389,14 @@
         },
         {
           "name": "deprecated",
-          "text": "Will be removed with 4.0.0"
+          "text": "Since 3.0.0. Will be removed with 4.0.0\nNot maintained anymore."
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
-      "deprecation": "Will be removed with 4.0.0",
+      "deprecation": "Since 3.0.0. Will be removed with 4.0.0\nNot maintained anymore.",
       "props": [
         {
           "name": "message",
