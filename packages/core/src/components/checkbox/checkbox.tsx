@@ -185,6 +185,7 @@ export class Checkbox implements IxFormComponent<string> {
       <Host
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
+        aria-label={this.label}
         role="checkbox"
         class={{
           disabled: this.disabled,
