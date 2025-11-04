@@ -98,6 +98,7 @@ import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
 import EmptyState from './preview-examples/empty-state.vue';
 import EventListCompact from './preview-examples/event-list-compact.vue';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height.vue';
+import EventListFilled from './preview-examples/event-list-filled.vue';
 import EventListSelected from './preview-examples/event-list-selected.vue';
 import EventList from './preview-examples/event-list.vue';
 import ExpandingSearch from './preview-examples/expanding-search.vue';
@@ -127,11 +128,7 @@ import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-sec
 import InputDisabled from './preview-examples/input-disabled.vue';
 import InputLabel from './preview-examples/input-label.vue';
 import InputLegacyDisabled from './preview-examples/input-legacy-disabled.vue';
-import InputLegacyLabels from './preview-examples/input-legacy-labels.vue';
 import InputLegacyReadonly from './preview-examples/input-legacy-readonly.vue';
-import InputLegacySearch from './preview-examples/input-legacy-search.vue';
-import InputLegacyTypes from './preview-examples/input-legacy-types.vue';
-import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon.vue';
 import InputLegacy from './preview-examples/input-legacy.vue';
 import InputPattern from './preview-examples/input-pattern.vue';
 import InputReadonly from './preview-examples/input-readonly.vue';
@@ -321,10 +318,11 @@ const routes: any = {
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
+  '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
+  '/preview/event-list-filled': EventListFilled,
   '/preview/event-list-selected': EventListSelected,
-  '/preview/event-list': EventList,
   '/preview/expanding-search': ExpandingSearch,
   '/preview/flip-tile': FlipTile,
   '/preview/form-checkbox': FormCheckbox,
@@ -347,11 +345,7 @@ const routes: any = {
     IconToggleButtonSecondaryOutline,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
   '/preview/input-legacy-disabled': InputLegacyDisabled,
-  '/preview/input-legacy-labels': InputLegacyLabels,
   '/preview/input-legacy-readonly': InputLegacyReadonly,
-  '/preview/input-legacy-search': InputLegacySearch,
-  '/preview/input-legacy-types': InputLegacyTypes,
-  '/preview/input-legacy-with-icon': InputLegacyWithIcon,
   '/preview/message-bar': MessageBar,
   '/preview/message-bar-removal': MessageBarRemoval,
   '/preview/pill': Pill,

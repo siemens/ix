@@ -50,7 +50,7 @@ LICENSE file in the root directory of this source tree.
 
     <script type="module">
       (async () => {
-        const validBreakpoints = ['sm', 'md', 'lg'];
+        const validBreakpoints = new Set(['sm', 'md', 'lg']);
         await globalThis.customElements.whenDefined('ix-application');
         await globalThis.customElements.whenDefined('ix-radio-group');
 
@@ -59,14 +59,8 @@ LICENSE file in the root directory of this source tree.
 
         const radioGroup = document.getElementById('radio-group');
         radioGroup.addEventListener('valueChange', ({ detail }) => {
-          if (validBreakpoints.includes(detail)) {
+          if (validBreakpoints.has(detail)) {
             nav.breakpoints = [detail];
-          } else {
-            console.warn(
-              `Invalid breakpoint value: ${detail}. Expected one of: ${validBreakpoints.join(
-                ', '
-              )}`
-            );
           }
         });
       })();

@@ -18,7 +18,7 @@ LICENSE file in the root directory of this source tree.
     <ix-category-filter placeholder="Filter by"></ix-category-filter>
 
     <script>
-      const repeatCategories = false;
+      const uniqueCategories = true;
       const filterState = {
         tokens: ['Custom filter text'],
         categories: [
@@ -41,7 +41,7 @@ LICENSE file in the root directory of this source tree.
       };
 
       const categoryFilter = document.querySelector('ix-category-filter');
-      categoryFilter.repeatCategories = repeatCategories;
+      categoryFilter.uniqueCategories = uniqueCategories;
       categoryFilter.filterState = filterState;
       categoryFilter.categories = categories;
     </script>

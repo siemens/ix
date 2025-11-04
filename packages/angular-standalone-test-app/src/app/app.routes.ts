@@ -553,6 +553,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'event-list-filled',
+        loadComponent: () =>
+          import('../preview-examples/event-list-filled').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'event-list-selected',
         loadComponent: () =>
           import('../preview-examples/event-list-selected').then(
@@ -740,37 +747,9 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'input-legacy-labels',
-        loadComponent: () =>
-          import('../preview-examples/input-legacy-labels').then(
-            (m) => m.default
-          ),
-      },
-      {
         path: 'input-legacy-readonly',
         loadComponent: () =>
           import('../preview-examples/input-legacy-readonly').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'input-legacy-search',
-        loadComponent: () =>
-          import('../preview-examples/input-legacy-search').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'input-legacy-types',
-        loadComponent: () =>
-          import('../preview-examples/input-legacy-types').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'input-legacy-with-icon',
-        loadComponent: () =>
-          import('../preview-examples/input-legacy-with-icon').then(
             (m) => m.default
           ),
       },

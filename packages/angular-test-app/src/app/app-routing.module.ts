@@ -97,6 +97,7 @@ import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-brea
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
+import EventListFilled from '../preview-examples/event-list-filled';
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
@@ -128,11 +129,7 @@ import InputFormValidation from '../preview-examples/input-form-validation';
 import InputLabel from '../preview-examples/input-label';
 import InputLegacy from '../preview-examples/input-legacy';
 import InputLegacyDisabled from '../preview-examples/input-legacy-disabled';
-import InputLegacyLabels from '../preview-examples/input-legacy-labels';
 import InputLegacyReadonly from '../preview-examples/input-legacy-readonly';
-import InputLegacySearch from '../preview-examples/input-legacy-search';
-import InputLegacyTypes from '../preview-examples/input-legacy-types';
-import InputLegacyWithIcon from '../preview-examples/input-legacy-with-icon';
 import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
 import InputTypes from '../preview-examples/input-types';
@@ -581,6 +578,10 @@ const routes: Routes = [
         component: EmptyState,
       },
       {
+        path: 'event-list',
+        component: EventList,
+      },
+      {
         path: 'event-list-compact',
         component: EventListCompact,
       },
@@ -589,12 +590,12 @@ const routes: Routes = [
         component: EventListCustomItemHeight,
       },
       {
-        path: 'event-list-selected',
-        component: EventListSelected,
+        path: 'event-list-filled',
+        component: EventListFilled,
       },
       {
-        path: 'event-list',
-        component: EventList,
+        path: 'event-list-selected',
+        component: EventListSelected,
       },
       {
         path: 'expanding-search',
@@ -665,24 +666,8 @@ const routes: Routes = [
         component: InputLegacyDisabled,
       },
       {
-        path: 'input-legacy-labels',
-        component: InputLegacyLabels,
-      },
-      {
         path: 'input-legacy-readonly',
         component: InputLegacyReadonly,
-      },
-      {
-        path: 'input-legacy-search',
-        component: InputLegacySearch,
-      },
-      {
-        path: 'input-legacy-types',
-        component: InputLegacyTypes,
-      },
-      {
-        path: 'input-legacy-with-icon',
-        component: InputLegacyWithIcon,
       },
       {
         path: 'input-legacy',

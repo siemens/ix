@@ -97,6 +97,7 @@ import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break
 import EventList from './preview-examples/event-list';
 import EventListCompact from './preview-examples/event-list-compact';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height';
+import EventListFilled from './preview-examples/event-list-filled';
 import EventListSelected from './preview-examples/event-list-selected';
 import ExpandingSearch from './preview-examples/expanding-search';
 import FlipTile from './preview-examples/flip-tile';
@@ -127,11 +128,7 @@ import InputDisabled from './preview-examples/input-disabled';
 import InputLabel from './preview-examples/input-label';
 import InputLegacy from './preview-examples/input-legacy';
 import InputLegacyDisabled from './preview-examples/input-legacy-disabled';
-import InputLegacyLabels from './preview-examples/input-legacy-labels';
 import InputLegacyReadonly from './preview-examples/input-legacy-readonly';
-import InputLegacySearch from './preview-examples/input-legacy-search';
-import InputLegacyTypes from './preview-examples/input-legacy-types';
-import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon';
 import InputPattern from './preview-examples/input-pattern';
 import InputReadonly from './preview-examples/input-readonly';
 import InputTypes from './preview-examples/input-types';
@@ -432,11 +429,15 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/event-list-custom-item-height"
           element={<EventListCustomItemHeight />}
         />
+        <Route path="/preview/event-list" element={<EventList />} />
+        <Route
+          path="/preview/event-list-filled"
+          element={<EventListFilled />}
+        />
         <Route
           path="/preview/event-list-selected"
           element={<EventListSelected />}
         />
-        <Route path="/preview/event-list" element={<EventList />} />
         <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
         <Route path="/preview/flip-tile" element={<FlipTile />} />
         <Route path="/preview/form-checkbox" element={<FormCheckbox />} />
@@ -499,24 +500,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<InputLegacyDisabled />}
         />
         <Route
-          path="/preview/input-legacy-labels"
-          element={<InputLegacyLabels />}
-        />
-        <Route
           path="/preview/input-legacy-readonly"
           element={<InputLegacyReadonly />}
-        />
-        <Route
-          path="/preview/input-legacy-search"
-          element={<InputLegacySearch />}
-        />
-        <Route
-          path="/preview/input-legacy-types"
-          element={<InputLegacyTypes />}
-        />
-        <Route
-          path="/preview/input-legacy-with-icon"
-          element={<InputLegacyWithIcon />}
         />
         <Route path="/preview/input-legacy" element={<InputLegacy />} />
         <Route
