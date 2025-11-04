@@ -22,7 +22,12 @@ import {
   iconDragGripper,
 } from '@siemens/ix-icons/icons';
 
-type AgGridModule = typeof AgGridCommunity;
+// Flexible type for multiple versions
+type AgGridModule = {
+  createPart: typeof AgGridCommunity.createPart;
+  themeAlpine: typeof AgGridCommunity.themeAlpine;
+  [key: string]: any;
+};
 
 function extractSvgFromDataUri(dataUri: string): string {
   let svgString = dataUri.replace(/^data:image\/svg\+xml;utf8,/, '');
@@ -34,10 +39,8 @@ function extractSvgFromDataUri(dataUri: string): string {
   return svgString.trim();
 }
 
-const getIxTheme = async (
-  importModule: () => Promise<AgGridModule> | AgGridModule
-) => {
-  const { createPart, themeAlpine } = await importModule();
+function createIxTheme(agModule: AgGridModule) {
+  const { createPart, themeAlpine } = agModule;
   const base = themeAlpine.withParams({
     ...aggridIxThemeParams,
   });
@@ -65,7 +68,6 @@ const getIxTheme = async (
   });
 
   const theme = base
-    .withoutPart('checkboxStyle')
     .withPart(
       createPart({
         feature: 'checkboxStyle',
@@ -110,6 +112,17 @@ const getIxTheme = async (
     );
 
   return theme;
+}
+
+const getIxTheme = (agModule: AgGridModule) => {
+  return createIxTheme(agModule);
 };
 
-export { getIxTheme };
+const getIxThemeAsync = async (
+  importModule: () => Promise<AgGridModule> | AgGridModule
+) => {
+  const agLib = await importModule();
+  return createIxTheme(agLib);
+};
+
+export { getIxTheme, getIxThemeAsync };

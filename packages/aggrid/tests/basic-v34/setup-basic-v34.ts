@@ -14,10 +14,11 @@ import {
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { getIxTheme } from '@siemens/ix-aggrid';
 import { COLUMN_DEFS, ROW_DATA } from '../utils/test/basic.const';
+import * as agGridCommunity34 from 'ag-grid-community-34';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const theme = await getIxTheme(() => import('ag-grid-community-34') as any);
+const theme = getIxTheme(agGridCommunity34);
 
 const gridOptions = {
   columnDefs: COLUMN_DEFS,

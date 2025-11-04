@@ -15,6 +15,7 @@ import {
   AllCommunityModule,
   ModuleRegistry,
 } from 'ag-grid-community';
+import * as agGrid from 'ag-grid-community';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -26,8 +27,8 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 export default class AGGrid implements OnInit {
   gridOptions: GridOptions | null = null;
 
-  async ngOnInit() {
-    const ixTheme = await getIxTheme(() => import('ag-grid-community'));
+  ngOnInit() {
+    const ixTheme = getIxTheme(agGrid);
 
     this.gridOptions = {
       theme: ixTheme,

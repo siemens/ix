@@ -9,20 +9,21 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { AgGridVue } from 'ag-grid-vue3';
+import { getIxTheme } from '@siemens/ix-aggrid';
 import {
   ModuleRegistry,
   AllCommunityModule,
   GridOptions,
 } from 'ag-grid-community';
-import { AgGridVue } from 'ag-grid-vue3';
-import { getIxTheme } from '@siemens/ix-aggrid';
+import * as agGrid from 'ag-grid-community';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const gridOptions = ref<GridOptions | null>(null);
 
-onMounted(async () => {
-  const ixTheme = await getIxTheme(() => import('ag-grid-community'));
+onMounted(() => {
+  const ixTheme = getIxTheme(agGrid);
 
   gridOptions.value = {
     theme: ixTheme,

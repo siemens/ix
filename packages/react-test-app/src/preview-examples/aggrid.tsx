@@ -8,13 +8,15 @@
  */
 
 import { useEffect, useState } from 'react';
+
+import { AgGridReact } from 'ag-grid-react';
+import { getIxTheme } from '@siemens/ix-aggrid';
 import {
   ModuleRegistry,
   AllCommunityModule,
   GridOptions,
 } from 'ag-grid-community';
-import { AgGridReact } from 'ag-grid-react';
-import { getIxTheme } from '@siemens/ix-aggrid';
+import * as agGrid from 'ag-grid-community';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -22,8 +24,8 @@ export default () => {
   const [gridOptions, setGridOptions] = useState<GridOptions | null>(null);
 
   useEffect(() => {
-    const initializeGrid = async () => {
-      const ixTheme = await getIxTheme(() => import('ag-grid-community'));
+    const initializeGrid = () => {
+      const ixTheme = getIxTheme(agGrid);
 
       setGridOptions({
         theme: ixTheme,
