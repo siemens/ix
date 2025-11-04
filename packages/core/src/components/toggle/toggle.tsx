@@ -178,6 +178,7 @@ export class Toggle implements IxFormComponent<string> {
     }
     return (
       <Host
+        role="switch"
         aria-label={toggleText}
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
@@ -189,7 +190,6 @@ export class Toggle implements IxFormComponent<string> {
       >
         <label class="wrapper">
           <button
-            role="switch"
             aria-checked={a11yBoolean(this.checked)}
             class={{
               switch: true,
