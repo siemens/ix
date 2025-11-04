@@ -178,6 +178,9 @@ export class Toggle implements IxFormComponent<string> {
     }
     return (
       <Host
+        aria-label={toggleText}
+        aria-checked={a11yBoolean(this.checked)}
+        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
         }}
