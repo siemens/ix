@@ -10,22 +10,22 @@
 import {
   AttachInternals,
   Component,
+  Element,
   Event,
   EventEmitter,
+  h,
   Host,
+  Method,
   Prop,
   Watch,
-  h,
-  Method,
-  Element,
 } from '@stencil/core';
-import { makeRef } from '../utils/make-ref';
+import { a11yBoolean } from '../utils/a11y';
 import {
   ClassMutationObserver,
   createClassMutationObserver,
   IxFormComponent,
 } from '../utils/input';
-import { a11yBoolean } from '../utils/a11y';
+import { makeRef } from '../utils/make-ref';
 
 /**
  * @form-ready
@@ -165,11 +165,13 @@ export class Radio implements IxFormComponent<string> {
       <Host
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
+        aria-label={this.label}
         role="radio"
         class={{
           disabled: this.disabled,
           checked: this.checked,
         }}
+        onClick={() => !this.disabled && this.setCheckedState(true)}
         onBlur={() => this.ixBlur.emit()}
       >
         <label>
