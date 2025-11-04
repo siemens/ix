@@ -174,7 +174,6 @@ test.describe('cross app navigation', () => {
         console.dir(evt.callback);
         evt.callback({
           hideHeader: false,
-          host: null,
           sidebar: false,
           appSwitchConfig: {
             i18nAppSwitch: 'some other language',
@@ -235,7 +234,6 @@ test.describe('cross app navigation', () => {
         console.dir(evt.callback);
         evt.callback({
           hideHeader: false,
-          host: null,
           sidebar: false,
           appSwitchConfig: {
             apps: [
@@ -297,7 +295,6 @@ test.describe('cross app navigation', () => {
         console.dir(evt.callback);
         evt.callback({
           hideHeader: false,
-          host: null,
           sidebar: false,
           appSwitchConfig: undefined,
         } as ContextType<typeof ApplicationLayoutContext>);
@@ -363,7 +360,6 @@ test.describe('cross app navigation', () => {
       window.addEventListener('context-request', (evt: any) => {
         evt.callback({
           hideHeader: false,
-          host: null,
           sidebar: false,
           appSwitchConfig: {
             i18nAppSwitch: 'some other language',
