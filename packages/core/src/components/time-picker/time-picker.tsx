@@ -96,35 +96,14 @@ export class TimePicker {
   @Prop() corners: TimePickerCorners = 'rounded';
 
   /**
-   * Controls the visual presentation and styling of the component when it is displayed as a standalone element
+   * Embedded style (for use in other components)
    */
-  @Prop() standaloneAppearance: boolean = true;
+  @Prop() embedded = false;
 
   /**
    * @internal Temporary prop needed until datetime-picker is reworked for new design
    */
   @Prop() dateTimePickerAppearance: boolean = false;
-
-  /**
-   * Show hour input
-   *
-   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-   */
-  @Prop() showHour = true;
-
-  /**
-   * Show minutes input
-   *
-   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-   */
-  @Prop() showMinutes = true;
-
-  /**
-   * Show seconds input
-   *
-   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-   */
-  @Prop() showSeconds = true;
 
   /**
    * Hides the header of the picker.
@@ -229,31 +208,10 @@ export class TimePicker {
   }
 
   /**
-   * Set time reference
-   *
-   * @deprecated This is determined by the currently set time. Will be removed in 4.0.0.
-   */
-  @Prop() timeReference: 'AM' | 'PM' | undefined;
-
-  /**
-   * Text of time select button
-   *
-   * @deprecated Use `i18nConfirmTime` instead. Will be removed in 4.0.0.
-   */
-  @Prop() textSelectTime = CONFIRM_BUTTON_DEFAULT;
-
-  /**
    * Text of the time confirm button
    */
   @Prop({ attribute: 'i18n-confirm-time' }) i18nConfirmTime =
     CONFIRM_BUTTON_DEFAULT;
-
-  /**
-   * Text for top label
-   *
-   * @deprecated Use `i18nHeader` instead. Will be removed in 4.0.0.
-   */
-  @Prop() textTime: string = HEADER_DEFAULT;
 
   /**
    * Text for top header
@@ -723,16 +681,14 @@ export class TimePicker {
       {
         unit: 'hour',
         header: this.i18nHourColumnHeader,
-        hidden:
-          !LUXON_FORMAT_PATTERNS.hours.test(this.format) || !this.showHour,
+        hidden: !LUXON_FORMAT_PATTERNS.hours.test(this.format),
         numberArray: hourNumbers,
         focusedValue: this.getInitialFocusedValueForUnit('hour', hourNumbers),
       },
       {
         unit: 'minute',
         header: this.i18nMinuteColumnHeader,
-        hidden:
-          !LUXON_FORMAT_PATTERNS.minutes.test(this.format) || !this.showMinutes,
+        hidden: !LUXON_FORMAT_PATTERNS.minutes.test(this.format),
         numberArray: minuteNumbers,
         focusedValue: this.getInitialFocusedValueForUnit(
           'minute',
@@ -742,8 +698,7 @@ export class TimePicker {
       {
         unit: 'second',
         header: this.i18nSecondColumnHeader,
-        hidden:
-          !LUXON_FORMAT_PATTERNS.seconds.test(this.format) || !this.showSeconds,
+        hidden: !LUXON_FORMAT_PATTERNS.seconds.test(this.format),
         numberArray: secondNumbers,
         focusedValue: this.getInitialFocusedValueForUnit(
           'second',
@@ -891,49 +846,25 @@ export class TimePicker {
       (d) => d.unit === descriptorUnit
     );
 
-    if (descriptor && number === descriptor.focusedValue) {
+    if (number === descriptor?.focusedValue) {
       return '0';
     }
 
     return '-1';
   }
 
-  private getConfirmButtonText(): string {
-    if (this.i18nConfirmTime !== CONFIRM_BUTTON_DEFAULT) {
-      return this.i18nConfirmTime;
-    }
-
-    if (this.textSelectTime !== CONFIRM_BUTTON_DEFAULT) {
-      return this.textSelectTime;
-    }
-
-    return this.i18nConfirmTime;
-  }
-
-  private getHeaderText(): string {
-    if (this.i18nHeader !== HEADER_DEFAULT) {
-      return this.i18nHeader;
-    }
-
-    if (this.textTime != HEADER_DEFAULT) {
-      return this.textTime;
-    }
-
-    return this.i18nHeader;
-  }
-
   render() {
     return (
       <Host>
         <ix-date-time-card
-          standaloneAppearance={this.standaloneAppearance}
+          embedded={this.embedded}
           timePickerAppearance={true}
           corners={this.corners}
           hasFooter={true}
           hideHeader={this.hideHeader}
         >
           <div class="header" slot="header">
-            <ix-typography format="h5">{this.getHeaderText()}</ix-typography>
+            <ix-typography format="h5">{this.i18nHeader}</ix-typography>
           </div>
           <div class="clock">
             {this.timePickerDescriptors.map((descriptor, index: number) => (
@@ -1025,7 +956,7 @@ export class TimePicker {
                   this.timeSelect.emit(this._time?.toFormat(this.format));
                 }}
               >
-                {this.getConfirmButtonText()}
+                {this.i18nConfirmTime}
               </ix-button>
             )}
           </div>

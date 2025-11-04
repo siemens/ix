@@ -37,7 +37,7 @@ export default () => {
   return (
     <IxCategoryFilter
       placeholder="Filter by"
-      repeatCategories={true}
+      uniqueCategories={false}
       filterState={filter}
       categories={categories}
     ></IxCategoryFilter>

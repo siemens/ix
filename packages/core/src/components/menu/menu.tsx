@@ -63,11 +63,6 @@ export class Menu {
    */
   @Prop() enableToggleTheme = false;
 
-  /**
-   * Is settings tab is visible
-   */
-  @Prop() enableSettings = true;
-
   /** @internal */
   @Prop() enableMapExpand = false;
 

@@ -625,7 +625,7 @@ export const IxFlipTileContent: StencilReactComponent<IxFlipTileContentElement, 
 export type IxGroupEvents = {
     onSelectGroup: EventName<CustomEvent<boolean>>,
     onSelectItem: EventName<CustomEvent<number>>,
-    onCollapsedChanged: EventName<CustomEvent<boolean>>
+    onExpandedChanged: EventName<CustomEvent<boolean>>
 };
 
 export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents> = /*@__PURE__*/ createComponent<IxGroupElement, IxGroupEvents>({
@@ -636,7 +636,7 @@ export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents> = /*@
     events: {
         onSelectGroup: 'selectGroup',
         onSelectItem: 'selectItem',
-        onCollapsedChanged: 'collapsedChanged'
+        onExpandedChanged: 'expandedChanged'
     } as IxGroupEvents,
     defineCustomElement: defineIxGroup
 });
