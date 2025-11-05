@@ -62,7 +62,7 @@ export class DropdownItem implements DropdownItemWrapper {
   /**
    * Disable item and remove event listeners
    */
-  @Prop({reflect:true}) disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Whether the item is checked or not. If true a checkmark will mark the item as checked.
