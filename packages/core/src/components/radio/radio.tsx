@@ -167,6 +167,7 @@ export class Radio implements IxFormComponent<string> {
         aria-disabled={a11yBoolean(this.disabled)}
         aria-label={this.label}
         role="radio"
+        tabindex={this.disabled ? -1 : 0}
         class={{
           disabled: this.disabled,
           checked: this.checked,
@@ -181,12 +182,22 @@ export class Radio implements IxFormComponent<string> {
           }
           this.setCheckedState(true);
         }}
+        onKeyDown={(event: KeyboardEvent) => {
+          if (this.disabled) {
+            return;
+          }
+          if (event.code === 'Space') {
+            event.preventDefault();
+            this.setCheckedState(true);
+          }
+        }}
         onBlur={() => this.ixBlur.emit()}
       >
         <label>
           <div class="radio-button">
             <input
-              aria-checked={a11yBoolean(this.checked)}
+              aria-hidden="true"
+              tabindex="-1"
               required={this.required}
               disabled={this.disabled}
               checked={this.checked}
@@ -202,6 +213,8 @@ export class Radio implements IxFormComponent<string> {
               }}
             />
             <button
+              aria-hidden="true"
+              tabindex="-1"
               disabled={this.disabled}
               class={{
                 checked: this.checked,
