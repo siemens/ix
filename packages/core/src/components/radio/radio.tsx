@@ -25,7 +25,6 @@ import {
   createClassMutationObserver,
   IxFormComponent,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
 
 /**
  * @form-ready
@@ -89,10 +88,6 @@ export class Radio implements IxFormComponent<string> {
 
   private classMutationObserver?: ClassMutationObserver;
 
-  private readonly inputRef = makeRef<HTMLInputElement>((radiobuttonRef) => {
-    radiobuttonRef.checked = this.checked;
-  });
-
   private setCheckedState(newChecked: boolean) {
     if (this.checked) {
       return;
@@ -107,9 +102,7 @@ export class Radio implements IxFormComponent<string> {
 
   @Watch('checked')
   async onCheckedChange() {
-    const radiobuttonRef = await this.inputRef.waitForCurrent();
-    radiobuttonRef.checked = this.checked;
-
+    console.log('checked changed', this.checked);
     this.updateFormInternalValue();
   }
 
@@ -172,14 +165,8 @@ export class Radio implements IxFormComponent<string> {
           disabled: this.disabled,
           checked: this.checked,
         }}
-        onClick={(event: MouseEvent) => {
+        onClick={() => {
           if (this.disabled) return;
-          const path = event.composedPath();
-          const target = path[0];
-          if (!target) return;
-          if (target instanceof globalThis.Element && target.closest('label')) {
-            return;
-          }
           this.setCheckedState(true);
         }}
         onKeyDown={(event: KeyboardEvent) => {
@@ -195,37 +182,18 @@ export class Radio implements IxFormComponent<string> {
       >
         <label>
           <div class="radio-button">
-            <input
+            <div
               aria-hidden="true"
-              tabindex="-1"
-              required={this.required}
-              disabled={this.disabled}
-              checked={this.checked}
-              name={this.name}
-              ref={this.inputRef}
-              type="radio"
-              value={this.value ?? 'on'}
-              onChange={() => {
-                const ref = this.inputRef.current;
-                if (ref) {
-                  this.setCheckedState(ref.checked);
-                }
-              }}
-            />
-            <button
-              aria-hidden="true"
-              tabindex="-1"
-              disabled={this.disabled}
               class={{
+                ['radio-checkmark']: true,
                 checked: this.checked,
               }}
-              onClick={() => this.setCheckedState(!this.checked)}
             >
               <div
                 class="checkmark"
                 style={{ visibility: this.checked ? 'visible' : 'hidden' }}
               ></div>
-            </button>
+            </div>
           </div>
           {this.label && (
             <ix-typography
