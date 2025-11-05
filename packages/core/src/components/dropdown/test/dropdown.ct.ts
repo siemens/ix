@@ -855,14 +855,12 @@ regressionTest(
     await dynamicItem.evaluate((element: any) => {
       element.disabled = true;
     });
-    await page.waitForTimeout(100);
 
     await expect(dynamicItem).toHaveAttribute('disabled');
 
     await dynamicItem.evaluate((element: any) => {
       element.disabled = false;
     });
-    await page.waitForTimeout(100);
 
     await expect(dynamicItem).not.toHaveAttribute('disabled');
   }

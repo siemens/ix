@@ -76,15 +76,11 @@ regressionTest(
     await dynamicButton.evaluate((element: any) => {
       element.disabled = true;
     });
-    await page.waitForTimeout(100);
-
     await expect(dynamicButton).toHaveAttribute('disabled');
 
     await dynamicButton.evaluate((element: any) => {
       element.disabled = false;
     });
-    await page.waitForTimeout(100);
-
     await expect(dynamicButton).not.toHaveAttribute('disabled');
   }
 );
