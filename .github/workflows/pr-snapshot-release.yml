@@ -16,6 +16,7 @@ jobs:
       contents: write
       pull-requests: write
       id-token: write
+      statuses: read
     if: |
       github.repository == 'siemens/ix' &&
       github.event.issue.pull_request &&
