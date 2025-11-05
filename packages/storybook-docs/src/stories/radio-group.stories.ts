@@ -46,8 +46,21 @@ const radioGroupRender = (args: GroupElement) => {
   radio2.setAttribute('name', 'a-group');
   radio2.addEventListener('checkedChange', action('radio2Change'));
 
+  const radio3 = document.createElement('ix-radio');
+  radio3.setAttribute('label', 'Radio 3');
+  radio3.setAttribute('name', 'a-group');
+  radio3.addEventListener('checkedChange', action('radio3Change'));
+  radio3.disabled = true;
+
+  const radio4 = document.createElement('ix-radio');
+  radio4.setAttribute('label', 'Radio 4');
+  radio4.setAttribute('name', 'a-group');
+  radio4.addEventListener('checkedChange', action('radio4Change'));
+
   radioGroup.appendChild(radio1);
   radioGroup.appendChild(radio2);
+  radioGroup.appendChild(radio3);
+  radioGroup.appendChild(radio4);
 
   return radioGroup;
 };

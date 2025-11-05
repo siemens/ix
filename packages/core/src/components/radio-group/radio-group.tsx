@@ -138,6 +138,7 @@ export class RadiobuttonGroup
     if (!this.value) {
       return;
     }
+
     this.radiobuttonElements.forEach((radiobutton) => {
       radiobutton.checked = radiobutton.value === this.value;
     });
@@ -153,12 +154,26 @@ export class RadiobuttonGroup
       }
       radio.checked = false;
     });
+
+    const hasCheckedRadio = this.isSomeRadioChecked();
+
+    this.radiobuttonElements.forEach((radio) => {
+      radio.tabIndex = radio.checked ? 0 : -1;
+    });
+
+    if (!hasCheckedRadio && this.radiobuttonElements.length > 0) {
+      this.radiobuttonElements[0].tabIndex = 0;
+    }
   }
 
   private hasNestedRequiredRadio() {
     this.required = this.radiobuttonElements.some(
       (radiobutton) => radiobutton.required
     );
+  }
+
+  private isSomeRadioChecked() {
+    return this.radiobuttonElements.some((radio) => radio.checked);
   }
 
   @Watch('value')
@@ -213,9 +228,50 @@ export class RadiobuttonGroup
     return Promise.resolve(this.touched);
   }
 
+  /** @internal */
+  @Method()
+  setCheckedToNextItem(
+    currentRadio: HTMLIxRadioElement,
+    forward = true
+  ): Promise<void> {
+    const index = this.radiobuttonElements.indexOf(currentRadio);
+
+    let nextIndex = index;
+
+    if (forward) {
+      nextIndex = index + 1 < this.radiobuttonElements.length ? index + 1 : 0;
+      while (this.radiobuttonElements[nextIndex].disabled) {
+        nextIndex =
+          nextIndex + 1 < this.radiobuttonElements.length ? nextIndex + 1 : 0;
+        if (nextIndex === index) break;
+      }
+    } else {
+      nextIndex =
+        index - 1 >= 0 ? index - 1 : this.radiobuttonElements.length - 1;
+      while (this.radiobuttonElements[nextIndex].disabled) {
+        nextIndex =
+          nextIndex - 1 >= 0
+            ? nextIndex - 1
+            : this.radiobuttonElements.length - 1;
+        if (nextIndex === index) break;
+      }
+    }
+
+    const nextRadio = this.radiobuttonElements[nextIndex];
+    currentRadio.setCheckedState(false);
+    nextRadio.setCheckedState(true);
+    nextRadio.focus();
+
+    return Promise.resolve();
+  }
+
   render() {
     return (
-      <Host onIxBlur={() => (this.touched = true)} ref={this.groupRef}>
+      <Host
+        onIxBlur={() => (this.touched = true)}
+        ref={this.groupRef}
+        role="radiogroup"
+      >
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}

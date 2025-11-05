@@ -88,7 +88,9 @@ export class Radio implements IxFormComponent<string> {
 
   private classMutationObserver?: ClassMutationObserver;
 
-  private setCheckedState(newChecked: boolean) {
+  /** @internal */
+  @Method()
+  async setCheckedState(newChecked: boolean) {
     if (this.checked) {
       return;
     }
@@ -102,7 +104,6 @@ export class Radio implements IxFormComponent<string> {
 
   @Watch('checked')
   async onCheckedChange() {
-    console.log('checked changed', this.checked);
     this.updateFormInternalValue();
   }
 
@@ -141,6 +142,43 @@ export class Radio implements IxFormComponent<string> {
     }
   }
 
+  onKeyDown(event: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
+    let preventEvent = false;
+
+    if (event.code === 'Space') {
+      preventEvent = true;
+      this.setCheckedState(true);
+    }
+    const closestRadioGroup = this.hostElement.closest('ix-radio-group');
+
+    switch (event.code) {
+      case 'Up':
+      case 'ArrowUp':
+      case 'Left':
+      case 'ArrowLeft':
+        preventEvent = true;
+        closestRadioGroup?.setCheckedToNextItem(this.hostElement, false);
+        break;
+      case 'Down':
+      case 'ArrowDown':
+      case 'Right':
+      case 'ArrowRight':
+        preventEvent = true;
+        closestRadioGroup?.setCheckedToNextItem(this.hostElement, true);
+        break;
+      default:
+        break;
+    }
+
+    if (preventEvent) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
   /** @internal */
   @Method()
   hasValidValue(): Promise<boolean> {
@@ -154,13 +192,18 @@ export class Radio implements IxFormComponent<string> {
   }
 
   render() {
+    let tabIndex = 0;
+
+    if (this.disabled) {
+      tabIndex = -1;
+    }
+
     return (
       <Host
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
-        aria-label={this.label}
         role="radio"
-        tabindex={this.disabled ? -1 : 0}
+        tabindex={tabIndex}
         class={{
           disabled: this.disabled,
           checked: this.checked,
@@ -169,15 +212,13 @@ export class Radio implements IxFormComponent<string> {
           if (this.disabled) return;
           this.setCheckedState(true);
         }}
-        onKeyDown={(event: KeyboardEvent) => {
-          if (this.disabled) {
-            return;
-          }
-          if (event.code === 'Space') {
-            event.preventDefault();
+        onFocus={() => {
+          if (this.disabled) return;
+          if (!this.checked) {
             this.setCheckedState(true);
           }
         }}
+        onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
         onBlur={() => this.ixBlur.emit()}
       >
         <label>

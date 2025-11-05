@@ -33,11 +33,6 @@
     border-radius: 100px;
   }
 
-  .radio-checkmark:focus-visible {
-    outline: 0.0625rem solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-radiobtn--focus--outline-offset);
-  }
-
   .radio-button {
     height: 1.5rem;
     width: 1.5rem;
@@ -133,6 +128,11 @@
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-checked--border-color--disabled);
     }
+  }
+
+  :host(:focus-visible) {
+    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-radiobtn--focus--outline-offset);
   }
 
   ix-typography {
