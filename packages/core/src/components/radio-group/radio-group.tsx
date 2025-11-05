@@ -230,7 +230,7 @@ export class RadiobuttonGroup
 
   /** @internal */
   @Method()
-  setCheckedToNextItem(
+  async setCheckedToNextItem(
     currentRadio: HTMLIxRadioElement,
     forward = true
   ): Promise<void> {
@@ -254,8 +254,6 @@ export class RadiobuttonGroup
     const nextRadio = radiobuttonElements[nextIndex];
     nextRadio.setCheckedState(true);
     nextRadio.focus();
-
-    return Promise.resolve();
   }
 
   render() {

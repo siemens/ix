@@ -155,16 +155,12 @@ export class Radio implements IxFormComponent<string> {
     const closestRadioGroup = this.hostElement.closest('ix-radio-group');
 
     switch (event.code) {
-      case 'Up':
       case 'ArrowUp':
-      case 'Left':
       case 'ArrowLeft':
         preventEvent = true;
         closestRadioGroup?.setCheckedToNextItem(this.hostElement, false);
         break;
-      case 'Down':
       case 'ArrowDown':
-      case 'Right':
       case 'ArrowRight':
         preventEvent = true;
         closestRadioGroup?.setCheckedToNextItem(this.hostElement, true);
