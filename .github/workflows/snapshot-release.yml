@@ -51,7 +51,7 @@ jobs:
       - name: Release to pr tag
         run: |
           pnpm changeset version --snapshot $SNAPSHOT_NAME && pnpm i --lockfile-only
-          pnpm build --filter \!@siemens/ix-docs
+          pnpm build
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
           pnpm changeset publish --no-git-tag --snapshot --tag $SNAPSHOT_NAME
         env:
