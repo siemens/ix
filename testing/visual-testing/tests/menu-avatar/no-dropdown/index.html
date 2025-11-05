@@ -15,7 +15,8 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
   </head>
   <body>
-    <ix-basic-navigation>
+    <ix-application>
+      <ix-application-header></ix-application-header>
       <ix-menu>
         <ix-menu-avatar
           hide-logout-button
@@ -28,9 +29,9 @@ SPDX-License-Identifier: MIT
         <ix-menu-item>Item 2</ix-menu-item>
         <ix-menu-item>Item 3</ix-menu-item>
       </ix-menu>
-    </ix-basic-navigation>
+    </ix-application>
     <script>
-      document.querySelector('ix-basic-navigation').breakpoints = [
+      document.querySelector('ix-application').breakpoints = [
         'small',
         'medium',
       ];
