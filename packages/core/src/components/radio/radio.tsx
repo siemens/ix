@@ -176,7 +176,9 @@ export class Radio implements IxFormComponent<string> {
           const path = event.composedPath();
           const target = path[0];
           if (!target) return;
-          if (target instanceof HTMLElement && target.closest('label')) return;
+          if (target instanceof globalThis.Element && target.closest('label')) {
+            return;
+          }
           this.setCheckedState(true);
         }}
         onBlur={() => this.ixBlur.emit()}
