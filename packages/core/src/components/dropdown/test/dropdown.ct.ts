@@ -836,3 +836,34 @@ regressionTest(
     await expect(lastItem).toBeVisible();
   }
 );
+regressionTest(
+  'should reflect disabled attribute in DOM when changed dynamically',
+  async ({ page, mount }) => {
+    await mount(`
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger">
+        <ix-dropdown-item id="static-disabled" label="Always Disabled" disabled="true"></ix-dropdown-item>
+        <ix-dropdown-item id="dynamic-disabled" label="Dynamic Disabled"></ix-dropdown-item>
+        <ix-dropdown-item id="toggle-trigger" label="Toggle Disabled"></ix-dropdown-item>
+      </ix-dropdown>
+    `);
+
+    const dynamicItem = page.locator('#dynamic-disabled');
+
+    await expect(dynamicItem).not.toHaveAttribute('disabled');
+
+    await dynamicItem.evaluate((element: any) => {
+      element.disabled = true;
+    });
+    await page.waitForTimeout(100);
+
+    await expect(dynamicItem).toHaveAttribute('disabled');
+
+    await dynamicItem.evaluate((element: any) => {
+      element.disabled = false;
+    });
+    await page.waitForTimeout(100);
+
+    await expect(dynamicItem).not.toHaveAttribute('disabled');
+  }
+);

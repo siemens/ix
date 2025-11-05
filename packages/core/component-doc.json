@@ -9125,7 +9125,7 @@
           },
           "mutable": false,
           "attr": "disabled",
-          "reflectToAttr": false,
+          "reflectToAttr": true,
           "docs": "Disable button",
           "docsTags": [
             {
@@ -9527,7 +9527,7 @@
           },
           "mutable": false,
           "attr": "disabled",
-          "reflectToAttr": false,
+          "reflectToAttr": true,
           "docs": "Disable item and remove event listeners",
           "docsTags": [
             {

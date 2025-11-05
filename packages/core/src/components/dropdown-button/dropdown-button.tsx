@@ -32,7 +32,7 @@ export class DropdownButton {
   /**
    * Disable button
    */
-  @Prop() disabled = false;
+  @Prop({reflect:true}) disabled = false;
 
   /**
    * Set label
