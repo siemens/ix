@@ -36,7 +36,7 @@ regressionTest(
     await page
       .locator('ix-application')
       .evaluate(
-        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
+        (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['lg'])
       );
     const menu = page.locator('ix-menu');
 
@@ -57,7 +57,7 @@ regressionTest(
     await page
       .locator('ix-application')
       .evaluate(
-        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
+        (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['lg'])
       );
     const menu = page.locator('ix-menu');
 
@@ -78,7 +78,7 @@ regressionTest(
     await page
       .locator('ix-application')
       .evaluate(
-        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+        (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
       );
     const menu = page.locator('ix-menu');
     const menuButton = menu.locator('ix-menu-expand-icon');
@@ -103,7 +103,7 @@ regressionTest(
     await page
       .locator('ix-application')
       .evaluate(
-        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+        (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
       );
     const menu = page.locator('ix-menu');
     const menuButton = menu.locator('ix-menu-expand-icon');
