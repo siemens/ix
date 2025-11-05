@@ -1,0 +1,72 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.ag-checkbox-input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  appearance: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ag-checkbox-input-wrapper {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.ag-checkbox-input-wrapper::after {
+  color: transparent;
+}
+
+.ag-checkbox-input-wrapper:not(.ag-checked):not(.ag-indeterminate) {
+  border: var(--theme-checkbox--border-thickness) solid
+    var(--theme-checkbox-unchecked--border-color);
+}
+
+.ag-checked {
+  position: relative;
+}
+
+.ag-checkbox-input-wrapper.ag-checked::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--theme-checkbox-checked--background);
+  mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=='),
+    url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMy42NTYyNSA4LjE1NjI1TDguNDM3NSAxMi45Mzc1TDE0LjYyNSAzLjkzNzUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==');
+  mask-composite: subtract;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  pointer-events: none;
+}
+
+.ag-indeterminate {
+  position: relative;
+}
+
+.ag-indeterminate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--theme-color-dynamic);
+  mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=='),
+    url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bGluZSB4MT0iNCIgeTE9IjkiIHgyPSIxNCIgeTI9IjkiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+');
+  mask-composite: subtract;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  pointer-events: none;
+}
+
+.ag-checkbox-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
