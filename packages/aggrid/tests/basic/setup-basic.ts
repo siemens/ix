@@ -18,7 +18,7 @@ import * as agGridCommunity from 'ag-grid-community';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const theme = await getIxTheme(agGridCommunity);
+const theme = getIxTheme(agGridCommunity);
 
 const gridOptions = {
   columnDefs: COLUMN_DEFS,
