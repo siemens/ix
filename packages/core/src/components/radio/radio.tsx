@@ -173,11 +173,9 @@ export class Radio implements IxFormComponent<string> {
         }}
         onClick={(event: MouseEvent) => {
           if (this.disabled) return;
-          const target = event.target;
-          if (!target) return;
-          if (target instanceof HTMLElement && target.closest('label')) {
-            return;
-          }
+          const path = event.composedPath();
+          const target = path[0];
+          if (target instanceof HTMLElement && target.closest('label')) return;
           this.setCheckedState(true);
         }}
         onBlur={() => this.ixBlur.emit()}
