@@ -234,31 +234,24 @@ export class RadiobuttonGroup
     currentRadio: HTMLIxRadioElement,
     forward = true
   ): Promise<void> {
-    const index = this.radiobuttonElements.indexOf(currentRadio);
-
-    let nextIndex = index;
-
-    if (forward) {
-      nextIndex = index + 1 < this.radiobuttonElements.length ? index + 1 : 0;
-      while (this.radiobuttonElements[nextIndex].disabled) {
-        nextIndex =
-          nextIndex + 1 < this.radiobuttonElements.length ? nextIndex + 1 : 0;
-        if (nextIndex === index) break;
-      }
-    } else {
-      nextIndex =
-        index - 1 >= 0 ? index - 1 : this.radiobuttonElements.length - 1;
-      while (this.radiobuttonElements[nextIndex].disabled) {
-        nextIndex =
-          nextIndex - 1 >= 0
-            ? nextIndex - 1
-            : this.radiobuttonElements.length - 1;
-        if (nextIndex === index) break;
-      }
+    const { radiobuttonElements } = this;
+    const { length } = radiobuttonElements;
+    if (length <= 1) {
+      return Promise.resolve();
     }
 
-    const nextRadio = this.radiobuttonElements[nextIndex];
-    currentRadio.setCheckedState(false);
+    const index = radiobuttonElements.indexOf(currentRadio);
+    const step = forward ? 1 : -1;
+    let nextIndex = (index + step + length) % length;
+
+    while (radiobuttonElements[nextIndex].disabled) {
+      if (nextIndex === index) {
+        return Promise.resolve();
+      }
+      nextIndex = (nextIndex + step + length) % length;
+    }
+
+    const nextRadio = radiobuttonElements[nextIndex];
     nextRadio.setCheckedState(true);
     nextRadio.focus();
 

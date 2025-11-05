@@ -212,12 +212,6 @@ export class Radio implements IxFormComponent<string> {
           if (this.disabled) return;
           this.setCheckedState(true);
         }}
-        onFocus={() => {
-          if (this.disabled) return;
-          if (!this.checked) {
-            this.setCheckedState(true);
-          }
-        }}
         onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
         onBlur={() => this.ixBlur.emit()}
       >

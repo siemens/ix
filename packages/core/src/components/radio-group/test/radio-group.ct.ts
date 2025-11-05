@@ -160,7 +160,11 @@ regressionTest.describe('keyboard navigation', () => {
     await expect(firstRadio).toBeVisible();
 
     await page.keyboard.press('Tab');
-    await expect(page.getByLabel('Option 1')).toBeChecked();
+    await expect(page.getByLabel('Option 1')).not.toBeChecked();
+
+    await page.keyboard.press('ArrowDown');
+    await expect(page.getByLabel('Option 1')).not.toBeChecked();
+    await expect(page.getByLabel('Option 2')).toBeChecked();
   });
 
   regressionTest('Initial checked', async ({ mount, page }) => {

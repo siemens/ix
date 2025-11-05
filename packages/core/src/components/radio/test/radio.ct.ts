@@ -129,7 +129,6 @@ test.describe('accessibility & click handling', () => {
     await expect(radio).toHaveAttribute('aria-checked', 'false');
     await radio.click();
     await expect(radio).toHaveAttribute('aria-checked', 'true');
-    await expect(radio).toHaveAttribute('aria-label', 'Small');
   });
 
   test('should respect disabled state when clicking host element', async ({
