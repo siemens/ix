@@ -266,27 +266,6 @@ export namespace Components {
          */
         "username"?: string;
     }
-    interface IxBasicNavigation {
-        /**
-          * Application name
-         */
-        "applicationName"?: string;
-        /**
-          * Supported layouts
-          * @example ['sm', 'md']
-          * @default ['sm', 'md', 'lg']
-         */
-        "breakpoints": Breakpoint[];
-        /**
-          * Change the responsive layout of the menu structure
-         */
-        "forceBreakpoint": Breakpoint | undefined;
-        /**
-          * Hide application header. Will disable responsive feature of basic navigation.
-          * @default false
-         */
-        "hideHeader": boolean;
-    }
     interface IxBlind {
         /**
           * Collapsed state
@@ -2106,74 +2085,6 @@ export namespace Components {
           * Url for the link button
          */
         "url"?: string;
-    }
-    interface IxMapNavigation {
-        /**
-          * Application name
-         */
-        "applicationName"?: string;
-        /**
-          * ARIA label for the context menu icon button Will be set for the native HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelContextIconButton"?: string;
-        /**
-          * Close current shown overlay
-          * @deprecated Will be removed in 2.0.0. Use slot based approach
-         */
-        "closeOverlay": () => Promise<void>;
-        /**
-          * Hide the sidebar context menu button when set to true
-          * @default true
-         */
-        "hideContextMenu": boolean;
-        /**
-          * Navigation title
-         */
-        "navigationTitle"?: string;
-        /**
-          * Open a overlay inside content area
-          * @deprecated Will be removed in 2.0.0. Use slot based approach
-          * @param name
-          * @param component
-          * @param icon
-          * @param color
-         */
-        "openOverlay": (name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>;
-        /**
-          * Change the visibility of the sidebar
-          * @param show new visibility state
-         */
-        "toggleSidebar": (show?: boolean) => Promise<void>;
-    }
-    interface IxMapNavigationOverlay {
-        /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelCloseIconButton"?: string;
-        /**
-          * ARIA label for the icon
-          * @since 3.2.0
-         */
-        "ariaLabelIcon"?: string;
-        /**
-          * Color of icon
-          * @deprecated since 2.1.0. Use `icon-color`
-         */
-        "color"?: string;
-        /**
-          * Icon of overlay
-         */
-        "icon"?: string;
-        /**
-          * Color of icon
-         */
-        "iconColor"?: string;
-        /**
-          * Title of overlay
-         */
-        "name"?: string;
     }
     interface IxMenu {
         /**
@@ -4210,14 +4121,6 @@ export interface IxInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxInputElement;
 }
-export interface IxMapNavigationCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxMapNavigationElement;
-}
-export interface IxMapNavigationOverlayCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxMapNavigationOverlayElement;
-}
 export interface IxMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuElement;
@@ -4402,12 +4305,6 @@ declare global {
     var HTMLIxAvatarElement: {
         prototype: HTMLIxAvatarElement;
         new (): HTMLIxAvatarElement;
-    };
-    interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
-    }
-    var HTMLIxBasicNavigationElement: {
-        prototype: HTMLIxBasicNavigationElement;
-        new (): HTMLIxBasicNavigationElement;
     };
     interface HTMLIxBlindElementEventMap {
         "collapsedChange": boolean;
@@ -5051,41 +4948,6 @@ declare global {
     var HTMLIxLinkButtonElement: {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
-    };
-    interface HTMLIxMapNavigationElementEventMap {
-        "navigationToggled": boolean;
-        "contextMenuClick": void;
-    }
-    interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxMapNavigationElement: {
-        prototype: HTMLIxMapNavigationElement;
-        new (): HTMLIxMapNavigationElement;
-    };
-    interface HTMLIxMapNavigationOverlayElementEventMap {
-        "closeClick": any;
-    }
-    interface HTMLIxMapNavigationOverlayElement extends Components.IxMapNavigationOverlay, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxMapNavigationOverlayElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationOverlayElement, ev: IxMapNavigationOverlayCustomEvent<HTMLIxMapNavigationOverlayElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxMapNavigationOverlayElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationOverlayElement, ev: IxMapNavigationOverlayCustomEvent<HTMLIxMapNavigationOverlayElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxMapNavigationOverlayElement: {
-        prototype: HTMLIxMapNavigationOverlayElement;
-        new (): HTMLIxMapNavigationOverlayElement;
     };
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
@@ -5830,7 +5692,6 @@ declare global {
         "ix-application-sidebar": HTMLIxApplicationSidebarElement;
         "ix-application-switch-modal": HTMLIxApplicationSwitchModalElement;
         "ix-avatar": HTMLIxAvatarElement;
-        "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
@@ -5885,8 +5746,6 @@ declare global {
         "ix-layout-auto": HTMLIxLayoutAutoElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
-        "ix-map-navigation": HTMLIxMapNavigationElement;
-        "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
         "ix-menu-about-item": HTMLIxMenuAboutItemElement;
@@ -6108,27 +5967,6 @@ declare namespace LocalJSX {
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
         "username"?: string;
-    }
-    interface IxBasicNavigation {
-        /**
-          * Application name
-         */
-        "applicationName"?: string;
-        /**
-          * Supported layouts
-          * @example ['sm', 'md']
-          * @default ['sm', 'md', 'lg']
-         */
-        "breakpoints"?: Breakpoint[];
-        /**
-          * Change the responsive layout of the menu structure
-         */
-        "forceBreakpoint"?: Breakpoint | undefined;
-        /**
-          * Hide application header. Will disable responsive feature of basic navigation.
-          * @default false
-         */
-        "hideHeader"?: boolean;
     }
     interface IxBlind {
         /**
@@ -8061,67 +7899,6 @@ declare namespace LocalJSX {
           * Url for the link button
          */
         "url"?: string;
-    }
-    interface IxMapNavigation {
-        /**
-          * Application name
-         */
-        "applicationName"?: string;
-        /**
-          * ARIA label for the context menu icon button Will be set for the native HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelContextIconButton"?: string;
-        /**
-          * Hide the sidebar context menu button when set to true
-          * @default true
-         */
-        "hideContextMenu"?: boolean;
-        /**
-          * Navigation title
-         */
-        "navigationTitle"?: string;
-        /**
-          * Context menu clicked
-         */
-        "onContextMenuClick"?: (event: IxMapNavigationCustomEvent<void>) => void;
-        /**
-          * Navigation toggled
-         */
-        "onNavigationToggled"?: (event: IxMapNavigationCustomEvent<boolean>) => void;
-    }
-    interface IxMapNavigationOverlay {
-        /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelCloseIconButton"?: string;
-        /**
-          * ARIA label for the icon
-          * @since 3.2.0
-         */
-        "ariaLabelIcon"?: string;
-        /**
-          * Color of icon
-          * @deprecated since 2.1.0. Use `icon-color`
-         */
-        "color"?: string;
-        /**
-          * Icon of overlay
-         */
-        "icon"?: string;
-        /**
-          * Color of icon
-         */
-        "iconColor"?: string;
-        /**
-          * Title of overlay
-         */
-        "name"?: string;
-        /**
-          * Event closed
-         */
-        "onCloseClick"?: (event: IxMapNavigationOverlayCustomEvent<any>) => void;
     }
     interface IxMenu {
         /**
@@ -10171,7 +9948,6 @@ declare namespace LocalJSX {
         "ix-application-sidebar": IxApplicationSidebar;
         "ix-application-switch-modal": IxApplicationSwitchModal;
         "ix-avatar": IxAvatar;
-        "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
         "ix-breadcrumb": IxBreadcrumb;
         "ix-breadcrumb-item": IxBreadcrumbItem;
@@ -10226,8 +10002,6 @@ declare namespace LocalJSX {
         "ix-layout-auto": IxLayoutAuto;
         "ix-layout-grid": IxLayoutGrid;
         "ix-link-button": IxLinkButton;
-        "ix-map-navigation": IxMapNavigation;
-        "ix-map-navigation-overlay": IxMapNavigationOverlay;
         "ix-menu": IxMenu;
         "ix-menu-about": IxMenuAbout;
         "ix-menu-about-item": IxMenuAboutItem;
@@ -10290,7 +10064,6 @@ declare module "@stencil/core" {
             "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
             "ix-application-switch-modal": LocalJSX.IxApplicationSwitchModal & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
-            "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
@@ -10365,8 +10138,6 @@ declare module "@stencil/core" {
             "ix-layout-auto": LocalJSX.IxLayoutAuto & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
             "ix-layout-grid": LocalJSX.IxLayoutGrid & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
-            "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
-            "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;

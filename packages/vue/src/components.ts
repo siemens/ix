@@ -9,7 +9,6 @@ import { defineCustomElement as defineIxActionCard } from '@siemens/ix/component
 import { defineCustomElement as defineIxApplication } from '@siemens/ix/components/ix-application.js';
 import { defineCustomElement as defineIxApplicationHeader } from '@siemens/ix/components/ix-application-header.js';
 import { defineCustomElement as defineIxAvatar } from '@siemens/ix/components/ix-avatar.js';
-import { defineCustomElement as defineIxBasicNavigation } from '@siemens/ix/components/ix-basic-navigation.js';
 import { defineCustomElement as defineIxBlind } from '@siemens/ix/components/ix-blind.js';
 import { defineCustomElement as defineIxBreadcrumb } from '@siemens/ix/components/ix-breadcrumb.js';
 import { defineCustomElement as defineIxBreadcrumbItem } from '@siemens/ix/components/ix-breadcrumb-item.js';
@@ -60,8 +59,6 @@ import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kp
 import { defineCustomElement as defineIxLayoutAuto } from '@siemens/ix/components/ix-layout-auto.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
-import { defineCustomElement as defineIxMapNavigation } from '@siemens/ix/components/ix-map-navigation.js';
-import { defineCustomElement as defineIxMapNavigationOverlay } from '@siemens/ix/components/ix-map-navigation-overlay.js';
 import { defineCustomElement as defineIxMenu } from '@siemens/ix/components/ix-menu.js';
 import { defineCustomElement as defineIxMenuAbout } from '@siemens/ix/components/ix-menu-about.js';
 import { defineCustomElement as defineIxMenuAboutItem } from '@siemens/ix/components/ix-menu-about-item.js';
@@ -161,14 +158,6 @@ export const IxAvatar: StencilVueComponent<JSX.IxAvatar> = /*@__PURE__*/ defineC
   'extra',
   'tooltipText',
   'ariaLabelTooltip'
-]);
-
-
-export const IxBasicNavigation: StencilVueComponent<JSX.IxBasicNavigation> = /*@__PURE__*/ defineContainer<JSX.IxBasicNavigation>('ix-basic-navigation', defineIxBasicNavigation, [
-  'applicationName',
-  'hideHeader',
-  'forceBreakpoint',
-  'breakpoints'
 ]);
 
 
@@ -812,32 +801,6 @@ export const IxLinkButton: StencilVueComponent<JSX.IxLinkButton> = /*@__PURE__*/
   'disabled',
   'url',
   'target'
-]);
-
-
-export const IxMapNavigation: StencilVueComponent<JSX.IxMapNavigation> = /*@__PURE__*/ defineContainer<JSX.IxMapNavigation>('ix-map-navigation', defineIxMapNavigation, [
-  'applicationName',
-  'navigationTitle',
-  'hideContextMenu',
-  'ariaLabelContextIconButton',
-  'navigationToggled',
-  'contextMenuClick'
-], [
-  'navigationToggled',
-  'contextMenuClick'
-]);
-
-
-export const IxMapNavigationOverlay: StencilVueComponent<JSX.IxMapNavigationOverlay> = /*@__PURE__*/ defineContainer<JSX.IxMapNavigationOverlay>('ix-map-navigation-overlay', defineIxMapNavigationOverlay, [
-  'name',
-  'icon',
-  'ariaLabelIcon',
-  'ariaLabelCloseIconButton',
-  'color',
-  'iconColor',
-  'closeClick'
-], [
-  'closeClick'
 ]);
 
 
