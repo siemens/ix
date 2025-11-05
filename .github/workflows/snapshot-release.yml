@@ -49,9 +49,10 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: rm .changeset/pre.json
 
-      - name: Release to pr tag
+      - name: Release to snapshot
         run: |
-          pnpm changeset version --snapshot $SNAPSHOT_NAME && pnpm i --lockfile-only
+          pnpm changeset version --snapshot $SNAPSHOT_NAME
+          pnpm i --lockfile-only
           pnpm build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
