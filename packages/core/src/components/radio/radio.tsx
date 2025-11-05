@@ -175,6 +175,7 @@ export class Radio implements IxFormComponent<string> {
           if (this.disabled) return;
           const path = event.composedPath();
           const target = path[0];
+          if (!target) return;
           if (target instanceof HTMLElement && target.closest('label')) return;
           this.setCheckedState(true);
         }}
