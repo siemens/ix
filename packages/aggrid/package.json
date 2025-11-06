@@ -2,6 +2,7 @@
   "name": "@siemens/ix-aggrid",
   "homepage": "https://ix.siemens.io",
   "bugs": "https://github.com/siemens/ix/issues",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/siemens/ix",
