@@ -548,11 +548,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       return;
     }
 
-    const hasValue = this.required ? !!this.value : true;
+    const isValuePresent = this.required ? !!this.value : true;
     const touched = this.touched;
+    const isRequiredInvalid = this.required && !isValuePresent && touched;
+    const shouldShowPatternMismatch = this.isInputInvalid && touched;
 
     if (this.required) {
-      const isRequiredInvalid = !hasValue && touched;
       this.hostElement.classList.toggle(
         'ix-invalid--required',
         isRequiredInvalid
@@ -561,7 +562,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.hostElement.classList.remove('ix-invalid--required');
     }
 
-    const shouldShowPatternMismatch = this.isInputInvalid && touched;
     this.hostElement.classList.toggle(
       'ix-invalid--validity-patternMismatch',
       shouldShowPatternMismatch
