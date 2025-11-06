@@ -23,7 +23,10 @@
   "scripts": {
     "build": "pnpm clean && vite build && vue-tsc --declaration --emitDeclarationOnly --outDir dist",
     "clean": "rimraf dist",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test.setup": "playwright install chromium --with-deps",
+    "test": "vitest --config=vitest.config.ts run",
+    "test.watch": "vitest --config=vitest.config.ts"
   },
   "dependencies": {
     "@siemens/ix": "~3.2.0",
@@ -31,17 +34,21 @@
   },
   "devDependencies": {
     "@siemens/ix": "workspace:*",
+    "@testing-library/vue": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vitest/browser": "^3.2.4",
     "eslint": "~8.21.0",
     "eslint-config-ix": "workspace:*",
     "eslint-plugin-vue": "^9.27.0",
+    "playwright": "^1.54.1",
     "rimraf": "^3.0.2",
     "typescript": "^5.8.3",
-    "vue": "^3.4.34",
     "vite": "^6.3.5",
-    "vue-tsc": "^2.2.10",
-    "@vitejs/plugin-vue": "^5.2.3"
+    "vitest": "^3.2.4",
+    "vue": "^3.4.34",
+    "vue-tsc": "^2.2.10"
   },
   "peerDependencies": {
     "@siemens/ix-icons": "^3.2.0",
