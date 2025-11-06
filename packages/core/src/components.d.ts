@@ -2880,6 +2880,7 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
+        "setCheckedState": (newChecked: boolean) => Promise<void>;
         /**
           * Value of the radio component
          */
@@ -2917,6 +2918,7 @@ export namespace Components {
           * @default false
          */
         "required"?: boolean;
+        "setCheckedToNextItem": (currentRadio: HTMLIxRadioElement, forward?: boolean) => Promise<void>;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */
