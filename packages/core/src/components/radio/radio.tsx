@@ -198,7 +198,6 @@ export class Radio implements IxFormComponent<string> {
       <Host
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
-        aria-label={this.label}
         role="radio"
         tabindex={tabIndex}
         class={{
