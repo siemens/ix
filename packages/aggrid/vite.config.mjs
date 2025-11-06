@@ -7,6 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { defineConfig } from 'vite';
-import './visual-regression.config';
+import './visual-regression.config.ts';
 
 export default defineConfig({});
