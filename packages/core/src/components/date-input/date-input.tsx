@@ -34,6 +34,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  shouldSuppressInternalValidation,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -228,6 +229,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @State() isInfo = false;
   @State() isWarning = false;
   @State() focus = false;
+  @State() suppressValidation = false;
 
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
@@ -322,14 +324,15 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     }
 
     this.value = value;
+
+    const skipValidation = await shouldSuppressInternalValidation(this);
+    this.suppressValidation = skipValidation;
+
     if (!value) {
-      // When value is empty, clear format validation errors
-      // BUT don't clear isInputInvalid if this is a required field that will stay invalid
-      // The validation lifecycle will handle the required validation
       this.isInputInvalid = false;
       this.invalidReason = undefined;
       this.valueChange.emit(value);
-      await this.syncValidationClasses();
+      this.syncValidationClasses();
       return;
     }
 
@@ -341,10 +344,22 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     const minDate = DateTime.fromFormat(this.minDate, this.format);
     const maxDate = DateTime.fromFormat(this.maxDate, this.format);
 
-    this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
+    if (skipValidation) {
+      this.isInputInvalid = false;
+      this.invalidReason = undefined;
+    } else {
+      const isDateInvalid = !date.isValid || date < minDate || date > maxDate;
+      this.isInputInvalid = isDateInvalid;
+      this.invalidReason = isDateInvalid
+        ? date.invalidReason || undefined
+        : undefined;
+    }
+
+    if (this.isInputInvalid && !this.isResetting) {
+      this.touched = true;
+    }
 
     if (this.isInputInvalid) {
-      this.invalidReason = date.invalidReason || undefined;
       this.from = undefined;
     } else {
       this.updateFormInternalValue(value);
@@ -352,7 +367,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     }
 
     this.valueChange.emit(value);
-    await this.syncValidationClasses();
+    this.syncValidationClasses();
   }
 
   onCalenderClick(event: Event) {
@@ -417,7 +432,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onBlur={async () => {
             this.ixBlur.emit();
             this.touched = true;
-            await this.syncValidationClasses();
+            this.syncValidationClasses();
           }}
         ></input>
         <SlotEnd
@@ -445,7 +460,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     isValid,
     isWarning,
   }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
+    if (this.suppressValidation) {
+      this.isInvalid = false;
+      this.isInfo = false;
+      this.isValid = false;
+      this.isWarning = false;
+      return;
+    }
+
+    const shouldShowInputInvalid = this.isInputInvalid && this.touched;
+
+    this.isInvalid = isInvalid || isInvalidByRequired || shouldShowInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
@@ -458,6 +483,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       patternMismatch: state.patternMismatch,
       invalidReason: this.invalidReason,
     });
+
+    if (this.suppressValidation) {
+      return;
+    }
+
+    const shouldShowInputInvalid = this.isInputInvalid && this.touched;
+
+    if (shouldShowInputInvalid) {
+      this.isInvalid = true;
+    }
   }
 
   /** @internal */
@@ -508,11 +543,13 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * @internal
    */
   @Method()
-  async syncValidationClasses(): Promise<void> {
-    const [hasValue, touched] = await Promise.all([
-      this.hasValidValue(),
-      this.isTouched(),
-    ]);
+  syncValidationClasses(): void {
+    if (this.suppressValidation) {
+      return;
+    }
+
+    const hasValue = this.required ? !!this.value : true;
+    const touched = this.touched;
 
     if (this.required) {
       const isRequiredInvalid = !hasValue && touched;
@@ -524,10 +561,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.hostElement.classList.remove('ix-invalid--required');
     }
 
-    const validityState = await this.getValidityState();
+    const shouldShowPatternMismatch = this.isInputInvalid && touched;
     this.hostElement.classList.toggle(
       'ix-invalid--validity-patternMismatch',
-      validityState.patternMismatch
+      shouldShowPatternMismatch
     );
   }
 
@@ -566,16 +603,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.updateFormInternalValue(resetValue);
 
     await this.onInput(resetValue);
-    await this.syncValidationClasses();
 
     this.isResetting = false;
     this.valueChange.emit(resetValue);
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorDateUnparsable
-      : this.invalidText;
+    const invalidText =
+      this.isInputInvalid && !this.suppressValidation
+        ? this.i18nErrorDateUnparsable
+        : this.invalidText;
 
     return (
       <Host
