@@ -1,6 +1,6 @@
 {
   "name": "@siemens/ix-docs",
-  "version": "3.2.0",
+  "version": "5.0.0",
   "scripts": {
     "build": "tsx --tsconfig ./tsconfig.json ./scripts/build.ts"
   },
