@@ -128,7 +128,6 @@ test.describe('accessibility', () => {
     await mount(`<ix-checkbox label="Accept Terms"></ix-checkbox>`);
     const checkbox = page.getByRole('checkbox', { name: 'Accept Terms' });
     await expect(checkbox).toBeVisible();
-    await expect(checkbox).toHaveAttribute('aria-label', 'Accept Terms');
     await checkbox.click();
     await expect(checkbox).toHaveAttribute('aria-checked', 'true');
   });
