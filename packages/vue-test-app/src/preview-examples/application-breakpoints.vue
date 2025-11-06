@@ -75,9 +75,9 @@ export default {
         header-title="Choose breakpoint"
       ></IxContentHeader>
       <IxRadioGroup :value="breakpoints[0]" @valueChange="setBreakpoint">
-        <IxRadio value="sm" label="Small"></IxRadio>
-        <IxRadio value="md" label="Medium"></IxRadio>
-        <IxRadio value="lg" label="Large"></IxRadio>
+        <IxRadio value="sm" label="Small" aria-label="Small"></IxRadio>
+        <IxRadio value="md" label="Medium" aria-label="Medium"></IxRadio>
+        <IxRadio value="lg" label="Large" aria-label="Large"></IxRadio>
       </IxRadioGroup>
     </IxContent>
   </IxApplication>
