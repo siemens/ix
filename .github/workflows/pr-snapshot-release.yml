@@ -16,6 +16,7 @@ jobs:
       contents: write
       pull-requests: write
       id-token: write
+      statuses: read
     if: |
       github.repository == 'siemens/ix' &&
       github.event.issue.pull_request &&
@@ -104,7 +105,8 @@ jobs:
       - name: Release to pr tag
         if: ${{ steps.added-files.outputs.changesets != '' }}
         run: |
-          pnpm changeset version --snapshot pr-${{ github.event.issue.number }} && pnpm i --lockfile-only
+          pnpm changeset version --snapshot pr-${{ github.event.issue.number }}
+          pnpm i --lockfile-only
           pnpm build
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
           pnpm changeset publish --no-git-tag --snapshot --tag snapshot
