@@ -157,9 +157,9 @@ export class RadiobuttonGroup
 
     const hasCheckedRadio = this.isSomeRadioChecked();
 
-    this.radiobuttonElements.forEach((radio) => {
+    for (const radio of this.radiobuttonElements) {
       radio.tabIndex = radio.checked ? 0 : -1;
-    });
+    }
 
     if (!hasCheckedRadio && this.radiobuttonElements.length > 0) {
       this.radiobuttonElements[0].tabIndex = 0;
@@ -237,7 +237,7 @@ export class RadiobuttonGroup
     const { radiobuttonElements } = this;
     const { length } = radiobuttonElements;
     if (length <= 1) {
-      return Promise.resolve();
+      return;
     }
 
     const index = radiobuttonElements.indexOf(currentRadio);
@@ -246,7 +246,7 @@ export class RadiobuttonGroup
 
     while (radiobuttonElements[nextIndex].disabled) {
       if (nextIndex === index) {
-        return Promise.resolve();
+        return;
       }
       nextIndex = (nextIndex + step + length) % length;
     }
