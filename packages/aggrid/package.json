@@ -2,12 +2,12 @@
   "name": "@siemens/ix-aggrid",
   "homepage": "https://ix.siemens.io",
   "bugs": "https://github.com/siemens/ix/issues",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/siemens/ix",
     "directory": "packages/aggrid"
   },
+  "license": "MIT",
   "description": "AG Grid theme based on ix theme variables",
   "version": "4.0.0",
   "files": [
