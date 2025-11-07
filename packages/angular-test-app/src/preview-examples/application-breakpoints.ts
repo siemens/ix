@@ -10,13 +10,18 @@ import { Component } from '@angular/core';
 import { Breakpoint } from '@siemens/ix';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './application-breakpoints.html',
 })
 export default class ApplicationBreakpointExample {
   breakpoints: Breakpoint[] = ['md'];
+  private readonly validBreakpoints = new Set<Breakpoint>(['sm', 'md', 'lg']);
 
-  onCheckedChange(breakpoint: Breakpoint) {
-    this.breakpoints = [breakpoint];
+  onCheckedChange(value: string) {
+    const breakpoint = value as Breakpoint;
+    if (this.validBreakpoints.has(breakpoint)) {
+      this.breakpoints = [breakpoint];
+    }
   }
 }

@@ -15,6 +15,5 @@ import { IxProgressIndicator } from '@siemens/ix-angular/standalone';
   templateUrl: './progress-indicator-circular-status.html',
   styleUrl: './progress-indicator.css',
   imports: [IxProgressIndicator],
-  standalone: true,
 })
 export default class ProgressIndicatorCircularStatus {}

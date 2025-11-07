@@ -93,6 +93,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
+   * The locale is used to translate the labels for weekdays and months.
+   * It also determines the default order of weekdays based on the locale's conventions.
+   * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
+   * It does not affect the values returned by methods and events.
    */
   @Prop() locale?: string;
 
@@ -388,7 +392,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           <ix-icon-button
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
-            ghost
+            variant="subtle-tertiary"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
             aria-label={this.ariaLabelCalendarButton}
@@ -498,7 +502,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ref={this.datepickerRef}
             format={this.format}
             locale={this.locale}
-            range={false}
+            singleSelection
             from={this.from ?? ''}
             minDate={this.minDate}
             maxDate={this.maxDate}
@@ -509,7 +513,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             showWeekNumbers={this.showWeekNumbers}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-            standaloneAppearance={false}
+            embedded
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

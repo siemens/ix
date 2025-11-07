@@ -54,13 +54,13 @@ class ApplicationLayoutService {
       matchBreakpoints.push([breakpoint, match]);
     });
 
-    if (matchBreakpoints.every(([_, match]) => match === false)) {
+    if (matchBreakpoints.every(([, match]) => match === false)) {
       let breakPointIndex = 0;
       if (!this.#supportedBreakpoints.includes('lg')) {
         breakPointIndex = matchBreakpoints.length - 1;
       }
 
-      const [breakpoint, _] = matchBreakpoints[breakPointIndex];
+      const [breakpoint] = matchBreakpoints[breakPointIndex];
       requestAnimationFrame(() =>
         this.#breakpointChangeListener.emit(breakpoint)
       );

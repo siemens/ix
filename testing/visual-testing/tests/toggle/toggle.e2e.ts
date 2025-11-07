@@ -16,6 +16,20 @@ regressionTest.describe('toggle', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  ['valid', 'info', 'warning', 'invalid'].forEach((state) => {
+    regressionTest(`validation states - ${state}`, async ({ page }) => {
+      await page.goto(`toggle/basic`);
+      page
+        .locator('ix-toggle')
+        .evaluateAll(
+          (elements: HTMLIxToggleElement[], state) =>
+            elements.forEach((el) => el.classList.add('ix-' + state)),
+          state
+        );
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+  });
+
   regressionTest('disabled', async ({ page }) => {
     await page.goto('toggle/disabled');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

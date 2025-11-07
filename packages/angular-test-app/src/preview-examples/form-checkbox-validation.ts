@@ -10,8 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: `./form-checkbox-validation.html`,
 })
-export default class FormCheckboxValidation {
-}
+export default class FormCheckboxValidation {}

@@ -17,14 +17,19 @@ import {
   Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
+import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 import { IxButtonComponent } from './button-component';
 import { AnchorTarget } from './button.interface';
 
-export type ButtonVariant = 'danger' | 'primary' | 'secondary';
+export type ButtonVariant =
+  | `${BaseButtonVariant}`
+  | `${BaseButtonStyle}-${BaseButtonVariant}`;
 
 @Component({
   tag: 'ix-button',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   styleUrl: './button.scss',
 })
 export class Button implements IxButtonComponent {
@@ -40,16 +45,6 @@ export class Button implements IxButtonComponent {
    * Button variant
    */
   @Prop() variant: ButtonVariant = 'primary';
-
-  /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
 
   /**
    * Disable the button
@@ -80,7 +75,7 @@ export class Button implements IxButtonComponent {
 
   /**
    * Icon name for the right side of the button
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() iconRight?: string;
 
@@ -93,21 +88,21 @@ export class Button implements IxButtonComponent {
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() href?: string;
 
   /**
    * Specifies where to open the linked document when href is provided.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() target?: AnchorTarget = '_self';
 
   /**
    * Specifies the relationship between the current document and the linked document when href is provided.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() rel?: string;
 
@@ -184,8 +179,6 @@ export class Button implements IxButtonComponent {
   render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: false,
       iconOval: false,
       selected: false,
@@ -197,7 +190,7 @@ export class Button implements IxButtonComponent {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
-      tabIndex: this.hostElement.tabIndex,
+      tabIndex: 0,
       ariaAttributes: {
         'aria-label': this.ariaLabelButton,
       },
@@ -208,11 +201,9 @@ export class Button implements IxButtonComponent {
 
     return (
       <Host
-        tabindex={this.disabled ? -1 : 0}
         class={{
           disabled: this.disabled || this.loading,
         }}
-        onFocus={() => this.setFocus()}
       >
         <BaseButton {...baseButtonProps}>
           <slot></slot>

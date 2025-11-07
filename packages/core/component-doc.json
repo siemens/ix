@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.36.0",
+    "version": "4.37.1",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -514,14 +514,23 @@
       "docsTags": [
         {
           "name": "slot",
-          "text": "logo - Location of the logo"
+          "text": "default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown."
+        },
+        {
+          "name": "slot",
+          "text": "secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown."
+        },
+        {
+          "name": "slot",
+          "text": "overflow - Use this slot to display additional items that do not fit in the default or secondary slot."
+        },
+        {
+          "name": "slot",
+          "text": "logo - Place a company logo inside the header. Alternatively the companyLogo property can be set."
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-basic-navigation",
-        "ix-map-navigation"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-menu-expand-icon",
         "ix-icon-button",
@@ -541,15 +550,104 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-basic-navigation": [
-          "ix-application-header"
-        ],
-        "ix-map-navigation": [
-          "ix-application-header"
         ]
       },
       "props": [
+        {
+          "name": "appIcon",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon",
+          "reflectToAttr": false,
+          "docs": "The app icon will be shown as the first element inside the header.\nIt will be hidden on smaller screens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "appIconAlt",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon-alt",
+          "reflectToAttr": false,
+          "docs": "Alt text for the app icon",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "appIconOutline",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "app-icon-outline",
+          "reflectToAttr": false,
+          "docs": "Render subtle outline around app icon to ensure proper contrast.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "ariaLabelAppSwitchIconButton",
           "type": "string | undefined",
@@ -644,6 +742,101 @@
           "setter": false
         },
         {
+          "name": "companyLogo",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "company-logo",
+          "reflectToAttr": false,
+          "docs": "Company logo will be show on the left side of the application name.\nIt will be hidden on smaller screens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "companyLogoAlt",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "company-logo-alt",
+          "reflectToAttr": false,
+          "docs": "Alt text for the company logo",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hideBottomBorder",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-bottom-border",
+          "reflectToAttr": false,
+          "docs": "Hides the bottom border of the header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "name",
           "type": "string | undefined",
           "complexType": {
@@ -656,6 +849,37 @@
           "reflectToAttr": false,
           "docs": "Application name",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "nameSuffix",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name-suffix",
+          "reflectToAttr": false,
+          "docs": "Define a suffix which will be displayed next to the application name",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -741,8 +965,20 @@
       "styles": [],
       "slots": [
         {
+          "name": "default",
+          "docs": "Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown."
+        },
+        {
           "name": "logo",
-          "docs": "Location of the logo"
+          "docs": "Place a company logo inside the header. Alternatively the companyLogo property can be set."
+        },
+        {
+          "name": "overflow",
+          "docs": "Use this slot to display additional items that do not fit in the default or secondary slot."
+        },
+        {
+          "name": "secondary",
+          "docs": "Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown."
         }
       ],
       "parts": [],
@@ -801,10 +1037,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Set the native `aria-label` on the ix-avatar host element"
+              "text": "Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0"
             }
           ],
-          "deprecation": "Set the native `aria-label` on the ix-avatar host element",
+          "deprecation": "Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0",
           "values": [
             {
               "type": "string"
@@ -833,7 +1069,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -942,7 +1178,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -980,191 +1216,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "src/components/basic-navigation",
-      "filePath": "src/components/basic-navigation/basic-navigation.tsx",
-      "fileName": "basic-navigation.tsx",
-      "readmePath": "src/components/basic-navigation/readme.md",
-      "usagesDir": "src/components/basic-navigation/usage",
-      "tag": "ix-basic-navigation",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [
-        "ix-application-header"
-      ],
-      "dependencyGraph": {
-        "ix-basic-navigation": [
-          "ix-application-header"
-        ],
-        "ix-application-header": [
-          "ix-menu-expand-icon",
-          "ix-icon-button",
-          "ix-typography",
-          "ix-dropdown"
-        ],
-        "ix-menu-expand-icon": [
-          "ix-icon-button",
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ]
-      },
-      "props": [
-        {
-          "name": "applicationName",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "application-name",
-          "reflectToAttr": false,
-          "docs": "Application name",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "breakpoints",
-          "type": "(\"sm\" | \"md\" | \"lg\")[]",
-          "complexType": {
-            "original": "Breakpoint[]",
-            "resolved": "(\"sm\" | \"md\" | \"lg\")[]",
-            "references": {
-              "Breakpoint": {
-                "location": "import",
-                "path": "../utils/breakpoints",
-                "id": "src/components/utils/breakpoints.ts::Breakpoint"
-              }
-            }
-          },
-          "mutable": false,
-          "attr": "breakpoints",
-          "reflectToAttr": false,
-          "docs": "Supported layouts",
-          "docsTags": [
-            {
-              "name": "example",
-              "text": "['sm', 'md']"
-            },
-            {
-              "name": "default",
-              "text": "['sm', 'md', 'lg']"
-            }
-          ],
-          "default": "['sm', 'md', 'lg']",
-          "values": [
-            {
-              "type": "(\"sm\""
-            },
-            {
-              "value": "md",
-              "type": "string"
-            },
-            {
-              "type": "\"lg\")[]"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "forceBreakpoint",
-          "type": "\"lg\" | \"md\" | \"sm\" | undefined",
-          "complexType": {
-            "original": "Breakpoint | undefined",
-            "resolved": "\"lg\" | \"md\" | \"sm\" | undefined",
-            "references": {
-              "Breakpoint": {
-                "location": "import",
-                "path": "../utils/breakpoints",
-                "id": "src/components/utils/breakpoints.ts::Breakpoint"
-              }
-            }
-          },
-          "mutable": false,
-          "attr": "force-breakpoint",
-          "reflectToAttr": false,
-          "docs": "Change the responsive layout of the menu structure",
-          "docsTags": [],
-          "values": [
-            {
-              "value": "lg",
-              "type": "string"
-            },
-            {
-              "value": "md",
-              "type": "string"
-            },
-            {
-              "value": "sm",
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "hideHeader",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "hide-header",
-          "reflectToAttr": false,
-          "docs": "Hide application header. Will disable responsive feature of basic navigation.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -1456,35 +1507,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "nextItems",
           "type": "string[]",
           "complexType": {
@@ -1506,6 +1528,35 @@
           "values": [
             {
               "type": "string[]"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "subtle",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "subtle",
+          "reflectToAttr": false,
+          "docs": "Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -1657,7 +1708,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -1740,7 +1791,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -1777,7 +1828,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             },
             {
               "name": "default",
@@ -1974,35 +2025,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "href",
           "type": "string | undefined",
           "complexType": {
@@ -2017,7 +2039,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -2074,7 +2096,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -2120,35 +2142,6 @@
           "setter": false
         },
         {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "rel",
           "type": "string | undefined",
           "complexType": {
@@ -2163,7 +2156,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -2200,7 +2193,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             },
             {
               "name": "default",
@@ -2270,10 +2263,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "local",
@@ -2295,7 +2288,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -2304,6 +2305,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -2542,6 +2559,78 @@
           "required": false,
           "getter": false,
           "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "complexType": {
+            "original": "CardAccordionVariant",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "references": {
+              "CardAccordionVariant": {
+                "location": "import",
+                "path": "card-accordion.types",
+                "id": "src/components/card-accordion/card-accordion.types.ts::CardAccordionVariant"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Show accordion with different color variants",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "'outline'"
+            }
+          ],
+          "default": "'outline'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
         }
       ],
       "methods": [],
@@ -2722,7 +2811,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-more-cards",
+          "attr": "i18n-more-cards",
           "reflectToAttr": false,
           "docs": "i18n More cards available",
           "docsTags": [
@@ -2751,7 +2840,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-show-all",
+          "attr": "i18n-show-all",
           "reflectToAttr": false,
           "docs": "i18n Show all button",
           "docsTags": [
@@ -3245,9 +3334,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-plain-text",
+          "attr": "i18n-plain-text",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'Filter by text'",
           "docsTags": [
             {
               "name": "default",
@@ -3408,35 +3497,6 @@
           "setter": false
         },
         {
-          "name": "repeatCategories",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "repeat-categories",
-          "reflectToAttr": false,
-          "docs": "If set to true, allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "staticOperator",
           "type": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL | undefined",
           "complexType": {
@@ -3493,6 +3553,35 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "uniqueCategories",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "unique-categories",
+          "reflectToAttr": false,
+          "docs": "If set to true, prevents that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to true.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -4143,35 +4232,6 @@
       },
       "props": [
         {
-          "name": "active",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "active",
-          "reflectToAttr": false,
-          "docs": "Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation)\nwill be possible and also the close button will not be present.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "ariaLabelCloseButton",
           "type": "string | undefined",
           "complexType": {
@@ -4333,6 +4393,35 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "inactive",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "inactive",
+          "reflectToAttr": false,
+          "docs": "Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation)\nwill be possible and also the close button will not be present.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -5401,7 +5490,7 @@
           "setter": false
         },
         {
-          "name": "customRangeAllowed",
+          "name": "customRangeDisabled",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -5409,16 +5498,16 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "custom-range-allowed",
+          "attr": "custom-range-disabled",
           "reflectToAttr": false,
-          "docs": "Controls whether the user is allowed to pick custom date ranges in the component.\nWhen set to 'true', the user can select a custom date range using the date picker.\nWhen set to 'false', only predefined time date ranges are available for selection.",
+          "docs": "Controls whether custom date range selection is disabled in the component.\nWhen set to 'false', the user can select a custom date range using the date picker.\nWhen set to 'true', only predefined time date ranges are available for selection.",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -5573,35 +5662,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -5810,7 +5870,7 @@
           "setter": false
         },
         {
-          "name": "outline",
+          "name": "showWeekNumbers",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -5818,10 +5878,14 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "outline",
+          "attr": "show-week-numbers",
           "reflectToAttr": false,
-          "docs": "Outline button",
+          "docs": "Shows week numbers displayed on the left side of the date picker",
           "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            },
             {
               "name": "default",
               "text": "false"
@@ -5839,7 +5903,7 @@
           "setter": false
         },
         {
-          "name": "range",
+          "name": "singleSelection",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -5847,43 +5911,10 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "range",
+          "attr": "single-selection",
           "reflectToAttr": false,
-          "docs": "If true a range of dates can be selected.",
+          "docs": "If true disables date range selection (from/to).",
           "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showWeekNumbers",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-week-numbers",
-          "reflectToAttr": false,
-          "docs": "Shows week numbers displayed on the left side of the date picker",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "3.0.0"
-            },
             {
               "name": "default",
               "text": "false"
@@ -5931,10 +5962,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -5956,7 +5987,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -5965,6 +6004,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -6407,7 +6462,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nIt also determines the default order of weekdays based on the locale's conventions.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
           "docsTags": [],
           "values": [
             {
@@ -7102,7 +7157,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
+          "docs": "Locale identifier (e.g. 'en' or 'de').\nThe locale is used to translate the labels for weekdays and months.\nIt also determines the default order of weekdays based on the locale's conventions.\nWhen the locale changes, the weekday labels are rotated according to the `weekStartIndex`.\nIt does not affect the values returned by methods and events.",
           "docsTags": [],
           "values": [
             {
@@ -7176,35 +7231,6 @@
           "setter": false
         },
         {
-          "name": "range",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "range",
-          "reflectToAttr": false,
-          "docs": "If true a date-range can be selected (from/to).",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "showWeekNumbers",
           "type": "boolean",
           "complexType": {
@@ -7221,6 +7247,35 @@
               "name": "since",
               "text": "3.0.0"
             },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "singleSelection",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "single-selection",
+          "reflectToAttr": false,
+          "docs": "If true disables date range selection (from/to).",
+          "docsTags": [
             {
               "name": "default",
               "text": "false"
@@ -7297,21 +7352,26 @@
         {
           "name": "getCurrentDate",
           "returns": {
-            "type": "Promise<{ from: string | undefined; to: string | undefined; }>",
+            "type": "Promise<DateChangeEvent>",
             "docs": ""
           },
           "complexType": {
-            "signature": "() => Promise<{ from: string | undefined; to: string | undefined; }>",
+            "signature": "() => Promise<DateChangeEvent>",
             "parameters": [],
             "references": {
               "Promise": {
                 "location": "global",
                 "id": "global::Promise"
+              },
+              "DateChangeEvent": {
+                "location": "import",
+                "path": "date-picker.events",
+                "id": "src/components/date-picker/date-picker.events.ts::DateChangeEvent"
               }
             },
-            "return": "Promise<{ from: string | undefined; to: string | undefined; }>"
+            "return": "Promise<DateChangeEvent>"
           },
-          "signature": "getCurrentDate() => Promise<{ from: string | undefined; to: string | undefined; }>",
+          "signature": "getCurrentDate() => Promise<DateChangeEvent>",
           "parameters": [],
           "docs": "Get the currently selected date or range. The object returned contains `from` and `to` properties.\nThe property strings are formatted according to the `format` property and not affected by the `locale` property.\nThe locale applied is always `en-US`.",
           "docsTags": []
@@ -7578,7 +7638,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-time",
+          "attr": "i18n-time",
           "reflectToAttr": false,
           "docs": "Top label of time picker",
           "docsTags": [
@@ -7681,137 +7741,6 @@
           "setter": false
         },
         {
-          "name": "range",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "range",
-          "reflectToAttr": false,
-          "docs": "If true a date-range can be selected (from/to).",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showHour",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-hour",
-          "reflectToAttr": false,
-          "docs": "Show hour input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showMinutes",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-minutes",
-          "reflectToAttr": false,
-          "docs": "Show minutes input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showSeconds",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-seconds",
-          "reflectToAttr": false,
-          "docs": "Show seconds input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "showTimeReference",
           "type": "boolean",
           "complexType": {
@@ -7861,6 +7790,35 @@
               "name": "since",
               "text": "3.0.0"
             },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "singleSelection",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "single-selection",
+          "reflectToAttr": false,
+          "docs": "If true disables date range selection (from/to).",
+          "docsTags": [
             {
               "name": "default",
               "text": "false"
@@ -8865,7 +8823,6 @@
       "readmePath": "src/components/dropdown-button/readme.md",
       "usagesDir": "src/components/dropdown-button/usage",
       "tag": "ix-dropdown-button",
-      "readme": "# ix-dropdown-button\n\n\n",
       "overview": "",
       "usage": {},
       "docs": "",
@@ -8993,35 +8950,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -9069,35 +8997,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -9165,10 +9064,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "DropdownButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "DropdownButtonVariant": {
                 "location": "import",
@@ -9190,7 +9089,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -9199,6 +9106,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -9793,14 +9716,14 @@
           "mutable": false,
           "attr": "animated",
           "reflectToAttr": false,
-          "docs": "Animate state change transitions. Defaults to 'true'.",
+          "docs": "Animate state change transitions. Defaults to 'false'.",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9999,7 +9922,7 @@
           "mutable": false,
           "attr": "item-color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`\n\n{@link https://ix.siemens.io/docs/theming/colors/}",
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`\n\n{@link https://ix.siemens.io/docs/styles/colors}",
           "docsTags": [],
           "values": [
             {
@@ -10036,6 +9959,44 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"filled\" | \"outline\"",
+          "complexType": {
+            "original": "'outline' | 'filled'",
+            "resolved": "\"filled\" | \"outline\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Variant of the event list item",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "'outline'"
+            }
+          ],
+          "default": "'outline'",
+          "values": [
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
             }
           ],
           "optional": false,
@@ -10220,35 +10181,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -10270,35 +10202,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -10363,10 +10266,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -10382,13 +10285,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'primary'"
+              "text": "'tertiary'"
             }
           ],
-          "default": "'primary'",
+          "default": "'tertiary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -10397,6 +10308,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -10779,45 +10706,61 @@
           "setter": false
         },
         {
-          "name": "state",
-          "type": "FlipTileState.Alarm | FlipTileState.Info | FlipTileState.None | FlipTileState.Primary | FlipTileState.Warning | undefined",
+          "name": "variant",
+          "type": "\"alarm\" | \"filled\" | \"info\" | \"outline\" | \"primary\" | \"warning\"",
           "complexType": {
-            "original": "FlipTileState",
-            "resolved": "FlipTileState.Alarm | FlipTileState.Info | FlipTileState.None | FlipTileState.Primary | FlipTileState.Warning | undefined",
+            "original": "FlipTileVariant",
+            "resolved": "\"alarm\" | \"filled\" | \"info\" | \"outline\" | \"primary\" | \"warning\"",
             "references": {
-              "FlipTileState": {
+              "FlipTileVariant": {
                 "location": "import",
-                "path": "flip-tile-state",
-                "id": "src/components/flip-tile/flip-tile-state.ts::FlipTileState"
+                "path": "flip-tile.types",
+                "id": "src/components/flip-tile/flip-tile.types.ts::FlipTileVariant"
               }
             }
           },
           "mutable": false,
-          "attr": "state",
+          "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variation of the Flip",
-          "docsTags": [],
-          "values": [
+          "docsTags": [
             {
-              "type": "FlipTileState.Alarm"
+              "name": "since",
+              "text": "4.0.0"
             },
             {
-              "type": "FlipTileState.Info"
-            },
-            {
-              "type": "FlipTileState.None"
-            },
-            {
-              "type": "FlipTileState.Primary"
-            },
-            {
-              "type": "FlipTileState.Warning"
-            },
-            {
-              "type": "undefined"
+              "name": "default",
+              "text": "'filled'"
             }
           ],
-          "optional": true,
+          "default": "'filled'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "filled",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -10937,35 +10880,6 @@
       },
       "props": [
         {
-          "name": "collapsed",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": true,
-          "attr": "collapsed",
-          "reflectToAttr": true,
-          "docs": "Whether the group is collapsed or expanded. Defaults to true.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "expandOnHeaderClick",
           "type": "boolean",
           "complexType": {
@@ -10977,6 +10891,35 @@
           "attr": "expand-on-header-click",
           "reflectToAttr": false,
           "docs": "Expand the group if the header is clicked",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "expanded",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "expanded",
+          "reflectToAttr": true,
+          "docs": "Whether the group is expanded or collapsed. Defaults to false.",
           "docsTags": [
             {
               "name": "default",
@@ -11134,7 +11077,7 @@
       "methods": [],
       "events": [
         {
-          "event": "collapsedChanged",
+          "event": "expandedChanged",
           "detail": "boolean",
           "bubbles": true,
           "complexType": {
@@ -11144,7 +11087,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Group collapsed",
+          "docs": "Group expanded",
           "docsTags": []
         },
         {
@@ -11273,7 +11216,7 @@
           "setter": false
         },
         {
-          "name": "focusable",
+          "name": "disabled",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -11281,16 +11224,16 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "focusable",
+          "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "The elements tabindex attribute will get set accordingly.\nIf true tabindex will be 0, -1 otherwise.",
+          "docs": "Disable the group item.\nThe elements tabindex attribute will get set accordingly.\n\nIf false tabindex will be 0, -1 otherwise.",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -11710,8 +11653,6 @@
         "ix-flip-tile",
         "ix-group-context-menu",
         "ix-input",
-        "ix-map-navigation",
-        "ix-map-navigation-overlay",
         "ix-menu",
         "ix-menu-about",
         "ix-menu-about-news",
@@ -11776,12 +11717,6 @@
         "ix-input": [
           "ix-icon-button"
         ],
-        "ix-map-navigation": [
-          "ix-icon-button"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon-button"
-        ],
         "ix-menu": [
           "ix-icon-button"
         ],
@@ -11841,10 +11776,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Set the native `aria-label` on the ix-icon-button host element"
+              "text": "Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0"
             }
           ],
-          "deprecation": "Set the native `aria-label` on the ix-icon-button host element",
+          "deprecation": "Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0",
           "values": [
             {
               "type": "string"
@@ -11870,35 +11805,6 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disabled",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
           "docsTags": [
             {
               "name": "default",
@@ -11980,35 +11886,6 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Button outline",
           "docsTags": [
             {
               "name": "default",
@@ -12129,10 +12006,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "IconButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "IconButtonVariant": {
                 "location": "import",
@@ -12148,13 +12025,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'secondary'"
+              "text": "'subtle-primary'"
             }
           ],
-          "default": "'secondary'",
+          "default": "'subtle-primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -12163,6 +12048,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -12476,10 +12377,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -12495,13 +12396,21 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'secondary'"
+              "text": "'subtle-primary'"
             }
           ],
-          "default": "'secondary'",
+          "default": "'subtle-primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -12510,6 +12419,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -13246,14 +13171,14 @@
       "docsTags": [
         {
           "name": "deprecated",
-          "text": "Will be removed with 4.0.0\nUse the 'ix-input' component instead"
+          "text": "Since 3.0.0. Will be removed with 5.0.0\nNot maintained anymore.\nUse the 'ix-input' component instead"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
-      "deprecation": "Will be removed with 4.0.0\nUse the 'ix-input' component instead",
+      "deprecation": "Since 3.0.0. Will be removed with 5.0.0\nNot maintained anymore.\nUse the 'ix-input' component instead",
       "props": [],
       "methods": [],
       "events": [],
@@ -14043,580 +13968,6 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/map-navigation",
-      "filePath": "src/components/map-navigation/map-navigation.tsx",
-      "fileName": "map-navigation.tsx",
-      "readmePath": "src/components/map-navigation/readme.md",
-      "usagesDir": "src/components/map-navigation/usage",
-      "tag": "ix-map-navigation",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [
-        "ix-map-navigation-overlay",
-        "ix-application-header",
-        "ix-icon-button"
-      ],
-      "dependencyGraph": {
-        "ix-map-navigation": [
-          "ix-map-navigation-overlay",
-          "ix-application-header",
-          "ix-icon-button"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-application-header": [
-          "ix-menu-expand-icon",
-          "ix-icon-button",
-          "ix-typography",
-          "ix-dropdown"
-        ],
-        "ix-menu-expand-icon": [
-          "ix-icon-button",
-          "ix-spinner"
-        ]
-      },
-      "props": [
-        {
-          "name": "applicationName",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "application-name",
-          "reflectToAttr": false,
-          "docs": "Application name",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "ariaLabelContextIconButton",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "aria-label-context-icon-button",
-          "reflectToAttr": false,
-          "docs": "ARIA label for the context menu icon button\nWill be set for the native HTML button element",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "3.2.0"
-            }
-          ],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "hideContextMenu",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "hide-context-menu",
-          "reflectToAttr": false,
-          "docs": "Hide the sidebar context menu button when set to true",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "navigationTitle",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "navigation-title",
-          "reflectToAttr": false,
-          "docs": "Navigation title",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        }
-      ],
-      "methods": [
-        {
-          "name": "closeOverlay",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "complexType": {
-            "signature": "() => Promise<void>",
-            "parameters": [],
-            "references": {
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
-              }
-            },
-            "return": "Promise<void>"
-          },
-          "signature": "closeOverlay() => Promise<void>",
-          "parameters": [],
-          "docs": "Close current shown overlay",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Use slot based approach"
-            }
-          ],
-          "deprecation": "Will be removed in 2.0.0. Use slot based approach"
-        },
-        {
-          "name": "openOverlay",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "complexType": {
-            "signature": "(name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>",
-            "parameters": [
-              {
-                "name": "name",
-                "type": "string",
-                "docs": ""
-              },
-              {
-                "name": "component",
-                "type": "HTMLElement",
-                "docs": ""
-              },
-              {
-                "name": "icon",
-                "type": "string | undefined",
-                "docs": ""
-              },
-              {
-                "name": "color",
-                "type": "string | undefined",
-                "docs": ""
-              }
-            ],
-            "references": {
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
-              },
-              "HTMLElement": {
-                "location": "global",
-                "id": "global::HTMLElement"
-              }
-            },
-            "return": "Promise<void>"
-          },
-          "signature": "openOverlay(name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>",
-          "parameters": [
-            {
-              "name": "name",
-              "type": "string",
-              "docs": ""
-            },
-            {
-              "name": "component",
-              "type": "HTMLElement",
-              "docs": ""
-            },
-            {
-              "name": "icon",
-              "type": "string | undefined",
-              "docs": ""
-            },
-            {
-              "name": "color",
-              "type": "string | undefined",
-              "docs": ""
-            }
-          ],
-          "docs": "Open a overlay inside content area",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Use slot based approach"
-            },
-            {
-              "name": "param",
-              "text": "name"
-            },
-            {
-              "name": "param",
-              "text": "component"
-            },
-            {
-              "name": "param",
-              "text": "icon"
-            },
-            {
-              "name": "param",
-              "text": "color"
-            }
-          ],
-          "deprecation": "Will be removed in 2.0.0. Use slot based approach"
-        },
-        {
-          "name": "toggleSidebar",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "complexType": {
-            "signature": "(show?: boolean) => Promise<void>",
-            "parameters": [
-              {
-                "name": "show",
-                "type": "boolean | undefined",
-                "docs": "new visibility state"
-              }
-            ],
-            "references": {
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
-              }
-            },
-            "return": "Promise<void>"
-          },
-          "signature": "toggleSidebar(show?: boolean) => Promise<void>",
-          "parameters": [
-            {
-              "name": "show",
-              "type": "boolean | undefined",
-              "docs": "new visibility state"
-            }
-          ],
-          "docs": "Change the visibility of the sidebar",
-          "docsTags": [
-            {
-              "name": "param",
-              "text": "show new visibility state"
-            }
-          ]
-        }
-      ],
-      "events": [
-        {
-          "event": "contextMenuClick",
-          "detail": "void",
-          "bubbles": true,
-          "complexType": {
-            "original": "void",
-            "resolved": "void",
-            "references": {}
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Context menu clicked",
-          "docsTags": []
-        },
-        {
-          "event": "navigationToggled",
-          "detail": "boolean",
-          "bubbles": true,
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Navigation toggled",
-          "docsTags": []
-        }
-      ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "src/components/map-navigation-overlay",
-      "filePath": "src/components/map-navigation-overlay/map-navigation-overlay.tsx",
-      "fileName": "map-navigation-overlay.tsx",
-      "readmePath": "src/components/map-navigation-overlay/readme.md",
-      "usagesDir": "src/components/map-navigation-overlay/usage",
-      "tag": "ix-map-navigation-overlay",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-map-navigation"
-      ],
-      "dependencies": [
-        "ix-icon-button"
-      ],
-      "dependencyGraph": {
-        "ix-map-navigation-overlay": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-map-navigation": [
-          "ix-map-navigation-overlay"
-        ]
-      },
-      "props": [
-        {
-          "name": "ariaLabelCloseIconButton",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "aria-label-close-icon-button",
-          "reflectToAttr": false,
-          "docs": "ARIA label for the close icon button\nWill be set as aria-label on the nested HTML button element",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "3.2.0"
-            }
-          ],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "ariaLabelIcon",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "aria-label-icon",
-          "reflectToAttr": false,
-          "docs": "ARIA label for the icon",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "3.2.0"
-            }
-          ],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "color",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Color of icon",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "since 2.1.0. Use `icon-color`"
-            }
-          ],
-          "deprecation": "since 2.1.0. Use `icon-color`",
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "icon",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "icon",
-          "reflectToAttr": false,
-          "docs": "Icon of overlay",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "iconColor",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "icon-color",
-          "reflectToAttr": false,
-          "docs": "Color of icon",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "name",
-          "type": "string | undefined",
-          "complexType": {
-            "original": "string",
-            "resolved": "string | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "name",
-          "reflectToAttr": false,
-          "docs": "Title of overlay",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "undefined"
-            }
-          ],
-          "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        }
-      ],
-      "methods": [],
-      "events": [
-        {
-          "event": "closeClick",
-          "detail": "any",
-          "bubbles": true,
-          "complexType": {
-            "original": "any",
-            "resolved": "any",
-            "references": {}
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Event closed",
-          "docsTags": []
-        }
-      ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "src/components/menu",
       "filePath": "src/components/menu/menu.tsx",
       "fileName": "menu.tsx",
@@ -14711,35 +14062,6 @@
           "setter": false
         },
         {
-          "name": "enableSettings",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "enable-settings",
-          "reflectToAttr": false,
-          "docs": "Is settings tab is visible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "enableToggleTheme",
           "type": "boolean",
           "complexType": {
@@ -14806,9 +14128,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-collapse",
+          "attr": "i18n-collapse",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Collapse' button",
           "docsTags": [
             {
               "name": "default",
@@ -14835,9 +14157,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-expand",
+          "attr": "i18n-expand",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Expand' button",
           "docsTags": [
             {
               "name": "default",
@@ -14864,7 +14186,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-expand-sidebar",
+          "attr": "i18n-expand-sidebar",
           "reflectToAttr": false,
           "docs": "Accessibility i18n label for the burger menu of the sidebar",
           "docsTags": [
@@ -14893,9 +14215,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-legal",
+          "attr": "i18n-legal",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'About & legal information' button",
           "docsTags": [
             {
               "name": "default",
@@ -14922,9 +14244,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-settings",
+          "attr": "i18n-settings",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Settings' button",
           "docsTags": [
             {
               "name": "default",
@@ -14951,9 +14273,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-toggle-theme",
+          "attr": "i18n-toggle-theme",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Toggle theme' button",
           "docsTags": [
             {
               "name": "default",
@@ -15620,9 +14942,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-show-more",
+          "attr": "i18n-show-more",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "i18n label for 'Show more' button",
           "docsTags": [
             {
               "name": "default",
@@ -15662,35 +14984,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "offsetBottom",
-          "type": "number",
-          "complexType": {
-            "original": "number",
-            "resolved": "number",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "offset-bottom",
-          "reflectToAttr": false,
-          "docs": "Bottom offset",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "0"
-            }
-          ],
-          "default": "0",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -15832,6 +15125,35 @@
           "setter": false
         },
         {
+          "name": "hideLogoutButton",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-logout-button",
+          "reflectToAttr": false,
+          "docs": "Control the visibility of the logout button",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "i18nLogout",
           "type": "string",
           "complexType": {
@@ -15840,9 +15162,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-logout",
+          "attr": "i18n-logout",
           "reflectToAttr": false,
-          "docs": "Use for translation",
+          "docs": "i18n label for 'Logout' button",
           "docsTags": [
             {
               "name": "default",
@@ -15908,35 +15230,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showLogoutButton",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-logout-button",
-          "reflectToAttr": false,
-          "docs": "Control the visibility of the logout button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -16226,7 +15519,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -16427,7 +15720,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -16536,7 +15829,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -16573,7 +15866,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             },
             {
               "name": "default",
@@ -16622,7 +15915,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -16880,7 +16173,7 @@
       },
       "props": [
         {
-          "name": "dismissible",
+          "name": "persistent",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -16888,16 +16181,16 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "dismissible",
+          "attr": "persistent",
           "reflectToAttr": false,
-          "docs": "If true, close button is enabled and alert can be dismissed by the user",
+          "docs": "If true, close button is disabled and alert cannot be dismissed by the user",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -16910,10 +16203,10 @@
         },
         {
           "name": "type",
-          "type": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "| 'alarm'\n    | 'danger'\n    | 'critical'\n    | 'warning'\n    | 'success'\n    | 'info'\n    | 'neutral'\n    | 'primary'",
-            "resolved": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+            "original": "| 'alarm'\n    | 'critical'\n    | 'warning'\n    | 'success'\n    | 'info'\n    | 'neutral'\n    | 'primary'",
+            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
             "references": {}
           },
           "mutable": false,
@@ -16922,16 +16215,11 @@
           "docs": "Specifies the type of the alert.",
           "docsTags": [
             {
-              "name": "deprecated",
-              "text": "Type `danger` will be removed in 4.0. Use `alarm` instead."
-            },
-            {
               "name": "default",
               "text": "'info'"
             }
           ],
           "default": "'info'",
-          "deprecation": "Type `danger` will be removed in 4.0. Use `alarm` instead.",
           "values": [
             {
               "value": "alarm",
@@ -16939,10 +16227,6 @@
             },
             {
               "value": "critical",
-              "type": "string"
-            },
-            {
-              "value": "danger",
               "type": "string"
             },
             {
@@ -17025,69 +16309,11 @@
       "dependencyGraph": {},
       "props": [
         {
-          "name": "animation",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "animation",
-          "reflectToAttr": false,
-          "docs": "Should the modal be animated",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "backdrop",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "backdrop",
-          "reflectToAttr": false,
-          "docs": "Show a backdrop behind the modal dialog",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "beforeDismiss",
-          "type": "((reason?: any) => boolean | Promise<boolean>) | undefined",
+          "type": "((reason?: unknown) => boolean | Promise<boolean>) | undefined",
           "complexType": {
-            "original": "(reason?: any) => boolean | Promise<boolean>",
-            "resolved": "((reason?: any) => boolean | Promise<boolean>) | undefined",
+            "original": "(reason?: unknown) => boolean | Promise<boolean>",
+            "resolved": "((reason?: unknown) => boolean | Promise<boolean>) | undefined",
             "references": {
               "Promise": {
                 "location": "global",
@@ -17102,7 +16328,7 @@
           "docsTags": [],
           "values": [
             {
-              "type": "((reason?: any) => boolean"
+              "type": "((reason?: unknown) => boolean"
             },
             {
               "type": "Promise<boolean>)"
@@ -17175,7 +16401,7 @@
           "setter": false
         },
         {
-          "name": "closeOnEscape",
+          "name": "disableAnimation",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -17183,16 +16409,74 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "close-on-escape",
+          "attr": "disable-animation",
           "reflectToAttr": false,
-          "docs": "If set to true the modal can be closed by pressing the Escape key",
+          "docs": "Should the modal animation be disabled",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "disableEscapeClose",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disable-escape-close",
+          "reflectToAttr": false,
+          "docs": "If set to true the modal cannot be closed by pressing the Escape key",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "hideBackdrop",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-backdrop",
+          "reflectToAttr": false,
+          "docs": "Hide the backdrop behind the modal dialog",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -17272,7 +16556,7 @@
             "docs": ""
           },
           "complexType": {
-            "signature": "<T = any>(reason: T) => Promise<void>",
+            "signature": "<T = unknown>(reason: T) => Promise<void>",
             "parameters": [
               {
                 "name": "reason",
@@ -17292,7 +16576,7 @@
             },
             "return": "Promise<void>"
           },
-          "signature": "closeModal<T = any>(reason: T) => Promise<void>",
+          "signature": "closeModal<T = unknown>(reason: T) => Promise<void>",
           "parameters": [
             {
               "name": "reason",
@@ -17310,7 +16594,7 @@
             "docs": ""
           },
           "complexType": {
-            "signature": "<T = any>(reason?: T) => Promise<void>",
+            "signature": "<T = unknown>(reason?: T) => Promise<void>",
             "parameters": [
               {
                 "name": "reason",
@@ -17330,7 +16614,7 @@
             },
             "return": "Promise<void>"
           },
-          "signature": "dismissModal<T = any>(reason?: T) => Promise<void>",
+          "signature": "dismissModal<T = unknown>(reason?: T) => Promise<void>",
           "parameters": [
             {
               "name": "reason",
@@ -18516,6 +17800,35 @@
           "setter": false
         },
         {
+          "name": "hideItemCount",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-item-count",
+          "reflectToAttr": false,
+          "docs": "Hide item count in advanced mode",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "i18nItems",
           "type": "string",
           "complexType": {
@@ -18524,9 +17837,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-items",
+          "attr": "i18n-items",
           "reflectToAttr": false,
-          "docs": "/**\n  i18n",
+          "docs": "i18n label for 'Items'",
           "docsTags": [
             {
               "name": "default",
@@ -18553,9 +17866,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-of",
+          "attr": "i18n-of",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'of'",
           "docsTags": [
             {
               "name": "default",
@@ -18582,9 +17895,9 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-page",
+          "attr": "i18n-page",
           "reflectToAttr": false,
-          "docs": "i18n",
+          "docs": "i18n label for 'Page'",
           "docsTags": [
             {
               "name": "default",
@@ -18653,35 +17966,6 @@
           "values": [
             {
               "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showItemCount",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-item-count",
-          "reflectToAttr": false,
-          "docs": "Show item count in advanced mode",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -19846,9 +19130,15 @@
           "name": "status",
           "type": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "| 'default'\n    | 'success'\n    | 'error'\n    | 'info'\n    | 'warning'\n    | 'paused'",
+            "original": "ProgressIndicatorStatus",
             "resolved": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
-            "references": {}
+            "references": {
+              "ProgressIndicatorStatus": {
+                "location": "import",
+                "path": "progress-indicator.types",
+                "id": "src/components/progress-indicator/progress-indicator.types.ts::ProgressIndicatorStatus"
+              }
+            }
           },
           "mutable": false,
           "attr": "status",
@@ -20063,7 +19353,7 @@
           "setter": false
         },
         {
-          "name": "collapse",
+          "name": "expanded",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -20071,16 +19361,16 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "collapse",
+          "attr": "expanded",
           "reflectToAttr": false,
-          "docs": "Collapse the card",
+          "docs": "Expand the card",
           "docsTags": [
             {
               "name": "default",
-              "text": "true"
+              "text": "false"
             }
           ],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -21184,7 +20474,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-no-matches",
+          "attr": "i18n-no-matches",
           "reflectToAttr": false,
           "docs": "Information inside of dropdown if no items where found with current filter text",
           "docsTags": [
@@ -21213,7 +20503,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-placeholder",
+          "attr": "i18n-placeholder",
           "reflectToAttr": false,
           "docs": "Input field placeholder",
           "docsTags": [
@@ -21242,7 +20532,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-placeholder-editable",
+          "attr": "i18n-placeholder-editable",
           "reflectToAttr": false,
           "docs": "Input field placeholder for editable select",
           "docsTags": [
@@ -21271,7 +20561,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-select-list-header",
+          "attr": "i18n-select-list-header",
           "reflectToAttr": false,
           "docs": "Select list header",
           "docsTags": [
@@ -22516,35 +21806,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -22592,35 +21853,6 @@
             }
           ],
           "optional": true,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Button outline variant",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -22717,10 +21949,10 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
             "original": "SplitButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "resolved": "\"danger-primary\" | \"danger-secondary\" | \"danger-tertiary\" | \"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
               "SplitButtonVariant": {
                 "location": "import",
@@ -22742,7 +21974,15 @@
           "default": "'primary'",
           "values": [
             {
-              "value": "danger",
+              "value": "danger-primary",
+              "type": "string"
+            },
+            {
+              "value": "danger-secondary",
+              "type": "string"
+            },
+            {
+              "value": "danger-tertiary",
               "type": "string"
             },
             {
@@ -22751,6 +21991,22 @@
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -24270,6 +23526,39 @@
           "setter": false
         },
         {
+          "name": "hideHeader",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-header",
+          "reflectToAttr": false,
+          "docs": "Hides the header of the picker.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "4.0.0"
+            },
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "hourInterval",
           "type": "number",
           "complexType": {
@@ -25068,6 +24357,35 @@
           "setter": false
         },
         {
+          "name": "embedded",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "embedded",
+          "reflectToAttr": false,
+          "docs": "Embedded style (for use in other components)",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "format",
           "type": "string",
           "complexType": {
@@ -25436,205 +24754,6 @@
           "setter": false
         },
         {
-          "name": "showHour",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-hour",
-          "reflectToAttr": false,
-          "docs": "Show hour input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showMinutes",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-minutes",
-          "reflectToAttr": false,
-          "docs": "Show minutes input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "showSeconds",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-seconds",
-          "reflectToAttr": false,
-          "docs": "Show seconds input",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is now determined by the format that is used. Will be removed in 4.0.0"
-            },
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "deprecation": "This is now determined by the format that is used. Will be removed in 4.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "standaloneAppearance",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "standalone-appearance",
-          "reflectToAttr": false,
-          "docs": "Controls the visual presentation and styling of the component when it is displayed as a standalone element",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textSelectTime",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-select-time",
-          "reflectToAttr": false,
-          "docs": "Text of time select button",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Use `i18nConfirmTime` instead. Will be removed in 4.0.0."
-            },
-            {
-              "name": "default",
-              "text": "CONFIRM_BUTTON_DEFAULT"
-            }
-          ],
-          "default": "CONFIRM_BUTTON_DEFAULT",
-          "deprecation": "Use `i18nConfirmTime` instead. Will be removed in 4.0.0.",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "textTime",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-time",
-          "reflectToAttr": false,
-          "docs": "Text for top label",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Use `i18nHeader` instead. Will be removed in 4.0.0."
-            },
-            {
-              "name": "default",
-              "text": "HEADER_DEFAULT"
-            }
-          ],
-          "default": "HEADER_DEFAULT",
-          "deprecation": "Use `i18nHeader` instead. Will be removed in 4.0.0.",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "time",
           "type": "string",
           "complexType": {
@@ -25656,43 +24775,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "timeReference",
-          "type": "\"AM\" | \"PM\" | undefined",
-          "complexType": {
-            "original": "'AM' | 'PM' | undefined",
-            "resolved": "\"AM\" | \"PM\" | undefined",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "time-reference",
-          "reflectToAttr": false,
-          "docs": "Set time reference",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "This is determined by the currently set time. Will be removed in 4.0.0."
-            }
-          ],
-          "deprecation": "This is determined by the currently set time. Will be removed in 4.0.0.",
-          "values": [
-            {
-              "value": "AM",
-              "type": "string"
-            },
-            {
-              "value": "PM",
-              "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -25824,35 +24906,6 @@
           "setter": false
         },
         {
-          "name": "autoClose",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "auto-close",
-          "reflectToAttr": false,
-          "docs": "Autoclose behavior",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "true"
-            }
-          ],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "autoCloseDelay",
           "type": "number",
           "complexType": {
@@ -25929,6 +24982,35 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "preventAutoClose",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "prevent-auto-close",
+          "reflectToAttr": false,
+          "docs": "Autoclose behavior",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "false"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -26713,35 +25795,6 @@
           "setter": false
         },
         {
-          "name": "ghost",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "ghost",
-          "reflectToAttr": false,
-          "docs": "Button with no background or outline",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
           "name": "icon",
           "type": "string | undefined",
           "complexType": {
@@ -26782,7 +25835,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "3.3.0"
+              "text": "4.0.0"
             }
           ],
           "values": [
@@ -26810,35 +25863,6 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "false"
-            }
-          ],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false,
-          "getter": false,
-          "setter": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Outline button",
           "docsTags": [
             {
               "name": "default",
@@ -26887,15 +25911,15 @@
         },
         {
           "name": "variant",
-          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "type": "\"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
           "complexType": {
-            "original": "ButtonVariant",
-            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "original": "ToggleButtonVariant",
+            "resolved": "\"primary\" | \"secondary\" | \"subtle-primary\" | \"subtle-secondary\" | \"subtle-tertiary\" | \"tertiary\"",
             "references": {
-              "ButtonVariant": {
-                "location": "import",
-                "path": "../button/button",
-                "id": "src/components/button/button.tsx::ButtonVariant"
+              "ToggleButtonVariant": {
+                "location": "local",
+                "path": "src/components/toggle-button/toggle-button.tsx",
+                "id": "src/components/toggle-button/toggle-button.tsx::ToggleButtonVariant"
               }
             }
           },
@@ -26906,21 +25930,33 @@
           "docsTags": [
             {
               "name": "default",
-              "text": "'secondary'"
+              "text": "'subtle-primary'"
             }
           ],
-          "default": "'secondary'",
+          "default": "'subtle-primary'",
           "values": [
-            {
-              "value": "danger",
-              "type": "string"
-            },
             {
               "value": "primary",
               "type": "string"
             },
             {
               "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-primary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-secondary",
+              "type": "string"
+            },
+            {
+              "value": "subtle-tertiary",
+              "type": "string"
+            },
+            {
+              "value": "tertiary",
               "type": "string"
             }
           ],
@@ -28118,7 +27154,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-upload-disabled",
+          "attr": "i18n-upload-disabled",
           "reflectToAttr": false,
           "docs": "Text for disabled state",
           "docsTags": [
@@ -28147,7 +27183,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "i-1-8n-upload-file",
+          "attr": "i18n-upload-file",
           "reflectToAttr": false,
           "docs": "Label for upload file button",
           "docsTags": [
@@ -28474,14 +27510,14 @@
         },
         {
           "name": "deprecated",
-          "text": "Will be removed with 4.0.0"
+          "text": "Since 3.0.0. Will be removed with 4.0.0\nNot maintained anymore."
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
-      "deprecation": "Will be removed with 4.0.0",
+      "deprecation": "Since 3.0.0. Will be removed with 4.0.0\nNot maintained anymore.",
       "props": [
         {
           "name": "message",
@@ -28920,7 +27956,7 @@
   ],
   "typeLibrary": {
     "src/components/button/button.tsx::ButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
@@ -28933,6 +27969,11 @@
       "declaration": "export interface CustomCloseEvent {\n  nativeEvent: MouseEvent;\n  name: string;\n}",
       "docstring": "",
       "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
+    },
+    "src/components/toggle-button/toggle-button.tsx::ToggleButtonVariant": {
+      "declaration": "export type ToggleButtonVariant = Exclude<\n  ButtonVariant,\n  `danger-${BaseButtonVariant}`\n>;",
+      "docstring": "",
+      "path": "src/components/toggle-button/toggle-button.tsx"
     },
     "src/components/action-card/action-card.types.ts::ActionCardVariant": {
       "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
@@ -28963,6 +28004,11 @@
       "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/card/card.types.ts"
+    },
+    "src/components/card-accordion/card-accordion.types.ts::CardAccordionVariant": {
+      "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
+      "docstring": "",
+      "path": "src/components/card-accordion/card-accordion.types.ts"
     },
     "src/components/card-accordion/card-accordion.types.ts::CardAccordionExpandChangeEvent": {
       "declaration": "{\n  expand: boolean;\n  nativeEvent: Event;\n}",
@@ -29050,7 +28096,7 @@
       "path": "src/components/dropdown/placement.ts"
     },
     "src/components/dropdown-button/dropdown-button.types.ts::DropdownButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.types.ts"
     },
@@ -29064,13 +28110,13 @@
       "docstring": "",
       "path": "src/components/utils/make-ref.ts"
     },
-    "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
-      "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
+    "src/components/flip-tile/flip-tile.types.ts::FlipTileVariant": {
+      "declaration": "export type FlipTileVariant =\n  | 'outline'\n  | 'filled'\n  | 'info'\n  | 'warning'\n  | 'alarm'\n  | 'primary';",
       "docstring": "",
-      "path": "src/components/flip-tile/flip-tile-state.ts"
+      "path": "src/components/flip-tile/flip-tile.types.ts"
     },
     "src/components/icon-button/icon-button.types.ts::IconButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/icon-button/icon-button.types.ts"
     },
@@ -29129,6 +28175,11 @@
       "docstring": "",
       "path": "src/components/progress-indicator/progress-indicator.types.ts"
     },
+    "src/components/progress-indicator/progress-indicator.types.ts::ProgressIndicatorStatus": {
+      "declaration": "export type ProgressIndicatorStatus =\n  | 'default'\n  | 'success'\n  | 'error'\n  | 'info'\n  | 'warning'\n  | 'paused';",
+      "docstring": "",
+      "path": "src/components/progress-indicator/progress-indicator.types.ts"
+    },
     "src/components/push-card/push-card.types.ts::PushCardVariant": {
       "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
@@ -29140,7 +28191,7 @@
       "path": "src/components/slider/slider.types.ts"
     },
     "src/components/split-button/split-button.types.ts::SplitButtonVariant": {
-      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant =\n  | `${BaseButtonVariant}`\n  | `${BaseButtonStyle}-${BaseButtonVariant}`;",
       "docstring": "",
       "path": "src/components/split-button/split-button.types.ts"
     },
@@ -29165,7 +28216,7 @@
       "path": "src/components/toast/toast-container.types.ts"
     },
     "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  title?: string;\n  message?: string | HTMLElement;\n  action?: HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "declaration": "export interface ToastConfig {\n  /**\n   * Title of the toast\n   */\n  title?: string;\n  /**\n   * Message of the toast\n   */\n  message?: string | HTMLElement;\n  /**\n   * Action element that is displayed below the toast message/title\n   */\n  action?: HTMLElement;\n  /**\n   * Type of the toast\n   */\n  type?: ToastType;\n  /**\n   * Controls whether the toast closes automatically after a delay\n   */\n  autoClose?: boolean;\n  /**\n   * Sets the delay for autoClose in milliseconds\n   */\n  autoCloseDelay?: number;\n  /**\n   * Icon that is displayed with the toast\n   */\n  icon?: string;\n  /**\n   * Color of the icon\n   */\n  iconColor?: string;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
     },
@@ -29179,10 +28230,10 @@
       "docstring": "",
       "path": "src/components.d.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.36.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "../../node_modules/.pnpm/@stencil+core@4.37.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.36.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "../../node_modules/.pnpm/@stencil+core@4.37.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

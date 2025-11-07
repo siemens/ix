@@ -44,7 +44,7 @@ const customAction = ref<HTMLElement | null>(null);
   <template>
     <div ref="customMessage">This message is from template</div>
     <div ref="customAction">
-      <IxButton ghost :icon="iconUndo">Undo</IxButton>
+      <IxButton variant="tertiary" :icon="iconUndo">Undo</IxButton>
     </div>
   </template>
 </template>

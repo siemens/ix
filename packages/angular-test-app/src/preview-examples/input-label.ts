@@ -10,7 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
-  templateUrl: './input-label.html'
+  templateUrl: './input-label.html',
 })
 export default class InputLabel {}

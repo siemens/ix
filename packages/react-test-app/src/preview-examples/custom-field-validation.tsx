@@ -9,10 +9,14 @@
 
 import { IxCustomField } from '@siemens/ix-react';
 
+const wrapperStyle = {
+  marginBottom: '1rem',
+};
+
 export default () => {
   return (
     <>
-      <div>
+      <div style={wrapperStyle}>
         <IxCustomField
           helper-text="Add your first name here"
           valid-text="Valid first name"
@@ -26,7 +30,7 @@ export default () => {
         </IxCustomField>
       </div>
 
-      <div>
+      <div style={wrapperStyle}>
         <IxCustomField info-text="Family name" label="Last name">
           <input
             id="last-name"
@@ -36,7 +40,7 @@ export default () => {
         </IxCustomField>
       </div>
 
-      <div>
+      <div style={wrapperStyle}>
         <IxCustomField warning-text="Not a valid email address" label="Email">
           <input
             id="email"
@@ -46,7 +50,7 @@ export default () => {
         </IxCustomField>
       </div>
 
-      <div>
+      <div style={wrapperStyle}>
         <IxCustomField invalid-text="Required" label="Address">
           <input id="address" className="ix-form-control ix-invalid" />
         </IxCustomField>

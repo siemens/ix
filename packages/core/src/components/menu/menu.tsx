@@ -63,11 +63,6 @@ export class Menu {
    */
   @Prop() enableToggleTheme = false;
 
-  /**
-   * Is settings tab is visible
-   */
-  @Prop() enableSettings = true;
-
   /** @internal */
   @Prop() enableMapExpand = false;
 
@@ -84,7 +79,8 @@ export class Menu {
   /**
    * Accessibility i18n label for the burger menu of the sidebar
    */
-  @Prop() i18nExpandSidebar = 'Expand sidebar';
+  @Prop({ attribute: 'i18n-expand-sidebar' }) i18nExpandSidebar =
+    'Expand sidebar';
 
   /**
    *  Toggle the expand state of the menu
@@ -103,10 +99,6 @@ export class Menu {
 
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
-    if (this.applicationLayoutContext?.host === 'map-navigation') {
-      console.warn('ix-map-navigation does not support pinning of the menu');
-      return;
-    }
     this.setPinned(this.pinned);
     if (newPinned) {
       applicationLayoutService.disableBreakpointDetection();
@@ -118,24 +110,29 @@ export class Menu {
   }
 
   /**
+   *  i18n label for 'About & legal information' button
    */
-  @Prop() i18nLegal = 'About & legal information';
+  @Prop({ attribute: 'i18n-legal' }) i18nLegal = 'About & legal information';
 
   /**
+   * i18n label for 'Settings' button
    */
-  @Prop() i18nSettings = 'Settings';
+  @Prop({ attribute: 'i18n-settings' }) i18nSettings = 'Settings';
 
   /**
+   * i18n label for 'Toggle theme' button
    */
-  @Prop() i18nToggleTheme = 'Toggle theme';
+  @Prop({ attribute: 'i18n-toggle-theme' }) i18nToggleTheme = 'Toggle theme';
 
   /**
+   * i18n label for 'Expand' button
    */
-  @Prop() i18nExpand = ' Expand';
+  @Prop({ attribute: 'i18n-expand' }) i18nExpand = ' Expand';
 
   /**
+   * i18n label for 'Collapse' button
    */
-  @Prop() i18nCollapse = 'Collapse';
+  @Prop({ attribute: 'i18n-collapse' }) i18nCollapse = 'Collapse';
 
   /**
    * Menu expanded
@@ -336,10 +333,7 @@ export class Menu {
     if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }
-    if (this.applicationLayoutContext?.host === 'map-navigation') {
-      this.breakpoint = 'md';
-      return;
-    }
+
     if (!this.applicationLayoutContext) {
       return;
     }
@@ -667,7 +661,7 @@ export class Menu {
                     this.showAppSwitch();
                   }}
                   icon={iconApps}
-                  ghost
+                  variant="subtle-tertiary"
                 ></ix-icon-button>
               )}
           </div>

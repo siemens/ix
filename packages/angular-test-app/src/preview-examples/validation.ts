@@ -10,6 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: `
     <form
@@ -39,7 +40,6 @@ import { Component } from '@angular/core';
         </ix-row>
         <ix-row>
           <ix-col size="4">
-            <ix-validation-tooltip message="Cannot be empty!">
               <label class="ix-form-label" for="validationCustom02"
                 >Last name</label
               >
@@ -52,7 +52,7 @@ import { Component } from '@angular/core';
                 #lastName="ngModel"
                 required
               />
-            </ix-validation-tooltip>
+            <div class="invalid-feedback">Please choose a last name.</div>
           </ix-col>
         </ix-row>
         <ix-row>

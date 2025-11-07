@@ -12,24 +12,11 @@ import { NgClass } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 
-import {
-  IxLayoutGrid,
-  IxRow,
-  IxCol,
-  IxValidationTooltip,
-} from '@siemens/ix-angular/standalone';
+import { IxLayoutGrid, IxRow, IxCol } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
-  imports: [
-    IxLayoutGrid,
-    IxRow,
-    IxCol,
-    IxValidationTooltip,
-    NgClass,
-    FormsModule,
-  ],
+  imports: [IxLayoutGrid, IxRow, IxCol, NgClass, FormsModule],
   template: `
     <form
       class="needs-validation"
@@ -55,7 +42,6 @@ import {
         </ix-row>
         <ix-row>
           <ix-col size="4">
-            <ix-validation-tooltip message="Cannot be empty!">
               <label for="validationCustom02">Last name</label>
               <input
                 name="lastName"
@@ -65,7 +51,7 @@ import {
                 #lastName="ngModel"
                 required
               />
-            </ix-validation-tooltip>
+            <div class="invalid-feedback">Please choose a last name.</div>
           </ix-col>
         </ix-row>
         <ix-row>

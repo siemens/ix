@@ -29,11 +29,13 @@
 
 @include form-component.host-warning {
   textarea {
+    background-color: var(--theme-input--background--warning);
     border-color: var(--theme-input--border-color--warning--active) !important;
   }
 
   textarea:hover {
-    border-color: var(--theme-input--border-color--warning--active) !important;
+    background-color: var(--theme-input--background--warning--hover);
+    border-color: var(--theme-input--border-color--warning--hover) !important;
   }
 
   textarea:active {
@@ -48,6 +50,7 @@
   }
 
   textarea:hover {
+    background-color: var(--theme-input--background--invalid--hover);
     border-color: var(--theme-input--border-color--invalid--hover) !important;
   }
 

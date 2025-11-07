@@ -39,6 +39,7 @@ export class Drawer {
   /**
    * Fired in case of an outside click during drawer showed state
    */
+  // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() closeOnClickOutside = true;
 
   /**
@@ -240,7 +241,7 @@ export class Drawer {
               icon={iconClose}
               iconColor="color-soft-text"
               size="24"
-              ghost
+              variant="tertiary"
               onClick={() => this.onCloseClicked()}
               data-testid="close-button"
               aria-label={this.ariaLabelCloseButton}

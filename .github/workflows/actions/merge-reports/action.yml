@@ -26,11 +26,15 @@ runs:
 
     - name: Install Playwright Browsers
       shell: bash
-      run: pnpm run test.setup --cache-dir=.turbo --filter ${{ inputs.projectName }}
+      env:
+        PROJECT_NAME: ${{ inputs.projectName }}
+      run: pnpm run test.setup --cache-dir=.turbo --filter $PROJECT_NAME
 
     - name: Merge into HTML Report
       shell: bash
-      run: pnpm --filter ${{ inputs.projectName }} exec playwright merge-reports --reporter html ../../all-blob-reports
+      env:
+        PROJECT_NAME: ${{ inputs.projectName }}
+      run: pnpm --filter $PROJECT_NAME exec playwright merge-reports --reporter html ../../all-blob-reports
 
     - name: Upload HTML report
       uses: actions/upload-artifact@v4

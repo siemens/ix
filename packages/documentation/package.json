@@ -1,10 +1,12 @@
 {
-  "name": "documentation",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@siemens/ix-docs",
+  "version": "4.0.0",
   "scripts": {
     "build": "tsx --tsconfig ./tsconfig.json ./scripts/build.ts"
   },
+  "files": [
+    "build"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@siemens/ix-angular": "workspace:*",
@@ -18,18 +20,14 @@
     "@types/tar": "^6.1.13",
     "angular-test-app": "workspace:*",
     "angular-standalone-test-app": "workspace:*",
-    "autoprefixer": "10.4.5",
-    "axios": "^1.8.2",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.1",
     "html-test-app": "workspace:*",
     "ionic-test-app": "workspace:*",
     "mustache": "^4.2.0",
-    "octokit": "^3",
     "react-test-app": "workspace:*",
     "rimraf": "^6.0.1",
     "storybook-docs": "workspace:*",
-    "tar": "^7.4.3",
     "tsx": "^4.15.4",
     "typedoc": "^0.27.9",
     "typescript": "~5.5.2",

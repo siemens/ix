@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
   <ix-application-header name="My Application">
     <div class="placeholder-logo" slot="logo"></div>
 
-    <ix-dropdown-button variant="secondary" label="Select config" ghost>
+    <ix-dropdown-button variant="subtle-tertiary" label="Select config">
       <ix-dropdown-item label="Config 1"></ix-dropdown-item>
       <ix-dropdown-item label="Config 2"></ix-dropdown-item>
       <ix-dropdown-item label="Config 3"></ix-dropdown-item>
@@ -33,35 +33,13 @@ LICENSE file in the root directory of this source tree.
     <ix-content-header slot="header" header-title="Choose breakpoint">
     </ix-content-header>
 
-    <input
-      id="small"
-      type="radio"
-      name="layout"
-      value="sm"
-      class="ix-form-control"
-      (change)="onCheckedChange('sm')"
-    />
-    <label class="ix-form-label" for="small">Small</label>
-
-    <input
-      id="medium"
-      type="radio"
-      name="layout"
-      value="md"
-      class="ix-form-control"
-      (change)="onCheckedChange('md')"
-      checked
-    />
-    <label class="ix-form-label" for="medium">Medium</label>
-
-    <input
-      id="large"
-      type="radio"
-      name="layout"
-      value="lg"
-      class="ix-form-control"
-      (change)="onCheckedChange('lg')"
-    />
-    <label class="ix-form-label" for="large">Large</label>
+    <ix-radio-group
+      [value]="breakpoints[0]"
+      (valueChange)="onCheckedChange($event.detail)"
+    >
+      <ix-radio value="sm" label="Small"></ix-radio>
+      <ix-radio value="md" label="Medium"></ix-radio>
+      <ix-radio value="lg" label="Large"></ix-radio>
+    </ix-radio-group>
   </ix-content>
 </ix-application>

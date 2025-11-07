@@ -133,7 +133,7 @@ Contributions are always welcome. Here's how to get started to make sure your co
 
 ## Setup
 
-1. **Node.js Setup**: This project uses [Volta](https://volta.sh/) to pin Node.js version 22.18.0. You can either:
+1. **Node.js Setup**: This project uses [Volta](https://volta.sh/) to pin the Node.js version defined in `<root>/package.json`. You can either:
    - Install [Volta](https://volta.sh/) and let it automatically manage the correct Node.js version when you enter the project directory
    - Or manually [download the installer](https://nodejs.org/) for Node.js and [install pnpm](https://pnpm.io/installation). Checkout `<root>/package.json` the property `volta` for the defined versions.
 2. Fork this repository.
