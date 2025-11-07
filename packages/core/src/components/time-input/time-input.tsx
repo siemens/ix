@@ -43,6 +43,7 @@ import {
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  updateFormValidity as updateFormValidityUtil,
 } from '../utils/input/picker-input.util';
 
 /**
@@ -74,9 +75,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /**
    * Value of the input element
    */
-  @Prop({ reflect: true, mutable: true }) value: string = '';
+  @Prop({ reflect: true, mutable: true }) value?: string = '';
 
-  @Watch('value') watchValuePropHandler(newValue: string) {
+  @Watch('value') watchValuePropHandler(newValue: string | undefined) {
+    if (newValue === null || newValue === undefined) {
+      this.touched = false;
+    }
     this.onInput(newValue);
   }
 
@@ -241,12 +245,24 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private formSubmissionAttempted = false;
+  private formSubmitHandler?: () => void;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  updateFormInternalValue(value: string): void {
-    this.formInternals.setFormValue(value);
+  updateFormInternalValue(value: string | undefined): void {
+    this.formInternals.setFormValue(value ?? null);
     this.value = value;
+  }
+
+  private updateFormValidity(): void {
+    updateFormValidityUtil(
+      this.formInternals,
+      this.required,
+      this.value,
+      this.isInputInvalid,
+      this.inputElementRef
+    );
   }
 
   connectedCallback(): void {
@@ -259,6 +275,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
         this.hostElement,
         this.updatePaddings.bind(this)
       );
+  }
+
+  async componentDidLoad(): Promise<void> {
+    this.updateFormValidity();
   }
 
   componentWillLoad(): void {
@@ -278,6 +298,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
+    this.setupFormSubmissionTracking();
   }
 
   private updatePaddings() {
@@ -291,11 +312,19 @@ export class TimeInput implements IxInputFieldComponent<string> {
   disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+
+    // Clean up form submit event listener
+    if (this.formSubmitHandler) {
+      const form = this.hostElement.closest('form');
+      if (form) {
+        form.removeEventListener('submit', this.formSubmitHandler);
+      }
+    }
   }
 
   @Watch('value')
   watchValue() {
-    this.time = this.value;
+    this.time = this.value ?? null;
   }
 
   /** @internal */
@@ -310,12 +339,16 @@ export class TimeInput implements IxInputFieldComponent<string> {
     return Promise.resolve(this.formInternals.form);
   }
 
-  async onInput(value: string) {
+  async onInput(value: string | undefined) {
     this.value = value;
+    this.touched = true;
+
     if (!value) {
-      this.isInputInvalid = false;
+      this.isInputInvalid = this.required === true && (this.touched || this.formSubmissionAttempted);
       this.updateFormInternalValue(value);
       this.valueChange.emit(value);
+      this.updateFormValidity();
+      await this.syncValidationClasses();
       return;
     }
 
@@ -326,6 +359,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
     const time = DateTime.fromFormat(value, this.format);
     if (time.isValid) {
       this.isInputInvalid = false;
+      this.time = value;
     } else {
       this.isInputInvalid = true;
       this.invalidReason = time.invalidReason;
@@ -333,6 +367,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
     this.updateFormInternalValue(value);
     this.valueChange.emit(value);
+    this.updateFormValidity();
+    await this.syncValidationClasses();
   }
 
   onTimeIconClick(event: Event) {
@@ -345,8 +381,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async openDropdown() {
-    // keep picker in sync with input
-    this.time = this.value;
+    this.time = this.value ?? null;
 
     return openDropdownUtil(this.dropdownElementRef);
   }
@@ -390,12 +425,17 @@ export class TimeInput implements IxInputFieldComponent<string> {
             }
           }}
           onFocus={async () => {
-            this.openDropdown();
+            if (!this.readonly && !this.disabled) {
+              this.openDropdown();
+            }
             this.ixFocus.emit();
           }}
-          onBlur={() => {
+          onBlur={async () => {
             this.ixBlur.emit();
             this.touched = true;
+
+            await this.updateFormValidity();
+            await this.syncValidationClasses();
           }}
         ></input>
         <SlotEnd
@@ -447,6 +487,32 @@ export class TimeInput implements IxInputFieldComponent<string> {
     );
   }
 
+  /** @internal */
+  @Method()
+  async syncValidationClasses(): Promise<void> {
+    const [hasValue, touched] = await Promise.all([
+      this.hasValidValue(),
+      this.isTouched(),
+    ]);
+
+    if (this.required) {
+      const isRequiredInvalid = !hasValue && touched;
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        isRequiredInvalid
+      );
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+    }
+
+    this.hostElement.classList.toggle(
+      'ix-invalid--validity-patternMismatch',
+      this.isInputInvalid
+    );
+
+    await this.updateFormValidity();
+  }
+
   /**
    * Get the native input element
    */
@@ -470,6 +536,17 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  private setupFormSubmissionTracking(): void {
+    // Find the form that contains this component
+    const form = this.hostElement.closest('form');
+    if (form) {
+      this.formSubmitHandler = () => {
+        this.formSubmissionAttempted = true;
+      };
+      form.addEventListener('submit', this.formSubmitHandler);
+    }
   }
 
   render() {
