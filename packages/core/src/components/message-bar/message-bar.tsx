@@ -41,11 +41,9 @@ interface MessageTypeConfig {
 export class MessageBar {
   /**
    * Specifies the type of the alert.
-   * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
    */
   @Prop() type:
     | 'alarm'
-    | 'danger'
     | 'critical'
     | 'warning'
     | 'success'
@@ -54,9 +52,9 @@ export class MessageBar {
     | 'primary' = 'info';
 
   /**
-   * If true, close button is enabled and alert can be dismissed by the user
+   * If true, close button is disabled and alert cannot be dismissed by the user
    */
-  @Prop() dismissible = true;
+  @Prop() persistent = false;
 
   /**
    * An event emitted when the close button is clicked
@@ -76,10 +74,10 @@ export class MessageBar {
     string,
     MessageTypeConfig
   > = {
+    //TODO(IX-3400): Replace icon colors with proper CSS variables when available
     alarm: { icon: iconError, color: 'color-alarm' },
-    danger: { icon: iconError, color: 'color-alarm' },
     critical: { icon: iconWarningRhomb, color: 'color-critical' },
-    warning: { icon: iconWarning, color: 'color-warning' },
+    warning: { icon: iconWarning, color: 'color-warning-text' },
     success: { icon: iconSuccess, color: 'color-success' },
     info: { icon: iconInfo, color: 'color-info' },
     neutral: { icon: iconNotification, color: 'color-neutral' },
@@ -124,7 +122,7 @@ export class MessageBar {
           <div class="message-content">
             <slot></slot>
           </div>
-          {this.dismissible ? (
+          {!this.persistent && (
             <ix-icon-button
               icon={iconClose}
               iconColor="color-soft-text"
@@ -137,8 +135,6 @@ export class MessageBar {
               }}
               data-testid="close-btn"
             ></ix-icon-button>
-          ) : (
-            ''
           )}
         </div>
       </Host>

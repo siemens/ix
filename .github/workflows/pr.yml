@@ -49,10 +49,10 @@ jobs:
               - packages/core/**
               - packages/angular/**
               - packages/react/**
+              - packages/vue/**
               - packages/angular-test-app/**
               - packages/react-test-app/**
-              - packages/figma-plugin/**
-
+              - packages/vue-test-app/**
   build:
     needs: changes
     runs-on: ubuntu-latest

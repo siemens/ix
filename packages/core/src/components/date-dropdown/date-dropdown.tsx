@@ -56,9 +56,9 @@ export class DateDropdown
   @Prop() format = 'yyyy/LL/dd';
 
   /**
-   * If true a range of dates can be selected.
+   * If true disables date range selection (from/to).
    */
-  @Prop() range = true;
+  @Prop() singleSelection = false;
 
   /**
    * Picker date. If the picker is in range mode this property is the start date.
@@ -137,11 +137,11 @@ export class DateDropdown
   }
 
   /**
-   * Controls whether the user is allowed to pick custom date ranges in the component.
-   * When set to 'true', the user can select a custom date range using the date picker.
-   * When set to 'false', only predefined time date ranges are available for selection.
+   * Controls whether custom date range selection is disabled in the component.
+   * When set to 'false', the user can select a custom date range using the date picker.
+   * When set to 'true', only predefined time date ranges are available for selection.
    */
-  @Prop() customRangeAllowed = true;
+  @Prop() customRangeDisabled = false;
 
   /**
    * An array of predefined date range options for the date picker.
@@ -238,7 +238,7 @@ export class DateDropdown
       this.dateRangeId === 'custom' ||
       (!this.dateRangeId && !!this.from && !!this.to);
 
-    if (isCustomRange && this.customRangeAllowed) {
+    if (isCustomRange && !this.customRangeDisabled) {
       this.selectedDateRangeId = 'custom';
       this.updateCurrentDate();
 
@@ -385,7 +385,7 @@ export class DateDropdown
                       checked={this.selectedDateRangeId === dateRangeOption.id}
                     ></ix-dropdown-item>
                   ))}
-                  <div hidden={!this.customRangeAllowed}>
+                  <div hidden={this.customRangeDisabled}>
                     <ix-dropdown-item
                       label={this.i18nCustomItem}
                       checked={this.selectedDateRangeId === 'custom'}
@@ -398,7 +398,7 @@ export class DateDropdown
                 {this.selectedDateRangeId === 'custom' && (
                   <Fragment>
                     <ix-date-picker
-                      standaloneAppearance={false}
+                      embedded
                       locale={this.locale}
                       onDateChange={(e) => {
                         e.stopPropagation();
@@ -410,7 +410,7 @@ export class DateDropdown
                       }}
                       onDateRangeChange={(e) => e.stopPropagation()}
                       format={this.format}
-                      range={this.range}
+                      singleSelection={this.singleSelection}
                       from={this.from || this.currentRangeValue?.from}
                       to={this.to || this.currentRangeValue?.to}
                       minDate={this.minDate}

@@ -16,6 +16,8 @@
         "www/**",
         "loader/**",
         "component-doc.json",
+        "component-usage-by-component.json",
+        "component-usage.json",
         "components/**"
       ],
       "outputLogs": "new-only"
