@@ -12,7 +12,7 @@ import { IxCustomField } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <div>
+  <div class="custom-field-wrapper">
     <IxCustomField
       helper-text="Add your first name here"
       valid-text="Valid first name"
@@ -26,21 +26,27 @@ import { IxCustomField } from '@siemens/ix-vue';
     </IxCustomField>
   </div>
 
-  <div>
+  <div class="custom-field-wrapper">
     <IxCustomField info-text="Family name" label="Last name">
       <input id="last-name" className="ix-form-control ix-info" value="Doe" />
     </IxCustomField>
   </div>
 
-  <div>
+  <div class="custom-field-wrapper">
     <IxCustomField warning-text="Not a valid email address" label="Email">
       <input id="email" className="ix-form-control ix-warning" value="info@" />
     </IxCustomField>
   </div>
 
-  <div>
+  <div class="custom-field-wrapper">
     <IxCustomField invalid-text="Required" label="Address">
       <input id="address" className="ix-form-control ix-invalid" />
     </IxCustomField>
   </div>
 </template>
+
+<style scoped>
+.custom-field-wrapper {
+  margin-bottom: 1rem;
+}
+</style>

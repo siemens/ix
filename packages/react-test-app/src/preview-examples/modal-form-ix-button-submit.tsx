@@ -37,7 +37,7 @@ function CustomModal() {
         </form>
       </IxModalContent>
       <IxModalFooter>
-        <IxButton outline onClick={() => dismiss()}>
+        <IxButton variant="subtle-primary" onClick={() => dismiss()}>
           Cancel
         </IxButton>
         <IxButton form="create-resource-form" type="submit">

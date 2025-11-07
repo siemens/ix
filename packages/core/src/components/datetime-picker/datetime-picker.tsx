@@ -24,30 +24,9 @@ export class DatetimePicker
   implements Omit<IxDatePickerComponent, 'corners' | 'format'>
 {
   /**
-   * If true a date-range can be selected (from/to).
+   * If true disables date range selection (from/to).
    */
-  @Prop() range = true;
-
-  /**
-   * Show hour input
-   *
-   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-   */
-  @Prop() showHour = true;
-
-  /**
-   * Show minutes input
-   *
-   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-   */
-  @Prop() showMinutes = true;
-
-  /**
-   * Show seconds input
-   *
-   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-   */
-  @Prop() showSeconds = true;
+  @Prop() singleSelection = false;
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -111,7 +90,7 @@ export class DatetimePicker
    *
    * @since 3.0.0
    */
-  @Prop() i18nTime: string = 'Time';
+  @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
    * ARIA label for the previous month icon button
@@ -198,7 +177,7 @@ export class DatetimePicker
               <ix-date-picker
                 ref={(ref) => (this.datePickerElement = ref)}
                 corners="left"
-                range={this.range}
+                singleSelection={this.singleSelection}
                 onDateChange={(event) => this.onDateChange(event)}
                 from={this.from}
                 to={this.to}
@@ -206,7 +185,7 @@ export class DatetimePicker
                 minDate={this.minDate}
                 maxDate={this.maxDate}
                 weekStartIndex={this.weekStartIndex}
-                standaloneAppearance={false}
+                embedded
                 locale={this.locale}
                 showWeekNumbers={this.showWeekNumbers}
                 ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
@@ -218,15 +197,11 @@ export class DatetimePicker
               <ix-time-picker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
-                standaloneAppearance={false}
+                embedded
                 dateTimePickerAppearance={true}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
-                textTime={this.i18nTime}
                 time={this.time}
-                showHour={this.showHour}
-                showMinutes={this.showMinutes}
-                showSeconds={this.showSeconds}
               ></ix-time-picker>
               <div class="btn-select-date-container">
                 <ix-button

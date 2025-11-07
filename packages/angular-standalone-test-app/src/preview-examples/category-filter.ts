@@ -11,20 +11,19 @@ import { Component } from '@angular/core';
 import { IxCategoryFilter } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxCategoryFilter],
   template: `
     <ix-category-filter
       placeholder="Filter by"
-      [repeatCategories]="repeatCategories"
+      [uniqueCategories]="uniqueCategories"
       [categories]="categories"
       [filterState]="filterState"
     ></ix-category-filter>
   `,
 })
 export default class CategoryFilter {
-  repeatCategories = false;
+  uniqueCategories = true;
   filterState = {
     tokens: ['Custom filter text'],
     categories: [

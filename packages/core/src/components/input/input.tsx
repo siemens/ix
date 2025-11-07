@@ -325,9 +325,9 @@ export class Input implements IxInputFieldComponent<string> {
                 color="color-weak-text"
                 class={{
                   'password-eye': true,
-                  'eye-hidden': this.type !== 'password',
+                  'eye-hidden': this.type !== 'password' || this.disabled,
                 }}
-                ghost
+                variant="tertiary"
                 icon={
                   this.inputType === 'password' ? iconEye : iconEyeCancelled
                 }

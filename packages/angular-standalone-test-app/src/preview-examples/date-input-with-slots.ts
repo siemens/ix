@@ -16,7 +16,6 @@ import {
 } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxDateInput, IxIcon, IxTypography, IxDateValueAccessorDirective],
   templateUrl: './date-input-with-slots.html',

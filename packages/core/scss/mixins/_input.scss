@@ -9,11 +9,11 @@
 @use './fonts';
 @use './validation/form-component';
 
-@mixin element-input($feature-read-only: true) {
+@mixin element-input($feature-read-only: true, $padding: 0.25rem 0.5rem) {
   & {
     min-height: 2rem;
     width: auto;
-    padding: 0.25rem 0.5rem;
+    padding: $padding;
     background-color: var(--theme-input--background);
     color: var(--theme-input--color);
     appearance: textfield;
@@ -165,15 +165,15 @@
 
   @include form-component.input-warning {
     & {
+      background-color: var(--theme-input--background--warning);
       border-color: var(
         --theme-input--border-color--warning--active
       ) !important;
     }
 
     &:hover {
-      border-color: var(
-        --theme-input--border-color--warning--active
-      ) !important;
+      background-color: var(--theme-input--background--warning--hover);
+      border-color: var(--theme-input--border-color--warning--hover) !important;
     }
 
     &:active {
@@ -190,6 +190,7 @@
     }
 
     &:hover {
+      background-color: var(--theme-input--background--invalid--hover);
       border-color: var(--theme-input--border-color--invalid--hover) !important;
     }
 

@@ -129,17 +129,10 @@ export class CategoryFilter {
   @Prop() staticOperator?: LogicalFilterOperator;
 
   /**
-   * If set to true, allows that a single category can be set more than once.
-   * An already set category will not appear in the category dropdown if set to false.
-   *
-   * Defaults to true
+   * If set to true, prevents that a single category can be set more than once.
+   * An already set category will not appear in the category dropdown if set to true.
    */
-  @Prop() repeatCategories = true;
-
-  /**
-   * @internal For debugging purposes only!
-   */
-  @Prop() tmpDisableScrollIntoView = true;
+  @Prop() uniqueCategories = false;
 
   /**
    * i18n
@@ -147,9 +140,9 @@ export class CategoryFilter {
   @Prop() labelCategories = 'Categories';
 
   /**
-   * i18n
+   * i18n label for 'Filter by text'
    */
-  @Prop() i18nPlainText = 'Filter by text';
+  @Prop({ attribute: 'i18n-plain-text' }) i18nPlainText = 'Filter by text';
 
   /**
    * ARIA label for the reset button
@@ -543,7 +536,7 @@ export class CategoryFilter {
   }
 
   private filterMultiples(value: string) {
-    if (this.repeatCategories) {
+    if (!this.uniqueCategories) {
       return true;
     }
 
@@ -656,9 +649,7 @@ export class CategoryFilter {
 
     const params: BaseButtonProps = {
       type: 'button',
-      variant: 'secondary',
-      outline: false,
-      ghost: true,
+      variant: 'subtle-tertiary',
       iconOnly: true,
       iconOval: false,
       selected: false,
@@ -779,9 +770,7 @@ export class CategoryFilter {
 
   componentDidRender() {
     if (this.isScrollStateDirty) {
-      if (!this.tmpDisableScrollIntoView) {
-        this.textInput?.current?.scrollIntoView();
-      }
+      this.textInput?.current?.scrollIntoView();
       this.isScrollStateDirty = false;
     }
   }
@@ -816,7 +805,7 @@ export class CategoryFilter {
           'hide-reset-button':
             !this.filterTokens.length && this.category === '',
         }}
-        ghost
+        variant="tertiary"
         oval
         icon={iconClear}
         iconColor="color-soft-text"

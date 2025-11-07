@@ -18,19 +18,31 @@ import {
   IxDropdownItem,
   IxMenu,
   IxMenuItem,
+  IxRadio,
+  IxRadioGroup,
 } from '@siemens/ix-react';
 
 import { useState } from 'react';
 
+const validBreakpoints = new Set<Breakpoint>(['sm', 'md', 'lg']);
+
 export default () => {
   const [breakpoints, setBreakpoints] = useState<Breakpoint[]>(['md']);
+
+  const handleBreakpointChange = (event: CustomEvent<string>) => {
+    const value = event.detail;
+
+    if (validBreakpoints.has(value as Breakpoint)) {
+      setBreakpoints([value as Breakpoint]);
+    }
+  };
 
   return (
     <IxApplication breakpoints={breakpoints}>
       <IxApplicationHeader name="My Application">
         <div className="placeholder-logo" slot="logo"></div>
 
-        <IxDropdownButton variant="secondary" label="Select config" ghost>
+        <IxDropdownButton variant="subtle-tertiary" label="Select config">
           <IxDropdownItem label="Config 1"></IxDropdownItem>
           <IxDropdownItem label="Config 2"></IxDropdownItem>
           <IxDropdownItem label="Config 3"></IxDropdownItem>
@@ -53,44 +65,14 @@ export default () => {
           slot="header"
           headerTitle="Choose breakpoint"
         ></IxContentHeader>
-        <input
-          id="small"
-          type="radio"
-          name="layout"
-          value="sm"
-          className="ix-form-control"
-          checked={breakpoints[0] === 'sm'}
-          onChange={() => setBreakpoints(['sm'])}
-        />
-        <label className="ix-form-label" htmlFor="small">
-          Small
-        </label>
-
-        <input
-          id="medium"
-          type="radio"
-          name="layout"
-          value="md"
-          className="ix-form-control"
-          checked={breakpoints[0] === 'md'}
-          onChange={() => setBreakpoints(['md'])}
-        />
-        <label className="ix-form-label" htmlFor="medium">
-          Medium
-        </label>
-
-        <input
-          id="large"
-          type="radio"
-          name="layout"
-          value="lg"
-          className="ix-form-control"
-          checked={breakpoints[0] === 'lg'}
-          onChange={() => setBreakpoints(['lg'])}
-        />
-        <label className="ix-form-label" htmlFor="large">
-          Large
-        </label>
+        <IxRadioGroup
+          value={breakpoints[0]}
+          onValueChange={handleBreakpointChange}
+        >
+          <IxRadio value="sm" label="Small"></IxRadio>
+          <IxRadio value="md" label="Medium"></IxRadio>
+          <IxRadio value="lg" label="Large"></IxRadio>
+        </IxRadioGroup>
       </IxContent>
     </IxApplication>
   );

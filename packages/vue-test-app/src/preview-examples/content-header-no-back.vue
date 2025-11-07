@@ -18,17 +18,17 @@ import { IxContentHeader, IxIconButton } from '@siemens/ix-vue';
 
 <template>
   <IxContentHeader
-    variant="secondary"
+    variant="subtle-primary"
     header-title="Content title"
     header-subtitle="Subtitle"
   >
-    <IxIconButton :icon="iconPen" ghost variant="primary">
+    <IxIconButton :icon="iconPen" variant="tertiary">
       Button1
     </IxIconButton>
-    <IxIconButton :icon="iconTrashcan" ghost variant="primary">
+    <IxIconButton :icon="iconTrashcan" variant="tertiary">
       Button2
     </IxIconButton>
-    <IxIconButton :icon="iconContextMenu" ghost variant="primary">
+    <IxIconButton :icon="iconContextMenu" variant="tertiary">
       Button3
     </IxIconButton>
   </IxContentHeader>

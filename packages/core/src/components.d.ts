@@ -13,7 +13,7 @@ import { BlindVariant } from "./components/blind/blind.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card.types";
-import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
+import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
@@ -32,13 +32,13 @@ import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 import { MakeRef } from "./components/utils/make-ref";
-import { FlipTileState } from "./components/flip-tile/flip-tile-state";
+import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
-import { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator.types";
+import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -48,6 +48,7 @@ import { TimeInputValidityState } from "./components/time-input/time-input.types
 import { TimePickerCorners } from "./components/time-picker/time-picker.types";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container.types";
+import { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -62,7 +63,7 @@ export { BlindVariant } from "./components/blind/blind.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card.types";
-export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
+export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
@@ -81,13 +82,13 @@ export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
 export { MakeRef } from "./components/utils/make-ref";
-export { FlipTileState } from "./components/flip-tile/flip-tile-state";
+export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
-export { ProgressIndicatorSize } from "./components/progress-indicator/progress-indicator.types";
+export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -97,6 +98,7 @@ export { TimeInputValidityState } from "./components/time-input/time-input.types
 export { TimePickerCorners } from "./components/time-picker/time-picker.types";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container.types";
+export { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -165,6 +167,22 @@ export namespace Components {
     }
     interface IxApplicationHeader {
         /**
+          * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
+          * @since 4.0.0
+         */
+        "appIcon"?: string;
+        /**
+          * Alt text for the app icon
+          * @since 4.0.0
+         */
+        "appIconAlt"?: string;
+        /**
+          * Render subtle outline around app icon to ensure proper contrast.
+          * @since 4.0.0
+          * @default false
+         */
+        "appIconOutline": boolean;
+        /**
           * ARIA label for the app switch icon button
           * @since 3.2.0
          */
@@ -180,9 +198,30 @@ export namespace Components {
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
+          * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
+          * @since 4.0.0
+         */
+        "companyLogo"?: string;
+        /**
+          * Alt text for the company logo
+          * @since 4.0.0
+         */
+        "companyLogoAlt"?: string;
+        /**
+          * Hides the bottom border of the header
+          * @since 4.0.0
+          * @default false
+         */
+        "hideBottomBorder": boolean;
+        /**
           * Application name
          */
         "name"?: string;
+        /**
+          * Define a suffix which will be displayed next to the application name
+          * @since 4.0.0
+         */
+        "nameSuffix"?: string;
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
           * @default false
@@ -197,12 +236,12 @@ export namespace Components {
     interface IxAvatar {
         /**
           * Accessibility label for the image Will be set as aria-label on the nested HTML img element
-          * @deprecated Set the native `aria-label` on the ix-avatar host element
+          * @deprecated Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0
          */
         "a11yLabel"?: string;
         /**
           * aria-label for the tooltip
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -219,34 +258,13 @@ export namespace Components {
         "initials"?: string;
         /**
           * Text to display in a tooltip when hovering over the avatar
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
         "username"?: string;
-    }
-    interface IxBasicNavigation {
-        /**
-          * Application name
-         */
-        "applicationName"?: string;
-        /**
-          * Supported layouts
-          * @example ['sm', 'md']
-          * @default ['sm', 'md', 'lg']
-         */
-        "breakpoints": Breakpoint[];
-        /**
-          * Change the responsive layout of the menu structure
-         */
-        "forceBreakpoint": Breakpoint | undefined;
-        /**
-          * Hide application header. Will disable responsive feature of basic navigation.
-          * @default false
-         */
-        "hideHeader": boolean;
     }
     interface IxBlind {
         /**
@@ -279,15 +297,15 @@ export namespace Components {
          */
         "ariaLabelPreviousButton": string;
         /**
-          * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
-          * @default true
-         */
-        "ghost": boolean;
-        /**
           * Items will be accessible through a dropdown
           * @default []
          */
         "nextItems": string[];
+        /**
+          * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
+          * @default false
+         */
+        "subtle": boolean;
         /**
           * Excess items will get hidden inside of dropdown
           * @default 9
@@ -301,18 +319,22 @@ export namespace Components {
          */
         "ariaLabelButton"?: string;
         /**
-          * @default true
+          * @default false
          */
-        "ghost": boolean;
+        "hideChevron": boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
+        /**
+          * @default false
+         */
+        "invisible": boolean;
         /**
           * @default false
          */
@@ -323,23 +345,19 @@ export namespace Components {
         "label"?: string;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
-          * @default true
+          * @default false
          */
-        "showChevron": boolean;
+        "subtle": boolean;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
-        /**
-          * @default true
-         */
-        "visible": boolean;
     }
     interface IxButton {
         /**
@@ -362,13 +380,8 @@ export namespace Components {
          */
         "form"?: string;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -377,7 +390,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -390,18 +403,13 @@ export namespace Components {
          */
         "loading": boolean;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
-        /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -439,6 +447,12 @@ export namespace Components {
           * @default false
          */
         "collapse": boolean;
+        /**
+          * Show accordion with different color variants
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant": CardAccordionVariant;
     }
     interface IxCardContent {
     }
@@ -534,7 +548,7 @@ export namespace Components {
          */
         "hideIcon": boolean;
         /**
-          * i18n
+          * i18n label for 'Filter by text'
           * @default 'Filter by text'
          */
         "i18nPlainText": string;
@@ -564,11 +578,6 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * If set to true, allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
-          * @default true
-         */
-        "repeatCategories": boolean;
-        /**
           * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
          */
         "staticOperator"?: LogicalFilterOperator;
@@ -577,9 +586,10 @@ export namespace Components {
          */
         "suggestions"?: string[];
         /**
-          * @default true
+          * If set to true, prevents that a single category can be set more than once. An already set category will not appear in the category dropdown if set to true.
+          * @default false
          */
-        "tmpDisableScrollIntoView": boolean;
+        "uniqueCategories": boolean;
     }
     /**
      * @form-ready 
@@ -669,11 +679,6 @@ export namespace Components {
     }
     interface IxChip {
         /**
-          * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
-          * @default true
-         */
-        "active": boolean;
-        /**
           * ARIA label for the close button Will be set as aria-label on the nested HTML button element
          */
         "ariaLabelCloseButton"?: string;
@@ -700,6 +705,11 @@ export namespace Components {
           * Show icon
          */
         "icon"?: string;
+        /**
+          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
+          * @default false
+         */
+        "inactive": boolean;
         /**
           * Show chip with outline style
           * @default false
@@ -818,10 +828,10 @@ export namespace Components {
          */
         "ariaLabelDropdownButton"?: string;
         /**
-          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
-          * @default true
+          * Controls whether custom date range selection is disabled in the component. When set to 'false', the user can select a custom date range using the date picker. When set to 'true', only predefined time date ranges are available for selection.
+          * @default false
          */
-        "customRangeAllowed": boolean;
+        "customRangeDisabled": boolean;
         /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
           * @default 'custom'
@@ -851,11 +861,6 @@ export namespace Components {
           * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
-        /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
         /**
           * Text for custom dropdown item. Will be used for translation.
           * @default 'Custom...'
@@ -891,21 +896,16 @@ export namespace Components {
          */
         "minDate": string;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
-        /**
-          * If true a range of dates can be selected.
-          * @default true
-         */
-        "range": boolean;
-        /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
           * @default false
          */
         "showWeekNumbers": boolean;
+        /**
+          * If true disables date range selection (from/to).
+          * @default false
+         */
+        "singleSelection": boolean;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @default ''
@@ -990,7 +990,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de').
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
          */
         "locale"?: string;
         /**
@@ -1064,6 +1064,10 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
+          * @default false
+         */
+        "embedded": boolean;
+        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -1075,14 +1079,14 @@ export namespace Components {
         /**
           * Get the currently selected date or range. The object returned contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
          */
-        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
+        "getCurrentDate": () => Promise<DateChangeEvent>;
         /**
           * Text of date select button
           * @default 'Done'
          */
         "i18nDone": string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
          */
         "locale"?: string;
         /**
@@ -1096,20 +1100,16 @@ export namespace Components {
          */
         "minDate": string;
         /**
-          * If true a date-range can be selected (from/to).
-          * @default true
-         */
-        "range": boolean;
-        /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
           * @default false
          */
         "showWeekNumbers": boolean;
         /**
-          * @default true
+          * If true disables date range selection (from/to).
+          * @default false
          */
-        "standaloneAppearance": boolean;
+        "singleSelection": boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
          */
@@ -1130,6 +1130,7 @@ export namespace Components {
           * @default 'rounded'
          */
         "corners": DateTimeCardCorners;
+        "embedded"?: boolean;
         /**
           * Display footer
           * @default false
@@ -1140,12 +1141,6 @@ export namespace Components {
           * @default false
          */
         "hideHeader": boolean;
-        /**
-          * set styles
-          * @default true
-         */
-        "individual": boolean;
-        "standaloneAppearance"?: boolean;
         /**
           * Timepicker specific styling
           * @default false
@@ -1194,29 +1189,6 @@ export namespace Components {
          */
         "minDate"?: string;
         /**
-          * If true a date-range can be selected (from/to).
-          * @default true
-         */
-        "range": boolean;
-        /**
-          * Show hour input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showHour": boolean;
-        /**
-          * Show minutes input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showMinutes": boolean;
-        /**
-          * Show seconds input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showSeconds": boolean;
-        /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
           * @default false
@@ -1228,6 +1200,11 @@ export namespace Components {
           * @default false
          */
         "showWeekNumbers": boolean;
+        /**
+          * If true disables date range selection (from/to).
+          * @default false
+         */
+        "singleSelection": boolean;
         /**
           * Select time with format string
          */
@@ -1383,11 +1360,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -1395,11 +1367,6 @@ export namespace Components {
           * Set label
          */
         "label"?: string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Placement of the dropdown
          */
@@ -1492,8 +1459,8 @@ export namespace Components {
     }
     interface IxEventList {
         /**
-          * Animate state change transitions. Defaults to 'true'.
-          * @default true
+          * Animate state change transitions. Defaults to 'false'.
+          * @default false
          */
         "animated": boolean;
         /**
@@ -1524,7 +1491,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -1532,6 +1499,12 @@ export namespace Components {
           * @default false
          */
         "selected": boolean;
+        /**
+          * Variant of the event list item
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant": 'outline' | 'filled';
     }
     interface IxExpandingSearch {
         /**
@@ -1555,19 +1528,9 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
-          * Button with no background or outline
-          * @default true
-         */
-        "ghost": boolean;
-        /**
           * Search icon
          */
         "icon"?: string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Placeholder text
           * @default 'Enter text here'
@@ -1580,7 +1543,7 @@ export namespace Components {
         "value": string;
         /**
           * button variant
-          * @default 'primary'
+          * @default 'tertiary'
          */
         "variant": ButtonVariant1;
     }
@@ -1702,8 +1665,10 @@ export namespace Components {
         "index": number;
         /**
           * Variation of the Flip
+          * @since 4.0.0
+          * @default 'filled'
          */
-        "state"?: FlipTileState;
+        "variant": FlipTileVariant;
         /**
           * Width interpreted as REM
           * @default 16
@@ -1719,15 +1684,15 @@ export namespace Components {
     }
     interface IxGroup {
         /**
-          * Whether the group is collapsed or expanded. Defaults to true.
-          * @default true
-         */
-        "collapsed": boolean;
-        /**
           * Expand the group if the header is clicked
           * @default false
          */
         "expandOnHeaderClick": boolean;
+        /**
+          * Whether the group is expanded or collapsed. Defaults to false.
+          * @default false
+         */
+        "expanded": boolean;
         /**
           * Group header
          */
@@ -1759,10 +1724,14 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
-          * The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise.
-          * @default true
+          * Disable the group item. The elements tabindex attribute will get set accordingly.  If false tabindex will be 0, -1 otherwise.
+          * @default false
          */
-        "focusable": boolean;
+        "disabled": boolean;
+        /**
+          * @default false
+         */
+        "groupFooter": boolean;
         /**
           * Group item icon
          */
@@ -1819,7 +1788,7 @@ export namespace Components {
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
-          * @deprecated Set the native `aria-label` on the ix-icon-button host element
+          * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
          */
         "a11yLabel"?: string;
         /**
@@ -1827,11 +1796,6 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
-        /**
-          * Button invisible
-          * @default false
-         */
-        "ghost": boolean;
         /**
           * Icon name
          */
@@ -1845,11 +1809,6 @@ export namespace Components {
           * @default false
          */
         "loading": boolean;
-        /**
-          * Button outline
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Button in oval shape
           * @default false
@@ -1867,7 +1826,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Variant of button
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant": IconButtonVariant;
     }
@@ -1919,7 +1878,7 @@ export namespace Components {
         "size": '24' | '16' | '12';
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant": ButtonVariant1;
     }
@@ -2024,7 +1983,8 @@ export namespace Components {
         "warningText"?: string;
     }
     /**
-     * @deprecated Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
+     * Not maintained anymore.
      * Use the 'ix-input' component instead
      */
     interface IxInputGroup {
@@ -2126,74 +2086,6 @@ export namespace Components {
          */
         "url"?: string;
     }
-    interface IxMapNavigation {
-        /**
-          * Application name
-         */
-        "applicationName"?: string;
-        /**
-          * ARIA label for the context menu icon button Will be set for the native HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelContextIconButton"?: string;
-        /**
-          * Close current shown overlay
-          * @deprecated Will be removed in 2.0.0. Use slot based approach
-         */
-        "closeOverlay": () => Promise<void>;
-        /**
-          * Hide the sidebar context menu button when set to true
-          * @default true
-         */
-        "hideContextMenu": boolean;
-        /**
-          * Navigation title
-         */
-        "navigationTitle"?: string;
-        /**
-          * Open a overlay inside content area
-          * @deprecated Will be removed in 2.0.0. Use slot based approach
-          * @param name
-          * @param component
-          * @param icon
-          * @param color
-         */
-        "openOverlay": (name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>;
-        /**
-          * Change the visibility of the sidebar
-          * @param show new visibility state
-         */
-        "toggleSidebar": (show?: boolean) => Promise<void>;
-    }
-    interface IxMapNavigationOverlay {
-        /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelCloseIconButton"?: string;
-        /**
-          * ARIA label for the icon
-          * @since 3.2.0
-         */
-        "ariaLabelIcon"?: string;
-        /**
-          * Color of icon
-          * @deprecated since 2.1.0. Use `icon-color`
-         */
-        "color"?: string;
-        /**
-          * Icon of overlay
-         */
-        "icon"?: string;
-        /**
-          * Color of icon
-         */
-        "iconColor"?: string;
-        /**
-          * Title of overlay
-         */
-        "name"?: string;
-    }
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
@@ -2209,11 +2101,6 @@ export namespace Components {
          */
         "enableMapExpand": boolean;
         /**
-          * Is settings tab is visible
-          * @default true
-         */
-        "enableSettings": boolean;
-        /**
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
           * @default false
          */
@@ -2224,10 +2111,12 @@ export namespace Components {
          */
         "expand": boolean;
         /**
+          * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
         "i18nCollapse": string;
         /**
+          * i18n label for 'Expand' button
           * @default ' Expand'
          */
         "i18nExpand": string;
@@ -2237,14 +2126,17 @@ export namespace Components {
          */
         "i18nExpandSidebar": string;
         /**
+          * i18n label for 'About & legal information' button
           * @default 'About & legal information'
          */
         "i18nLegal": string;
         /**
+          * i18n label for 'Settings' button
           * @default 'Settings'
          */
         "i18nSettings": string;
         /**
+          * i18n label for 'Toggle theme' button
           * @default 'Toggle theme'
          */
         "i18nToggleTheme": string;
@@ -2320,6 +2212,7 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
+          * i18n label for 'Show more' button
           * @default 'Show more'
          */
         "i18nShowMore": string;
@@ -2327,11 +2220,6 @@ export namespace Components {
           * Title of the about news
          */
         "label"?: string;
-        /**
-          * Bottom offset
-          * @default 0
-         */
-        "offsetBottom": number;
         /**
           * Show about news
           * @default false
@@ -2344,7 +2232,12 @@ export namespace Components {
          */
         "bottom"?: string;
         /**
-          * Use for translation
+          * Control the visibility of the logout button
+          * @default false
+         */
+        "hideLogoutButton": boolean;
+        /**
+          * i18n label for 'Logout' button
           * @default 'Logout'
          */
         "i18nLogout": string;
@@ -2356,11 +2249,6 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
-        /**
-          * Control the visibility of the logout button
-          * @default true
-         */
-        "showLogoutButton": boolean;
         /**
           * First line of text
          */
@@ -2392,7 +2280,7 @@ export namespace Components {
         "notifications"?: number;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -2440,7 +2328,7 @@ export namespace Components {
         "home": boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -2461,18 +2349,18 @@ export namespace Components {
         "notifications"?: number;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -2499,17 +2387,15 @@ export namespace Components {
     }
     interface IxMessageBar {
         /**
-          * If true, close button is enabled and alert can be dismissed by the user
-          * @default true
+          * If true, close button is disabled and alert cannot be dismissed by the user
+          * @default false
          */
-        "dismissible": boolean;
+        "persistent": boolean;
         /**
           * Specifies the type of the alert.
-          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
           * @default 'info'
          */
         "type": | 'alarm'
-    | 'danger'
     | 'critical'
     | 'warning'
     | 'success'
@@ -2519,19 +2405,9 @@ export namespace Components {
     }
     interface IxModal {
         /**
-          * Should the modal be animated
-          * @default true
-         */
-        "animation": boolean;
-        /**
-          * Show a backdrop behind the modal dialog
-          * @default true
-         */
-        "backdrop": boolean;
-        /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
-        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
+        "beforeDismiss"?: (reason?: unknown) => boolean | Promise<boolean>;
         /**
           * Centered modal
           * @default false
@@ -2540,21 +2416,31 @@ export namespace Components {
         /**
           * Close the dialog
          */
-        "closeModal": <T = any>(reason: T) => Promise<void>;
+        "closeModal": <T = unknown>(reason: T) => Promise<void>;
         /**
           * Dismiss modal on backdrop click
           * @default false
          */
         "closeOnBackdropClick": boolean;
         /**
-          * If set to true the modal can be closed by pressing the Escape key
-          * @default true
+          * Should the modal animation be disabled
+          * @default false
          */
-        "closeOnEscape": boolean;
+        "disableAnimation": boolean;
+        /**
+          * If set to true the modal cannot be closed by pressing the Escape key
+          * @default false
+         */
+        "disableEscapeClose": boolean;
         /**
           * Dismiss the dialog
          */
-        "dismissModal": <T = any>(reason?: T) => Promise<void>;
+        "dismissModal": <T = unknown>(reason?: T) => Promise<void>;
+        /**
+          * Hide the backdrop behind the modal dialog
+          * @default false
+         */
+        "hideBackdrop": boolean;
         /**
           * Show the dialog
          */
@@ -2717,17 +2603,22 @@ export namespace Components {
          */
         "count": number;
         /**
-          * /**   i18n
+          * Hide item count in advanced mode
+          * @default false
+         */
+        "hideItemCount": boolean;
+        /**
+          * i18n label for 'Items'
           * @default 'Items'
          */
         "i18nItems": string;
         /**
-          * i18n
+          * i18n label for 'of'
           * @default 'of'
          */
         "i18nOf": string;
         /**
-          * i18n
+          * i18n label for 'Page'
           * @default 'Page'
          */
         "i18nPage": string;
@@ -2741,11 +2632,6 @@ export namespace Components {
           * @default 0
          */
         "selectedPage": number;
-        /**
-          * Show item count in advanced mode
-          * @default true
-         */
-        "showItemCount": boolean;
     }
     interface IxPane {
         /**
@@ -2914,12 +2800,7 @@ export namespace Components {
           * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
           * @default 'default'
          */
-        "status": | 'default'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'paused';
+        "status": ProgressIndicatorStatus;
         /**
           * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
           * @default 'left'
@@ -2943,10 +2824,10 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Collapse the card
-          * @default true
+          * Expand the card
+          * @default false
          */
-        "collapse": boolean;
+        "expanded": boolean;
         /**
           * Card heading
          */
@@ -2999,6 +2880,7 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
+        "setCheckedState": (newChecked: boolean) => Promise<void>;
         /**
           * Value of the radio component
          */
@@ -3036,6 +2918,7 @@ export namespace Components {
           * @default false
          */
         "required"?: boolean;
+        "setCheckedToNextItem": (currentRadio: HTMLIxRadioElement, forward?: boolean) => Promise<void>;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */
@@ -3325,11 +3208,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -3337,11 +3215,6 @@ export namespace Components {
           * Button label
          */
         "label"?: string;
-        /**
-          * Button outline variant
-          * @default false
-         */
-        "outline": boolean;
         /**
           * Placement of the dropdown
           * @default 'bottom-start'
@@ -3577,6 +3450,12 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
+          * Hides the header of the picker.
+          * @since 4.0.0
+          * @default false
+         */
+        "hideHeader": boolean;
+        /**
           * Interval for hour selection
           * @default 1
          */
@@ -3693,6 +3572,11 @@ export namespace Components {
          */
         "dateTimePickerAppearance": boolean;
         /**
+          * Embedded style (for use in other components)
+          * @default false
+         */
+        "embedded": boolean;
+        /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
@@ -3762,50 +3646,10 @@ export namespace Components {
          */
         "secondInterval": number;
         /**
-          * Show hour input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showHour": boolean;
-        /**
-          * Show minutes input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showMinutes": boolean;
-        /**
-          * Show seconds input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showSeconds": boolean;
-        /**
-          * Controls the visual presentation and styling of the component when it is displayed as a standalone element
-          * @default true
-         */
-        "standaloneAppearance": boolean;
-        /**
-          * Text of time select button
-          * @deprecated Use `i18nConfirmTime` instead. Will be removed in 4.0.0.
-          * @default CONFIRM_BUTTON_DEFAULT
-         */
-        "textSelectTime": string;
-        /**
-          * Text for top label
-          * @deprecated Use `i18nHeader` instead. Will be removed in 4.0.0.
-          * @default HEADER_DEFAULT
-         */
-        "textTime": string;
-        /**
           * Select time with format string Format has to match the `format` property.
           * @default DateTime.now().toFormat(this.format)
          */
         "time": string;
-        /**
-          * Set time reference
-          * @deprecated This is determined by the currently set time. Will be removed in 4.0.0.
-         */
-        "timeReference": 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**
@@ -3813,11 +3657,6 @@ export namespace Components {
           * @since 3.2.0
          */
         "ariaLabelCloseIconButton"?: string;
-        /**
-          * Autoclose behavior
-          * @default true
-         */
-        "autoClose": boolean;
         /**
           * Autoclose title after delay
           * @default 5000
@@ -3839,6 +3678,11 @@ export namespace Components {
           * Pause the toast's auto-close progress bar and timer.
          */
         "pause": () => Promise<void>;
+        /**
+          * Autoclose behavior
+          * @default false
+         */
+        "preventAutoClose": boolean;
         /**
           * Resume the toast's auto-close progress bar and timer if previously paused.
          */
@@ -3941,17 +3785,12 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost": boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -3960,20 +3799,15 @@ export namespace Components {
          */
         "loading": boolean;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline": boolean;
-        /**
           * Show button as pressed
           * @default false
          */
         "pressed": boolean;
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
-        "variant": ButtonVariant1;
+        "variant": ToggleButtonVariant;
     }
     interface IxTooltip {
         /**
@@ -4150,7 +3984,8 @@ export namespace Components {
         "uploadSuccessText": string;
     }
     /**
-     * @deprecated Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * Not maintained anymore.
      */
     interface IxValidationTooltip {
         /**
@@ -4321,14 +4156,6 @@ export interface IxIconToggleButtonCustomEvent<T> extends CustomEvent<T> {
 export interface IxInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxInputElement;
-}
-export interface IxMapNavigationCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxMapNavigationElement;
-}
-export interface IxMapNavigationOverlayCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxMapNavigationOverlayElement;
 }
 export interface IxMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4514,12 +4341,6 @@ declare global {
     var HTMLIxAvatarElement: {
         prototype: HTMLIxAvatarElement;
         new (): HTMLIxAvatarElement;
-    };
-    interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
-    }
-    var HTMLIxBasicNavigationElement: {
-        prototype: HTMLIxBasicNavigationElement;
-        new (): HTMLIxBasicNavigationElement;
     };
     interface HTMLIxBlindElementEventMap {
         "collapsedChange": boolean;
@@ -5027,7 +4848,7 @@ declare global {
     interface HTMLIxGroupElementEventMap {
         "selectGroup": boolean;
         "selectItem": number;
-        "collapsedChanged": boolean;
+        "expandedChanged": boolean;
     }
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxGroupElementEventMap>(type: K, listener: (this: HTMLIxGroupElement, ev: IxGroupCustomEvent<HTMLIxGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5118,7 +4939,8 @@ declare global {
         new (): HTMLIxInputElement;
     };
     /**
-     * @deprecated Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
+     * Not maintained anymore.
      * Use the 'ix-input' component instead
      */
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
@@ -5162,41 +4984,6 @@ declare global {
     var HTMLIxLinkButtonElement: {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
-    };
-    interface HTMLIxMapNavigationElementEventMap {
-        "navigationToggled": boolean;
-        "contextMenuClick": void;
-    }
-    interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxMapNavigationElement: {
-        prototype: HTMLIxMapNavigationElement;
-        new (): HTMLIxMapNavigationElement;
-    };
-    interface HTMLIxMapNavigationOverlayElementEventMap {
-        "closeClick": any;
-    }
-    interface HTMLIxMapNavigationOverlayElement extends Components.IxMapNavigationOverlay, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxMapNavigationOverlayElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationOverlayElement, ev: IxMapNavigationOverlayCustomEvent<HTMLIxMapNavigationOverlayElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxMapNavigationOverlayElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationOverlayElement, ev: IxMapNavigationOverlayCustomEvent<HTMLIxMapNavigationOverlayElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxMapNavigationOverlayElement: {
-        prototype: HTMLIxMapNavigationOverlayElement;
-        new (): HTMLIxMapNavigationOverlayElement;
     };
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
@@ -5894,7 +5681,8 @@ declare global {
         new (): HTMLIxUploadElement;
     };
     /**
-     * @deprecated Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * Not maintained anymore.
      */
     interface HTMLIxValidationTooltipElement extends Components.IxValidationTooltip, HTMLStencilElement {
     }
@@ -5943,7 +5731,6 @@ declare global {
         "ix-application-sidebar": HTMLIxApplicationSidebarElement;
         "ix-application-switch-modal": HTMLIxApplicationSwitchModalElement;
         "ix-avatar": HTMLIxAvatarElement;
-        "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
@@ -5998,8 +5785,6 @@ declare global {
         "ix-layout-auto": HTMLIxLayoutAutoElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
-        "ix-map-navigation": HTMLIxMapNavigationElement;
-        "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
         "ix-menu-about-item": HTMLIxMenuAboutItemElement;
@@ -6114,6 +5899,22 @@ declare namespace LocalJSX {
     }
     interface IxApplicationHeader {
         /**
+          * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
+          * @since 4.0.0
+         */
+        "appIcon"?: string;
+        /**
+          * Alt text for the app icon
+          * @since 4.0.0
+         */
+        "appIconAlt"?: string;
+        /**
+          * Render subtle outline around app icon to ensure proper contrast.
+          * @since 4.0.0
+          * @default false
+         */
+        "appIconOutline"?: boolean;
+        /**
           * ARIA label for the app switch icon button
           * @since 3.2.0
          */
@@ -6129,9 +5930,30 @@ declare namespace LocalJSX {
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
+          * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
+          * @since 4.0.0
+         */
+        "companyLogo"?: string;
+        /**
+          * Alt text for the company logo
+          * @since 4.0.0
+         */
+        "companyLogoAlt"?: string;
+        /**
+          * Hides the bottom border of the header
+          * @since 4.0.0
+          * @default false
+         */
+        "hideBottomBorder"?: boolean;
+        /**
           * Application name
          */
         "name"?: string;
+        /**
+          * Define a suffix which will be displayed next to the application name
+          * @since 4.0.0
+         */
+        "nameSuffix"?: string;
         /**
           * Event emitted when the menu toggle button is clicked
          */
@@ -6155,12 +5977,12 @@ declare namespace LocalJSX {
     interface IxAvatar {
         /**
           * Accessibility label for the image Will be set as aria-label on the nested HTML img element
-          * @deprecated Set the native `aria-label` on the ix-avatar host element
+          * @deprecated Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0
          */
         "a11yLabel"?: string;
         /**
           * aria-label for the tooltip
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -6177,34 +5999,13 @@ declare namespace LocalJSX {
         "initials"?: string;
         /**
           * Text to display in a tooltip when hovering over the avatar
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
         "username"?: string;
-    }
-    interface IxBasicNavigation {
-        /**
-          * Application name
-         */
-        "applicationName"?: string;
-        /**
-          * Supported layouts
-          * @example ['sm', 'md']
-          * @default ['sm', 'md', 'lg']
-         */
-        "breakpoints"?: Breakpoint[];
-        /**
-          * Change the responsive layout of the menu structure
-         */
-        "forceBreakpoint"?: Breakpoint | undefined;
-        /**
-          * Hide application header. Will disable responsive feature of basic navigation.
-          * @default false
-         */
-        "hideHeader"?: boolean;
     }
     interface IxBlind {
         /**
@@ -6241,11 +6042,6 @@ declare namespace LocalJSX {
          */
         "ariaLabelPreviousButton"?: string;
         /**
-          * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
-          * @default true
-         */
-        "ghost"?: boolean;
-        /**
           * Items will be accessible through a dropdown
           * @default []
          */
@@ -6259,6 +6055,11 @@ declare namespace LocalJSX {
          */
         "onNextClick"?: (event: IxBreadcrumbCustomEvent<{ event: UIEvent; item: string }>) => void;
         /**
+          * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
+          * @default false
+         */
+        "subtle"?: boolean;
+        /**
           * Excess items will get hidden inside of dropdown
           * @default 9
          */
@@ -6271,18 +6072,22 @@ declare namespace LocalJSX {
          */
         "ariaLabelButton"?: string;
         /**
-          * @default true
+          * @default false
          */
-        "ghost"?: boolean;
+        "hideChevron"?: boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
+        /**
+          * @default false
+         */
+        "invisible"?: boolean;
         /**
           * @default false
          */
@@ -6294,23 +6099,19 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
-          * @default true
+          * @default false
          */
-        "showChevron"?: boolean;
+        "subtle"?: boolean;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
-        /**
-          * @default true
-         */
-        "visible"?: boolean;
     }
     interface IxButton {
         /**
@@ -6333,13 +6134,8 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -6348,7 +6144,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -6361,18 +6157,13 @@ declare namespace LocalJSX {
          */
         "loading"?: boolean;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
-        /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -6411,6 +6202,12 @@ declare namespace LocalJSX {
          */
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
+        /**
+          * Show accordion with different color variants
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant"?: CardAccordionVariant;
     }
     interface IxCardContent {
     }
@@ -6522,7 +6319,7 @@ declare namespace LocalJSX {
          */
         "hideIcon"?: boolean;
         /**
-          * i18n
+          * i18n label for 'Filter by text'
           * @default 'Filter by text'
          */
         "i18nPlainText"?: string;
@@ -6568,11 +6365,6 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * If set to true, allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
-          * @default true
-         */
-        "repeatCategories"?: boolean;
-        /**
           * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
          */
         "staticOperator"?: LogicalFilterOperator;
@@ -6581,9 +6373,10 @@ declare namespace LocalJSX {
          */
         "suggestions"?: string[];
         /**
-          * @default true
+          * If set to true, prevents that a single category can be set more than once. An already set category will not appear in the category dropdown if set to true.
+          * @default false
          */
-        "tmpDisableScrollIntoView"?: boolean;
+        "uniqueCategories"?: boolean;
     }
     /**
      * @form-ready 
@@ -6680,11 +6473,6 @@ declare namespace LocalJSX {
     }
     interface IxChip {
         /**
-          * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
-          * @default true
-         */
-        "active"?: boolean;
-        /**
           * ARIA label for the close button Will be set as aria-label on the nested HTML button element
          */
         "ariaLabelCloseButton"?: string;
@@ -6711,6 +6499,11 @@ declare namespace LocalJSX {
           * Show icon
          */
         "icon"?: string;
+        /**
+          * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
+          * @default false
+         */
+        "inactive"?: boolean;
         /**
           * Fire event if close button is clicked
          */
@@ -6837,10 +6630,10 @@ declare namespace LocalJSX {
          */
         "ariaLabelDropdownButton"?: string;
         /**
-          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
-          * @default true
+          * Controls whether custom date range selection is disabled in the component. When set to 'false', the user can select a custom date range using the date picker. When set to 'true', only predefined time date ranges are available for selection.
+          * @default false
          */
-        "customRangeAllowed"?: boolean;
+        "customRangeDisabled"?: boolean;
         /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
           * @default 'custom'
@@ -6866,11 +6659,6 @@ declare namespace LocalJSX {
           * @default ''
          */
         "from"?: string;
-        /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
         /**
           * Text for custom dropdown item. Will be used for translation.
           * @default 'Custom...'
@@ -6910,21 +6698,16 @@ declare namespace LocalJSX {
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
-        /**
-          * If true a range of dates can be selected.
-          * @default true
-         */
-        "range"?: boolean;
-        /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
           * @default false
          */
         "showWeekNumbers"?: boolean;
+        /**
+          * If true disables date range selection (from/to).
+          * @default false
+         */
+        "singleSelection"?: boolean;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @default ''
@@ -6994,7 +6777,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de').
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
          */
         "locale"?: string;
         /**
@@ -7078,6 +6861,10 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
+          * @default false
+         */
+        "embedded"?: boolean;
+        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -7092,7 +6879,7 @@ declare namespace LocalJSX {
          */
         "i18nDone"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
          */
         "locale"?: string;
         /**
@@ -7118,20 +6905,16 @@ declare namespace LocalJSX {
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * If true a date-range can be selected (from/to).
-          * @default true
-         */
-        "range"?: boolean;
-        /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
           * @default false
          */
         "showWeekNumbers"?: boolean;
         /**
-          * @default true
+          * If true disables date range selection (from/to).
+          * @default false
          */
-        "standaloneAppearance"?: boolean;
+        "singleSelection"?: boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
          */
@@ -7152,6 +6935,7 @@ declare namespace LocalJSX {
           * @default 'rounded'
          */
         "corners"?: DateTimeCardCorners;
+        "embedded"?: boolean;
         /**
           * Display footer
           * @default false
@@ -7162,12 +6946,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "hideHeader"?: boolean;
-        /**
-          * set styles
-          * @default true
-         */
-        "individual"?: boolean;
-        "standaloneAppearance"?: boolean;
         /**
           * Timepicker specific styling
           * @default false
@@ -7228,29 +7006,6 @@ declare namespace LocalJSX {
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
-          * If true a date-range can be selected (from/to).
-          * @default true
-         */
-        "range"?: boolean;
-        /**
-          * Show hour input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showHour"?: boolean;
-        /**
-          * Show minutes input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showMinutes"?: boolean;
-        /**
-          * Show seconds input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showSeconds"?: boolean;
-        /**
           * Show time reference input Time reference is default aligned with
           * @see { this.timeFormat}
           * @default false
@@ -7262,6 +7017,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "showWeekNumbers"?: boolean;
+        /**
+          * If true disables date range selection (from/to).
+          * @default false
+         */
+        "singleSelection"?: boolean;
         /**
           * Select time with format string
          */
@@ -7419,11 +7179,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -7431,11 +7186,6 @@ declare namespace LocalJSX {
           * Set label
          */
         "label"?: string;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Placement of the dropdown
          */
@@ -7531,8 +7281,8 @@ declare namespace LocalJSX {
     }
     interface IxEventList {
         /**
-          * Animate state change transitions. Defaults to 'true'.
-          * @default true
+          * Animate state change transitions. Defaults to 'false'.
+          * @default false
          */
         "animated"?: boolean;
         /**
@@ -7563,7 +7313,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/theming/colors/}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -7575,6 +7325,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "selected"?: boolean;
+        /**
+          * Variant of the event list item
+          * @since 4.0.0
+          * @default 'outline'
+         */
+        "variant"?: 'outline' | 'filled';
     }
     interface IxExpandingSearch {
         /**
@@ -7598,11 +7354,6 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
-          * Button with no background or outline
-          * @default true
-         */
-        "ghost"?: boolean;
-        /**
           * Search icon
          */
         "icon"?: string;
@@ -7610,11 +7361,6 @@ declare namespace LocalJSX {
           * Value changed
          */
         "onValueChange"?: (event: IxExpandingSearchCustomEvent<string>) => void;
-        /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Placeholder text
           * @default 'Enter text here'
@@ -7627,7 +7373,7 @@ declare namespace LocalJSX {
         "value"?: string;
         /**
           * button variant
-          * @default 'primary'
+          * @default 'tertiary'
          */
         "variant"?: ButtonVariant1;
     }
@@ -7758,8 +7504,10 @@ declare namespace LocalJSX {
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
           * Variation of the Flip
+          * @since 4.0.0
+          * @default 'filled'
          */
-        "state"?: FlipTileState;
+        "variant"?: FlipTileVariant;
         /**
           * Width interpreted as REM
           * @default 16
@@ -7775,15 +7523,15 @@ declare namespace LocalJSX {
     }
     interface IxGroup {
         /**
-          * Whether the group is collapsed or expanded. Defaults to true.
-          * @default true
-         */
-        "collapsed"?: boolean;
-        /**
           * Expand the group if the header is clicked
           * @default false
          */
         "expandOnHeaderClick"?: boolean;
+        /**
+          * Whether the group is expanded or collapsed. Defaults to false.
+          * @default false
+         */
+        "expanded"?: boolean;
         /**
           * Group header
          */
@@ -7793,9 +7541,9 @@ declare namespace LocalJSX {
          */
         "index"?: number;
         /**
-          * Group collapsed
+          * Group expanded
          */
-        "onCollapsedChanged"?: (event: IxGroupCustomEvent<boolean>) => void;
+        "onExpandedChanged"?: (event: IxGroupCustomEvent<boolean>) => void;
         /**
           * Emits when whole group gets selected.
          */
@@ -7827,10 +7575,14 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
-          * The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise.
-          * @default true
+          * Disable the group item. The elements tabindex attribute will get set accordingly.  If false tabindex will be 0, -1 otherwise.
+          * @default false
          */
-        "focusable"?: boolean;
+        "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "groupFooter"?: boolean;
         /**
           * Group item icon
          */
@@ -7891,7 +7643,7 @@ declare namespace LocalJSX {
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
-          * @deprecated Set the native `aria-label` on the ix-icon-button host element
+          * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
          */
         "a11yLabel"?: string;
         /**
@@ -7899,11 +7651,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
-        /**
-          * Button invisible
-          * @default false
-         */
-        "ghost"?: boolean;
         /**
           * Icon name
          */
@@ -7917,11 +7664,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "loading"?: boolean;
-        /**
-          * Button outline
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Button in oval shape
           * @default false
@@ -7939,7 +7681,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Variant of button
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant"?: IconButtonVariant;
     }
@@ -7995,7 +7737,7 @@ declare namespace LocalJSX {
         "size"?: '24' | '16' | '12';
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
         "variant"?: ButtonVariant1;
     }
@@ -8094,7 +7836,8 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     /**
-     * @deprecated Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 5.0.0
+     * Not maintained anymore.
      * Use the 'ix-input' component instead
      */
     interface IxInputGroup {
@@ -8196,67 +7939,6 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
-    interface IxMapNavigation {
-        /**
-          * Application name
-         */
-        "applicationName"?: string;
-        /**
-          * ARIA label for the context menu icon button Will be set for the native HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelContextIconButton"?: string;
-        /**
-          * Hide the sidebar context menu button when set to true
-          * @default true
-         */
-        "hideContextMenu"?: boolean;
-        /**
-          * Navigation title
-         */
-        "navigationTitle"?: string;
-        /**
-          * Context menu clicked
-         */
-        "onContextMenuClick"?: (event: IxMapNavigationCustomEvent<void>) => void;
-        /**
-          * Navigation toggled
-         */
-        "onNavigationToggled"?: (event: IxMapNavigationCustomEvent<boolean>) => void;
-    }
-    interface IxMapNavigationOverlay {
-        /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
-         */
-        "ariaLabelCloseIconButton"?: string;
-        /**
-          * ARIA label for the icon
-          * @since 3.2.0
-         */
-        "ariaLabelIcon"?: string;
-        /**
-          * Color of icon
-          * @deprecated since 2.1.0. Use `icon-color`
-         */
-        "color"?: string;
-        /**
-          * Icon of overlay
-         */
-        "icon"?: string;
-        /**
-          * Color of icon
-         */
-        "iconColor"?: string;
-        /**
-          * Title of overlay
-         */
-        "name"?: string;
-        /**
-          * Event closed
-         */
-        "onCloseClick"?: (event: IxMapNavigationOverlayCustomEvent<any>) => void;
-    }
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
@@ -8272,11 +7954,6 @@ declare namespace LocalJSX {
          */
         "enableMapExpand"?: boolean;
         /**
-          * Is settings tab is visible
-          * @default true
-         */
-        "enableSettings"?: boolean;
-        /**
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
           * @default false
          */
@@ -8287,10 +7964,12 @@ declare namespace LocalJSX {
          */
         "expand"?: boolean;
         /**
+          * i18n label for 'Collapse' button
           * @default 'Collapse'
          */
         "i18nCollapse"?: string;
         /**
+          * i18n label for 'Expand' button
           * @default ' Expand'
          */
         "i18nExpand"?: string;
@@ -8300,14 +7979,17 @@ declare namespace LocalJSX {
          */
         "i18nExpandSidebar"?: string;
         /**
+          * i18n label for 'About & legal information' button
           * @default 'About & legal information'
          */
         "i18nLegal"?: string;
         /**
+          * i18n label for 'Settings' button
           * @default 'Settings'
          */
         "i18nSettings"?: string;
         /**
+          * i18n label for 'Toggle theme' button
           * @default 'Toggle theme'
          */
         "i18nToggleTheme"?: string;
@@ -8399,6 +8081,7 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
+          * i18n label for 'Show more' button
           * @default 'Show more'
          */
         "i18nShowMore"?: string;
@@ -8406,11 +8089,6 @@ declare namespace LocalJSX {
           * Title of the about news
          */
         "label"?: string;
-        /**
-          * Bottom offset
-          * @default 0
-         */
-        "offsetBottom"?: number;
         /**
           * Popover closed
          */
@@ -8431,7 +8109,12 @@ declare namespace LocalJSX {
          */
         "bottom"?: string;
         /**
-          * Use for translation
+          * Control the visibility of the logout button
+          * @default false
+         */
+        "hideLogoutButton"?: boolean;
+        /**
+          * i18n label for 'Logout' button
           * @default 'Logout'
          */
         "i18nLogout"?: string;
@@ -8447,11 +8130,6 @@ declare namespace LocalJSX {
           * Logout click
          */
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
-        /**
-          * Control the visibility of the logout button
-          * @default true
-         */
-        "showLogoutButton"?: boolean;
         /**
           * First line of text
          */
@@ -8487,7 +8165,7 @@ declare namespace LocalJSX {
         "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -8535,7 +8213,7 @@ declare namespace LocalJSX {
         "home"?: boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -8556,18 +8234,18 @@ declare namespace LocalJSX {
         "notifications"?: number;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 3.3.0
+          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -8607,11 +8285,6 @@ declare namespace LocalJSX {
     }
     interface IxMessageBar {
         /**
-          * If true, close button is enabled and alert can be dismissed by the user
-          * @default true
-         */
-        "dismissible"?: boolean;
-        /**
           * An event emitted when the close animation is completed
          */
         "onCloseAnimationCompleted"?: (event: IxMessageBarCustomEvent<any>) => void;
@@ -8620,12 +8293,15 @@ declare namespace LocalJSX {
          */
         "onClosedChange"?: (event: IxMessageBarCustomEvent<any>) => void;
         /**
+          * If true, close button is disabled and alert cannot be dismissed by the user
+          * @default false
+         */
+        "persistent"?: boolean;
+        /**
           * Specifies the type of the alert.
-          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
           * @default 'info'
          */
         "type"?: | 'alarm'
-    | 'danger'
     | 'critical'
     | 'warning'
     | 'success'
@@ -8635,19 +8311,9 @@ declare namespace LocalJSX {
     }
     interface IxModal {
         /**
-          * Should the modal be animated
-          * @default true
-         */
-        "animation"?: boolean;
-        /**
-          * Show a backdrop behind the modal dialog
-          * @default true
-         */
-        "backdrop"?: boolean;
-        /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
-        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
+        "beforeDismiss"?: (reason?: unknown) => boolean | Promise<boolean>;
         /**
           * Centered modal
           * @default false
@@ -8659,10 +8325,20 @@ declare namespace LocalJSX {
          */
         "closeOnBackdropClick"?: boolean;
         /**
-          * If set to true the modal can be closed by pressing the Escape key
-          * @default true
+          * Should the modal animation be disabled
+          * @default false
          */
-        "closeOnEscape"?: boolean;
+        "disableAnimation"?: boolean;
+        /**
+          * If set to true the modal cannot be closed by pressing the Escape key
+          * @default false
+         */
+        "disableEscapeClose"?: boolean;
+        /**
+          * Hide the backdrop behind the modal dialog
+          * @default false
+         */
+        "hideBackdrop"?: boolean;
         /**
           * Dialog close
          */
@@ -8831,17 +8507,22 @@ declare namespace LocalJSX {
          */
         "count"?: number;
         /**
-          * /**   i18n
+          * Hide item count in advanced mode
+          * @default false
+         */
+        "hideItemCount"?: boolean;
+        /**
+          * i18n label for 'Items'
           * @default 'Items'
          */
         "i18nItems"?: string;
         /**
-          * i18n
+          * i18n label for 'of'
           * @default 'of'
          */
         "i18nOf"?: string;
         /**
-          * i18n
+          * i18n label for 'Page'
           * @default 'Page'
          */
         "i18nPage"?: string;
@@ -8863,11 +8544,6 @@ declare namespace LocalJSX {
           * @default 0
          */
         "selectedPage"?: number;
-        /**
-          * Show item count in advanced mode
-          * @default true
-         */
-        "showItemCount"?: boolean;
     }
     interface IxPane {
         /**
@@ -9050,12 +8726,7 @@ declare namespace LocalJSX {
           * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
           * @default 'default'
          */
-        "status"?: | 'default'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'paused';
+        "status"?: ProgressIndicatorStatus;
         /**
           * The text alignment for the helper text. Can be 'left', 'center', or 'right'.
           * @default 'left'
@@ -9079,10 +8750,10 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Collapse the card
-          * @default true
+          * Expand the card
+          * @default false
          */
-        "collapse"?: boolean;
+        "expanded"?: boolean;
         /**
           * Card heading
          */
@@ -9473,11 +9144,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button invisible
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Button icon
          */
         "icon"?: string;
@@ -9489,11 +9155,6 @@ declare namespace LocalJSX {
           * Button clicked
          */
         "onButtonClick"?: (event: IxSplitButtonCustomEvent<MouseEvent>) => void;
-        /**
-          * Button outline variant
-          * @default false
-         */
-        "outline"?: boolean;
         /**
           * Placement of the dropdown
           * @default 'bottom-start'
@@ -9724,6 +9385,12 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
+          * Hides the header of the picker.
+          * @since 4.0.0
+          * @default false
+         */
+        "hideHeader"?: boolean;
+        /**
           * Interval for hour selection
           * @default 1
          */
@@ -9846,6 +9513,11 @@ declare namespace LocalJSX {
          */
         "dateTimePickerAppearance"?: boolean;
         /**
+          * Embedded style (for use in other components)
+          * @default false
+         */
+        "embedded"?: boolean;
+        /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
           * @default 'TT'
          */
@@ -9919,50 +9591,10 @@ declare namespace LocalJSX {
          */
         "secondInterval"?: number;
         /**
-          * Show hour input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showHour"?: boolean;
-        /**
-          * Show minutes input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showMinutes"?: boolean;
-        /**
-          * Show seconds input
-          * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-          * @default true
-         */
-        "showSeconds"?: boolean;
-        /**
-          * Controls the visual presentation and styling of the component when it is displayed as a standalone element
-          * @default true
-         */
-        "standaloneAppearance"?: boolean;
-        /**
-          * Text of time select button
-          * @deprecated Use `i18nConfirmTime` instead. Will be removed in 4.0.0.
-          * @default CONFIRM_BUTTON_DEFAULT
-         */
-        "textSelectTime"?: string;
-        /**
-          * Text for top label
-          * @deprecated Use `i18nHeader` instead. Will be removed in 4.0.0.
-          * @default HEADER_DEFAULT
-         */
-        "textTime"?: string;
-        /**
           * Select time with format string Format has to match the `format` property.
           * @default DateTime.now().toFormat(this.format)
          */
         "time"?: string;
-        /**
-          * Set time reference
-          * @deprecated This is determined by the currently set time. Will be removed in 4.0.0.
-         */
-        "timeReference"?: 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**
@@ -9970,11 +9602,6 @@ declare namespace LocalJSX {
           * @since 3.2.0
          */
         "ariaLabelCloseIconButton"?: string;
-        /**
-          * Autoclose behavior
-          * @default true
-         */
-        "autoClose"?: boolean;
         /**
           * Autoclose title after delay
           * @default 5000
@@ -9992,6 +9619,11 @@ declare namespace LocalJSX {
           * Toast closed
          */
         "onCloseToast"?: (event: IxToastCustomEvent<any>) => void;
+        /**
+          * Autoclose behavior
+          * @default false
+         */
+        "preventAutoClose"?: boolean;
         /**
           * Toast title
          */
@@ -10091,17 +9723,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Button with no background or outline
-          * @default false
-         */
-        "ghost"?: boolean;
-        /**
           * Icon name
          */
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 3.3.0
+          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -10114,20 +9741,15 @@ declare namespace LocalJSX {
          */
         "onPressedChange"?: (event: IxToggleButtonCustomEvent<boolean>) => void;
         /**
-          * Outline button
-          * @default false
-         */
-        "outline"?: boolean;
-        /**
           * Show button as pressed
           * @default false
          */
         "pressed"?: boolean;
         /**
           * Button variant.
-          * @default 'secondary'
+          * @default 'subtle-primary'
          */
-        "variant"?: ButtonVariant1;
+        "variant"?: ToggleButtonVariant;
     }
     interface IxTooltip {
         /**
@@ -10317,7 +9939,8 @@ declare namespace LocalJSX {
         "uploadSuccessText"?: string;
     }
     /**
-     * @deprecated Will be removed with 4.0.0
+     * @deprecated Since 3.0.0. Will be removed with 4.0.0
+     * Not maintained anymore.
      */
     interface IxValidationTooltip {
         /**
@@ -10396,7 +10019,6 @@ declare namespace LocalJSX {
         "ix-application-sidebar": IxApplicationSidebar;
         "ix-application-switch-modal": IxApplicationSwitchModal;
         "ix-avatar": IxAvatar;
-        "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
         "ix-breadcrumb": IxBreadcrumb;
         "ix-breadcrumb-item": IxBreadcrumbItem;
@@ -10451,8 +10073,6 @@ declare namespace LocalJSX {
         "ix-layout-auto": IxLayoutAuto;
         "ix-layout-grid": IxLayoutGrid;
         "ix-link-button": IxLinkButton;
-        "ix-map-navigation": IxMapNavigation;
-        "ix-map-navigation-overlay": IxMapNavigationOverlay;
         "ix-menu": IxMenu;
         "ix-menu-about": IxMenuAbout;
         "ix-menu-about-item": IxMenuAboutItem;
@@ -10515,7 +10135,6 @@ declare module "@stencil/core" {
             "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
             "ix-application-switch-modal": LocalJSX.IxApplicationSwitchModal & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
-            "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
@@ -10579,7 +10198,8 @@ declare module "@stencil/core" {
              */
             "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
             /**
-             * @deprecated Will be removed with 4.0.0
+             * @deprecated Since 3.0.0. Will be removed with 5.0.0
+             * Not maintained anymore.
              * Use the 'ix-input' component instead
              */
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
@@ -10589,8 +10209,6 @@ declare module "@stencil/core" {
             "ix-layout-auto": LocalJSX.IxLayoutAuto & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
             "ix-layout-grid": LocalJSX.IxLayoutGrid & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
-            "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
-            "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
@@ -10667,7 +10285,8 @@ declare module "@stencil/core" {
             "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             /**
-             * @deprecated Will be removed with 4.0.0
+             * @deprecated Since 3.0.0. Will be removed with 4.0.0
+             * Not maintained anymore.
              */
             "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;

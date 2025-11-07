@@ -10,8 +10,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './textarea-validation.html',
 })
-export default class TextareaValidation {
-}
+export default class TextareaValidation {}

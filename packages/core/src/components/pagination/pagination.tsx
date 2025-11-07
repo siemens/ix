@@ -30,9 +30,7 @@ import {
 })
 export class Pagination {
   private readonly baseButtonConfig: BaseButtonProps = {
-    variant: 'secondary',
-    outline: false,
-    ghost: true,
+    variant: 'subtle-tertiary',
     iconOnly: true,
     iconOval: false,
     disabled: false,
@@ -58,9 +56,9 @@ export class Pagination {
   @Prop() itemCount = 15;
 
   /**
-   * Show item count in advanced mode
+   * Hide item count in advanced mode
    */
-  @Prop() showItemCount = true;
+  @Prop() hideItemCount = false;
 
   /**
    * Total number of pages
@@ -73,20 +71,19 @@ export class Pagination {
   @Prop({ mutable: true }) selectedPage = 0;
 
   /**
-   * i18n
+   * i18n label for 'Page'
    */
-  @Prop() i18nPage = 'Page';
+  @Prop({ attribute: 'i18n-page' }) i18nPage = 'Page';
 
   /**
-   * i18n
+   * i18n label for 'of'
    */
-  @Prop() i18nOf = 'of';
+  @Prop({ attribute: 'i18n-of' }) i18nOf = 'of';
 
   /**
-  /**
-   * i18n
+   * i18n label for 'Items'
    */
-  @Prop() i18nItems = 'Items';
+  @Prop({ attribute: 'i18n-items' }) i18nItems = 'Items';
 
   /**
    * ARIA label for the chevron left icon button
@@ -232,7 +229,7 @@ export class Pagination {
       <Host>
         <ix-icon-button
           disabled={!this.count || this.selectedPage === 0}
-          ghost
+          variant="subtle-tertiary"
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
           aria-label={this.ariaLabelChevronLeftIconButton}
@@ -267,13 +264,13 @@ export class Pagination {
 
         <ix-icon-button
           disabled={!this.count || this.selectedPage === this.count - 1}
-          ghost
+          variant="subtle-tertiary"
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
           aria-label={this.ariaLabelChevronRightIconButton}
         ></ix-icon-button>
 
-        {this.advanced && this.showItemCount ? (
+        {this.advanced && !this.hideItemCount && (
           <span class="item-count">
             <ix-typography format="body">{this.i18nItems}</ix-typography>
             <ix-select
@@ -296,8 +293,6 @@ export class Pagination {
               <ix-select-item label="100" value="100"></ix-select-item>
             </ix-select>
           </span>
-        ) : (
-          ''
         )}
       </Host>
     );

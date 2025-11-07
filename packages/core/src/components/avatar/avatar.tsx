@@ -19,8 +19,8 @@ import {
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
-import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
 import { makeRef } from '../utils/make-ref';
+import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -28,7 +28,11 @@ function DefaultAvatar(
   const { initials } = props;
 
   if (initials) {
-    return <div class={'avatar-initials'}>{initials}</div>;
+    return (
+      <div class={'avatar-initials'}>
+        <ix-typography format="label-lg">{initials}</ix-typography>
+      </div>
+    );
   }
 
   return (
@@ -122,7 +126,7 @@ export class Avatar {
    * Accessibility label for the image
    * Will be set as aria-label on the nested HTML img element
    *
-   * @deprecated Set the native `aria-label` on the ix-avatar host element
+   * @deprecated Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0
    */
   @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
@@ -153,14 +157,14 @@ export class Avatar {
   /**
    * Text to display in a tooltip when hovering over the avatar
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() tooltipText?: string;
 
   /**
    * aria-label for the tooltip
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() ariaLabelTooltip?: string;
 
@@ -232,15 +236,13 @@ export class Avatar {
         <Host slot="ix-application-header-avatar" class={'avatar-button'}>
           <BaseButton
             disabled={false}
-            ghost={true}
             iconOval={false}
             icon={undefined}
             iconOnly={false}
             loading={false}
-            outline={false}
             selected={false}
             type="button"
-            variant="primary"
+            variant="tertiary"
           >
             {Avatar}
           </BaseButton>

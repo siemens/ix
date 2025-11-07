@@ -54,32 +54,32 @@ export class BreadcrumbItem implements AnchorInterface {
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() href?: string;
 
   /**
    * Specifies where to open the linked document when href is provided.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() target?: AnchorTarget = '_self';
 
   /**
    * Specifies the relationship between the current document and the linked document when href is provided.
    *
-   * @since 3.3.0
+   * @since 4.0.0
    */
   @Prop() rel?: string;
 
   /**@internal */
-  @Prop() ghost: boolean = true;
+  @Prop() subtle: boolean = false;
 
   /**@internal */
-  @Prop() visible = true;
+  @Prop() invisible = false;
 
   /**@internal */
-  @Prop() showChevron = true;
+  @Prop() hideChevron = false;
 
   /** @internal */
   @Prop() isDropdownTrigger = false;
@@ -112,9 +112,7 @@ export class BreadcrumbItem implements AnchorInterface {
 
   render() {
     const props: BaseButtonProps = {
-      variant: this.ghost ? 'primary' : 'secondary',
-      outline: false,
-      ghost: this.ghost,
+      variant: this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
       iconOval: false,
       disabled: false,
@@ -134,14 +132,14 @@ export class BreadcrumbItem implements AnchorInterface {
       rel: this.rel,
     };
 
-    if (!this.visible) {
+    if (this.invisible) {
       return <Host class={'invisible'}></Host>;
     }
 
     return (
       <Host
         class={{
-          'hide-chevron': !this.showChevron,
+          'hide-chevron': this.hideChevron,
         }}
         onClick={() => this.itemClick.emit(this.label)}
       >
@@ -150,13 +148,13 @@ export class BreadcrumbItem implements AnchorInterface {
             {...props}
             afterContent={
               <Fragment>
-                {this.showChevron ? (
+                {!this.hideChevron && (
                   <ix-icon
                     name={iconChevronRightSmall}
                     size="16"
                     class={'chevron'}
                   ></ix-icon>
-                ) : null}
+                )}
               </Fragment>
             }
           >

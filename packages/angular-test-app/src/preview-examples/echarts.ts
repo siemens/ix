@@ -14,6 +14,7 @@ import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   templateUrl: './echarts.html',
   styleUrls: ['./echarts.css'],

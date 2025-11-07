@@ -6,13 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { expect } from '@playwright/test';
 import {
   getFormValue,
   preventFormSubmission,
   regressionTest,
   test,
 } from '@utils/test';
-import { expect } from '@playwright/test';
 
 regressionTest(`form-ready`, async ({ mount, page }) => {
   await mount(`<form><ix-checkbox name="my-field-name"></ix-checkbox></form>`);
@@ -118,4 +118,17 @@ test('Checkbox should not cause layout shift when checked', async ({
 
   expect(newBounds.top).toBeCloseTo(initialBounds.top, 0);
   expect(newBounds.left).toBeCloseTo(initialBounds.left, 0);
+});
+
+test.describe('accessibility', () => {
+  test('should expose aria-label for accessibility queries', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-checkbox label="Accept Terms"></ix-checkbox>`);
+    const checkbox = page.getByRole('checkbox', { name: 'Accept Terms' });
+    await expect(checkbox).toBeVisible();
+    await checkbox.click();
+    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+  });
 });

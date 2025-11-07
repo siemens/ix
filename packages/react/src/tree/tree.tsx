@@ -20,7 +20,7 @@ import InternalIxTree from './internal-tree';
 
 export type IxTreeProps = Omit<
   Components.IxTree,
-  'renderItem' | 'markItemAsDirty' | 'refreshTree'
+  'renderItem' | 'markItemsAsDirty' | 'refreshTree'
 > & {
   renderItem?: (data: any) => React.ReactNode;
   onContextChange?: (event: IxTreeCustomEvent<TreeContext>) => void;
