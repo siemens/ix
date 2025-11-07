@@ -400,11 +400,22 @@ async function copyComponentReadme() {
   const components = componentDoc.components;
 
   for (const component of components) {
+    const componentDir = component.dirPath
+      ? path.basename(component.dirPath)
+      : undefined;
+
+    if (!componentDir) {
+      console.warn(
+        `Skipping readme for ${component.tag} due to missing dirPath.`
+      );
+      continue;
+    }
+
     const readmePath = path.join(
       __core,
       'api-docs',
       'components',
-      component.dirPath.split('/').pop()!,
+      componentDir,
       'readme.md'
     );
     const readme = await fs.readFile(readmePath, 'utf-8');
