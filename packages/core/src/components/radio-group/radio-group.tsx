@@ -138,6 +138,7 @@ export class RadiobuttonGroup
     if (!this.value) {
       return;
     }
+
     this.radiobuttonElements.forEach((radiobutton) => {
       radiobutton.checked = radiobutton.value === this.value;
     });
@@ -153,12 +154,26 @@ export class RadiobuttonGroup
       }
       radio.checked = false;
     });
+
+    const hasCheckedRadio = this.isSomeRadioChecked();
+
+    for (const radio of this.radiobuttonElements) {
+      radio.tabIndex = radio.checked ? 0 : -1;
+    }
+
+    if (!hasCheckedRadio && this.radiobuttonElements.length > 0) {
+      this.radiobuttonElements[0].tabIndex = 0;
+    }
   }
 
   private hasNestedRequiredRadio() {
     this.required = this.radiobuttonElements.some(
       (radiobutton) => radiobutton.required
     );
+  }
+
+  private isSomeRadioChecked() {
+    return this.radiobuttonElements.some((radio) => radio.checked);
   }
 
   @Watch('value')
@@ -213,9 +228,41 @@ export class RadiobuttonGroup
     return Promise.resolve(this.touched);
   }
 
+  /** @internal */
+  @Method()
+  async setCheckedToNextItem(
+    currentRadio: HTMLIxRadioElement,
+    forward = true
+  ): Promise<void> {
+    const { radiobuttonElements } = this;
+    const { length } = radiobuttonElements;
+    if (length <= 1) {
+      return;
+    }
+
+    const index = radiobuttonElements.indexOf(currentRadio);
+    const step = forward ? 1 : -1;
+    let nextIndex = (index + step + length) % length;
+
+    while (radiobuttonElements[nextIndex].disabled) {
+      if (nextIndex === index) {
+        return;
+      }
+      nextIndex = (nextIndex + step + length) % length;
+    }
+
+    const nextRadio = radiobuttonElements[nextIndex];
+    nextRadio.setCheckedState(true);
+    nextRadio.focus();
+  }
+
   render() {
     return (
-      <Host onIxBlur={() => (this.touched = true)} ref={this.groupRef}>
+      <Host
+        onIxBlur={() => (this.touched = true)}
+        ref={this.groupRef}
+        role="radiogroup"
+      >
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}
