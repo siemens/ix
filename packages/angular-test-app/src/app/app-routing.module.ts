@@ -22,9 +22,6 @@ import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
-import BasicNavigation from '../preview-examples/basic-navigation';
-import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
-import BasicNavigationWithoutHeader from '../preview-examples/basic-navigation-without-header';
 import Blind from '../preview-examples/blind';
 import BlindHeaderActions from '../preview-examples/blind-header-actions';
 import BlindVariants from '../preview-examples/blind-variants';
@@ -129,11 +126,7 @@ import InputFormValidation from '../preview-examples/input-form-validation';
 import InputLabel from '../preview-examples/input-label';
 import InputLegacy from '../preview-examples/input-legacy';
 import InputLegacyDisabled from '../preview-examples/input-legacy-disabled';
-import InputLegacyLabels from '../preview-examples/input-legacy-labels';
 import InputLegacyReadonly from '../preview-examples/input-legacy-readonly';
-import InputLegacySearch from '../preview-examples/input-legacy-search';
-import InputLegacyTypes from '../preview-examples/input-legacy-types';
-import InputLegacyWithIcon from '../preview-examples/input-legacy-with-icon';
 import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
 import InputTypes from '../preview-examples/input-types';
@@ -153,9 +146,6 @@ import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
-import MapNavigation from '../preview-examples/map-navigation';
-import MapNavigationMigration from '../preview-examples/map-navigation-migration';
-import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
 import Message from '../preview-examples/message';
@@ -316,18 +306,6 @@ const routes: Routes = [
       {
         path: 'avatar',
         component: Avatar,
-      },
-      {
-        path: 'basic-navigation-without-header',
-        component: BasicNavigationWithoutHeader,
-      },
-      {
-        path: 'basic-navigation',
-        component: BasicNavigation,
-      },
-      {
-        path: 'basic-navigation-migration',
-        component: BasicNavigationMigration,
       },
       {
         path: 'blind-header-actions',
@@ -670,24 +648,8 @@ const routes: Routes = [
         component: InputLegacyDisabled,
       },
       {
-        path: 'input-legacy-labels',
-        component: InputLegacyLabels,
-      },
-      {
         path: 'input-legacy-readonly',
         component: InputLegacyReadonly,
-      },
-      {
-        path: 'input-legacy-search',
-        component: InputLegacySearch,
-      },
-      {
-        path: 'input-legacy-types',
-        component: InputLegacyTypes,
-      },
-      {
-        path: 'input-legacy-with-icon',
-        component: InputLegacyWithIcon,
       },
       {
         path: 'input-legacy',
@@ -740,14 +702,6 @@ const routes: Routes = [
       {
         path: 'loading',
         component: Loading,
-      },
-      {
-        path: 'map-navigation-overlay',
-        component: MapNavigationOverlay,
-      },
-      {
-        path: 'map-navigation',
-        component: MapNavigation,
       },
       {
         path: 'menu-category',
@@ -955,9 +909,6 @@ const routes: Routes = [
       { path: 'validation', component: Validation },
       { path: 'workflow', component: Workflow },
       { path: 'workflow-vertical', component: WorkflowVertical },
-      { path: 'map-navigation', component: MapNavigation },
-      { path: 'map-navigation-overlay', component: MapNavigationOverlay },
-      { path: 'map-navigation-migration', component: MapNavigationMigration },
       { path: 'number-input', component: NumberInput },
       { path: 'number-input-disabled', component: NumberInputDisabled },
       { path: 'number-input-label', component: NumberInputLabel },

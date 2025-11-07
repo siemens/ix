@@ -98,7 +98,6 @@ export class Application {
       ApplicationLayoutContext,
       {
         hideHeader: false,
-        host: 'basic-navigation',
         sidebar: this.applicationSidebarSlotted,
         appSwitchConfig: this.appSwitchConfig,
       }
@@ -151,7 +150,6 @@ export class Application {
     }
     this.contextProvider.emit({
       hideHeader: false,
-      host: 'basic-navigation',
       sidebar: this.applicationSidebarSlotted,
       appSwitchConfig: this.appSwitchConfig,
     });

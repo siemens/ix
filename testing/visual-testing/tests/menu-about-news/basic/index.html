@@ -15,7 +15,8 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
   </head>
   <body>
-    <ix-basic-navigation>
+    <ix-application>
+      <ix-application-header></ix-application-header>
       <ix-menu>
         <ix-menu-item>Item 1</ix-menu-item>
         <ix-menu-item>Item 2</ix-menu-item>
@@ -31,9 +32,9 @@ SPDX-License-Identifier: MIT
         </ix-menu-about-news>
         <ix-menu-settings></ix-menu-settings>
       </ix-menu>
-    </ix-basic-navigation>
+    </ix-application>
     <script>
-      document.querySelector('ix-basic-navigation').breakpoints = ['sm', 'md'];
+      document.querySelector('ix-application').breakpoints = ['sm', 'md'];
     </script>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
   </body>

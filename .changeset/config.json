@@ -8,22 +8,12 @@
       "@siemens/ix",
       "@siemens/ix-angular",
       "@siemens/ix-react",
-      "@siemens/ix-vue"
+      "@siemens/ix-vue",
+      "@siemens/ix-docs"
     ]
   ],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "angular-test-app",
-    "angular-standalone-test-app",
-    "react-test-app",
-    "vue-test-app",
-    "html-test-app",
-    "ionic-test-app",
-    "nextjs-test-app",
-    "documentation",
-    "storybook-docs",
-    "oss-clearing"
-  ]
+  "privatePackages": false
 }
