@@ -16,7 +16,6 @@
         "www/**",
         "loader/**",
         "api-docs/**",
-        "component-doc.json",
         "component-usage-by-component.json",
         "component-usage.json"
       ],
