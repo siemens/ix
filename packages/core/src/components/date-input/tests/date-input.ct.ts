@@ -201,3 +201,301 @@ regressionTest(
     await expect(input).not.toHaveClass(/is-invalid/);
   }
 );
+
+regressionTest(
+  'Required input: Invalid input > Removing value with keyboard > Stays invalid',
+  async ({ page, mount }) => {
+    await mount(
+      `<ix-date-input required value="invalid-date"></ix-date-input>`
+    );
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.selectText();
+    await input.press('Delete');
+    await input.blur();
+
+    await expect(dateInput).toHaveClass(/ix-invalid--required/);
+  }
+);
+
+regressionTest(
+  'Required input: Invalid input > Remove touched state > Valid again',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input required value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.selectText();
+    await input.fill('invalid-date');
+    await input.blur();
+
+    await dateInput.evaluate((el: any) => el.reset());
+
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'Required input: Invalid input > Programmatically setting to empty > Stays invalid',
+  async ({ page, mount }) => {
+    await mount(
+      `<ix-date-input required value="invalid-date"></ix-date-input>`
+    );
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.blur();
+
+    await dateInput.evaluate((el: any) => {
+      el.value = '';
+    });
+
+    await expect(dateInput).toHaveClass(/ix-invalid--required/);
+  }
+);
+
+regressionTest(
+  'Required input: Valid input > Removing value with keyboard > It is invalid',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input required value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.selectText();
+    await input.press('Delete');
+    await input.blur();
+
+    await expect(dateInput).toHaveClass(/ix-invalid--required/);
+  }
+);
+
+regressionTest(
+  'Required input: Valid input > Remove touched state > Valid',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input required value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.blur();
+
+    await dateInput.evaluate((el: any) => el.reset());
+
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'Required input: Valid input > Programmatically setting to empty > It is invalid',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input required value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.blur();
+
+    await dateInput.evaluate((el: any) => {
+      el.value = '';
+    });
+
+    await expect(dateInput).toHaveClass(/ix-invalid--required/);
+  }
+);
+
+regressionTest(
+  'Not required input: Invalid input > Removing value with keyboard > Valid',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input value="invalid-date"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.selectText();
+    await input.press('Delete');
+    await input.blur();
+
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'Not required input: Invalid input > Remove touched state > Valid again',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.selectText();
+    await input.fill('invalid-date');
+    await input.blur();
+
+    await dateInput.evaluate((el: any) => el.reset());
+
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'Not required input: Invalid input > Programmatically setting to empty > Valid',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input value="invalid-date"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.blur();
+
+    await dateInput.evaluate((el: any) => {
+      el.value = '';
+    });
+
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'Not required input: Valid input > Removing value with keyboard > Valid',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.selectText();
+    await input.press('Delete');
+    await input.blur();
+
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'Not required input: Valid input > Remove touched state > Valid',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.blur();
+
+    await dateInput.evaluate((el: any) => el.reset());
+
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'Not required input: Valid input > Programmatically setting to empty > Valid',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.blur();
+
+    await dateInput.evaluate((el: any) => {
+      el.value = '';
+    });
+
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'novalidate form suppresses validation for required field',
+  async ({ page, mount }) => {
+    await mount(`
+      <form novalidate>
+        <ix-date-input required value="2024/05/05"></ix-date-input>
+      </form>
+    `);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.selectText();
+    await input.press('Delete');
+    await input.blur();
+
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+  }
+);
+
+regressionTest(
+  'novalidate form suppresses validation for non-required field',
+  async ({ page, mount }) => {
+    await mount(`
+      <form novalidate>
+        <ix-date-input value="2024/05/05"></ix-date-input>
+      </form>
+    `);
+
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.blur();
+
+    await expect(input).not.toHaveClass(/is-invalid/);
+  }
+);
+
+regressionTest(
+  'Validation works after switching between required and non-required',
+  async ({ page, mount }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    const input = page.locator('input');
+
+    await input.focus();
+    await input.selectText();
+    await input.press('Delete');
+    await input.blur();
+
+    await expect(input).not.toHaveClass(/is-invalid/);
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+
+    await dateInput.evaluate((el: any) => {
+      el.required = true;
+    });
+
+    await expect(dateInput).toHaveClass(/ix-invalid--required/);
+
+    await dateInput.evaluate((el: any) => {
+      el.required = false;
+    });
+
+    await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
+  }
+);

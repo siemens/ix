@@ -121,6 +121,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Prop() required?: boolean;
 
+  @Watch('required')
+  onRequiredChange() {
+    this.syncValidationClasses();
+  }
+
   /**
    * Helper text below the input field
    */
@@ -542,7 +547,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * This method ensures proper visual styling based on validation status, particularly for Vue.
    * @internal
    */
-  @Method()
   syncValidationClasses(): void {
     if (this.suppressValidation) {
       return;
@@ -570,23 +574,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   /**
    * Resets the input field to its original untouched state and initial value.
-   * This clears the value, removes touched and dirty states, and recomputes validity.
-   *
-   * @example
-   * ```typescript
-   * // React
-   * await dateInputRef.current?.reset();
-   *
-   * // Angular
-   * await this.dateInput.nativeElement.reset();
-   *
-   * // Vue
-   * await this.$refs.dateInput.reset();
-   *
-   * // HTML/JavaScript
-   * const dateInput = document.querySelector('ix-date-input');
-   * await dateInput.reset();
-   * ```
+   * Clears touched and dirty states and recomputes validity.
    */
   @Method()
   async reset(): Promise<void> {
@@ -595,10 +583,20 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.touched = false;
     this.dirty = false;
     this.isInputInvalid = false;
+    this.isInvalid = false;
     this.invalidReason = undefined;
     this.from = undefined;
 
-    const resetValue = this.initialValue || '';
+    const initialValue = this.initialValue || '';
+    let resetValue = initialValue;
+
+    if (initialValue && this.format) {
+      const tempDate = DateTime.fromFormat(initialValue, this.format);
+      if (!tempDate.isValid) {
+        resetValue = '';
+      }
+    }
+
     this.value = resetValue;
     this.updateFormInternalValue(resetValue);
 

@@ -7077,13 +7077,8 @@
           },
           "signature": "reset() => Promise<void>",
           "parameters": [],
-          "docs": "Resets the input field to its original untouched state and initial value.\nThis clears the value, removes touched and dirty states, and recomputes validity.",
-          "docsTags": [
-            {
-              "name": "example",
-              "text": "```typescript\n// React\nawait dateInputRef.current?.reset();\n\n// Angular\nawait this.dateInput.nativeElement.reset();\n\n// Vue\nawait this.$refs.dateInput.reset();\n\n// HTML/JavaScript\nconst dateInput = document.querySelector('ix-date-input');\nawait dateInput.reset();\n```"
-            }
-          ]
+          "docs": "Resets the input field to its original untouched state and initial value.\nClears touched and dirty states and recomputes validity.",
+          "docsTags": []
         }
       ],
       "events": [
