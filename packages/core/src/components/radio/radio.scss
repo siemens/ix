@@ -14,7 +14,7 @@
 
   @include component.ix-component;
 
-  button {
+  .radio-checkmark {
     all: unset;
 
     display: inline-flex;
@@ -33,14 +33,6 @@
     border-radius: 100px;
   }
 
-  button:focus-visible {
-    outline: 0.0625rem solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-radiobtn--focus--outline-offset);
-  }
-
-  input[type='radio'] {
-    display: none;
-  }
   .radio-button {
     height: 1.5rem;
     width: 1.5rem;
@@ -69,7 +61,7 @@
 
 @mixin radio-base() {
   :host {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-unchecked--background);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-unchecked--border-color);
@@ -77,7 +69,7 @@
   }
 
   :host(:hover) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-unchecked--background--hover);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-unchecked--border-color--hover);
@@ -85,7 +77,7 @@
   }
 
   :host(:active) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-unchecked--background--active);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-unchecked--border-color--active);
@@ -94,7 +86,7 @@
 
   :host(.checked),
   :host([indeterminate]) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-checked--background);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-checked--border-color);
@@ -103,7 +95,7 @@
 
   :host(.checked:hover),
   :host([indeterminate]:hover) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-checked--background--hover);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-checked--border-color--hover);
@@ -112,7 +104,7 @@
 
   :host(.checked:active),
   :host([indeterminate]:active) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-checked--background--active);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-checked--border-color--active);
@@ -122,7 +114,7 @@
   :host(.disabled) {
     pointer-events: none;
 
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-unchecked--background--disabled);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-unchecked--border-color--disabled);
@@ -131,11 +123,16 @@
 
   :host(.checked.disabled),
   :host([indeterminate].disabled) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-checked--background--disabled);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-checked--border-color--disabled);
     }
+  }
+
+  :host(:focus-visible) {
+    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-radiobtn--focus--outline-offset);
   }
 
   ix-typography {
@@ -145,13 +142,13 @@
 
 @mixin radio-variant($selector) {
   :host(#{$selector}:not(.disabled)) {
-    button {
+    .radio-checkmark {
       @content;
     }
   }
 
   :host(#{$selector}) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-unchecked--background);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-unchecked--border-color);
@@ -159,7 +156,7 @@
   }
 
   :host(#{$selector}:hover) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-unchecked--background--hover);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-unchecked--border-color--hover);
@@ -167,7 +164,7 @@
   }
 
   :host(#{$selector}:active) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-unchecked--background--active);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-unchecked--border-color--active);
@@ -176,7 +173,7 @@
 
   :host(#{$selector}.checked),
   :host(#{$selector}[indeterminate]) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-checked--background);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-checked--border-color);
@@ -185,7 +182,7 @@
 
   :host(#{$selector}.checked:hover),
   :host(#{$selector}[indeterminate]:hover) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-checked--background--hover);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-checked--border-color--hover);
@@ -194,7 +191,7 @@
 
   :host(#{$selector}.checked:active),
   :host(#{$selector}[indeterminate]:active) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-checked--background--active);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-checked--border-color--active);
@@ -202,7 +199,7 @@
   }
 
   :host(#{$selector}.disabled) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-unchecked--background--disabled);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-unchecked--border-color--disabled);
@@ -211,7 +208,7 @@
 
   :host(#{$selector}.checked.disabled),
   :host(#{$selector}[indeterminate].disabled) {
-    button {
+    .radio-checkmark {
       background-color: var(--theme-radiobtn-checked--background--disabled);
       border: var(--theme-radiobtn--border-thickness) solid
         var(--theme-radiobtn-checked--border-color--disabled);
