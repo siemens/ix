@@ -22,6 +22,7 @@ import {
   iconChevronRightSmall,
   iconSingleCheck,
 } from '@siemens/ix-icons/icons';
+import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-dropdown-item',
@@ -101,6 +102,7 @@ export class DropdownItem implements DropdownItemWrapper {
   render() {
     return (
       <Host
+        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           hover: this.hover,
           'icon-only': this.isIconOnly(),
