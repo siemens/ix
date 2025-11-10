@@ -412,7 +412,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             this.ixBlur.emit();
             this.touched = true;
           }}
-          onKeyDown={this.handleInputKeyDown.bind(this)}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
