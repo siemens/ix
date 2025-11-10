@@ -234,6 +234,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
+
   private readonly focusControllerCallbackBind =
     this.focusDropdownItem.bind(this);
 
