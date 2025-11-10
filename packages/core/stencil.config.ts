@@ -130,6 +130,7 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
+      dir: './api-docs',
     },
     {
       type: 'www',
