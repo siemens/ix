@@ -50,7 +50,7 @@ regressionTest('push card expand', async ({ page, mount }) => {
         heading="Heading content"
         subheading="Subheading"
         variant="outline"
-        collapse="false"
+        expanded
       > </ix-push-card>
   `,
     {
