@@ -7,7 +7,10 @@
   "scripts": {
     "start": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test.setup": "playwright install chromium --with-deps",
+    "test": "vitest --config=vitest.config.ts run",
+    "test.watch": "vitest --config=vitest.config.ts"
   },
   "dependencies": {
     "@siemens/ix": "workspace:*",
@@ -17,8 +20,8 @@
     "@siemens/ix-vue": "workspace:*",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
-    "ag-grid-community": "^30.2.1",
-    "ag-grid-vue3": "^30.2.1",
+    "ag-grid-community": "^33.1.1",
+    "ag-grid-vue3": "^33.1.1",
     "echarts": "^5.5.1",
     "echarts-gl": "^2.0.9",
     "html-test-app": "workspace:*",
@@ -26,13 +29,17 @@
     "vue-echarts": "~6.6.10"
   },
   "devDependencies": {
+    "@testing-library/vue": "^8.1.0",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.32",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vitejs/plugin-vue-jsx": "^5.0.0",
+    "@vitest/browser": "^3.2.4",
     "@vue/tsconfig": "^0.7.0",
+    "playwright": "^1.54.1",
     "typescript": "~5.8.0",
     "vite": "^7.0.0",
+    "vitest": "^3.2.4",
     "vue-tsc": "^2.2.10"
   }
 }
