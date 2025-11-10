@@ -36,13 +36,13 @@ export class ModalService extends BaseModalService {
     super(appRef, componentFactoryResolver, injector);
   }
 
-  public open<TData = any, TReason = any>(
+  public override open<TData = any, TReason = any>(
     config: ModalConfig<TData>
   ): Promise<ModalInstance<TReason>> {
     return super.open(config);
   }
 
-  public close<TReason = any>(
+  public override close<TReason = any>(
     instance: ModalInstance<TReason>,
     reason?: TReason
   ): void {

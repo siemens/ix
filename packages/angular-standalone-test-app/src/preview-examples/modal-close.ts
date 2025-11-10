@@ -7,21 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IxButton } from '@siemens/ix-angular/standalone';
 
-import { ModalService } from '@siemens/ix-angular';
+import { ModalService } from '@siemens/ix-angular/standalone';
 import ModalByInstanceExample from './modal-by-instance-content';
 
 @Component({
   standalone: true,
   selector: 'app-example',
   imports: [IxButton],
+  providers: [ModalService],
   template:
     '<ix-button (click)="openModal()">Show modal (auto-dismiss)</ix-button>',
 })
 export default class ModalClose {
-  constructor(private readonly modalService: ModalService) {}
+  private modalService = inject(ModalService);
 
   async openModal() {
     const modalInstance = await this.modalService.open({
