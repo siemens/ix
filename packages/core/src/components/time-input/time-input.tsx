@@ -251,9 +251,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  private handleInputKeyDown(e: KeyboardEvent) {
+  private handleInputKeyDown(event: KeyboardEvent) {
     handleSubmitOnEnterKeydown(
-      e,
+      event,
       this.suppressSubmitOnEnter,
       this.formInternals.form
     );

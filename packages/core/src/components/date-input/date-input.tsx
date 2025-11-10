@@ -352,9 +352,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
-  private handleInputKeyDown(e: KeyboardEvent) {
+  private handleInputKeyDown(event: KeyboardEvent) {
     handleSubmitOnEnterKeydown(
-      e,
+      event,
       this.suppressSubmitOnEnter,
       this.formInternals.form
     );
