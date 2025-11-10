@@ -55,7 +55,6 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
   await mount(`<ix-radio label="test"></ix-radio>`);
 
   const radioElement = page.locator('ix-radio');
-  const nativeInput = radioElement.locator('input');
   const label = radioElement.locator('label');
 
   const checkedChange$ = radioElement.evaluate((element: HTMLElement) => {
@@ -69,7 +68,6 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
   await checkedChange$;
 
   await expect(radioElement).not.toHaveClass(/disabled/);
-  await expect(nativeInput).not.toBeDisabled();
 
   const disableLabelColor = 'rgba(245, 252, 255, 0.9)';
   await expect(label).toHaveCSS('color', disableLabelColor);
@@ -119,4 +117,67 @@ test('Clicking label (including padding) checks the radio', async ({
 
   await label.waitFor({ state: 'visible' });
   await expect(radio).toHaveAttribute('aria-checked', 'true');
+});
+
+test.describe('accessibility & click handling', () => {
+  test('should be directly clickable via accessible role with label', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-radio label="Small" value="small"></ix-radio>`);
+    const radio = page.getByRole('radio', { name: 'Small' });
+    await expect(radio).toHaveAttribute('aria-checked', 'false');
+    await radio.click();
+    await expect(radio).toHaveAttribute('aria-checked', 'true');
+  });
+
+  test('should respect disabled state when clicking host element', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-radio label="Disabled Option" disabled></ix-radio>`);
+    const radio = page.getByRole('radio', { name: 'Disabled Option' });
+    await expect(radio).toHaveAttribute('aria-checked', 'false');
+    await expect(radio).toHaveAttribute('aria-disabled', 'true');
+    await radio.click({ force: true });
+    await expect(radio).toHaveAttribute('aria-checked', 'false');
+  });
+
+  test('should emit checkedChange event when clicked via host', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`
+      <ix-radio-group>
+        <ix-radio label="Option 1" value="opt1"></ix-radio>
+        <ix-radio label="Option 2" value="opt2"></ix-radio>
+      </ix-radio-group>
+    `);
+
+    const radio1 = page.getByRole('radio', { name: 'Option 1' });
+    const radio2 = page.getByRole('radio', { name: 'Option 2' });
+
+    await expect(radio1).toHaveAttribute('aria-checked', 'false');
+    await expect(radio2).toHaveAttribute('aria-checked', 'false');
+
+    await radio1.click();
+    await expect(radio1).toHaveAttribute('aria-checked', 'true');
+    await expect(radio2).toHaveAttribute('aria-checked', 'false');
+
+    await radio2.click();
+    await expect(radio1).toHaveAttribute('aria-checked', 'false');
+    await expect(radio2).toHaveAttribute('aria-checked', 'true');
+  });
+
+  test('radio should not toggle back to unchecked when clicked again', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-radio label="No Toggle"></ix-radio>`);
+    const radio = page.getByRole('radio', { name: 'No Toggle' });
+    await radio.click();
+    await expect(radio).toHaveAttribute('aria-checked', 'true');
+    await radio.click();
+    await expect(radio).toHaveAttribute('aria-checked', 'true');
+  });
 });

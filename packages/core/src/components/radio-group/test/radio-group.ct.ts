@@ -143,3 +143,102 @@ regressionTest('disabled', async ({ mount, page }) => {
   await expect(radioOption3).not.toBeEnabled();
   await expect(radioOption3.locator('.checkmark')).not.toBeVisible();
 });
+
+regressionTest.describe('keyboard navigation', () => {
+  regressionTest('Initial', async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-radio-group>
+        <ix-radio aria-label="Option 1" label="Option 1" value="option1"></ix-radio>
+        <ix-radio aria-label="Option 2" label="Option 2" value="option2"></ix-radio>
+        <ix-radio aria-label="Option 3" label="Option 3" value="option3"></ix-radio>
+        <ix-radio aria-label="Option 4" label="Option 4" value="option4"></ix-radio>
+      </ix-radio-group>
+    `
+    );
+    const firstRadio = page.getByLabel('Option 1');
+    await expect(firstRadio).toBeVisible();
+
+    await page.keyboard.press('Tab');
+    await expect(page.getByLabel('Option 1')).not.toBeChecked();
+
+    await page.keyboard.press('ArrowDown');
+    await expect(page.getByLabel('Option 1')).not.toBeChecked();
+    await expect(page.getByLabel('Option 2')).toBeChecked();
+  });
+
+  regressionTest('Initial checked', async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-radio-group>
+        <ix-radio aria-label="Option 1" label="Option 1" value="option1"></ix-radio>
+        <ix-radio aria-label="Option 2" label="Option 2" value="option2" checked></ix-radio>
+        <ix-radio aria-label="Option 3" label="Option 3" value="option3"></ix-radio>
+        <ix-radio aria-label="Option 4" label="Option 4" value="option4"></ix-radio>
+      </ix-radio-group>
+    `
+    );
+    const firstRadio = page.getByLabel('Option 1');
+    await expect(firstRadio).toBeVisible();
+
+    await page.keyboard.press('Tab');
+    await expect(page.getByLabel('Option 1')).not.toBeChecked();
+    await expect(page.getByLabel('Option 2')).toBeChecked();
+  });
+
+  regressionTest('Tab skip to next focus element', async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-radio-group>
+        <ix-radio aria-label="Option 1" label="Option 1" value="option1"></ix-radio>
+        <ix-radio aria-label="Option 2" label="Option 2" value="option2" checked></ix-radio>
+        <ix-radio aria-label="Option 3" label="Option 3" value="option3" disabled></ix-radio>
+        <ix-radio aria-label="Option 4" label="Option 4" value="option4"></ix-radio>
+      </ix-radio-group>
+
+      <ix-button aria-label="Focusable Element">Focusable Element</ix-button>
+    `
+    );
+    const firstRadio = page.getByLabel('Option 1');
+    await expect(firstRadio).toBeVisible();
+
+    await page.keyboard.press('Tab');
+    await expect(page.getByLabel('Option 1')).not.toBeChecked();
+    await expect(page.getByLabel('Option 2')).toBeChecked();
+
+    await page.keyboard.press('Tab');
+    await expect(page.getByLabel('Focusable Element')).toBeFocused();
+  });
+
+  regressionTest('arrow navigation', async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-radio-group>
+        <ix-radio aria-label="Option 1" label="Option 1" value="option1"></ix-radio>
+        <ix-radio aria-label="Option 2" label="Option 2" value="option2" checked></ix-radio>
+        <ix-radio aria-label="Option 3" label="Option 3" value="option3" disabled></ix-radio>
+        <ix-radio aria-label="Option 4" label="Option 4" value="option4"></ix-radio>
+      </ix-radio-group>
+    `
+    );
+    const firstRadio = page.getByLabel('Option 1');
+    await expect(firstRadio).toBeVisible();
+
+    await page.keyboard.press('Tab');
+    await expect(page.getByLabel('Option 1')).not.toBeChecked();
+    await expect(page.getByLabel('Option 2')).toBeChecked();
+
+    await page.keyboard.press('ArrowDown');
+    await expect(page.getByLabel('Option 3')).not.toBeChecked();
+    await expect(page.getByLabel('Option 4')).toBeChecked();
+
+    await page.keyboard.press('ArrowRight');
+    await expect(page.getByLabel('Option 1')).toBeChecked();
+
+    await page.keyboard.press('ArrowUp');
+    await expect(page.getByLabel('Option 4')).toBeChecked();
+
+    await page.keyboard.press('ArrowLeft');
+    await expect(page.getByLabel('Option 2')).toBeChecked();
+  });
+});

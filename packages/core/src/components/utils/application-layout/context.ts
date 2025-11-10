@@ -35,11 +35,9 @@ export type AppSwitchConfiguration = {
 
 export const ApplicationLayoutContext = createContext<{
   hideHeader: boolean;
-  host: 'basic-navigation' | 'map-navigation' | null;
   appSwitchConfig?: AppSwitchConfiguration;
   sidebar?: boolean;
 }>('application-layout-context', {
   hideHeader: false,
-  host: null,
   sidebar: false,
 });
