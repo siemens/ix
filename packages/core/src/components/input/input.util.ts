@@ -193,25 +193,24 @@ function observeElementUntilVisible(
 }
 
 export function handleSubmitOnEnterKeydown(
-  e: KeyboardEvent,
+  event: KeyboardEvent,
   suppressSubmitOnEnter: boolean,
   form: HTMLFormElement | null | undefined
 ) {
-  if (suppressSubmitOnEnter || e.key !== 'Enter' || !form) {
+  if (suppressSubmitOnEnter || event.key !== 'Enter' || !form) {
     return;
   }
-  e.preventDefault();
+
+  event.preventDefault();
   const submitButton = form.querySelector<HTMLElement>(
     'button[type="submit"], ix-button[type="submit"]'
   );
+
   if (submitButton) {
     form.requestSubmit(submitButton);
-  } else {
-    const inputs = form.querySelectorAll(
-      'input:not([type="hidden"]), ix-input, ix-number-input, ix-date-input, ix-time-input, ix-select'
-    );
-    if (inputs.length === 1) {
-      form.requestSubmit();
-    }
+  }
+
+  if (form.length === 1) {
+    form.requestSubmit();
   }
 }

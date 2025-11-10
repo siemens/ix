@@ -399,7 +399,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.ixBlur.emit();
             this.touched = true;
           }}
-          onKeyDown={this.handleInputKeyDown.bind(this)}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}

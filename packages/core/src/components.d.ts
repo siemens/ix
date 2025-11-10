@@ -3069,11 +3069,6 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
-          * @default false
-         */
-        "suppressSubmitOnEnter": boolean;
-        /**
           * Valid text for the select component
          */
         "validText"?: string;
@@ -8994,11 +8989,6 @@ declare namespace LocalJSX {
           * Show helper, error, info, warning text as tooltip
          */
         "showTextAsTooltip"?: boolean;
-        /**
-          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
-          * @default false
-         */
-        "suppressSubmitOnEnter"?: boolean;
         /**
           * Valid text for the select component
          */
