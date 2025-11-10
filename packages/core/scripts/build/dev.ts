@@ -59,14 +59,8 @@ export const customComponentDocGenerator = (docs: JsonDocs): void => {
 
   const parsed: JsonDocs = JSON.parse(docsJson);
   traverse(parsed, {
-    normalizeKeys: new Set([
-      'dirPath',
-      'filePath',
-      'readmePath',
-      'usagesDir',
-      'path',
-    ]),
-    deleteKeys: new Set(['readme']),
+    normalizeKeys: new Set(['dirPath', 'filePath', 'usagesDir', 'path']),
+    deleteKeys: new Set(['readme', 'readmePath']),
     baseDir: path.join(__dirname, '..', '..'),
   });
 
