@@ -371,8 +371,15 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       this.value = oldValue;
       return;
     }
-
     this.updateSelection();
+    if (this.isMultipleMode && this.inputFilterText) {
+      this.clearInput();
+      this.removeHiddenFromItems();
+      if (this.arrowFocusController) {
+        this.arrowFocusController.items = this.visibleNonShadowItems;
+      }
+      this.navigationItem = undefined;
+    }
   }
 
   private emitAddItem(value: string) {
