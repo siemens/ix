@@ -154,6 +154,7 @@ import MessageBarRemoval from './preview-examples/message-bar-removal.vue';
 import Message from './preview-examples/message.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
 import ModalExample from './preview-examples/modal.vue';
+import ModalClose from './preview-examples/modal-close.vue';
 import NumberInputDisabled from './preview-examples/number-input-disabled.vue';
 import NumberInputLabel from './preview-examples/number-input-label.vue';
 import NumberInputReadOnly from './preview-examples/number-input-readonly.vue';
@@ -387,6 +388,7 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
+  '/preview/modal-close': ModalClose,
   '/preview/modal-form-ix-button-submit': ModalFormIxButtonSubmit,
   '/preview/number-input': NumberInput,
   '/preview/number-input-disabled': NumberInputDisabled,
