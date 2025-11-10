@@ -26,9 +26,6 @@ import ApplicationHeader from './preview-examples/application-header';
 import Avatar from './preview-examples/avatar';
 import AvatarImage from './preview-examples/avatar-image';
 import AvatarInitials from './preview-examples/avatar-initials';
-import BasicNavigation from './preview-examples/basic-navigation';
-import BasicNavigationMigration from './preview-examples/basic-navigation-migration';
-import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header';
 import Blind from './preview-examples/blind';
 import BlindHeaderActions from './preview-examples/blind-header-actions';
 import BlindVariants from './preview-examples/blind-variants';
@@ -128,11 +125,7 @@ import InputDisabled from './preview-examples/input-disabled';
 import InputLabel from './preview-examples/input-label';
 import InputLegacy from './preview-examples/input-legacy';
 import InputLegacyDisabled from './preview-examples/input-legacy-disabled';
-import InputLegacyLabels from './preview-examples/input-legacy-labels';
 import InputLegacyReadonly from './preview-examples/input-legacy-readonly';
-import InputLegacySearch from './preview-examples/input-legacy-search';
-import InputLegacyTypes from './preview-examples/input-legacy-types';
-import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon';
 import InputPattern from './preview-examples/input-pattern';
 import InputReadonly from './preview-examples/input-readonly';
 import InputTypes from './preview-examples/input-types';
@@ -152,9 +145,6 @@ import LayoutAutoCustom from './preview-examples/layout-auto-custom';
 import LinkButton from './preview-examples/link-button';
 import LinkButtonDisabled from './preview-examples/link-button-disabled';
 import Loading from './preview-examples/loading';
-import MapNavigation from './preview-examples/map-navigation';
-import MapNavigationMigration from './preview-examples/map-navigation-migration';
-import MapNavigationOverlay from './preview-examples/map-navigation-overlay';
 import MenuCategory from './preview-examples/menu-category';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs';
 import Message from './preview-examples/message';
@@ -272,15 +262,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/avatar-image" element={<AvatarImage />} />
         <Route path="/preview/avatar-initials" element={<AvatarInitials />} />
         <Route path="/preview/avatar" element={<Avatar />} />
-        <Route
-          path="/preview/basic-navigation-without-header"
-          element={<BasicNavigationWithoutHeader />}
-        />
-        <Route path="/preview/basic-navigation" element={<BasicNavigation />} />
-        <Route
-          path="/preview/basic-navigation-migration"
-          element={<BasicNavigationMigration />}
-        />
         <Route
           path="/preview/blind-header-actions"
           element={<BlindHeaderActions />}
@@ -504,24 +485,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<InputLegacyDisabled />}
         />
         <Route
-          path="/preview/input-legacy-labels"
-          element={<InputLegacyLabels />}
-        />
-        <Route
           path="/preview/input-legacy-readonly"
           element={<InputLegacyReadonly />}
-        />
-        <Route
-          path="/preview/input-legacy-search"
-          element={<InputLegacySearch />}
-        />
-        <Route
-          path="/preview/input-legacy-types"
-          element={<InputLegacyTypes />}
-        />
-        <Route
-          path="/preview/input-legacy-with-icon"
-          element={<InputLegacyWithIcon />}
         />
         <Route path="/preview/input-legacy" element={<InputLegacy />} />
         <Route
@@ -557,15 +522,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/link-button" element={<LinkButton />} />
         <Route path="/preview/loading" element={<Loading />} />
-        <Route
-          path="/preview/map-navigation-overlay"
-          element={<MapNavigationOverlay />}
-        />
-        <Route path="/preview/map-navigation" element={<MapNavigation />} />
-        <Route
-          path="/preview/map-navigation-migration"
-          element={<MapNavigationMigration />}
-        />
         <Route path="/preview/menu-category" element={<MenuCategory />} />
         <Route
           path="/preview/menu-with-bottom-tabs"
