@@ -13,6 +13,6 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-tile--box-shadow: none;
   --theme-tile--border-radius: var(--theme-default-border-radius);
+  --theme-tile--box-shadow: none;
 }
