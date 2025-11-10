@@ -13,9 +13,14 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form checkbox validation example</title>
+    <style>
+      .checkbox-group-wrapper {
+        margin-bottom: 1rem;
+      }
+    </style>
   </head>
   <body>
-    <div>
+    <div class="checkbox-group-wrapper">
       <ix-checkbox-group label="Terms of something" info-text="Info text">
         <ix-checkbox
           label="I agree everything"
@@ -25,7 +30,7 @@ LICENSE file in the root directory of this source tree.
       </ix-checkbox-group>
     </div>
 
-    <div>
+    <div class="checkbox-group-wrapper">
       <ix-checkbox-group label="Terms of something" warning-text="Warning text">
         <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
         <ix-checkbox
@@ -36,7 +41,7 @@ LICENSE file in the root directory of this source tree.
       </ix-checkbox-group>
     </div>
 
-    <div>
+    <div class="checkbox-group-wrapper">
       <ix-checkbox-group label="Terms of something" invalid-text="Invalid text">
         <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
         <ix-checkbox
@@ -47,7 +52,7 @@ LICENSE file in the root directory of this source tree.
       </ix-checkbox-group>
     </div>
 
-    <div>
+    <div class="checkbox-group-wrapper">
       <ix-checkbox-group label="Terms of something" valid-text="Valid text">
         <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
         <ix-checkbox
