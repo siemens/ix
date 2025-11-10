@@ -2382,14 +2382,14 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'error', 'marker', 'max', 'min', 'step', 'trace', 'traceReference', 'value']
+  inputs: ['disabled', 'error', 'helperText', 'infoText', 'invalidText', 'label', 'marker', 'max', 'min', 'showTextAsTooltip', 'step', 'trace', 'traceReference', 'validText', 'value', 'warningText']
 })
 @Component({
   selector: 'ix-slider',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'error', 'marker', 'max', 'min', 'step', 'trace', 'traceReference', 'value'],
+  inputs: ['disabled', 'error', 'helperText', 'infoText', 'invalidText', 'label', 'marker', 'max', 'min', 'showTextAsTooltip', 'step', 'trace', 'traceReference', 'validText', 'value', 'warningText'],
   outputs: ['valueChange'],
   standalone: false
 })
@@ -2404,7 +2404,9 @@ export class IxSlider {
 
 
 export declare interface IxSlider extends Components.IxSlider {
-
+  /**
+   * Will emit the value when it changes
+   */
   valueChange: EventEmitter<CustomEvent<number>>;
 }
 
