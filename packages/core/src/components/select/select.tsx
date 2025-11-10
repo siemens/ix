@@ -894,6 +894,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       this.navigationItem = undefined;
                     }}
                     onInput={() => this.filterItemsWithTypeahead()}
+                    onKeyDown={(e) => this.onKeyDown(e)}
                   />
                   {this.allowClear &&
                   !this.disabled &&
