@@ -89,7 +89,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   /**
    * Show helper, info, warning, error and valid text as tooltip
    */
-  @Prop() showTextAsTooltip?: boolean;
+  @Prop() showTextAsTooltip: boolean = false;
 
   /**
    * Legal number intervals
@@ -136,12 +136,12 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   /**
    * Show error state and message
    *
-   * @deprecated Will be removed in 4.0.0. Use invalid class instead.
+   * @deprecated Will be removed in 5.0.0. Use invalid class instead.
    */
   @Prop() error?: boolean | string;
 
   /**
-   *
+   * Will emit the value when it changes
    */
   @Event() valueChange!: EventEmitter<number>;
 

@@ -2404,7 +2404,9 @@ export class IxSlider {
 
 
 export declare interface IxSlider extends Components.IxSlider {
-
+  /**
+   * Will emit the value when it changes
+   */
   valueChange: EventEmitter<CustomEvent<number>>;
 }
 

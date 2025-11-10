@@ -3102,7 +3102,7 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Show error state and message
-          * @deprecated Will be removed in 4.0.0. Use invalid class instead.
+          * @deprecated Will be removed in 5.0.0. Use invalid class instead.
          */
         "error"?: boolean | string;
         "hasValidValue": () => Promise<boolean>;
@@ -3139,8 +3139,9 @@ export namespace Components {
         "min": number;
         /**
           * Show helper, info, warning, error and valid text as tooltip
+          * @default false
          */
-        "showTextAsTooltip"?: boolean;
+        "showTextAsTooltip": boolean;
         /**
           * Legal number intervals  {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}
           * @default 1
@@ -9039,7 +9040,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * Show error state and message
-          * @deprecated Will be removed in 4.0.0. Use invalid class instead.
+          * @deprecated Will be removed in 5.0.0. Use invalid class instead.
          */
         "error"?: boolean | string;
         /**
@@ -9072,9 +9073,13 @@ declare namespace LocalJSX {
           * @default 0
          */
         "min"?: number;
+        /**
+          * Will emit the value when it changes
+         */
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
           * Show helper, info, warning, error and valid text as tooltip
+          * @default false
          */
         "showTextAsTooltip"?: boolean;
         /**
