@@ -14,7 +14,7 @@ import {
   IxModalContent,
   IxModalFooter,
   Modal,
-  ModalSlotProps,
+  type ModalSlotProps,
   showModal,
   dismissModal,
 } from '@siemens/ix-vue';
@@ -27,7 +27,7 @@ function show() {
           <IxModalHeader>Message headline</IxModalHeader>,
           <IxModalContent>Message text lorem ipsum</IxModalContent>,
           <IxModalFooter>
-            <IxButton outline onClick={() => dismissModal()}>
+            <IxButton variant="secondary" onClick={() => dismissModal()}>
               Cancel
             </IxButton>
             <IxButton onClick={() => closeModal()}>OK</IxButton>

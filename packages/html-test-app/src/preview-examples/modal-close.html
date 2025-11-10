@@ -20,7 +20,7 @@ LICENSE file in the root directory of this source tree.
       <ix-modal-header>Message headline</ix-modal-header>
       <ix-modal-content>Message text lorem ipsum</ix-modal-content>
       <ix-modal-footer>
-        <ix-button outline data-cancel>Cancel</ix-button>
+        <ix-button variant="secondary" data-cancel>Cancel</ix-button>
         <ix-button data-okay>OK</ix-button>
       </ix-modal-footer>
     </template>
@@ -33,18 +33,18 @@ LICENSE file in the root directory of this source tree.
         window.customElements.define(
           name,
           class extends HTMLElement {
-            isInitalRender = false;
+            isInitialRender = false;
 
             constructor() {
               super();
             }
 
             connectedCallback() {
-              if (this.isInitalRender) {
+              if (this.isInitialRender) {
                 return;
               }
 
-              this.isInitalRender = true;
+              this.isInitialRender = true;
               this.firstRender();
             }
 
@@ -81,7 +81,7 @@ LICENSE file in the root directory of this source tree.
         button.addEventListener('click', async () => {
           const customModal = document.createElement(exampleModalName);
 
-          const modal = await showModal({
+          await showModal({
             content: customModal,
           });
 

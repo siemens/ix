@@ -36,7 +36,7 @@ function CustomModal() {
       </IxModalHeader>
       <IxModalContent>Message text lorem ipsum</IxModalContent>
       <IxModalFooter>
-        <IxButton outline onClick={() => dismiss()}>
+        <IxButton variant="secondary" onClick={() => dismiss()}>
           Cancel
         </IxButton>
         <IxButton onClick={() => close()}>OK</IxButton>
@@ -55,9 +55,5 @@ export default () => {
     }, 5000);
   }
 
-  return (
-    <>
-      <IxButton onClick={show}>Show modal (auto-dismiss)</IxButton>
-    </>
-  );
+  return <IxButton onClick={show}>Show modal (auto-dismiss)</IxButton>;
 };
