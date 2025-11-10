@@ -41,11 +41,11 @@ regressionTest.describe('category-preview test', () => {
   regressionTest('add token', async ({ page }) => {
     const token = 'Test';
     await page.waitForSelector('ix-category-filter');
-    const input = await page.locator('input').first();
+    const input = page.locator('input').first();
     await input.click();
     await input.fill(token);
     await page.keyboard.press('Enter');
-    const chip = await page.locator('ix-filter-chip').first();
+    const chip = page.locator('ix-filter-chip').first();
     await expect(chip).toContainText(token);
   });
 
@@ -103,7 +103,7 @@ regressionTest.describe('focus behavior', () => {
         };
       });
 
-      const input = await page.locator('input').first();
+      const input = page.locator('input').first();
       await expect(input).not.toBeFocused();
     }
   );
@@ -111,7 +111,7 @@ regressionTest.describe('focus behavior', () => {
   regressionTest(
     'should focus input when adding token programmatically and input was already focused',
     async ({ page }) => {
-      const input = await page.locator('input').first();
+      const input = page.locator('input').first();
 
       await input.click();
       await expect(input).toBeFocused();
