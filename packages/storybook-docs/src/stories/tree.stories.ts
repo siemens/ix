@@ -94,14 +94,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
-export const DefaultCollapsedOnStart: Story = {
-  name: 'Default',
-  args: {
-    context: { sample: { isExpanded: false, isSelected: false } },
-    toggleOnItemClick: false,
-  },
-};
-
 export const ExpandOnChevronClick: Story = {
   name: 'Parent node expands only when chevron is clicked',
   args: {
