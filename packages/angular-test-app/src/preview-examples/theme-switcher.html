@@ -17,6 +17,7 @@
         [value]="selectedVariant"
         (valueChange)="onValueChange($event)"
         [disabled]="useSystemTheme"
+        placeholder="Select a theme"
       >
         <ix-select-item
           *ngFor="let variant of variants"

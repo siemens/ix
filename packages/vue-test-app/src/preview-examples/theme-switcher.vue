@@ -75,6 +75,7 @@ const systemChange = (event: CustomEvent<boolean>) => {
           :value="selectedVariant"
           @valueChange="valueChange"
           :disabled="useSystemTheme"
+          placeholder="Select a theme"
         >
           <IxSelectItem
             v-for="variant in variants"

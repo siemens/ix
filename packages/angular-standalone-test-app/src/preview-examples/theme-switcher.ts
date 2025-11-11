@@ -51,7 +51,7 @@ export default class ThemeSwitcher implements OnInit {
 
   onValueChange(event: Event) {
     if (this.useSystemTheme) return;
-    const customEvent = event as CustomEvent<string | string[]>;
+    const customEvent = event as CustomEvent<string>;
     const newVariant = customEvent.detail as ThemeVariant;
     themeSwitcher.setVariant(newVariant);
     this.selectedVariant = newVariant;
