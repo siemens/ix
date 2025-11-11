@@ -860,9 +860,7 @@ regressionTest(
     await mount(`
       <ix-button id="trigger">Open</ix-button>
       <ix-dropdown trigger="trigger">
-        <ix-dropdown-item id="static-disabled" label="Always Disabled" disabled="true"></ix-dropdown-item>
         <ix-dropdown-item id="dynamic-disabled" label="Dynamic Disabled"></ix-dropdown-item>
-        <ix-dropdown-item id="toggle-trigger" label="Toggle Disabled"></ix-dropdown-item>
       </ix-dropdown>
     `);
 
