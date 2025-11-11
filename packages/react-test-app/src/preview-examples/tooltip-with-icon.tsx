@@ -9,27 +9,22 @@
 
 import './tooltip.scoped.css';
 
-import { IxButton, IxTooltip } from '@siemens/ix-react';
+import { IxButton, IxIcon, IxTooltip } from '@siemens/ix-react';
+import { iconInfo } from '@siemens/ix-icons/icons';
 
-export default () => {
+const TooltipWithIcon = () => {
   return (
     <>
       <IxButton className="any-class" aria-describedby="tooltip-1">
         Hover me
       </IxButton>
       <IxTooltip id="tooltip-1" for=".any-class">
-        Simple selector
-      </IxTooltip>
-
-      <IxButton
-        my-custom-special-selector="any-value"
-        aria-describedby="tooltip-2"
-      >
-        Also hover me
-      </IxButton>
-      <IxTooltip id="tooltip-2" for="[my-custom-special-selector='any-value']">
-        Custom selector
+        <IxIcon slot="title-icon" name={iconInfo} size="16"></IxIcon>
+        <div slot="title-content">Tooltip Title</div>
+        Simple selector with icon
       </IxTooltip>
     </>
   );
 };
+
+export default TooltipWithIcon;
