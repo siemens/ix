@@ -102,6 +102,8 @@ export class RadiobuttonGroup
   @State() isWarning = false;
 
   private touched = false;
+  private formSubmissionAttempted = false;
+  private formSubmitHandler?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
   private readonly observer = new MutationObserver(() => {
@@ -120,6 +122,15 @@ export class RadiobuttonGroup
       attributes: true,
       attributeFilter: ['checked', 'required'],
     });
+
+    const form = this.parentForm;
+    if (form) {
+      this.formSubmitHandler = () => {
+        this.formSubmissionAttempted = true;
+        this.syncValidationClasses();
+      };
+      form.addEventListener('submit', this.formSubmitHandler);
+    }
   }
 
   componentWillLoad(): void | Promise<void> {
@@ -131,6 +142,10 @@ export class RadiobuttonGroup
   disconnectedCallback(): void {
     if (this.observer) {
       this.observer.disconnect();
+    }
+    const form = this.parentForm;
+    if (form && this.formSubmitHandler) {
+      form.removeEventListener('submit', this.formSubmitHandler);
     }
   }
 
@@ -213,9 +228,60 @@ export class RadiobuttonGroup
     return Promise.resolve(this.touched);
   }
 
+  private get parentForm(): HTMLFormElement | null {
+    return this.hostElement.closest('form');
+  }
+
+  private shouldSuppressValidation(): boolean {
+    const form = this.parentForm;
+    if (!form) return false;
+    return (
+      form.hasAttribute('novalidate') ||
+      form.hasAttribute('data-novalidate')
+    );
+  }
+
+  async syncValidationClasses() {
+    if (this.shouldSuppressValidation()) {
+      this.hostElement.classList.remove('ix-invalid--required');
+      if (this.invalidText) {
+        this.invalidText = '';
+      }
+      return;
+    }
+    if (this.required) {
+      const isRequiredInvalid =
+        !this.hasAnyChecked() && (this.touched || this.formSubmissionAttempted);
+      this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+      if (isRequiredInvalid) {
+        this.invalidText =
+          this.invalidText && this.invalidText.trim().length > 0
+            ? this.invalidText
+            : 'Please select an option.';
+      } else if (this.invalidText === 'Please select an option.') {
+        this.invalidText = '';
+      }
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+      if (this.invalidText) {
+        this.invalidText = '';
+      }
+    }
+  }
+
+  private hasAnyChecked(): boolean {
+    return this.radiobuttonElements.some((radio) => radio.checked);
+  }
+
   render() {
     return (
-      <Host onIxBlur={() => (this.touched = true)} ref={this.groupRef}>
+      <Host
+        onIxBlur={() => {
+          this.touched = true;
+          this.syncValidationClasses();
+        }}
+        ref={this.groupRef}
+      >
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}

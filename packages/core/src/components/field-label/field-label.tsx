@@ -45,6 +45,13 @@ export class FormFieldLabel implements IxComponent {
   /** @internal */
   @Prop({ mutable: true }) isInvalid: boolean = false;
 
+  private explicitIsInvalid: boolean = false;
+
+  @Watch('isInvalid')
+  isInvalidChanged(newValue: boolean) {
+    this.explicitIsInvalid = newValue;
+  }
+
   private readonly htmlForObserver = new MutationObserver(() =>
     this.checkForInternalState()
   );
@@ -128,11 +135,13 @@ export class FormFieldLabel implements IxComponent {
   }
 
   private checkForInvalidState(elementToCheck: HTMLElement) {
+    if (this.explicitIsInvalid) {
+      return;
+    }
+
     this.isInvalid =
       elementToCheck.classList.contains('is-invalid') ||
-      elementToCheck.classList.contains('ix-invalid') ||
-      elementToCheck.classList.contains('ix-invalid--required') ||
-      elementToCheck.classList.contains('ix-invalid--validity-patternMismatch');
+      elementToCheck.classList.contains('ix-invalid');
   }
 
   private async checkForInternalState() {
@@ -148,7 +157,6 @@ export class FormFieldLabel implements IxComponent {
         this.registerHtmlForClassObserver(forElement);
         this.checkForInvalidState(forElement);
 
-        // If we have htmlFor element, don't also watch controlRef to avoid conflicts
         return;
       }
     }

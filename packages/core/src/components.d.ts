@@ -1050,8 +1050,7 @@ export namespace Components {
          */
         "required"?: boolean;
         /**
-          * Resets the input field to its original untouched state and initial value. This clears the value, removes touched and dirty states, and recomputes validity.
-          * @example ```typescript // React await dateInputRef.current?.reset();  // Angular await this.dateInput.nativeElement.reset();  // Vue await this.$refs.dateInput.reset();  // HTML/JavaScript const dateInput = document.querySelector('ix-date-input'); await dateInput.reset(); ```
+          * Resets the input field to its original untouched state and initial value. Clears touched and dirty states and recomputes validity.
          */
         "reset": () => Promise<void>;
         /**
@@ -1064,10 +1063,6 @@ export namespace Components {
           * @default false
          */
         "showWeekNumbers": boolean;
-        /**
-          * Synchronizes CSS validation classes with the component's validation state. This method ensures proper visual styling based on validation status, particularly for Vue.
-         */
-        "syncValidationClasses": () => Promise<void>;
         /**
           * Valid text below the input field
          */
