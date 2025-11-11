@@ -23,7 +23,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Build
-        run: pnpm build --cache-dir=.turbo --filter \!documentation
+        run: pnpm build --cache-dir=.turbo
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
