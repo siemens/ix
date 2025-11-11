@@ -19,7 +19,6 @@ import {
   State,
   Watch,
   h,
-  Watch,
 } from '@stencil/core';
 import {
   HookValidationLifecycle,
@@ -198,42 +197,6 @@ export class Textarea implements IxInputFieldComponent<string> {
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
     this.setTextareaWidth();
-  }
-
-  disconnectedCallback() {
-    this.resizeObserver?.disconnect();
-  }
-
-  private initResizeObserver() {
-    this.resizeObserver?.disconnect();
-
-    const textarea = this.textAreaRef.current;
-    if (!textarea) return;
-
-    if (this.resizeBehavior === 'none') return;
-
-    let isInitialResize = true;
-
-    this.resizeObserver = new ResizeObserver(() => {
-      const textarea = this.textAreaRef.current;
-      if (!textarea) return;
-
-      if (isInitialResize) {
-        isInitialResize = false;
-        return;
-      }
-
-      if (this.isProgrammaticResize) {
-        this.isProgrammaticResize = false;
-        return;
-      }
-
-      this.isManuallyResized = true;
-      this.manualHeight = textarea.style.height;
-      this.manualWidth = textarea.style.width;
-    });
-
-    this.resizeObserver.observe(textarea);
   }
 
   disconnectedCallback() {
