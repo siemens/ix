@@ -10,13 +10,15 @@ import { Component } from '@angular/core';
 import {
   IxApplication,
   IxApplicationHeader,
-  IxDropdownButton,
-  IxDropdownItem,
   IxAvatar,
-  IxMenu,
-  IxMenuItem,
   IxContent,
   IxContentHeader,
+  IxDropdownButton,
+  IxDropdownItem,
+  IxMenu,
+  IxMenuItem,
+  IxRadio,
+  IxRadioGroup,
 } from '@siemens/ix-angular/standalone';
 
 import { Breakpoint } from '@siemens/ix';
@@ -33,13 +35,19 @@ import { Breakpoint } from '@siemens/ix';
     IxMenuItem,
     IxContent,
     IxContentHeader,
+    IxRadioGroup,
+    IxRadio,
   ],
   templateUrl: './application-breakpoints.html',
 })
 export default class ApplicationBreakpointExample {
   breakpoints: Breakpoint[] = ['md'];
+  private readonly validBreakpoints = new Set<Breakpoint>(['sm', 'md', 'lg']);
 
-  onCheckedChange(breakpoint: Breakpoint) {
-    this.breakpoints = [breakpoint];
+  onCheckedChange(value: string) {
+    const breakpoint = value as Breakpoint;
+    if (this.validBreakpoints.has(breakpoint)) {
+      this.breakpoints = [breakpoint];
+    }
   }
 }

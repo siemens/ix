@@ -56,9 +56,9 @@ export class Pagination {
   @Prop() itemCount = 15;
 
   /**
-   * Show item count in advanced mode
+   * Hide item count in advanced mode
    */
-  @Prop() showItemCount = true;
+  @Prop() hideItemCount = false;
 
   /**
    * Total number of pages
@@ -270,7 +270,7 @@ export class Pagination {
           aria-label={this.ariaLabelChevronRightIconButton}
         ></ix-icon-button>
 
-        {this.advanced && this.showItemCount ? (
+        {this.advanced && !this.hideItemCount && (
           <span class="item-count">
             <ix-typography format="body">{this.i18nItems}</ix-typography>
             <ix-select
@@ -293,8 +293,6 @@ export class Pagination {
               <ix-select-item label="100" value="100"></ix-select-item>
             </ix-select>
           </span>
-        ) : (
-          ''
         )}
       </Host>
     );

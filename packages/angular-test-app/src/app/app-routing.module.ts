@@ -22,9 +22,6 @@ import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
-import BasicNavigation from '../preview-examples/basic-navigation';
-import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
-import BasicNavigationWithoutHeader from '../preview-examples/basic-navigation-without-header';
 import Blind from '../preview-examples/blind';
 import BlindHeaderActions from '../preview-examples/blind-header-actions';
 import BlindVariants from '../preview-examples/blind-variants';
@@ -97,6 +94,7 @@ import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-brea
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
+import EventListFilled from '../preview-examples/event-list-filled';
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
@@ -115,6 +113,8 @@ import Group from '../preview-examples/group';
 import GroupContextMenu from '../preview-examples/group-context-menu';
 import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
+import HtmlTable from '../preview-examples/html-table';
+import HtmlTableStriped from '../preview-examples/html-table-striped';
 import IconToggleButtonPrimaryGhost from '../preview-examples/icon-toggle-button-primary-ghost';
 import IconToggleButtonPrimaryOutline from '../preview-examples/icon-toggle-button-primary-outline';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
@@ -126,11 +126,7 @@ import InputFormValidation from '../preview-examples/input-form-validation';
 import InputLabel from '../preview-examples/input-label';
 import InputLegacy from '../preview-examples/input-legacy';
 import InputLegacyDisabled from '../preview-examples/input-legacy-disabled';
-import InputLegacyLabels from '../preview-examples/input-legacy-labels';
 import InputLegacyReadonly from '../preview-examples/input-legacy-readonly';
-import InputLegacySearch from '../preview-examples/input-legacy-search';
-import InputLegacyTypes from '../preview-examples/input-legacy-types';
-import InputLegacyWithIcon from '../preview-examples/input-legacy-with-icon';
 import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
 import InputTypes from '../preview-examples/input-types';
@@ -150,15 +146,13 @@ import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
-import MapNavigation from '../preview-examples/map-navigation';
-import MapNavigationMigration from '../preview-examples/map-navigation-migration';
-import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
 import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
+import ModalClose from '../preview-examples/modal-close';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
@@ -314,18 +308,6 @@ const routes: Routes = [
       {
         path: 'avatar',
         component: Avatar,
-      },
-      {
-        path: 'basic-navigation-without-header',
-        component: BasicNavigationWithoutHeader,
-      },
-      {
-        path: 'basic-navigation',
-        component: BasicNavigation,
-      },
-      {
-        path: 'basic-navigation-migration',
-        component: BasicNavigationMigration,
       },
       {
         path: 'blind-header-actions',
@@ -580,6 +562,10 @@ const routes: Routes = [
         component: EmptyState,
       },
       {
+        path: 'event-list',
+        component: EventList,
+      },
+      {
         path: 'event-list-compact',
         component: EventListCompact,
       },
@@ -588,12 +574,12 @@ const routes: Routes = [
         component: EventListCustomItemHeight,
       },
       {
-        path: 'event-list-selected',
-        component: EventListSelected,
+        path: 'event-list-filled',
+        component: EventListFilled,
       },
       {
-        path: 'event-list',
-        component: EventList,
+        path: 'event-list-selected',
+        component: EventListSelected,
       },
       {
         path: 'expanding-search',
@@ -632,6 +618,14 @@ const routes: Routes = [
         component: Group,
       },
       {
+        path: 'html-table',
+        component: HtmlTable,
+      },
+      {
+        path: 'html-table-striped',
+        component: HtmlTableStriped,
+      },
+      {
         path: 'icon-toggle-button-primary-ghost',
         component: IconToggleButtonPrimaryGhost,
       },
@@ -656,24 +650,8 @@ const routes: Routes = [
         component: InputLegacyDisabled,
       },
       {
-        path: 'input-legacy-labels',
-        component: InputLegacyLabels,
-      },
-      {
         path: 'input-legacy-readonly',
         component: InputLegacyReadonly,
-      },
-      {
-        path: 'input-legacy-search',
-        component: InputLegacySearch,
-      },
-      {
-        path: 'input-legacy-types',
-        component: InputLegacyTypes,
-      },
-      {
-        path: 'input-legacy-with-icon',
-        component: InputLegacyWithIcon,
       },
       {
         path: 'input-legacy',
@@ -728,14 +706,6 @@ const routes: Routes = [
         component: Loading,
       },
       {
-        path: 'map-navigation-overlay',
-        component: MapNavigationOverlay,
-      },
-      {
-        path: 'map-navigation',
-        component: MapNavigation,
-      },
-      {
         path: 'menu-category',
         component: MenuCategory,
       },
@@ -762,6 +732,10 @@ const routes: Routes = [
       {
         path: 'modal-by-instance',
         component: ModalByInstance,
+      },
+      {
+        path: 'modal-close',
+        component: ModalClose,
       },
       {
         path: 'modal-by-template',
@@ -941,9 +915,6 @@ const routes: Routes = [
       { path: 'validation', component: Validation },
       { path: 'workflow', component: Workflow },
       { path: 'workflow-vertical', component: WorkflowVertical },
-      { path: 'map-navigation', component: MapNavigation },
-      { path: 'map-navigation-overlay', component: MapNavigationOverlay },
-      { path: 'map-navigation-migration', component: MapNavigationMigration },
       { path: 'number-input', component: NumberInput },
       { path: 'number-input-disabled', component: NumberInputDisabled },
       { path: 'number-input-label', component: NumberInputLabel },

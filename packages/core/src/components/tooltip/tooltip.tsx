@@ -36,7 +36,10 @@ type ArrowPosition = {
   top?: string;
   left?: string;
   right?: string;
+  bottom?: string;
 };
+
+const ARROW_OFFSET = -6;
 
 const numberToPixel = (value?: number | null) =>
   value !== null ? `${value}px` : '';
@@ -172,14 +175,14 @@ export class Tooltip {
       return {
         ...resetPosition,
         left: numberToPixel(x),
-        top: numberToPixel(y),
+        bottom: numberToPixel(ARROW_OFFSET),
       };
     }
 
     if (placement.startsWith('right')) {
       return {
         ...resetPosition,
-        left: numberToPixel(-6),
+        left: numberToPixel(ARROW_OFFSET),
         top: numberToPixel(y),
       };
     }
@@ -188,14 +191,14 @@ export class Tooltip {
       return {
         ...resetPosition,
         left: numberToPixel(x),
-        top: numberToPixel(-6),
+        top: numberToPixel(ARROW_OFFSET),
       };
     }
 
     if (placement.startsWith('left')) {
       return {
         ...resetPosition,
-        right: numberToPixel(-6),
+        right: numberToPixel(ARROW_OFFSET),
         top: numberToPixel(y),
       };
     }
