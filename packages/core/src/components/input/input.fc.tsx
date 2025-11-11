@@ -114,7 +114,14 @@ export function InputElement(
       value={props.value}
       placeholder={props.placeholder}
       onKeyPress={(event) => props.onKeyPress(event)}
-      onKeyDown={(event) => props.onKeyDown?.(event)}
+      onKeyDown={(e) => {
+        props.onKeyDown?.(e);
+        handleSubmitOnEnterKeydown(
+          e,
+          !!props.suppressSubmitOnEnter,
+          props.form
+        );
+      }}
       {...({
         onBeforeInput: (event: InputEvent) => props.onBeforeInput?.(event),
       } as any)}
@@ -126,9 +133,6 @@ export function InputElement(
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
-      onKeyDown={(e) =>
-        handleSubmitOnEnterKeydown(e, !!props.suppressSubmitOnEnter, props.form)
-      }
     ></input>
   );
 }
