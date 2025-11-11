@@ -66,14 +66,12 @@ function detectThemeSwitching() {
   const searchParams = new URLSearchParams(location.search);
   if (searchParams.has('theme')) {
     const theme = searchParams.get('theme');
-    const themeWithoutPrefix = theme.replace(/^theme-/, '');
-    const parts = themeWithoutPrefix.split('-');
-    const variant = parts.pop();
-    const themeName = parts.join('-') || 'classic';
-    const validVariant =
-      variant === 'light' || variant === 'dark' ? variant : 'dark';
-    document.documentElement.dataset.ixTheme = themeName;
-    document.documentElement.dataset.ixColorSchema = validVariant;
+    document.documentElement.dataset.ixTheme = theme;
+  }
+
+  if (searchParams.has('colorSchema')) {
+    const colorSchema = searchParams.get('colorSchema');
+    document.documentElement.dataset.ixColorSchema = colorSchema;
   }
 }
 
