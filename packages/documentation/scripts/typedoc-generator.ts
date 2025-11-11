@@ -21,7 +21,8 @@ import { toKebabCase } from './utils/string-utils';
 
 export type TypeDocTarget = {
   name: string;
-  properties: TypeDocProperty[];
+  properties?: TypeDocProperty[];
+  func?: FunctionDocProperty;
   type: 'Function' | 'Type';
   source: string;
 };
@@ -30,6 +31,20 @@ export type TypeDocProperty = {
   name: string;
   defaultValue?: string;
   type: string;
+  comment: string;
+  tags: Array<{ tag: string; text?: string }>;
+};
+
+export type FunctionDocProperty = {
+  name: string;
+  parameters: Array<{
+    name: string;
+    type: string;
+    optional?: boolean;
+    defaultValue?: string;
+    comment: string;
+  }>;
+  returnType: string;
   comment: string;
   tags: Array<{ tag: string; text?: string }>;
 };
@@ -142,6 +157,24 @@ function processProperties(child: any): TypeDocProperty[] {
   return properties;
 }
 
+function processFunctionSignature(child: any): FunctionDocProperty {
+  const signature = child.signatures?.[0];
+
+  return {
+    name: child.name,
+    parameters:
+      signature.parameters?.map((param) => ({
+        name: param.name,
+        type: getPropertyType(param),
+        optional: param.flags?.isOptional,
+        comment: getCommentSummary(param),
+      })) || [],
+    returnType: getPropertyType(signature.type),
+    comment: getCommentSummary(child),
+    tags: extractCommentTags(child),
+  };
+}
+
 function processProjectChildren(
   project: any,
   rootPath: string
@@ -154,15 +187,26 @@ function processProjectChildren(
 
   for (const child of project.children) {
     const source = path.relative(rootPath, child.sources![0].fullFileName);
-
+    const isFunction = child.signatures?.length > 0 && !child.children;
     const properties = processProperties(child);
 
-    types.push({
-      name: child.name,
-      properties,
-      type: 'Type',
-      source,
-    });
+    if (isFunction) {
+      const functionDoc = processFunctionSignature(child);
+      types.push({
+        name: child.name,
+        func: functionDoc,
+        type: 'Function',
+        source,
+      });
+    } else {
+      const properties = processProperties(child);
+      types.push({
+        name: child.name,
+        properties,
+        type: 'Type',
+        source,
+      });
+    }
   }
 
   return types;
@@ -230,6 +274,18 @@ function generateStructuredMDX(
   templatesPath: string,
   framework?: string
 ): string {
+  if (typedoc.type === 'Function' && typedoc.func) {
+    return generateFunctionMDX(typedoc, templatesPath, framework);
+  }
+
+  return generatePropertyMDX(typedoc, templatesPath, framework);
+}
+
+function generatePropertyMDX(
+  typedoc: TypeDocTarget,
+  templatesPath: string,
+  framework?: string
+): string {
   const propertyTemplate = fs.readFileSync(
     path.join(templatesPath, 'property-table.mustache'),
     'utf-8'
@@ -241,7 +297,7 @@ function generateStructuredMDX(
 
   const kebabName = `ix-${toKebabCase(typedoc.name)}`;
 
-  const formattedProps = typedoc.properties.map((prop) => {
+  const formattedProps = (typedoc.properties || []).map((prop) => {
     return {
       name: prop.name,
       singleFramework: framework,
@@ -262,7 +318,7 @@ function generateStructuredMDX(
 
   return Mustache.render(apiTemplate, {
     tag: kebabName,
-    hasProps: typedoc.properties.length > 0,
+    hasProps: (typedoc.properties || []).length > 0,
     hasEvents: false,
     hasSlots: false,
     singleFramework: framework,
@@ -270,6 +326,41 @@ function generateStructuredMDX(
     properties: propertyOutput,
     events: '',
     slots: '',
+  });
+}
+
+function generateFunctionMDX(
+  typedoc: TypeDocTarget,
+  templatesPath: string,
+  framework?: string
+): string {
+  const functionTemplate = fs.readFileSync(
+    path.join(templatesPath, 'function-table.mustache'),
+    'utf-8'
+  );
+
+  const func = typedoc.func!;
+  const kebabName = `ix-${toKebabCase(typedoc.name)}`;
+
+  const formattedParams = func.parameters.map((param) => ({
+    name: param.name,
+    type: escapeBackticks(param.type),
+    optional: param.optional,
+    default: param.defaultValue
+      ? escapeBackticks(param.defaultValue)
+      : undefined,
+    comment: escapeBackticks(param.comment),
+  }));
+
+  return Mustache.render(functionTemplate, {
+    name: func.name,
+    kebabName: kebabName,
+    comment: escapeBackticks(func.comment),
+    returnType: escapeBackticks(func.returnType),
+    parameters: formattedParams,
+    hasParameters: formattedParams.length > 0,
+    docsTags: convertTagsToTSXElements(func.tags),
+    singleFramework: framework,
   });
 }
 
