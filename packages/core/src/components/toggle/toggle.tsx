@@ -20,7 +20,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
-import { IxFormComponent, HookValidationLifecycle } from '../utils/input';
+import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 
 /**
  * @form-ready
@@ -178,6 +178,9 @@ export class Toggle implements IxFormComponent<string> {
     }
     return (
       <Host
+        role="switch"
+        aria-checked={a11yBoolean(this.checked)}
+        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
         }}
@@ -186,14 +189,14 @@ export class Toggle implements IxFormComponent<string> {
       >
         <label class="wrapper">
           <button
-            role="switch"
-            aria-checked={a11yBoolean(this.checked)}
             class={{
               switch: true,
               checked: this.checked,
               indeterminate: this.indeterminate,
             }}
             onClick={() => this.onCheckedChange(!this.checked)}
+            tabindex={-1}
+            aria-hidden="true"
           >
             <div class="slider"></div>
           </button>

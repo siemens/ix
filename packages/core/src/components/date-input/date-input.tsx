@@ -27,6 +27,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -196,6 +197,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() ariaLabelNextMonthButton?: string;
 
   /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
+   * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -345,6 +357,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
+  private handleInputKeyDown(event: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      event,
+      this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
+  }
+
   private renderInput() {
     return (
       <div class="input-wrapper">
@@ -383,6 +403,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+          }}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
+          style={{
+            textAlign: this.textAlignment,
           }}
         ></input>
         <SlotEnd
@@ -502,7 +526,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ref={this.datepickerRef}
             format={this.format}
             locale={this.locale}
-            range={false}
+            singleSelection
             from={this.from ?? ''}
             minDate={this.minDate}
             maxDate={this.maxDate}
@@ -513,7 +537,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             showWeekNumbers={this.showWeekNumbers}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-            standaloneAppearance={false}
+            embedded
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

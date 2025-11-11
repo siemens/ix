@@ -37,11 +37,6 @@ export class MenuAboutNews {
   @Prop() aboutItemLabel?: string;
 
   /**
-   * Bottom offset
-   */
-  @Prop() offsetBottom = 0;
-
-  /**
    * Show More button is pressed
    */
   @Event() showMore!: EventEmitter<MouseEvent>;

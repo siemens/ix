@@ -166,6 +166,8 @@ packages/*/build/
 ###
 
 packages/core/dist-css
+packages/core/api-docs
+packages/core/component-doc.json
 
 ###
 # html-test-app

@@ -42,17 +42,12 @@ import { Breakpoint } from '@siemens/ix';
 })
 export default class ApplicationBreakpointExample {
   breakpoints: Breakpoint[] = ['md'];
-  private readonly validBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
+  private readonly validBreakpoints = new Set<Breakpoint>(['sm', 'md', 'lg']);
 
-  onCheckedChange(breakpoint: string) {
-    if (this.validBreakpoints.includes(breakpoint as Breakpoint)) {
-      this.breakpoints = [breakpoint as Breakpoint];
-    } else {
-      console.warn(
-        `Invalid breakpoint value: ${breakpoint}. Expected one of: ${this.validBreakpoints.join(
-          ', '
-        )}`
-      );
+  onCheckedChange(value: string) {
+    const breakpoint = value as Breakpoint;
+    if (this.validBreakpoints.has(breakpoint)) {
+      this.breakpoints = [breakpoint];
     }
   }
 }

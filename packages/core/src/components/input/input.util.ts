@@ -196,3 +196,26 @@ function observeElementUntilVisible(
   intersectionObserver.observe(hostElement);
   return intersectionObserver;
 }
+
+export function handleSubmitOnEnterKeydown(
+  event: KeyboardEvent,
+  suppressSubmitOnEnter: boolean,
+  form: HTMLFormElement | null | undefined
+) {
+  if (suppressSubmitOnEnter || event.key !== 'Enter' || !form) {
+    return;
+  }
+
+  event.preventDefault();
+  const submitButton = form.querySelector<HTMLElement>(
+    'button[type="submit"], ix-button[type="submit"]'
+  );
+
+  if (submitButton) {
+    form.requestSubmit(submitButton);
+  }
+
+  if (form.length === 1) {
+    form.requestSubmit();
+  }
+}

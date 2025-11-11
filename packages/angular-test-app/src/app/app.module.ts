@@ -31,9 +31,6 @@ import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
-import BasicNavigation from '../preview-examples/basic-navigation';
-import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
-import BasicNavigationWithoutHeader from '../preview-examples/basic-navigation-without-header';
 import Blind from '../preview-examples/blind';
 import BlindHeaderActions from '../preview-examples/blind-header-actions';
 import BlindVariants from '../preview-examples/blind-variants';
@@ -106,6 +103,7 @@ import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-brea
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
+import EventListFilled from '../preview-examples/event-list-filled';
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
@@ -137,11 +135,7 @@ import InputFormValidation from '../preview-examples/input-form-validation';
 import InputLabel from '../preview-examples/input-label';
 import InputLegacy from '../preview-examples/input-legacy';
 import InputLegacyDisabled from '../preview-examples/input-legacy-disabled';
-import InputLegacyLabels from '../preview-examples/input-legacy-labels';
 import InputLegacyReadonly from '../preview-examples/input-legacy-readonly';
-import InputLegacySearch from '../preview-examples/input-legacy-search';
-import InputLegacyTypes from '../preview-examples/input-legacy-types';
-import InputLegacyWithIcon from '../preview-examples/input-legacy-with-icon';
 import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
 import InputTypes from '../preview-examples/input-types';
@@ -161,9 +155,6 @@ import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
-import MapNavigation from '../preview-examples/map-navigation';
-import MapNavigationMigration from '../preview-examples/map-navigation-migration';
-import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
 import Message from '../preview-examples/message';
@@ -172,6 +163,7 @@ import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
+import ModalClose from '../preview-examples/modal-close';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
@@ -243,6 +235,7 @@ import ToggleDisabled from '../preview-examples/toggle-disabled';
 import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 import ToggleNgModel from '../preview-examples/toggle-ng-model';
 import Tooltip from '../preview-examples/tooltip';
+import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import Tree from '../preview-examples/tree';
 import TreeCustom from '../preview-examples/tree-custom';
 import Upload from '../preview-examples/upload';
@@ -272,9 +265,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     AvatarImage,
     AvatarInitials,
     Avatar,
-    BasicNavigationWithoutHeader,
-    BasicNavigation,
-    BasicNavigationMigration,
     BlindHeaderActions,
     BlindVariants,
     Blind,
@@ -346,6 +336,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     EmptyState,
     EventListCompact,
     EventListCustomItemHeight,
+    EventListFilled,
     EventListSelected,
     EventList,
     ExpandingSearch,
@@ -370,11 +361,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     IconToggleButtonSecondaryOutline,
     IconToggleButtonSecondary,
     InputLegacyDisabled,
-    InputLegacyLabels,
     InputLegacyReadonly,
-    InputLegacySearch,
-    InputLegacyTypes,
-    InputLegacyWithIcon,
     InputLegacy,
     KeyValueListStriped,
     KeyValueListWithCustomValue,
@@ -388,8 +375,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     LinkButtonDisabled,
     LinkButton,
     Loading,
-    MapNavigationOverlay,
-    MapNavigation,
     MenuCategory,
     MenuWithBottomTabs,
     Message,
@@ -398,6 +383,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ModalByInstanceContent,
     ModalByInstance,
     ModalByTemplate,
+    ModalClose,
     ModalFormIxButtonSubmit,
     ModalSizes,
     PaginationAdvanced,
@@ -464,6 +450,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ToggleNgModel,
     Toggle,
     Tooltip,
+    TooltipWithIcon,
     TreeCustom,
     Tree,
     Upload,
@@ -471,7 +458,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     VerticalTabsWithAvatar,
     VerticalTabs,
     WorkflowVertical,
-    MapNavigationMigration,
     NumberInput,
     NumberInputDisabled,
     NumberInputLabel,
