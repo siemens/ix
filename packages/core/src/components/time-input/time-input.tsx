@@ -27,6 +27,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -200,6 +201,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
    * Hides the header of the picker.
    *
    * @since 4.0.0
@@ -243,6 +250,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  private handleInputKeyDown(event: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      event,
+      this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
+  }
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -397,6 +412,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             this.ixBlur.emit();
             this.touched = true;
           }}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -520,7 +536,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             minuteInterval={this.minuteInterval}
             secondInterval={this.secondInterval}
             millisecondInterval={this.millisecondInterval}
-            standaloneAppearance={false}
+            embedded
             hideHeader={this.hideHeader}
             i18nConfirmTime={this.i18nSelectTime}
             i18nHeader={this.i18nTime}
