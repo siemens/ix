@@ -117,9 +117,11 @@ export class DropdownItem implements DropdownItemWrapper {
           class={{
             'dropdown-item': true,
             'no-checked-field': this.suppressChecked,
+            disabled: this.disabled,
           }}
           onClick={() => this.emitItemClick()}
           aria-label={this.ariaLabelButton}
+          disabled={this.disabled}
         >
           {!this.suppressChecked ? (
             <div class="dropdown-item-checked">
