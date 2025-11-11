@@ -19,6 +19,7 @@ jobs:
       contents: write
       pull-requests: write
       id-token: write
+      statuses: read
     if: |
       github.repository == 'siemens/ix' &&
       (
@@ -48,9 +49,10 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: rm .changeset/pre.json
 
-      - name: Release to pr tag
+      - name: Release to snapshot
         run: |
-          pnpm changeset version --snapshot $SNAPSHOT_NAME && pnpm i --lockfile-only
+          pnpm changeset version --snapshot $SNAPSHOT_NAME
+          pnpm i --lockfile-only
           pnpm build
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
           pnpm changeset publish --no-git-tag --snapshot --tag $SNAPSHOT_NAME

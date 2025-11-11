@@ -8,4 +8,3 @@
  */
 
 export * from './page';
-export { themeSwitcher } from './theme-switcher';

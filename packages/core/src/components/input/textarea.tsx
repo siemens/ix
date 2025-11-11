@@ -180,6 +180,10 @@ export class Textarea implements IxInputFieldComponent<string> {
     mapValidationResult(this, result);
   }
 
+<<<<<<<<< Temporary merge branch 1
+  @Watch('textareaWidth') onTextareaWidthChange() {
+    this.setTextareaWidth();
+=========
   @Watch('textareaHeight')
   @Watch('textareaWidth')
   onDimensionPropsChange() {

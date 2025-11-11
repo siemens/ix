@@ -15,32 +15,34 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
   </head>
   <body>
-    <ix-basic-navigation>
+    <ix-application>
+      <ix-application-header></ix-application-header>
       <ix-menu start-expanded>
         <ix-menu-item>Item 1</ix-menu-item>
         <ix-menu-item>Item 2</ix-menu-item>
         <ix-menu-item>Item 3</ix-menu-item>
         <ix-menu-settings>
           <ix-menu-settings-item label="Label 1"
-            >First Label - <span id="changeSpan">First Content</span></ix-menu-settings-item
+            >First Label -
+            <span id="changeSpan">First Content</span></ix-menu-settings-item
           >
           <ix-menu-settings-item id="changeTab" label="Label 2"
             >Other Label - Other Content</ix-menu-settings-item
           >
         </ix-menu-settings>
       </ix-menu>
-    </ix-basic-navigation>
+    </ix-application>
     <script>
-      window.onload = function() {
+      window.onload = function () {
         var changeTab = document.getElementById('changeTab');
         var changeSpan = document.getElementById('changeSpan');
-        changeSpan.addEventListener('click', function() {
+        changeSpan.addEventListener('click', function () {
           changeTab.setAttribute('label', 'Changed Label');
         });
-      }
+      };
     </script>
     <script>
-      document.querySelector('ix-basic-navigation').breakpoints = [
+      document.querySelector('ix-application').breakpoints = [
         'small',
         'medium',
       ];
