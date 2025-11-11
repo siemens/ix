@@ -15,8 +15,10 @@
         "storybook-static/**",
         "www/**",
         "loader/**",
+        "api-docs/**",
         "component-doc.json",
-        "components/**"
+        "component-usage-by-component.json",
+        "component-usage.json"
       ],
       "outputLogs": "new-only"
     },

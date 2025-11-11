@@ -11,8 +11,9 @@ import { IxButton } from '@siemens/ix-react';
 
 export default () => (
   <div className="ix-button-group">
-    <IxButton variant="subtle-primary">Left</IxButton>
-    <IxButton>Middle</IxButton>
-    <IxButton variant="subtle-primary">Right</IxButton>
+    <IxButton variant="subtle-secondary">Button 1</IxButton>
+    <IxButton> Button 2 </IxButton>
+    <IxButton variant="subtle-secondary">Button 3</IxButton>
+    <IxButton variant="subtle-secondary">Button 4</IxButton>
   </div>
 );
