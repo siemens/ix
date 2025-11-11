@@ -7,42 +7,51 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/aggrid"
   },
+  "license": "MIT",
   "description": "AG Grid theme based on ix theme variables",
-  "version": "3.0.2",
+  "version": "4.0.1",
   "files": [
     "LICENSE",
     "README.md",
     "READMEOSS.html",
     "dist/"
   ],
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
   "scripts": {
+    "build.watch": "rollup -c -w",
     "test.setup": "playwright install chromium --with-deps",
-    "build": "gulp",
-    "visual-regression": "playwright test",
-    "host-root": "http-server -a 127.0.0.1"
+    "build": "npm run clean && npm run compile",
+    "clean": "rimraf dist",
+    "compile": "rollup -c",
+    "visual-regression": "playwright test --config=playwright.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.54.1",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^8.5.0",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-icons": "^3.2.0",
-    "@types/gulp": "^4.0.14",
-    "@types/gulp-postcss": "^8.0.4",
-    "@types/gulp-sass": "^5.0.2",
-    "ag-grid-community": "^32.1.0",
-    "autoprefixer": "10.4.20",
-    "cssnano": "^6.1.2",
-    "gulp": "^4.0.2",
-    "gulp-postcss": "^9.0.1",
-    "gulp-sass": "^5.1.0",
+    "@types/node": "^24.0.3",
+    "ag-grid-community": "^33.3.2",
     "http-server": "^14.1.1",
-    "rimraf": "^5.0.9",
-    "sass": "^1.89.2",
-    "ts-node": "^10.9.2"
+    "rimraf": "^6.0.1",
+    "rollup": "^4.43.0",
+    "rollup-plugin-import-css": "^4.0.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "ag-grid-community-34": "npm:ag-grid-community@^34.3.0"
   },
   "dependencies": {
-    "@siemens/ix": "^3.2.0"
+    "@siemens/ix": "^4.0.0"
   },
   "peerDependencies": {
-    "ag-grid-community": "^28 || ^29 || ^30 || ^31 || ^32"
+    "ag-grid-community": "^33"
   }
 }
