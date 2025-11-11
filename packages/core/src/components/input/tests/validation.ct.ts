@@ -57,6 +57,68 @@ test.describe('validation', () => {
       await expect(ixInput).not.toHaveClass(/ix-invalid--required/);
     });
 
+    test('validityStateChange emitted only if validity change', async ({
+      mount,
+      page,
+    }) => {
+      await mount('<ix-number-input required value="10"></ix-number-input>');
+
+      const ixInput = page.locator('ix-number-input');
+
+      const shadowDomInput = ixInput.locator('input');
+
+      let eventTriggered = ixInput.evaluate(
+        (element, [eventTriggered]) =>
+          new Promise<{
+            event: string;
+            count?: number;
+          }>((resolve) => {
+            element.addEventListener('validityStateChange', () => {
+              eventTriggered++;
+              resolve({
+                event: 'validityStateChange',
+                count: eventTriggered,
+              });
+            });
+
+            element.addEventListener('valueChange', () =>
+              resolve({
+                event: 'valueChange',
+              })
+            );
+          }),
+        [0]
+      );
+
+      await shadowDomInput.fill('15');
+      await shadowDomInput.blur();
+      expect((await eventTriggered).event).not.toBe('validityStateChange');
+
+      eventTriggered = ixInput.evaluate(
+        (element) =>
+          new Promise<{
+            event: string;
+            count?: number;
+          }>((resolve) => {
+            element.addEventListener('validityStateChange', () => {
+              resolve({
+                event: 'validityStateChange',
+              });
+            });
+
+            element.addEventListener('valueChange', () =>
+              resolve({
+                event: 'valueChange',
+              })
+            );
+          })
+      );
+
+      await shadowDomInput.fill('');
+      await shadowDomInput.blur();
+      expect((await eventTriggered).event).toBe('validityStateChange');
+    });
+
     test('number input should be invalid if value is empty', async ({
       mount,
       page,
