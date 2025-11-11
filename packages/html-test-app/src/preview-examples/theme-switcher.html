@@ -59,12 +59,12 @@ LICENSE file in the root directory of this source tree.
           themeSwitcher.setVariant(selectedVariant);
         });
 
-        variants.forEach((variant) => {
+        for (const variant of variants) {
           const item = document.createElement('ix-select-item');
           item.label = variant;
           item.value = variant;
           themeSelect.appendChild(item);
-        });
+        }
 
         themeSelect.value = selectedVariant;
 

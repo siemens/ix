@@ -70,9 +70,10 @@ function detectThemeSwitching() {
     const parts = themeWithoutPrefix.split('-');
     const variant = parts.pop();
     const themeName = parts.join('-') || 'classic';
-    const validVariant = (variant === 'light' || variant === 'dark') ? variant : 'dark';
-    document.documentElement.setAttribute('data-ix-theme', themeName);
-    document.documentElement.setAttribute('data-ix-color-schema', validVariant);
+    const validVariant =
+      variant === 'light' || variant === 'dark' ? variant : 'dark';
+    document.documentElement.dataset.ixTheme = themeName;
+    document.documentElement.dataset.ixColorSchema = validVariant;
   }
 }
 
