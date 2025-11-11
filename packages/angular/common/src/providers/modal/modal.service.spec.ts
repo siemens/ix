@@ -103,3 +103,37 @@ test('should create modal by component typ', async () => {
     modalElement: { type: 'html-element' },
   });
 });
+
+test('should close modal instance with reason and mark as closed', () => {
+  const closeModalMock = jest.fn(function (
+    this: { closed?: boolean },
+    reason?: any
+  ) {
+    if (typeof reason !== 'undefined') {
+      this.closed = true;
+    }
+  });
+  const instance = {
+    htmlElement: {
+      closeModal: closeModalMock,
+      closed: false,
+    },
+  };
+  const modalService = new ModalService({} as any, {} as any, {} as any);
+  const reason = 'user-dismissed';
+  modalService.close(instance, reason);
+  expect(closeModalMock).toHaveBeenCalledWith(reason);
+  expect(instance.htmlElement.closed).toBe(true);
+});
+
+test('should throw TypeError if instance cannot be closed', () => {
+  const instance = {
+    htmlElement: {},
+  };
+  const modalService = new ModalService({} as any, {} as any, {} as any);
+
+  expect(() => modalService.close(instance)).toThrow(TypeError);
+  expect(() => modalService.close(instance)).toThrow(
+    'Invalid modal instance: cannot close'
+  );
+});
