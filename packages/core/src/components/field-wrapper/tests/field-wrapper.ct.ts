@@ -237,7 +237,7 @@ regressionTest(
     await mount(
       `
       <ix-field-wrapper
-        invalid-text="" 
+        invalid-text=""
         is-invalid
         show-text-as-tooltip
       >
