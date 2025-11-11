@@ -120,6 +120,46 @@ test('multiple selection', async ({ mount, page }) => {
   await expect(chip3).toBeVisible();
 });
 
+test('multiple mode filter reset', async ({ mount, page }) => {
+  await mount(`
+    <ix-select mode="multiple">
+      <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+      <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+      <ix-select-item value="4" label="Item 4">Test</ix-select-item>
+    </ix-select>
+  `);
+  const element = page.locator('ix-select');
+
+  await page.locator('[data-select-dropdown]').click();
+  const dropdown = element.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  await element.locator('input').fill('Item 1');
+
+  const item1 = page.getByRole('button', { name: 'Item 1' });
+  const item2 = page.getByRole('button', { name: 'Item 2' });
+  const item3 = page.getByRole('button', { name: 'Item 3' });
+  const item4 = page.getByRole('button', { name: 'Item 4' });
+
+  await expect(item1).toBeVisible();
+  await expect(item2).not.toBeVisible();
+  await expect(item3).not.toBeVisible();
+  await expect(item4).not.toBeVisible();
+
+  await item1.click();
+
+  await expect(element.locator('input')).toHaveValue('');
+  await expect(dropdown).toBeVisible();
+  await expect(item1).toBeVisible();
+  await expect(item2).toBeVisible();
+  await expect(item3).toBeVisible();
+  await expect(item4).toBeVisible();
+  await expect(element.locator('.chips').getByTitle('Item 1')).toBeVisible();
+
+  await expect(item1).toBeFocused();
+});
+
 test('filter', async ({ mount, page }) => {
   await mount(`
         <ix-select mode="multiple">

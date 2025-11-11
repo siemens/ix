@@ -562,7 +562,8 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         showWeekNumbers: 'show-week-numbers',
         weekStartIndex: 'week-start-index',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
-        ariaLabelNextMonthButton: 'aria-label-next-month-button'
+        ariaLabelNextMonthButton: 'aria-label-next-month-button',
+        suppressSubmitOnEnter: 'suppress-submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDateInput as ReactWebComponent<IxDateInputElement, IxDateInputEvents>,
@@ -1002,7 +1003,8 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@
         pattern: 'pattern',
         maxLength: 'max-length',
         minLength: 'min-length',
-        allowedCharactersPattern: 'allowed-characters-pattern'
+        allowedCharactersPattern: 'allowed-characters-pattern',
+        suppressSubmitOnEnter: 'suppress-submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxInput as ReactWebComponent<IxInputElement, IxInputEvents>,
@@ -1374,7 +1376,8 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         max: 'max',
         allowedCharactersPattern: 'allowed-characters-pattern',
         showStepperButtons: 'show-stepper-buttons',
-        step: 'step'
+        step: 'step',
+        suppressSubmitOnEnter: 'suppress-submit-on-enter'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxNumberInput as ReactWebComponent<IxNumberInputElement, IxNumberInputEvents>,
@@ -1781,6 +1784,7 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         i18nMinuteColumnHeader: 'i18n-minute-column-header',
         i18nSecondColumnHeader: 'i18n-second-column-header',
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
         hideHeader: 'hide-header'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,

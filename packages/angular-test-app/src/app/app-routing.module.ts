@@ -152,6 +152,7 @@ import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
+import ModalClose from '../preview-examples/modal-close';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
@@ -730,6 +731,10 @@ const routes: Routes = [
       {
         path: 'modal-by-instance',
         component: ModalByInstance,
+      },
+      {
+        path: 'modal-close',
+        component: ModalClose,
       },
       {
         path: 'modal-by-template',

@@ -41,11 +41,11 @@ regressionTest.describe('category-preview test', () => {
   regressionTest('add token', async ({ page }) => {
     const token = 'Test';
     await page.waitForSelector('ix-category-filter');
-    const input = await page.locator('input').first();
+    const input = page.locator('input').first();
     await input.click();
     await input.fill(token);
     await page.keyboard.press('Enter');
-    const chip = await page.locator('ix-filter-chip').first();
+    const chip = page.locator('ix-filter-chip').first();
     await expect(chip).toContainText(token);
   });
 
@@ -71,4 +71,55 @@ regressionTest.describe('category-preview test', () => {
 
     expect(categoryPreview).toEqual(null);
   });
+});
+
+regressionTest.describe('focus behavior', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`<ix-category-filter></ix-category-filter>`);
+
+    const categoryFilter = page.locator('ix-category-filter');
+    await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
+      el.categories = {
+        ID_1: {
+          label: 'Vendor',
+          options: ['Apple', 'MS', 'Siemens'],
+        },
+        ID_2: {
+          label: 'Product',
+          options: ['iPhone X', 'Windows', 'APS'],
+        },
+      };
+    });
+  });
+
+  regressionTest(
+    'should not focus input when setting filterState programmatically',
+    async ({ page }) => {
+      const categoryFilter = page.locator('ix-category-filter');
+      await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
+        el.filterState = {
+          tokens: ['Test'],
+          categories: [],
+        };
+      });
+
+      const input = page.locator('input').first();
+      await expect(input).not.toBeFocused();
+    }
+  );
+
+  regressionTest(
+    'should focus input when adding token programmatically and input was already focused',
+    async ({ page }) => {
+      const input = page.locator('input').first();
+
+      await input.click();
+      await expect(input).toBeFocused();
+
+      await input.fill('Test');
+      await page.keyboard.press('Enter');
+
+      await expect(input).toBeFocused();
+    }
+  );
 });

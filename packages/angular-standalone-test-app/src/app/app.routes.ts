@@ -882,6 +882,11 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'modal-close',
+        loadComponent: () =>
+          import('../preview-examples/modal-close').then((m) => m.default),
+      },
+      {
         path: 'modal-by-template',
         loadComponent: () =>
           import('../preview-examples/modal-by-template').then(

@@ -155,6 +155,12 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
   @Prop() step?: string | number = 1;
 
   /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
    * Event emitted when the value of the input field changes
    */
   @Event() valueChange!: EventEmitter<number | undefined>;
@@ -325,7 +331,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
     const currentValue = this.value ?? 0;
     const stepValue =
-      typeof this.step === 'string' ? parseFloat(this.step) : (this.step ?? 1);
+      typeof this.step === 'string' ? parseFloat(this.step) : this.step ?? 1;
 
     let newValue: number;
 
@@ -464,6 +470,8 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
                 }
               }}
               onBlur={this.handleBlur}
+              form={this.formInternals.form ?? undefined}
+              suppressSubmitOnEnter={this.suppressSubmitOnEnter}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
