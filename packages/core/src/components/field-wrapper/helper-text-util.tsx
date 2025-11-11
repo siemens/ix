@@ -35,7 +35,7 @@ export function hasAnyText({
   isValid?: boolean;
   helperText?: string;
 }) {
-  return (
+  return !!(
     (isInvalid && invalidText?.trim()) ||
     (isWarning && warningText?.trim()) ||
     (isInfo && infoText?.trim()) ||
