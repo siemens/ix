@@ -38,7 +38,7 @@ LICENSE file in the root directory of this source tree.
         <ix-col size="2"></ix-col>
         <ix-col>
           <input class="ix-form-control" type="checkbox" id="system" />
-          <label class="ix-form-label" for="system">Use System</label>
+          <label class="ix-form-label" for="system">Use system</label>
         </ix-col>
       </ix-row>
     </ix-layout-grid>
@@ -47,42 +47,58 @@ LICENSE file in the root directory of this source tree.
       import { themeSwitcher } from '@siemens/ix';
 
       (async function () {
-        const themes = ['theme-classic-light', 'theme-classic-dark'];
-        let selectedTheme = themes[1];
-
-        setTimeout(() => {
-          themeSwitcher.setTheme(selectedTheme);
-        });
+        const variants = ['light', 'dark'];
+        let selectedVariant = 'dark';
+        let useSystemTheme = false;
 
         const toggleModeButton = document.getElementById('toggle-mode');
-        toggleModeButton.addEventListener('click', () => {
-          themeSwitcher.toggleMode();
+        const themeSelect = document.getElementById('select-theme');
+        const toggleSystem = document.getElementById('system');
+
+        setTimeout(() => {
+          themeSwitcher.setTheme('classic');
+          themeSwitcher.setVariant(selectedVariant);
         });
 
-        const themeSelect = document.getElementById('select-theme');
-        themes.forEach((theme) => {
+        variants.forEach((variant) => {
           const item = document.createElement('ix-select-item');
-          item.label = theme;
-          item.value = theme;
+          item.label = variant;
+          item.value = variant;
           themeSelect.appendChild(item);
         });
 
-        themeSelect.value = selectedTheme;
+        themeSelect.value = selectedVariant;
 
-        themeSelect.addEventListener('valueChange', ({ detail: theme }) => {
-          themeSwitcher.setTheme(theme);
-          selectedTheme = theme;
+        const updateControlsState = () => {
+          toggleModeButton.disabled = useSystemTheme;
+          themeSelect.disabled = useSystemTheme;
+        };
+
+        toggleModeButton.addEventListener('click', () => {
+          if (useSystemTheme) return;
+          themeSwitcher.toggleMode();
+          selectedVariant = selectedVariant === 'light' ? 'dark' : 'light';
+          themeSelect.value = selectedVariant;
         });
 
-        const toggleSystem = document.getElementById('system');
+        themeSelect.addEventListener('valueChange', ({ detail: variant }) => {
+          if (useSystemTheme) return;
+          themeSwitcher.setVariant(variant);
+          selectedVariant = variant;
+        });
+
         toggleSystem.addEventListener('change', ({ target }) => {
+          useSystemTheme = target.checked;
           if (target.checked) {
             themeSwitcher.setVariant();
-            return;
+          } else {
+            themeSwitcher.setVariant(selectedVariant);
+            themeSelect.value = selectedVariant;
           }
-
-          themeSwitcher.setTheme(selectedTheme);
+          updateControlsState();
         });
+
+        updateControlsState();
       })();
     </script>
     <script type="module" src="./init.js"></script>

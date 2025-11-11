@@ -66,7 +66,13 @@ function detectThemeSwitching() {
   const searchParams = new URLSearchParams(location.search);
   if (searchParams.has('theme')) {
     const theme = searchParams.get('theme');
-    document.body.className = theme;
+    const themeWithoutPrefix = theme.replace(/^theme-/, '');
+    const parts = themeWithoutPrefix.split('-');
+    const variant = parts.pop();
+    const themeName = parts.join('-') || 'classic';
+    const validVariant = (variant === 'light' || variant === 'dark') ? variant : 'dark';
+    document.documentElement.setAttribute('data-ix-theme', themeName);
+    document.documentElement.setAttribute('data-ix-color-schema', validVariant);
   }
 }
 
