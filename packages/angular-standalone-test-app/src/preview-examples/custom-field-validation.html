@@ -7,7 +7,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-<div>
+<style>
+  .custom-field-wrapper {
+    margin-bottom: 1rem;
+  }
+</style>
+
+<div class="custom-field-wrapper">
   <ix-custom-field
     helper-text="Add your first name here"
     valid-text="Valid first name"
@@ -22,7 +28,7 @@ LICENSE file in the root directory of this source tree.
   </ix-custom-field>
 </div>
 
-<div>
+<div class="custom-field-wrapper">
   <ix-custom-field info-text="Family name" label="Last name">
     <input
       id="last-name"
@@ -33,7 +39,7 @@ LICENSE file in the root directory of this source tree.
   </ix-custom-field>
 </div>
 
-<div>
+<div class="custom-field-wrapper">
   <ix-custom-field warning-Text="Not a valid email address" label="Email">
     <input
       id="email"
@@ -44,7 +50,7 @@ LICENSE file in the root directory of this source tree.
   </ix-custom-field>
 </div>
 
-<div>
+<div class="custom-field-wrapper">
   <ix-custom-field invalid-text="Required" label="Address">
     <input id="address" type="text" class="form-control ix-invalid" />
   </ix-custom-field>

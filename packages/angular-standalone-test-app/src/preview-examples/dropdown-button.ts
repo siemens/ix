@@ -19,16 +19,16 @@ import {
   template: `
     <div class="example">
       <ix-dropdown-button label="Dropdown" icon="checkboxes">
-        <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
-        <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       </ix-dropdown-button>
       <ix-dropdown-button variant="subtle-primary" label="Dropdown" icon="checkboxes">
-        <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
-        <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       </ix-dropdown-button>
       <ix-dropdown-button variant="tertiary" label="Dropdown" icon="checkboxes">
-        <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
-        <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       </ix-dropdown-button>
       <ix-dropdown-button label="Dropdown" disabled icon="checkboxes">
       </ix-dropdown-button>

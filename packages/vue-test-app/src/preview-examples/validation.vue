@@ -8,13 +8,7 @@
 -->
 
 <script setup lang="ts">
-import {
-  IxButton,
-  IxCol,
-  IxLayoutGrid,
-  IxRow,
-  IxValidationTooltip,
-} from '@siemens/ix-vue';
+import { IxButton, IxCol, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
 import { reactive, ref } from 'vue';
 
 let firstName = ref('');
@@ -71,21 +65,20 @@ const onSubmit = () => {
 
       <IxRow>
         <IxCol size="4">
-          <IxValidationTooltip message="Cannot be empty!">
-            <label class="ix-form-label" for="validationCustom02"
-              >Last name</label
-            >
-            <input
-              type="text"
-              :class="{
-                'is-invalid': formState.errors.lastName,
-                'ix-form-control': true,
-              }"
-              id="validationCustom02"
-              v-model="lastName"
-              required
-            />
-          </IxValidationTooltip>
+          <label class="ix-form-label" for="validationCustom02"
+            >Last name</label
+          >
+          <input
+            type="text"
+            :class="{
+              'is-invalid': formState.errors.lastName,
+              'ix-form-control': true,
+            }"
+            id="validationCustom02"
+            v-model="lastName"
+            required
+          />
+          <div class="invalid-feedback">Please choose a username.</div>
         </IxCol>
       </IxRow>
 

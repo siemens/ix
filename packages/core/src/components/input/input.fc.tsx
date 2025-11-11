@@ -6,9 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { h, FunctionalComponent } from '@stencil/core';
-import { MakeRef } from '../utils/make-ref';
+import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
+import { handleSubmitOnEnterKeydown } from './input.util';
+import { MakeRef } from '../utils/make-ref';
 
 export function TextareaElement(
   props: Readonly<{
@@ -86,6 +87,8 @@ export function InputElement(
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
     ariaAttributes?: A11yAttributes;
+    form?: HTMLFormElement;
+    suppressSubmitOnEnter?: boolean;
   }>
 ) {
   return (
@@ -119,6 +122,9 @@ export function InputElement(
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
+      onKeyDown={(e) =>
+        handleSubmitOnEnterKeydown(e, !!props.suppressSubmitOnEnter, props.form)
+      }
     ></input>
   );
 }
