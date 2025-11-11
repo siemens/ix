@@ -339,7 +339,16 @@ export class Tree {
       return;
     }
 
-    const id = target.getAttribute('data-tree-node-id');
+    let treeNodeElement = target;
+    let id = treeNodeElement.dataset.treeNodeId;
+
+    while (!id && treeNodeElement && treeNodeElement !== this.hostElement) {
+      treeNodeElement = treeNodeElement.parentElement as HTMLElement;
+      if (treeNodeElement) {
+        id = treeNodeElement.dataset.treeNodeId;
+      }
+    }
+
     if (!id) {
       return;
     }
@@ -361,7 +370,16 @@ export class Tree {
       return;
     }
 
-    const id = target.getAttribute('data-tree-node-id');
+    let treeNodeElement = target;
+    let id = treeNodeElement.dataset.treeNodeId;
+
+    while (!id && treeNodeElement && treeNodeElement !== this.hostElement) {
+      treeNodeElement = treeNodeElement.parentElement as HTMLElement;
+      if (treeNodeElement) {
+        id = treeNodeElement.dataset.treeNodeId;
+      }
+    }
+
     if (!id) {
       return;
     }
@@ -377,7 +395,9 @@ export class Tree {
     }
 
     if (!event.defaultPrevented) {
-      Object.values(this.context).forEach((c) => (c.isSelected = false));
+      for (const c of Object.values(this.context)) {
+        c.isSelected = false;
+      }
       const context = this.getContext(id);
       context.isSelected = true;
       this.setContext(id, context);
