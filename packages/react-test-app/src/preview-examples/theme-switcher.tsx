@@ -12,13 +12,14 @@ import './theme-switcher.scoped.css';
 import { themeSwitcher, ThemeVariant } from '@siemens/ix';
 import {
   IxButton,
+  IxCheckbox,
   IxCol,
   IxLayoutGrid,
   IxRow,
   IxSelect,
   IxSelectItem,
 } from '@siemens/ix-react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default () => {
   const [variants] = useState<ThemeVariant[]>(['light', 'dark']);
@@ -30,7 +31,7 @@ export default () => {
     themeSwitcher.setVariant(selectedVariant);
   }, []);
 
-  const valueChange = (event: CustomEvent<string | string[]>) => {
+  const onValueChange = (event: CustomEvent<string | string[]>) => {
     if (useSystemTheme) return;
     const newVariant = event.detail as ThemeVariant;
     themeSwitcher.setVariant(newVariant);
@@ -44,9 +45,10 @@ export default () => {
     setSelectedVariant(newVariant);
   };
 
-  const systemChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    setUseSystemTheme(target.checked);
-    if (target.checked) {
+  const onCheckedChange = (event: CustomEvent<boolean>) => {
+    const checked = event.detail;
+    setUseSystemTheme(checked);
+    if (checked) {
       themeSwitcher.setVariant();
     } else {
       themeSwitcher.setVariant(selectedVariant);
@@ -71,7 +73,7 @@ export default () => {
         <IxCol>
           <IxSelect
             value={selectedVariant}
-            onValueChange={valueChange}
+            onValueChange={onValueChange}
             disabled={useSystemTheme}
           >
             {variants.map((variant) => (
@@ -88,15 +90,7 @@ export default () => {
       <IxRow>
         <IxCol size="2"></IxCol>
         <IxCol>
-          <input
-            className="ix-form-control"
-            type="checkbox"
-            id="system"
-            onChange={systemChange}
-          />
-          <label className="ix-form-label" htmlFor="system">
-            Use system
-          </label>
+          <IxCheckbox label="Use system" onCheckedChange={onCheckedChange} />
         </IxCol>
       </IxRow>
     </IxLayoutGrid>

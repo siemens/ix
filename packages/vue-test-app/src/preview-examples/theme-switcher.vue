@@ -11,6 +11,7 @@
 import { themeSwitcher, type ThemeVariant } from '@siemens/ix';
 import {
   IxButton,
+  IxCheckbox,
   IxCol,
   IxLayoutGrid,
   IxRow,
@@ -41,10 +42,10 @@ const toggle = () => {
   selectedVariant.value = selectedVariant.value === 'light' ? 'dark' : 'light';
 };
 
-const systemChange = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  useSystemTheme.value = target.checked;
-  if (target.checked) {
+const systemChange = (event: CustomEvent<boolean>) => {
+  const checked = event.detail;
+  useSystemTheme.value = checked;
+  if (checked) {
     themeSwitcher.setVariant();
   } else {
     themeSwitcher.setVariant(selectedVariant.value);
@@ -88,13 +89,7 @@ const systemChange = (event: Event) => {
     <IxRow>
       <IxCol :size="'2'"></IxCol>
       <IxCol>
-        <input
-          class="ix-form-control"
-          type="checkbox"
-          id="system"
-          @change="systemChange"
-        />
-        <label class="ix-form-label" for="system">Use system</label>
+        <IxCheckbox label="Use system" @checkedChange="systemChange" />
       </IxCol>
     </IxRow>
   </IxLayoutGrid>

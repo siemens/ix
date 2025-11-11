@@ -37,8 +37,7 @@ LICENSE file in the root directory of this source tree.
       <ix-row>
         <ix-col size="2"></ix-col>
         <ix-col>
-          <input class="ix-form-control" type="checkbox" id="system" />
-          <label class="ix-form-label" for="system">Use system</label>
+          <ix-checkbox id="system" label="Use system"></ix-checkbox>
         </ix-col>
       </ix-row>
     </ix-layout-grid>
@@ -87,16 +86,19 @@ LICENSE file in the root directory of this source tree.
           selectedVariant = variant;
         });
 
-        toggleSystem.addEventListener('change', ({ target }) => {
-          useSystemTheme = target.checked;
-          if (target.checked) {
-            themeSwitcher.setVariant();
-          } else {
-            themeSwitcher.setVariant(selectedVariant);
-            themeSelect.value = selectedVariant;
+        toggleSystem.addEventListener(
+          'checkedChange',
+          ({ detail: checked }) => {
+            useSystemTheme = checked;
+            if (checked) {
+              themeSwitcher.setVariant();
+            } else {
+              themeSwitcher.setVariant(selectedVariant);
+              themeSelect.value = selectedVariant;
+            }
+            updateControlsState();
           }
-          updateControlsState();
-        });
+        );
 
         updateControlsState();
       })();
