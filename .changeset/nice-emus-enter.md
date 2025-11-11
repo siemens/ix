@@ -5,4 +5,4 @@
 '@siemens/ix-vue': patch
 ---
 
-Prevent emitting validityStateChange event if now actual validity is changed
+Prevent emitting validityStateChange event if now actual validity is changed. Closes #2095
