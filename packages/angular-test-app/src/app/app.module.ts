@@ -163,6 +163,7 @@ import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
+import ModalClose from '../preview-examples/modal-close';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
@@ -234,6 +235,7 @@ import ToggleDisabled from '../preview-examples/toggle-disabled';
 import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 import ToggleNgModel from '../preview-examples/toggle-ng-model';
 import Tooltip from '../preview-examples/tooltip';
+import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import Tree from '../preview-examples/tree';
 import TreeCustom from '../preview-examples/tree-custom';
 import Upload from '../preview-examples/upload';
@@ -381,6 +383,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ModalByInstanceContent,
     ModalByInstance,
     ModalByTemplate,
+    ModalClose,
     ModalFormIxButtonSubmit,
     ModalSizes,
     PaginationAdvanced,
@@ -447,6 +450,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ToggleNgModel,
     Toggle,
     Tooltip,
+    TooltipWithIcon,
     TreeCustom,
     Tree,
     Upload,

@@ -154,6 +154,7 @@ import MessageBarRemoval from './preview-examples/message-bar-removal.vue';
 import Message from './preview-examples/message.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
 import ModalExample from './preview-examples/modal.vue';
+import ModalClose from './preview-examples/modal-close.vue';
 import NumberInputDisabled from './preview-examples/number-input-disabled.vue';
 import NumberInputLabel from './preview-examples/number-input-label.vue';
 import NumberInputReadOnly from './preview-examples/number-input-readonly.vue';
@@ -214,6 +215,7 @@ import ToggleDisabled from './preview-examples/toggle-disabled.vue';
 import ToggleIndeterminate from './preview-examples/toggle-indeterminate.vue';
 import Toggle from './preview-examples/toggle.vue';
 import Tooltip from './preview-examples/tooltip.vue';
+import TooltipWithIcon from './preview-examples/tooltip-with-icon.vue';
 import TreeCustom from './preview-examples/tree-custom.vue';
 import Tree from './preview-examples/tree.vue';
 import Upload from './preview-examples/upload.vue';
@@ -387,6 +389,7 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
+  '/preview/modal-close': ModalClose,
   '/preview/modal-form-ix-button-submit': ModalFormIxButtonSubmit,
   '/preview/number-input': NumberInput,
   '/preview/number-input-disabled': NumberInputDisabled,
@@ -399,6 +402,7 @@ const routes: any = {
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/tooltip': Tooltip,
+  '/preview/tooltip-with-icon': TooltipWithIcon,
   '/preview/push-card': PushCard,
   '/preview/page-header': ContentHeader,
   '/preview/page-header-no-back': ContentHeaderNoBack,
