@@ -25,16 +25,12 @@ export const visualTestConfig = defineVisualTestConfig([
     name: 'classic-dark',
     theme: 'classic',
     colorSchema: 'dark',
-    importPath: require.resolve(
-      '@siemens/ix/dist/siemens-ix/theme/classic-dark.css'
-    ),
+    importPath: '@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
   },
   {
     name: 'classic-light',
     theme: 'classic',
     colorSchema: 'light',
-    importPath: require.resolve(
-      '@siemens/ix/dist/siemens-ix/theme/classic-light.css'
-    ),
+    importPath: '@siemens/ix/dist/siemens-ix/theme/classic-light.css',
   },
 ]);
