@@ -15,6 +15,7 @@ import {
 } from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
+import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-dropdown-button',
@@ -32,7 +33,7 @@ export class DropdownButton {
   /**
    * Disable button
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Set label
@@ -86,6 +87,7 @@ export class DropdownButton {
   render() {
     return (
       <Host
+        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
         }}
