@@ -82,9 +82,6 @@ regressionTest(
   'should reflect disabled attribute in DOM when changed dynamically',
   async ({ page, mount }) => {
     await mount(`
-      <ix-dropdown-button id="static-disabled" label="Always Disabled" disabled="true">
-        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
-      </ix-dropdown-button>
       <ix-dropdown-button id="dynamic-disabled" label="Dynamic Disabled">
         <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       </ix-dropdown-button>
