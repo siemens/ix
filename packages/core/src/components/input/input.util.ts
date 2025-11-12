@@ -73,7 +73,22 @@ export async function checkInternalValidity<T>(
   }
 
   const { valid } = validityState;
-  comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
+
+  const hasValue = input.value !== '';
+  const touched = !!input.dataset.ixTouched;
+  const dirty = (await (comp as any).isDirty?.()) || false;
+  const shouldShowValidation = touched || dirty;
+
+  const isRequiredInvalid =
+    (comp as any).required && !hasValue && shouldShowValidation;
+  comp.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+
+  const shouldShowNativeInvalid =
+    !valid && shouldShowValidation && !isRequiredInvalid;
+  comp.hostElement.classList.toggle(
+    'ix-invalid--validity-invalid',
+    shouldShowNativeInvalid
+  );
 }
 
 export function onInputBlur<T>(
@@ -88,6 +103,81 @@ export function onInputBlur<T>(
 
   input.setAttribute('data-ix-touched', 'true');
   checkInternalValidity(comp, input);
+}
+
+export async function syncValidationClasses<T>(comp: IxInputFieldComponent<T>) {
+  const [hasValue, touched, dirty] = await Promise.all([
+    comp.hasValidValue(),
+    comp.isTouched?.() || Promise.resolve(false),
+    comp.isDirty?.() || Promise.resolve(false),
+  ]);
+
+  const shouldShowValidation = touched || dirty;
+
+  if (comp.required) {
+    const isRequiredInvalid = !hasValue && shouldShowValidation;
+    comp.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+  } else {
+    comp.hostElement.classList.remove('ix-invalid--required');
+  }
+
+  const validityState = await comp.getValidityState?.();
+  if (validityState) {
+    const isRequiredInvalid = comp.required && !hasValue && shouldShowValidation;
+    const shouldShowNativeInvalid = !validityState.valid && shouldShowValidation && !isRequiredInvalid;
+    comp.hostElement.classList.toggle('ix-invalid--validity-invalid', shouldShowNativeInvalid);
+  }
+}
+
+export async function resetInputComponent<T>(
+  comp: IxInputFieldComponent<T>, 
+  initialValue: T, 
+  defaultValue: T,
+  elementRef: HTMLInputElement | HTMLTextAreaElement | null
+) {
+  (comp as any).isResetting = true;
+  (comp as any).touched = false;
+  (comp as any).dirty = false;
+
+  const resetValue = initialValue || defaultValue;
+  comp.value = resetValue;
+  (comp as any).updateFormInternalValue(resetValue);
+
+  if (elementRef) {
+    elementRef.value = String(resetValue);
+    delete elementRef.dataset.ixTouched;
+  }
+
+  comp.hostElement.classList.remove(
+    'ix-invalid--validity-invalid',
+    'ix-invalid--required',
+    'ix-invalid',
+    'ix-valid',
+    'ix-info',
+    'ix-warning'
+  );
+
+  comp.isInvalid = false;
+  comp.isValid = false;
+  comp.isInfo = false;
+  comp.isWarning = false;
+  comp.isInvalidByRequired = false;
+
+  await syncValidationClasses(comp);
+  (comp as any).isResetting = false;
+  comp.valueChange.emit(resetValue);
+}
+
+export function isTouchedUtil(touched: boolean): Promise<boolean> {
+  return Promise.resolve(touched);
+}
+
+export function isDirtyUtil(dirty: boolean): Promise<boolean> {
+  return Promise.resolve(dirty);
+}
+
+export function getAssociatedFormElementUtil(formInternals: ElementInternals): Promise<HTMLFormElement | null> {
+  return Promise.resolve(formInternals.form);
 }
 
 export function applyPaddingEnd(
