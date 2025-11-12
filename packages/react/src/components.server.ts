@@ -1597,7 +1597,8 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         i18nAllSelected: 'i18n-all-selected',
         hideListHeader: 'hide-list-header',
         dropdownWidth: 'dropdown-width',
-        dropdownMaxWidth: 'dropdown-max-width'
+        dropdownMaxWidth: 'dropdown-max-width',
+        collapseMultipleSelection: 'collapse-multiple-selection'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSelect as ReactWebComponent<IxSelectElement, IxSelectEvents>,

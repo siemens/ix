@@ -5,4 +5,4 @@
 '@siemens/ix-vue': minor
 ---
 
-`ix-select` component, automatically showing an 'All' chip when all items are selected in multiple mode
+`ix-select` automatically showing an 'All' chip when all items are selected in multiple mode and `collapse-multiple-selection=true` is provided

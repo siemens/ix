@@ -906,7 +906,7 @@ test('should display "All" chip when all items are selected in multiple mode', a
   page,
 }) => {
   await mount(`
-        <ix-select mode="multiple">
+        <ix-select mode="multiple" collapse-multiple-selection>
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
           <ix-select-item value="3" label="Item 3">Test</ix-select-item>
@@ -950,7 +950,7 @@ test('should display "All" chip when all items are selected in multiple mode', a
 
 test('should clear items if "All" chip is clicked', async ({ mount, page }) => {
   await mount(`
-        <ix-select mode="multiple">
+        <ix-select mode="multiple" collapse-multiple-selection>
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
           <ix-select-item value="3" label="Item 3">Test</ix-select-item>
@@ -1000,7 +1000,7 @@ test('should not show "All" chip of de-selected a item', async ({
   page,
 }) => {
   await mount(`
-        <ix-select mode="multiple">
+        <ix-select mode="multiple" collapse-multiple-selection>
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
           <ix-select-item value="3" label="Item 3">Test</ix-select-item>

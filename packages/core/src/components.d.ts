@@ -2989,6 +2989,11 @@ export namespace Components {
          */
         "ariaLabelClearIconButton"?: string;
         /**
+          * Show "all" chip when all items are selected in multiple mode
+          * @default false
+         */
+        "collapseMultipleSelection": boolean;
+        /**
           * If true the select will be in disabled state
           * @default false
          */
@@ -8933,6 +8938,11 @@ declare namespace LocalJSX {
           * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
+        /**
+          * Show "all" chip when all items are selected in multiple mode
+          * @default false
+         */
+        "collapseMultipleSelection"?: boolean;
         /**
           * If true the select will be in disabled state
           * @default false

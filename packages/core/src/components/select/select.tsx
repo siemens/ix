@@ -190,6 +190,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() dropdownMaxWidth?: string;
 
   /**
+   * Show "all" chip when all items are selected in multiple mode
+   */
+  @Prop() collapseMultipleSelection = false;
+
+  /**
    * Value changed
    */
   @Event() valueChange!: EventEmitter<string | string[]>;

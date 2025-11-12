@@ -16,7 +16,12 @@ SPDX-License-Identifier: MIT
   </head>
   <body padding="2rem">
     <h1>Normal</h1>
-    <ix-select aria-label="normal-select" value="2" mode="multiple">
+    <ix-select
+      aria-label="normal-select"
+      value="2"
+      mode="multiple"
+      collapse-multiple-selection
+    >
       <ix-select-item label="Item 1" value="1"></ix-select-item>
       <ix-select-item label="Item 2" value="2"></ix-select-item>
       <ix-select-item label="Item 3" value="3"></ix-select-item>
@@ -29,6 +34,7 @@ SPDX-License-Identifier: MIT
       mode="multiple"
       all-chip
       style="padding-top: 10rem"
+      collapse-multiple-selection
     >
       <ix-select-item label="Item 1" value="1"></ix-select-item>
       <ix-select-item label="Item 2" value="2"></ix-select-item>
