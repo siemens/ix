@@ -86,7 +86,7 @@ regressionTest('drawerClose', async ({ mount, page }) => {
   await drawer.evaluate((d: HTMLIxDrawerElement) => (d.show = false));
   await expect(drawer).toBeVisible();
 });
-regressionTest.only(
+regressionTest(
   'close button should emit drawerClose event only once',
   async ({ mount, page }) => {
     await mount('<ix-drawer show>Content</ix-drawer>');
@@ -109,8 +109,6 @@ regressionTest.only(
 
     await closeButton.click();
     await eventPromise;
-
-    await page.waitForTimeout(50);
 
     const drawerShow = await drawer.evaluate(
       (d: HTMLIxDrawerElement) => d.show
