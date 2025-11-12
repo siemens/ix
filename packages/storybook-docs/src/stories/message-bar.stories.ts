@@ -11,7 +11,7 @@ import { html } from 'lit';
 
 type Element = {
   type: 'alarm' | 'danger' | 'warning' | 'success' | 'info' | 'critical' | 'neutral' | 'primary';
-  dismissible: boolean;
+  persistent: boolean;
 };
 
 const meta = {
@@ -20,7 +20,7 @@ const meta = {
   render: (args) => {
     return html`
       <div class="message-bar">
-        <ix-message-bar type=${args.type} ?dismissible=${args.dismissible}>
+        <ix-message-bar type=${args.type} ?persistent=${args.persistent}>
           Message text
         </ix-message-bar>
       </div>
@@ -31,7 +31,7 @@ const meta = {
       control: { type: 'select' },
       options: ['alarm', 'danger', 'warning', 'success', 'info', 'critical', 'neutral', 'primary'],
     },
-    dismissible: {
+    persistent: {
       control: { type: 'boolean' },
     },
   },
@@ -49,55 +49,55 @@ type Story = StoryObj<Element>;
 export const Default: Story = {
   args: {
     type: 'info',
-    dismissible: true,
+    persistent: false,
   },
 };
 
 export const Warning: Story = {
   args: {
     type: 'warning',
-    dismissible: true,
+    persistent: false,
   },
 };
 
 export const Danger: Story = {
   args: {
     type: 'danger',
-    dismissible: true,
+    persistent: false,
   },
 };
 
 export const Success: Story = {
   args: {
     type: 'success',
-    dismissible: true,
+    persistent: false,
   },
 };
 
 export const Critical: Story = {
   args: {
     type: 'critical',
-    dismissible: true,
+    persistent: false,
   },
 };
 
 export const Neutral: Story = {
   args: {
     type: 'neutral',
-    dismissible: true,
+    persistent: false,
   },
 };
 
 export const Primary: Story = {
   args: {
     type: 'success',
-    dismissible: true,
+    persistent: false,
   },
 };
 
 export const Alarm: Story = {
   args: {
     type: 'alarm',
-    dismissible: true,
+    persistent: false,
   },
 };

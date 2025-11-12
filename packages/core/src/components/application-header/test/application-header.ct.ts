@@ -18,12 +18,11 @@ test('renders', async ({ mount, page }) => {
   });
   await mount(
     `
-      <ix-basic-navigation application-name="test">
-      </ix-basic-navigation>
+      <ix-application-header name="Test Application"></ix-application-header>
     `
   );
 
-  const header = page.locator('ix-basic-navigation ix-application-header');
+  const header = page.locator('ix-application-header');
 
   await expect(header).toBeVisible();
   await expect(header).toHaveClass(/breakpoint-lg/);
@@ -168,25 +167,6 @@ test('should show product icon', async ({ mount, page }) => {
   await expect(companyLogoImage).toHaveAttribute('alt', 'app icon alt');
 });
 
-test('not response inside map navigation', async ({ mount, page }) => {
-  page.setViewportSize(viewPorts.sm);
-  await mount(
-    `
-    <ix-map-navigation applicationName="Test">
-      <div slot="logo">Test</div>
-      <ix-menu>
-        <ix-menu-item>Test</ix-menu-item>
-      </ix-menu>
-    </ix-map-navigation>
-    `
-  );
-  const header = page.locator('ix-map-navigation ix-application-header');
-  const burger = header.locator('ix-menu-expand-icon');
-
-  await expect(burger).not.toBeVisible();
-  await expect(header).toHaveClass(/breakpoint-md/);
-});
-
 test.describe('cross app navigation', () => {
   test(`should show app switch icon`, async ({ page, mount }) => {
     await page.evaluate(() => {
@@ -194,7 +174,6 @@ test.describe('cross app navigation', () => {
         console.dir(evt.callback);
         evt.callback({
           hideHeader: false,
-          host: null,
           sidebar: false,
           appSwitchConfig: {
             i18nAppSwitch: 'some other language',
@@ -255,7 +234,6 @@ test.describe('cross app navigation', () => {
         console.dir(evt.callback);
         evt.callback({
           hideHeader: false,
-          host: null,
           sidebar: false,
           appSwitchConfig: {
             apps: [
@@ -317,7 +295,6 @@ test.describe('cross app navigation', () => {
         console.dir(evt.callback);
         evt.callback({
           hideHeader: false,
-          host: null,
           sidebar: false,
           appSwitchConfig: undefined,
         } as ContextType<typeof ApplicationLayoutContext>);
@@ -383,7 +360,6 @@ test.describe('cross app navigation', () => {
       window.addEventListener('context-request', (evt: any) => {
         evt.callback({
           hideHeader: false,
-          host: null,
           sidebar: false,
           appSwitchConfig: {
             i18nAppSwitch: 'some other language',

@@ -10,23 +10,21 @@
 import {
   AttachInternals,
   Component,
+  Element,
   Event,
   EventEmitter,
+  h,
   Host,
+  Method,
   Prop,
   Watch,
-  h,
-  Method,
-  Element,
 } from '@stencil/core';
-import { makeRef } from '../utils/make-ref';
+import { a11yBoolean } from '../utils/a11y';
 import {
   ClassMutationObserver,
   createClassMutationObserver,
   IxFormComponent,
-  shouldSuppressInternalValidation,
 } from '../utils/input';
-import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @form-ready
@@ -90,11 +88,9 @@ export class Radio implements IxFormComponent<string> {
 
   private classMutationObserver?: ClassMutationObserver;
 
-  private readonly inputRef = makeRef<HTMLInputElement>((radiobuttonRef) => {
-    radiobuttonRef.checked = this.checked;
-  });
-
-  private setCheckedState(newChecked: boolean) {
+  /** @internal */
+  @Method()
+  async setCheckedState(newChecked: boolean) {
     if (this.checked) {
       return;
     }
@@ -108,9 +104,6 @@ export class Radio implements IxFormComponent<string> {
 
   @Watch('checked')
   async onCheckedChange() {
-    const radiobuttonRef = await this.inputRef.waitForCurrent();
-    radiobuttonRef.checked = this.checked;
-
     this.updateFormInternalValue();
   }
 
@@ -118,10 +111,6 @@ export class Radio implements IxFormComponent<string> {
   onValueChange() {
     this.valueChange.emit(this.value);
   }
-
-  private touched = false;
-  private formSubmissionAttempted = false;
-  private formSubmitHandler?: () => void;
 
   connectedCallback(): void {
     const parent = this.hostElement.closest('ix-radio-group');
@@ -133,24 +122,11 @@ export class Radio implements IxFormComponent<string> {
         );
       });
     }
-
-    const form = this.parentForm;
-    if (form) {
-      this.formSubmitHandler = () => {
-        this.formSubmissionAttempted = true;
-        this.syncValidationClasses();
-      };
-      form.addEventListener('submit', this.formSubmitHandler);
-    }
   }
 
   disconnectedCallback(): void {
     if (this.classMutationObserver) {
       this.classMutationObserver.destroy();
-    }
-    const form = this.parentForm;
-    if (form && this.formSubmitHandler) {
-      form.removeEventListener('submit', this.formSubmitHandler);
     }
   }
 
@@ -166,6 +142,39 @@ export class Radio implements IxFormComponent<string> {
     }
   }
 
+  onKeyDown(event: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
+    let preventEvent = false;
+
+    if (event.code === 'Space') {
+      preventEvent = true;
+      this.setCheckedState(true);
+    }
+    const closestRadioGroup = this.hostElement.closest('ix-radio-group');
+
+    switch (event.code) {
+      case 'ArrowUp':
+      case 'ArrowLeft':
+        preventEvent = true;
+        closestRadioGroup?.setCheckedToNextItem(this.hostElement, false);
+        break;
+      case 'ArrowDown':
+      case 'ArrowRight':
+        preventEvent = true;
+        closestRadioGroup?.setCheckedToNextItem(this.hostElement, true);
+        break;
+      default:
+        break;
+    }
+
+    if (preventEvent) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
   /** @internal */
   @Method()
   hasValidValue(): Promise<boolean> {
@@ -178,81 +187,44 @@ export class Radio implements IxFormComponent<string> {
     return Promise.resolve(this.formInternals.form);
   }
 
-  private get parentForm(): HTMLFormElement | null {
-    return this.hostElement.closest('form');
-  }
-
-  private async syncValidationClasses() {
-    const suppressValidation = await shouldSuppressInternalValidation(this);
-    if (suppressValidation) {
-      this.hostElement.classList.remove('ix-invalid--required');
-      return;
-    }
-    
-    if (this.required) {
-      let isChecked = this.checked;
-      if (this.name) {
-        const form = this.parentForm;
-        const radios: NodeListOf<HTMLInputElement> = (form
-          ? form.querySelectorAll(`ix-radio[name="${this.name}"]`)
-          : document.querySelectorAll(`ix-radio[name="${this.name}"]`)) as any;
-        isChecked = Array.from(radios).some((el: any) => el.checked);
-      }
-      const isRequiredInvalid = !isChecked && (this.touched || this.formSubmissionAttempted);
-      this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
-    } else {
-      this.hostElement.classList.remove('ix-invalid--required');
-    }
-  }
-
   render() {
+    let tabIndex = 0;
+
+    if (this.disabled) {
+      tabIndex = -1;
+    }
+
     return (
       <Host
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
         role="radio"
+        tabindex={tabIndex}
         class={{
           disabled: this.disabled,
           checked: this.checked,
         }}
-        onBlur={async () => {
-          this.ixBlur.emit();
-          this.touched = true;
-          await this.syncValidationClasses();
+        onClick={() => {
+          if (this.disabled) return;
+          this.setCheckedState(true);
         }}
+        onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
+        onBlur={() => this.ixBlur.emit()}
       >
         <label>
           <div class="radio-button">
-            <input
-              aria-checked={a11yBoolean(this.checked)}
-              required={this.required}
-              disabled={this.disabled}
-              checked={this.checked}
-              name={this.name}
-              ref={this.inputRef}
-              type="radio"
-              value={this.value ?? 'on'}
-              onChange={async () => {
-                const ref = this.inputRef.current;
-                if (ref) {
-                  this.setCheckedState(ref.checked);
-                  this.touched = true;
-                  await this.syncValidationClasses();
-                }
-              }}
-            />
-            <button
-              disabled={this.disabled}
+            <div
+              aria-hidden="true"
               class={{
+                ['radio-checkmark']: true,
                 checked: this.checked,
               }}
-              onClick={() => this.setCheckedState(!this.checked)}
             >
               <div
                 class="checkmark"
                 style={{ visibility: this.checked ? 'visible' : 'hidden' }}
               ></div>
-            </button>
+            </div>
           </div>
           {this.label && (
             <ix-typography
