@@ -307,3 +307,55 @@ regressionTest(
     await expect(counter).toHaveText('1/20');
   }
 );
+
+regressionTest(
+  `form-ready - ix-number-input without allowEmptyValueChange emits 0 on clear`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-number-input name="my-field-name" value="123"></ix-number-input></form>`
+    );
+
+    let emittedValue: number | null | undefined;
+    await page.evaluate(() => {
+      document
+        .querySelector('ix-number-input')
+        ?.addEventListener('valueChange', (event: any) => {
+          (window as any).__lastEmittedValue = event.detail;
+        });
+    });
+
+    const input = page.locator('ix-number-input').locator('input');
+    await input.fill('');
+
+    emittedValue = await page.evaluate(
+      () => (window as any).__lastEmittedValue
+    );
+    expect(emittedValue).toBe(0);
+  }
+);
+
+regressionTest(
+  `form-ready - ix-number-input with allowEmptyValueChange emits null on clear`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-number-input name="my-field-name" value="123" allow-empty-value-change></ix-number-input></form>`
+    );
+
+    let emittedValue: number | null | undefined;
+    await page.evaluate(() => {
+      document
+        .querySelector('ix-number-input')
+        ?.addEventListener('valueChange', (event: any) => {
+          (window as any).__lastEmittedValue = event.detail;
+        });
+    });
+
+    const input = page.locator('ix-number-input').locator('input');
+    await input.fill('');
+
+    emittedValue = await page.evaluate(
+      () => (window as any).__lastEmittedValue
+    );
+    expect(emittedValue).toBeNull();
+  }
+);
