@@ -34,12 +34,15 @@ export class ArrowFocusController {
   }
 
   private getActiveIndex() {
-    if (!document.activeElement) {
+    const activeElement = document.activeElement;
+    if (!activeElement) {
       return -1;
     }
-    return this.items.indexOf(document.activeElement);
-  }
 
+    return this.items.findIndex((item) => {
+      return item === activeElement || item.contains(activeElement);
+    });
+  }
   private onKeyDown(e: KeyboardEvent) {
     const activeIndex = this.getActiveIndex();
 
