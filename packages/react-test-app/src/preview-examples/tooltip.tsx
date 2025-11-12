@@ -14,7 +14,7 @@ import { IxButton, IxTooltip } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxButton class="any-class" aria-describedby="tooltip-1">
+      <IxButton className="any-class" aria-describedby="tooltip-1">
         Hover me
       </IxButton>
       <IxTooltip id="tooltip-1" for=".any-class">

@@ -729,7 +729,7 @@ The event payload contains information about the selected date range.
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDateInput,
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'validText', 'value', 'warningText', 'weekStartIndex'],
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -737,7 +737,7 @@ The event payload contains information about the selected date range.
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'validText', 'value', 'warningText', 'weekStartIndex'],
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
   outputs: ['valueChange', 'validityStateChange'],
 })
 export class IxDateInput {
@@ -1426,7 +1426,7 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
 
 @ProxyCmp({
   defineCustomElementFn: defineIxInput,
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'type', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'getValidityState', 'focusInput']
 })
 @Component({
@@ -1434,7 +1434,7 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'type', 'validText', 'value', 'warningText'],
   outputs: ['valueChange', 'validityStateChange', 'ixBlur'],
 })
 export class IxInput {
@@ -2103,7 +2103,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 
 @ProxyCmp({
   defineCustomElementFn: defineIxNumberInput,
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2111,7 +2111,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   outputs: ['valueChange', 'validityStateChange', 'ixBlur'],
 })
 export class IxNumberInput {
@@ -2691,7 +2691,7 @@ export declare interface IxTile extends Components.IxTile {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTimeInput,
-  inputs: ['disabled', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['disabled', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2699,7 +2699,7 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['disabled', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   outputs: ['valueChange', 'validityStateChange'],
 })
 export class IxTimeInput {

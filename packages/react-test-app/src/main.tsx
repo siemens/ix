@@ -151,6 +151,7 @@ import Message from './preview-examples/message';
 import MessageBar from './preview-examples/message-bar';
 import MessageBarRemoval from './preview-examples/message-bar-removal.tsx';
 import Modal from './preview-examples/modal';
+import ModalClose from './preview-examples/modal-close.tsx';
 import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.tsx';
 import ModalSizes from './preview-examples/modal-sizes';
 import NumberInput from './preview-examples/number-input';
@@ -213,6 +214,7 @@ import ToggleButtonPrimaryGhost from './preview-examples/toggle-button-primary-g
 import ToggleButtonPrimaryOutline from './preview-examples/toggle-button-primary-outline';
 import ToggleButtonSecondary from './preview-examples/toggle-button-secondary';
 import ToggleButtonSecondaryGhost from './preview-examples/toggle-button-secondary-ghost';
+import TooltipWithIcon from './preview-examples/tooltip-with-icon';
 import ToggleButtonSecondaryOutline from './preview-examples/toggle-button-secondary-outline';
 import ToggleChecked from './preview-examples/toggle-checked';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label';
@@ -553,6 +555,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
 
         <Route path="/preview/modal" element={<Modal />} />
+        <Route path="/preview/modal-close" element={<ModalClose />} />
         <Route
           path="/preview/pagination-advanced"
           element={<PaginationAdvanced />}
@@ -654,6 +657,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/toggle" element={<Toggle />} />
         <Route path="/preview/tooltip" element={<Tooltip />} />
+        <Route
+          path="/preview/tooltip-with-icon"
+          element={<TooltipWithIcon />}
+        />
         <Route path="/preview/tree-custom" element={<TreeCustom />} />
         <Route path="/preview/number-input" element={<NumberInput />} />
         <Route

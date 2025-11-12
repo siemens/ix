@@ -29,13 +29,17 @@ import {
 import { resolveSelector } from '../utils/find-element';
 import { ElementReference } from 'src/components';
 import { makeRef } from '../utils/make-ref';
+import { getSlottedElements } from '../utils/shadow-dom';
 import { addDisposableEventListenerAsArray } from '../utils/disposable-event-listener';
 
 type ArrowPosition = {
   top?: string;
   left?: string;
   right?: string;
+  bottom?: string;
 };
+
+const ARROW_OFFSET = -6;
 
 const numberToPixel = (value?: number | null) =>
   value !== null ? `${value}px` : '';
@@ -43,7 +47,7 @@ const numberToPixel = (value?: number | null) =>
 let tooltipInstance = 0;
 
 /**
- * @slot title-icon - Icon of tooltip title
+ * @slot title-icon - Icon displayed next to the tooltip title. The icon will be displayed as 16x16px.
  * @slot title-content - Content of tooltip title
  */
 @Component({
@@ -171,14 +175,14 @@ export class Tooltip {
       return {
         ...resetPosition,
         left: numberToPixel(x),
-        top: numberToPixel(y),
+        bottom: numberToPixel(ARROW_OFFSET),
       };
     }
 
     if (placement.startsWith('right')) {
       return {
         ...resetPosition,
-        left: numberToPixel(-6),
+        left: numberToPixel(ARROW_OFFSET),
         top: numberToPixel(y),
       };
     }
@@ -187,14 +191,14 @@ export class Tooltip {
       return {
         ...resetPosition,
         left: numberToPixel(x),
-        top: numberToPixel(-6),
+        top: numberToPixel(ARROW_OFFSET),
       };
     }
 
     if (placement.startsWith('left')) {
       return {
         ...resetPosition,
-        right: numberToPixel(-6),
+        right: numberToPixel(ARROW_OFFSET),
         top: numberToPixel(y),
       };
     }
@@ -470,6 +474,16 @@ export class Tooltip {
     this.disposeTooltipListener?.();
     this.disposeDomChangeListener?.();
   }
+  private handleTitleIconSlotChange(e: Event) {
+    const slot = e.target as HTMLSlotElement;
+    const elements = getSlottedElements<HTMLElement>(slot);
+
+    for (const element of elements) {
+      if (element.tagName.toLowerCase() === 'ix-icon') {
+        (element as HTMLIxIconElement).size = '16';
+      }
+    }
+  }
 
   render() {
     return (
@@ -484,7 +498,10 @@ export class Tooltip {
           <div class="tooltip-container">
             <div class="content-wrapper">
               <div class={'tooltip-title'}>
-                <slot name="title-icon"></slot>
+                <slot
+                  name="title-icon"
+                  onSlotchange={(e) => this.handleTitleIconSlotChange(e)}
+                ></slot>
                 <ix-typography format="h5">
                   {this.titleContent}
                   <slot name="title-content"></slot>
