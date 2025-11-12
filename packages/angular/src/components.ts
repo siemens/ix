@@ -2002,7 +2002,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 
 
 @ProxyCmp({
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'validText', 'value', 'warningText'],
+  inputs: ['allowEmptyValueChange', 'allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2010,13 +2010,13 @@ Can be prevented, in which case only the event is triggered, and the modal remai
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'validText', 'value', 'warningText'],
+  inputs: ['allowEmptyValueChange', 'allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'validText', 'value', 'warningText'],
   outputs: ['valueChange', 'validityStateChange', 'ixBlur'],
   standalone: false
 })
 export class IxNumberInput {
   protected el: HTMLIxNumberInputElement;
-  @Output() valueChange = new EventEmitter<CustomEvent<number | undefined>>();
+  @Output() valueChange = new EventEmitter<CustomEvent<number>>();
   @Output() validityStateChange = new EventEmitter<CustomEvent<ValidityState>>();
   @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
@@ -2030,7 +2030,7 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
   /**
    * Event emitted when the value of the input field changes
    */
-  valueChange: EventEmitter<CustomEvent<number | undefined>>;
+  valueChange: EventEmitter<CustomEvent<number>>;
   /**
    * Event emitted when the validity state of the input field changes
    */

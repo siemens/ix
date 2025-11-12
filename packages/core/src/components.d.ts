@@ -2496,6 +2496,12 @@ export namespace Components {
      */
     interface IxNumberInput {
         /**
+          * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
+          * @since 4.1.0
+          * @default false
+         */
+        "allowEmptyValueChange": boolean;
+        /**
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
@@ -2574,7 +2580,6 @@ export namespace Components {
         "showTextAsTooltip"?: boolean;
         /**
           * Step value to increment or decrement the input value. Default step value is 1.
-          * @since 3.0.0
           * @default 1
          */
         "step"?: string | number;
@@ -5216,7 +5221,7 @@ declare global {
         new (): HTMLIxModalLoadingElement;
     };
     interface HTMLIxNumberInputElementEventMap {
-        "valueChange": number | undefined;
+        "valueChange": number;
         "validityStateChange": ValidityState;
         "ixBlur": void;
     }
@@ -8386,6 +8391,12 @@ declare namespace LocalJSX {
      */
     interface IxNumberInput {
         /**
+          * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
+          * @since 4.1.0
+          * @default false
+         */
+        "allowEmptyValueChange"?: boolean;
+        /**
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
@@ -8433,7 +8444,7 @@ declare namespace LocalJSX {
         /**
           * Event emitted when the value of the input field changes
          */
-        "onValueChange"?: (event: IxNumberInputCustomEvent<number | undefined>) => void;
+        "onValueChange"?: (event: IxNumberInputCustomEvent<number>) => void;
         /**
           * The pattern for the input field
          */
@@ -8462,7 +8473,6 @@ declare namespace LocalJSX {
         "showTextAsTooltip"?: boolean;
         /**
           * Step value to increment or decrement the input value. Default step value is 1.
-          * @since 3.0.0
           * @default 1
          */
         "step"?: string | number;

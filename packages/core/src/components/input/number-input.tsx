@@ -53,7 +53,7 @@ const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
   shadow: true,
   formAssociated: true,
 })
-export class NumberInput implements IxInputFieldComponent<number | undefined> {
+export class NumberInput implements IxInputFieldComponent<number> {
   @Element() hostElement!: HTMLIxNumberInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -150,7 +150,6 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
   /**
    * Step value to increment or decrement the input value. Default step value is 1.
    *
-   * @since 3.0.0
    */
   @Prop() step?: string | number = 1;
 
@@ -161,9 +160,17 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
   @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
 
   /**
+   * If true, the valueChange event will return null instead of 0 for an empty input state.
+   * This property will be removed in 5.0.0 and this behaviour will be default.
+   *
+   * @since 4.1.0
+   */
+  @Prop({ reflect: true }) allowEmptyValueChange: boolean = false;
+
+  /**
    * Event emitted when the value of the input field changes
    */
-  @Event() valueChange!: EventEmitter<number | undefined>;
+  @Event() valueChange!: EventEmitter<number>;
 
   /**
    * Event emitted when the validity state of the input field changes
@@ -191,7 +198,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
   @Watch('value')
   onValueChange(newValue: number | undefined) {
-    this.updateFormInternalValue(newValue);
+    this.updateFormInternalValue(newValue!);
   }
 
   @HookValidationLifecycle()
@@ -200,7 +207,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
   }
 
   componentWillLoad() {
-    this.updateFormInternalValue(this.value);
+    this.updateFormInternalValue(this.value!);
   }
 
   connectedCallback() {
@@ -244,7 +251,11 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     return value.toString();
   }
 
-  updateFormInternalValue(value: number | undefined) {
+  private handleValueChangeEvent(value: number | undefined) {
+    this.valueChange.emit(this.allowEmptyValueChange ? value : value ?? 0);
+  }
+
+  updateFormInternalValue(value: number) {
     const formValue =
       value !== undefined && value !== null ? value.toString() : '';
     this.formInternals.setFormValue(formValue);
@@ -259,7 +270,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
       this.formInternals.setFormValue(inputValue);
     }
 
-    this.valueChange.emit(parsedValue);
+    this.handleValueChangeEvent(parsedValue);
   };
 
   private readonly handleBlur = () => {
@@ -273,7 +284,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
       this.inputRef.current.value = this.formatValue(parsedValue);
     }
 
-    this.updateFormInternalValue(parsedValue);
+    this.updateFormInternalValue(parsedValue!);
 
     onInputBlur(this, this.inputRef.current);
     this.touched = true;
@@ -356,7 +367,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
     this.inputRef.current.value = newValue.toString();
     this.updateFormInternalValue(newValue);
     checkInternalValidity(this, this.inputRef.current);
-    this.valueChange.emit(newValue);
+    this.handleValueChangeEvent(newValue);
   }
 
   /** @internal */
@@ -466,7 +477,7 @@ export class NumberInput implements IxInputFieldComponent<number | undefined> {
 
                 if (!isScientificNotation) {
                   const parsedValue = this.convertNumberStringToFloat(value);
-                  this.updateFormInternalValue(parsedValue);
+                  this.updateFormInternalValue(parsedValue!);
                 }
               }}
               onBlur={this.handleBlur}

@@ -1350,7 +1350,7 @@ export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalH
 });
 
 export type IxNumberInputEvents = {
-    onValueChange: EventName<CustomEvent<number | undefined>>,
+    onValueChange: EventName<CustomEvent<number>>,
     onValidityStateChange: EventName<IxNumberInputCustomEvent<ValidityState>>,
     onIxBlur: EventName<CustomEvent<void>>
 };
@@ -1377,7 +1377,8 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         allowedCharactersPattern: 'allowed-characters-pattern',
         showStepperButtons: 'show-stepper-buttons',
         step: 'step',
-        suppressSubmitOnEnter: 'suppress-submit-on-enter'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        allowEmptyValueChange: 'allow-empty-value-change'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxNumberInput as ReactWebComponent<IxNumberInputElement, IxNumberInputEvents>,

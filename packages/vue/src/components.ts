@@ -1005,6 +1005,7 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'showStepperButtons',
   'step',
   'suppressSubmitOnEnter',
+  'allowEmptyValueChange',
   'valueChange',
   'validityStateChange',
   'ixBlur'
