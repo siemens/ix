@@ -254,6 +254,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @State() show = false;
   @State() time: string | null = null;
   @State() isInputInvalid = false;
+  @State() suppressValidation = false;
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -273,7 +274,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private dirty = false;
   private isResetting = false;
   private initialValue?: string;
-  private suppressValidation = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -365,14 +365,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
       this.dirty = value !== this.initialValue;
     }
 
-    const skipValidation = await shouldSuppressInternalValidation(this);
-    this.suppressValidation = skipValidation;
+    this.suppressValidation = await shouldSuppressInternalValidation(this);
 
     if (!value) {
       this.isInputInvalid = false;
-      this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
-      this.syncValidationClasses();
+      this.invalidReason = undefined;
+      this.emitChangesAndSync(value);
       return;
     }
 
@@ -380,14 +378,21 @@ export class TimeInput implements IxInputFieldComponent<string> {
       return;
     }
 
-    const time = DateTime.fromFormat(value, this.format);
-    if (time.isValid) {
+    if (this.suppressValidation) {
       this.isInputInvalid = false;
-    } else {
-      this.isInputInvalid = true;
-      this.invalidReason = time.invalidReason;
+      this.invalidReason = undefined;
+      this.emitChangesAndSync(value);
+      return;
     }
 
+    const time = DateTime.fromFormat(value, this.format);
+    this.isInputInvalid = !time.isValid;
+    this.invalidReason = time.isValid ? undefined : time.invalidReason;
+
+    this.emitChangesAndSync(value);
+  }
+
+  private emitChangesAndSync(value: string): void {
     this.updateFormInternalValue(value);
     this.valueChange.emit(value);
     this.syncValidationClasses();

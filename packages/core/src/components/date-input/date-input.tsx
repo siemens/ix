@@ -343,15 +343,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     }
 
     this.value = value;
-
-    const skipValidation = await shouldSuppressInternalValidation(this);
-    this.suppressValidation = skipValidation;
+    this.suppressValidation = await shouldSuppressInternalValidation(this);
 
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
-      this.valueChange.emit(value);
-      this.syncValidationClasses();
+      this.emitChangesAndSync(value);
       return;
     }
 
@@ -359,34 +356,46 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       return;
     }
 
+    if (this.suppressValidation) {
+      this.isInputInvalid = false;
+      this.invalidReason = undefined;
+      this.handleValidInput(value);
+      return;
+    }
+
     const date = DateTime.fromFormat(value, this.format);
     const minDate = DateTime.fromFormat(this.minDate, this.format);
     const maxDate = DateTime.fromFormat(this.maxDate, this.format);
 
-    if (skipValidation) {
-      this.isInputInvalid = false;
-      this.invalidReason = undefined;
+    const isDateInvalid = !date.isValid || date < minDate || date > maxDate;
+    this.isInputInvalid = isDateInvalid;
+    this.invalidReason = isDateInvalid ? date.invalidReason || undefined : undefined;
+
+    if (isDateInvalid) {
+      this.handleInvalidInput(value);
     } else {
-      const isDateInvalid = !date.isValid || date < minDate || date > maxDate;
-      this.isInputInvalid = isDateInvalid;
-      this.invalidReason = isDateInvalid
-        ? date.invalidReason || undefined
-        : undefined;
+      this.handleValidInput(value);
     }
+  }
 
-    if (this.isInputInvalid && !this.isResetting) {
-      this.touched = true;
-    }
-
-    if (this.isInputInvalid) {
-      this.from = undefined;
-    } else {
-      this.updateFormInternalValue(value);
-      this.closeDropdown();
-    }
-
+  private emitChangesAndSync(value: string | undefined): void {
+    this.updateFormInternalValue(value);
     this.valueChange.emit(value);
     this.syncValidationClasses();
+  }
+
+  private handleValidInput(value: string | undefined): void {
+    this.from = value;
+    this.closeDropdown();
+    this.emitChangesAndSync(value);
+  }
+
+  private handleInvalidInput(value: string | undefined): void {
+    if (!this.isResetting) {
+      this.touched = true;
+    }
+    this.from = undefined;
+    this.emitChangesAndSync(value);
   }
 
   onCalenderClick(event: Event) {
