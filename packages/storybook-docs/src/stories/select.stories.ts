@@ -90,17 +90,37 @@ export const Required: Story = {
 };
 
 export const multiSelect: Story = {
-  render: ({ mode, allowClear }) => {
-    return html` <ix-select mode=${mode} ?allow-clear=${allowClear}>
-      <ix-select-item label="Item 1" value="1"></ix-select-item>
-      <ix-select-item label="Item 2" value="2"></ix-select-item>
-      <ix-select-item label="Item 3" value="3"></ix-select-item>
-      <ix-select-item label="Item 4" value="4"></ix-select-item>
-      <ix-select-item label="Item 5" value="5"></ix-select-item>
-    </ix-select>`;
+  render: (args) => {
+    const container = genericRender('ix-select', args, ['value']);
+    const select = container.querySelector('ix-select')!;
+    const items = [
+      { label: 'Item 1', value: '1' },
+      { label: 'Item 2', value: '2' },
+      { label: 'Item 3', value: '3' },
+      { label: 'Item 4', value: '4' },
+      { label: 'Item 5', value: '5' },
+    ];
+
+    items.forEach(({ label, value }) => {
+      const item = document.createElement('ix-select-item');
+      item.label = label;
+      item.value = value;
+      select.appendChild(item);
+    });
+
+    select.value = args.value;
+
+    return container;
+  },
+  argTypes: {
+    value: {
+      control: 'object',
+      description: 'Selected values in multiple mode',
+    },
   },
   args: {
     mode: 'multiple',
     allowClear: true,
+    value: ['1', '2', '3', '4', '5'],
   },
 };

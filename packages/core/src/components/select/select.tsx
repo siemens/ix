@@ -786,7 +786,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private shouldDisplayAllChip(): boolean {
-    return this.selectedItems.length === this.items.length;
+    return (
+      this.selectedItems.length === this.items.length &&
+      this.collapseMultipleSelection
+    );
   }
 
   private renderAllChip() {
