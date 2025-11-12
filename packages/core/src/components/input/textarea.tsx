@@ -196,6 +196,7 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+    this.setTextareaWidth();
   }
 
   disconnectedCallback() {
@@ -237,6 +238,16 @@ export class Textarea implements IxInputFieldComponent<string> {
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
+  }
+
+  private setTextareaWidth() {
+    if (this.textareaWidth) {
+      this.hostElement.style.setProperty(
+        '--textarea-width',
+        this.textareaWidth
+      );
+      this.hostElement.setAttribute('textarea-width', '');
+    }
   }
 
   /** @internal */
