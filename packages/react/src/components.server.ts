@@ -1380,7 +1380,8 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         showStepperButtons: 'show-stepper-buttons',
         step: 'step',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
-        textAlignment: 'text-alignment'
+        textAlignment: 'text-alignment',
+        allowEmptyValueChange: 'allow-empty-value-change'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxNumberInput as ReactWebComponent<IxNumberInputElement, IxNumberInputEvents>,

@@ -2506,6 +2506,12 @@ export namespace Components {
      */
     interface IxNumberInput {
         /**
+          * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
+          * @since 4.1.0
+          * @default false
+         */
+        "allowEmptyValueChange": boolean;
+        /**
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
@@ -2570,7 +2576,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Indicates if the field is required
+          * Indicates if the field is required. When required, empty values (undefined) are not accepted.
           * @default false
          */
         "required": boolean;
@@ -2583,8 +2589,8 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Step value to increment or decrement the input value
-          * @since 3.0.0
+          * Step value to increment or decrement the input value. Default step value is 1.
+          * @default 1
          */
         "step"?: string | number;
         /**
@@ -2602,10 +2608,10 @@ export namespace Components {
          */
         "validText"?: string;
         /**
-          * The value of the input field
+          * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
-        "value": number;
+        "value"?: number;
         /**
           * The warning text for the input field
          */
@@ -8426,6 +8432,12 @@ declare namespace LocalJSX {
      */
     interface IxNumberInput {
         /**
+          * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
+          * @since 4.1.0
+          * @default false
+         */
+        "allowEmptyValueChange"?: boolean;
+        /**
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
@@ -8488,7 +8500,7 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * Indicates if the field is required
+          * Indicates if the field is required. When required, empty values (undefined) are not accepted.
           * @default false
          */
         "required"?: boolean;
@@ -8501,8 +8513,8 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Step value to increment or decrement the input value
-          * @since 3.0.0
+          * Step value to increment or decrement the input value. Default step value is 1.
+          * @default 1
          */
         "step"?: string | number;
         /**
@@ -8520,7 +8532,7 @@ declare namespace LocalJSX {
          */
         "validText"?: string;
         /**
-          * The value of the input field
+          * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
         "value"?: number;

@@ -1008,6 +1008,7 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'step',
   'suppressSubmitOnEnter',
   'textAlignment',
+  'allowEmptyValueChange',
   'valueChange',
   'validityStateChange',
   'ixBlur'
