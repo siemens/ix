@@ -257,7 +257,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   private handleValueChangeEvent(value: number | undefined) {
-    this.valueChange.emit(this.allowEmptyValueChange ? value : value ?? 0);
+    this.valueChange.emit(this.allowEmptyValueChange ? value : (value ?? 0));
   }
 
   updateFormInternalValue(value: number) {
@@ -347,7 +347,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     const currentValue = this.value ?? 0;
     const stepValue =
-      typeof this.step === 'string' ? parseFloat(this.step) : this.step ?? 1;
+      typeof this.step === 'string' ? parseFloat(this.step) : (this.step ?? 1);
 
     let newValue: number;
 
