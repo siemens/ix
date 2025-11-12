@@ -35,6 +35,8 @@ import {
   ValidationResults,
   createClassMutationObserver,
   shouldSuppressInternalValidation,
+  resetInputField,
+  ResetConfig,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -578,32 +580,28 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Method()
   async reset(): Promise<void> {
-    this.isResetting = true;
+    const resetConfig: ResetConfig = {
+      initialValue: this.initialValue,
+      format: this.format,
+      updateFormInternalValue: this.updateFormInternalValue.bind(this),
+      onInput: this.onInput.bind(this),
+      valueChangeEmitter: this.valueChange,
+      setState: {
+        setIsResetting: (value: boolean) => (this.isResetting = value),
+        setTouched: (value: boolean) => (this.touched = value),
+        setDirty: (value: boolean) => (this.dirty = value),
+        setIsInputInvalid: (value: boolean) => (this.isInputInvalid = value),
+        setIsInvalid: (value: boolean) => (this.isInvalid = value),
+        setInvalidReason: (value: string | undefined) =>
+          (this.invalidReason = value),
+        setValue: (value: string) => (this.value = value),
+      },
+      componentSpecificCleanup: () => {
+        this.from = undefined;
+      },
+    };
 
-    this.touched = false;
-    this.dirty = false;
-    this.isInputInvalid = false;
-    this.isInvalid = false;
-    this.invalidReason = undefined;
-    this.from = undefined;
-
-    const initialValue = this.initialValue || '';
-    let resetValue = initialValue;
-
-    if (initialValue && this.format) {
-      const tempDate = DateTime.fromFormat(initialValue, this.format);
-      if (!tempDate.isValid) {
-        resetValue = '';
-      }
-    }
-
-    this.value = resetValue;
-    this.updateFormInternalValue(resetValue);
-
-    await this.onInput(resetValue);
-
-    this.isResetting = false;
-    this.valueChange.emit(resetValue);
+    await resetInputField(resetConfig);
   }
 
   render() {

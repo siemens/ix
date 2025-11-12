@@ -2783,7 +2783,7 @@ export declare interface IxTile extends Components.IxTile {}
 @ProxyCmp({
   defineCustomElementFn: defineIxTimeInput,
   inputs: ['disabled', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'focusInput', 'reset']
 })
 @Component({
   selector: 'ix-time-input',

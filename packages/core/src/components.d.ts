@@ -23,6 +23,7 @@ import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
 import { DateInputValidityState } from "./components/date-input/date-input.types";
+import { ResetConfig } from "./components/utils/input";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 import { DateChangeEvent } from "./components/date-picker/date-picker.events";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
@@ -73,6 +74,7 @@ export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
 export { DateInputValidityState } from "./components/date-input/date-input.types";
+export { ResetConfig } from "./components/utils/input";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 export { DateChangeEvent } from "./components/date-picker/date-picker.events";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
@@ -3594,6 +3596,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns whether the input field is dirty (value has been changed).
+         */
+        "isDirty": () => Promise<boolean>;
+        /**
           * Returns whether the text field has been touched.
          */
         "isTouched": () => Promise<boolean>;
@@ -3628,6 +3634,10 @@ export namespace Components {
           * Required attribute
          */
         "required"?: boolean;
+        /**
+          * Resets the input field to its original untouched state and initial value. Clears touched and dirty states and recomputes validity.
+         */
+        "reset": () => Promise<void>;
         /**
           * Interval for second selection
           * @default 1

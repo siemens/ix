@@ -7071,6 +7071,11 @@
               "Promise": {
                 "location": "global",
                 "id": "global::Promise"
+              },
+              "ResetConfig": {
+                "location": "import",
+                "path": "../utils/input",
+                "id": "src/components/utils/input/index.ts::ResetConfig"
               }
             },
             "return": "Promise<void>"
@@ -25157,6 +25162,33 @@
           "parameters": [],
           "docs": "Get the native input element",
           "docsTags": []
+        },
+        {
+          "name": "reset",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "ResetConfig": {
+                "location": "import",
+                "path": "../utils/input",
+                "id": "src/components/utils/input/index.ts::ResetConfig"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "reset() => Promise<void>",
+          "parameters": [],
+          "docs": "Resets the input field to its original untouched state and initial value.\nClears touched and dirty states and recomputes validity.",
+          "docsTags": []
         }
       ],
       "events": [
@@ -29205,6 +29237,11 @@
       "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
       "docstring": "",
       "path": "src/components/date-input/date-input.types.ts"
+    },
+    "src/components/utils/input/index.ts::ResetConfig": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components/utils/input/index.ts"
     },
     "src/components/date-time-card/date-time-card.types.ts::DateTimeCardCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
