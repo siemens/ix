@@ -240,13 +240,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
       return undefined;
     }
 
-    const parsed = parseFloat(input);
-    return isNaN(parsed) ? undefined : parsed;
+    const parsed = Number.parseFloat(input);
+    return Number.isNaN(parsed) ? undefined : parsed;
   }
 
   private isScientificNotation(input: string): boolean {
-    const parsed = parseFloat(input);
-    return !isNaN(parsed) && isFinite(parsed) && /[eE]/.test(input);
+    const parsed = Number.parseFloat(input);
+    return (
+      !Number.isNaN(parsed) && Number.isFinite(parsed) && /[eE]/.test(input)
+    );
   }
 
   private formatValue(value: number | undefined): string {
@@ -347,7 +349,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     const currentValue = this.value ?? 0;
     const stepValue =
-      typeof this.step === 'string' ? parseFloat(this.step) : (this.step ?? 1);
+      typeof this.step === 'string'
+        ? Number.parseFloat(this.step)
+        : (this.step ?? 1);
 
     let newValue: number;
 
@@ -359,13 +363,13 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     if (this.min !== undefined) {
       const minValue =
-        typeof this.min === 'string' ? parseFloat(this.min) : this.min;
+        typeof this.min === 'string' ? Number.parseFloat(this.min) : this.min;
       newValue = Math.max(newValue, minValue);
     }
 
     if (this.max !== undefined) {
       const maxValue =
-        typeof this.max === 'string' ? parseFloat(this.max) : this.max;
+        typeof this.max === 'string' ? Number.parseFloat(this.max) : this.max;
       newValue = Math.min(newValue, maxValue);
     }
 
@@ -386,11 +390,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
   async hasValidValue(): Promise<boolean> {
     const nativeInput = await this.getNativeInputElement();
     if (nativeInput.value === '') {
-      return Promise.resolve(!this.required);
+      return !this.required;
     }
 
     const parsedValue = this.convertNumberStringToFloat(nativeInput.value);
-    return Promise.resolve(parsedValue !== undefined);
+    return parsedValue !== undefined;
   }
 
   /**
