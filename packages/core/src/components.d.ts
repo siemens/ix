@@ -1974,6 +1974,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns whether the text field has been modified from its initial value.
+         */
+        "isDirty": () => Promise<boolean>;
+        /**
           * Returns whether the text field has been touched.
          */
         "isTouched": () => Promise<boolean>;
@@ -2012,9 +2016,18 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Resets the input field to its original untouched state and initial value. This clears the value, removes touched and dirty states, and recomputes validity.
+          * @example ```typescript // React await inputRef.current?.reset();  // Angular await this.input.nativeElement.reset();  // Vue await this.$refs.input.reset();  // HTML/JavaScript const input = document.querySelector('ix-input'); await input.reset(); ```
+         */
+        "reset": () => Promise<void>;
+        /**
           * Specifies whether to show the text as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * Synchronizes CSS validation classes with the component's validation state. This method ensures proper visual styling based on validation status, particularly for Vue.
+         */
+        "syncValidationClasses": () => Promise<void>;
         /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
@@ -2629,6 +2642,10 @@ export namespace Components {
           * Returns the native input element used under the hood
          */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
+        /**
+          * Returns the validity state of the input field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the input field
@@ -2642,6 +2659,10 @@ export namespace Components {
           * The error text for the input field
          */
         "invalidText"?: string;
+        /**
+          * Returns whether the number input has been modified from its initial value.
+         */
+        "isDirty": () => Promise<boolean>;
         /**
           * Returns true if the input field has been touched
          */
@@ -2681,6 +2702,10 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Resets the number input to its original untouched state and initial value. This clears the value, removes touched and dirty states, and recomputes validity.
+         */
+        "reset": () => Promise<void>;
+        /**
           * Indicates if the stepper buttons should be shown
          */
         "showStepperButtons"?: boolean;
@@ -2693,6 +2718,10 @@ export namespace Components {
           * @since 3.0.0
          */
         "step"?: string | number;
+        /**
+          * Synchronizes CSS validation classes with the component's validation state. This method ensures proper visual styling based on validation status, particularly for Vue.
+         */
+        "syncValidationClasses": () => Promise<void>;
         /**
           * The valid text for the input field
          */
@@ -3416,6 +3445,10 @@ export namespace Components {
           * Get the native textarea element.
          */
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * Returns the validity state of the textarea field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the textarea field.
@@ -3429,6 +3462,10 @@ export namespace Components {
           * The error text for the textarea field.
          */
         "invalidText"?: string;
+        /**
+          * Returns whether the textarea has been modified from its initial value.
+         */
+        "isDirty": () => Promise<boolean>;
         /**
           * Check if the textarea field has been touched.
          */
@@ -3464,6 +3501,10 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Resets the textarea to its original untouched state and initial value. This clears the value, removes touched and dirty states, and recomputes validity.
+         */
+        "reset": () => Promise<void>;
+        /**
           * Determines the resize behavior of the textarea field. Resizing can be enabled in one direction, both directions or completely disabled.
           * @default 'both'
          */
@@ -3472,6 +3513,10 @@ export namespace Components {
           * Determines if the text should be displayed as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * Synchronizes CSS validation classes with the component's validation state. This method ensures proper visual styling based on validation status, particularly for Vue.
+         */
+        "syncValidationClasses": () => Promise<void>;
         /**
           * The width of the textarea specified by number of characters.
          */

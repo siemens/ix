@@ -13420,6 +13420,33 @@
           "parameters": [],
           "docs": "Returns the validity state of the input field.",
           "docsTags": []
+        },
+        {
+          "name": "reset",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "reset() => Promise<void>",
+          "parameters": [],
+          "docs": "Resets the input field to its original untouched state and initial value.\nThis clears the value, removes touched and dirty states, and recomputes validity.",
+          "docsTags": [
+            {
+              "name": "example",
+              "text": "```typescript\n// React\nawait inputRef.current?.reset();\n\n// Angular\nawait this.input.nativeElement.reset();\n\n// Vue\nawait this.$refs.input.reset();\n\n// HTML/JavaScript\nconst input = document.querySelector('ix-input');\nawait input.reset();\n```"
+            }
+          ]
         }
       ],
       "events": [
@@ -18494,6 +18521,54 @@
           "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
           "parameters": [],
           "docs": "Returns the native input element used under the hood",
+          "docsTags": []
+        },
+        {
+          "name": "getValidityState",
+          "returns": {
+            "type": "Promise<ValidityState>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<ValidityState>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            },
+            "return": "Promise<ValidityState>"
+          },
+          "signature": "getValidityState() => Promise<ValidityState>",
+          "parameters": [],
+          "docs": "Returns the validity state of the input field.",
+          "docsTags": []
+        },
+        {
+          "name": "reset",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "reset() => Promise<void>",
+          "parameters": [],
+          "docs": "Resets the number input to its original untouched state and initial value.\nThis clears the value, removes touched and dirty states, and recomputes validity.",
           "docsTags": []
         }
       ],
@@ -24195,6 +24270,54 @@
           "signature": "getNativeInputElement() => Promise<HTMLTextAreaElement>",
           "parameters": [],
           "docs": "Get the native textarea element.",
+          "docsTags": []
+        },
+        {
+          "name": "getValidityState",
+          "returns": {
+            "type": "Promise<ValidityState>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<ValidityState>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            },
+            "return": "Promise<ValidityState>"
+          },
+          "signature": "getValidityState() => Promise<ValidityState>",
+          "parameters": [],
+          "docs": "Returns the validity state of the textarea field.",
+          "docsTags": []
+        },
+        {
+          "name": "reset",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "reset() => Promise<void>",
+          "parameters": [],
+          "docs": "Resets the textarea to its original untouched state and initial value.\nThis clears the value, removes touched and dirty states, and recomputes validity.",
           "docsTags": []
         }
       ],
