@@ -3026,6 +3026,7 @@ export namespace Components {
         "hideListHeader": boolean;
         /**
           * Chip label for all selected items in multiple mode.
+          * @default 'All'
          */
         "i18nAllSelected": string;
         /**
@@ -8959,6 +8960,7 @@ declare namespace LocalJSX {
         "hideListHeader"?: boolean;
         /**
           * Chip label for all selected items in multiple mode.
+          * @default 'All'
          */
         "i18nAllSelected"?: string;
         /**

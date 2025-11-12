@@ -2417,7 +2417,6 @@ export declare interface IxRow extends Components.IxRow {}
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowClear', 'ariaLabelChevronDownIconButton', 'ariaLabelClearIconButton', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'helperText', 'hideListHeader', 'i18nAllSelected', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
   outputs: ['valueChange', 'inputChange', 'addItem', 'ixBlur'],
-  standalone: true
 })
 export class IxSelect {
   protected el: HTMLIxSelectElement;
