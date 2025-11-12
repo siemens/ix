@@ -27,11 +27,23 @@ regressionTest.describe('select', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
-  regressionTest('mode-multiple', async ({ page }) => {
+  regressionTest('mode-multiple - normal', async ({ page }) => {
     await page.goto('select/mode-multiple');
-    await page.locator('ix-select').locator('[data-select-dropdown]').click();
+    await page
+      .getByLabel('normal-select')
+      .getByLabel('Open select dropdown')
+      .click();
     await page.waitForSelector('.dropdown-menu.show');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 
+  regressionTest('mode-multiple - all chip', async ({ page }) => {
+    await page.goto('select/mode-multiple');
+    await page
+      .getByLabel('all-chip-select')
+      .getByLabel('Open select dropdown')
+      .click();
+    await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 

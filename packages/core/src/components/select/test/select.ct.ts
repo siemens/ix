@@ -928,18 +928,123 @@ test('should display "All" chip when all items are selected in multiple mode', a
   const allChip = chipsContainer
     .locator('ix-filter-chip')
     .filter({ hasText: 'All (3)' });
+
   await expect(allChip).toBeVisible();
 
   const chip1 = chipsContainer
     .locator('ix-filter-chip')
     .filter({ hasText: 'Item 1' });
+
   const chip2 = chipsContainer
     .locator('ix-filter-chip')
     .filter({ hasText: 'Item 2' });
+
   const chip3 = chipsContainer
     .locator('ix-filter-chip')
     .filter({ hasText: 'Item 3' });
+
   await expect(chip1).not.toBeVisible();
   await expect(chip2).not.toBeVisible();
   await expect(chip3).not.toBeVisible();
+});
+
+test('should clear items if "All" chip is clicked', async ({ mount, page }) => {
+  await mount(`
+        <ix-select mode="multiple">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  const chipsContainer = selectElement.locator('.chips');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const item1 = selectElement.locator('ix-select-item').nth(0);
+  const item2 = selectElement.locator('ix-select-item').nth(1);
+  const item3 = selectElement.locator('ix-select-item').nth(2);
+  await item1.click();
+  await item2.click();
+  await item3.click();
+
+  const allChip = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'All (3)' });
+
+  await expect(allChip).toBeVisible();
+
+  const chip1 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 1' });
+
+  const chip2 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 2' });
+
+  const chip3 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 3' });
+
+  await expect(chip1).not.toBeVisible();
+  await expect(chip2).not.toBeVisible();
+  await expect(chip3).not.toBeVisible();
+
+  await allChip.getByRole('button', { name: 'All' }).click();
+  await expect(allChip).not.toBeVisible();
+});
+
+test('should not show "All" chip of de-selected a item', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select mode="multiple">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  const chipsContainer = selectElement.locator('.chips');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const item1 = selectElement.locator('ix-select-item').nth(0);
+  const item2 = selectElement.locator('ix-select-item').nth(1);
+  const item3 = selectElement.locator('ix-select-item').nth(2);
+  await item1.click();
+  await item2.click();
+  await item3.click();
+
+  const allChip = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'All (3)' });
+
+  await expect(allChip).toBeVisible();
+
+  const chip1 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 1' });
+
+  const chip2 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 2' });
+
+  const chip3 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 3' });
+
+  await expect(chip1).not.toBeVisible();
+  await expect(chip2).not.toBeVisible();
+  await expect(chip3).not.toBeVisible();
+
+  await item3.click();
+  await expect(chip1).toBeVisible();
+  await expect(chip2).toBeVisible();
+  await expect(chip3).not.toBeVisible();
+
+  await expect(allChip).not.toBeVisible();
 });

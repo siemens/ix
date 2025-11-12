@@ -75,7 +75,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronDownIconButton?: string;
+  @Prop() ariaLabelChevronDownIconButton?: string = 'Open select dropdown';
 
   /**
    * ARIA label for the clear icon button
@@ -784,6 +784,38 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return this.selectedItems.length === this.items.length;
   }
 
+  private renderAllChip() {
+    return (
+      <ix-filter-chip
+        disabled={this.disabled || this.readonly}
+        ariaLabelCloseIconButton={this.i18nAllSelected}
+        onCloseClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.clear();
+        }}
+      >
+        {`${this.i18nAllSelected} (${this.selectedItems.length})`}
+      </ix-filter-chip>
+    );
+  }
+
+  private renderChip(item: HTMLIxSelectItemElement) {
+    return (
+      <ix-filter-chip
+        disabled={this.disabled || this.readonly}
+        key={item.value}
+        onCloseClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.itemClick(item.value);
+        }}
+      >
+        {item.label}
+      </ix-filter-chip>
+    );
+  }
+
   @HookValidationLifecycle()
   onValidationChange({
     isInvalid,
@@ -872,39 +904,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           >
             <div class="input-container">
               <div class="chips">
-                {this.isMultipleMode && this.items.length !== 0 ? (
-                  this.shouldDisplayAllChip() ? (
-                    // Display "All" chip when all items are selected
-                    <ix-filter-chip
-                      disabled={this.disabled || this.readonly}
-                      key="all-selection"
-                      onCloseClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        this.clear();
-                      }}
-                    >
-                      {`${this.i18nAllSelected} (${this.selectedItems.length})`}
-                    </ix-filter-chip>
-                  ) : (
-                    // Display individual chips for selected items
-                    this.selectedItems?.map((item) => (
-                      <ix-filter-chip
-                        disabled={this.disabled || this.readonly}
-                        key={item.value}
-                        onCloseClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          this.itemClick(item.value);
-                        }}
-                      >
-                        {item.label}
-                      </ix-filter-chip>
-                    ))
-                  )
-                ) : (
-                  ''
-                )}
+                {this.isMultipleMode &&
+                  this.items.length !== 0 &&
+                  (this.shouldDisplayAllChip()
+                    ? this.renderAllChip()
+                    : this.selectedItems?.map((item) => this.renderChip(item)))}
                 <div class="trigger">
                   <input
                     autocomplete="off"

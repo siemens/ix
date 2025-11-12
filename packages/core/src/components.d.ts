@@ -2980,6 +2980,7 @@ export namespace Components {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
@@ -8924,6 +8925,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
