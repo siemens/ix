@@ -153,6 +153,11 @@ export class Input implements IxInputFieldComponent<string> {
   @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
 
   /**
+   * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
    * Event emitted when the value of the text field changes.
    */
   @Event() valueChange!: EventEmitter<string>;
@@ -324,6 +329,7 @@ export class Input implements IxInputFieldComponent<string> {
               ariaAttributes={inputAria}
               form={this.formInternals.form ?? undefined}
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}
+              textAlignment={this.textAlignment}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

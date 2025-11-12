@@ -203,6 +203,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
 
   /**
+   * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -400,6 +405,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.touched = true;
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
+          style={{
+            textAlign: this.textAlignment,
+          }}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}

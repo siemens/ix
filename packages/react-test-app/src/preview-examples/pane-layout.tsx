@@ -35,7 +35,7 @@ export default () => {
         <p>This is the bottom pane.</p>
       </IxPane>
 
-      <div slot="content">
+      <div>
         <IxButton
           onClick={() =>
             setVariant(variant === 'inline' ? 'floating' : 'inline')

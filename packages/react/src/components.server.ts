@@ -563,7 +563,8 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         weekStartIndex: 'week-start-index',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
-        suppressSubmitOnEnter: 'suppress-submit-on-enter'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        textAlignment: 'text-alignment'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDateInput as ReactWebComponent<IxDateInputElement, IxDateInputEvents>,
@@ -1004,7 +1005,8 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@
         maxLength: 'max-length',
         minLength: 'min-length',
         allowedCharactersPattern: 'allowed-characters-pattern',
-        suppressSubmitOnEnter: 'suppress-submit-on-enter'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        textAlignment: 'text-alignment'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxInput as ReactWebComponent<IxInputElement, IxInputEvents>,
@@ -1377,7 +1379,8 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         allowedCharactersPattern: 'allowed-characters-pattern',
         showStepperButtons: 'show-stepper-buttons',
         step: 'step',
-        suppressSubmitOnEnter: 'suppress-submit-on-enter'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        textAlignment: 'text-alignment'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxNumberInput as ReactWebComponent<IxNumberInputElement, IxNumberInputEvents>,
@@ -1785,7 +1788,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         i18nSecondColumnHeader: 'i18n-second-column-header',
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
-        hideHeader: 'hide-header'
+        hideHeader: 'hide-header',
+        textAlignment: 'text-alignment'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxTimeInput as ReactWebComponent<IxTimeInputElement, IxTimeInputEvents>,
