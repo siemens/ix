@@ -13,7 +13,9 @@ LICENSE file in the root directory of this source tree.
       <span>Light/Dark</span>
     </ix-col>
     <ix-col>
-      <ix-button (click)="toggleMode()">Toggle mode</ix-button>
+      <ix-button (click)="toggleMode()" [disabled]="useSystemTheme">
+        Toggle mode
+      </ix-button>
     </ix-col>
   </ix-row>
 
@@ -21,14 +23,15 @@ LICENSE file in the root directory of this source tree.
     <ix-col size="2">Theme</ix-col>
     <ix-col>
       <ix-select
-        [value]="selectedTheme"
+        [value]="selectedVariant"
         (valueChange)="onValueChange($event)"
+        [disabled]="useSystemTheme"
         placeholder="Select a theme"
       >
         <ix-select-item
-          *ngFor="let theme of themes"
-          [label]="theme"
-          [value]="theme"
+          *ngFor="let variant of variants"
+          [label]="variant"
+          [value]="variant"
         ></ix-select-item>
       </ix-select>
     </ix-col>
@@ -37,8 +40,10 @@ LICENSE file in the root directory of this source tree.
   <ix-row>
     <ix-col size="2"></ix-col>
     <ix-col>
-      <input type="checkbox" id="system" (change)="onSystemMode($event)" />
-      <label for="system">Use System</label>
+      <ix-checkbox
+        label="Use system"
+        (checkedChange)="onSystemMode($event)"
+      ></ix-checkbox>
     </ix-col>
   </ix-row>
 </ix-layout-grid>

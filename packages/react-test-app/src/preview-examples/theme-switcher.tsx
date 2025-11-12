@@ -9,48 +9,62 @@
 
 import './theme-switcher.scoped.css';
 
-import { IxSelectCustomEvent, themeSwitcher } from '@siemens/ix';
+import { themeSwitcher, ThemeVariant } from '@siemens/ix';
 import {
   IxButton,
+  IxCheckbox,
   IxCol,
   IxLayoutGrid,
   IxRow,
   IxSelect,
   IxSelectItem,
 } from '@siemens/ix-react';
-import { ChangeEvent, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default () => {
-  const [themes] = useState(['theme-classic-light', 'theme-classic-dark']);
-  const [selectedTheme, setSelectedTheme] = useState(themes[1]);
+  const [variants] = useState<ThemeVariant[]>(['light', 'dark']);
+  const [selectedVariant, setSelectedVariant] = useState<ThemeVariant>('dark');
+  const [useSystemTheme, setUseSystemTheme] = useState(false);
 
-  const valueChange = (event: IxSelectCustomEvent<string | string[]>) => {
-    const newTheme: string = event.detail as string;
-    themeSwitcher.setTheme(newTheme);
-    setSelectedTheme(newTheme);
+  useEffect(() => {
+    themeSwitcher.setTheme('classic');
+    themeSwitcher.setVariant(selectedVariant);
+  }, []);
+
+  const onValueChange = (event: CustomEvent<string | string[]>) => {
+    if (useSystemTheme) return;
+    const newVariant = event.detail as ThemeVariant;
+    themeSwitcher.setVariant(newVariant);
+    setSelectedVariant(newVariant);
   };
 
   const toggle = () => {
+    if (useSystemTheme) return;
     themeSwitcher.toggleMode();
+    const newVariant = selectedVariant === 'light' ? 'dark' : 'light';
+    setSelectedVariant(newVariant);
   };
 
-  const systemChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    if (target.checked) {
+  const onCheckedChange = (event: CustomEvent<boolean>) => {
+    const checked = event.detail;
+    setUseSystemTheme(checked);
+    if (checked) {
       themeSwitcher.setVariant();
-      return;
+    } else {
+      themeSwitcher.setVariant(selectedVariant);
     }
-
-    themeSwitcher.setTheme(selectedTheme);
   };
 
   return (
-    <IxLayoutGrid class="theme-switcher">
+    <IxLayoutGrid className="theme-switcher">
       <IxRow>
         <IxCol size="2">
           <span>Light/Dark</span>
         </IxCol>
         <IxCol>
-          <IxButton onClick={toggle}>Toggle mode</IxButton>
+          <IxButton onClick={toggle} disabled={useSystemTheme}>
+            Toggle mode
+          </IxButton>
         </IxCol>
       </IxRow>
 
@@ -58,15 +72,15 @@ export default () => {
         <IxCol size="2">Theme</IxCol>
         <IxCol>
           <IxSelect
-            value={selectedTheme}
-            onValueChange={valueChange}
-            placeholder="Select a theme"
+            value={selectedVariant}
+            onValueChange={onValueChange}
+            disabled={useSystemTheme}
           >
-            {themes.map((theme) => (
+            {variants.map((variant) => (
               <IxSelectItem
-                key={theme}
-                label={theme}
-                value={theme}
+                key={variant}
+                label={variant}
+                value={variant}
               ></IxSelectItem>
             ))}
           </IxSelect>
@@ -76,15 +90,7 @@ export default () => {
       <IxRow>
         <IxCol size="2"></IxCol>
         <IxCol>
-          <input
-            className="ix-form-control"
-            type="checkbox"
-            id="system"
-            onChange={systemChange}
-          />
-          <label className="ix-form-label" htmlFor="system">
-            Use System
-          </label>
+          <IxCheckbox label="Use system" onCheckedChange={onCheckedChange} />
         </IxCol>
       </IxRow>
     </IxLayoutGrid>
