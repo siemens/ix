@@ -8,6 +8,7 @@
  */
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
+import { handleSubmitOnEnterKeydown } from './input.util';
 import { MakeRef } from '../utils/make-ref';
 
 export function TextareaElement(
@@ -79,12 +80,15 @@ export function InputElement(
     required: boolean;
     value: string | number;
     placeholder?: string;
+    textAlignment?: 'start' | 'end';
     inputRef: (el: HTMLInputElement | undefined) => void;
     onKeyPress: (event: KeyboardEvent) => void;
     valueChange: (value: string) => void;
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
     ariaAttributes?: A11yAttributes;
+    form?: HTMLFormElement;
+    suppressSubmitOnEnter?: boolean;
   }>
 ) {
   return (
@@ -104,6 +108,9 @@ export function InputElement(
       class={{
         'is-invalid': props.isInvalid,
       }}
+      style={{
+        textAlign: props.textAlignment,
+      }}
       required={props.required}
       value={props.value}
       placeholder={props.placeholder}
@@ -115,6 +122,9 @@ export function InputElement(
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
+      onKeyDown={(e) =>
+        handleSubmitOnEnterKeydown(e, !!props.suppressSubmitOnEnter, props.form)
+      }
     ></input>
   );
 }

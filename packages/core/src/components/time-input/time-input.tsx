@@ -27,6 +27,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -34,6 +35,9 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  resetInputField,
+  ResetConfig,
+  shouldSuppressInternalValidation,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
@@ -77,6 +81,15 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
   @Watch('value') watchValuePropHandler(newValue: string) {
+    if (this.isResetting) {
+      this.onInput(newValue);
+      return;
+    }
+
+    if (!newValue && this.required) {
+      this.touched = true;
+    }
+    this.dirty = newValue !== this.initialValue;
     this.onInput(newValue);
   }
 
@@ -90,6 +103,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
    * Required attribute
    */
   @Prop() required?: boolean;
+
+  @Watch('required')
+  onRequiredChange() {
+    this.syncValidationClasses();
+  }
 
   /**
    * Helper text below the input field
@@ -200,11 +218,22 @@ export class TimeInput implements IxInputFieldComponent<string> {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
    * Hides the header of the picker.
    *
    * @since 4.0.0
    */
   @Prop() hideHeader: boolean = false;
+
+  /**
+   * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
 
   /**
    * Input change event.
@@ -241,8 +270,20 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private dirty = false;
+  private isResetting = false;
+  private initialValue?: string;
+  private suppressValidation = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  private handleInputKeyDown(event: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      event,
+      this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
+  }
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -262,10 +303,13 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad(): void {
+    this.initialValue = this.value;
+
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
         this.value = now.toFormat(this.format);
+        this.initialValue = this.value;
       }
     }
 
@@ -278,6 +322,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
+  }
+
+  componentDidLoad(): void {
+    this.syncValidationClasses();
   }
 
   private updatePaddings() {
@@ -312,10 +360,19 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   async onInput(value: string) {
     this.value = value;
+
+    if (!this.isResetting) {
+      this.dirty = value !== this.initialValue;
+    }
+
+    const skipValidation = await shouldSuppressInternalValidation(this);
+    this.suppressValidation = skipValidation;
+
     if (!value) {
       this.isInputInvalid = false;
       this.updateFormInternalValue(value);
       this.valueChange.emit(value);
+      this.syncValidationClasses();
       return;
     }
 
@@ -333,6 +390,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
     this.updateFormInternalValue(value);
     this.valueChange.emit(value);
+    this.syncValidationClasses();
   }
 
   onTimeIconClick(event: Event) {
@@ -371,6 +429,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
           class={{
             'is-invalid': this.isInputInvalid,
           }}
+          style={{
+            textAlign: this.textAlignment,
+          }}
           disabled={this.disabled}
           readOnly={this.readonly}
           required={this.required}
@@ -381,6 +442,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
           name={this.name}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
+            if (!this.isResetting) {
+              this.touched = true;
+            }
             this.onInput(target.value);
           }}
           onClick={(event) => {
@@ -395,8 +459,12 @@ export class TimeInput implements IxInputFieldComponent<string> {
           }}
           onBlur={() => {
             this.ixBlur.emit();
-            this.touched = true;
+            if (!this.isResetting) {
+              this.touched = true;
+            }
+            this.syncValidationClasses();
           }}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -472,6 +540,70 @@ export class TimeInput implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
+  /**
+   * Returns whether the input field is dirty (value has been changed).
+   * @internal
+   */
+  @Method()
+  isDirty(): Promise<boolean> {
+    return Promise.resolve(this.dirty);
+  }
+
+  /**
+   * @internal
+   */
+  syncValidationClasses(): void {
+    if (this.suppressValidation) {
+      return;
+    }
+
+    const isValuePresent = this.required ? !!this.value : true;
+    const touched = this.touched;
+    const isRequiredInvalid = this.required && !isValuePresent && touched;
+    const shouldShowPatternMismatch = this.isInputInvalid && touched;
+
+    if (this.required) {
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        isRequiredInvalid
+      );
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+    }
+
+    this.hostElement.classList.toggle(
+      'ix-invalid--validity-patternMismatch',
+      shouldShowPatternMismatch
+    );
+  }
+
+  /**
+   * Resets the input field to its original untouched state and initial value.
+   * Clears touched and dirty states and recomputes validity.
+   */
+  @Method()
+  async reset(): Promise<void> {
+    const resetConfig: ResetConfig = {
+      initialValue: this.initialValue,
+      format: this.format,
+      updateFormInternalValue: this.updateFormInternalValue.bind(this),
+      onInput: this.onInput.bind(this),
+      valueChangeEmitter: this.valueChange,
+      setState: {
+        setIsResetting: (value: boolean) => (this.isResetting = value),
+        setTouched: (value: boolean) => (this.touched = value),
+        setDirty: (value: boolean) => (this.dirty = value),
+        setIsInputInvalid: (value: boolean) => (this.isInputInvalid = value),
+        setIsInvalid: (value: boolean) => (this.isInvalid = value),
+        setInvalidReason: (value: string | undefined) =>
+          (this.invalidReason = value),
+        setValue: (value: string) => (this.value = value),
+      },
+    };
+
+    return resetInputField(resetConfig);
+  }
+
   render() {
     const invalidText = this.isInputInvalid
       ? this.i18nErrorTimeUnparsable
@@ -520,7 +652,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             minuteInterval={this.minuteInterval}
             secondInterval={this.secondInterval}
             millisecondInterval={this.millisecondInterval}
-            standaloneAppearance={false}
+            embedded
             hideHeader={this.hideHeader}
             i18nConfirmTime={this.i18nSelectTime}
             i18nHeader={this.i18nTime}

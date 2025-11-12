@@ -129,6 +129,10 @@ export const config: Config = {
       generator: customComponentDocGenerator,
     },
     {
+      type: 'docs-readme',
+      dir: './api-docs',
+    },
+    {
       type: 'www',
       serviceWorker: null,
       copy: getDevAssets(),

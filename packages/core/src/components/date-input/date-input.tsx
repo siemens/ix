@@ -27,6 +27,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -35,6 +36,8 @@ import {
   ValidationResults,
   createClassMutationObserver,
   shouldSuppressInternalValidation,
+  resetInputField,
+  ResetConfig,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -209,6 +212,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * Will be set as aria-label on the nested HTML button element
    */
   @Prop() ariaLabelNextMonthButton?: string;
+
+  /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
+   * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
 
   /**
    * Input change event.
@@ -396,6 +410,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
+  private handleInputKeyDown(event: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      event,
+      this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
+  }
+
   private renderInput() {
     return (
       <div class="input-wrapper">
@@ -438,6 +460,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.ixBlur.emit();
             this.touched = true;
             this.syncValidationClasses();
+          }}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
+          style={{
+            textAlign: this.textAlignment,
           }}
         ></input>
         <SlotEnd
@@ -578,32 +604,28 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Method()
   async reset(): Promise<void> {
-    this.isResetting = true;
+    const resetConfig: ResetConfig = {
+      initialValue: this.initialValue,
+      format: this.format,
+      updateFormInternalValue: this.updateFormInternalValue.bind(this),
+      onInput: this.onInput.bind(this),
+      valueChangeEmitter: this.valueChange,
+      setState: {
+        setIsResetting: (value: boolean) => (this.isResetting = value),
+        setTouched: (value: boolean) => (this.touched = value),
+        setDirty: (value: boolean) => (this.dirty = value),
+        setIsInputInvalid: (value: boolean) => (this.isInputInvalid = value),
+        setIsInvalid: (value: boolean) => (this.isInvalid = value),
+        setInvalidReason: (value: string | undefined) =>
+          (this.invalidReason = value),
+        setValue: (value: string) => (this.value = value),
+      },
+      componentSpecificCleanup: () => {
+        this.from = undefined;
+      },
+    };
 
-    this.touched = false;
-    this.dirty = false;
-    this.isInputInvalid = false;
-    this.isInvalid = false;
-    this.invalidReason = undefined;
-    this.from = undefined;
-
-    const initialValue = this.initialValue || '';
-    let resetValue = initialValue;
-
-    if (initialValue && this.format) {
-      const tempDate = DateTime.fromFormat(initialValue, this.format);
-      if (!tempDate.isValid) {
-        resetValue = '';
-      }
-    }
-
-    this.value = resetValue;
-    this.updateFormInternalValue(resetValue);
-
-    await this.onInput(resetValue);
-
-    this.isResetting = false;
-    this.valueChange.emit(resetValue);
+    await resetInputField(resetConfig);
   }
 
   render() {
@@ -652,7 +674,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ref={this.datepickerRef}
             format={this.format}
             locale={this.locale}
-            range={false}
+            singleSelection
             from={this.from ?? ''}
             minDate={this.minDate}
             maxDate={this.maxDate}
@@ -663,7 +685,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             showWeekNumbers={this.showWeekNumbers}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-            standaloneAppearance={false}
+            embedded
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

@@ -102,8 +102,6 @@ export class RadiobuttonGroup
   @State() isWarning = false;
 
   private touched = false;
-  private formSubmissionAttempted = false;
-  private formSubmitHandler?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
   private readonly observer = new MutationObserver(() => {
@@ -122,15 +120,6 @@ export class RadiobuttonGroup
       attributes: true,
       attributeFilter: ['checked', 'required'],
     });
-
-    const form = this.parentForm;
-    if (form) {
-      this.formSubmitHandler = () => {
-        this.formSubmissionAttempted = true;
-        this.syncValidationClasses();
-      };
-      form.addEventListener('submit', this.formSubmitHandler);
-    }
   }
 
   componentWillLoad(): void | Promise<void> {
@@ -143,16 +132,13 @@ export class RadiobuttonGroup
     if (this.observer) {
       this.observer.disconnect();
     }
-    const form = this.parentForm;
-    if (form && this.formSubmitHandler) {
-      form.removeEventListener('submit', this.formSubmitHandler);
-    }
   }
 
   private selectInitialValue() {
     if (!this.value) {
       return;
     }
+
     this.radiobuttonElements.forEach((radiobutton) => {
       radiobutton.checked = radiobutton.value === this.value;
     });
@@ -168,12 +154,26 @@ export class RadiobuttonGroup
       }
       radio.checked = false;
     });
+
+    const hasCheckedRadio = this.isSomeRadioChecked();
+
+    for (const radio of this.radiobuttonElements) {
+      radio.tabIndex = radio.checked ? 0 : -1;
+    }
+
+    if (!hasCheckedRadio && this.radiobuttonElements.length > 0) {
+      this.radiobuttonElements[0].tabIndex = 0;
+    }
   }
 
   private hasNestedRequiredRadio() {
     this.required = this.radiobuttonElements.some(
       (radiobutton) => radiobutton.required
     );
+  }
+
+  private isSomeRadioChecked() {
+    return this.radiobuttonElements.some((radio) => radio.checked);
   }
 
   @Watch('value')
@@ -228,59 +228,40 @@ export class RadiobuttonGroup
     return Promise.resolve(this.touched);
   }
 
-  private get parentForm(): HTMLFormElement | null {
-    return this.hostElement.closest('form');
-  }
-
-  private shouldSuppressValidation(): boolean {
-    const form = this.parentForm;
-    if (!form) return false;
-    return (
-      form.hasAttribute('novalidate') ||
-      form.hasAttribute('data-novalidate')
-    );
-  }
-
-  async syncValidationClasses() {
-    if (this.shouldSuppressValidation()) {
-      this.hostElement.classList.remove('ix-invalid--required');
-      if (this.invalidText) {
-        this.invalidText = '';
-      }
+  /** @internal */
+  @Method()
+  async setCheckedToNextItem(
+    currentRadio: HTMLIxRadioElement,
+    forward = true
+  ): Promise<void> {
+    const { radiobuttonElements } = this;
+    const { length } = radiobuttonElements;
+    if (length <= 1) {
       return;
     }
-    if (this.required) {
-      const isRequiredInvalid =
-        !this.hasAnyChecked() && (this.touched || this.formSubmissionAttempted);
-      this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
-      if (isRequiredInvalid) {
-        this.invalidText =
-          this.invalidText && this.invalidText.trim().length > 0
-            ? this.invalidText
-            : 'Please select an option.';
-      } else if (this.invalidText === 'Please select an option.') {
-        this.invalidText = '';
-      }
-    } else {
-      this.hostElement.classList.remove('ix-invalid--required');
-      if (this.invalidText) {
-        this.invalidText = '';
-      }
-    }
-  }
 
-  private hasAnyChecked(): boolean {
-    return this.radiobuttonElements.some((radio) => radio.checked);
+    const index = radiobuttonElements.indexOf(currentRadio);
+    const step = forward ? 1 : -1;
+    let nextIndex = (index + step + length) % length;
+
+    while (radiobuttonElements[nextIndex].disabled) {
+      if (nextIndex === index) {
+        return;
+      }
+      nextIndex = (nextIndex + step + length) % length;
+    }
+
+    const nextRadio = radiobuttonElements[nextIndex];
+    nextRadio.setCheckedState(true);
+    nextRadio.focus();
   }
 
   render() {
     return (
       <Host
-        onIxBlur={() => {
-          this.touched = true;
-          this.syncValidationClasses();
-        }}
+        onIxBlur={() => (this.touched = true)}
         ref={this.groupRef}
+        role="radiogroup"
       >
         <ix-field-wrapper
           label={this.label}

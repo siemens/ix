@@ -115,3 +115,37 @@ regressionTest(`form-ready default active`, async ({ mount, page }) => {
   const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('on');
 });
+
+regressionTest(
+  'should expose label via aria-label for accessible queries',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-toggle text-on="Enabled" text-off="Disabled"></ix-toggle>`
+    );
+    const toggleByRole = page.getByRole('switch', { name: 'Disabled' });
+    await expect(toggleByRole).toBeVisible();
+  }
+);
+
+regressionTest(
+  'should be directly clickable via host element with accessible query',
+  async ({ mount, page }) => {
+    await mount(`<ix-toggle text-on="On" text-off="Off"></ix-toggle>`);
+    const toggle = page.getByRole('switch', { name: 'Off' });
+    const input = page.locator('ix-toggle input');
+    await expect(input).not.toBeChecked();
+    await toggle.click();
+    await expect(input).toBeChecked();
+  }
+);
+
+regressionTest(
+  'should respect disabled state when clicking via accessible query',
+  async ({ mount, page }) => {
+    await mount(`<ix-toggle text-on="On" text-off="Off" disabled></ix-toggle>`);
+    const toggle = page.getByRole('switch', { name: 'Off' });
+    const input = page.locator('ix-toggle input');
+    await toggle.click({ force: true });
+    await expect(input).not.toBeChecked();
+  }
+);

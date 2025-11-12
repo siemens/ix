@@ -308,4 +308,67 @@ regressionTest.describe('handles multiple references', () => {
 
     await testMultipleButtons(page);
   });
+  regressionTest(
+    'arrow position for top placement',
+    async ({ mount, page }) => {
+      await mount(`
+    <div style="margin-top: 100px; margin-left: 100px;">
+      <ix-tooltip for=".test-arrow-top" placement="top" id="arrow-tooltip-top">Tooltip content</ix-tooltip>
+      <ix-button class="test-arrow-top">Hover me</ix-button>
+    </div>
+  `);
+      const button = page.locator('.test-arrow-top');
+      await button.hover();
+      const tooltip = page.locator('ix-tooltip#arrow-tooltip-top');
+      await expect(tooltip).toHaveClass(/visible/);
+      const dialog = tooltip.locator('dialog');
+      await expect(dialog).toBeVisible();
+      const arrowStyle = await page.evaluate((tooltipId) => {
+        const host = document.getElementById(tooltipId) as HTMLElement;
+        const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
+        const style = globalThis.getComputedStyle(arrow);
+        return {
+          bottom: style.bottom,
+          left: style.left,
+        };
+      }, 'arrow-tooltip-top');
+      expect(arrowStyle.bottom).toBe('-6px');
+      expect(arrowStyle.left).not.toBe('unset');
+      expect(arrowStyle.left).toContain('px');
+    }
+  );
+  regressionTest(
+    'arrow position for bottom placement',
+    async ({ mount, page }) => {
+      await mount(`
+    <div style="margin-top: 100px; margin-left: 100px;">
+      <ix-tooltip for=".test-arrow-bottom" placement="bottom" id="arrow-tooltip-bottom">Tooltip content</ix-tooltip>
+      <ix-button class="test-arrow-bottom">Hover me</ix-button>
+    </div>
+  `);
+
+      const button = page.locator('.test-arrow-bottom');
+      await button.hover();
+
+      const tooltip = page.locator('ix-tooltip#arrow-tooltip-bottom');
+      await expect(tooltip).toHaveClass(/visible/);
+
+      const dialog = tooltip.locator('dialog');
+      await expect(dialog).toBeVisible();
+
+      const arrowStyle = await page.evaluate((tooltipId) => {
+        const host = document.getElementById(tooltipId) as HTMLElement;
+        const arrow = host.shadowRoot!.querySelector('.arrow') as HTMLElement;
+        const style = globalThis.getComputedStyle(arrow);
+        return {
+          top: style.top,
+          left: style.left,
+        };
+      }, 'arrow-tooltip-bottom');
+
+      expect(arrowStyle.top).toBe('-6px');
+      expect(arrowStyle.left).not.toBe('unset');
+      expect(arrowStyle.left).toContain('px');
+    }
+  );
 });

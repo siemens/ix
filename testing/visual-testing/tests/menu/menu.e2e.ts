@@ -100,13 +100,13 @@ regressionTest.describe('menu', () => {
       await page.setViewportSize(viewPorts.lg);
       await page.goto('menu/active');
 
-      const basicNavigationElement = page.locator('ix-basic-navigation');
+      const applicationElement = page.locator('ix-application');
 
       const category = page.locator('ix-menu-category');
       await category.click();
       await page.waitForTimeout(1000);
 
-      const collapseButton = basicNavigationElement
+      const collapseButton = applicationElement
         .locator('ix-menu')
         .getByTestId('expand-collapse-menu');
 
@@ -117,7 +117,7 @@ regressionTest.describe('menu', () => {
       await page.waitForTimeout(1000);
 
       expect(
-        await basicNavigationElement.screenshot({
+        await applicationElement.screenshot({
           animations: 'disabled',
         })
       ).toMatchSnapshot();
