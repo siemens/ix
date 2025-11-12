@@ -200,3 +200,65 @@ regressionTest(
     await expect(helperTextElement).toHaveCount(1);
   }
 );
+
+regressionTest(
+  'should not show empty tooltip if invalidText is present but isInvalid is false and no helperText',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-field-wrapper
+        invalid-text="This invalid message should be ignored"
+        show-text-as-tooltip
+      >
+        <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      </ix-field-wrapper>
+      `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    const bottomTextElement = fieldWrapperElement
+      .locator('.field-bottom')
+      .locator('ix-typography.bottom-text');
+    await expect(bottomTextElement).toHaveCount(0);
+
+    await page.mouse.move(10, 10);
+    await page.waitForTimeout(500);
+
+    const tooltip = fieldWrapperElement.locator('ix-tooltip');
+    await expect(tooltip).toHaveCount(0);
+    await expect(tooltip).not.toBeVisible();
+  }
+);
+regressionTest(
+  'should not show tooltip if invalidText is an empty string even when isInvalid is true',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-field-wrapper
+        invalid-text=""
+        is-invalid
+        show-text-as-tooltip
+      >
+        <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      </ix-field-wrapper>
+      `
+    );
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+
+    const bottomTextElement = fieldWrapperElement
+      .locator('.field-bottom')
+      .locator('ix-typography.bottom-text');
+    await expect(bottomTextElement).toHaveCount(0);
+
+    await page.mouse.move(10, 10);
+    await page.waitForTimeout(500);
+
+    const tooltip = fieldWrapperElement.locator('ix-tooltip');
+
+    await expect(tooltip).toHaveCount(0);
+    await expect(tooltip).not.toBeVisible();
+  }
+);

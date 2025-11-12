@@ -160,6 +160,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
 
   /**
+   * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'end';
+
+  /**
    * If true, the valueChange event will return null instead of 0 for an empty input state.
    * This property will be removed in 5.0.0 and this behaviour will be default.
    *
@@ -483,6 +488,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
               onBlur={this.handleBlur}
               form={this.formInternals.form ?? undefined}
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}
+              textAlignment={this.textAlignment}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
