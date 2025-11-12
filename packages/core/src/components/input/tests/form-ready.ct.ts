@@ -15,6 +15,7 @@ import { expect } from '@playwright/test';
 
 declare global {
   var __formSubmitted: boolean;
+  var __lastEmittedValue: number | null;
 }
 
 regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
@@ -315,21 +316,19 @@ regressionTest(
       `<form><ix-number-input name="my-field-name" value="123"></ix-number-input></form>`
     );
 
-    let emittedValue: number | null | undefined;
+    let emittedValue: number | null;
     await page.evaluate(() => {
       document
         .querySelector('ix-number-input')
         ?.addEventListener('valueChange', (event: any) => {
-          (window as any).__lastEmittedValue = event.detail;
+          globalThis.__lastEmittedValue = event.detail;
         });
     });
 
     const input = page.locator('ix-number-input').locator('input');
     await input.fill('');
 
-    emittedValue = await page.evaluate(
-      () => (window as any).__lastEmittedValue
-    );
+    emittedValue = await page.evaluate(() => globalThis.__lastEmittedValue);
     expect(emittedValue).toBe(0);
   }
 );
@@ -341,21 +340,19 @@ regressionTest(
       `<form><ix-number-input name="my-field-name" value="123" allow-empty-value-change></ix-number-input></form>`
     );
 
-    let emittedValue: number | null | undefined;
+    let emittedValue: number | null;
     await page.evaluate(() => {
       document
         .querySelector('ix-number-input')
         ?.addEventListener('valueChange', (event: any) => {
-          (window as any).__lastEmittedValue = event.detail;
+          globalThis.__lastEmittedValue = event.detail;
         });
     });
 
     const input = page.locator('ix-number-input').locator('input');
     await input.fill('');
 
-    emittedValue = await page.evaluate(
-      () => (window as any).__lastEmittedValue
-    );
+    emittedValue = await page.evaluate(() => globalThis.__lastEmittedValue);
     expect(emittedValue).toBeNull();
   }
 );
