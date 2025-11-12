@@ -1036,6 +1036,11 @@ export namespace Components {
          */
         "suppressSubmitOnEnter": boolean;
         /**
+          * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -1974,6 +1979,11 @@ export namespace Components {
          */
         "suppressSubmitOnEnter": boolean;
         /**
+          * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -2582,6 +2592,11 @@ export namespace Components {
           * @default false
          */
         "suppressSubmitOnEnter": boolean;
+        /**
+          * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'end'
+         */
+        "textAlignment": 'start' | 'end';
         /**
           * The valid text for the input field
          */
@@ -3533,6 +3548,11 @@ export namespace Components {
           * @default false
          */
         "suppressSubmitOnEnter": boolean;
+        /**
+          * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
         /**
           * Valid text below the input field
          */
@@ -6816,6 +6836,11 @@ declare namespace LocalJSX {
          */
         "suppressSubmitOnEnter"?: boolean;
         /**
+          * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -7810,6 +7835,11 @@ declare namespace LocalJSX {
          */
         "suppressSubmitOnEnter"?: boolean;
         /**
+          * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -8469,6 +8499,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'end'
+         */
+        "textAlignment"?: 'start' | 'end';
         /**
           * The valid text for the input field
          */
@@ -9459,6 +9494,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
         /**
           * Valid text below the input field
          */

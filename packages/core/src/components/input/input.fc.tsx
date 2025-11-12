@@ -80,6 +80,7 @@ export function InputElement(
     required: boolean;
     value: string | number;
     placeholder?: string;
+    textAlignment?: 'start' | 'end';
     inputRef: (el: HTMLInputElement | undefined) => void;
     onKeyPress: (event: KeyboardEvent) => void;
     valueChange: (value: string) => void;
@@ -106,6 +107,9 @@ export function InputElement(
       type={props.type}
       class={{
         'is-invalid': props.isInvalid,
+      }}
+      style={{
+        textAlign: props.textAlignment,
       }}
       required={props.required}
       value={props.value}
