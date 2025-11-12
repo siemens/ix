@@ -2980,6 +2980,7 @@ export namespace Components {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
@@ -2987,6 +2988,11 @@ export namespace Components {
           * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
+        /**
+          * Show "all" chip when all items are selected in multiple mode
+          * @default false
+         */
+        "collapseMultipleSelection": boolean;
         /**
           * If true the select will be in disabled state
           * @default false
@@ -3024,6 +3030,11 @@ export namespace Components {
           * @default false
          */
         "hideListHeader": boolean;
+        /**
+          * Chip label for all selected items in multiple mode.
+          * @default 'All'
+         */
+        "i18nAllSelected": string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -8919,6 +8930,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
@@ -8926,6 +8938,11 @@ declare namespace LocalJSX {
           * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
+        /**
+          * Show "all" chip when all items are selected in multiple mode
+          * @default false
+         */
+        "collapseMultipleSelection"?: boolean;
         /**
           * If true the select will be in disabled state
           * @default false
@@ -8953,6 +8970,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "hideListHeader"?: boolean;
+        /**
+          * Chip label for all selected items in multiple mode.
+          * @default 'All'
+         */
+        "i18nAllSelected"?: string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
