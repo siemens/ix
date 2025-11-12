@@ -25,8 +25,7 @@ import { makeRef } from '../utils/make-ref';
   shadow: true,
 })
 export class CheckboxGroup
-  implements FieldWrapperInterface, IxFormValidationState, IxComponent
-{
+  implements FieldWrapperInterface, IxFormValidationState, IxComponent {
   @Element() hostElement!: HTMLIxCheckboxGroupElement;
   /**
    * Optional helper text displayed below the checkbox group
@@ -77,36 +76,51 @@ export class CheckboxGroup
   @State() isWarning = false;
 
   private touched = false;
+  private formSubmissionAttempted = false;
+  private formSubmitHandler?: () => void;
+
   private readonly groupRef = makeRef<HTMLElement>();
 
   get checkboxElements(): HTMLIxCheckboxElement[] {
     return Array.from(this.hostElement.querySelectorAll('ix-checkbox'));
   }
 
-  private readonly observer = new MutationObserver(() => {
-    this.checkForRequiredCheckbox();
-  });
-
   private checkForRequiredCheckbox() {
     this.required = this.checkboxElements.some((checkbox) => checkbox.required);
   }
 
-  connectedCallback(): void {
-    this.observer.observe(this.hostElement, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['checked', 'required'],
-    });
+  private get parentForm(): HTMLFormElement | null {
+    return this.hostElement.closest('form');
   }
 
-  componentWillLoad(): void | Promise<void> {
+  private shouldSuppressValidation(): boolean {
+    const form = this.parentForm;
+    if (!form) return false;
+    return (
+      form.hasAttribute('novalidate') ||
+      form.hasAttribute('data-novalidate')
+    );
+  }
+
+  connectedCallback(): void {
+    const form = this.parentForm;
+    if (form) {
+      this.formSubmitHandler = () => {
+        this.formSubmissionAttempted = true;
+        this.syncValidationClasses();
+      };
+      form.addEventListener('submit', this.formSubmitHandler);
+    }
+  }
+
+  componentWillLoad(): void {
     this.checkForRequiredCheckbox();
   }
 
   disconnectedCallback(): void {
-    if (this.observer) {
-      this.observer.disconnect();
+    const form = this.parentForm;
+    if (form && this.formSubmitHandler) {
+      form.removeEventListener('submit', this.formSubmitHandler);
     }
   }
 
@@ -144,9 +158,81 @@ export class CheckboxGroup
     );
   }
 
+  private hasAnyChecked(): boolean {
+    const checkboxes = this.checkboxElements;
+    if (checkboxes.length > 0 && checkboxes[0].name) {
+      const name = checkboxes[0].name;
+      const form = this.parentForm;
+      const allWithSameName: NodeListOf<HTMLElement> = (form
+        ? form.querySelectorAll(`ix-checkbox[name="${name}"]`)
+        : document.querySelectorAll(`ix-checkbox[name="${name}"]`)) as any;
+      return Array.from(allWithSameName).some((el: any) => el.checked);
+    }
+    return checkboxes.some((checkbox) => (checkbox as any).checked);
+  }
+
+  async syncValidationClasses() {
+    if (this.shouldSuppressValidation()) {
+      this.hostElement.classList.remove('ix-invalid--required');
+      this.hostElement.classList.remove('ix-invalid');
+      if (this.invalidText) {
+        this.invalidText = '';
+      }
+      this.checkboxElements.forEach((el: any) => {
+        el.classList.remove('ix-invalid', 'ix-invalid--required');
+      });
+      return;
+    }
+    if (this.required) {
+      const isChecked = this.hasAnyChecked();
+      const anyTouched = this.checkboxElements.some((el: any) => el.touched || el.formSubmissionAttempted);
+      const isRequiredInvalid = !isChecked && (this.touched || this.formSubmissionAttempted || anyTouched);
+      this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+      if (isRequiredInvalid) {
+        this.hostElement.classList.add('ix-invalid');
+      } else {
+        this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+      }
+      if (isRequiredInvalid) {
+        this.invalidText =
+          this.invalidText && this.invalidText.trim().length > 0
+            ? this.invalidText
+            : 'Please select at least one option.';
+      } else if (this.invalidText === 'Please select at least one option.') {
+        this.invalidText = '';
+      }
+      this.checkboxElements.forEach((el: any) => {
+        if (isChecked) {
+          el.classList.remove('ix-invalid', 'ix-invalid--required');
+        } else if (isRequiredInvalid) {
+          el.classList.add('ix-invalid', 'ix-invalid--required');
+        }
+      });
+      if (isChecked) {
+        this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+      }
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+      this.hostElement.classList.remove('ix-invalid');
+      if (this.invalidText) {
+        this.invalidText = '';
+      }
+      this.checkboxElements.forEach((el: any) => {
+        el.classList.remove('ix-invalid', 'ix-invalid--required');
+      });
+    }
+  }
+
   render() {
     return (
-      <Host ref={this.groupRef} onIxBlur={() => (this.touched = true)}>
+      <Host
+        onIxBlur={() => {
+          if (!this.touched) {
+            this.touched = true;
+            this.syncValidationClasses();
+          }
+        }}
+      >
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}

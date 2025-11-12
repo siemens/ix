@@ -10,6 +10,7 @@ import { EventEmitter } from '@stencil/core';
 import { IxComponent } from '../internal';
 
 export * from './validation';
+export * from './reset.util';
 
 export interface FieldWrapperInterface {
   /**

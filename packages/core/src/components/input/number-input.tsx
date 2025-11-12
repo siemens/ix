@@ -19,6 +19,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import {
   HookValidationLifecycle,
@@ -35,6 +36,10 @@ import {
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputBlur,
+  syncValidationClasses,
+  resetInputComponent,
+  isTouchedUtil,
+  isDirtyUtil,
 } from './input.util';
 
 let numberInputIds = 0;
@@ -68,6 +73,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
    * The value of the input field
    */
   @Prop({ reflect: true, mutable: true }) value: number = 0;
+
+  @Watch('value') watchValuePropHandler(newValue: number) {
+    if (this.isResetting) {
+      return;
+    }
+    this.dirty = newValue !== this.initialValue;
+    this.updateFormInternalValue(newValue);
+    this.valueChange.emit(newValue);
+  }
 
   /**
    * Indicates if the field is required
@@ -188,6 +202,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
   private touched = false;
+  private dirty = false;
+  private isResetting = false;
+  private initialValue: number = 0;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -197,6 +214,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   componentWillLoad() {
+    this.initialValue = this.value;
     this.updateFormInternalValue(this.value);
   }
 
@@ -253,6 +271,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   /**
+   * Returns the validity state of the input field.
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const input = await this.inputRef.waitForCurrent();
+    return Promise.resolve(input.validity);
+  }
+
+  /**
    * Focuses the input field
    */
   @Method()
@@ -261,12 +288,40 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   /**
+   * Resets the number input to its original untouched state and initial value.
+   * This clears the value, removes touched and dirty states, and recomputes validity.
+   */
+  @Method()
+  async reset(): Promise<void> {
+    await resetInputComponent(this, this.initialValue, 0, this.inputRef.current);
+  }
+
+  /**
    * Returns true if the input field has been touched
    * @internal
    */
   @Method()
   isTouched(): Promise<boolean> {
-    return Promise.resolve(this.touched);
+    return isTouchedUtil(this.touched);
+  }
+
+  /**
+   * Returns whether the number input has been modified from its initial value.
+   * @internal
+   */
+  @Method()
+  isDirty(): Promise<boolean> {
+    return isDirtyUtil(this.dirty);
+  }
+
+  /**
+   * Synchronizes CSS validation classes with the component's validation state.
+   * This method ensures proper visual styling based on validation status, particularly for Vue.
+   * @internal
+   */
+  @Method()
+  async syncValidationClasses(): Promise<void> {
+    return syncValidationClasses(this);
   }
 
   render() {
@@ -322,13 +377,19 @@ export class NumberInput implements IxInputFieldComponent<number> {
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
-              valueChange={(value) => this.valueChange.emit(Number(value))}
+              valueChange={() => {
+                if (this.inputRef.current) {
+                  setTimeout(() => {
+                    checkInternalValidity(this, this.inputRef.current!);
+                  }, 0);
+                }
+              }}
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(Number(value))
               }
               onBlur={() => {
-                onInputBlur(this, this.inputRef.current);
                 this.touched = true;
+                onInputBlur(this, this.inputRef.current);
               }}
               form={this.formInternals.form ?? undefined}
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}

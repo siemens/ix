@@ -21,7 +21,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
-import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
+import { HookValidationLifecycle, IxFormComponent, shouldSuppressInternalValidation } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 
 /**
@@ -91,6 +91,109 @@ export class Checkbox implements IxFormComponent<string> {
   @Event() ixBlur!: EventEmitter<void>;
 
   private touched = false;
+  private formSubmissionAttempted = false;
+
+  private get parentForm(): HTMLFormElement | null {
+    return this.hostElement.closest('form');
+  }
+
+  private shouldSuppressValidationFallback(): boolean {
+    const form = this.parentForm;
+    if (!form) return false;
+    return (
+      form.hasAttribute('novalidate') ||
+      form.hasAttribute('data-novalidate')
+    );
+  }
+
+  private async syncValidationClasses() {
+    let suppressValidation = false;
+    
+    try {
+      suppressValidation = await shouldSuppressInternalValidation(this);
+    } catch (error) {
+      suppressValidation = this.shouldSuppressValidationFallback();
+    }
+
+    if (suppressValidation) {
+      this.hostElement.classList.remove('ix-invalid--required');
+      this.hostElement.classList.remove('ix-invalid');
+      return;
+    }
+    if (this.required) {
+      let isChecked = this.checked;
+      const checkboxGroup = this.hostElement.closest('ix-checkbox-group');
+      if (!checkboxGroup && this.name) {
+        const form = this.parentForm;
+        const checkboxes: NodeListOf<HTMLElement> = (form
+          ? form.querySelectorAll(`ix-checkbox[name="${this.name}"]`)
+          : document.querySelectorAll(`ix-checkbox[name="${this.name}"]`));
+        isChecked = Array.from(checkboxes).some((el: any) => el.checked);
+        Array.from(checkboxes).forEach((el: any) => {
+          if (isChecked) {
+            el.classList.remove('ix-invalid--required', 'ix-invalid');
+          } else {
+            const touched = el.touched || el.formSubmissionAttempted || this.touched || this.formSubmissionAttempted;
+            el.classList.toggle('ix-invalid--required', touched);
+            if (touched) {
+              el.classList.add('ix-invalid');
+            }
+          }
+        });
+
+        if (checkboxes.length > 0) {
+          const group = checkboxes[0].closest('ix-checkbox-group');
+          if (group) {
+            if (isChecked) {
+              group.classList.remove('ix-invalid', 'ix-invalid--required');
+            } else {
+              const anyTouched = Array.from(checkboxes).some((el: any) => el.touched || el.formSubmissionAttempted);
+              group.classList.toggle('ix-invalid--required', anyTouched);
+              if (anyTouched) {
+                group.classList.add('ix-invalid');
+              }
+            }
+          }
+        }
+      } else if (checkboxGroup && this.name) {
+        const checkboxes: NodeListOf<HTMLElement> = checkboxGroup.querySelectorAll(`ix-checkbox[name="${this.name}"]`);
+        isChecked = Array.from(checkboxes).some((el: any) => el.checked);
+        Array.from(checkboxes).forEach((el: any) => {
+          if (isChecked) {
+            el.classList.remove('ix-invalid--required', 'ix-invalid');
+          } else {
+            const touched = el.touched || el.formSubmissionAttempted || this.touched || this.formSubmissionAttempted;
+            el.classList.toggle('ix-invalid--required', touched);
+            if (touched) {
+              el.classList.add('ix-invalid');
+            }
+          }
+        });
+        if (checkboxGroup) {
+          if (isChecked) {
+            checkboxGroup.classList.remove('ix-invalid', 'ix-invalid--required');
+          } else {
+            const anyTouched = Array.from(checkboxes).some((el: any) => el.touched || el.formSubmissionAttempted);
+            checkboxGroup.classList.toggle('ix-invalid--required', anyTouched);
+            if (anyTouched) {
+              checkboxGroup.classList.add('ix-invalid');
+            }
+          }
+        }
+      } else {
+        const isRequiredInvalid = !isChecked && (this.touched || this.formSubmissionAttempted);
+        this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+        if (isChecked) {
+          this.hostElement.classList.remove('ix-invalid');
+        } else if (isRequiredInvalid) {
+          this.hostElement.classList.add('ix-invalid');
+        }
+      }
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+      this.hostElement.classList.remove('ix-invalid');
+    }
+  }
 
   private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
     checkboxRef.checked = this.checked;
@@ -105,6 +208,26 @@ export class Checkbox implements IxFormComponent<string> {
   onCheckedChange() {
     this.touched = true;
     this.updateFormInternalValue();
+    this.syncValidationClasses();
+
+    if (this.required && this.name) {
+      const form = this.parentForm;
+      const checkboxes: NodeListOf<HTMLElement> = (form
+        ? form.querySelectorAll(`ix-checkbox[name="${this.name}"]`)
+        : document.querySelectorAll(`ix-checkbox[name="${this.name}"]`));
+      const isChecked = Array.from(checkboxes).some((el: any) => el.checked);
+      if (isChecked) {
+        Array.from(checkboxes).forEach((el: any) => {
+          el.classList.remove('ix-invalid--required', 'ix-invalid');
+        });
+        if (checkboxes.length > 0) {
+          const group = checkboxes[0].closest('ix-checkbox-group');
+          if (group) {
+            group.classList.remove('ix-invalid', 'ix-invalid--required');
+          }
+        }
+      }
+    }
   }
 
   @Watch('value')
@@ -191,8 +314,17 @@ export class Checkbox implements IxFormComponent<string> {
           checked: this.checked,
           indeterminate: this.indeterminate,
         }}
-        onFocus={() => (this.touched = true)}
-        onBlur={() => this.ixBlur.emit()}
+        onFocus={() => {
+          if (!this.touched) {
+            this.touched = true;
+            this.syncValidationClasses();
+          }
+        }}
+        onBlur={() => {
+          this.ixBlur.emit();
+          this.touched = true;
+          this.syncValidationClasses();
+        }}
       >
         <label>
           <input
