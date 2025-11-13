@@ -9,6 +9,7 @@
 
 # dependencies
 node_modules
+.pnpm-store
 
 # IDEs and editors
 /.idea
@@ -165,6 +166,8 @@ packages/*/build/
 ###
 
 packages/core/dist-css
+packages/core/api-docs
+packages/core/component-doc.json
 
 ###
 # html-test-app

@@ -26,23 +26,23 @@ regressionTest('renders', async ({ mount, page }) => {
 
 regressionTest('should collapse by click', async ({ mount, page }) => {
   await mount(`
-  <ix-basic-navigation>
+  <ix-application>
     <ix-menu>
       <ix-menu-category label="Category label">
         <ix-menu-item>Test</ix-menu-item>
         <ix-menu-item aria-label="MenuItem2">Test 2</ix-menu-item>
       </ix-menu-category>
     </ix-menu>
-  </ix-basic-navigation>
+  </ix-application>
   `);
   const categoryItem = page.locator('ix-menu-category');
-  const app = page.locator('ix-basic-navigation');
+  const app = page.locator('ix-application');
   const expandMenuButton = page
     .locator('ix-menu')
     .locator('ix-menu-expand-icon');
 
   await app.evaluate(
-    (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
   );
 
   await categoryItem.click();
@@ -67,22 +67,20 @@ regressionTest('should collapse by click', async ({ mount, page }) => {
 
 regressionTest('should expand items', async ({ mount, page }) => {
   await mount(`
-  <ix-basic-navigation>
+  <ix-application>
     <ix-menu>
       <ix-menu-category label="Category label">
         <ix-menu-item>Test Item 1</ix-menu-item>
         <ix-menu-item>Test Item 2</ix-menu-item>
       </ix-menu-category>
     </ix-menu>
-  </ix-basic-navigation>
+  </ix-application>
   `);
 
   const menu = page.locator('ix-menu');
   await page
-    .locator('ix-basic-navigation')
-    .evaluate(
-      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
-    );
+    .locator('ix-application')
+    .evaluate((menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md']));
 
   const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
@@ -98,22 +96,20 @@ regressionTest('should expand items', async ({ mount, page }) => {
 
 regressionTest('should show items as dropdown', async ({ mount, page }) => {
   await mount(`
-  <ix-basic-navigation>
+  <ix-application>
     <ix-menu>
       <ix-menu-category label="Category label">
         <ix-menu-item>Test Item 1</ix-menu-item>
         <ix-menu-item>Test Item 2</ix-menu-item>
       </ix-menu-category>
     </ix-menu>
-  </ix-basic-navigation>
+  </ix-application>
   `);
 
   await page.waitForSelector('ix-menu');
   await page
-    .locator('ix-basic-navigation')
-    .evaluate(
-      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
-    );
+    .locator('ix-application')
+    .evaluate((menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md']));
 
   const menuCategory = page.locator('ix-menu-category');
   await menuCategory.hover();
@@ -138,22 +134,22 @@ regressionTest(
   'should collapse category after collapse menu',
   async ({ mount, page }) => {
     await mount(`
-    <ix-basic-navigation>
+    <ix-application>
       <ix-menu>
         <ix-menu-category label="Category label">
           <ix-menu-item>Test Item 1</ix-menu-item>
           <ix-menu-item>Test Item 2</ix-menu-item>
         </ix-menu-category>
       </ix-menu>
-    </ix-basic-navigation>
+    </ix-application>
   `);
 
     await page.waitForSelector('ix-menu');
     const menu = page.locator('ix-menu');
     await page
-      .locator('ix-basic-navigation')
+      .locator('ix-application')
       .evaluate(
-        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+        (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
       );
 
     const menuButton = menu.locator('ix-menu-expand-icon');
@@ -177,22 +173,22 @@ regressionTest(
   'should hide menu-items when collapsed',
   async ({ mount, page }) => {
     await mount(`
-    <ix-basic-navigation>
+    <ix-application>
       <ix-menu>
         <ix-menu-category label="Category label">
           <ix-menu-item>Test Item 1</ix-menu-item>
           <ix-menu-item>Test Item 2</ix-menu-item>
         </ix-menu-category>
       </ix-menu>
-    </ix-basic-navigation>
+    </ix-application>
   `);
 
     await page.waitForSelector('ix-menu');
     const menu = page.locator('ix-menu');
     await page
-      .locator('ix-basic-navigation')
+      .locator('ix-application')
       .evaluate(
-        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+        (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
       );
 
     const menuButton = menu.locator('ix-menu-expand-icon');
@@ -211,22 +207,22 @@ regressionTest(
   'should open category when collapsed initially and active',
   async ({ mount, page }) => {
     await mount(`
-    <ix-basic-navigation>
+    <ix-application>
       <ix-menu>
         <ix-menu-category label="Category label">
           <ix-menu-item active="true">Test Item 1</ix-menu-item>
           <ix-menu-item>Test Item 2</ix-menu-item>
         </ix-menu-category>
       </ix-menu>
-    </ix-basic-navigation>
+    </ix-application>
   `);
 
     await page.waitForSelector('ix-menu');
     const menu = page.locator('ix-menu');
     await page
-      .locator('ix-basic-navigation')
+      .locator('ix-application')
       .evaluate(
-        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+        (menu: HTMLIxApplicationElement) => (menu.breakpoints = ['md'])
       );
 
     const menuButton = menu.locator('ix-menu-expand-icon');
