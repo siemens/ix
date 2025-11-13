@@ -39,6 +39,7 @@ import {
   resetInputField,
   ResetConfig,
   syncValidationClasses,
+  syncPickerInputState,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -323,8 +324,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   /** @internal */
   @Method()
   hasValidValue(): Promise<boolean> {
-    // For non-required fields, empty value is considered valid
-    // For required fields, empty value is considered invalid
     if (!this.required) {
       return Promise.resolve(true);
     }
@@ -382,9 +381,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private emitChangesAndSync(value: string | undefined): void {
-    this.updateFormInternalValue(value);
-    this.valueChange.emit(value);
-    this.syncValidationClasses();
+    syncPickerInputState({
+      updateFormInternalValue: (val) => this.updateFormInternalValue(val),
+      valueChange: this.valueChange,
+      value: value,
+      hostElement: this.hostElement,
+      suppressValidation: this.suppressValidation,
+      required: this.required,
+      touched: this.touched,
+      isInputInvalid: this.isInputInvalid,
+    });
   }
 
   private handleValidInput(value: string | undefined): void {

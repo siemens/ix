@@ -39,6 +39,7 @@ import {
   ResetConfig,
   shouldSuppressInternalValidation,
   syncValidationClasses,
+  syncPickerInputState,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
@@ -394,9 +395,16 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   private emitChangesAndSync(value: string): void {
-    this.updateFormInternalValue(value);
-    this.valueChange.emit(value);
-    this.syncValidationClasses();
+    syncPickerInputState({
+      updateFormInternalValue: (val) => this.updateFormInternalValue(val),
+      valueChange: this.valueChange,
+      value: value,
+      hostElement: this.hostElement,
+      suppressValidation: this.suppressValidation,
+      required: this.required,
+      touched: this.touched,
+      isInputInvalid: this.isInputInvalid,
+    });
   }
 
   onTimeIconClick(event: Event) {

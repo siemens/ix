@@ -11,6 +11,7 @@ import { IxComponent } from '../internal';
 
 export * from './validation';
 export * from './reset.util';
+export * from './picker-input-common';
 
 export interface FieldWrapperInterface {
   /**
