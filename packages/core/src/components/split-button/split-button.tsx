@@ -76,13 +76,15 @@ export class SplitButton {
 
   /**
    * Disables only the main button while keeping the dropdown trigger enabled
-   *  @since 4.0.0
+   *
+   *  @since 4.1.0
    */
   @Prop() disableButton = false;
 
   /**
    * Disables only the dropdown trigger while keeping the main button enabled
-   * @since 4.0.0
+   *
+   * @since 4.1.0
    */
   @Prop() disableDropdownButton = false;
 
