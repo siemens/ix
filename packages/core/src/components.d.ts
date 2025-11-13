@@ -1993,14 +1993,14 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Synchronizes CSS validation classes with the component's validation state. This method ensures proper visual styling based on validation status, particularly for Vue.
-         */
-        "syncValidationClasses": () => Promise<void>;
-        /**
           * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
         "suppressSubmitOnEnter": boolean;
+        /**
+          * Synchronizes CSS validation classes with the component's validation state. This method ensures proper visual styling based on validation status, particularly for Vue.
+         */
+        "syncValidationClasses": () => Promise<void>;
         /**
           * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
           * @default 'start'
@@ -2623,14 +2623,14 @@ export namespace Components {
          */
         "step"?: string | number;
         /**
-          * Synchronizes CSS validation classes with the component's validation state. This method ensures proper visual styling based on validation status, particularly for Vue.
-         */
-        "syncValidationClasses": () => Promise<void>;
-        /**
           * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
           * @default false
          */
         "suppressSubmitOnEnter": boolean;
+        /**
+          * Synchronizes CSS validation classes with the component's validation state. This method ensures proper visual styling based on validation status, particularly for Vue.
+         */
+        "syncValidationClasses": () => Promise<void>;
         /**
           * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
           * @default 'end'

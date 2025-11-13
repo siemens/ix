@@ -38,6 +38,7 @@ import {
   resetInputField,
   ResetConfig,
   shouldSuppressInternalValidation,
+  syncValidationClasses,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
@@ -558,28 +559,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
    * @internal
    */
   syncValidationClasses(): void {
-    if (this.suppressValidation) {
-      return;
-    }
-
-    const isValuePresent = this.required ? !!this.value : true;
-    const touched = this.touched;
-    const isRequiredInvalid = this.required && !isValuePresent && touched;
-    const shouldShowPatternMismatch = this.isInputInvalid && touched;
-
-    if (this.required) {
-      this.hostElement.classList.toggle(
-        'ix-invalid--required',
-        isRequiredInvalid
-      );
-    } else {
-      this.hostElement.classList.remove('ix-invalid--required');
-    }
-
-    this.hostElement.classList.toggle(
-      'ix-invalid--validity-patternMismatch',
-      shouldShowPatternMismatch
-    );
+    syncValidationClasses({
+      hostElement: this.hostElement,
+      suppressValidation: this.suppressValidation,
+      required: this.required,
+      value: this.value,
+      touched: this.touched,
+      isInputInvalid: this.isInputInvalid,
+    });
   }
 
   /**

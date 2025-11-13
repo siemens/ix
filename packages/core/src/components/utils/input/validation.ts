@@ -190,3 +190,45 @@ export function HookValidationLifecycle(options?: {
     };
   };
 }
+
+export interface ValidationClassSyncOptions {
+  hostElement: HTMLElement;
+  suppressValidation: boolean;
+  required?: boolean;
+  value?: string;
+  touched: boolean;
+  isInputInvalid: boolean;
+}
+
+/**
+ * Synchronizes CSS validation classes with the component's validation state.
+ * This method ensures proper visual styling based on validation status, particularly for Vue.
+ * @param options - Configuration object containing validation state
+ * @internal
+ */
+export function syncValidationClasses(
+  options: ValidationClassSyncOptions
+): void {
+  if (options.suppressValidation) {
+    return;
+  }
+
+  const isValuePresent = options.required ? !!options.value : true;
+  const isRequiredInvalid =
+    options.required && !isValuePresent && options.touched;
+  const shouldShowPatternMismatch = options.isInputInvalid && options.touched;
+
+  if (options.required) {
+    options.hostElement.classList.toggle(
+      'ix-invalid--required',
+      isRequiredInvalid
+    );
+  } else {
+    options.hostElement.classList.remove('ix-invalid--required');
+  }
+
+  options.hostElement.classList.toggle(
+    'ix-invalid--validity-patternMismatch',
+    shouldShowPatternMismatch
+  );
+}
