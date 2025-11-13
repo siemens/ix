@@ -19,15 +19,27 @@ import { IxSplitButton, IxDropdownItem } from '@siemens/ix-angular/standalone';
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>
-    <ix-split-button label="Action text" splitIcon="chevron-down-small" disabled>
+    <ix-split-button
+      label="Action text"
+      splitIcon="chevron-down-small"
+      disabled
+    >
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>
-    <ix-split-button label="Action text" splitIcon="chevron-down-small" disableButton>
+    <ix-split-button
+      label="Action text"
+      splitIcon="chevron-down-small"
+      disableButton
+    >
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>
-    <ix-split-button label="Action text" splitIcon="chevron-down-small" disableDropdownButton>
+    <ix-split-button
+      label="Action text"
+      splitIcon="chevron-down-small"
+      disableDropdownButton
+    >
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>

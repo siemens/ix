@@ -10,37 +10,79 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest(
-  'should disable only the dropdown trigger when disableDropdownButton is set',
-  async ({ mount, page }) => {
-    await mount(`
-    <ix-split-button label="Test" disable-Dropdown-Button>
+regressionTest.describe('disable behavior', () => {
+  function getSplitButtonExample(props: {
+    disableDropdownButton?: boolean;
+    disableButton?: boolean;
+    disabled?: boolean;
+  }) {
+    return `
+    <ix-split-button label="Test" aria-label-button="First button" aria-label-split-icon-button="dropdown button" ${
+      props.disableDropdownButton ? ' disable-dropdown-button' : ''
+    } ${props.disableButton ? ' disable-button' : ''} ${
+      props.disabled ? ' disabled' : ''
+    }>
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>
-  `);
-
-    const splitButton = page.locator('ix-split-button');
-    const mainButton = splitButton.locator('ix-button');
-    const dropdownButton = splitButton.locator('ix-icon-button');
-    await expect(mainButton).toHaveAttribute('tabindex', '0');
-    await expect(dropdownButton).toHaveClass(/disabled/);
+    `;
   }
-);
 
-regressionTest(
-  'should disable only the main button when disable-button is set',
-  async ({ mount, page }) => {
-    await mount(`
-    <ix-split-button label="Test" disable-button>
-      <ix-dropdown-item label="Item 1"></ix-dropdown-item>
-      <ix-dropdown-item label="Item 2"></ix-dropdown-item>
-    </ix-split-button>
-  `);
-    const splitButton = page.locator('ix-split-button');
-    const mainButton = splitButton.locator('ix-button');
-    const dropdownButton = splitButton.locator('ix-icon-button');
-    await expect(mainButton).toHaveClass(/disabled/);
-    await expect(dropdownButton).not.toHaveClass(/disabled/);
-  }
-);
+  regressionTest(
+    'should disable only the dropdown trigger when disableDropdownButton is set',
+    async ({ mount, page }) => {
+      await mount(getSplitButtonExample({ disableDropdownButton: true }));
+
+      const splitButton = page.locator('ix-split-button');
+      const mainButton = splitButton.getByLabel('First button');
+      const dropdownButton = splitButton.getByLabel('dropdown button');
+
+      await expect(mainButton).not.toHaveClass(/disabled/);
+      await expect(dropdownButton).toHaveClass(/disabled/);
+    }
+  );
+
+  regressionTest(
+    'should disable only the main button when disable-button is set',
+    async ({ mount, page }) => {
+      await mount(getSplitButtonExample({ disableButton: true }));
+
+      const splitButton = page.locator('ix-split-button');
+      const mainButton = splitButton.getByLabel('First button');
+      const dropdownButton = splitButton.getByLabel('dropdown button');
+      await expect(mainButton).toHaveClass(/disabled/);
+      await expect(dropdownButton).not.toHaveClass(/disabled/);
+    }
+  );
+
+  regressionTest(
+    'should disable disable both buttons when disable is set',
+    async ({ mount, page }) => {
+      await mount(getSplitButtonExample({ disabled: true }));
+
+      const splitButton = page.locator('ix-split-button');
+      const mainButton = splitButton.getByLabel('First button');
+      const dropdownButton = splitButton.getByLabel('dropdown button');
+      await expect(mainButton).toHaveClass(/disabled/);
+      await expect(dropdownButton).toHaveClass(/disabled/);
+    }
+  );
+
+  regressionTest(
+    'should disable disable both buttons when disable-dropdown-button and disable-button are set',
+    async ({ mount, page }) => {
+      await mount(
+        getSplitButtonExample({
+          disableDropdownButton: true,
+          disableButton: true,
+        })
+      );
+
+      const splitButton = page.locator('ix-split-button');
+      const mainButton = splitButton.getByLabel('First button');
+      const dropdownButton = splitButton.getByLabel('dropdown button');
+      await expect(mainButton).toHaveClass(/disabled/);
+      await expect(dropdownButton).toHaveClass(/disabled/);
+    }
+  );
+});
