@@ -370,7 +370,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
     const isDateInvalid = !date.isValid || date < minDate || date > maxDate;
     this.isInputInvalid = isDateInvalid;
-    this.invalidReason = isDateInvalid ? date.invalidReason || undefined : undefined;
+    this.invalidReason = isDateInvalid
+      ? date.invalidReason || undefined
+      : undefined;
 
     if (isDateInvalid) {
       this.handleInvalidInput(value);
@@ -588,7 +590,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       required: this.required,
       value: this.value,
       touched: this.touched,
-      isInputInvalid: this.isInputInvalid
+      isInputInvalid: this.isInputInvalid,
     });
   }
 

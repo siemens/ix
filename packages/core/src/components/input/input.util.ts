@@ -116,22 +116,30 @@ export async function syncValidationClasses<T>(comp: IxInputFieldComponent<T>) {
 
   if (comp.required) {
     const isRequiredInvalid = !hasValue && shouldShowValidation;
-    comp.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+    comp.hostElement.classList.toggle(
+      'ix-invalid--required',
+      isRequiredInvalid
+    );
   } else {
     comp.hostElement.classList.remove('ix-invalid--required');
   }
 
   const validityState = await comp.getValidityState?.();
   if (validityState) {
-    const isRequiredInvalid = comp.required && !hasValue && shouldShowValidation;
-    const shouldShowNativeInvalid = !validityState.valid && shouldShowValidation && !isRequiredInvalid;
-    comp.hostElement.classList.toggle('ix-invalid--validity-invalid', shouldShowNativeInvalid);
+    const isRequiredInvalid =
+      comp.required && !hasValue && shouldShowValidation;
+    const shouldShowNativeInvalid =
+      !validityState.valid && shouldShowValidation && !isRequiredInvalid;
+    comp.hostElement.classList.toggle(
+      'ix-invalid--validity-invalid',
+      shouldShowNativeInvalid
+    );
   }
 }
 
 export async function resetInputComponent<T>(
-  comp: IxInputFieldComponent<T>, 
-  initialValue: T, 
+  comp: IxInputFieldComponent<T>,
+  initialValue: T,
   defaultValue: T,
   elementRef: HTMLInputElement | HTMLTextAreaElement | null
 ) {
@@ -176,7 +184,9 @@ export function isDirtyUtil(dirty: boolean): Promise<boolean> {
   return Promise.resolve(dirty);
 }
 
-export function getAssociatedFormElementUtil(formInternals: ElementInternals): Promise<HTMLFormElement | null> {
+export function getAssociatedFormElementUtil(
+  formInternals: ElementInternals
+): Promise<HTMLFormElement | null> {
   return Promise.resolve(formInternals.form);
 }
 
