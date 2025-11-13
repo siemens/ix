@@ -34,7 +34,7 @@ const meta = {
 
     return elm;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-button', {
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-split-button', {
     variant: {
       options: ['primary', 'secondary'],
       control: { type: 'select' },
@@ -59,5 +59,29 @@ type Story = StoryObj<Element>;
 export const Primary: Story = {
   args: {
     label: 'Button',
+  },
+};
+
+export const Disable: Story = {
+  args: {
+    label: 'Button',
+    disabled: true,
+  },
+};
+
+export const DisableMainButton: Story = {
+  args: {
+    label: 'Button',
+    disabled: false,
+    disableButton: true,
+  },
+};
+
+export const DisableDropdownButton: Story = {
+  args: {
+    label: 'Button',
+    disabled: false,
+    disableButton: false,
+    disableDropdownButton: true,
   },
 };
