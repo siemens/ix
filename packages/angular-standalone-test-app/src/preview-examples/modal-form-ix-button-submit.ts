@@ -31,6 +31,7 @@ import { FormsModule, NgForm } from '@angular/forms';
     IxModalFooter,
     IxInput,
   ],
+  providers: [ModalService],
 })
 export default class ModalFormIxButtonSubmit {
   @ViewChild('customModal', { read: TemplateRef })

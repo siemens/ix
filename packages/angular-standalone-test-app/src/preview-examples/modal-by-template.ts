@@ -14,13 +14,13 @@ import {
   IxModalHeader,
   IxModalContent,
   IxModalFooter,
+  ModalService,
 } from '@siemens/ix-angular/standalone';
-
-import { ModalService } from '@siemens/ix-angular';
 
 @Component({
   selector: 'app-example',
   imports: [IxButton, IxModal, IxModalHeader, IxModalContent, IxModalFooter],
+  providers: [ModalService],
   template: `
     <ix-button (click)="openModal()">Show modal</ix-button>
 
