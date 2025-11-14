@@ -9,6 +9,9 @@ import {
 import { VNode } from 'vue';
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
 
+// call defineCustomElement once at module level
+defineCustomElement();
+
 export { default as Modal } from './Modal.vue';
 export { default as IxOverlay } from './IxOverlay.vue';
 export * from './constants';
@@ -26,14 +29,10 @@ export type ModalLoadingContext = {
 export async function showModal(
   config: Omit<IxModalConfig, 'content'> & ModalConfig
 ) {
-  defineCustomElement();
-
   return _showModal(config);
 }
 
 export function showModalLoading(message: string): ModalLoadingContext {
-  defineCustomElement();
-
   return _showModalLoading(message);
 }
 
