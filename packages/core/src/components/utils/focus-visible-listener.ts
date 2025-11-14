@@ -6,6 +6,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+/**
+ * Originally based on Ionic's focus-visible utility.
+ * Fork of https://github.com/ionic-team/ionic-framework/blob/c37e2a5d9e765cf48d768061c9d453a13b187e13/core/src/utils/focus-visible.ts
+ */
+
 const IX_FOCUSED = 'ix-focused';
 const IX_FOCUSABLE = 'ix-focusable';
 const FOCUS_KEYS = [
@@ -123,16 +129,6 @@ export const addFocusVisibleListener = (
   };
 };
 
-/**
- * Focuses the first descendant in a context
- * that can receive focus. If none exists,
- * a fallback element will be focused.
- * This fallback is typically an ancestor
- * container such as a menu or overlay so focus does not
- * leave the container we are trying to trap focus in.
- *
- * If no fallback is specified then we focus the container itself.
- */
 export const focusFirstDescendant = <
   R extends HTMLElement,
   T extends HTMLElement,
@@ -146,16 +142,6 @@ export const focusFirstDescendant = <
   focusElementInContext(firstInput, fallbackElement ?? ref);
 };
 
-/**
- * Focuses the last descendant in a context
- * that can receive focus. If none exists,
- * a fallback element will be focused.
- * This fallback is typically an ancestor
- * container such as a menu or overlay so focus does not
- * leave the container we are trying to trap focus in.
- *
- * If no fallback is specified then we focus the container itself.
- */
 export const focusLastDescendant = <
   R extends HTMLElement,
   T extends HTMLElement,
@@ -169,23 +155,6 @@ export const focusLastDescendant = <
   focusElementInContext(lastInput, fallbackElement ?? ref);
 };
 
-/**
- * Focuses a particular element in a context. If the element
- * doesn't have anything focusable associated with it then
- * a fallback element will be focused.
- *
- * This fallback is typically an ancestor
- * container such as a menu or overlay so focus does not
- * leave the container we are trying to trap focus in.
- * This should be used instead of the focus() method
- * on most elements because the focusable element
- * may not be the host element.
- *
- * For example, if an ion-button should be focused
- * then we should actually focus the native <button>
- * element inside of ion-button's shadow root, not
- * the host element itself.
- */
 export const focusElementInContext = <T extends HTMLElement>(
   hostToFocus: HTMLElement | null | undefined,
   fallbackElement: T
