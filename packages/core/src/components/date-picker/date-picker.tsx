@@ -869,7 +869,6 @@ export class DatePicker implements IxDatePickerComponent {
                           const target = e.currentTarget as HTMLElement;
                           this.selectDay(day, target);
                         }}
-                        onKeyDown={(e) => this.handleKeyUp(e)}
                         onKeyUp={(e) => {
                           const target = e.currentTarget as HTMLElement;
                           if (e.key === 'Enter') {

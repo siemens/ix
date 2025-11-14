@@ -36,7 +36,7 @@ export default () => {
       <IxDatetimePicker
         dateFormat="yyyy-MM-dd"
         timeFormat="h:mm:ss.SSS a"
-        from="2026-05-01"
+        from="2025-11-01"
         time="9:00:00.000 AM"
         onTimeChange={handleTimeChange}
         onDateChange={handleDateChange}

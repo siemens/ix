@@ -51,7 +51,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        margin-top: 1px;
+        // margin-top: 1px;
 
         .column-header {
           height: 2.5rem;
@@ -63,7 +63,7 @@
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
-          margin-bottom: 1px;
+          // margin-bottom: 1px;
         }
       }
 
@@ -81,6 +81,7 @@
       list-style-type: none;
       overflow: auto;
       //max-height: 15.375rem;
+      // margin-top: 1px;
 
       max-height: calc(2.5rem * 6);
 
@@ -101,17 +102,27 @@
         &:hover {
           background-color: var(--theme-datepicker-day--background--hover);
         }
+
+        &:focus {
+          outline: 0;
+          outline-offset: 0;
+          box-sizing: border-box;
+          border: 1px solid var(--theme-color-focus-bdr);
+        }
       }
 
       .selected {
         background-color: var(--theme-datepicker-day--background--selected);
         color: var(--theme-datepicker-day--color--selected);
-        font-weight: var(--theme-font-weight-bold);
 
         &:hover {
           background-color: var(
             --theme-datepicker-day--background--selected-hover
           );
+        }
+
+        &:focus {
+          box-shadow: inset 0 0 0 1px var(--theme-color-inv-contrast-text);
         }
       }
 
@@ -168,7 +179,7 @@
 
         &:focus {
           outline: 1px solid var(--theme-color-focus-bdr);
-          outline-offset: var(--theme-btn--focus--outline-offset);
+          outline-offset: 0;
         }
 
         &:hover {

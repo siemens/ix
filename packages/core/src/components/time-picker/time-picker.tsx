@@ -776,7 +776,7 @@ export class TimePicker {
       const elementContainerHeight = elementContainer.clientHeight;
 
       // Offset which is used to adjust the scroll position to account for margins, elements being hidden, etc.
-      let scrollPositionOffset = 19;
+      let scrollPositionOffset = 17;
       if (this.hideHeader) {
         // 56 + 1 --> height of the header container and separator
         scrollPositionOffset -= 57;
@@ -864,7 +864,7 @@ export class TimePicker {
           hideHeader={this.hideHeader}
         >
           <div class="header" slot="header">
-            <ix-typography format="body">{this.i18nHeader}</ix-typography>
+            <ix-typography format="h5">{this.i18nHeader}</ix-typography>
           </div>
           <div class="clock">
             {this.timePickerDescriptors.map((descriptor, index: number) => (
