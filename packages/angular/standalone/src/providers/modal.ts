@@ -9,6 +9,7 @@
 import {
   ModalService as BaseModalService,
   ModalConfig,
+  ModalLoadingContext,
 } from '@siemens/ix-angular/common';
 import { ModalInstance } from '@siemens/ix';
 import {
@@ -21,7 +22,7 @@ import {
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
 export { IxActiveModal } from '@siemens/ix-angular/common';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ModalService extends BaseModalService {
   constructor(
     appRef: ApplicationRef,
@@ -35,6 +36,7 @@ export class ModalService extends BaseModalService {
     config: ModalConfig<TData>
   ): Promise<ModalInstance<TReason>> {
     defineCustomElement();
+
     return super.open(config);
   }
 
@@ -43,5 +45,11 @@ export class ModalService extends BaseModalService {
     reason?: TReason
   ): void {
     super.close(instance, reason);
+  }
+
+  public override showModalLoading(message: string): ModalLoadingContext {
+    defineCustomElement();
+
+    return super.showModalLoading(message);
   }
 }

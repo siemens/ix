@@ -20,6 +20,7 @@ import { DIRECTIVES } from './declare-components';
 import { IxIcon } from './ix-icon';
 import { ModalService } from './providers/modal';
 import { ToastService } from './providers/toast';
+import { MessageService } from './providers/message';
 import * as tree from './tree';
 import { IxDropdownTriggerDirective } from './directives/dropdown-trigger';
 import { IxSelectValueAccessorDirective } from './directives/control-value-accessors/select-value-accessor';
@@ -56,6 +57,7 @@ export class IxModule {
         },
         ModalService,
         ToastService,
+        MessageService,
       ],
     };
   }
