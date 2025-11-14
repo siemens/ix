@@ -9,12 +9,10 @@ import { defineCustomElement as defineCustomElementModalFooter } from '@siemens/
 export class MessageService extends BaseMessageService {
   private defineModalCustomElements() {
     defineCustomElement();
+    // needs to be called as well here or wont be rendered correctly for angular production builds
     defineCustomElementModalFooter();
   }
 
-  /**
-   * Show a message based on MessageConfig
-   */
   public override showMessage<T>(config: MessageConfig<T>): Promise<
     TypedEvent<{
       actionId: string;
@@ -26,9 +24,6 @@ export class MessageService extends BaseMessageService {
     return super.showMessage(config);
   }
 
-  /**
-   * Show an info message
-   */
   public override info(
     title: string,
     message: string,
@@ -49,9 +44,6 @@ export class MessageService extends BaseMessageService {
     );
   }
 
-  /**
-   * Show a warning message
-   */
   public override warning(
     title: string,
     message: string,
@@ -72,9 +64,6 @@ export class MessageService extends BaseMessageService {
     );
   }
 
-  /**
-   * Show an error message
-   */
   public override error(
     title: string,
     message: string,
@@ -95,9 +84,6 @@ export class MessageService extends BaseMessageService {
     );
   }
 
-  /**
-   * Show a success message
-   */
   public override success(
     title: string,
     message: string,
@@ -118,9 +104,6 @@ export class MessageService extends BaseMessageService {
     );
   }
 
-  /**
-   * Show a question message
-   */
   public override question(
     title: string,
     message: string,
