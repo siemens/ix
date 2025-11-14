@@ -40,6 +40,7 @@ import {
   ResetConfig,
   syncValidationClasses,
   syncPickerInputState,
+  handlePickerValueWatcher,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -82,16 +83,15 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   @Watch('value') watchValuePropHandler(newValue: string) {
-    if (this.isResetting) {
-      this.onInput(newValue);
-      return;
-    }
-
-    if (!newValue && this.required) {
-      this.touched = true;
-    }
-    this.dirty = newValue !== this.initialValue;
-    this.onInput(newValue);
+    handlePickerValueWatcher({
+      newValue,
+      isResetting: this.isResetting,
+      required: this.required,
+      initialValue: this.initialValue,
+      onInput: (value: string) => this.onInput(value),
+      setTouched: (touched: boolean) => (this.touched = touched),
+      setDirty: (dirty: boolean) => (this.dirty = dirty),
+    });
   }
 
   /**

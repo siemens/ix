@@ -36,3 +36,32 @@ export function syncPickerInputState<T = string | undefined>(
     isInputInvalid: options.isInputInvalid,
   });
 }
+
+export interface PickerValueWatcherConfig<T = string> {
+  newValue: T;
+  isResetting: boolean;
+  required?: boolean;
+  initialValue?: T;
+  onInput: (value: T) => void;
+  setTouched?: (touched: boolean) => void;
+  setDirty?: (dirty: boolean) => void;
+}
+
+export function handlePickerValueWatcher<T = string>(
+  config: PickerValueWatcherConfig<T>
+): void {
+  if (config.isResetting) {
+    config.onInput(config.newValue);
+    return;
+  }
+
+  if (!config.newValue && config.required && config.setTouched) {
+    config.setTouched(true);
+  }
+
+  if (config.setDirty && config.initialValue !== undefined) {
+    config.setDirty(config.newValue !== config.initialValue);
+  }
+
+  config.onInput(config.newValue);
+}
