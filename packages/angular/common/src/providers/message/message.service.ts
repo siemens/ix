@@ -86,7 +86,7 @@ export class MessageService {
     );
   }
 
-  question(
+  public question(
     title: string,
     message: string,
     textOkay: string,
