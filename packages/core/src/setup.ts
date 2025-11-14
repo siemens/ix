@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { setPlatformHelpers } from '@stencil/core';
+import { addFocusVisibleListener } from './components/utils/focus-visible-listener';
 
 export function handlePlatformHelpers(config: IxConfig) {
   const platformHelpers: Pick<IxConfig, 'ael' | 'rel' | 'ce'> = {};
@@ -44,4 +45,7 @@ export type IxConfig = {
 
 export default async function (config?: IxConfig) {
   handlePlatformHelpers(config || {});
+
+  // Initialize focus visible listener to manage focus styles on focusable ix elements
+  addFocusVisibleListener();
 }

@@ -4720,6 +4720,7 @@ declare global {
         new (): HTMLIxDrawerElement;
     };
     interface HTMLIxDropdownElementEventMap {
+        "showChange": boolean;
         "showChanged": boolean;
     }
     interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
@@ -7168,7 +7169,11 @@ declare namespace LocalJSX {
     alignmentAxis?: number;
   };
         /**
-          * Fire event after visibility of dropdown has changed
+          * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+         */
+        "onShowChange"?: (event: IxDropdownCustomEvent<boolean>) => void;
+        /**
+          * Fire event after visibility of dropdown has changed, preventing event will prevent nothing
          */
         "onShowChanged"?: (event: IxDropdownCustomEvent<boolean>) => void;
         "overwriteDropdownStyle"?: (delegate: {

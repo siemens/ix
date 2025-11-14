@@ -106,8 +106,10 @@ export class DropdownItem implements DropdownItemWrapper {
           'icon-only': this.isIconOnly(),
           disabled: this.disabled,
           submenu: this.isSubMenu,
+          'ix-focusable': true,
         }}
         role="listitem"
+        tabIndex={-1}
       >
         <button
           type="button"

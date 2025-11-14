@@ -826,11 +826,12 @@ export declare interface IxDrawer extends Components.IxDrawer {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
-  outputs: ['showChanged'],
+  outputs: ['showChange', 'showChanged'],
   standalone: false
 })
 export class IxDropdown {
   protected el: HTMLIxDropdownElement;
+  @Output() showChange = new EventEmitter<CustomEvent<boolean>>();
   @Output() showChanged = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -841,7 +842,11 @@ export class IxDropdown {
 
 export declare interface IxDropdown extends Components.IxDropdown {
   /**
-   * Fire event after visibility of dropdown has changed
+   * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+   */
+  showChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Fire event after visibility of dropdown has changed, preventing event will prevent nothing
    */
   showChanged: EventEmitter<CustomEvent<boolean>>;
 }

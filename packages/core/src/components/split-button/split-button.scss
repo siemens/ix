@@ -41,5 +41,24 @@
     border-right-width: 0;
     border-left-width: 0.125rem;
     border-bottom-width: 0.125rem;
+
+    margin-right: 0.125rem;
+  }
+}
+
+:host(.btn-group) {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  > ix-button:nth-child(1),
+  > ix-icon-button:nth-child(1) {
+    width: calc(100% - 2rem);
+    --ix-button-border-radius-right: 0;
+  }
+
+  > ix-icon-button:nth-child(2) {
+    width: 2rem;
+    --ix-button-border-radius-left: 0;
   }
 }

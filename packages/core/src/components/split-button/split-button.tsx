@@ -15,13 +15,16 @@ import {
   h,
   Host,
   Prop,
-  State,
 } from '@stencil/core';
 import { AlignedPlacement } from '../dropdown/placement';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
 import type { SplitButtonVariant } from './split-button.types';
 import { makeRef } from '../utils/make-ref';
+import {
+  FocusVisibleUtility,
+  addFocusVisibleListener,
+} from '../utils/focus-visible-listener';
 
 @Component({
   tag: 'ix-split-button',
@@ -94,14 +97,25 @@ export class SplitButton {
    */
   @Prop() placement: AlignedPlacement = 'bottom-start';
 
-  @State() toggle = false;
-
   /**
    * Button clicked
    */
   @Event() buttonClick!: EventEmitter<MouseEvent>;
 
   private readonly triggerElementRef = makeRef<HTMLElement>();
+  private focusVisibleUtility?: FocusVisibleUtility;
+
+  connectedCallback() {
+    if (this.focusVisibleUtility) {
+      this.focusVisibleUtility.destroy();
+    }
+
+    this.focusVisibleUtility = addFocusVisibleListener(this.hostElement);
+  }
+
+  disconnectedCallback() {
+    this.focusVisibleUtility?.destroy();
+  }
 
   private get isDisabledButton() {
     return this.disabled || this.disableButton;
@@ -131,37 +145,47 @@ export class SplitButton {
     };
 
     return (
-      <Host>
-        <div class={{ 'btn-group': true, 'middle-gap': !hasOutline }}>
-          {this.label ? (
-            <ix-button
-              {...buttonAttributes}
-              icon={this.icon}
-              onClick={(e) => this.buttonClick.emit(e)}
-              aria-label={this.ariaLabelButton}
-            >
-              {this.label}
-            </ix-button>
-          ) : (
-            <ix-icon-button
-              {...buttonAttributes}
-              icon={this.icon}
-              onClick={(e) => this.buttonClick.emit(e)}
-              aria-label={this.ariaLabelButton}
-            ></ix-icon-button>
-          )}
+      <Host
+        class={{ 'btn-group': true, 'middle-gap': !hasOutline }}
+        onFocusout={() => {
+          this.focusVisibleUtility?.setFocus([]);
+        }}
+      >
+        {this.label ? (
+          <ix-button
+            {...buttonAttributes}
+            icon={this.icon}
+            onClick={(e) => this.buttonClick.emit(e)}
+            aria-label={this.ariaLabelButton}
+          >
+            {this.label}
+          </ix-button>
+        ) : (
           <ix-icon-button
-            {...dropdownButtonAttributes}
-            ref={this.triggerElementRef}
-            class={'anchor'}
-            icon={this.splitIcon ?? iconContextMenu}
-            aria-label={this.ariaLabelSplitIconButton}
+            {...buttonAttributes}
+            icon={this.icon}
+            onClick={(e) => this.buttonClick.emit(e)}
+            aria-label={this.ariaLabelButton}
           ></ix-icon-button>
-        </div>
-
+        )}
+        <ix-icon-button
+          {...dropdownButtonAttributes}
+          ref={this.triggerElementRef}
+          class={'anchor'}
+          icon={this.splitIcon ?? iconContextMenu}
+          aria-label={this.ariaLabelSplitIconButton}
+        ></ix-icon-button>
         <ix-dropdown
           closeBehavior={this.closeBehavior}
           trigger={this.triggerElementRef.waitForCurrent()}
+          onShowChanged={({ detail: show }) => {
+            const triggerElement = this.triggerElementRef.current;
+            if (triggerElement) {
+              // Binding via @State variable does not work as expected for tabindex
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              triggerElement.tabIndex = (show ? -1 : undefined) as any;
+            }
+          }}
         >
           <slot></slot>
         </ix-dropdown>

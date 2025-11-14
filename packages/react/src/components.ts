@@ -479,14 +479,20 @@ export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents> = 
     defineCustomElement: defineIxDrawer
 });
 
-export type IxDropdownEvents = { onShowChanged: EventName<CustomEvent<boolean>> };
+export type IxDropdownEvents = {
+    onShowChange: EventName<CustomEvent<boolean>>,
+    onShowChanged: EventName<CustomEvent<boolean>>
+};
 
 export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents>({
     tagName: 'ix-dropdown',
     elementClass: IxDropdownElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: { onShowChanged: 'showChanged' } as IxDropdownEvents,
+    events: {
+        onShowChange: 'showChange',
+        onShowChanged: 'showChanged'
+    } as IxDropdownEvents,
     defineCustomElement: defineIxDropdown
 });
 
