@@ -38,9 +38,14 @@ import {
   shouldSuppressInternalValidation,
   resetInputField,
   ResetConfig,
-  syncValidationClasses,
-  syncPickerInputState,
-  handlePickerValueWatcher,
+  syncState,
+  watchValue,
+  onInput,
+  onClick,
+  onFocus,
+  onBlur,
+  onKeyDown,
+  syncValidation,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -83,7 +88,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   @Watch('value') watchValuePropHandler(newValue: string) {
-    handlePickerValueWatcher({
+    watchValue({
       newValue,
       isResetting: this.isResetting,
       required: this.required,
@@ -381,7 +386,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private emitChangesAndSync(value: string | undefined): void {
-    syncPickerInputState({
+    syncState({
       updateFormInternalValue: (val) => this.updateFormInternalValue(val),
       valueChange: this.valueChange,
       value: value,
@@ -428,6 +433,22 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
+  private getEventConfig() {
+    return {
+      isResetting: this.isResetting,
+      show: this.show,
+      setTouched: (touched: boolean) => (this.touched = touched),
+      onInput: (value: string) => this.onInput(value),
+      openDropdown: () => this.openDropdown(),
+      ixFocus: this.ixFocus,
+      ixBlur: this.ixBlur,
+      syncValidationClasses: () => this.syncValidationClasses(),
+      handleInputKeyDown: (event: KeyboardEvent) =>
+        this.handleInputKeyDown(event),
+      alwaysSetTouchedOnBlur: true,
+    };
+  }
+
   private handleInputKeyDown(event: KeyboardEvent) {
     handleSubmitOnEnterKeydown(
       event,
@@ -437,6 +458,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private renderInput() {
+    const eventConfig = this.getEventConfig();
+
     return (
       <div class="input-wrapper">
         <SlotStart
@@ -457,29 +480,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           value={this.value ?? ''}
           placeholder={this.placeholder}
           name={this.name}
-          onInput={(event) => {
-            const target = event.target as HTMLInputElement;
-            if (!this.isResetting) {
-              this.touched = true;
-            }
-            this.onInput(target.value);
-          }}
-          onClick={(event) => {
-            if (this.show) {
-              event.stopPropagation();
-              event.preventDefault();
-            }
-          }}
-          onFocus={async () => {
-            this.openDropdown();
-            this.ixFocus.emit();
-          }}
-          onBlur={async () => {
-            this.ixBlur.emit();
-            this.touched = true;
-            this.syncValidationClasses();
-          }}
-          onKeyDown={(event) => this.handleInputKeyDown(event)}
+          onInput={onInput(eventConfig)}
+          onClick={onClick(eventConfig)}
+          onFocus={onFocus(eventConfig)}
+          onBlur={onBlur(eventConfig)}
+          onKeyDown={onKeyDown(eventConfig)}
           style={{
             textAlign: this.textAlignment,
           }}
@@ -590,7 +595,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * @internal
    */
   syncValidationClasses(): void {
-    syncValidationClasses({
+    syncValidation({
       hostElement: this.hostElement,
       suppressValidation: this.suppressValidation,
       required: this.required,

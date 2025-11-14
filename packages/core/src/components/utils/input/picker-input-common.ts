@@ -9,7 +9,7 @@
 import { EventEmitter } from '@stencil/core';
 import { syncValidationClasses } from './validation';
 
-export interface PickerInputSyncOptions<T = string | undefined> {
+export interface SyncOptions<T = string | undefined> {
   updateFormInternalValue: (value: T) => void;
   valueChange: EventEmitter<T>;
   value: T;
@@ -21,8 +21,8 @@ export interface PickerInputSyncOptions<T = string | undefined> {
   isInputInvalid: boolean;
 }
 
-export function syncPickerInputState<T = string | undefined>(
-  options: PickerInputSyncOptions<T>
+export function syncState<T = string | undefined>(
+  options: SyncOptions<T>
 ): void {
   options.updateFormInternalValue(options.value);
   options.valueChange.emit(options.value);
@@ -37,7 +37,7 @@ export function syncPickerInputState<T = string | undefined>(
   });
 }
 
-export interface PickerValueWatcherConfig<T = string> {
+export interface WatchConfig<T = string> {
   newValue: T;
   isResetting: boolean;
   required?: boolean;
@@ -47,9 +47,7 @@ export interface PickerValueWatcherConfig<T = string> {
   setDirty?: (dirty: boolean) => void;
 }
 
-export function handlePickerValueWatcher<T = string>(
-  config: PickerValueWatcherConfig<T>
-): void {
+export function watchValue<T = string>(config: WatchConfig<T>): void {
   if (config.isResetting) {
     config.onInput(config.newValue);
     return;
@@ -64,4 +62,81 @@ export function handlePickerValueWatcher<T = string>(
   }
 
   config.onInput(config.newValue);
+}
+
+export interface EventConfig {
+  isResetting: boolean;
+  show: boolean;
+  setTouched: (touched: boolean) => void;
+  onInput: (value: string) => void;
+  openDropdown: () => void;
+  ixFocus: EventEmitter<void>;
+  ixBlur: EventEmitter<void>;
+  syncValidationClasses: () => void;
+  handleInputKeyDown?: (event: KeyboardEvent) => void;
+  alwaysSetTouchedOnBlur?: boolean;
+}
+
+export function onInput(config: EventConfig) {
+  return (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    if (!config.isResetting) {
+      config.setTouched(true);
+    }
+    config.onInput(target.value);
+  };
+}
+
+export function onClick(config: EventConfig) {
+  return (event: Event) => {
+    if (config.show) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  };
+}
+
+export function onFocus(config: EventConfig) {
+  return async () => {
+    await config.openDropdown();
+    config.ixFocus.emit();
+  };
+}
+
+export function onBlur(config: EventConfig) {
+  return () => {
+    config.ixBlur.emit();
+    if (config.alwaysSetTouchedOnBlur || !config.isResetting) {
+      config.setTouched(true);
+    }
+    config.syncValidationClasses();
+  };
+}
+
+export function onKeyDown(config: EventConfig) {
+  return (event: KeyboardEvent) => {
+    if (config.handleInputKeyDown) {
+      config.handleInputKeyDown(event);
+    }
+  };
+}
+
+export interface ValidationOptions {
+  hostElement: HTMLElement;
+  suppressValidation: boolean;
+  required?: boolean;
+  value: string | undefined;
+  touched: boolean;
+  isInputInvalid: boolean;
+}
+
+export function syncValidation(options: ValidationOptions): void {
+  syncValidationClasses({
+    hostElement: options.hostElement,
+    suppressValidation: options.suppressValidation,
+    required: options.required,
+    value: options.value as string | undefined,
+    touched: options.touched,
+    isInputInvalid: options.isInputInvalid,
+  });
 }
