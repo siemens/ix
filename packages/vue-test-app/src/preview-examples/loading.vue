@@ -8,8 +8,7 @@
 -->
 
 <script setup lang="ts">
-import { showModalLoading } from '@siemens/ix';
-import { IxButton } from '@siemens/ix-vue';
+import { IxButton, showModalLoading } from '@siemens/ix-vue';
 
 const startLoading = () => {
   let count = 0;

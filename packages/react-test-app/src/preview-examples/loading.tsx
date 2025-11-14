@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { showModalLoading } from '@siemens/ix';
-import { IxButton } from '@siemens/ix-react';
+import { IxButton, showModalLoading } from '@siemens/ix-react';
 
 export default () => {
   const startLoading = () => {
