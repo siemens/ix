@@ -95,6 +95,7 @@ import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimeInput } from '@siemens/ix/components/ix-time-input.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
+import { defineCustomElement as defineIxTimePickerCopy } from '@siemens/ix/components/ix-time-picker-copy.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 import { defineCustomElement as defineIxToggle } from '@siemens/ix/components/ix-toggle.js';
@@ -1343,6 +1344,31 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
 
 
 export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', defineIxTimePicker, [
+  'format',
+  'corners',
+  'embedded',
+  'dateTimePickerAppearance',
+  'hideHeader',
+  'hourInterval',
+  'minuteInterval',
+  'secondInterval',
+  'millisecondInterval',
+  'time',
+  'i18nConfirmTime',
+  'i18nHeader',
+  'i18nHourColumnHeader',
+  'i18nMinuteColumnHeader',
+  'i18nSecondColumnHeader',
+  'i18nMillisecondColumnHeader',
+  'timeSelect',
+  'timeChange'
+], [
+  'timeSelect',
+  'timeChange'
+]);
+
+
+export const IxTimePickerCopy: StencilVueComponent<JSX.IxTimePickerCopy> = /*@__PURE__*/ defineContainer<JSX.IxTimePickerCopy>('ix-time-picker-copy', defineIxTimePickerCopy, [
   'format',
   'corners',
   'embedded',

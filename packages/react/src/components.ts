@@ -97,6 +97,7 @@ import { IxTabs as IxTabsElement, defineCustomElement as defineIxTabs } from "@s
 import { IxTextarea as IxTextareaElement, defineCustomElement as defineIxTextarea } from "@siemens/ix/components/ix-textarea.js";
 import { IxTile as IxTileElement, defineCustomElement as defineIxTile } from "@siemens/ix/components/ix-tile.js";
 import { IxTimeInput as IxTimeInputElement, defineCustomElement as defineIxTimeInput } from "@siemens/ix/components/ix-time-input.js";
+import { IxTimePickerCopy as IxTimePickerCopyElement, defineCustomElement as defineIxTimePickerCopy } from "@siemens/ix/components/ix-time-picker-copy.js";
 import { IxTimePicker as IxTimePickerElement, defineCustomElement as defineIxTimePicker } from "@siemens/ix/components/ix-time-picker.js";
 import { IxToastContainer as IxToastContainerElement, defineCustomElement as defineIxToastContainer } from "@siemens/ix/components/ix-toast-container.js";
 import { IxToast as IxToastElement, defineCustomElement as defineIxToast } from "@siemens/ix/components/ix-toast.js";
@@ -1288,6 +1289,23 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
         onTimeChange: 'timeChange'
     } as IxTimePickerEvents,
     defineCustomElement: defineIxTimePicker
+});
+
+export type IxTimePickerCopyEvents = {
+    onTimeSelect: EventName<CustomEvent<string>>,
+    onTimeChange: EventName<CustomEvent<string>>
+};
+
+export const IxTimePickerCopy: StencilReactComponent<IxTimePickerCopyElement, IxTimePickerCopyEvents> = /*@__PURE__*/ createComponent<IxTimePickerCopyElement, IxTimePickerCopyEvents>({
+    tagName: 'ix-time-picker-copy',
+    elementClass: IxTimePickerCopyElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+        onTimeSelect: 'timeSelect',
+        onTimeChange: 'timeChange'
+    } as IxTimePickerCopyEvents,
+    defineCustomElement: defineIxTimePickerCopy
 });
 
 export type IxToastEvents = { onCloseToast: EventName<CustomEvent<any>> };

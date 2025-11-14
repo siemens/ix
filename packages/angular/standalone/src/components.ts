@@ -96,6 +96,7 @@ import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimeInput } from '@siemens/ix/components/ix-time-input.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
+import { defineCustomElement as defineIxTimePickerCopy } from '@siemens/ix/components/ix-time-picker-copy.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 import { defineCustomElement as defineIxToggle } from '@siemens/ix/components/ix-toggle.js';
@@ -2751,6 +2752,42 @@ export class IxTimePicker {
 
 
 export declare interface IxTimePicker extends Components.IxTimePicker {
+  /**
+   * Time event
+   */
+  timeSelect: EventEmitter<CustomEvent<string>>;
+  /**
+   * Time change event
+   */
+  timeChange: EventEmitter<CustomEvent<string>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxTimePickerCopy,
+  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'time'],
+  methods: ['getCurrentTime']
+})
+@Component({
+  selector: 'ix-time-picker-copy',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'time'],
+  outputs: ['timeSelect', 'timeChange'],
+})
+export class IxTimePickerCopy {
+  protected el: HTMLIxTimePickerCopyElement;
+  @Output() timeSelect = new EventEmitter<CustomEvent<string>>();
+  @Output() timeChange = new EventEmitter<CustomEvent<string>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxTimePickerCopy extends Components.IxTimePickerCopy {
   /**
    * Time event
    */

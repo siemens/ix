@@ -98,6 +98,7 @@ import { IxTabs as IxTabsElement } from "@siemens/ix/components/ix-tabs.js";
 import { IxTextarea as IxTextareaElement } from "@siemens/ix/components/ix-textarea.js";
 import { IxTile as IxTileElement } from "@siemens/ix/components/ix-tile.js";
 import { IxTimeInput as IxTimeInputElement } from "@siemens/ix/components/ix-time-input.js";
+import { IxTimePickerCopy as IxTimePickerCopyElement } from "@siemens/ix/components/ix-time-picker-copy.js";
 import { IxTimePicker as IxTimePickerElement } from "@siemens/ix/components/ix-time-picker.js";
 import { IxToastContainer as IxToastContainerElement } from "@siemens/ix/components/ix-toast-container.js";
 import { IxToast as IxToastElement } from "@siemens/ix/components/ix-toast.js";
@@ -1823,6 +1824,36 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxTimePicker as ReactWebComponent<IxTimePickerElement, IxTimePickerEvents>,
+    serializeShadowRoot,
+});
+
+export type IxTimePickerCopyEvents = {
+    onTimeSelect: EventName<CustomEvent<string>>,
+    onTimeChange: EventName<CustomEvent<string>>
+};
+
+export const IxTimePickerCopy: StencilReactComponent<IxTimePickerCopyElement, IxTimePickerCopyEvents> = /*@__PURE__*/ createComponent<IxTimePickerCopyElement, IxTimePickerCopyEvents>({
+    tagName: 'ix-time-picker-copy',
+    properties: {
+        format: 'format',
+        corners: 'corners',
+        embedded: 'embedded',
+        dateTimePickerAppearance: 'date-time-picker-appearance',
+        hideHeader: 'hide-header',
+        hourInterval: 'hour-interval',
+        minuteInterval: 'minute-interval',
+        secondInterval: 'second-interval',
+        millisecondInterval: 'millisecond-interval',
+        time: 'time',
+        i18nConfirmTime: 'i18n-confirm-time',
+        i18nHeader: 'i18n-header',
+        i18nHourColumnHeader: 'i18n-column-header',
+        i18nMinuteColumnHeader: 'i18n-minute-column-header',
+        i18nSecondColumnHeader: 'i18n-second-column-header',
+        i18nMillisecondColumnHeader: 'i18n-millisecond-column-header'
+    },
+    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    clientModule: clientComponents.IxTimePickerCopy as ReactWebComponent<IxTimePickerCopyElement, IxTimePickerCopyEvents>,
     serializeShadowRoot,
 });
 

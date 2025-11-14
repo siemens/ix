@@ -241,28 +241,58 @@ export class DatePicker implements IxDatePickerComponent {
 
   @OnListener<DatePicker>('keydown')
   handleKeyUp(event: KeyboardEvent) {
+    const shadowRoot = this.hostElement.shadowRoot;
+    const activeInShadow = shadowRoot?.activeElement;
+
+    // Log EVERY keydown event, always
+    console.log('🎹 [DatePicker.handleKeyUp] KEYDOWN EVENT FIRED!', {
+      key: event.key,
+      isDayFocus: this.isDayFocus,
+      focusedDay: this.focusedDay,
+      documentActiveElement: document.activeElement?.tagName,
+      shadowActiveElement: activeInShadow?.tagName,
+      shadowActiveElementId: activeInShadow?.id,
+      timestamp: Date.now(),
+    });
+
     if (!this.isDayFocus) {
+      console.log('⚠️ [DatePicker.handleKeyUp] Exiting - isDayFocus is false');
       return;
     }
+
+    console.log(
+      '✨ [DatePicker.handleKeyUp] isDayFocus is TRUE, processing key:',
+      event.key
+    );
 
     let _focusedDay = this.focusedDay;
 
     switch (event.key) {
       case 'ArrowLeft':
+        console.log('⬅️ [DatePicker] ArrowLeft pressed');
         _focusedDay--;
         break;
       case 'ArrowRight':
+        console.log('➡️ [DatePicker] ArrowRight pressed');
         _focusedDay++;
         break;
       case 'ArrowUp':
+        console.log('⬆️ [DatePicker] ArrowUp pressed');
         _focusedDay = _focusedDay - 7;
         break;
       case 'ArrowDown':
+        console.log('⬇️ [DatePicker] ArrowDown pressed');
         _focusedDay = _focusedDay + 7;
         break;
       default:
+        console.log('🚫 [DatePicker] Non-arrow key, ignoring');
         return;
     }
+
+    console.log(
+      '✅ [DatePicker] Processing arrow key, new focusedDay:',
+      _focusedDay
+    );
 
     if (_focusedDay > this.getDaysInCurrentMonth()) {
       _focusedDay = _focusedDay - this.getDaysInCurrentMonth();
@@ -305,10 +335,25 @@ export class DatePicker implements IxDatePickerComponent {
   }
 
   onDayBlur() {
+    console.log(
+      '👋 [DatePicker.onDayBlur] Day lost focus, setting isDayFocus = false'
+    );
     this.isDayFocus = false;
   }
 
   onDayFocus() {
+    const shadowRoot = this.hostElement.shadowRoot;
+    const activeInShadow = shadowRoot?.activeElement;
+    console.log(
+      '👁️ [DatePicker.onDayFocus] Day gained focus, setting isDayFocus = true',
+      {
+        focusedDay: this.focusedDay,
+        documentActiveElement: document.activeElement?.tagName,
+        shadowActiveElement: activeInShadow?.tagName,
+        shadowActiveElementId: activeInShadow?.id,
+        shadowActiveElementClass: activeInShadow?.className,
+      }
+    );
     this.isDayFocus = true;
   }
 
@@ -693,6 +738,12 @@ export class DatePicker implements IxDatePickerComponent {
   }
 
   render() {
+    console.log(
+      '🎨 [DatePicker.render] Rendering with focusedDay:',
+      this.focusedDay,
+      'isDayFocus:',
+      this.isDayFocus
+    );
     return (
       <Host>
         <ix-date-time-card corners={this.corners} embedded={this.embedded}>
@@ -710,7 +761,7 @@ export class DatePicker implements IxDatePickerComponent {
                 ref={this.dropdownButtonRef}
                 data-testid="year-month-button"
               >
-                <span class="fontSize capitalize">
+                <span class="capitalize">
                   {this.monthNames[this.selectedMonth]} {this.selectedYear}
                 </span>
               </ix-button>
@@ -801,6 +852,13 @@ export class DatePicker implements IxDatePickerComponent {
                     </div>
                   )}
                   {week.dayNumbers.map((day) => {
+                    const isTabIndexZero = day === this.focusedDay;
+                    if (isTabIndexZero) {
+                      console.log(
+                        '🔢 [DatePicker.render] Setting tabIndex=0 for day:',
+                        day
+                      );
+                    }
                     return day ? (
                       <div
                         key={day}
@@ -811,13 +869,14 @@ export class DatePicker implements IxDatePickerComponent {
                           const target = e.currentTarget as HTMLElement;
                           this.selectDay(day, target);
                         }}
+                        onKeyDown={(e) => this.handleKeyUp(e)}
                         onKeyUp={(e) => {
                           const target = e.currentTarget as HTMLElement;
                           if (e.key === 'Enter') {
                             this.selectDay(day, target);
                           }
                         }}
-                        tabIndex={day === this.focusedDay ? 0 : -1}
+                        tabIndex={isTabIndexZero ? 0 : -1}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
                         aria-label={`${this.selectedMonth}: ${day}`}

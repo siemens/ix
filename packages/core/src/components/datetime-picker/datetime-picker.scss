@@ -72,12 +72,20 @@
   }
 
   .btn-select-date-container {
-    padding: 0 vars.$default-space vars.$default-space;
+    padding: vars.$default-space;
 
     @media (max-width: 576px) {
       & .btn-select-date {
         width: 100%;
       }
     }
+  }
+
+  .row-separator {
+    border-bottom: 1px solid var(--theme-datepicker-separator--background);
+  }
+
+  .col-separator {
+    border-right: 1px solid var(--theme-datepicker-separator--background);
   }
 }

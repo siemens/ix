@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: vars.$large-control-height;
+    height: vars.$default-control-height;
   }
 
   .clock {
@@ -56,38 +56,42 @@
         .column-header {
           height: 2.5rem;
           width: 2.5rem;
+          font-size: var(--theme-ms-0);
           line-height: 2.5rem;
           text-align: center;
           color: var(--theme-color-soft-text);
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
+          margin-bottom: 1px;
         }
       }
 
       .column-seperator {
         display: flex;
         align-items: center;
-        margin: 0 0.125rem;
+        justify-content: center;
         min-height: 100%;
         margin-top: 3.25rem;
+        width: 0.5rem;
       }
     }
 
     .element-list {
       list-style-type: none;
       overflow: auto;
-      max-height: 15.375rem;
-      padding-top: 0.125rem;
+      //max-height: 15.375rem;
+
+      max-height: calc(2.5rem * 6);
 
       button {
         all: unset;
       }
 
       .element-container {
-        width: 2.375rem;
-        height: 2.375rem;
-        margin: 0.125rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: 2px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -97,16 +101,12 @@
         &:hover {
           background-color: var(--theme-datepicker-day--background--hover);
         }
-
-        &:focus {
-          outline: 1px solid var(--theme-color-focus-bdr);
-          outline-offset: 1px;
-        }
       }
 
       .selected {
         background-color: var(--theme-datepicker-day--background--selected);
         color: var(--theme-datepicker-day--color--selected);
+        font-weight: var(--theme-font-weight-bold);
 
         &:hover {
           background-color: var(
@@ -117,8 +117,8 @@
 
       .element-list-padding {
         width: 2.5rem;
-        height: 12.563rem;
-        min-height: 12.563rem;
+        height: calc(calc(2.5rem * 5) - 2px);
+        min-height: calc(calc(2.5rem * 5) - 2px);
       }
     }
 
