@@ -16,7 +16,6 @@ import { ModalInstance } from '@siemens/ix';
 import {
   ModalConfig,
   ModalService as BaseModalService,
-  ModalLoadingContext,
 } from '@siemens/ix-angular/common';
 
 export type ModalContext<T> = {
@@ -48,9 +47,5 @@ export class ModalService extends BaseModalService {
     reason?: TReason
   ): void {
     super.close(instance, reason);
-  }
-
-  public override showModalLoading(message: string): ModalLoadingContext {
-    return super.showModalLoading(message);
   }
 }
