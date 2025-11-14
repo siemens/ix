@@ -29,20 +29,27 @@ import {
   Watch,
 } from '@stencil/core';
 import { ComponentInterface } from '@stencil/core/internal';
-import { ArrowFocusController } from '../utils/focus';
+import {
+  addDisposableEventListener,
+  DisposableEventListener,
+} from '../utils/disposable-event-listener';
+import { ElementReference } from '../utils/element-reference';
+import { findElement } from '../utils/find-element';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
   CloseBehavior,
   dropdownController,
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
+import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
-import { findElement } from '../utils/find-element';
 import {
-  addDisposableEventListener,
-  DisposableEventListener,
-} from '../utils/disposable-event-listener';
-import { ElementReference } from '../utils/element-reference';
+  focusElementInContext,
+  focusFirstDescendant,
+  focusLastDescendant,
+  queryElements,
+} from '../utils/focus-visible-listener';
 
 let sequenceId = 0;
 
@@ -129,7 +136,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Prop() suppressOverflowBehavior = false;
 
   /**
-   * Fire event after visibility of dropdown has changed
+   * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+   */
+  @Event() showChange!: EventEmitter<boolean>;
+
+  /**
+   * Fire event after visibility of dropdown has changed, preventing event will prevent nothing
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
@@ -137,16 +149,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   private triggerElement?: Element;
   private anchorElement?: Element;
-  private arrowFocusController?: ArrowFocusController;
 
   private localUId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
 
-  private itemObserver? = new MutationObserver(() => {
-    if (this.arrowFocusController) {
-      this.arrowFocusController.items = this.dropdownItems;
-    }
-  });
+  private keyboardNavigationCleanup?: () => void;
 
   connectedCallback(): void {
     dropdownController.connected(this);
@@ -166,21 +173,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     if (this.assignedSubmenu.indexOf(detail) === -1) {
       this.assignedSubmenu.push(detail);
     }
+    console.log('parent', this.localUId, 'child', detail);
   }
 
   disconnectedCallback() {
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
-
-    if (this.arrowFocusController) {
-      this.arrowFocusController?.disconnect();
-      this.arrowFocusController = undefined;
-    }
-
-    if (this.itemObserver) {
-      this.itemObserver.disconnect();
-      this.itemObserver = undefined;
-    }
 
     if (this.disposeClickListener) {
       this.disposeClickListener();
@@ -219,12 +217,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   willDismiss() {
-    const { defaultPrevented } = this.showChanged.emit(false);
+    const { defaultPrevented } = this.showChange.emit(false);
     return !defaultPrevented;
   }
 
   willPresent() {
-    const { defaultPrevented } = this.showChanged.emit(true);
+    const { defaultPrevented } = this.showChange.emit(true);
     return !defaultPrevented;
   }
 
@@ -239,19 +237,73 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private disposeClickListener?: DisposableEventListener;
   private disposeKeyListener?: DisposableEventListener;
 
+  private toggleController() {
+    if (!this.isPresent()) {
+      dropdownController.present(this);
+    } else {
+      dropdownController.dismiss(this);
+    }
+
+    dropdownController.dismissOthers(this.getId());
+  }
+  private onTriggerClick = (event: Event) => this.handleTriggerClick(event);
+  private handleTriggerClick(event: Event) {
+    if (!event.defaultPrevented) {
+      this.toggleController();
+    }
+  }
+
+  private onTriggerKeydown = (event: KeyboardEvent) =>
+    this.handleTriggerKeydown(event);
+
+  private handleTriggerKeydown(event: KeyboardEvent) {
+    const openDropdownIfNeeded = () => {
+      if (this.isAnchorSubmenu()) {
+        return false;
+      }
+      if (this.show === true) {
+        return false;
+      }
+
+      if (!event.defaultPrevented) {
+        this.toggleController();
+      }
+
+      event.stopImmediatePropagation();
+      event.preventDefault();
+
+      return true;
+    };
+
+    switch (event.key) {
+      case 'ArrowUp':
+        if (openDropdownIfNeeded() === false) {
+          return;
+        }
+
+        requestAnimationFrameNoNgZone(() => {
+          focusLastDescendant(this.hostElement);
+        });
+        break;
+      case 'ArrowDown':
+      case ' ':
+      case 'Enter':
+        if (openDropdownIfNeeded() === false) {
+          return;
+        }
+
+        requestAnimationFrameNoNgZone(() => {
+          focusFirstDescendant(this.hostElement);
+        });
+        break;
+      default:
+        return;
+    }
+  }
+
   private addEventListenersFor() {
     this.disposeClickListener?.();
     this.disposeKeyListener?.();
-
-    const toggleController = () => {
-      if (!this.isPresent()) {
-        dropdownController.present(this);
-      } else {
-        dropdownController.dismiss(this);
-      }
-
-      dropdownController.dismissOthers(this.getId());
-    };
 
     if (!this.triggerElement) {
       return;
@@ -260,11 +312,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.disposeClickListener = addDisposableEventListener(
       this.triggerElement,
       'click',
-      (event: Event) => {
-        if (!event.defaultPrevented) {
-          toggleController();
-        }
-      }
+      this.onTriggerClick
+    );
+
+    this.disposeClickListener = addDisposableEventListener(
+      this.triggerElement,
+      'keydown',
+      this.onTriggerKeydown as EventListener
     );
 
     this.triggerElement?.setAttribute(
@@ -290,26 +344,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     if (!this.triggerElement) {
       return;
     }
-
-    this.disposeKeyListener = addDisposableEventListener(
-      this.triggerElement,
-      'keydown',
-      ((event: KeyboardEvent) => {
-        if (event.key !== 'ArrowDown') {
-          return;
-        }
-
-        if (document.activeElement !== this.triggerElement) {
-          return;
-        }
-
-        dropdownController.present(this);
-
-        setTimeout(() => {
-          this.focusDropdownItem(0);
-        });
-      }) as EventListener
-    );
   }
 
   private async registerListener(element: ElementReference) {
@@ -362,24 +396,21 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         this.applyDropdownPosition();
       }
 
-      this.arrowFocusController = new ArrowFocusController(
-        this.dropdownItems,
-        this.hostElement,
-        (index) => this.focusDropdownItem(index)
+      this.keyboardNavigationCleanup = configureKeyboardInteraction(
+        this.hostElement
       );
-
-      this.itemObserver?.observe(this.hostElement, {
-        childList: true,
-        subtree: true,
-      });
 
       this.registerKeyListener();
     } else {
       this.destroyAutoUpdate();
-      this.arrowFocusController?.disconnect();
-      this.itemObserver?.disconnect();
       this.disposeKeyListener?.();
+      this.keyboardNavigationCleanup?.();
     }
+  }
+
+  @Watch('show')
+  async emitShowChanged(newShow: boolean) {
+    requestAnimationFrameNoNgZone(() => this.showChanged.emit(newShow));
   }
 
   @Watch('trigger')
@@ -477,17 +508,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     );
   }
 
-  private focusDropdownItem(index: number) {
-    requestAnimationFrame(() => {
-      const button =
-        this.dropdownItems[index]?.shadowRoot?.querySelector('button');
-
-      if (button) {
-        button.focus();
-      }
-    });
-  }
-
   async componentDidLoad() {
     if (!this.trigger) {
       return;
@@ -541,6 +561,51 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.applyDropdownPosition();
   }
 
+  @Listen('ix-open-submenu')
+  openSubmenu(event: CustomEvent<{ activeElement: HTMLElement }>) {
+    const submenuIds = this.getAssignedSubmenuIds();
+
+    if (submenuIds.length === 0) {
+      return;
+    }
+
+    event.detail.activeElement.classList.add(
+      'ix-dropdown-submenu-trigger-active'
+    );
+    dropdownController.present(
+      dropdownController.getDropdownById(submenuIds[0])!
+    );
+
+    requestAnimationFrameNoNgZone(() => {
+      focusFirstDescendant(
+        dropdownController.getDropdownById(submenuIds[0])!.hostElement
+      );
+    });
+  }
+
+  @Listen('ix-close-submenu')
+  closeSubmenu() {
+    const parent = dropdownController.getParentDropdownId(this.getId());
+
+    if (parent) {
+      const parentDropdown = dropdownController.getDropdownById(parent);
+      const activeTriggers = queryElements(
+        parentDropdown?.hostElement,
+        '.ix-dropdown-submenu-trigger-active'
+      );
+
+      dropdownController.dismissChildren(parent);
+
+      if (parentDropdown && activeTriggers.length > 0) {
+        const activeTrigger = activeTriggers[0];
+        activeTrigger.classList.remove('ix-dropdown-submenu-trigger-active');
+        requestAnimationFrameNoNgZone(() => {
+          focusElementInContext(activeTrigger, parentDropdown.hostElement);
+        });
+      }
+    }
+  }
+
   render() {
     return (
       <Host
@@ -557,6 +622,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         }}
         role="list"
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
+        onKeydown={(event: KeyboardEvent) => {
+          if (event.key === 'Tab' && this.show) {
+            dropdownController.dismiss(this);
+          }
+        }}
       >
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}

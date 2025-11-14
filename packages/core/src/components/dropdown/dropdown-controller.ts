@@ -180,6 +180,16 @@ class DropdownController {
     return;
   }
 
+  getParentDropdownId(dropdownId: string) {
+    for (const ruleKey of Object.keys(this.submenuIds)) {
+      if (this.submenuIds[ruleKey].includes(dropdownId)) {
+        return ruleKey;
+      }
+    }
+
+    return;
+  }
+
   private pathIncludesDropdown(eventTargets: EventTarget[]) {
     return !!eventTargets.find(
       (element: EventTarget) =>

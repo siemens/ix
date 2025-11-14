@@ -664,7 +664,10 @@ export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents> = 
     serializeShadowRoot,
 });
 
-export type IxDropdownEvents = { onShowChanged: EventName<CustomEvent<boolean>> };
+export type IxDropdownEvents = {
+    onShowChange: EventName<CustomEvent<boolean>>,
+    onShowChanged: EventName<CustomEvent<boolean>>
+};
 
 export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents>({
     tagName: 'ix-dropdown',
