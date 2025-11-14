@@ -64,8 +64,8 @@
     height: 3.25rem;
   }
 }
-:host([textarea-width]) {
-  display: block;
+:host([textarea-width]:not(.manually-resized)) {
+  display: inline-block;
   width: var(--textarea-width);
 }
 
@@ -75,4 +75,5 @@
 
 textarea {
   width: 100%;
+  box-sizing: border-box;
 }
