@@ -22,6 +22,7 @@ import {
   iconChevronRightSmall,
   iconSingleCheck,
 } from '@siemens/ix-icons/icons';
+import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-dropdown-item',
@@ -62,7 +63,7 @@ export class DropdownItem implements DropdownItemWrapper {
   /**
    * Disable item and remove event listeners
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Whether the item is checked or not. If true a checkmark will mark the item as checked.
@@ -101,6 +102,7 @@ export class DropdownItem implements DropdownItemWrapper {
   render() {
     return (
       <Host
+        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           hover: this.hover,
           'icon-only': this.isIconOnly(),
@@ -115,9 +117,11 @@ export class DropdownItem implements DropdownItemWrapper {
           class={{
             'dropdown-item': true,
             'no-checked-field': this.suppressChecked,
+            disabled: this.disabled,
           }}
           onClick={() => this.emitItemClick()}
           aria-label={this.ariaLabelButton}
+          disabled={this.disabled}
         >
           {!this.suppressChecked ? (
             <div class="dropdown-item-checked">
