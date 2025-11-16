@@ -2663,42 +2663,6 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
 
 
 @ProxyCmp({
-  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'time'],
-  methods: ['getCurrentTime']
-})
-@Component({
-  selector: 'ix-time-picker-copy',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'millisecondInterval', 'minuteInterval', 'secondInterval', 'time'],
-  outputs: ['timeSelect', 'timeChange'],
-  standalone: false
-})
-export class IxTimePickerCopy {
-  protected el: HTMLIxTimePickerCopyElement;
-  @Output() timeSelect = new EventEmitter<CustomEvent<string>>();
-  @Output() timeChange = new EventEmitter<CustomEvent<string>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxTimePickerCopy extends Components.IxTimePickerCopy {
-  /**
-   * Time event
-   */
-  timeSelect: EventEmitter<CustomEvent<string>>;
-  /**
-   * Time change event
-   */
-  timeChange: EventEmitter<CustomEvent<string>>;
-}
-
-
-@ProxyCmp({
   inputs: ['ariaLabelCloseIconButton', 'autoCloseDelay', 'icon', 'iconColor', 'preventAutoClose', 'toastTitle', 'type'],
   methods: ['pause', 'resume', 'isPaused']
 })

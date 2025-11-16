@@ -776,7 +776,7 @@ export class TimePicker {
       const elementContainerHeight = elementContainer.clientHeight;
 
       // Offset which is used to adjust the scroll position to account for margins, elements being hidden, etc.
-      let scrollPositionOffset = 17;
+      let scrollPositionOffset = 18;
       if (this.hideHeader) {
         // 56 + 1 --> height of the header container and separator
         scrollPositionOffset -= 57;
@@ -864,7 +864,7 @@ export class TimePicker {
           hideHeader={this.hideHeader}
         >
           <div class="header" slot="header">
-            <ix-typography format="h5">{this.i18nHeader}</ix-typography>
+            <ix-typography format="body">{this.i18nHeader}</ix-typography>
           </div>
           <div class="clock">
             {this.timePickerDescriptors.map((descriptor, index: number) => (
@@ -924,26 +924,28 @@ export class TimePicker {
                   <div class="column-header" title="AM/PM">
                     •
                   </div>
-                  <div class="element-list">
+                  <div class="element-list" tabIndex={-1}>
                     <button
-                      data-element-container-id="timeReference-AM"
+                      data-am-pm-id="AM"
                       class={{
                         selected: this.timeRef === 'AM',
                         'element-container': true,
                       }}
                       onClick={() => this.changeTimeReference('AM')}
+                      tabindex="0"
                       role="button"
                       aria-label="AM"
                     >
                       AM
                     </button>
                     <button
-                      data-element-container-id="timeReference-PM"
+                      data-am-pm-id="PM"
                       class={{
                         selected: this.timeRef === 'PM',
                         'element-container': true,
                       }}
                       onClick={() => this.changeTimeReference('PM')}
+                      tabindex="0"
                       role="button"
                       aria-label="PM"
                     >

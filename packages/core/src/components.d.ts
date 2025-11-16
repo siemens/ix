@@ -3657,96 +3657,6 @@ export namespace Components {
          */
         "time": string;
     }
-    interface IxTimePickerCopy {
-        /**
-          * Corner style
-          * @default 'rounded'
-         */
-        "corners": TimePickerCorners;
-        /**
-          * @default false
-         */
-        "dateTimePickerAppearance": boolean;
-        /**
-          * Embedded style (for use in other components)
-          * @default false
-         */
-        "embedded": boolean;
-        /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
-          * @default 'TT'
-         */
-        "format": string;
-        /**
-          * Get the current time based on the wanted format
-         */
-        "getCurrentTime": () => Promise<string | undefined>;
-        /**
-          * Hides the header of the picker.
-          * @since 3.2.0
-          * @default false
-         */
-        "hideHeader": boolean;
-        /**
-          * Interval for hour selection
-          * @since 3.2.0
-          * @default HOUR_INTERVAL_DEFAULT
-         */
-        "hourInterval": number;
-        /**
-          * Text of the time confirm button
-          * @default CONFIRM_BUTTON_DEFAULT
-         */
-        "i18nConfirmTime": string;
-        /**
-          * Text for top header
-          * @default HEADER_DEFAULT
-         */
-        "i18nHeader": string;
-        /**
-          * Text for hour column header
-          * @default 'hr'
-         */
-        "i18nHourColumnHeader": string;
-        /**
-          * Text for millisecond column header
-          * @default 'ms'
-         */
-        "i18nMillisecondColumnHeader": string;
-        /**
-          * Text for minute column header
-          * @default 'min'
-         */
-        "i18nMinuteColumnHeader": string;
-        /**
-          * Text for second column header
-          * @default 'sec'
-         */
-        "i18nSecondColumnHeader": string;
-        /**
-          * Interval for millisecond selection
-          * @since 3.2.0
-          * @default MILLISECOND_INTERVAL_DEFAULT
-         */
-        "millisecondInterval": number;
-        /**
-          * Interval for minute selection
-          * @since 3.2.0
-          * @default MINUTE_INTERVAL_DEFAULT
-         */
-        "minuteInterval": number;
-        /**
-          * Interval for second selection
-          * @since 3.2.0
-          * @default SECOND_INTERVAL_DEFAULT
-         */
-        "secondInterval": number;
-        /**
-          * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
-         */
-        "time": string;
-    }
     interface IxToast {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -4356,10 +4266,6 @@ export interface IxTimeInputCustomEvent<T> extends CustomEvent<T> {
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTimePickerElement;
-}
-export interface IxTimePickerCopyCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxTimePickerCopyElement;
 }
 export interface IxToastCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -5648,24 +5554,6 @@ declare global {
         prototype: HTMLIxTimePickerElement;
         new (): HTMLIxTimePickerElement;
     };
-    interface HTMLIxTimePickerCopyElementEventMap {
-        "timeSelect": string;
-        "timeChange": string;
-    }
-    interface HTMLIxTimePickerCopyElement extends Components.IxTimePickerCopy, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxTimePickerCopyElementEventMap>(type: K, listener: (this: HTMLIxTimePickerCopyElement, ev: IxTimePickerCopyCustomEvent<HTMLIxTimePickerCopyElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxTimePickerCopyElementEventMap>(type: K, listener: (this: HTMLIxTimePickerCopyElement, ev: IxTimePickerCopyCustomEvent<HTMLIxTimePickerCopyElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxTimePickerCopyElement: {
-        prototype: HTMLIxTimePickerCopyElement;
-        new (): HTMLIxTimePickerCopyElement;
-    };
     interface HTMLIxToastElementEventMap {
         "closeToast": any;
     }
@@ -5938,7 +5826,6 @@ declare global {
         "ix-tile": HTMLIxTileElement;
         "ix-time-input": HTMLIxTimeInputElement;
         "ix-time-picker": HTMLIxTimePickerElement;
-        "ix-time-picker-copy": HTMLIxTimePickerCopyElement;
         "ix-toast": HTMLIxToastElement;
         "ix-toast-container": HTMLIxToastContainerElement;
         "ix-toggle": HTMLIxToggleElement;
@@ -9720,100 +9607,6 @@ declare namespace LocalJSX {
          */
         "time"?: string;
     }
-    interface IxTimePickerCopy {
-        /**
-          * Corner style
-          * @default 'rounded'
-         */
-        "corners"?: TimePickerCorners;
-        /**
-          * @default false
-         */
-        "dateTimePickerAppearance"?: boolean;
-        /**
-          * Embedded style (for use in other components)
-          * @default false
-         */
-        "embedded"?: boolean;
-        /**
-          * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. Note: Formats that combine date and time (like f or F) are not supported. Timestamp tokens x and X are not supported either.
-          * @default 'TT'
-         */
-        "format"?: string;
-        /**
-          * Hides the header of the picker.
-          * @since 3.2.0
-          * @default false
-         */
-        "hideHeader"?: boolean;
-        /**
-          * Interval for hour selection
-          * @since 3.2.0
-          * @default HOUR_INTERVAL_DEFAULT
-         */
-        "hourInterval"?: number;
-        /**
-          * Text of the time confirm button
-          * @default CONFIRM_BUTTON_DEFAULT
-         */
-        "i18nConfirmTime"?: string;
-        /**
-          * Text for top header
-          * @default HEADER_DEFAULT
-         */
-        "i18nHeader"?: string;
-        /**
-          * Text for hour column header
-          * @default 'hr'
-         */
-        "i18nHourColumnHeader"?: string;
-        /**
-          * Text for millisecond column header
-          * @default 'ms'
-         */
-        "i18nMillisecondColumnHeader"?: string;
-        /**
-          * Text for minute column header
-          * @default 'min'
-         */
-        "i18nMinuteColumnHeader"?: string;
-        /**
-          * Text for second column header
-          * @default 'sec'
-         */
-        "i18nSecondColumnHeader"?: string;
-        /**
-          * Interval for millisecond selection
-          * @since 3.2.0
-          * @default MILLISECOND_INTERVAL_DEFAULT
-         */
-        "millisecondInterval"?: number;
-        /**
-          * Interval for minute selection
-          * @since 3.2.0
-          * @default MINUTE_INTERVAL_DEFAULT
-         */
-        "minuteInterval"?: number;
-        /**
-          * Time change event
-         */
-        "onTimeChange"?: (event: IxTimePickerCopyCustomEvent<string>) => void;
-        /**
-          * Time event
-         */
-        "onTimeSelect"?: (event: IxTimePickerCopyCustomEvent<string>) => void;
-        /**
-          * Interval for second selection
-          * @since 3.2.0
-          * @default SECOND_INTERVAL_DEFAULT
-         */
-        "secondInterval"?: number;
-        /**
-          * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
-         */
-        "time"?: string;
-    }
     interface IxToast {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
@@ -10329,7 +10122,6 @@ declare namespace LocalJSX {
         "ix-tile": IxTile;
         "ix-time-input": IxTimeInput;
         "ix-time-picker": IxTimePicker;
-        "ix-time-picker-copy": IxTimePickerCopy;
         "ix-toast": IxToast;
         "ix-toast-container": IxToastContainer;
         "ix-toggle": IxToggle;
@@ -10488,7 +10280,6 @@ declare module "@stencil/core" {
              */
             "ix-time-input": LocalJSX.IxTimeInput & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
-            "ix-time-picker-copy": LocalJSX.IxTimePickerCopy & JSXBase.HTMLAttributes<HTMLIxTimePickerCopyElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             /**
