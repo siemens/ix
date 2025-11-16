@@ -921,7 +921,6 @@ export class TimePicker {
                             number,
                             descriptor.unit
                           )}
-                          role="button"
                           aria-label={`${descriptor.header}: ${number}`}
                         >
                           {this.formatUnitValue(descriptor.unit, number)}
@@ -961,7 +960,6 @@ export class TimePicker {
                       }}
                       onClick={() => this.changeTimeReference('AM')}
                       tabindex="0"
-                      role="button"
                       aria-label="AM"
                     >
                       AM
@@ -974,7 +972,6 @@ export class TimePicker {
                       }}
                       onClick={() => this.changeTimeReference('PM')}
                       tabindex="0"
-                      role="button"
                       aria-label="PM"
                     >
                       PM
