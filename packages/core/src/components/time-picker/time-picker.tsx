@@ -911,6 +911,9 @@ export class TimePicker {
                             selected: this.isSelected(descriptor.unit, number),
                             'element-container': true,
                           }}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                          }}
                           onClick={() => {
                             this.select(descriptor.unit, number);
                           }}
