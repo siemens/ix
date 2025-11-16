@@ -100,7 +100,7 @@
           background-color: var(--theme-datepicker-day--background--hover);
         }
 
-        &:focus {
+        &:focus-visible {
           box-shadow: 0 0 0 1px var(--theme-color-focus-bdr);
         }
       }
@@ -116,15 +116,15 @@
           );
         }
 
-        &:focus {
+        &:focus-visible {
           border: 1px solid black;
         }
       }
 
       .element-list-padding {
         width: 2.5rem;
-        height: calc(calc(2.5rem * 5) - 2px);
-        min-height: calc(calc(2.5rem * 5) - 2px);
+        height: calc(calc(2.5rem * 5));
+        min-height: calc(calc(2.5rem * 5));
       }
     }
 

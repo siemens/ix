@@ -563,7 +563,22 @@ export class TimePicker {
   }
 
   private timeUpdate(unit: TimePickerDescriptorUnit, value: number): number {
+    const originalValue = value;
     let maxValue = DateTime.now().endOf('day').get(unit);
+
+    console.log(
+      `🔄 [timeUpdate] Before transformation:`,
+      JSON.stringify(
+        {
+          unit,
+          originalValue,
+          timeRef: this.timeRef,
+          currentTime: this._time?.toISO(),
+        },
+        null,
+        2
+      )
+    );
 
     if (unit === 'hour') {
       if (this.timeRef === 'PM') {
@@ -582,9 +597,37 @@ export class TimePicker {
       value = 0;
     }
 
+    console.log(
+      `🔄 [timeUpdate] After transformation:`,
+      JSON.stringify(
+        {
+          unit,
+          originalValue,
+          transformedValue: value,
+          maxValue,
+        },
+        null,
+        2
+      )
+    );
+
     this._time = this._time?.set({
       [unit]: value,
     });
+
+    console.log(
+      `🔄 [timeUpdate] After set:`,
+      JSON.stringify(
+        {
+          unit,
+          newTime: this._time?.toISO(),
+          newHour: this._time?.hour,
+        },
+        null,
+        2
+      )
+    );
+
     return value;
   }
 
@@ -730,18 +773,75 @@ export class TimePicker {
   }
 
   private isSelected(unit: TimePickerDescriptorUnit, number: number): boolean {
-    return this.formattedTime![unit] === String(number);
+    const selected = this.formattedTime![unit] === String(number);
+    if (selected) {
+      console.log(
+        `✓ [isSelected] ${unit}-${number} is selected. formattedTime[${unit}] = "${
+          this.formattedTime![unit]
+        }"`
+      );
+    }
+    return selected;
   }
 
   private select(unit: TimePickerDescriptorUnit, number: number) {
+    console.log(
+      `🖱️ [SELECT] Clicked:`,
+      JSON.stringify(
+        {
+          unit,
+          clickedValue: number,
+          currentFormattedTime: this.formattedTime,
+          currentInternalTime: this._time?.toISO(),
+        },
+        null,
+        2
+      )
+    );
+
     this.formattedTime = {
       ...this.formattedTime!,
       [unit]: String(number),
     };
 
+    console.log(
+      `📝 [SELECT] Updated formattedTime:`,
+      JSON.stringify(
+        {
+          unit,
+          newFormattedTime: this.formattedTime,
+        },
+        null,
+        2
+      )
+    );
+
     this.timeUpdate(unit, number);
+
+    console.log(
+      `⏰ [SELECT] After timeUpdate:`,
+      JSON.stringify(
+        {
+          unit,
+          clickedValue: number,
+          internalTime: this._time?.toISO(),
+          internalHour: this._time?.hour,
+          internalMinute: this._time?.minute,
+          internalSecond: this._time?.second,
+          internalMillisecond: this._time?.millisecond,
+        },
+        null,
+        2
+      )
+    );
+
     this.elementListScrollToTop(unit, number, 'smooth');
     this.timeChange.emit(this._time!.toFormat(this.format));
+
+    console.log(
+      `✅ [SELECT] Complete. Emitted:`,
+      this._time!.toFormat(this.format)
+    );
   }
 
   private updateDescriptorFocusedValue(
@@ -776,7 +876,7 @@ export class TimePicker {
       const elementContainerHeight = elementContainer.clientHeight;
 
       // Offset which is used to adjust the scroll position to account for margins, elements being hidden, etc.
-      let scrollPositionOffset = 18;
+      let scrollPositionOffset = 17;
       if (this.hideHeader) {
         // 56 + 1 --> height of the header container and separator
         scrollPositionOffset -= 57;
@@ -877,29 +977,62 @@ export class TimePicker {
                     data-element-list-id={descriptor.unit}
                     class="element-list"
                     tabIndex={-1}
+                    onClick={(e) => {
+                      const target = e.target as HTMLElement;
+                      console.log(
+                        `📍 [CONTAINER CLICK] on element-list`,
+                        JSON.stringify(
+                          {
+                            unit: descriptor.unit,
+                            targetTag: target.tagName,
+                            targetClass: target.className,
+                            targetDataId: target.getAttribute(
+                              'data-element-container-id'
+                            ),
+                          },
+                          null,
+                          2
+                        )
+                      );
+                    }}
                   >
-                    {descriptor.numberArray.map((number) => (
-                      <button
-                        data-element-container-id={`${descriptor.unit}-${number}`}
-                        class={{
-                          selected: this.isSelected(descriptor.unit, number),
-                          'element-container': true,
-                        }}
-                        onClick={() => this.select(descriptor.unit, number)}
-                        onFocus={() =>
-                          this.onUnitCellFocus(descriptor.unit, number)
-                        }
-                        onBlur={() => this.onUnitCellBlur(descriptor.unit)}
-                        tabindex={this.getElementContainerTabIndex(
-                          number,
-                          descriptor.unit
-                        )}
-                        role="button"
-                        aria-label={`${descriptor.header}: ${number}`}
-                      >
-                        {this.formatUnitValue(descriptor.unit, number)}
-                      </button>
-                    ))}
+                    {descriptor.numberArray.map((number) => {
+                      if (descriptor.unit === 'hour') {
+                        console.log(
+                          `🔨 [RENDER] Rendering button: hour-${number}, selected: ${this.isSelected(
+                            'hour',
+                            number
+                          )}`
+                        );
+                      }
+                      return (
+                        <button
+                          data-element-container-id={`${descriptor.unit}-${number}`}
+                          class={{
+                            selected: this.isSelected(descriptor.unit, number),
+                            'element-container': true,
+                          }}
+                          onClick={() => {
+                            console.log(
+                              `👆 [CLICK HANDLER] ${descriptor.unit}-${number} clicked!`
+                            );
+                            this.select(descriptor.unit, number);
+                          }}
+                          onFocus={() =>
+                            this.onUnitCellFocus(descriptor.unit, number)
+                          }
+                          onBlur={() => this.onUnitCellBlur(descriptor.unit)}
+                          tabindex={this.getElementContainerTabIndex(
+                            number,
+                            descriptor.unit
+                          )}
+                          role="button"
+                          aria-label={`${descriptor.header}: ${number}`}
+                        >
+                          {this.formatUnitValue(descriptor.unit, number)}
+                        </button>
+                      );
+                    })}
                     <div class="element-list-padding"></div>
                   </div>
                 </div>
