@@ -195,7 +195,7 @@ export class TimePicker {
    * Select time with format string
    * Format has to match the `format` property.
    */
-  @Prop() time: string = DateTime.now().toFormat(this.format);
+  @Prop() time?: string;
 
   @Watch('time')
   watchTimePropHandler(newValue: string) {
@@ -205,6 +205,14 @@ export class TimePicker {
     }
 
     this._time = timeFormat;
+  }
+
+  /**
+   * Get default time value
+   * @returns undefined for empty state (no selection)
+   */
+  private getDefaultTime(): DateTime | undefined {
+    return DateTime.now();
   }
 
   /**
@@ -288,15 +296,24 @@ export class TimePicker {
   }
 
   private initPicker() {
-    this._time = DateTime.fromFormat(this.time, this.format);
+    let parsedTime: DateTime | undefined;
 
-    if (!this._time.isValid) {
-      console.error(
-        `Invalid time format. The configured format does not match the format of the passed time. ${this._time.invalidReason}: ${this._time.invalidExplanation}`
-      );
+    if (this.time) {
+      // User provided a time prop - try to parse it
+      parsedTime = DateTime.fromFormat(this.time, this.format);
 
-      this._time = DateTime.now();
+      if (!parsedTime.isValid) {
+        console.error(
+          `Invalid time format. The configured format does not match the format of the passed time. ${parsedTime.invalidReason}: ${parsedTime.invalidExplanation}`
+        );
+        parsedTime = this.getDefaultTime();
+      }
+    } else {
+      // No time prop provided - use default
+      parsedTime = this.getDefaultTime();
     }
+
+    this._time = parsedTime;
 
     this.setTimeRef();
     this.setTimePickerDescriptors();
@@ -514,10 +531,12 @@ export class TimePicker {
 
       if (!dropdown.classList.contains('show')) {
         // keep picker in sync with input
-        const timeFormat = DateTime.fromFormat(this.time, this.format);
-        if (timeFormat.isValid) {
-          this._time = DateTime.fromFormat(this.time, this.format);
-          this.setInitialFocusedValueAndUnit();
+        if (this.time) {
+          const timeFormat = DateTime.fromFormat(this.time, this.format);
+          if (timeFormat.isValid) {
+            this._time = DateTime.fromFormat(this.time, this.format);
+            this.setInitialFocusedValueAndUnit();
+          }
         }
 
         continue;
@@ -581,19 +600,26 @@ export class TimePicker {
       value = 0;
     }
 
-    this._time = this._time?.set({
+    // Initialize with midnight if empty, then set the selected unit
+    if (!this._time) {
+      this._time = DateTime.now().startOf('day');
+    }
+
+    this._time = this._time.set({
       [unit]: value,
     });
+
     return value;
   }
 
   private changeTimeReference(newTimeRef: 'AM' | 'PM') {
-    if (!this._time) {
+    if (this.timeRef === newTimeRef) {
       return;
     }
 
-    if (this.timeRef === newTimeRef) {
-      return;
+    // Initialize with midnight if empty
+    if (!this._time) {
+      this._time = DateTime.now().startOf('day');
     }
 
     this.timeRef = newTimeRef;
@@ -605,7 +631,7 @@ export class TimePicker {
       this._time = this._time.minus({ hours: 12 });
     }
 
-    this.timeChange.emit(this._time!.toFormat(this.format));
+    this.timeChange.emit(this._time.toFormat(this.format));
   }
 
   private isFormat12Hour(format: string): boolean {

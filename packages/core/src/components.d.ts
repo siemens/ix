@@ -3653,9 +3653,8 @@ export namespace Components {
         "secondInterval": number;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
          */
-        "time": string;
+        "time"?: string;
     }
     interface IxToast {
         /**
@@ -9603,7 +9602,6 @@ declare namespace LocalJSX {
         "secondInterval"?: number;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
          */
         "time"?: string;
     }

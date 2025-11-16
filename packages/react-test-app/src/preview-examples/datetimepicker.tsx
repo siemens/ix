@@ -34,10 +34,10 @@ export default () => {
       }}
     >
       <IxDatetimePicker
-        dateFormat="yyyy-MM-dd"
-        timeFormat="h:mm:ss.SSS a"
-        from="2025-11-01"
-        time="02:01:00.000 AM"
+        // dateFormat="yyyy-MM-dd"
+        // timeFormat="h:mm:ss.SSS a"
+        // from="2025-11-01"
+        // time="02:01:00.000 AM"
         onTimeChange={handleTimeChange}
         onDateChange={handleDateChange}
         onDateSelect={handleDateSelect}
