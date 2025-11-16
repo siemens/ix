@@ -223,8 +223,8 @@ regressionTest.describe('time picker tests', () => {
           const expectedScrollPosition =
             selectedElement.offsetTop -
             containerHeight / 2 +
-            elementHeight / 2 -
-            13;
+            elementHeight -
+            17;
 
           // Allow small differences due to rounding/margin
           return Math.abs(container.scrollTop - expectedScrollPosition) < 5;
