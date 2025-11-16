@@ -409,8 +409,6 @@ export class TimePicker {
     const focusedValue = Number(this.formattedTime[unit]);
 
     this.updateDescriptorFocusedValue(unit, focusedValue);
-    // Removed auto-scroll on blur - it conflicts with manual scrolling
-    // this.elementListScrollToTop(unit, focusedValue, 'smooth');
   }
 
   onUnitCellFocus(unit: TimePickerDescriptorUnit, value: number) {
@@ -586,7 +584,6 @@ export class TimePicker {
     this._time = this._time?.set({
       [unit]: value,
     });
-
     return value;
   }
 
@@ -742,7 +739,6 @@ export class TimePicker {
     };
 
     this.timeUpdate(unit, number);
-
     this.elementListScrollToTop(unit, number, 'smooth');
     this.timeChange.emit(this._time!.toFormat(this.format));
   }
