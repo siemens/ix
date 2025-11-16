@@ -51,7 +51,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        // margin-top: 1px;
 
         .column-header {
           height: 2.5rem;
@@ -80,9 +79,6 @@
       overflow: auto;
       padding: 1px;
       margin: -1px;
-      //max-height: 15.375rem;
-      // margin-top: 1px;
-
       max-height: calc(2.5rem * 6);
 
       button {

@@ -801,7 +801,6 @@ export class DatePicker implements IxDatePickerComponent {
                     </div>
                   )}
                   {week.dayNumbers.map((day) => {
-                    const isTabIndexZero = day === this.focusedDay;
                     return day ? (
                       <div
                         key={day}
@@ -818,7 +817,7 @@ export class DatePicker implements IxDatePickerComponent {
                             this.selectDay(day, target);
                           }
                         }}
-                        tabIndex={isTabIndexZero ? 0 : -1}
+                        tabIndex={day === this.focusedDay ? 0 : -1}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
                         aria-label={`${this.selectedMonth}: ${day}`}
