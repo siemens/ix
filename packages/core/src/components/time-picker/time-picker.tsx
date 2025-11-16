@@ -299,7 +299,6 @@ export class TimePicker {
     let parsedTime: DateTime | undefined;
 
     if (this.time) {
-      // User provided a time prop - try to parse it
       parsedTime = DateTime.fromFormat(this.time, this.format);
 
       if (!parsedTime.isValid) {
@@ -309,7 +308,6 @@ export class TimePicker {
         parsedTime = this.getDefaultTime();
       }
     } else {
-      // No time prop provided - use default
       parsedTime = this.getDefaultTime();
     }
 
@@ -600,7 +598,6 @@ export class TimePicker {
       value = 0;
     }
 
-    // Initialize with midnight if empty, then set the selected unit
     if (!this._time) {
       this._time = DateTime.now().startOf('day');
     }
@@ -617,7 +614,6 @@ export class TimePicker {
       return;
     }
 
-    // Initialize with midnight if empty
     if (!this._time) {
       this._time = DateTime.now().startOf('day');
     }
