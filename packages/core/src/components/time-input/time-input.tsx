@@ -14,7 +14,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Host,
   Method,
   Prop,
   State,
@@ -45,7 +44,10 @@ import {
   onFocus,
   onBlur,
   onKeyDown,
-  syncValidation,
+  getNativeInput,
+  renderPickerFieldWrapper,
+  createPickerEventConfig,
+  createPickerInputMethods,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
@@ -437,18 +439,18 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   private getEventConfig() {
-    return {
+    return createPickerEventConfig({
       isResetting: this.isResetting,
       show: this.show,
       setTouched: (touched: boolean) => (this.touched = touched),
-      onInput: (value: string) => void this.onInput(value),
+      onInput: (value: string) => this.onInput(value),
       openDropdown: () => this.openDropdown(),
       ixFocus: this.ixFocus,
       ixBlur: this.ixBlur,
       syncValidationClasses: () => this.syncValidationClasses(),
       handleInputKeyDown: (event: KeyboardEvent) =>
         this.handleInputKeyDown(event),
-    };
+    });
   }
 
   private renderInput() {
@@ -536,7 +538,20 @@ export class TimeInput implements IxInputFieldComponent<string> {
    */
   @Method()
   getNativeInputElement(): Promise<HTMLInputElement> {
-    return this.inputElementRef.waitForCurrent();
+    return getNativeInput(this.inputElementRef);
+  }
+
+  private get commonMethods() {
+    return createPickerInputMethods({
+      inputElementRef: this.inputElementRef,
+      touched: this.touched,
+      dirty: this.dirty,
+      hostElement: this.hostElement,
+      suppressValidation: this.suppressValidation,
+      required: this.required,
+      value: this.value,
+      isInputInvalid: this.isInputInvalid,
+    });
   }
 
   /**
@@ -544,7 +559,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
    */
   @Method()
   async focusInput(): Promise<void> {
-    return (await this.getNativeInputElement()).focus();
+    return this.commonMethods.focusInput();
   }
 
   /**
@@ -553,7 +568,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
    */
   @Method()
   isTouched(): Promise<boolean> {
-    return Promise.resolve(this.touched);
+    return this.commonMethods.isTouched();
   }
 
   /**
@@ -562,21 +577,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
    */
   @Method()
   isDirty(): Promise<boolean> {
-    return Promise.resolve(this.dirty);
+    return this.commonMethods.isDirty();
   }
 
   /**
    * @internal
    */
   syncValidationClasses(): void {
-    syncValidation({
-      hostElement: this.hostElement,
-      suppressValidation: this.suppressValidation,
-      required: this.required,
-      value: this.value,
-      touched: this.touched,
-      isInputInvalid: this.isInputInvalid,
-    });
+    return this.commonMethods.syncValidationClasses();
   }
 
   /**
@@ -611,66 +619,54 @@ export class TimeInput implements IxInputFieldComponent<string> {
       ? this.i18nErrorTimeUnparsable
       : this.invalidText;
 
-    return (
-      <Host
-        class={{
-          disabled: this.disabled,
-          readonly: this.readonly,
-        }}
-      >
-        <ix-field-wrapper
-          label={this.label}
-          helperText={this.helperText}
-          isInvalid={this.isInvalid}
-          invalidText={invalidText}
-          infoText={this.infoText}
-          isInfo={this.isInfo}
-          isWarning={this.isWarning}
-          warningText={this.warningText}
-          isValid={this.isValid}
-          validText={this.validText}
-          showTextAsTooltip={this.showTextAsTooltip}
-          required={this.required}
-          controlRef={this.inputElementRef}
-          htmlForLabel={this.hostElement.id}
-        >
-          {this.renderInput()}
-        </ix-field-wrapper>
-        <ix-dropdown
-          data-testid="time-dropdown"
-          trigger={this.inputElementRef.waitForCurrent()}
-          ref={this.dropdownElementRef}
-          closeBehavior="outside"
-          suppressOverflowBehavior={true}
-          show={this.show}
-          onShowChanged={(event) => {
-            this.show = event.detail;
+    return renderPickerFieldWrapper({
+      host: this.hostElement,
+      disabled: this.disabled,
+      readonly: this.readonly,
+      label: this.label,
+      helper: this.helperText,
+      invalid: this.isInvalid,
+      invalidText,
+      info: this.infoText,
+      isInfo: this.isInfo,
+      warning: this.isWarning,
+      warningText: this.warningText,
+      valid: this.isValid,
+      validText: this.validText,
+      tooltip: this.showTextAsTooltip,
+      required: this.required,
+      inputRef: this.inputElementRef,
+      input: this.renderInput(),
+      dropdown: (
+        <ix-time-picker
+          ref={this.timePickerRef}
+          format={this.format}
+          time={this.time ?? ''}
+          hourInterval={this.hourInterval}
+          minuteInterval={this.minuteInterval}
+          secondInterval={this.secondInterval}
+          millisecondInterval={this.millisecondInterval}
+          embedded
+          hideHeader={this.hideHeader}
+          i18nConfirmTime={this.i18nSelectTime}
+          i18nHeader={this.i18nTime}
+          i18nHourColumnHeader={this.i18nHourColumnHeader}
+          i18nSecondColumnHeader={this.i18nSecondColumnHeader}
+          i18nMinuteColumnHeader={this.i18nMinuteColumnHeader}
+          i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
+          onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
+            this.onInput(event.detail);
+            this.show = false;
           }}
-        >
-          <ix-time-picker
-            ref={this.timePickerRef}
-            format={this.format}
-            time={this.time ?? ''}
-            hourInterval={this.hourInterval}
-            minuteInterval={this.minuteInterval}
-            secondInterval={this.secondInterval}
-            millisecondInterval={this.millisecondInterval}
-            embedded
-            hideHeader={this.hideHeader}
-            i18nConfirmTime={this.i18nSelectTime}
-            i18nHeader={this.i18nTime}
-            i18nHourColumnHeader={this.i18nHourColumnHeader}
-            i18nSecondColumnHeader={this.i18nSecondColumnHeader}
-            i18nMinuteColumnHeader={this.i18nMinuteColumnHeader}
-            i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
-            onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
-              this.onInput(event.detail);
-
-              this.show = false;
-            }}
-          ></ix-time-picker>
-        </ix-dropdown>
-      </Host>
-    );
+        ></ix-time-picker>
+      ),
+      testId: 'time-dropdown',
+      trigger: () => this.inputElementRef.waitForCurrent(),
+      dropdownRef: this.dropdownElementRef,
+      show: this.show,
+      onShow: (event) => {
+        this.show = event.detail;
+      },
+    });
   }
 }
