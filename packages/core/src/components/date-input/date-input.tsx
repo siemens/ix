@@ -589,7 +589,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       ixBlur: this.ixBlur,
       syncValidationClasses: () => this.syncValidationClasses(),
       onInput: (value: string) => this.onInput(value),
-      handleInputKeyDown: (event: KeyboardEvent) => this.handleInputKeyDown(event),
+      handleInputKeyDown: (event: KeyboardEvent) =>
+        this.handleInputKeyDown(event),
     });
   }
 

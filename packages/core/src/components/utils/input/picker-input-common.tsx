@@ -317,20 +317,21 @@ export function createDropdownMethods(context: DropdownMethodsContext) {
   return {
     openDropdown: context.openDropdown,
     closeDropdown: () => closeDropdownUtil(context.dropdownElementRef),
-    getEventConfig: () => createEventConfig({
-      isResetting: context.isResetting,
-      show: context.show,
-      setTouched: (touched: boolean) => (context.touched = touched),
-      onInput: context.onInput,
-      openDropdown: context.openDropdown,
-      ixFocus: context.ixFocus,
-      ixBlur: context.ixBlur,
-      syncValidationClasses: context.syncValidationClasses,
-      handleInputKeyDown: context.handleInputKeyDown,
-    }),
+    getEventConfig: () =>
+      createEventConfig({
+        isResetting: context.isResetting,
+        show: context.show,
+        setTouched: (touched: boolean) => (context.touched = touched),
+        onInput: context.onInput,
+        openDropdown: context.openDropdown,
+        ixFocus: context.ixFocus,
+        ixBlur: context.ixBlur,
+        syncValidationClasses: context.syncValidationClasses,
+        handleInputKeyDown: context.handleInputKeyDown,
+      }),
     checkClassList: () => {
       return context.hostElement.classList.contains('ix-invalid');
-    }
+    },
   };
 }
 
@@ -358,7 +359,8 @@ export function handleValidationLifecycle(
     setIsWarning: (value: boolean) => void;
   }
 ) {
-  const { isInfo, isInvalid, isInvalidByRequired, isValid, isWarning } = results;
+  const { isInfo, isInvalid, isInvalidByRequired, isValid, isWarning } =
+    results;
 
   if (suppressValidation) {
     setters.setIsInvalid(false);
