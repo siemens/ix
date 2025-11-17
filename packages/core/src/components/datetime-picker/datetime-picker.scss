@@ -44,6 +44,15 @@
     flex-direction: column;
   }
 
+  .row-separator,
+  .col-separator {
+    border-bottom: 1px solid var(--theme-datepicker-separator--background);
+  }
+
+  .col-separator {
+    border-right: none;
+  }
+
   @media (min-width: 576px) {
     min-width: max-content;
 
@@ -64,6 +73,11 @@
     ix-time-picker {
       width: initial;
     }
+
+    .col-separator {
+      border-right: 1px solid var(--theme-datepicker-separator--background);
+      border-bottom: none;
+    }
   }
 
   .individual {
@@ -79,13 +93,5 @@
         width: 100%;
       }
     }
-  }
-
-  .row-separator {
-    border-bottom: 1px solid var(--theme-datepicker-separator--background);
-  }
-
-  .col-separator {
-    border-right: 1px solid var(--theme-datepicker-separator--background);
   }
 }
