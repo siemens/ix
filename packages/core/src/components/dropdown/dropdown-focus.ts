@@ -63,19 +63,33 @@ const focusItem = (item: HTMLElement) => {
 export const isTriggerElement = (element: HTMLElement) =>
   element.hasAttribute('data-ix-dropdown-trigger');
 
-export const configureKeyboardInteraction = (dropdownElement: HTMLElement) => {
+export const configureKeyboardInteraction = (
+  dropdownElement: HTMLElement,
+  options: {
+    getActiveElement?: () => HTMLElement | null;
+    setItemActive?: (item: HTMLElement) => void;
+  } = {}
+) => {
+  const getActiveElement =
+    options.getActiveElement ??
+    (() => document.activeElement as HTMLElement | null);
+
+  const setItemActive =
+    options.setItemActive ?? ((item: HTMLElement) => focusItem(item));
+
   const callback = async (ev: KeyboardEvent) => {
-    const activeElement = document.activeElement as HTMLElement | null;
+    console.log('callback ev:', ev);
+    const activeElement = getActiveElement();
     let items: HTMLElement[] = [];
 
-    if (!matchesDropdownItems(ev.target as HTMLElement)) {
-      return;
-    }
+    // if (!matchesDropdownItems(ev.target as HTMLElement)) {
+    //   return;
+    // }
 
     try {
       const query = VALID_FOCUS_ITEMS.map(
         (item) =>
-          `${item.toLowerCase()}:not(ix-dropdown ix-dropdown *):not([disabled])`
+          `${item.toLowerCase()}:not(ix-dropdown ix-dropdown *):not([disabled]):not([hidden])`
       ).join(', ');
 
       // Collect items from slots if they exist
@@ -122,7 +136,7 @@ export const configureKeyboardInteraction = (dropdownElement: HTMLElement) => {
         ev.preventDefault();
         const nextItem = getNextFocusableDropdownItem(items, activeElement);
         if (nextItem !== undefined) {
-          focusItem(nextItem);
+          setItemActive(nextItem);
         }
         break;
 
@@ -131,7 +145,7 @@ export const configureKeyboardInteraction = (dropdownElement: HTMLElement) => {
         ev.preventDefault();
         const prevItem = getPreviousFocusableItem(items, activeElement);
         if (prevItem !== undefined) {
-          focusItem(prevItem);
+          setItemActive(prevItem);
         }
         break;
 
@@ -139,7 +153,7 @@ export const configureKeyboardInteraction = (dropdownElement: HTMLElement) => {
         ev.preventDefault();
         const firstItem = items[0];
         if (firstItem !== undefined) {
-          focusItem(firstItem);
+          setItemActive(firstItem);
         }
         break;
 
@@ -147,7 +161,7 @@ export const configureKeyboardInteraction = (dropdownElement: HTMLElement) => {
         ev.preventDefault();
         const lastItem = items[items.length - 1];
         if (lastItem !== undefined) {
-          focusItem(lastItem);
+          setItemActive(lastItem);
         }
         break;
 

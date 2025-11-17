@@ -1296,6 +1296,11 @@ export namespace Components {
          */
         "closeBehavior": CloseBehavior;
         /**
+          * Suppress automatic focus when the dropdown is shown
+          * @default false
+         */
+        "disableFocusHandling": boolean;
+        /**
           * @default false
          */
         "discoverAllSubmenus": boolean;
@@ -1335,11 +1340,6 @@ export namespace Components {
           * @default false
          */
         "show": boolean;
-        /**
-          * Suppress automatic focus when the dropdown is shown
-          * @default false
-         */
-        "suppressAutoFocus": boolean;
         /**
           * Suppress the automatic placement of the dropdown.
           * @default false
@@ -1441,6 +1441,11 @@ export namespace Components {
           * @default false
          */
         "suppressChecked": boolean;
+        /**
+          * Can has focus
+          * @default false
+         */
+        "suppressFocus": boolean;
     }
     interface IxDropdownQuickActions {
     }
@@ -3121,6 +3126,10 @@ export namespace Components {
     }
     interface IxSelectItem {
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
+        /**
+          * @default false
+         */
+        "hasVisualFocus": boolean;
         /**
           * @default false
          */
@@ -7154,6 +7163,11 @@ declare namespace LocalJSX {
          */
         "closeBehavior"?: CloseBehavior;
         /**
+          * Suppress automatic focus when the dropdown is shown
+          * @default false
+         */
+        "disableFocusHandling"?: boolean;
+        /**
           * @default false
          */
         "discoverAllSubmenus"?: boolean;
@@ -7200,11 +7214,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "show"?: boolean;
-        /**
-          * Suppress automatic focus when the dropdown is shown
-          * @default false
-         */
-        "suppressAutoFocus"?: boolean;
         /**
           * Suppress the automatic placement of the dropdown.
           * @default false
@@ -7301,6 +7310,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressChecked"?: boolean;
+        /**
+          * Can has focus
+          * @default false
+         */
+        "suppressFocus"?: boolean;
     }
     interface IxDropdownQuickActions {
     }
@@ -9100,6 +9114,10 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     interface IxSelectItem {
+        /**
+          * @default false
+         */
+        "hasVisualFocus"?: boolean;
         /**
           * @default false
          */

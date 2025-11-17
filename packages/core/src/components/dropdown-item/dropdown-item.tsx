@@ -69,6 +69,13 @@ export class DropdownItem implements DropdownItemWrapper {
    */
   @Prop() checked = false;
 
+  /**
+   * Can has focus
+   *
+   * @internal
+   */
+  @Prop() suppressFocus = false;
+
   /** @internal */
   @Prop() isSubMenu = false;
 
@@ -106,14 +113,14 @@ export class DropdownItem implements DropdownItemWrapper {
           'icon-only': this.isIconOnly(),
           disabled: this.disabled,
           submenu: this.isSubMenu,
-          'ix-focusable': true,
+          'ix-focusable': !this.suppressFocus,
         }}
         role="listitem"
         tabIndex={-1}
       >
         <button
           type="button"
-          tabIndex={0}
+          tabIndex={!this.suppressFocus ? 0 : -1}
           class={{
             'dropdown-item': true,
             'no-checked-field': this.suppressChecked,

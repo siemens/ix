@@ -10,6 +10,7 @@
 :host {
   display: block;
   position: relative;
+  border: 0.0625rem solid transparent;
 
   > ix-dropdown-item {
     width: 100%;
@@ -23,6 +24,10 @@
     background-color: var(--theme-select-list-item--background--selected);
     --ix-dropdown-item-checked-color: var(--theme-color-std-text);
   }
+}
+
+:host(.outline-visible) {
+  border: 0.0625rem solid var(--theme-color-focus-bdr);
 }
 
 :host(.display-none) {

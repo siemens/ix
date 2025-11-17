@@ -680,7 +680,7 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         placement: 'placement',
         positioningStrategy: 'positioning-strategy',
         header: 'header',
-        suppressAutoFocus: 'suppress-auto-focus',
+        disableFocusHandling: 'disable-focus-handling',
         offset: 'offset',
         overwriteDropdownStyle: 'overwrite-dropdown-style',
         discoverAllSubmenus: 'discover-all-submenus',
@@ -732,6 +732,7 @@ export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDrop
         hover: 'hover',
         disabled: 'disabled',
         checked: 'checked',
+        suppressFocus: 'suppress-focus',
         isSubMenu: 'is-sub-menu',
         suppressChecked: 'suppress-checked'
     },
@@ -1618,7 +1619,8 @@ export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectIt
         label: 'label',
         value: 'value',
         selected: 'selected',
-        hover: 'hover'
+        hover: 'hover',
+        hasVisualFocus: 'has-visual-focus'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSelectItem as ReactWebComponent<IxSelectItemElement, IxSelectItemEvents>,

@@ -24,10 +24,6 @@
 
   @include component.ix-component;
 
-  .display-none {
-    display: none;
-  }
-
   .select {
     position: relative;
     display: flex;
@@ -185,6 +181,10 @@
     margin: 0 vars.$small-space 0 1rem;
 
     @include text-truncation.ellipsis;
+  }
+
+  .hidden {
+    display: none !important;
   }
 }
 

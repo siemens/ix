@@ -106,7 +106,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   /**
    * Suppress automatic focus when the dropdown is shown
    */
-  @Prop() suppressAutoFocus = false;
+  @Prop() disableFocusHandling = false;
 
   /**
    * Move dropdown along main axis of alignment
@@ -178,7 +178,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     if (this.assignedSubmenu.indexOf(detail) === -1) {
       this.assignedSubmenu.push(detail);
     }
-    console.log('parent', this.localUId, 'child', detail);
   }
 
   disconnectedCallback() {
@@ -286,7 +285,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           return;
         }
 
-        if (this.suppressAutoFocus) {
+        if (this.disableFocusHandling) {
           return;
         }
 
@@ -301,7 +300,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           return;
         }
 
-        if (this.suppressAutoFocus) {
+        if (this.disableFocusHandling) {
           return;
         }
 
@@ -409,9 +408,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         this.applyDropdownPosition();
       }
 
-      this.keyboardNavigationCleanup = configureKeyboardInteraction(
-        this.hostElement
-      );
+      if (!this.disableFocusHandling) {
+        this.keyboardNavigationCleanup = configureKeyboardInteraction(
+          this.hostElement
+        );
+      }
 
       this.registerKeyListener();
     } else {

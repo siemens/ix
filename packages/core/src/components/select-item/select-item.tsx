@@ -56,6 +56,11 @@ export class SelectItem implements DropdownItemWrapper {
   @Prop() hover = false;
 
   /**
+   * @internal
+   */
+  @Prop({ reflect: true }) hasVisualFocus = false;
+
+  /**
    * Item clicked
    */
   @Event() itemClick!: EventEmitter<string>;
@@ -114,7 +119,7 @@ export class SelectItem implements DropdownItemWrapper {
 
   render() {
     return (
-      <Host tabIndex={-1}>
+      <Host tabIndex={-1} class={{ 'outline-visible': this.hasVisualFocus }}>
         <ix-dropdown-item
           class={{
             'select-item-checked': this.selected,
@@ -123,6 +128,7 @@ export class SelectItem implements DropdownItemWrapper {
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}
           ref={this.dropdownItemRef}
+          suppressFocus
         ></ix-dropdown-item>
       </Host>
     );

@@ -121,3 +121,7 @@ $focusBorder: 0.0625rem;
     border-color: var(--theme-color-focus-bdr);
   }
 }
+
+:host(:focus-visible) {
+  outline: none !important;
+}
