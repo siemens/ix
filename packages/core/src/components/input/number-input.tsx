@@ -228,7 +228,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   componentWillLoad() {
-    this.initialValue = this.value;
+    this.initialValue = this.value ?? 0;
     this.updateFormInternalValue(this.value!);
   }
 
