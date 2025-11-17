@@ -1008,6 +1008,7 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'step',
   'suppressSubmitOnEnter',
   'textAlignment',
+  'allowEmptyValueChange',
   'valueChange',
   'validityStateChange',
   'ixBlur'
@@ -1169,9 +1170,11 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'i18nPlaceholderEditable',
   'i18nSelectListHeader',
   'i18nNoMatches',
+  'i18nAllSelected',
   'hideListHeader',
   'dropdownWidth',
   'dropdownMaxWidth',
+  'collapseMultipleSelection',
   'valueChange',
   'inputChange',
   'addItem',
@@ -1228,6 +1231,8 @@ export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__
   'splitIcon',
   'ariaLabelSplitIconButton',
   'disabled',
+  'disableButton',
+  'disableDropdownButton',
   'placement',
   'buttonClick'
 ], [
