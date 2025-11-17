@@ -1336,6 +1336,11 @@ export namespace Components {
          */
         "show": boolean;
         /**
+          * Suppress automatic focus when the dropdown is shown
+          * @default false
+         */
+        "suppressAutoFocus": boolean;
+        /**
           * Suppress the automatic placement of the dropdown.
           * @default false
          */
@@ -7195,6 +7200,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "show"?: boolean;
+        /**
+          * Suppress automatic focus when the dropdown is shown
+          * @default false
+         */
+        "suppressAutoFocus"?: boolean;
         /**
           * Suppress the automatic placement of the dropdown.
           * @default false

@@ -23,6 +23,7 @@ import {
   IxSelectItemValueChangeEvent,
 } from './events';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-select-item',
@@ -60,11 +61,12 @@ export class SelectItem implements DropdownItemWrapper {
   @Event() itemClick!: EventEmitter<string>;
 
   private componentLoaded = false;
+  private dropdownItemRef = makeRef<HTMLIxDropdownItemElement>();
 
   /** @internal */
   @Method()
   async getDropdownItemElement(): Promise<HTMLIxDropdownItemElement> {
-    return this.dropdownItem!;
+    return this.dropdownItemRef.waitForCurrent();
   }
 
   /**
@@ -77,10 +79,6 @@ export class SelectItem implements DropdownItemWrapper {
     event?.stopPropagation();
 
     this.itemClick.emit(this.value);
-  }
-
-  get dropdownItem() {
-    return this.hostElement.querySelector('ix-dropdown-item');
   }
 
   componentDidRender() {
@@ -116,7 +114,7 @@ export class SelectItem implements DropdownItemWrapper {
 
   render() {
     return (
-      <Host>
+      <Host tabIndex={-1}>
         <ix-dropdown-item
           class={{
             'select-item-checked': this.selected,
@@ -124,6 +122,7 @@ export class SelectItem implements DropdownItemWrapper {
           checked={this.selected}
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}
+          ref={this.dropdownItemRef}
         ></ix-dropdown-item>
       </Host>
     );

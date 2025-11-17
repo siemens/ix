@@ -52,10 +52,6 @@ $focusBorder: 0.0625rem;
     @include applyItemWidth(1rem, $itemPaddingRight);
   }
 
-  .dropdown-item:focus-visible {
-    border-color: var(--theme-color-focus-bdr);
-  }
-
   .dropdown-item-checked {
     display: flex;
     align-items: center;
@@ -115,5 +111,13 @@ $focusBorder: 0.0625rem;
 
   .dropdown-item-icon {
     color: var(--theme-color-weak-text) !important;
+  }
+}
+
+:host(.ix-focused) {
+  outline: none;
+
+  .dropdown-item {
+    border-color: var(--theme-color-focus-bdr);
   }
 }

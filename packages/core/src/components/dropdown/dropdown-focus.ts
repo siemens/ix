@@ -9,11 +9,21 @@
 
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
+const VALID_FOCUS_ITEMS = ['ix-dropdown-item', 'ix-select-item'];
+const VALID_FOCUS_ELEMENTS = ['ix-dropdown', ...VALID_FOCUS_ITEMS];
+
+const matchesDropdownItems = (element: HTMLElement) =>
+  element.matches(VALID_FOCUS_ELEMENTS.join(', '));
+
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
   item: HTMLElement | null
 ) => {
-  if (!item || item.tagName !== 'IX-DROPDOWN-ITEM') {
+  if (!item) {
+    return -1;
+  }
+
+  if (!matchesDropdownItems(item)) {
     return -1;
   }
 
@@ -37,9 +47,17 @@ export const getPreviousFocusableItem = (
 };
 
 const focusItem = (item: HTMLElement) => {
-  requestAnimationFrameNoNgZone(() =>
-    item.shadowRoot!.querySelector('button')!.focus()
-  );
+  requestAnimationFrameNoNgZone(async () => {
+    if (
+      'getDropdownItemElement' in item &&
+      typeof item.getDropdownItemElement === 'function'
+    ) {
+      const dropdownItem = await item.getDropdownItemElement();
+      dropdownItem.shadowRoot!.querySelector('button')!.focus();
+    } else {
+      item.shadowRoot!.querySelector('button')!.focus();
+    }
+  });
 };
 
 export const isTriggerElement = (element: HTMLElement) =>
@@ -50,17 +68,15 @@ export const configureKeyboardInteraction = (dropdownElement: HTMLElement) => {
     const activeElement = document.activeElement as HTMLElement | null;
     let items: HTMLElement[] = [];
 
-    const targetTagName = (ev.target as HTMLElement)?.tagName;
-    if (
-      targetTagName !== 'IX-DROPDOWN' &&
-      targetTagName !== 'IX-DROPDOWN-ITEM'
-    ) {
+    if (!matchesDropdownItems(ev.target as HTMLElement)) {
       return;
     }
 
     try {
-      const query =
-        'ix-dropdown-item:not(ix-dropdown ix-dropdown *):not([disabled])';
+      const query = VALID_FOCUS_ITEMS.map(
+        (item) =>
+          `${item.toLowerCase()}:not(ix-dropdown ix-dropdown *):not([disabled])`
+      ).join(', ');
 
       // Collect items from slots if they exist
       if (dropdownElement.querySelectorAll('slot').length > 0) {

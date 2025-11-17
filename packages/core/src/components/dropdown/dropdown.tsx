@@ -104,6 +104,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Prop() header?: string;
 
   /**
+   * Suppress automatic focus when the dropdown is shown
+   */
+  @Prop() suppressAutoFocus = false;
+
+  /**
    * Move dropdown along main axis of alignment
    *
    * @internal
@@ -281,6 +286,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           return;
         }
 
+        if (this.suppressAutoFocus) {
+          return;
+        }
+
         requestAnimationFrameNoNgZone(() => {
           focusLastDescendant(this.hostElement);
         });
@@ -289,6 +298,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       case ' ':
       case 'Enter':
         if (openDropdownIfNeeded() === false) {
+          return;
+        }
+
+        if (this.suppressAutoFocus) {
           return;
         }
 

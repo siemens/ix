@@ -175,5 +175,9 @@ export const focusElementInContext = <T extends HTMLElement>(
   }
 };
 
-export const focusableQueryString =
-  '[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled]), .ix-focusable:not([hidden]):not([disabled]), .ix-focusable[disabled="false"]:not([hidden])';
+export const focusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled]), .ix-focusable:not([hidden]):not([disabled]), .ix-focusable[disabled="false"]:not([hidden]), ${[
+  'ix-dropdown-item',
+  'ix-select-item',
+]
+  .map((tag) => `${tag}:not([hidden]):not([disabled])`)
+  .join(', ')}`;
