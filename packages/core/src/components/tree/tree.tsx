@@ -361,7 +361,8 @@ export class Tree {
       return;
     }
 
-    const id = target.getAttribute('data-tree-node-id');
+    let treeNodeElement = target;
+    const id = treeNodeElement.getAttribute('data-tree-node-id');
     if (!id) {
       return;
     }
@@ -377,7 +378,9 @@ export class Tree {
     }
 
     if (!event.defaultPrevented) {
-      Object.values(this.context).forEach((c) => (c.isSelected = false));
+      for (const context of Object.values(this.context)) {
+        context.isSelected = false;
+      }
       const context = this.getContext(id);
       context.isSelected = true;
       this.setContext(id, context);
