@@ -797,7 +797,7 @@ export class TimePicker {
       const elementContainerHeight = elementContainer.clientHeight;
 
       // Offset which is used to adjust the scroll position to account for margins, elements being hidden, etc.
-      let scrollPositionOffset = 9;
+      let scrollPositionOffset = 11;
       if (this.hideHeader) {
         // 56 + 1 --> height of the header container and separator
         scrollPositionOffset -= 57;
@@ -948,9 +948,7 @@ export class TimePicker {
               <div class="flex">
                 <div class="column-seperator"></div>
                 <div class="columns">
-                  <div class="column-header" title="AM/PM">
-                    •
-                  </div>
+                  <div class="column-header" title="AM/PM" />
                   <div class="element-list" tabIndex={-1}>
                     <button
                       data-am-pm-id="AM"
