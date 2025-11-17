@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { EventEmitter } from '@stencil/core';
+import { EventEmitter, h, Host } from '@stencil/core';
 import { syncValidationClasses } from './validation';
 
 export interface SyncOptions<T = string | undefined> {
@@ -139,4 +139,91 @@ export function syncValidation(options: ValidationOptions): void {
     touched: options.touched,
     isInputInvalid: options.isInputInvalid,
   });
+}
+
+export function getNativeInput(
+  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> }
+): Promise<HTMLInputElement> {
+  return inputElementRef.waitForCurrent();
+}
+
+export async function focusInput(
+  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> }
+): Promise<void> {
+  return (await getNativeInput(inputElementRef)).focus();
+}
+
+export function getTouchedState(touched: boolean): Promise<boolean> {
+  return Promise.resolve(touched);
+}
+
+export function getDirtyState(dirty: boolean): Promise<boolean> {
+  return Promise.resolve(dirty);
+}
+
+export interface PickerFieldWrapperProps {
+  host: HTMLElement;
+  disabled?: boolean;
+  readonly?: boolean;
+  label?: string;
+  helper?: string;
+  invalid?: boolean;
+  invalidText?: string | undefined;
+  info?: string;
+  isInfo?: boolean;
+  warning?: boolean;
+  warningText?: string;
+  valid?: boolean;
+  validText?: string;
+  tooltip?: boolean;
+  required?: boolean;
+  inputRef: any;
+  input: any;
+  dropdown: any;
+  testId: string;
+  trigger: () => Promise<HTMLElement>;
+  dropdownRef?: any;
+  show?: boolean;
+  onShow?: (event: any) => void;
+}
+
+export function renderPickerFieldWrapper(props: PickerFieldWrapperProps) {
+  return (
+    <Host
+      class={{
+        disabled: !!props.disabled,
+        readonly: !!props.readonly,
+      }}
+    >
+      <ix-field-wrapper
+        label={props.label}
+        helperText={props.helper}
+        isInvalid={props.invalid}
+        invalidText={props.invalidText}
+        infoText={props.info}
+        isInfo={props.isInfo}
+        isWarning={props.warning}
+        warningText={props.warningText}
+        isValid={props.valid}
+        validText={props.validText}
+        showTextAsTooltip={props.tooltip}
+        required={props.required}
+        controlRef={props.inputRef}
+        htmlForLabel={props.host.id}
+      >
+        {props.input}
+      </ix-field-wrapper>
+      <ix-dropdown
+        data-testid={props.testId}
+        trigger={props.trigger()}
+        ref={props.dropdownRef}
+        closeBehavior="outside"
+        suppressOverflowBehavior={true}
+        show={props.show}
+        onShowChanged={props.onShow}
+      >
+        {props.dropdown}
+      </ix-dropdown>
+    </Host>
+  );
 }

@@ -14,7 +14,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Host,
   Method,
   Prop,
   State,
@@ -46,6 +45,11 @@ import {
   onBlur,
   onKeyDown,
   syncValidation,
+  getNativeInput,
+  focusInput,
+  getTouchedState,
+  getDirtyState,
+  renderPickerFieldWrapper,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -93,7 +97,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       isResetting: this.isResetting,
       required: this.required,
       initialValue: this.initialValue,
-      onInput: (value: string) => this.onInput(value),
+      onInput: (value: string) => void this.onInput(value),
       setTouched: (touched: boolean) => (this.touched = touched),
       setDirty: (dirty: boolean) => (this.dirty = dirty),
     });
@@ -438,7 +442,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       isResetting: this.isResetting,
       show: this.show,
       setTouched: (touched: boolean) => (this.touched = touched),
-      onInput: (value: string) => this.onInput(value),
+      onInput: (value: string) => void this.onInput(value),
       openDropdown: () => this.openDropdown(),
       ixFocus: this.ixFocus,
       ixBlur: this.ixBlur,
@@ -562,7 +566,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Method()
   getNativeInputElement(): Promise<HTMLInputElement> {
-    return this.inputElementRef.waitForCurrent();
+    return getNativeInput(this.inputElementRef);
   }
 
   /**
@@ -570,7 +574,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Method()
   async focusInput(): Promise<void> {
-    return (await this.getNativeInputElement()).focus();
+    return focusInput(this.inputElementRef);
   }
 
   /**
@@ -579,7 +583,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Method()
   isTouched(): Promise<boolean> {
-    return Promise.resolve(this.touched);
+    return getTouchedState(this.touched);
   }
 
   /**
@@ -588,7 +592,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Method()
   isDirty(): Promise<boolean> {
-    return Promise.resolve(this.dirty);
+    return getDirtyState(this.dirty);
   }
 
   /**
@@ -641,61 +645,50 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
         ? this.i18nErrorDateUnparsable
         : this.invalidText;
 
-    return (
-      <Host
-        class={{
-          disabled: this.disabled,
-          readonly: this.readonly,
-        }}
-      >
-        <ix-field-wrapper
-          label={this.label}
-          helperText={this.helperText}
-          isInvalid={this.isInvalid}
-          invalidText={invalidText}
-          infoText={this.infoText}
-          isInfo={this.isInfo}
-          isWarning={this.isWarning}
-          warningText={this.warningText}
-          isValid={this.isValid}
-          validText={this.validText}
-          showTextAsTooltip={this.showTextAsTooltip}
-          required={this.required}
-          controlRef={this.inputElementRef}
-          htmlForLabel={this.hostElement.id}
-        >
-          {this.renderInput()}
-        </ix-field-wrapper>
-        <ix-dropdown
-          data-testid="date-dropdown"
-          trigger={this.inputElementRef.waitForCurrent()}
-          ref={this.dropdownElementRef}
-          closeBehavior="outside"
-          suppressOverflowBehavior={true}
-          show={this.show}
-          onShowChanged={(event) => {
-            this.show = event.detail;
+    return renderPickerFieldWrapper({
+      host: this.hostElement,
+      disabled: this.disabled,
+      readonly: this.readonly,
+      label: this.label,
+      helper: this.helperText,
+      invalid: this.isInvalid,
+      invalidText,
+      info: this.infoText,
+      isInfo: this.isInfo,
+      warning: this.isWarning,
+      warningText: this.warningText,
+      valid: this.isValid,
+      validText: this.validText,
+      tooltip: this.showTextAsTooltip,
+      required: this.required,
+      inputRef: this.inputElementRef,
+      input: this.renderInput(),
+      dropdown: (
+        <ix-date-picker
+          ref={this.datepickerRef}
+          format={this.format}
+          locale={this.locale}
+          singleSelection
+          from={this.from ?? ''}
+          minDate={this.minDate}
+          maxDate={this.maxDate}
+          onDateChange={(event) => {
+            const { from } = event.detail;
+            this.onInput(from);
           }}
-        >
-          <ix-date-picker
-            ref={this.datepickerRef}
-            format={this.format}
-            locale={this.locale}
-            singleSelection
-            from={this.from ?? ''}
-            minDate={this.minDate}
-            maxDate={this.maxDate}
-            onDateChange={(event) => {
-              const { from } = event.detail;
-              this.onInput(from);
-            }}
-            showWeekNumbers={this.showWeekNumbers}
-            ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
-            ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-            embedded
-          ></ix-date-picker>
-        </ix-dropdown>
-      </Host>
-    );
+          showWeekNumbers={this.showWeekNumbers}
+          ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+          ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
+          embedded
+        ></ix-date-picker>
+      ),
+      testId: 'date-dropdown',
+      trigger: () => this.inputElementRef.waitForCurrent(),
+      dropdownRef: this.dropdownElementRef,
+      show: this.show,
+      onShow: (event) => {
+        this.show = event.detail;
+      },
+    });
   }
 }
