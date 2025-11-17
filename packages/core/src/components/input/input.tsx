@@ -338,7 +338,12 @@ export class Input implements IxInputFieldComponent<string> {
    */
   @Method()
   async reset(): Promise<void> {
-    await resetInputComponent(this, this.initialValue, '', this.inputRef.current);
+    await resetInputComponent(
+      this,
+      this.initialValue,
+      '',
+      this.inputRef.current
+    );
   }
 
   render() {

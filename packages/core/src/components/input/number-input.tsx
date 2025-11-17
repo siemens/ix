@@ -276,7 +276,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   private handleValueChangeEvent(value: number | undefined) {
-    this.valueChange.emit(this.allowEmptyValueChange ? value : value ?? 0);
+    this.valueChange.emit(this.allowEmptyValueChange ? value : (value ?? 0));
   }
 
   updateFormInternalValue(value: number) {
@@ -343,7 +343,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
     }
 
     if (e.inputType === 'insertFromPaste') {
-      const dt = e.dataTransfer || (e as any).clipboardData;
+      const dt =
+        e.dataTransfer ||
+        (e as InputEvent & { clipboardData?: DataTransfer }).clipboardData;
       const text = dt?.getData?.('text') ?? '';
       if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
         e.preventDefault();
@@ -368,7 +370,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
     const stepValue =
       typeof this.step === 'string'
         ? Number.parseFloat(this.step)
-        : this.step ?? 1;
+        : (this.step ?? 1);
 
     let newValue: number;
 

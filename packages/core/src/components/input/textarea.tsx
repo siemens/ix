@@ -331,7 +331,12 @@ export class Textarea implements IxInputFieldComponent<string> {
    */
   @Method()
   async reset(): Promise<void> {
-    await resetInputComponent(this, this.initialValue, '', this.textAreaRef.current);
+    await resetInputComponent(
+      this,
+      this.initialValue,
+      '',
+      this.textAreaRef.current
+    );
   }
 
   render() {
