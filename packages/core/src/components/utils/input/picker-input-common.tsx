@@ -227,3 +227,67 @@ export function renderPickerFieldWrapper(props: PickerFieldWrapperProps) {
     </Host>
   );
 }
+
+export interface PickerEventConfigOptions {
+  isResetting: boolean;
+  show: boolean;
+  setTouched: (touched: boolean) => void;
+  onInput: (value: string) => void;
+  openDropdown: () => Promise<any>;
+  ixFocus: EventEmitter<void>;
+  ixBlur: EventEmitter<void>;
+  syncValidationClasses: () => void;
+  handleInputKeyDown?: (event: KeyboardEvent) => void;
+  alwaysSetTouchedOnBlur?: boolean;
+}
+
+export function createPickerEventConfig(options: PickerEventConfigOptions): EventConfig {
+  return {
+    isResetting: options.isResetting,
+    show: options.show,
+    setTouched: options.setTouched,
+    onInput: (value: string) => void options.onInput(value),
+    openDropdown: () => options.openDropdown(),
+    ixFocus: options.ixFocus,
+    ixBlur: options.ixBlur,
+    syncValidationClasses: () => options.syncValidationClasses(),
+    handleInputKeyDown: options.handleInputKeyDown,
+    alwaysSetTouchedOnBlur: options.alwaysSetTouchedOnBlur,
+  };
+}
+
+export function createPickerInputMethods(context: {
+  inputElementRef: any;
+  touched: boolean;
+  dirty: boolean;
+  hostElement: HTMLElement;
+  suppressValidation: boolean;
+  required?: boolean;
+  value: string | undefined;
+  isInputInvalid: boolean;
+}) {
+  return {
+    async focusInput(): Promise<void> {
+      return focusInput(context.inputElementRef);
+    },
+
+    isTouched(): Promise<boolean> {
+      return getTouchedState(context.touched);
+    },
+
+    isDirty(): Promise<boolean> {
+      return getDirtyState(context.dirty);
+    },
+
+    syncValidationClasses(): void {
+      syncValidation({
+        hostElement: context.hostElement,
+        suppressValidation: context.suppressValidation,
+        required: context.required,
+        value: context.value,
+        touched: context.touched,
+        isInputInvalid: context.isInputInvalid,
+      });
+    },
+  };
+}

@@ -44,12 +44,10 @@ import {
   onFocus,
   onBlur,
   onKeyDown,
-  syncValidation,
   getNativeInput,
-  focusInput,
-  getTouchedState,
-  getDirtyState,
   renderPickerFieldWrapper,
+  createPickerEventConfig,
+  createPickerInputMethods,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
@@ -441,18 +439,18 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   private getEventConfig() {
-    return {
+    return createPickerEventConfig({
       isResetting: this.isResetting,
       show: this.show,
       setTouched: (touched: boolean) => (this.touched = touched),
-      onInput: (value: string) => void this.onInput(value),
+      onInput: (value: string) => this.onInput(value),
       openDropdown: () => this.openDropdown(),
       ixFocus: this.ixFocus,
       ixBlur: this.ixBlur,
       syncValidationClasses: () => this.syncValidationClasses(),
       handleInputKeyDown: (event: KeyboardEvent) =>
         this.handleInputKeyDown(event),
-    };
+    });
   }
 
   private renderInput() {
@@ -543,12 +541,25 @@ export class TimeInput implements IxInputFieldComponent<string> {
     return getNativeInput(this.inputElementRef);
   }
 
+  private get commonMethods() {
+    return createPickerInputMethods({
+      inputElementRef: this.inputElementRef,
+      touched: this.touched,
+      dirty: this.dirty,
+      hostElement: this.hostElement,
+      suppressValidation: this.suppressValidation,
+      required: this.required,
+      value: this.value,
+      isInputInvalid: this.isInputInvalid,
+    });
+  }
+
   /**
    * Focuses the input field
    */
   @Method()
   async focusInput(): Promise<void> {
-    return focusInput(this.inputElementRef);
+    return this.commonMethods.focusInput();
   }
 
   /**
@@ -557,7 +568,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
    */
   @Method()
   isTouched(): Promise<boolean> {
-    return getTouchedState(this.touched);
+    return this.commonMethods.isTouched();
   }
 
   /**
@@ -566,21 +577,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
    */
   @Method()
   isDirty(): Promise<boolean> {
-    return getDirtyState(this.dirty);
+    return this.commonMethods.isDirty();
   }
 
   /**
    * @internal
    */
   syncValidationClasses(): void {
-    syncValidation({
-      hostElement: this.hostElement,
-      suppressValidation: this.suppressValidation,
-      required: this.required,
-      value: this.value,
-      touched: this.touched,
-      isInputInvalid: this.isInputInvalid,
-    });
+    return this.commonMethods.syncValidationClasses();
   }
 
   /**
