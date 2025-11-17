@@ -141,15 +141,15 @@ export function syncValidation(options: ValidationOptions): void {
   });
 }
 
-export function getNativeInput(
-  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> }
-): Promise<HTMLInputElement> {
+export function getNativeInput(inputElementRef: {
+  waitForCurrent: () => Promise<HTMLInputElement>;
+}): Promise<HTMLInputElement> {
   return inputElementRef.waitForCurrent();
 }
 
-export async function focusInput(
-  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> }
-): Promise<void> {
+export async function focusInput(inputElementRef: {
+  waitForCurrent: () => Promise<HTMLInputElement>;
+}): Promise<void> {
   return (await getNativeInput(inputElementRef)).focus();
 }
 
@@ -241,7 +241,9 @@ export interface PickerEventConfigOptions {
   alwaysSetTouchedOnBlur?: boolean;
 }
 
-export function createPickerEventConfig(options: PickerEventConfigOptions): EventConfig {
+export function createPickerEventConfig(
+  options: PickerEventConfigOptions
+): EventConfig {
   return {
     isResetting: options.isResetting,
     show: options.show,
