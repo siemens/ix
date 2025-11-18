@@ -8,6 +8,9 @@
  */
 import { EventEmitter, h, Host } from '@stencil/core';
 import { syncValidationClasses } from './validation';
+import { ValidationResults } from './validation';
+import { handleSubmitOnEnterKeydown } from '../../input/input.util';
+import { closeDropdown as closeDropdownUtil } from './picker-input.util';
 
 export interface SyncOptions<T = string | undefined> {
   updateFormInternalValue: (value: T) => void;
@@ -141,15 +144,15 @@ export function syncValidation(options: ValidationOptions): void {
   });
 }
 
-export function getNativeInput(
-  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> }
-): Promise<HTMLInputElement> {
+export function getNativeInput(inputElementRef: {
+  waitForCurrent: () => Promise<HTMLInputElement>;
+}): Promise<HTMLInputElement> {
   return inputElementRef.waitForCurrent();
 }
 
-export async function focusInput(
-  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> }
-): Promise<void> {
+export async function focusInput(inputElementRef: {
+  waitForCurrent: () => Promise<HTMLInputElement>;
+}): Promise<void> {
   return (await getNativeInput(inputElementRef)).focus();
 }
 
@@ -187,7 +190,7 @@ export interface PickerFieldWrapperProps {
   onShow?: (event: any) => void;
 }
 
-export function renderPickerFieldWrapper(props: PickerFieldWrapperProps) {
+export function renderFieldWrapper(props: PickerFieldWrapperProps) {
   return (
     <Host
       class={{
@@ -241,23 +244,25 @@ export interface PickerEventConfigOptions {
   alwaysSetTouchedOnBlur?: boolean;
 }
 
-export function createPickerEventConfig(options: PickerEventConfigOptions): EventConfig {
+export function createEventConfig(
+  options: PickerEventConfigOptions
+): EventConfig {
   return {
     isResetting: options.isResetting,
     show: options.show,
     setTouched: options.setTouched,
-    onInput: (value: string) => void options.onInput(value),
-    openDropdown: () => options.openDropdown(),
+    onInput: options.onInput,
+    openDropdown: options.openDropdown,
     ixFocus: options.ixFocus,
     ixBlur: options.ixBlur,
-    syncValidationClasses: () => options.syncValidationClasses(),
+    syncValidationClasses: options.syncValidationClasses,
     handleInputKeyDown: options.handleInputKeyDown,
     alwaysSetTouchedOnBlur: options.alwaysSetTouchedOnBlur,
   };
 }
 
-export function createPickerInputMethods(context: {
-  inputElementRef: any;
+export interface InputMethodsContext {
+  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> };
   touched: boolean;
   dirty: boolean;
   hostElement: HTMLElement;
@@ -265,7 +270,9 @@ export function createPickerInputMethods(context: {
   required?: boolean;
   value: string | undefined;
   isInputInvalid: boolean;
-}) {
+}
+
+export function createInputMethods(context: InputMethodsContext) {
   return {
     async focusInput(): Promise<void> {
       return focusInput(context.inputElementRef);
@@ -290,4 +297,81 @@ export function createPickerInputMethods(context: {
       });
     },
   };
+}
+
+export interface DropdownMethodsContext {
+  dropdownElementRef: { current: HTMLIxDropdownElement | null };
+  hostElement: HTMLElement;
+  show: boolean;
+  isResetting: boolean;
+  touched: boolean;
+  openDropdown: () => Promise<void>;
+  ixFocus: EventEmitter<void>;
+  ixBlur: EventEmitter<void>;
+  syncValidationClasses: () => void;
+  onInput: (value: string) => void;
+  handleInputKeyDown: (event: KeyboardEvent) => void;
+}
+
+export function createDropdownMethods(context: DropdownMethodsContext) {
+  return {
+    openDropdown: context.openDropdown,
+    closeDropdown: () => closeDropdownUtil(context.dropdownElementRef),
+    getEventConfig: () =>
+      createEventConfig({
+        isResetting: context.isResetting,
+        show: context.show,
+        setTouched: (touched: boolean) => (context.touched = touched),
+        onInput: context.onInput,
+        openDropdown: context.openDropdown,
+        ixFocus: context.ixFocus,
+        ixBlur: context.ixBlur,
+        syncValidationClasses: context.syncValidationClasses,
+        handleInputKeyDown: context.handleInputKeyDown,
+      }),
+    checkClassList: () => {
+      return context.hostElement.classList.contains('ix-invalid');
+    },
+  };
+}
+
+export function createKeyDownHandler(
+  suppressSubmitOnEnter: boolean,
+  formInternals: ElementInternals
+) {
+  return (event: KeyboardEvent) => {
+    handleSubmitOnEnterKeydown(
+      event,
+      suppressSubmitOnEnter,
+      formInternals.form
+    );
+  };
+}
+
+export function handleValidationLifecycle(
+  suppressValidation: boolean,
+  isInputInvalid: boolean,
+  results: ValidationResults,
+  setters: {
+    setIsInvalid: (value: boolean) => void;
+    setIsInfo: (value: boolean) => void;
+    setIsValid: (value: boolean) => void;
+    setIsWarning: (value: boolean) => void;
+  }
+) {
+  const { isInfo, isInvalid, isInvalidByRequired, isValid, isWarning } =
+    results;
+
+  if (suppressValidation) {
+    setters.setIsInvalid(false);
+    setters.setIsInfo(false);
+    setters.setIsValid(false);
+    setters.setIsWarning(false);
+    return;
+  }
+
+  setters.setIsInvalid(isInvalid || isInvalidByRequired || isInputInvalid);
+  setters.setIsInfo(isInfo);
+  setters.setIsValid(isValid);
+  setters.setIsWarning(isWarning);
 }

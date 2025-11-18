@@ -26,7 +26,6 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
-  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -45,9 +44,12 @@ import {
   onBlur,
   onKeyDown,
   getNativeInput,
-  renderPickerFieldWrapper,
-  createPickerEventConfig,
-  createPickerInputMethods,
+  renderFieldWrapper,
+  createEventConfig,
+  createInputMethods,
+  createDropdownMethods,
+  createKeyDownHandler,
+  handleValidationLifecycle,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
@@ -287,11 +289,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleInputKeyDown(event: KeyboardEvent) {
-    handleSubmitOnEnterKeydown(
-      event,
+    return createKeyDownHandler(
       this.suppressSubmitOnEnter,
-      this.formInternals.form
-    );
+      this.formInternals
+    )(event);
   }
 
   updateFormInternalValue(value: string): void {
@@ -426,7 +427,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   async openDropdown() {
     // keep picker in sync with input
     this.time = this.value;
-
     return openDropdownUtil(this.dropdownElementRef);
   }
 
@@ -435,15 +435,15 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   private checkClassList() {
-    this.isInvalid = this.hostElement.classList.contains('ix-invalid');
+    this.isInvalid = this.dropdownMethods.checkClassList();
   }
 
   private getEventConfig() {
-    return createPickerEventConfig({
+    return createEventConfig({
       isResetting: this.isResetting,
       show: this.show,
       setTouched: (touched: boolean) => (this.touched = touched),
-      onInput: (value: string) => this.onInput(value),
+      onInput: (value: string) => void this.onInput(value),
       openDropdown: () => this.openDropdown(),
       ixFocus: this.ixFocus,
       ixBlur: this.ixBlur,
@@ -503,17 +503,18 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   @HookValidationLifecycle()
-  hookValidationLifecycle({
-    isInfo,
-    isInvalid,
-    isInvalidByRequired,
-    isValid,
-    isWarning,
-  }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
-    this.isInfo = isInfo;
-    this.isValid = isValid;
-    this.isWarning = isWarning;
+  hookValidationLifecycle(results: ValidationResults) {
+    handleValidationLifecycle(
+      this.suppressValidation,
+      this.isInputInvalid,
+      results,
+      {
+        setIsInvalid: (value) => (this.isInvalid = value),
+        setIsInfo: (value) => (this.isInfo = value),
+        setIsValid: (value) => (this.isValid = value),
+        setIsWarning: (value) => (this.isWarning = value),
+      }
+    );
   }
 
   @Watch('isInputInvalid')
@@ -542,7 +543,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   private get commonMethods() {
-    return createPickerInputMethods({
+    return createInputMethods({
       inputElementRef: this.inputElementRef,
       touched: this.touched,
       dirty: this.dirty,
@@ -551,6 +552,26 @@ export class TimeInput implements IxInputFieldComponent<string> {
       required: this.required,
       value: this.value,
       isInputInvalid: this.isInputInvalid,
+    });
+  }
+
+  private get dropdownMethods() {
+    return createDropdownMethods({
+      dropdownElementRef: this.dropdownElementRef,
+      hostElement: this.hostElement,
+      show: this.show,
+      isResetting: this.isResetting,
+      touched: this.touched,
+      openDropdown: async () => {
+        this.time = this.value;
+        return openDropdownUtil(this.dropdownElementRef);
+      },
+      ixFocus: this.ixFocus,
+      ixBlur: this.ixBlur,
+      syncValidationClasses: () => this.syncValidationClasses(),
+      onInput: (value: string) => this.onInput(value),
+      handleInputKeyDown: (event: KeyboardEvent) =>
+        this.handleInputKeyDown(event),
     });
   }
 
@@ -619,7 +640,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
       ? this.i18nErrorTimeUnparsable
       : this.invalidText;
 
-    return renderPickerFieldWrapper({
+    return renderFieldWrapper({
       host: this.hostElement,
       disabled: this.disabled,
       readonly: this.readonly,
