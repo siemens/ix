@@ -36,10 +36,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputBlur,
-  syncValidationClasses,
-  resetInputComponent,
-  isTouchedUtil,
-  isDirtyUtil,
+  resetInputValidation,
 } from './input.util';
 
 let numberInputIds = 0;
@@ -75,15 +72,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
    * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
    */
   @Prop({ reflect: true, mutable: true }) value?: number = 0;
-
-  @Watch('value') watchValuePropHandler(newValue: number) {
-    if (this.isResetting) {
-      return;
-    }
-    this.dirty = newValue !== this.initialValue;
-    this.updateFormInternalValue(newValue);
-    this.valueChange.emit(newValue);
-  }
 
   /**
    * Indicates if the field is required. When required, empty values (undefined) are not accepted.
@@ -211,9 +199,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
   private touched = false;
-  private dirty = false;
-  private isResetting = false;
-  private initialValue: number = 0;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -228,7 +213,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   componentWillLoad() {
-    this.initialValue = this.value ?? 0;
     this.updateFormInternalValue(this.value!);
   }
 
@@ -276,7 +260,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   private handleValueChangeEvent(value: number | undefined) {
-    this.valueChange.emit(this.allowEmptyValueChange ? value : (value ?? 0));
+    this.valueChange.emit(this.allowEmptyValueChange ? value : value ?? 0);
   }
 
   updateFormInternalValue(value: number) {
@@ -343,9 +327,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
     }
 
     if (e.inputType === 'insertFromPaste') {
-      const dt =
-        e.dataTransfer ||
-        (e as InputEvent & { clipboardData?: DataTransfer }).clipboardData;
+      const dt = e.dataTransfer || (e as any).clipboardData;
       const text = dt?.getData?.('text') ?? '';
       if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
         e.preventDefault();
@@ -370,7 +352,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
     const stepValue =
       typeof this.step === 'string'
         ? Number.parseFloat(this.step)
-        : (this.step ?? 1);
+        : this.step ?? 1;
 
     let newValue: number;
 
@@ -425,15 +407,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   /**
-   * Returns the validity state of the input field.
-   */
-  @Method()
-  async getValidityState(): Promise<ValidityState> {
-    const input = await this.inputRef.waitForCurrent();
-    return Promise.resolve(input.validity);
-  }
-
-  /**
    * Focuses the input field
    */
   @Method()
@@ -442,45 +415,21 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   /**
-   * Resets the number input to its original untouched state and initial value.
-   * This clears the value, removes touched and dirty states, and recomputes validity.
-   */
-  @Method()
-  async reset(): Promise<void> {
-    await resetInputComponent(
-      this,
-      this.initialValue,
-      0,
-      this.inputRef.current
-    );
-  }
-
-  /**
    * Returns true if the input field has been touched
    * @internal
    */
   @Method()
   isTouched(): Promise<boolean> {
-    return isTouchedUtil(this.touched);
+    return Promise.resolve(this.touched);
   }
 
   /**
-   * Returns whether the number input has been modified from its initial value.
-   * @internal
+   * Resets the input field validation state by removing the touched state
+   * and clearing validation states while preserving the current value.
    */
   @Method()
-  isDirty(): Promise<boolean> {
-    return isDirtyUtil(this.dirty);
-  }
-
-  /**
-   * Synchronizes CSS validation classes with the component's validation state.
-   * This method ensures proper visual styling based on validation status, particularly for Vue.
-   * @internal
-   */
-  @Method()
-  async syncValidationClasses(): Promise<void> {
-    return syncValidationClasses(this);
+  async reset(): Promise<void> {
+    return resetInputValidation(this);
   }
 
   render() {

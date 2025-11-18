@@ -28,13 +28,9 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import {
-  checkInternalValidity,
   mapValidationResult,
   onInputBlur,
-  syncValidationClasses,
-  resetInputComponent,
-  isTouchedUtil,
-  isDirtyUtil,
+  resetInputValidation,
 } from './input.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
@@ -65,15 +61,6 @@ export class Textarea implements IxInputFieldComponent<string> {
    * The value of the textarea field.
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
-
-  @Watch('value') watchValuePropHandler(newValue: string) {
-    if (this.isResetting) {
-      return;
-    }
-    this.dirty = newValue !== this.initialValue;
-    this.updateFormInternalValue(newValue);
-    this.valueChange.emit(newValue);
-  }
 
   /**
    * Determines if the textarea field is required.
@@ -186,9 +173,6 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.initResizeObserver();
   });
   private touched = false;
-  private dirty = false;
-  private isResetting = false;
-  private initialValue: string = '';
   private resizeObserver?: ResizeObserver;
   private isManuallyResized = false;
   private manualHeight?: string;
@@ -215,7 +199,6 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad() {
-    this.initialValue = this.value;
     this.updateFormInternalValue(this.value);
   }
 
@@ -294,49 +277,16 @@ export class Textarea implements IxInputFieldComponent<string> {
    * */
   @Method()
   isTouched(): Promise<boolean> {
-    return isTouchedUtil(this.touched);
+    return Promise.resolve(this.touched);
   }
 
   /**
-   * Returns whether the textarea has been modified from its initial value.
-   * @internal
-   */
-  @Method()
-  isDirty(): Promise<boolean> {
-    return isDirtyUtil(this.dirty);
-  }
-
-  /**
-   * Returns the validity state of the textarea field.
-   */
-  @Method()
-  async getValidityState(): Promise<ValidityState> {
-    const textarea = await this.textAreaRef.waitForCurrent();
-    return Promise.resolve(textarea.validity);
-  }
-
-  /**
-   * Synchronizes CSS validation classes with the component's validation state.
-   * This method ensures proper visual styling based on validation status, particularly for Vue.
-   * @internal
-   */
-  @Method()
-  async syncValidationClasses(): Promise<void> {
-    return syncValidationClasses(this);
-  }
-
-  /**
-   * Resets the textarea to its original untouched state and initial value.
-   * This clears the value, removes touched and dirty states, and recomputes validity.
+   * Resets the input field validation state by removing the touched state
+   * and clearing validation states while preserving the current value.
    */
   @Method()
   async reset(): Promise<void> {
-    await resetInputComponent(
-      this,
-      this.initialValue,
-      '',
-      this.textAreaRef.current
-    );
+    return resetInputValidation(this);
   }
 
   render() {
@@ -391,19 +341,13 @@ export class Textarea implements IxInputFieldComponent<string> {
               value={this.value}
               placeholder={this.placeholder}
               textAreaRef={this.textAreaRef}
-              valueChange={() => {
-                if (this.textAreaRef.current) {
-                  setTimeout(() => {
-                    checkInternalValidity(this, this.textAreaRef.current!);
-                  }, 0);
-                }
-              }}
+              valueChange={(value) => this.valueChange.emit(value)}
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
               onBlur={() => {
-                this.touched = true;
                 onInputBlur(this, this.textAreaRef.current);
+                this.touched = true;
               }}
             ></TextareaElement>
           </div>
