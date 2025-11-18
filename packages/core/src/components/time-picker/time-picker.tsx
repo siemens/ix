@@ -209,7 +209,7 @@ export class TimePicker {
 
   /**
    * Get default time value
-   * @returns undefined for empty state (no selection)
+   * @returns DateTime.now() for empty state (no selection)
    */
   private getDefaultTime(): DateTime | undefined {
     return DateTime.now();
@@ -934,7 +934,7 @@ export class TimePicker {
                 {index !== this.timePickerDescriptors.length - 1 && (
                   <div
                     class={{
-                      'column-seperator': true,
+                      'column-separator': true,
                       hidden: descriptor.hidden,
                     }}
                   >
@@ -946,7 +946,7 @@ export class TimePicker {
 
             {this.timeRef && (
               <div class="flex">
-                <div class="column-seperator"></div>
+                <div class="column-separator"></div>
                 <div class="columns">
                   <div class="column-header" title="AM/PM" />
                   <div class="element-list" tabIndex={-1}>

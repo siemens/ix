@@ -64,7 +64,7 @@
         }
       }
 
-      .column-seperator {
+      .column-separator {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -77,9 +77,9 @@
     .element-list {
       list-style-type: none;
       overflow: auto;
-      padding: 1px;
-      margin: -1px;
-      max-height: calc(2.5rem * 6 + 2px * 6);
+      padding: 0.0625rem;
+      margin: -0.0625rem;
+      max-height: calc(2.5rem * 6 + 0.125rem * 6);
 
       button {
         all: unset;
@@ -89,7 +89,7 @@
         box-sizing: border-box;
         width: 2.5rem;
         height: 2.5rem;
-        margin-bottom: 2px;
+        margin-bottom: 0.125rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -117,14 +117,14 @@
         }
 
         &:focus-visible {
-          border: 1px solid black;
+          border: 0.0625rem solid var(--theme-color-inv-contrast-text);
         }
       }
 
       .element-list-padding {
         width: 2.5rem;
-        height: calc(2.5rem * 5 + 5 * 2px);
-        min-height: calc(2.5rem * 5 + 5 * 2px);
+        height: calc(2.5rem * 5 + 5 * 0.125rem);
+        min-height: calc(2.5rem * 5 + 5 * 0.125rem);
       }
     }
 

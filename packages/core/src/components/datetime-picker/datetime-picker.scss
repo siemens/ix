@@ -46,7 +46,7 @@
 
   .row-separator,
   .col-separator {
-    border-bottom: 1px solid var(--theme-datepicker-separator--background);
+    border-bottom: 0.0625rem solid var(--theme-datepicker-separator--background);
   }
 
   .col-separator {
@@ -75,7 +75,8 @@
     }
 
     .col-separator {
-      border-right: 1px solid var(--theme-datepicker-separator--background);
+      border-right: 0.0625rem solid
+        var(--theme-datepicker-separator--background);
       border-bottom: none;
     }
   }
