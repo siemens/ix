@@ -3369,6 +3369,10 @@ export namespace Components {
           * Get the native textarea element.
          */
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * Returns the validity state of the textarea field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the textarea field.

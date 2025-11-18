@@ -2526,7 +2526,7 @@ export declare interface IxTabs extends Components.IxTabs {
 
 @ProxyCmp({
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput', 'reset']
+  methods: ['getNativeInputElement', 'getValidityState', 'focusInput', 'reset']
 })
 @Component({
   selector: 'ix-textarea',
