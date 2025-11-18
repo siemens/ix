@@ -31,7 +31,6 @@ a[href] {
 
   @include hover.visited {
     color: var(--theme-color-primary);
-    text-decoration: underline;
   }
 
   @include hover.focus-visible {
