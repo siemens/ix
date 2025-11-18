@@ -125,3 +125,8 @@ $focusBorder: 0.0625rem;
 :host(:focus-visible) {
   outline: none !important;
 }
+
+:host(.outline-visible) {
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline-offset: -0.0625rem;
+}

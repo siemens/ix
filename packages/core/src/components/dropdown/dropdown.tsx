@@ -294,12 +294,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           return;
         }
 
-        this.experimentalRequestFocus.emit({
-          keyEvent: event,
-        });
-
         if (this.disableFocusHandling) {
-          return;
+          break;
         }
 
         requestAnimationFrameNoNgZone(() => {
@@ -313,12 +309,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           return;
         }
 
-        this.experimentalRequestFocus.emit({
-          keyEvent: event,
-        });
-
         if (this.disableFocusHandling) {
-          return;
+          break;
         }
 
         requestAnimationFrameNoNgZone(() => {
@@ -327,6 +319,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         break;
       default:
     }
+
+    this.experimentalRequestFocus.emit({
+      keyEvent: event,
+    });
   }
 
   private addEventListenersFor() {

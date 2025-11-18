@@ -41,5 +41,5 @@ $dropdown-offset: 3rem;
 }
 
 :host(:not(.show)) {
-  display: none;
+  display: none !important;
 }

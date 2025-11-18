@@ -10,7 +10,6 @@
 :host {
   display: block;
   position: relative;
-  border: 0.0625rem solid transparent;
 
   > ix-dropdown-item {
     width: 100%;
@@ -27,7 +26,8 @@
 }
 
 :host(.outline-visible) {
-  border: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline-offset: -0.0625rem;
 }
 
 :host(.display-none) {

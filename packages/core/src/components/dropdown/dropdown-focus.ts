@@ -6,6 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+/**
+ * Originally based on Ionic's focus-visible utility.
+ * Fork of https://github.com/ionic-team/ionic-framework/blob/c37e2a5d9e765cf48d768061c9d453a13b187e13/core/src/utils/focus-trap.ts
+ */
 
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
@@ -68,6 +72,7 @@ export const configureKeyboardInteraction = (
   options: {
     getActiveElement?: () => HTMLElement | null;
     setItemActive?: (item: HTMLElement) => void;
+    getEventListenerTarget?: () => HTMLElement;
   } = {}
 ) => {
   const getActiveElement =
@@ -77,13 +82,12 @@ export const configureKeyboardInteraction = (
   const setItemActive =
     options.setItemActive ?? ((item: HTMLElement) => focusItem(item));
 
+  const getEventListenerTarget =
+    options.getEventListenerTarget ?? (() => dropdownElement);
+
   const callback = async (ev: KeyboardEvent) => {
     const activeElement = getActiveElement();
     let items: HTMLElement[] = [];
-
-    // if (!matchesDropdownItems(ev.target as HTMLElement)) {
-    //   return;
-    // }
 
     try {
       const query = VALID_FOCUS_ITEMS.map(
@@ -183,6 +187,7 @@ export const configureKeyboardInteraction = (
     }
   };
 
-  dropdownElement.addEventListener('keydown', callback);
-  return () => dropdownElement.removeEventListener('keydown', callback);
+  getEventListenerTarget().addEventListener('keydown', callback);
+  return () =>
+    getEventListenerTarget().removeEventListener('keydown', callback);
 };

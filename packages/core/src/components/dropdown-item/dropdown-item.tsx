@@ -83,6 +83,9 @@ export class DropdownItem implements DropdownItemWrapper {
   @Prop() suppressChecked = false;
 
   /** @internal */
+  @Prop({ reflect: true }) hasVisualFocus = false;
+
+  /** @internal */
   @Event() itemClick!: EventEmitter<HTMLIxDropdownItemElement>;
 
   /** @internal */
@@ -114,6 +117,7 @@ export class DropdownItem implements DropdownItemWrapper {
           disabled: this.disabled,
           submenu: this.isSubMenu,
           'ix-focusable': !this.suppressFocus,
+          'outline-visible': this.hasVisualFocus,
         }}
         role="listitem"
         tabIndex={-1}

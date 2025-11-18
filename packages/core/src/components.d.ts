@@ -1421,6 +1421,10 @@ export namespace Components {
         "emitItemClick": () => Promise<void>;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
+          * @default false
+         */
+        "hasVisualFocus": boolean;
+        /**
           * Display hover state
           * @default false
          */
@@ -7294,6 +7298,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "hasVisualFocus"?: boolean;
         /**
           * Display hover state
           * @default false

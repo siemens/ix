@@ -40,7 +40,6 @@ import {
   addFocusVisibleListener,
   FocusVisibleUtility,
 } from '../utils/focus-visible-listener';
-import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 let selectId = 0;
 
@@ -236,7 +235,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
 
   private inputElement?: HTMLInputElement;
-  private customItemsContainerElement?: HTMLDivElement;
   private keyboardNavigationCleanup?: () => void;
 
   private observeItemsMutation?: MutationObserver;
@@ -254,6 +252,16 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     );
   }
 
+  get focusableItems() {
+    return Array.from(
+      this.hostElement.querySelectorAll<
+        HTMLIxSelectItemElement | HTMLIxDropdownItemElement
+      >(
+        'ix-select-item:not([disabled]):not([hidden]), ix-dropdown-item:not([disabled]):not([hidden])'
+      )
+    );
+  }
+
   get items() {
     return [...this.nonShadowItems, ...this.shadowItems];
   }
@@ -262,8 +270,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return this.items.filter((item) => item.selected);
   }
 
-  get addItemButton() {
-    return this.hostElement.shadowRoot!.querySelector('.add-item');
+  get addItemElement() {
+    return this.hostElement.querySelector<HTMLIxDropdownItemElement>(
+      'ix-dropdown-item.add-item'
+    );
   }
 
   get isSingleMode() {
@@ -377,7 +387,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     newItem.value = value;
     newItem.label = value;
 
-    this.customItemsContainerElement?.appendChild(newItem);
+    this.hostElement.appendChild(newItem);
 
     this.clearInput();
     this.itemClick(value);
@@ -448,11 +458,45 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return false;
   }
 
+  private ensureAddItemElementIsLastElement() {
+    const addItemElement = this.addItemElement;
+
+    const lastChild = this.focusableItems[this.focusableItems.length - 1];
+    if (addItemElement && lastChild !== addItemElement) {
+      this.hostElement.appendChild(addItemElement);
+    }
+  }
+
+  private createAddItemElement() {
+    const onAddItemButtonClick = () => {
+      this.emitAddItem(this.inputFilterText);
+    };
+    function createElement() {
+      const addItemElement = document.createElement('ix-dropdown-item');
+      addItemElement.hidden = true;
+      addItemElement.setAttribute('data-testid', 'add-item');
+      addItemElement.icon = iconPlus;
+      addItemElement.classList.add('add-item');
+      addItemElement.addEventListener('click', onAddItemButtonClick);
+      addItemElement.style.order = Number.MAX_SAFE_INTEGER.toString();
+      return addItemElement;
+    }
+
+    const isRendered = this.hostElement.querySelector(
+      'ix-dropdown-item[slot="footer"].add-item'
+    );
+    if (!isRendered) {
+      this.hostElement.appendChild(createElement());
+    }
+  }
+
   componentDidLoad() {
     this.inputElement?.addEventListener('input', () => {
       this.dropdownShow = true;
       this.inputChange.emit(this.inputElement?.value);
     });
+
+    this.createAddItemElement();
   }
 
   componentWillLoad() {
@@ -473,7 +517,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private removeVisualFocusFromItems() {
-    this.items.forEach((item) => {
+    this.focusableItems.forEach((item) => {
       item.hasVisualFocus = false;
     });
 
@@ -481,12 +525,14 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private hasActiveVisualFocusItem() {
-    return !!this.hostElement.querySelector('ix-select-item[has-visual-focus]');
+    return !!this.hostElement.querySelector(
+      'ix-select-item[has-visual-focus], ix-dropdown-item[has-visual-focus]'
+    );
   }
 
   private getActiveVisualFocusedItem() {
     const activeElement = this.hostElement.querySelector(
-      'ix-select-item[has-visual-focus]'
+      'ix-select-item[has-visual-focus], ix-dropdown-item[has-visual-focus]'
     );
 
     if (activeElement) {
@@ -507,20 +553,18 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
 
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
-        this.hostElement,
+        this.hostElement.shadowRoot!.querySelector('ix-dropdown')!,
         {
           getActiveElement: () => this.getActiveVisualFocusedItem(),
           setItemActive: (item: HTMLElement) => {
             const inputElement = this.inputRef.current;
 
-            for (const existingItem of this.items) {
-              inputElement?.removeAttribute('aria-activedescendant');
-              existingItem.hasVisualFocus = false;
-            }
+            this.removeVisualFocusFromItems();
 
             (item as HTMLIxSelectItemElement).hasVisualFocus = true;
             inputElement?.setAttribute('aria-activedescendant', item.id!);
           },
+          getEventListenerTarget: () => this.hostElement,
         }
       );
     } else {
@@ -550,6 +594,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
 
     this.isDropdownEmpty = this.isEveryDropdownItemHidden;
+
+    this.ensureAddItemElementIsLastElement();
   }
 
   private removeHiddenFromItems() {
@@ -652,8 +698,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   onKeyDown(event: KeyboardEvent): void {
-    const hasItems = this.items.length !== 0;
-
     if (event.key === 'Tab') {
       this.dropdownShow = false;
       return;
@@ -664,23 +708,18 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
 
     switch (event.key) {
-      // case 'ArrowUp':
-      //   if (hasItems) {
-      //     this.items[this.items.length - 1].hasVisualFocus = true;
-      //   }
-      //   break;
-      // case 'ArrowDown':
-      //   if (hasItems) {
-      //     this.items[0].hasVisualFocus = true;
-      //   }
-      //   break;
       case 'Enter':
       case ' ':
         if (this.hasActiveVisualFocusItem()) {
           const item =
             this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
-          this.itemClick(item.value);
-          this.setItemFilter();
+
+          if (item.classList.contains('add-item')) {
+            this.emitAddItem(this.inputFilterText);
+          } else {
+            this.itemClick(item.value);
+            this.setItemFilter();
+          }
         }
         break;
     }
@@ -739,6 +778,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   render() {
+    if (this.addItemElement) {
+      this.addItemElement.hidden = !this.isAddItemVisible();
+      this.addItemElement.label = this.inputFilterText;
+    }
+
     return (
       <Host
         aria-disabled={a11yBoolean(this.disabled)}
@@ -770,7 +814,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
             }}
             ref={(ref) => {
               this.dropdownAnchorRef(ref);
-              if (!this.editable) this.dropdownWrapperRef(ref);
+              this.dropdownWrapperRef(ref);
             }}
           >
             <div class="input-container">
@@ -836,9 +880,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                           : iconChevronDownSmall
                       }
                       variant="subtle-tertiary"
-                      ref={(ref) => {
-                        if (this.editable) this.dropdownWrapperRef(ref);
-                      }}
                       aria-label={this.ariaLabelChevronDownIconButton}
                     ></ix-icon-button>
                   )}
@@ -849,7 +890,26 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         </ix-field-wrapper>
         <ix-dropdown
           onExperimentalRequestFocus={({ detail }) => {
-            console.log(detail.keyEvent.key);
+            const hasItems = this.items.length !== 0;
+
+            if (!hasItems) {
+              return;
+            }
+
+            if (
+              detail.keyEvent.key === 'ArrowDown' &&
+              detail.keyEvent.altKey === false
+            ) {
+              this.removeVisualFocusFromItems();
+              this.focusableItems[0].hasVisualFocus = true;
+            }
+
+            if (detail.keyEvent.key === 'ArrowUp') {
+              this.removeVisualFocusFromItems();
+              this.focusableItems[
+                this.focusableItems.length - 1
+              ].hasVisualFocus = true;
+            }
           }}
           ref={this.dropdownRef}
           show={this.dropdownShow}
@@ -899,26 +959,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               this.updateSelection();
             }}
           ></slot>
-          <div ref={(ref) => (this.customItemsContainerElement = ref!)}></div>
-          {this.isAddItemVisible() ? (
-            <ix-dropdown-item
-              data-testid="add-item"
-              icon={iconPlus}
-              class={{
-                'add-item': true,
-              }}
-              label={this.inputFilterText}
-              onItemClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.emitAddItem(this.inputFilterText);
-              }}
-            ></ix-dropdown-item>
-          ) : null}
-          {this.isDropdownEmpty && !this.editable ? (
+          {this.isDropdownEmpty && !this.editable && (
             <div class="select-list-header">{this.i18nNoMatches}</div>
-          ) : (
-            ''
           )}
         </ix-dropdown>
       </Host>
