@@ -77,3 +77,10 @@
 :host(.selected:active) {
   background-color: var(--theme-tree-item--background--selected-active);
 }
+
+:host(.disabled),
+:host(:disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
