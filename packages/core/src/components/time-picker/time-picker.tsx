@@ -277,13 +277,13 @@ export class TimePicker {
     const formattedTimeOld = this.formattedTime;
     this.setTimeRef();
     this.formattedTime = this.getFormattedTime();
+
     this.updateScrollPositions(formattedTimeOld);
   }
 
   @State() private timeRef?: 'AM' | 'PM' | undefined;
   @State() private formattedTime: TimeOutputFormat = FORMATTED_TIME_EMPTY;
   @State() private timePickerDescriptors: TimePickerDescriptor[] = [];
-
   @State() private isUnitFocused: boolean = false;
   @State() private focusedUnit: TimePickerDescriptorUnit = 'hour';
   @State() private focusedValue: number = 0;
