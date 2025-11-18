@@ -72,8 +72,8 @@
   color: var(--theme-chip-primary-outline--color--active);
 }
 
-@include hover.host-focus-visible {
-  outline: var(--theme-color-focus-bdr) solid
-    var(--theme-focus--border-thickness);
-  outline-offset: -0.125rem;
-}
+// @include hover.host-focus-visible {
+//   outline: var(--theme-color-focus-bdr) solid
+//     var(--theme-focus--border-thickness);
+//   outline-offset: -0.125rem;
+// }

@@ -150,6 +150,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
+  /**
+   * @internal
+   */
+  @Event() experimentalRequestFocus!: EventEmitter<{
+    keyEvent: KeyboardEvent;
+  }>;
+
   private autoUpdateCleanup?: () => void;
 
   private triggerElement?: Element;
@@ -273,8 +280,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         this.toggleController();
       }
 
-      event.stopImmediatePropagation();
-      event.preventDefault();
+      if (this.disableFocusHandling) {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+      }
 
       return true;
     };
@@ -284,6 +293,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         if (openDropdownIfNeeded() === false) {
           return;
         }
+
+        this.experimentalRequestFocus.emit({
+          keyEvent: event,
+        });
 
         if (this.disableFocusHandling) {
           return;
@@ -300,6 +313,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           return;
         }
 
+        this.experimentalRequestFocus.emit({
+          keyEvent: event,
+        });
+
         if (this.disableFocusHandling) {
           return;
         }
@@ -309,7 +326,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         });
         break;
       default:
-        return;
     }
   }
 

@@ -36,6 +36,13 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
+import {
+  addFocusVisibleListener,
+  FocusVisibleUtility,
+} from '../utils/focus-visible-listener';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+
+let selectId = 0;
 
 /**
  * @form-ready
@@ -222,6 +229,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() isInfo = false;
   @State() isWarning = false;
 
+  private readonly hostId = `ix-select-${selectId++}`;
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
   private readonly dropdownAnchorRef = makeRef<HTMLElement>();
   private readonly inputRef = makeRef<HTMLInputElement>();
@@ -230,6 +238,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private inputElement?: HTMLInputElement;
   private customItemsContainerElement?: HTMLDivElement;
   private keyboardNavigationCleanup?: () => void;
+
+  private observeItemsMutation?: MutationObserver;
+  private focusVisibleUtility?: FocusVisibleUtility;
 
   private touched = false;
 
@@ -267,6 +278,26 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return this.items.every((item) => item.hidden === true);
   }
 
+  connectedCallback(): void {
+    this.observeItemsMutation = new MutationObserver(() => {
+      this.updateItemIds();
+    });
+
+    this.observeItemsMutation.observe(this.hostElement, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+    });
+    this.updateItemIds();
+
+    this.focusVisibleUtility = addFocusVisibleListener(this.hostElement);
+  }
+
+  disconnectedCallback(): void {
+    this.observeItemsMutation?.disconnect();
+    this.focusVisibleUtility?.destroy();
+  }
+
   @Watch('value')
   watchValue(value: string | string[]) {
     this.value = value;
@@ -291,6 +322,20 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Method()
   async hasValidValue(): Promise<boolean> {
     return this.required && !!this.hasValue();
+  }
+
+  /**
+   * Give every item an id if it doesn't have one yet
+   * This is needed to handle aria-activedescendant properly
+   */
+  private updateItemIds() {
+    for (const item of this.items) {
+      if (!item.id) {
+        item.id = `ix-select-item-for-${this.hostId}-${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
+      }
+    }
   }
 
   private hasValue() {
@@ -431,6 +476,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.items.forEach((item) => {
       item.hasVisualFocus = false;
     });
+
+    this.inputRef.current?.removeAttribute('aria-activedescendant');
+  }
+
+  private hasActiveVisualFocusItem() {
+    return !!this.hostElement.querySelector('ix-select-item[has-visual-focus]');
   }
 
   private getActiveVisualFocusedItem() {
@@ -460,10 +511,15 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         {
           getActiveElement: () => this.getActiveVisualFocusedItem(),
           setItemActive: (item: HTMLElement) => {
+            const inputElement = this.inputRef.current;
+
             for (const existingItem of this.items) {
+              inputElement?.removeAttribute('aria-activedescendant');
               existingItem.hasVisualFocus = false;
             }
+
             (item as HTMLIxSelectItemElement).hasVisualFocus = true;
+            inputElement?.setAttribute('aria-activedescendant', item.id!);
           },
         }
       );
@@ -588,11 +644,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       <ix-filter-chip
         disabled={this.disabled || this.readonly}
         key={item.value}
-        onCloseClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          this.itemClick(item.value);
-        }}
+        onCloseClick={() => this.itemClick(item.value)}
       >
         {item.label}
       </ix-filter-chip>
@@ -600,13 +652,31 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   onKeyDown(event: KeyboardEvent): void {
+    const hasItems = this.items.length !== 0;
+
+    if (event.key === 'Tab') {
+      this.dropdownShow = false;
+      return;
+    }
+
+    if (!this.dropdownShow) {
+      return;
+    }
+
     switch (event.key) {
-      case 'Tab':
-        this.dropdownShow = false;
-        break;
+      // case 'ArrowUp':
+      //   if (hasItems) {
+      //     this.items[this.items.length - 1].hasVisualFocus = true;
+      //   }
+      //   break;
+      // case 'ArrowDown':
+      //   if (hasItems) {
+      //     this.items[0].hasVisualFocus = true;
+      //   }
+      //   break;
       case 'Enter':
       case ' ':
-        if (this.dropdownShow) {
+        if (this.hasActiveVisualFocusItem()) {
           const item =
             this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
           this.itemClick(item.value);
@@ -675,6 +745,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         class={{
           disabled: this.disabled,
         }}
+        onFocusout={() => this.focusVisibleUtility?.setFocus([])}
       >
         <ix-field-wrapper
           required={this.required}
@@ -711,8 +782,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     : this.selectedItems?.map((item) => this.renderChip(item)))}
                 <div class="trigger">
                   <input
+                    id={`${this.hostId}-input`}
                     role="combobox"
-                    aria-controls="cb1-listbox"
+                    aria-controls={`${this.hostId}-listbox`}
                     autocomplete="off"
                     data-testid="input"
                     disabled={this.disabled}
@@ -776,6 +848,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           </div>
         </ix-field-wrapper>
         <ix-dropdown
+          onExperimentalRequestFocus={({ detail }) => {
+            console.log(detail.keyEvent.key);
+          }}
           ref={this.dropdownRef}
           show={this.dropdownShow}
           closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
@@ -806,7 +881,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
             return styleOverwrites;
           }}
           role="listbox"
-          id="cb1-listbox"
+          id={`${this.hostId}-listbox`}
           disableFocusHandling
         >
           <div

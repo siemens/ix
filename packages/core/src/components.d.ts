@@ -4736,6 +4736,9 @@ declare global {
     interface HTMLIxDropdownElementEventMap {
         "showChange": boolean;
         "showChanged": boolean;
+        "experimentalRequestFocus": {
+    keyEvent: KeyboardEvent;
+  };
     }
     interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDropdownElementEventMap>(type: K, listener: (this: HTMLIxDropdownElement, ev: IxDropdownCustomEvent<HTMLIxDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7187,6 +7190,9 @@ declare namespace LocalJSX {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        "onExperimentalRequestFocus"?: (event: IxDropdownCustomEvent<{
+    keyEvent: KeyboardEvent;
+  }>) => void;
         /**
           * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
          */

@@ -78,7 +78,6 @@ export const configureKeyboardInteraction = (
     options.setItemActive ?? ((item: HTMLElement) => focusItem(item));
 
   const callback = async (ev: KeyboardEvent) => {
-    console.log('callback ev:', ev);
     const activeElement = getActiveElement();
     let items: HTMLElement[] = [];
 
