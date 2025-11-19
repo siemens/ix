@@ -151,6 +151,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Event() showChanged!: EventEmitter<boolean>;
 
   /**
+   * Will be fired only after dropdown changed visibility to "true"
+   *
    * @internal
    */
   @Event() experimentalRequestFocus!: EventEmitter<{

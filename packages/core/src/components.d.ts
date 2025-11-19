@@ -7194,6 +7194,9 @@ declare namespace LocalJSX {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        /**
+          * Will be fired only after dropdown changed visibility to "true"
+         */
         "onExperimentalRequestFocus"?: (event: IxDropdownCustomEvent<{
     keyEvent: KeyboardEvent;
   }>) => void;
