@@ -2998,11 +2998,17 @@ export namespace Components {
          */
         "allowClear": boolean;
         /**
+          * ARIA label for the add item
+          * @since TODO: Define
+          * @default 'Add item'
+         */
+        "ariaLabelAddItem": string;
+        /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @default 'Open select dropdown'
          */
-        "ariaLabelChevronDownIconButton"?: string;
+        "ariaLabelChevronDownIconButton": string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
@@ -8997,6 +9003,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "allowClear"?: boolean;
+        /**
+          * ARIA label for the add item
+          * @since TODO: Define
+          * @default 'Add item'
+         */
+        "ariaLabelAddItem"?: string;
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0

@@ -39,7 +39,8 @@ export const getNextFocusableDropdownItem = (
   currentItem: HTMLElement | null
 ) => {
   const currentItemIndex = getIndexOfDropdownItem(items, currentItem);
-  return items[currentItemIndex + 1];
+  const nextIndex = currentItemIndex + 1;
+  return items[nextIndex >= items.length ? 0 : nextIndex];
 };
 
 export const getPreviousFocusableItem = (
@@ -47,7 +48,8 @@ export const getPreviousFocusableItem = (
   currentItem: HTMLElement | null
 ) => {
   const currentItemIndex = getIndexOfDropdownItem(items, currentItem);
-  return items[currentItemIndex - 1];
+  const prevIndex = currentItemIndex - 1;
+  return items[prevIndex < 0 ? items.length - 1 : prevIndex];
 };
 
 const focusItem = (item: HTMLElement) => {

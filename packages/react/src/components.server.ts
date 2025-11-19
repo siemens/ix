@@ -1585,6 +1585,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         label: 'label',
         ariaLabelChevronDownIconButton: 'aria-label-chevron-down-icon-button',
         ariaLabelClearIconButton: 'aria-label-clear-icon-button',
+        ariaLabelAddItem: 'aria-label-add-item',
         warningText: 'warning-text',
         infoText: 'info-text',
         invalidText: 'invalid-text',

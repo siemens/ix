@@ -79,7 +79,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronDownIconButton?: string = 'Open select dropdown';
+  @Prop() ariaLabelChevronDownIconButton: string = 'Open select dropdown';
 
   /**
    * ARIA label for the clear icon button
@@ -88,6 +88,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * @since 3.2.0
    */
   @Prop() ariaLabelClearIconButton?: string;
+
+  /**
+   * ARIA label for the add item
+   *
+   * @since TODO: Define
+   */
+  @Prop() ariaLabelAddItem: string = 'Add item';
 
   /**
    * Warning text for the select component
@@ -471,7 +478,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     const onAddItemButtonClick = () => {
       this.emitAddItem(this.inputFilterText);
     };
-    function createElement() {
+
+    const createElement = () => {
       const addItemElement = document.createElement('ix-dropdown-item');
       addItemElement.hidden = true;
       addItemElement.setAttribute('data-testid', 'add-item');
@@ -479,8 +487,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       addItemElement.classList.add('add-item');
       addItemElement.addEventListener('click', onAddItemButtonClick);
       addItemElement.style.order = Number.MAX_SAFE_INTEGER.toString();
+      addItemElement.ariaLabel = this.ariaLabelAddItem ?? `Add item`;
       return addItemElement;
-    }
+    };
 
     const isRendered = this.hostElement.querySelector(
       'ix-dropdown-item[slot="footer"].add-item'
@@ -552,7 +561,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         this.inputElement?.select();
       }
 
-      this.removeHiddenAttributeFromItems();
+      if (!this.inputFilterText) {
+        this.removeHiddenAttributeFromItems();
+      }
+
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
 
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
@@ -600,6 +612,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private removeHiddenAttributeFromItems() {
+    console.trace();
     this.items.forEach((item) => {
       item.hidden = false;
     });
@@ -784,6 +797,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     if (this.addItemElement) {
       this.addItemElement.hidden = !this.isAddItemVisible();
       this.addItemElement.label = this.inputFilterText;
+      this.addItemElement.ariaLabel = this.ariaLabelAddItem;
     }
 
     return (

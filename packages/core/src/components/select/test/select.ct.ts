@@ -8,6 +8,7 @@
  */
 import { expect } from '@playwright/test';
 import { getFormValue, preventFormSubmission, test } from '@utils/test';
+import { selectController } from './select-controller';
 
 test('renders', async ({ mount, page }) => {
   await mount(`
@@ -189,26 +190,32 @@ test('filter', async ({ mount, page }) => {
   await expect(item_abc).toBeVisible();
 });
 
-test('open filtered dropdown on input', async ({ mount, page }) => {
+test('open filtered dropdown on input arrow down', async ({ mount, page }) => {
   await mount(`
-        <ix-select>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-        </ix-select>
-    `);
-  const select = page.locator('ix-select');
-  const input = select.locator('input');
-  await select.evaluate((select: HTMLIxSelectElement) => (select.value = []));
+    <ix-select>
+      <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+      <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+    </ix-select>
+  `);
+  const selectCtrl = selectController(page.locator('ix-select'));
 
-  await input.focus();
+  await selectCtrl.focusInput();
+  await page.keyboard.press('ArrowDown');
+
+  await expect(selectCtrl.getDropdownLocator()).toBeVisible();
+
   await page.keyboard.press('Escape');
-  const dropdown = select.locator('ix-dropdown');
-  await expect(dropdown).not.toBeVisible();
+  await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
 
-  await input.fill('1');
+  await selectCtrl.fillInput('1');
+  await expect(selectCtrl.getDropdownLocator()).toBeVisible();
 
-  const item1 = page.getByRole('button', { name: 'Item 1' });
-  const item2 = page.getByRole('button', { name: 'Item 2' });
+  const item1 = page
+    .locator('ix-select')
+    .getByRole('button', { name: 'Item 1' });
+  const item2 = page
+    .locator('ix-select')
+    .getByRole('button', { name: 'Item 2' });
 
   await expect(item1).toBeVisible();
   await expect(item2).not.toBeVisible();
@@ -304,57 +311,34 @@ test('type in a novel item name in editable mode, click outside and reopen the s
   page,
 }) => {
   await mount(`
-        <ix-select value="2" editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
-        </ix-select>
-        <ix-button>outside</ix-button>
-    `);
+    <ix-select value="2" editable>
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      <ix-select-item value="2" label="Item 2"></ix-select-item>
+      <ix-select-item value="3" label="Item 3"></ix-select-item>
+    </ix-select>
+    <ix-button>outside</ix-button>
+  `);
 
-  const selectElement = page.locator('ix-select');
-  const btnElement = page.locator('ix-button');
-  await expect(selectElement).toHaveClass(/hydrated/);
-  await expect(btnElement).toBeVisible();
+  const selectCtrl = selectController(page.locator('ix-select'));
+  const externalButton = page.getByText('outside');
 
-  await page.locator('[data-select-dropdown]').click();
-  await page.getByTestId('input').fill('test');
+  await selectCtrl.clickDropdownChevron();
+  await selectCtrl.fillInput('test');
 
-  const add = page.getByRole('button', { name: 'test' });
-  await expect(add).toBeVisible();
+  const addNewItem = await selectCtrl.getAddItemDropdownItemLocator();
+  await expect(addNewItem).toBeVisible();
 
-  await btnElement.click();
-  const inputValue = await page.getByTestId('input').inputValue();
+  await externalButton.click();
 
-  expect(inputValue).toBe('Item 2');
+  await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+  await expect(selectCtrl.getInputLocator()).toHaveValue('Item 2');
 
-  await page.locator('[data-select-dropdown]').click();
+  await selectCtrl.clickDropdownChevron();
 
-  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
-});
-
-test('type in a novel item name and click outside', async ({ mount, page }) => {
-  await mount(`
-        <ix-select value="2">
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
-        </ix-select>
-        <ix-button>outside</ix-button>
-    `);
-
-  const selectElement = page.locator('ix-select');
-  await expect(selectElement).toHaveClass(/hydrated/);
-
-  await page.locator('[data-select-dropdown]').click();
-  await page.getByTestId('input').fill('test');
-
-  await page.keyboard.press('Enter');
-  const inputValue = await page.getByTestId('input').inputValue();
-
-  expect(inputValue).toBe('Item 2');
+  const items = await selectCtrl.getDropdownItemsLocator();
+  await expect(items[0]).toHaveText('Item 1');
+  await expect(items[1]).toHaveText('Item 2');
+  await expect(items[2]).toHaveText('Item 3');
 });
 
 test('check if clear button visible in disabled', async ({ mount, page }) => {
@@ -384,26 +368,22 @@ test('type in a novel item name in multiple mode, click outside', async ({
   page,
 }) => {
   await mount(`
-        <ix-select value="2" mode="multiple">
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
-        </ix-select>
-        <ix-button>outside</ix-button>
+      <ix-select value="2" mode="multiple">
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+        <ix-select-item value="2" label="Item 2"></ix-select-item>
+        <ix-select-item value="3" label="Item 3"></ix-select-item>
+      </ix-select>
+      <ix-button>outside</ix-button>
     `);
 
-  const selectElement = page.locator('ix-select');
-  const btnElement = page.locator('ix-button');
-  await expect(selectElement).toHaveClass(/hydrated/);
-  await expect(btnElement).toBeVisible();
+  const selectCtrl = selectController(page.locator('ix-select'));
+  const externalButton = page.getByText('outside');
 
-  await page.locator('[data-select-dropdown]').click();
-  await page.getByTestId('input').fill('test');
+  await selectCtrl.fillInput('test');
 
-  await btnElement.click();
-  const inputValue = await page.getByTestId('input').inputValue();
-
-  expect(inputValue).toBe('');
+  await externalButton.click();
+  await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+  await expect(selectCtrl.getInputLocator()).toHaveValue('');
 });
 
 test('pass object as value and check if it is selectable', async ({
@@ -511,19 +491,21 @@ test.describe('Events', () => {
     const itemText = 'test';
     await mount(`<ix-select editable></ix-select>`);
     const select = page.locator('ix-select');
+    await expect(select).toHaveClass(/hydrated/);
+
     const itemAdded = select.evaluate((elm) => {
-      return new Promise<number>((resolve) => {
+      return new Promise<string>((resolve) => {
         elm.addEventListener('addItem', (e: Event) =>
           resolve((e as CustomEvent).detail)
         );
       });
     });
-    const input = page.locator('input');
-    await input.focus();
-    await input.fill(itemText);
-    await page.keyboard.press('Enter');
 
-    await expect(select).toHaveClass(/hydrated/);
+    const selectCtrl = selectController(select);
+    await selectCtrl.fillInput(itemText);
+    await selectCtrl.arrowDown();
+    await selectCtrl.pressEnter();
+
     expect(await itemAdded).toBe(itemText);
   });
 
@@ -566,8 +548,8 @@ test('async set content and check input value', async ({ mount, page }) => {
     if (select) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       select.innerHTML = `
-        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+        <ix-select-item value="2" label="Item 2"></ix-select-item>
       `;
     }
   });
@@ -580,45 +562,46 @@ test.describe('Enter selection with non-existing and existing items', () => {
   test('editable', async ({ mount, page }) => {
     await mount(`
       <ix-select editable>
-        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+        <ix-select-item value="2" label="Item 2"></ix-select-item>
       </ix-select>
     `);
 
-    const selectElement = page.locator('ix-select');
-    const input = selectElement.locator('input');
+    const selectCtrl = selectController(page.locator('ix-select'));
 
-    await input.fill('Item 1');
+    await selectCtrl.fillInput('Item 1');
+    await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
-    await expect(input).toHaveValue('Item 1');
+    await expect(selectCtrl.getInputLocator()).toHaveValue('Item 1');
 
-    await input.fill('Item 3');
+    await selectCtrl.fillInput('Item 3');
+    await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
-
-    await expect(input).toHaveValue('Item 3');
+    await expect(selectCtrl.getInputLocator()).toHaveValue('Item 3');
   });
 
   test('non-editable', async ({ mount, page }) => {
     await mount(`
       <ix-select>
-        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+        <ix-select-item value="2" label="Item 2"></ix-select-item>
       </ix-select>
     `);
 
-    const selectElement = page.locator('ix-select');
-    const input = selectElement.locator('input');
+    const selectCtrl = selectController(page.locator('ix-select'));
 
-    await input.fill('Item 1');
-    await page.keyboard.press('Enter');
+    await selectCtrl.fillInput('Item 1');
+    await selectCtrl.arrowDown();
+    await selectCtrl.pressEnter();
+    await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+    await expect(selectCtrl.getInputLocator()).toHaveValue('Item 1');
 
-    await expect(input).toHaveValue('Item 1');
-
-    await input.fill('Item 3');
-    await page.keyboard.press('Enter');
-
-    await expect(input).toHaveValue('Item 1');
+    await selectCtrl.fillInput('Item 3');
+    await selectCtrl.arrowDown();
+    await selectCtrl.pressEnter();
+    await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+    await expect(selectCtrl.getInputLocator()).toHaveValue('Item 1');
   });
 });
 
@@ -774,51 +757,55 @@ test('should not show add icon when spaces are entered at the start of input', a
   mount,
   page,
 }) => {
-  await mount(`<ix-select editable>
+  await mount(`
+  <ix-select editable>
     <ix-select-item label="Item 1" value="1"></ix-select-item>
     <ix-select-item label="Item 2" value="2"></ix-select-item>
-  </ix-select>`);
+  </ix-select>
+  `);
 
-  const select = page.locator('ix-select');
-  const input = select.locator('input');
-
-  await input.fill('  Item 1');
-
-  const addItem = select.locator('.add-item');
-  await expect(addItem).toHaveCount(0);
+  const selectCtrl = selectController(page.locator('ix-select'));
+  await selectCtrl.fillInput('  Item 1');
+  await expect(await selectCtrl.getAddItemDropdownItemLocator()).toBeHidden();
 });
 
 test('should not show add icon when only spaces are entered in input', async ({
   mount,
   page,
 }) => {
-  await mount(`<ix-select editable>
+  await mount(`
+  <ix-select editable>
     <ix-select-item label="Item 1" value="1"></ix-select-item>
     <ix-select-item label="Item 2" value="2"></ix-select-item>
   </ix-select>`);
 
-  const select = page.locator('ix-select');
-  const input = select.locator('input');
-
-  await input.fill('    ');
-
-  const addItem = select.locator('.add-item');
-  await expect(addItem).toHaveCount(0);
+  const selectCtrl = selectController(page.locator('ix-select'));
+  await selectCtrl.fillInput('    ');
+  await expect(await selectCtrl.getAddItemDropdownItemLocator()).toBeHidden();
 });
 
 test('should trim the value before saving', async ({ mount, page }) => {
-  await mount(`<ix-select editable>
+  await mount(`
+  <ix-select editable>
     <ix-select-item label="Item 1" value="1"></ix-select-item>
     <ix-select-item label="Item 7" value="7"></ix-select-item>
   </ix-select>`);
 
-  const select = page.locator('ix-select');
-  const input = select.locator('Input');
+  const selectCtrl = selectController(page.locator('ix-select'));
+  const inputLocator = selectCtrl.getInputLocator();
 
-  await input.fill('   Item 7   ');
-  await input.press('Enter');
+  await selectCtrl.getInputLocator().focus();
+  await selectCtrl.fillInput('   Item 7');
+  await expect(selectCtrl.getDropdownLocator()).toHaveClass(/show/);
+  await page.keyboard.press('ArrowDown');
 
-  await expect(input).toHaveValue('Item 7');
+  await expect(await selectCtrl.getFocusDropdownItemLocator()).toHaveText(
+    'Item 7'
+  );
+  await page.keyboard.press('Enter');
+
+  await expect(selectCtrl.getDropdownLocator()).not.toHaveClass(/show/);
+  await expect(inputLocator).toHaveValue('Item 7');
 });
 
 test('should preserve spaces within input and show add icon', async ({
