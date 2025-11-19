@@ -1970,6 +1970,10 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Resets the input field validation state by removing the touched state and clearing validation states while preserving the current value.
+         */
+        "reset": () => Promise<void>;
+        /**
           * Specifies whether to show the text as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
@@ -2581,6 +2585,10 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Resets the input field validation state by removing the touched state and clearing validation states while preserving the current value.
+         */
+        "reset": () => Promise<void>;
+        /**
           * Indicates if the stepper buttons should be shown
          */
         "showStepperButtons"?: boolean;
@@ -3097,6 +3105,10 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Resets the select field validation state by removing the touched state and clearing validation states while preserving the current value.
+         */
+        "reset": () => Promise<void>;
+        /**
           * Show helper, error, info, warning text as tooltip
          */
         "showTextAsTooltip"?: boolean;
@@ -3351,6 +3363,10 @@ export namespace Components {
           * Get the native textarea element.
          */
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * Returns the validity state of the textarea field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the textarea field.
@@ -3398,6 +3414,10 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
+        /**
+          * Resets the input field validation state by removing the touched state and clearing validation states while preserving the current value.
+         */
+        "reset": () => Promise<void>;
         /**
           * Determines the resize behavior of the textarea field. Resizing can be enabled in one direction, both directions or completely disabled.
           * @default 'both'

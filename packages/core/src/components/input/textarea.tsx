@@ -27,7 +27,11 @@ import {
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
-import { mapValidationResult, onInputBlur } from './input.util';
+import {
+  mapValidationResult,
+  onInputBlur,
+  resetInputValidation,
+} from './input.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
 /**
@@ -260,6 +264,15 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   /**
+   * Returns the validity state of the textarea field.
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const textarea = await this.textAreaRef.waitForCurrent();
+    return Promise.resolve(textarea.validity);
+  }
+
+  /**
    * Focuses the input field
    */
   @Method()
@@ -274,6 +287,15 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Resets the input field validation state by removing the touched state
+   * and clearing validation states while preserving the current value.
+   */
+  @Method()
+  async reset(): Promise<void> {
+    return resetInputValidation(this);
   }
 
   render() {
