@@ -687,19 +687,27 @@ regressionTest.describe('A11y', () => {
           icons: { iconPrint },
         }
       );
-
-      await page.locator('#trigger').click();
     });
 
     regressionTest.describe('ArrowDown', () => {
       regressionTest('trigger -> first item', async ({ page }) => {
+        await page.keyboard.press('Tab');
+
+        const trigger = page.getByText('Open');
+        await expect(trigger).toBeFocused();
+
         await page.keyboard.press('ArrowDown');
         await page.waitForTimeout(100);
-        const item = await page.locator('ix-dropdown-item').first();
+        const item = page.locator('ix-dropdown-item').first();
         await expect(item).toBeFocused();
       });
 
       regressionTest('first item -> second item', async ({ page }) => {
+        await page.keyboard.press('Tab');
+
+        const trigger = page.getByText('Open');
+        await expect(trigger).toBeFocused();
+
         await page.keyboard.press('ArrowDown');
         await page.waitForTimeout(100);
         await page.keyboard.press('ArrowDown');
@@ -711,6 +719,11 @@ regressionTest.describe('A11y', () => {
 
     regressionTest.describe('ArrowUp', () => {
       regressionTest('second item -> fist item', async ({ page }) => {
+        await page.keyboard.press('Tab');
+
+        const trigger = page.getByText('Open');
+        await expect(trigger).toBeFocused();
+
         await page.keyboard.press('ArrowDown');
         await page.waitForTimeout(100);
         await page.keyboard.press('ArrowDown');
