@@ -32,8 +32,7 @@ import {
   shadow: true,
 })
 export class CheckboxGroup
-  implements FieldWrapperInterface, IxFormValidationState, IxComponent
-{
+  implements FieldWrapperInterface, IxFormValidationState, IxComponent {
   @Element() hostElement!: HTMLIxCheckboxGroupElement;
   /**
    * Optional helper text displayed below the checkbox group
@@ -164,60 +163,61 @@ export class CheckboxGroup
     return checkboxes.some((checkbox) => (checkbox as any).checked);
   }
 
-  async syncValidationClasses() {
-    if (isFormNoValidate(this.hostElement)) {
-      this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
-      if (this.invalidText) {
+  private clearValidationState() {
+    this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
+    if (this.invalidText) {
+      this.invalidText = '';
+    }
+    this.checkboxElements.forEach((el: any) => {
+      el.classList.remove('ix-invalid', 'ix-invalid--required');
+    });
+  }
+
+  private handleRequiredValidation() {
+    const isChecked = this.hasAnyChecked();
+    const anyTouched = this.checkboxElements.some(
+      (el: any) => el.touched || el.formSubmissionAttempted
+    );
+    const isRequiredInvalid =
+      !isChecked && (this.touched || this.formSubmissionAttempted || anyTouched);
+
+    this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+
+    if (isRequiredInvalid) {
+      this.hostElement.classList.add('ix-invalid');
+      this.invalidText =
+        this.invalidText && this.invalidText.trim().length > 0
+          ? this.invalidText
+          : 'Please select at least one option.';
+    } else {
+      this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+      if (this.invalidText === 'Please select at least one option.') {
         this.invalidText = '';
       }
-      this.checkboxElements.forEach((el: any) => {
-        el.classList.remove('ix-invalid', 'ix-invalid--required');
-      });
+    }
+
+    updateCheckboxValidationClasses(
+      this.checkboxElements,
+      isChecked,
+      this.touched,
+      this.formSubmissionAttempted
+    );
+
+    if (isChecked) {
+      this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+    }
+  }
+
+  async syncValidationClasses() {
+    if (isFormNoValidate(this.hostElement)) {
+      this.clearValidationState();
       return;
     }
 
     if (this.required) {
-      const isChecked = this.hasAnyChecked();
-      const anyTouched = this.checkboxElements.some(
-        (el: any) => el.touched || el.formSubmissionAttempted
-      );
-      const isRequiredInvalid =
-        !isChecked && (this.touched || this.formSubmissionAttempted || anyTouched);
-
-      this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
-      if (isRequiredInvalid) {
-        this.hostElement.classList.add('ix-invalid');
-      } else {
-        this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
-      }
-
-      if (isRequiredInvalid) {
-        this.invalidText =
-          this.invalidText && this.invalidText.trim().length > 0
-            ? this.invalidText
-            : 'Please select at least one option.';
-      } else if (this.invalidText === 'Please select at least one option.') {
-        this.invalidText = '';
-      }
-
-      updateCheckboxValidationClasses(
-        this.checkboxElements,
-        isChecked,
-        this.touched,
-        this.formSubmissionAttempted
-      );
-
-      if (isChecked) {
-        this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
-      }
+      this.handleRequiredValidation();
     } else {
-      this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
-      if (this.invalidText) {
-        this.invalidText = '';
-      }
-      this.checkboxElements.forEach((el: any) => {
-        el.classList.remove('ix-invalid', 'ix-invalid--required');
-      });
+      this.clearValidationState();
     }
   }
 

@@ -13,7 +13,7 @@ export function isFormNoValidate(element: HTMLElement): boolean {
   return (
     form.hasAttribute('novalidate') ||
     form.getAttribute('novalidate') === '' ||
-    form.hasAttribute('data-novalidate') ||
+    form.dataset.novalidate !== undefined ||
     form.hasAttribute('ngnovalidate')
   );
 }
@@ -43,6 +43,14 @@ export function setupFormSubmitListener(
   };
 }
 
+function shouldShowValidationError(
+  el: any,
+  touched: boolean,
+  formSubmissionAttempted: boolean
+): boolean {
+  return el.touched || el.formSubmissionAttempted || touched || formSubmissionAttempted;
+}
+
 export function updateCheckboxValidationClasses(
   checkboxes: NodeListOf<HTMLElement> | HTMLElement[],
   isChecked: boolean,
@@ -52,13 +60,13 @@ export function updateCheckboxValidationClasses(
   Array.from(checkboxes).forEach((el: any) => {
     if (isChecked) {
       el.classList.remove('ix-invalid--required', 'ix-invalid');
-    } else {
-      const isTouched =
-        el.touched || el.formSubmissionAttempted || touched || formSubmissionAttempted;
-      el.classList.toggle('ix-invalid--required', isTouched);
-      if (isTouched) {
-        el.classList.add('ix-invalid');
-      }
+      return;
+    }
+
+    const isTouched = shouldShowValidationError(el, touched, formSubmissionAttempted);
+    el.classList.toggle('ix-invalid--required', isTouched);
+    if (isTouched) {
+      el.classList.add('ix-invalid');
     }
   });
 }
@@ -72,13 +80,14 @@ export function updateGroupValidationClasses(
 
   if (isChecked) {
     group.classList.remove('ix-invalid', 'ix-invalid--required');
-  } else {
-    const anyTouched = Array.from(checkboxes).some(
-      (el: any) => el.touched || el.formSubmissionAttempted
-    );
-    group.classList.toggle('ix-invalid--required', anyTouched);
-    if (anyTouched) {
-      group.classList.add('ix-invalid');
-    }
+    return;
+  }
+
+  const anyTouched = Array.from(checkboxes).some(
+    (el: any) => el.touched || el.formSubmissionAttempted
+  );
+  group.classList.toggle('ix-invalid--required', anyTouched);
+  if (anyTouched) {
+    group.classList.add('ix-invalid');
   }
 }
