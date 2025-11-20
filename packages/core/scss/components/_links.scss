@@ -16,17 +16,14 @@
 
 a[href] {
   color: var(--theme-color-primary);
-  text-decoration: underline;
   text-underline-offset: 0.2rem;
 
   @include hover.hover {
     color: var(--theme-color-dynamic);
-    text-decoration: underline;
   }
 
   @include hover.active {
     color: var(--theme-color-dynamic);
-    text-decoration: underline;
   }
 
   @include hover.visited {
