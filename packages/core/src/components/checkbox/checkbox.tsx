@@ -115,13 +115,39 @@ export class Checkbox implements IxFormComponent<string> {
     }
   }
 
-  private syncValidationClasses() {
-    if (isFormNoValidate(this.hostElement)) {
-      this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
-      return;
-    }
+  private removeInvalidClassesFromCheckboxes(
+    checkboxes: NodeListOf<HTMLElement>
+  ) {
+    Array.from(checkboxes).forEach((el: any) => {
+      el.classList.remove('ix-invalid--required', 'ix-invalid');
+    });
+  }
 
-    if (!this.required) {
+  private removeInvalidClassesFromGroup(checkboxes: NodeListOf<HTMLElement>) {
+    if (checkboxes.length > 0) {
+      const group = checkboxes[0].closest('ix-checkbox-group');
+      if (group) {
+        group.classList.remove('ix-invalid', 'ix-invalid--required');
+      }
+    }
+  }
+
+  private handleStandaloneCheckbox(isChecked: boolean) {
+    const isRequiredInvalid =
+      !isChecked && (this.touched || this.formSubmissionAttempted);
+    this.hostElement.classList.toggle(
+      'ix-invalid--required',
+      isRequiredInvalid
+    );
+    if (isChecked) {
+      this.hostElement.classList.remove('ix-invalid');
+    } else if (isRequiredInvalid) {
+      this.hostElement.classList.add('ix-invalid');
+    }
+  }
+
+  private syncValidationClasses() {
+    if (isFormNoValidate(this.hostElement) || !this.required) {
       this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
       return;
     }
@@ -136,66 +162,47 @@ export class Checkbox implements IxFormComponent<string> {
         : document.querySelectorAll(`ix-checkbox[name="${this.name}"]`);
 
       if (isFormNoValidate(this.hostElement)) {
-        Array.from(checkboxes).forEach((el: any) => {
-          el.classList.remove('ix-invalid--required', 'ix-invalid');
-        });
-        if (checkboxes.length > 0) {
-          const group = checkboxes[0].closest('ix-checkbox-group');
-          if (group) {
-            group.classList.remove('ix-invalid', 'ix-invalid--required');
-          }
-        }
+        this.removeInvalidClassesFromCheckboxes(checkboxes);
+        this.removeInvalidClassesFromGroup(checkboxes);
         return;
       }
 
       isChecked = hasAnyCheckboxChecked(checkboxes);
-
       updateCheckboxValidationClasses(
         checkboxes,
         isChecked,
         this.touched,
         this.formSubmissionAttempted
       );
-
       if (checkboxes.length > 0) {
         const group = checkboxes[0].closest('ix-checkbox-group');
         updateGroupValidationClasses(group, checkboxes, isChecked);
       }
-    } else if (checkboxGroup && this.name) {
+      return;
+    }
+
+    if (checkboxGroup && this.name) {
       const checkboxes: NodeListOf<HTMLElement> =
         checkboxGroup.querySelectorAll(`ix-checkbox[name="${this.name}"]`);
 
       if (isFormNoValidate(this.hostElement)) {
-        Array.from(checkboxes).forEach((el: any) => {
-          el.classList.remove('ix-invalid--required', 'ix-invalid');
-        });
+        this.removeInvalidClassesFromCheckboxes(checkboxes);
         updateGroupValidationClasses(checkboxGroup, checkboxes, true);
         return;
       }
 
       isChecked = hasAnyCheckboxChecked(checkboxes);
-
       updateCheckboxValidationClasses(
         checkboxes,
         isChecked,
         this.touched,
         this.formSubmissionAttempted
       );
-
       updateGroupValidationClasses(checkboxGroup, checkboxes, isChecked);
-    } else {
-      const isRequiredInvalid =
-        !isChecked && (this.touched || this.formSubmissionAttempted);
-      this.hostElement.classList.toggle(
-        'ix-invalid--required',
-        isRequiredInvalid
-      );
-      if (isChecked) {
-        this.hostElement.classList.remove('ix-invalid');
-      } else if (isRequiredInvalid) {
-        this.hostElement.classList.add('ix-invalid');
-      }
+      return;
     }
+
+    this.handleStandaloneCheckbox(isChecked);
   }
 
   private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
