@@ -87,3 +87,81 @@ regressionTest('should not change page', async ({ mount, page }) => {
   await expect(buttons.first()).toHaveAttribute('aria-pressed', 'true');
   await expect(buttons.nth(1)).toHaveAttribute('aria-pressed', 'false');
 });
+
+regressionTest('should handle valid page input', async ({ mount, page }) => {
+  await mount(`
+    <ix-pagination advanced count="10" selected-page="0">
+    </ix-pagination>
+  `);
+  const pagination = page.locator('ix-pagination[advanced]');
+  const input = pagination.getByLabel('Page selection input');
+
+  const pageSelected$ = pagination.evaluate(
+    (elm) =>
+      new Promise<number>((resolve) => {
+        elm.addEventListener('pageSelected', (event) =>
+          resolve((event as CustomEvent<number>).detail)
+        );
+      })
+  );
+
+  await input.fill('5');
+  await input.blur();
+
+  const selectedPage = await pageSelected$;
+  expect(selectedPage).toBe(4);
+});
+
+regressionTest(
+  'should handle invalid page input min',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10" selected-page="0">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination[advanced]');
+    const input = pagination.getByLabel('Page selection input');
+
+    let pageSelected$ = pagination.evaluate(
+      (elm) =>
+        new Promise<number>((resolve) => {
+          elm.addEventListener('pageSelected', (event) =>
+            resolve((event as CustomEvent<number>).detail)
+          );
+        })
+    );
+
+    await input.fill('-10');
+    await input.blur();
+
+    const selectedPage = await pageSelected$;
+    expect(selectedPage).toBe(0);
+  }
+);
+
+regressionTest(
+  'should handle invalid page input max',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10" selected-page="0">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination[advanced]');
+    const input = pagination.getByLabel('Page selection input');
+
+    let pageSelected$ = pagination.evaluate(
+      (elm) =>
+        new Promise<number>((resolve) => {
+          elm.addEventListener('pageSelected', (event) =>
+            resolve((event as CustomEvent<number>).detail)
+          );
+        })
+    );
+
+    await input.fill('15');
+    await input.blur();
+
+    const selectedPage = await pageSelected$;
+    expect(selectedPage).toBe(9);
+  }
+);

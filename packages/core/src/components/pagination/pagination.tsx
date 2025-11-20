@@ -102,6 +102,13 @@ export class Pagination {
   @Prop() ariaLabelChevronRightIconButton?: string;
 
   /**
+   * ARIA label for the page selection input
+   * Will be set as aria-label on the nested HTML input element
+   *
+   * @since TODO: ADD VERSION
+   */
+  @Prop() ariaLabelPageSelection = 'Page selection input';
+  /**
    * Page selection event
    */
   @Event() pageSelected!: EventEmitter<number>;
@@ -227,7 +234,7 @@ export class Pagination {
   private handlePageInput(inputValue: string) {
     const value = Number.parseInt(inputValue, 10);
     if (!Number.isNaN(value)) {
-      const clampedValue = Math.max(1, Math.min(value || 1, this.count));
+      const clampedValue = Math.max(1, Math.min(value, this.count));
       this.selectPage(clampedValue - 1);
     }
   }
@@ -247,20 +254,23 @@ export class Pagination {
           <div class="advanced-pagination">
             <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
+              aria-label={this.ariaLabelPageSelection}
               class="ix-form-control page-selection"
               type="number"
               min="1"
               max={this.count}
               value={this.selectedPage + 1}
-              onChange={(e: Event) =>
-                this.handlePageInput((e.target as HTMLInputElement).value)
-              }
-              onKeyDown={(e: KeyboardEvent) => {
-                if (['e', 'E', '+', '-', '.'].includes(e.key))
-                  e.preventDefault();
-                if (e.key === 'Enter') {
-                  this.handlePageInput((e.target as HTMLInputElement).value);
-                  (e.target as HTMLInputElement).blur();
+              onChange={(event: Event) => {
+                const inputElement = event.target as HTMLInputElement;
+                this.handlePageInput(inputElement.value);
+              }}
+              onKeyDown={(event: KeyboardEvent) => {
+                if (['e', 'E', '+', '-', '.'].includes(event.key))
+                  event.preventDefault();
+                if (event.key === 'Enter') {
+                  const inputElement = event.target as HTMLInputElement;
+                  this.handlePageInput(inputElement.value);
+                  inputElement.blur();
                 }
               }}
               onBlur={(e: Event) =>
