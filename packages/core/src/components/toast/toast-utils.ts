@@ -45,6 +45,9 @@ export interface ToastConfig {
   iconColor?: string;
 }
 
+/**
+ * Gets the toast container.
+ */
 export function getToastContainer() {
   const containerList = Array.from(
     document.querySelectorAll('ix-toast-container')
