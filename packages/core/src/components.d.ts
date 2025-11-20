@@ -3105,10 +3105,6 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * Resets the select field validation state by removing the touched state and clearing validation states while preserving the current value.
-         */
-        "reset": () => Promise<void>;
-        /**
           * Show helper, error, info, warning text as tooltip
          */
         "showTextAsTooltip"?: boolean;
