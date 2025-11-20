@@ -92,19 +92,15 @@ export class CheckboxGroup
     return Array.from(this.hostElement.querySelectorAll('ix-checkbox'));
   }
 
-  private checkForRequiredCheckbox() {
-    this.required = this.checkboxElements.some((checkbox) => checkbox.required);
-  }
-
-  connectedCallback(): void {
+  private setupFormListener() {
     this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
       this.formSubmissionAttempted = true;
       this.syncValidationClasses();
     });
   }
 
-  componentWillLoad(): void | Promise<void> {
-    this.checkForRequiredCheckbox();
+  connectedCallback(): void {
+    this.setupFormListener();
   }
 
   disconnectedCallback(): void {
@@ -177,7 +173,6 @@ export class CheckboxGroup
       this.clearValidationState();
       return;
     }
-
     const requiredCheckboxes = this.checkboxElements.filter(
       (el) => el.required
     );
@@ -188,12 +183,10 @@ export class CheckboxGroup
     const isRequiredInvalid =
       !isChecked &&
       (this.touched || this.formSubmissionAttempted || anyTouched);
-
     this.hostElement.classList.toggle(
       'ix-invalid--required',
       isRequiredInvalid
     );
-
     if (isRequiredInvalid) {
       this.hostElement.classList.add('ix-invalid');
       this.invalidText =
@@ -206,7 +199,6 @@ export class CheckboxGroup
         this.invalidText = '';
       }
     }
-
     if (!isFormNoValidate(this.hostElement)) {
       updateCheckboxValidationClasses(
         this.checkboxElements,
@@ -215,7 +207,6 @@ export class CheckboxGroup
         this.formSubmissionAttempted
       );
     }
-
     if (isChecked) {
       this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
     }
@@ -226,7 +217,6 @@ export class CheckboxGroup
       this.clearValidationState();
       return;
     }
-
     if (this.required) {
       this.handleRequiredValidation();
     } else {

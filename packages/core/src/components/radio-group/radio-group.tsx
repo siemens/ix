@@ -122,6 +122,13 @@ export class RadiobuttonGroup
     return Array.from(this.hostElement.querySelectorAll('ix-radio'));
   }
 
+  private setupFormListener() {
+    this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
+      this.formSubmissionAttempted = true;
+      this.syncValidationClasses();
+    });
+  }
+
   connectedCallback(): void {
     this.observer.observe(this.hostElement, {
       childList: true,
@@ -129,16 +136,7 @@ export class RadiobuttonGroup
       attributes: true,
       attributeFilter: ['checked', 'required'],
     });
-    this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
-      this.formSubmissionAttempted = true;
-      this.syncValidationClasses();
-    });
-  }
-
-  componentWillLoad(): void | Promise<void> {
-    this.selectInitialValue();
-    this.ensureOnlyLastRadioChecked();
-    this.hasNestedRequiredRadio();
+    this.setupFormListener();
   }
 
   disconnectedCallback(): void {
@@ -150,15 +148,15 @@ export class RadiobuttonGroup
     }
   }
 
-  private selectInitialValue() {
-    if (!this.value) {
-      return;
-    }
+  // private selectInitialValue() {
+  //   if (!this.value) {
+  //     return;
+  //   }
 
-    this.radiobuttonElements.forEach((radiobutton) => {
-      radiobutton.checked = radiobutton.value === this.value;
-    });
-  }
+  //   this.radiobuttonElements.forEach((radiobutton) => {
+  //     radiobutton.checked = radiobutton.value === this.value;
+  //   });
+  // }
 
   private ensureOnlyLastRadioChecked() {
     const checkedRadios = this.radiobuttonElements.filter(
@@ -272,6 +270,7 @@ export class RadiobuttonGroup
     nextRadio.focus();
   }
 
+  // --- Validation helpers (shared with checkbox-group) ---
   private hasAnyChecked(): boolean {
     return hasAnyCheckedRadios(this.radiobuttonElements as HTMLElement[]);
   }
