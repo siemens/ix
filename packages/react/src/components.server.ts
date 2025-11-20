@@ -1380,7 +1380,8 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         showStepperButtons: 'show-stepper-buttons',
         step: 'step',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
-        textAlignment: 'text-alignment'
+        textAlignment: 'text-alignment',
+        allowEmptyValueChange: 'allow-empty-value-change'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxNumberInput as ReactWebComponent<IxNumberInputElement, IxNumberInputEvents>,
@@ -1404,7 +1405,8 @@ export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginati
         i18nOf: 'i18n-of',
         i18nItems: 'i18n-items',
         ariaLabelChevronLeftIconButton: 'aria-label-chevron-left-icon-button',
-        ariaLabelChevronRightIconButton: 'aria-label-chevron-right-icon-button'
+        ariaLabelChevronRightIconButton: 'aria-label-chevron-right-icon-button',
+        ariaLabelPageSelection: 'aria-label-page-selection'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxPagination as ReactWebComponent<IxPaginationElement, IxPaginationEvents>,
@@ -1594,9 +1596,11 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         i18nPlaceholderEditable: 'i18n-placeholder-editable',
         i18nSelectListHeader: 'i18n-select-list-header',
         i18nNoMatches: 'i18n-no-matches',
+        i18nAllSelected: 'i18n-all-selected',
         hideListHeader: 'hide-list-header',
         dropdownWidth: 'dropdown-width',
-        dropdownMaxWidth: 'dropdown-max-width'
+        dropdownMaxWidth: 'dropdown-max-width',
+        collapseMultipleSelection: 'collapse-multiple-selection'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSelect as ReactWebComponent<IxSelectElement, IxSelectEvents>,
@@ -1665,6 +1669,8 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
         splitIcon: 'split-icon',
         ariaLabelSplitIconButton: 'aria-label-split-icon-button',
         disabled: 'disabled',
+        disableButton: 'disable-button',
+        disableDropdownButton: 'disable-dropdown-button',
         placement: 'placement'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
