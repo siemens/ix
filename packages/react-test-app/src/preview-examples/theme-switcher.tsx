@@ -32,22 +32,33 @@ export default () => {
   }, []);
 
   const onValueChange = (event: CustomEvent<string | string[]>) => {
-    if (useSystemTheme) return;
+    if (useSystemTheme) {
+      return;
+    }
+
     const newVariant = event.detail as ThemeVariant;
+
     themeSwitcher.setVariant(newVariant);
     setSelectedVariant(newVariant);
   };
 
   const toggle = () => {
-    if (useSystemTheme) return;
+    if (useSystemTheme) {
+      return;
+    }
+
     themeSwitcher.toggleMode();
+
     const newVariant = selectedVariant === 'light' ? 'dark' : 'light';
+
     setSelectedVariant(newVariant);
   };
 
   const onCheckedChange = (event: CustomEvent<boolean>) => {
     const checked = event.detail;
+
     setUseSystemTheme(checked);
+
     if (checked) {
       themeSwitcher.setVariant();
     } else {

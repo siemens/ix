@@ -30,21 +30,31 @@ onMounted(() => {
 });
 
 const valueChange = (event: CustomEvent<string | string[]>) => {
-  if (useSystemTheme.value) return;
+  if (useSystemTheme.value) {
+    return;
+  }
+
   const newVariant = event.detail as ThemeVariant;
+
   themeSwitcher.setVariant(newVariant);
+
   selectedVariant.value = newVariant;
 };
 
 const toggle = () => {
-  if (useSystemTheme.value) return;
+  if (useSystemTheme.value) {
+    return;
+  }
+
   themeSwitcher.toggleMode();
+
   selectedVariant.value = selectedVariant.value === 'light' ? 'dark' : 'light';
 };
 
 const systemChange = (event: CustomEvent<boolean>) => {
   const checked = event.detail;
   useSystemTheme.value = checked;
+
   if (checked) {
     themeSwitcher.setVariant();
   } else {

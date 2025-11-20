@@ -27,22 +27,32 @@ export default class ThemeSwitcher implements OnInit {
   }
 
   onValueChange(event: Event) {
-    if (this.useSystemTheme) return;
+    if (this.useSystemTheme) {
+      return;
+    }
+
     const customEvent = event as CustomEvent<string>;
     const newVariant = customEvent.detail as ThemeVariant;
+
     themeSwitcher.setVariant(newVariant);
+
     this.selectedVariant = newVariant;
   }
 
   toggleMode() {
-    if (this.useSystemTheme) return;
+    if (this.useSystemTheme) {
+      return;
+    }
+
     themeSwitcher.toggleMode();
+
     this.selectedVariant = this.selectedVariant === 'light' ? 'dark' : 'light';
   }
 
   onSystemMode(event: CustomEvent<boolean>) {
     const checked = event.detail;
     this.useSystemTheme = checked;
+
     if (checked) {
       themeSwitcher.setVariant();
     } else {
