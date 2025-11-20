@@ -69,11 +69,21 @@ export class DropdownItem implements DropdownItemWrapper {
    */
   @Prop() checked = false;
 
+  /**
+   * Can has focus
+   *
+   * @internal
+   */
+  @Prop() suppressFocus = false;
+
   /** @internal */
   @Prop() isSubMenu = false;
 
   /** @internal */
   @Prop() suppressChecked = false;
+
+  /** @internal */
+  @Prop({ reflect: true }) hasVisualFocus = false;
 
   /** @internal */
   @Event() itemClick!: EventEmitter<HTMLIxDropdownItemElement>;
@@ -106,12 +116,15 @@ export class DropdownItem implements DropdownItemWrapper {
           'icon-only': this.isIconOnly(),
           disabled: this.disabled,
           submenu: this.isSubMenu,
+          'ix-focusable': !this.suppressFocus,
+          'outline-visible': this.hasVisualFocus,
         }}
         role="listitem"
+        tabIndex={-1}
       >
         <button
           type="button"
-          tabIndex={0}
+          tabIndex={!this.suppressFocus ? 0 : -1}
           class={{
             'dropdown-item': true,
             'no-checked-field': this.suppressChecked,

@@ -24,10 +24,6 @@
 
   @include component.ix-component;
 
-  .display-none {
-    display: none;
-  }
-
   .select {
     position: relative;
     display: flex;
@@ -43,13 +39,6 @@
     @include hover.hover {
       background-color: var(--theme-input--background--hover);
       border-color: var(--theme-input--border-color--hover);
-    }
-
-    &:focus-within {
-      background-color: var(--theme-input--background--focus);
-      border-color: var(--theme-input--border-color--focus);
-      outline: 1px solid #119fff;
-      outline-offset: var(--theme-input--focus--outline-offset);
     }
   }
 
@@ -186,9 +175,16 @@
 
     @include text-truncation.ellipsis;
   }
+
+  ix-dropdown {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hidden {
+    display: none !important;
+  }
 }
-
-
 
 @include form-component.host-valid;
 

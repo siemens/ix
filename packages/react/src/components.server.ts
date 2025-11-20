@@ -664,7 +664,10 @@ export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents> = 
     serializeShadowRoot,
 });
 
-export type IxDropdownEvents = { onShowChanged: EventName<CustomEvent<boolean>> };
+export type IxDropdownEvents = {
+    onShowChange: EventName<CustomEvent<boolean>>,
+    onShowChanged: EventName<CustomEvent<boolean>>
+};
 
 export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents>({
     tagName: 'ix-dropdown',
@@ -677,6 +680,7 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         placement: 'placement',
         positioningStrategy: 'positioning-strategy',
         header: 'header',
+        disableFocusHandling: 'disable-focus-handling',
         offset: 'offset',
         overwriteDropdownStyle: 'overwrite-dropdown-style',
         discoverAllSubmenus: 'discover-all-submenus',
@@ -728,8 +732,10 @@ export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDrop
         hover: 'hover',
         disabled: 'disabled',
         checked: 'checked',
+        suppressFocus: 'suppress-focus',
         isSubMenu: 'is-sub-menu',
-        suppressChecked: 'suppress-checked'
+        suppressChecked: 'suppress-checked',
+        hasVisualFocus: 'has-visual-focus'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdownItem as ReactWebComponent<IxDropdownItemElement, IxDropdownItemEvents>,
@@ -1579,6 +1585,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         label: 'label',
         ariaLabelChevronDownIconButton: 'aria-label-chevron-down-icon-button',
         ariaLabelClearIconButton: 'aria-label-clear-icon-button',
+        ariaLabelAddItem: 'aria-label-add-item',
         warningText: 'warning-text',
         infoText: 'info-text',
         invalidText: 'invalid-text',
@@ -1614,7 +1621,8 @@ export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectIt
         label: 'label',
         value: 'value',
         selected: 'selected',
-        hover: 'hover'
+        hover: 'hover',
+        hasVisualFocus: 'has-visual-focus'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSelectItem as ReactWebComponent<IxSelectItemElement, IxSelectItemEvents>,

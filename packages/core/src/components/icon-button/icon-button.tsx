@@ -132,6 +132,7 @@ export class IconButton {
       <Host
         class={{
           ...this.getIconSizeClass(),
+          'ix-focusable': true,
           disabled: this.disabled || this.loading,
         }}
       >

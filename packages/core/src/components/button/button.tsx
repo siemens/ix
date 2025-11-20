@@ -190,7 +190,6 @@ export class Button implements IxButtonComponent {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
-      tabIndex: 0,
       ariaAttributes: {
         'aria-label': this.ariaLabelButton,
       },
@@ -203,6 +202,7 @@ export class Button implements IxButtonComponent {
       <Host
         class={{
           disabled: this.disabled || this.loading,
+          'ix-focusable': true,
         }}
       >
         <BaseButton {...baseButtonProps}>
