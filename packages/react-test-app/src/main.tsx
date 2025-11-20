@@ -214,6 +214,7 @@ import ToggleButtonPrimaryGhost from './preview-examples/toggle-button-primary-g
 import ToggleButtonPrimaryOutline from './preview-examples/toggle-button-primary-outline';
 import ToggleButtonSecondary from './preview-examples/toggle-button-secondary';
 import ToggleButtonSecondaryGhost from './preview-examples/toggle-button-secondary-ghost';
+import TooltipWithIcon from './preview-examples/tooltip-with-icon';
 import ToggleButtonSecondaryOutline from './preview-examples/toggle-button-secondary-outline';
 import ToggleChecked from './preview-examples/toggle-checked';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label';
@@ -656,6 +657,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/toggle" element={<Toggle />} />
         <Route path="/preview/tooltip" element={<Tooltip />} />
+        <Route
+          path="/preview/tooltip-with-icon"
+          element={<TooltipWithIcon />}
+        />
         <Route path="/preview/tree-custom" element={<TreeCustom />} />
         <Route path="/preview/number-input" element={<NumberInput />} />
         <Route

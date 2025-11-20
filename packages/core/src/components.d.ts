@@ -1036,6 +1036,11 @@ export namespace Components {
          */
         "suppressSubmitOnEnter": boolean;
         /**
+          * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -1974,6 +1979,11 @@ export namespace Components {
          */
         "suppressSubmitOnEnter": boolean;
         /**
+          * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -2496,6 +2506,12 @@ export namespace Components {
      */
     interface IxNumberInput {
         /**
+          * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
+          * @since 4.1.0
+          * @default false
+         */
+        "allowEmptyValueChange": boolean;
+        /**
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
@@ -2560,7 +2576,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Indicates if the field is required
+          * Indicates if the field is required. When required, empty values (undefined) are not accepted.
           * @default false
          */
         "required": boolean;
@@ -2573,8 +2589,8 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Step value to increment or decrement the input value
-          * @since 3.0.0
+          * Step value to increment or decrement the input value. Default step value is 1.
+          * @default 1
          */
         "step"?: string | number;
         /**
@@ -2583,14 +2599,19 @@ export namespace Components {
          */
         "suppressSubmitOnEnter": boolean;
         /**
+          * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'end'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * The valid text for the input field
          */
         "validText"?: string;
         /**
-          * The value of the input field
+          * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
-        "value": number;
+        "value"?: number;
         /**
           * The warning text for the input field
          */
@@ -2965,6 +2986,7 @@ export namespace Components {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
@@ -2972,6 +2994,11 @@ export namespace Components {
           * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
+        /**
+          * Show "all" chip when all items are selected in multiple mode
+          * @default false
+         */
+        "collapseMultipleSelection": boolean;
         /**
           * If true the select will be in disabled state
           * @default false
@@ -3009,6 +3036,11 @@ export namespace Components {
           * @default false
          */
         "hideListHeader": boolean;
+        /**
+          * Chip label for all selected items in multiple mode.
+          * @default 'All'
+         */
+        "i18nAllSelected": string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -3183,6 +3215,18 @@ export namespace Components {
           * @default 'both'
          */
         "closeBehavior": CloseBehavior;
+        /**
+          * Disables only the main button while keeping the dropdown trigger enabled
+          * @since 4.1.0
+          * @default false
+         */
+        "disableButton": boolean;
+        /**
+          * Disables only the dropdown trigger while keeping the main button enabled
+          * @since 4.1.0
+          * @default false
+         */
+        "disableDropdownButton": boolean;
         /**
           * Disabled
           * @default false
@@ -3533,6 +3577,11 @@ export namespace Components {
           * @default false
          */
         "suppressSubmitOnEnter": boolean;
+        /**
+          * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
         /**
           * Valid text below the input field
          */
@@ -6816,6 +6865,11 @@ declare namespace LocalJSX {
          */
         "suppressSubmitOnEnter"?: boolean;
         /**
+          * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -7810,6 +7864,11 @@ declare namespace LocalJSX {
          */
         "suppressSubmitOnEnter"?: boolean;
         /**
+          * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -8385,6 +8444,12 @@ declare namespace LocalJSX {
      */
     interface IxNumberInput {
         /**
+          * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
+          * @since 4.1.0
+          * @default false
+         */
+        "allowEmptyValueChange"?: boolean;
+        /**
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
@@ -8447,7 +8512,7 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * Indicates if the field is required
+          * Indicates if the field is required. When required, empty values (undefined) are not accepted.
           * @default false
          */
         "required"?: boolean;
@@ -8460,8 +8525,8 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Step value to increment or decrement the input value
-          * @since 3.0.0
+          * Step value to increment or decrement the input value. Default step value is 1.
+          * @default 1
          */
         "step"?: string | number;
         /**
@@ -8470,11 +8535,16 @@ declare namespace LocalJSX {
          */
         "suppressSubmitOnEnter"?: boolean;
         /**
+          * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'end'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * The valid text for the input field
          */
         "validText"?: string;
         /**
-          * The value of the input field
+          * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
         "value"?: number;
@@ -8884,6 +8954,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
@@ -8891,6 +8962,11 @@ declare namespace LocalJSX {
           * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
+        /**
+          * Show "all" chip when all items are selected in multiple mode
+          * @default false
+         */
+        "collapseMultipleSelection"?: boolean;
         /**
           * If true the select will be in disabled state
           * @default false
@@ -8918,6 +8994,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "hideListHeader"?: boolean;
+        /**
+          * Chip label for all selected items in multiple mode.
+          * @default 'All'
+         */
+        "i18nAllSelected"?: string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -9104,6 +9185,18 @@ declare namespace LocalJSX {
           * @default 'both'
          */
         "closeBehavior"?: CloseBehavior;
+        /**
+          * Disables only the main button while keeping the dropdown trigger enabled
+          * @since 4.1.0
+          * @default false
+         */
+        "disableButton"?: boolean;
+        /**
+          * Disables only the dropdown trigger while keeping the main button enabled
+          * @since 4.1.0
+          * @default false
+         */
+        "disableDropdownButton"?: boolean;
         /**
           * Disabled
           * @default false
@@ -9459,6 +9552,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
         /**
           * Valid text below the input field
          */

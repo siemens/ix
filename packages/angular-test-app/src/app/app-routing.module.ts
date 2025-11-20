@@ -171,6 +171,7 @@ import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
+import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import ProgressIndicator from '../preview-examples/progress-indicator';
 import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
 import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
@@ -925,6 +926,7 @@ const routes: Routes = [
       { path: 'number-input-validation', component: NumberInputValidation },
       { path: 'number-input-with-slots', component: NumberInputWithSlots },
       { path: 'tooltip', component: Tooltip },
+      { path: 'tooltip-with-icon', component: TooltipWithIcon },
       { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },
       { path: 'action-card', component: ActionCard },
