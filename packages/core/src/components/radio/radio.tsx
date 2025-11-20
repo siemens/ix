@@ -28,11 +28,10 @@ import {
 import {
   getParentForm,
   isFormNoValidate,
-  setupFormSubmitListener,
-  hasAnyCheckedRadios,
   handleStandaloneRadioValidation,
   updateRadioValidationClasses,
   updateRadioGroupValidationClasses,
+  setupFormSubmitListener,
 } from '../utils/radio-validation';
 
 /**
@@ -122,59 +121,57 @@ export class Radio implements IxFormComponent<string> {
 
     let isChecked = this.checked;
     const radioGroup = this.hostElement.closest('ix-radio-group');
+    const clearRadiosAndGroup = (radios: NodeListOf<HTMLElement>) => {
+      Array.from(radios).forEach((el: any) => {
+        el.classList.remove('ix-invalid--required', 'ix-invalid');
+      });
+      if (radios.length > 0) {
+        const group = radios[0].closest('ix-radio-group');
+        if (group) {
+          group.classList.remove('ix-invalid', 'ix-invalid--required');
+        }
+      }
+    };
 
-    if (!radioGroup && this.name) {
-      const form = getParentForm(this.hostElement);
-      const radios: NodeListOf<HTMLElement> = form
-        ? form.querySelectorAll(`ix-radio[name="${this.name}"]`)
-        : document.querySelectorAll(`ix-radio[name="${this.name}"]`);
-
+    const handleNamedRadios = (
+      radios: NodeListOf<HTMLElement>,
+      group: Element | null
+    ) => {
       if (isFormNoValidate(this.hostElement)) {
-        Array.from(radios).forEach((el: any) => {
-          el.classList.remove('ix-invalid--required', 'ix-invalid');
-        });
-        if (radios.length > 0) {
-          const group = radios[0].closest('ix-radio-group');
-          if (group) {
-            group.classList.remove('ix-invalid', 'ix-invalid--required');
-          }
+        clearRadiosAndGroup(radios);
+        if (group) {
+          updateRadioGroupValidationClasses(group, radios);
         }
         return;
       }
 
-      isChecked = hasAnyCheckedRadios(Array.from(radios));
-
       updateRadioValidationClasses(
         radios,
         this.touched,
         this.formSubmissionAttempted
       );
 
-      if (radios.length > 0) {
-        const group = radios[0].closest('ix-radio-group');
+      if (group) {
         updateRadioGroupValidationClasses(group, radios);
       }
-    } else if (radioGroup && this.name) {
-      const radios: NodeListOf<HTMLElement> =
-        radioGroup.querySelectorAll(`ix-radio[name="${this.name}"]`);
+    };
 
-      if (isFormNoValidate(this.hostElement)) {
-        Array.from(radios).forEach((el: any) => {
-          el.classList.remove('ix-invalid--required', 'ix-invalid');
-        });
-        updateRadioGroupValidationClasses(radioGroup, radios);
-        return;
+    if (this.name) {
+      if (!radioGroup) {
+        const form = getParentForm(this.hostElement);
+        const radios: NodeListOf<HTMLElement> = form
+          ? form.querySelectorAll(`ix-radio[name="${this.name}"]`)
+          : document.querySelectorAll(`ix-radio[name="${this.name}"]`);
+        handleNamedRadios(
+          radios,
+          radios.length > 0 ? radios[0].closest('ix-radio-group') : null
+        );
+      } else {
+        const radios: NodeListOf<HTMLElement> = radioGroup.querySelectorAll(
+          `ix-radio[name="${this.name}"]`
+        );
+        handleNamedRadios(radios, radioGroup);
       }
-
-      isChecked = hasAnyCheckedRadios(Array.from(radios));
-
-      updateRadioValidationClasses(
-        radios,
-        this.touched,
-        this.formSubmissionAttempted
-      );
-
-      updateRadioGroupValidationClasses(radioGroup, radios);
     } else {
       handleStandaloneRadioValidation(
         this.hostElement,

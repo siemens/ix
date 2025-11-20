@@ -136,18 +136,24 @@ export function hasAnyCheckedRadios(
   radios: HTMLElement[] | NodeListOf<HTMLElement>
 ): boolean {
   const radiosArr = Array.from(radios);
-  const requiredRadios = radiosArr.filter((el: any) => (el as any).required);
-  if (requiredRadios.length > 0 && (requiredRadios[0] as any).name) {
-    const name = (requiredRadios[0] as any).name;
+  const requiredRadios = radiosArr.filter((el: any) => el.required);
+  if (
+    requiredRadios.length > 0 &&
+    typeof (requiredRadios[0] as HTMLIxRadioElement).name === 'string'
+  ) {
+    const name = (requiredRadios[0] as HTMLIxRadioElement).name;
     const form = radiosArr[0]?.closest?.('form');
     const allWithSameName: NodeListOf<HTMLElement> = form
       ? form.querySelectorAll(`ix-radio[name="${name}"]`)
       : document.querySelectorAll(`ix-radio[name="${name}"]`);
     return hasAnyRadioChecked(
-      Array.from(allWithSameName).filter((el: any) => (el as any).required)
+      Array.from(allWithSameName).filter((el: any) => el.required)
     );
   }
-  return requiredRadios.some((radio) => (radio as any).checked);
+
+  return requiredRadios.some(
+    (radio) => 'checked' in radio && (radio as any).checked
+  );
 }
 
 export function clearRadioGroupValidationState(

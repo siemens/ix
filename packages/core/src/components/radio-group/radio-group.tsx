@@ -148,16 +148,6 @@ export class RadiobuttonGroup
     }
   }
 
-  // private selectInitialValue() {
-  //   if (!this.value) {
-  //     return;
-  //   }
-
-  //   this.radiobuttonElements.forEach((radiobutton) => {
-  //     radiobutton.checked = radiobutton.value === this.value;
-  //   });
-  // }
-
   private ensureOnlyLastRadioChecked() {
     const checkedRadios = this.radiobuttonElements.filter(
       (radio) => radio.checked
