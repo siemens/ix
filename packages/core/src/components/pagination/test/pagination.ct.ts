@@ -6,8 +6,21 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+
+const createOnPageSelectedListener = (pagination: Locator) =>
+  pagination.evaluate(
+    (elm: HTMLIxPaginationElement) =>
+      new Promise<number>((resolve) => {
+        const onPageSelected = (event: Event) => {
+          elm.removeEventListener('pageSelected', onPageSelected);
+          resolve((event as CustomEvent<number>).detail);
+        };
+
+        elm.addEventListener('pageSelected', onPageSelected);
+      })
+  );
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -122,20 +135,13 @@ regressionTest(
     const pagination = page.locator('ix-pagination[advanced]');
     const input = pagination.getByLabel('Page selection input');
 
-    let pageSelected$ = pagination.evaluate(
-      (elm) =>
-        new Promise<number>((resolve) => {
-          elm.addEventListener('pageSelected', (event) =>
-            resolve((event as CustomEvent<number>).detail)
-          );
-        })
-    );
+    const pageSelected$ = createOnPageSelectedListener(pagination);
 
-    await input.fill('-10');
+    await input.fill('-100');
     await input.blur();
 
-    const selectedPage = await pageSelected$;
-    expect(selectedPage).toBe(0);
+    await expect(input).toHaveValue('1');
+    expect(await pageSelected$).toBe(0);
   }
 );
 
@@ -149,19 +155,12 @@ regressionTest(
     const pagination = page.locator('ix-pagination[advanced]');
     const input = pagination.getByLabel('Page selection input');
 
-    let pageSelected$ = pagination.evaluate(
-      (elm) =>
-        new Promise<number>((resolve) => {
-          elm.addEventListener('pageSelected', (event) =>
-            resolve((event as CustomEvent<number>).detail)
-          );
-        })
-    );
+    const pageSelected$ = createOnPageSelectedListener(pagination);
 
-    await input.fill('15');
+    await input.fill('100');
     await input.blur();
 
-    const selectedPage = await pageSelected$;
-    expect(selectedPage).toBe(9);
+    await expect(input).toHaveValue('10');
+    expect(await pageSelected$).toBe(9);
   }
 );

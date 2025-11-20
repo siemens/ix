@@ -105,7 +105,7 @@ export class Pagination {
    * ARIA label for the page selection input
    * Will be set as aria-label on the nested HTML input element
    *
-   * @since TODO: ADD VERSION
+   * @since 4.1.0
    */
   @Prop() ariaLabelPageSelection = 'Page selection input';
   /**
@@ -273,11 +273,10 @@ export class Pagination {
                   inputElement.blur();
                 }
               }}
-              onBlur={(e: Event) =>
-                ((e.target as HTMLInputElement).value = (
-                  this.selectedPage + 1
-                ).toString())
-              }
+              onBlur={(e: Event) => {
+                const inputElement = e.target as HTMLInputElement;
+                inputElement.value = (this.selectedPage + 1).toString();
+              }}
             />
             <span class="total-count">
               <ix-typography format="body">

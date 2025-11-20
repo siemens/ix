@@ -2635,7 +2635,7 @@ export namespace Components {
         "ariaLabelChevronRightIconButton"?: string;
         /**
           * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
-          * @since TODO: ADD VERSION
+          * @since 4.1.0
           * @default 'Page selection input'
          */
         "ariaLabelPageSelection": string;
@@ -8577,7 +8577,7 @@ declare namespace LocalJSX {
         "ariaLabelChevronRightIconButton"?: string;
         /**
           * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
-          * @since TODO: ADD VERSION
+          * @since 4.1.0
           * @default 'Page selection input'
          */
         "ariaLabelPageSelection"?: string;
