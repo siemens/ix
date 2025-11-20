@@ -1,8 +1,7 @@
 import ApiFunction from '@site/src/components/ApiTable/ApiFunction';
-{{#docsTags}}
 import { DeprecatedTag, SinceTag } from '@site/src/components/tags';
-{{/docsTags}}
 
+{{#functions}}
 <ApiFunction
   name="{{name}}"
   returnType="{{returnType}}"
@@ -14,7 +13,6 @@ import { DeprecatedTag, SinceTag } from '@site/src/components/tags';
       type: "{{type}}",
       {{#optional}}optional: true,{{/optional}}
       {{#default}}defaultValue: "{{default}}",{{/default}}
-      comment: "{{comment}}"
     },
     {{/parameters}}
   ]}
@@ -29,3 +27,5 @@ import { DeprecatedTag, SinceTag } from '@site/src/components/tags';
 
   {{comment}}
 </ApiFunction>
+<br/>
+{{/functions}}

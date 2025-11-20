@@ -22,7 +22,7 @@ import { toKebabCase } from './utils/string-utils';
 export type TypeDocTarget = {
   name: string;
   properties?: TypeDocProperty[];
-  func?: FunctionDocProperty;
+  functions?: FunctionDocProperty[];
   type: 'Function' | 'Type';
   source: string;
 };
@@ -42,7 +42,6 @@ export type FunctionDocProperty = {
     type: string;
     optional?: boolean;
     defaultValue?: string;
-    comment: string;
   }>;
   returnType: string;
   comment: string;
@@ -78,7 +77,10 @@ async function generateDocsForEntrypoint(
   }
 
   const types = processProjectChildren(project, __root);
-  await generateTypeDocs(types, targetPath, __templates);
+  // Only needed for type 'Function'
+  const entrypointName = path.basename(entrypoint, path.extname(entrypoint));
+
+  await generateTypeDocs(types, targetPath, __templates, entrypointName);
 }
 
 function getPropertyType(property: any): string {
@@ -167,7 +169,6 @@ function processFunctionSignature(child: any): FunctionDocProperty {
         name: param.name,
         type: getPropertyType(param),
         optional: param.flags?.isOptional,
-        comment: getCommentSummary(param),
       })) || [],
     returnType: getPropertyType(signature.type),
     comment: getCommentSummary(child),
@@ -181,23 +182,24 @@ function processProjectChildren(
 ): TypeDocTarget[] {
   const types: TypeDocTarget[] = [];
 
+  const functionGroups = new Map<string, any[]>();
+
   if (!project.children) {
     return types;
   }
 
   for (const child of project.children) {
     const source = path.relative(rootPath, child.sources![0].fullFileName);
+
     const isFunction = child.signatures?.length > 0 && !child.children;
-    const properties = processProperties(child);
 
     if (isFunction) {
       const functionDoc = processFunctionSignature(child);
-      types.push({
-        name: child.name,
-        func: functionDoc,
-        type: 'Function',
-        source,
-      });
+
+      if (!functionGroups.has(source)) {
+        functionGroups.set(source, []);
+      }
+      functionGroups.get(source)!.push(functionDoc);
     } else {
       const properties = processProperties(child);
       types.push({
@@ -207,6 +209,19 @@ function processProjectChildren(
         source,
       });
     }
+  }
+
+  for (const [source, funcs] of functionGroups) {
+    funcs.sort((a, b) => a.name.localeCompare(b.name));
+
+    const fileName = path.basename(source, path.extname(source)); // e.g. "modal.service"
+
+    types.push({
+      name: fileName,
+      functions: funcs,
+      type: 'Function',
+      source: source,
+    });
   }
 
   return types;
@@ -227,12 +242,42 @@ function determineFramework(source: string): string | undefined {
 async function generateTypeDocs(
   types: TypeDocTarget[],
   targetPath: string,
-  templatesPath: string
+  templatesPath: string,
+  entrypointName: string
 ) {
   const utilsPath = path.join(targetPath, 'utils');
   await fs.ensureDir(utilsPath);
 
-  for (const typedoc of types) {
+  const serviceFunctions = types.filter((t) => t.type === 'Function');
+  const otherTypes = types.filter((t) => t.type !== 'Function');
+
+  if (serviceFunctions.length > 0) {
+    const functionDocsContent: string[] = [];
+
+    serviceFunctions.sort((a, b) => a.name.localeCompare(b.name));
+
+    for (const funcDoc of serviceFunctions) {
+      const current_framework = determineFramework(funcDoc.source);
+
+      const mdxFragment = generateStructuredMDX(
+        funcDoc,
+        templatesPath,
+        current_framework
+      );
+
+      functionDocsContent.push(mdxFragment);
+    }
+
+    const joinedContent = functionDocsContent.join('\n\n<br/>\n\n');
+
+    const outputFileName = `${toKebabCase(entrypointName)}.mdx`;
+    const outputPath = path.join(utilsPath, outputFileName);
+
+    console.log(`Generating Service Doc: ${outputPath}`);
+    await fs.writeFile(outputPath, joinedContent);
+  }
+
+  for (const typedoc of otherTypes) {
     const current_framework = determineFramework(typedoc.source);
     const mdxContent = generateStructuredMDX(
       typedoc,
@@ -243,10 +288,10 @@ async function generateTypeDocs(
     const outputPath = path.join(utilsPath, `${toKebabCase(typedoc.name)}.mdx`);
     console.log(`Generating TypeDoc: ${outputPath}`);
     await fs.writeFile(outputPath, mdxContent);
+  }
 
-    if (global.gc) {
-      global.gc();
-    }
+  if (global.gc) {
+    global.gc();
   }
 }
 
@@ -274,7 +319,7 @@ function generateStructuredMDX(
   templatesPath: string,
   framework?: string
 ): string {
-  if (typedoc.type === 'Function' && typedoc.func) {
+  if (typedoc.type === 'Function' && typedoc.functions) {
     return generateFunctionMDX(typedoc, templatesPath, framework);
   }
 
@@ -330,7 +375,7 @@ function generatePropertyMDX(
 }
 
 function generateFunctionMDX(
-  typedoc: TypeDocTarget,
+  typedoc: any,
   templatesPath: string,
   framework?: string
 ): string {
@@ -339,28 +384,31 @@ function generateFunctionMDX(
     'utf-8'
   );
 
-  const func = typedoc.func!;
-  const kebabName = `ix-${toKebabCase(typedoc.name)}`;
+  const formatFunction = (func: any) => {
+    const formattedParams = func.parameters.map((param: any) => ({
+      name: param.name,
+      type: escapeBackticks(param.type),
+      optional: param.optional,
+      default: param.defaultValue
+        ? escapeBackticks(param.defaultValue)
+        : undefined,
+    }));
 
-  const formattedParams = func.parameters.map((param) => ({
-    name: param.name,
-    type: escapeBackticks(param.type),
-    optional: param.optional,
-    default: param.defaultValue
-      ? escapeBackticks(param.defaultValue)
-      : undefined,
-    comment: escapeBackticks(param.comment),
-  }));
+    return {
+      name: func.name,
+      comment: escapeBackticks(func.comment),
+      returnType: escapeBackticks(func.returnType),
+      parameters: formattedParams,
+      hasParameters: formattedParams.length > 0,
+      docsTags: convertTagsToTSXElements(func.tags),
+      singleFramework: framework,
+    };
+  };
+
+  const formattedFunctions = typedoc.functions.map(formatFunction);
 
   return Mustache.render(functionTemplate, {
-    name: func.name,
-    kebabName: kebabName,
-    comment: escapeBackticks(func.comment),
-    returnType: escapeBackticks(func.returnType),
-    parameters: formattedParams,
-    hasParameters: formattedParams.length > 0,
-    docsTags: convertTagsToTSXElements(func.tags),
-    singleFramework: framework,
+    functions: formattedFunctions,
   });
 }
 
