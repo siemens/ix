@@ -119,7 +119,6 @@ test.describe('validation', () => {
       expect((await eventTriggered).event).toBe('validityStateChange');
     });
 
-    test('number input should be invalid if value is empty', async ({
     test('number input should be invalid if value is empty and required', async ({
       mount,
       page,
