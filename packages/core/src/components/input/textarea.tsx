@@ -269,7 +269,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Method()
   async getValidityState(): Promise<ValidityState> {
     const textarea = await this.textAreaRef.waitForCurrent();
-    return Promise.resolve(textarea.validity);
+    return textarea.validity;
   }
 
   /**

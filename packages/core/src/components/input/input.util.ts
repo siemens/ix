@@ -221,7 +221,7 @@ export async function resetInputValidation<T>(
   (comp as any).touched = false;
 
   const input = await comp.getNativeInputElement();
-  input.removeAttribute('data-ix-touched');
+  delete input.dataset.ixTouched;
 
   comp.isInvalid = false;
   comp.isValid = false;
