@@ -45,7 +45,9 @@ export function setupFormSubmitListener(
   };
 }
 
-function shouldSkipValidationAndClear(checkboxes: NodeListOf<HTMLElement> | HTMLElement[]): boolean {
+function shouldSkipValidationAndClear(
+  checkboxes: NodeListOf<HTMLElement> | HTMLElement[]
+): boolean {
   if (checkboxes.length > 0) {
     const form = checkboxes[0].closest('form');
     if (
@@ -74,7 +76,9 @@ export function updateCheckboxValidationClasses(
     return;
   }
 
-  const requiredCheckboxes = Array.from(checkboxes).filter((el: any) => el.required);
+  const requiredCheckboxes = Array.from(checkboxes).filter(
+    (el: any) => el.required
+  );
 
   requiredCheckboxes.forEach((el: any) => {
     if (el.checked) {

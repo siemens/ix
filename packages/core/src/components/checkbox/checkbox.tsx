@@ -23,7 +23,14 @@ import {
 import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import { getParentForm, hasAnyCheckboxChecked, isFormNoValidate, setupFormSubmitListener, updateCheckboxValidationClasses, updateGroupValidationClasses } from '../utils/checkbox-validation';
+import {
+  getParentForm,
+  hasAnyCheckboxChecked,
+  isFormNoValidate,
+  setupFormSubmitListener,
+  updateCheckboxValidationClasses,
+  updateGroupValidationClasses,
+} from '../utils/checkbox-validation';
 
 /**
  * @form-ready
@@ -155,9 +162,8 @@ export class Checkbox implements IxFormComponent<string> {
         updateGroupValidationClasses(group, checkboxes, isChecked);
       }
     } else if (checkboxGroup && this.name) {
-      const checkboxes: NodeListOf<HTMLElement> = checkboxGroup.querySelectorAll(
-        `ix-checkbox[name="${this.name}"]`
-      );
+      const checkboxes: NodeListOf<HTMLElement> =
+        checkboxGroup.querySelectorAll(`ix-checkbox[name="${this.name}"]`);
 
       if (isFormNoValidate(this.hostElement)) {
         Array.from(checkboxes).forEach((el: any) => {
@@ -180,7 +186,10 @@ export class Checkbox implements IxFormComponent<string> {
     } else {
       const isRequiredInvalid =
         !isChecked && (this.touched || this.formSubmissionAttempted);
-      this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        isRequiredInvalid
+      );
       if (isChecked) {
         this.hostElement.classList.remove('ix-invalid');
       } else if (isRequiredInvalid) {

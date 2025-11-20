@@ -15,8 +15,13 @@ import {
 } from '../utils/input';
 import { IxComponent } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
-import { getParentForm, hasAnyCheckboxChecked, isFormNoValidate, setupFormSubmitListener, updateCheckboxValidationClasses } from '../utils/checkbox-validation';
-
+import {
+  getParentForm,
+  hasAnyCheckboxChecked,
+  isFormNoValidate,
+  setupFormSubmitListener,
+  updateCheckboxValidationClasses,
+} from '../utils/checkbox-validation';
 
 /**
  * @form-ready
@@ -27,7 +32,8 @@ import { getParentForm, hasAnyCheckboxChecked, isFormNoValidate, setupFormSubmit
   shadow: true,
 })
 export class CheckboxGroup
-  implements FieldWrapperInterface, IxFormValidationState, IxComponent {
+  implements FieldWrapperInterface, IxFormValidationState, IxComponent
+{
   @Element() hostElement!: HTMLIxCheckboxGroupElement;
   /**
    * Optional helper text displayed below the checkbox group
@@ -149,7 +155,9 @@ export class CheckboxGroup
       const allWithSameName: NodeListOf<HTMLElement> = form
         ? form.querySelectorAll(`ix-checkbox[name="${name}"]`)
         : document.querySelectorAll(`ix-checkbox[name="${name}"]`);
-      return hasAnyCheckboxChecked(Array.from(allWithSameName).filter((el: any) => el.required));
+      return hasAnyCheckboxChecked(
+        Array.from(allWithSameName).filter((el: any) => el.required)
+      );
     }
     return checkboxes.some((checkbox) => (checkbox as any).checked);
   }
@@ -170,15 +178,21 @@ export class CheckboxGroup
       return;
     }
 
-    const requiredCheckboxes = this.checkboxElements.filter((el) => el.required);
+    const requiredCheckboxes = this.checkboxElements.filter(
+      (el) => el.required
+    );
     const isChecked = this.hasAnyChecked();
     const anyTouched = requiredCheckboxes.some(
       (el: any) => el.touched || el.formSubmissionAttempted
     );
     const isRequiredInvalid =
-      !isChecked && (this.touched || this.formSubmissionAttempted || anyTouched);
+      !isChecked &&
+      (this.touched || this.formSubmissionAttempted || anyTouched);
 
-    this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+    this.hostElement.classList.toggle(
+      'ix-invalid--required',
+      isRequiredInvalid
+    );
 
     if (isRequiredInvalid) {
       this.hostElement.classList.add('ix-invalid');
