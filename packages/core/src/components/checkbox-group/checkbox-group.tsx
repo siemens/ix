@@ -16,12 +16,11 @@ import {
 import { IxComponent } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
 import {
-  getParentForm,
-  hasAnyCheckboxChecked,
   isFormNoValidate,
   setupFormSubmitListener,
   updateCheckboxValidationClasses,
 } from '../utils/checkbox-validation';
+import { useFieldGroupValidation } from '../utils/field-group-utils';
 
 /**
  * @form-ready
@@ -88,8 +87,19 @@ export class CheckboxGroup
   private cleanupFormListener?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
+  private validation = useFieldGroupValidation<HTMLIxCheckboxElement>(
+    this.hostElement,
+    {
+      selector: 'ix-checkbox',
+      isChecked: (el) => el.checked,
+      isRequired: (el) => el.required,
+      updateValidationClasses: updateCheckboxValidationClasses,
+      clearValidationState: this.clearValidationState.bind(this),
+    }
+  );
+
   get checkboxElements(): HTMLIxCheckboxElement[] {
-    return Array.from(this.hostElement.querySelectorAll('ix-checkbox'));
+    return this.validation.getElements();
   }
 
   private setupFormListener() {
@@ -144,18 +154,7 @@ export class CheckboxGroup
   }
 
   private hasAnyChecked(): boolean {
-    const checkboxes = this.checkboxElements.filter((el) => el.required);
-    if (checkboxes.length > 0 && checkboxes[0].name) {
-      const name = checkboxes[0].name;
-      const form = getParentForm(this.hostElement);
-      const allWithSameName: NodeListOf<HTMLElement> = form
-        ? form.querySelectorAll(`ix-checkbox[name="${name}"]`)
-        : document.querySelectorAll(`ix-checkbox[name="${name}"]`);
-      return hasAnyCheckboxChecked(
-        Array.from(allWithSameName).filter((el: any) => el.required)
-      );
-    }
-    return checkboxes.some((checkbox) => (checkbox as any).checked);
+    return this.validation.hasAnyChecked();
   }
 
   private clearValidationState() {

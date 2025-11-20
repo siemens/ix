@@ -29,10 +29,10 @@ import {
   isFormNoValidate,
   setupFormSubmitListener,
   updateRadioValidationClasses,
-  hasAnyCheckedRadios,
   clearRadioGroupValidationState,
 } from '../utils/radio-validation';
 import { makeRef } from '../utils/make-ref';
+import { useFieldGroupValidation } from '../utils/field-group-utils';
 
 /**
  * @form-ready
@@ -113,13 +113,19 @@ export class RadiobuttonGroup
   private cleanupFormListener?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
-  private readonly observer = new MutationObserver(() => {
-    this.ensureOnlyLastRadioChecked();
-    this.hasNestedRequiredRadio();
-  });
+  private validation = useFieldGroupValidation<HTMLIxRadioElement>(
+    this.hostElement,
+    {
+      selector: 'ix-radio',
+      isChecked: (el) => el.checked,
+      isRequired: (el) => el.required,
+      updateValidationClasses: updateRadioValidationClasses,
+      clearValidationState: this.clearValidationState.bind(this),
+    }
+  );
 
   private get radiobuttonElements() {
-    return Array.from(this.hostElement.querySelectorAll('ix-radio'));
+    return this.validation.getElements();
   }
 
   private setupFormListener() {
@@ -130,54 +136,13 @@ export class RadiobuttonGroup
   }
 
   connectedCallback(): void {
-    this.observer.observe(this.hostElement, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['checked', 'required'],
-    });
     this.setupFormListener();
   }
 
   disconnectedCallback(): void {
-    if (this.observer) {
-      this.observer.disconnect();
-    }
     if (this.cleanupFormListener) {
       this.cleanupFormListener();
     }
-  }
-
-  private ensureOnlyLastRadioChecked() {
-    const checkedRadios = this.radiobuttonElements.filter(
-      (radio) => radio.checked
-    );
-    checkedRadios.forEach((radio, index) => {
-      if (index === checkedRadios.length - 1) {
-        return;
-      }
-      radio.checked = false;
-    });
-
-    const hasCheckedRadio = this.isSomeRadioChecked();
-
-    for (const radio of this.radiobuttonElements) {
-      radio.tabIndex = radio.checked ? 0 : -1;
-    }
-
-    if (!hasCheckedRadio && this.radiobuttonElements.length > 0) {
-      this.radiobuttonElements[0].tabIndex = 0;
-    }
-  }
-
-  private hasNestedRequiredRadio() {
-    this.required = this.radiobuttonElements.some(
-      (radiobutton) => radiobutton.required
-    );
-  }
-
-  private isSomeRadioChecked() {
-    return this.radiobuttonElements.some((radio) => radio.checked);
   }
 
   @Watch('value')
@@ -262,7 +227,7 @@ export class RadiobuttonGroup
 
   // --- Validation helpers (shared with checkbox-group) ---
   private hasAnyChecked(): boolean {
-    return hasAnyCheckedRadios(this.radiobuttonElements as HTMLElement[]);
+    return this.validation.hasAnyChecked();
   }
 
   private clearValidationState() {
