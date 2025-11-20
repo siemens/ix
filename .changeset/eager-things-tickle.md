@@ -5,4 +5,4 @@
 '@siemens/ix-vue': minor
 ---
 
-Clamp page input of _ix-pagination_ to resprecht min and max. Closes #2144
+Correct non numeric page value or page value beyond the range of *ix-pagination*. Closes #2144
