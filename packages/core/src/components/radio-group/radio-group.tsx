@@ -25,6 +25,13 @@ import {
   FieldWrapperInterface,
   IxFormValidationState,
 } from '../utils/input';
+import {
+  isFormNoValidate,
+  setupFormSubmitListener,
+  updateRadioValidationClasses,
+  hasAnyCheckedRadios,
+  clearRadioGroupValidationState,
+} from '../utils/radio-validation';
 import { makeRef } from '../utils/make-ref';
 
 /**
@@ -102,6 +109,8 @@ export class RadiobuttonGroup
   @State() isWarning = false;
 
   private touched = false;
+  private formSubmissionAttempted = false;
+  private cleanupFormListener?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
   private readonly observer = new MutationObserver(() => {
@@ -120,6 +129,10 @@ export class RadiobuttonGroup
       attributes: true,
       attributeFilter: ['checked', 'required'],
     });
+    this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
+      this.formSubmissionAttempted = true;
+      this.syncValidationClasses();
+    });
   }
 
   componentWillLoad(): void | Promise<void> {
@@ -131,6 +144,9 @@ export class RadiobuttonGroup
   disconnectedCallback(): void {
     if (this.observer) {
       this.observer.disconnect();
+    }
+    if (this.cleanupFormListener) {
+      this.cleanupFormListener();
     }
   }
 
@@ -256,10 +272,86 @@ export class RadiobuttonGroup
     nextRadio.focus();
   }
 
+  private hasAnyChecked(): boolean {
+    return hasAnyCheckedRadios(this.radiobuttonElements as HTMLElement[]);
+  }
+
+  private clearValidationState() {
+    clearRadioGroupValidationState(
+      this.hostElement,
+      this.radiobuttonElements as HTMLElement[],
+      this.invalidText
+    );
+  }
+
+  private handleRequiredValidation() {
+    if (isFormNoValidate(this.hostElement)) {
+      this.clearValidationState();
+      return;
+    }
+
+    const requiredRadios = this.radiobuttonElements.filter((el) => el.required);
+    const isChecked = this.hasAnyChecked();
+    const anyTouched = requiredRadios.some(
+      (el: any) => el.touched || el.formSubmissionAttempted
+    );
+    const isRequiredInvalid =
+      !isChecked &&
+      (this.touched || this.formSubmissionAttempted || anyTouched);
+
+    this.hostElement.classList.toggle(
+      'ix-invalid--required',
+      isRequiredInvalid
+    );
+
+    if (isRequiredInvalid) {
+      this.hostElement.classList.add('ix-invalid');
+      this.invalidText =
+        this.invalidText && this.invalidText.trim().length > 0
+          ? this.invalidText
+          : 'Please select the required field.';
+    } else {
+      this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+      if (this.invalidText === 'Please select the required field.') {
+        this.invalidText = '';
+      }
+    }
+
+    if (!isFormNoValidate(this.hostElement)) {
+      updateRadioValidationClasses(
+        this.radiobuttonElements,
+        this.touched,
+        this.formSubmissionAttempted
+      );
+    }
+
+    if (isChecked) {
+      this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+    }
+  }
+
+  async syncValidationClasses() {
+    if (isFormNoValidate(this.hostElement)) {
+      this.clearValidationState();
+      return;
+    }
+
+    if (this.required) {
+      this.handleRequiredValidation();
+    } else {
+      this.clearValidationState();
+    }
+  }
+
   render() {
     return (
       <Host
-        onIxBlur={() => (this.touched = true)}
+        onIxBlur={() => {
+          if (!this.touched) {
+            this.touched = true;
+            this.syncValidationClasses();
+          }
+        }}
         ref={this.groupRef}
         role="radiogroup"
       >
