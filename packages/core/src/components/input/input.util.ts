@@ -219,3 +219,25 @@ export function handleSubmitOnEnterKeydown(
     form.requestSubmit();
   }
 }
+
+export async function resetInputValidation<T>(
+  comp: IxInputFieldComponent<T>
+): Promise<void> {
+  (comp as any).touched = false;
+
+  const input = await comp.getNativeInputElement();
+  input.removeAttribute('data-ix-touched');
+
+  comp.isInvalid = false;
+  comp.isValid = false;
+  comp.isInfo = false;
+  comp.isWarning = false;
+  (comp as any).isInvalidByRequired = false;
+
+  comp.hostElement.dispatchEvent(
+    new CustomEvent('valueChange', {
+      detail: comp.value,
+      bubbles: true,
+    })
+  );
+}
