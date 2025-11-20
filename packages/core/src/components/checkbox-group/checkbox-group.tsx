@@ -149,7 +149,7 @@ export class CheckboxGroup
       const allWithSameName: NodeListOf<HTMLElement> = form
         ? form.querySelectorAll(`ix-checkbox[name="${name}"]`)
         : document.querySelectorAll(`ix-checkbox[name="${name}"]`);
-       return hasAnyCheckboxChecked(Array.from(allWithSameName).filter((el: any) => el.required));
+      return hasAnyCheckboxChecked(Array.from(allWithSameName).filter((el: any) => el.required));
     }
     return checkboxes.some((checkbox) => (checkbox as any).checked);
   }
@@ -165,6 +165,11 @@ export class CheckboxGroup
   }
 
   private handleRequiredValidation() {
+    if (isFormNoValidate(this.hostElement)) {
+      this.clearValidationState();
+      return;
+    }
+
     const requiredCheckboxes = this.checkboxElements.filter((el) => el.required);
     const isChecked = this.hasAnyChecked();
     const anyTouched = requiredCheckboxes.some(
@@ -188,12 +193,14 @@ export class CheckboxGroup
       }
     }
 
-    updateCheckboxValidationClasses(
-      this.checkboxElements,
-      isChecked,
-      this.touched,
-      this.formSubmissionAttempted
-    );
+    if (!isFormNoValidate(this.hostElement)) {
+      updateCheckboxValidationClasses(
+        this.checkboxElements,
+        isChecked,
+        this.touched,
+        this.formSubmissionAttempted
+      );
+    }
 
     if (isChecked) {
       this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');

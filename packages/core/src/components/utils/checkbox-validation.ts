@@ -45,12 +45,35 @@ export function setupFormSubmitListener(
   };
 }
 
+function shouldSkipValidationAndClear(checkboxes: NodeListOf<HTMLElement> | HTMLElement[]): boolean {
+  if (checkboxes.length > 0) {
+    const form = checkboxes[0].closest('form');
+    if (
+      form &&
+      (form.hasAttribute('novalidate') ||
+        form.getAttribute('novalidate') === '' ||
+        form.dataset.novalidate !== undefined ||
+        form.hasAttribute('ngnovalidate'))
+    ) {
+      Array.from(checkboxes).forEach((el: any) => {
+        el.classList.remove('ix-invalid--required', 'ix-invalid');
+      });
+      return true;
+    }
+  }
+  return false;
+}
+
 export function updateCheckboxValidationClasses(
   checkboxes: NodeListOf<HTMLElement> | HTMLElement[],
   isChecked: boolean,
   touched: boolean,
   formSubmissionAttempted: boolean
 ) {
+  if (shouldSkipValidationAndClear(checkboxes)) {
+    return;
+  }
+
   const requiredCheckboxes = Array.from(checkboxes).filter((el: any) => el.required);
 
   requiredCheckboxes.forEach((el: any) => {
@@ -80,6 +103,11 @@ export function updateGroupValidationClasses(
   isChecked: boolean
 ) {
   if (!group) return;
+
+  if (shouldSkipValidationAndClear(checkboxes)) {
+    group.classList.remove('ix-invalid', 'ix-invalid--required');
+    return;
+  }
 
   if (isChecked) {
     group.classList.remove('ix-invalid', 'ix-invalid--required');
