@@ -188,7 +188,7 @@ test.describe('prevent initial require validation', async () => {
 
       const inputComponent = page.locator(selector);
       const input = inputComponent.locator(
-        selector !== 'ix-textarea' ? 'input' : 'textarea'
+        selector === 'ix-textarea' ? 'textarea' : 'input'
       );
 
       await expect(inputComponent).toBeVisible();
@@ -212,7 +212,7 @@ test.describe('reset method', () => {
 
       const inputComponent = page.locator(selector);
       const input = inputComponent.locator(
-        selector !== 'ix-textarea' ? 'input' : 'textarea'
+        selector === 'ix-textarea' ? 'textarea' : 'input'
       );
 
       await expect(inputComponent).not.toHaveClass(/ix-invalid/);
@@ -237,7 +237,7 @@ test.describe('reset method', () => {
 
       const inputComponent = page.locator(selector);
       const input = inputComponent.locator(
-        selector !== 'ix-textarea' ? 'input' : 'textarea'
+        selector === 'ix-textarea' ? 'textarea' : 'input'
       );
 
       await input.click();
