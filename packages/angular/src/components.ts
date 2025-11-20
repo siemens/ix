@@ -2307,7 +2307,7 @@ export declare interface IxRow extends Components.IxRow {}
 
 @ProxyCmp({
   inputs: ['allowClear', 'ariaLabelChevronDownIconButton', 'ariaLabelClearIconButton', 'collapseMultipleSelection', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'helperText', 'hideListHeader', 'i18nAllSelected', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput', 'reset']
+  methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-select',

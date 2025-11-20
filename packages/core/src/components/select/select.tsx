@@ -29,7 +29,6 @@ import {
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
-import { resetInputValidation } from '../input/input.util';
 import { a11yBoolean } from '../utils/a11y';
 import { ArrowFocusController } from '../utils/focus';
 import {
@@ -226,7 +225,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() isValid = false;
   @State() isInfo = false;
   @State() isWarning = false;
-  @State() isInvalidByRequired = false;
 
   private formSubmissionAttempted = false;
   private formSubmitHandler?: (event: Event) => void;
@@ -249,13 +247,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
 
-  private readonly focusControllerCallbackBind =
-    this.focusDropdownItem.bind(this);
-
-  get nonShadowItems() {
-    return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
-  }
-
   private get parentForm(): HTMLFormElement | null {
     return this.hostElement.closest('form');
   }
@@ -272,6 +263,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     ];
 
     return noValidateAttributes.some((attr) => form.hasAttribute(attr));
+  }
+
+  private readonly focusControllerCallbackBind =
+    this.focusDropdownItem.bind(this);
+
+  get nonShadowItems() {
+    return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
   }
 
   get visibleNonShadowItems() {
@@ -970,16 +968,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
-  }
-
-  /**
-   * Resets the select field validation state by removing the touched state
-   * and clearing validation states while preserving the current value.
-   */
-  @Method()
-  async reset(): Promise<void> {
-    this.formSubmissionAttempted = false;
-    return resetInputValidation(this);
   }
 
   render() {
