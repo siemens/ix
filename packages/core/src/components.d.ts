@@ -2634,6 +2634,12 @@ export namespace Components {
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
+          * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
+          * @since 4.1.0
+          * @default 'Page selection input'
+         */
+        "ariaLabelPageSelection": string;
+        /**
           * Total number of pages
           * @default 0
          */
@@ -3682,9 +3688,8 @@ export namespace Components {
         "secondInterval": number;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
          */
-        "time": string;
+        "time"?: string;
     }
     interface IxToast {
         /**
@@ -8575,6 +8580,12 @@ declare namespace LocalJSX {
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
+          * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
+          * @since 4.1.0
+          * @default 'Page selection input'
+         */
+        "ariaLabelPageSelection"?: string;
+        /**
           * Total number of pages
           * @default 0
          */
@@ -9666,7 +9677,6 @@ declare namespace LocalJSX {
         "secondInterval"?: number;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
          */
         "time"?: string;
     }
