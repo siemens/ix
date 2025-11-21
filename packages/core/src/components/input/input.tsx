@@ -37,6 +37,7 @@ import {
   getAriaAttributesForInput,
   mapValidationResult,
   onInputBlur,
+  resetInputValidation,
 } from './input.util';
 
 let inputIds = 0;
@@ -272,6 +273,15 @@ export class Input implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Resets the input field validation state by removing the touched state
+   * and clearing validation states while preserving the current value.
+   */
+  @Method()
+  async reset(): Promise<void> {
+    return resetInputValidation(this);
   }
 
   render() {
