@@ -16,7 +16,7 @@ import { ShowToastResult } from '@siemens/ix';
 import { defineCustomElement } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineCustomElementToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ToastService extends BaseToastService {
   constructor() {
     super();

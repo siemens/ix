@@ -8,7 +8,7 @@
  */
 
 import { Component } from '@angular/core';
-import { showMessage } from '@siemens/ix';
+import { MessageService } from '@siemens/ix-angular';
 
 @Component({
   standalone: false,
@@ -18,9 +18,11 @@ import { showMessage } from '@siemens/ix';
   `,
 })
 export default class Message {
+  constructor(private readonly messageService: MessageService) {}
+
   triggerMessage = async () => {
     (
-      await showMessage.success(
+      await this.messageService.success(
         'Example title',
         'message',
         'Save',

@@ -8,8 +8,7 @@
 -->
 
 <script setup lang="ts">
-import { showMessage } from '@siemens/ix';
-import { IxButton } from '@siemens/ix-vue';
+import { IxButton, showMessage } from '@siemens/ix-vue';
 
 const triggerMessage = async () => {
   (
