@@ -30,7 +30,7 @@ import {
   setupFormSubmitListener,
   updateCheckboxValidationClasses,
   updateGroupValidationClasses,
-} from '../utils/checkbox-validation';
+} from './checkbox-validation';
 
 /**
  * @form-ready

@@ -87,7 +87,6 @@ export function updateCheckboxValidationClasses(
   });
 
   if (isChecked) {
-    // Do not remove classes from all, only from checked ones above
     return;
   }
 

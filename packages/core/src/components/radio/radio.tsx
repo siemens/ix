@@ -32,7 +32,7 @@ import {
   updateRadioValidationClasses,
   updateRadioGroupValidationClasses,
   setupFormSubmitListener,
-} from '../utils/radio-validation';
+} from './radio-validation';
 
 /**
  * @form-ready

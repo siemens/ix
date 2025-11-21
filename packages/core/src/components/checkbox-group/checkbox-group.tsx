@@ -20,7 +20,7 @@ import {
   isFormNoValidate,
   setupFormSubmitListener,
   updateCheckboxValidationClasses,
-} from '../utils/checkbox-validation';
+} from '../checkbox/checkbox-validation';
 
 /**
  * @form-ready
@@ -167,47 +167,83 @@ export class CheckboxGroup
     });
   }
 
-  private handleRequiredValidation() {
-    if (isFormNoValidate(this.hostElement)) {
-      this.clearValidationState();
+  private handleRequiredValidationShared(
+    elements: HTMLElement[],
+    hasAnyChecked: boolean,
+    touched: boolean,
+    formSubmissionAttempt: boolean,
+    invalidText: string | undefined,
+    hostElement: HTMLElement,
+    clearValidationState: () => void,
+    updateValidationClasses: (
+      elements: HTMLElement[],
+      isChecked: boolean,
+      touched: boolean,
+      formSubmissionAttempt: boolean
+    ) => void
+  ) {
+    if (isFormNoValidate(hostElement)) {
+      clearValidationState();
       return;
     }
-    const requiredCheckboxes = this.checkboxElements.filter(
-      (el) => el.required
+    const requiredElements = elements.filter(
+      (el) => (el as HTMLIxCheckboxElement).required
     );
-    const isChecked = this.hasAnyChecked();
-    const anyTouched = requiredCheckboxes.some(
-      (el: any) => el.touched || el.formSubmissionAttempted
+    const isChecked = hasAnyChecked;
+    const anyTouched = requiredElements.some(
+      (el) =>
+        (
+          el as HTMLIxCheckboxElement & {
+            touched?: boolean;
+            formSubmissionAttempted?: boolean;
+          }
+        ).touched ||
+        (
+          el as HTMLIxCheckboxElement & {
+            touched?: boolean;
+            formSubmissionAttempted?: boolean;
+          }
+        ).formSubmissionAttempted
     );
     const isRequiredInvalid =
-      !isChecked && (this.touched || this.formSubmissionAttempt || anyTouched);
-    this.hostElement.classList.toggle(
-      'ix-invalid--required',
-      isRequiredInvalid
-    );
+      !isChecked && (touched || formSubmissionAttempt || anyTouched);
+    hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
     if (isRequiredInvalid) {
-      this.hostElement.classList.add('ix-invalid');
+      hostElement.classList.add('ix-invalid');
       this.invalidText =
-        this.invalidText && this.invalidText.trim().length > 0
-          ? this.invalidText
+        invalidText && invalidText.trim().length > 0
+          ? invalidText
           : 'Please select the required field.';
     } else {
-      this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
-      if (this.invalidText === 'Please select the required field.') {
+      hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+      if (invalidText === 'Please select the required field.') {
         this.invalidText = '';
       }
     }
-    if (!isFormNoValidate(this.hostElement)) {
-      updateCheckboxValidationClasses(
-        this.checkboxElements,
+    if (!isFormNoValidate(hostElement)) {
+      updateValidationClasses(
+        elements,
         isChecked,
-        this.touched,
-        this.formSubmissionAttempt
+        touched,
+        formSubmissionAttempt
       );
     }
     if (isChecked) {
-      this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+      hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
     }
+  }
+
+  private handleRequiredValidation() {
+    this.handleRequiredValidationShared(
+      this.checkboxElements,
+      this.hasAnyChecked(),
+      this.touched,
+      this.formSubmissionAttempt,
+      this.invalidText,
+      this.hostElement,
+      this.clearValidationState.bind(this),
+      updateCheckboxValidationClasses
+    );
   }
 
   async syncValidationClasses() {

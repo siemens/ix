@@ -30,7 +30,7 @@ import {
   setupFormSubmitListener,
   updateRadioValidationClasses,
   clearRadioGroupValidationState,
-} from '../utils/radio-validation';
+} from '../radio/radio-validation';
 import { makeRef } from '../utils/make-ref';
 import { useFieldGroupValidation } from '../utils/field-group-utils';
 
@@ -183,9 +183,7 @@ export class RadiobuttonGroup
   @Method()
   hasValidValue(): Promise<boolean> {
     return Promise.resolve(
-      !!Array.from(this.hostElement.querySelectorAll('ix-radio')).find(
-        (radio) => radio.checked
-      )
+      !!this.radiobuttonElements.find((radio) => radio.checked)
     );
   }
 
@@ -236,50 +234,88 @@ export class RadiobuttonGroup
     );
   }
 
-  private handleRequiredValidation() {
-    if (isFormNoValidate(this.hostElement)) {
-      this.clearValidationState();
+  private handleRequiredValidationShared(
+    elements: HTMLElement[],
+    hasAnyChecked: boolean,
+    touched: boolean,
+    formSubmissionAttempted: boolean,
+    invalidText: string | undefined,
+    hostElement: HTMLElement,
+    clearValidationState: () => void,
+    updateValidationClasses: (
+      elements: HTMLElement[],
+      isChecked: boolean,
+      touched: boolean,
+      formSubmissionAttempted: boolean
+    ) => void
+  ) {
+    if (isFormNoValidate(hostElement)) {
+      clearValidationState();
       return;
     }
 
-    const requiredRadios = this.radiobuttonElements.filter((el) => el.required);
-    const isChecked = this.hasAnyChecked();
-    const anyTouched = requiredRadios.some(
-      (el: any) => el.touched || el.formSubmissionAttempted
+    const requiredElements = elements.filter(
+      (el) => (el as HTMLIxRadioElement).required
+    );
+    const isChecked = hasAnyChecked;
+    const anyTouched = requiredElements.some(
+      (el) =>
+        (
+          el as HTMLIxRadioElement & {
+            touched?: boolean;
+            formSubmissionAttempted?: boolean;
+          }
+        ).touched ||
+        (
+          el as HTMLIxRadioElement & {
+            touched?: boolean;
+            formSubmissionAttempted?: boolean;
+          }
+        ).formSubmissionAttempted
     );
     const isRequiredInvalid =
-      !isChecked &&
-      (this.touched || this.formSubmissionAttempted || anyTouched);
+      !isChecked && (touched || formSubmissionAttempted || anyTouched);
 
-    this.hostElement.classList.toggle(
-      'ix-invalid--required',
-      isRequiredInvalid
-    );
+    hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
 
     if (isRequiredInvalid) {
-      this.hostElement.classList.add('ix-invalid');
+      hostElement.classList.add('ix-invalid');
       this.invalidText =
-        this.invalidText && this.invalidText.trim().length > 0
-          ? this.invalidText
+        invalidText && invalidText.trim().length > 0
+          ? invalidText
           : 'Please select the required field.';
     } else {
-      this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
-      if (this.invalidText === 'Please select the required field.') {
+      hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+      if (invalidText === 'Please select the required field.') {
         this.invalidText = '';
       }
     }
 
-    if (!isFormNoValidate(this.hostElement)) {
-      updateRadioValidationClasses(
-        this.radiobuttonElements,
-        this.touched,
-        this.formSubmissionAttempted
+    if (!isFormNoValidate(hostElement)) {
+      updateValidationClasses(
+        elements,
+        isChecked,
+        touched,
+        formSubmissionAttempted
       );
     }
 
     if (isChecked) {
-      this.hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
+      hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
     }
+  }
+
+  private handleRequiredValidation() {
+    this.handleRequiredValidationShared(
+      this.radiobuttonElements,
+      this.hasAnyChecked(),
+      this.touched,
+      this.formSubmissionAttempted,
+      this.invalidText,
+      this.hostElement,
+      this.clearValidationState.bind(this),
+      updateRadioValidationClasses
+    );
   }
 
   async syncValidationClasses() {
