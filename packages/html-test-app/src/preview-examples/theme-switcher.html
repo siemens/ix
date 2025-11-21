@@ -37,8 +37,7 @@ LICENSE file in the root directory of this source tree.
       <ix-row>
         <ix-col size="2"></ix-col>
         <ix-col>
-          <input class="ix-form-control" type="checkbox" id="system" />
-          <label class="ix-form-label" for="system">Use System</label>
+          <ix-checkbox id="system" label="Use system"></ix-checkbox>
         </ix-col>
       </ix-row>
     </ix-layout-grid>
@@ -46,44 +45,71 @@ LICENSE file in the root directory of this source tree.
     <script type="module">
       import { themeSwitcher } from '@siemens/ix';
 
-      (async function () {
-        const themes = ['theme-classic-light', 'theme-classic-dark'];
-        let selectedTheme = themes[1];
+      const variants = ['light', 'dark'];
+      let selectedVariant = 'dark';
+      let useSystemTheme = false;
 
-        setTimeout(() => {
-          themeSwitcher.setTheme(selectedTheme);
-        });
+      const toggleModeButton = document.getElementById('toggle-mode');
+      const themeSelect = document.getElementById('select-theme');
+      const toggleSystem = document.getElementById('system');
 
-        const toggleModeButton = document.getElementById('toggle-mode');
-        toggleModeButton.addEventListener('click', () => {
-          themeSwitcher.toggleMode();
-        });
+      setTimeout(() => {
+        themeSwitcher.setTheme('classic');
+        themeSwitcher.setVariant(selectedVariant);
+      });
 
-        const themeSelect = document.getElementById('select-theme');
-        themes.forEach((theme) => {
-          const item = document.createElement('ix-select-item');
-          item.label = theme;
-          item.value = theme;
-          themeSelect.appendChild(item);
-        });
+      for (const variant of variants) {
+        const item = document.createElement('ix-select-item');
 
-        themeSelect.value = selectedTheme;
+        item.label = variant;
+        item.value = variant;
 
-        themeSelect.addEventListener('valueChange', ({ detail: theme }) => {
-          themeSwitcher.setTheme(theme);
-          selectedTheme = theme;
-        });
+        themeSelect.appendChild(item);
+      }
 
-        const toggleSystem = document.getElementById('system');
-        toggleSystem.addEventListener('change', ({ target }) => {
-          if (target.checked) {
-            themeSwitcher.setVariant();
-            return;
-          }
+      themeSelect.value = selectedVariant;
 
-          themeSwitcher.setTheme(selectedTheme);
-        });
-      })();
+      const updateControlsState = () => {
+        toggleModeButton.disabled = useSystemTheme;
+        themeSelect.disabled = useSystemTheme;
+      };
+
+      toggleModeButton.addEventListener('click', () => {
+        if (useSystemTheme) {
+          return;
+        }
+
+        themeSwitcher.toggleMode();
+
+        selectedVariant = selectedVariant === 'light' ? 'dark' : 'light';
+        themeSelect.value = selectedVariant;
+      });
+
+      themeSelect.addEventListener('valueChange', ({ detail: variant }) => {
+        if (useSystemTheme) {
+          return;
+        }
+
+        themeSwitcher.setVariant(variant);
+
+        selectedVariant = variant;
+      });
+
+      toggleSystem.addEventListener('checkedChange', ({ detail: checked }) => {
+        useSystemTheme = checked;
+
+        if (checked) {
+          themeSwitcher.setVariant();
+        } else {
+          themeSwitcher.setVariant(selectedVariant);
+
+          themeSelect.value = selectedVariant;
+        }
+
+        updateControlsState();
+      });
+
+      updateControlsState();
     </script>
     <script type="module" src="./init.js"></script>
   </body>
