@@ -167,21 +167,32 @@ export class CheckboxGroup
     });
   }
 
-  private handleRequiredValidationShared(
-    elements: HTMLElement[],
-    hasAnyChecked: boolean,
-    touched: boolean,
-    formSubmissionAttempt: boolean,
-    invalidText: string | undefined,
-    hostElement: HTMLElement,
-    clearValidationState: () => void,
+  private handleRequiredValidationShared(params: {
+    elements: HTMLElement[];
+    hasAnyChecked: boolean;
+    touched: boolean;
+    formSubmissionAttempt: boolean;
+    invalidText: string | undefined;
+    hostElement: HTMLElement;
+    clearValidationState: () => void;
     updateValidationClasses: (
       elements: HTMLElement[],
       isChecked: boolean,
       touched: boolean,
       formSubmissionAttempt: boolean
-    ) => void
-  ) {
+    ) => void;
+  }) {
+    const {
+      elements,
+      hasAnyChecked,
+      touched,
+      formSubmissionAttempt,
+      invalidText,
+      hostElement,
+      clearValidationState,
+      updateValidationClasses,
+    } = params;
+
     if (isFormNoValidate(hostElement)) {
       clearValidationState();
       return;
@@ -234,16 +245,16 @@ export class CheckboxGroup
   }
 
   private handleRequiredValidation() {
-    this.handleRequiredValidationShared(
-      this.checkboxElements,
-      this.hasAnyChecked(),
-      this.touched,
-      this.formSubmissionAttempt,
-      this.invalidText,
-      this.hostElement,
-      this.clearValidationState.bind(this),
-      updateCheckboxValidationClasses
-    );
+    this.handleRequiredValidationShared({
+      elements: this.checkboxElements,
+      hasAnyChecked: this.hasAnyChecked(),
+      touched: this.touched,
+      formSubmissionAttempt: this.formSubmissionAttempt,
+      invalidText: this.invalidText,
+      hostElement: this.hostElement,
+      clearValidationState: this.clearValidationState.bind(this),
+      updateValidationClasses: updateCheckboxValidationClasses,
+    });
   }
 
   async syncValidationClasses() {

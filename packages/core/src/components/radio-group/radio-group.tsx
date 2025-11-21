@@ -183,7 +183,7 @@ export class RadiobuttonGroup
   @Method()
   hasValidValue(): Promise<boolean> {
     return Promise.resolve(
-      !!this.radiobuttonElements.find((radio) => radio.checked)
+      this.radiobuttonElements.some((radio) => radio.checked)
     );
   }
 
@@ -234,21 +234,32 @@ export class RadiobuttonGroup
     );
   }
 
-  private handleRequiredValidationShared(
-    elements: HTMLElement[],
-    hasAnyChecked: boolean,
-    touched: boolean,
-    formSubmissionAttempted: boolean,
-    invalidText: string | undefined,
-    hostElement: HTMLElement,
-    clearValidationState: () => void,
+  private handleRequiredValidationShared(params: {
+    elements: HTMLElement[];
+    hasAnyChecked: boolean;
+    touched: boolean;
+    formSubmissionAttempted: boolean;
+    invalidText: string | undefined;
+    hostElement: HTMLElement;
+    clearValidationState: () => void;
     updateValidationClasses: (
       elements: HTMLElement[],
       isChecked: boolean,
       touched: boolean,
       formSubmissionAttempted: boolean
-    ) => void
-  ) {
+    ) => void;
+  }) {
+    const {
+      elements,
+      hasAnyChecked,
+      touched,
+      formSubmissionAttempted,
+      invalidText,
+      hostElement,
+      clearValidationState,
+      updateValidationClasses,
+    } = params;
+
     if (isFormNoValidate(hostElement)) {
       clearValidationState();
       return;
@@ -306,16 +317,16 @@ export class RadiobuttonGroup
   }
 
   private handleRequiredValidation() {
-    this.handleRequiredValidationShared(
-      this.radiobuttonElements,
-      this.hasAnyChecked(),
-      this.touched,
-      this.formSubmissionAttempted,
-      this.invalidText,
-      this.hostElement,
-      this.clearValidationState.bind(this),
-      updateRadioValidationClasses
-    );
+    this.handleRequiredValidationShared({
+      elements: this.radiobuttonElements,
+      hasAnyChecked: this.hasAnyChecked(),
+      touched: this.touched,
+      formSubmissionAttempted: this.formSubmissionAttempted,
+      invalidText: this.invalidText,
+      hostElement: this.hostElement,
+      clearValidationState: this.clearValidationState.bind(this),
+      updateValidationClasses: updateRadioValidationClasses,
+    });
   }
 
   async syncValidationClasses() {
