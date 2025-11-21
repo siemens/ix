@@ -113,16 +113,14 @@ export class RadiobuttonGroup
   private cleanupFormListener?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
-  private radioValidation = useFieldGroupValidation<HTMLIxRadioElement>(
-    this.hostElement,
-    {
+  private readonly radioValidation =
+    useFieldGroupValidation<HTMLIxRadioElement>(this.hostElement, {
       selector: 'ix-radio',
       isChecked: (el) => el.checked,
       isRequired: (el) => el.required,
       updateValidationClasses: updateRadioValidationClasses,
       clearValidationState: this.clearValidationState.bind(this),
-    }
-  );
+    });
 
   private get radiobuttonElements() {
     return this.radioValidation.getElements();

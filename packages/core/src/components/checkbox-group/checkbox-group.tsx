@@ -14,13 +14,13 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { IxComponent } from '../utils/internal';
+import { useFieldGroupValidation } from '../utils/field-group-utils';
 import { makeRef } from '../utils/make-ref';
 import {
   isFormNoValidate,
   setupFormSubmitListener,
   updateCheckboxValidationClasses,
 } from '../utils/checkbox-validation';
-import { useFieldGroupValidation } from '../utils/field-group-utils';
 
 /**
  * @form-ready
@@ -83,11 +83,11 @@ export class CheckboxGroup
   @State() isWarning = false;
 
   private touched = false;
-  private formSubmissionAttempted = false;
-  private cleanupFormListener?: () => void;
+  private formSubmissionAttempt = false;
+  private cleanFormListener?: () => void;
   private readonly groupRef = makeRef<HTMLElement>();
 
-  private validation = useFieldGroupValidation<HTMLIxCheckboxElement>(
+  private readonly validation = useFieldGroupValidation<HTMLIxCheckboxElement>(
     this.hostElement,
     {
       selector: 'ix-checkbox',
@@ -103,8 +103,8 @@ export class CheckboxGroup
   }
 
   private setupFormListener() {
-    this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
-      this.formSubmissionAttempted = true;
+    this.cleanFormListener = setupFormSubmitListener(this.hostElement, () => {
+      this.formSubmissionAttempt = true;
       this.syncValidationClasses();
     });
   }
@@ -114,8 +114,8 @@ export class CheckboxGroup
   }
 
   disconnectedCallback(): void {
-    if (this.cleanupFormListener) {
-      this.cleanupFormListener();
+    if (this.cleanFormListener) {
+      this.cleanFormListener();
     }
   }
 
@@ -180,8 +180,7 @@ export class CheckboxGroup
       (el: any) => el.touched || el.formSubmissionAttempted
     );
     const isRequiredInvalid =
-      !isChecked &&
-      (this.touched || this.formSubmissionAttempted || anyTouched);
+      !isChecked && (this.touched || this.formSubmissionAttempt || anyTouched);
     this.hostElement.classList.toggle(
       'ix-invalid--required',
       isRequiredInvalid
@@ -203,7 +202,7 @@ export class CheckboxGroup
         this.checkboxElements,
         isChecked,
         this.touched,
-        this.formSubmissionAttempted
+        this.formSubmissionAttempt
       );
     }
     if (isChecked) {
