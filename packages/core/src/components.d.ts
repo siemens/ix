@@ -3933,6 +3933,11 @@ export namespace Components {
          */
         "context"?: TreeItemContext;
         /**
+          * Disable tree item
+          * @default false
+         */
+        "disabled": boolean;
+        /**
           * Has tree item children
           * @default false
          */
@@ -9919,6 +9924,11 @@ declare namespace LocalJSX {
           * Context
          */
         "context"?: TreeItemContext;
+        /**
+          * Disable tree item
+          * @default false
+         */
+        "disabled"?: boolean;
         /**
           * Has tree item children
           * @default false
