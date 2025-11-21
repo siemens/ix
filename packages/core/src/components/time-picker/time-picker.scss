@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: vars.$large-control-height;
+    height: vars.$default-control-height;
   }
 
   .clock {
@@ -51,7 +51,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        margin-top: 1px;
 
         .column-header {
           height: 2.5rem;
@@ -65,29 +64,32 @@
         }
       }
 
-      .column-seperator {
+      .column-separator {
         display: flex;
         align-items: center;
-        margin: 0 0.125rem;
+        justify-content: center;
         min-height: 100%;
-        margin-top: 3.25rem;
+        margin-top: 3rem;
+        width: 0.5rem;
       }
     }
 
     .element-list {
       list-style-type: none;
       overflow: auto;
-      max-height: 15.375rem;
-      padding-top: 0.125rem;
+      padding: 0.0625rem;
+      margin: -0.0625rem;
+      max-height: calc(2.5rem * 6 + 0.125rem * 6);
 
       button {
         all: unset;
       }
 
       .element-container {
-        width: 2.375rem;
-        height: 2.375rem;
-        margin: 0.125rem;
+        box-sizing: border-box;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: 0.125rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -98,27 +100,31 @@
           background-color: var(--theme-datepicker-day--background--hover);
         }
 
-        &:focus {
-          outline: 1px solid var(--theme-color-focus-bdr);
-          outline-offset: 1px;
+        &:focus-visible {
+          box-shadow: 0 0 0 1px var(--theme-color-focus-bdr);
         }
       }
 
       .selected {
         background-color: var(--theme-datepicker-day--background--selected);
         color: var(--theme-datepicker-day--color--selected);
+        font-weight: var(--theme-font-weight-bold);
 
         &:hover {
           background-color: var(
             --theme-datepicker-day--background--selected-hover
           );
         }
+
+        &:focus-visible {
+          border: 0.0625rem solid var(--theme-color-inv-contrast-text);
+        }
       }
 
       .element-list-padding {
         width: 2.5rem;
-        height: 12.563rem;
-        min-height: 12.563rem;
+        height: calc(2.5rem * 5 + 5 * 0.125rem);
+        min-height: calc(2.5rem * 5 + 5 * 0.125rem);
       }
     }
 
@@ -150,44 +156,6 @@
         margin-left: initial;
       }
     }
-
-    .time-ref-buttons {
-      &--datetime-picker-appearance {
-        margin-left: auto;
-      }
-
-      button {
-        all: unset;
-        width: 2.625rem;
-        height: 1.875rem;
-        text-align: center;
-        border: 1px solid var(--theme-color-primary);
-        color: var(--theme-color-primary);
-        background-color: var(--theme-color-secondary);
-        font-weight: 700;
-
-        &:focus {
-          outline: 1px solid var(--theme-color-focus-bdr);
-          outline-offset: var(--theme-btn--focus--outline-offset);
-        }
-
-        &:hover {
-          cursor: pointer;
-          background-color: var(--theme-color-secondary-hover);
-          border-color: var(--theme-btn-primary--background--hover);
-        }
-
-        &.selected {
-          color: var(--theme-color-secondary);
-          background-color: var(--theme-btn-primary--background);
-
-          &:hover {
-            background-color: var(--theme-btn-primary--background--hover);
-            border-color: var(--theme-btn-primary--background--hover);
-          }
-        }
-      }
-    }
   }
 
   .default-space {
@@ -196,14 +164,5 @@
 
   .text-align {
     text-align: center;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .time-reference {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
   }
 }

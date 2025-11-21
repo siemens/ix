@@ -8,8 +8,8 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
+import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import type {
   DateTimeDateChangeEvent,
   DateTimeSelectEvent,
@@ -172,8 +172,8 @@ export class DatetimePicker
     return (
       <Host>
         <ix-layout-grid class="no-padding">
-          <ix-row>
-            <ix-col>
+          <ix-row class="row-separator">
+            <ix-col class="col-separator">
               <ix-date-picker
                 ref={(ref) => (this.datePickerElement = ref)}
                 corners="left"
@@ -203,6 +203,10 @@ export class DatetimePicker
                 format={this.timeFormat}
                 time={this.time}
               ></ix-time-picker>
+            </ix-col>
+          </ix-row>
+          <ix-row>
+            <ix-col>
               <div class="btn-select-date-container">
                 <ix-button
                   class="btn-select-date"

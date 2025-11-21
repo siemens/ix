@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
-import { themeSwitcher } from '@siemens/ix';
+import { Component, OnInit } from '@angular/core';
+import { themeSwitcher, ThemeVariant } from '@siemens/ix';
 
 @Component({
   standalone: false,
@@ -16,29 +16,47 @@ import { themeSwitcher } from '@siemens/ix';
   templateUrl: './theme-switcher.html',
   styleUrls: ['./theme-switcher.css'],
 })
-export default class ThemeSwitcher {
-  themes = ['theme-classic-light', 'theme-classic-dark'];
-  selectedTheme = this.themes[1];
+export default class ThemeSwitcher implements OnInit {
+  variants: ThemeVariant[] = ['light', 'dark'];
+  selectedVariant: ThemeVariant = 'dark';
+  useSystemTheme = false;
 
-  constructor() {}
+  ngOnInit() {
+    themeSwitcher.setTheme('classic');
+    themeSwitcher.setVariant(this.selectedVariant);
+  }
 
   onValueChange(event: Event) {
-    const customEvent = event as CustomEvent<string>;
-    const newTheme = customEvent.detail;
-    themeSwitcher.setTheme(newTheme);
-    this.selectedTheme = newTheme;
-  }
-
-  toggleMode() {
-    themeSwitcher.toggleMode();
-  }
-
-  onSystemMode({ target }: Event) {
-    if ((target as HTMLInputElement).checked) {
-      themeSwitcher.setVariant();
+    if (this.useSystemTheme) {
       return;
     }
 
-    themeSwitcher.setTheme(this.selectedTheme);
+    const customEvent = event as CustomEvent<string>;
+    const newVariant = customEvent.detail as ThemeVariant;
+
+    themeSwitcher.setVariant(newVariant);
+
+    this.selectedVariant = newVariant;
+  }
+
+  toggleMode() {
+    if (this.useSystemTheme) {
+      return;
+    }
+
+    themeSwitcher.toggleMode();
+
+    this.selectedVariant = this.selectedVariant === 'light' ? 'dark' : 'light';
+  }
+
+  onSystemMode(event: CustomEvent<boolean>) {
+    const checked = event.detail;
+    this.useSystemTheme = checked;
+
+    if (checked) {
+      themeSwitcher.setVariant();
+    } else {
+      themeSwitcher.setVariant(this.selectedVariant);
+    }
   }
 }

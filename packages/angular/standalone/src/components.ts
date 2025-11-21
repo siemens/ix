@@ -2144,14 +2144,14 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxPagination,
-  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage']
+  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage']
 })
 @Component({
   selector: 'ix-pagination',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage'],
+  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage'],
   outputs: ['pageSelected', 'itemCountChanged'],
 })
 export class IxPagination {

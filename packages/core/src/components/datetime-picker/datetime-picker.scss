@@ -44,6 +44,15 @@
     flex-direction: column;
   }
 
+  .row-separator,
+  .col-separator {
+    border-bottom: 0.0625rem solid var(--theme-datepicker-separator--background);
+  }
+
+  .col-separator {
+    border-right: none;
+  }
+
   @media (min-width: 576px) {
     min-width: max-content;
 
@@ -64,6 +73,12 @@
     ix-time-picker {
       width: initial;
     }
+
+    .col-separator {
+      border-right: 0.0625rem solid
+        var(--theme-datepicker-separator--background);
+      border-bottom: none;
+    }
   }
 
   .individual {
@@ -72,7 +87,7 @@
   }
 
   .btn-select-date-container {
-    padding: 0 vars.$default-space vars.$default-space;
+    padding: vars.$default-space;
 
     @media (max-width: 576px) {
       & .btn-select-date {
