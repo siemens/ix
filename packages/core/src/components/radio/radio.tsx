@@ -157,7 +157,12 @@ export class Radio implements IxFormComponent<string> {
     };
 
     if (this.name) {
-      if (!radioGroup) {
+      if (radioGroup) {
+        const radios: NodeListOf<HTMLElement> = radioGroup.querySelectorAll(
+          `ix-radio[name="${this.name}"]`
+        );
+        handleNamedRadios(radios, radioGroup);
+      } else {
         const form = getParentForm(this.hostElement);
         const radios: NodeListOf<HTMLElement> = form
           ? form.querySelectorAll(`ix-radio[name="${this.name}"]`)
@@ -166,11 +171,6 @@ export class Radio implements IxFormComponent<string> {
           radios,
           radios.length > 0 ? radios[0].closest('ix-radio-group') : null
         );
-      } else {
-        const radios: NodeListOf<HTMLElement> = radioGroup.querySelectorAll(
-          `ix-radio[name="${this.name}"]`
-        );
-        handleNamedRadios(radios, radioGroup);
       }
     } else {
       handleStandaloneRadioValidation(

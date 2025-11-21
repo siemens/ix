@@ -2,6 +2,9 @@
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 export function isFormNoValidate(element: HTMLElement): boolean {
@@ -22,13 +25,11 @@ export function getParentForm(element: HTMLElement): HTMLFormElement | null {
 export function hasAnyRadioChecked(
   radios: NodeListOf<HTMLElement> | HTMLElement[]
 ): boolean {
-  const requiredRadios = Array.from(radios).filter(
-    (el: any) => (el as any).required
-  );
+  const requiredRadios = Array.from(radios).filter((el: any) => el.required);
   if (requiredRadios.length === 0) {
-    return Array.from(radios).some((el: any) => (el as any).checked);
+    return Array.from(radios).some((el: any) => el.checked);
   }
-  return requiredRadios.some((el: any) => (el as any).checked);
+  return requiredRadios.some((el: any) => el.checked);
 }
 
 export function setupFormSubmitListener(

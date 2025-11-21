@@ -8,7 +8,11 @@ export interface FieldGroupValidationOptions<T extends HTMLElement> {
     touched: boolean,
     formSubmissionAttempted: boolean
   ) => void;
-  clearValidationState: (host: HTMLElement, elements: T[], invalidText?: string) => void;
+  clearValidationState: (
+    host: HTMLElement,
+    elements: T[],
+    invalidText?: string
+  ) => void;
 }
 
 export function useFieldGroupValidation<T extends HTMLElement>(
@@ -16,7 +20,7 @@ export function useFieldGroupValidation<T extends HTMLElement>(
   options: FieldGroupValidationOptions<T>
 ) {
   function getElements(): T[] {
-    return Array.from(hostElement.querySelectorAll(options.selector)) as T[];
+    return Array.from(hostElement.querySelectorAll(options.selector));
   }
 
   function hasAnyChecked(): boolean {
