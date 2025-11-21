@@ -1379,6 +1379,7 @@ export const IxToast: StencilVueComponent<JSX.IxToast> = /*@__PURE__*/ defineCon
   'preventAutoClose',
   'icon',
   'iconColor',
+  'hideIcon',
   'ariaLabelCloseIconButton',
   'closeToast'
 ], [

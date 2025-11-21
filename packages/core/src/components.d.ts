@@ -3698,6 +3698,11 @@ export namespace Components {
          */
         "autoCloseDelay": number;
         /**
+          * Allows to hide the icon in the toast Defaults to false
+          * @default false
+         */
+        "hideIcon": boolean;
+        /**
           * Icon of toast
          */
         "icon"?: string;
@@ -9676,6 +9681,11 @@ declare namespace LocalJSX {
           * @default 5000
          */
         "autoCloseDelay"?: number;
+        /**
+          * Allows to hide the icon in the toast Defaults to false
+          * @default false
+         */
+        "hideIcon"?: boolean;
         /**
           * Icon of toast
          */
