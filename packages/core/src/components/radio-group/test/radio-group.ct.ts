@@ -243,7 +243,8 @@ regressionTest.describe('keyboard navigation', () => {
   });
 });
 
-regressionTest('required with novalidate=false (default)',
+regressionTest(
+  'required with novalidate=false (default)',
   async ({ mount, page }) => {
     await mount(
       `
@@ -279,7 +280,8 @@ regressionTest('required with novalidate=false (default)',
   }
 );
 
-regressionTest('required with novalidate=true disables validation',
+regressionTest(
+  'required with novalidate=true disables validation',
   async ({ mount, page }) => {
     await mount(
       `
@@ -314,7 +316,8 @@ regressionTest('required with novalidate=true disables validation',
   }
 );
 
-regressionTest('required group: blur triggers validation (novalidate=false)',
+regressionTest(
+  'required group: blur triggers validation (novalidate=false)',
   async ({ mount, page }) => {
     await mount(
       `
@@ -340,7 +343,8 @@ regressionTest('required group: blur triggers validation (novalidate=false)',
   }
 );
 
-regressionTest('required group: blur does not trigger validation (novalidate=true)',
+regressionTest(
+  'required group: blur does not trigger validation (novalidate=true)',
   async ({ mount, page }) => {
     await mount(
       `
