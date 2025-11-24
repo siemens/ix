@@ -16,7 +16,7 @@
   align-items: flex-start;
   align-self: flex-start;
   overflow: hidden;
-  cursor: pointer;
+  cursor: default;
 
   width: 20rem;
 
@@ -83,20 +83,6 @@
   --ix-card-border-color: transparent;
 }
 
-@mixin card-variants-active($variant) {
-  :host(.card-#{$variant}:active) {
-    --ix-card-border-color: var(--theme-card-#{$variant}--border-color--active);
-    --ix-card-background: var(--theme-card-#{$variant}--background--active);
-  }
-}
-
-@mixin card-variants-hover($variant) {
-  :host(.card-#{$variant}:hover) {
-    --ix-card-border-color: var(--theme-card-#{$variant}--border-color--hover);
-    --ix-card-background: var(--theme-card-#{$variant}--background--hover);
-  }
-}
-
 @mixin card-variants-selected($variant) {
   :host(.selected.card-#{$variant}) {
     --ix-card-border-color: var(
@@ -107,7 +93,5 @@
 }
 
 @each $variant in card-vars.$ix-card-variants {
-  @include card-variants-hover($variant);
-  @include card-variants-active($variant);
   @include card-variants-selected($variant);
 }
