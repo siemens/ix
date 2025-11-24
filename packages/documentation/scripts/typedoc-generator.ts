@@ -191,16 +191,32 @@ function processProjectChildren(
   for (const child of project.children) {
     const source = path.relative(rootPath, child.sources![0].fullFileName);
 
-    const isFunction = child.signatures?.length > 0 && !child.children;
+    // Identifies simple functions (like closeModal) or complex functions (like showMessage/showModalLoading)
+    const isFunction = child.signatures?.length > 0;
+
+    // Identifies type/interface definitions (like ModalConfig)
+    const isType = !child.signatures?.length;
 
     if (isFunction) {
+      // 1. Process the main function signature (e.g., showModalLoading, showMessage)
       const functionDoc = processFunctionSignature(child);
 
       if (!functionGroups.has(source)) {
         functionGroups.set(source, []);
       }
       functionGroups.get(source)!.push(functionDoc);
-    } else {
+
+      // 2. If the function has static properties (e.g., showMessage.info), process its children
+      if (child.children) {
+        for (const staticProp of child.children) {
+          if (staticProp.signatures?.length > 0) {
+            const staticFunctionDoc = processFunctionSignature(staticProp);
+            functionGroups.get(source)!.push(staticFunctionDoc);
+          }
+        }
+      }
+    } else if (isType) {
+      // Process Types and Interfaces
       const properties = processProperties(child);
       types.push({
         name: child.name,
@@ -214,7 +230,7 @@ function processProjectChildren(
   for (const [source, funcs] of functionGroups) {
     funcs.sort((a, b) => a.name.localeCompare(b.name));
 
-    const fileName = path.basename(source, path.extname(source)); // e.g. "modal.service"
+    const fileName = path.basename(source, path.extname(source));
 
     types.push({
       name: fileName,
