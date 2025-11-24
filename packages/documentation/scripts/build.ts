@@ -500,6 +500,26 @@ async function writeLibraryVersion() {
         path.join(
           __root,
           '..',
+          'core',
+          'src',
+          'components',
+          'utils',
+          'modal',
+          'loading.ts'
+        ),
+        path.join(
+          __root,
+          '..',
+          'core',
+          'src',
+          'components',
+          'utils',
+          'modal',
+          'message.ts'
+        ),
+        path.join(
+          __root,
+          '..',
           'angular',
           'src',
           'providers',
