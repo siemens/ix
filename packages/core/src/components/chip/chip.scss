@@ -16,7 +16,6 @@
   position: relative;
   height: 2rem;
   max-height: 2rem;
-  margin-left: vars.$tiny-space;
 
   @include component.ix-component;
 }
