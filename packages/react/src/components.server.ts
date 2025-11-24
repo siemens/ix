@@ -1405,7 +1405,8 @@ export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginati
         i18nOf: 'i18n-of',
         i18nItems: 'i18n-items',
         ariaLabelChevronLeftIconButton: 'aria-label-chevron-left-icon-button',
-        ariaLabelChevronRightIconButton: 'aria-label-chevron-right-icon-button'
+        ariaLabelChevronRightIconButton: 'aria-label-chevron-right-icon-button',
+        ariaLabelPageSelection: 'aria-label-page-selection'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxPagination as ReactWebComponent<IxPaginationElement, IxPaginationEvents>,

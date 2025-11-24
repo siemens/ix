@@ -8,55 +8,58 @@
 -->
 
 <script setup lang="ts">
-import { themeSwitcher } from '@siemens/ix';
+import { themeSwitcher, type ThemeVariant } from '@siemens/ix';
 import {
   IxButton,
+  IxCheckbox,
   IxCol,
   IxLayoutGrid,
   IxRow,
   IxSelect,
+  IxSelectItem,
 } from '@siemens/ix-vue';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
-const themes = ['theme-classic-light', 'theme-classic-dark'];
-let selectedTheme = themes[1];
-
-themeSwitcher.setTheme(selectedTheme);
+const variants = ref<ThemeVariant[]>(['light', 'dark']);
+const selectedVariant = ref<ThemeVariant>('dark');
+const useSystemTheme = ref(false);
 
 onMounted(() => {
-  const themeSelect: HTMLSelectElement | null = document.getElementById(
-    'select-theme'
-  ) as HTMLSelectElement;
-
-  if (themeSelect) {
-    themes.forEach((theme) => {
-      const item = document.createElement('ix-select-item');
-      item.label = theme;
-      item.value = theme;
-      themeSelect.appendChild(item);
-    });
-    themeSelect.value = selectedTheme;
-    themeSelect.addEventListener('valueChange', (event: Event) => {
-      const target = event.target as HTMLSelectElement;
-      const detail = target.value;
-      themeSwitcher.setTheme(detail);
-      selectedTheme = detail;
-    });
-  }
+  themeSwitcher.setTheme('classic');
+  themeSwitcher.setVariant(selectedVariant.value);
 });
 
-const toggle = () => {
-  themeSwitcher.toggleMode();
-};
-
-const systemChange = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  if (target.checked) {
-    themeSwitcher.setVariant();
+const valueChange = (event: CustomEvent<string | string[]>) => {
+  if (useSystemTheme.value) {
     return;
   }
 
-  themeSwitcher.setTheme(selectedTheme);
+  const newVariant = event.detail as ThemeVariant;
+
+  themeSwitcher.setVariant(newVariant);
+
+  selectedVariant.value = newVariant;
+};
+
+const toggle = () => {
+  if (useSystemTheme.value) {
+    return;
+  }
+
+  themeSwitcher.toggleMode();
+
+  selectedVariant.value = selectedVariant.value === 'light' ? 'dark' : 'light';
+};
+
+const systemChange = (event: CustomEvent<boolean>) => {
+  const checked = event.detail;
+  useSystemTheme.value = checked;
+
+  if (checked) {
+    themeSwitcher.setVariant();
+  } else {
+    themeSwitcher.setVariant(selectedVariant.value);
+  }
 };
 </script>
 
@@ -69,27 +72,35 @@ const systemChange = (event: Event) => {
         <span>Light/Dark</span>
       </IxCol>
       <IxCol>
-        <IxButton @click="toggle">Toggle mode</IxButton>
+        <IxButton @click="toggle" :disabled="useSystemTheme">
+          Toggle mode
+        </IxButton>
       </IxCol>
     </IxRow>
 
     <IxRow>
       <IxCol :size="'2'">Theme</IxCol>
       <IxCol>
-        <IxSelect id="select-theme" placeholder="Select a theme"> </IxSelect>
+        <IxSelect
+          :value="selectedVariant"
+          @valueChange="valueChange"
+          :disabled="useSystemTheme"
+          placeholder="Select a theme"
+        >
+          <IxSelectItem
+            v-for="variant in variants"
+            :key="variant"
+            :label="variant"
+            :value="variant"
+          />
+        </IxSelect>
       </IxCol>
     </IxRow>
 
     <IxRow>
       <IxCol :size="'2'"></IxCol>
       <IxCol>
-        <input
-          class="ix-form-control"
-          type="checkbox"
-          id="system"
-          @change="systemChange"
-        />
-        <label class="ix-form-label" for="system">Use System</label>
+        <IxCheckbox label="Use system" @checkedChange="systemChange" />
       </IxCol>
     </IxRow>
   </IxLayoutGrid>
