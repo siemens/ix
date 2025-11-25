@@ -19,6 +19,14 @@ import {
 } from 'typedoc';
 import { toKebabCase } from './utils/string-utils';
 
+// TypeDoc ReflectionKind constants
+// See: https://typedoc.org/api/enums/Models.ReflectionKind.html
+const ReflectionKind = {
+  Class: 128,
+  Constructor: 512,
+  Method: 2048,
+} as const;
+
 export type TypeDocTarget = {
   name: string;
   properties?: TypeDocProperty[];
@@ -109,7 +117,10 @@ function getPropertyType(property: any): string {
   } else {
     console.log(`=== Type ${property?.name || 'unknown'} is unknown`);
     console.log('property.type:', property?.type);
-    console.log('property.type constructor:', property?.type?.constructor?.name);
+    console.log(
+      'property.type constructor:',
+      property?.type?.constructor?.name
+    );
     return 'unknown';
   }
 }
@@ -206,18 +217,11 @@ function processProjectChildren(
   for (const child of project.children) {
     const source = path.relative(rootPath, child.sources![0].fullFileName);
 
-    // Identifies simple functions (like closeModal) or complex functions (like showMessage/showModalLoading)
     const isFunction = child.signatures?.length > 0;
-
-    // Identifies classes/services (like ModalService)
-    // TypeDoc kind 128 = Class
-    const isClass = child.kind === 128;
-
-    // Identifies type/interface definitions (like ModalConfig)
+    const isClass = child.kind === ReflectionKind.Class;
     const isType = !child.signatures?.length && !isClass;
 
     if (isFunction) {
-      // 1. Process the main function signature (e.g., showModalLoading, showMessage)
       const functionDoc = processFunctionSignature(child);
 
       if (!functionGroups.has(source)) {
@@ -225,7 +229,7 @@ function processProjectChildren(
       }
       functionGroups.get(source)!.push(functionDoc);
 
-      // 2. If the function has static properties (e.g., showMessage.info), process its children
+      // If the function has static properties (e.g., showMessage.info), process its children
       if (child.children) {
         for (const staticProp of child.children) {
           if (staticProp.signatures?.length > 0) {
@@ -235,13 +239,14 @@ function processProjectChildren(
         }
       }
     } else if (isClass) {
-      // Process class methods (like methods in ModalService)
       if (child.children) {
         const methods: any[] = [];
         for (const classChild of child.children) {
           // Process methods but skip constructors
-          // TypeDoc kind 2048 = Method, kind 512 = Constructor
-          if (classChild.signatures?.length > 0 && classChild.kind === 2048) {
+          if (
+            classChild.signatures?.length > 0 &&
+            classChild.kind === ReflectionKind.Method
+          ) {
             const methodDoc = processFunctionSignature(classChild);
             methods.push(methodDoc);
           }
@@ -255,7 +260,6 @@ function processProjectChildren(
         }
       }
     } else if (isType) {
-      // Process Types and Interfaces
       const properties = processProperties(child);
       types.push({
         name: child.name,
