@@ -11,6 +11,9 @@ import type { IxModalSize } from '../../modal/modal.types';
 import { getCoreDelegate, resolveDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 
+/**
+ * Set accessibility attributes on modal element
+ */
 export function setA11yAttributes(element: HTMLElement, config: ModalConfig) {
   const ariaDescribedby = config.ariaDescribedby;
   const ariaLabelledby = config.ariaLabelledby;
@@ -28,17 +31,53 @@ export function setA11yAttributes(element: HTMLElement, config: ModalConfig) {
 }
 
 export interface ModalConfig<TReason = any, CONTENT = any> {
+  /**
+   * Enable modal animation
+   */
   animation?: boolean;
+  /**
+   * ID of element describing the modal
+   */
   ariaDescribedby?: string;
+  /**
+   * ID of element labeling the modal
+   */
   ariaLabelledby?: string;
+  /**
+   * Show backdrop behind modal
+   */
   backdrop?: boolean;
+  /**
+   * Dismiss modal on backdrop click
+   */
   closeOnBackdropClick?: boolean;
+  /**
+   * Called before modal is dismissed
+   */
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
+  /**
+   * Center modal vertically
+   */
   centered?: boolean;
+  /**
+   * Element to attach modal to
+   */
   container?: string | HTMLElement;
+  /**
+   * Modal content
+   */
   content: CONTENT | string;
+  /**
+   * Allow closing with Escape key
+   */
   keyboard?: boolean;
+  /**
+   * Modal size
+   */
   size?: IxModalSize;
+  /**
+   * Modal title
+   */
   title?: string;
 }
 
@@ -52,6 +91,9 @@ function getIxModal(element: Element) {
   return element.closest('ix-modal');
 }
 
+/**
+ * Close modal based on element
+ */
 export function closeModal<TClose = any>(
   element: Element,
   closeResult: TClose
@@ -63,6 +105,9 @@ export function closeModal<TClose = any>(
   }
 }
 
+/**
+ * Dismiss modal based on element
+ */
 export function dismissModal(element: Element, dismissResult?: any) {
   const dialog = getIxModal(element);
   if (dialog) {
@@ -71,6 +116,9 @@ export function dismissModal(element: Element, dismissResult?: any) {
   }
 }
 
+/**
+ * Show modal with given configuration
+ */
 export async function showModal<T>(
   config: ModalConfig<T>
 ): Promise<ModalInstance<T>> {
