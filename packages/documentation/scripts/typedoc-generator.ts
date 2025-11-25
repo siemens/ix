@@ -84,17 +84,32 @@ async function generateDocsForEntrypoint(
 }
 
 function getPropertyType(property: any): string {
+  if (!property?.type) {
+    console.log(`=== Type ${property?.name || 'unknown'} has no type property`);
+    return 'unknown';
+  }
+
   if (property.type instanceof IntrinsicType) {
     return property.type.name;
   } else if (property.type instanceof ReferenceType) {
-    return property.type.qualifiedName;
+    // Handle generic types like Promise<ModalInstance<TReason>>
+    if (property.type.typeArguments && property.type.typeArguments.length > 0) {
+      const baseType = property.type.qualifiedName || property.type.name;
+      const typeArgs = property.type.typeArguments
+        .map((arg: any) => getPropertyType({ type: arg }))
+        .join(', ');
+      return `${baseType}<${typeArgs}>`;
+    }
+    return property.type.qualifiedName || property.type.name;
   } else if (property.type instanceof UnionType) {
     return property.type.types
       .filter((t: any) => 'name' in t)
       .map((t: any) => t.name)
       .join(' | ');
   } else {
-    console.log(`=== Type ${property.name} is unknown`);
+    console.log(`=== Type ${property?.name || 'unknown'} is unknown`);
+    console.log('property.type:', property?.type);
+    console.log('property.type constructor:', property?.type?.constructor?.name);
     return 'unknown';
   }
 }
@@ -170,7 +185,7 @@ function processFunctionSignature(child: any): FunctionDocProperty {
         type: getPropertyType(param),
         optional: param.flags?.isOptional,
       })) || [],
-    returnType: getPropertyType(signature.type),
+    returnType: getPropertyType({ type: signature.type }),
     comment: getCommentSummary(child),
     tags: extractCommentTags(child),
   };
@@ -194,8 +209,12 @@ function processProjectChildren(
     // Identifies simple functions (like closeModal) or complex functions (like showMessage/showModalLoading)
     const isFunction = child.signatures?.length > 0;
 
+    // Identifies classes/services (like ModalService)
+    // TypeDoc kind 128 = Class
+    const isClass = child.kind === 128;
+
     // Identifies type/interface definitions (like ModalConfig)
-    const isType = !child.signatures?.length;
+    const isType = !child.signatures?.length && !isClass;
 
     if (isFunction) {
       // 1. Process the main function signature (e.g., showModalLoading, showMessage)
@@ -213,6 +232,26 @@ function processProjectChildren(
             const staticFunctionDoc = processFunctionSignature(staticProp);
             functionGroups.get(source)!.push(staticFunctionDoc);
           }
+        }
+      }
+    } else if (isClass) {
+      // Process class methods (like methods in ModalService)
+      if (child.children) {
+        const methods: any[] = [];
+        for (const classChild of child.children) {
+          // Process methods but skip constructors
+          // TypeDoc kind 2048 = Method, kind 512 = Constructor
+          if (classChild.signatures?.length > 0 && classChild.kind === 2048) {
+            const methodDoc = processFunctionSignature(classChild);
+            methods.push(methodDoc);
+          }
+        }
+
+        if (methods.length > 0) {
+          if (!functionGroups.has(source)) {
+            functionGroups.set(source, []);
+          }
+          functionGroups.get(source)!.push(...methods);
         }
       }
     } else if (isType) {
