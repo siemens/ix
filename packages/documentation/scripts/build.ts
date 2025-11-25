@@ -487,35 +487,17 @@ async function writeLibraryVersion() {
   try {
     const typeScriptDocsPromise = generateTypeScriptDocs(
       [
-        path.join(
-          __root,
-          '..',
-          'core',
-          'src',
-          'components',
-          'utils',
-          'modal',
-          'modal.ts'
-        ),
-        path.join(
-          __root,
-          '..',
-          'core',
-          'src',
-          'components',
-          'utils',
-          'modal',
-          'loading.ts'
-        ),
-        path.join(
-          __root,
-          '..',
-          'core',
-          'src',
-          'components',
-          'utils',
-          'modal',
-          'message.ts'
+        ...['modal.ts', 'loading.ts', 'message.ts'].map((file) =>
+          path.join(
+            __root,
+            '..',
+            'core',
+            'src',
+            'components',
+            'utils',
+            'modal',
+            file
+          )
         ),
         path.join(
           __root,
