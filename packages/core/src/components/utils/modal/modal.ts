@@ -77,13 +77,24 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
   size?: IxModalSize;
   /**
    * Modal title
+   *
+   * @deprecated This has no effect anymore and will be removed with 5.0.0
    */
   title?: string;
 }
 
 export interface ModalInstance<TReason = any> {
+  /**
+   * The Modal HTML Element
+   */
   htmlElement: HTMLIxModalElement;
+  /**
+   * Event that fires when closing the modal
+   */
   onClose: TypedEvent<TReason>;
+  /**
+   * Event that fires when dismissing the modal
+   */
   onDismiss: TypedEvent<TReason>;
 }
 
