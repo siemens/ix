@@ -69,6 +69,8 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
   content: CONTENT | string;
   /**
    * Allow closing with Escape key
+   *
+   * @deprecated This has no effect anymore and will be removed with 5.0.0
    */
   keyboard?: boolean;
   /**
