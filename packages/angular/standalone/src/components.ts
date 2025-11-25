@@ -324,14 +324,14 @@ export declare interface IxButton extends Components.IxButton {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCard,
-  inputs: ['selected', 'variant']
+  inputs: ['passive', 'selected', 'variant']
 })
 @Component({
   selector: 'ix-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['selected', 'variant'],
+  inputs: ['passive', 'selected', 'variant'],
 })
 export class IxCard {
   protected el: HTMLIxCardElement;

@@ -426,6 +426,11 @@ export namespace Components {
     }
     interface IxCard {
         /**
+          * If true, disables hover and active styles and changes cursor to default
+          * @default false
+         */
+        "passive": boolean;
+        /**
           * Show card in selected state
           * @default false
          */
@@ -6216,6 +6221,11 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant;
     }
     interface IxCard {
+        /**
+          * If true, disables hover and active styles and changes cursor to default
+          * @default false
+         */
+        "passive"?: boolean;
         /**
           * Show card in selected state
           * @default false

@@ -222,7 +222,8 @@ export const IxButton: StencilVueComponent<JSX.IxButton> = /*@__PURE__*/ defineC
 
 export const IxCard: StencilVueComponent<JSX.IxCard> = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', defineIxCard, [
   'variant',
-  'selected'
+  'selected',
+  'passive'
 ]);
 
 

@@ -277,7 +277,8 @@ export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents> = /*@__P
     tagName: 'ix-card',
     properties: {
         variant: 'variant',
-        selected: 'selected'
+        selected: 'selected',
+        passive: 'passive'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxCard as ReactWebComponent<IxCardElement, IxCardEvents>,
