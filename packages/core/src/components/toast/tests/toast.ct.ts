@@ -125,3 +125,49 @@ regressionTest('verify isPaused method', async ({ mount, page }) => {
   }, toastHandle);
   expect(paused).toBe(false);
 });
+
+regressionTest(
+  'hideIcon: default behavior - icon should be visible',
+  async ({ mount, page }) => {
+    await mount('');
+
+    await page.evaluate(() => {
+      window.toast({
+        message: 'Default toast - icon should be visible',
+        type: 'info',
+      });
+    });
+
+    const toast = page.locator('ix-toast');
+    const icon = toast.locator('[data-testid="toast-icon"]');
+
+    await expect(toast).toBeVisible();
+    await expect(icon).toBeVisible();
+
+    const hideIconValue = await toast.evaluate((el: any) => {
+      return el.hideIcon;
+    });
+    expect(hideIconValue).toBe(false);
+  }
+);
+
+regressionTest(
+  'hideIcon: true - icon should be hidden',
+  async ({ mount, page }) => {
+    await mount('');
+
+    await page.evaluate(() => {
+      window.toast({
+        message: 'Toast with hideIcon: true',
+        type: 'info',
+        hideIcon: true,
+      });
+    });
+
+    const toast = page.locator('ix-toast');
+    const icon = toast.locator('[data-testid="toast-icon"]');
+
+    await expect(toast).toBeVisible();
+    await expect(icon).not.toBeVisible();
+  }
+);
