@@ -463,13 +463,16 @@ export class TimePicker {
     container: HTMLElement,
     alignment: 'start' | 'end'
   ) {
+    const SCROLL_BUFFER = 1;
     const containerRect = container.getBoundingClientRect();
     const elementRect = element.getBoundingClientRect();
 
     if (alignment === 'end') {
-      container.scrollTop += elementRect.bottom - containerRect.bottom + 1;
+      container.scrollTop +=
+        elementRect.bottom - containerRect.bottom + SCROLL_BUFFER;
     } else {
-      container.scrollTop += elementRect.top - containerRect.top - 1;
+      container.scrollTop +=
+        elementRect.top - containerRect.top - SCROLL_BUFFER;
     }
   }
 
