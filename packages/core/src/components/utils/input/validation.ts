@@ -196,5 +196,8 @@ export function getValidationText(
   customInvalidText: string | undefined,
   i18nFallbackText: string
 ): string | undefined {
-  return customInvalidText ?? (isInputInvalid ? i18nFallbackText : undefined);
+  if (isInputInvalid) {
+    return customInvalidText ?? i18nFallbackText;
+  }
+  return customInvalidText;
 }
