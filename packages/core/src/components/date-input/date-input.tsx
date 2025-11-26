@@ -483,9 +483,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.invalidText || this.i18nErrorDateUnparsable
-      : this.invalidText;
+    const invalidText =
+      this.invalidText ??
+      (this.isInputInvalid ? this.i18nErrorDateUnparsable : undefined);
 
     return (
       <Host

@@ -497,9 +497,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.invalidText || this.i18nErrorTimeUnparsable
-      : this.invalidText;
+    const invalidText =
+      this.invalidText ??
+      (this.isInputInvalid ? this.i18nErrorTimeUnparsable : undefined);
 
     return (
       <Host
