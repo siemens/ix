@@ -340,15 +340,11 @@ export class TimePicker {
         elementContainer.focus({ preventScroll: true });
 
         if (!this.isElementVisible(elementContainer, elementList)) {
-          elementContainer.scrollIntoView({
-            block: this.focusScrollAlignment,
-          });
-
-          if (this.focusScrollAlignment === 'end') {
-            elementList.scrollTop += 4;
-          } else {
-            elementList.scrollTop -= 4;
-          }
+          this.scrollElementIntoView(
+            elementContainer,
+            elementList,
+            this.focusScrollAlignment
+          );
         }
       }
     }
@@ -460,6 +456,23 @@ export class TimePicker {
       elementRect.top >= containerRect.top &&
       elementRect.bottom <= containerRect.bottom
     );
+  }
+
+  private scrollElementIntoView(
+    element: HTMLElement,
+    container: HTMLElement,
+    alignment: 'start' | 'end'
+  ) {
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+
+    if (alignment === 'end') {
+      // Align to bottom of container
+      container.scrollTop += elementRect.bottom - containerRect.bottom + 1;
+    } else {
+      // Align to top of container
+      container.scrollTop += elementRect.top - containerRect.top - 1;
+    }
   }
 
   private updateFocusedValue(value: number) {
