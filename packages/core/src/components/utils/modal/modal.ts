@@ -61,6 +61,8 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
   centered?: boolean;
   /**
    * Element to attach modal to
+   *
+   * @deprecated This has no effect anymore and will be removed with 5.0.0
    */
   container?: string | HTMLElement;
   /**
