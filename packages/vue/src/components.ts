@@ -116,7 +116,8 @@ export const IxActionCard: StencilVueComponent<JSX.IxActionCard> = /*@__PURE__*/
   'heading',
   'subheading',
   'selected',
-  'ariaLabelCard'
+  'ariaLabelCard',
+  'passive'
 ]);
 
 
@@ -1109,7 +1110,8 @@ export const IxPushCard: StencilVueComponent<JSX.IxPushCard> = /*@__PURE__*/ def
   'heading',
   'subheading',
   'variant',
-  'expanded'
+  'expanded',
+  'passive'
 ]);
 
 

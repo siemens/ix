@@ -125,7 +125,8 @@ export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCa
         heading: 'heading',
         subheading: 'subheading',
         selected: 'selected',
-        ariaLabelCard: 'aria-label-card'
+        ariaLabelCard: 'aria-label-card',
+        passive: 'passive'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxActionCard as ReactWebComponent<IxActionCardElement, IxActionCardEvents>,
@@ -1507,7 +1508,8 @@ export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEven
         heading: 'heading',
         subheading: 'subheading',
         variant: 'variant',
-        expanded: 'expanded'
+        expanded: 'expanded',
+        passive: 'passive'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxPushCard as ReactWebComponent<IxPushCardElement, IxPushCardEvents>,
