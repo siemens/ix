@@ -22,6 +22,7 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { IxTimePickerCustomEvent } from '../../components';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -36,15 +37,14 @@ import {
   ValidationResults,
   createClassMutationObserver,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
-import { IxTimePickerCustomEvent } from '../../components';
-import type { TimeInputValidityState } from './time-input.types';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
+import { makeRef } from '../utils/make-ref';
+import type { TimeInputValidityState } from './time-input.types';
 
 /**
  * @since 3.2.0
@@ -498,7 +498,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   render() {
     const invalidText = this.isInputInvalid
-      ? this.i18nErrorTimeUnparsable
+      ? this.invalidText || this.i18nErrorTimeUnparsable
       : this.invalidText;
 
     return (
