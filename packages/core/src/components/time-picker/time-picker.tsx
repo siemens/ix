@@ -467,10 +467,8 @@ export class TimePicker {
     const elementRect = element.getBoundingClientRect();
 
     if (alignment === 'end') {
-      // Align to bottom of container
       container.scrollTop += elementRect.bottom - containerRect.bottom + 1;
     } else {
-      // Align to top of container
       container.scrollTop += elementRect.top - containerRect.top - 1;
     }
   }
