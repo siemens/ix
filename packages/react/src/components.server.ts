@@ -562,7 +562,9 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         showWeekNumbers: 'show-week-numbers',
         weekStartIndex: 'week-start-index',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
-        ariaLabelNextMonthButton: 'aria-label-next-month-button'
+        ariaLabelNextMonthButton: 'aria-label-next-month-button',
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        textAlignment: 'text-alignment'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDateInput as ReactWebComponent<IxDateInputElement, IxDateInputEvents>,
@@ -1002,7 +1004,9 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@
         pattern: 'pattern',
         maxLength: 'max-length',
         minLength: 'min-length',
-        allowedCharactersPattern: 'allowed-characters-pattern'
+        allowedCharactersPattern: 'allowed-characters-pattern',
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        textAlignment: 'text-alignment'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxInput as ReactWebComponent<IxInputElement, IxInputEvents>,
@@ -1374,7 +1378,10 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
         max: 'max',
         allowedCharactersPattern: 'allowed-characters-pattern',
         showStepperButtons: 'show-stepper-buttons',
-        step: 'step'
+        step: 'step',
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        textAlignment: 'text-alignment',
+        allowEmptyValueChange: 'allow-empty-value-change'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxNumberInput as ReactWebComponent<IxNumberInputElement, IxNumberInputEvents>,
@@ -1588,9 +1595,11 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         i18nPlaceholderEditable: 'i18n-placeholder-editable',
         i18nSelectListHeader: 'i18n-select-list-header',
         i18nNoMatches: 'i18n-no-matches',
+        i18nAllSelected: 'i18n-all-selected',
         hideListHeader: 'hide-list-header',
         dropdownWidth: 'dropdown-width',
-        dropdownMaxWidth: 'dropdown-max-width'
+        dropdownMaxWidth: 'dropdown-max-width',
+        collapseMultipleSelection: 'collapse-multiple-selection'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSelect as ReactWebComponent<IxSelectElement, IxSelectEvents>,
@@ -1659,6 +1668,8 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
         splitIcon: 'split-icon',
         ariaLabelSplitIconButton: 'aria-label-split-icon-button',
         disabled: 'disabled',
+        disableButton: 'disable-button',
+        disableDropdownButton: 'disable-dropdown-button',
         placement: 'placement'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1781,7 +1792,9 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         i18nMinuteColumnHeader: 'i18n-minute-column-header',
         i18nSecondColumnHeader: 'i18n-second-column-header',
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
-        hideHeader: 'hide-header'
+        suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        hideHeader: 'hide-header',
+        textAlignment: 'text-alignment'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxTimeInput as ReactWebComponent<IxTimeInputElement, IxTimeInputEvents>,

@@ -34,9 +34,10 @@ export const Default: Story = {
 };
 
 export const editableSelect: Story = {
-  render: ({ value, editable, allowClear, disabled }) => {
+  render: ({ value, editable, allowClear, disabled, mode }) => {
     return html` <ix-select
       value=${value}
+      mode=${mode}
       ?editable=${editable}
       ?allow-clear=${allowClear}
       disabled=${disabled}
@@ -52,6 +53,7 @@ export const editableSelect: Story = {
     editable: true,
     allowClear: true,
     disabled: false,
+    mode: 'single',
   },
 };
 
@@ -84,5 +86,41 @@ export const Required: Story = {
   args: {
     required: true,
     label: 'Required',
+  },
+};
+
+export const multiSelect: Story = {
+  render: (args) => {
+    const container = genericRender('ix-select', args, ['value']);
+    const select = container.querySelector('ix-select')!;
+    const items = [
+      { label: 'Item 1', value: '1' },
+      { label: 'Item 2', value: '2' },
+      { label: 'Item 3', value: '3' },
+      { label: 'Item 4', value: '4' },
+      { label: 'Item 5', value: '5' },
+    ];
+
+    items.forEach(({ label, value }) => {
+      const item = document.createElement('ix-select-item');
+      item.label = label;
+      item.value = value;
+      select.appendChild(item);
+    });
+
+    select.value = args.value;
+
+    return container;
+  },
+  argTypes: {
+    value: {
+      control: 'object',
+      description: 'Selected values in multiple mode',
+    },
+  },
+  args: {
+    mode: 'multiple',
+    allowClear: true,
+    value: ['1', '2', '3', '4', '5'],
   },
 };

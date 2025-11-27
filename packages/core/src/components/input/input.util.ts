@@ -56,11 +56,16 @@ export async function checkInternalValidity<T>(
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
   const validityState = input.validity;
+  const currentValidityState = !comp.hostElement.classList.contains(
+    'ix-invalid--validity-invalid'
+  );
+  const newValidityState = validityState.valid;
 
-  const eventResult = comp.validityStateChange.emit(validityState);
-
-  if (eventResult.defaultPrevented) {
-    return;
+  if (currentValidityState !== newValidityState) {
+    const eventResult = comp.validityStateChange.emit(validityState);
+    if (eventResult.defaultPrevented) {
+      return;
+    }
   }
 
   if (comp.value === null || comp.value === undefined) {
@@ -190,4 +195,27 @@ function observeElementUntilVisible(
 
   intersectionObserver.observe(hostElement);
   return intersectionObserver;
+}
+
+export function handleSubmitOnEnterKeydown(
+  event: KeyboardEvent,
+  suppressSubmitOnEnter: boolean,
+  form: HTMLFormElement | null | undefined
+) {
+  if (suppressSubmitOnEnter || event.key !== 'Enter' || !form) {
+    return;
+  }
+
+  event.preventDefault();
+  const submitButton = form.querySelector<HTMLElement>(
+    'button[type="submit"], ix-button[type="submit"]'
+  );
+
+  if (submitButton) {
+    form.requestSubmit(submitButton);
+  }
+
+  if (form.length === 1) {
+    form.requestSubmit();
+  }
 }
