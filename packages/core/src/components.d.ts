@@ -23,6 +23,7 @@ import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
 import { DateInputValidityState } from "./components/date-input/date-input.types";
+import { ResetConfig } from "./components/utils/input";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 import { DateChangeEvent } from "./components/date-picker/date-picker.events";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
@@ -73,6 +74,7 @@ export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
 export { DateInputValidityState } from "./components/date-input/date-input.types";
+export { ResetConfig } from "./components/utils/input";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 export { DateChangeEvent } from "./components/date-picker/date-picker.events";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
@@ -982,6 +984,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns whether the text field has been modified from its initial value.
+         */
+        "isDirty": () => Promise<boolean>;
+        /**
           * Returns whether the text field has been touched.
          */
         "isTouched": () => Promise<boolean>;
@@ -1020,6 +1026,10 @@ export namespace Components {
           * Required attribute
          */
         "required"?: boolean;
+        /**
+          * Resets the input field to its original untouched state and initial value. Clears touched and dirty states and recomputes validity.
+         */
+        "reset": () => Promise<void>;
         /**
           * Show text as tooltip
          */
@@ -1970,6 +1980,10 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Resets the input field validation state by removing the touched state and clearing validation states while preserving the current value.
+         */
+        "reset": () => Promise<void>;
+        /**
           * Specifies whether to show the text as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
@@ -2580,6 +2594,10 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
+        /**
+          * Resets the input field validation state by removing the touched state and clearing validation states while preserving the current value.
+         */
+        "reset": () => Promise<void>;
         /**
           * Indicates if the stepper buttons should be shown
          */
@@ -3357,6 +3375,10 @@ export namespace Components {
           * Get the native textarea element.
          */
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * Returns the validity state of the textarea field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the textarea field.
@@ -3404,6 +3426,10 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
+        /**
+          * Resets the input field validation state by removing the touched state and clearing validation states while preserving the current value.
+         */
+        "reset": () => Promise<void>;
         /**
           * Determines the resize behavior of the textarea field. Resizing can be enabled in one direction, both directions or completely disabled.
           * @default 'both'
@@ -3535,6 +3561,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns whether the input field is dirty (value has been changed).
+         */
+        "isDirty": () => Promise<boolean>;
+        /**
           * Returns whether the text field has been touched.
          */
         "isTouched": () => Promise<boolean>;
@@ -3569,6 +3599,10 @@ export namespace Components {
           * Required attribute
          */
         "required"?: boolean;
+        /**
+          * Resets the input field to its original untouched state and initial value. Clears touched and dirty states and recomputes validity.
+         */
+        "reset": () => Promise<void>;
         /**
           * Interval for second selection
           * @default 1

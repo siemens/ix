@@ -226,6 +226,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() isInfo = false;
   @State() isWarning = false;
 
+  private formSubmissionAttempted = false;
+  private formSubmitHandler?: (event: Event) => void;
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
   private readonly dropdownAnchorRef = makeRef<HTMLElement>();
   private readonly inputRef = makeRef<HTMLInputElement>();
@@ -244,6 +246,24 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
+
+  private get parentForm(): HTMLFormElement | null {
+    return this.hostElement.closest('form');
+  }
+
+  private isFormNoValidate(): boolean {
+    const form = this.parentForm;
+    if (!form) {
+      return false;
+    }
+    const noValidateAttributes = [
+      'novalidate',
+      'data-novalidate',
+      'ngnovalidate',
+    ];
+
+    return noValidateAttributes.some((attr) => form.hasAttribute(attr));
+  }
 
   private readonly focusControllerCallbackBind =
     this.focusDropdownItem.bind(this);
@@ -304,6 +324,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   watchValue(value: string | string[]) {
     this.value = value;
     this.updateSelection();
+    this.syncValidationClasses();
   }
 
   @Watch('dropdownShow')
@@ -475,6 +496,36 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return false;
   }
 
+  connectedCallback(): void {
+    const form = this.parentForm;
+    if (form) {
+      this.formSubmitHandler = (event: Event) => {
+        this.formSubmissionAttempted = true;
+        this.touched = true;
+        this.syncValidationClasses();
+        if (this.required && !this.hasValue()) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.hostElement.focus();
+          return false;
+        }
+      };
+      form.addEventListener('submit', this.formSubmitHandler, {
+        capture: true,
+      });
+    }
+
+    this.hostElement.addEventListener('invalid', (event: Event) => {
+      event.preventDefault();
+    });
+
+    this.hostElement.addEventListener('focus', () => {
+      if (this.inputElement) {
+        this.inputElement.focus();
+      }
+    });
+  }
+
   componentDidLoad() {
     this.inputElement?.addEventListener('input', () => {
       this.dropdownShow = true;
@@ -485,6 +536,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   componentWillLoad() {
     this.updateSelection();
     this.updateFormInternalValue(this.value);
+    if (this.required) {
+      this.syncValidationClasses();
+    }
   }
 
   componentDidRender(): void {
@@ -516,6 +570,45 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   disconnectedCallback() {
     this.cleanupResources();
+    const form = this.parentForm;
+    if (form && this.formSubmitHandler) {
+      form.removeEventListener('submit', this.formSubmitHandler, {
+        capture: true,
+      });
+    }
+  }
+
+  async syncValidationClasses() {
+    if (this.isFormNoValidate()) {
+      this.hostElement.classList.remove('ix-invalid--required');
+      this.formInternals.setValidity({});
+      return;
+    }
+
+    if (this.required) {
+      const isRequiredInvalid =
+        !this.hasValue() && (this.touched || this.formSubmissionAttempted);
+
+      this.hostElement.classList.toggle(
+        'ix-invalid--required',
+        isRequiredInvalid
+      );
+      this.isInvalid = isRequiredInvalid;
+
+      if (isRequiredInvalid) {
+        const message =
+          this.invalidText && this.invalidText.trim().length > 0
+            ? this.invalidText
+            : ' ';
+
+        this.formInternals.setValidity({ valueMissing: true }, message);
+      } else {
+        this.formInternals.setValidity({});
+      }
+    } else {
+      this.hostElement.classList.remove('ix-invalid--required');
+      this.formInternals.setValidity({});
+    }
   }
 
   private itemExists(item: string | undefined) {
@@ -745,6 +838,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private onInputBlur(event: Event) {
     this.ixBlur.emit();
     this.touched = true;
+    this.syncValidationClasses();
 
     if (this.editable) {
       return;
@@ -880,8 +974,17 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return (
       <Host
         aria-disabled={a11yBoolean(this.disabled)}
+        tabIndex={this.disabled ? -1 : 0}
         class={{
           disabled: this.disabled,
+        }}
+        onFocus={() => {
+          if (
+            this.inputElement &&
+            document.activeElement === this.hostElement
+          ) {
+            this.inputElement.focus();
+          }
         }}
       >
         <ix-field-wrapper
@@ -928,6 +1031,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     class={{
                       'allow-clear':
                         this.allowClear && !!this.selectedLabels?.length,
+                      'ix-invalid': this.isInvalid,
                     }}
                     placeholder={this.placeholderValue()}
                     value={this.inputValue ?? ''}
