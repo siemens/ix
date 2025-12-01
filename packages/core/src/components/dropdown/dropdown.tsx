@@ -146,7 +146,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Event() showChange!: EventEmitter<boolean>;
 
   /**
-   * Fire event after visibility of dropdown has changed, preventing event will prevent nothing
+   * Fire event after visibility of dropdown has changed
    */
   @Event() showChanged!: EventEmitter<boolean>;
 

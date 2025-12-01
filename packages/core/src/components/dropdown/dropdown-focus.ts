@@ -11,6 +11,7 @@
  * Fork of https://github.com/ionic-team/ionic-framework/blob/c37e2a5d9e765cf48d768061c9d453a13b187e13/core/src/utils/focus-trap.ts
  */
 
+import { Build } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 const VALID_FOCUS_ITEMS = ['ix-dropdown-item', 'ix-select-item'];
@@ -122,9 +123,11 @@ export const configureKeyboardInteraction = (
           dropdownElement.querySelectorAll(query) as NodeListOf<HTMLElement>
         );
       }
-
-      /* eslint-disable-next-line */
-    } catch {}
+    } catch (e) {
+      if (Build.isDev) {
+        console.error('Error during dropdown item collection:', e);
+      }
+    }
 
     switch (ev.key) {
       case 'ArrowLeft':

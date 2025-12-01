@@ -7211,7 +7211,7 @@ declare namespace LocalJSX {
          */
         "onShowChange"?: (event: IxDropdownCustomEvent<boolean>) => void;
         /**
-          * Fire event after visibility of dropdown has changed, preventing event will prevent nothing
+          * Fire event after visibility of dropdown has changed
          */
         "onShowChanged"?: (event: IxDropdownCustomEvent<boolean>) => void;
         "overwriteDropdownStyle"?: (delegate: {

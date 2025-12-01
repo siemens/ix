@@ -946,7 +946,7 @@ export declare interface IxDropdown extends Components.IxDropdown {
    */
   showChange: EventEmitter<CustomEvent<boolean>>;
   /**
-   * Fire event after visibility of dropdown has changed, preventing event will prevent nothing
+   * Fire event after visibility of dropdown has changed
    */
   showChanged: EventEmitter<CustomEvent<boolean>>;
 }
