@@ -1,7 +1,7 @@
 ---
-"@siemens/ix-angular": patch
-"@siemens/ix-react": patch
-"@siemens/ix-vue": patch
+'@siemens/ix-angular': minor
+'@siemens/ix-react': minor
+'@siemens/ix-vue': minor
 ---
 
 Framework specific functions/services for modals and messages have been added to **ix-angular**, **ix-react** and **ix-vue**.
