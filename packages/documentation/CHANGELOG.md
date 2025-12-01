@@ -1,5 +1,11 @@
 # @siemens/ix-docs
 
+## 4.2.0
+
+### Minor Changes
+
+- [`24b153f`](https://github.com/siemens/ix/commit/24b153f347b5f32ea5058cc5bc379666efe6d885) Thanks [@danielleroux](https://github.com/danielleroux)! - Release v4.1.0
+
 ## 4.0.0
 
 ### Major Changes
