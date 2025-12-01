@@ -165,9 +165,9 @@ export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderEleme
         appIconOutline: 'app-icon-outline',
         hideBottomBorder: 'hide-bottom-border',
         showMenu: 'show-menu',
-        ariaLabelMenuExpandIconButton: 'aria-label-menu-expand-icon-button',
         ariaLabelAppSwitchIconButton: 'aria-label-app-switch-icon-button',
-        ariaLabelMoreMenuIconButton: 'aria-label-more-menu-icon-button'
+        ariaLabelMoreMenuIconButton: 'aria-label-more-menu-icon-button',
+        ariaLabelMenuExpandIconButton: 'aria-label-menu-expand-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxApplicationHeader as ReactWebComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents>,
@@ -1147,6 +1147,7 @@ export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutE
     properties: {
         activeTabLabel: 'active-tab-label',
         label: 'label',
+        i18nClose: 'i18n-close',
         show: 'show'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1261,6 +1262,7 @@ export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenu
     properties: {
         activeTabLabel: 'active-tab-label',
         label: 'label',
+        i18nClose: 'i18n-close',
         show: 'show'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
