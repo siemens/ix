@@ -710,7 +710,7 @@ export class DatePicker implements IxDatePickerComponent {
                 ref={this.dropdownButtonRef}
                 data-testid="year-month-button"
               >
-                <span class="fontSize capitalize">
+                <span class="capitalize">
                   {this.monthNames[this.selectedMonth]} {this.selectedYear}
                 </span>
               </ix-button>
