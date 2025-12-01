@@ -64,8 +64,7 @@ export class Toast {
   @Prop() iconColor?: string;
 
   /**
-   * Allows to hide the icon in the toast
-   * Defaults to false
+   * Allows to hide the icon in the toast.
    */
   @Prop() hideIcon: boolean = false;
 
