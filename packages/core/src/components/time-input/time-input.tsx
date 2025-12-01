@@ -35,6 +35,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
@@ -497,9 +498,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorTimeUnparsable
-      : this.invalidText;
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorTimeUnparsable
+    );
 
     return (
       <Host
