@@ -112,6 +112,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
         name={props.icon}
         size={props.iconSize as any}
         color={props.iconColor}
+        aria-hidden={props.iconOnly ? 'true' : undefined}
       ></ix-icon>
     ) : null,
     <div
@@ -128,6 +129,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
         name={props.iconRight}
         size={props.iconSize as any}
         color={props.iconColor}
+        aria-hidden={props.iconOnly ? 'true' : undefined}
       ></ix-icon>
     ) : null,
     props.afterContent ? props.afterContent : null,
