@@ -140,7 +140,7 @@ regressionTest.describe('select', () => {
   regressionTest('centered overflow', async ({ page }) => {
     await page.goto('select/centered-overflow');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    const lastItem = await page.locator('.dropdown-item').last();
+    const lastItem = page.locator('ix-select').locator('ix-select-item').last();
     await lastItem.scrollIntoViewIfNeeded();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

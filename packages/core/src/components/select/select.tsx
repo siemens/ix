@@ -230,6 +230,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() inputFilterText = '';
   @State() inputValue = '';
 
+  @State() hasInputFocus = false;
+  @State() dropdownItemsVisualFocused = false;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -586,6 +589,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       this.inputFilterText = '';
       this.keyboardNavigationCleanup?.();
       this.removeVisualFocusFromItems();
+      this.dropdownItemsVisualFocused = false;
     }
   }
 
@@ -611,7 +615,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private removeHiddenAttributeFromItems() {
-    console.trace();
     this.items.forEach((item) => {
       item.hidden = false;
     });
@@ -635,6 +638,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private onInputBlur(event: Event) {
     this.ixBlur.emit();
     this.touched = true;
+    this.hasInputFocus = false;
 
     if (this.editable) {
       return;
@@ -649,6 +653,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     if (!this.dropdownShow && this.mode !== 'multiple') {
       target.value = this.selectedLabels.toString();
     }
+  }
+
+  onInputFocus() {
+    this.hasInputFocus = true;
   }
 
   private placeholderValue() {
@@ -804,8 +812,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
+          'ix-focusable': true,
+          'show-focus-outline':
+            this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}
-        onFocusout={() => this.focusVisibleUtility?.setFocus([])}
+        onFocusout={() => {
+          this.focusVisibleUtility?.setFocus([]);
+        }}
       >
         <ix-field-wrapper
           required={this.required}
@@ -861,6 +874,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       this.inputElement = ref;
                       this.inputRef(ref);
                     }}
+                    onFocus={() => this.onInputFocus()}
                     onBlur={(e) => this.onInputBlur(e)}
                     onInput={() => this.setItemFilter()}
                     onKeyDown={(e) => this.onKeyDown(e)}
@@ -922,6 +936,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
             ) {
               this.removeVisualFocusFromItems();
               this.focusableItems[0].hasVisualFocus = true;
+              this.dropdownItemsVisualFocused = true;
             }
 
             if (detail.keyEvent.key === 'ArrowUp') {
@@ -929,6 +944,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               this.focusableItems[
                 this.focusableItems.length - 1
               ].hasVisualFocus = true;
+              this.dropdownItemsVisualFocused = true;
             }
           }}
           ref={this.dropdownRef}

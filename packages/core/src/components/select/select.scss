@@ -186,6 +186,11 @@
   }
 }
 
+:host(.ix-focused.show-focus-outline) {
+  outline: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+
 @include form-component.host-valid;
 
 @include form-component.host-info {
