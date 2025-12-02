@@ -66,7 +66,7 @@ export class SelectItem implements DropdownItemWrapper {
   @Event() itemClick!: EventEmitter<string>;
 
   private componentLoaded = false;
-  private dropdownItemRef = makeRef<HTMLIxDropdownItemElement>();
+  private readonly dropdownItemRef = makeRef<HTMLIxDropdownItemElement>();
 
   /** @internal */
   @Method()

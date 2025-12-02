@@ -108,20 +108,16 @@ export const configureKeyboardInteraction = (
             slot.assignedElements({ flatten: true }) as HTMLElement[]
           ).flatMap((el) => {
             // Check if the assigned element itself matches the query
-            if (el.matches && el.matches(query)) {
+            if (el?.matches(query)) {
               return [el];
             }
             // Otherwise, query its children
-            return Array.from(
-              el.querySelectorAll(query) as NodeListOf<HTMLElement>
-            );
+            return Array.from(el.querySelectorAll(query));
           })
         );
       } else {
         // No slots, query directly on popoverEl
-        items = Array.from(
-          dropdownElement.querySelectorAll(query) as NodeListOf<HTMLElement>
-        );
+        items = Array.from(dropdownElement.querySelectorAll(query));
       }
     } catch (e) {
       if (Build.isDev) {
@@ -130,7 +126,7 @@ export const configureKeyboardInteraction = (
     }
 
     switch (ev.key) {
-      case 'ArrowLeft':
+      case 'ArrowLeft': {
         dropdownElement.dispatchEvent(
           new CustomEvent('ix-close-submenu', {
             bubbles: true,
@@ -138,8 +134,9 @@ export const configureKeyboardInteraction = (
           })
         );
         break;
+      }
 
-      case 'ArrowDown':
+      case 'ArrowDown': {
         // Disable movement/scroll with keyboard
         ev.preventDefault();
         const nextItem = getNextFocusableDropdownItem(items, activeElement);
@@ -147,8 +144,9 @@ export const configureKeyboardInteraction = (
           setItemActive(nextItem);
         }
         break;
+      }
 
-      case 'ArrowUp':
+      case 'ArrowUp': {
         // Disable movement/scroll with keyboard
         ev.preventDefault();
         const prevItem = getPreviousFocusableItem(items, activeElement);
@@ -156,26 +154,29 @@ export const configureKeyboardInteraction = (
           setItemActive(prevItem);
         }
         break;
+      }
 
-      case 'Home':
+      case 'Home': {
         ev.preventDefault();
         const firstItem = items[0];
         if (firstItem !== undefined) {
           setItemActive(firstItem);
         }
         break;
+      }
 
-      case 'End':
+      case 'End': {
         ev.preventDefault();
         const lastItem = items[items.length - 1];
         if (lastItem !== undefined) {
           setItemActive(lastItem);
         }
         break;
+      }
 
       case 'ArrowRight':
       case ' ':
-      case 'Enter':
+      case 'Enter': {
         if (activeElement && isTriggerElement(activeElement)) {
           const triggerEvent = new CustomEvent('ix-open-submenu', {
             bubbles: true,
@@ -187,6 +188,7 @@ export const configureKeyboardInteraction = (
           activeElement.dispatchEvent(triggerEvent);
         }
         break;
+      }
       default:
         break;
     }

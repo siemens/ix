@@ -124,7 +124,7 @@ export class DropdownItem implements DropdownItemWrapper {
       >
         <button
           type="button"
-          tabIndex={!this.suppressFocus ? 0 : -1}
+          tabIndex={this.suppressFocus ? -1 : 0}
           class={{
             'dropdown-item': true,
             'no-checked-field': this.suppressChecked,

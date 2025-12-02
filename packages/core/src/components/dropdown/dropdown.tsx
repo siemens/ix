@@ -259,14 +259,17 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
     dropdownController.dismissOthers(this.getId());
   }
-  private onTriggerClick = (event: Event) => this.handleTriggerClick(event);
+
+  private readonly onTriggerClick = (event: Event) =>
+    this.handleTriggerClick(event);
+
   private handleTriggerClick(event: Event) {
     if (!event.defaultPrevented) {
       this.toggleController();
     }
   }
 
-  private onTriggerKeydown = (event: KeyboardEvent) =>
+  private readonly onTriggerKeydown = (event: KeyboardEvent) =>
     this.handleTriggerKeydown(event);
 
   private handleTriggerKeydown(event: KeyboardEvent) {

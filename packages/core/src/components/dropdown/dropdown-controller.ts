@@ -186,8 +186,6 @@ class DropdownController {
         return ruleKey;
       }
     }
-
-    return;
   }
 
   private pathIncludesDropdown(eventTargets: EventTarget[]) {

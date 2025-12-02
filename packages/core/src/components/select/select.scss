@@ -85,10 +85,6 @@
     }
   }
 
-  .hidden {
-    display: none !important;
-  }
-
   .trigger {
     display: flex;
     align-items: center;
@@ -151,6 +147,8 @@
   }
 
   ix-dropdown {
+    display: flex;
+    flex-direction: column;
     max-width: 100%;
   }
 
@@ -174,11 +172,6 @@
     margin: 0 vars.$small-space 0 1rem;
 
     @include text-truncation.ellipsis;
-  }
-
-  ix-dropdown {
-    display: flex;
-    flex-direction: column;
   }
 
   .hidden {
