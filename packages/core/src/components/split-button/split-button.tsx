@@ -21,6 +21,7 @@ import { AlignedPlacement } from '../dropdown/placement';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
 import type { SplitButtonVariant } from './split-button.types';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-split-button',
@@ -75,6 +76,20 @@ export class SplitButton {
   @Prop() disabled = false;
 
   /**
+   * Disables only the main button while keeping the dropdown trigger enabled
+   *
+   *  @since 4.1.0
+   */
+  @Prop() disableButton = false;
+
+  /**
+   * Disables only the dropdown trigger while keeping the main button enabled
+   *
+   * @since 4.1.0
+   */
+  @Prop() disableDropdownButton = false;
+
+  /**
    * Placement of the dropdown
    */
   @Prop() placement: AlignedPlacement = 'bottom-start';
@@ -86,28 +101,35 @@ export class SplitButton {
    */
   @Event() buttonClick!: EventEmitter<MouseEvent>;
 
-  private triggerElement?: HTMLElement;
-  private dropdownElement?: HTMLIxDropdownElement;
+  private readonly triggerElementRef = makeRef<HTMLElement>();
 
-  private linkTriggerRef() {
-    if (this.triggerElement && this.dropdownElement) {
-      this.dropdownElement.trigger = this.triggerElement;
-    }
+  private get isDisabledButton() {
+    return this.disabled || this.disableButton;
   }
 
-  componentDidLoad() {
-    this.linkTriggerRef();
+  private get isDisabledIcon() {
+    return this.disabled || this.disableDropdownButton;
   }
 
   render() {
     const hasOutline = this.variant.toLocaleLowerCase().includes('secondary');
-    const buttonAttributes = {
+    const baseAttributes = {
       variant: this.variant,
-      disabled: this.disabled,
+    };
+
+    const buttonAttributes = {
+      ...baseAttributes,
+      disabled: this.isDisabledButton,
       class: {
         'left-button-border': !hasOutline,
       },
     };
+
+    const dropdownButtonAttributes = {
+      ...baseAttributes,
+      disabled: this.isDisabledIcon,
+    };
+
     return (
       <Host>
         <div class={{ 'btn-group': true, 'middle-gap': !hasOutline }}>
@@ -116,6 +138,7 @@ export class SplitButton {
               {...buttonAttributes}
               icon={this.icon}
               onClick={(e) => this.buttonClick.emit(e)}
+              aria-label={this.ariaLabelButton}
             >
               {this.label}
             </ix-button>
@@ -128,8 +151,8 @@ export class SplitButton {
             ></ix-icon-button>
           )}
           <ix-icon-button
-            {...buttonAttributes}
-            ref={(r) => (this.triggerElement = r)}
+            {...dropdownButtonAttributes}
+            ref={this.triggerElementRef}
             class={'anchor'}
             icon={this.splitIcon ?? iconContextMenu}
             aria-label={this.ariaLabelSplitIconButton}
@@ -137,8 +160,8 @@ export class SplitButton {
         </div>
 
         <ix-dropdown
-          ref={(r) => (this.dropdownElement = r)}
           closeBehavior={this.closeBehavior}
+          trigger={this.triggerElementRef.waitForCurrent()}
         >
           <slot></slot>
         </ix-dropdown>

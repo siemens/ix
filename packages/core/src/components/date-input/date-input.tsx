@@ -35,6 +35,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -201,6 +202,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * Set to true to suppress submit on Enter.
    */
   @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
+   * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
 
   /**
    * Input change event.
@@ -400,6 +406,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.touched = true;
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
+          style={{
+            textAlign: this.textAlignment,
+          }}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -475,9 +484,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorDateUnparsable
-      : this.invalidText;
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorDateUnparsable
+    );
 
     return (
       <Host

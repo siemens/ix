@@ -15,7 +15,27 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
   </head>
   <body padding="2rem">
-    <ix-select value="2" mode="multiple">
+    <h1>Normal</h1>
+    <ix-select
+      aria-label="normal-select"
+      value="2"
+      mode="multiple"
+      collapse-multiple-selection
+    >
+      <ix-select-item label="Item 1" value="1"></ix-select-item>
+      <ix-select-item label="Item 2" value="2"></ix-select-item>
+      <ix-select-item label="Item 3" value="3"></ix-select-item>
+    </ix-select>
+
+    <h1>All Chip</h1>
+    <ix-select
+      aria-label="all-chip-select"
+      value="2"
+      mode="multiple"
+      all-chip
+      style="padding-top: 10rem"
+      collapse-multiple-selection
+    >
       <ix-select-item label="Item 1" value="1"></ix-select-item>
       <ix-select-item label="Item 2" value="2"></ix-select-item>
       <ix-select-item label="Item 3" value="3"></ix-select-item>
@@ -26,8 +46,15 @@ SPDX-License-Identifier: MIT
         await window.customElements.whenDefined('ix-select');
         await window.customElements.whenDefined('ix-select-item');
 
-        const select = document.querySelector('ix-select');
+        const select = document.querySelector(
+          'ix-select[aria-label="normal-select"]'
+        );
         select.value = ['1', '3'];
+
+        const allSelect = document.querySelector(
+          'ix-select[aria-label="all-chip-select"]'
+        );
+        allSelect.value = ['1', '2', '3'];
       })();
     </script>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>

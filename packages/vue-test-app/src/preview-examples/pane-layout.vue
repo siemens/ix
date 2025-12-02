@@ -34,7 +34,7 @@ const layout = ref<'full-horizontal' | 'full-vertical'>('full-horizontal');
       <p>This is the bottom pane.</p>
     </IxPane>
 
-    <div slot="content">
+    <div>
       <IxButton
         @click="
           () => {
