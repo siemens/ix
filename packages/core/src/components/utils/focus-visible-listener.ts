@@ -73,7 +73,7 @@ export const addFocusVisibleListener = (
   let keyboardMode = true;
 
   const ref = rootEl ? rootEl.shadowRoot! : document;
-  const root = rootEl ? rootEl : document.body;
+  const root = rootEl ?? document.body;
 
   const setFocus = (elements: Element[]) => {
     currentFocus.forEach((el) => el.classList.remove(IX_FOCUSED));
