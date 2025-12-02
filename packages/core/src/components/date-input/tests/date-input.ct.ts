@@ -203,6 +203,27 @@ regressionTest(
 );
 
 regressionTest(
+  'invalidText property takes precedence over i18n error message',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input value="2024/05/05" invalid-text="Custom error message"></ix-date-input>`
+    );
+
+    const dateInputElement = page.locator('ix-date-input');
+
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await dateInputElement.locator('input').fill('invalid-date');
+    await dateInputElement.locator('input').blur();
+    await expect(
+      dateInputElement
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: 'Custom error message' })
+    ).toHaveText('Custom error message');
+  }
+);
+
+regressionTest(
   'Required input: Invalid input > Removing value with keyboard > Stays invalid',
   async ({ page, mount }) => {
     await mount(

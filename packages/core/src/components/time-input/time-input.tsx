@@ -33,6 +33,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
   shouldSuppressInternalValidation,
   syncState,
   watchValue,
@@ -603,9 +604,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorTimeUnparsable
-      : this.invalidText;
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorTimeUnparsable
+    );
 
     return renderFieldWrapper({
       host: this.hostElement,

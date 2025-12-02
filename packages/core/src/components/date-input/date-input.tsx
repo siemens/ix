@@ -33,6 +33,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
   shouldSuppressInternalValidation,
   syncState,
   watchValue,
@@ -622,9 +623,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   render() {
     const invalidText =
-      this.isInputInvalid && !this.suppressValidation
-        ? this.i18nErrorDateUnparsable
-        : this.invalidText;
+      getValidationText(
+      this.isInputInvalid && !this.suppressValidation,
+        this.invalidText,
+      this.i18nErrorDateUnparsable
+      );
 
     return renderFieldWrapper({
       host: this.hostElement,
