@@ -10,6 +10,7 @@
 export * from './providers/modal';
 export * from './providers/toast';
 export * from './providers/message';
+export * from './providers/loading';
 export * from './directives/control-value-accessors';
 export { DropdownTriggerBaseDirective } from './directives/dropdown-trigger';
 export { TreeBaseDirective } from './directives/tree';

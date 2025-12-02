@@ -9,7 +9,6 @@
 import {
   ModalService as BaseModalService,
   ModalConfig,
-  ModalLoadingContext,
 } from '@siemens/ix-angular/common';
 import { ModalInstance } from '@siemens/ix';
 import {
@@ -45,11 +44,5 @@ export class ModalService extends BaseModalService {
     reason?: TReason
   ): void {
     super.close(instance, reason);
-  }
-
-  public override showModalLoading(message: string): ModalLoadingContext {
-    defineCustomElement();
-
-    return super.showModalLoading(message);
   }
 }

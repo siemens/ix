@@ -16,12 +16,7 @@ import {
   Type,
   ViewRef,
 } from '@angular/core';
-import {
-  closeModal,
-  dismissModal,
-  showModal,
-  showModalLoading,
-} from '@siemens/ix';
+import { closeModal, dismissModal, showModal } from '@siemens/ix';
 import { InternalIxActiveModal, IxActiveModal } from './modal-ref';
 import { ModalConfig } from './modal.config';
 
@@ -29,11 +24,6 @@ export type ModalContext<T> = {
   close: ((result: any) => void) | null;
   dismiss: ((result?: any) => void) | null;
   data?: T;
-};
-
-export type ModalLoadingContext = {
-  update: (text: string) => string;
-  finish: (text?: string, timeout?: number) => void;
 };
 
 @Injectable({
@@ -79,10 +69,6 @@ export class ModalService {
     );
 
     return modalInstance;
-  }
-
-  public showModalLoading(message: string): ModalLoadingContext {
-    return showModalLoading(message);
   }
 
   private async createContentByComponentType<TData = any, TReason = any>(
