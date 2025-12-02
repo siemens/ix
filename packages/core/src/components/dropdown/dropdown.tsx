@@ -344,7 +344,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.onTriggerClick
     );
 
-    this.disposeClickListener = addDisposableEventListener(
+    this.disposeKeyListener = addDisposableEventListener(
       this.triggerElement,
       'keydown',
       this.onTriggerKeydown as EventListener
