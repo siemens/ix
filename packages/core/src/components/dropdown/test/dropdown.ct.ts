@@ -691,46 +691,46 @@ regressionTest.describe('A11y', () => {
 
     regressionTest.describe('ArrowDown', () => {
       regressionTest('trigger -> first item', async ({ page }) => {
-        await page.keyboard.press('Tab');
-
         const trigger = page.getByText('Open');
+        await trigger.focus();
         await expect(trigger).toBeFocused();
 
-        await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
         const item = page.locator('ix-dropdown-item').first();
+        await page.keyboard.press('ArrowDown');
         await expect(item).toBeFocused();
       });
 
       regressionTest('first item -> second item', async ({ page }) => {
-        await page.keyboard.press('Tab');
-
         const trigger = page.getByText('Open');
+        await trigger.focus();
         await expect(trigger).toBeFocused();
 
+        const firstItem = page.locator('ix-dropdown-item').first();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await expect(firstItem).toBeFocused();
+
+        const secondItem = page.locator('ix-dropdown-item').nth(1);
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
-        const item = await page.locator('ix-dropdown-item').nth(1);
-        await expect(item).toBeFocused();
+        await expect(secondItem).toBeFocused();
       });
     });
 
     regressionTest.describe('ArrowUp', () => {
       regressionTest('second item -> fist item', async ({ page }) => {
-        await page.keyboard.press('Tab');
-
         const trigger = page.getByText('Open');
+        await trigger.focus();
         await expect(trigger).toBeFocused();
 
+        const firstItem = page.locator('ix-dropdown-item').first();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await expect(firstItem).toBeFocused();
+
+        const secondItem = page.locator('ix-dropdown-item').nth(1);
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await expect(secondItem).toBeFocused();
+
         await page.keyboard.press('ArrowUp');
-        const item = page.locator('ix-dropdown-item').first();
-        await expect(item).toBeFocused();
+        await expect(firstItem).toBeFocused();
       });
     });
   });
