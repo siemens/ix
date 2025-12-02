@@ -7,7 +7,9 @@ import { defineCustomElement as defineCustomElementModalFooter } from '@siemens/
 
 @Injectable({ providedIn: 'root' })
 export class MessageService extends BaseMessageService {
-  private defineModalCustomElements() {
+  constructor() {
+    super();
+
     defineCustomElement();
     // needs to be called as well here or wont be rendered correctly for angular production builds
     defineCustomElementModalFooter();
@@ -19,8 +21,6 @@ export class MessageService extends BaseMessageService {
       payload: T;
     }>
   > {
-    this.defineModalCustomElements();
-
     return super.showMessage(config);
   }
 
@@ -32,8 +32,6 @@ export class MessageService extends BaseMessageService {
     payloadOkay?: any,
     payloadCancel?: any
   ) {
-    this.defineModalCustomElements();
-
     return super.info(
       title,
       message,
@@ -52,8 +50,6 @@ export class MessageService extends BaseMessageService {
     payloadOkay?: any,
     payloadCancel?: any
   ) {
-    this.defineModalCustomElements();
-
     return super.warning(
       title,
       message,
@@ -72,8 +68,6 @@ export class MessageService extends BaseMessageService {
     payloadOkay?: any,
     payloadCancel?: any
   ) {
-    this.defineModalCustomElements();
-
     return super.error(
       title,
       message,
@@ -92,8 +86,6 @@ export class MessageService extends BaseMessageService {
     payloadOkay?: any,
     payloadCancel?: any
   ) {
-    this.defineModalCustomElements();
-
     return super.success(
       title,
       message,
@@ -112,8 +104,6 @@ export class MessageService extends BaseMessageService {
     payloadOkay?: any,
     payloadCancel?: any
   ) {
-    this.defineModalCustomElements();
-
     return super.question(
       title,
       message,

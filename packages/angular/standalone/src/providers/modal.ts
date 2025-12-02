@@ -29,13 +29,13 @@ export class ModalService extends BaseModalService {
     injector: Injector
   ) {
     super(appRef, componentFactoryResolver, injector);
+
+    defineCustomElement();
   }
 
   public override open<TData = any, TReason = any>(
     config: ModalConfig<TData>
   ): Promise<ModalInstance<TReason>> {
-    defineCustomElement();
-
     return super.open(config);
   }
 

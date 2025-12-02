@@ -20,6 +20,9 @@ import { defineCustomElement as defineCustomElementToastContainer } from '@sieme
 export class ToastService extends BaseToastService {
   constructor() {
     super();
+
+    defineCustomElement();
+    defineCustomElementToastContainer();
   }
 
   public getPosition(): 'bottom-right' | 'top-right' {
@@ -31,8 +34,6 @@ export class ToastService extends BaseToastService {
   }
 
   public show(config: ToastConfig): Promise<ShowToastResult> {
-    defineCustomElement();
-    defineCustomElementToastContainer();
     return super.show(config);
   }
 }

@@ -17,9 +17,13 @@ import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
   providedIn: 'root',
 })
 export class LoadingService extends BaseLoadingService {
-  public override showModalLoading(message: string): ModalLoadingContext {
-    defineCustomElement();
+  constructor() {
+    super();
 
+    defineCustomElement();
+  }
+
+  public override showModalLoading(message: string): ModalLoadingContext {
     return super.showModalLoading(message);
   }
 }
