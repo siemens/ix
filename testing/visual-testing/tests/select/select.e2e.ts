@@ -57,11 +57,10 @@ regressionTest.describe('select', () => {
     await page.goto('select/mode-multiple-overflow');
 
     const inputHandle = await page.waitForSelector('div.chips');
-
-    await page.type(
-      '[data-testid="input"]',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    );
+    const select = page.locator('ix-select');
+    await select
+      .locator('input')
+      .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
 
     page.evaluate((menuElement) => {
       menuElement.scrollTop = 9999;
@@ -69,7 +68,7 @@ regressionTest.describe('select', () => {
     }, inputHandle);
 
     await page.waitForSelector('div.chips.__SCROLLED__');
-    await page.locator('[data-testid="input"]').blur();
+    await select.locator('input').blur();
 
     await page.waitForTimeout(500);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
