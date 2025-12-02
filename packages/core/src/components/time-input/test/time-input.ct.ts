@@ -196,7 +196,7 @@ regressionTest.describe('time input tests', () => {
       await input.fill('invalid-time');
       await input.blur();
 
-      await timeInput.evaluate((el: any) => el.reset());
+      await timeInput.evaluate((el: any) => el.clear());
 
       await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
       await expect(input).not.toHaveClass(/is-invalid/);
@@ -252,7 +252,7 @@ regressionTest.describe('time input tests', () => {
       await input.focus();
       await input.blur();
 
-      await timeInput.evaluate((el: any) => el.reset());
+      await timeInput.evaluate((el: any) => el.clear());
 
       await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
       await expect(input).not.toHaveClass(/is-invalid/);
@@ -309,7 +309,7 @@ regressionTest.describe('time input tests', () => {
       await input.fill('invalid-time');
       await input.blur();
 
-      await timeInput.evaluate((el: any) => el.reset());
+      await timeInput.evaluate((el: any) => el.clear());
 
       await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
       await expect(input).not.toHaveClass(/is-invalid/);
@@ -365,7 +365,7 @@ regressionTest.describe('time input tests', () => {
       await input.focus();
       await input.blur();
 
-      await timeInput.evaluate((el: any) => el.reset());
+      await timeInput.evaluate((el: any) => el.clear());
 
       await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
       await expect(input).not.toHaveClass(/is-invalid/);

@@ -33,8 +33,6 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
-  resetInputField,
-  ResetConfig,
   shouldSuppressInternalValidation,
   syncState,
   watchValue,
@@ -95,12 +93,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Watch('value') watchValuePropHandler(newValue: string) {
     watchValue({
       newValue,
-      isResetting: this.isResetting,
       required: this.required,
-      initialValue: this.initialValue,
       onInput: (value: string) => void this.onInput(value),
       setTouched: (touched: boolean) => (this.touched = touched),
-      setDirty: (dirty: boolean) => (this.dirty = dirty),
+      isClearing: this._isClearing,
     });
   }
 
@@ -282,9 +278,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private dirty = false;
-  private isResetting = false;
-  private initialValue?: string;
+  private _isClearing = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -313,13 +307,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad(): void {
-    this.initialValue = this.value;
-
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
         this.value = now.toFormat(this.format);
-        this.initialValue = this.value;
       }
     }
 
@@ -370,10 +361,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   async onInput(value: string) {
     this.value = value;
-
-    if (!this.isResetting) {
-      this.dirty = value !== this.initialValue;
-    }
 
     this.suppressValidation = await shouldSuppressInternalValidation(this);
 
@@ -440,7 +427,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   private getEventConfig() {
     return createEventConfig({
-      isResetting: this.isResetting,
       show: this.show,
       setTouched: (touched: boolean) => (this.touched = touched),
       onInput: (value: string) => void this.onInput(value),
@@ -546,7 +532,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
     return createInputMethods({
       inputElementRef: this.inputElementRef,
       touched: this.touched,
-      dirty: this.dirty,
       hostElement: this.hostElement,
       suppressValidation: this.suppressValidation,
       required: this.required,
@@ -560,7 +545,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
       dropdownElementRef: this.dropdownElementRef,
       hostElement: this.hostElement,
       show: this.show,
-      isResetting: this.isResetting,
       touched: this.touched,
       openDropdown: async () => {
         this.time = this.value;
@@ -569,7 +553,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
       ixFocus: this.ixFocus,
       ixBlur: this.ixBlur,
       syncValidationClasses: () => this.syncValidationClasses(),
-      onInput: (value: string) => this.onInput(value),
+      onInput: (value: string) => void this.onInput(value),
       handleInputKeyDown: (event: KeyboardEvent) =>
         this.handleInputKeyDown(event),
     });
@@ -593,15 +577,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   /**
-   * Returns whether the input field is dirty (value has been changed).
-   * @internal
-   */
-  @Method()
-  isDirty(): Promise<boolean> {
-    return this.commonMethods.isDirty();
-  }
-
-  /**
    * @internal
    */
   syncValidationClasses(): void {
@@ -609,30 +584,22 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   /**
-   * Resets the input field to its original untouched state and initial value.
-   * Clears touched and dirty states and recomputes validity.
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
    */
   @Method()
-  async reset(): Promise<void> {
-    const resetConfig: ResetConfig = {
-      initialValue: this.initialValue,
-      format: this.format,
-      updateFormInternalValue: this.updateFormInternalValue.bind(this),
-      onInput: this.onInput.bind(this),
-      valueChangeEmitter: this.valueChange,
-      setState: {
-        setIsResetting: (value: boolean) => (this.isResetting = value),
-        setTouched: (value: boolean) => (this.touched = value),
-        setDirty: (value: boolean) => (this.dirty = value),
-        setIsInputInvalid: (value: boolean) => (this.isInputInvalid = value),
-        setIsInvalid: (value: boolean) => (this.isInvalid = value),
-        setInvalidReason: (value: string | undefined) =>
-          (this.invalidReason = value),
-        setValue: (value: string) => (this.value = value),
-      },
-    };
-
-    return resetInputField(resetConfig);
+  async clear(): Promise<void> {
+    this._isClearing = true;
+    this.touched = false;
+    this.isInputInvalid = false;
+    this.isInvalid = false;
+    this.invalidReason = undefined;
+    this.value = '';
+    this.time = null;
+    this.updateFormInternalValue('');
+    this.valueChange.emit('');
+    this.syncValidationClasses();
+    this._isClearing = false;
   }
 
   render() {

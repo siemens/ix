@@ -42,33 +42,26 @@ export function syncState<T = string | undefined>(
 
 export interface WatchConfig<T = string> {
   newValue: T;
-  isResetting: boolean;
   required?: boolean;
-  initialValue?: T;
   onInput: (value: T) => void;
   setTouched?: (touched: boolean) => void;
-  setDirty?: (dirty: boolean) => void;
+  isClearing?: boolean;
 }
 
 export function watchValue<T = string>(config: WatchConfig<T>): void {
-  if (config.isResetting) {
-    config.onInput(config.newValue);
-    return;
-  }
-
-  if (!config.newValue && config.required && config.setTouched) {
+  if (
+    !config.isClearing &&
+    !config.newValue &&
+    config.required &&
+    config.setTouched
+  ) {
     config.setTouched(true);
-  }
-
-  if (config.setDirty && config.initialValue !== undefined) {
-    config.setDirty(config.newValue !== config.initialValue);
   }
 
   config.onInput(config.newValue);
 }
 
 export interface EventConfig {
-  isResetting: boolean;
   show: boolean;
   setTouched: (touched: boolean) => void;
   onInput: (value: string) => void;
@@ -83,9 +76,7 @@ export interface EventConfig {
 export function onInput(config: EventConfig) {
   return (event: Event) => {
     const target = event.target as HTMLInputElement;
-    if (!config.isResetting) {
-      config.setTouched(true);
-    }
+    config.setTouched(true);
     config.onInput(target.value);
   };
 }
@@ -101,7 +92,7 @@ export function onClick(config: EventConfig) {
 
 export function onFocus(config: EventConfig) {
   return async () => {
-    await config.openDropdown();
+    config.openDropdown();
     config.ixFocus.emit();
   };
 }
@@ -109,7 +100,7 @@ export function onFocus(config: EventConfig) {
 export function onBlur(config: EventConfig) {
   return () => {
     config.ixBlur.emit();
-    if (config.alwaysSetTouchedOnBlur || !config.isResetting) {
+    if (config.alwaysSetTouchedOnBlur) {
       config.setTouched(true);
     }
     config.syncValidationClasses();
@@ -158,10 +149,6 @@ export async function focusInput(inputElementRef: {
 
 export function getTouchedState(touched: boolean): Promise<boolean> {
   return Promise.resolve(touched);
-}
-
-export function getDirtyState(dirty: boolean): Promise<boolean> {
-  return Promise.resolve(dirty);
 }
 
 export interface PickerFieldWrapperProps {
@@ -232,7 +219,6 @@ export function renderFieldWrapper(props: PickerFieldWrapperProps) {
 }
 
 export interface PickerEventConfigOptions {
-  isResetting: boolean;
   show: boolean;
   setTouched: (touched: boolean) => void;
   onInput: (value: string) => void;
@@ -248,7 +234,6 @@ export function createEventConfig(
   options: PickerEventConfigOptions
 ): EventConfig {
   return {
-    isResetting: options.isResetting,
     show: options.show,
     setTouched: options.setTouched,
     onInput: options.onInput,
@@ -264,7 +249,6 @@ export function createEventConfig(
 export interface InputMethodsContext {
   inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> };
   touched: boolean;
-  dirty: boolean;
   hostElement: HTMLElement;
   suppressValidation: boolean;
   required?: boolean;
@@ -280,10 +264,6 @@ export function createInputMethods(context: InputMethodsContext) {
 
     isTouched(): Promise<boolean> {
       return getTouchedState(context.touched);
-    },
-
-    isDirty(): Promise<boolean> {
-      return getDirtyState(context.dirty);
     },
 
     syncValidationClasses(): void {
@@ -303,7 +283,6 @@ export interface DropdownMethodsContext {
   dropdownElementRef: { current: HTMLIxDropdownElement | null };
   hostElement: HTMLElement;
   show: boolean;
-  isResetting: boolean;
   touched: boolean;
   openDropdown: () => Promise<void>;
   ixFocus: EventEmitter<void>;
@@ -319,7 +298,6 @@ export function createDropdownMethods(context: DropdownMethodsContext) {
     closeDropdown: () => closeDropdownUtil(context.dropdownElementRef),
     getEventConfig: () =>
       createEventConfig({
-        isResetting: context.isResetting,
         show: context.show,
         setTouched: (touched: boolean) => (context.touched = touched),
         onInput: context.onInput,

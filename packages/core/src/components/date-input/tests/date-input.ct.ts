@@ -234,7 +234,7 @@ regressionTest(
     await input.fill('invalid-date');
     await input.blur();
 
-    await dateInput.evaluate((el: any) => el.reset());
+    await dateInput.evaluate((el: any) => el.clear());
 
     await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
     await expect(input).not.toHaveClass(/is-invalid/);
@@ -290,7 +290,7 @@ regressionTest(
     await input.focus();
     await input.blur();
 
-    await dateInput.evaluate((el: any) => el.reset());
+    await dateInput.evaluate((el: any) => el.clear());
 
     await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
     await expect(input).not.toHaveClass(/is-invalid/);
@@ -347,7 +347,7 @@ regressionTest(
     await input.fill('invalid-date');
     await input.blur();
 
-    await dateInput.evaluate((el: any) => el.reset());
+    await dateInput.evaluate((el: any) => el.clear());
 
     await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
     await expect(input).not.toHaveClass(/is-invalid/);
@@ -403,7 +403,7 @@ regressionTest(
     await input.focus();
     await input.blur();
 
-    await dateInput.evaluate((el: any) => el.reset());
+    await dateInput.evaluate((el: any) => el.clear());
 
     await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
     await expect(input).not.toHaveClass(/is-invalid/);

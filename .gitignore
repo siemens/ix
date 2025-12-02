@@ -200,3 +200,7 @@ packages/documentation/static/ionic-preview
 # artifact from bundle @siemens/ix-icons
 ###
 ix-icons/dist/collection/components/icon/icon.css
+
+# SonarQube
+.scannerwork/
+sonar-project.properties
