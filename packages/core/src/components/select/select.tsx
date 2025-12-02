@@ -361,7 +361,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       if (!item.id) {
         item.id = `ix-select-item-for-${this.hostId}-${Math.random()
           .toString(36)
-          .substr(2, 9)}`;
+          .substring(2, 9)}`;
       }
     }
   }
@@ -579,7 +579,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
             this.removeVisualFocusFromItems();
 
             (item as HTMLIxSelectItemElement).hasVisualFocus = true;
-            inputElement?.setAttribute('aria-activedescendant', item.id!);
+            inputElement?.setAttribute('aria-activedescendant', item.id);
           },
           getEventListenerTarget: () => this.hostElement,
         }
@@ -858,6 +858,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     id={`${this.hostId}-input`}
                     role="combobox"
                     aria-controls={`${this.hostId}-listbox`}
+                    aria-expanded={a11yBoolean(this.dropdownShow)}
                     autocomplete="off"
                     data-testid="input"
                     disabled={this.disabled}

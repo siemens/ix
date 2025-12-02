@@ -14,7 +14,7 @@
 
 const IX_FOCUSED = 'ix-focused';
 const IX_FOCUSABLE = 'ix-focusable';
-const FOCUS_KEYS = [
+const FOCUS_KEYS = new Set([
   'Tab',
   'ArrowDown',
   'Space',
@@ -27,7 +27,7 @@ const FOCUS_KEYS = [
   'ArrowUp',
   'Home',
   'End',
-];
+]);
 
 export interface FocusVisibleUtility {
   destroy: () => void;
@@ -51,20 +51,16 @@ export function queryElements(
         slot.assignedElements({ flatten: true }) as HTMLElement[]
       ).flatMap((el) => {
         // Check if the assigned element itself matches the query
-        if (el.matches && el.matches(query)) {
+        if (el?.matches(query)) {
           return [el];
         }
         // Otherwise, query its children
-        return Array.from(
-          el.querySelectorAll(query) as NodeListOf<HTMLElement>
-        );
+        return Array.from(el.querySelectorAll(query));
       })
     );
   } else {
     // No slots, query directly on dropdownElement
-    items = Array.from(
-      dropdownElement.querySelectorAll(query) as NodeListOf<HTMLElement>
-    );
+    items = Array.from(dropdownElement.querySelectorAll(query));
   }
 
   return items;
@@ -90,7 +86,7 @@ export const addFocusVisibleListener = (
   };
 
   const onKeydown = (ev: Event) => {
-    keyboardMode = FOCUS_KEYS.includes((ev as KeyboardEvent).key);
+    keyboardMode = FOCUS_KEYS.has((ev as KeyboardEvent).key);
     if (!keyboardMode) {
       setFocus([]);
     }
