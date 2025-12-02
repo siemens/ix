@@ -92,25 +92,6 @@ export const routes: Routes = [
           import('../preview-examples/avatar-initials').then((m) => m.default),
       },
       {
-        path: 'basic-navigation',
-        loadComponent: () =>
-          import('../preview-examples/basic-navigation').then((m) => m.default),
-      },
-      {
-        path: 'basic-navigation-migration',
-        loadComponent: () =>
-          import('../preview-examples/basic-navigation-migration').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'basic-navigation-without-header',
-        loadComponent: () =>
-          import('../preview-examples/basic-navigation-without-header').then(
-            (m) => m.default
-          ),
-      },
-      {
         path: 'blind',
         loadComponent: () =>
           import('../preview-examples/blind').then((m) => m.default),
@@ -553,6 +534,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'event-list-filled',
+        loadComponent: () =>
+          import('../preview-examples/event-list-filled').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'event-list-selected',
         loadComponent: () =>
           import('../preview-examples/event-list-selected').then(
@@ -636,6 +624,18 @@ export const routes: Routes = [
         path: 'group',
         loadComponent: () =>
           import('../preview-examples/group').then((m) => m.default),
+      },
+      {
+        path: 'html-table',
+        loadComponent: () =>
+          import('../preview-examples/html-table').then((m) => m.default),
+      },
+      {
+        path: 'html-table-striped',
+        loadComponent: () =>
+          import('../preview-examples/html-table-striped').then(
+            (m) => m.default
+          ),
       },
       {
         path: 'group-context-menu',
@@ -728,37 +728,9 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'input-legacy-labels',
-        loadComponent: () =>
-          import('../preview-examples/input-legacy-labels').then(
-            (m) => m.default
-          ),
-      },
-      {
         path: 'input-legacy-readonly',
         loadComponent: () =>
           import('../preview-examples/input-legacy-readonly').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'input-legacy-search',
-        loadComponent: () =>
-          import('../preview-examples/input-legacy-search').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'input-legacy-types',
-        loadComponent: () =>
-          import('../preview-examples/input-legacy-types').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'input-legacy-with-icon',
-        loadComponent: () =>
-          import('../preview-examples/input-legacy-with-icon').then(
             (m) => m.default
           ),
       },
@@ -874,25 +846,6 @@ export const routes: Routes = [
           import('../preview-examples/loading').then((m) => m.default),
       },
       {
-        path: 'map-navigation',
-        loadComponent: () =>
-          import('../preview-examples/map-navigation').then((m) => m.default),
-      },
-      {
-        path: 'map-navigation-migration',
-        loadComponent: () =>
-          import('../preview-examples/map-navigation-migration').then(
-            (m) => m.default
-          ),
-      },
-      {
-        path: 'map-navigation-overlay',
-        loadComponent: () =>
-          import('../preview-examples/map-navigation-overlay').then(
-            (m) => m.default
-          ),
-      },
-      {
         path: 'menu-category',
         loadComponent: () =>
           import('../preview-examples/menu-category').then((m) => m.default),
@@ -927,6 +880,11 @@ export const routes: Routes = [
           import('../preview-examples/modal-by-instance').then(
             (m) => m.default
           ),
+      },
+      {
+        path: 'modal-close',
+        loadComponent: () =>
+          import('../preview-examples/modal-close').then((m) => m.default),
       },
       {
         path: 'modal-by-template',

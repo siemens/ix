@@ -16,26 +16,23 @@
 
 a[href] {
   color: var(--theme-color-primary);
-  text-decoration: none;
+  text-underline-offset: 0.2rem;
 
   @include hover.hover {
     color: var(--theme-color-dynamic);
-    text-decoration: underline;
   }
 
   @include hover.active {
     color: var(--theme-color-dynamic);
-    text-decoration: underline;
   }
 
   @include hover.visited {
     color: var(--theme-color-primary);
-    text-decoration: none;
   }
 
   @include hover.focus-visible {
     outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: 0.125rem;
+    outline-offset: 0.2rem;
   }
 
   .glyph {

@@ -1,54 +1,26 @@
-/*
- * SPDX-FileCopyrightText: 2024 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-import type { PlaywrightTestConfig } from '@playwright/test';
-import { devices } from '@playwright/test';
-
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
-
-let THEMES = ['theme-classic-light', 'theme-classic-dark'];
+import { defineConfig, devices } from '@playwright/test';
+import { visualTestConfig } from './visual-regression.config';
 
 function buildProjectsWithThemes() {
-  return THEMES.flatMap(theme => {
+  return visualTestConfig.flatMap((theme) => {
     return [
       {
-        name: `chromium - ${theme}`,
+        name: `chromium - ${theme.name}`,
         use: {
           ...devices['Desktop Chrome'],
         },
         metadata: {
-          theme,
+          theme: theme.theme,
+          colorSchema: theme.colorSchema,
         },
       },
     ];
   });
 }
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
-/** @type {import('@playwright/test').PlaywrightTestConfig} */
-const config: PlaywrightTestConfig = {
-  testMatch: '*.e2e.ts',
-  /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
-  expect: {
-    /**
-     * Maximum time expect() should wait for the condition to be met.
-     * For example in `await expect(locator).toHaveText();`
-     */
-    timeout: 5000,
-  },
+export default defineConfig({
+  testMatch: 'tests/*.e2e.ts',
+
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -58,23 +30,22 @@ const config: PlaywrightTestConfig = {
   /* Opt out of parallel tests on CI. */
   workers: 10,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: process.env.CI ? 'blob' : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-    actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://localhost:3000',
+    baseURL: 'http://localhost:5173',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
+
   /* Configure projects for major browsers */
   projects: buildProjectsWithThemes(),
-  webServer: {
-    command: 'pnpm host-root',
-    port: 8080,
-  },
-};
 
-export default config;
+  /* Run your local dev server before starting the tests */
+  webServer: {
+    command: 'pnpm vite',
+    port: 5173,
+  },
+});

@@ -9,10 +9,14 @@
 
 import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-react';
 
+const wrapperStyle = {
+  marginBottom: '1rem',
+};
+
 export default () => {
   return (
     <>
-      <div>
+      <div style={wrapperStyle}>
         <IxCheckboxGroup label="Terms of something" infoText="Info text">
           <IxCheckbox
             label="I agree everything"
@@ -22,7 +26,7 @@ export default () => {
         </IxCheckboxGroup>
       </div>
 
-      <div>
+      <div style={wrapperStyle}>
         <IxCheckboxGroup label="Terms of something" warningText="Warning text">
           <IxCheckbox
             label="I agree everything"
@@ -37,7 +41,7 @@ export default () => {
         </IxCheckboxGroup>
       </div>
 
-      <div>
+      <div style={wrapperStyle}>
         <IxCheckboxGroup label="Terms of something" invalidText="Invalid text">
           <IxCheckbox
             label="I agree everything"
@@ -52,7 +56,7 @@ export default () => {
         </IxCheckboxGroup>
       </div>
 
-      <div>
+      <div style={wrapperStyle}>
         <IxCheckboxGroup label="Terms of something" validText="Valid text">
           <IxCheckbox
             label="I agree everything"

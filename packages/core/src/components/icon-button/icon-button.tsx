@@ -28,7 +28,7 @@ export class IconButton {
    * Accessibility label for the icon button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @deprecated Set the native `aria-label` on the ix-icon-button host element
+   * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
    */
   @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
