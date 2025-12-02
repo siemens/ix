@@ -5,5 +5,6 @@ export * from './ix-icon';
 export * from './modal';
 export * from './plugin';
 export * from './toast';
+export * from './message';
 
 export type HTMLRefElement<T> = { $el: T };
