@@ -205,9 +205,13 @@ test('open filtered dropdown on input arrow down', async ({ mount, page }) => {
   await expect(selectCtrl.getDropdownLocator()).toBeVisible();
 
   await page.keyboard.press('Escape');
+  // Short timeout to allow for the closing animation to finish
+  await page.waitForTimeout(100);
   await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
 
+  await selectCtrl.focusInput();
   await selectCtrl.fillInput('1');
+  await page.keyboard.press('ArrowDown');
   await expect(selectCtrl.getDropdownLocator()).toBeVisible();
 
   const item1 = page
@@ -569,15 +573,35 @@ test.describe('Enter selection with non-existing and existing items', () => {
 
     const selectCtrl = selectController(page.locator('ix-select'));
 
+    // Test existing item selection
+    await selectCtrl.focusInput();
     await selectCtrl.fillInput('Item 1');
-    await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('Enter');
+    await expect(selectCtrl.getDropdownLocator()).toBeVisible();
 
+    const existingItem = page.getByRole('button', { name: 'Item 1' });
+    await expect(existingItem).toBeVisible();
+
+    await selectCtrl.arrowDown();
+    await expect(await selectCtrl.getFocusDropdownItemLocator()).toHaveText(
+      'Item 1'
+    );
+    await selectCtrl.pressEnter();
+
+    await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
     await expect(selectCtrl.getInputLocator()).toHaveValue('Item 1');
 
+    // Test non-existing item selection (creates new item in editable mode)
+    await selectCtrl.focusInput();
     await selectCtrl.fillInput('Item 3');
-    await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('Enter');
+    await expect(selectCtrl.getDropdownLocator()).toBeVisible();
+
+    const addItemButton = await selectCtrl.getAddItemDropdownItemLocator();
+    await expect(addItemButton).toBeVisible();
+
+    await selectCtrl.arrowDown();
+    await selectCtrl.pressEnter();
+
+    await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
     await expect(selectCtrl.getInputLocator()).toHaveValue('Item 3');
   });
 
@@ -591,16 +615,35 @@ test.describe('Enter selection with non-existing and existing items', () => {
 
     const selectCtrl = selectController(page.locator('ix-select'));
 
+    // Test existing item selection
+    await selectCtrl.clickDropdownChevron();
     await selectCtrl.fillInput('Item 1');
+
+    const existingItem = page.getByRole('button', { name: 'Item 1' });
+    await expect(existingItem).toBeVisible();
+
     await selectCtrl.arrowDown();
+    await expect(await selectCtrl.getFocusDropdownItemLocator()).toHaveText(
+      'Item 1'
+    );
     await selectCtrl.pressEnter();
+
     await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
     await expect(selectCtrl.getInputLocator()).toHaveValue('Item 1');
 
+    // Test non-existing item - should not create new item in non-editable mode
+    await selectCtrl.clickDropdownChevron();
     await selectCtrl.fillInput('Item 3');
-    await selectCtrl.arrowDown();
+
+    // Verify no items match the filter
+    const items = await selectCtrl.getDropdownItemsLocator(true);
+    await expect(items).toHaveLength(0);
+
+    await selectCtrl.arrowDown(true);
     await selectCtrl.pressEnter();
+
     await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
+    // Value should remain as 'Item 1' since 'Item 3' doesn't exist
     await expect(selectCtrl.getInputLocator()).toHaveValue('Item 1');
   });
 });
@@ -794,15 +837,19 @@ test('should trim the value before saving', async ({ mount, page }) => {
   const selectCtrl = selectController(page.locator('ix-select'));
   const inputLocator = selectCtrl.getInputLocator();
 
-  await selectCtrl.getInputLocator().focus();
+  await selectCtrl.focusInput();
   await selectCtrl.fillInput('   Item 7');
   await expect(selectCtrl.getDropdownLocator()).toHaveClass(/show/);
-  await page.keyboard.press('ArrowDown');
+
+  const item7 = page.getByRole('button', { name: 'Item 7' });
+  await expect(item7).toBeVisible();
+
+  await selectCtrl.arrowDown();
 
   await expect(await selectCtrl.getFocusDropdownItemLocator()).toHaveText(
     'Item 7'
   );
-  await page.keyboard.press('Enter');
+  await selectCtrl.pressEnter();
 
   await expect(selectCtrl.getDropdownLocator()).not.toHaveClass(/show/);
   await expect(inputLocator).toHaveValue('Item 7');
