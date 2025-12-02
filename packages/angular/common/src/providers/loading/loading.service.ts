@@ -7,12 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Injectable } from '@angular/core';
-import { showModalLoading } from '@siemens/ix';
-
-export type ModalLoadingContext = {
-  update: (text: string) => string;
-  finish: (text?: string, timeout?: number) => void;
-};
+import { showModalLoading, ModalLoadingContext } from '@siemens/ix';
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService {

@@ -5,6 +5,7 @@ import {
   dismissModal as _dismissModal,
   closeModal as _closeModal,
   ModalInstance as IxModalInstance,
+  ModalLoadingContext,
 } from '@siemens/ix';
 import { VNode } from 'vue';
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
@@ -19,11 +20,6 @@ export * from './modal-slot-props';
 
 export type ModalConfig = {
   content: VNode;
-};
-
-export type ModalLoadingContext = {
-  update: (text: string) => string;
-  finish: (text?: string, timeout?: number) => void;
 };
 
 export async function showModal(
