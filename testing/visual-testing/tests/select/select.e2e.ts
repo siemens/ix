@@ -58,9 +58,7 @@ regressionTest.describe('select', () => {
 
     const inputHandle = await page.waitForSelector('div.chips');
     const select = page.locator('ix-select');
-    await select
-      .locator('input')
-      .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+    await select.locator('input').fill('123');
 
     page.evaluate((menuElement) => {
       menuElement.scrollTop = 9999;
