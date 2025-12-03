@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { EventEmitter, h, Host } from '@stencil/core';
-import { syncValidationClasses } from './validation';
-import { ValidationResults } from './validation';
+import { syncValidationClasses, ValidationResults} from './validation';
 import { handleSubmitOnEnterKeydown } from '../../input/input.util';
 import { closeDropdown as closeDropdownUtil } from './picker-input.util';
 

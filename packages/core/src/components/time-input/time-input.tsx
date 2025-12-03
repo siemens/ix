@@ -437,6 +437,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
       syncValidationClasses: () => this.syncValidationClasses(),
       handleInputKeyDown: (event: KeyboardEvent) =>
         this.handleInputKeyDown(event),
+      alwaysSetTouchedOnBlur: true,
     });
   }
 
