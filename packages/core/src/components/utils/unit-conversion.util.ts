@@ -40,12 +40,14 @@ export function convertEmToPx(value: number, element: HTMLElement): string {
 export function convertPercentageToPx(
   value: number,
   dimension: 'width' | 'height',
-  parentElement: HTMLElement
-): string {
+  element: HTMLElement
+): string | undefined {
+  if (!element.parentElement) return undefined;
+
   const parentDimension =
     dimension === 'width'
-      ? parentElement.offsetWidth
-      : parentElement.offsetHeight;
+      ? element.parentElement.offsetWidth
+      : element.parentElement.offsetHeight;
 
   return `${(value / 100) * parentDimension}px`;
 }
@@ -66,33 +68,22 @@ export function convertToPx(
   if (!value) return undefined;
 
   const trimmedValue = value.trim().toLowerCase();
+  const numValue = parseNumericValue(trimmedValue);
+  if (numValue === undefined) return undefined;
 
-  if (trimmedValue.endsWith('px')) {
-    const numValue = parseNumericValue(trimmedValue);
-    return numValue === undefined ? undefined : `${numValue}px`;
-  }
+  const unitConverters = {
+    px: () => `${numValue}px`,
+    rem: () => convertRemToPx(numValue),
+    em: () => convertEmToPx(numValue, element),
+    '%': () => convertPercentageToPx(numValue, dimension, element),
+  };
 
-  if (trimmedValue.endsWith('rem')) {
-    const numValue = parseNumericValue(trimmedValue);
-    return numValue === undefined ? undefined : convertRemToPx(numValue);
-  }
-
-  if (trimmedValue.endsWith('em')) {
-    const numValue = parseNumericValue(trimmedValue);
-    return numValue === undefined
-      ? undefined
-      : convertEmToPx(numValue, element);
-  }
-
-  if (trimmedValue.endsWith('%')) {
-    const numValue = parseNumericValue(trimmedValue);
-    if (numValue === undefined) return undefined;
-
-    if (!element.parentElement) return undefined;
-    return convertPercentageToPx(numValue, dimension, element.parentElement);
+  for (const [unit, converter] of Object.entries(unitConverters)) {
+    if (trimmedValue.endsWith(unit)) {
+      return converter();
+    }
   }
 
   // Handle unitless values as pixels
-  const numValue = parseNumericValue(trimmedValue);
-  return numValue === undefined ? undefined : `${numValue}px`;
+  return `${numValue}px`;
 }
