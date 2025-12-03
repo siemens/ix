@@ -420,9 +420,8 @@ export class TimePicker {
 
     // Check if column lost focus to scroll back to selected value
     if (relatedTarget) {
-      const relatedUnit = relatedTarget
-        .getAttribute('data-element-container-id')
-        ?.split('-')[0];
+      const relatedUnit =
+        relatedTarget.dataset.elementContainerId?.split('-')[0];
 
       if (relatedUnit !== unit) {
         this.elementListScrollToTop(
@@ -480,16 +479,13 @@ export class TimePicker {
     container: HTMLElement,
     alignment: 'start' | 'end'
   ) {
-    const SCROLL_BUFFER = 1;
     const containerRect = container.getBoundingClientRect();
     const elementRect = element.getBoundingClientRect();
 
     if (alignment === 'end') {
-      container.scrollTop +=
-        elementRect.bottom - containerRect.bottom + SCROLL_BUFFER;
+      container.scrollTop += elementRect.bottom - containerRect.bottom;
     } else {
-      container.scrollTop +=
-        elementRect.top - containerRect.top - SCROLL_BUFFER;
+      container.scrollTop += elementRect.top - containerRect.top;
     }
   }
 
