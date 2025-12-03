@@ -944,6 +944,10 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled attribute
           * @default false
          */
@@ -3471,6 +3475,10 @@ export namespace Components {
      * @form-ready 
      */
     interface IxTimeInput {
+        /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
         /**
           * Disabled attribute
           * @default false

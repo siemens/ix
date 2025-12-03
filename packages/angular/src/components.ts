@@ -629,7 +629,7 @@ The event payload contains information about the selected date range.
 
 @ProxyCmp({
   inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-date-input',
@@ -2590,7 +2590,7 @@ export declare interface IxTile extends Components.IxTile {}
 
 @ProxyCmp({
   inputs: ['disabled', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-time-input',
