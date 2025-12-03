@@ -89,6 +89,7 @@ export class ToastContainer {
     toast.autoCloseDelay = config.autoCloseDelay ?? 5000;
     toast.icon = config.icon;
     toast.iconColor = config.iconColor;
+    toast.hideIcon = config.hideIcon ?? false;
     toast.addEventListener(
       'closeToast',
       (event: CustomEvent<any | undefined>) => {

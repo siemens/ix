@@ -75,6 +75,15 @@ SPDX-License-Identifier: MIT
           autoClose: false,
           type: 'success',
         });
+
+        toastContainer.showToast({
+          title: 'Toast headline',
+          message: 'Toast message text',
+          action: createActionFromTemplate('basic-undo'),
+          autoClose: false,
+          type: 'success',
+          hideIcon: true,
+        });
       })();
     </script>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
