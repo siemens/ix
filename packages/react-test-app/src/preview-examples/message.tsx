@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { showMessage } from '@siemens/ix';
-import { IxButton } from '@siemens/ix-react';
+import { IxButton, showMessage } from '@siemens/ix-react';
 
 export default () => {
   const triggerMessage = async () => {
