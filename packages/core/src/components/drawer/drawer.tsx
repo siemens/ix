@@ -87,11 +87,9 @@ export class Drawer {
 
   @State() showContent = true;
 
-  private isClosing = false;
-
   @Watch('show')
   onShowChanged(newValue: boolean, oldValue?: boolean) {
-    if (newValue === oldValue || this.isClosing) {
+    if (newValue === oldValue) {
       return;
     }
 
@@ -121,11 +119,9 @@ export class Drawer {
         }, Animation.mediumTime);
       }
     } else {
-      this.isClosing = true;
       const { defaultPrevented } = this.drawerClose.emit();
 
       if (defaultPrevented) {
-        this.isClosing = false;
         return;
       }
 
@@ -136,7 +132,6 @@ export class Drawer {
       }
 
       window.removeEventListener('mousedown', this.callback);
-      this.isClosing = false;
     }
 
     this.toggle = this.show;
@@ -145,7 +140,7 @@ export class Drawer {
   }
 
   private onCloseClicked() {
-    this.toggleDrawer(false);
+    this.show = false;
   }
 
   private clickedOutside(evt: any) {
