@@ -59,6 +59,8 @@ import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
 import DateInput from './preview-examples/date-input';
+import DateInputFormTest from './preview-examples/date-input-form-test';
+import TimeInputFormTest from './preview-examples/time-input-form-test';
 import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import Datepicker from './preview-examples/datepicker';
 import DatepickerLocale from './preview-examples/datepicker-locale';
@@ -688,6 +690,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<NumberInputValidation />}
         />
         <Route path="/preview/date-input" element={<DateInput />} />
+        <Route path="/preview/date-input-form-test" element={<DateInputFormTest />} />
+        <Route path="/preview/time-input-form-test" element={<TimeInputFormTest />} />
         <Route
           path="/preview/date-input-with-slots"
           element={<DateInputWithSlots />}

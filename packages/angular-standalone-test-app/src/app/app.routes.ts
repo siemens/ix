@@ -1159,6 +1159,11 @@ export const routes: Routes = [
           import('../preview-examples/tile').then((m) => m.default),
       },
       {
+        path: 'time-input-form-test',
+        loadComponent: () =>
+          import('../preview-examples/time-input-form-test').then((m) => m.default),
+      },
+      {
         path: 'timepicker',
         loadComponent: () =>
           import('../preview-examples/timepicker').then((m) => m.default),

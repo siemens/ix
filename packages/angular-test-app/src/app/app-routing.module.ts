@@ -60,6 +60,7 @@ import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
 import DateInputValidation from '../preview-examples/date-input-validation';
 import DateInputWithSlots from '../preview-examples/date-input-with-slots';
+import DateInputFormTest from '../preview-examples/date-input-form-test';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -210,6 +211,13 @@ import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
 import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeService from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
+import TimeInput from '../preview-examples/time-input';
+import TimeInputDisabled from '../preview-examples/time-input-disabled';
+import TimeInputFormTest from '../preview-examples/time-input-form-test';
+import TimeInputLabel from '../preview-examples/time-input-label';
+import TimeInputReadonly from '../preview-examples/time-input-readonly';
+import TimeInputValidation from '../preview-examples/time-input-validation';
+import TimeInputWithSlots from '../preview-examples/time-input-with-slots';
 import Timepicker from '../preview-examples/timepicker';
 import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
@@ -453,6 +461,10 @@ const routes: Routes = [
       {
         path: 'date-input-with-slots',
         component: DateInputWithSlots,
+      },
+      {
+        path: 'date-input-form-test',
+        component: DateInputFormTest,
       },
       {
         path: 'datepicker',
@@ -797,6 +809,13 @@ const routes: Routes = [
       { path: 'input-with-slots', component: InputWithSlots },
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
+      { path: 'time-input', component: TimeInput },
+      { path: 'time-input-disabled', component: TimeInputDisabled },
+      { path: 'time-input-form-test', component: TimeInputFormTest },
+      { path: 'time-input-label', component: TimeInputLabel },
+      { path: 'time-input-readonly', component: TimeInputReadonly },
+      { path: 'time-input-validation', component: TimeInputValidation },
+      { path: 'time-input-with-slots', component: TimeInputWithSlots },
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-button-primary', component: ToggleButtonPrimary },
       { path: 'toggle-button-secondary', component: ToggleButtonSecondary },
@@ -881,6 +900,13 @@ const routes: Routes = [
         path: 'tile',
         component: Tile,
       },
+      { path: 'time-input', component: TimeInput },
+      { path: 'time-input-disabled', component: TimeInputDisabled },
+      { path: 'time-input-form-test', component: TimeInputFormTest },
+      { path: 'time-input-label', component: TimeInputLabel },
+      { path: 'time-input-readonly', component: TimeInputReadonly },
+      { path: 'time-input-validation', component: TimeInputValidation },
+      { path: 'time-input-with-slots', component: TimeInputWithSlots },
       {
         path: 'timepicker',
         component: Timepicker,

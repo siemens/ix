@@ -62,6 +62,8 @@ import DateDropdownUserRange from './preview-examples/date-dropdown-user-range.v
 import DateDropdown from './preview-examples/date-dropdown.vue';
 import DateInputWithSlots from './preview-examples/date-input-with-slots.vue';
 import DateInput from './preview-examples/date-input.vue';
+import DateInputFormTest from './preview-examples/date-input-form-test.vue';
+import TimeInputFormTest from './preview-examples/time-input-form-test.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
@@ -399,6 +401,8 @@ const routes: any = {
   '/preview/number-input-with-slots': NumberInputWithSlots,
   '/preview/date-input': DateInput,
   '/preview/date-input-with-slots': DateInputWithSlots,
+  '/preview/date-input-form-test': DateInputFormTest,
+  '/preview/time-input-form-test': TimeInputFormTest,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/tooltip': Tooltip,
