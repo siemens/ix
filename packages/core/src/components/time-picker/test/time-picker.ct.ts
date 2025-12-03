@@ -208,7 +208,23 @@ regressionTest.describe('time picker tests', () => {
       }
       await page.keyboard.press('Tab');
 
-      // Check if all selected values are top-aligned
+      const checkScrollAlignment = async (locator: any) => {
+        return await locator.evaluate((el: HTMLElement) => {
+          const htmlEl = el as HTMLElement;
+          const list = htmlEl.parentElement!;
+          // Offset from time-picker.tsx elementListScrollToTop
+          const scrollPositionOffset = 11;
+          // Scrollposition calculation from time-picker.tsx elementListScrollToTop
+          const expected =
+            htmlEl.offsetTop -
+            list.clientHeight / 2 +
+            htmlEl.clientHeight -
+            scrollPositionOffset;
+          // <= 5 px tolerance
+          return Math.abs(list.scrollTop - expected) <= 5;
+        });
+      };
+
       const hourColumn = firstPicker.locator(
         '[data-element-container-id="hour-9"]'
       );
@@ -219,23 +235,9 @@ regressionTest.describe('time picker tests', () => {
         '[data-element-container-id="second-11"]'
       );
 
-      const hourScrollTop = await hourColumn.evaluate((el) => {
-        return el.parentElement?.scrollTop;
-      });
-
-      const minuteScrollTop = await minuteColumn.evaluate((el) => {
-        return el.parentElement?.scrollTop;
-      });
-
-      const secondScrollTop = await secondColumn.evaluate((el) => {
-        return el.parentElement?.scrollTop;
-      });
-
-      // Allow a small tolerance for any minor discrepancies
-      const SCROLL_TOLERANCE = 5;
-      expect(hourScrollTop).toBeLessThanOrEqual(SCROLL_TOLERANCE);
-      expect(minuteScrollTop).toBeLessThanOrEqual(SCROLL_TOLERANCE);
-      expect(secondScrollTop).toBeLessThanOrEqual(SCROLL_TOLERANCE);
+      expect(await checkScrollAlignment(hourColumn)).toBe(true);
+      expect(await checkScrollAlignment(minuteColumn)).toBe(true);
+      expect(await checkScrollAlignment(secondColumn)).toBe(true);
     }
   );
 });
