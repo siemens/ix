@@ -73,7 +73,9 @@ regressionTest(
 
     // Get computed font size for conversion calculation
     const rootFontSize = await page.evaluate(() => {
-      return parseFloat(getComputedStyle(document.documentElement).fontSize);
+      return Number.parseFloat(
+        getComputedStyle(document.documentElement).fontSize
+      );
     });
 
     const expectedWidth = `${20 * rootFontSize}px`;
@@ -97,7 +99,7 @@ regressionTest(
 
     // Get element font size for conversion calculation
     const elementFontSize = await textareaComponent.evaluate((el) => {
-      return parseFloat(getComputedStyle(el).fontSize);
+      return Number.parseFloat(getComputedStyle(el).fontSize);
     });
 
     const expectedWidth = `${15 * elementFontSize}px`;
@@ -113,8 +115,8 @@ regressionTest(
   'textarea dimensions - percentage height conversion',
   async ({ mount, page }) => {
     await mount(`
-      <div style=\"width: 500px; height: 300px;\">
-        <ix-textarea textarea-height=\"50%\"></ix-textarea>
+      <div style="width: 500px; height: 300px;">
+        <ix-textarea textarea-height="50%"></ix-textarea>
       </div>
     `);
 

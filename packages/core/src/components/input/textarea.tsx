@@ -32,6 +32,7 @@ import {
   mapValidationResult,
   onInputBlur,
 } from './input.util';
+import { convertToPx } from '../utils/unit-conversion.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
 let sequentialInstanceId = 0;
@@ -213,56 +214,6 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.resizeObserver?.disconnect();
   }
 
-  private convertToPx(
-    value: string | undefined,
-    dimension: 'width' | 'height'
-  ): string | undefined {
-    if (!value) return undefined;
-
-    const trimmedValue = value.trim().toLowerCase();
-
-    const parseNumericValue = (str: string): number | undefined => {
-      const numValue = Number.parseFloat(str);
-      return Number.isNaN(numValue) ? undefined : numValue;
-    };
-
-    if (trimmedValue.endsWith('px')) {
-      const numValue = parseNumericValue(trimmedValue);
-      return numValue !== undefined ? `${numValue}px` : undefined;
-    } else if (trimmedValue.endsWith('rem')) {
-      const numValue = parseNumericValue(trimmedValue);
-      if (numValue === undefined) return undefined;
-
-      const fontSize = Number.parseFloat(
-        getComputedStyle(document.documentElement).fontSize
-      );
-      return `${numValue * fontSize}px`;
-    } else if (trimmedValue.endsWith('em')) {
-      const numValue = parseNumericValue(trimmedValue);
-      if (numValue === undefined) return undefined;
-
-      const fontSize = Number.parseFloat(
-        getComputedStyle(this.hostElement).fontSize
-      );
-      return `${numValue * fontSize}px`;
-    } else if (trimmedValue.endsWith('%')) {
-      const numValue = parseNumericValue(trimmedValue);
-      if (numValue === undefined) return undefined;
-
-      if (!this.hostElement.parentElement) return undefined;
-
-      const parentDimension =
-        dimension === 'width'
-          ? this.hostElement.parentElement.offsetWidth
-          : this.hostElement.parentElement.offsetHeight;
-
-      return `${(numValue / 100) * parentDimension}px`;
-    }
-
-    const numValue = parseNumericValue(trimmedValue);
-    return numValue !== undefined ? `${numValue}px` : undefined;
-  }
-
   private initResizeObserver() {
     this.resizeObserver?.disconnect();
 
@@ -380,12 +331,20 @@ export class Textarea implements IxInputFieldComponent<string> {
               textareaHeight={
                 this.isManuallyResized
                   ? this.manualHeight
-                  : this.convertToPx(this.textareaHeight, 'height') || 'auto'
+                  : convertToPx(
+                      this.textareaHeight,
+                      'height',
+                      this.hostElement
+                    ) || 'auto'
               }
               textareaWidth={
                 this.isManuallyResized
                   ? this.manualWidth
-                  : this.convertToPx(this.textareaWidth, 'width') || '100%'
+                  : convertToPx(
+                      this.textareaWidth,
+                      'width',
+                      this.hostElement
+                    ) || '100%'
               }
               resizeBehavior={this.resizeBehavior}
               readonly={this.readonly}
