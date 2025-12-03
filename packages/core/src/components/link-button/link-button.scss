@@ -36,24 +36,16 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      text-decoration: underline;
+      text-underline-offset: 0.2rem;
     }
 
     @include hover.hover {
       color: var(--theme-color-dynamic--hover);
-
-      .link {
-        text-decoration: underline;
-        text-underline-offset: 0.2rem;
-      }
     }
 
     @include hover.active {
       color: var(--theme-color-dynamic--active);
-
-      .link {
-        text-decoration: underline;
-        text-underline-offset: 0.2rem;
-      }
     }
 
     &.disabled {

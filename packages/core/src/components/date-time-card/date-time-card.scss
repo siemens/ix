@@ -49,13 +49,14 @@
       width: 100%;
 
       .header {
-        padding: vars.$default-space;
+        padding: vars.$medium-space vars.$default-space;
         flex: 0 1 auto;
       }
     }
 
     .separator {
-      border: 1px solid var(--theme-datepicker-separator--background);
+      height: 1px;
+      background-color: var(--theme-datepicker-separator--background);
       width: 100%;
       flex: 0 1 auto;
     }

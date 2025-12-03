@@ -35,6 +35,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -483,9 +484,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorDateUnparsable
-      : this.invalidText;
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorDateUnparsable
+    );
 
     return (
       <Host
