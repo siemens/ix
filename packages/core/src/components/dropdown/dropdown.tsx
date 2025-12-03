@@ -28,7 +28,6 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { ComponentInterface } from '@stencil/core/internal';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -50,6 +49,7 @@ import {
   focusLastDescendant,
   queryElements,
 } from '../utils/focus-visible-listener';
+import { IxComponent } from '../utils/internal/component';
 
 let sequenceId = 0;
 
@@ -58,7 +58,7 @@ let sequenceId = 0;
   styleUrl: 'dropdown.scss',
   shadow: true,
 })
-export class Dropdown implements ComponentInterface, DropdownInterface {
+export class Dropdown extends IxComponent() implements DropdownInterface {
   @Element() hostElement!: HTMLIxDropdownElement;
 
   /**
@@ -434,7 +434,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.registerKeyListener();
     } else {
       this.destroyAutoUpdate();
-      this.disposeKeyListener?.();
       this.keyboardNavigationCleanup?.();
     }
   }

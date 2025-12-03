@@ -40,6 +40,7 @@ import {
   addFocusVisibleListener,
   FocusVisibleUtility,
 } from '../utils/focus-visible-listener';
+import { IxComponent } from '../utils/internal/component';
 
 let selectId = 0;
 
@@ -52,7 +53,10 @@ let selectId = 0;
   shadow: true,
   formAssociated: true,
 })
-export class Select implements IxInputFieldComponent<string | string[]> {
+export class Select
+  extends IxComponent()
+  implements IxInputFieldComponent<string | string[]>
+{
   @Element() hostElement!: HTMLIxSelectElement;
   @AttachInternals() formInternals!: ElementInternals;
 

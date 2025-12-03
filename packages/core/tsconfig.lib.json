@@ -11,6 +11,7 @@
     "target": "es2022",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitOverride": false,
     "jsx": "react",
     "jsxFactory": "h",
     "preserveSymlinks": false,

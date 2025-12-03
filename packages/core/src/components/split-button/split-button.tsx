@@ -25,13 +25,14 @@ import {
   FocusVisibleUtility,
   addFocusVisibleListener,
 } from '../utils/focus-visible-listener';
+import { IxComponent } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-split-button',
   styleUrl: 'split-button.scss',
   shadow: true,
 })
-export class SplitButton {
+export class SplitButton extends IxComponent() {
   @Element() hostElement!: HTMLIxSplitButtonElement;
 
   /**
@@ -182,8 +183,11 @@ export class SplitButton {
             const triggerElement = this.triggerElementRef.current;
             if (triggerElement) {
               // Binding via @State variable does not work as expected for tabindex
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              triggerElement.tabIndex = (show ? -1 : undefined) as any;
+              if (show) {
+                triggerElement.tabIndex = -1;
+              } else {
+                triggerElement.removeAttribute('tabindex');
+              }
             }
           }}
         >

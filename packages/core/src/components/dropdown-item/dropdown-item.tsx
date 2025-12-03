@@ -22,13 +22,14 @@ import {
   iconChevronRightSmall,
   iconSingleCheck,
 } from '@siemens/ix-icons/icons';
+import { IxComponent } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',
   shadow: true,
 })
-export class DropdownItem implements DropdownItemWrapper {
+export class DropdownItem extends IxComponent() implements DropdownItemWrapper {
   @Element() hostElement!: HTMLIxDropdownItemElement;
 
   /**

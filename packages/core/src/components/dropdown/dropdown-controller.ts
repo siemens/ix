@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxComponent } from '../utils/internal';
+import { IxComponentInterface } from '../utils/internal';
 export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;
 
-export interface DropdownInterface extends IxComponent {
+export interface DropdownInterface extends IxComponentInterface {
   closeBehavior: CloseBehavior;
   discoverAllSubmenus: boolean;
 

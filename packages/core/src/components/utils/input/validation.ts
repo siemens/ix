@@ -8,7 +8,7 @@
  */
 import { getElement } from '@stencil/core';
 import { HTMLIxFormComponentElement, IxFormComponent } from '.';
-import { IxComponent } from '../internal';
+import { IxComponentInterface } from '../internal';
 
 export type ClassMutationObserver = {
   destroy: () => void;
@@ -106,7 +106,7 @@ export function checkFieldClasses(
 export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
 }) {
-  return (proto: IxComponent, methodName: string) => {
+  return (proto: IxComponentInterface, methodName: string) => {
     let checkIfRequiredFunction: (() => Promise<void>) | null;
     let classMutationObserver: ClassMutationObserver | null;
     const { componentWillLoad, disconnectedCallback, connectedCallback } =

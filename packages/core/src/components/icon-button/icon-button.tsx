@@ -15,13 +15,14 @@ import {
   a11yHostAttributes,
 } from '../utils/a11y';
 import type { IconButtonVariant } from './icon-button.types';
+import { IxComponent } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',
   shadow: true,
 })
-export class IconButton {
+export class IconButton extends IxComponent() {
   @Element() hostElement!: HTMLIxIconButtonElement;
 
   /**
