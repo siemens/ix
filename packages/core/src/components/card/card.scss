@@ -117,17 +117,9 @@
 }
 
 @each $variant in card-vars.$ix-card-variants {
-  :host(.passive.card-#{$variant}:hover) {
-    --ix-card-background: var(--theme-card-#{$variant}--background) !important;
-    --ix-card-border-color: var(
-      --theme-card-#{$variant}--border-color
-    ) !important;
-  }
-
+  :host(.passive.card-#{$variant}:hover),
   :host(.passive.card-#{$variant}:active) {
-    --ix-card-background: var(--theme-card-#{$variant}--background) !important;
-    --ix-card-border-color: var(
-      --theme-card-#{$variant}--border-color
-    ) !important;
+    --ix-card-background: var(--theme-card-#{$variant}--background);
+    --ix-card-border-color: var(--theme-card-#{$variant}--border-color);
   }
 }
