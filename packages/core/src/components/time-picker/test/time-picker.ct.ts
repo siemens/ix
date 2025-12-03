@@ -186,51 +186,56 @@ regressionTest.describe('time picker tests', () => {
   );
 
   regressionTest(
-    'should update scroll position when time value is selected',
+    'selected values should remain top-aligned after scrolling through all columns',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
 
-      // Get the first time picker
       const firstPicker = page.locator('ix-time-picker').first();
+      await firstPicker.locator('[data-element-container-id="hour-9"]').focus();
 
-      // Get the initial scroll position of the hour list
-      const initialScrollTop = await firstPicker
-        .locator('[data-element-list-id="hour"]')
-        .evaluate((el) => el.scrollTop);
+      for (let i = 0; i < 6; i++) {
+        await page.keyboard.press('ArrowDown');
+      }
+      await page.keyboard.press('Tab');
 
-      await firstPicker.locator('[data-element-container-id="hour-6"]').click();
+      for (let i = 0; i < 2; i++) {
+        await page.keyboard.press('ArrowUp');
+      }
+      await page.keyboard.press('Tab');
 
-      // wait for scroll
-      await page.waitForTimeout(500);
+      for (let i = 0; i < 2; i++) {
+        await page.keyboard.press('ArrowUp');
+      }
+      await page.keyboard.press('Tab');
 
-      const newScrollTop = await firstPicker
-        .locator('[data-element-list-id="hour"]')
-        .evaluate((el) => el.scrollTop);
+      // Check if all selected values are top-aligned
+      const hourColumn = firstPicker.locator(
+        '[data-element-container-id="hour-9"]'
+      );
+      const minuteColumn = firstPicker.locator(
+        '[data-element-container-id="minute-10"]'
+      );
+      const secondColumn = firstPicker.locator(
+        '[data-element-container-id="second-11"]'
+      );
 
-      expect(newScrollTop).not.toEqual(initialScrollTop);
+      const hourScrollTop = await hourColumn.evaluate((el) => {
+        return el.parentElement?.scrollTop;
+      });
 
-      // Verify the scroll follows the scrollPosition calculation
-      const isScrollPositionCorrect = await firstPicker
-        .locator('[data-element-list-id="hour"]')
-        .evaluate((container) => {
-          const selectedElement = container.querySelector(
-            '[data-element-container-id="hour-6"]'
-          ) as HTMLElement;
-          const containerHeight = container.clientHeight;
-          const elementHeight = selectedElement.clientHeight;
+      const minuteScrollTop = await minuteColumn.evaluate((el) => {
+        return el.parentElement?.scrollTop;
+      });
 
-          // This should match the calculation in the elementListScrollToTop method
-          const expectedScrollPosition =
-            selectedElement.offsetTop -
-            containerHeight / 2 +
-            elementHeight -
-            11;
+      const secondScrollTop = await secondColumn.evaluate((el) => {
+        return el.parentElement?.scrollTop;
+      });
 
-          // Allow small differences due to rounding/margin
-          return Math.abs(container.scrollTop - expectedScrollPosition) < 5;
-        });
-
-      expect(isScrollPositionCorrect).toBe(true);
+      // Allow a small tolerance for any minor discrepancies
+      const SCROLL_TOLERANCE = 5;
+      expect(hourScrollTop).toBeLessThanOrEqual(SCROLL_TOLERANCE);
+      expect(minuteScrollTop).toBeLessThanOrEqual(SCROLL_TOLERANCE);
+      expect(secondScrollTop).toBeLessThanOrEqual(SCROLL_TOLERANCE);
     }
   );
 });
