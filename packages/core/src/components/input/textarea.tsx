@@ -110,21 +110,25 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   /**
    * The height of the textarea field (e.g. "52px").
+   * Will take precedence over `rows` prop if both are set.
    */
   @Prop() textareaHeight?: string;
 
   /**
    * The width of the textarea field (e.g. "200px").
+   * Will take precedence over `cols` prop if both are set.
    */
   @Prop() textareaWidth?: string;
 
   /**
    * The height of the textarea specified by number of rows.
+   * Will be overridden by `textareaHeight` prop if both are set.
    */
   @Prop() textareaRows?: number;
 
   /**
    * The width of the textarea specified by number of characters.
+   * Will be overridden by `textareaWidth` prop if both are set.
    */
   @Prop() textareaCols?: number;
 
@@ -200,6 +204,43 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
+  }
+
+  private convertToPx(value: string | undefined): string | undefined {
+    if (!value) return undefined;
+
+    const trimmedValue = value.trim().toLowerCase();
+
+    if (trimmedValue.endsWith('px')) {
+      return value;
+    } else if (trimmedValue.endsWith('rem')) {
+      const numValue = parseFloat(trimmedValue);
+      if (isNaN(numValue)) return undefined;
+
+      const fontSize = parseFloat(
+        getComputedStyle(document.documentElement).fontSize
+      );
+      return numValue * fontSize + 'px';
+    } else if (trimmedValue.endsWith('em')) {
+      const numValue = parseFloat(trimmedValue);
+      if (isNaN(numValue)) return undefined;
+
+      const fontSize = parseFloat(getComputedStyle(this.hostElement).fontSize);
+      return numValue * fontSize + 'px';
+    } else if (trimmedValue.endsWith('%')) {
+      const numValue = parseFloat(trimmedValue);
+      if (isNaN(numValue)) return undefined;
+
+      const parentWidth = this.hostElement.parentElement
+        ? this.hostElement.parentElement.offsetWidth
+        : 0;
+      return (numValue / 100) * parentWidth + 'px';
+    }
+
+    const numValue = parseFloat(trimmedValue);
+    if (isNaN(numValue)) return undefined;
+
+    return numValue + 'px';
   }
 
   private initResizeObserver() {
@@ -315,10 +356,14 @@ export class Textarea implements IxInputFieldComponent<string> {
               textareaCols={this.textareaCols}
               textareaRows={this.textareaRows}
               textareaHeight={
-                this.isManuallyResized ? this.manualHeight : this.textareaHeight
+                this.isManuallyResized
+                  ? this.manualHeight
+                  : this.convertToPx(this.textareaHeight) || 'auto'
               }
               textareaWidth={
-                this.isManuallyResized ? this.manualWidth : this.textareaWidth
+                this.isManuallyResized
+                  ? this.manualWidth
+                  : this.convertToPx(this.textareaWidth) || '100%'
               }
               resizeBehavior={this.resizeBehavior}
               readonly={this.readonly}

@@ -3414,19 +3414,19 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * The width of the textarea specified by number of characters.
+          * The width of the textarea specified by number of characters. Will be overridden by `textareaWidth` prop if both are set.
          */
         "textareaCols"?: number;
         /**
-          * The height of the textarea field (e.g. "52px").
+          * The height of the textarea field (e.g. "52px"). Will take precedence over `rows` prop if both are set.
          */
         "textareaHeight"?: string;
         /**
-          * The height of the textarea specified by number of rows.
+          * The height of the textarea specified by number of rows. Will be overridden by `textareaHeight` prop if both are set.
          */
         "textareaRows"?: number;
         /**
-          * The width of the textarea field (e.g. "200px").
+          * The width of the textarea field (e.g. "200px"). Will take precedence over `cols` prop if both are set.
          */
         "textareaWidth"?: string;
         /**
@@ -9399,19 +9399,19 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * The width of the textarea specified by number of characters.
+          * The width of the textarea specified by number of characters. Will be overridden by `textareaWidth` prop if both are set.
          */
         "textareaCols"?: number;
         /**
-          * The height of the textarea field (e.g. "52px").
+          * The height of the textarea field (e.g. "52px"). Will take precedence over `rows` prop if both are set.
          */
         "textareaHeight"?: string;
         /**
-          * The height of the textarea specified by number of rows.
+          * The height of the textarea specified by number of rows. Will be overridden by `textareaHeight` prop if both are set.
          */
         "textareaRows"?: number;
         /**
-          * The width of the textarea field (e.g. "200px").
+          * The width of the textarea field (e.g. "200px"). Will take precedence over `cols` prop if both are set.
          */
         "textareaWidth"?: string;
         /**
