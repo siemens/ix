@@ -622,12 +622,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   render() {
-    const invalidText =
-      getValidationText(
+    const invalidText = getValidationText(
       this.isInputInvalid && !this.suppressValidation,
-        this.invalidText,
+      this.invalidText,
       this.i18nErrorDateUnparsable
-      );
+    );
 
     return renderFieldWrapper({
       host: this.hostElement,

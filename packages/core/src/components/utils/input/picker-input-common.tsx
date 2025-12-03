@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { EventEmitter, h, Host } from '@stencil/core';
-import { syncValidationClasses, ValidationResults} from './validation';
+import { syncValidationClasses, ValidationResults } from './validation';
 import { handleSubmitOnEnterKeydown } from '../../input/input.util';
 import { closeDropdown as closeDropdownUtil } from './picker-input.util';
 
@@ -128,7 +128,7 @@ export function syncValidation(options: ValidationOptions): void {
     hostElement: options.hostElement,
     suppressValidation: options.suppressValidation,
     required: options.required,
-    value: options.value as string | undefined,
+    value: options.value,
     touched: options.touched,
     isInputInvalid: options.isInputInvalid,
   });
@@ -157,7 +157,7 @@ export interface PickerFieldWrapperProps {
   label?: string;
   helper?: string;
   invalid?: boolean;
-  invalidText?: string | undefined;
+  invalidText?: string;
   info?: string;
   isInfo?: boolean;
   warning?: boolean;
@@ -236,7 +236,9 @@ export function createEventConfig(
     show: options.show,
     setTouched: options.setTouched,
     onInput: options.onInput,
-    openDropdown: options.openDropdown,
+    openDropdown: () => {
+      options.openDropdown();
+    },
     ixFocus: options.ixFocus,
     ixBlur: options.ixBlur,
     syncValidationClasses: options.syncValidationClasses,
