@@ -3418,7 +3418,7 @@ export namespace Components {
          */
         "textareaCols"?: number;
         /**
-          * The height of the textarea field (e.g. "52px"). Will take precedence over `rows` prop if both are set.
+          * The height of the textarea field (e.g. "52px"). Will take precedence over `textareaRows` prop if both are set.
          */
         "textareaHeight"?: string;
         /**
@@ -3426,7 +3426,7 @@ export namespace Components {
          */
         "textareaRows"?: number;
         /**
-          * The width of the textarea field (e.g. "200px"). Will take precedence over `cols` prop if both are set.
+          * The width of the textarea field (e.g. "200px"). Will take precedence over `textareaCols` prop if both are set.
          */
         "textareaWidth"?: string;
         /**
@@ -9403,7 +9403,7 @@ declare namespace LocalJSX {
          */
         "textareaCols"?: number;
         /**
-          * The height of the textarea field (e.g. "52px"). Will take precedence over `rows` prop if both are set.
+          * The height of the textarea field (e.g. "52px"). Will take precedence over `textareaRows` prop if both are set.
          */
         "textareaHeight"?: string;
         /**
@@ -9411,7 +9411,7 @@ declare namespace LocalJSX {
          */
         "textareaRows"?: number;
         /**
-          * The width of the textarea field (e.g. "200px"). Will take precedence over `cols` prop if both are set.
+          * The width of the textarea field (e.g. "200px"). Will take precedence over `textareaCols` prop if both are set.
          */
         "textareaWidth"?: string;
         /**

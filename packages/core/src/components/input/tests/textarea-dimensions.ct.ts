@@ -110,6 +110,22 @@ regressionTest(
 );
 
 regressionTest(
+  'textarea dimensions - percentage height conversion',
+  async ({ mount, page }) => {
+    await mount(`
+      <div style=\"width: 500px; height: 300px;\">
+        <ix-textarea textarea-height=\"50%\"></ix-textarea>
+      </div>
+    `);
+
+    const textarea = page.locator('ix-textarea textarea');
+
+    // Check that percentage is converted based on parent height
+    await expect(textarea).toHaveCSS('height', '150px');
+  }
+);
+
+regressionTest(
   'textarea dimensions - percentage width conversion',
   async ({ mount, page }) => {
     await mount(`
@@ -121,7 +137,7 @@ regressionTest(
     const textarea = page.locator('ix-textarea textarea');
 
     // Check that percentage is converted based on parent width
-    await expect(textarea).toHaveCSS('width', '400px'); // 80% of 500px
+    await expect(textarea).toHaveCSS('width', '400px');
   }
 );
 
@@ -257,9 +273,9 @@ regressionTest(
     });
 
     // Trigger resize event to simulate user resize
-    await textarea.evaluate((el) => {
+    await textarea.evaluate(() => {
       const event = new Event('resize');
-      window.dispatchEvent(event);
+      globalThis.dispatchEvent(event);
     });
 
     // After manual resize, the manually set dimensions should be preserved
