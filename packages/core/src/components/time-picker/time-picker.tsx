@@ -415,7 +415,24 @@ export class TimePicker {
     }
   }
 
-  onUnitCellBlur(unit: TimePickerDescriptorUnit) {
+  onUnitCellBlur(unit: TimePickerDescriptorUnit, event: FocusEvent) {
+    const relatedTarget = event.relatedTarget as HTMLElement;
+
+    // Check if column lost focus to scroll back to selected value
+    if (relatedTarget) {
+      const relatedUnit = relatedTarget
+        .getAttribute('data-element-container-id')
+        ?.split('-')[0];
+
+      if (relatedUnit !== unit) {
+        this.elementListScrollToTop(
+          unit,
+          Number(this.formattedTime[unit]),
+          'smooth'
+        );
+      }
+    }
+
     this.isUnitFocused = false;
     const focusedValue = Number(this.formattedTime[unit]);
 
@@ -921,16 +938,15 @@ export class TimePicker {
                             selected: this.isSelected(descriptor.unit, number),
                             'element-container': true,
                           }}
-                          onMouseDown={(e) => {
-                            e.preventDefault();
-                          }}
                           onClick={() => {
                             this.select(descriptor.unit, number);
                           }}
                           onFocus={() =>
                             this.onUnitCellFocus(descriptor.unit, number)
                           }
-                          onBlur={() => this.onUnitCellBlur(descriptor.unit)}
+                          onBlur={(e) =>
+                            this.onUnitCellBlur(descriptor.unit, e)
+                          }
                           tabindex={this.getElementContainerTabIndex(
                             number,
                             descriptor.unit
