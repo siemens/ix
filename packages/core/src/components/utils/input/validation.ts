@@ -196,3 +196,14 @@ export function HookValidationLifecycle(options?: {
     };
   };
 }
+
+export function getValidationText(
+  isInputInvalid: boolean,
+  customInvalidText: string | undefined,
+  i18nFallbackText: string
+): string | undefined {
+  if (isInputInvalid) {
+    return customInvalidText ?? i18nFallbackText;
+  }
+  return customInvalidText;
+}

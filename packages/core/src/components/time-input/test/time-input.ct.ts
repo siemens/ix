@@ -163,4 +163,25 @@ regressionTest.describe('time input tests', () => {
       await expect(input).not.toHaveClass(/is-invalid/);
     }
   );
+
+  regressionTest(
+    'invalidText property takes precedence over i18n error message',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss" invalid-text="Custom time error"></ix-time-input>`
+      );
+
+      const timeInputElement = page.locator('ix-time-input');
+
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('invalid-time');
+      await timeInputElement.locator('input').blur();
+      await expect(
+        timeInputElement
+          .locator('ix-field-wrapper')
+          .locator('ix-typography')
+          .filter({ hasText: 'Custom time error' })
+      ).toHaveText('Custom time error');
+    }
+  );
 });
