@@ -836,3 +836,51 @@ regressionTest(
     await expect(lastItem).toBeVisible();
   }
 );
+regressionTest(
+  'should reflect aria-disabled on disabled dropdown item',
+  async ({ page, mount }) => {
+    await mount(`
+    <ix-button id="trigger">Open</ix-button>
+    <ix-dropdown trigger="trigger">
+      <ix-dropdown-item id="disabled-item" label="Disabled Item" disabled></ix-dropdown-item>
+      <ix-dropdown-item id="enabled-item" label="Enabled Item"></ix-dropdown-item>
+    </ix-dropdown>
+  `);
+
+    const disabledItem = page.locator('#disabled-item');
+    const enabledItem = page.locator('#enabled-item');
+
+    const disabledItemButton = disabledItem.locator('button');
+    const enabledItemButton = enabledItem.locator('button');
+
+    await expect(disabledItemButton).toHaveAttribute('aria-disabled', 'true');
+    await expect(enabledItemButton).toHaveAttribute('aria-disabled', 'false');
+  }
+);
+regressionTest(
+  'should reflect disabled attribute in DOM when changed dynamically',
+  async ({ page, mount }) => {
+    await mount(`
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger">
+        <ix-dropdown-item id="dynamic-disabled" label="Dynamic Disabled"></ix-dropdown-item>
+      </ix-dropdown>
+    `);
+
+    const dynamicItem = page.locator('#dynamic-disabled');
+
+    await expect(dynamicItem).not.toHaveAttribute('disabled');
+
+    await dynamicItem.evaluate((element: any) => {
+      element.disabled = true;
+    });
+
+    await expect(dynamicItem).toHaveAttribute('disabled');
+
+    await dynamicItem.evaluate((element: any) => {
+      element.disabled = false;
+    });
+
+    await expect(dynamicItem).not.toHaveAttribute('disabled');
+  }
+);
