@@ -16,19 +16,31 @@ import {
 
 export function hasAnyText({
   invalidText,
+  isInvalid,
   warningText,
+  isWarning,
   infoText,
+  isInfo,
   validText,
+  isValid,
   helperText,
 }: {
   invalidText?: string;
+  isInvalid?: boolean;
   warningText?: string;
+  isWarning?: boolean;
   infoText?: string;
+  isInfo?: boolean;
   validText?: string;
+  isValid?: boolean;
   helperText?: string;
 }) {
-  return [invalidText, warningText, infoText, validText, helperText].some(
-    (text) => text?.trim()
+  return !!(
+    (isInvalid && invalidText?.trim()) ||
+    (isWarning && warningText?.trim()) ||
+    (isInfo && infoText?.trim()) ||
+    (isValid && validText?.trim()) ||
+    helperText?.trim()
   );
 }
 

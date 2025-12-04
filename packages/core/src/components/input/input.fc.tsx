@@ -80,8 +80,12 @@ export function InputElement(
     required: boolean;
     value: string | number;
     placeholder?: string;
+    textAlignment?: 'start' | 'end';
     inputRef: (el: HTMLInputElement | undefined) => void;
     onKeyPress: (event: KeyboardEvent) => void;
+    onKeyDown?: (event: KeyboardEvent) => void;
+    onBeforeInput?: (event: InputEvent) => void;
+    onPaste?: (event: ClipboardEvent) => void;
     valueChange: (value: string) => void;
     updateFormInternalValue: (value: string) => void;
     onBlur: () => void;
@@ -107,10 +111,25 @@ export function InputElement(
       class={{
         'is-invalid': props.isInvalid,
       }}
+      style={{
+        textAlign: props.textAlignment,
+      }}
       required={props.required}
       value={props.value}
       placeholder={props.placeholder}
       onKeyPress={(event) => props.onKeyPress(event)}
+      onKeyDown={(e) => {
+        props.onKeyDown?.(e);
+        handleSubmitOnEnterKeydown(
+          e,
+          !!props.suppressSubmitOnEnter,
+          props.form
+        );
+      }}
+      {...({
+        onBeforeInput: (event: InputEvent) => props.onBeforeInput?.(event),
+      } as any)}
+      onPaste={(event) => props.onPaste?.(event)}
       onInput={(inputEvent) => {
         const target = inputEvent.target as HTMLInputElement;
         props.updateFormInternalValue(target.value);
@@ -118,9 +137,6 @@ export function InputElement(
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
-      onKeyDown={(e) =>
-        handleSubmitOnEnterKeydown(e, !!props.suppressSubmitOnEnter, props.form)
-      }
     ></input>
   );
 }

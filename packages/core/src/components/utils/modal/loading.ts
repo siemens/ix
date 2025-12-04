@@ -10,6 +10,11 @@
 import Animation from '../animation';
 import { getCoreDelegate } from '../delegate';
 
+export type ModalLoadingContext = {
+  update: (text: string) => string;
+  finish: (text?: string, timeout?: number) => void;
+};
+
 export function showModalLoading(message: string) {
   const modal = document.createElement('ix-modal');
   modal.disableEscapeClose = true;
