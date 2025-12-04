@@ -24,17 +24,24 @@ const waitForScrollAnimations = async (page: Page) => {
       stableCount: number,
       resolve: () => void
     ): void => {
-      const scrollDiff = Math.abs(element.scrollTop - lastScrollTop);
+      const currentScrollTop = element.scrollTop;
+      const scrollDiff = Math.abs(currentScrollTop - lastScrollTop);
       const isStable = scrollDiff < 0.5;
-      const newStableCount = isStable ? stableCount + 1 : 0;
 
-      if (newStableCount >= 5) {
-        resolve();
+      if (isStable) {
+        const newStableCount = stableCount + 1;
+        if (newStableCount >= 5) {
+          resolve();
+          return;
+        }
+        requestAnimationFrame(() =>
+          checkScrollStable(element, currentScrollTop, newStableCount, resolve)
+        );
         return;
       }
 
       requestAnimationFrame(() =>
-        checkScrollStable(element, element.scrollTop, newStableCount, resolve)
+        checkScrollStable(element, currentScrollTop, 0, resolve)
       );
     };
 
@@ -248,15 +255,14 @@ regressionTest.describe('time picker tests', () => {
 
       const checkScrollAlignment = async (locator: any) => {
         return await locator.evaluate((el: HTMLElement) => {
-          const htmlEl = el as HTMLElement;
-          const list = htmlEl.parentElement!;
+          const list = el.parentElement!;
           // Offset from time-picker.tsx elementListScrollToTop
           const scrollPositionOffset = 11;
           // Scrollposition calculation from time-picker.tsx elementListScrollToTop
           const expected =
-            htmlEl.offsetTop -
+            el.offsetTop -
             list.clientHeight / 2 +
-            htmlEl.clientHeight -
+            el.clientHeight -
             scrollPositionOffset;
 
           // <= 5 px tolerance
