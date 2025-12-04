@@ -18,26 +18,31 @@ const getTimeObjs = async (page: Page) => {
 
 const waitForScrollAnimations = async (page: Page) => {
   await page.evaluate(() => {
+    const checkScrollStable = (
+      element: Element,
+      lastScrollTop: number,
+      stableCount: number,
+      resolve: () => void
+    ): void => {
+      const scrollDiff = Math.abs(element.scrollTop - lastScrollTop);
+      const isStable = scrollDiff < 0.5;
+      const newStableCount = isStable ? stableCount + 1 : 0;
+
+      if (newStableCount >= 5) {
+        resolve();
+        return;
+      }
+
+      requestAnimationFrame(() =>
+        checkScrollStable(element, element.scrollTop, newStableCount, resolve)
+      );
+    };
+
     const waitForStableScroll = (element: Element) => {
       return new Promise<void>((resolve) => {
-        let lastScrollTop = element.scrollTop;
-        let stableCount = 0;
-
-        const checkStable = () => {
-          if (Math.abs(element.scrollTop - lastScrollTop) < 0.5) {
-            stableCount++;
-            if (stableCount >= 5) {
-              resolve();
-              return;
-            }
-          } else {
-            stableCount = 0;
-            lastScrollTop = element.scrollTop;
-          }
-          requestAnimationFrame(checkStable);
-        };
-
-        requestAnimationFrame(checkStable);
+        requestAnimationFrame(() =>
+          checkScrollStable(element, element.scrollTop, 0, resolve)
+        );
       });
     };
 
