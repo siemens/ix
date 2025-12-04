@@ -9,6 +9,9 @@ catalogs:
     '@esbuild/linux-arm64':
       specifier: 0.25.5
       version: 0.25.5
+    '@playwright/test':
+      specifier: ^1.54.1
+      version: 1.54.1
     vite:
       specifier: ^7.2.6
       version: 7.2.6
@@ -75,7 +78,7 @@ importers:
         specifier: 'catalog:'
         version: 0.25.5
       '@playwright/test':
-        specifier: ^1.54.1
+        specifier: 'catalog:'
         version: 1.54.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
@@ -404,7 +407,7 @@ importers:
         version: 3.4.4
     devDependencies:
       '@playwright/test':
-        specifier: ^1.54.1
+        specifier: 'catalog:'
         version: 1.54.1
       '@siemens/ix-icons':
         specifier: ^3.2.0
@@ -590,7 +593,7 @@ importers:
   packages/echarts:
     devDependencies:
       '@playwright/test':
-        specifier: ^1.54.1
+        specifier: 'catalog:'
         version: 1.54.1
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
@@ -1216,7 +1219,7 @@ importers:
         specifier: 'catalog:'
         version: 0.25.5
       '@playwright/test':
-        specifier: ^1.54.1
+        specifier: 'catalog:'
         version: 1.54.1
       '@siemens/ix':
         specifier: workspace:*

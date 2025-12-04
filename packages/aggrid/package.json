@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@esbuild/linux-arm64": "catalog:",
-    "@playwright/test": "^1.54.1",
+    "@playwright/test": "catalog:",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^8.5.0",
     "@siemens/ix-icons": "^3.2.0",
