@@ -16,6 +16,39 @@ const getTimeObjs = async (page: Page) => {
   });
 };
 
+const waitForScrollAnimations = async (page: Page) => {
+  await page.evaluate(() => {
+    const waitForStableScroll = (element: Element) => {
+      return new Promise<void>((resolve) => {
+        let lastScrollTop = element.scrollTop;
+        let stableCount = 0;
+
+        const checkStable = () => {
+          if (Math.abs(element.scrollTop - lastScrollTop) < 0.5) {
+            stableCount++;
+            if (stableCount >= 5) {
+              resolve();
+              return;
+            }
+          } else {
+            stableCount = 0;
+            lastScrollTop = element.scrollTop;
+          }
+          requestAnimationFrame(checkStable);
+        };
+
+        requestAnimationFrame(checkStable);
+      });
+    };
+
+    const lists = document
+      .querySelectorAll('ix-time-picker')[0]
+      .shadowRoot!.querySelectorAll('.element-list');
+
+    return Promise.all(Array.from(lists).map(waitForStableScroll));
+  });
+};
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-time-picker></ix-time-picker>`);
   const datePicker = page.locator(TIME_PICKER_SELECTOR);
@@ -220,6 +253,7 @@ regressionTest.describe('time picker tests', () => {
             list.clientHeight / 2 +
             htmlEl.clientHeight -
             scrollPositionOffset;
+
           // <= 5 px tolerance
           return Math.abs(list.scrollTop - expected) <= 5;
         });
@@ -234,6 +268,8 @@ regressionTest.describe('time picker tests', () => {
       const secondColumn = firstPicker.locator(
         '[data-element-container-id="second-11"]'
       );
+
+      await waitForScrollAnimations(page);
 
       expect(await checkScrollAlignment(hourColumn)).toBe(true);
       expect(await checkScrollAlignment(minuteColumn)).toBe(true);
