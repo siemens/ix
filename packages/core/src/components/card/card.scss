@@ -111,3 +111,17 @@
   @include card-variants-active($variant);
   @include card-variants-selected($variant);
 }
+
+:host(.passive),
+:host(.passive:hover),
+:host(.passive:active) {
+  cursor: default !important;
+}
+
+@each $variant in card-vars.$ix-card-variants {
+  :host(.passive.card-#{$variant}:hover),
+  :host(.passive.card-#{$variant}:active) {
+    --ix-card-background: var(--theme-card-#{$variant}--background);
+    --ix-card-border-color: var(--theme-card-#{$variant}--border-color);
+  }
+}

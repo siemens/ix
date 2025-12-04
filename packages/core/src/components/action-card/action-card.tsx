@@ -56,6 +56,11 @@ export class IxActionCard {
    */
   @Prop() ariaLabelCard?: string;
 
+  /**
+   * If true, disables hover and active styles and changes cursor to default
+   */
+  @Prop() passive: boolean = false;
+
   private getSubheadingTextColor() {
     return this.variant === 'outline' || this.variant === 'filled'
       ? 'soft'
@@ -73,6 +78,7 @@ export class IxActionCard {
         <ix-card
           selected={this.selected}
           variant={this.variant}
+          passive={this.passive}
           class={'pointer'}
           aria-label={this.ariaLabelCard}
           aria-labelledby={ariaLabelledBy}
