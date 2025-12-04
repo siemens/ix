@@ -35,6 +35,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
@@ -214,6 +215,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Prop() hideHeader: boolean = false;
 
   /**
+   * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -386,6 +392,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
           class={{
             'is-invalid': this.isInputInvalid,
           }}
+          style={{
+            textAlign: this.textAlignment,
+          }}
           disabled={this.disabled}
           readOnly={this.readonly}
           required={this.required}
@@ -489,9 +498,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorTimeUnparsable
-      : this.invalidText;
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorTimeUnparsable
+    );
 
     return (
       <Host

@@ -102,6 +102,13 @@ export class Pagination {
   @Prop() ariaLabelChevronRightIconButton?: string;
 
   /**
+   * ARIA label for the page selection input
+   * Will be set as aria-label on the nested HTML input element
+   *
+   * @since 4.1.0
+   */
+  @Prop() ariaLabelPageSelection = 'Page selection input';
+  /**
    * Page selection event
    */
   @Event() pageSelected!: EventEmitter<number>;
@@ -224,6 +231,14 @@ export class Pagination {
     return <span class="page-buttons">{pageButtons}</span>;
   }
 
+  private handlePageInput(inputValue: string) {
+    const value = Number.parseInt(inputValue, 10);
+    if (!Number.isNaN(value)) {
+      const clampedValue = Math.max(1, Math.min(value, this.count));
+      this.selectPage(clampedValue - 1);
+    }
+  }
+
   render() {
     return (
       <Host>
@@ -239,17 +254,28 @@ export class Pagination {
           <div class="advanced-pagination">
             <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
+              aria-label={this.ariaLabelPageSelection}
               class="ix-form-control page-selection"
               type="number"
               min="1"
               max={this.count}
               value={this.selectedPage + 1}
               onChange={(event: Event) => {
-                const eventTarget = event.target as HTMLInputElement;
-                if (eventTarget) {
-                  const index = Number.parseInt(eventTarget.value);
-                  this.selectPage(index - 1);
+                const inputElement = event.target as HTMLInputElement;
+                this.handlePageInput(inputElement.value);
+              }}
+              onKeyDown={(event: KeyboardEvent) => {
+                if (['e', 'E', '+', '-', '.'].includes(event.key))
+                  event.preventDefault();
+                if (event.key === 'Enter') {
+                  const inputElement = event.target as HTMLInputElement;
+                  this.handlePageInput(inputElement.value);
+                  inputElement.blur();
                 }
+              }}
+              onBlur={(e: Event) => {
+                const inputElement = e.target as HTMLInputElement;
+                inputElement.value = (this.selectedPage + 1).toString();
               }}
             />
             <span class="total-count">
