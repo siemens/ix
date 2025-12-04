@@ -44,6 +44,11 @@ export class MenuSettings {
    */
   @Prop() label = 'Settings';
 
+  /**
+   * i18n label for close button
+   */
+  @Prop({ attribute: 'i18n-close' }) i18nClose = 'Close Settings';
+
   /** @internal */
   @Prop() show = false;
 
