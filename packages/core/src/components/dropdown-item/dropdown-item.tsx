@@ -102,7 +102,6 @@ export class DropdownItem implements DropdownItemWrapper {
   render() {
     return (
       <Host
-        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           hover: this.hover,
           'icon-only': this.isIconOnly(),
@@ -113,14 +112,19 @@ export class DropdownItem implements DropdownItemWrapper {
       >
         <button
           type="button"
-          tabIndex={0}
+          tabIndex={this.disabled ? -1 : 0}
           class={{
             'dropdown-item': true,
             'no-checked-field': this.suppressChecked,
             disabled: this.disabled,
           }}
-          onClick={() => this.emitItemClick()}
+          onClick={() => {
+            if (!this.disabled) {
+              this.emitItemClick();
+            }
+          }}
           aria-label={this.ariaLabelButton}
+          aria-disabled={a11yBoolean(this.disabled)}
           disabled={this.disabled}
         >
           {!this.suppressChecked ? (

@@ -81,6 +81,9 @@ export class DropdownButton {
   }
 
   private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
+    if (this.disabled && event.detail) {
+      return;
+    }
     this.dropdownShow = event.detail;
   };
 
@@ -100,6 +103,7 @@ export class DropdownButton {
               disabled={this.disabled}
               alignment="start"
               ariaLabel={this.ariaLabelDropdownButton}
+              tabIndex={this.disabled ? -1 : 0}
             >
               <div class={'content'}>
                 {this.icon ? (
@@ -126,6 +130,7 @@ export class DropdownButton {
                 icon={this.icon}
                 variant={this.variant}
                 disabled={this.disabled}
+                tabIndex={this.disabled ? -1 : 0}
               ></ix-icon-button>
               {this.getTriangle()}
             </div>

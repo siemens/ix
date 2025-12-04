@@ -850,8 +850,11 @@ regressionTest(
     const disabledItem = page.locator('#disabled-item');
     const enabledItem = page.locator('#enabled-item');
 
-    await expect(disabledItem).toHaveAttribute('aria-disabled', 'true');
-    await expect(enabledItem).toHaveAttribute('aria-disabled', 'false');
+    const disabledItemButton = disabledItem.locator('button');
+    const enabledItemButton = enabledItem.locator('button');
+
+    await expect(disabledItemButton).toHaveAttribute('aria-disabled', 'true');
+    await expect(enabledItemButton).toHaveAttribute('aria-disabled', 'false');
   }
 );
 regressionTest(
