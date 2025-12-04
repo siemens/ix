@@ -20,6 +20,7 @@ function buildProjectsWithThemes() {
 
 export default defineConfig({
   testMatch: 'tests/*.e2e.ts',
+  outputDir: './test-results',
 
   /* Run tests in files in parallel */
   fullyParallel: true,
