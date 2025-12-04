@@ -785,6 +785,10 @@ export class TimePicker {
   }
 
   private select(unit: TimePickerDescriptorUnit, number: number) {
+    if (this.isSelected(unit, number)) {
+      return;
+    }
+
     this.formattedTime = {
       ...this.formattedTime!,
       [unit]: String(number),
