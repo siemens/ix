@@ -1,0 +1,87 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Icon toggle button subtle tertiary example</title>
+    <link rel="stylesheet" href="./icon-toggle-button-subtle-tertiary.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconTextBold,
+        iconTextItalic,
+        iconTextUnderline,
+      } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconTextBold,
+        iconTextItalic,
+        iconTextUnderline,
+      });
+    </script>
+  </head>
+  <body>
+    <div class="button-container">
+      <ix-icon-toggle-button
+        id="boldButton"
+        variant="subtle-tertiary"
+        icon="text-bold"
+        ></ix-icon-toggle-button>
+      <ix-icon-toggle-button
+        variant="subtle-tertiary"
+        disabled
+        icon="text-italic"
+        ></ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button
+        id="underlineButton"
+        variant="subtle-tertiary"
+        icon="text-underline"
+        pressed
+        ></ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button variant="subtle-tertiary" disabled loading>
+      </ix-icon-toggle-button>
+    </div>
+    <p id="loremIpsum">Lorem ipsum text</p>
+    <script type="module">
+      import './init.js';
+      document.addEventListener('DOMContentLoaded', function () {
+        const boldButton = document.getElementById('boldButton');
+        const underlineButton = document.getElementById('underlineButton');
+        const loremIpsum = document.getElementById('loremIpsum');
+
+        function updateStyle() {
+          loremIpsum.style.fontWeight = boldButton.hasAttribute('pressed')
+            ? 'bold'
+            : 'normal';
+          loremIpsum.style.textDecoration = underlineButton.hasAttribute(
+            'pressed'
+          )
+            ? 'underline'
+            : 'none';
+        }
+
+        updateStyle();
+
+        boldButton.addEventListener('click', function () {
+          boldButton.toggleAttribute('pressed');
+          updateStyle();
+        });
+
+        underlineButton.addEventListener('click', function () {
+          underlineButton.toggleAttribute('pressed');
+          updateStyle();
+        });
+      });
+    </script>
+  </body>
+</html>

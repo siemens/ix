@@ -16,50 +16,73 @@ LICENSE file in the root directory of this source tree.
     <link rel="stylesheet" href="./icon-toggle-button-secondary.css" />
     <script type="module">
       import { addIcons } from '@siemens/ix-icons';
-      import { iconCheckboxes } from '@siemens/ix-icons/icons';
+      import {
+        iconTextBold,
+        iconTextItalic,
+        iconTextUnderline,
+      } from '@siemens/ix-icons/icons';
       addIcons({
-        iconCheckboxes,
+        iconTextBold,
+        iconTextItalic,
+        iconTextUnderline,
       });
     </script>
   </head>
   <body>
-    <ix-layout-grid>
-      <ix-row>
-        <ix-icon-toggle-button icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          icon="checkboxes"
-          pressed
+   <div class="button-container">
+      <ix-icon-toggle-button
+        variant="secondary"
+        id="boldButton"
+        icon="text-bold"
         ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          icon="checkboxes"
-          disabled
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          icon="checkboxes"
-          disabled
-          loading
-        ></ix-icon-toggle-button>
-      </ix-row>
-      <ix-row>
-        <ix-icon-toggle-button icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          icon="checkboxes"
-          pressed
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          icon="checkboxes"
-          disabled
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          icon="checkboxes"
-          disabled
-          loading
-          oval
-        ></ix-icon-toggle-button>
-      </ix-row>
-    </ix-layout-grid>
-    <script type="module" src="./init.js"></script>
+      <ix-icon-toggle-button
+        variant="secondary"
+        disabled
+        icon="text-italic"
+        ></ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button
+        variant="secondary"
+        id="underlineButton"
+        icon="text-underline"
+        pressed
+        ></ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button variant="secondary" disabled loading>
+      </ix-icon-toggle-button>
+    </div>
+    <p id="loremIpsum">Lorem ipsum text</p>
+    <script type="module">
+      import './init.js';
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const boldButton = document.getElementById('boldButton');
+        const underlineButton = document.getElementById('underlineButton');
+        const loremIpsum = document.getElementById('loremIpsum');
+
+        function updateStyle() {
+          loremIpsum.style.fontWeight = boldButton.hasAttribute('pressed')
+            ? 'bold'
+            : 'normal';
+          loremIpsum.style.textDecoration = underlineButton.hasAttribute(
+            'pressed'
+          )
+            ? 'underline'
+            : 'none';
+        }
+
+        updateStyle();
+
+        boldButton.addEventListener('click', function () {
+          boldButton.toggleAttribute('pressed');
+          updateStyle();
+        });
+
+        underlineButton.addEventListener('click', function () {
+          underlineButton.toggleAttribute('pressed');
+          updateStyle();
+        });
+      });
+    </script>
   </body>
 </html>

@@ -3815,7 +3815,7 @@ export namespace Components {
     }
     interface IxToggleButton {
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * ARIA label that will be set on the native HTML button element
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;
@@ -9792,7 +9792,7 @@ declare namespace LocalJSX {
     }
     interface IxToggleButton {
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * ARIA label that will be set on the native HTML button element
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;
