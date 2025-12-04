@@ -436,7 +436,7 @@ function generatePropertyMDX(
 }
 
 function generateFunctionMDX(
-  typedoc: any,
+  typedoc: TypeDocTarget,
   templatesPath: string,
   framework?: string
 ): string {
@@ -466,7 +466,7 @@ function generateFunctionMDX(
     };
   };
 
-  const formattedFunctions = typedoc.functions.map(formatFunction);
+  const formattedFunctions = typedoc.functions?.map(formatFunction);
 
   return Mustache.render(functionTemplate, {
     functions: formattedFunctions,
