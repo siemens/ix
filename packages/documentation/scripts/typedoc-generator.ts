@@ -210,6 +210,12 @@ function processProjectChildren(
 
   const functionGroups = new Map<string, any[]>();
 
+  const ensureFunctionGroup = (source: string) => {
+    if (!functionGroups.has(source)) {
+      functionGroups.set(source, []);
+    }
+  };
+
   if (!project.children) {
     return types;
   }
@@ -224,9 +230,7 @@ function processProjectChildren(
     if (isFunction) {
       const functionDoc = processFunctionSignature(child);
 
-      if (!functionGroups.has(source)) {
-        functionGroups.set(source, []);
-      }
+      ensureFunctionGroup(source);
       functionGroups.get(source)!.push(functionDoc);
 
       // If the function has static properties (e.g., showMessage.info), process its children
@@ -253,9 +257,7 @@ function processProjectChildren(
         }
 
         if (methods.length > 0) {
-          if (!functionGroups.has(source)) {
-            functionGroups.set(source, []);
-          }
+          ensureFunctionGroup(source);
           functionGroups.get(source)!.push(...methods);
         }
       }
