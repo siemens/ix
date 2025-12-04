@@ -1,5 +1,7 @@
 # @siemens/ix-docs
 
+## 4.2.0
+
 ## 4.0.0
 
 ### Major Changes

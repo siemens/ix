@@ -1,5 +1,21 @@
 # @siemens/ix-vue
 
+## 4.2.0
+
+### Minor Changes
+
+- [#2267](https://github.com/siemens/ix/pull/2267) [`4b76803`](https://github.com/siemens/ix/commit/4b76803a0e2f2d2a6dae58b2502e3fa12e10fc46) Thanks [@lzeiml](https://github.com/lzeiml)! - Framework specific functions/services for modals and messages have been added to **ix-angular**, **ix-react** and **ix-vue**.
+
+  - `MessageService` has been added to **ix-angular** and **ix-angular/standalone**. This service can be used to show messages using the `showMessage` function and different pre defined messages using the functions `info`, `warning`, `error`, `success` and `question`.
+  - `LoadingService` has been added to **ix-angular** and **ix-angular/standalone**. This service can be used to display the loading modal using `showModalLoading`.
+  - `showModalLoading` utility function has been added to **ix-react** and **ix-vue**.
+  - `showMessage`, `showMessage.info`, `showMessage.warning`, `showMessage.error`, `showMessage.success`, `showMessage.question` utility functions have been added to **ix-react** and **ix-vue**.
+
+### Patch Changes
+
+- Updated dependencies [[`3cb0ab3`](https://github.com/siemens/ix/commit/3cb0ab37db2d75dac634e44ca1dfe16652836829), [`9cb98da`](https://github.com/siemens/ix/commit/9cb98da8dcf6f1a30a22bfc66f36a818904290c3), [`4dbed06`](https://github.com/siemens/ix/commit/4dbed06e2ace5396754eb88ac7bbe57802bdea7d)]:
+  - @siemens/ix@4.2.0
+
 ## 4.1.0
 
 ### Minor Changes
