@@ -58,3 +58,22 @@
     border-color: var(--theme-input--border-color--invalid--active) !important;
   }
 }
+
+:host {
+  textarea:not([rows]) {
+    height: 3.25rem;
+  }
+}
+:host([textarea-width]:not(.manually-resized)) {
+  display: inline-block;
+  width: var(--textarea-width);
+}
+
+.input-wrapper {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}

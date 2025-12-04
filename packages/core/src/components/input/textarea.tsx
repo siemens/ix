@@ -187,6 +187,7 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.manualHeight = undefined;
     this.manualWidth = undefined;
     this.isProgrammaticResize = true;
+    this.hostElement.classList.remove('manually-resized');
   }
 
   @Watch('resizeBehavior')
@@ -196,6 +197,7 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+    this.setTextareaWidth();
   }
 
   disconnectedCallback() {
@@ -229,6 +231,7 @@ export class Textarea implements IxInputFieldComponent<string> {
       this.isManuallyResized = true;
       this.manualHeight = textarea.style.height;
       this.manualWidth = textarea.style.width;
+      this.hostElement.classList.add('manually-resized');
     });
 
     this.resizeObserver.observe(textarea);
@@ -237,6 +240,19 @@ export class Textarea implements IxInputFieldComponent<string> {
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
+  }
+
+  private setTextareaWidth() {
+    if (this.textareaWidth) {
+      this.hostElement.style.setProperty(
+        '--textarea-width',
+        this.textareaWidth
+      );
+      this.hostElement.setAttribute('textarea-width', '');
+    } else {
+      this.hostElement.style.removeProperty('--textarea-width');
+      this.hostElement.removeAttribute('textarea-width');
+    }
   }
 
   /** @internal */
