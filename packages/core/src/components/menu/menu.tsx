@@ -793,8 +793,8 @@ export class Menu {
             this.showSettings
               ? this.i18nSettings
               : this.showAbout
-              ? this.i18nLegal
-              : undefined
+                ? this.i18nLegal
+                : undefined
           }
           class={{
             'menu-overlay': true,
