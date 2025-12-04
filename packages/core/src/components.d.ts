@@ -1296,6 +1296,11 @@ export namespace Components {
          */
         "closeBehavior": CloseBehavior;
         /**
+          * Suppress automatic focus when the dropdown is shown
+          * @default false
+         */
+        "disableFocusHandling": boolean;
+        /**
           * @default false
          */
         "discoverAllSubmenus": boolean;
@@ -1416,6 +1421,10 @@ export namespace Components {
         "emitItemClick": () => Promise<void>;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
+          * @default false
+         */
+        "hasVisualFocus": boolean;
+        /**
           * Display hover state
           * @default false
          */
@@ -1436,6 +1445,11 @@ export namespace Components {
           * @default false
          */
         "suppressChecked": boolean;
+        /**
+          * Can has focus
+          * @default false
+         */
+        "suppressFocus": boolean;
     }
     interface IxDropdownQuickActions {
     }
@@ -2990,11 +3004,17 @@ export namespace Components {
          */
         "allowClear": boolean;
         /**
+          * ARIA label for the add item
+          * @since TODO: Define
+          * @default 'Add item'
+         */
+        "ariaLabelAddItem": string;
+        /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @default 'Open select dropdown'
          */
-        "ariaLabelChevronDownIconButton"?: string;
+        "ariaLabelChevronDownIconButton": string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
@@ -3122,6 +3142,10 @@ export namespace Components {
     }
     interface IxSelectItem {
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
+        /**
+          * @default false
+         */
+        "hasVisualFocus": boolean;
         /**
           * @default false
          */
@@ -4725,7 +4749,11 @@ declare global {
         new (): HTMLIxDrawerElement;
     };
     interface HTMLIxDropdownElementEventMap {
+        "showChange": boolean;
         "showChanged": boolean;
+        "experimentalRequestFocus": {
+    keyEvent: KeyboardEvent;
+  };
     }
     interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDropdownElementEventMap>(type: K, listener: (this: HTMLIxDropdownElement, ev: IxDropdownCustomEvent<HTMLIxDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7153,6 +7181,11 @@ declare namespace LocalJSX {
          */
         "closeBehavior"?: CloseBehavior;
         /**
+          * Suppress automatic focus when the dropdown is shown
+          * @default false
+         */
+        "disableFocusHandling"?: boolean;
+        /**
           * @default false
          */
         "discoverAllSubmenus"?: boolean;
@@ -7172,6 +7205,16 @@ declare namespace LocalJSX {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        /**
+          * Will be fired only after dropdown changed visibility to "true"
+         */
+        "onExperimentalRequestFocus"?: (event: IxDropdownCustomEvent<{
+    keyEvent: KeyboardEvent;
+  }>) => void;
+        /**
+          * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+         */
+        "onShowChange"?: (event: IxDropdownCustomEvent<boolean>) => void;
         /**
           * Fire event after visibility of dropdown has changed
          */
@@ -7270,6 +7313,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * @default false
+         */
+        "hasVisualFocus"?: boolean;
+        /**
           * Display hover state
           * @default false
          */
@@ -7291,6 +7338,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressChecked"?: boolean;
+        /**
+          * Can has focus
+          * @default false
+         */
+        "suppressFocus"?: boolean;
     }
     interface IxDropdownQuickActions {
     }
@@ -8963,6 +9015,12 @@ declare namespace LocalJSX {
          */
         "allowClear"?: boolean;
         /**
+          * ARIA label for the add item
+          * @since TODO: Define
+          * @default 'Add item'
+         */
+        "ariaLabelAddItem"?: string;
+        /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @default 'Open select dropdown'
@@ -9096,6 +9154,10 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     interface IxSelectItem {
+        /**
+          * @default false
+         */
+        "hasVisualFocus"?: boolean;
         /**
           * @default false
          */

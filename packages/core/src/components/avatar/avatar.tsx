@@ -21,6 +21,7 @@ import { BaseButton } from '../button/base-button';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+import { IxComponent } from '../utils/internal/component';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -119,7 +120,7 @@ function UserInfo(
   styleUrl: 'avatar.scss',
   shadow: true,
 })
-export class Avatar {
+export class Avatar extends IxComponent() {
   @Element() hostElement!: HTMLIxAvatarElement;
 
   /**
@@ -233,7 +234,10 @@ export class Avatar {
 
     if (this.isClosestApplicationHeader) {
       return (
-        <Host slot="ix-application-header-avatar" class={'avatar-button'}>
+        <Host
+          slot="ix-application-header-avatar"
+          class={'avatar-button ix-focusable'}
+        >
           <BaseButton
             disabled={false}
             iconOval={false}
