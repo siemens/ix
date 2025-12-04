@@ -41,8 +41,9 @@ LICENSE file in the root directory of this source tree.
         const checkboxGroup = document.querySelector('ix-checkbox-group');
 
         function checkedChange() {
-          parent.checked = children.every((cb) => cb.checked);
-          parent.indeterminate = children.some((cb) => cb.checked);
+          const checkedChildren = children.filter((cb) => cb.checked);
+          parent.checked = checkedChildren.length === children.length;
+          parent.indeterminate = checkedChildren.length > 0 && checkedChildren.length < children.length;
         }
 
         function parentCheckedChange(event) {
