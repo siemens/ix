@@ -6,3 +6,7 @@ packages:
   - 'packages/*'
   - 'tooling/*'
   - 'testing/*'
+
+catalog:
+  vite: ^7.2.6
+  '@esbuild/linux-arm64': 0.25.5

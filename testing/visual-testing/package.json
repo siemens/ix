@@ -12,7 +12,7 @@
     "@siemens/ix": "workspace:*",
     "@siemens/ix-icons": "^3.2.0",
     "@types/node": "^24.0.14",
-    "vite": "^7.0.4",
-    "@esbuild/linux-arm64": "0.25.1"
+    "vite": "catalog:",
+    "@esbuild/linux-arm64": "catalog:"
   }
 }
