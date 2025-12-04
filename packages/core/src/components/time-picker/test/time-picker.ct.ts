@@ -18,6 +18,7 @@ const getTimeObjs = async (page: Page) => {
 
 const waitForScrollAnimations = async (page: Page) => {
   await page.evaluate(() => {
+    // Check if scroll position has changed by less than 0.5px
     const isScrollStable = (
       currentScrollTop: number,
       lastScrollTop: number
@@ -27,6 +28,7 @@ const waitForScrollAnimations = async (page: Page) => {
       return scrollDiff < 0.5;
     };
 
+    // Schedule next stability check or resolve if stable for 5 frames
     const scheduleStabilityCheck = (
       element: Element,
       currentScrollTop: number,
@@ -45,6 +47,7 @@ const waitForScrollAnimations = async (page: Page) => {
       );
     };
 
+    // Recursively check if scroll position is stable across frames
     const checkScrollStable = (
       element: Element,
       lastScrollTop: number,
@@ -63,11 +66,17 @@ const waitForScrollAnimations = async (page: Page) => {
       );
     };
 
+    // Initialize stability check on next animation frame
+    const startStabilityCheck = (element: Element, resolve: () => void) => {
+      requestAnimationFrame(() =>
+        checkScrollStable(element, element.scrollTop, 0, resolve)
+      );
+    };
+
+    // Wait for element scroll to become stable
     const waitForStableScroll = (element: Element) => {
       return new Promise<void>((resolve) => {
-        requestAnimationFrame(() =>
-          checkScrollStable(element, element.scrollTop, 0, resolve)
-        );
+        startStabilityCheck(element, resolve);
       });
     };
 
