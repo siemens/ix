@@ -23,9 +23,11 @@ export function renderDefaultItem(
   el.hasChildren = item.hasChildren;
   el.context = context;
   el.text = item.data.name;
+  el.disabled = item.disabled || false;
 
   update((updateTreeItem) => {
     el.text = updateTreeItem.data.name;
+    el.disabled = updateTreeItem.disabled || false;
   });
   return el;
 }

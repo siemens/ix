@@ -463,3 +463,161 @@ regressionTest(
     await expect(items.nth(2)).not.toBeVisible();
   }
 );
+
+regressionTest(
+  'disabled item should have disabled class',
+  async ({ mount, page }) => {
+    await mount(`
+    <div style="height: 20rem; width: 100%;">
+      <ix-tree root="root"></ix-tree>
+    </div>
+  `);
+
+    const tree = page.locator('ix-tree');
+
+    const modelWithDisabled = {
+      ...defaultModel,
+      'sample-child-1': {
+        ...defaultModel['sample-child-1'],
+        disabled: true,
+      },
+    };
+
+    await tree.evaluate(
+      (element: HTMLIxTreeElement, [model]) => {
+        element.model = model;
+      },
+      [modelWithDisabled]
+    );
+
+    await expect(tree).toHaveClass(/hydrated/);
+
+    const sampleItem = tree.locator('ix-tree-item').first();
+    await sampleItem.locator('ix-icon').click();
+
+    const disabledItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 1',
+    });
+
+    await expect(disabledItem).toBeVisible();
+    await expect(disabledItem).toHaveClass(/disabled/);
+  }
+);
+
+regressionTest(
+  'disabled item should have reduced opacity',
+  async ({ mount, page }) => {
+    await mount(`
+    <div style="height: 20rem; width: 100%;">
+      <ix-tree root="root"></ix-tree>
+    </div>
+  `);
+
+    const tree = page.locator('ix-tree');
+
+    const modelWithDisabled = {
+      ...defaultModel,
+      'sample-child-1': {
+        ...defaultModel['sample-child-1'],
+        disabled: true,
+      },
+    };
+
+    await tree.evaluate(
+      (element: HTMLIxTreeElement, [model]) => {
+        element.model = model;
+      },
+      [modelWithDisabled]
+    );
+
+    const sampleItem = tree.locator('ix-tree-item').first();
+    await sampleItem.locator('ix-icon').click();
+
+    const disabledItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 1',
+    });
+
+    await expect(disabledItem).toBeVisible();
+    await expect(disabledItem).toHaveCSS('opacity', '0.5');
+  }
+);
+
+regressionTest(
+  'disabled item should have not-allowed cursor',
+  async ({ mount, page }) => {
+    await mount(`
+    <div style="height: 20rem; width: 100%;">
+      <ix-tree root="root"></ix-tree>
+    </div>
+  `);
+
+    const tree = page.locator('ix-tree');
+
+    const modelWithDisabled = {
+      ...defaultModel,
+      'sample-child-1': {
+        ...defaultModel['sample-child-1'],
+        disabled: true,
+      },
+    };
+
+    await tree.evaluate(
+      (element: HTMLIxTreeElement, [model]) => {
+        element.model = model;
+      },
+      [modelWithDisabled]
+    );
+
+    const sampleItem = tree.locator('ix-tree-item').first();
+    await sampleItem.locator('ix-icon').click();
+
+    const disabledItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 1',
+    });
+
+    await expect(disabledItem).toBeVisible();
+    await expect(disabledItem).toHaveCSS('cursor', 'not-allowed');
+  }
+);
+
+regressionTest(
+  'enabled items should still be selectable when other items are disabled',
+  async ({ mount, page }) => {
+    await mount(`
+    <div style="height: 20rem; width: 100%;">
+      <ix-tree root="root"></ix-tree>
+    </div>
+  `);
+
+    const tree = page.locator('ix-tree');
+
+    const modelWithDisabled = {
+      ...defaultModel,
+      'sample-child-1': {
+        ...defaultModel['sample-child-1'],
+        disabled: true,
+      },
+    };
+
+    await tree.evaluate(
+      (element: HTMLIxTreeElement, [model]) => {
+        element.model = model;
+      },
+      [modelWithDisabled]
+    );
+
+    const sampleItem = tree.locator('ix-tree-item').first();
+    await sampleItem.locator('ix-icon').click();
+
+    const enabledItem = tree.locator('ix-tree-item', {
+      hasText: 'Sample Child 2',
+    });
+
+    await expect(enabledItem).toBeVisible();
+    await expect(enabledItem).not.toHaveClass(/disabled/);
+
+    await enabledItem.click();
+
+    await expect(enabledItem).toHaveClass(/selected/);
+  }
+);
