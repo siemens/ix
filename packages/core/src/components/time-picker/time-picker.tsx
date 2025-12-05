@@ -195,7 +195,7 @@ export class TimePicker {
    * Select time with format string
    * Format has to match the `format` property.
    */
-  @Prop() time: string = DateTime.now().toFormat(this.format);
+  @Prop() time?: string;
 
   @Watch('time')
   watchTimePropHandler(newValue: string) {
@@ -205,6 +205,14 @@ export class TimePicker {
     }
 
     this._time = timeFormat;
+  }
+
+  /**
+   * Get default time value
+   * @returns DateTime.now() for empty state (no selection)
+   */
+  private getDefaultTime(): DateTime | undefined {
+    return DateTime.now();
   }
 
   /**
@@ -288,15 +296,22 @@ export class TimePicker {
   }
 
   private initPicker() {
-    this._time = DateTime.fromFormat(this.time, this.format);
+    let parsedTime: DateTime | undefined;
 
-    if (!this._time.isValid) {
-      console.error(
-        `Invalid time format. The configured format does not match the format of the passed time. ${this._time.invalidReason}: ${this._time.invalidExplanation}`
-      );
+    if (this.time) {
+      parsedTime = DateTime.fromFormat(this.time, this.format);
 
-      this._time = DateTime.now();
+      if (!parsedTime.isValid) {
+        console.error(
+          `Invalid time format. The configured format does not match the format of the passed time. ${parsedTime.invalidReason}: ${parsedTime.invalidExplanation}`
+        );
+        parsedTime = this.getDefaultTime();
+      }
+    } else {
+      parsedTime = this.getDefaultTime();
     }
+
+    this._time = parsedTime;
 
     this.setTimeRef();
     this.setTimePickerDescriptors();
@@ -325,15 +340,11 @@ export class TimePicker {
         elementContainer.focus({ preventScroll: true });
 
         if (!this.isElementVisible(elementContainer, elementList)) {
-          elementContainer.scrollIntoView({
-            block: this.focusScrollAlignment,
-          });
-
-          if (this.focusScrollAlignment === 'end') {
-            elementList.scrollTop += 4;
-          } else {
-            elementList.scrollTop -= 4;
-          }
+          this.scrollElementIntoView(
+            elementContainer,
+            elementList,
+            this.focusScrollAlignment
+          );
         }
       }
     }
@@ -404,12 +415,27 @@ export class TimePicker {
     }
   }
 
-  onUnitCellBlur(unit: TimePickerDescriptorUnit) {
+  onUnitCellBlur(unit: TimePickerDescriptorUnit, event: FocusEvent) {
+    const relatedTarget = event.relatedTarget as HTMLElement;
+
+    // Check if column lost focus to scroll back to selected value
+    if (relatedTarget) {
+      const relatedUnit =
+        relatedTarget.dataset.elementContainerId?.split('-')[0];
+
+      if (relatedUnit !== unit) {
+        this.elementListScrollToTop(
+          unit,
+          Number(this.formattedTime[unit]),
+          'smooth'
+        );
+      }
+    }
+
     this.isUnitFocused = false;
     const focusedValue = Number(this.formattedTime[unit]);
 
     this.updateDescriptorFocusedValue(unit, focusedValue);
-    this.elementListScrollToTop(unit, focusedValue, 'smooth');
   }
 
   onUnitCellFocus(unit: TimePickerDescriptorUnit, value: number) {
@@ -446,6 +472,24 @@ export class TimePicker {
       elementRect.top >= containerRect.top &&
       elementRect.bottom <= containerRect.bottom
     );
+  }
+
+  private scrollElementIntoView(
+    element: HTMLElement,
+    container: HTMLElement,
+    alignment: 'start' | 'end'
+  ) {
+    const SCROLL_BUFFER = 1;
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+
+    if (alignment === 'end') {
+      container.scrollTop +=
+        elementRect.bottom - containerRect.bottom + SCROLL_BUFFER;
+    } else {
+      container.scrollTop +=
+        elementRect.top - containerRect.top - SCROLL_BUFFER;
+    }
   }
 
   private updateFocusedValue(value: number) {
@@ -515,10 +559,12 @@ export class TimePicker {
 
       if (!dropdown.classList.contains('show')) {
         // keep picker in sync with input
-        const timeFormat = DateTime.fromFormat(this.time, this.format);
-        if (timeFormat.isValid) {
-          this._time = DateTime.fromFormat(this.time, this.format);
-          this.setInitialFocusedValueAndUnit();
+        if (this.time) {
+          const timeFormat = DateTime.fromFormat(this.time, this.format);
+          if (timeFormat.isValid) {
+            this._time = DateTime.fromFormat(this.time, this.format);
+            this.setInitialFocusedValueAndUnit();
+          }
         }
 
         continue;
@@ -582,19 +628,24 @@ export class TimePicker {
       value = 0;
     }
 
-    this._time = this._time?.set({
+    if (!this._time) {
+      this._time = DateTime.now().startOf('day');
+    }
+
+    this._time = this._time.set({
       [unit]: value,
     });
+
     return value;
   }
 
   private changeTimeReference(newTimeRef: 'AM' | 'PM') {
-    if (!this._time) {
+    if (this.timeRef === newTimeRef) {
       return;
     }
 
-    if (this.timeRef === newTimeRef) {
-      return;
+    if (!this._time) {
+      this._time = DateTime.now().startOf('day');
     }
 
     this.timeRef = newTimeRef;
@@ -606,7 +657,7 @@ export class TimePicker {
       this._time = this._time.minus({ hours: 12 });
     }
 
-    this.timeChange.emit(this._time!.toFormat(this.format));
+    this.timeChange.emit(this._time.toFormat(this.format));
   }
 
   private isFormat12Hour(format: string): boolean {
@@ -734,6 +785,10 @@ export class TimePicker {
   }
 
   private select(unit: TimePickerDescriptorUnit, number: number) {
+    if (this.isSelected(unit, number)) {
+      return;
+    }
+
     this.formattedTime = {
       ...this.formattedTime!,
       [unit]: String(number),
@@ -776,16 +831,16 @@ export class TimePicker {
       const elementContainerHeight = elementContainer.clientHeight;
 
       // Offset which is used to adjust the scroll position to account for margins, elements being hidden, etc.
-      let scrollPositionOffset = 15;
+      let scrollPositionOffset = 11;
       if (this.hideHeader) {
-        // 74 --> height of the header container
-        scrollPositionOffset -= 74;
+        // 56 + 1 --> height of the header container and separator
+        scrollPositionOffset -= 57;
       }
 
       const scrollPosition =
         elementContainer.offsetTop -
         elementListHeight / 2 +
-        elementContainerHeight / 2 -
+        elementContainerHeight -
         scrollPositionOffset;
 
       elementList.scrollTo({
@@ -860,11 +915,11 @@ export class TimePicker {
           embedded={this.embedded}
           timePickerAppearance={true}
           corners={this.corners}
-          hasFooter={true}
+          hasFooter={!this.dateTimePickerAppearance}
           hideHeader={this.hideHeader}
         >
           <div class="header" slot="header">
-            <ix-typography format="h5">{this.i18nHeader}</ix-typography>
+            <ix-typography format="body">{this.i18nHeader}</ix-typography>
           </div>
           <div class="clock">
             {this.timePickerDescriptors.map((descriptor, index: number) => (
@@ -878,28 +933,33 @@ export class TimePicker {
                     class="element-list"
                     tabIndex={-1}
                   >
-                    {descriptor.numberArray.map((number) => (
-                      <button
-                        data-element-container-id={`${descriptor.unit}-${number}`}
-                        class={{
-                          selected: this.isSelected(descriptor.unit, number),
-                          'element-container': true,
-                        }}
-                        onClick={() => this.select(descriptor.unit, number)}
-                        onFocus={() =>
-                          this.onUnitCellFocus(descriptor.unit, number)
-                        }
-                        onBlur={() => this.onUnitCellBlur(descriptor.unit)}
-                        tabindex={this.getElementContainerTabIndex(
-                          number,
-                          descriptor.unit
-                        )}
-                        role="button"
-                        aria-label={`${descriptor.header}: ${number}`}
-                      >
-                        {this.formatUnitValue(descriptor.unit, number)}
-                      </button>
-                    ))}
+                    {descriptor.numberArray.map((number) => {
+                      return (
+                        <button
+                          data-element-container-id={`${descriptor.unit}-${number}`}
+                          class={{
+                            selected: this.isSelected(descriptor.unit, number),
+                            'element-container': true,
+                          }}
+                          onClick={() => {
+                            this.select(descriptor.unit, number);
+                          }}
+                          onFocus={() =>
+                            this.onUnitCellFocus(descriptor.unit, number)
+                          }
+                          onBlur={(e) =>
+                            this.onUnitCellBlur(descriptor.unit, e)
+                          }
+                          tabindex={this.getElementContainerTabIndex(
+                            number,
+                            descriptor.unit
+                          )}
+                          aria-label={`${descriptor.header}: ${number}`}
+                        >
+                          {this.formatUnitValue(descriptor.unit, number)}
+                        </button>
+                      );
+                    })}
                     <div class="element-list-padding"></div>
                   </div>
                 </div>
@@ -907,7 +967,7 @@ export class TimePicker {
                 {index !== this.timePickerDescriptors.length - 1 && (
                   <div
                     class={{
-                      'column-seperator': true,
+                      'column-separator': true,
                       hidden: descriptor.hidden,
                     }}
                   >
@@ -916,6 +976,41 @@ export class TimePicker {
                 )}
               </div>
             ))}
+
+            {this.timeRef && (
+              <div class="flex">
+                <div class="column-separator"></div>
+                <div class="columns">
+                  <div class="column-header" title="AM/PM" />
+                  <div class="element-list" tabIndex={-1}>
+                    <button
+                      data-am-pm-id="AM"
+                      class={{
+                        selected: this.timeRef === 'AM',
+                        'element-container': true,
+                      }}
+                      onClick={() => this.changeTimeReference('AM')}
+                      tabindex="0"
+                      aria-label="AM"
+                    >
+                      AM
+                    </button>
+                    <button
+                      data-am-pm-id="PM"
+                      class={{
+                        selected: this.timeRef === 'PM',
+                        'element-container': true,
+                      }}
+                      onClick={() => this.changeTimeReference('PM')}
+                      tabindex="0"
+                      aria-label="PM"
+                    >
+                      PM
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div
@@ -925,40 +1020,14 @@ export class TimePicker {
             }}
             slot="footer"
           >
-            {this.timeRef && (
-              <div
-                class={{
-                  'time-ref-buttons': true,
-                  'time-ref-buttons--datetime-picker-appearance':
-                    this.dateTimePickerAppearance,
-                }}
-              >
-                <button
-                  data-am-pm-id="AM"
-                  class={{ selected: this.timeRef === 'AM' }}
-                  onClick={() => this.changeTimeReference('AM')}
-                >
-                  AM
-                </button>
-                <button
-                  data-am-pm-id="PM"
-                  class={{ selected: this.timeRef === 'PM' }}
-                  onClick={() => this.changeTimeReference('PM')}
-                >
-                  PM
-                </button>
-              </div>
-            )}
-            {!this.dateTimePickerAppearance && (
-              <ix-button
-                class="confirm-button"
-                onClick={() => {
-                  this.timeSelect.emit(this._time?.toFormat(this.format));
-                }}
-              >
-                {this.i18nConfirmTime}
-              </ix-button>
-            )}
+            <ix-button
+              class="confirm-button"
+              onClick={() => {
+                this.timeSelect.emit(this._time?.toFormat(this.format));
+              }}
+            >
+              {this.i18nConfirmTime}
+            </ix-button>
           </div>
         </ix-date-time-card>
       </Host>

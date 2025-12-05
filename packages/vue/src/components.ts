@@ -1031,6 +1031,7 @@ export const IxPagination: StencilVueComponent<JSX.IxPagination> = /*@__PURE__*/
   'i18nItems',
   'ariaLabelChevronLeftIconButton',
   'ariaLabelChevronRightIconButton',
+  'ariaLabelPageSelection',
   'pageSelected',
   'itemCountChanged'
 ], [
