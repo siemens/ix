@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { themeSwitcher } from '@siemens/ix';
 import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
 import { defineCustomElements } from '@siemens/ix/loader';
 import './global.css';
@@ -64,15 +65,14 @@ function loadAdditionalTheme() {
 
 function detectThemeSwitching() {
   const searchParams = new URLSearchParams(location.search);
-  if (searchParams.has('theme')) {
-    const theme = searchParams.get('theme');
-    document.documentElement.dataset.ixTheme = theme;
-  }
+  const theme = searchParams.get('theme') || 'classic';
+  const colorSchema = searchParams.get('colorSchema') || 'dark';
 
-  if (searchParams.has('colorSchema')) {
-    const colorSchema = searchParams.get('colorSchema');
-    document.documentElement.dataset.ixColorSchema = colorSchema;
-  }
+  const fullTheme = `theme-${theme}-${colorSchema}`;
+
+  themeSwitcher.setTheme(fullTheme);
+
+  document.body.className = fullTheme;
 }
 
 function isMarginSuppressed() {
