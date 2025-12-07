@@ -2,34 +2,26 @@
 'html-test-app': patch
 ---
 
-**Preview Examples: Fix theme URL parameter handling**
+**Preview Examples: Fix eCharts theme initialization from URL parameters**
 
-Fixed a bug where preview example iframes didn't properly apply theme from URL parameters, causing eCharts and other components to display incorrect theme colors when embedded in documentation.
+Fixed a bug where eCharts examples in preview iframes always displayed classic theme colors, even when `?theme=brand&colorSchema=dark` URL parameters were present in the iframe URL.
+
+**Root Cause:**
+
+The `init.js` script was reading URL parameters but only setting them as data attributes (`data-ix-theme`, `data-ix-color-schema`). It never called `themeSwitcher.setTheme()`, so the theme switcher's internal state remained at the hardcoded default. When eCharts components call `themeSwitcher.getCurrentTheme()` during initialization, they received `"theme-classic-dark"` instead of the theme specified in URL parameters.
+
+Regular components (buttons, inputs, etc.) worked correctly because they only rely on CSS variables, which were properly set via data attributes.
 
 **Changes:**
 
 - Import `themeSwitcher` from `@siemens/ix` in `init.js`
-- Call `themeSwitcher.setTheme()` when URL parameters are present
-- Ensure `themeSwitcher.getCurrentTheme()` returns correct value in iframes
-- Update body class for backwards compatibility
-
-**Before:**
-
-- URL parameters were read but only set as data attributes
-- `themeSwitcher.setTheme()` was never called
-- `getCurrentTheme()` returned hardcoded `"theme-classic-dark"` regardless of URL params
-- eCharts always displayed classic colors, even with `?theme=brand` in URL
-
-**After:**
-
-- URL parameters trigger `themeSwitcher.setTheme(fullTheme)`
-- `getCurrentTheme()` returns correct theme from URL params
-- eCharts displays brand colors when `?theme=brand` is in URL
-- Backwards compatible: defaults to `theme-classic-dark` when no params
+- Call `themeSwitcher.setTheme(fullTheme)` with theme name constructed from URL params
+- Update `document.body.className` for backwards compatibility with legacy CSS selectors
+- Default to `theme-classic-dark` when no URL parameters provided
 
 **Impact:**
 
-- All HTML preview examples now respect theme URL parameters
-- Documentation iframes display correct theme
-- eCharts components render with proper brand/classic colors
-- Defaults to `theme-classic-dark` when no parameters provided (backwards compatible)
+- eCharts examples now correctly render with brand theme colors in documentation iframes
+- `themeSwitcher.getCurrentTheme()` returns correct value within iframe context
+- `themeSwitcher.themeChanged` event fires properly on initialization
+- Backwards compatible with existing preview examples that don't use URL parameters
