@@ -16,7 +16,7 @@ Regular components (buttons, inputs, etc.) worked correctly because they only re
 
 - Import `themeSwitcher` from `@siemens/ix` in `init.js`
 - Call `themeSwitcher.setTheme(fullTheme)` with theme name constructed from URL params
-- Update `document.body.className` for backwards compatibility with legacy CSS selectors
+- Update body element theme classes using `classList` API (preserves other classes)
 - Default to `theme-classic-dark` when no URL parameters provided
 
 **Impact:**
