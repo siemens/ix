@@ -8,15 +8,6 @@
  */
 
 /**
- * Parses a string value to extract a numeric value.
- * Returns undefined if the value is not a valid number.
- */
-export function parseNumericValue(str: string): number | undefined {
-  const numValue = Number.parseFloat(str);
-  return Number.isNaN(numValue) ? undefined : numValue;
-}
-
-/**
  * Converts a REM value to pixels using the document root font size.
  */
 export function convertRemToPx(value: number): string {
@@ -65,25 +56,29 @@ export function convertToPx(
   dimension: 'width' | 'height',
   element: HTMLElement
 ): string | undefined {
-  if (!value) return undefined;
-
-  const trimmedValue = value.trim().toLowerCase();
-  const numValue = parseNumericValue(trimmedValue);
-  if (numValue === undefined) return undefined;
-
-  const unitConverters = {
-    px: () => `${numValue}px`,
-    rem: () => convertRemToPx(numValue),
-    em: () => convertEmToPx(numValue, element),
-    '%': () => convertPercentageToPx(numValue, dimension, element),
-  };
-
-  for (const [unit, converter] of Object.entries(unitConverters)) {
-    if (trimmedValue.endsWith(unit)) {
-      return converter();
-    }
+  if (!value) {
+    return undefined;
   }
 
-  // Handle unitless values as pixels
-  return `${numValue}px`;
+  const unitRegex = /^(-?\d*\.?\d+)\s*(px|rem|em|%)?$/i;
+  const match = value.trim().match(unitRegex);
+
+  if (!match) {
+    return undefined;
+  }
+
+  const [, numStr, unit] = match;
+  const numValue = Number.parseFloat(numStr);
+
+  switch (unit?.toLowerCase()) {
+    case 'rem':
+      return convertRemToPx(numValue);
+    case 'em':
+      return convertEmToPx(numValue, element);
+    case '%':
+      return convertPercentageToPx(numValue, dimension, element);
+    case 'px':
+    default:
+      return `${numValue}px`;
+  }
 }

@@ -288,6 +288,32 @@ export class Textarea implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
+  private getTextareaHeight(): string | undefined {
+    if (this.isManuallyResized) {
+      return this.manualHeight;
+    }
+
+    const convertedHeight = convertToPx(
+      this.textareaHeight,
+      'height',
+      this.hostElement
+    );
+
+    if (convertedHeight) {
+      return convertedHeight;
+    }
+
+    return this.textareaRows ? 'auto' : undefined;
+  }
+
+  private getTextareaWidth(): string {
+    if (this.isManuallyResized) {
+      return this.manualWidth || '100%';
+    }
+
+    return convertToPx(this.textareaWidth, 'width', this.hostElement) || '100%';
+  }
+
   render() {
     return (
       <Host
@@ -328,24 +354,8 @@ export class Textarea implements IxInputFieldComponent<string> {
               maxLength={this.maxLength}
               textareaCols={this.textareaCols}
               textareaRows={this.textareaRows}
-              textareaHeight={
-                this.isManuallyResized
-                  ? this.manualHeight
-                  : convertToPx(
-                      this.textareaHeight,
-                      'height',
-                      this.hostElement
-                    ) || 'auto'
-              }
-              textareaWidth={
-                this.isManuallyResized
-                  ? this.manualWidth
-                  : convertToPx(
-                      this.textareaWidth,
-                      'width',
-                      this.hostElement
-                    ) || '100%'
-              }
+              textareaHeight={this.getTextareaHeight()}
+              textareaWidth={this.getTextareaWidth()}
               resizeBehavior={this.resizeBehavior}
               readonly={this.readonly}
               disabled={this.disabled}
