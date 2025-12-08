@@ -60,7 +60,7 @@ export function convertToPx(
     return undefined;
   }
 
-  const unitRegex = /^(-?\d*\.?\d+)\s*(px|rem|em|%)?$/i;
+  const unitRegex = /^(-?\d*\.?\d+)\s*(px|rem|em|%)?$/;
   const match = value.trim().match(unitRegex);
 
   if (!match) {

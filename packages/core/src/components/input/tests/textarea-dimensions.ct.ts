@@ -20,10 +20,8 @@ regressionTest(
     const textarea = hostElement.locator('textarea');
 
     // Check default styles are applied
-    await expect(textarea).toHaveAttribute(
-      'style',
-      /.*height: auto; width: 100%;/
-    );
+    await expect(textarea).toHaveAttribute('style', /.*width: 100%;/);
+    await expect(textarea).not.toHaveAttribute('style', /height/);
     await expect(textarea).not.toHaveAttribute('rows');
     await expect(textarea).not.toHaveAttribute('cols');
   }
@@ -167,11 +165,8 @@ regressionTest(
 
     const textarea = page.locator('ix-textarea textarea');
 
-    // Check that invalid values fall back to defaults
-    await expect(textarea).toHaveAttribute(
-      'style',
-      /.*height: auto; width: 100%;/
-    );
+    await expect(textarea).toHaveAttribute('style', /.*width: 100%;/);
+    await expect(textarea).not.toHaveAttribute('style', /height/);
   }
 );
 
