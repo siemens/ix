@@ -13,9 +13,14 @@ import './slider.scoped.css';
 export default () => {
   return (
     <div className="slider-container">
-      <IxSlider trace value={25} step={10} marker={[0, 20, 40, 50, 75, 100]}>
+      <IxSlider value={25}>
         <span slot="label-start">0</span>
         <span slot="label-end">100</span>
+      </IxSlider>
+
+      <IxSlider min={0} max={50} step={10} value={10}>
+        <span slot="label-start">0</span>
+        <span slot="label-end">50</span>
       </IxSlider>
     </div>
   );
