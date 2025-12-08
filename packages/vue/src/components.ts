@@ -426,6 +426,8 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'weekStartIndex',
   'ariaLabelPreviousMonthButton',
   'ariaLabelNextMonthButton',
+  'suppressSubmitOnEnter',
+  'textAlignment',
   'valueChange',
   'validityStateChange',
   'ixFocus',
@@ -746,6 +748,8 @@ export const IxInput: StencilVueComponent<JSX.IxInput, JSX.IxInput["value"]> = /
   'maxLength',
   'minLength',
   'allowedCharactersPattern',
+  'suppressSubmitOnEnter',
+  'textAlignment',
   'valueChange',
   'validityStateChange',
   'ixBlur'
@@ -1002,6 +1006,9 @@ export const IxNumberInput: StencilVueComponent<JSX.IxNumberInput, JSX.IxNumberI
   'allowedCharactersPattern',
   'showStepperButtons',
   'step',
+  'suppressSubmitOnEnter',
+  'textAlignment',
+  'allowEmptyValueChange',
   'valueChange',
   'validityStateChange',
   'ixBlur'
@@ -1024,6 +1031,7 @@ export const IxPagination: StencilVueComponent<JSX.IxPagination> = /*@__PURE__*/
   'i18nItems',
   'ariaLabelChevronLeftIconButton',
   'ariaLabelChevronRightIconButton',
+  'ariaLabelPageSelection',
   'pageSelected',
   'itemCountChanged'
 ], [
@@ -1163,9 +1171,11 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'i18nPlaceholderEditable',
   'i18nSelectListHeader',
   'i18nNoMatches',
+  'i18nAllSelected',
   'hideListHeader',
   'dropdownWidth',
   'dropdownMaxWidth',
+  'collapseMultipleSelection',
   'valueChange',
   'inputChange',
   'addItem',
@@ -1229,6 +1239,8 @@ export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__
   'splitIcon',
   'ariaLabelSplitIconButton',
   'disabled',
+  'disableButton',
+  'disableDropdownButton',
   'placement',
   'buttonClick'
 ], [
@@ -1328,7 +1340,9 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'i18nMinuteColumnHeader',
   'i18nSecondColumnHeader',
   'i18nMillisecondColumnHeader',
+  'suppressSubmitOnEnter',
   'hideHeader',
+  'textAlignment',
   'valueChange',
   'validityStateChange',
   'ixFocus',
