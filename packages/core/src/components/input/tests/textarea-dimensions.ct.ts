@@ -180,9 +180,8 @@ regressionTest(
     const textarea = page.locator('ix-textarea textarea');
 
     // Check that whitespace is trimmed and case is handled
-    const width = await textarea.evaluate((el) => el.style.width);
-    expect(width).toBe('200px');
-    await expect(textarea).toHaveCSS('height', '100px');
+    await expect(textarea).toHaveAttribute('style', /.*width: 200px.*/);
+    await expect(textarea).toHaveAttribute('style', /.*height: 100px.*/);
   }
 );
 
@@ -196,9 +195,8 @@ regressionTest(
     const textarea = page.locator('ix-textarea textarea');
 
     // Check that different case units are handled correctly
-    const width = await textarea.evaluate((el) => el.style.width);
-    expect(width).toBe('200px');
-    await expect(textarea).toHaveCSS('height', '100px');
+    await expect(textarea).toHaveAttribute('style', /.*width: 200px.*/);
+    await expect(textarea).toHaveAttribute('style', /.*height: 100px.*/);
   }
 );
 
