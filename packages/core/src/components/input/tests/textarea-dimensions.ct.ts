@@ -192,7 +192,10 @@ regressionTest(
       `<ix-textarea textarea-width="200PX" textarea-height="100Px"></ix-textarea>`
     );
 
-    const textarea = page.locator('ix-textarea textarea');
+    const hostElement = page.locator('ix-textarea');
+    await expect(hostElement).toHaveClass(/hydrated/);
+
+    const textarea = hostElement.locator('textarea');
 
     // Check that different case units are handled correctly
     await expect(textarea).toHaveAttribute('style', /.*width: 200px.*/);
