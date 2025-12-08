@@ -197,15 +197,31 @@
     transform: translateY(-50%);
   }
   .ticks .tick {
+    --tick-size: 8px;
     display: block;
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: var(--tick-size);
+    height: var(--tick-size);
     background-color: var(--tick-color);
     border-radius: 100px;
     top: 50%;
+    transform: translate(-50%, -50%);
+    left: calc(var(--tick-value) * (100% - var(--thumb-size)) + calc(var(--thumb-size) / 2));
+  }
+
+  .ticks .tick:first-child,
+  .ticks .tick:last-child {
+    --tick-size: 6px;
+  }
+
+  .ticks .tick:first-child {
+    left: 0;
     transform: translateY(-50%);
-    left: calc(var(--tick-value) * (100% - 0.5rem));
+  }
+
+  .ticks .tick:last-child {
+    left: 100%;
+    transform: translate(-100%, -50%);
   }
 
   .ticks .tick.tick-active {
@@ -227,7 +243,7 @@
     top: 50%;
     transform: translateY(-50%);
     left: 0px;
-    border-radius: 3px;
+    border-radius: 2px;
   }
 
   .thumb {
