@@ -8,12 +8,12 @@
 -->
 
 <script setup lang="ts">
-import { showModalLoading } from '@siemens/ix';
-import { IxButton } from '@siemens/ix-vue';
+import { IxButton, showModalLoading } from '@siemens/ix-vue';
+import { ModalLoadingContext } from '@siemens/ix';
 
 const startLoading = () => {
   let count = 0;
-  const progress = showModalLoading('Loading 0/2');
+  const progress: ModalLoadingContext = showModalLoading('Loading 0/2');
   const interval = setInterval(() => {
     count++;
     progress.update(`Loading ${count}/2`);
