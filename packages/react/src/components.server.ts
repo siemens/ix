@@ -9,6 +9,7 @@
 import * as clientComponents from '@siemens/ix';
 
 import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimePickerCustomEvent, type IxGroupItemCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaneCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxUploadCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
+import { ADemo as ADemoElement } from "@siemens/ix/components/a-demo.js";
 import { IxActionCard as IxActionCardElement } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement } from "@siemens/ix/components/ix-application.js";
@@ -113,6 +114,16 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent, type HydrateModule, type ReactWebComponent, type SerializeShadowRootOptions } from '@stencil/react-output-target/ssr';
 
 export const serializeShadowRoot: SerializeShadowRootOptions = { "scoped": [], "default": "declarative-shadow-dom" };
+
+export type ADemoEvents = NonNullable<unknown>;
+
+export const ADemo: StencilReactComponent<ADemoElement, ADemoEvents> = /*@__PURE__*/ createComponent<ADemoElement, ADemoEvents>({
+    tagName: 'a-demo',
+    properties: {},
+    hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
+    clientModule: clientComponents.ADemo as ReactWebComponent<ADemoElement, ADemoEvents>,
+    serializeShadowRoot,
+});
 
 export type IxActionCardEvents = NonNullable<unknown>;
 

@@ -8,6 +8,28 @@ import { Components } from '@siemens/ix';
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'a-demo',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class ADemo {
+  protected el: HTMLADemoElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface ADemo extends Components.ADemo {}
+
+
+@ProxyCmp({
   inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'selected', 'subheading', 'variant']
 })
 @Component({

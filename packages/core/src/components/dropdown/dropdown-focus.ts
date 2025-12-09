@@ -13,6 +13,7 @@
 
 import { Build } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { focusElement } from '../utils/focus-visible-listener';
 
 const VALID_FOCUS_ITEMS = ['ix-dropdown-item', 'ix-select-item'];
 const VALID_FOCUS_ELEMENTS = ['ix-dropdown', ...VALID_FOCUS_ITEMS];
@@ -55,14 +56,20 @@ export const getPreviousFocusableItem = (
 
 const focusItem = (item: HTMLElement) => {
   requestAnimationFrameNoNgZone(async () => {
+    let element: HTMLElement | null = null;
+
     if (
       'getDropdownItemElement' in item &&
       typeof item.getDropdownItemElement === 'function'
     ) {
       const dropdownItem = await item.getDropdownItemElement();
-      dropdownItem.shadowRoot!.querySelector('button')!.focus();
+      element = dropdownItem.shadowRoot!.querySelector('button');
     } else {
-      item.shadowRoot!.querySelector('button')!.focus();
+      element = item.shadowRoot!.querySelector('button');
+    }
+
+    if (element) {
+      focusElement(element);
     }
   });
 };
@@ -80,7 +87,27 @@ export const configureKeyboardInteraction = (
 ) => {
   const getActiveElement =
     options.getActiveElement ??
-    (() => document.activeElement as HTMLElement | null);
+    (() => {
+      const documentActiveElement =
+        document.activeElement as HTMLElement | null;
+
+      /**
+       * If a element is :focus-visible inside a shadow root, the host element is always focused.
+       * Therefore, we need to check if the active element's root node is a shadow root
+       * and if its host is the document's active element.
+       *
+       * This ensure that a iteration of items is possible even when the dropdown is inside
+       * a shadow DOM.
+       */
+      const rootNode = dropdownElement.getRootNode();
+      if (
+        rootNode instanceof ShadowRoot &&
+        rootNode.host === documentActiveElement
+      ) {
+        return rootNode.activeElement as HTMLElement | null;
+      }
+      return documentActiveElement;
+    });
 
   const setItemActive =
     options.setItemActive ?? ((item: HTMLElement) => focusItem(item));
@@ -115,10 +142,12 @@ export const configureKeyboardInteraction = (
             return Array.from(el.querySelectorAll(query));
           })
         );
-      } else {
-        // No slots, query directly on popoverEl
-        items = Array.from(dropdownElement.querySelectorAll(query));
       }
+
+      items = [
+        ...items,
+        ...Array.from(dropdownElement.querySelectorAll<HTMLElement>(query)),
+      ];
     } catch (e) {
       if (Build.isDev) {
         console.error('Error during dropdown item collection:', e);

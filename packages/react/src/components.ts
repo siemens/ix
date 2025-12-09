@@ -8,6 +8,7 @@
 /* eslint-disable */
 
 import { type BorderlessChangedEvent, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimePickerCustomEvent, type IxGroupItemCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuSettingsCustomEvent, type IxMenuSettingsItemCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaneCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxUploadCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
+import { ADemo as ADemoElement, defineCustomElement as defineADemo } from "@siemens/ix/components/a-demo.js";
 import { IxActionCard as IxActionCardElement, defineCustomElement as defineIxActionCard } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement, defineCustomElement as defineIxApplicationHeader } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement, defineCustomElement as defineIxApplication } from "@siemens/ix/components/ix-application.js";
@@ -111,6 +112,17 @@ import { IxWorkflowSteps as IxWorkflowStepsElement, defineCustomElement as defin
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
+
+export type ADemoEvents = NonNullable<unknown>;
+
+export const ADemo: StencilReactComponent<ADemoElement, ADemoEvents> = /*@__PURE__*/ createComponent<ADemoElement, ADemoEvents>({
+    tagName: 'a-demo',
+    elementClass: ADemoElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as ADemoEvents,
+    defineCustomElement: defineADemo
+});
 
 export type IxActionCardEvents = NonNullable<unknown>;
 

@@ -140,6 +140,9 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   /** @internal */
   @Prop() suppressOverflowBehavior = false;
 
+  /** @internal */
+  @Prop() focusHost?: HTMLElement;
+
   /**
    * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
    */
@@ -321,6 +324,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         requestAnimationFrameNoNgZone(() => {
           focusFirstDescendant(this.hostElement);
         });
+
         break;
       default:
     }

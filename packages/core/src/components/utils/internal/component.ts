@@ -12,13 +12,20 @@ import {
   Mixin,
 } from '@stencil/core/internal';
 import type { MixedInCtor } from '@stencil/core';
-import { addFocusVisibleListener } from '../focus-visible-listener';
+import {
+  addFocusVisibleListener,
+  FocusVisibleUtility,
+} from '../focus-visible-listener';
 
-let focusVisibleListenerStarted = false;
+let focusVisibleUtility: FocusVisibleUtility | null = null;
 
 export interface IxComponentInterface extends ComponentInterface {
   hostElement: HTMLStencilElement;
 }
+
+export const getFocusUtilities = () => {
+  return focusVisibleUtility;
+};
 
 export const WithFocusVisibleListener = <
   B extends MixedInCtor<ComponentInterface>,
@@ -31,9 +38,8 @@ export const WithFocusVisibleListener = <
         super.connectedCallback();
       }
 
-      if (!focusVisibleListenerStarted) {
-        focusVisibleListenerStarted = true;
-        addFocusVisibleListener();
+      if (!focusVisibleUtility) {
+        focusVisibleUtility = addFocusVisibleListener();
       }
     }
   }

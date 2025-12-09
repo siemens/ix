@@ -5,6 +5,7 @@ import { defineContainer, type StencilVueComponent } from '@stencil/vue-output-t
 
 import type { JSX } from '@siemens/ix';
 
+import { defineCustomElement as defineADemo } from '@siemens/ix/components/a-demo.js';
 import { defineCustomElement as defineIxActionCard } from '@siemens/ix/components/ix-action-card.js';
 import { defineCustomElement as defineIxApplication } from '@siemens/ix/components/ix-application.js';
 import { defineCustomElement as defineIxApplicationHeader } from '@siemens/ix/components/ix-application-header.js';
@@ -107,6 +108,9 @@ import { defineCustomElement as defineIxUpload } from '@siemens/ix/components/ix
 import { defineCustomElement as defineIxValidationTooltip } from '@siemens/ix/components/ix-validation-tooltip.js';
 import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/components/ix-workflow-step.js';
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
+
+
+export const ADemo: StencilVueComponent<JSX.ADemo> = /*@__PURE__*/ defineContainer<JSX.ADemo>('a-demo', defineADemo);
 
 
 export const IxActionCard: StencilVueComponent<JSX.IxActionCard> = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', defineIxActionCard, [
@@ -529,6 +533,7 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'discoverAllSubmenus',
   'ignoreRelatedSubmenu',
   'suppressOverflowBehavior',
+  'focusHost',
   'showChange',
   'showChanged',
   'experimentalRequestFocus'

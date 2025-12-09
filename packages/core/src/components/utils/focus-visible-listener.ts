@@ -43,6 +43,7 @@ export function queryElements(
   }
 
   let items: HTMLElement[] = [];
+
   // Collect items from slots if they exist
   if (dropdownElement.querySelectorAll('slot').length > 0) {
     const slotElements = Array.from(dropdownElement.querySelectorAll('slot'));
@@ -58,10 +59,12 @@ export function queryElements(
         return Array.from(el.querySelectorAll(query));
       })
     );
-  } else {
-    // No slots, query directly on dropdownElement
-    items = Array.from(dropdownElement.querySelectorAll(query));
   }
+
+  items = [
+    ...items,
+    ...Array.from(dropdownElement.querySelectorAll<HTMLElement>(query)),
+  ];
 
   return items;
 }
@@ -80,17 +83,20 @@ export const addFocusVisibleListener = (
     elements.forEach((el) => el.classList.add(IX_FOCUSED));
     currentFocus = elements;
   };
+
   const pointerDown = () => {
     keyboardMode = false;
     setFocus([]);
   };
 
-  const onKeydown = (ev: Event) => {
-    keyboardMode = FOCUS_KEYS.has((ev as KeyboardEvent).key);
+  const onKeydown = (event: Event) => {
+    const keyboardEvent = event as KeyboardEvent;
+    keyboardMode = FOCUS_KEYS.has(keyboardEvent.key);
     if (!keyboardMode) {
       setFocus([]);
     }
   };
+
   const onFocusin = (ev: Event) => {
     if (keyboardMode && ev.composedPath !== undefined) {
       const toFocus = ev.composedPath().filter((el): el is Element => {
@@ -99,6 +105,7 @@ export const addFocusVisibleListener = (
       setFocus(toFocus);
     }
   };
+
   const onFocusout = () => {
     if (ref.activeElement === root) {
       setFocus([]);
@@ -151,6 +158,33 @@ export const focusLastDescendant = <
   focusElementInContext(lastInput, fallbackElement ?? ref);
 };
 
+/**
+ * Checks if an element is part of a custom element's shadow root
+ * and returns the host element if it is, otherwise returns the element itself.
+ */
+export const getHostElement = (element: HTMLElement): HTMLElement => {
+  const rootNode = element.getRootNode();
+  if (rootNode instanceof ShadowRoot && rootNode.host instanceof HTMLElement) {
+    return rootNode.host;
+  }
+  return element;
+};
+
+export const focusElement = (element: HTMLElement) => {
+  /**
+   * If the focus element is inside a shadow DOM, the host element is focused and does not trigger any
+   * focusin events. To workaround this, we manually dispatch a focusin event on the shadow DOM element.
+   */
+  element!.dispatchEvent(
+    new Event('focusin', {
+      bubbles: true,
+      composed: true,
+      cancelable: true,
+    })
+  );
+  element.focus();
+};
+
 export const focusElementInContext = <T extends HTMLElement>(
   hostToFocus: HTMLElement | null | undefined,
   fallbackElement: T
@@ -165,7 +199,7 @@ export const focusElementInContext = <T extends HTMLElement>(
   }
 
   if (elementToFocus) {
-    elementToFocus.focus();
+    focusElement(elementToFocus);
   } else {
     fallbackElement.focus();
   }
