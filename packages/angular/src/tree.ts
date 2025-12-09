@@ -14,11 +14,11 @@ import {
   ElementRef,
   NgZone,
 } from '@angular/core';
-import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 import { TreeBaseDirective } from '@siemens/ix-angular/common';
+import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 
 @ProxyCmp({
-  inputs: ['context', 'model', 'root', 'renderItem'],
+  inputs: ['context', 'model', 'root'],
 })
 @Component({
   selector: 'ix-tree',
