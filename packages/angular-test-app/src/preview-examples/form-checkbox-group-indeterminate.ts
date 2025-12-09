@@ -38,15 +38,7 @@ export default class FormCheckboxGroupIndeterminate {
     const checkedCount = this.childCheckboxes.filter((cb) => cb.checked).length;
     const totalCount = this.childCheckboxes.length;
 
-    if (checkedCount === totalCount) {
-      this.parentCheckbox.indeterminate = false;
-      this.parentCheckbox.checked = true;
-    } else if (checkedCount > 0) {
-      this.parentCheckbox.indeterminate = true;
-      this.parentCheckbox.checked = false;
-    } else {
-      this.parentCheckbox.indeterminate = false;
-      this.parentCheckbox.checked = false;
-    }
+    this.parentCheckbox.checked = checkedCount === totalCount;
+    this.parentCheckbox.indeterminate = checkedCount > 0 && checkedCount < totalCount;
   }
 }
