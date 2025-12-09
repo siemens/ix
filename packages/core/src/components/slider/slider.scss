@@ -117,7 +117,7 @@
     background: transparent;
     cursor: pointer;
     width: 100%;
-    height: 1rem;
+    height: 1.5rem;
     margin: 0;
   }
 
@@ -197,7 +197,7 @@
     transform: translateY(-50%);
   }
   .ticks .tick {
-    --tick-size: 8px;
+    --tick-size: 0.375rem;
     display: block;
     position: absolute;
     width: var(--tick-size);
@@ -207,11 +207,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     left: calc(var(--tick-value) * (100% - var(--thumb-size)) + calc(var(--thumb-size) / 2));
-  }
-
-  .ticks .tick:first-child,
-  .ticks .tick:last-child {
-    --tick-size: 6px;
   }
 
   .ticks .tick:first-child {
