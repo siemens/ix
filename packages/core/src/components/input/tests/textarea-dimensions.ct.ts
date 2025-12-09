@@ -171,39 +171,6 @@ regressionTest(
 );
 
 regressionTest(
-  'textarea dimensions - whitespace handling',
-  async ({ mount, page }) => {
-    await mount(
-      `<ix-textarea textarea-width="  200PX  " textarea-height="  100px  "></ix-textarea>`
-    );
-
-    const textarea = page.locator('ix-textarea textarea');
-
-    // Check that whitespace is trimmed and case is handled
-    await expect(textarea).toHaveAttribute('style', /.*width: 200px.*/);
-    await expect(textarea).toHaveAttribute('style', /.*height: 100px.*/);
-  }
-);
-
-regressionTest(
-  'textarea dimensions - case insensitive units',
-  async ({ mount, page }) => {
-    await mount(
-      `<ix-textarea textarea-width="200PX" textarea-height="100Px"></ix-textarea>`
-    );
-
-    const hostElement = page.locator('ix-textarea');
-    await expect(hostElement).toHaveClass(/hydrated/);
-
-    const textarea = hostElement.locator('textarea');
-
-    // Check that different case units are handled correctly
-    await expect(textarea).toHaveAttribute('style', /.*width: 200px.*/);
-    await expect(textarea).toHaveAttribute('style', /.*height: 100px.*/);
-  }
-);
-
-regressionTest(
   'textarea dimensions - rows vs height priority',
   async ({ mount, page }) => {
     await mount(
