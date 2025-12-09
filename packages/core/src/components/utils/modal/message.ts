@@ -87,6 +87,9 @@ export type MessageContent = {
   ariaDescribedby?: string;
 };
 
+/**
+ * Displays a message modal with configurable actions and returns an event emitter for action responses
+ */
 export async function showMessage<T>(config: MessageConfig<T>) {
   const onMessageAction = new TypedEvent<{
     actionId: string;
@@ -136,8 +139,9 @@ export async function showMessage<T>(config: MessageConfig<T>) {
   dialog.appendChild(content);
   dialog.appendChild(footer);
 
-  const dialogRef =
-    await getCoreDelegate().attachView<HTMLIxModalElement>(dialog);
+  const dialogRef = await getCoreDelegate().attachView<HTMLIxModalElement>(
+    dialog
+  );
 
   dialogRef.addEventListener(
     'dialogClose',
@@ -172,6 +176,9 @@ export async function showMessage<T>(config: MessageConfig<T>) {
   return onMessageAction;
 }
 
+/**
+ * Displays an info message modal with an info icon
+ */
 showMessage.info = (
   title: string,
   message: string,
@@ -193,6 +200,9 @@ showMessage.info = (
   });
 };
 
+/**
+ * Displays a warning message modal with a warning icon
+ */
 showMessage.warning = (
   title: string,
   message: string,
@@ -216,6 +226,9 @@ showMessage.warning = (
   });
 };
 
+/**
+ * Displays an error message modal with an error icon
+ */
 showMessage.error = (
   title: string,
   message: string,
@@ -238,6 +251,9 @@ showMessage.error = (
   });
 };
 
+/**
+ * Displays a success message modal with a success icon
+ */
 showMessage.success = (
   title: string,
   message: string,
@@ -260,6 +276,9 @@ showMessage.success = (
   });
 };
 
+/**
+ * Displays a question message modal with a question icon
+ */
 showMessage.question = (
   title: string,
   message: string,

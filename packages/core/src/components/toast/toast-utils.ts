@@ -68,6 +68,9 @@ export function getToastContainer() {
   return container;
 }
 
+/**
+ * Sets the position of the toast container
+ */
 export function setToastPosition(position: ToastPosition) {
   const container = getToastContainer();
   container.setAttribute('position', position);
