@@ -206,15 +206,15 @@
     border-radius: 100px;
     top: 50%;
     transform: translate(-50%, -50%);
-    left: calc(var(--tick-value) * (100% - var(--thumb-size)) + calc(var(--thumb-size) / 2));
+    left: calc(var(--tick-value) * (100% - var(--thumb-size)) + var(--thumb-size) / 2);
   }
 
-  .ticks .tick:first-child {
+  .ticks .tick.tick-at-min {
     left: 0;
     transform: translateY(-50%);
   }
 
-  .ticks .tick:last-child {
+  .ticks .tick.tick-at-max {
     left: 100%;
     transform: translate(-100%, -50%);
   }

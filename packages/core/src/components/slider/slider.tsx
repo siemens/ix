@@ -364,6 +364,8 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                               tick: true,
                               'tick-active':
                                 this.isMarkerActive(markerValue) && this.trace,
+                              'tick-at-min': left === 0,
+                              'tick-at-max': left === 1,
                             }}
                             style={{
                               '--tick-value': `${left}`,
