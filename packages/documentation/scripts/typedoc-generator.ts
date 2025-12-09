@@ -185,11 +185,15 @@ function processProperties(child: any): TypeDocProperty[] {
   return properties;
 }
 
-function processFunctionSignature(child: any): FunctionDocProperty {
+function processFunctionSignature(
+  child: any,
+  parentName?: string
+): FunctionDocProperty {
   const signature = child.signatures?.[0];
+  const functionName = parentName ? `${parentName}.${child.name}` : child.name;
 
   return {
-    name: child.name,
+    name: functionName,
     parameters:
       signature.parameters?.map((param) => ({
         name: param.name,
@@ -237,7 +241,10 @@ function processProjectChildren(
       if (child.children) {
         for (const staticProp of child.children) {
           if (staticProp.signatures?.length > 0) {
-            const staticFunctionDoc = processFunctionSignature(staticProp);
+            const staticFunctionDoc = processFunctionSignature(
+              staticProp,
+              child.name
+            );
             functionGroups.get(source)!.push(staticFunctionDoc);
           }
         }
