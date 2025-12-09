@@ -8,6 +8,11 @@ overrides:
   cheerio: 1.0.0-rc.12
   rollup: npm:@rollup/wasm-node
 
+patchedDependencies:
+  '@stencil/core@4.38.3':
+    hash: 124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d
+    path: patches/@stencil__core@4.38.3.patch
+
 importers:
 
   .:
@@ -67,10 +72,10 @@ importers:
         version: 1.54.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.53.2)
+        version: 16.0.3(@rollup/wasm-node@4.52.5)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.53.2)(tslib@2.8.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.52.5)(tslib@2.8.1)(typescript@5.8.3)
       '@siemens/ix-icons':
         specifier: ^3.2.0
         version: 3.2.0
@@ -91,10 +96,10 @@ importers:
         version: 6.0.1
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.53.2'
+        version: '@rollup/wasm-node@4.52.5'
       rollup-plugin-import-css:
         specifier: ^4.0.1
-        version: 4.1.1(@rollup/wasm-node@4.53.2)
+        version: 4.1.1(@rollup/wasm-node@4.52.5)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -402,22 +407,22 @@ importers:
         version: 0.10.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.4.5))(eslint-plugin-react@7.37.4(eslint@8.57.1))(eslint@8.57.1)(typescript@5.4.5)
       '@stencil-community/postcss':
         specifier: ^2.2.0
-        version: 2.2.0(@stencil/core@4.38.3)
+        version: 2.2.0(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))
       '@stencil/angular-output-target':
         specifier: ^1.1.1
-        version: 1.1.1(@stencil/core@4.38.3)
+        version: 1.1.1(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))
       '@stencil/core':
         specifier: ^4.38.3
-        version: 4.38.3
+        version: 4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)
       '@stencil/react-output-target':
         specifier: ^1.2.0
-        version: 1.2.0(@stencil/core@4.38.3)(@types/react@19.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        version: 1.2.0(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))(@types/react@19.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@stencil/sass':
         specifier: ^3.2.2
-        version: 3.2.2(@stencil/core@4.38.3)
+        version: 3.2.2(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))
       '@stencil/vue-output-target':
         specifier: ^0.11.8
-        version: 0.11.8(@stencil/core@4.38.3)(vue@3.5.17(typescript@5.4.5))
+        version: 0.11.8(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))(vue@3.5.17(typescript@5.4.5))
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -582,7 +587,7 @@ importers:
         version: 1.54.1
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.53.2)(tslib@2.8.1)(typescript@4.9.5)
+        version: 8.5.0(@rollup/wasm-node@4.52.5)(tslib@2.8.1)(typescript@4.9.5)
       echarts:
         specifier: ^5.5.1
         version: 5.5.1
@@ -594,19 +599,19 @@ importers:
         version: 3.0.2
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.53.2'
+        version: '@rollup/wasm-node@4.52.5'
       rollup-plugin-dts:
         specifier: ^4.2.3
-        version: 4.2.3(@rollup/wasm-node@4.53.2)(typescript@4.9.5)
+        version: 4.2.3(@rollup/wasm-node@4.52.5)(typescript@4.9.5)
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
-        version: 2.2.4(@rollup/wasm-node@4.53.2)
+        version: 2.2.4(@rollup/wasm-node@4.52.5)
       rollup-plugin-sourcemaps:
         specifier: ^0.6.3
-        version: 0.6.3(@rollup/wasm-node@4.53.2)(@types/node@24.0.14)
+        version: 0.6.3(@rollup/wasm-node@4.52.5)(@types/node@24.0.14)
       rollup-plugin-terser:
         specifier: ^7.0.2
-        version: 7.0.2(@rollup/wasm-node@4.53.2)
+        version: 7.0.2(@rollup/wasm-node@4.52.5)
       typescript:
         specifier: ^4.9.5
         version: 4.9.5
@@ -737,10 +742,10 @@ importers:
         version: 19.1.1(@types/react@19.1.0)
       '@vitejs/plugin-legacy':
         specifier: ^5.0.0
-        version: 5.4.2(terser@5.22.0)(vite@4.5.14(@types/node@24.0.14)(less@4.3.0)(sass@1.89.2)(terser@5.22.0))
+        version: 5.4.2(terser@5.22.0)(vite@5.4.21(@types/node@24.0.14)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.89.2)(terser@5.22.0))
       '@vitejs/plugin-react':
         specifier: ^4.0.1
-        version: 4.3.1(vite@4.5.14(@types/node@24.0.14)(less@4.3.0)(sass@1.89.2)(terser@5.22.0))
+        version: 4.3.1(vite@5.4.21(@types/node@24.0.14)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.89.2)(terser@5.22.0))
       eslint:
         specifier: ^8.35.0
         version: 8.56.0
@@ -757,8 +762,8 @@ importers:
         specifier: ^5.1.6
         version: 5.4.5
       vite:
-        specifier: ^4.5.14
-        version: 4.5.14(@types/node@24.0.14)(less@4.3.0)(sass@1.89.2)(terser@5.22.0)
+        specifier: ^5.0.0
+        version: 5.4.21(@types/node@24.0.14)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.89.2)(terser@5.22.0)
 
   packages/nextjs-test-app:
     dependencies:
@@ -804,14 +809,14 @@ importers:
         version: 3.2.0
       '@stencil/react-output-target':
         specifier: ^1.2.0
-        version: 1.2.0(@stencil/core@4.38.3)(@types/react@18.2.33)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.2.0(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))(@types/react@18.2.33)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tslib:
         specifier: '*'
         version: 2.8.1
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.53.2)(tslib@2.8.1)(typescript@5.6.3)
+        version: 8.5.0(@rollup/wasm-node@4.52.5)(tslib@2.8.1)(typescript@5.6.3)
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -868,10 +873,10 @@ importers:
         version: 6.0.1
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.53.2'
+        version: '@rollup/wasm-node@4.52.5'
       rollup-plugin-preserve-directives:
         specifier: ^0.4.0
-        version: 0.4.0(@rollup/wasm-node@4.53.2)
+        version: 0.4.0(@rollup/wasm-node@4.52.5)
       shadow-dom-testing-library:
         specifier: ^1.11.2
         version: 1.11.2(@testing-library/dom@10.4.0)
@@ -1050,7 +1055,7 @@ importers:
         version: 3.2.0
       '@stencil/vue-output-target':
         specifier: ^0.11.8
-        version: 0.11.8(@stencil/core@4.38.3)(vue@3.5.13(typescript@5.8.3))
+        version: 0.11.8(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))(vue@3.5.13(typescript@5.8.3))
     devDependencies:
       '@testing-library/vue':
         specifier: ^8.1.0
@@ -4832,8 +4837,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  '@rollup/wasm-node@4.53.2':
-    resolution: {integrity: sha512-oPSy4fH0C66muvPr/HU13K8X9QFO74Em+JUegHUpEwD61M3lihIlfrLpilhrEiiReFOfG00Qyhf7NGFuwkX2yA==}
+  '@rollup/wasm-node@4.53.3':
+    resolution: {integrity: sha512-mB8z32H6kz4kVjn+tfTGcrXBae7rIeAvm/g6itsE3IqcXpjSRRvk1/EOWDEi5wL8NNmxXiH71t4jtNfr128zpw==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -12728,6 +12733,37 @@ packages:
       terser:
         optional: true
 
+  vite@5.4.21:
+    resolution: {integrity: sha512-o5a9xKjbtuhY6Bi5S3+HvbRERmouabWbyUcpXXUA1u+GNUKoROi9byOJ8M0nHbHYHkYICiMlqxkg1KkYmm25Sw==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || >=20.0.0
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      sass-embedded: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+
   vite@6.3.5:
     resolution: {integrity: sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -17643,49 +17679,49 @@ snapshots:
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.46.2'
 
-  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.53.2)':
+  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.52.5)':
     dependencies:
-      '@rollup/pluginutils': 5.1.2(@rollup/wasm-node@4.53.2)
+      '@rollup/pluginutils': 5.1.2(@rollup/wasm-node@4.52.5)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.10
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.53.2)(tslib@2.8.1)(typescript@4.9.5)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.52.5)(tslib@2.8.1)(typescript@4.9.5)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.53.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.52.5)
       resolve: 1.22.10
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
       typescript: 4.9.5
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.53.2)(tslib@2.8.1)(typescript@5.6.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.52.5)(tslib@2.8.1)(typescript@5.6.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.53.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.52.5)
       resolve: 1.22.10
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
       typescript: 5.6.3
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.53.2)(tslib@2.8.1)(typescript@5.8.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.52.5)(tslib@2.8.1)(typescript@5.8.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.53.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.52.5)
       resolve: 1.22.10
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.53.2)':
+  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.52.5)':
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.1
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
 
   '@rollup/pluginutils@5.1.2(@rollup/wasm-node@4.45.1)':
     dependencies:
@@ -17703,21 +17739,21 @@ snapshots:
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.46.2'
 
-  '@rollup/pluginutils@5.1.2(@rollup/wasm-node@4.53.2)':
+  '@rollup/pluginutils@5.1.2(@rollup/wasm-node@4.52.5)':
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 2.3.1
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
 
-  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.53.2)':
+  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.52.5)':
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 4.0.3
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
 
   '@rollup/rollup-darwin-arm64@4.34.9':
     optional: true
@@ -17767,7 +17803,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  '@rollup/wasm-node@4.53.2':
+  '@rollup/wasm-node@4.53.3':
     dependencies:
       '@types/estree': 1.0.8
     optionalDependencies:
@@ -17863,14 +17899,14 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil-community/postcss@2.2.0(@stencil/core@4.38.3)':
+  '@stencil-community/postcss@2.2.0(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))':
     dependencies:
-      '@stencil/core': 4.38.3
+      '@stencil/core': 4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)
       postcss: 8.4.48
 
-  '@stencil/angular-output-target@1.1.1(@stencil/core@4.38.3)':
+  '@stencil/angular-output-target@1.1.1(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))':
     dependencies:
-      '@stencil/core': 4.38.3
+      '@stencil/core': 4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)
 
   '@stencil/core@4.17.2': {}
 
@@ -17885,7 +17921,7 @@ snapshots:
       '@rollup/rollup-win32-arm64-msvc': 4.34.9
       '@rollup/rollup-win32-x64-msvc': 4.34.9
 
-  '@stencil/core@4.38.3':
+  '@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)':
     optionalDependencies:
       '@rollup/rollup-darwin-arm64': 4.34.9
       '@rollup/rollup-darwin-x64': 4.34.9
@@ -17896,10 +17932,10 @@ snapshots:
       '@rollup/rollup-win32-arm64-msvc': 4.34.9
       '@rollup/rollup-win32-x64-msvc': 4.34.9
 
-  '@stencil/react-output-target@1.2.0(@stencil/core@4.38.3)(@types/react@18.2.33)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@stencil/react-output-target@1.2.0(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))(@types/react@18.2.33)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@18.2.33)
-      '@stencil/core': 4.38.3
+      '@stencil/core': 4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)
       html-react-parser: 5.2.2(@types/react@18.2.33)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -17908,10 +17944,10 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/react-output-target@1.2.0(@stencil/core@4.38.3)(@types/react@19.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@stencil/react-output-target@1.2.0(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))(@types/react@19.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@19.1.0)
-      '@stencil/core': 4.38.3
+      '@stencil/core': 4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)
       html-react-parser: 5.2.2(@types/react@19.1.0)(react@19.1.1)
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
@@ -17920,9 +17956,9 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/sass@3.2.2(@stencil/core@4.38.3)':
+  '@stencil/sass@3.2.2(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))':
     dependencies:
-      '@stencil/core': 4.38.3
+      '@stencil/core': 4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)
       sass-embedded: 1.93.0
 
   '@stencil/ssr@0.1.1(next@15.3.3(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.93.0))(vite@7.0.6(@types/node@20.16.5)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.43.1)(tsx@4.20.5)(yaml@2.8.0))(webpack@5.99.9)':
@@ -17937,17 +17973,17 @@ snapshots:
       vite: 7.0.6(@types/node@20.16.5)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.43.1)(tsx@4.20.5)(yaml@2.8.0)
       webpack: 5.99.9
 
-  '@stencil/vue-output-target@0.11.8(@stencil/core@4.38.3)(vue@3.5.13(typescript@5.8.3))':
+  '@stencil/vue-output-target@0.11.8(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       vue: 3.5.13(typescript@5.8.3)
     optionalDependencies:
-      '@stencil/core': 4.38.3
+      '@stencil/core': 4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)
 
-  '@stencil/vue-output-target@0.11.8(@stencil/core@4.38.3)(vue@3.5.17(typescript@5.4.5))':
+  '@stencil/vue-output-target@0.11.8(@stencil/core@4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d))(vue@3.5.17(typescript@5.4.5))':
     dependencies:
       vue: 3.5.17(typescript@5.4.5)
     optionalDependencies:
-      '@stencil/core': 4.38.3
+      '@stencil/core': 4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)
 
   '@storybook/addon-a11y@9.0.18(storybook@9.0.18(@testing-library/dom@10.4.0)(prettier@3.4.2))':
     dependencies:
@@ -18774,7 +18810,7 @@ snapshots:
     dependencies:
       vite: 7.0.6(@types/node@24.0.14)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.89.2)(terser@5.43.1)(tsx@4.20.5)(yaml@2.8.0)
 
-  '@vitejs/plugin-legacy@5.4.2(terser@5.22.0)(vite@4.5.14(@types/node@24.0.14)(less@4.3.0)(sass@1.89.2)(terser@5.22.0))':
+  '@vitejs/plugin-legacy@5.4.2(terser@5.22.0)(vite@5.4.21(@types/node@24.0.14)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.89.2)(terser@5.22.0))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/preset-env': 7.25.3(@babel/core@7.25.2)
@@ -18785,18 +18821,18 @@ snapshots:
       regenerator-runtime: 0.14.1
       systemjs: 6.15.1
       terser: 5.22.0
-      vite: 4.5.14(@types/node@24.0.14)(less@4.3.0)(sass@1.89.2)(terser@5.22.0)
+      vite: 5.4.21(@types/node@24.0.14)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.89.2)(terser@5.22.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-react@4.3.1(vite@4.5.14(@types/node@24.0.14)(less@4.3.0)(sass@1.89.2)(terser@5.22.0))':
+  '@vitejs/plugin-react@4.3.1(vite@5.4.21(@types/node@24.0.14)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.89.2)(terser@5.22.0))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.25.2)
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.25.2)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 4.5.14(@types/node@24.0.14)(less@4.3.0)(sass@1.89.2)(terser@5.22.0)
+      vite: 5.4.21(@types/node@24.0.14)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.89.2)(terser@5.22.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -21442,7 +21478,6 @@ snapshots:
       '@esbuild/win32-arm64': 0.21.5
       '@esbuild/win32-ia32': 0.21.5
       '@esbuild/win32-x64': 0.21.5
-    optional: true
 
   esbuild@0.23.1:
     optionalDependencies:
@@ -22875,7 +22910,7 @@ snapshots:
 
   ionicons@8.0.13:
     dependencies:
-      '@stencil/core': 4.38.3
+      '@stencil/core': 4.38.3(patch_hash=124cee74d04e9338ce0f21a6b320fb5523f51ea709afca4706e86bc53b71468d)
 
   ip-address@9.0.5:
     dependencies:
@@ -26284,10 +26319,10 @@ snapshots:
       glob: 11.0.1
       package-json-from-dist: 1.0.1
 
-  rollup-plugin-dts@4.2.3(@rollup/wasm-node@4.53.2)(typescript@4.9.5):
+  rollup-plugin-dts@4.2.3(@rollup/wasm-node@4.52.5)(typescript@4.9.5):
     dependencies:
       magic-string: 0.26.7
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
       typescript: 4.9.5
     optionalDependencies:
       '@babel/code-frame': 7.26.2
@@ -26300,20 +26335,20 @@ snapshots:
     optionalDependencies:
       '@babel/code-frame': 7.27.1
 
-  rollup-plugin-import-css@4.1.1(@rollup/wasm-node@4.53.2):
+  rollup-plugin-import-css@4.1.1(@rollup/wasm-node@4.52.5):
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.53.2)
-      rollup: '@rollup/wasm-node@4.53.2'
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.52.5)
+      rollup: '@rollup/wasm-node@4.52.5'
 
-  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.53.2):
+  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.52.5):
     dependencies:
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
 
-  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.53.2):
+  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.52.5):
     dependencies:
-      '@rollup/pluginutils': 5.1.2(@rollup/wasm-node@4.53.2)
+      '@rollup/pluginutils': 5.1.2(@rollup/wasm-node@4.52.5)
       magic-string: 0.30.11
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
 
   rollup-plugin-react-scoped-css@1.1.0:
     dependencies:
@@ -26323,19 +26358,19 @@ snapshots:
       js-xxhash: 4.0.0
       rollup: '@rollup/wasm-node@4.45.1'
 
-  rollup-plugin-sourcemaps@0.6.3(@rollup/wasm-node@4.53.2)(@types/node@24.0.14):
+  rollup-plugin-sourcemaps@0.6.3(@rollup/wasm-node@4.52.5)(@types/node@24.0.14):
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.53.2)
-      rollup: '@rollup/wasm-node@4.53.2'
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.52.5)
+      rollup: '@rollup/wasm-node@4.52.5'
       source-map-resolve: 0.6.0
     optionalDependencies:
       '@types/node': 24.0.14
 
-  rollup-plugin-terser@7.0.2(@rollup/wasm-node@4.53.2):
+  rollup-plugin-terser@7.0.2(@rollup/wasm-node@4.52.5):
     dependencies:
       '@babel/code-frame': 7.22.13
       jest-worker: 26.6.2
-      rollup: '@rollup/wasm-node@4.53.2'
+      rollup: '@rollup/wasm-node@4.52.5'
       serialize-javascript: 4.0.0
       terser: 5.22.0
 
@@ -28103,18 +28138,6 @@ snapshots:
       - tsx
       - yaml
 
-  vite@4.5.14(@types/node@24.0.14)(less@4.3.0)(sass@1.89.2)(terser@5.22.0):
-    dependencies:
-      esbuild: 0.18.20
-      postcss: 8.5.3
-      rollup: '@rollup/wasm-node@4.45.1'
-    optionalDependencies:
-      '@types/node': 24.0.14
-      fsevents: 2.3.3
-      less: 4.3.0
-      sass: 1.89.2
-      terser: 5.22.0
-
   vite@4.5.14(@types/node@24.0.14)(less@4.3.0)(sass@1.93.0)(terser@5.43.1):
     dependencies:
       esbuild: 0.18.20
@@ -28126,6 +28149,19 @@ snapshots:
       less: 4.3.0
       sass: 1.93.0
       terser: 5.43.1
+
+  vite@5.4.21(@types/node@24.0.14)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.89.2)(terser@5.22.0):
+    dependencies:
+      esbuild: 0.21.5
+      postcss: 8.5.6
+      rollup: '@rollup/wasm-node@4.53.3'
+    optionalDependencies:
+      '@types/node': 24.0.14
+      fsevents: 2.3.3
+      less: 4.3.0
+      sass: 1.89.2
+      sass-embedded: 1.93.0
+      terser: 5.22.0
 
   vite@6.3.5(@types/node@24.0.14)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.43.1)(tsx@4.20.5)(yaml@2.8.0):
     dependencies:
