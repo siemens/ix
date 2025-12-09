@@ -6,7 +6,4 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { defineConfig } from 'vite';
-import './visual-regression.config.ts';
-
-export default defineConfig({});
+export * from './loading.service';
