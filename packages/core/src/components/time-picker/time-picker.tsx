@@ -340,15 +340,11 @@ export class TimePicker {
         elementContainer.focus({ preventScroll: true });
 
         if (!this.isElementVisible(elementContainer, elementList)) {
-          elementContainer.scrollIntoView({
-            block: this.focusScrollAlignment,
-          });
-
-          if (this.focusScrollAlignment === 'end') {
-            elementList.scrollTop += 4;
-          } else {
-            elementList.scrollTop -= 4;
-          }
+          this.scrollElementIntoView(
+            elementContainer,
+            elementList,
+            this.focusScrollAlignment
+          );
         }
       }
     }
@@ -419,7 +415,23 @@ export class TimePicker {
     }
   }
 
-  onUnitCellBlur(unit: TimePickerDescriptorUnit) {
+  onUnitCellBlur(unit: TimePickerDescriptorUnit, event: FocusEvent) {
+    const relatedTarget = event.relatedTarget as HTMLElement;
+
+    // Check if column lost focus to scroll back to selected value
+    if (relatedTarget) {
+      const relatedUnit =
+        relatedTarget.dataset.elementContainerId?.split('-')[0];
+
+      if (relatedUnit !== unit) {
+        this.elementListScrollToTop(
+          unit,
+          Number(this.formattedTime[unit]),
+          'smooth'
+        );
+      }
+    }
+
     this.isUnitFocused = false;
     const focusedValue = Number(this.formattedTime[unit]);
 
@@ -460,6 +472,24 @@ export class TimePicker {
       elementRect.top >= containerRect.top &&
       elementRect.bottom <= containerRect.bottom
     );
+  }
+
+  private scrollElementIntoView(
+    element: HTMLElement,
+    container: HTMLElement,
+    alignment: 'start' | 'end'
+  ) {
+    const SCROLL_BUFFER = 1;
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+
+    if (alignment === 'end') {
+      container.scrollTop +=
+        elementRect.bottom - containerRect.bottom + SCROLL_BUFFER;
+    } else {
+      container.scrollTop +=
+        elementRect.top - containerRect.top - SCROLL_BUFFER;
+    }
   }
 
   private updateFocusedValue(value: number) {
@@ -755,6 +785,10 @@ export class TimePicker {
   }
 
   private select(unit: TimePickerDescriptorUnit, number: number) {
+    if (this.isSelected(unit, number)) {
+      return;
+    }
+
     this.formattedTime = {
       ...this.formattedTime!,
       [unit]: String(number),
@@ -907,16 +941,15 @@ export class TimePicker {
                             selected: this.isSelected(descriptor.unit, number),
                             'element-container': true,
                           }}
-                          onMouseDown={(e) => {
-                            e.preventDefault();
-                          }}
                           onClick={() => {
                             this.select(descriptor.unit, number);
                           }}
                           onFocus={() =>
                             this.onUnitCellFocus(descriptor.unit, number)
                           }
-                          onBlur={() => this.onUnitCellBlur(descriptor.unit)}
+                          onBlur={(e) =>
+                            this.onUnitCellBlur(descriptor.unit, e)
+                          }
                           tabindex={this.getElementContainerTabIndex(
                             number,
                             descriptor.unit
