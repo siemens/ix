@@ -61,7 +61,7 @@ export function convertToPx(
   }
 
   const unitRegex = /^(-?\d*\.?\d+)\s*(px|rem|em|%)?$/;
-  const match = value.trim().match(unitRegex);
+  const match = unitRegex.exec(value.trim());
 
   if (!match) {
     return undefined;
