@@ -45,7 +45,6 @@ function getAngularConfig() {
 
 export const config: Config = {
   tsconfig: 'tsconfig.lib.json',
-  globalScript: './src/setup.ts',
   extras: {
     enableImportInjection: true,
     addGlobalStyleToComponents: false,
@@ -122,7 +121,7 @@ export const config: Config = {
         },
       ],
       externalRuntime: false,
-      includeGlobalScripts: true,
+      includeGlobalScripts: false,
     },
     {
       type: 'docs-custom',
