@@ -118,6 +118,10 @@ export class Tabs {
     return this.hostElement.shadowRoot?.querySelector('.items-content');
   }
 
+  private getTabsContainer() {
+    return this.hostElement.shadowRoot?.querySelector('.tab-items');
+  }
+
   private initResizeObserver() {
     const parentElement = this.hostElement.parentElement;
     if (!parentElement) return;
@@ -201,14 +205,21 @@ export class Tabs {
   onSelectedChange(newValue: number) {
     if (!this.showArrows()) return;
 
-    const tabRect = this.getTab(newValue).getBoundingClientRect();
-    const wrapperWidth = this.getTabsWrapper()?.clientWidth;
-    const arrowWidth = 32;
+    const tab = this.getTab(newValue);
+    const container = this.getTabsContainer();
 
-    if (tabRect.left < arrowWidth) {
-      this.move(-tabRect.left + arrowWidth, true);
-    } else if (wrapperWidth && tabRect.right > wrapperWidth - arrowWidth) {
-      this.move(wrapperWidth - tabRect.right - arrowWidth, true);
+    if (!tab || !container) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const tabRect = tab.getBoundingClientRect();
+    const arrowWidth = 32;
+    const tabLeftRelative = tabRect.left - containerRect.left;
+    const tabRightRelative = tabLeftRelative + tabRect.width;
+
+    if (tabLeftRelative < arrowWidth) {
+      this.move(-tabLeftRelative + arrowWidth, true);
+    } else if (tabRightRelative > containerRect.width - arrowWidth) {
+      this.move(containerRect.width - tabRightRelative - arrowWidth, true);
     }
   }
 
