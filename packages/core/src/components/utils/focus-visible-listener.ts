@@ -158,6 +158,37 @@ export const focusLastDescendant = <
   focusElementInContext(lastInput, fallbackElement ?? ref);
 };
 
+export const hasActiveElement = <R extends HTMLElement>(ref: R) => {
+  // Check if shadow root has an active element
+  if (ref.shadowRoot?.activeElement) {
+    return true;
+  }
+
+  // Check if any element in the light DOM is active
+  const rootNode = ref.getRootNode();
+  const activeElement = (rootNode as any).activeElement;
+
+  if (activeElement && ref.contains(activeElement)) {
+    return true;
+  }
+
+  // Check aria-activedescendant
+  const shadowRootActiveElement = (rootNode as ShadowRoot)
+    .activeElement as HTMLElement;
+  if (shadowRootActiveElement?.ariaActiveDescendantElement) {
+    const ariaDescendant = shadowRootActiveElement.ariaActiveDescendantElement;
+    // For aria-activedescendant, check both the element itself and if it's in our shadow root
+    if (
+      ref.shadowRoot?.contains(ariaDescendant) ||
+      ref.contains(ariaDescendant)
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
 /**
  * Checks if an element is part of a custom element's shadow root
  * and returns the host element if it is, otherwise returns the element itself.

@@ -47,6 +47,7 @@ import {
   focusElementInContext,
   focusFirstDescendant,
   focusLastDescendant,
+  hasActiveElement,
   queryElements,
 } from '../utils/focus-visible-listener';
 import { IxComponent } from '../utils/internal/component';
@@ -296,9 +297,23 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
       return true;
     };
 
+    const focusFirst = (element: HTMLElement) =>
+      requestAnimationFrameNoNgZone(() => {
+        focusFirstDescendant(element);
+      });
+
+    const focusLast = (element: HTMLElement) =>
+      requestAnimationFrameNoNgZone(() => {
+        focusLastDescendant(element);
+      });
+
     switch (event.key) {
       case 'ArrowUp':
         if (openDropdownIfNeeded() === false) {
+          if (this.disableFocusHandling === false) {
+            focusFirst(this.hostElement);
+          }
+
           return;
         }
 
@@ -306,14 +321,16 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
           break;
         }
 
-        requestAnimationFrameNoNgZone(() => {
-          focusLastDescendant(this.hostElement);
-        });
+        focusLast(this.hostElement);
         break;
       case 'ArrowDown':
       case ' ':
       case 'Enter':
         if (openDropdownIfNeeded() === false) {
+          if (this.disableFocusHandling === false) {
+            focusFirst(this.hostElement);
+          }
+
           return;
         }
 
@@ -321,10 +338,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
           break;
         }
 
-        requestAnimationFrameNoNgZone(() => {
-          focusFirstDescendant(this.hostElement);
-        });
-
+        focusFirst(this.hostElement);
         break;
       default:
     }

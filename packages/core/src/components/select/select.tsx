@@ -251,7 +251,6 @@ export class Select
   private inputElement?: HTMLInputElement;
   private keyboardNavigationCleanup?: () => void;
 
-  private observeItemsMutation?: MutationObserver;
   private focusVisibleUtility?: FocusVisibleUtility;
 
   private touched = false;
@@ -311,22 +310,10 @@ export class Select
   }
 
   connectedCallback(): void {
-    this.observeItemsMutation = new MutationObserver(() => {
-      this.updateItemIds();
-    });
-
-    this.observeItemsMutation.observe(this.hostElement, {
-      subtree: true,
-      childList: true,
-      characterData: true,
-    });
-    this.updateItemIds();
-
     this.focusVisibleUtility = addFocusVisibleListener(this.hostElement);
   }
 
   disconnectedCallback(): void {
-    this.observeItemsMutation?.disconnect();
     this.focusVisibleUtility?.destroy();
   }
 
@@ -354,20 +341,6 @@ export class Select
   @Method()
   async hasValidValue(): Promise<boolean> {
     return this.required && !!this.hasValue();
-  }
-
-  /**
-   * Give every item an id if it doesn't have one yet
-   * This is needed to handle aria-activedescendant properly
-   */
-  private updateItemIds() {
-    for (const item of this.items) {
-      if (!item.id) {
-        item.id = `ix-select-item-for-${this.hostId}-${Math.random()
-          .toString(36)
-          .substring(2, 9)}`;
-      }
-    }
   }
 
   private hasValue() {
@@ -557,6 +530,13 @@ export class Select
     return this.hostElement;
   }
 
+  private setItemActive(item: HTMLElement) {
+    const inputElement = this.inputRef.current!;
+
+    (item as HTMLIxSelectItemElement).hasVisualFocus = true;
+    inputElement.ariaActiveDescendantElement = item as HTMLElement;
+  }
+
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
     this.dropdownShow = event.detail;
 
@@ -578,12 +558,8 @@ export class Select
         {
           getActiveElement: () => this.getActiveVisualFocusedItem(),
           setItemActive: (item: HTMLElement) => {
-            const inputElement = this.inputRef.current;
-
             this.removeVisualFocusFromItems();
-
-            (item as HTMLIxSelectItemElement).hasVisualFocus = true;
-            inputElement?.setAttribute('aria-activedescendant', item.id);
+            this.setItemActive(item);
           },
           getEventListenerTarget: () => this.hostElement,
         }
@@ -735,6 +711,7 @@ export class Select
     switch (event.key) {
       case 'Enter':
       case ' ':
+        console.log('select item');
         if (this.hasActiveVisualFocusItem()) {
           const item =
             this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
@@ -940,15 +917,15 @@ export class Select
               detail.keyEvent.altKey === false
             ) {
               this.removeVisualFocusFromItems();
-              this.focusableItems[0].hasVisualFocus = true;
+              this.setItemActive(this.focusableItems[0]);
               this.dropdownItemsVisualFocused = true;
             }
 
             if (detail.keyEvent.key === 'ArrowUp') {
               this.removeVisualFocusFromItems();
-              this.focusableItems[
-                this.focusableItems.length - 1
-              ].hasVisualFocus = true;
+              this.setItemActive(
+                this.focusableItems[this.focusableItems.length - 1]
+              );
               this.dropdownItemsVisualFocused = true;
             }
           }}
