@@ -311,6 +311,39 @@ regressionTest('should have correct aria label', async ({ mount, page }) => {
   await expect(expandButton).toHaveAttribute('aria-label', 'Expand sidebar');
 });
 
+regressionTest(
+  'should collapse category when menu is programmatically collapsed',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-application force-breakpoint="lg">
+      <ix-menu>
+        <ix-menu-category label="Top level Category" icon="rocket">
+          <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
+          <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-application>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const menuExpandIcon = menu.locator('ix-menu-expand-icon');
+    const menuCategory = page.locator('ix-menu-category');
+
+    await menuExpandIcon.click();
+    await expect(menu).toHaveClass(/expanded/);
+
+    await menuCategory.click();
+    await expect(menuCategory).toHaveClass(/expanded/);
+
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.expand = false;
+    });
+
+    await expect(menu).not.toHaveClass(/expanded/);
+    await expect(menuCategory).not.toHaveClass(/expanded/);
+  }
+);
+
 async function clickAboutButton(element: Locator, page: Page) {
   const aboutButton = element.locator('ix-menu-item#aboutAndLegal');
   await aboutButton.click();
