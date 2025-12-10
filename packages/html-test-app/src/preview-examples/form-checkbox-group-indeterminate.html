@@ -46,7 +46,6 @@ LICENSE file in the root directory of this source tree.
           parent.checked = checkedCount === totalCount;
           parent.indeterminate = checkedCount > 0 && checkedCount < totalCount;
         }
-        
         function parentCheckedChange(event) {
           const { target } = event;
           event.stopPropagation();
