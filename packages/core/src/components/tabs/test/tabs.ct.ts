@@ -203,7 +203,6 @@ regressionTest(
     await expect(clickedTab).not.toBeInViewport();
 
     await clickedTab.click();
-    await page.waitForTimeout(500);
 
     await expect(clickedTab).toBeInViewport();
 
