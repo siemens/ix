@@ -8,9 +8,7 @@
  */
 
 import { Component } from '@angular/core';
-import { IxButton } from '@siemens/ix-angular/standalone';
-
-import { showMessage } from '@siemens/ix';
+import { IxButton, MessageService } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
@@ -20,9 +18,11 @@ import { showMessage } from '@siemens/ix';
   `,
 })
 export default class Message {
+  constructor(private readonly messageService: MessageService) {}
+
   triggerMessage = async () => {
     (
-      await showMessage.success(
+      await this.messageService.success(
         'Example title',
         'message',
         'Save',

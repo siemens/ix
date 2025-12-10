@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export { showModalLoading } from './loading';
+export { showModalLoading, ModalLoadingContext } from './loading';
 export { MessageConfig, showMessage } from './message';
 export {
   closeModal,
