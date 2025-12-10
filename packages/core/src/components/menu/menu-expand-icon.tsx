@@ -43,7 +43,6 @@ export class MenuExpandIcon {
   /**
    * Accessibility label for the menu expand icon
    * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
-   * @default 'Expand'
    */
   @Prop() ixAriaLabel?: string = 'Expand';
 

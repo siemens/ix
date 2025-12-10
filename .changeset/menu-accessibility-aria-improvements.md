@@ -23,11 +23,11 @@ feat(accessibility): Improve ARIA roles and labels for menu components
 
 **Menu Settings Component (`ix-menu-settings`):**
 
-- Added `i18nClose` prop for translatable close button label (default: "Close Settings")
+- Added `ariaLabelCloseButton` prop for accessible close button label (default: "Close Settings")
 
 **Menu About Component (`ix-menu-about`):**
 
-- Added `i18nClose` prop for translatable close button label (default: "Close About")
+- Added `ariaLabelCloseButton` prop for accessible close button label (default: "Close About")
 
 **Icon Button Component (`ix-icon-button`):**
 
@@ -35,4 +35,4 @@ feat(accessibility): Improve ARIA roles and labels for menu components
 
 **Base Button Component (`base-button`):**
 
-- Icons in icon-only buttons now have `aria-hidden="true"` (marked as decorative when button has accessible label)
+- All icons in buttons now have `aria-hidden="true"` (marked as decorative since the button text or aria-label provides the accessible name)

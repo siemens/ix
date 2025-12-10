@@ -2209,10 +2209,10 @@ export namespace Components {
          */
         "activeTabLabel"?: string;
         /**
-          * i18n label for close button
+          * Aria label for close button
           * @default 'Close About'
          */
-        "i18nClose": string;
+        "ariaLabelCloseButton": string;
         /**
           * Content of the header
           * @default 'About & legal information'
@@ -2398,10 +2398,10 @@ export namespace Components {
          */
         "activeTabLabel"?: string;
         /**
-          * i18n label for close button
+          * Aria label for close button
           * @default 'Close Settings'
          */
-        "i18nClose": string;
+        "ariaLabelCloseButton": string;
         /**
           * Label of first tab
           * @default 'Settings'
@@ -8115,10 +8115,10 @@ declare namespace LocalJSX {
          */
         "activeTabLabel"?: string;
         /**
-          * i18n label for close button
+          * Aria label for close button
           * @default 'Close About'
          */
-        "i18nClose"?: string;
+        "ariaLabelCloseButton"?: string;
         /**
           * Content of the header
           * @default 'About & legal information'
@@ -8333,10 +8333,10 @@ declare namespace LocalJSX {
          */
         "activeTabLabel"?: string;
         /**
-          * i18n label for close button
+          * Aria label for close button
           * @default 'Close Settings'
          */
-        "i18nClose"?: string;
+        "ariaLabelCloseButton"?: string;
         /**
           * Label of first tab
           * @default 'Settings'

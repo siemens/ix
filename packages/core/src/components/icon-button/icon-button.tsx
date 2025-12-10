@@ -126,8 +126,9 @@ export class IconButton {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       extraClasses: this.getIconSizeClass(),
-      tabIndex:
-        this.hostElement.tabIndex === 0 ? undefined : this.hostElement.tabIndex,
+      tabIndex: this.hostElement.hasAttribute('tabindex')
+        ? this.hostElement.tabIndex
+        : undefined,
     };
 
     return (

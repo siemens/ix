@@ -59,7 +59,7 @@ export const MenuTabs: FunctionalComponent<MenuTabsProps> = ({ context }) => {
           size="24"
           icon={iconClose}
           iconColor="color-soft-text"
-          aria-label={context.i18nClose}
+          aria-label={context.ariaLabelCloseButton}
           onClick={(e) =>
             context.close.emit({
               name:

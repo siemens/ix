@@ -1678,14 +1678,14 @@ export declare interface IxMenu extends Components.IxMenu {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMenuAbout,
-  inputs: ['activeTabLabel', 'i18nClose', 'label']
+  inputs: ['activeTabLabel', 'ariaLabelCloseButton', 'label']
 })
 @Component({
   selector: 'ix-menu-about',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabLabel', 'i18nClose', 'label'],
+  inputs: ['activeTabLabel', 'ariaLabelCloseButton', 'label'],
   outputs: ['tabChange', 'close'],
 })
 export class IxMenuAbout {
@@ -1888,14 +1888,14 @@ export declare interface IxMenuItem extends Components.IxMenuItem {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMenuSettings,
-  inputs: ['activeTabLabel', 'i18nClose', 'label']
+  inputs: ['activeTabLabel', 'ariaLabelCloseButton', 'label']
 })
 @Component({
   selector: 'ix-menu-settings',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabLabel', 'i18nClose', 'label'],
+  inputs: ['activeTabLabel', 'ariaLabelCloseButton', 'label'],
   outputs: ['tabChange', 'close'],
 })
 export class IxMenuSettings {

@@ -45,9 +45,10 @@ export class MenuSettings {
   @Prop() label = 'Settings';
 
   /**
-   * i18n label for close button
+   * Aria label for close button
    */
-  @Prop({ attribute: 'i18n-close' }) i18nClose = 'Close Settings';
+  @Prop({ attribute: 'aria-label-close-button' }) ariaLabelCloseButton =
+    'Close Settings';
 
   /** @internal */
   @Prop() show = false;
