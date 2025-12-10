@@ -26,6 +26,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  clearInputValue,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -607,17 +608,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    */
   @Method()
   async clear(): Promise<void> {
-    this._isClearing = true;
-    this.touched = false;
-    this.isInputInvalid = false;
-    this.isInvalid = false;
-    this.invalidReason = undefined;
-    this.value = '';
-    this.from = undefined;
-    this.updateFormInternalValue('');
-    this.valueChange.emit('');
-    this.syncValidationClasses();
-    this._isClearing = false;
+    return clearInputValue(this);
   }
 
   render() {

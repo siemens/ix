@@ -7,8 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxTextarea } from '@siemens/ix-react';
+import { IxTextarea, IxButton } from '@siemens/ix-react';
+import { useRef } from 'react';
 
 export default () => {
-  return <IxTextarea></IxTextarea>;
+  const textareaRef = useRef<HTMLIxTextareaElement>(null);
+
+  return (
+    <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+      <IxTextarea required ref={textareaRef} value="Sample text content"></IxTextarea>
+      <IxButton onClick={() => textareaRef.current?.clear()}>Clear</IxButton>
+    </div>
+  );
 };

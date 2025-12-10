@@ -1905,6 +1905,10 @@ export namespace Components {
          */
         "allowedCharactersPattern"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Specifies whether the text field is disabled.
           * @default false
          */
@@ -1973,10 +1977,6 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
-        /**
-          * Resets the input field validation state by removing the touched state and clearing validation states while preserving the current value.
-         */
-        "reset": () => Promise<void>;
         /**
           * Specifies whether to show the text as a tooltip.
          */
@@ -2524,6 +2524,10 @@ export namespace Components {
          */
         "allowedCharactersPattern"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disables the input field
           * @default false
          */
@@ -2588,10 +2592,6 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
-        /**
-          * Resets the input field validation state by removing the touched state and clearing validation states while preserving the current value.
-         */
-        "reset": () => Promise<void>;
         /**
           * Indicates if the stepper buttons should be shown
          */
@@ -3356,6 +3356,10 @@ export namespace Components {
      */
     interface IxTextarea {
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Determines if the textarea field is disabled.
           * @default false
          */
@@ -3420,10 +3424,6 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
-        /**
-          * Resets the input field validation state by removing the touched state and clearing validation states while preserving the current value.
-         */
-        "reset": () => Promise<void>;
         /**
           * Determines the resize behavior of the textarea field. Resizing can be enabled in one direction, both directions or completely disabled.
           * @default 'both'

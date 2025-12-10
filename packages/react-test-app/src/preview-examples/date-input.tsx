@@ -7,8 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxDateInput } from '@siemens/ix-react';
+import { IxDateInput, IxButton } from '@siemens/ix-react';
+import { useRef } from 'react';
 
 export default () => {
-  return <IxDateInput value="1970/01/01"></IxDateInput>;
+  const dateInputRef = useRef<HTMLIxDateInputElement>(null);
+
+  return (
+    <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end' }}>
+      <IxDateInput required ref={dateInputRef} value="1970/01/01"></IxDateInput>
+      <IxButton onClick={() => dateInputRef.current?.clear()}>Clear</IxButton>
+    </div>
+  );
 };

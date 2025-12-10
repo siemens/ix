@@ -30,7 +30,7 @@ import { TextareaElement } from './input.fc';
 import {
   mapValidationResult,
   onInputBlur,
-  resetInputValidation,
+  clearInputValue,
 } from './input.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
@@ -290,12 +290,12 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   /**
-   * Resets the input field validation state by removing the touched state
-   * and clearing validation states while preserving the current value.
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
    */
   @Method()
-  async reset(): Promise<void> {
-    return resetInputValidation(this);
+  async clear(): Promise<void> {
+    return clearInputValue(this);
   }
 
   render() {

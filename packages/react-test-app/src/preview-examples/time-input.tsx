@@ -7,8 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxTimeInput } from '@siemens/ix-react';
+import { IxTimeInput, IxButton } from '@siemens/ix-react';
+import { useRef } from 'react';
 
 export default () => {
-  return <IxTimeInput></IxTimeInput>;
+  const timeInputRef = useRef<HTMLIxTimeInputElement>(null);
+
+  return (
+    <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end' }}>
+      <IxTimeInput required ref={timeInputRef} value="12:30"></IxTimeInput>
+      <IxButton onClick={() => timeInputRef.current?.clear()}>Clear</IxButton>
+    </div>
+  );
 };
