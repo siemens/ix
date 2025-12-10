@@ -173,7 +173,7 @@ regressionTest(
   }
 );
 
-regressionTest.only(
+regressionTest(
   'should scroll selected tab into view inside narrow container',
   async ({ mount, page }) => {
     await mount(`
