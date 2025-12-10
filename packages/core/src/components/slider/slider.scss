@@ -168,7 +168,7 @@
   @include clear-browser-thumb();
 
   @include thumb() {
-    border-radius: 100px;
+    border-radius: 50%;
     background-color: var(--theme-slider-thumb--background);
     height: var(--thumb-size);
     width: var(--thumb-size);
@@ -203,7 +203,7 @@
     width: var(--tick-size);
     height: var(--tick-size);
     background-color: var(--tick-color);
-    border-radius: 100px;
+    border-radius: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     left: calc(var(--tick-value) * (100% - var(--thumb-size)) + var(--thumb-size) / 2);
