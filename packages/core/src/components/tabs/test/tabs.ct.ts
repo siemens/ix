@@ -172,3 +172,41 @@ regressionTest(
     await expect(lastTab).not.toBeInViewport();
   }
 );
+
+regressionTest.only(
+  'should scroll selected tab into view inside narrow container',
+  async ({ mount, page }) => {
+    await mount(`
+    <div style="width: 350px; border: 1px solid #ccc; padding: 10px;">
+      <ix-tabs style="width: 100%;">
+        <ix-tab-item style="min-width: 100px;">Item 1</ix-tab-item>
+        <ix-tab-item style="min-width: 100px;">Item 2</ix-tab-item>
+        <ix-tab-item style="min-width: 100px;">Item 3</ix-tab-item>
+        <ix-tab-item style="min-width: 100px;">Item 4</ix-tab-item>
+        <ix-tab-item style="min-width: 100px;">Item 5</ix-tab-item>
+        <ix-tab-item style="min-width: 100px;">Item 6</ix-tab-item>
+        <ix-tab-item style="min-width: 100px;">Item 7</ix-tab-item>
+        <ix-tab-item style="min-width: 100px;">Item 8</ix-tab-item>
+        <ix-tab-item style="min-width: 100px;">Item 9</ix-tab-item>
+        <ix-tab-item style="min-width: 100px;">Item 10</ix-tab-item>
+      </ix-tabs>
+    </div>
+  `);
+    await page.setViewportSize({ width: 400, height: 200 });
+
+    await page.waitForTimeout(500);
+
+    const clickedTab = page.locator('ix-tab-item').nth(7);
+    const firstVisibleTab = page.locator('ix-tab-item').nth(0);
+
+    await expect(firstVisibleTab).toBeInViewport();
+    await expect(clickedTab).not.toBeInViewport();
+
+    await clickedTab.click();
+    await page.waitForTimeout(500);
+
+    await expect(clickedTab).toBeInViewport();
+
+    await expect(firstVisibleTab).not.toBeInViewport();
+  }
+);
