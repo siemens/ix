@@ -6,7 +6,6 @@ import { ProxyCmp } from './angular-component-lib/utils';
 
 import type { Components } from '@siemens/ix/components';
 
-import { defineCustomElement as defineADemo } from '@siemens/ix/components/a-demo.js';
 import { defineCustomElement as defineIxActionCard } from '@siemens/ix/components/ix-action-card.js';
 import { defineCustomElement as defineIxApplication } from '@siemens/ix/components/ix-application.js';
 import { defineCustomElement as defineIxApplicationHeader } from '@siemens/ix/components/ix-application-header.js';
@@ -108,28 +107,6 @@ import { defineCustomElement as defineIxUpload } from '@siemens/ix/components/ix
 import { defineCustomElement as defineIxValidationTooltip } from '@siemens/ix/components/ix-validation-tooltip.js';
 import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/components/ix-workflow-step.js';
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
-@ProxyCmp({
-  defineCustomElementFn: defineADemo
-})
-@Component({
-  selector: 'a-demo',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-})
-export class ADemo {
-  protected el: HTMLADemoElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface ADemo extends Components.ADemo {}
-
-
 @ProxyCmp({
   defineCustomElementFn: defineIxActionCard,
   inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'selected', 'subheading', 'variant']

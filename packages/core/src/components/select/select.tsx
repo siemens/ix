@@ -84,7 +84,7 @@ export class Select
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronDownIconButton: string = 'Open select dropdown';
+  @Prop() ariaLabelChevronDownIconButton?: string = 'Open select dropdown';
 
   /**
    * ARIA label for the clear icon button
@@ -713,7 +713,6 @@ export class Select
     switch (event.key) {
       case 'Enter':
       case ' ':
-        console.log('select item');
         if (this.hasActiveVisualFocusItem()) {
           const item =
             this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;

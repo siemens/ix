@@ -2,7 +2,6 @@
 import * as d from './components';
 
 export const DIRECTIVES = [
-  d.ADemo,
   d.IxActionCard,
   d.IxApplication,
   d.IxApplicationHeader,

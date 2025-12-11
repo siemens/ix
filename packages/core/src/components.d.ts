@@ -106,8 +106,6 @@ export { RefreshTreeOptions } from "./components/tree/tree.types";
 export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
-    interface ADemo {
-    }
     interface IxActionCard {
         /**
           * ARIA label for the card
@@ -3017,7 +3015,7 @@ export namespace Components {
           * @since 3.2.0
           * @default 'Open select dropdown'
          */
-        "ariaLabelChevronDownIconButton": string;
+        "ariaLabelChevronDownIconButton"?: string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
@@ -4361,12 +4359,6 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
-    interface HTMLADemoElement extends Components.ADemo, HTMLStencilElement {
-    }
-    var HTMLADemoElement: {
-        prototype: HTMLADemoElement;
-        new (): HTMLADemoElement;
-    };
     interface HTMLIxActionCardElement extends Components.IxActionCard, HTMLStencilElement {
     }
     var HTMLIxActionCardElement: {
@@ -5799,7 +5791,6 @@ declare global {
         new (): HTMLIxWorkflowStepsElement;
     };
     interface HTMLElementTagNameMap {
-        "a-demo": HTMLADemoElement;
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
@@ -5913,8 +5904,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface ADemo {
-    }
     interface IxActionCard {
         /**
           * ARIA label for the card
@@ -10167,7 +10156,6 @@ declare namespace LocalJSX {
         "vertical"?: boolean;
     }
     interface IntrinsicElements {
-        "a-demo": ADemo;
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
         "ix-application-header": IxApplicationHeader;
@@ -10284,7 +10272,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "a-demo": LocalJSX.ADemo & JSXBase.HTMLAttributes<HTMLADemoElement>;
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
             "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
