@@ -22,6 +22,7 @@ import {
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { makeRef } from '../utils/make-ref';
+import { IxComponent } from '../utils/internal/component';
 
 let sequenceId = 0;
 const createId = (prefix: string = 'breadcrumb-') => {
@@ -33,7 +34,7 @@ const createId = (prefix: string = 'breadcrumb-') => {
   styleUrl: 'breadcrumb.scss',
   shadow: true,
 })
-export class Breadcrumb {
+export class Breadcrumb extends IxComponent() {
   @Element() hostElement!: HTMLIxBreadcrumbElement;
 
   /**
@@ -73,6 +74,8 @@ export class Breadcrumb {
 
   private readonly previousButtonRef = makeRef<HTMLIxBreadcrumbItemElement>();
   private readonly nextButtonRef = makeRef<HTMLElement>();
+
+  private readonly previousDropdownRef = makeRef<HTMLIxDropdownElement>();
 
   @State() items: HTMLIxBreadcrumbItemElement[] = [];
   @State() isPreviousDropdownExpanded = false;
@@ -140,6 +143,7 @@ export class Breadcrumb {
       <Host>
         <ix-dropdown
           id={this.previousDropdownId}
+          ref={this.previousDropdownRef}
           aria-label={this.ariaLabelPreviousButton}
           trigger={
             this.items?.length > this.visibleItemCount
@@ -180,12 +184,11 @@ export class Breadcrumb {
             id={this.previousButtonId}
             ref={this.previousButtonRef}
             label="..."
-            tabIndex={1}
             onItemClick={(event) => event.stopPropagation()}
             aria-describedby={this.previousDropdownId}
             aria-controls={this.previousDropdownId}
             aria-expanded={a11yBoolean(this.isPreviousDropdownExpanded)}
-            class={'previous-button'}
+            class={'previous-button ix-focusable'}
           ></ix-breadcrumb-item>
         ) : null}
         <nav

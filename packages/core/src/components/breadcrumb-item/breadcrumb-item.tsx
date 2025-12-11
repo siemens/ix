@@ -24,13 +24,14 @@ import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
+import { IxComponent } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
   shadow: true,
 })
-export class BreadcrumbItem implements AnchorInterface {
+export class BreadcrumbItem extends IxComponent() implements AnchorInterface {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
@@ -140,6 +141,7 @@ export class BreadcrumbItem implements AnchorInterface {
       <Host
         class={{
           'hide-chevron': this.hideChevron,
+          'ix-focusable': true,
         }}
         onClick={() => this.itemClick.emit(this.label)}
       >

@@ -22,6 +22,7 @@ import {
   iconChevronRightSmall,
   iconSingleCheck,
 } from '@siemens/ix-icons/icons';
+import { IxComponent } from '../utils/internal/component';
 import { a11yBoolean } from '../utils/a11y';
 
 @Component({
@@ -29,7 +30,7 @@ import { a11yBoolean } from '../utils/a11y';
   styleUrl: 'dropdown-item.scss',
   shadow: true,
 })
-export class DropdownItem implements DropdownItemWrapper {
+export class DropdownItem extends IxComponent() implements DropdownItemWrapper {
   @Element() hostElement!: HTMLIxDropdownItemElement;
 
   /**
@@ -70,11 +71,21 @@ export class DropdownItem implements DropdownItemWrapper {
    */
   @Prop() checked = false;
 
+  /**
+   * Can has focus
+   *
+   * @internal
+   */
+  @Prop() suppressFocus = false;
+
   /** @internal */
   @Prop() isSubMenu = false;
 
   /** @internal */
   @Prop() suppressChecked = false;
+
+  /** @internal */
+  @Prop({ reflect: true }) hasVisualFocus = false;
 
   /** @internal */
   @Event() itemClick!: EventEmitter<HTMLIxDropdownItemElement>;
@@ -107,12 +118,14 @@ export class DropdownItem implements DropdownItemWrapper {
           'icon-only': this.isIconOnly(),
           disabled: this.disabled,
           submenu: this.isSubMenu,
+          'ix-focusable': !this.suppressFocus,
+          'outline-visible': this.hasVisualFocus,
         }}
         role="listitem"
       >
         <button
           type="button"
-          tabIndex={this.disabled ? -1 : 0}
+          tabIndex={this.suppressFocus || this.disabled ? -1 : 0}
           class={{
             'dropdown-item': true,
             'no-checked-field': this.suppressChecked,
