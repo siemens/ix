@@ -132,11 +132,6 @@ export const addFocusVisibleListener = (
   };
 };
 
-export const ComposedPathTest = (composedPath: Element[]) =>
-  composedPath.filter((el): el is Element => {
-    return el instanceof Element && el.classList.contains(IX_FOCUSABLE);
-  });
-
 export const focusFirstDescendant = <
   R extends HTMLElement,
   T extends HTMLElement,

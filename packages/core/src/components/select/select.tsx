@@ -50,7 +50,9 @@ let selectId = 0;
 @Component({
   tag: 'ix-select',
   styleUrl: 'select.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   formAssociated: true,
 })
 export class Select

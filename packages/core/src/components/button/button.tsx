@@ -28,7 +28,9 @@ export type ButtonVariant =
 
 @Component({
   tag: 'ix-button',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   styleUrl: './button.scss',
 })
 export class Button extends IxComponent() implements IxButtonComponent {

@@ -96,7 +96,11 @@ const installFocusPolyfill = () => {
     this: HTMLElement,
     options?: FocusOptions
   ) {
-    focusVisibleUtility?.setFocus(getComposedPath(this));
+    const composedPath = getComposedPath(this);
+    const focusableElements = composedPath.filter((el) =>
+      el.classList.contains('ix-focusable')
+    );
+    focusVisibleUtility?.setFocus(focusableElements);
     originalFocus.call(this, options);
   };
 
