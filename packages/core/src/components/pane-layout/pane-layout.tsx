@@ -79,6 +79,7 @@ export class Panes {
     this.isMobile = matchBreakpoint('sm');
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
+      this.configurePanes();
     });
   }
 
