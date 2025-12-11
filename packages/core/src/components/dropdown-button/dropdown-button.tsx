@@ -15,6 +15,7 @@ import {
 } from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
+import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-dropdown-button',
@@ -32,7 +33,7 @@ export class DropdownButton {
   /**
    * Disable button
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Set label
@@ -80,12 +81,16 @@ export class DropdownButton {
   }
 
   private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
+    if (this.disabled && event.detail) {
+      return;
+    }
     this.dropdownShow = event.detail;
   };
 
   render() {
     return (
       <Host
+        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
         }}
@@ -98,6 +103,7 @@ export class DropdownButton {
               disabled={this.disabled}
               alignment="start"
               ariaLabel={this.ariaLabelDropdownButton}
+              tabIndex={this.disabled ? -1 : 0}
             >
               <div class={'content'}>
                 {this.icon ? (
@@ -124,6 +130,7 @@ export class DropdownButton {
                 icon={this.icon}
                 variant={this.variant}
                 disabled={this.disabled}
+                tabIndex={this.disabled ? -1 : 0}
               ></ix-icon-button>
               {this.getTriangle()}
             </div>
