@@ -87,6 +87,15 @@ export class Menu {
    */
   @Prop({ mutable: true, reflect: true }) expand = false;
 
+  @Watch('expand')
+  expandChanged(newExpand: boolean, oldExpand: boolean) {
+    if (newExpand === oldExpand) {
+      return;
+    }
+
+    this.toggleMenu(newExpand);
+  }
+
   /**
    *  If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
    */
