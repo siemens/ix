@@ -89,7 +89,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
 
   const commonAttributes = {
     ...ariaAttributes,
-    tabindex: props.disabled ? -1 : (props.tabIndex ?? 0),
+    tabindex: props.disabled ? -1 : props.tabIndex ?? 0,
     class: {
       ...getButtonClasses(
         props.variant,
@@ -112,7 +112,6 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
         name={props.icon}
         size={props.iconSize as any}
         color={props.iconColor}
-        aria-hidden="true"
       ></ix-icon>
     ) : null,
     <div
@@ -129,7 +128,6 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
         name={props.iconRight}
         size={props.iconSize as any}
         color={props.iconColor}
-        aria-hidden="true"
       ></ix-icon>
     ) : null,
     props.afterContent ? props.afterContent : null,
