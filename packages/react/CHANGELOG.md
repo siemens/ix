@@ -1,5 +1,16 @@
 # @siemens/ix-react
 
+## 4.3.0
+
+### Minor Changes
+
+- [#2280](https://github.com/siemens/ix/pull/2280) [`9842b69`](https://github.com/siemens/ix/commit/9842b690e3a56a585436d493dfe085ee7ded6e64) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add property `passive` to **ix-card**, **ix-action-card**, and **ix-push-card** allowing to suppress mouse states.
+
+### Patch Changes
+
+- Updated dependencies [[`9842b69`](https://github.com/siemens/ix/commit/9842b690e3a56a585436d493dfe085ee7ded6e64), [`79eed16`](https://github.com/siemens/ix/commit/79eed1645d0f9e23203b26c81e81dc21c818bde3), [`f7345bd`](https://github.com/siemens/ix/commit/f7345bde3489d6eea36aa7d85b7fba6f2ee0092e), [`089f850`](https://github.com/siemens/ix/commit/089f85033cad045dc55133577073ab58c074f4b4)]:
+  - @siemens/ix@4.3.0
+
 ## 4.2.0
 
 ### Minor Changes
