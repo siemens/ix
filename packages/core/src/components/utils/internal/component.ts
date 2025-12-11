@@ -9,13 +9,7 @@
 import type { ComponentInterface, MixedInCtor } from '@stencil/core';
 import { Mixin } from '@stencil/core';
 import { HTMLStencilElement } from '@stencil/core/internal';
-import {
-  addFocusVisibleListener,
-  FocusVisibleUtility,
-} from '../focus-visible-listener';
-import { getComposedPath } from '../shadow-dom';
-
-let focusVisibleUtility: FocusVisibleUtility | null = null;
+import { WithFocusVisibleListener } from './mixins/focus-handling-mixin';
 
 export interface StencilLifecycle {
   connectedCallback?(): void;
@@ -79,59 +73,6 @@ export interface StencilLifecycle {
 export interface IxComponentInterface extends ComponentInterface {
   hostElement: HTMLStencilElement;
 }
-
-export const getFocusUtilities = () => {
-  return focusVisibleUtility;
-};
-
-const originalFocus = HTMLElement.prototype.focus;
-let focusPolyfillInstalled = false;
-
-const installFocusPolyfill = () => {
-  if (focusPolyfillInstalled) {
-    return;
-  }
-
-  HTMLElement.prototype.focus = function (
-    this: HTMLElement,
-    options?: FocusOptions
-  ) {
-    const composedPath = getComposedPath(this);
-    const focusableElements = composedPath.filter((el) =>
-      el.classList.contains('ix-focusable')
-    );
-    focusVisibleUtility?.setFocus(focusableElements);
-    originalFocus.call(this, options);
-  };
-
-  focusPolyfillInstalled = true;
-};
-
-export const WithFocusVisibleListener = <
-  B extends MixedInCtor<StencilLifecycle>,
->(
-  Base: B
-) => {
-  class FocusListenerMixin extends Base {
-    override connectedCallback(): void {
-      if (super.connectedCallback) {
-        super.connectedCallback();
-      }
-
-      if (!focusVisibleUtility) {
-        focusVisibleUtility = addFocusVisibleListener();
-      }
-
-      installFocusPolyfill();
-      const hostElement = (this as any).hostElement as HTMLElement;
-      if (hostElement) {
-        (hostElement as any).__ixComponent = true;
-      }
-    }
-  }
-
-  return FocusListenerMixin;
-};
 
 export function IxComponent<T extends StencilLifecycle = StencilLifecycle>(
   ...mixins: Array<(base: MixedInCtor<StencilLifecycle>) => MixedInCtor<T>>
