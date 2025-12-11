@@ -1846,6 +1846,7 @@ export const IxToast: StencilReactComponent<IxToastElement, IxToastEvents> = /*@
         preventAutoClose: 'prevent-auto-close',
         icon: 'icon',
         iconColor: 'icon-color',
+        hideIcon: 'hide-icon',
         ariaLabelCloseIconButton: 'aria-label-close-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,

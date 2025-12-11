@@ -2663,7 +2663,7 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCloseIconButton', 'autoCloseDelay', 'icon', 'iconColor', 'preventAutoClose', 'toastTitle', 'type'],
+  inputs: ['ariaLabelCloseIconButton', 'autoCloseDelay', 'hideIcon', 'icon', 'iconColor', 'preventAutoClose', 'toastTitle', 'type'],
   methods: ['pause', 'resume', 'isPaused']
 })
 @Component({
@@ -2671,7 +2671,7 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCloseIconButton', 'autoCloseDelay', 'icon', 'iconColor', 'preventAutoClose', 'toastTitle', 'type'],
+  inputs: ['ariaLabelCloseIconButton', 'autoCloseDelay', 'hideIcon', 'icon', 'iconColor', 'preventAutoClose', 'toastTitle', 'type'],
   outputs: ['closeToast'],
   standalone: false
 })
