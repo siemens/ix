@@ -33,6 +33,11 @@ export class TreeItem {
   @Prop() context?: TreeItemContext;
 
   /**
+   * Disable tree item
+   */
+  @Prop() disabled = false;
+
+  /**
    * ARIA label for the chevron icon
    */
   @Prop() ariaLabelChevronIcon?: string;
@@ -48,10 +53,13 @@ export class TreeItem {
   @Event() itemClick!: EventEmitter<void>;
 
   render() {
+    const isDisabled = this.disabled || this.context?.isDisabled;
+
     return (
       <Host
         class={{
           selected: !!this.context?.isSelected,
+          disabled: !!isDisabled,
         }}
       >
         <div class="icon-toggle-container">
@@ -64,6 +72,9 @@ export class TreeItem {
               }}
               color="color-std-text"
               onClick={(e: Event) => {
+                if (isDisabled) {
+                  return;
+                }
                 e.preventDefault();
                 e.stopPropagation();
                 this.toggle.emit();
@@ -75,6 +86,9 @@ export class TreeItem {
         <div
           class="tree-node-container"
           onClick={() => {
+            if (isDisabled) {
+              return;
+            }
             this.itemClick.emit();
           }}
         >

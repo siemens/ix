@@ -198,12 +198,14 @@ export class Tree {
       return {
         isExpanded: false,
         isSelected: false,
+        isDisabled: this.model[id]?.disabled,
       };
     }
     if (!this.context[id]) {
       this.context[id] = {
         isExpanded: false,
         isSelected: false,
+        isDisabled: this.model[id]?.disabled,
       };
     }
     return this.context[id];
@@ -349,6 +351,10 @@ export class Tree {
       return;
     }
 
+    if (item.disabled) {
+      return;
+    }
+
     const context = this.getContext(id);
     context.isExpanded = !context.isExpanded;
     this.nodeToggled.emit({ id, isExpanded: context.isExpanded });
@@ -367,6 +373,11 @@ export class Tree {
     }
 
     const item = this.model[id];
+
+    if (item.disabled) {
+      return;
+    }
+
     const path = event.composedPath();
     const treeIndex = path.indexOf(this.hostElement);
     const treePath = path.slice(0, treeIndex);
