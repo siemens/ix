@@ -132,6 +132,11 @@ export const addFocusVisibleListener = (
   };
 };
 
+export const ComposedPathTest = (composedPath: Element[]) =>
+  composedPath.filter((el): el is Element => {
+    return el instanceof Element && el.classList.contains(IX_FOCUSABLE);
+  });
+
 export const focusFirstDescendant = <
   R extends HTMLElement,
   T extends HTMLElement,
@@ -156,37 +161,6 @@ export const focusLastDescendant = <
   const lastInput = inputs.length > 0 ? inputs[inputs.length - 1] : null;
 
   focusElementInContext(lastInput, fallbackElement ?? ref);
-};
-
-export const hasActiveElement = <R extends HTMLElement>(ref: R) => {
-  // Check if shadow root has an active element
-  if (ref.shadowRoot?.activeElement) {
-    return true;
-  }
-
-  // Check if any element in the light DOM is active
-  const rootNode = ref.getRootNode();
-  const activeElement = (rootNode as any).activeElement;
-
-  if (activeElement && ref.contains(activeElement)) {
-    return true;
-  }
-
-  // Check aria-activedescendant
-  const shadowRootActiveElement = (rootNode as ShadowRoot)
-    .activeElement as HTMLElement;
-  if (shadowRootActiveElement?.ariaActiveDescendantElement) {
-    const ariaDescendant = shadowRootActiveElement.ariaActiveDescendantElement;
-    // For aria-activedescendant, check both the element itself and if it's in our shadow root
-    if (
-      ref.shadowRoot?.contains(ariaDescendant) ||
-      ref.contains(ariaDescendant)
-    ) {
-      return true;
-    }
-  }
-
-  return false;
 };
 
 /**

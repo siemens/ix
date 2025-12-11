@@ -41,6 +41,9 @@ SPDX-License-Identifier: MIT
         </ix-avatar>
       </ix-application-header>
       <ix-content>
+        <button>normal</button>
+        <ix-button id="trigger">Open</ix-button>
+
         <ix-select editable>
           <ix-select-item value="Option 1" label="Option 1"></ix-select-item>
           <ix-select-item value="Option 2" label="Option 2"></ix-select-item>
@@ -76,6 +79,12 @@ SPDX-License-Identifier: MIT
           <ix-breadcrumb-item>Test10</ix-breadcrumb-item>
           <ix-breadcrumb-item>Test11</ix-breadcrumb-item>
         </ix-breadcrumb>
+
+        <ix-dropdown trigger="trigger">
+          <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+          <ix-dropdown-item>Custom</ix-dropdown-item>
+        </ix-dropdown>
       </ix-content>
     </ix-application>
     <script>

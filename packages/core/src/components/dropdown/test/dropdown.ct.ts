@@ -673,7 +673,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
 
 regressionTest.describe('A11y', () => {
   regressionTest.describe('Keyboard navigation', () => {
-    regressionTest.beforeEach(async ({ page, mount }) => {
+    regressionTest.beforeEach(async ({ mount }) => {
       await mount(
         `
       <ix-button id="trigger">Open</ix-button>

@@ -47,7 +47,6 @@ import {
   focusElementInContext,
   focusFirstDescendant,
   focusLastDescendant,
-  hasActiveElement,
   queryElements,
 } from '../utils/focus-visible-listener';
 import { IxComponent } from '../utils/internal/component';
@@ -277,26 +276,6 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
     this.handleTriggerKeydown(event);
 
   private handleTriggerKeydown(event: KeyboardEvent) {
-    const openDropdownIfNeeded = () => {
-      if (this.isAnchorSubmenu()) {
-        return false;
-      }
-      if (this.show === true) {
-        return false;
-      }
-
-      if (!event.defaultPrevented) {
-        this.toggleController();
-      }
-
-      if (this.disableFocusHandling) {
-        event.stopImmediatePropagation();
-        event.preventDefault();
-      }
-
-      return true;
-    };
-
     const focusFirst = (element: HTMLElement) =>
       requestAnimationFrameNoNgZone(() => {
         focusFirstDescendant(element);
@@ -307,40 +286,36 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         focusLastDescendant(element);
       });
 
-    switch (event.key) {
-      case 'ArrowUp':
-        if (openDropdownIfNeeded() === false) {
-          if (this.disableFocusHandling === false) {
-            focusFirst(this.hostElement);
-          }
+    const navigationKeys = ['ArrowUp', 'ArrowDown', ' ', 'Enter'];
 
-          return;
+    if (!navigationKeys.includes(event.key)) {
+      return;
+    }
+
+    // If dropdown is not yet shown, try to open it
+    if (!this.show && !this.isAnchorSubmenu()) {
+      if (!event.defaultPrevented) {
+        this.toggleController();
+      }
+
+      if (this.disableFocusHandling) {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+      } else {
+        // Focus first item for all keys except ArrowUp (which focuses last)
+        if (event.key === 'ArrowUp') {
+          focusLast(this.hostElement);
+        } else {
+          focusFirst(this.hostElement);
         }
-
-        if (this.disableFocusHandling) {
-          break;
-        }
-
+      }
+    } else if (!this.disableFocusHandling) {
+      // Dropdown is already open - handle focus navigation
+      if (event.key === 'ArrowUp') {
         focusLast(this.hostElement);
-        break;
-      case 'ArrowDown':
-      case ' ':
-      case 'Enter':
-        if (openDropdownIfNeeded() === false) {
-          if (this.disableFocusHandling === false) {
-            focusFirst(this.hostElement);
-          }
-
-          return;
-        }
-
-        if (this.disableFocusHandling) {
-          break;
-        }
-
+      } else {
         focusFirst(this.hostElement);
-        break;
-      default:
+      }
     }
 
     this.experimentalRequestFocus.emit({

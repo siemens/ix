@@ -6,12 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { HTMLStencilElement, Mixin } from '@stencil/core/internal';
 import type { ComponentInterface, MixedInCtor } from '@stencil/core';
+import { Mixin } from '@stencil/core';
+import { HTMLStencilElement } from '@stencil/core/internal';
 import {
   addFocusVisibleListener,
   FocusVisibleUtility,
 } from '../focus-visible-listener';
+import { getComposedPath } from '../shadow-dom';
 
 let focusVisibleUtility: FocusVisibleUtility | null = null;
 
@@ -82,6 +84,25 @@ export const getFocusUtilities = () => {
   return focusVisibleUtility;
 };
 
+const originalFocus = HTMLElement.prototype.focus;
+let focusPolyfillInstalled = false;
+
+const installFocusPolyfill = () => {
+  if (focusPolyfillInstalled) {
+    return;
+  }
+
+  HTMLElement.prototype.focus = function (
+    this: HTMLElement,
+    options?: FocusOptions
+  ) {
+    focusVisibleUtility?.setFocus(getComposedPath(this));
+    originalFocus.call(this, options);
+  };
+
+  focusPolyfillInstalled = true;
+};
+
 export const WithFocusVisibleListener = <
   B extends MixedInCtor<StencilLifecycle>,
 >(
@@ -95,6 +116,12 @@ export const WithFocusVisibleListener = <
 
       if (!focusVisibleUtility) {
         focusVisibleUtility = addFocusVisibleListener();
+      }
+
+      installFocusPolyfill();
+      const hostElement = (this as any).hostElement as HTMLElement;
+      if (hostElement) {
+        (hostElement as any).__ixComponent = true;
       }
     }
   }
