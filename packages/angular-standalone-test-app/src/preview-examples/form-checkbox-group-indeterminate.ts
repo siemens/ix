@@ -50,15 +50,9 @@ export default class FormCheckboxGroupIndeterminate {
   }
 
   checkedChange() {
-    if (this.childCheckboxes.every((cb) => cb.checked)) {
-      this.parentCheckbox.indeterminate = false;
-      this.parentCheckbox.checked = true;
-    } else if (this.childCheckboxes.some((cb) => cb.checked)) {
-      this.parentCheckbox.indeterminate = true;
-      this.parentCheckbox.checked = false;
-    } else {
-      this.parentCheckbox.indeterminate = false;
-      this.parentCheckbox.checked = false;
-    }
+    const checkedCount = this.childCheckboxes.filter((cb) => cb.checked).length;
+    const totalCount = this.childCheckboxes.length;
+    this.parentCheckbox.checked = checkedCount === totalCount;
+    this.parentCheckbox.indeterminate = checkedCount > 0 && checkedCount < totalCount;
   }
 }
