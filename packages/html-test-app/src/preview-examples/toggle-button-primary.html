@@ -14,16 +14,72 @@ LICENSE file in the root directory of this source tree.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Toggle button primary example</title>
     <link rel="stylesheet" href="./toggle-button-primary.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconTextBold,
+        iconTextItalic,
+        iconTextUnderline,
+      } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconTextBold,
+        iconTextItalic,
+        iconTextUnderline,
+      });
+    </script>
   </head>
   <body>
-    <div>
-      <ix-toggle-button variant="primary">Normal</ix-toggle-button>
-      <ix-toggle-button variant="primary" pressed>Pressed</ix-toggle-button>
-      <ix-toggle-button variant="primary" disabled>Disabled</ix-toggle-button>
+    <div class="button-container">
+      <ix-toggle-button id="boldButton" variant="primary" icon="text-bold"
+        >Bold</ix-toggle-button
+      >
+      <ix-toggle-button variant="primary" disabled icon="text-italic"
+        >Italic</ix-toggle-button
+      >
+      <ix-toggle-button
+        id="underlineButton"
+        variant="primary"
+        icon="text-underline"
+        pressed
+        >Underline</ix-toggle-button
+      >
       <ix-toggle-button variant="primary" disabled loading>
-        Loading
+        Strikethrough
       </ix-toggle-button>
     </div>
-    <script type="module" src="./init.js"></script>
+    <p id="loremIpsum">Lorem ipsum text</p>
+
+    <script type="module">
+      import './init.js';
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const boldButton = document.getElementById('boldButton');
+        const underlineButton = document.getElementById('underlineButton');
+        const loremIpsum = document.getElementById('loremIpsum');
+
+        function updateStyle() {
+          loremIpsum.style.fontWeight = boldButton.hasAttribute('pressed')
+            ? 'bold'
+            : 'normal';
+          loremIpsum.style.textDecoration = underlineButton.hasAttribute(
+            'pressed'
+          )
+            ? 'underline'
+            : 'none';
+        }
+
+        updateStyle();
+
+        boldButton.addEventListener('click', function () {
+          boldButton.toggleAttribute('pressed');
+          updateStyle();
+        });
+
+        underlineButton.addEventListener('click', function () {
+          underlineButton.toggleAttribute('pressed');
+          updateStyle();
+        });
+      });
+    </script>
   </body>
 </html>
