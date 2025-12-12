@@ -8,7 +8,6 @@
  */
 
 @use './common-variables' as vars;
-@use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
 :host {
@@ -23,7 +22,9 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     min-height: 3.375rem;
-    padding: calc(#{vars.$medium-space} - var(--theme-message-bar--border-thickness))
+    padding: calc(
+        #{vars.$medium-space} - var(--theme-message-bar--border-thickness)
+      )
       vars.$medium-space
       calc(#{vars.$medium-space} - var(--theme-message-bar--border-thickness))
       vars.$default-space;
@@ -39,7 +40,7 @@
     'success': var(--theme-color-success),
     'info': var(--theme-color-info),
     'neutral': var(--theme-color-neutral),
-    'primary': var(--theme-color-primary)
+    'primary': var(--theme-color-primary),
   );
 
   @each $type, $color in $message-types {
@@ -48,7 +49,6 @@
     }
   }
 
-
   .message-content {
     flex-grow: 1;
     align-self: center;
@@ -56,8 +56,6 @@
     padding: 0 vars.$default-space;
     font-weight: normal;
     white-space: normal;
-
-    @include text-truncation.ellipsis;
   }
 
   ix-icon {

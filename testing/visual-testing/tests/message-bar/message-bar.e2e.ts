@@ -15,4 +15,9 @@ regressionTest.describe('message-bar', () => {
     await page.goto('message-bar/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('overflow', async ({ page }) => {
+    await page.goto('message-bar/overflow');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

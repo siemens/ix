@@ -20,7 +20,7 @@
   display: block;
 }
 
-.message-bar-danger {
+.message-bar-alarm {
   display: flex;
   align-items: center;
   justify-content: space-between;

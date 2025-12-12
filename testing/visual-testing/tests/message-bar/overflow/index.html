@@ -1,0 +1,49 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Message Bar Overflow</title>
+  </head>
+  <body>
+    <div style="margin: 0.5rem; display: block; max-width: 400px">
+      <ix-message-bar style="margin-bottom: 0.5rem; display: block">
+        This is a very long message text that should wrap to multiple lines
+        instead of being truncated with an ellipsis. The text should be fully
+        visible and readable by the user.
+      </ix-message-bar>
+      <ix-message-bar
+        style="margin-bottom: 0.5rem; display: block"
+        type="warning"
+      >
+        Warning: This is another long message that demonstrates the text
+        wrapping behavior. It contains important information that should not be
+        cut off.
+      </ix-message-bar>
+      <ix-message-bar
+        style="margin-bottom: 0.5rem; display: block"
+        type="alarm"
+      >
+        Alarm: A critical long message that wraps properly across multiple lines
+        without being truncated by an ellipsis at the end.
+      </ix-message-bar>
+      <ix-message-bar
+        style="margin-bottom: 0.5rem; display: block"
+        type="critical"
+      >
+        Critical: Error message that spans multiple lines to demonstrate proper
+        text wrapping behavior in the message bar component.
+      </ix-message-bar>
+    </div>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>
