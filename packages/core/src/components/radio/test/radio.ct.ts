@@ -182,7 +182,8 @@ test.describe('accessibility & click handling', () => {
   });
 });
 
-regressionTest('validation works when noValidate is not set (default)',
+regressionTest(
+  'validation works when noValidate is not set (default)',
   async ({ mount, page }) => {
     await mount(
       `
@@ -208,7 +209,8 @@ regressionTest('validation works when noValidate is not set (default)',
   }
 );
 
-regressionTest('noValidate=true disables validation',
+regressionTest(
+  'noValidate=true disables validation',
   async ({ mount, page }) => {
     await mount(
       `
@@ -235,7 +237,8 @@ regressionTest('noValidate=true disables validation',
   }
 );
 
-regressionTest('validation with named radio group when noValidate is not set',
+regressionTest(
+  'validation with named radio group when noValidate is not set',
   async ({ mount, page }) => {
     await mount(
       `
@@ -266,7 +269,8 @@ regressionTest('validation with named radio group when noValidate is not set',
   }
 );
 
-regressionTest('noValidate=true disables validation for named radio group',
+regressionTest(
+  'noValidate=true disables validation for named radio group',
   async ({ mount, page }) => {
     await mount(
       `
@@ -299,7 +303,8 @@ regressionTest('noValidate=true disables validation for named radio group',
   }
 );
 
-regressionTest('validation behavior with blur when noValidate is not set',
+regressionTest(
+  'validation behavior with blur when noValidate is not set',
   async ({ mount, page }) => {
     await mount(
       `
@@ -318,7 +323,8 @@ regressionTest('validation behavior with blur when noValidate is not set',
   }
 );
 
-regressionTest('no validation on blur when noValidate=true',
+regressionTest(
+  'no validation on blur when noValidate=true',
   async ({ mount, page }) => {
     await mount(
       `

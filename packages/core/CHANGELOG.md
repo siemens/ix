@@ -1,5 +1,65 @@
 # @siemens/ix
 
+## 4.2.0
+
+### Patch Changes
+
+- [#2285](https://github.com/siemens/ix/pull/2285) [`3cb0ab3`](https://github.com/siemens/ix/commit/3cb0ab37db2d75dac634e44ca1dfe16652836829) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Fix `invalidText` property not being applied to **ix-date-input** and **ix-time-input** when internal validation fails.
+
+  The `invalidText` property now correctly takes precedence over the i18n error messages when both are set. Previously, the i18n message would always be shown for internal validation errors (unparsable dates/times or min/max violations), ignoring the user's custom `invalidText`.
+
+  Fixes #2183.
+
+- [#2284](https://github.com/siemens/ix/pull/2284) [`9cb98da`](https://github.com/siemens/ix/commit/9cb98da8dcf6f1a30a22bfc66f36a818904290c3) Thanks [@lzeiml](https://github.com/lzeiml)! - Fixed an issue in **ix-time-picker** where focusing numbers would scroll the page outside the component container.
+
+  Fixes #2138
+
+- [#2214](https://github.com/siemens/ix/pull/2214) [`4dbed06`](https://github.com/siemens/ix/commit/4dbed06e2ace5396754eb88ac7bbe57802bdea7d) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update counter pill background for **ix-tab-item**.
+
+## 4.1.0
+
+### Minor Changes
+
+- [#2213](https://github.com/siemens/ix/pull/2213) [`18969f0`](https://github.com/siemens/ix/commit/18969f056eb088f7ef92ae85a2150ee4036d3628) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Correct non numeric page value or page value beyond the range of _ix-pagination_. Closes #2144
+
+- [#2081](https://github.com/siemens/ix/pull/2081) [`1623c19`](https://github.com/siemens/ix/commit/1623c196cde78f8357b2060d28d8658ec4330b56) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Added support for implicit form submission when pressing Enter in `ix-input`, `ix-number-input`, `ix-date-input` and `ix-time-input` forms
+
+- [#2048](https://github.com/siemens/ix/pull/2048) [`0a23b64`](https://github.com/siemens/ix/commit/0a23b640efc3fc6f10921f29b51d9a1e5a48391e) Thanks [@varun-srinivasa](https://github.com/varun-srinivasa)! - Allow to individually disable button and dropdown button in **ix-split-button**s.
+
+- [#2062](https://github.com/siemens/ix/pull/2062) [`95523d3`](https://github.com/siemens/ix/commit/95523d3f0db649e66ddc504b8a06d9ed039fe446) Thanks [@lzeiml](https://github.com/lzeiml)! - Add support for numbers in scientific notation (e.g. 1E-2) for **ix-number-input**.
+
+- [#2062](https://github.com/siemens/ix/pull/2062) [`95523d3`](https://github.com/siemens/ix/commit/95523d3f0db649e66ddc504b8a06d9ed039fe446) Thanks [@lzeiml](https://github.com/lzeiml)! - Add temporary property `allowEmptyValueChange` to **ix-number-input**. Setting this property enables `valueChange` to emit null values.
+
+  Fixes #1968.
+
+- [#1979](https://github.com/siemens/ix/pull/1979) [`73ebf49`](https://github.com/siemens/ix/commit/73ebf49f5d99b32e21545e544b89da23c54f33d2) Thanks [@hawacodes](https://github.com/hawacodes)! - `ix-select` automatically showing an 'All' chip when all items are selected in multiple mode and `collapse-multiple-selection=true` is provided
+
+### Patch Changes
+
+- [#2156](https://github.com/siemens/ix/pull/2156) [`6a075cd`](https://github.com/siemens/ix/commit/6a075cd5f33da7dc6d1cbc9ef93f1c8b07a8fa92) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Make sure arrow position is correct even after placement of **ix-tooltip** changes.
+
+  Fixes #2076 and #2099.
+
+- [#2181](https://github.com/siemens/ix/pull/2181) [`1e58f0e`](https://github.com/siemens/ix/commit/1e58f0ecfae98125ff442e921132c846f0c2646f) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - add `text-alignment` property to input components
+
+- [#2033](https://github.com/siemens/ix/pull/2033) [`a56c2e1`](https://github.com/siemens/ix/commit/a56c2e14820f288625c9253895ceb21ec3f29ccb) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Prevent empty space if no icon is shown in **category-filter**.
+
+- [#2171](https://github.com/siemens/ix/pull/2171) [`6bee493`](https://github.com/siemens/ix/commit/6bee4933f7ef777c3aa8db0c724185be57763e32) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Prevent showing empty tooltip for inputs if `show-text-as-tooltip=true`. Closes #2147
+
+- [#2275](https://github.com/siemens/ix/pull/2275) [`7c571f0`](https://github.com/siemens/ix/commit/7c571f064c7c04359f9cc67be6e3d39c144a5580) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Always show underline for **ix-link-button** and HTML anchor tags.
+
+- [#2208](https://github.com/siemens/ix/pull/2208) [`36b7634`](https://github.com/siemens/ix/commit/36b7634766b3bfbe41220636f62b1cb80742844f) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Prevent emitting validityStateChange event if now actual validity is changed. Closes #2095
+
+- [#2105](https://github.com/siemens/ix/pull/2105) [`d9268c2`](https://github.com/siemens/ix/commit/d9268c24431fb7bf84041b7ae83b10c2abcab2dd) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Remove filter from dropdown and input when selecting an item in **ix-select**.
+
+- [#2189](https://github.com/siemens/ix/pull/2189) [`9954ba9`](https://github.com/siemens/ix/commit/9954ba9f0e0ec12d58c76f628c3ee5e5170d21b8) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Update padding and icon alignment of **ix-tooltip**.
+
+- [#2044](https://github.com/siemens/ix/pull/2044) [`6fb28fa`](https://github.com/siemens/ix/commit/6fb28faee5266639d04b215305716e6191e87de7) Thanks [@Nadim901](https://github.com/Nadim901)! - Prevent `ix-menu-settings` and `ix-menu-about` to trigger tabChange event twice. Fixes #1596
+
+- [#2080](https://github.com/siemens/ix/pull/2080) [`eb33537`](https://github.com/siemens/ix/commit/eb335371e8969318d379c1ea0891b9aba39a4a1c) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Only focus input after user interaction with **ix-category-filter**.
+
+- [#2269](https://github.com/siemens/ix/pull/2269) [`1cbe35f`](https://github.com/siemens/ix/commit/1cbe35f290d8e746b9900fdcf9b7b0bd05d850d3) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Update layout for **ix-date-picker** and **ix-time-picker**.
+
 ## 4.0.0
 
 ### Major Changes

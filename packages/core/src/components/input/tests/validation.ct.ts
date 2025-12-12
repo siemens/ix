@@ -264,9 +264,9 @@ test.describe('prevent initial require validation', async () => {
   });
 });
 
-test.describe('reset method', () => {
+test.describe('clear method', () => {
   ['ix-input', 'ix-number-input', 'ix-textarea'].forEach((selector) => {
-    test(`${selector} - should reset validation state when required field becomes invalid then reset`, async ({
+    test(`${selector} - should clear value and reset validation state when required field becomes invalid then cleared`, async ({
       mount,
       page,
     }) => {
@@ -285,13 +285,19 @@ test.describe('reset method', () => {
 
       await expect(inputComponent).toHaveClass(/ix-invalid--required/);
 
-      await inputComponent.evaluate((element: any) => element.reset());
+      await inputComponent.evaluate((element: any) => element.clear());
 
       await expect(inputComponent).not.toHaveClass(/ix-invalid--required/);
       await expect(inputComponent).not.toHaveClass(/ix-invalid/);
+
+      if (selector === 'ix-number-input') {
+        await expect(inputComponent).toHaveAttribute('value', '');
+      } else {
+        await expect(input).toHaveValue('');
+      }
     });
 
-    test(`${selector} - should reset validation state with value then make invalid then reset`, async ({
+    test(`${selector} - should clear value and reset validation state with value then make invalid then cleared`, async ({
       mount,
       page,
     }) => {
@@ -303,7 +309,6 @@ test.describe('reset method', () => {
       );
 
       await input.click();
-      // Use appropriate test values for different input types
       if (selector === 'ix-number-input') {
         await input.fill('123');
       } else {
@@ -319,10 +324,16 @@ test.describe('reset method', () => {
 
       await expect(inputComponent).toHaveClass(/ix-invalid--required/);
 
-      await inputComponent.evaluate((element: any) => element.reset());
+      await inputComponent.evaluate((element: any) => element.clear());
 
       await expect(inputComponent).not.toHaveClass(/ix-invalid--required/);
       await expect(inputComponent).not.toHaveClass(/ix-invalid/);
+
+      if (selector === 'ix-number-input') {
+        await expect(inputComponent).toHaveAttribute('value', '');
+      } else {
+        await expect(input).toHaveValue('');
+      }
     });
   });
 });

@@ -163,4 +163,323 @@ regressionTest.describe('time input tests', () => {
       await expect(input).not.toHaveClass(/is-invalid/);
     }
   );
+
+  regressionTest(
+    'invalidText property takes precedence over i18n error message',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-time-input value="09:10:11" format="HH:mm:ss" invalid-text="Custom time error"></ix-time-input>`
+      );
+
+      const timeInputElement = page.locator('ix-time-input');
+
+      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await timeInputElement.locator('input').fill('invalid-time');
+      await timeInputElement.locator('input').blur();
+      await expect(
+        timeInputElement
+          .locator('ix-field-wrapper')
+          .locator('ix-typography')
+          .filter({ hasText: 'Custom time error' })
+      ).toHaveText('Custom time error');
+    }
+  );
+
+  regressionTest(
+    'Required input: Invalid input > Removing value with keyboard > Stays invalid',
+    async ({ page, mount }) => {
+      await mount(
+        `<ix-time-input required value="invalid-time"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.selectText();
+      await input.press('Delete');
+      await input.blur();
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Required input: Invalid input > Remove touched state > Valid again',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input required value="09:10:11"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.selectText();
+      await input.fill('invalid-time');
+      await input.blur();
+
+      await timeInput.evaluate((el: any) => el.clear());
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Required input: Invalid input > Programmatically setting to empty > Stays invalid',
+    async ({ page, mount }) => {
+      await mount(
+        `<ix-time-input required value="invalid-time"></ix-time-input>`
+      );
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.blur();
+
+      await timeInput.evaluate((el: any) => {
+        el.value = '';
+      });
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Required input: Valid input > Removing value with keyboard > It is invalid',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input required value="09:10:11"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.selectText();
+      await input.press('Delete');
+      await input.blur();
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Required input: Valid input > Remove touched state > Valid',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input required value="09:10:11"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.blur();
+
+      await timeInput.evaluate((el: any) => el.clear());
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Required input: Valid input > Programmatically setting to empty > It is invalid',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input required value="09:10:11"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.blur();
+
+      await timeInput.evaluate((el: any) => {
+        el.value = '';
+      });
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'Not required input: Invalid input > Removing value with keyboard > Valid',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input value="invalid-time"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.selectText();
+      await input.press('Delete');
+      await input.blur();
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not required input: Invalid input > Remove touched state > Valid again',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input value="09:10:11"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.selectText();
+      await input.fill('invalid-time');
+      await input.blur();
+
+      await timeInput.evaluate((el: any) => el.clear());
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not required input: Invalid input > Programmatically setting to empty > Valid',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input value="invalid-time"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.blur();
+
+      await timeInput.evaluate((el: any) => {
+        el.value = '';
+      });
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not required input: Valid input > Removing value with keyboard > Valid',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input value="09:10:11"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.selectText();
+      await input.press('Delete');
+      await input.blur();
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not required input: Valid input > Remove touched state > Valid',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input value="09:10:11"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.blur();
+
+      await timeInput.evaluate((el: any) => el.clear());
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Not required input: Valid input > Programmatically setting to empty > Valid',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input value="09:10:11"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.blur();
+
+      await timeInput.evaluate((el: any) => {
+        el.value = '';
+      });
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'novalidate form suppresses validation for required field',
+    async ({ page, mount }) => {
+      await mount(`
+        <form novalidate>
+          <ix-time-input required value="09:10:11"></ix-time-input>
+        </form>
+      `);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.selectText();
+      await input.press('Delete');
+      await input.blur();
+
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'novalidate form suppresses validation for non-required field',
+    async ({ page, mount }) => {
+      await mount(`
+        <form novalidate>
+          <ix-time-input value="09:10:11"></ix-time-input>
+        </form>
+      `);
+
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.blur();
+
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'Validation works after switching between required and non-required',
+    async ({ page, mount }) => {
+      await mount(`<ix-time-input value="09:10:11"></ix-time-input>`);
+
+      const timeInput = page.locator('ix-time-input');
+      const input = page.locator('input');
+
+      await input.focus();
+      await input.selectText();
+      await input.press('Delete');
+      await input.blur();
+
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+
+      await timeInput.evaluate((el: any) => {
+        el.required = true;
+      });
+
+      await expect(timeInput).toHaveClass(/ix-invalid--required/);
+
+      await timeInput.evaluate((el: any) => {
+        el.required = false;
+      });
+
+      await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
 });
