@@ -1,5 +1,21 @@
 # @siemens/ix
 
+## 4.2.0
+
+### Patch Changes
+
+- [#2285](https://github.com/siemens/ix/pull/2285) [`3cb0ab3`](https://github.com/siemens/ix/commit/3cb0ab37db2d75dac634e44ca1dfe16652836829) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Fix `invalidText` property not being applied to **ix-date-input** and **ix-time-input** when internal validation fails.
+
+  The `invalidText` property now correctly takes precedence over the i18n error messages when both are set. Previously, the i18n message would always be shown for internal validation errors (unparsable dates/times or min/max violations), ignoring the user's custom `invalidText`.
+
+  Fixes #2183.
+
+- [#2284](https://github.com/siemens/ix/pull/2284) [`9cb98da`](https://github.com/siemens/ix/commit/9cb98da8dcf6f1a30a22bfc66f36a818904290c3) Thanks [@lzeiml](https://github.com/lzeiml)! - Fixed an issue in **ix-time-picker** where focusing numbers would scroll the page outside the component container.
+
+  Fixes #2138
+
+- [#2214](https://github.com/siemens/ix/pull/2214) [`4dbed06`](https://github.com/siemens/ix/commit/4dbed06e2ace5396754eb88ac7bbe57802bdea7d) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update counter pill background for **ix-tab-item**.
+
 ## 4.1.0
 
 ### Minor Changes
