@@ -203,6 +203,7 @@ regressionTest(
     const checkbox = page.locator('ix-checkbox');
     await checkbox.focus();
     await page.keyboard.press('Tab');
+    await page.waitForTimeout(100);
     await expect(checkbox).toHaveClass(/ix-invalid--required/);
     await expect(checkbox).toHaveClass(/ix-invalid/);
   }
@@ -254,6 +255,7 @@ regressionTest(
     await expect(checkbox2).toHaveClass(/ix-invalid--required/);
     await expect(checkbox3).toHaveClass(/ix-invalid--required/);
     await checkbox1.click();
+    await page.waitForTimeout(100);
     await expect(checkbox1).not.toHaveClass(/ix-invalid/);
     await expect(checkbox2).not.toHaveClass(/ix-invalid/);
     await expect(checkbox3).not.toHaveClass(/ix-invalid/);
@@ -321,6 +323,7 @@ regressionTest(
     await expect(checkbox1).toHaveClass(/ix-invalid--required/);
     await expect(checkbox2).toHaveClass(/ix-invalid--required/);
     await checkbox1.click();
+    await page.waitForTimeout(100);
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid/);
     await expect(checkbox1).not.toHaveClass(/ix-invalid/);
     await expect(checkbox2).not.toHaveClass(/ix-invalid/);
