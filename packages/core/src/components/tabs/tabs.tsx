@@ -86,6 +86,7 @@ export class Tabs {
 
   private windowStartSize = window.innerWidth;
   private resizeObserver?: ResizeObserver;
+  private readonly ARROW_WIDTH = 32;
 
   private clickAction: {
     timeout: NodeJS.Timeout | null;
@@ -212,14 +213,16 @@ export class Tabs {
 
     const containerRect = container.getBoundingClientRect();
     const tabRect = tab.getBoundingClientRect();
-    const arrowWidth = 32;
     const tabLeftRelative = tabRect.left - containerRect.left;
     const tabRightRelative = tabLeftRelative + tabRect.width;
 
-    if (tabLeftRelative < arrowWidth) {
-      this.move(-tabLeftRelative + arrowWidth, true);
-    } else if (tabRightRelative > containerRect.width - arrowWidth) {
-      this.move(containerRect.width - tabRightRelative - arrowWidth, true);
+    if (tabLeftRelative < this.ARROW_WIDTH) {
+      this.move(-tabLeftRelative + this.ARROW_WIDTH, true);
+    } else if (tabRightRelative > containerRect.width - this.ARROW_WIDTH) {
+      this.move(
+        containerRect.width - tabRightRelative - this.ARROW_WIDTH,
+        true
+      );
     }
   }
 
