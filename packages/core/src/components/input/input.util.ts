@@ -219,3 +219,57 @@ export function handleSubmitOnEnterKeydown(
     form.requestSubmit();
   }
 }
+
+/**
+ * Clears the input field value and resets validation state.
+ * Sets the value to empty/default and removes touched state to suppress validation.
+ * This is the comprehensive clear that actually empties the input.
+ */
+export async function clearInputValue<T>(
+  comp: IxInputFieldComponent<T>,
+  options?: {
+    defaultValue?: T;
+    additionalCleanup?: () => void;
+  }
+): Promise<void> {
+  const compAny = comp as any;
+
+  compAny._isClearing = true;
+  compAny.touched = false;
+  compAny.isInputInvalid = false;
+  comp.isInvalid = false;
+  comp.isValid = false;
+  comp.isInfo = false;
+  comp.isWarning = false;
+  compAny.isInvalidByRequired = false;
+
+  if ('invalidReason' in compAny) {
+    compAny.invalidReason = undefined;
+  }
+  if ('from' in compAny) {
+    compAny.from = undefined;
+  }
+  if ('time' in compAny) {
+    compAny.time = null;
+  }
+
+  const emptyValue =
+    options?.defaultValue !== undefined ? options.defaultValue : ('' as T);
+  compAny.value = emptyValue;
+
+  if (options?.additionalCleanup) {
+    options.additionalCleanup();
+  }
+
+  await comp.updateFormInternalValue(emptyValue);
+  comp.valueChange.emit(emptyValue);
+
+  if (
+    'syncValidationClasses' in compAny &&
+    typeof compAny.syncValidationClasses === 'function'
+  ) {
+    compAny.syncValidationClasses();
+  }
+
+  compAny._isClearing = false;
+}

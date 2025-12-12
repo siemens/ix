@@ -954,6 +954,10 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled attribute
           * @default false
          */
@@ -1911,6 +1915,10 @@ export namespace Components {
          */
         "allowedCharactersPattern"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Specifies whether the text field is disabled.
           * @default false
          */
@@ -2525,6 +2533,10 @@ export namespace Components {
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
+        /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
         /**
           * Disables the input field
           * @default false
@@ -3359,6 +3371,10 @@ export namespace Components {
      */
     interface IxTextarea {
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Determines if the textarea field is disabled.
           * @default false
          */
@@ -3372,6 +3388,10 @@ export namespace Components {
           * Get the native textarea element.
          */
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * Returns the validity state of the textarea field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the textarea field.
@@ -3470,6 +3490,10 @@ export namespace Components {
      * @form-ready 
      */
     interface IxTimeInput {
+        /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
         /**
           * Disabled attribute
           * @default false

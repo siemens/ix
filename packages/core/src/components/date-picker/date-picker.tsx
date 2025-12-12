@@ -315,12 +315,8 @@ export class DatePicker implements IxDatePickerComponent {
   componentWillLoad() {
     this.setTranslations();
 
-    this.currFromDate = this.from
-      ? DateTime.fromFormat(this.from, this.format)
-      : undefined;
-    this.currToDate = this.to
-      ? DateTime.fromFormat(this.to, this.format)
-      : undefined;
+    this.currFromDate = this.from ? this.parseDateString(this.from) : undefined;
+    this.currToDate = this.to ? this.parseDateString(this.to) : undefined;
 
     const year = this.currFromDate?.year ?? this.getDateTimeNow().year;
     this.startYear = year - 5;
