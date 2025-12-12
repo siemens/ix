@@ -219,6 +219,7 @@ export class MenuItem implements IxMenuItemBase {
           active: this.active,
           'tab-nested': this.isHostedInsideCategory,
         }}
+        aria-disabled={this.disabled ? 'true' : null}
         {...extendedAttributes}
       >
         {this.href ? (
