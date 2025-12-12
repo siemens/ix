@@ -18,7 +18,8 @@ feat(accessibility): Improve ARIA roles and labels for menu components
 
 - Enhanced to automatically pass ARIA attributes from host element to internal button/anchor
 - Uses `a11yHostAttributes()` to support `aria-expanded`, `aria-controls`, and `role` without new props
-- Icon already has `aria-hidden="true"` for decorative icons
+- Added `aria-disabled` attribute on host element when `disabled` prop is true (properly communicates disabled state to assistive technology and satisfies WCAG contrast exemption for inactive components)
+- Icon now has `aria-hidden="true"` (decorative icon, text label provides accessible name)
 - Maintains full backward compatibility - no API changes
 
 **Menu Settings Component (`ix-menu-settings`):**

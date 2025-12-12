@@ -18,8 +18,9 @@ The menu expand/collapse button is now hidden from assistive technology using `a
 **Changes to `ix-menu-expand-icon` (internal component):**
 
 - Added `aria-hidden="true"` to component host (hides from screen readers only)
+- Added `tabindex="-1"` to internal button elements to comply with `aria-hidden-focus` accessibility rule (WCAG 4.1.2)
 - Removed unused `ixAriaLabel` prop (component is hidden from screen readers)
-- Button remains keyboard accessible for sighted keyboard users
+- Button remains visible and clickable for sighted users
 
 **Changes to `ix-icon-button`:**
 
