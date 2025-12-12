@@ -251,6 +251,7 @@ regressionTest(
 
     await preventFormSubmission(form);
     await submitButton.click();
+    await page.waitForTimeout(100);
     await expect(checkbox1).toHaveClass(/ix-invalid--required/);
     await expect(checkbox2).toHaveClass(/ix-invalid--required/);
     await expect(checkbox3).toHaveClass(/ix-invalid--required/);
@@ -319,6 +320,7 @@ regressionTest(
 
     await preventFormSubmission(form);
     await submitButton.click();
+    await page.waitForTimeout(100);
     await expect(checkboxGroup).toHaveClass(/ix-invalid--required/);
     await expect(checkbox1).toHaveClass(/ix-invalid--required/);
     await expect(checkbox2).toHaveClass(/ix-invalid--required/);

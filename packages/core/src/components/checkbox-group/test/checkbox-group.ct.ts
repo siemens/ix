@@ -48,7 +48,7 @@ regressionTest('required', async ({ mount, page }) => {
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
-
+  await page.waitForTimeout(100);
   await expect(radioGroupElement).toHaveClass(/ix-invalid--required/);
   await expect(radioOption2).toHaveClass(/ix-invalid--required/);
   await expect(radioOption3).not.toHaveClass(/ix-invalid/);
@@ -83,11 +83,13 @@ regressionTest(
 
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid/);
     await submitButton.click();
+    await page.waitForTimeout(100);
     await expect(checkboxGroup).toHaveClass(/ix-invalid--required/);
     await expect(checkbox1).toHaveClass(/ix-invalid--required/);
     await expect(checkbox2).toHaveClass(/ix-invalid--required/);
     await expect(checkbox3).toHaveClass(/ix-invalid--required/);
     await checkbox1.click();
+    await page.waitForTimeout(100);
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid/);
     await expect(checkbox1).not.toHaveClass(/ix-invalid/);
     await expect(checkbox2).not.toHaveClass(/ix-invalid/);
@@ -120,8 +122,8 @@ regressionTest(
     await form.evaluate((form: HTMLFormElement) => {
       form.addEventListener('submit', (e) => e.preventDefault());
     });
-
     await submitButton.click();
+    await page.waitForTimeout(100);
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid--required/);
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid/);
     await expect(checkbox1).not.toHaveClass(/ix-invalid--required/);
@@ -129,7 +131,7 @@ regressionTest(
     await expect(checkbox3).not.toHaveClass(/ix-invalid--required/);
     await checkbox1.click();
     await checkbox1.press('Tab');
-
+    await page.waitForTimeout(100);
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid/);
     await expect(checkbox1).not.toHaveClass(/ix-invalid/);
   }
@@ -155,6 +157,7 @@ regressionTest(
     await checkbox1.focus();
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
+    await page.waitForTimeout(100);
     await expect(checkboxGroup).toHaveClass(/ix-invalid--required/);
     await expect(checkbox1).toHaveClass(/ix-invalid--required/);
     await expect(checkbox2).toHaveClass(/ix-invalid--required/);
@@ -182,6 +185,7 @@ regressionTest(
     await checkbox1.focus();
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
+    await page.waitForTimeout(100);
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid--required/);
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid/);
     await expect(checkbox1).not.toHaveClass(/ix-invalid/);
