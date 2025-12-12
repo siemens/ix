@@ -737,8 +737,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private clear() {
     this.clearInput();
     this.selectedLabels = [];
-    this.value = [];
-    this.emitValueChange([]);
+    const emptyValue = this.isSingleMode ? '' : [];
+    this.value = emptyValue;
+    this.emitValueChange(emptyValue);
     this.dropdownShow = false;
   }
 
