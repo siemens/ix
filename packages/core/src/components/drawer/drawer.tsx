@@ -140,7 +140,7 @@ export class Drawer {
   }
 
   private onCloseClicked() {
-    this.toggleDrawer(false);
+    this.show = false;
   }
 
   private clickedOutside(evt: any) {
