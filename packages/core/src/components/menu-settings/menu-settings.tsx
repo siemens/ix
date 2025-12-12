@@ -44,6 +44,12 @@ export class MenuSettings {
    */
   @Prop() label = 'Settings';
 
+  /**
+   * Aria label for close button
+   */
+  @Prop({ attribute: 'aria-label-close-button' }) ariaLabelCloseButton =
+    'Close Settings';
+
   /** @internal */
   @Prop() show = false;
 
