@@ -197,7 +197,6 @@ export class MenuItem implements IxMenuItemBase {
           class={'tab-icon'}
           name={this.icon}
           aria-hidden="true"
-          tabindex="-1"
         ></ix-icon>
       ),
       this.notifications ? (

@@ -49,6 +49,7 @@ export class MenuExpandIcon {
   getSmallScreenIcon() {
     return (
       <button
+        tabindex={-1}
         class={{
           ...getButtonClasses('subtle-tertiary', true, false, false, false),
           'menu-expand-button': true,
@@ -71,6 +72,7 @@ export class MenuExpandIcon {
   getLargeScreenIcon() {
     return (
       <ix-icon-button
+        tabindex={-1}
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
         variant="subtle-tertiary"
       ></ix-icon-button>

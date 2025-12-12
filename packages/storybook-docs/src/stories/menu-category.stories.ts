@@ -23,8 +23,6 @@ const meta = {
       'ix-menu-category'
     ) as HTMLIxMenuCategoryElement;
 
-    categoryMenu.ariaLabel = 'my-category-menu';
-
     const menu = document.createElement('ix-menu');
     menu.appendChild(categoryMenu);
 
