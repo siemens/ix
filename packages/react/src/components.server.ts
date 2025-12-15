@@ -673,6 +673,7 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         positioningStrategy: 'positioning-strategy',
         header: 'header',
         disableFocusHandling: 'disable-focus-handling',
+        disableFocusTrap: 'disable-focus-trap',
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
         suppressOverflowBehavior: 'suppress-overflow-behavior'

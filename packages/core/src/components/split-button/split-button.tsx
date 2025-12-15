@@ -177,6 +177,7 @@ export class SplitButton extends IxComponent() {
           aria-label={this.ariaLabelSplitIconButton}
         ></ix-icon-button>
         <ix-dropdown
+          disableFocusTrap
           closeBehavior={this.closeBehavior}
           trigger={this.triggerElementRef.waitForCurrent()}
           onShowChanged={({ detail: show }) => {

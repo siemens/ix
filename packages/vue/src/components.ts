@@ -524,6 +524,7 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'positioningStrategy',
   'header',
   'disableFocusHandling',
+  'disableFocusTrap',
   'offset',
   'overwriteDropdownStyle',
   'discoverAllSubmenus',

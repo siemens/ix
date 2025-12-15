@@ -71,8 +71,12 @@ export function queryElements(
 }
 
 export const addFocusVisibleListener = (
-  rootEl?: HTMLElement
+  rootEl?: HTMLElement,
+  config?: {
+    trapFocus?: boolean;
+  }
 ): FocusVisibleUtility => {
+  const trapFocus = config?.trapFocus ?? false;
   let currentFocus: Element[] = [];
   let keyboardMode = true;
 
@@ -95,6 +99,35 @@ export const addFocusVisibleListener = (
     keyboardMode = FOCUS_KEYS.has(keyboardEvent.key);
     if (!keyboardMode) {
       setFocus([]);
+    }
+
+    // Handle focus trapping
+    if (trapFocus && keyboardEvent.key === 'Tab') {
+      const focusableElements = queryElements(root, focusableQueryString);
+
+      if (focusableElements.length === 0) {
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const activeElement = ref.activeElement || document.activeElement;
+
+      if (keyboardEvent.shiftKey) {
+        // Shift+Tab: if on first element, go to last
+        if (activeElement === firstElement) {
+          keyboardEvent.preventDefault();
+          focusElement(lastElement as HTMLElement);
+        }
+      } else {
+        // Tab: if on last element, go to first
+        if (activeElement === lastElement) {
+          keyboardEvent.preventDefault();
+          focusElement(firstElement as HTMLElement);
+        }
+      }
+
+      event.stopImmediatePropagation();
     }
   };
 

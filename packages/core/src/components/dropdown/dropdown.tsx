@@ -44,9 +44,11 @@ import {
 import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 import {
+  addFocusVisibleListener,
   focusElementInContext,
   focusFirstDescendant,
   focusLastDescendant,
+  FocusVisibleUtility,
   queryElements,
 } from '../utils/focus-visible-listener';
 import { IxComponent } from '../utils/internal/component';
@@ -108,6 +110,11 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
    * Suppress automatic focus when the dropdown is shown
    */
   @Prop() disableFocusHandling = false;
+
+  /**
+   * Close dropdown when tabbing away, and do not trap focus inside dropdown
+   */
+  @Prop() disableFocusTrap = false;
 
   /**
    * Move dropdown along main axis of alignment
@@ -173,6 +180,8 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
 
   private keyboardNavigationCleanup?: () => void;
 
+  private focusUtilities?: FocusVisibleUtility;
+
   connectedCallback(): void {
     dropdownController.connected(this);
 
@@ -211,6 +220,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
       this.autoUpdateCleanup();
       this.autoUpdateCleanup = undefined;
     }
+    this.focusUtilities?.destroy();
   }
 
   getAssignedSubmenuIds() {
@@ -425,10 +435,17 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         );
       }
 
+      if (this.disableFocusTrap === false) {
+        this.focusUtilities = addFocusVisibleListener(this.hostElement, {
+          trapFocus: true,
+        });
+      }
+
       this.registerKeyListener();
     } else {
       this.destroyAutoUpdate();
       this.keyboardNavigationCleanup?.();
+      this.focusUtilities?.destroy();
     }
   }
 
@@ -640,6 +657,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
     return (
       <Host
         data-ix-dropdown={this.localUId}
+        data-ix-focus-trap
         class={{
           'dropdown-menu': true,
           show: this.show,
@@ -652,6 +670,9 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         }}
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
         onKeydown={(event: KeyboardEvent) => {
+          if (!this.disableFocusTrap) {
+            return;
+          }
           if (event.key === 'Tab' && this.show) {
             dropdownController.dismiss(this);
           }

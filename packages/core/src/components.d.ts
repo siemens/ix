@@ -1301,6 +1301,11 @@ export namespace Components {
          */
         "disableFocusHandling": boolean;
         /**
+          * Close dropdown when tabbing away, and do not trap focus inside dropdown
+          * @default false
+         */
+        "disableFocusTrap": boolean;
+        /**
           * @default false
          */
         "discoverAllSubmenus": boolean;
@@ -7186,6 +7191,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "disableFocusHandling"?: boolean;
+        /**
+          * Close dropdown when tabbing away, and do not trap focus inside dropdown
+          * @default false
+         */
+        "disableFocusTrap"?: boolean;
         /**
           * @default false
          */

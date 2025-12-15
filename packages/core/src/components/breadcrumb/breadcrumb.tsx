@@ -173,6 +173,7 @@ export class Breadcrumb extends IxComponent() {
         <ix-dropdown
           id={this.previousDropdownId}
           ref={this.previousDropdownRef}
+          disableFocusTrap
           role="menu"
           aria-labelledby={this.previousButtonRef.current!}
           trigger={
@@ -245,6 +246,7 @@ export class Breadcrumb extends IxComponent() {
           </ol>
         </nav>
         <ix-dropdown
+          disableFocusTrap
           role="menu"
           id={this.nextDropdownId}
           ref={this.nextDropdownRef}

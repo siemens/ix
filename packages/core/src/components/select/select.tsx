@@ -930,6 +930,7 @@ export class Select
               this.dropdownItemsVisualFocused = true;
             }
           }}
+          disableFocusTrap
           ref={this.dropdownRef}
           show={this.dropdownShow}
           closeBehavior={this.isMultipleMode ? 'outside' : 'both'}

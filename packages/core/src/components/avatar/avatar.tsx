@@ -260,6 +260,7 @@ export class Avatar extends IxComponent() {
                 this.tooltipRef.current.hideTooltip(0);
               }
             }}
+            disableFocusTrap
           >
             {this.username && (
               <Fragment>
