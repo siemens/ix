@@ -293,7 +293,7 @@ export namespace Components {
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @default 'previous'
+          * @default 'Show previous breadcrumb items'
          */
         "ariaLabelPreviousButton": string;
         /**
@@ -6104,7 +6104,7 @@ declare namespace LocalJSX {
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @default 'previous'
+          * @default 'Show previous breadcrumb items'
          */
         "ariaLabelPreviousButton"?: string;
         /**

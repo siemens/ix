@@ -50,6 +50,7 @@ import {
   queryElements,
 } from '../utils/focus-visible-listener';
 import { IxComponent } from '../utils/internal/component';
+import { a11yHostAttributes } from '../utils/a11y';
 
 let sequenceId = 0;
 
@@ -630,6 +631,12 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   }
 
   render() {
+    const hostAriaAttributes = a11yHostAttributes(this.hostElement);
+    const dropdownAriaAttributes = {
+      ...hostAriaAttributes,
+      role: hostAriaAttributes.role ?? 'list',
+    };
+
     return (
       <Host
         data-ix-dropdown={this.localUId}
@@ -643,13 +650,13 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
           minWidth: '0px',
           position: this.positioningStrategy,
         }}
-        role="list"
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
         onKeydown={(event: KeyboardEvent) => {
           if (event.key === 'Tab' && this.show) {
             dropdownController.dismiss(this);
           }
         }}
+        {...dropdownAriaAttributes}
       >
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}

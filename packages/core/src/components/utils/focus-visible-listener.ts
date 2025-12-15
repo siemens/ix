@@ -32,6 +32,7 @@ const FOCUS_KEYS = new Set([
 export interface FocusVisibleUtility {
   destroy: () => void;
   setFocus: (elements: Element[]) => void;
+  hasKeyboardMode: () => boolean;
 }
 
 export function queryElements(
@@ -129,6 +130,7 @@ export const addFocusVisibleListener = (
   return {
     destroy,
     setFocus,
+    hasKeyboardMode: () => keyboardMode,
   };
 };
 

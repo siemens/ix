@@ -29,7 +29,9 @@ import { IxComponent } from '../utils/internal/component';
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
 export class BreadcrumbItem extends IxComponent() implements AnchorInterface {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
@@ -95,11 +97,7 @@ export class BreadcrumbItem extends IxComponent() implements AnchorInterface {
   }
 
   componentWillLoad() {
-    this.a11y = a11yHostAttributes(this.hostElement, [
-      'aria-describedby',
-      'aria-controls',
-      'aria-expanded',
-    ]);
+    this.a11y = a11yHostAttributes(this.hostElement, []);
   }
 
   animationFadeIn() {
@@ -127,7 +125,10 @@ export class BreadcrumbItem extends IxComponent() implements AnchorInterface {
       extraClasses: {
         'dropdown-trigger': this.isDropdownTrigger,
       },
-      ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabelButton },
+      ariaAttributes: {
+        ...this.a11y,
+        'aria-label': this.a11y['aria-label'] ?? this.ariaLabelButton,
+      },
       href: this.href,
       target: this.target,
       rel: this.rel,
