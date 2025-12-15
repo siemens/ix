@@ -16,6 +16,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { IxComponent } from '../utils/internal/component';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 import { IxButtonComponent } from './button-component';
@@ -32,7 +33,7 @@ export type ButtonVariant =
   },
   styleUrl: './button.scss',
 })
-export class Button implements IxButtonComponent {
+export class Button extends IxComponent() implements IxButtonComponent {
   /**
    * ARIA label for the button
    * Will be set as aria-label on the nested HTML button element
@@ -190,7 +191,6 @@ export class Button implements IxButtonComponent {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
-      tabIndex: 0,
       ariaAttributes: {
         'aria-label': this.ariaLabelButton,
       },
@@ -203,6 +203,7 @@ export class Button implements IxButtonComponent {
       <Host
         class={{
           disabled: this.disabled || this.loading,
+          'ix-focusable': true,
         }}
       >
         <BaseButton {...baseButtonProps}>
