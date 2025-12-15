@@ -273,8 +273,8 @@ export default {
       },
     },
     tooltip: {
-      backgroundColor: '#eff0f1',
-      borderColor: '#eff0f1',
+      backgroundColor: '#ffffffcc',
+      borderColor: '#00000033',
       textStyle: {
         color: 'rgba(0, 10, 20, .9)',
       },

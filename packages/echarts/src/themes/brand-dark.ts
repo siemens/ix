@@ -24,7 +24,7 @@ const colors = [
   '#FFBC66' /* theme-chart-15 */,
   '#FFF7D6' /* theme-chart-16 */,
   '#AAAA96' /* theme-chart-17 */,
-  '#FFBC66' /* theme-chart-5 */,
+  '#7D8099' /* theme-chart-5 */,
 ];
 
 export default {
@@ -141,7 +141,7 @@ export default {
       axisLine: {
         show: true,
         lineStyle: {
-          color: 'rgba(255,255,255,0.35)',
+          color: 'rgba(255,255,255,0.3)',
         },
       },
       axisTick: {
@@ -171,7 +171,7 @@ export default {
       axisLine: {
         show: true,
         lineStyle: {
-          color: 'rgba(255,255,255,0.35)',
+          color: 'rgba(255,255,255,0.3)',
         },
       },
       axisTick: {
@@ -201,7 +201,7 @@ export default {
       axisLine: {
         show: true,
         lineStyle: {
-          color: 'rgba(255,255,255,0.35)',
+          color: 'rgba(255,255,255,0.3)',
         },
       },
       axisTick: {
@@ -231,7 +231,7 @@ export default {
       axisLine: {
         show: true,
         lineStyle: {
-          color: 'rgba(255,255,255,0.35)',
+          color: 'rgba(255,255,255,0.3)',
         },
       },
       axisTick: {
@@ -273,8 +273,8 @@ export default {
       },
     },
     tooltip: {
-      backgroundColor: '#23233c',
-      borderColor: '#23233c',
+      backgroundColor: '#000028cc',
+      borderColor: '#ffffff40',
       textStyle: {
         color: '#ffffff',
       },

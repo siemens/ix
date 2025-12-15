@@ -24,7 +24,7 @@ const colors = [
   '#801100' /* theme-chart-15 */,
   '#805800' /* theme-chart-16 */,
   '#5E5E4A' /* theme-chart-17 */,
-  '#801100' /* theme-chart-5 */,
+  '#4C4C68' /* theme-chart-5 */,
 ];
 
 export default {
@@ -273,8 +273,8 @@ export default {
       },
     },
     tooltip: {
-      backgroundColor: '#f3f3f0',
-      borderColor: '#f3f3f0',
+      backgroundColor: '#ffffffcc',
+      borderColor: '#00002833',
       textStyle: {
         color: '#000028',
       },
