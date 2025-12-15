@@ -101,7 +101,6 @@ export const addFocusVisibleListener = (
       setFocus([]);
     }
 
-    // Handle focus trapping
     if (trapFocus && keyboardEvent.key === 'Tab') {
       const focusableElements = queryElements(root, focusableQueryString);
 
@@ -114,13 +113,11 @@ export const addFocusVisibleListener = (
       const activeElement = ref.activeElement || document.activeElement;
 
       if (keyboardEvent.shiftKey) {
-        // Shift+Tab: if on first element, go to last
         if (activeElement === firstElement) {
           keyboardEvent.preventDefault();
           focusElement(lastElement as HTMLElement);
         }
       } else {
-        // Tab: if on last element, go to first
         if (activeElement === lastElement) {
           keyboardEvent.preventDefault();
           focusElement(firstElement as HTMLElement);
