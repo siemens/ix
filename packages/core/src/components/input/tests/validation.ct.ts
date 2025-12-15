@@ -290,11 +290,7 @@ test.describe('clear method', () => {
       await expect(inputComponent).not.toHaveClass(/ix-invalid--required/);
       await expect(inputComponent).not.toHaveClass(/ix-invalid/);
 
-      if (selector === 'ix-number-input') {
-        await expect(inputComponent).toHaveAttribute('value', '');
-      } else {
-        await expect(input).toHaveValue('');
-      }
+      await expect(input).toHaveValue('');
     });
 
     test(`${selector} - should clear value and reset validation state with value then make invalid then cleared`, async ({
@@ -329,11 +325,7 @@ test.describe('clear method', () => {
       await expect(inputComponent).not.toHaveClass(/ix-invalid--required/);
       await expect(inputComponent).not.toHaveClass(/ix-invalid/);
 
-      if (selector === 'ix-number-input') {
-        await expect(inputComponent).toHaveAttribute('value', '');
-      } else {
-        await expect(input).toHaveValue('');
-      }
+      await expect(input).toHaveValue('');
     });
   });
 });

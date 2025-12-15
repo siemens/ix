@@ -7,12 +7,74 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { Page } from '@playwright/test';
 import {
   getFormValue,
   preventFormSubmission,
   regressionTest,
   test,
 } from '@utils/test';
+
+async function waitForCheckboxClass(
+  page: Page,
+  selector: string,
+  className: string,
+  shouldHave: boolean
+) {
+  await page.waitForFunction(
+    (args: { sel: string; cls: string; should: boolean }) => {
+      const element = document.querySelector(args.sel);
+      if (!element) return false;
+      const hasClass = element.classList.contains(args.cls);
+      return args.should ? hasClass : !hasClass;
+    },
+    { sel: selector, cls: className, should: shouldHave }
+  );
+}
+
+async function waitForAllCheckboxesClass(
+  page: Page,
+  className: string,
+  shouldHave: boolean
+) {
+  await page.waitForFunction(
+    (args: { cls: string; should: boolean }) => {
+      const elements = document.querySelectorAll('ix-checkbox');
+      if (elements.length === 0) return false;
+      return Array.from(elements).every((el) => {
+        const hasClass = el.classList.contains(args.cls);
+        return args.should ? hasClass : !hasClass;
+      });
+    },
+    { cls: className, should: shouldHave }
+  );
+}
+
+async function waitForGroupAndCheckboxesClass(
+  page: Page,
+  groupClass: string,
+  checkboxClass: string,
+  shouldHave: boolean
+) {
+  await page.waitForFunction(
+    (args: { grpCls: string; cbCls: string; should: boolean }) => {
+      const group = document.querySelector('ix-checkbox-group');
+      const checkboxes = document.querySelectorAll('ix-checkbox');
+      if (!group || checkboxes.length === 0) return false;
+
+      const groupHasClass = group.classList.contains(args.grpCls);
+      const groupMatches = args.should ? groupHasClass : !groupHasClass;
+
+      const checkboxesMatch = Array.from(checkboxes).every((cb) => {
+        const hasClass = cb.classList.contains(args.cbCls);
+        return args.should ? hasClass : !hasClass;
+      });
+
+      return groupMatches && checkboxesMatch;
+    },
+    { grpCls: groupClass, cbCls: checkboxClass, should: shouldHave }
+  );
+}
 
 regressionTest(`form-ready`, async ({ mount, page }) => {
   await mount(`<form><ix-checkbox name="my-field-name"></ix-checkbox></form>`);
@@ -203,6 +265,12 @@ regressionTest(
     const checkbox = page.locator('ix-checkbox');
     await checkbox.focus();
     await page.keyboard.press('Tab');
+    await waitForCheckboxClass(
+      page,
+      'ix-checkbox',
+      'ix-invalid--required',
+      true
+    );
     await expect(checkbox).toHaveClass(/ix-invalid--required/);
     await expect(checkbox).toHaveClass(/ix-invalid/);
   }
@@ -250,10 +318,12 @@ regressionTest(
 
     await preventFormSubmission(form);
     await submitButton.click();
+    await waitForAllCheckboxesClass(page, 'ix-invalid--required', true);
     await expect(checkbox1).toHaveClass(/ix-invalid--required/);
     await expect(checkbox2).toHaveClass(/ix-invalid--required/);
     await expect(checkbox3).toHaveClass(/ix-invalid--required/);
     await checkbox1.click();
+    await waitForAllCheckboxesClass(page, 'ix-invalid', false);
     await expect(checkbox1).not.toHaveClass(/ix-invalid/);
     await expect(checkbox2).not.toHaveClass(/ix-invalid/);
     await expect(checkbox3).not.toHaveClass(/ix-invalid/);
@@ -279,16 +349,15 @@ regressionTest(
     const checkbox2 = page.locator('ix-checkbox').nth(1);
     const checkbox3 = page.locator('ix-checkbox').nth(2);
     const submitButton = page.locator('button[type="submit"]');
-
     await preventFormSubmission(form);
     await submitButton.click();
+    await page.waitForTimeout(100);
     await expect(checkbox1).not.toHaveClass(/ix-invalid--required/);
     await expect(checkbox1).not.toHaveClass(/ix-invalid/);
     await expect(checkbox2).not.toHaveClass(/ix-invalid--required/);
     await expect(checkbox3).not.toHaveClass(/ix-invalid--required/);
     await checkbox1.focus();
     await page.keyboard.press('Tab');
-
     await expect(checkbox1).not.toHaveClass(/ix-invalid/);
     await expect(checkbox2).not.toHaveClass(/ix-invalid/);
   }
@@ -317,10 +386,22 @@ regressionTest(
 
     await preventFormSubmission(form);
     await submitButton.click();
+    await waitForGroupAndCheckboxesClass(
+      page,
+      'ix-invalid--required',
+      'ix-invalid--required',
+      true
+    );
     await expect(checkboxGroup).toHaveClass(/ix-invalid--required/);
     await expect(checkbox1).toHaveClass(/ix-invalid--required/);
     await expect(checkbox2).toHaveClass(/ix-invalid--required/);
     await checkbox1.click();
+    await waitForGroupAndCheckboxesClass(
+      page,
+      'ix-invalid',
+      'ix-invalid',
+      false
+    );
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid/);
     await expect(checkbox1).not.toHaveClass(/ix-invalid/);
     await expect(checkbox2).not.toHaveClass(/ix-invalid/);
@@ -347,9 +428,9 @@ regressionTest(
     const checkbox1 = page.locator('ix-checkbox').nth(0);
     const checkbox2 = page.locator('ix-checkbox').nth(1);
     const submitButton = page.locator('button[type="submit"]');
-
     await preventFormSubmission(form);
     await submitButton.click();
+    await page.waitForTimeout(100);
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid--required/);
     await expect(checkboxGroup).not.toHaveClass(/ix-invalid/);
     await expect(checkbox1).not.toHaveClass(/ix-invalid--required/);
