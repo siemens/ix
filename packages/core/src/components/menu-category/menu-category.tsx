@@ -6,32 +6,38 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
-  h,
-  Host,
-  Prop,
-  State,
   Event,
   EventEmitter,
+  h,
+  Host,
   Listen,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
+import { getFocusUtilities } from '../utils/internal';
+import { IxComponent } from '../utils/internal/component';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { createEnterLeaveDebounce } from './enter-leave';
-import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
+import { createEnterLeaveDebounce } from './enter-leave';
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
 @Component({
   tag: 'ix-menu-category',
   styleUrl: 'menu-category.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
-export class MenuCategory implements IxMenuItemBase {
+export class MenuCategory extends IxComponent() implements IxMenuItemBase {
   @Element() hostElement!: HTMLIxMenuCategoryElement;
 
   /**
@@ -72,7 +78,7 @@ export class MenuCategory implements IxMenuItemBase {
 
   private enterLeaveDebounce = createEnterLeaveDebounce(
     () => {
-      this.onPointerEnter();
+      this.showMenuItemDropdown();
     },
     () => {
       this.onPointerLeave();
@@ -132,7 +138,7 @@ export class MenuCategory implements IxMenuItemBase {
     });
   }
 
-  private onPointerEnter() {
+  private showMenuItemDropdown() {
     if (this.ixMenu?.expand) {
       return;
     }
@@ -145,11 +151,30 @@ export class MenuCategory implements IxMenuItemBase {
     this.showDropdown = false;
   }
 
-  private onCategoryClick(e: MouseEvent) {
-    e.stopPropagation();
+  private handleCategoryVisibility() {
     if (this.ixMenu?.expand) {
       this.onExpandCategory(!this.showItems);
       return;
+    }
+
+    this.showMenuItemDropdown();
+  }
+
+  private onCategoryClick(event: MouseEvent) {
+    event.stopPropagation();
+    this.handleCategoryVisibility();
+  }
+
+  private onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.handleCategoryVisibility();
+
+      const items = this.getNestedItems();
+      const firstItem = items[0];
+      if (firstItem) {
+        requestAnimationFrameNoNgZone(() => firstItem.focus());
+      }
     }
   }
 
@@ -206,12 +231,14 @@ export class MenuCategory implements IxMenuItemBase {
 
     this.observer.observe(this.hostElement, {
       attributes: true,
+      attributeFilter: ['class'],
       childList: true,
       subtree: true,
     });
 
-    requestAnimationFrame(() => {
+    requestAnimationFrameNoNgZone(() => {
       this.onNestedItemsChanged();
+      this.onShowItemsChange();
     });
 
     this.ixMenu?.addEventListener(
@@ -229,6 +256,14 @@ export class MenuCategory implements IxMenuItemBase {
   clearMenuItemStyles() {
     this.menuItemsContainer?.style.removeProperty('max-height');
     this.menuItemsContainer?.style.removeProperty('opacity');
+  }
+
+  @Watch('showDropdown')
+  @Watch('showItems')
+  onShowItemsChange() {
+    this.getNestedItems().forEach((item) => {
+      item.hidden = !this.showItems && !this.showDropdown;
+    });
   }
 
   disconnectedCallback() {
@@ -259,7 +294,7 @@ export class MenuCategory implements IxMenuItemBase {
           notifications={this.notifications}
           icon={this.icon}
           onClick={(e) => this.onCategoryClick(e)}
-          onFocus={() => this.onPointerEnter()}
+          onKeyDown={(event) => this.onKeyDown(event)}
           tooltipText={this.tooltipText}
           isCategory
         >
@@ -289,6 +324,14 @@ export class MenuCategory implements IxMenuItemBase {
           show={this.showDropdown}
           onShowChanged={({ detail: dropdownShown }: CustomEvent<boolean>) => {
             this.showDropdown = dropdownShown;
+
+            if (
+              this.showItems === false &&
+              dropdownShown === false &&
+              getFocusUtilities()?.hasKeyboardMode()
+            ) {
+              this.hostElement.focus();
+            }
           }}
           class={'category-dropdown'}
           anchor={this.hostElement}
@@ -306,7 +349,7 @@ export class MenuCategory implements IxMenuItemBase {
             }
           }}
         >
-          <ix-dropdown-item class={'category-dropdown-header'}>
+          <ix-dropdown-item class={'category-dropdown-header'} tabindex={-1}>
             <ix-typography format="label" bold textColor="std">
               {this.label}
             </ix-typography>

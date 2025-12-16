@@ -97,8 +97,8 @@ export class MenuExpandIcon {
       <Host
         class={{
           expanded: this.expanded,
+          'ix-focusable': true,
         }}
-        type="button"
         aria-label={this.ixAriaLabel}
         aria-pressed={a11yBoolean(this.expanded)}
       >

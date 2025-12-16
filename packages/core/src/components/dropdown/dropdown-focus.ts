@@ -15,7 +15,12 @@ import { Build } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { focusElement } from '../utils/focus-visible-listener';
 
-const VALID_FOCUS_ITEMS = ['ix-dropdown-item', 'ix-select-item'];
+const VALID_FOCUS_ITEMS = [
+  'ix-dropdown-item',
+  'ix-select-item',
+  'ix-menu-item',
+  'ix-menu-category',
+];
 const VALID_FOCUS_ELEMENTS = ['ix-dropdown', ...VALID_FOCUS_ITEMS];
 
 const matchesDropdownItems = (element: HTMLElement) =>
@@ -56,7 +61,7 @@ export const getPreviousFocusableItem = (
 
 const focusItem = (item: HTMLElement) => {
   requestAnimationFrameNoNgZone(async () => {
-    let element: HTMLElement | null = null;
+    let element: HTMLElement | null = item;
 
     if (
       'getDropdownItemElement' in item &&
@@ -64,8 +69,10 @@ const focusItem = (item: HTMLElement) => {
     ) {
       const dropdownItem = await item.getDropdownItemElement();
       element = dropdownItem.shadowRoot!.querySelector('button');
-    } else {
-      element = item.shadowRoot!.querySelector('button');
+    }
+
+    if (item.matches('ix-menu-category')) {
+      element = item.shadowRoot!.querySelector('.category-parent');
     }
 
     if (element) {

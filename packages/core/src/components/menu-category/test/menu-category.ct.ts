@@ -314,10 +314,26 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
   // Navigate to category
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
 
   const dropdown = categoryElement.locator('ix-dropdown');
+  await expect(dropdown).not.toBeVisible();
+
+  await page.keyboard.press(' ');
   await expect(dropdown).toBeVisible();
+
+  const item1 = categoryElement.locator('ix-menu-item').nth(0);
+  const item2 = categoryElement.locator('ix-menu-item').nth(1);
+
+  // Focus trapping inside dropdown
+  await expect(item1).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(item2).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(item1).toBeFocused();
+
+  await page.keyboard.press('Escape');
+  await expect(dropdown).not.toBeVisible();
+  await expect(categoryElement.locator('.category-parent')).toBeFocused();
 });
 
 test('should adjust height when items are added dynamically', async ({

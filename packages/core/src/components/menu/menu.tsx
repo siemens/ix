@@ -8,6 +8,14 @@
  */
 
 import {
+  iconApps,
+  iconCogwheel,
+  iconInfo,
+  iconLightDark,
+  iconNavigationLeft,
+  iconNavigationRight,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -22,6 +30,7 @@ import {
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
+import Animation from '../utils/animation';
 import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
@@ -30,15 +39,6 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
-import {
-  iconApps,
-  iconCogwheel,
-  iconInfo,
-  iconLightDark,
-  iconNavigationLeft,
-  iconNavigationRight,
-} from '@siemens/ix-icons/icons';
-import Animation from '../utils/animation';
 
 @Component({
   tag: 'ix-menu',
