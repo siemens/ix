@@ -349,32 +349,30 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                     left: `calc(${valueInPercentage} * (100% - 1rem))`,
                   }}
                 ></div>
-                <div class="ticks">
+                <svg class="ticks" xmlns="http://www.w3.org/2000/svg">
                   {this.marker
-                    ? this.marker.map((markerValue) => {
-                        if (markerValue > this.max || markerValue < this.min) {
-                          return;
-                        }
+                    ?.filter((markerValue) => markerValue >= this.min && markerValue <= this.max)
+                    .map((markerValue) => {
+                      const markerPosition = (markerValue - this.rangeMin) / range;
 
-                        let left = (markerValue - this.rangeMin) / range;
-
-                        return (
-                          <div
-                            class={{
-                              tick: true,
-                              'tick-active':
-                                this.isMarkerActive(markerValue) && this.trace,
-                              'tick-at-min': left === 0,
-                              'tick-at-max': left === 1,
-                            }}
-                            style={{
-                              '--tick-value': `${left}`,
-                            }}
-                          ></div>
-                        );
-                      })
-                    : null}
-                </div>
+                      return (
+                        <circle
+                          class={{
+                            tick: true,
+                            'tick-active':
+                              this.isMarkerActive(markerValue) && this.trace,
+                            'tick-at-min': markerValue === this.min,
+                            'tick-at-max': markerValue === this.max,
+                          }}
+                          cx="0"
+                          cy="0"
+                          style={{
+                            '--tick-value': `${markerPosition}`,
+                          }}
+                        ></circle>
+                      );
+                    })}
+                </svg>
               </div>
 
               <input
