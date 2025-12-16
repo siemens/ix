@@ -5,35 +5,14 @@
 '@siemens/ix-vue': patch
 ---
 
-feat(accessibility): Improve ARIA roles and labels for menu components
+Improved accessibility for the following components: `ix-menu`, `ix-menu-item`, `ix-menu-settings`, `ix-menu-about`, `ix-menu-expand-icon`, `ix-icon-button`, `base-button`.
 
-**Menu Component (`ix-menu`):**
+**API changes:**
 
-- Added `aria-label` to `<nav>` element using `applicationName` for proper landmark identification
-- Settings and Legal items now properly announce as disclosure buttons with `aria-expanded` and `aria-controls`
-- Changed overlay from `<div role="region">` to semantic `<section>` element
-- Theme toggle already has correct `role="switch"` with `aria-checked`
+- `ix-menu-settings`: Added `ariaLabelCloseButton` prop (default: "Close Settings")
+- `ix-menu-about`: Added `ariaLabelCloseButton` prop (default: "Close About")
 
-**Menu Item Component (`ix-menu-item`):**
+**Deprecations (will be removed in 5.0.0):**
 
-- Enhanced to automatically pass ARIA attributes from host element to internal button/anchor
-- Uses `a11yHostAttributes()` to support `aria-expanded`, `aria-controls`, and `role` without new props
-- Added `aria-disabled` attribute on host element when `disabled` prop is true (properly communicates disabled state to assistive technology and satisfies WCAG contrast exemption for inactive components)
-- Icon now has `aria-hidden="true"` (decorative icon, text label provides accessible name)
-- Maintains full backward compatibility - no API changes
-
-**Menu Settings Component (`ix-menu-settings`):**
-
-- Added `ariaLabelCloseButton` prop for accessible close button label (default: "Close Settings")
-
-**Menu About Component (`ix-menu-about`):**
-
-- Added `ariaLabelCloseButton` prop for accessible close button label (default: "Close About")
-
-**Icon Button Component (`ix-icon-button`):**
-
-- Now properly passes `tabindex` from host element to internal button for improved focus management
-
-**Base Button Component (`base-button`):**
-
-- All icons in buttons now have `aria-hidden="true"` (marked as decorative since the button text or aria-label provides the accessible name)
+- `ix-menu`: `i18nExpandSidebar` prop
+- `ix-application-header`: `ariaLabelMenuExpandIconButton` prop
