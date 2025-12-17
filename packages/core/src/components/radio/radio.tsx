@@ -25,6 +25,7 @@ import {
   createClassMutationObserver,
   IxFormComponent,
 } from '../utils/input';
+import { clearInputValue } from '../input/input.util';
 import {
   getParentForm,
   isFormNoValidate,
@@ -275,6 +276,18 @@ export class Radio implements IxFormComponent<string> {
   @Method()
   getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return Promise.resolve(this.formInternals.form);
+  }
+
+  /**
+   * Clear the checked state and reset validation
+   */
+  @Method()
+  async clear(): Promise<void> {
+    await clearInputValue(this.hostElement, {
+      additionalCleanup: () => {
+        this.checked = false;
+      },
+    });
   }
 
   render() {

@@ -23,6 +23,7 @@ import {
 import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
+import { clearInputValue } from '../input/input.util';
 import {
   getParentForm,
   hasAnyCheckboxChecked,
@@ -277,6 +278,18 @@ export class Checkbox implements IxFormComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clear the checked state and reset validation
+   */
+  @Method()
+  async clear(): Promise<void> {
+    await clearInputValue(this.hostElement, {
+      additionalCleanup: () => {
+        this.checked = false;
+      },
+    });
   }
 
   @HookValidationLifecycle()

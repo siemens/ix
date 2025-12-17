@@ -33,6 +33,7 @@ import {
 } from '../radio/radio-validation';
 import { makeRef } from '../utils/make-ref';
 import { useFieldGroupValidation } from '../utils/field-group-utils';
+import { clearInputValue } from '../input/input.util';
 
 /**
  * @form-ready
@@ -219,6 +220,14 @@ export class RadiobuttonGroup
     const nextRadio = radiobuttonElements[nextIndex];
     nextRadio.setCheckedState(true);
     nextRadio.focus();
+  }
+
+  /**
+   * Clear the selected radio button and reset validation state
+   */
+  @Method()
+  async clear(): Promise<void> {
+    await clearInputValue(this.hostElement);
   }
 
   // --- Validation helpers (shared with checkbox-group) ---

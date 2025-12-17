@@ -21,6 +21,7 @@ import {
   setupFormSubmitListener,
   updateCheckboxValidationClasses,
 } from '../checkbox/checkbox-validation';
+import { clearInputValue } from '../input/input.util';
 
 /**
  * @form-ready
@@ -151,6 +152,14 @@ export class CheckboxGroup
     return Promise.resolve(
       this.checkboxElements.some((checkbox) => checkbox.checked)
     );
+  }
+
+  /**
+   * Clear all checked checkboxes and reset validation state
+   */
+  @Method()
+  async clear(): Promise<void> {
+    await clearInputValue(this.hostElement);
   }
 
   private hasAnyChecked(): boolean {

@@ -601,6 +601,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * Clear the checked state and reset validation
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled state of the checkbox component
           * @default false
          */
@@ -636,6 +640,10 @@ export namespace Components {
      * @form-ready 
      */
     interface IxCheckboxGroup {
+        /**
+          * Clear all checked checkboxes and reset validation state
+         */
+        "clear": () => Promise<void>;
         /**
           * Alignment of the checkboxes in the group
           * @default 'column'
@@ -2914,6 +2922,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * Clear the checked state and reset validation
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled state of the radio component
           * @default false
          */
@@ -2944,6 +2956,10 @@ export namespace Components {
      * @form-ready 
      */
     interface IxRadioGroup {
+        /**
+          * Clear the selected radio button and reset validation state
+         */
+        "clear": () => Promise<void>;
         /**
           * Alignment of the radio buttons in the group
           * @default 'column'
