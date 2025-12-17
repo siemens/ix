@@ -351,9 +351,13 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                 ></div>
                 <svg class="ticks" xmlns="http://www.w3.org/2000/svg">
                   {this.marker
-                    ?.filter((markerValue) => markerValue >= this.min && markerValue <= this.max)
+                    ?.filter(
+                      (markerValue) =>
+                        markerValue >= this.min && markerValue <= this.max
+                    )
                     .map((markerValue) => {
-                      const markerPosition = (markerValue - this.rangeMin) / range;
+                      const markerPosition =
+                        (markerValue - this.rangeMin) / range;
 
                       return (
                         <circle
@@ -361,8 +365,8 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                             tick: true,
                             'tick-active':
                               this.isMarkerActive(markerValue) && this.trace,
-                            'tick-at-min': markerValue === this.min,
-                            'tick-at-max': markerValue === this.max,
+                            'tick-at-min': markerPosition === 0,
+                            'tick-at-max': markerPosition === 1,
                           }}
                           cx="0"
                           cy="0"

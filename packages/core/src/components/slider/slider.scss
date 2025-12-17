@@ -133,6 +133,14 @@
     background-color: var(--trace-color);
     top: 50%;
     transform: translateY(-50%);
+    border-radius: clamp(
+        0rem,
+        calc((0.01 - var(--trace-start)) * 999rem),
+        0.125rem
+      )
+      clamp(0rem, calc((var(--trace-end) - 0.99) * 999rem), 0.125rem)
+      clamp(0rem, calc((var(--trace-end) - 0.99) * 999rem), 0.125rem)
+      clamp(0rem, calc((0.01 - var(--trace-start)) * 999rem), 0.125rem);
   }
 
   .slider-container {
@@ -206,7 +214,9 @@
     r: var(--tick-radius);
     fill: var(--tick-color);
     transform: translate(
-      calc(var(--tick-value) * (100% - var(--thumb-size)) + var(--thumb-size) / 2),
+      calc(
+        var(--tick-value) * (100% - var(--thumb-size)) + var(--thumb-size) / 2
+      ),
       50%
     );
   }
