@@ -31,6 +31,10 @@ import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
+import {
+  addFocusVisibleListener,
+  FocusVisibleUtility,
+} from '../utils/focus-visible-listener';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -40,7 +44,9 @@ interface CalendarWeek {
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
 export class DatePicker implements IxDatePickerComponent {
   @Element() hostElement!: HTMLIxDatePickerElement;
@@ -216,7 +222,8 @@ export class DatePicker implements IxDatePickerComponent {
     };
   }
 
-  @State() currFromDate?: DateTime;
+  @State()
+  currFromDate?: DateTime;
   @State() currToDate?: DateTime;
 
   @State() selectedYear = 0;
@@ -238,6 +245,8 @@ export class DatePicker implements IxDatePickerComponent {
   private monthChangedFromFocus = false;
   private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[] = [];
+
+  private focusVisibleUtilities?: FocusVisibleUtility;
 
   @OnListener<DatePicker>('keydown')
   handleKeyUp(event: KeyboardEvent) {
@@ -333,6 +342,16 @@ export class DatePicker implements IxDatePickerComponent {
     this.tempYear = this.selectedYear;
   }
 
+  disconnectedCallback() {
+    this.focusVisibleUtilities?.destroy();
+  }
+
+  componentDidLoad() {
+    this.focusVisibleUtilities = addFocusVisibleListener(this.hostElement, {
+      trapFocus: true,
+    });
+  }
+
   componentWillRender() {
     this.calculateCalendar();
   }
@@ -346,6 +365,20 @@ export class DatePicker implements IxDatePickerComponent {
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
     dayElem.focus();
+  }
+
+  /**
+   * @internal
+   */
+  @Method()
+  async focusFirstCalenderDay() {
+    const firstDayCell = this.hostElement.shadowRoot!.querySelector(
+      '[date-calender-day].calendar-item'
+    )! as HTMLElement;
+
+    if (firstDayCell) {
+      firstDayCell.focus();
+    }
   }
 
   private setTranslations() {
@@ -694,7 +727,7 @@ export class DatePicker implements IxDatePickerComponent {
 
   render() {
     return (
-      <Host>
+      <Host onFocusout={() => this.focusVisibleUtilities?.setFocus([])}>
         <ix-date-time-card corners={this.corners} embedded={this.embedded}>
           <div class="header" slot="header">
             <ix-icon-button
@@ -803,6 +836,7 @@ export class DatePicker implements IxDatePickerComponent {
                   {week.dayNumbers.map((day) => {
                     return day ? (
                       <div
+                        role="button"
                         key={day}
                         id={`day-cell-${day}`}
                         date-calender-day

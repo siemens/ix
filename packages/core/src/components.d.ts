@@ -1077,6 +1077,7 @@ export namespace Components {
           * @default false
          */
         "embedded": boolean;
+        "focusFirstCalenderDay": () => Promise<void>;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'

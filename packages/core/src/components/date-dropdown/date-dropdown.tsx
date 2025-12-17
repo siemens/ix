@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconHistory } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -21,12 +22,18 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { type LiteralStringUnion } from '../utils/type-helper';
-import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-import { makeRef } from '../utils/make-ref';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
-import { iconHistory } from '@siemens/ix-icons/icons';
+import { IxDatePickerComponent } from '../date-picker/date-picker-component';
+import {
+  addFocusVisibleListener,
+  FocusVisibleUtility,
+} from '../utils/focus-visible-listener';
+import { getFocusUtilities } from '../utils/internal';
+import { IxComponent } from '../utils/internal/component';
+import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { type LiteralStringUnion } from '../utils/type-helper';
 import type {
   DateDropdownOption,
   DateRangeChangeEvent,
@@ -38,6 +45,7 @@ import type {
   shadow: true,
 })
 export class DateDropdown
+  extends IxComponent()
   implements
     Omit<IxDatePickerComponent, 'corners'>,
     Omit<IxButtonComponent, 'type' | 'icon'>
@@ -218,6 +226,19 @@ export class DateDropdown
   }
 
   private datePickerTouched = false;
+  private focusVisibleUtilities?: FocusVisibleUtility | null;
+
+  private readonly datePickerRef = makeRef<HTMLIxDatePickerElement>();
+
+  connectedCallback() {
+    this.focusVisibleUtilities = addFocusVisibleListener(this.hostElement, {
+      trapFocus: true,
+    });
+  }
+
+  disconnectedCallback() {
+    this.focusVisibleUtilities?.destroy();
+  }
 
   componentWillLoad() {
     this.initialize();
@@ -338,7 +359,12 @@ export class DateDropdown
 
   render() {
     return (
-      <Host>
+      <Host
+        onFocusout={() => {
+          this.closeDropdown();
+          this.focusVisibleUtilities?.setFocus([]);
+        }}
+      >
         <ix-button
           data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
@@ -358,7 +384,8 @@ export class DateDropdown
           trigger={this.triggerRef.waitForCurrent()}
           closeBehavior="outside"
           placement="bottom-start"
-          onShowChanged={({ detail: show }) => {
+          disableFocusHandling
+          onShowChanged={async ({ detail: show }) => {
             if (
               !show &&
               this.selectedDateRangeId === 'custom' &&
@@ -366,6 +393,13 @@ export class DateDropdown
               this.currentRangeValue
             ) {
               this.onDateSelect(this.currentRangeValue);
+            }
+
+            if (show && getFocusUtilities()?.hasKeyboardMode()) {
+              requestAnimationFrameNoNgZone(() => {
+                const datePicker = this.datePickerRef.current!;
+                datePicker.focusFirstCalenderDay();
+              });
             }
           }}
         >
@@ -398,6 +432,7 @@ export class DateDropdown
                 {this.selectedDateRangeId === 'custom' && (
                   <Fragment>
                     <ix-date-picker
+                      ref={this.datePickerRef}
                       embedded
                       locale={this.locale}
                       onDateChange={(e) => {
