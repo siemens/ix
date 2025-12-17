@@ -107,7 +107,7 @@ function getIxModal(element: Element) {
 }
 
 /**
- * Close modal based on element
+ * Close closest ix-modal relative to a provided element
  */
 export function closeModal<TClose = any>(
   element: Element,
@@ -121,7 +121,7 @@ export function closeModal<TClose = any>(
 }
 
 /**
- * Dismiss modal based on element
+ * Dismiss closest ix-modal relative to a provided element
  */
 export function dismissModal(element: Element, dismissResult?: any) {
   const dialog = getIxModal(element);
