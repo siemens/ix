@@ -35,6 +35,7 @@ import {
   addFocusVisibleListener,
   FocusVisibleUtility,
 } from '../utils/focus-visible-listener';
+import { debounce } from '../utils/debounce';
 
 interface CalendarWeek {
   weekNumber: number;

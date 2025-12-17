@@ -385,6 +385,7 @@ export class DateDropdown
           closeBehavior="outside"
           placement="bottom-start"
           disableFocusHandling
+          suppressOverflowBehavior
           onShowChanged={async ({ detail: show }) => {
             if (
               !show &&

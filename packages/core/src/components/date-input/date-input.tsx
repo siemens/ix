@@ -45,6 +45,8 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
+import { getFocusUtilities } from '../utils/internal';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
  * @form-ready
@@ -55,7 +57,9 @@ import {
 @Component({
   tag: 'ix-date-input',
   styleUrl: 'date-input.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   formAssociated: true,
 })
 export class DateInput implements IxInputFieldComponent<string | undefined> {
@@ -398,7 +402,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             }
           }}
           onFocus={async () => {
-            this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
@@ -415,6 +418,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
+            tabindex={-1}
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
@@ -496,6 +500,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           disabled: this.disabled,
           readonly: this.readonly,
         }}
+        onFocusout={(event: FocusEvent) => {
+          console.log(document.activeElement?.tagName);
+          this.closeDropdown();
+        }}
       >
         <ix-field-wrapper
           label={this.label}
@@ -523,6 +531,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+
+            if (this.show && getFocusUtilities()?.hasKeyboardMode()) {
+              requestAnimationFrameNoNgZone(() =>
+                this.datepickerRef.current?.focusFirstCalenderDay()
+              );
+            }
           }}
         >
           <ix-date-picker
