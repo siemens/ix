@@ -8,7 +8,7 @@
  */
 
 import { Component } from '@angular/core';
-import { IxMessageBar, IxButton } from '@siemens/ix-angular/standalone';
+import { IxButton, IxMessageBar } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
