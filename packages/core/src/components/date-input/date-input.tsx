@@ -269,7 +269,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private _isClearing = false;
+  private readonly _isClearing = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -369,7 +369,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     const isDateInvalid = !date.isValid || date < minDate || date > maxDate;
     this.isInputInvalid = isDateInvalid;
     this.invalidReason = isDateInvalid
-      ? date.invalidReason || undefined
+      ? (date.invalidReason ?? undefined)
       : undefined;
 
     if (isDateInvalid) {
