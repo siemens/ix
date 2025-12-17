@@ -108,17 +108,22 @@ class ThemeSwitcher {
   }
 
   public getCurrentTheme() {
-    return (
-      Array.from(document.documentElement.classList).find((className) =>
-        this.isThemeClass(className)
-      ) ??
-      `theme-${
-        document.documentElement.getAttribute(dataIxTheme) || 'classic'
-      }-${
-        document.documentElement.getAttribute(dataIxColorSchema) ||
-        getCurrentSystemAppearance()
-      }`
+    const themeClass = Array.from(document.documentElement.classList).find(
+      (className) => this.isThemeClass(className)
     );
+
+    if (themeClass) {
+      return themeClass;
+    }
+
+    const dataTheme = document.documentElement.getAttribute(dataIxTheme);
+    const dataColorSchema =
+      document.documentElement.getAttribute(dataIxColorSchema);
+
+    const theme = dataTheme || 'classic';
+    const variant = dataColorSchema || getCurrentSystemAppearance();
+
+    return `theme-${theme}-${variant}`;
   }
 
   public setVariant(variant: ThemeVariant = getCurrentSystemAppearance()) {
@@ -128,6 +133,11 @@ class ThemeSwitcher {
     }
 
     const currentTheme = this.getCurrentTheme();
+    if (!currentTheme) {
+      document.documentElement.setAttribute(dataIxColorSchema, variant);
+      return;
+    }
+
     document.documentElement.classList.remove(currentTheme);
 
     if (currentTheme.endsWith(this.suffixDark)) {
