@@ -174,38 +174,64 @@ regressionTest(
 );
 
 regressionTest(
-  'should scroll selected tab into view inside narrow container',
+  'should scroll selected tab into view and fully visible inside narrow container',
   async ({ mount, page }) => {
     await mount(`
-    <div style="width: 350px; border: 1px solid #ccc; padding: 10px;">
-      <ix-tabs style="width: 100%;">
-        <ix-tab-item style="min-width: 100px;">Item 1</ix-tab-item>
-        <ix-tab-item style="min-width: 100px;">Item 2</ix-tab-item>
-        <ix-tab-item style="min-width: 100px;">Item 3</ix-tab-item>
-        <ix-tab-item style="min-width: 100px;">Item 4</ix-tab-item>
-        <ix-tab-item style="min-width: 100px;">Item 5</ix-tab-item>
-        <ix-tab-item style="min-width: 100px;">Item 6</ix-tab-item>
-        <ix-tab-item style="min-width: 100px;">Item 7</ix-tab-item>
-        <ix-tab-item style="min-width: 100px;">Item 8</ix-tab-item>
-        <ix-tab-item style="min-width: 100px;">Item 9</ix-tab-item>
-        <ix-tab-item style="min-width: 100px;">Item 10</ix-tab-item>
-      </ix-tabs>
-    </div>
-  `);
-    await page.setViewportSize({ width: 400, height: 200 });
+      <div style="width: 350px; border: 1px solid #ccc; padding: 10px;">
+        <ix-tabs style="width: 100%;">
+          <ix-tab-item style="min-width: 100px;">Item 1</ix-tab-item>
+          <ix-tab-item style="min-width: 100px;">Item 2</ix-tab-item>
+          <ix-tab-item style="min-width: 100px;">Item 3</ix-tab-item>
+          <ix-tab-item style="min-width: 100px;">Item 4</ix-tab-item>
+          <ix-tab-item style="min-width: 100px;">Item 5</ix-tab-item>
+          <ix-tab-item style="min-width: 100px;">Item 6</ix-tab-item>
+          <ix-tab-item style="min-width: 100px;">Item 7</ix-tab-item>
+          <ix-tab-item style="min-width: 100px;">Item 8</ix-tab-item>
+          <ix-tab-item style="min-width: 100px;">Item 9</ix-tab-item>
+          <ix-tab-item style="min-width: 100px;">Item 10</ix-tab-item>
+        </ix-tabs>
+      </div>
+    `);
 
     await page.waitForTimeout(500);
 
+    const tabs = page.locator('ix-tabs');
     const clickedTab = page.locator('ix-tab-item').nth(7);
-    const firstVisibleTab = page.locator('ix-tab-item').nth(0);
+    const firstTab = page.locator('ix-tab-item').nth(0);
 
-    await expect(firstVisibleTab).toBeInViewport();
+    await expect(firstTab).toBeInViewport();
     await expect(clickedTab).not.toBeInViewport();
 
     await clickedTab.click();
 
-    await expect(clickedTab).toBeInViewport();
+    await page.waitForTimeout(300);
 
-    await expect(firstVisibleTab).not.toBeInViewport();
+    await expect(clickedTab).toBeInViewport();
+    await expect(firstTab).not.toBeInViewport();
+
+    const [tabBox, firstTabBox, containerBox] = await Promise.all([
+      clickedTab.boundingBox(),
+      firstTab.boundingBox(),
+      tabs.evaluate((el) => {
+        const container = el.shadowRoot?.querySelector('.tab-items');
+        return container?.getBoundingClientRect();
+      }),
+    ]);
+
+    expect(tabBox).not.toBeNull();
+    expect(containerBox).not.toBeNull();
+    expect(firstTabBox).not.toBeNull();
+
+    const ARROW_WIDTH = 32;
+
+    expect(tabBox!.x).toBeGreaterThanOrEqual(containerBox!.x + ARROW_WIDTH);
+
+    expect(tabBox!.x + tabBox!.width).toBeLessThanOrEqual(
+      containerBox!.x + containerBox!.width - ARROW_WIDTH
+    );
+
+    expect(firstTabBox!.x + firstTabBox!.width).toBeLessThan(
+      containerBox!.x + ARROW_WIDTH
+    );
   }
 );
