@@ -2,6 +2,6 @@
 "@siemens/ix": patch
 ---
 
-fix(core/pane-layout): fix responsive behavior
+Fix responsive behavior of **ix-pane-layout**.
 
 Fixes #2157
