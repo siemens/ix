@@ -1,8 +1,8 @@
 ---
-'@siemens/ix': patch
-'@siemens/ix-angular': patch
-'@siemens/ix-react': patch
-'@siemens/ix-vue': patch
+'@siemens/ix': minor
+'@siemens/ix-angular': minor
+'@siemens/ix-react': minor
+'@siemens/ix-vue': minor
 ---
 
 Improved accessibility for the following components: `ix-menu`, `ix-menu-item`, `ix-menu-settings`, `ix-menu-about`, `ix-menu-expand-icon`, `ix-icon-button`, `base-button`.
