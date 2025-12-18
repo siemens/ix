@@ -47,7 +47,7 @@ export class MenuAbout {
   /**
    * Aria label for close button
    */
-  @Prop({ attribute: 'aria-label-close-button' }) ariaLabelCloseButton =
+  @Prop() ariaLabelCloseButton =
     'Close About';
 
   /** @internal */
