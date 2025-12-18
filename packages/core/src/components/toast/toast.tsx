@@ -51,7 +51,7 @@ export class Toast {
   /**
    * Autoclose behavior
    */
-  @Prop() autoClose = true;
+  @Prop() preventAutoClose = false;
 
   /**
    * Icon of toast
@@ -62,6 +62,11 @@ export class Toast {
    * Icon color of toast
    */
   @Prop() iconColor?: string;
+
+  /**
+   * Allows to hide the icon in the toast.
+   */
+  @Prop() hideIcon: boolean = false;
 
   /**
    * ARIA label for the close icon button
@@ -197,7 +202,7 @@ export class Toast {
             this.touched = true;
           }}
         >
-          {this.type || this.icon ? (
+          {(this.type || this.icon) && !this.hideIcon ? (
             <div class="toast-icon">{this.getIcon()}</div>
           ) : null}
           <div class="toast-content">
@@ -224,7 +229,7 @@ export class Toast {
             />
           </div>
         </div>
-        {this.autoClose ? (
+        {!this.preventAutoClose && (
           <div
             class={progressBarClass.join(' ')}
             style={progressBarStyle}
@@ -237,7 +242,7 @@ export class Toast {
               }
             }}
           ></div>
-        ) : null}
+        )}
       </Host>
     );
   }

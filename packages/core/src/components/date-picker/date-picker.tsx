@@ -52,9 +52,9 @@ export class DatePicker implements IxDatePickerComponent {
   @Prop() format: string = 'yyyy/LL/dd';
 
   /**
-   * If true a date-range can be selected (from/to).
+   * If true disables date range selection (from/to).
    */
-  @Prop() range: boolean = true;
+  @Prop() singleSelection: boolean = false;
 
   /**
    * Corner style
@@ -162,7 +162,7 @@ export class DatePicker implements IxDatePickerComponent {
   @Prop() showWeekNumbers = false;
 
   /** @internal */
-  @Prop() standaloneAppearance = true;
+  @Prop() embedded = false;
 
   /** @internal */
   @Prop() today = DateTime.now().toISO();
@@ -203,7 +203,7 @@ export class DatePicker implements IxDatePickerComponent {
       ? this.currToDate?.toFormat(this.format)
       : undefined;
 
-    if (this.range) {
+    if (!this.singleSelection) {
       return {
         from: _from,
         to: _to,
@@ -543,7 +543,7 @@ export class DatePicker implements IxDatePickerComponent {
       new Date(this.selectedYear, this.selectedMonth, selectedDay)
     );
 
-    if (!this.range || this.currFromDate === undefined) {
+    if (this.singleSelection || this.currFromDate === undefined) {
       this.currFromDate = date;
       this.onDateChange();
 
@@ -576,13 +576,13 @@ export class DatePicker implements IxDatePickerComponent {
   private onDateChange() {
     this.getCurrentDate().then((date) => {
       this.dateChange.emit(date);
-      if (this.range) {
+      if (!this.singleSelection) {
         this.dateRangeChange.emit(date);
       }
     });
   }
 
-  private getDayClasses(day: number): any {
+  private getDayClasses(day: number): Record<string, boolean> {
     const todayObj = this.getDateTimeNow();
     const selectedDayObj = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, day)
@@ -592,14 +592,16 @@ export class DatePicker implements IxDatePickerComponent {
       'calendar-item': true,
       'empty-day': day === undefined,
       today: todayObj.hasSame(selectedDayObj, 'day'),
-      selected:
+      selected: !!(
         this.currFromDate?.hasSame(selectedDayObj, 'day') ||
-        this.currToDate?.hasSame(selectedDayObj, 'day'),
-      range:
+        this.currToDate?.hasSame(selectedDayObj, 'day')
+      ),
+      range: !!(
         this.currFromDate &&
         selectedDayObj.startOf('day') > this.currFromDate.startOf('day') &&
         this.currToDate !== undefined &&
-        selectedDayObj.startOf('day') < this.currToDate?.startOf('day'),
+        selectedDayObj.startOf('day') < this.currToDate?.startOf('day')
+      ),
       disabled: !this.isWithinMinMaxDate(selectedDayObj),
     };
   }
@@ -653,7 +655,7 @@ export class DatePicker implements IxDatePickerComponent {
     return !isBefore && !isAfter;
   }
 
-  private renderYears(): any[] {
+  private renderYears() {
     const rows = [];
 
     for (let year = this.startYear; year <= this.endYear; year++) {
@@ -693,10 +695,7 @@ export class DatePicker implements IxDatePickerComponent {
   render() {
     return (
       <Host>
-        <ix-date-time-card
-          corners={this.corners}
-          standaloneAppearance={this.standaloneAppearance}
-        >
+        <ix-date-time-card corners={this.corners} embedded={this.embedded}>
           <div class="header" slot="header">
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(-1)}
@@ -711,7 +710,7 @@ export class DatePicker implements IxDatePickerComponent {
                 ref={this.dropdownButtonRef}
                 data-testid="year-month-button"
               >
-                <span class="fontSize capitalize">
+                <span class="capitalize">
                   {this.monthNames[this.selectedMonth]} {this.selectedYear}
                 </span>
               </ix-button>
@@ -836,7 +835,7 @@ export class DatePicker implements IxDatePickerComponent {
           <div
             class={{
               button: true,
-              hidden: !this.range || !this.standaloneAppearance,
+              hidden: this.singleSelection || this.embedded,
             }}
           >
             <ix-button onClick={() => this.onDone()}>{this.i18nDone}</ix-button>

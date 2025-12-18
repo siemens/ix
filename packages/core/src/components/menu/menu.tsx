@@ -63,11 +63,6 @@ export class Menu {
    */
   @Prop() enableToggleTheme = false;
 
-  /**
-   * Is settings tab is visible
-   */
-  @Prop() enableSettings = true;
-
   /** @internal */
   @Prop() enableMapExpand = false;
 
@@ -92,6 +87,15 @@ export class Menu {
    */
   @Prop({ mutable: true, reflect: true }) expand = false;
 
+  @Watch('expand')
+  expandChanged(newExpand: boolean, oldExpand: boolean) {
+    if (newExpand === oldExpand) {
+      return;
+    }
+
+    this.toggleMenu(newExpand);
+  }
+
   /**
    *  If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
    */
@@ -104,10 +108,6 @@ export class Menu {
 
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
-    if (this.applicationLayoutContext?.host === 'map-navigation') {
-      console.warn('ix-map-navigation does not support pinning of the menu');
-      return;
-    }
     this.setPinned(this.pinned);
     if (newPinned) {
       applicationLayoutService.disableBreakpointDetection();
@@ -342,10 +342,7 @@ export class Menu {
     if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }
-    if (this.applicationLayoutContext?.host === 'map-navigation') {
-      this.breakpoint = 'md';
-      return;
-    }
+
     if (!this.applicationLayoutContext) {
       return;
     }
