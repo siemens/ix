@@ -219,3 +219,112 @@ export function handleSubmitOnEnterKeydown(
     form.requestSubmit();
   }
 }
+
+export async function clearInputValue<T>(
+  comp: IxInputFieldComponent<T> | HTMLElement,
+  options?: {
+    defaultValue?: T;
+    additionalCleanup?: () => void;
+    childSelector?: string;
+  }
+): Promise<void> {
+  const compAny = comp as any;
+  const isGroup =
+    compAny.tagName === 'IX-CHECKBOX-GROUP' ||
+    compAny.tagName === 'IX-RADIO-GROUP';
+
+  compAny._isClearing = true;
+  compAny.touched = false;
+
+  if (isGroup) {
+    compAny.formSubmissionAttempt = false;
+    compAny.formSubmissionAttempted = false;
+  }
+
+  compAny.isInputInvalid = false;
+
+  if (!isGroup) {
+    (comp as IxInputFieldComponent<T>).isInvalid = false;
+    (comp as IxInputFieldComponent<T>).isValid = false;
+    (comp as IxInputFieldComponent<T>).isInfo = false;
+    (comp as IxInputFieldComponent<T>).isWarning = false;
+  } else {
+    compAny.isInvalid = false;
+    compAny.isValid = false;
+    compAny.isInfo = false;
+    compAny.isWarning = false;
+  }
+
+  compAny.isInvalidByRequired = false;
+
+  if ('invalidReason' in compAny) {
+    compAny.invalidReason = undefined;
+  }
+  if ('from' in compAny) {
+    compAny.from = undefined;
+  }
+  if ('time' in compAny) {
+    compAny.time = null;
+  }
+
+  if (
+    compAny.invalidText === 'Please select the required field.' ||
+    compAny.invalidText
+  ) {
+    compAny.invalidText = '';
+  }
+
+  if (isGroup) {
+    if ('value' in compAny) {
+      compAny.value = undefined;
+    }
+
+    (comp as HTMLElement).classList.remove(
+      'ix-invalid',
+      'ix-invalid--required',
+      'ix-invalid--validity-invalid'
+    );
+
+    const selector = options?.childSelector || 'ix-checkbox, ix-radio';
+    const childElements = Array.from(
+      (comp as HTMLElement).querySelectorAll(selector)
+    ) as Array<HTMLElement & { checked?: boolean }>;
+
+    childElements.forEach((child) => {
+      if ('checked' in child) {
+        child.checked = false;
+      }
+      child.classList.remove(
+        'ix-invalid',
+        'ix-invalid--required',
+        'ix-invalid--validity-invalid'
+      );
+    });
+  } else {
+    const emptyValue =
+      options?.defaultValue !== undefined ? options.defaultValue : ('' as T);
+    compAny.value = emptyValue;
+
+    if ('updateFormInternalValue' in compAny) {
+      await (comp as IxInputFieldComponent<T>).updateFormInternalValue(
+        emptyValue
+      );
+    }
+    if ('valueChange' in compAny && compAny.valueChange?.emit) {
+      (comp as IxInputFieldComponent<T>).valueChange.emit(emptyValue);
+    }
+  }
+
+  if (options?.additionalCleanup) {
+    options.additionalCleanup();
+  }
+
+  if (
+    'syncValidationClasses' in compAny &&
+    typeof compAny.syncValidationClasses === 'function'
+  ) {
+    await compAny.syncValidationClasses();
+  }
+
+  compAny._isClearing = false;
+}

@@ -250,7 +250,7 @@ test.describe('prevent initial require validation', async () => {
 
       const inputComponent = page.locator(selector);
       const input = inputComponent.locator(
-        selector !== 'ix-textarea' ? 'input' : 'textarea'
+        selector === 'ix-textarea' ? 'textarea' : 'input'
       );
 
       await expect(inputComponent).toBeVisible();
@@ -260,6 +260,72 @@ test.describe('prevent initial require validation', async () => {
       await input.blur();
 
       await expect(inputComponent).toHaveClass(/ix-invalid/);
+    });
+  });
+});
+
+test.describe('clear method', () => {
+  ['ix-input', 'ix-number-input', 'ix-textarea'].forEach((selector) => {
+    test(`${selector} - should clear value and reset validation state when required field becomes invalid then cleared`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(`<${selector} required></${selector}>`);
+
+      const inputComponent = page.locator(selector);
+      const input = inputComponent.locator(
+        selector === 'ix-textarea' ? 'textarea' : 'input'
+      );
+
+      await expect(inputComponent).not.toHaveClass(/ix-invalid/);
+
+      await input.click();
+      await input.fill('');
+      await input.blur();
+
+      await expect(inputComponent).toHaveClass(/ix-invalid--required/);
+
+      await inputComponent.evaluate((element: any) => element.clear());
+
+      await expect(inputComponent).not.toHaveClass(/ix-invalid--required/);
+      await expect(inputComponent).not.toHaveClass(/ix-invalid/);
+
+      await expect(input).toHaveValue('');
+    });
+
+    test(`${selector} - should clear value and reset validation state with value then make invalid then cleared`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(`<${selector} required></${selector}>`);
+
+      const inputComponent = page.locator(selector);
+      const input = inputComponent.locator(
+        selector === 'ix-textarea' ? 'textarea' : 'input'
+      );
+
+      await input.click();
+      if (selector === 'ix-number-input') {
+        await input.fill('123');
+      } else {
+        await input.fill('test value');
+      }
+      await input.blur();
+
+      await expect(inputComponent).not.toHaveClass(/ix-invalid/);
+
+      await input.click();
+      await input.fill('');
+      await input.blur();
+
+      await expect(inputComponent).toHaveClass(/ix-invalid--required/);
+
+      await inputComponent.evaluate((element: any) => element.clear());
+
+      await expect(inputComponent).not.toHaveClass(/ix-invalid--required/);
+      await expect(inputComponent).not.toHaveClass(/ix-invalid/);
+
+      await expect(input).toHaveValue('');
     });
   });
 });
