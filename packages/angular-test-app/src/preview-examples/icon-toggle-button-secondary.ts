@@ -13,44 +13,41 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   template: `
-    <ix-layout-grid>
-      <ix-row>
-        <ix-icon-toggle-button icon="checkboxes"></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          pressed
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          disabled
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          disabled
-          loading
-          icon="checkboxes"
-        ></ix-icon-toggle-button>
-      </ix-row>
-      <ix-row>
-        <ix-icon-toggle-button icon="checkboxes" oval></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          pressed
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          disabled
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-        <ix-icon-toggle-button
-          disabled
-          loading
-          icon="checkboxes"
-          oval
-        ></ix-icon-toggle-button>
-      </ix-row>
-    </ix-layout-grid>
+    <div class="button-container">
+      <ix-icon-toggle-button
+        variant="secondary"
+        icon="text-bold"
+        [pressed]="boldPressed"
+        (click)="handleBoldClick()"
+        >Bold</ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button variant="secondary" disabled icon="text-italic"
+        >Italic</ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button
+        variant="secondary"
+        icon="text-underline"
+        [pressed]="underlinePressed"
+        (click)="handleUnderlineClick()"
+        >Underline</ix-icon-toggle-button
+      >
+      <ix-icon-toggle-button variant="secondary" disabled loading>
+        Strikethrough
+      </ix-icon-toggle-button>
+    </div>
+    <p [style.fontWeight]="boldPressed ? 'bold' : 'normal'" [style.text-decoration]="underlinePressed ? 'underline' : 'none'">Lorem ipsum text</p>
   `,
   styleUrls: ['./icon-toggle-button-secondary.css'],
 })
-export default class Buttons {}
+export default class Buttons {
+  boldPressed = false;
+  underlinePressed = true;
+
+  handleBoldClick() {
+    this.boldPressed = !this.boldPressed;
+  }
+
+  handleUnderlineClick() {
+    this.underlinePressed = !this.underlinePressed;
+  }
+}
