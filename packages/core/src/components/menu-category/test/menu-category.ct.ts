@@ -47,7 +47,7 @@ regressionTest('should collapse by click', async ({ mount, page }) => {
 
   await categoryItem.click();
 
-  const item = page.getByLabel('MenuItem2');
+  const item = categoryItem.locator('ix-menu-item').nth(1);
   await item.evaluate((item: HTMLIxMenuItemElement) => (item.active = true));
   await expect(item).toHaveClass(/active/);
 
