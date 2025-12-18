@@ -1,5 +1,11 @@
 # @siemens/ix-echarts
 
+## 3.0.1
+
+### Patch Changes
+
+- [#2313](https://github.com/siemens/ix/pull/2313) [`e18d391`](https://github.com/siemens/ix/commit/e18d391dc52dd29a7723c0c0dc092c11bd097ac0) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Update **eCharts** theme to match latest design spec.
+
 ## 3.0.0
 
 ### Major Changes
