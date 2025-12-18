@@ -1,5 +1,35 @@
 # @siemens/ix
 
+## 4.3.0
+
+### Minor Changes
+
+- [#2280](https://github.com/siemens/ix/pull/2280) [`9842b69`](https://github.com/siemens/ix/commit/9842b690e3a56a585436d493dfe085ee7ded6e64) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add property `passive` to **ix-card**, **ix-action-card**, and **ix-push-card** allowing to suppress mouse states.
+
+- [#2282](https://github.com/siemens/ix/pull/2282) [`79eed16`](https://github.com/siemens/ix/commit/79eed1645d0f9e23203b26c81e81dc21c818bde3) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - add new `hide-icon` property for _ix-toast_ component
+
+### Patch Changes
+
+- [#2302](https://github.com/siemens/ix/pull/2302) [`605ef5b`](https://github.com/siemens/ix/commit/605ef5b30a4cae9d6091cae48504fa42ba69f9ff) Thanks [@alexkaduk](https://github.com/alexkaduk)! - fix(message-bar): remove text truncation and fix action button alignment for examples
+
+  - Remove text-truncation ellipsis mixin to allow text wrapping
+  - Fix CSS class name from .message-bar-danger to .message-bar-alarm
+  - Action buttons are now correctly right-aligned with justify-content: space-between
+
+  Fixes #2258
+
+- [#2230](https://github.com/siemens/ix/pull/2230) [`0847ca9`](https://github.com/siemens/ix/commit/0847ca9ca8d258ffd64657bd823fbb90cf44f250) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Fix responsive behavior of **ix-pane-layout**.
+
+  Fixes #2157
+
+- [#2261](https://github.com/siemens/ix/pull/2261) [`f7345bd`](https://github.com/siemens/ix/commit/f7345bde3489d6eea36aa7d85b7fba6f2ee0092e) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Reflect `disabled` attribute in DOM for **ix-dropdown-button** and **ix-dropdown-item**.
+  Also prevent event emission for disabled components and set `aria-disabled` and `tabIndex` accrodingly.
+
+  Fixes #2114.
+
+- [#2305](https://github.com/siemens/ix/pull/2305) [`089f850`](https://github.com/siemens/ix/commit/089f85033cad045dc55133577073ab58c074f4b4) Thanks [@lzeiml](https://github.com/lzeiml)! - **ix-menu-category** now correctly collapses with **ix-menu** when programmatically changing **ix-menu's** `expand` attribute.
+  Fixes #2151
+
 ## 4.2.0
 
 ### Patch Changes
