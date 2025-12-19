@@ -22,9 +22,11 @@ const VALID_FOCUS_ITEMS = [
   'ix-menu-category',
 ];
 const VALID_FOCUS_ELEMENTS = ['ix-dropdown', ...VALID_FOCUS_ITEMS];
-
+const QUERY_SELECTOR = VALID_FOCUS_ELEMENTS.map(
+  (selector) => `${selector}:not([tabindex^="-"]):not([disabled]):not([hidden])`
+).join(', ');
 const matchesDropdownItems = (element: HTMLElement) =>
-  element.matches(VALID_FOCUS_ELEMENTS.join(', '));
+  element.matches(QUERY_SELECTOR);
 
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
@@ -127,10 +129,7 @@ export const configureKeyboardInteraction = (
     let items: HTMLElement[] = [];
 
     try {
-      const query = VALID_FOCUS_ITEMS.map(
-        (item) =>
-          `${item.toLowerCase()}:not(ix-dropdown ix-dropdown *):not([disabled]):not([hidden])`
-      ).join(', ');
+      const query = QUERY_SELECTOR;
 
       // Collect items from slots if they exist
       if (dropdownElement.querySelectorAll('slot').length > 0) {

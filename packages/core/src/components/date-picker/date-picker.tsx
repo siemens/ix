@@ -362,6 +362,7 @@ export class DatePicker implements IxDatePickerComponent {
     const dayElem = this.hostElement.shadowRoot!.querySelector(
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
+
     dayElem.focus();
   }
 
