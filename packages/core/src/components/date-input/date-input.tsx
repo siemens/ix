@@ -500,7 +500,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           disabled: this.disabled,
           readonly: this.readonly,
         }}
-        onFocusout={() => this.closeDropdown()}
+        onFocusout={(e: FocusEvent) => {
+          const relatedTarget = e.relatedTarget as Node;
+
+          // Related target might be null during rerenders, which would cause the dropdown to close unexpectedly
+          if (!relatedTarget) {
+            return;
+          }
+
+          this.closeDropdown();
+        }}
       >
         <ix-field-wrapper
           label={this.label}

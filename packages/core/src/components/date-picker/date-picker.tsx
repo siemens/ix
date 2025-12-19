@@ -24,7 +24,6 @@ import {
   Prop,
   State,
   Watch,
-  writeTask,
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
@@ -36,7 +35,6 @@ import {
   addFocusVisibleListener,
   FocusVisibleUtility,
 } from '../utils/focus-visible-listener';
-import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -284,18 +282,6 @@ export class DatePicker implements IxDatePickerComponent {
     }
 
     this.focusedDay = _focusedDay;
-
-    setTimeout(() => {
-      if (!this.monthChangedFromFocus && !this.isDayFocus) {
-        return;
-      }
-
-      const dayElem = this.hostElement.shadowRoot!.querySelector(
-        `[id=day-cell-${this.focusedDay}]`
-      ) as HTMLElement;
-
-      dayElem.focus();
-    }, 1000);
   }
 
   private getDaysInCurrentMonth(): number {
@@ -369,13 +355,14 @@ export class DatePicker implements IxDatePickerComponent {
   }
 
   componentDidRender() {
-    // if (!this.monthChangedFromFocus && !this.isDayFocus) {
-    //   return;
-    // }
-    // const dayElem = this.hostElement.shadowRoot!.querySelector(
-    //   `[id=day-cell-${this.focusedDay}]`
-    // ) as HTMLElement;
-    // dayElem.focus();
+    if (!this.monthChangedFromFocus && !this.isDayFocus) {
+      return;
+    }
+
+    const dayElem = this.hostElement.shadowRoot!.querySelector(
+      `[id=day-cell-${this.focusedDay}]`
+    ) as HTMLElement;
+    dayElem.focus();
   }
 
   /**
