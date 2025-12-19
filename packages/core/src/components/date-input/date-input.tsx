@@ -500,10 +500,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           disabled: this.disabled,
           readonly: this.readonly,
         }}
-        onFocusout={(event: FocusEvent) => {
-          console.log(document.activeElement?.tagName);
-          this.closeDropdown();
-        }}
+        onFocusout={() => this.closeDropdown()}
       >
         <ix-field-wrapper
           label={this.label}
@@ -551,7 +548,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
               const { from } = event.detail;
               this.onInput(from);
             }}
-            showWeekNumbers={this.showWeekNumbers}
+            showWeekNumbers={true}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded

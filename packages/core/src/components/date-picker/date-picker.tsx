@@ -24,6 +24,7 @@ import {
   Prop,
   State,
   Watch,
+  writeTask,
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
@@ -35,7 +36,7 @@ import {
   addFocusVisibleListener,
   FocusVisibleUtility,
 } from '../utils/focus-visible-listener';
-import { debounce } from '../utils/debounce';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -254,9 +255,7 @@ export class DatePicker implements IxDatePickerComponent {
     if (!this.isDayFocus) {
       return;
     }
-
     let _focusedDay = this.focusedDay;
-
     switch (event.key) {
       case 'ArrowLeft':
         _focusedDay--;
@@ -285,6 +284,18 @@ export class DatePicker implements IxDatePickerComponent {
     }
 
     this.focusedDay = _focusedDay;
+
+    setTimeout(() => {
+      if (!this.monthChangedFromFocus && !this.isDayFocus) {
+        return;
+      }
+
+      const dayElem = this.hostElement.shadowRoot!.querySelector(
+        `[id=day-cell-${this.focusedDay}]`
+      ) as HTMLElement;
+
+      dayElem.focus();
+    }, 1000);
   }
 
   private getDaysInCurrentMonth(): number {
@@ -358,14 +369,13 @@ export class DatePicker implements IxDatePickerComponent {
   }
 
   componentDidRender() {
-    if (!this.monthChangedFromFocus && !this.isDayFocus) {
-      return;
-    }
-
-    const dayElem = this.hostElement.shadowRoot!.querySelector(
-      `[id=day-cell-${this.focusedDay}]`
-    ) as HTMLElement;
-    dayElem.focus();
+    // if (!this.monthChangedFromFocus && !this.isDayFocus) {
+    //   return;
+    // }
+    // const dayElem = this.hostElement.shadowRoot!.querySelector(
+    //   `[id=day-cell-${this.focusedDay}]`
+    // ) as HTMLElement;
+    // dayElem.focus();
   }
 
   /**
@@ -841,6 +851,7 @@ export class DatePicker implements IxDatePickerComponent {
                         key={day}
                         id={`day-cell-${day}`}
                         date-calender-day
+                        data-date-value={`${week.weekNumber}-${day}`}
                         class={this.getDayClasses(day)}
                         onClick={(e) => {
                           const target = e.currentTarget as HTMLElement;
