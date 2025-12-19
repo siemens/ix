@@ -135,12 +135,11 @@ export class FormFieldLabel implements IxComponent {
   }
 
   private checkForInvalidState(elementToCheck: HTMLElement) {
-    if (this.explicitIsInvalid) {
-      return;
+    if (!this.explicitIsInvalid) {
+      this.isInvalid =
+        elementToCheck.classList.contains('is-invalid') ||
+        elementToCheck.classList.contains('ix-invalid');
     }
-    this.isInvalid =
-      elementToCheck.classList.contains('is-invalid') ||
-      elementToCheck.classList.contains('ix-invalid');
   }
 
   private async checkForInternalState() {
