@@ -166,8 +166,9 @@ regressionTest(
     await page.setViewportSize({ width: 300, height: 100 });
     const clickedTab = page.locator('ix-tab-item').nth(3);
     const lastTab = page.locator('ix-tab-item').last();
+
     await clickedTab.click();
-    await page.waitForTimeout(500);
+
     await expect(clickedTab).toBeInViewport();
     await expect(lastTab).not.toBeInViewport();
   }
@@ -193,8 +194,6 @@ regressionTest(
       </div>
     `);
 
-    await page.waitForTimeout(500);
-
     const tabs = page.locator('ix-tabs');
     const clickedTab = page.locator('ix-tab-item').nth(7);
     const firstTab = page.locator('ix-tab-item').nth(0);
@@ -203,8 +202,6 @@ regressionTest(
     await expect(clickedTab).not.toBeInViewport();
 
     await clickedTab.click();
-
-    await page.waitForTimeout(300);
 
     await expect(clickedTab).toBeInViewport();
     await expect(firstTab).not.toBeInViewport();
