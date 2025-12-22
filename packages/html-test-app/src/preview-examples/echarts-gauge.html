@@ -149,11 +149,16 @@ LICENSE file in the root directory of this source tree.
       }
 
       // providing echarts is in this case optional
-      registerTheme(echarts);  
-      function waitForThemeAndInit() {
-        const colorValue = getComputedCSSProperty('color-std-text');      
+      registerTheme(echarts);
+
+      function waitForThemeAndInit(retries = 100) {
+        if (retries <= 0) {
+          return;
+        }
+
+        const colorValue = getComputedCSSProperty('color-std-text');
         if (!colorValue || colorValue.trim() === '') {
-          requestAnimationFrame(waitForThemeAndInit);
+          requestAnimationFrame(() => waitForThemeAndInit(retries - 1));
           return;
         }
 
