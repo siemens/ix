@@ -52,7 +52,8 @@ LICENSE file in the root directory of this source tree.
         }
       }
 
-      const options = {
+      function getOptions() {
+        return {
         series: [
           {
             id: '1',
@@ -79,6 +80,7 @@ LICENSE file in the root directory of this source tree.
               show: true,
               distance: 30,
               fontSize: 16,
+              color: getComputedCSSProperty('color-std-text'),
             },
             progress: {
               show: true,
@@ -144,20 +146,34 @@ LICENSE file in the root directory of this source tree.
           },
         ],
       };
+      }
 
       // providing echarts is in this case optional
       registerTheme(echarts);
 
-      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+      function waitForThemeAndInit(retries = 100) {
+        if (retries <= 0) {
+          return;
+        }
 
-      themeSwitcher.themeChanged.on((theme) => {
-        myChart.dispose();
-        myChart = initChart(theme, options);
-      });
+        const colorValue = getComputedCSSProperty('color-std-text');
+        if (!colorValue || colorValue.trim() === '') {
+          requestAnimationFrame(() => waitForThemeAndInit(retries - 1));
+          return;
+        }
 
-      window.onresize = function () {
-        myChart.resize();
-      };
+        var myChart = initChart(themeSwitcher.getCurrentTheme(), getOptions());
+
+        themeSwitcher.themeChanged.on((theme) => {
+          myChart.dispose();
+          myChart = initChart(theme, getOptions());      
+        });
+
+        window.onresize = function () {
+          myChart.resize();
+        };
+      }
+      waitForThemeAndInit();
     </script>
 
     <script type="module" src="./init.js"></script>
