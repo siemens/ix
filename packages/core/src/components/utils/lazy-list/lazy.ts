@@ -43,6 +43,8 @@ export class VirtualList {
   _maxElementHeight: number;
   _renderAnimationFrame!: number;
   _averageHeight!: number;
+  _scrollListener: (() => void) | null = null;
+  _pendingRender: boolean = false;
 
   static readonly defaultConfig: VirtualListConfig = {
     width: '100%',
@@ -115,12 +117,10 @@ export class VirtualList {
 
     const config = this._config;
 
-    // Create internal render loop.
     const render = () => {
+      this._pendingRender = false;
       const scrollTop = this._getScrollPosition();
       const lastRepaint = this._lastRepaint;
-
-      this._renderAnimationFrame = window.requestAnimationFrame(render);
 
       if (scrollTop === lastRepaint) {
         return;
@@ -138,17 +138,47 @@ export class VirtualList {
       }
     };
 
+    const scrollContainer = config.scrollContainer || element;
+
+    this._scrollListener = () => {
+      if (!this._pendingRender) {
+        this._pendingRender = true;
+        this._renderAnimationFrame = window.requestAnimationFrame(render);
+      }
+    };
+
+    scrollContainer.addEventListener('scroll', this._scrollListener, {
+      passive: true,
+    });
+
     render();
   }
 
   destroy() {
-    window.cancelAnimationFrame(this._renderAnimationFrame);
+    if (this._renderAnimationFrame) {
+      window.cancelAnimationFrame(this._renderAnimationFrame);
+    }
+
+    const config = this._config;
+    const scrollContainer = config?.scrollContainer || this._element;
+
+    if (this._scrollListener && scrollContainer) {
+      scrollContainer.removeEventListener('scroll', this._scrollListener);
+    }
   }
 
   refresh(
     element: HTMLElement,
     userProvidedConfig: VirtualListConfig = VirtualList.defaultConfig
   ) {
+    if (this._scrollListener) {
+      const oldConfig = this._config;
+      const oldScrollContainer = oldConfig?.scrollContainer || this._element;
+      if (oldScrollContainer) {
+        oldScrollContainer.removeEventListener('scroll', this._scrollListener);
+      }
+    }
+
     this._config = userProvidedConfig;
 
     if (!element || element.nodeType !== 1) {
@@ -286,6 +316,13 @@ export class VirtualList {
 
     if (typeof config.afterRender === 'function') {
       config.afterRender();
+    }
+
+    if (this._scrollListener) {
+      const scrollContainer = config.scrollContainer || element;
+      scrollContainer.addEventListener('scroll', this._scrollListener, {
+        passive: true,
+      });
     }
   }
 
