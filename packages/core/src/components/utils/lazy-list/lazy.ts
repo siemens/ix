@@ -171,12 +171,9 @@ export class VirtualList {
     element: HTMLElement,
     userProvidedConfig: VirtualListConfig = VirtualList.defaultConfig
   ) {
-    if (this._scrollListener) {
-      const oldConfig = this._config;
-      const oldScrollContainer = oldConfig?.scrollContainer || this._element;
-      if (oldScrollContainer) {
-        oldScrollContainer.removeEventListener('scroll', this._scrollListener);
-      }
+    const oldScrollContainer = this._config?.scrollContainer || this._element;
+    if (this._scrollListener && oldScrollContainer) {
+      oldScrollContainer.removeEventListener('scroll', this._scrollListener);
     }
 
     this._config = userProvidedConfig;
