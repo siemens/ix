@@ -510,15 +510,15 @@ regressionTest(
     const rafCallCount = await page.evaluate(() => {
       return new Promise<number>((resolve) => {
         let count = 0;
-        const originalRAF = window.requestAnimationFrame;
+        const originalRAF = globalThis.requestAnimationFrame;
 
-        window.requestAnimationFrame = (callback: FrameRequestCallback) => {
+        globalThis.requestAnimationFrame = (callback: FrameRequestCallback) => {
           count++;
           return originalRAF(callback);
         };
 
         setTimeout(() => {
-          window.requestAnimationFrame = originalRAF;
+          globalThis.requestAnimationFrame = originalRAF;
           resolve(count);
         }, 500);
       });
@@ -550,9 +550,9 @@ regressionTest(
     const rafCalledDuringScroll = await tree.evaluate((element) => {
       return new Promise<boolean>((resolve) => {
         let rafCalled = false;
-        const originalRAF = window.requestAnimationFrame;
+        const originalRAF = globalThis.requestAnimationFrame;
 
-        window.requestAnimationFrame = (callback: FrameRequestCallback) => {
+        globalThis.requestAnimationFrame = (callback: FrameRequestCallback) => {
           rafCalled = true;
           return originalRAF(callback);
         };
@@ -560,7 +560,7 @@ regressionTest(
         element.scrollTop = 200;
 
         setTimeout(() => {
-          window.requestAnimationFrame = originalRAF;
+          globalThis.requestAnimationFrame = originalRAF;
           resolve(rafCalled);
         }, 100);
       });
@@ -571,15 +571,15 @@ regressionTest(
     const rafCallCountAfterScroll = await page.evaluate(() => {
       return new Promise<number>((resolve) => {
         let count = 0;
-        const originalRAF = window.requestAnimationFrame;
+        const originalRAF = globalThis.requestAnimationFrame;
 
-        window.requestAnimationFrame = (callback: FrameRequestCallback) => {
+        globalThis.requestAnimationFrame = (callback: FrameRequestCallback) => {
           count++;
           return originalRAF(callback);
         };
 
         setTimeout(() => {
-          window.requestAnimationFrame = originalRAF;
+          globalThis.requestAnimationFrame = originalRAF;
           resolve(count);
         }, 300);
       });
