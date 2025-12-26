@@ -526,8 +526,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.dropdownShow = event.detail;
 
     if (event.detail) {
-      this.inputElement?.focus();
-      this.inputElement?.select();
+      // Use requestAnimationFrame to ensure focus happens after Popover dialog is rendered
+      requestAnimationFrame(() => {
+        this.inputElement?.focus();
+        this.inputElement?.select();
+      });
 
       this.removeHiddenFromItems();
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;

@@ -58,10 +58,10 @@ regressionTest.describe('select', () => {
 
     const inputHandle = await page.waitForSelector('div.chips');
 
-    await page.type(
-      '[data-testid="input"]',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    );
+    // Use fill() instead of type() to avoid re-render interruptions during typing
+    await page
+      .locator('[data-testid="input"]')
+      .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
 
     page.evaluate((menuElement) => {
       menuElement.scrollTop = 9999;
