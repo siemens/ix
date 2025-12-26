@@ -15,7 +15,7 @@ regressionTest.describe('dropdown', () => {
     await page.goto('dropdown/basic');
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
 
     await expect(page).toHaveScreenshot();
   });
@@ -24,7 +24,7 @@ regressionTest.describe('dropdown', () => {
     await page.goto('dropdown/checked');
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
 
     await expect(page).toHaveScreenshot();
   });
@@ -32,14 +32,18 @@ regressionTest.describe('dropdown', () => {
   regressionTest('overflow', async ({ page }) => {
     await page.goto('dropdown/overflow');
 
-    const menuHandle = await page.waitForSelector('.dropdown-menu.show');
+    const menuHandle = await page.waitForSelector('ix-dropdown.visible', {
+      state: 'attached',
+    });
 
     page.evaluate((menuElement) => {
       menuElement.scrollTop = 9999;
       menuElement.classList.add('__SCROLLED__');
     }, menuHandle);
 
-    await page.waitForSelector('.dropdown-menu.show.__SCROLLED__');
+    await page.waitForSelector('ix-dropdown.visible.__SCROLLED__', {
+      state: 'attached',
+    });
     await expect(page).toHaveScreenshot();
   });
 
@@ -47,7 +51,7 @@ regressionTest.describe('dropdown', () => {
     await page.goto('dropdown/disabled');
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
 
     await expect(page).toHaveScreenshot();
   });
@@ -56,10 +60,10 @@ regressionTest.describe('dropdown', () => {
     await page.goto('dropdown/multiple');
 
     await page.locator('#trigger-a').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
 
     await page.locator('#trigger-b').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
 
     await expect(page).toHaveScreenshot();
   });
@@ -74,13 +78,14 @@ regressionTest.describe('dropdown', () => {
     });
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
 
     await expect(page).toHaveScreenshot();
   });
 
   regressionTest('centered overflow', async ({ page }) => {
     await page.goto('dropdown/centered-overflow');
+    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
     const lastItem = await page.locator('.dropdown-item').last();
     await lastItem.scrollIntoViewIfNeeded();
     await expect(page).toHaveScreenshot();

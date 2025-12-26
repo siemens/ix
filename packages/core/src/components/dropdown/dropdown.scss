@@ -13,16 +13,27 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
-:host {
+// Dialog element handles all visual rendering in the top layer
+// Host element is just a container (similar to ix-tooltip pattern)
+.dialog {
+  margin: 0;
+  border: none;
+  padding: 0.25rem 0px;
+  min-width: 0px;
+  max-width: 100vw;
   background-color: var(--theme-color-2);
   border-radius: var(--theme-default-border-radius);
-  min-width: 0px;
-  z-index: var(--theme-z-index-dropdown);
   box-shadow: var(--theme-shadow-4);
+  overflow: visible;
 
-  padding: 0.25rem 0px;
+  // Ensure top-layer element inherits theme's color-scheme
+  // This prevents browser from applying default light-mode form controls
+  color-scheme: inherit;
+}
 
-  @include component.ix-component;
+.dropdown-container {
+  display: block;
+  position: relative;
 
   .dropdown-header {
     display: flex;
@@ -35,11 +46,7 @@
 
 $dropdown-offset: 3rem;
 
-:host(.overflow) {
+.dialog.overflow {
   max-height: calc(50vh - $dropdown-offset);
   overflow-y: auto;
-}
-
-:host(:not(.show)) {
-  display: none;
 }

@@ -8,6 +8,10 @@
  */
 
 import {
+  iconChevronRightSmall,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -18,10 +22,6 @@ import {
   Prop,
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
-import {
-  iconChevronRightSmall,
-  iconSingleCheck,
-} from '@siemens/ix-icons/icons';
 import { a11yBoolean } from '../utils/a11y';
 
 @Component({

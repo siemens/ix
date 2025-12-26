@@ -115,7 +115,7 @@ regressionTest('should show items as dropdown', async ({ mount, page }) => {
   await menuCategory.hover();
 
   const dropdown = menuCategory.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
   await expect(menuCategory.locator('.menu-items')).toHaveClass(
     'menu-items menu-items--collapsed'
   );
@@ -289,7 +289,7 @@ regressionTest('collapse after category blur', async ({ mount, page }) => {
   await categoryElement.hover();
 
   const dropdown = categoryElement.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
 
   await categoryElement.hover();
   await menuItem.hover();
@@ -317,7 +317,7 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
   await page.keyboard.press('Tab');
 
   const dropdown = categoryElement.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
 });
 
 test('should adjust height when items are added dynamically', async ({

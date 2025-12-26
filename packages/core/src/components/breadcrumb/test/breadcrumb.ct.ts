@@ -67,7 +67,7 @@ regressionTest('should show hidden items', async ({ mount, page }) => {
   const dropdownElement = breadcrumb.locator('ix-dropdown').nth(0);
   const dropdownItem1 = dropdownElement.getByRole('button', { name: 'Item 1' });
   const dropdownItem2 = dropdownElement.getByRole('button', { name: 'Item 2' });
-  await expect(dropdownElement).toBeVisible();
+  await expect(dropdownElement).toHaveClass(/show/);
   await expect(dropdownItem1).toBeVisible();
   await expect(dropdownItem2).toBeVisible();
 });
@@ -110,7 +110,7 @@ regressionTest('should show next items', async ({ mount, page }) => {
 
   const item1 = dropdownElement.locator('ix-dropdown-item').nth(0);
   const item2 = dropdownElement.locator('ix-dropdown-item').nth(1);
-  await expect(dropdownElement).toBeVisible();
+  await expect(dropdownElement).toHaveClass(/show/);
 
   await expect(item1).toHaveText('Next Item 1');
   await expect(item2).toHaveText('Next Item 2');

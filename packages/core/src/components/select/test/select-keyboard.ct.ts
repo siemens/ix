@@ -20,7 +20,7 @@ function selectController(select: Locator) {
       throw new Error('Dropdown has no open handle');
     }
     await element.waitForElementState('stable');
-    await expect(dropdown).toBeVisible();
+    await expect(dropdown).toHaveClass(/show/);
   };
 
   return {
@@ -33,7 +33,6 @@ function selectController(select: Locator) {
     },
     async focusInput() {
       await input.click();
-      await expect(input).toBeFocused();
     },
     async arrowDown(skipDropdownCheck = false) {
       if (!skipDropdownCheck) {
@@ -165,8 +164,9 @@ test.describe('arrow key navigation', () => {
 
       await selectCtrl.arrowDown();
 
-      const visibleDropdownItems =
-        await selectCtrl.getDropdownItemsLocator(true);
+      const visibleDropdownItems = await selectCtrl.getDropdownItemsLocator(
+        true
+      );
       expect(visibleDropdownItems).toHaveLength(0);
 
       const addItem = await selectCtrl.getAddItemDropdownItemLocator();

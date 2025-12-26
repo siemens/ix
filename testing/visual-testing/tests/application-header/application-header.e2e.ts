@@ -73,7 +73,7 @@ regressionTest.describe('application header: basic', () => {
         .locator('ix-application-header')
         .locator('[data-overflow-dropdown]');
 
-      await expect(dropdown).toBeVisible();
+      await expect(dropdown).toHaveClass(/visible/);
       await expect(page).toHaveScreenshot();
     }
   );

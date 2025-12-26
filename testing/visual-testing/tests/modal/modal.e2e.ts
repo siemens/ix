@@ -89,7 +89,7 @@ regressionTest('modal with dropdown', async ({ mount, page }) => {
 
   const dropdownContent = dropdown.locator('ix-dropdown');
 
-  await expect(dropdownContent).toHaveClass(/show/);
+  await expect(dropdownContent).toHaveClass(/visible/);
 
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
