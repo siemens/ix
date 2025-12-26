@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
+import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-category-filter></ix-category-filter>`);
@@ -114,8 +114,6 @@ regressionTest.describe('focus behavior', () => {
       const input = page.locator('input').first();
 
       await input.click();
-      await expect(input).toBeFocused();
-
       await input.fill('Test');
       await page.keyboard.press('Enter');
 

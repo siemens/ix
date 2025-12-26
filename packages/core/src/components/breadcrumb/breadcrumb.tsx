@@ -20,8 +20,8 @@ import {
   Watch,
 } from '@stencil/core';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
-import { createMutationObserver } from '../utils/mutation-observer';
 import { makeRef } from '../utils/make-ref';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 let sequenceId = 0;
 const createId = (prefix: string = 'breadcrumb-') => {
@@ -146,6 +146,7 @@ export class Breadcrumb {
               ? this.previousButtonRef.waitForCurrent()
               : undefined
           }
+          suppressOverflowBehavior
           onShowChanged={({ detail }) => {
             this.isPreviousDropdownExpanded = detail;
 
@@ -153,7 +154,6 @@ export class Breadcrumb {
               this.previousButtonId
             );
 
-            // Need to force update previous button to change `aria-expanded`
             if (previousButton) {
               forceUpdate(previousButton);
             }
@@ -196,7 +196,10 @@ export class Breadcrumb {
             <slot></slot>
           </ol>
         </nav>
-        <ix-dropdown trigger={this.nextButtonRef.waitForCurrent()}>
+        <ix-dropdown
+          trigger={this.nextButtonRef.waitForCurrent()}
+          suppressOverflowBehavior
+        >
           {this.nextItems?.map((item) => (
             <ix-dropdown-item
               label={item}

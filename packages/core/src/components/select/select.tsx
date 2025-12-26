@@ -39,6 +39,7 @@ import {
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
  * @form-ready
@@ -365,7 +366,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         return;
       }
 
-      requestAnimationFrame(() => {
+      requestAnimationFrameNoNgZone(() => {
         nestedDropdownItem?.shadowRoot?.querySelector('button')?.focus();
       });
     }
@@ -526,8 +527,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.dropdownShow = event.detail;
 
     if (event.detail) {
-      this.inputElement?.focus();
-      this.inputElement?.select();
+      requestAnimationFrameNoNgZone(() => {
+        this.inputElement?.focus();
+        this.inputElement?.select();
+      });
 
       this.removeHiddenFromItems();
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;

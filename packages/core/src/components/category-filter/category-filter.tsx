@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -19,16 +20,16 @@ import {
   Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
-import { FilterState } from './filter-state';
-import { InputState } from './input-state';
-import { LogicalFilterOperator } from './logical-filter-operator';
-import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
-import { makeRef } from '../utils/make-ref';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
+import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { FilterState } from './filter-state';
+import { InputState } from './input-state';
+import { LogicalFilterOperator } from './logical-filter-operator';
 
 @Component({
   tag: 'ix-category-filter',
@@ -214,8 +215,11 @@ export class CategoryFilter {
     const inputState = new InputState(this.inputValue, this.category);
     this.inputChanged.emit(inputState);
 
-    if (!this.dropdown?.show) {
+    if (!this.showDropdown) {
       this.openDropdown();
+      requestAnimationFrameNoNgZone(() => {
+        this.textInput?.current?.focus();
+      });
     }
   }
 
@@ -301,9 +305,7 @@ export class CategoryFilter {
       return;
     }
 
-    if (this.dropdown) {
-      this.dropdown.show = false;
-    }
+    this.showDropdown = false;
   }
 
   private openDropdown() {
@@ -311,8 +313,16 @@ export class CategoryFilter {
       return;
     }
 
-    if (this.dropdown) {
-      this.dropdown.show = true;
+    this.showDropdown = true;
+  }
+
+  private onDropdownShowChanged(event: CustomEvent<boolean>) {
+    this.showDropdown = event.detail;
+
+    if (event.detail && this.textInput?.current) {
+      requestAnimationFrameNoNgZone(() => {
+        this.textInput?.current?.focus();
+      });
     }
   }
 
@@ -914,6 +924,11 @@ export class CategoryFilter {
             anchor={this.textInput?.waitForCurrent()}
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
+            onShowChanged={(e) => this.onDropdownShowChanged(e)}
+            suppressOverflowBehavior
+            overwriteDropdownStyle={async () => ({
+              minWidth: '10rem',
+            })}
           >
             {this.renderDropdownContent()}
           </ix-dropdown>

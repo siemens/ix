@@ -13,16 +13,39 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
-:host {
+.dialog {
+  margin: 0;
+  border: none;
+  outline: none;
+  padding: 0.25rem 0px;
+  min-width: 0;
+  max-width: 100vw;
+  width: max-content;
+  height: fit-content;
   background-color: var(--theme-color-2);
   border-radius: var(--theme-default-border-radius);
-  min-width: 0px;
-  z-index: var(--theme-z-index-dropdown);
   box-shadow: var(--theme-shadow-4);
+  overflow-x: visible;
+  overflow-y: visible;
 
-  padding: 0.25rem 0px;
+  inset: unset;
 
-  @include component.ix-component;
+  color-scheme: inherit;
+
+  color: var(--theme-color-std-text);
+
+  box-sizing: border-box;
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+}
+
+.dropdown-container {
+  display: block;
+  position: relative;
 
   .dropdown-header {
     display: flex;
@@ -35,11 +58,7 @@
 
 $dropdown-offset: 3rem;
 
-:host(.overflow) {
+.dialog.overflow {
   max-height: calc(50vh - $dropdown-offset);
   overflow-y: auto;
-}
-
-:host(:not(.show)) {
-  display: none;
 }

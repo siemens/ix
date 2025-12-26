@@ -16,7 +16,7 @@ regressionTest.describe('menu-avatar', () => {
     await page.locator('ix-menu-expand-icon').click();
     await page.waitForSelector('.expanded');
     await page.locator('ix-menu-avatar').click();
-    await page.waitForSelector('ix-dropdown.show');
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -28,7 +28,7 @@ regressionTest.describe('menu-avatar', () => {
     expect(menu.locator('.menu.expand')).toBeDefined();
     const avatar = page.locator('ix-menu-avatar');
     await avatar.click();
-    expect(avatar.locator('ix-dropdown').locator('.show')).toBeDefined();
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -40,7 +40,7 @@ regressionTest.describe('menu-avatar', () => {
     expect(menu.locator('.menu.expand')).toBeDefined();
     const avatar = page.locator('ix-menu-avatar');
     await avatar.click();
-    expect(avatar.locator('ix-dropdown').locator('.show')).toBeDefined();
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

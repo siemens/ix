@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 const createOnPageSelectedListener = (pagination: Locator) =>
@@ -53,7 +53,7 @@ regressionTest('open show number of page dropdown', async ({ mount, page }) => {
 
   const dropdown = element.locator('ix-dropdown');
 
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
 });
 
 regressionTest(

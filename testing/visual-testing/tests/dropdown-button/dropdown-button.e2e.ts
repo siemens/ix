@@ -27,7 +27,7 @@ regressionTest.describe('basic', () => {
     const triggerHandle = await page.waitForSelector('.dropdown-button');
     await triggerHandle.click();
 
-    await page.waitForSelector('.dropdown.show');
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixelRatio: 0.01,

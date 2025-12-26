@@ -1337,6 +1337,7 @@ export namespace Components {
         "placement": AlignedPlacement;
         /**
           * Position strategy
+          * @deprecated Since the dropdown now uses the Popover API (top layer), positioning is always 'fixed' relative to the viewport. This prop will be ignored.
           * @default 'fixed'
          */
         "positioningStrategy": 'absolute' | 'fixed';
@@ -7217,6 +7218,7 @@ declare namespace LocalJSX {
         "placement"?: AlignedPlacement;
         /**
           * Position strategy
+          * @deprecated Since the dropdown now uses the Popover API (top layer), positioning is always 'fixed' relative to the viewport. This prop will be ignored.
           * @default 'fixed'
          */
         "positioningStrategy"?: 'absolute' | 'fixed';

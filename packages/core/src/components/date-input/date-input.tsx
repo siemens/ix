@@ -37,14 +37,15 @@ import {
   createClassMutationObserver,
   getValidationText,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
-import type { DateInputValidityState } from './date-input.types';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
+import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import type { DateInputValidityState } from './date-input.types';
 
 /**
  * @form-ready
@@ -519,10 +520,18 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
-          suppressOverflowBehavior={true}
+          suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+
+            if (event.detail && this.inputElementRef.current) {
+              requestAnimationFrameNoNgZone(() => {
+                if (this.show && this.inputElementRef.current) {
+                  this.inputElementRef.current.focus();
+                }
+              });
+            }
           }}
         >
           <ix-date-picker

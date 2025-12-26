@@ -29,6 +29,7 @@ regressionTest.describe('date picker', () => {
     await page.goto('date-picker-rework/year-month-selection');
     const button = page.locator('div.selector > ix-button');
     await button.click();
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 

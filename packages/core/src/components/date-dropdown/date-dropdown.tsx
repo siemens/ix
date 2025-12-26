@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconHistory } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -21,12 +22,11 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { type LiteralStringUnion } from '../utils/type-helper';
-import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-import { makeRef } from '../utils/make-ref';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
-import { iconHistory } from '@siemens/ix-icons/icons';
+import { IxDatePickerComponent } from '../date-picker/date-picker-component';
+import { makeRef } from '../utils/make-ref';
+import { type LiteralStringUnion } from '../utils/type-helper';
 import type {
   DateDropdownOption,
   DateRangeChangeEvent,
@@ -358,6 +358,7 @@ export class DateDropdown
           trigger={this.triggerRef.waitForCurrent()}
           closeBehavior="outside"
           placement="bottom-start"
+          suppressOverflowBehavior
           onShowChanged={({ detail: show }) => {
             if (
               !show &&

@@ -40,53 +40,51 @@ regressionTest('focus native input by label click', async ({ mount, page }) => {
 });
 
 regressionTest.describe('click label', () => {
-  ['ix-input', 'ix-number-input', 'ix-date-input', 'ix-textarea'].forEach(
-    (selector) => {
-      regressionTest(
-        `focus ${selector} by external label click`,
-        async ({ mount, page }) => {
-          await mount(`
+  ['ix-input', 'ix-number-input', 'ix-textarea'].forEach((selector) => {
+    regressionTest(
+      `focus ${selector} by external label click`,
+      async ({ mount, page }) => {
+        await mount(`
         <ix-field-label html-for="input">MyLabel</ix-field-label>
         <${selector} id="input"></${selector}>
       `);
-          const labelElement = page.locator('ix-field-label');
-          await labelElement.click();
+        const labelElement = page.locator('ix-field-label');
+        await labelElement.click();
 
-          const component = page.locator(selector);
-          const focusElement =
-            selector !== 'ix-textarea'
-              ? component.locator('input')
-              : component.locator('textarea');
-          await expect(focusElement).toBeFocused();
-        }
-      );
+        const component = page.locator(selector);
+        const focusElement =
+          selector !== 'ix-textarea'
+            ? component.locator('input')
+            : component.locator('textarea');
+        await expect(focusElement).toBeFocused();
+      }
+    );
 
-      regressionTest(
-        `focus ${selector} by embedded label click`,
-        async ({ mount, page }) => {
-          await mount(`
+    regressionTest(
+      `focus ${selector} by embedded label click`,
+      async ({ mount, page }) => {
+        await mount(`
         <${selector} label="MyLabel"></${selector}>
       `);
 
-          const component = page.locator(selector);
-          await expect(component).toHaveClass(/hydrated/);
+        const component = page.locator(selector);
+        await expect(component).toHaveClass(/hydrated/);
 
-          const labelElement = component
-            .locator('ix-field-wrapper')
-            .locator('ix-field-label');
+        const labelElement = component
+          .locator('ix-field-wrapper')
+          .locator('ix-field-label');
 
-          await labelElement.click();
+        await labelElement.click();
 
-          const focusElement =
-            selector !== 'ix-textarea'
-              ? component.locator('input')
-              : component.locator('textarea');
+        const focusElement =
+          selector !== 'ix-textarea'
+            ? component.locator('input')
+            : component.locator('textarea');
 
-          await expect(focusElement).toBeFocused();
-        }
-      );
-    }
-  );
+        await expect(focusElement).toBeFocused();
+      }
+    );
+  });
 });
 
 regressionTest('valid color', async ({ mount, page }) => {

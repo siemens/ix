@@ -196,7 +196,7 @@ regressionTest.describe('tooltip', () => {
     await page.goto('tooltip/dropdown');
 
     await page.locator('ix-button[id="trigger"]').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     await page.locator('#item1').hover();
 

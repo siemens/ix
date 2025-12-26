@@ -92,7 +92,7 @@ function expectToBeVisible(elements: Locator[], index: number) {
       if (i !== index) {
         ef = ef.not;
       }
-      await ef.toBeVisible();
+      await ef.toHaveClass(/show/);
     })
   );
 }
@@ -106,14 +106,11 @@ regressionTest('trigger toggles', async ({ mount, page }) => {
   `);
 
   await page.locator('ix-button').click();
-  const dropdown = page.locator('.dropdown-menu');
+  const dropdown = page.locator('ix-dropdown');
   await expect(dropdown).toHaveClass(/show/);
-  await expect(dropdown).toBeVisible();
 
   await page.locator('ix-button').click();
-  const after = page.locator('.dropdown-menu');
-  await expect(after).not.toHaveClass(/show/);
-  await expect(dropdown).not.toBeVisible();
+  await expect(dropdown).not.toHaveClass(/show/);
 });
 
 regressionTest.describe('Close behavior', () => {
@@ -159,16 +156,16 @@ regressionTest.describe('Close behavior', () => {
     setupTest(page);
 
     await triggerButton.click();
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
 
     await page.mouse.click(400, 200);
-    await expect(dropdownLevel1).not.toBeVisible();
+    await expect(dropdownLevel1).not.toHaveClass(/show/);
 
     await triggerButton.click();
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
 
     await dropdownLevel1_Item1.click();
-    await expect(dropdownLevel1).not.toBeVisible();
+    await expect(dropdownLevel1).not.toHaveClass(/show/);
   });
 
   regressionTest(' = inside', async ({ mount, page }) => {
@@ -179,13 +176,13 @@ regressionTest.describe('Close behavior', () => {
     setupTest(page);
 
     await triggerButton.click();
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
 
     await page.mouse.click(400, 200);
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
 
     await dropdownLevel1_Item1.click();
-    await expect(dropdownLevel1).not.toBeVisible();
+    await expect(dropdownLevel1).not.toHaveClass(/show/);
   });
 
   regressionTest(' = outside', async ({ mount, page }) => {
@@ -196,16 +193,16 @@ regressionTest.describe('Close behavior', () => {
     setupTest(page);
 
     await triggerButton.click();
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
 
     await page.mouse.click(400, 200);
-    await expect(dropdownLevel1).not.toBeVisible();
+    await expect(dropdownLevel1).not.toHaveClass(/show/);
 
     await triggerButton.click();
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
 
     await dropdownLevel1_Item1.click();
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
   });
 
   regressionTest(' = false', async ({ mount, page }) => {
@@ -222,21 +219,21 @@ regressionTest.describe('Close behavior', () => {
     setupTest(page);
 
     await triggerButton.click();
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
 
     await page.mouse.click(400, 200);
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
 
     await triggerButton.click();
-    await expect(dropdownLevel1).not.toBeVisible();
+    await expect(dropdownLevel1).not.toHaveClass(/show/);
 
     await triggerButton.click();
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
 
     await dropdownLevel1_Item1.click({
       force: true,
     });
-    await expect(dropdownLevel1).toBeVisible();
+    await expect(dropdownLevel1).toHaveClass(/show/);
   });
 });
 
@@ -345,15 +342,15 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     setupTest(page);
 
     await triggerDropdown1.click();
-    await expect(dropdown1).toBeVisible();
+    await expect(dropdown1).toHaveClass(/show/);
 
     await triggerDropdown3.click();
-    await expect(dropdown3).toBeVisible();
+    await expect(dropdown3).toHaveClass(/show/);
 
     await triggerDropdown5.click();
-    await expect(dropdown5).toBeVisible();
-    await expect(dropdown1).not.toBeVisible();
-    await expect(dropdown3).not.toBeVisible();
+    await expect(dropdown5).toHaveClass(/show/);
+    await expect(dropdown1).not.toHaveClass(/show/);
+    await expect(dropdown3).not.toHaveClass(/show/);
   });
 
   regressionTest('close assigned submenu', async ({ mount, page }) => {
@@ -362,21 +359,21 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
     setupTest(page);
 
     await triggerDropdown1.click();
-    await expect(dropdown1).toBeVisible();
+    await expect(dropdown1).toHaveClass(/show/);
 
     await triggerDropdown2.click();
-    await expect(dropdown2).toBeVisible();
+    await expect(dropdown2).toHaveClass(/show/);
 
     await triggerDropdown3.click();
-    await expect(dropdown2).not.toBeVisible();
-    await expect(dropdown3).toBeVisible();
+    await expect(dropdown2).not.toHaveClass(/show/);
+    await expect(dropdown3).toHaveClass(/show/);
 
     await triggerDropdown4.click();
-    await expect(dropdown4).toBeVisible();
+    await expect(dropdown4).toHaveClass(/show/);
 
     await triggerDropdown3.click();
-    await expect(dropdown3).not.toBeVisible();
-    await expect(dropdown4).not.toBeVisible();
+    await expect(dropdown3).not.toHaveClass(/show/);
+    await expect(dropdown4).not.toHaveClass(/show/);
   });
 
   regressionTest.describe('close by Escape with close behavior', () => {
@@ -386,24 +383,24 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       setupTest(page);
 
       await triggerDropdown1.click();
-      await expect(dropdown1).toBeVisible();
+      await expect(dropdown1).toHaveClass(/show/);
 
       await triggerDropdown2.click();
-      await expect(dropdown2).toBeVisible();
+      await expect(dropdown2).toHaveClass(/show/);
 
       await triggerDropdown3.click();
-      await expect(dropdown2).not.toBeVisible();
-      await expect(dropdown3).toBeVisible();
+      await expect(dropdown2).not.toHaveClass(/show/);
+      await expect(dropdown3).toHaveClass(/show/);
 
       await triggerDropdown4.click();
-      await expect(dropdown4).toBeVisible();
+      await expect(dropdown4).toHaveClass(/show/);
 
       await page.keyboard.press('Escape');
 
-      await expect(dropdown1).not.toBeVisible();
-      await expect(dropdown2).not.toBeVisible();
-      await expect(dropdown3).not.toBeVisible();
-      await expect(dropdown4).not.toBeVisible();
+      await expect(dropdown1).not.toHaveClass(/show/);
+      await expect(dropdown2).not.toHaveClass(/show/);
+      await expect(dropdown3).not.toHaveClass(/show/);
+      await expect(dropdown4).not.toHaveClass(/show/);
     });
 
     regressionTest(' = inside', async ({ mount, page }) => {
@@ -414,24 +411,24 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       setupTest(page);
 
       await triggerDropdown1.click();
-      await expect(dropdown1).toBeVisible();
+      await expect(dropdown1).toHaveClass(/show/);
 
       await triggerDropdown2.click();
-      await expect(dropdown2).toBeVisible();
+      await expect(dropdown2).toHaveClass(/show/);
 
       await triggerDropdown3.click();
-      await expect(dropdown2).not.toBeVisible();
-      await expect(dropdown3).toBeVisible();
+      await expect(dropdown2).not.toHaveClass(/show/);
+      await expect(dropdown3).toHaveClass(/show/);
 
       await triggerDropdown4.click();
-      await expect(dropdown4).toBeVisible();
+      await expect(dropdown4).toHaveClass(/show/);
 
       await page.keyboard.press('Escape');
 
-      await expect(dropdown1).not.toBeVisible();
-      await expect(dropdown2).not.toBeVisible();
-      await expect(dropdown3).not.toBeVisible();
-      await expect(dropdown4).not.toBeVisible();
+      await expect(dropdown1).not.toHaveClass(/show/);
+      await expect(dropdown2).not.toHaveClass(/show/);
+      await expect(dropdown3).not.toHaveClass(/show/);
+      await expect(dropdown4).not.toHaveClass(/show/);
     });
 
     regressionTest(' = outside', async ({ mount, page }) => {
@@ -440,24 +437,24 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       setupTest(page);
 
       await triggerDropdown1.click();
-      await expect(dropdown1).toBeVisible();
+      await expect(dropdown1).toHaveClass(/show/);
 
       await triggerDropdown2.click();
-      await expect(dropdown2).toBeVisible();
+      await expect(dropdown2).toHaveClass(/show/);
 
       await triggerDropdown3.click();
-      await expect(dropdown2).not.toBeVisible();
-      await expect(dropdown3).toBeVisible();
+      await expect(dropdown2).not.toHaveClass(/show/);
+      await expect(dropdown3).toHaveClass(/show/);
 
       await triggerDropdown4.click();
-      await expect(dropdown4).toBeVisible();
+      await expect(dropdown4).toHaveClass(/show/);
 
       await page.keyboard.press('Escape');
 
-      await expect(dropdown1).not.toBeVisible();
-      await expect(dropdown2).not.toBeVisible();
-      await expect(dropdown3).not.toBeVisible();
-      await expect(dropdown4).not.toBeVisible();
+      await expect(dropdown1).not.toHaveClass(/show/);
+      await expect(dropdown2).not.toHaveClass(/show/);
+      await expect(dropdown3).not.toHaveClass(/show/);
+      await expect(dropdown4).not.toHaveClass(/show/);
     });
 
     regressionTest(' = false', async ({ mount, page }) => {
@@ -466,24 +463,24 @@ regressionTest.describe('Nested dropdowns 1/3', () => {
       setupTest(page);
 
       await triggerDropdown1.click();
-      await expect(dropdown1).toBeVisible();
+      await expect(dropdown1).toHaveClass(/show/);
 
       await triggerDropdown2.click();
-      await expect(dropdown2).toBeVisible();
+      await expect(dropdown2).toHaveClass(/show/);
 
       await triggerDropdown3.click();
-      await expect(dropdown2).not.toBeVisible();
-      await expect(dropdown3).toBeVisible();
+      await expect(dropdown2).not.toHaveClass(/show/);
+      await expect(dropdown3).toHaveClass(/show/);
 
       await triggerDropdown4.click();
-      await expect(dropdown4).toBeVisible();
+      await expect(dropdown4).toHaveClass(/show/);
 
       await page.keyboard.press('Escape');
 
-      await expect(dropdown1).not.toBeVisible();
-      await expect(dropdown2).not.toBeVisible();
-      await expect(dropdown3).not.toBeVisible();
-      await expect(dropdown4).not.toBeVisible();
+      await expect(dropdown1).not.toHaveClass(/show/);
+      await expect(dropdown2).not.toHaveClass(/show/);
+      await expect(dropdown3).not.toHaveClass(/show/);
+      await expect(dropdown4).not.toHaveClass(/show/);
     });
   });
 });
@@ -541,8 +538,8 @@ regressionTest.describe('nested dropdown 3/3', () => {
     await triggerDropdown2.click();
     await triggerDropdown1.click();
 
-    await expect(dropdown1).not.toBeVisible();
-    await expect(dropdown2).not.toBeVisible();
+    await expect(dropdown1).not.toHaveClass(/show/);
+    await expect(dropdown2).not.toHaveClass(/show/);
   });
 });
 
@@ -580,7 +577,7 @@ regressionTest(
     await dropdownButton.locator('ix-button').click();
 
     const dropdownOfDropdownButton = dropdownButton.locator('ix-dropdown');
-    await expect(dropdownOfDropdownButton).toBeVisible();
+    await expect(dropdownOfDropdownButton).toHaveClass(/show/);
 
     const submenuTrigger = page
       .locator('ix-dropdown-item')
@@ -590,7 +587,7 @@ regressionTest(
 
     const submenuDropdown = page.locator('#submenu');
 
-    await expect(submenuDropdown).toBeVisible();
+    await expect(submenuDropdown).toHaveClass(/show/);
 
     const subMenuItem = submenuDropdown
       .locator('ix-dropdown-item')
@@ -598,8 +595,8 @@ regressionTest(
 
     await subMenuItem.click();
 
-    await expect(submenuDropdown).not.toBeVisible();
-    await expect(dropdownOfDropdownButton).not.toBeVisible();
+    await expect(submenuDropdown).not.toHaveClass(/show/);
+    await expect(dropdownOfDropdownButton).not.toHaveClass(/show/);
   }
 );
 
@@ -631,7 +628,7 @@ regressionTest.describe('resolve during element connect', () => {
     const dropdown = page.locator('ix-dropdown');
     await page.locator('ix-button').first().click();
 
-    await expect(dropdown).toBeVisible();
+    await expect(dropdown).toHaveClass(/show/);
   });
 
   regressionTest('add element within runtime', async ({ page }) => {
@@ -644,7 +641,7 @@ regressionTest.describe('resolve during element connect', () => {
     const dropdown = page.locator('ix-dropdown');
     await page.locator('ix-button').first().click();
 
-    await expect(dropdown).toBeVisible();
+    await expect(dropdown).toHaveClass(/show/);
   });
 });
 
@@ -660,7 +657,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
   await trigger.click();
   const dropdown = page.locator('ix-dropdown').first();
 
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
 
   await dropdown.evaluate((dd) => {
     dd.removeChild(dd.querySelector('ix-dropdown-button')!);
@@ -668,7 +665,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
 
   await trigger.click();
   await trigger.click();
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
 });
 
 regressionTest.describe('A11y', () => {
@@ -689,35 +686,43 @@ regressionTest.describe('A11y', () => {
       );
 
       await page.locator('#trigger').click();
+      await expect(page.locator('ix-dropdown')).toHaveClass(/show/);
     });
 
     regressionTest.describe('ArrowDown', () => {
       regressionTest('trigger -> first item', async ({ page }) => {
+        await page.locator('#trigger').focus();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
-        const item = await page.locator('ix-dropdown-item').first();
-        await expect(item).toBeFocused();
+        await page.waitForTimeout(150);
+        const item = page.locator('ix-dropdown-item').first();
+        const button = item.locator('button');
+        await expect(button).toBeFocused();
       });
 
       regressionTest('first item -> second item', async ({ page }) => {
+        await page.locator('#trigger').focus();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await page.waitForTimeout(150);
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
-        const item = await page.locator('ix-dropdown-item').nth(1);
-        await expect(item).toBeFocused();
+        await page.waitForTimeout(150);
+        const item = page.locator('ix-dropdown-item').nth(1);
+        const button = item.locator('button');
+        await expect(button).toBeFocused();
       });
     });
 
     regressionTest.describe('ArrowUp', () => {
       regressionTest('second item -> fist item', async ({ page }) => {
+        await page.locator('#trigger').focus();
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await page.waitForTimeout(150);
         await page.keyboard.press('ArrowDown');
-        await page.waitForTimeout(100);
+        await page.waitForTimeout(150);
         await page.keyboard.press('ArrowUp');
+        await page.waitForTimeout(150);
         const item = page.locator('ix-dropdown-item').first();
-        await expect(item).toBeFocused();
+        const button = item.locator('button');
+        await expect(button).toBeFocused();
       });
     });
   });
@@ -764,18 +769,17 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
   await trigger.click();
 
   const dropdown = page.locator('#dropdown');
+  const dropdownDialog = dropdown.locator('.dialog');
   await expect(trigger).toHaveClass(/hydrated/);
   await expect(dropdown).toHaveClass(/hydrated/);
   await expect(trigger).toBeVisible();
-  await expect(dropdown).toBeVisible();
-
-  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveClass(/show/);
 
   // Animation timeout
   await page.waitForTimeout(250);
 
   await expect(async () => {
-    const dropdownRect = await dropdown.boundingBox();
+    const dropdownRect = await dropdownDialog.boundingBox();
     const triggerRect = await trigger.boundingBox();
 
     expect(dropdownRect).toBeTruthy();

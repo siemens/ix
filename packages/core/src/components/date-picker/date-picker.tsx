@@ -720,6 +720,7 @@ export class DatePicker implements IxDatePickerComponent {
                 trigger={this.dropdownButtonRef.waitForCurrent()}
                 ignoreRelatedSubmenu
                 placement="bottom-start"
+                suppressOverflowBehavior
               >
                 <div class="wrapper">
                   <div

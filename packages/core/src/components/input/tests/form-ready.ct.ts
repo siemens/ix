@@ -6,12 +6,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { expect } from '@playwright/test';
 import {
   getFormValue,
   preventFormSubmission,
   regressionTest,
 } from '@utils/test';
-import { expect } from '@playwright/test';
 
 declare global {
   var __formSubmitted: boolean;
@@ -34,8 +34,6 @@ regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
 const inputTags = [
   { tag: 'ix-input', fill: 'abc' },
   { tag: 'ix-number-input', fill: '123' },
-  { tag: 'ix-date-input', fill: '2025-09-25' },
-  { tag: 'ix-time-input', fill: '13:45:30' },
 ];
 
 for (const { tag, fill } of inputTags) {

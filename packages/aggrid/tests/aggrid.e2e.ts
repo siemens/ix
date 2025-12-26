@@ -121,4 +121,42 @@ regressionTest.describe('aggrid', () => {
       })
     ).toMatchSnapshot();
   });
+
+  regressionTest.describe('dropdown z-index', () => {
+    regressionTest(
+      'dropdown-button in cell should appear above other rows',
+      async ({ page }) => {
+        await page.goto('dropdown-zindex/dropdown-zindex.html');
+
+        const dropdownButton = page
+          .locator('.ag-row[row-index="5"]')
+          .locator('ix-dropdown-button');
+        await dropdownButton.click();
+
+        await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
+
+        expect(
+          await page.screenshot({ fullPage: true, animations: 'disabled' })
+        ).toMatchSnapshot();
+      }
+    );
+
+    regressionTest(
+      'select in cell should appear above other rows',
+      async ({ page }) => {
+        await page.goto('dropdown-zindex/dropdown-zindex.html');
+
+        const select = page
+          .locator('.ag-row[row-index="8"]')
+          .locator('ix-select');
+        await select.click();
+
+        await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
+
+        expect(
+          await page.screenshot({ fullPage: true, animations: 'disabled' })
+        ).toMatchSnapshot();
+      }
+    );
+  });
 });

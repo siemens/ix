@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { iconLogOut } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -17,7 +18,6 @@ import {
   State,
 } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
-import { iconLogOut } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-menu-avatar',
@@ -102,6 +102,7 @@ export class MenuAvatar {
           trigger={this.hostElement}
           placement={'right-start'}
           hidden={!this.showContextMenu && this.hideLogoutButton}
+          suppressOverflowBehavior
           offset={{
             mainAxis: 16,
           }}
