@@ -19,7 +19,7 @@ regressionTest.describe('group', () => {
   regressionTest('with context menu', async ({ page }) => {
     await page.goto('group/context-menu');
     await page.locator('ix-icon-button').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 

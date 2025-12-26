@@ -14,7 +14,7 @@ regressionTest.describe('select', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('select/basic');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -22,7 +22,7 @@ regressionTest.describe('select', () => {
   regressionTest('editable', async ({ page }) => {
     await page.goto('select/editable');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -33,7 +33,7 @@ regressionTest.describe('select', () => {
       .getByLabel('normal-select')
       .getByLabel('Open select dropdown')
       .click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -43,7 +43,7 @@ regressionTest.describe('select', () => {
       .getByLabel('all-chip-select')
       .getByLabel('Open select dropdown')
       .click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -78,7 +78,7 @@ regressionTest.describe('select', () => {
   regressionTest('overflow', async ({ page }) => {
     await page.goto('select/overflow');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -86,7 +86,7 @@ regressionTest.describe('select', () => {
   regressionTest('autoplacement', async ({ page }) => {
     await page.goto('select/autoplacement');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -94,7 +94,7 @@ regressionTest.describe('select', () => {
   regressionTest('allow-clear', async ({ page }) => {
     await page.goto('select/allow-clear');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     await page.locator('text=Item 2').first().click();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -103,7 +103,7 @@ regressionTest.describe('select', () => {
   regressionTest('list-header-hide', async ({ page }) => {
     await page.goto('select/list-header-hide');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -140,7 +140,7 @@ regressionTest.describe('select', () => {
   regressionTest('centered overflow', async ({ page }) => {
     await page.goto('select/centered-overflow');
     await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     const lastItem = await page.locator('.dropdown-item').last();
     await lastItem.scrollIntoViewIfNeeded();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

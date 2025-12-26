@@ -35,7 +35,7 @@ regressionTest.describe('avatar', () => {
 
     const avatar = page.locator('ix-avatar');
     await avatar.click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     await expect(page).toHaveScreenshot();
   });
@@ -46,7 +46,7 @@ regressionTest.describe('avatar', () => {
     const avatar = page.locator('ix-avatar');
 
     await avatar.click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     await page.locator('ix-dropdown-item').last().hover();
 
     await expect(page).toHaveScreenshot();

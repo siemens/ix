@@ -14,7 +14,7 @@ regressionTest.describe('category-filter', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('category-filter/basic');
     await page.locator('input').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -22,7 +22,7 @@ regressionTest.describe('category-filter', () => {
   regressionTest('basic-no-icon', async ({ page }) => {
     await page.goto('category-filter/basic-no-icon');
     await page.locator('input').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -30,7 +30,7 @@ regressionTest.describe('category-filter', () => {
   regressionTest('categories', async ({ page }) => {
     await page.goto('category-filter/categories');
     await page.locator('input').first().click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -38,7 +38,7 @@ regressionTest.describe('category-filter', () => {
   regressionTest('category options', async ({ page }) => {
     await page.goto('category-filter/categories');
     await page.locator('input').first().click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     await page.locator('.category-item').first().click();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -47,7 +47,7 @@ regressionTest.describe('category-filter', () => {
   regressionTest('static operator', async ({ page }) => {
     await page.goto('category-filter/static-operator');
     await page.locator('input').first().click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     await page.locator('.category-item').first().click();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -58,7 +58,7 @@ regressionTest.describe('category-filter', () => {
     async ({ page }) => {
       await page.goto('category-filter/categories');
       await page.locator('input').first().click();
-      await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+      await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
       const vendorButton = page.getByRole('button', { name: 'Vendor' });
       await vendorButton.click();
@@ -78,7 +78,7 @@ regressionTest.describe('category-filter', () => {
     // close dropdown
     await input.click();
     await input.fill('p');
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     await expect(page).toHaveScreenshot();
   });

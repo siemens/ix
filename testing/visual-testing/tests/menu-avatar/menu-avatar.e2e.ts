@@ -16,7 +16,7 @@ regressionTest.describe('menu-avatar', () => {
     await page.locator('ix-menu-expand-icon').click();
     await page.waitForSelector('.expanded');
     await page.locator('ix-menu-avatar').click();
-    await page.waitForSelector('ix-dropdown.visible', { state: 'attached' });
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

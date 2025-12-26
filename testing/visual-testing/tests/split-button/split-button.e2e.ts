@@ -18,7 +18,7 @@ regressionTest.describe('split-button', () => {
     const dropdownButton = button.locator('ix-icon-button');
     await expect(dropdownButton).toBeVisible();
     await dropdownButton.click();
-    await expect(button.locator('ix-dropdown.visible')).toBeVisible();
+    await expect(button.locator('ix-dropdown.show')).toBeVisible();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixelRatio: 0.02,
     });

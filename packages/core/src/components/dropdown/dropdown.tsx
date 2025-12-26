@@ -389,8 +389,30 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
     await this.resolveAnchorElement();
 
+    // Only apply Floating UI positioning if we have an anchor element
     if (this.anchorElement) {
       this.applyDropdownPosition();
+    } else {
+      // Without an anchor, position relative to parent element
+      // (host element typically has no dimensions as a web component)
+      requestAnimationFrame(() => {
+        const dialog = popover;
+
+        // Use parent element for positioning since host is typically collapsed
+        const referenceElement =
+          this.hostElement.parentElement || this.hostElement;
+        const refRect = referenceElement.getBoundingClientRect();
+
+        const transform = `translate(${Math.round(
+          refRect.left
+        )}px, ${Math.round(refRect.top)}px)`;
+
+        Object.assign(dialog.style, {
+          top: '0',
+          left: '0',
+          transform: transform,
+        });
+      });
     }
   }
 
@@ -432,9 +454,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     if (!this.show) {
       return;
     }
+
     if (!this.anchorElement) {
       return;
     }
+
+    const referenceElement = this.anchorElement;
 
     const dialog = await this.dialogRef.waitForCurrent();
     const isSubmenu = this.isAnchorSubmenu();
@@ -464,28 +489,23 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
     this.destroyAutoUpdate();
 
-    if (!this.anchorElement) {
-      return;
-    }
-
     this.autoUpdateCleanup = autoUpdate(
-      this.anchorElement,
+      referenceElement,
       dialog,
       async () => {
-        if (this.anchorElement) {
-          const computeResponse = await computePosition(
-            this.anchorElement,
-            dialog,
-            positionConfig
-          );
-          Object.assign(dialog.style, {
-            top: '0',
-            left: '0',
-            transform: `translate(${Math.round(
-              computeResponse.x
-            )}px,${Math.round(computeResponse.y)}px)`,
-          });
-        }
+        const computeResponse = await computePosition(
+          referenceElement,
+          dialog,
+          positionConfig
+        );
+        Object.assign(dialog.style, {
+          top: '0',
+          left: '0',
+          transform: `translate(${Math.round(computeResponse.x)}px,${Math.round(
+            computeResponse.y
+          )}px)`,
+        });
+
         if (this.overwriteDropdownStyle) {
           const overwriteStyle = await this.overwriteDropdownStyle({
             dropdownRef: dialog,
@@ -515,6 +535,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   async componentDidLoad() {
+    // Handle case where show is already true on load (e.g., in tests)
+    // @Watch decorators don't fire for initial values, only changes
+    if (this.show) {
+      this.changedShow(true);
+    }
+
     if (!this.trigger) {
       return;
     }
