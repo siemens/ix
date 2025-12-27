@@ -84,14 +84,16 @@ regressionTest('modal with dropdown', async ({ mount, page }) => {
   await modal.evaluate((modal) => ((modal as any).style.display = 'block'));
   await expect(modal).toHaveClass(/hydrated/);
 
+  // Show modal first, then open dropdown so dropdown is on top
+  await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
+
   const dropdown = page.locator('ix-dropdown-button');
   await dropdown.click();
 
   const dropdownContent = dropdown.locator('ix-dropdown');
 
-  await expect(dropdownContent).toHaveClass(/visible/);
+  await expect(dropdownContent).toHaveClass(/show/);
 
-  await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
