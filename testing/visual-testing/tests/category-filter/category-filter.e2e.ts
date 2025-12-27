@@ -75,8 +75,10 @@ regressionTest.describe('category-filter', () => {
     const input = page.locator('input').first();
 
     await input.click();
-    // close dropdown
+    // Close dropdown with second click
     await input.click();
+    // Wait for dropdown to close
+    await page.waitForSelector('ix-dropdown.show', { state: 'detached' });
     await input.fill('p');
     await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 

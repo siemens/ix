@@ -39,6 +39,15 @@
 
   // Explicitly set text color for top layer (inheritance doesn't work)
   color: var(--theme-color-std-text);
+
+  // Apply box-sizing to dialog and children (previously from :host mixin)
+  box-sizing: border-box;
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
 }
 
 .dropdown-container {
