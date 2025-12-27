@@ -36,12 +36,18 @@ export class ModalService extends BaseModalService {
     super(appRef, componentFactoryResolver, injector);
   }
 
+  /**
+   * Opens a modal based on ModalConfig
+   */
   public override open<TData = any, TReason = any>(
     config: ModalConfig<TData>
   ): Promise<ModalInstance<TReason>> {
     return super.open(config);
   }
 
+  /**
+   * Closes a modal based on a ModalInstance
+   */
   public override close<TReason = any>(
     instance: ModalInstance<TReason>,
     reason?: TReason

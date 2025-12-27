@@ -1,0 +1,30 @@
+import ApiFunction from '@site/src/components/ApiTable/ApiFunction';
+import { DeprecatedTag, SinceTag } from '@site/src/components/UI/Tags';
+
+{{#functions}}
+<ApiFunction
+  name="{{name}}"
+  returnType="{{returnType}}"
+  {{#hasParameters}}
+  parameters={[
+    {{#parameters}}
+    {
+      name: "{{name}}",
+      type: "{{type}}",
+      {{#optional}}optional: true,{{/optional}}
+      {{#default}}defaultValue: "{{default}}",{{/default}}
+    },
+    {{/parameters}}
+  ]}
+  {{/hasParameters}}
+  {{#singleFramework}}
+  singleFramework="{{singleFramework}}"
+  {{/singleFramework}}
+>
+  {{#docsTags}}
+  {{{rTag}}}
+  {{/docsTags}}
+
+  {{comment}}
+</ApiFunction>
+{{/functions}}
