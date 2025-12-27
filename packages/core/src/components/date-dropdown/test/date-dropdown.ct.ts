@@ -238,14 +238,14 @@ regressionTest('select different year', async ({ mount, page }) => {
   await expect(dateDropdownTrigger).toBeVisible();
 
   const datePickerDropdown = dateDropdown.getByTestId('date-dropdown');
-  await expect(datePickerDropdown).toBeVisible();
+  await expect(datePickerDropdown).toHaveClass(/show/);
 
   const datepicker = datePickerDropdown.locator('ix-date-picker');
   const yearMonthButton = datepicker.getByTestId('year-month-button');
   await yearMonthButton.click();
 
   const yearMonthDropdown = datepicker.getByTestId('year-month-dropdown');
-  await expect(yearMonthDropdown).toBeVisible();
+  await expect(yearMonthDropdown).toHaveClass(/show/);
 
   const yearContainer = yearMonthDropdown.getByTestId('year-container');
   const year2020 = yearContainer.getByText('2020');

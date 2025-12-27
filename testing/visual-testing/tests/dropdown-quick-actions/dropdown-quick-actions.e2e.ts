@@ -15,7 +15,7 @@ regressionTest.describe('dropdown-quick-actions', () => {
     await page.goto('dropdown-quick-actions/basic');
 
     await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    await page.waitForSelector('ix-dropdown.show', { state: 'attached' });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
