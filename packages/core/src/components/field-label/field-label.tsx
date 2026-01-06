@@ -45,7 +45,7 @@ export class FormFieldLabel implements IxComponent {
   /** @internal */
   @Prop({ mutable: true }) isInvalid: boolean = false;
 
-  private explicitIsInvalid: boolean = false;
+  private explicitIsInvalid: boolean | undefined = undefined;
 
   @Watch('isInvalid')
   isInvalidChanged(newValue: boolean) {
@@ -135,11 +135,11 @@ export class FormFieldLabel implements IxComponent {
   }
 
   private checkForInvalidState(elementToCheck: HTMLElement) {
-    if (!this.explicitIsInvalid) {
-      this.isInvalid =
-        elementToCheck.classList.contains('is-invalid') ||
-        elementToCheck.classList.contains('ix-invalid');
-    }
+    const hasInvalidClass =
+      elementToCheck.classList.contains('is-invalid') ||
+      elementToCheck.classList.contains('ix-invalid');
+
+    this.isInvalid = this.explicitIsInvalid ?? hasInvalidClass;
   }
 
   private async checkForInternalState() {
