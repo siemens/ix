@@ -52,7 +52,6 @@
 
     .toast-content {
       overflow: hidden;
-      text-overflow: ellipsis;
       min-width: 0;
       width: 100%;
 
@@ -62,6 +61,8 @@
 
       .toast-message {
         min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
 
         @include fonts.text-default;
       }
