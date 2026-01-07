@@ -337,3 +337,44 @@ regressionTest.describe('message utils', () => {
     });
   });
 });
+
+regressionTest(
+  'centered modal should remain centered after reopening',
+  async ({ mount, page }) => {
+    await mount(``);
+    await setupModalEnvironment(page);
+
+    const positionTolerance = 5;
+    const dialog = page.locator('ix-modal dialog');
+
+    const openCenteredModal = () =>
+      page.evaluate(() => {
+        const elm = document.createElement('ix-modal');
+        elm.innerHTML = `<div>hi</div>`;
+        window.showModal({ content: elm, centered: true });
+      });
+
+    const getModalCenterX = async () => {
+      const box = await dialog.boundingBox();
+      return box!.x + box!.width / 2;
+    };
+
+    await openCenteredModal();
+    await expect(dialog).toBeVisible();
+    const initialCenterX = await getModalCenterX();
+
+    await page.evaluate(() => {
+      const modal = document.querySelector('ix-modal');
+      if (modal) window.dismissModal(modal);
+    });
+    await expect(dialog).not.toBeVisible();
+
+    await openCenteredModal();
+    await expect(dialog).toBeVisible();
+    const reopenCenterX = await getModalCenterX();
+
+    expect(Math.abs(reopenCenterX - initialCenterX)).toBeLessThanOrEqual(
+      positionTolerance
+    );
+  }
+);
