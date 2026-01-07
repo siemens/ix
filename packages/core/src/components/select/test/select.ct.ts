@@ -1049,7 +1049,7 @@ test('should not show "All" chip of de-selected a item', async ({
   await expect(allChip).not.toBeVisible();
 });
 
-test.only('clear button returns empty string in single mode', async ({
+test('clear button returns empty string in single mode', async ({
   mount,
   page,
 }) => {
