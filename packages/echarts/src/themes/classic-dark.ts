@@ -10,7 +10,7 @@
 const colors = [
   '#00C2CC' /* theme-chart-3 */,
   '#94FFC9' /* theme-chart-2 */,
-  '#3664C6' /* theme-chart-8 */,
+  '#9EBBFF' /* theme-chart-8 */,
   '#00FFE7' /* theme-chart-1 */,
   '#42C6FF' /* theme-chart-6 */,
   '#A3EEFF' /* theme-chart-4 */,
@@ -23,9 +23,40 @@ const colors = [
   '#7AAAFF' /* theme-chart-7 */,
   '#FFB180' /* theme-chart-15 */,
   '#CACAB4' /* theme-chart-16 */,
-  '#AAAA96' /* theme-chart-17 */,
+  '#B5BD00' /* theme-chart-17 */,
   '#90B4C5' /* theme-chart-5 */,
 ];
+
+const axisCommon = {
+  axisLine: {
+    show: true,
+    lineStyle: {
+      color: 'rgba(255,255,255,0.3)',
+    },
+  },
+  axisTick: {
+    show: true,
+    lineStyle: {
+      color: 'rgba(255,255,255,0.35)',
+    },
+  },
+  axisLabel: {
+    show: true,
+    color: 'rgba(255,255,255,0.85)',
+  },
+  splitLine: {
+    show: true,
+    lineStyle: {
+      color: ['rgba(255,255,255,0.1)'],
+    },
+  },
+  splitArea: {
+    show: false,
+    areaStyle: {
+      color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+    },
+  },
+};
 
 export default {
   themeName: 'theme-classic-dark',
@@ -137,126 +168,10 @@ export default {
         color: '#000000',
       },
     },
-    categoryAxis: {
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(255,255,255,0.3)',
-        },
-      },
-      axisTick: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(255,255,255,0.3)',
-        },
-      },
-      axisLabel: {
-        show: true,
-        color: 'rgba(255,255,255,0.85)',
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: ['rgba(255,255,255,0.1)'],
-        },
-      },
-      splitArea: {
-        show: false,
-        areaStyle: {
-          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
-        },
-      },
-    },
-    valueAxis: {
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(255,255,255,0.3)',
-        },
-      },
-      axisTick: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(255,255,255,0.3)',
-        },
-      },
-      axisLabel: {
-        show: true,
-        color: 'rgba(255,255,255,0.85)',
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: ['rgba(255,255,255,0.1)'],
-        },
-      },
-      splitArea: {
-        show: false,
-        areaStyle: {
-          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
-        },
-      },
-    },
-    logAxis: {
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(255,255,255,0.3)',
-        },
-      },
-      axisTick: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(255,255,255,0.3)',
-        },
-      },
-      axisLabel: {
-        show: true,
-        color: 'rgba(255,255,255,0.85)',
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: ['rgba(255,255,255,0.1)'],
-        },
-      },
-      splitArea: {
-        show: false,
-        areaStyle: {
-          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
-        },
-      },
-    },
-    timeAxis: {
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(255,255,255,0.3)',
-        },
-      },
-      axisTick: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(255,255,255,0.3)',
-        },
-      },
-      axisLabel: {
-        show: true,
-        color: 'rgba(255,255,255,0.85)',
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: ['rgba(255,255,255,0.1)'],
-        },
-      },
-      splitArea: {
-        show: false,
-        areaStyle: {
-          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
-        },
-      },
-    },
+    categoryAxis: axisCommon,
+    valueAxis: axisCommon,
+    logAxis: axisCommon,
+    timeAxis: axisCommon,
     toolbox: {
       iconStyle: {
         borderColor: '#ffffff',
@@ -273,8 +188,8 @@ export default {
       },
     },
     tooltip: {
-      backgroundColor: '#283236',
-      borderColor: '#283236',
+      backgroundColor: '#0f1619cc',
+      borderColor: '#ffffff40',
       textStyle: {
         color: 'rgba(245, 252, 255, .93)',
       },
