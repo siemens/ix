@@ -356,7 +356,10 @@ regressionTest(
 
     const getModalCenterX = async () => {
       const box = await dialog.boundingBox();
-      return box!.x + box!.width / 2;
+      if (!box) {
+        throw new Error('Modal dialog bounding box not found');
+      }
+      return box.x + box.width / 2;
     };
 
     await openCenteredModal();
