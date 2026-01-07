@@ -43,6 +43,10 @@ export interface ToastConfig {
    * Color of the icon
    */
   iconColor?: string;
+  /**
+   * Allows to hide the icon in the toast
+   */
+  hideIcon?: boolean;
 }
 
 export function getToastContainer() {

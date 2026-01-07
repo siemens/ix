@@ -8,14 +8,14 @@ import { Components } from '@siemens/ix';
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'selected', 'subheading', 'variant']
+  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'passive', 'selected', 'subheading', 'variant']
 })
 @Component({
   selector: 'ix-action-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'selected', 'subheading', 'variant'],
+  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'passive', 'selected', 'subheading', 'variant'],
   standalone: false
 })
 export class IxActionCard {
@@ -223,14 +223,14 @@ export declare interface IxButton extends Components.IxButton {}
 
 
 @ProxyCmp({
-  inputs: ['selected', 'variant']
+  inputs: ['passive', 'selected', 'variant']
 })
 @Component({
   selector: 'ix-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['selected', 'variant'],
+  inputs: ['passive', 'selected', 'variant'],
   standalone: false
 })
 export class IxCard {
@@ -2191,14 +2191,14 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelIcon', 'expanded', 'heading', 'icon', 'notification', 'subheading', 'variant']
+  inputs: ['ariaLabelIcon', 'expanded', 'heading', 'icon', 'notification', 'passive', 'subheading', 'variant']
 })
 @Component({
   selector: 'ix-push-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelIcon', 'expanded', 'heading', 'icon', 'notification', 'subheading', 'variant'],
+  inputs: ['ariaLabelIcon', 'expanded', 'heading', 'icon', 'notification', 'passive', 'subheading', 'variant'],
   standalone: false
 })
 export class IxPushCard {
@@ -2663,7 +2663,7 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCloseIconButton', 'autoCloseDelay', 'icon', 'iconColor', 'preventAutoClose', 'toastTitle', 'type'],
+  inputs: ['ariaLabelCloseIconButton', 'autoCloseDelay', 'hideIcon', 'icon', 'iconColor', 'preventAutoClose', 'toastTitle', 'type'],
   methods: ['pause', 'resume', 'isPaused']
 })
 @Component({
@@ -2671,7 +2671,7 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCloseIconButton', 'autoCloseDelay', 'icon', 'iconColor', 'preventAutoClose', 'toastTitle', 'type'],
+  inputs: ['ariaLabelCloseIconButton', 'autoCloseDelay', 'hideIcon', 'icon', 'iconColor', 'preventAutoClose', 'toastTitle', 'type'],
   outputs: ['closeToast'],
   standalone: false
 })

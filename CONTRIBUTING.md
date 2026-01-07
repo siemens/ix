@@ -61,7 +61,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
-[Siemens Industrial Experience Code of Conduct](blob/main/CODE_OF_CONDUCT.md).
+[Siemens Industrial Experience Code of Conduct](CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code. Please report unacceptable behavior
 to <daniel.leroux@siemens.com> or <lukas.maurer@siemens.com>.
 
