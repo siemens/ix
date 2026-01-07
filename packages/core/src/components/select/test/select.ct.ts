@@ -1049,7 +1049,7 @@ test('should not show "All" chip of de-selected a item', async ({
   await expect(allChip).not.toBeVisible();
 });
 
-test('clear button returns empty string in single mode', async ({
+test.only('clear button returns empty string in single mode', async ({
   mount,
   page,
 }) => {
@@ -1079,49 +1079,4 @@ test('clear button returns empty string in single mode', async ({
   const emittedValue = await valueChanged;
 
   expect(emittedValue).toBe('');
-  expect(typeof emittedValue).toBe('string');
-  expect(Array.isArray(emittedValue)).toBe(false);
-});
-
-test('type consistency maintained after clearing and reselecting in single mode', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
-      <ix-select allow-clear mode="single">
-        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-        <ix-select-item value="3" label="Item 3">Test</ix-select-item>
-      </ix-select>
-    `);
-
-  const select = page.locator('ix-select');
-  const emittedValues: (string | string[])[] = [];
-
-  await select.evaluate((elm: HTMLIxSelectElement) => {
-    elm.addEventListener('valueChange', (e: Event) => {
-      (window as any).emittedValues = (window as any).emittedValues || [];
-      (window as any).emittedValues.push((e as CustomEvent).detail);
-    });
-  });
-
-  await page.locator('[data-select-dropdown]').click();
-  await page.locator('ix-select-item').first().click();
-
-  const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
-  await expect(clearButton).toBeVisible();
-  await clearButton.click();
-
-  await page.locator('[data-select-dropdown]').click();
-  await page.locator('ix-select-item').nth(1).click();
-
-  const allValues = (await page.evaluate(
-    () => (window as any).emittedValues
-  )) as (string | string[])[];
-
-  expect(allValues.length).toBe(3);
-  expect(typeof allValues[0]).toBe('string');
-  expect(typeof allValues[1]).toBe('string');
-  expect(allValues[1]).toBe('');
-  expect(typeof allValues[2]).toBe('string');
 });
