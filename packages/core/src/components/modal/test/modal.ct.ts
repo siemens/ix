@@ -351,7 +351,18 @@ regressionTest(
       page.evaluate(() => {
         const elm = document.createElement('ix-modal');
         elm.innerHTML = `<div>hi</div>`;
-        window.showModal({ content: elm, centered: true });
+        (globalThis as typeof globalThis & Window).showModal({
+          content: elm,
+          centered: true,
+        });
+      });
+
+    const dismissCurrentModal = () =>
+      page.evaluate(() => {
+        const modal = document.querySelector('ix-modal');
+        if (modal) {
+          (globalThis as typeof globalThis & Window).dismissModal(modal);
+        }
       });
 
     const getModalCenterX = async () => {
@@ -366,10 +377,7 @@ regressionTest(
     await expect(dialog).toBeVisible();
     const initialCenterX = await getModalCenterX();
 
-    await page.evaluate(() => {
-      const modal = document.querySelector('ix-modal');
-      if (modal) window.dismissModal(modal);
-    });
+    await dismissCurrentModal();
     await expect(dialog).not.toBeVisible();
 
     await openCenteredModal();
