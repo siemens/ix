@@ -71,12 +71,6 @@ function detectThemeSwitching() {
   const fullTheme = `theme-${theme}-${colorSchema}`;
 
   themeSwitcher.setTheme(fullTheme);
-
-  const themeClasses = Array.from(document.body.classList).filter((cls) =>
-    cls.startsWith('theme-')
-  );
-  document.body.classList.remove(...themeClasses);
-  document.body.classList.add(fullTheme);
 }
 
 function isMarginSuppressed() {
