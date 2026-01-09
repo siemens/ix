@@ -68,9 +68,8 @@ function detectThemeSwitching() {
   const theme = searchParams.get('theme') || 'classic';
   const colorSchema = searchParams.get('colorSchema') || 'dark';
 
-  const fullTheme = `theme-${theme}-${colorSchema}`;
-
-  themeSwitcher.setTheme(fullTheme);
+  themeSwitcher.setTheme(theme);
+  themeSwitcher.setVariant(colorSchema);
 }
 
 function isMarginSuppressed() {

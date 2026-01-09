@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-
 export default function getComputedCSSProperty(cssProperty: string) {
-  return getComputedStyle(document.body).getPropertyValue(`--theme-${cssProperty}`);
+  return getComputedStyle(document.documentElement).getPropertyValue(
+    `--theme-${cssProperty}`
+  );
 }
