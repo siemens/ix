@@ -1,5 +1,5 @@
 ---
-"@siemens/ix": patch
+'html-test-app': patch
 ---
 
-Fix **theme switcher** method **getCurrentTheme** to handle both legacy theme classes as well as theme data attribtues.
+Fix **ECharts theme switching** in documentation examples
