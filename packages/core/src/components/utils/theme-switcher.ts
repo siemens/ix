@@ -128,7 +128,6 @@ class ThemeSwitcher {
     }
 
     const currentTheme = this.getCurrentTheme();
-
     document.documentElement.classList.remove(currentTheme);
 
     if (currentTheme.endsWith(this.suffixDark)) {
