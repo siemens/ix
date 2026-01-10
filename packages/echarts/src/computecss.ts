@@ -8,7 +8,6 @@
  */
 
 export default function getComputedCSSProperty(cssProperty: string) {
-  return getComputedStyle(document.documentElement).getPropertyValue(
-    `--theme-${cssProperty}`
+  return getComputedStyle(document.body).getPropertyValue(`--theme-${cssProperty}`
   );
 }
