@@ -19,9 +19,9 @@ LICENSE file in the root directory of this source tree.
     <script src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
     <!-- External resources -->
   </head>
-  <body class="theme-classic-dark">
+  <body>
     <div id="main" class="echarts"></div>
-
+    <script type="module" src="./init.js"></script>
     <script type="module">
       import {
         getComputedCSSProperty,
@@ -106,7 +106,5 @@ LICENSE file in the root directory of this source tree.
         myChart.resize();
       };
     </script>
-
-    <script type="module" src="./init.js"></script>
   </body>
 </html>
