@@ -64,12 +64,15 @@ function loadAdditionalTheme() {
 
 function detectThemeSwitching() {
   const searchParams = new URLSearchParams(location.search);
+  if (searchParams.has('theme')) {
+    const theme = searchParams.get('theme');
+    document.documentElement.dataset.ixTheme = theme;
+  }
 
-  const theme = searchParams.get('theme') || 'classic';
-  const colorSchema = searchParams.get('colorSchema') || 'dark';
-
-  document.documentElement.dataset.ixTheme = theme;
-  document.documentElement.dataset.ixColorSchema = colorSchema;
+  if (searchParams.has('colorSchema')) {
+    const colorSchema = searchParams.get('colorSchema');
+    document.documentElement.dataset.ixColorSchema = colorSchema;
+  }
 }
 
 function isMarginSuppressed() {
