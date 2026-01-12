@@ -87,6 +87,12 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     ariaAttributes['aria-disabled'] = 'true';
   }
 
+  const hasTextContent = children && children.length > 0;
+  const hasAriaLabel = !!(
+    ariaAttributes['aria-label'] || ariaAttributes['aria-labelledby']
+  );
+  const isIconDecorative = hasTextContent || hasAriaLabel;
+
   const commonAttributes = {
     ...ariaAttributes,
     tabindex: props.disabled ? -1 : (props.tabIndex ?? 0),
@@ -112,6 +118,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
         name={props.icon}
         size={props.iconSize as any}
         color={props.iconColor}
+        aria-hidden={isIconDecorative ? 'true' : undefined}
       ></ix-icon>
     ) : null,
     <div
@@ -128,6 +135,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
         name={props.iconRight}
         size={props.iconSize as any}
         color={props.iconColor}
+        aria-hidden={isIconDecorative ? 'true' : undefined}
       ></ix-icon>
     ) : null,
     props.afterContent ? props.afterContent : null,
