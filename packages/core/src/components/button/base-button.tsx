@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import { ButtonVariant } from './button';
@@ -102,7 +103,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
 
   const commonAttributes = {
     ...ariaAttributes,
-    tabindex: props.disabled ? -1 : props.tabIndex ?? 0,
+    tabindex: props.disabled ? -1 : (props.tabIndex ?? 0),
     class: {
       ...getButtonClasses(
         props.variant,
