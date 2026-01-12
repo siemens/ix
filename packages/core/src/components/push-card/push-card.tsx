@@ -53,10 +53,15 @@ export class PushCard {
    */
   @Prop() expanded: boolean = false;
 
+  /**
+   * If true, disables hover and active styles and changes cursor to default
+   */
+  @Prop() passive: boolean = false;
+
   render() {
     return (
       <Host class={`card-${this.variant}`}>
-        <ix-card variant={this.variant}>
+        <ix-card variant={this.variant} passive={this.passive}>
           <ix-card-content>
             <ix-card-title>
               {this.icon ? (
