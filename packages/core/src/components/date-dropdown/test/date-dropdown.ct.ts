@@ -74,7 +74,7 @@ regressionTest.describe('date dropdown tests', () => {
         const elementToTest = el as HTMLIxDateDropdownElement;
 
         elementToTest.dateRangeId = 'today';
-        elementToTest.customRangeAllowed = true;
+        elementToTest.customRangeDisabled = false;
         elementToTest.dateRangeOptions = dateRangeOptions;
       },
       [rangeOptions]
