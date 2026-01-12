@@ -15,6 +15,7 @@ import {
   inline,
   offset,
   shift,
+  limitShift,
 } from '@floating-ui/dom';
 import {
   Component,
@@ -129,6 +130,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Prop() suppressOverflowBehavior = false;
 
   /**
+   * Define a container element to constrain dropdown within.
+   */
+  @Prop() container?: ElementReference;
+
+  /**
    * Fire event after visibility of dropdown has changed
    */
   @Event() showChanged!: EventEmitter<boolean>;
@@ -196,6 +202,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.autoUpdateCleanup();
       this.autoUpdateCleanup = undefined;
     }
+
+    this.removeVisibilityListeners();
   }
 
   getAssignedSubmenuIds() {
@@ -353,10 +361,35 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
   }
 
+  private autoCloseTimeout?: ReturnType<typeof setTimeout>;
+  private containerElement?: HTMLElement | null;
+
+  private visibilityHandler?: () => void;
+  private scrollableParent?: HTMLElement;
+
+  private findScrollableParent(
+    element: HTMLElement | null
+  ): HTMLElement | null {
+    let el = element;
+    while (el) {
+      const style = window.getComputedStyle(el);
+      const overflowY = style.overflowY;
+      if (
+        (overflowY === 'auto' || overflowY === 'scroll') &&
+        el.scrollHeight > el.clientHeight
+      ) {
+        return el;
+      }
+      el = el.parentElement;
+    }
+    return null;
+  }
+
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (newShow) {
       await this.resolveAnchorElement();
+      await this.resolveContainerElement();
 
       if (this.anchorElement) {
         this.applyDropdownPosition();
@@ -374,17 +407,93 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       });
 
       this.registerKeyListener();
+      this.removeVisibilityListeners();
+      this.scrollableParent =
+        this.findScrollableParent(this.hostElement.parentElement) || undefined;
+
+      this.visibilityHandler = () => {
+        if (this.isDropdownFullyNotVisible()) {
+          this.dismiss();
+        }
+      };
+
+      window.addEventListener('scroll', this.visibilityHandler, true);
+      window.addEventListener('resize', this.visibilityHandler, true);
+      if (this.scrollableParent) {
+        this.scrollableParent.addEventListener(
+          'scroll',
+          this.visibilityHandler,
+          true
+        );
+      }
+
+      this.clearAutoCloseTimeout();
+      this.autoCloseTimeout = setTimeout(() => {
+        if (this.isDropdownFullyNotVisible()) {
+          this.dismiss();
+        }
+      }, 300);
     } else {
       this.destroyAutoUpdate();
       this.arrowFocusController?.disconnect();
       this.itemObserver?.disconnect();
       this.disposeKeyListener?.();
+      this.clearAutoCloseTimeout();
+      this.removeVisibilityListeners();
+    }
+  }
+
+  private removeVisibilityListeners() {
+    if (this.visibilityHandler) {
+      window.removeEventListener('scroll', this.visibilityHandler, true);
+      window.removeEventListener('resize', this.visibilityHandler, true);
+      if (this.scrollableParent) {
+        this.scrollableParent.removeEventListener(
+          'scroll',
+          this.visibilityHandler,
+          true
+        );
+        this.scrollableParent = undefined;
+      }
+      this.visibilityHandler = undefined;
+    }
+  }
+
+  private isDropdownFullyNotVisible(): boolean {
+    const rect = this.hostElement.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    return (
+      rect.bottom <= 0 || rect.top >= vh || rect.right <= 0 || rect.left >= vw
+    );
+  }
+
+  private clearAutoCloseTimeout() {
+    if (this.autoCloseTimeout) {
+      clearTimeout(this.autoCloseTimeout);
+      this.autoCloseTimeout = undefined;
     }
   }
 
   @Watch('trigger')
   changedTrigger(newTriggerValue: ElementReference) {
     this.registerListener(newTriggerValue);
+  }
+
+  @Watch('container')
+  async changedContainer() {
+    await this.resolveContainerElement();
+    await this.applyDropdownPosition();
+  }
+
+  private async resolveContainerElement() {
+    if (this.container) {
+      this.containerElement = (await findElement(
+        this.container
+      )) as HTMLElement;
+    } else {
+      this.containerElement = null;
+    }
   }
 
   private destroyAutoUpdate() {
@@ -429,7 +538,14 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     positionConfig.middleware = [
       ...(positionConfig.middleware?.filter(Boolean) || []),
       inline(),
-      shift(),
+      shift({
+        limiter: this.containerElement
+          ? limitShift({
+              // @ts-ignore
+              boundary: this.containerElement,
+            })
+          : undefined,
+      }),
     ];
 
     if (this.offset) {
@@ -494,11 +610,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
 
     this.changedTrigger(this.trigger);
+    await this.resolveContainerElement();
   }
 
   async componentDidRender() {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
+    await this.resolveContainerElement();
   }
 
   private isTriggerElement(element: HTMLElement) {

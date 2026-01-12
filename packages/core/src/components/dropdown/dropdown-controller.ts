@@ -46,7 +46,7 @@ type SubmenuIds = Record<string, string[]>;
 
 class DropdownController {
   private readonly dropdowns: Map<string, DropdownInterface> = new Map<
-    string,
+      string,
     DropdownInterface
   >();
   private submenuIds: SubmenuIds = {};
@@ -71,7 +71,7 @@ class DropdownController {
   }
 
   removeFromSubmenuIds(id: string) {
-    this.dropdowns.forEach((dropdown) => {
+        this.dropdowns.forEach((dropdown) => {
       const submenuIds = this.submenuIds[dropdown.getId()];
       if (submenuIds) {
         const index = submenuIds.indexOf(id);
@@ -95,7 +95,7 @@ class DropdownController {
   }
 
   present(dropdown: DropdownInterface) {
-    if (!dropdown.isPresent() && dropdown.willPresent?.()) {
+    if (!dropdown.isPresent() && (!dropdown.willPresent || dropdown.willPresent())) {
       this.submenuIds[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
       dropdown.present();
     }
@@ -112,7 +112,7 @@ class DropdownController {
   }
 
   dismiss(dropdown: DropdownInterface) {
-    if (dropdown.isPresent() && dropdown.willDismiss?.()) {
+    if (dropdown.isPresent() && (!dropdown.willDismiss || dropdown.willDismiss())) {
       this.dismissChildren(dropdown.getId());
       dropdown.dismiss();
       delete this.submenuIds[dropdown.getId()];
@@ -176,14 +176,14 @@ class DropdownController {
         }
       }
     }
-
+    
     return;
   }
 
   private pathIncludesDropdown(eventTargets: EventTarget[]) {
     return !!eventTargets.find(
       (element: EventTarget) =>
-        (element as HTMLElement).tagName === 'IX-DROPDOWN'
+         (element as HTMLElement).tagName === 'IX-DROPDOWN'
     );
   }
 
