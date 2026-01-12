@@ -23,8 +23,9 @@ const VALID_FOCUS_ITEMS = [
 ];
 const VALID_FOCUS_ELEMENTS = ['ix-dropdown', ...VALID_FOCUS_ITEMS];
 const QUERY_SELECTOR = VALID_FOCUS_ELEMENTS.map(
-  (selector) => `${selector}:not([tabindex^="-"]):not([disabled]):not([hidden])`
+  (selector) => `${selector}:not([disabled]):not([hidden])`
 ).join(', ');
+
 const matchesDropdownItems = (element: HTMLElement) =>
   element.matches(QUERY_SELECTOR);
 

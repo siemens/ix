@@ -360,7 +360,13 @@ export class DateDropdown
   render() {
     return (
       <Host
-        onFocusout={() => {
+        onFocusout={(event: FocusEvent) => {
+          const relatedTarget = event.relatedTarget as HTMLElement | null;
+
+          if (!relatedTarget) {
+            return;
+          }
+
           this.closeDropdown();
           this.focusVisibleUtilities?.setFocus([]);
         }}
