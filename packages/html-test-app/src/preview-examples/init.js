@@ -63,6 +63,7 @@ function loadAdditionalTheme() {
 }
 
 function detectThemeSwitching() {
+  console.log('detectThemeSwitching');
   const searchParams = new URLSearchParams(location.search);
   if (searchParams.has('theme')) {
     const theme = searchParams.get('theme');
