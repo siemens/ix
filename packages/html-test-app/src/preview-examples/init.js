@@ -149,8 +149,8 @@ function setBodySizes() {
   document.head.appendChild(styleElement);
 }
 
-// Global promise that chart scripts can await
-globalThis.ixInitPromise = (async function init() {
+// Initialize and expose promise for chart scripts to await
+async function init() {
   ixIconsDefineCustomElements();
   defineCustomElements();
 
@@ -165,4 +165,6 @@ globalThis.ixInitPromise = (async function init() {
   const scrollbarStyle = document.createElement('style');
   scrollbarStyle.innerHTML = scrollbarOverwrite;
   header.appendChild(scrollbarStyle);
-})();
+}
+
+globalThis.ixInitPromise = init();
