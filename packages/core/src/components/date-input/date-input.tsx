@@ -243,6 +243,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private lastEmittedPatternMismatch?: boolean;
+  private lastEmittedValueMissing?: boolean;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -268,6 +270,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   componentWillLoad(): void {
+    this.lastEmittedPatternMismatch = false;
+    this.lastEmittedValueMissing = false;
+
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -312,6 +317,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
+      this.isInputInvalid = false;
+      this.invalidReason = undefined;
+      this.emitValidityStateChangeIfChanged();
       this.valueChange.emit(value);
       return;
     }
@@ -334,6 +342,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.closeDropdown();
     }
 
+    this.emitValidityStateChangeIfChanged();
     this.valueChange.emit(value);
   }
 
@@ -404,6 +413,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+            this.emitValidityStateChangeIfChanged();
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
@@ -441,11 +451,28 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isWarning = isWarning;
   }
 
-  @Watch('isInputInvalid')
-  async onInputValidationChange() {
+  private async emitValidityStateChangeIfChanged() {
+    if (!this.touched) {
+      return;
+    }
+
     const state = await this.getValidityState();
+    const currentPatternMismatch = state.patternMismatch;
+    const currentValueMissing = state.valueMissing;
+
+    if (
+      this.lastEmittedPatternMismatch === currentPatternMismatch &&
+      this.lastEmittedValueMissing === currentValueMissing
+    ) {
+      return;
+    }
+
+    this.lastEmittedPatternMismatch = currentPatternMismatch;
+    this.lastEmittedValueMissing = currentValueMissing;
+
     this.validityStateChange.emit({
-      patternMismatch: state.patternMismatch,
+      patternMismatch: currentPatternMismatch,
+      valueMissing: currentValueMissing,
       invalidReason: this.invalidReason,
     });
   }

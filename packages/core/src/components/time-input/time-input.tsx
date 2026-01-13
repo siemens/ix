@@ -254,6 +254,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  private lastEmittedPatternMismatch?: boolean;
+  private lastEmittedValueMissing?: boolean;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -283,6 +285,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad(): void {
+    this.lastEmittedPatternMismatch = false;
+    this.lastEmittedValueMissing = false;
+
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
@@ -335,6 +340,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.value = value;
     if (!value) {
       this.isInputInvalid = false;
+      this.invalidReason = undefined;
+      this.emitValidityStateChangeIfChanged();
       this.updateFormInternalValue(value);
       this.valueChange.emit(value);
       return;
@@ -347,11 +354,13 @@ export class TimeInput implements IxInputFieldComponent<string> {
     const time = DateTime.fromFormat(value, this.format);
     if (time.isValid) {
       this.isInputInvalid = false;
+      this.invalidReason = undefined;
     } else {
       this.isInputInvalid = true;
-      this.invalidReason = time.invalidReason;
+      this.invalidReason = time.invalidReason ?? undefined;
     }
 
+    this.emitValidityStateChangeIfChanged();
     this.updateFormInternalValue(value);
     this.valueChange.emit(value);
   }
@@ -420,6 +429,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+            this.emitValidityStateChangeIfChanged();
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
@@ -455,11 +465,28 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.isWarning = isWarning;
   }
 
-  @Watch('isInputInvalid')
-  async onInputValidationChange() {
+  private async emitValidityStateChangeIfChanged() {
+    if (!this.touched) {
+      return;
+    }
+
     const state = await this.getValidityState();
+    const currentPatternMismatch = state.patternMismatch;
+    const currentValueMissing = state.valueMissing;
+
+    if (
+      this.lastEmittedPatternMismatch === currentPatternMismatch &&
+      this.lastEmittedValueMissing === currentValueMissing
+    ) {
+      return;
+    }
+
+    this.lastEmittedPatternMismatch = currentPatternMismatch;
+    this.lastEmittedValueMissing = currentValueMissing;
+
     this.validityStateChange.emit({
-      patternMismatch: state.patternMismatch,
+      patternMismatch: currentPatternMismatch,
+      valueMissing: currentValueMissing,
       invalidReason: this.invalidReason,
     });
   }
