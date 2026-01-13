@@ -21,6 +21,7 @@ export interface TreeItem<T> {
   data: T;
   hasChildren: boolean;
   children: TreeItemId[];
+  disabled?: boolean;
 }
 
 export interface TreeItemVisual<T> extends TreeItem<T> {
@@ -30,4 +31,5 @@ export interface TreeItemVisual<T> extends TreeItem<T> {
 export interface TreeItemContext {
   isExpanded: boolean;
   isSelected: boolean;
+  isDisabled?: boolean;
 }

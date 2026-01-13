@@ -2907,14 +2907,14 @@ export declare interface IxTooltip extends Components.IxTooltip {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTreeItem,
-  inputs: ['ariaLabelChevronIcon', 'context', 'hasChildren', 'text']
+  inputs: ['ariaLabelChevronIcon', 'context', 'disabled', 'hasChildren', 'text']
 })
 @Component({
   selector: 'ix-tree-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelChevronIcon', 'context', 'hasChildren', 'text'],
+  inputs: ['ariaLabelChevronIcon', 'context', 'disabled', 'hasChildren', 'text'],
   outputs: ['toggle', 'itemClick'],
 })
 export class IxTreeItem {
