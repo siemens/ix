@@ -149,7 +149,6 @@ function setBodySizes() {
   document.head.appendChild(styleElement);
 }
 
-// Initialize and expose promise for chart scripts to await
 async function init() {
   ixIconsDefineCustomElements();
   defineCustomElements();
@@ -167,4 +166,5 @@ async function init() {
   header.appendChild(scrollbarStyle);
 }
 
+// Initialize and expose promise for chart scripts to await
 globalThis.ixInitPromise = init();
