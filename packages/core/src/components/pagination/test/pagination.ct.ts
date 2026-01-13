@@ -164,3 +164,102 @@ regressionTest(
     expect(await pageSelected$).toBe(9);
   }
 );
+
+regressionTest(
+  'should use custom itemCountOptions',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination');
+
+    await pagination.evaluate((elm: HTMLIxPaginationElement) => {
+      elm.itemCountOptions = [5, 25, 50, 100];
+    });
+    await page.waitForTimeout(100);
+
+    await pagination.getByRole('button').nth(-1).click();
+
+    const dropdownItems = pagination.locator('ix-dropdown-item');
+    await expect(dropdownItems).toHaveCount(4);
+    await expect(dropdownItems.nth(0)).toContainText('5');
+    await expect(dropdownItems.nth(1)).toContainText('25');
+    await expect(dropdownItems.nth(2)).toContainText('50');
+    await expect(dropdownItems.nth(3)).toContainText('100');
+  }
+);
+
+regressionTest(
+  'should sort itemCountOptions in ascending order',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination');
+
+    await pagination.evaluate((elm: HTMLIxPaginationElement) => {
+      elm.itemCountOptions = [100, 5, 50, 25];
+    });
+    await page.waitForTimeout(100);
+
+    await pagination.getByRole('button').nth(-1).click();
+
+    const dropdownItems = pagination.locator('ix-dropdown-item');
+    await expect(dropdownItems.nth(0)).toContainText('5');
+    await expect(dropdownItems.nth(1)).toContainText('25');
+    await expect(dropdownItems.nth(2)).toContainText('50');
+    await expect(dropdownItems.nth(3)).toContainText('100');
+  }
+);
+
+regressionTest(
+  'should filter out zero and negative values from itemCountOptions',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination');
+
+    await pagination.evaluate((elm: HTMLIxPaginationElement) => {
+      elm.itemCountOptions = [0, -5, 10, 20, -1];
+      elm.count = 11;
+    });
+    await page.waitForTimeout(100);
+
+    await pagination.getByRole('button').nth(-1).click();
+
+    const dropdownItems = pagination.locator('ix-dropdown-item');
+    await expect(dropdownItems).toHaveCount(2);
+    await expect(dropdownItems.nth(0)).toContainText('10');
+    await expect(dropdownItems.nth(1)).toContainText('20');
+  }
+);
+
+regressionTest(
+  'should use default options when itemCountOptions is empty',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-pagination advanced count="10">
+    </ix-pagination>
+  `);
+    const pagination = page.locator('ix-pagination');
+
+    await pagination.evaluate((elm: HTMLIxPaginationElement) => {
+      elm.itemCountOptions = [];
+    });
+    await page.waitForTimeout(100);
+
+    await pagination.getByRole('button').nth(-1).click();
+
+    const dropdownItems = pagination.locator('ix-dropdown-item');
+    await expect(dropdownItems).toHaveCount(5);
+    await expect(dropdownItems.nth(0)).toContainText('10');
+    await expect(dropdownItems.nth(1)).toContainText('15');
+    await expect(dropdownItems.nth(2)).toContainText('20');
+    await expect(dropdownItems.nth(3)).toContainText('40');
+    await expect(dropdownItems.nth(4)).toContainText('100');
+  }
+);

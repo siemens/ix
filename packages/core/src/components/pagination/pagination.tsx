@@ -41,6 +41,7 @@ export class Pagination {
   };
 
   private readonly maxCountPages = 7;
+  private readonly defaultItemCountOptions = [10, 15, 20, 40, 100];
 
   @Element() hostElement!: HTMLIxPaginationElement;
 
@@ -59,6 +60,16 @@ export class Pagination {
    * Hide item count in advanced mode
    */
   @Prop() hideItemCount = false;
+
+  /**
+   * Custom item count options for advanced mode.
+   * Provide an array of numbers to display in the items per page dropdown.
+   * If not provided or empty, defaults to [10, 15, 20, 40, 100].
+   * Only positive numbers greater than 0 are valid.
+   *
+   * @example [5, 10, 25, 50, 100]
+   */
+  @Prop() itemCountOptions?: number[];
 
   /**
    * Total number of pages
@@ -117,6 +128,34 @@ export class Pagination {
    * Item count change event
    */
   @Event() itemCountChanged!: EventEmitter<number>;
+
+  componentWillLoad() {
+    if (
+      this.advanced &&
+      this.itemCountOptions !== undefined &&
+      this.itemCountOptions.length === 0
+    ) {
+      console.warn(
+        '[ix-pagination] itemCountOptions is an empty array. Falling back to default options: [10, 15, 20, 40, 100]'
+      );
+    }
+    if (this.advanced && !this.hideItemCount && this.itemCountOptions?.length) {
+      const validOptions = this.itemCountOptions
+        .filter((option) => option > 0)
+        .sort((a, b) => a - b);
+
+      if (validOptions.length > 0 && !validOptions.includes(this.itemCount)) {
+        console.warn(
+          `[ix-pagination] Configuration mismatch: itemCount value "${
+            this.itemCount
+          }" is not present in itemCountOptions [${validOptions.join(
+            ', '
+          )}]. ` +
+            `This will result in an invalid dropdown state. Please either add ${this.itemCount} to itemCountOptions or set itemCount to one of the available options.`
+        );
+      }
+    }
+  }
 
   private selectPage(index: number) {
     const oldIndex = this.selectedPage;
@@ -312,11 +351,18 @@ export class Pagination {
                 this.itemCountChanged.emit(count);
               }}
             >
-              <ix-select-item label="10" value="10"></ix-select-item>
-              <ix-select-item label="15" value="15"></ix-select-item>
-              <ix-select-item label="20" value="20"></ix-select-item>
-              <ix-select-item label="40" value="40"></ix-select-item>
-              <ix-select-item label="100" value="100"></ix-select-item>
+              {(this.itemCountOptions?.length
+                ? this.itemCountOptions
+                : this.defaultItemCountOptions
+              )
+                .filter((option) => option > 0)
+                .sort((a, b) => a - b)
+                .map((option) => (
+                  <ix-select-item
+                    label={`${option}`}
+                    value={`${option}`}
+                  ></ix-select-item>
+                ))}
             </ix-select>
           </span>
         )}

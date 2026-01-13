@@ -1401,6 +1401,7 @@ export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginati
         advanced: 'advanced',
         itemCount: 'item-count',
         hideItemCount: 'hide-item-count',
+        itemCountOptions: 'item-count-options',
         count: 'count',
         selectedPage: 'selected-page',
         i18nPage: 'i18n-page',
