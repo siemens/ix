@@ -41,7 +41,10 @@ import {
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
-import { configureKeyboardInteraction } from './dropdown-focus';
+import {
+  ARROW_QUERY_SELECTOR,
+  configureKeyboardInteraction,
+} from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 import {
   addFocusVisibleListener,
@@ -435,11 +438,9 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         );
       }
 
-      if (this.disableFocusTrap === false) {
-        this.focusUtilities = addFocusVisibleListener(this.hostElement, {
-          trapFocus: true,
-        });
-      }
+      this.focusUtilities = addFocusVisibleListener(this.hostElement, {
+        trapFocus: !this.disableFocusTrap,
+      });
 
       this.registerKeyListener();
     } else {

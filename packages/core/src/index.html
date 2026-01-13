@@ -60,11 +60,12 @@ SPDX-License-Identifier: MIT
       <ix-content>
         <button>normal</button>
 
+        <ix-time-input></ix-time-input>
         <ix-date-input></ix-date-input>
 
         <ix-button id="trigger">Open</ix-button>
 
-        <ix-dropdown trigger="trigger">
+        <ix-dropdown trigger="trigger" disable-focus-trap>
           <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
           <ix-dropdown-item>Custom</ix-dropdown-item>

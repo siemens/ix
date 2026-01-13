@@ -15,19 +15,20 @@ import { Build } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { focusElement } from '../utils/focus-visible-listener';
 
-const VALID_FOCUS_ITEMS = [
+const VALID_FOCUS_ELEMENTS = [
+  'ix-dropdown',
   'ix-dropdown-item',
   'ix-select-item',
   'ix-menu-item',
   'ix-menu-category',
 ];
-const VALID_FOCUS_ELEMENTS = ['ix-dropdown', ...VALID_FOCUS_ITEMS];
-const QUERY_SELECTOR = VALID_FOCUS_ELEMENTS.map(
+
+export const ARROW_QUERY_SELECTOR = VALID_FOCUS_ELEMENTS.map(
   (selector) => `${selector}:not([disabled]):not([hidden])`
 ).join(', ');
 
 const matchesDropdownItems = (element: HTMLElement) =>
-  element.matches(QUERY_SELECTOR);
+  element.matches(ARROW_QUERY_SELECTOR);
 
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
@@ -130,7 +131,7 @@ export const configureKeyboardInteraction = (
     let items: HTMLElement[] = [];
 
     try {
-      const query = QUERY_SELECTOR;
+      const query = ARROW_QUERY_SELECTOR;
 
       // Collect items from slots if they exist
       if (dropdownElement.querySelectorAll('slot').length > 0) {

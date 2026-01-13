@@ -44,7 +44,6 @@ export function queryElements(
   }
 
   let items: HTMLElement[] = [];
-
   // Collect items from slots if they exist
   if (dropdownElement.querySelectorAll('slot').length > 0) {
     const slotElements = Array.from(dropdownElement.querySelectorAll('slot'));

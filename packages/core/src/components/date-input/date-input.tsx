@@ -37,16 +37,15 @@ import {
   createClassMutationObserver,
   getValidationText,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
-import type { DateInputValidityState } from './date-input.types';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
-import { getFocusUtilities } from '../utils/internal';
+import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import type { DateInputValidityState } from './date-input.types';
 
 /**
  * @form-ready
@@ -363,6 +362,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowDown') {
+      this.show = true;
+      requestAnimationFrameNoNgZone(() =>
+        this.datepickerRef.current?.focusFirstCalenderDay()
+      );
+    }
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
@@ -537,12 +542,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
-
-            if (this.show && getFocusUtilities()?.hasKeyboardMode()) {
-              requestAnimationFrameNoNgZone(() =>
-                this.datepickerRef.current?.focusFirstCalenderDay()
-              );
-            }
           }}
         >
           <ix-date-picker

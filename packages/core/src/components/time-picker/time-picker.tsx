@@ -20,8 +20,14 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import {
+  addFocusVisibleListener,
+  FocusVisibleUtility,
+} from '../utils/focus-visible-listener';
+import { IxComponent } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import type { TimePickerCorners } from './time-picker.types';
+import { getFocusUtilities } from '../utils/internal';
 
 type TimePickerDescriptorUnit = 'hour' | 'minute' | 'second' | 'millisecond';
 
@@ -69,9 +75,11 @@ const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
 @Component({
   tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
-export class TimePicker {
+export class TimePicker extends IxComponent() {
   @Element() hostElement!: HTMLIxTimePickerElement;
 
   /**
@@ -290,6 +298,7 @@ export class TimePicker {
 
   private visibilityObserver?: MutationObserver;
   private focusScrollAlignment: 'start' | 'end' = 'start';
+  private focusVisibleUtilities?: FocusVisibleUtility;
 
   componentWillLoad() {
     this.initPicker();
@@ -326,6 +335,10 @@ export class TimePicker {
   componentDidLoad() {
     this.updateScrollPositions();
     this.setupVisibilityObserver();
+
+    this.focusVisibleUtilities = addFocusVisibleListener(this.hostElement, {
+      trapFocus: true,
+    });
   }
 
   componentDidRender() {
@@ -353,6 +366,10 @@ export class TimePicker {
   disconnectedCallback() {
     if (this.visibilityObserver) {
       this.visibilityObserver.disconnect();
+    }
+
+    if (this.focusVisibleUtilities) {
+      this.focusVisibleUtilities.destroy();
     }
   }
 
@@ -908,9 +925,26 @@ export class TimePicker {
     return '-1';
   }
 
+  private focusFirstSelectableElement() {
+    const elementContainer = this.hostElement.shadowRoot?.querySelector(
+      '.element-container.selected'
+    ) as HTMLDivElement;
+
+    if (elementContainer) {
+      elementContainer.focus();
+    }
+  }
+
   render() {
     return (
-      <Host>
+      <Host
+        onFocusin={() => {
+          if (getFocusUtilities()?.hasKeyboardMode()) {
+            this.focusFirstSelectableElement();
+          }
+        }}
+        onFocusout={() => this.focusVisibleUtilities?.setFocus([])}
+      >
         <ix-date-time-card
           embedded={this.embedded}
           timePickerAppearance={true}
@@ -924,14 +958,16 @@ export class TimePicker {
           <div class="clock">
             {this.timePickerDescriptors.map((descriptor, index: number) => (
               <div class="flex">
-                <div class={{ columns: true, hidden: descriptor.hidden }}>
+                <div
+                  class={{ columns: true, hidden: descriptor.hidden }}
+                  hidden={descriptor.hidden}
+                >
                   <div class="column-header" title={descriptor.header}>
                     {descriptor.header}
                   </div>
                   <div
                     data-element-list-id={descriptor.unit}
                     class="element-list"
-                    tabIndex={-1}
                   >
                     {descriptor.numberArray.map((number) => {
                       return (
@@ -940,6 +976,7 @@ export class TimePicker {
                           class={{
                             selected: this.isSelected(descriptor.unit, number),
                             'element-container': true,
+                            'ix-focusable': true,
                           }}
                           onClick={() => {
                             this.select(descriptor.unit, number);
@@ -950,10 +987,13 @@ export class TimePicker {
                           onBlur={(e) =>
                             this.onUnitCellBlur(descriptor.unit, e)
                           }
-                          tabindex={this.getElementContainerTabIndex(
-                            number,
-                            descriptor.unit
-                          )}
+                          // tabindex={this.getElementContainerTabIndex(
+                          //   number,
+                          //   descriptor.unit
+                          // )}
+                          tabIndex={
+                            this.isSelected(descriptor.unit, number) ? 0 : -1
+                          }
                           aria-label={`${descriptor.header}: ${number}`}
                         >
                           {this.formatUnitValue(descriptor.unit, number)}
