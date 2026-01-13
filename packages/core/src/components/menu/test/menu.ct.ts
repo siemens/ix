@@ -387,7 +387,6 @@ regressionTest.describe('menu-avatar tooltip', () => {
       const button = menuAvatar.locator('button.avatar');
 
       await button.hover();
-      await page.waitForTimeout(500);
 
       const tooltip = page.locator('ix-tooltip');
       await expect(tooltip).toHaveClass(/hydrated/);
@@ -399,7 +398,6 @@ regressionTest.describe('menu-avatar tooltip', () => {
       );
 
       await button.hover();
-      await page.waitForTimeout(500);
 
       await expect(tooltip).toHaveClass(/hydrated/);
       await expect(tooltip).toHaveClass(/visible/);
