@@ -51,8 +51,8 @@ const scrollbarOverwrite = `
 async function loadAdditionalTheme() {
   const theme = __THEME__;
   if (!theme?.css) {
-    console.log('No additional theme configured');
-    return false; // Theme not available
+    console.warn('No additional theme configured');
+    return false;
   }
 
   const base = `./../additional-theme`;
@@ -60,50 +60,43 @@ async function loadAdditionalTheme() {
   const cssUrl = `${base}/${css}`;
 
   try {
-    // Check if CSS file exists by trying to fetch it
     const response = await fetch(cssUrl, { method: 'HEAD' });
 
     if (!response.ok) {
       console.warn(
         `Brand theme CSS not found at ${cssUrl} - using default theme`
       );
-      return false; // Theme not available
+      return false;
     }
 
-    console.log('Brand theme CSS found, loading...');
-
-    // File exists, load it as stylesheet
-    await new Promise((resolve, reject) => {
+    await new Promise((resolve) => {
       const head = document.head;
       const style_link = document.createElement('link');
       style_link.rel = 'stylesheet';
       style_link.href = cssUrl;
       style_link.onload = () => {
-        console.log('Brand theme CSS loaded successfully');
         resolve();
       };
       style_link.onerror = () => {
-        console.error('Failed to load Brand theme CSS');
-        resolve(); // Resolve anyway to not block
+        console.warn('Failed to load Brand theme CSS');
+        resolve();
       };
       head.appendChild(style_link);
     });
 
-    return true; // Theme loaded successfully
+    return true;
   } catch (error) {
     console.warn(`Brand theme CSS not available: ${error.message}`);
-    return false; // Theme not available
+    return false;
   }
 }
 
 function detectThemeSwitching(isBrandThemeAvailable) {
-  console.log('detectThemeSwitching');
   const searchParams = new URLSearchParams(location.search);
 
   if (searchParams.has('theme')) {
     let theme = searchParams.get('theme');
 
-    // If Brand theme is requested but not available, fall back to Classic
     if (theme === 'brand' && !isBrandThemeAvailable) {
       console.warn(
         'Brand theme requested but CSS not available - falling back to Classic theme'
@@ -157,14 +150,12 @@ function setBodySizes() {
 }
 
 // Global promise that chart scripts can await
-window.ixInitPromise = (async function init() {
+globalThis.ixInitPromise = (async function init() {
   ixIconsDefineCustomElements();
   defineCustomElements();
 
-  // Try to load additional theme first (returns true if available)
   const isBrandThemeAvailable = await loadAdditionalTheme();
 
-  // Set theme based on URL params, but fall back to Classic if Brand not available
   detectThemeSwitching(isBrandThemeAvailable);
 
   setBodySizes();
