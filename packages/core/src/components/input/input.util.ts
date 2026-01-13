@@ -219,3 +219,48 @@ export function handleSubmitOnEnterKeydown(
     form.requestSubmit();
   }
 }
+
+export interface PickerValidityStateTracker {
+  lastEmittedPatternMismatch?: boolean;
+  lastEmittedValueMissing?: boolean;
+}
+
+export interface PickerValidityContext {
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState: () => Promise<ValidityState>;
+  emit: (state: {
+    patternMismatch: boolean;
+    valueMissing: boolean;
+    invalidReason?: string;
+  }) => void;
+}
+
+export async function emitPickerValidityStateChangeIfChanged(
+  tracker: PickerValidityStateTracker,
+  context: PickerValidityContext
+): Promise<void> {
+  if (!context.touched) {
+    return;
+  }
+
+  const state = await context.getValidityState();
+  const currentPatternMismatch = state.patternMismatch;
+  const currentValueMissing = state.valueMissing;
+
+  if (
+    tracker.lastEmittedPatternMismatch === currentPatternMismatch &&
+    tracker.lastEmittedValueMissing === currentValueMissing
+  ) {
+    return;
+  }
+
+  tracker.lastEmittedPatternMismatch = currentPatternMismatch;
+  tracker.lastEmittedValueMissing = currentValueMissing;
+
+  context.emit({
+    patternMismatch: currentPatternMismatch,
+    valueMissing: currentValueMissing,
+    invalidReason: context.invalidReason,
+  });
+}

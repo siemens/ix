@@ -25,8 +25,10 @@ import { DateTime } from 'luxon';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
+  PickerValidityStateTracker,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  emitPickerValidityStateChangeIfChanged,
   handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
@@ -243,8 +245,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private lastEmittedPatternMismatch?: boolean;
-  private lastEmittedValueMissing?: boolean;
+  private validityTracker: PickerValidityStateTracker = {};
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -270,8 +271,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   componentWillLoad(): void {
-    this.lastEmittedPatternMismatch = false;
-    this.lastEmittedValueMissing = false;
+    this.validityTracker.lastEmittedPatternMismatch = false;
+    this.validityTracker.lastEmittedValueMissing = false;
 
     this.onInput(this.value);
     if (this.isInputInvalid) {
@@ -452,28 +453,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private async emitValidityStateChangeIfChanged() {
-    if (!this.touched) {
-      return;
-    }
-
-    const state = await this.getValidityState();
-    const currentPatternMismatch = state.patternMismatch;
-    const currentValueMissing = state.valueMissing;
-
-    if (
-      this.lastEmittedPatternMismatch === currentPatternMismatch &&
-      this.lastEmittedValueMissing === currentValueMissing
-    ) {
-      return;
-    }
-
-    this.lastEmittedPatternMismatch = currentPatternMismatch;
-    this.lastEmittedValueMissing = currentValueMissing;
-
-    this.validityStateChange.emit({
-      patternMismatch: currentPatternMismatch,
-      valueMissing: currentValueMissing,
+    await emitPickerValidityStateChangeIfChanged(this.validityTracker, {
+      touched: this.touched,
       invalidReason: this.invalidReason,
+      getValidityState: () => this.getValidityState(),
+      emit: (state) => this.validityStateChange.emit(state),
     });
   }
 
