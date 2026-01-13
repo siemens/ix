@@ -879,6 +879,8 @@ export const IxMenuAvatar: StencilVueComponent<JSX.IxMenuAvatar> = /*@__PURE__*/
   'bottom',
   'image',
   'initials',
+  'tooltipText',
+  'ariaLabelTooltip',
   'i18nLogout',
   'hideLogoutButton',
   'logoutClick'

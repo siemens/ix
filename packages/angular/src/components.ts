@@ -1681,14 +1681,14 @@ export declare interface IxMenuAboutNews extends Components.IxMenuAboutNews {
 
 
 @ProxyCmp({
-  inputs: ['bottom', 'hideLogoutButton', 'i18nLogout', 'image', 'initials', 'top']
+  inputs: ['ariaLabelTooltip', 'bottom', 'hideLogoutButton', 'i18nLogout', 'image', 'initials', 'tooltipText', 'top']
 })
 @Component({
   selector: 'ix-menu-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['bottom', 'hideLogoutButton', 'i18nLogout', 'image', 'initials', 'top'],
+  inputs: ['ariaLabelTooltip', 'bottom', 'hideLogoutButton', 'i18nLogout', 'image', 'initials', 'tooltipText', 'top'],
   outputs: ['logoutClick'],
   standalone: false
 })
