@@ -400,6 +400,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           name={this.name}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
+            this.touched = true;
             this.onInput(target.value);
           }}
           onClick={(event) => {
@@ -414,8 +415,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           }}
           onBlur={() => {
             this.ixBlur.emit();
-            this.touched = true;
-            this.emitValidityStateChangeIfChanged();
+            if (!this.show) {
+              this.touched = true;
+              this.emitValidityStateChangeIfChanged();
+            }
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
@@ -534,7 +537,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           suppressOverflowBehavior={true}
           show={this.show}
           onShowChanged={(event) => {
+            const wasOpen = this.show;
             this.show = event.detail;
+            if (wasOpen && !this.show) {
+              this.touched = true;
+              const isInvalidByRequired = !!this.required && !this.value;
+              this.hostElement.classList.toggle(
+                'ix-invalid--required',
+                isInvalidByRequired
+              );
+              this.emitValidityStateChangeIfChanged();
+            }
           }}
         >
           <ix-date-picker

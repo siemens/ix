@@ -66,6 +66,11 @@ export async function checkInternalValidity<T>(
     if (eventResult.defaultPrevented) {
       return;
     }
+
+    comp.hostElement.classList.toggle(
+      'ix-invalid--validity-invalid',
+      !newValidityState
+    );
   }
 
   if (comp.value === null || comp.value === undefined) {
