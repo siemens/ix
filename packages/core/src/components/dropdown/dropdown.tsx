@@ -41,10 +41,7 @@ import {
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
-import {
-  ARROW_QUERY_SELECTOR,
-  configureKeyboardInteraction,
-} from './dropdown-focus';
+import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 import {
   addFocusVisibleListener,

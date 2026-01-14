@@ -27,18 +27,16 @@ export const ARROW_QUERY_SELECTOR = VALID_FOCUS_ELEMENTS.map(
   (selector) => `${selector}:not([disabled]):not([hidden])`
 ).join(', ');
 
-const matchesDropdownItems = (element: HTMLElement) =>
-  element.matches(ARROW_QUERY_SELECTOR);
-
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
-  item: HTMLElement | null
+  item: HTMLElement | null,
+  selector: string = ARROW_QUERY_SELECTOR
 ) => {
   if (!item) {
     return -1;
   }
 
-  if (!matchesDropdownItems(item)) {
+  if (!item.matches(selector)) {
     return -1;
   }
 
@@ -47,18 +45,20 @@ export const getIndexOfDropdownItem = (
 
 export const getNextFocusableDropdownItem = (
   items: HTMLElement[],
-  currentItem: HTMLElement | null
+  currentItem: HTMLElement | null,
+  selector: string = ARROW_QUERY_SELECTOR
 ) => {
-  const currentItemIndex = getIndexOfDropdownItem(items, currentItem);
+  const currentItemIndex = getIndexOfDropdownItem(items, currentItem, selector);
   const nextIndex = currentItemIndex + 1;
   return items[nextIndex >= items.length ? 0 : nextIndex];
 };
 
 export const getPreviousFocusableItem = (
   items: HTMLElement[],
-  currentItem: HTMLElement | null
+  currentItem: HTMLElement | null,
+  selector: string = ARROW_QUERY_SELECTOR
 ) => {
-  const currentItemIndex = getIndexOfDropdownItem(items, currentItem);
+  const currentItemIndex = getIndexOfDropdownItem(items, currentItem, selector);
   const prevIndex = currentItemIndex - 1;
   return items[prevIndex < 0 ? items.length - 1 : prevIndex];
 };
@@ -94,6 +94,8 @@ export const configureKeyboardInteraction = (
     getActiveElement?: () => HTMLElement | null;
     setItemActive?: (item: HTMLElement) => void;
     getEventListenerTarget?: () => HTMLElement;
+    querySelector?: string;
+    beforeKeydown?: (ev: KeyboardEvent) => void;
   } = {}
 ) => {
   const getActiveElement =
@@ -126,13 +128,13 @@ export const configureKeyboardInteraction = (
   const getEventListenerTarget =
     options.getEventListenerTarget ?? (() => dropdownElement);
 
+  const querySelector = options.querySelector ?? ARROW_QUERY_SELECTOR;
+
   const callback = async (ev: KeyboardEvent) => {
     const activeElement = getActiveElement();
     let items: HTMLElement[] = [];
 
     try {
-      const query = ARROW_QUERY_SELECTOR;
-
       // Collect items from slots if they exist
       if (dropdownElement.querySelectorAll('slot').length > 0) {
         const slotElements = Array.from(
@@ -143,23 +145,29 @@ export const configureKeyboardInteraction = (
             slot.assignedElements({ flatten: true }) as HTMLElement[]
           ).flatMap((el) => {
             // Check if the assigned element itself matches the query
-            if (el?.matches(query)) {
+            if (el?.matches(querySelector)) {
               return [el];
             }
             // Otherwise, query its children
-            return Array.from(el.querySelectorAll(query));
+            return Array.from(el.querySelectorAll(querySelector));
           })
         );
       }
 
       items = [
         ...items,
-        ...Array.from(dropdownElement.querySelectorAll<HTMLElement>(query)),
+        ...Array.from(
+          dropdownElement.querySelectorAll<HTMLElement>(querySelector)
+        ),
       ];
     } catch (e) {
       if (Build.isDev) {
         console.error('Error during dropdown item collection:', e);
       }
+    }
+
+    if (options.beforeKeydown) {
+      options.beforeKeydown(ev);
     }
 
     switch (ev.key) {
@@ -176,7 +184,12 @@ export const configureKeyboardInteraction = (
       case 'ArrowDown': {
         // Disable movement/scroll with keyboard
         ev.preventDefault();
-        const nextItem = getNextFocusableDropdownItem(items, activeElement);
+        const nextItem = getNextFocusableDropdownItem(
+          items,
+          activeElement,
+          querySelector
+        );
+
         if (nextItem !== undefined) {
           setItemActive(nextItem);
         }
@@ -186,7 +199,11 @@ export const configureKeyboardInteraction = (
       case 'ArrowUp': {
         // Disable movement/scroll with keyboard
         ev.preventDefault();
-        const prevItem = getPreviousFocusableItem(items, activeElement);
+        const prevItem = getPreviousFocusableItem(
+          items,
+          activeElement,
+          querySelector
+        );
         if (prevItem !== undefined) {
           setItemActive(prevItem);
         }
@@ -215,6 +232,7 @@ export const configureKeyboardInteraction = (
       case ' ':
       case 'Enter': {
         if (activeElement && isTriggerElement(activeElement)) {
+          console.log('OPEN SUBMENU');
           const triggerEvent = new CustomEvent('ix-open-submenu', {
             bubbles: true,
             cancelable: true,

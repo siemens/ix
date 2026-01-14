@@ -7,13 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import type {
   DateTimeDateChangeEvent,
   DateTimeSelectEvent,
 } from './datetime-picker.types';
+import {
+  addFocusVisibleListener,
+  FocusVisibleUtility,
+} from '../utils/focus-visible-listener';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -23,6 +35,8 @@ import type {
 export class DatetimePicker
   implements Omit<IxDatePickerComponent, 'corners' | 'format'>
 {
+  @Element() hostElement!: HTMLIxDatetimePickerElement;
+
   /**
    * If true disables date range selection (from/to).
    */
@@ -141,6 +155,16 @@ export class DatetimePicker
   private datePickerElement?: HTMLIxDatePickerElement;
   private timePickerElement?: HTMLIxTimePickerElement;
 
+  private focusVisibleUtility?: FocusVisibleUtility;
+
+  componentDidLoad() {
+    this.focusVisibleUtility = addFocusVisibleListener(this.hostElement);
+  }
+
+  disconnectedCallback() {
+    this.focusVisibleUtility?.destroy();
+  }
+
   private async onDone() {
     const date = await this.datePickerElement?.getCurrentDate();
     const time = await this.timePickerElement?.getCurrentTime();
@@ -170,7 +194,7 @@ export class DatetimePicker
 
   render() {
     return (
-      <Host>
+      <Host onFocusout={() => this.focusVisibleUtility?.setFocus([])}>
         <ix-layout-grid class="no-padding">
           <ix-row class="row-separator">
             <ix-col class="col-separator">

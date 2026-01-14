@@ -24,10 +24,10 @@ import {
   addFocusVisibleListener,
   FocusVisibleUtility,
 } from '../utils/focus-visible-listener';
+import { getFocusUtilities } from '../utils/internal';
 import { IxComponent } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import type { TimePickerCorners } from './time-picker.types';
-import { getFocusUtilities } from '../utils/internal';
 
 type TimePickerDescriptorUnit = 'hour' | 'minute' | 'second' | 'millisecond';
 
@@ -910,21 +910,6 @@ export class TimePicker extends IxComponent() {
     return ':';
   }
 
-  private getElementContainerTabIndex(
-    number: number,
-    descriptorUnit: TimePickerDescriptorUnit
-  ): string {
-    const descriptor = this.timePickerDescriptors.find(
-      (d) => d.unit === descriptorUnit
-    );
-
-    if (number === descriptor?.focusedValue) {
-      return '0';
-    }
-
-    return '-1';
-  }
-
   private focusFirstSelectableElement() {
     const elementContainer = this.hostElement.shadowRoot?.querySelector(
       '.element-container.selected'
@@ -987,10 +972,6 @@ export class TimePicker extends IxComponent() {
                           onBlur={(e) =>
                             this.onUnitCellBlur(descriptor.unit, e)
                           }
-                          // tabindex={this.getElementContainerTabIndex(
-                          //   number,
-                          //   descriptor.unit
-                          // )}
                           tabIndex={
                             this.isSelected(descriptor.unit, number) ? 0 : -1
                           }

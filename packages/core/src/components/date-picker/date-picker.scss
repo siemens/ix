@@ -127,14 +127,7 @@
 
       &:focus-visible {
         outline: 1px solid var(--theme-color-focus-bdr);
-        box-shadow: inset 0 0 0 1px var(--theme-color-inv-contrast-text);
-        background-color: var(--theme-datepicker-day--background--selected);
-        border: inset 1px solid
-          var(--theme-datepicker-day--border-color--selected);
-        color: var(--theme-datepicker-day--color--selected);
-        font-size: 14px;
-        line-height: 20px;
-        letter-spacing: 0;
+        outline-offset: var(--theme-btn--focus--outline-offset);
       }
 
       &.today {

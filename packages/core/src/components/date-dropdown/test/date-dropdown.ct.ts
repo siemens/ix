@@ -128,10 +128,10 @@ regressionTest.describe('date dropdown tests', () => {
       await expect(datepicker).toBeVisible();
 
       const startDay = datepicker
-        .locator('[date-calender-day]')
+        .locator('[data-calendar-day]')
         .getByText('3', { exact: true });
       const endDay = datepicker
-        .locator('[date-calender-day]')
+        .locator('[data-calendar-day]')
         .getByText('11', { exact: true });
 
       await startDay.click();
