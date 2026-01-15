@@ -12,7 +12,6 @@
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
 @use 'mixins/scrollbar';
-@use 'mixins/shadow-dom/focus-visible' as focus-visible;
 
 :host {
   display: flex;
@@ -116,13 +115,12 @@
 
   @include button-mixin.btn-base-variant('tertiary');
 
+  button:focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-btn--focus--outline-offset);
+  }
+
   .avatar {
     transform: scale(0.8);
-  }
-}
-
-:host(.avatar-button.ix-focused) {
-  button {
-    @include focus-visible.ix-focus-visible();
   }
 }

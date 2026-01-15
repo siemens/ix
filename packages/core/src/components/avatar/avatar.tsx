@@ -234,10 +234,7 @@ export class Avatar extends IxComponent() {
 
     if (this.isClosestApplicationHeader) {
       return (
-        <Host
-          slot="ix-application-header-avatar"
-          class={'avatar-button ix-focusable'}
-        >
+        <Host slot="ix-application-header-avatar" class={'avatar-button'}>
           <BaseButton
             disabled={false}
             iconOval={false}

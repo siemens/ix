@@ -203,7 +203,7 @@ export class Button extends IxComponent() implements IxButtonComponent {
       <Host
         class={{
           disabled: this.disabled || this.loading,
-          // 'ix-focusable': true,
+          'ix-focusable': true,
         }}
       >
         <BaseButton {...baseButtonProps}>

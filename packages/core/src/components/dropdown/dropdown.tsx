@@ -28,12 +28,21 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { a11yHostAttributes } from '../utils/a11y';
 import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { ElementReference } from '../utils/element-reference';
 import { findElement } from '../utils/find-element';
+import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
+import {
+  focusElementInContext,
+  focusFirstDescendant,
+  focusLastDescendant,
+  queryElements,
+} from '../utils/focus/focus-visible-listener';
+import { IxComponent } from '../utils/internal/component';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
   CloseBehavior,
@@ -43,16 +52,6 @@ import {
 } from './dropdown-controller';
 import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
-import {
-  addFocusVisibleListener,
-  focusElementInContext,
-  focusFirstDescendant,
-  focusLastDescendant,
-  FocusVisibleUtility,
-  queryElements,
-} from '../utils/focus/focus-visible-listener';
-import { IxComponent } from '../utils/internal/component';
-import { a11yHostAttributes } from '../utils/a11y';
 
 let sequenceId = 0;
 
@@ -180,7 +179,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
 
   private keyboardNavigationCleanup?: () => void;
 
-  private focusUtilities?: FocusVisibleUtility;
+  private focusUtilities?: FocusTrapResult;
 
   connectedCallback(): void {
     dropdownController.connected(this);
@@ -435,9 +434,9 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         );
       }
 
-      this.focusUtilities = addFocusVisibleListener(this.hostElement, {
-        trapFocus: !this.disableFocusTrap,
-      });
+      if (!this.disableFocusTrap) {
+        this.focusUtilities = addFocusTrap(this.hostElement);
+      }
 
       this.registerKeyListener();
     } else {

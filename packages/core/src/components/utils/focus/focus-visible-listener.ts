@@ -12,9 +12,9 @@
  * Fork of https://github.com/ionic-team/ionic-framework/blob/c37e2a5d9e765cf48d768061c9d453a13b187e13/core/src/utils/focus-visible.ts
  */
 
-const IX_FOCUSED = 'ix-focused';
-const IX_FOCUSABLE = 'ix-focusable';
-const FOCUS_KEYS = new Set([
+export const IX_FOCUSED = 'ix-focused';
+export const IX_FOCUSABLE = 'ix-focusable';
+export const FOCUS_KEYS = new Set([
   'Tab',
   'ArrowDown',
   'Space',
@@ -99,9 +99,9 @@ export const addFocusVisibleListener = (
   const onKeydown = (event: Event) => {
     const keyboardEvent = event as KeyboardEvent;
     keyboardMode = FOCUS_KEYS.has(keyboardEvent.key);
-    // if (!keyboardMode) {
-    //   setFocus([]);
-    // }
+    if (!keyboardMode) {
+      setFocus([]);
+    }
 
     if (trapFocus && keyboardEvent.key === 'Tab') {
       const focusableElements = queryElements(
@@ -148,13 +148,11 @@ export const addFocusVisibleListener = (
     }
   };
 
-  console.trace('Adding focus visible listener to', ref);
-
-  ref.addEventListener('keydown', onKeydown);
+  // ref.addEventListener('keydown', onKeydown);
   // ref.addEventListener('focusin', onFocusin);
   // ref.addEventListener('focusout', onFocusout);
-  ref.addEventListener('touchstart', pointerDown, { passive: true });
-  ref.addEventListener('mousedown', pointerDown);
+  // ref.addEventListener('touchstart', pointerDown, { passive: true });
+  // ref.addEventListener('mousedown', pointerDown);
 
   const destroy = () => {
     ref.removeEventListener('keydown', onKeydown);
@@ -214,13 +212,13 @@ export const focusElement = (element: HTMLElement) => {
    * If the focus element is inside a shadow DOM, the host element is focused and does not trigger any
    * focusin events. To workaround this, we manually dispatch a focusin event on the shadow DOM element.
    */
-  element!.dispatchEvent(
-    new Event('focusin', {
-      bubbles: true,
-      composed: true,
-      cancelable: true,
-    })
-  );
+  // element!.dispatchEvent(
+  //   new Event('focusin', {
+  //     bubbles: true,
+  //     composed: true,
+  //     cancelable: true,
+  //   })
+  // );
   element.focus();
 };
 

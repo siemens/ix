@@ -35,7 +35,7 @@ export const WithGlobalFocusVisibleListenerMixin = <
         super.connectedCallback();
       }
 
-      // patchFocusMethod();
+      patchFocusMethod();
       if (!focusVisibleUtility) {
         focusVisibleUtility = addFocusVisibleListener();
       }

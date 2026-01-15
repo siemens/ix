@@ -119,7 +119,7 @@ export class SelectItem implements DropdownItemWrapper {
 
   render() {
     return (
-      <Host tabIndex={-1} class={{ 'outline-visible': this.hasVisualFocus }}>
+      <Host class={{ 'outline-visible': this.hasVisualFocus }}>
         <ix-dropdown-item
           class={{
             'select-item-checked': this.selected,

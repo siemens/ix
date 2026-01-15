@@ -24,7 +24,7 @@ const VALID_FOCUS_ELEMENTS = [
 ];
 
 export const ARROW_QUERY_SELECTOR = VALID_FOCUS_ELEMENTS.map(
-  (selector) => `${selector}:not([disabled]):not([hidden])`
+  (selector) => `${selector}:not([tabindex^="-"]):not([disabled]):not([hidden])`
 ).join(', ');
 
 export const getIndexOfDropdownItem = (

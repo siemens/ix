@@ -868,7 +868,6 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
     return (
       <Host
         onFocusin={() => {
-          console.log('focusin');
           if (getFocusUtilities()?.hasKeyboardMode()) {
             this.requestCalendarFocus();
           }

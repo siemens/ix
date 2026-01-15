@@ -22,10 +22,6 @@ import type {
   DateTimeDateChangeEvent,
   DateTimeSelectEvent,
 } from './datetime-picker.types';
-import {
-  addFocusVisibleListener,
-  FocusVisibleUtility,
-} from '../utils/focus/focus-visible-listener';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -155,16 +151,6 @@ export class DatetimePicker
   private datePickerElement?: HTMLIxDatePickerElement;
   private timePickerElement?: HTMLIxTimePickerElement;
 
-  private focusVisibleUtility?: FocusVisibleUtility;
-
-  componentDidLoad() {
-    this.focusVisibleUtility = addFocusVisibleListener(this.hostElement);
-  }
-
-  disconnectedCallback() {
-    this.focusVisibleUtility?.destroy();
-  }
-
   private async onDone() {
     const date = await this.datePickerElement?.getCurrentDate();
     const time = await this.timePickerElement?.getCurrentTime();
@@ -194,7 +180,7 @@ export class DatetimePicker
 
   render() {
     return (
-      <Host onFocusout={() => this.focusVisibleUtility?.setFocus([])}>
+      <Host>
         <ix-layout-grid class="no-padding">
           <ix-row class="row-separator">
             <ix-col class="col-separator">

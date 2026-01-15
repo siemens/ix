@@ -20,11 +20,6 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import {
-  addFocusVisibleListener,
-  FocusVisibleUtility,
-} from '../utils/focus/focus-visible-listener';
-import { getFocusUtilities } from '../utils/internal';
 import { IxComponent } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import type { TimePickerCorners } from './time-picker.types';
@@ -298,7 +293,6 @@ export class TimePicker extends IxComponent() {
 
   private visibilityObserver?: MutationObserver;
   private focusScrollAlignment: 'start' | 'end' = 'start';
-  private focusVisibleUtilities?: FocusVisibleUtility;
 
   componentWillLoad() {
     this.initPicker();
@@ -335,10 +329,6 @@ export class TimePicker extends IxComponent() {
   componentDidLoad() {
     this.updateScrollPositions();
     this.setupVisibilityObserver();
-
-    this.focusVisibleUtilities = addFocusVisibleListener(this.hostElement, {
-      trapFocus: true,
-    });
   }
 
   componentDidRender() {
@@ -366,10 +356,6 @@ export class TimePicker extends IxComponent() {
   disconnectedCallback() {
     if (this.visibilityObserver) {
       this.visibilityObserver.disconnect();
-    }
-
-    if (this.focusVisibleUtilities) {
-      this.focusVisibleUtilities.destroy();
     }
   }
 
@@ -910,26 +896,9 @@ export class TimePicker extends IxComponent() {
     return ':';
   }
 
-  private focusFirstSelectableElement() {
-    const elementContainer = this.hostElement.shadowRoot?.querySelector(
-      '.element-container.selected'
-    ) as HTMLDivElement;
-
-    if (elementContainer) {
-      elementContainer.focus();
-    }
-  }
-
   render() {
     return (
-      <Host
-        onFocusin={() => {
-          if (getFocusUtilities()?.hasKeyboardMode()) {
-            this.focusFirstSelectableElement();
-          }
-        }}
-        onFocusout={() => this.focusVisibleUtilities?.setFocus([])}
-      >
+      <Host>
         <ix-date-time-card
           embedded={this.embedded}
           timePickerAppearance={true}
@@ -941,62 +910,72 @@ export class TimePicker extends IxComponent() {
             <ix-typography format="body">{this.i18nHeader}</ix-typography>
           </div>
           <div class="clock">
-            {this.timePickerDescriptors.map((descriptor, index: number) => (
-              <div class="flex">
-                <div
-                  class={{ columns: true, hidden: descriptor.hidden }}
-                  hidden={descriptor.hidden}
-                >
-                  <div class="column-header" title={descriptor.header}>
-                    {descriptor.header}
-                  </div>
+            {this.timePickerDescriptors.map((descriptor, index: number) => {
+              return (
+                <div class="flex">
                   <div
-                    data-element-list-id={descriptor.unit}
-                    class="element-list"
+                    class={{ columns: true, hidden: descriptor.hidden }}
+                    hidden={descriptor.hidden}
                   >
-                    {descriptor.numberArray.map((number) => {
-                      return (
-                        <button
-                          data-element-container-id={`${descriptor.unit}-${number}`}
-                          class={{
-                            selected: this.isSelected(descriptor.unit, number),
-                            'element-container': true,
-                            'ix-focusable': true,
-                          }}
-                          onClick={() => {
-                            this.select(descriptor.unit, number);
-                          }}
-                          onFocus={() =>
-                            this.onUnitCellFocus(descriptor.unit, number)
-                          }
-                          onBlur={(e) =>
-                            this.onUnitCellBlur(descriptor.unit, e)
-                          }
-                          tabIndex={
-                            this.isSelected(descriptor.unit, number) ? 0 : -1
-                          }
-                          aria-label={`${descriptor.header}: ${number}`}
-                        >
-                          {this.formatUnitValue(descriptor.unit, number)}
-                        </button>
-                      );
-                    })}
-                    <div class="element-list-padding"></div>
-                  </div>
-                </div>
+                    <div class="column-header" title={descriptor.header}>
+                      {descriptor.header}
+                    </div>
+                    <div
+                      data-element-list-id={descriptor.unit}
+                      class="element-list"
+                    >
+                      {descriptor.numberArray.map((number) => {
+                        const tabIndex = this.isSelected(
+                          descriptor.unit,
+                          number
+                        )
+                          ? 0
+                          : -1;
 
-                {index !== this.timePickerDescriptors.length - 1 && (
-                  <div
-                    class={{
-                      'column-separator': true,
-                      hidden: descriptor.hidden,
-                    }}
-                  >
-                    {this.getColumnSeparator(index)}
+                        return (
+                          <button
+                            data-element-container-id={`${descriptor.unit}-${number}`}
+                            class={{
+                              selected: this.isSelected(
+                                descriptor.unit,
+                                number
+                              ),
+                              'element-container': true,
+                            }}
+                            onClick={() => {
+                              this.select(descriptor.unit, number);
+                            }}
+                            onFocus={() =>
+                              this.onUnitCellFocus(descriptor.unit, number)
+                            }
+                            onBlur={(e) =>
+                              this.onUnitCellBlur(descriptor.unit, e)
+                            }
+                            aria-label={`${descriptor.header}: ${number}`}
+                            tabindex={tabIndex}
+                            autofocus={tabIndex === 0}
+                          >
+                            {this.formatUnitValue(descriptor.unit, number)}
+                          </button>
+                        );
+                      })}
+                      <div class="element-list-padding"></div>
+                    </div>
                   </div>
-                )}
-              </div>
-            ))}
+
+                  {index !== this.timePickerDescriptors.length - 1 && (
+                    <div
+                      class={{
+                        'column-separator': true,
+                        hidden: descriptor.hidden,
+                      }}
+                    >
+                      {this.getColumnSeparator(index)}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
 
             {this.timeRef && (
               <div class="flex">
