@@ -20,8 +20,8 @@ import {
   Watch,
 } from '@stencil/core';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
-import { createMutationObserver } from '../utils/mutation-observer';
 import { makeRef } from '../utils/make-ref';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 let sequenceId = 0;
 const createId = (prefix: string = 'breadcrumb-') => {
@@ -60,6 +60,14 @@ export class Breadcrumb {
    * with conditionally hidden previous items
    */
   @Prop() ariaLabelPreviousButton = 'previous';
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Crumb item clicked event
@@ -146,6 +154,7 @@ export class Breadcrumb {
               ? this.previousButtonRef.waitForCurrent()
               : undefined
           }
+          enableTopLayer={this.enableTopLayer}
           onShowChanged={({ detail }) => {
             this.isPreviousDropdownExpanded = detail;
 
@@ -196,7 +205,10 @@ export class Breadcrumb {
             <slot></slot>
           </ol>
         </nav>
-        <ix-dropdown trigger={this.nextButtonRef.waitForCurrent()}>
+        <ix-dropdown
+          trigger={this.nextButtonRef.waitForCurrent()}
+          enableTopLayer={this.enableTopLayer}
+        >
           {this.nextItems?.map((item) => (
             <ix-dropdown-item
               label={item}

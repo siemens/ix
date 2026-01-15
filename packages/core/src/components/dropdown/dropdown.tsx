@@ -29,7 +29,15 @@ import {
   Watch,
 } from '@stencil/core';
 import { ComponentInterface } from '@stencil/core/internal';
+import {
+  addDisposableEventListener,
+  DisposableEventListener,
+} from '../utils/disposable-event-listener';
+import { ElementReference } from '../utils/element-reference';
+import { findElement } from '../utils/find-element';
 import { ArrowFocusController } from '../utils/focus';
+import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
   CloseBehavior,
   dropdownController,
@@ -37,12 +45,6 @@ import {
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
-import { findElement } from '../utils/find-element';
-import {
-  addDisposableEventListener,
-  DisposableEventListener,
-} from '../utils/disposable-event-listener';
-import { ElementReference } from '../utils/element-reference';
 
 let sequenceId = 0;
 
@@ -129,11 +131,19 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Prop() suppressOverflowBehavior = false;
 
   /**
+   * Enable Popover API rendering for top-layer positioning.
+   *
+   * @default false in v4.x, will default to true in v5.0.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
+  /**
    * Fire event after visibility of dropdown has changed
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
   private autoUpdateCleanup?: () => void;
+  private readonly dialogRef = makeRef<HTMLDialogElement>();
 
   private triggerElement?: Element;
   private anchorElement?: Element;
@@ -356,12 +366,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (newShow) {
-      await this.resolveAnchorElement();
-
-      if (this.anchorElement) {
-        this.applyDropdownPosition();
-      }
-
       this.arrowFocusController = new ArrowFocusController(
         this.dropdownItems,
         this.hostElement,
@@ -374,11 +378,22 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       });
 
       this.registerKeyListener();
+
+      if (this.enableTopLayer) {
+        await this.showDropdownAsync();
+      } else {
+        await this.resolveAnchorElement();
+
+        if (this.anchorElement) {
+          this.applyDropdownPosition();
+        }
+      }
     } else {
-      this.destroyAutoUpdate();
-      this.arrowFocusController?.disconnect();
-      this.itemObserver?.disconnect();
-      this.disposeKeyListener?.();
+      this.cleanupOnHide();
+
+      if (this.enableTopLayer) {
+        await this.hideDropdownAsync();
+      }
     }
   }
 
@@ -404,6 +419,51 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return true;
   }
 
+  private async showDropdownAsync() {
+    const popover = await this.dialogRef.waitForCurrent();
+    if (!popover) {
+      return;
+    }
+
+    popover.showPopover();
+
+    await this.resolveAnchorElement();
+
+    if (this.anchorElement) {
+      this.applyDropdownPosition();
+    } else {
+      requestAnimationFrameNoNgZone(() => {
+        const referenceElement =
+          this.hostElement.parentElement || this.hostElement;
+        const refRect = referenceElement.getBoundingClientRect();
+
+        const transform = `translate(${Math.round(
+          refRect.left
+        )}px, ${Math.round(refRect.top)}px)`;
+
+        Object.assign(popover.style, {
+          top: '0',
+          left: '0',
+          transform: transform,
+        });
+      });
+    }
+  }
+
+  private async hideDropdownAsync() {
+    const popover = await this.dialogRef.waitForCurrent();
+    if (popover && popover.matches(':popover-open')) {
+      popover.hidePopover();
+    }
+  }
+
+  private cleanupOnHide() {
+    this.destroyAutoUpdate();
+    this.arrowFocusController?.disconnect();
+    this.itemObserver?.disconnect();
+    this.disposeKeyListener?.();
+  }
+
   private async applyDropdownPosition() {
     if (!this.show) {
       return;
@@ -411,10 +471,24 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     if (!this.anchorElement) {
       return;
     }
+
+    const referenceElement = this.anchorElement;
     const isSubmenu = this.isAnchorSubmenu();
 
+    let targetElement: HTMLElement = this.hostElement;
+    let strategy: 'fixed' | 'absolute' = this.positioningStrategy;
+
+    if (this.enableTopLayer) {
+      const dialog = await this.dialogRef.waitForCurrent();
+      if (!dialog) {
+        return;
+      }
+      targetElement = dialog;
+      strategy = 'fixed';
+    }
+
     let positionConfig: Partial<ComputePositionConfig> = {
-      strategy: this.positioningStrategy,
+      strategy,
       middleware: [],
     };
 
@@ -438,35 +512,30 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
     this.destroyAutoUpdate();
 
-    if (!this.anchorElement) {
-      return;
-    }
-
     this.autoUpdateCleanup = autoUpdate(
-      this.anchorElement,
-      this.hostElement,
+      referenceElement,
+      targetElement,
       async () => {
-        if (this.anchorElement) {
-          const computeResponse = await computePosition(
-            this.anchorElement,
-            this.hostElement,
-            positionConfig
-          );
-          Object.assign(this.hostElement.style, {
-            top: '0',
-            left: '0',
-            transform: `translate(${Math.round(
-              computeResponse.x
-            )}px,${Math.round(computeResponse.y)}px)`,
-          });
-        }
+        const computeResponse = await computePosition(
+          referenceElement,
+          targetElement,
+          positionConfig
+        );
+        Object.assign(targetElement.style, {
+          top: '0',
+          left: '0',
+          transform: `translate(${Math.round(computeResponse.x)}px,${Math.round(
+            computeResponse.y
+          )}px)`,
+        });
+
         if (this.overwriteDropdownStyle) {
           const overwriteStyle = await this.overwriteDropdownStyle({
-            dropdownRef: this.hostElement,
+            dropdownRef: targetElement,
             triggerRef: this.triggerElement as HTMLElement,
           });
 
-          Object.assign(this.hostElement.style, overwriteStyle);
+          Object.assign(targetElement.style, overwriteStyle);
         }
       },
       {
@@ -478,7 +547,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private focusDropdownItem(index: number) {
-    requestAnimationFrame(() => {
+    requestAnimationFrameNoNgZone(() => {
       const button =
         this.dropdownItems[index]?.shadowRoot?.querySelector('button');
 
@@ -489,6 +558,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   async componentDidLoad() {
+    if (this.show) {
+      this.changedShow(true);
+    }
+
     if (!this.trigger) {
       return;
     }
@@ -542,27 +615,60 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   render() {
-    return (
-      <Host
-        data-ix-dropdown={this.localUId}
-        class={{
-          'dropdown-menu': true,
-          show: this.show,
-          overflow: !this.suppressOverflowBehavior,
-        }}
-        style={{
-          margin: '0',
-          minWidth: '0px',
-          position: this.positioningStrategy,
-        }}
-        role="list"
-        onClick={(event: PointerEvent) => this.onDropdownClick(event)}
-      >
-        <div style={{ display: 'contents' }}>
-          {this.header && <div class="dropdown-header">{this.header}</div>}
-          {this.show && <slot></slot>}
-        </div>
-      </Host>
-    );
+    if (this.enableTopLayer) {
+      return (
+        <Host
+          data-ix-dropdown={this.localUId}
+          class={{
+            'dropdown-menu': true,
+            show: this.show,
+          }}
+        >
+          <dialog
+            ref={this.dialogRef}
+            class={{
+              dialog: true,
+              overflow: !this.suppressOverflowBehavior,
+            }}
+            popover="manual"
+            tabindex={-1}
+            onClick={(event: PointerEvent) => this.onDropdownClick(event)}
+            onKeyDown={(event: KeyboardEvent) => {
+              if (event.key === 'Escape') {
+                this.dismiss();
+              }
+            }}
+          >
+            <div class="dropdown-container">
+              {this.header && <div class="dropdown-header">{this.header}</div>}
+              {this.show && <slot></slot>}
+            </div>
+          </dialog>
+        </Host>
+      );
+    } else {
+      return (
+        <Host
+          data-ix-dropdown={this.localUId}
+          class={{
+            'dropdown-menu': true,
+            show: this.show,
+            overflow: !this.suppressOverflowBehavior,
+          }}
+          style={{
+            margin: '0',
+            minWidth: '0px',
+            position: this.positioningStrategy,
+          }}
+          role="list"
+          onClick={(event: PointerEvent) => this.onDropdownClick(event)}
+        >
+          <div style={{ display: 'contents' }}>
+            {this.header && <div class="dropdown-header">{this.header}</div>}
+            {this.show && <slot></slot>}
+          </div>
+        </Host>
+      );
+    }
   }
 }

@@ -19,6 +19,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 import { showAppSwitch } from '../utils/app-switch';
 import { applicationLayoutService } from '../utils/application-layout';
 import {
@@ -30,7 +31,6 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
-import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
@@ -130,6 +130,14 @@ export class ApplicationHeader {
    * @since 3.2.0
    */
   @Prop() ariaLabelMoreMenuIconButton?: string;
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Event emitted when the menu toggle button is clicked
@@ -438,6 +446,7 @@ export class ApplicationHeader {
               aria-hidden={a11yBoolean(
                 !(this.hasOverflowContextMenu || this.hasOverflowSlotElements)
               )}
+              enableTopLayer={this.enableTopLayer}
             >
               <div
                 class="dropdown-content"

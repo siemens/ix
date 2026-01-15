@@ -168,7 +168,8 @@ export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderEleme
         showMenu: 'show-menu',
         ariaLabelMenuExpandIconButton: 'aria-label-menu-expand-icon-button',
         ariaLabelAppSwitchIconButton: 'aria-label-app-switch-icon-button',
-        ariaLabelMoreMenuIconButton: 'aria-label-more-menu-icon-button'
+        ariaLabelMoreMenuIconButton: 'aria-label-more-menu-icon-button',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxApplicationHeader as ReactWebComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents>,
@@ -220,7 +221,8 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
         visibleItemCount: 'visible-item-count',
         nextItems: 'next-items',
         subtle: 'subtle',
-        ariaLabelPreviousButton: 'aria-label-previous-button'
+        ariaLabelPreviousButton: 'aria-label-previous-button',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxBreadcrumb as ReactWebComponent<IxBreadcrumbElement, IxBreadcrumbEvents>,
@@ -374,7 +376,8 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
         i18nPlainText: 'i18n-plain-text',
         ariaLabelResetButton: 'aria-label-reset-button',
         ariaLabelOperatorButton: 'aria-label-operator-button',
-        ariaLabelFilterInput: 'aria-label-filter-input'
+        ariaLabelFilterInput: 'aria-label-filter-input',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxCategoryFilter as ReactWebComponent<IxCategoryFilterElement, IxCategoryFilterEvents>,
@@ -527,7 +530,8 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
         i18nCustomItem: 'i18n-custom-item',
         i18nDone: 'i18n-done',
         i18nNoRange: 'i18n-no-range',
-        today: 'today'
+        today: 'today',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDateDropdown as ReactWebComponent<IxDateDropdownElement, IxDateDropdownEvents>,
@@ -566,7 +570,8 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
-        textAlignment: 'text-alignment'
+        textAlignment: 'text-alignment',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDateInput as ReactWebComponent<IxDateInputElement, IxDateInputEvents>,
@@ -596,7 +601,8 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
         locale: 'locale',
         showWeekNumbers: 'show-week-numbers',
         embedded: 'embedded',
-        today: 'today'
+        today: 'today',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDatePicker as ReactWebComponent<IxDatePickerElement, IxDatePickerEvents>,
@@ -683,7 +689,8 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         overwriteDropdownStyle: 'overwrite-dropdown-style',
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
-        suppressOverflowBehavior: 'suppress-overflow-behavior'
+        suppressOverflowBehavior: 'suppress-overflow-behavior',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdown as ReactWebComponent<IxDropdownElement, IxDropdownEvents>,
@@ -701,7 +708,8 @@ export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, Ix
         icon: 'icon',
         closeBehavior: 'close-behavior',
         placement: 'placement',
-        ariaLabelDropdownButton: 'aria-label-dropdown-button'
+        ariaLabelDropdownButton: 'aria-label-dropdown-button',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdownButton as ReactWebComponent<IxDropdownButtonElement, IxDropdownButtonEvents>,
@@ -1195,7 +1203,8 @@ export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvat
         image: 'image',
         initials: 'initials',
         i18nLogout: 'i18n-logout',
-        hideLogoutButton: 'hide-logout-button'
+        hideLogoutButton: 'hide-logout-button',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxMenuAvatar as ReactWebComponent<IxMenuAvatarElement, IxMenuAvatarEvents>,
@@ -1603,7 +1612,8 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         hideListHeader: 'hide-list-header',
         dropdownWidth: 'dropdown-width',
         dropdownMaxWidth: 'dropdown-max-width',
-        collapseMultipleSelection: 'collapse-multiple-selection'
+        collapseMultipleSelection: 'collapse-multiple-selection',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSelect as ReactWebComponent<IxSelectElement, IxSelectEvents>,
@@ -1674,7 +1684,8 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
         disabled: 'disabled',
         disableButton: 'disable-button',
         disableDropdownButton: 'disable-dropdown-button',
-        placement: 'placement'
+        placement: 'placement',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSplitButton as ReactWebComponent<IxSplitButtonElement, IxSplitButtonEvents>,
@@ -1798,7 +1809,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
         hideHeader: 'hide-header',
-        textAlignment: 'text-alignment'
+        textAlignment: 'text-alignment',
+        enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxTimeInput as ReactWebComponent<IxTimeInputElement, IxTimeInputEvents>,
