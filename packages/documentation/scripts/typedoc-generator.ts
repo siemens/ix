@@ -106,9 +106,15 @@ function getPropertyType(property: any): string {
       const typeArgs = property.type.typeArguments
         .map((arg: any) => getPropertyType({ type: arg }))
         .join(', ');
-      return `${baseType}<${typeArgs}>`;
+
+      // Remove internal __global namespace prefix
+      return `${baseType}<${typeArgs}>`.replace(/^__global\./, '');
     }
-    return property.type.qualifiedName || property.type.name;
+
+    const typeName = property.type.qualifiedName || property.type.name;
+
+    // Remove internal __global namespace prefix
+    return typeName.replace(/^__global\./, '');
   } else if (property.type instanceof UnionType) {
     return property.type.types
       .filter((t: any) => 'name' in t)
