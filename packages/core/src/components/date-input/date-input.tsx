@@ -322,6 +322,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
       this.invalidReason = undefined;
       this.emitValidityStateChangeIfChanged();
       this.updateFormInternalValue(value);
+      this.updateFormInternalValue(value);
       this.valueChange.emit(value);
       return;
     }
