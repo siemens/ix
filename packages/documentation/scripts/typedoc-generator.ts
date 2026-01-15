@@ -107,13 +107,13 @@ function getPropertyType(property: any): string {
         .map((arg: any) => getPropertyType({ type: arg }))
         .join(', ');
 
-      // Remove internal __global namespace prefix
+      // Remove __global namespace prefix
       return `${baseType}<${typeArgs}>`.replace(/^__global\./, '');
     }
 
     const typeName = property.type.qualifiedName || property.type.name;
 
-    // Remove internal __global namespace prefix
+    // Remove __global namespace prefix
     return typeName.replace(/^__global\./, '');
   } else if (property.type instanceof UnionType) {
     return property.type.types
@@ -212,23 +212,115 @@ function processFunctionSignature(
   };
 }
 
+function ensureFunctionGroup(
+  functionGroups: Map<string, any[]>,
+  source: string
+) {
+  if (!functionGroups.has(source)) {
+    functionGroups.set(source, []);
+  }
+}
+
+function processStaticProperties(
+  child: any,
+  functionGroups: Map<string, any[]>,
+  source: string
+) {
+  if (!child.children) {
+    return;
+  }
+
+  // If the function has static properties (e.g., showMessage.info), process its children
+  for (const staticProp of child.children) {
+    if (staticProp.signatures?.length > 0) {
+      const staticFunctionDoc = processFunctionSignature(
+        staticProp,
+        child.name
+      );
+      functionGroups.get(source)!.push(staticFunctionDoc);
+    }
+  }
+}
+
+function processFunction(
+  child: any,
+  functionGroups: Map<string, any[]>,
+  source: string
+) {
+  const functionDoc = processFunctionSignature(child);
+
+  ensureFunctionGroup(functionGroups, source);
+  functionGroups.get(source)!.push(functionDoc);
+
+  processStaticProperties(child, functionGroups, source);
+}
+
+function extractClassMethods(child: any): any[] {
+  if (!child.children) {
+    return [];
+  }
+
+  const methods: any[] = [];
+  for (const classChild of child.children) {
+    // Process methods but skip constructors
+    if (
+      classChild.signatures?.length > 0 &&
+      classChild.kind === ReflectionKind.Method
+    ) {
+      const methodDoc = processFunctionSignature(classChild);
+      methods.push(methodDoc);
+    }
+  }
+
+  return methods;
+}
+
+function processClass(
+  child: any,
+  functionGroups: Map<string, any[]>,
+  source: string
+) {
+  const methods = extractClassMethods(child);
+
+  if (methods.length > 0) {
+    ensureFunctionGroup(functionGroups, source);
+    functionGroups.get(source)!.push(...methods);
+  }
+}
+
+function processType(child: any, source: string): TypeDocTarget {
+  const properties = processProperties(child);
+  return {
+    name: child.name,
+    properties,
+    type: 'Type',
+    source,
+  };
+}
+
+function createFunctionTarget(source: string, funcs: any[]): TypeDocTarget {
+  funcs.sort((a, b) => a.name.localeCompare(b.name));
+
+  const fileName = path.basename(source, path.extname(source));
+
+  return {
+    name: fileName,
+    functions: funcs,
+    type: 'Function',
+    source: source,
+  };
+}
+
 function processProjectChildren(
   project: any,
   rootPath: string
 ): TypeDocTarget[] {
-  const types: TypeDocTarget[] = [];
-
-  const functionGroups = new Map<string, any[]>();
-
-  const ensureFunctionGroup = (source: string) => {
-    if (!functionGroups.has(source)) {
-      functionGroups.set(source, []);
-    }
-  };
-
   if (!project.children) {
-    return types;
+    return [];
   }
+
+  const types: TypeDocTarget[] = [];
+  const functionGroups = new Map<string, any[]>();
 
   for (const child of project.children) {
     const source = path.relative(rootPath, child.sources![0].fullFileName);
@@ -238,64 +330,16 @@ function processProjectChildren(
     const isType = !child.signatures?.length && !isClass;
 
     if (isFunction) {
-      const functionDoc = processFunctionSignature(child);
-
-      ensureFunctionGroup(source);
-      functionGroups.get(source)!.push(functionDoc);
-
-      // If the function has static properties (e.g., showMessage.info), process its children
-      if (child.children) {
-        for (const staticProp of child.children) {
-          if (staticProp.signatures?.length > 0) {
-            const staticFunctionDoc = processFunctionSignature(
-              staticProp,
-              child.name
-            );
-            functionGroups.get(source)!.push(staticFunctionDoc);
-          }
-        }
-      }
+      processFunction(child, functionGroups, source);
     } else if (isClass) {
-      if (child.children) {
-        const methods: any[] = [];
-        for (const classChild of child.children) {
-          // Process methods but skip constructors
-          if (
-            classChild.signatures?.length > 0 &&
-            classChild.kind === ReflectionKind.Method
-          ) {
-            const methodDoc = processFunctionSignature(classChild);
-            methods.push(methodDoc);
-          }
-        }
-
-        if (methods.length > 0) {
-          ensureFunctionGroup(source);
-          functionGroups.get(source)!.push(...methods);
-        }
-      }
+      processClass(child, functionGroups, source);
     } else if (isType) {
-      const properties = processProperties(child);
-      types.push({
-        name: child.name,
-        properties,
-        type: 'Type',
-        source,
-      });
+      types.push(processType(child, source));
     }
   }
 
   for (const [source, funcs] of functionGroups) {
-    funcs.sort((a, b) => a.name.localeCompare(b.name));
-
-    const fileName = path.basename(source, path.extname(source));
-
-    types.push({
-      name: fileName,
-      functions: funcs,
-      type: 'Function',
-      source: source,
-    });
+    types.push(createFunctionTarget(source, funcs));
   }
 
   return types;
