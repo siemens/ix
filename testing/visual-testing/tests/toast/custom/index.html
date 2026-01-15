@@ -84,6 +84,16 @@ SPDX-License-Identifier: MIT
           type: 'success',
           hideIcon: true,
         });
+
+        toastContainer.showToast({
+          title:
+            'ThisIsAVeryLongToastHeadlineWithoutAnySpacesThatShouldDemonstrateTextOverflowBehavior',
+          message:
+            'ThisIsAVeryLongToastMessageWithoutAnySpacesThatShouldDemonstrateTextOverflowBehavior',
+          action: createActionFromTemplate('basic-undo'),
+          autoClose: false,
+          type: 'warning',
+        });
       })();
     </script>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>

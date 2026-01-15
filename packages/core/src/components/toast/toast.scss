@@ -58,6 +58,8 @@
 
       .toast-title {
         margin: 0.25rem 0px;
+        overflow-wrap: break-word;
+        word-break: break-word;
       }
 
       .toast-message {
