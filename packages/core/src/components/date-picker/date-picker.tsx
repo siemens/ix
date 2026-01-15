@@ -28,16 +28,13 @@ import {
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import { configureKeyboardInteraction } from '../dropdown/dropdown-focus';
-import {
-  addFocusVisibleListener,
-  FocusVisibleUtility,
-} from '../utils/focus-visible-listener';
 import { getFocusUtilities } from '../utils/internal';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
+import { IxComponent } from '../utils/internal/component';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -51,7 +48,7 @@ interface CalendarWeek {
     delegatesFocus: true,
   },
 })
-export class DatePicker implements IxDatePickerComponent {
+export class DatePicker extends IxComponent() implements IxDatePickerComponent {
   @Element() hostElement!: HTMLIxDatePickerElement;
 
   /**
@@ -251,8 +248,6 @@ export class DatePicker implements IxDatePickerComponent {
   private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[] = [];
 
-  private focusVisibleUtilities?: FocusVisibleUtility;
-
   @OnListener<DatePicker>('keydown')
   handleKeyUp(event: KeyboardEvent) {
     if (!this.isDayFocus) {
@@ -354,16 +349,11 @@ export class DatePicker implements IxDatePickerComponent {
   private keyboardNavigationMonthSelection?: () => void;
 
   disconnectedCallback() {
-    this.focusVisibleUtilities?.destroy();
     this.keyboardNavigationYearSelection?.();
     this.keyboardNavigationMonthSelection?.();
   }
 
   componentDidLoad() {
-    this.focusVisibleUtilities = addFocusVisibleListener(this.hostElement, {
-      trapFocus: true,
-    });
-
     this.keyboardNavigationYearSelection = configureKeyboardInteraction(
       this.hostElement.shadowRoot!.getElementById('year-selection')!,
       {
@@ -878,11 +868,11 @@ export class DatePicker implements IxDatePickerComponent {
     return (
       <Host
         onFocusin={() => {
+          console.log('focusin');
           if (getFocusUtilities()?.hasKeyboardMode()) {
             this.requestCalendarFocus();
           }
         }}
-        onFocusout={() => this.focusVisibleUtilities?.setFocus([])}
       >
         <ix-date-time-card corners={this.corners} embedded={this.embedded}>
           <div class="header" slot="header">

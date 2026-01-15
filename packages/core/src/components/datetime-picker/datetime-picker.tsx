@@ -25,7 +25,7 @@ import type {
 import {
   addFocusVisibleListener,
   FocusVisibleUtility,
-} from '../utils/focus-visible-listener';
+} from '../utils/focus/focus-visible-listener';
 
 @Component({
   tag: 'ix-datetime-picker',

@@ -24,7 +24,7 @@ import { makeRef } from '../utils/make-ref';
 import {
   FocusVisibleUtility,
   addFocusVisibleListener,
-} from '../utils/focus-visible-listener';
+} from '../utils/focus/focus-visible-listener';
 import { IxComponent } from '../utils/internal/component';
 
 @Component({

@@ -39,7 +39,7 @@ import { makeRef } from '../utils/make-ref';
 import {
   addFocusVisibleListener,
   FocusVisibleUtility,
-} from '../utils/focus-visible-listener';
+} from '../utils/focus/focus-visible-listener';
 import { IxComponent } from '../utils/internal/component';
 
 let selectId = 0;
@@ -786,6 +786,7 @@ export class Select
     if (this.addItemElement) {
       this.addItemElement.hidden = !this.isAddItemVisible();
       this.addItemElement.label = this.inputFilterText;
+      this.addItemElement.ariaHidden = a11yBoolean(!this.isAddItemVisible());
       this.addItemElement.ariaLabel = this.ariaLabelAddItem;
     }
 

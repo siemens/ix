@@ -9,9 +9,10 @@
 import type { ComponentInterface, MixedInCtor } from '@stencil/core';
 import { Mixin } from '@stencil/core';
 import { HTMLStencilElement } from '@stencil/core/internal';
-import { WithFocusVisibleListener } from './mixins/focus-handling-mixin';
+import { WithGlobalFocusVisibleListenerMixin } from './mixins/global-focus-handling.mixin';
 
 export interface StencilLifecycle {
+  hostElement?: HTMLStencilElement;
   connectedCallback?(): void;
   disconnectedCallback?(): void;
   componentWillRender?(): Promise<void> | void;
@@ -78,7 +79,7 @@ export function IxComponent<T extends StencilLifecycle = StencilLifecycle>(
   ...mixins: Array<(base: MixedInCtor<StencilLifecycle>) => MixedInCtor<T>>
 ): MixedInCtor<T & StencilLifecycle> {
   if (mixins.length === 0) {
-    return Mixin(WithFocusVisibleListener) as any;
+    return Mixin(WithGlobalFocusVisibleListenerMixin) as any;
   }
-  return Mixin(WithFocusVisibleListener, ...mixins) as any;
+  return Mixin(WithGlobalFocusVisibleListenerMixin, ...mixins) as any;
 }

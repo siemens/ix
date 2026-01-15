@@ -16,11 +16,11 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { IxComponent } from '../utils/internal/component';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 import { IxButtonComponent } from './button-component';
 import { AnchorTarget } from './button.interface';
+import { IxComponent } from '../utils/internal/component';
 
 export type ButtonVariant =
   | `${BaseButtonVariant}`
@@ -203,7 +203,7 @@ export class Button extends IxComponent() implements IxButtonComponent {
       <Host
         class={{
           disabled: this.disabled || this.loading,
-          'ix-focusable': true,
+          // 'ix-focusable': true,
         }}
       >
         <BaseButton {...baseButtonProps}>

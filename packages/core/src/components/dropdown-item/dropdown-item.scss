@@ -122,11 +122,17 @@ $focusBorder: 0.0625rem;
   }
 }
 
-:host(:focus-visible) {
-  outline: none !important;
+:host {
+  .dropdown-item:focus-visible {
+    border-color: var(--theme-color-focus-bdr);
+  }
 }
 
 :host(.outline-visible) {
   outline: 0.0625rem solid var(--theme-color-focus-bdr);
   outline-offset: -0.0625rem;
+}
+
+:host([hidden]) {
+  display: none !important;
 }

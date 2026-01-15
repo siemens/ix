@@ -23,7 +23,7 @@ import { DateTime } from 'luxon';
 import {
   addFocusVisibleListener,
   FocusVisibleUtility,
-} from '../utils/focus-visible-listener';
+} from '../utils/focus/focus-visible-listener';
 import { getFocusUtilities } from '../utils/internal';
 import { IxComponent } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';

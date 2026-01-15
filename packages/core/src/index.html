@@ -31,7 +31,7 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <ix-application>
+    <!-- <ix-application>
       <ix-application-header>
         <ix-button>Test</ix-button>
         <ix-button>Test2</ix-button>
@@ -58,7 +58,7 @@ SPDX-License-Identifier: MIT
         <ix-menu-item label="Menu Item 5"></ix-menu-item>
       </ix-menu>
       <ix-content>
-        <!-- <button>normal</button>
+        <button>normal</button>
 
         <ix-time-input></ix-time-input>
         <ix-date-input></ix-date-input>
@@ -107,15 +107,15 @@ SPDX-License-Identifier: MIT
           <ix-breadcrumb-item>Test11</ix-breadcrumb-item>
         </ix-breadcrumb>
 
-
         <ix-date-picker></ix-date-picker>
-        <h1>Ignore</h1> -->
+        <h1>Ignore</h1>
 
         <ix-button>JUST A BUTTON</ix-button>
         <ix-date-input></ix-date-input>
         <ix-time-input></ix-time-input>
-        <!-- <ix-datetime-picker></ix-datetime-picker> -->
-        <!--
+
+        <ix-empty-state header="Test" action="Reload"></ix-empty-state>
+        <ix-datetime-picker></ix-datetime-picker>
 
         <ix-select editable>
           <ix-select-item value="Option 1" label="Option 1"></ix-select-item>
@@ -133,10 +133,10 @@ SPDX-License-Identifier: MIT
           <ix-select-item value="Option 13" label="Option 13"></ix-select-item>
           <ix-select-item value="Option 14" label="Option 14"></ix-select-item>
           <ix-select-item value="Option 15" label="Option 15"></ix-select-item>
-        </ix-select> -->
+        </ix-select>
       </ix-content>
     </ix-application>
-    <!-- <script>
+    <script>
       document.getElementById('bb').nextItems = [
         'Test12',
         'Test13',

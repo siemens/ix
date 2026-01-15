@@ -50,7 +50,7 @@ import {
   focusLastDescendant,
   FocusVisibleUtility,
   queryElements,
-} from '../utils/focus-visible-listener';
+} from '../utils/focus/focus-visible-listener';
 import { IxComponent } from '../utils/internal/component';
 import { a11yHostAttributes } from '../utils/a11y';
 

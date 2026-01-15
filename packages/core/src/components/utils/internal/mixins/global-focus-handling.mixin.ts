@@ -10,7 +10,7 @@ import type { MixedInCtor } from '@stencil/core';
 import {
   addFocusVisibleListener,
   FocusVisibleUtility,
-} from '../../focus-visible-listener';
+} from '../../focus/focus-visible-listener';
 import { StencilLifecycle } from '../component';
 import { patchFocusMethod } from '../polyfill';
 
@@ -20,7 +20,11 @@ export const getFocusUtilities = () => {
   return focusVisibleUtility;
 };
 
-export const WithFocusVisibleListener = <
+/**
+ * Mixin to add global focus visible handling to a component. Mixin will be used via base class IxComponent().
+ * Not necessary to use this mixin directly in components.
+ */
+export const WithGlobalFocusVisibleListenerMixin = <
   B extends MixedInCtor<StencilLifecycle>,
 >(
   Base: B
@@ -31,7 +35,7 @@ export const WithFocusVisibleListener = <
         super.connectedCallback();
       }
 
-      patchFocusMethod();
+      // patchFocusMethod();
       if (!focusVisibleUtility) {
         focusVisibleUtility = addFocusVisibleListener();
       }

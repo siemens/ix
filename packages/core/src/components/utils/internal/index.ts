@@ -9,6 +9,6 @@
 export { IxComponentInterface } from './component';
 
 export {
-  WithFocusVisibleListener,
+  WithGlobalFocusVisibleListenerMixin,
   getFocusUtilities,
-} from './mixins/focus-handling-mixin';
+} from './mixins/global-focus-handling.mixin';

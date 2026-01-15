@@ -25,10 +25,6 @@ import { DateTime } from 'luxon';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-import {
-  addFocusVisibleListener,
-  FocusVisibleUtility,
-} from '../utils/focus-visible-listener';
 import { getFocusUtilities } from '../utils/internal';
 import { IxComponent } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
@@ -226,19 +222,11 @@ export class DateDropdown
   }
 
   private datePickerTouched = false;
-  private focusVisibleUtilities?: FocusVisibleUtility | null;
-
   private readonly datePickerRef = makeRef<HTMLIxDatePickerElement>();
 
-  connectedCallback() {
-    this.focusVisibleUtilities = addFocusVisibleListener(this.hostElement, {
-      trapFocus: true,
-    });
-  }
+  connectedCallback() {}
 
-  disconnectedCallback() {
-    this.focusVisibleUtilities?.destroy();
-  }
+  disconnectedCallback() {}
 
   componentWillLoad() {
     this.initialize();
@@ -368,7 +356,6 @@ export class DateDropdown
           }
 
           this.closeDropdown();
-          this.focusVisibleUtilities?.setFocus([]);
         }}
       >
         <ix-button
@@ -405,7 +392,7 @@ export class DateDropdown
             if (show && getFocusUtilities()?.hasKeyboardMode()) {
               requestAnimationFrameNoNgZone(() => {
                 const datePicker = this.datePickerRef.current!;
-                datePicker.focusFirstCalenderDay();
+                datePicker.focus();
               });
             }
           }}

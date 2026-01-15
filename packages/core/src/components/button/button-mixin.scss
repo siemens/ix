@@ -156,16 +156,15 @@
 
   :host(.ix-focused) {
     .btn {
-      outline: 1px solid var(--theme-color-focus-bdr) !important;
-      outline-offset: var(--theme-btn--focus--outline-offset) !important;
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
     }
   }
 
-  :host(:focus-visible) {
-    outline: none;
-
-    .btn {
-      outline: none;
+  :host {
+    .btn:focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
     }
   }
 }

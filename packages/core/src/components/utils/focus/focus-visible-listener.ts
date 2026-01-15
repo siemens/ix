@@ -36,7 +36,7 @@ export interface FocusVisibleUtility {
 }
 
 export function queryElements(
-  dropdownElement: HTMLElement | undefined,
+  dropdownElement: HTMLElement | ShadowRoot | undefined,
   query: string
 ) {
   if (!dropdownElement) {
@@ -69,18 +69,21 @@ export function queryElements(
   return items;
 }
 
+export type FocusVisibleConfig = {
+  trapFocus?: boolean;
+  trapFocusInShadowDom?: boolean;
+};
+
 export const addFocusVisibleListener = (
-  rootEl?: HTMLElement,
-  config?: {
-    trapFocus?: boolean;
-  }
+  element?: HTMLElement,
+  config?: FocusVisibleConfig
 ): FocusVisibleUtility => {
   const trapFocus = config?.trapFocus ?? false;
   let currentFocus: Element[] = [];
   let keyboardMode = true;
 
-  const ref = rootEl ? rootEl.shadowRoot! : document;
-  const root = rootEl ?? document.body;
+  const ref = element ? element.shadowRoot! : document;
+  const root = element ?? document.body;
 
   const setFocus = (elements: Element[]) => {
     currentFocus.forEach((el) => el.classList.remove(IX_FOCUSED));
@@ -96,12 +99,15 @@ export const addFocusVisibleListener = (
   const onKeydown = (event: Event) => {
     const keyboardEvent = event as KeyboardEvent;
     keyboardMode = FOCUS_KEYS.has(keyboardEvent.key);
-    if (!keyboardMode) {
-      setFocus([]);
-    }
+    // if (!keyboardMode) {
+    //   setFocus([]);
+    // }
 
     if (trapFocus && keyboardEvent.key === 'Tab') {
-      const focusableElements = queryElements(root, focusableQueryString);
+      const focusableElements = queryElements(
+        config?.trapFocusInShadowDom ? root.shadowRoot! : root,
+        focusableQueryString
+      );
 
       if (focusableElements.length === 0) {
         return;
@@ -142,9 +148,11 @@ export const addFocusVisibleListener = (
     }
   };
 
+  console.trace('Adding focus visible listener to', ref);
+
   ref.addEventListener('keydown', onKeydown);
-  ref.addEventListener('focusin', onFocusin);
-  ref.addEventListener('focusout', onFocusout);
+  // ref.addEventListener('focusin', onFocusin);
+  // ref.addEventListener('focusout', onFocusout);
   ref.addEventListener('touchstart', pointerDown, { passive: true });
   ref.addEventListener('mousedown', pointerDown);
 
