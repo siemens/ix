@@ -245,7 +245,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private validityTracker: PickerValidityStateTracker = {};
+  private validityTracker: PickerValidityStateTracker = {
+    lastEmittedPatternMismatch: false,
+    lastEmittedValueMissing: false,
+  };
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -271,9 +274,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   componentWillLoad(): void {
-    this.validityTracker.lastEmittedPatternMismatch = false;
-    this.validityTracker.lastEmittedValueMissing = false;
-
     this.onInput(this.value);
     if (this.isInputInvalid) {
       this.from = null;
@@ -337,7 +337,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
 
     if (this.isInputInvalid) {
-      this.invalidReason = date.invalidReason || undefined;
+      this.invalidReason = date.invalidReason ?? undefined;
       this.from = undefined;
     } else {
       this.updateFormInternalValue(value);
@@ -453,8 +453,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isWarning = isWarning;
   }
 
-  private async emitValidityStateChangeIfChanged() {
-    await emitPickerValidityStateChangeIfChanged(this.validityTracker, {
+  private emitValidityStateChangeIfChanged() {
+    return emitPickerValidityStateChangeIfChanged(this.validityTracker, {
       touched: this.touched,
       invalidReason: this.invalidReason,
       getValidityState: () => this.getValidityState(),

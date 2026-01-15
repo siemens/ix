@@ -256,7 +256,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private validityTracker: PickerValidityStateTracker = {};
+  private validityTracker: PickerValidityStateTracker = {
+    lastEmittedPatternMismatch: false,
+    lastEmittedValueMissing: false,
+  };
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -286,9 +289,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad(): void {
-    this.validityTracker.lastEmittedPatternMismatch = false;
-    this.validityTracker.lastEmittedValueMissing = false;
-
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
@@ -466,8 +466,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.isWarning = isWarning;
   }
 
-  private async emitValidityStateChangeIfChanged() {
-    await emitPickerValidityStateChangeIfChanged(this.validityTracker, {
+  private emitValidityStateChangeIfChanged() {
+    return emitPickerValidityStateChangeIfChanged(this.validityTracker, {
       touched: this.touched,
       invalidReason: this.invalidReason,
       getValidityState: () => this.getValidityState(),
