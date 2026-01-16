@@ -633,10 +633,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
             popover="manual"
             aria-modal="false"
             tabindex={-1}
-            onClick={(event: PointerEvent) => this.onDropdownClick(event)}
-            onKeyDown={() => {}}
           >
-            <div class="dropdown-container">
+            <div
+              class="dropdown-container"
+              role="list"
+              onClick={(event: PointerEvent) => this.onDropdownClick(event)}
+              onKeyDown={() => {}}
+            >
               {this.header && <div class="dropdown-header">{this.header}</div>}
               {this.show && <slot></slot>}
             </div>
