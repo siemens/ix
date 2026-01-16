@@ -3127,7 +3127,7 @@ export namespace Components {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
+          * @default ''
          */
         "value": string | string[];
         /**
@@ -9122,7 +9122,7 @@ declare namespace LocalJSX {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
+          * @default ''
          */
         "value"?: string | string[];
         /**
