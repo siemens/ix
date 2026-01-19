@@ -14,8 +14,10 @@ SPDX-License-Identifier: MIT
     />
     <title>Stencil Component Starter</title>
     <style>
-      body {
-        min-height: 800px;
+      html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
       }
     </style>
     <script type="module">
@@ -97,7 +99,7 @@ SPDX-License-Identifier: MIT
             'ThisIsAVeryLongToastMessageWithoutAnySpacesThatShouldDemonstrateTextOverflowBehavior',
           action: createActionFromTemplate('basic-undo'),
           autoClose: false,
-          type: 'warning',
+          type: 'success',
         });
       })();
     </script>
