@@ -125,7 +125,8 @@ export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCa
         heading: 'heading',
         subheading: 'subheading',
         selected: 'selected',
-        ariaLabelCard: 'aria-label-card'
+        ariaLabelCard: 'aria-label-card',
+        passive: 'passive'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxActionCard as ReactWebComponent<IxActionCardElement, IxActionCardEvents>,
@@ -277,7 +278,8 @@ export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents> = /*@__P
     tagName: 'ix-card',
     properties: {
         variant: 'variant',
-        selected: 'selected'
+        selected: 'selected',
+        passive: 'passive'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxCard as ReactWebComponent<IxCardElement, IxCardEvents>,
@@ -1147,6 +1149,7 @@ export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutE
     properties: {
         activeTabLabel: 'active-tab-label',
         label: 'label',
+        ariaLabelCloseButton: 'aria-label-close-button',
         show: 'show'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1261,6 +1264,7 @@ export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenu
     properties: {
         activeTabLabel: 'active-tab-label',
         label: 'label',
+        ariaLabelCloseButton: 'aria-label-close-button',
         show: 'show'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1506,7 +1510,8 @@ export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEven
         heading: 'heading',
         subheading: 'subheading',
         variant: 'variant',
-        expanded: 'expanded'
+        expanded: 'expanded',
+        passive: 'passive'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxPushCard as ReactWebComponent<IxPushCardElement, IxPushCardEvents>,
@@ -1843,6 +1848,7 @@ export const IxToast: StencilReactComponent<IxToastElement, IxToastEvents> = /*@
         preventAutoClose: 'prevent-auto-close',
         icon: 'icon',
         iconColor: 'icon-color',
+        hideIcon: 'hide-icon',
         ariaLabelCloseIconButton: 'aria-label-close-icon-button'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,

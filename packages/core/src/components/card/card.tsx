@@ -19,12 +19,18 @@ export class Card {
    */
   @Prop() selected: boolean = false;
 
+  /**
+   * If true, disables hover and active styles and changes cursor to default
+   */
+  @Prop() passive: boolean = false;
+
   render() {
     return (
       <Host
         class={{
           selected: this.selected,
           [`card-${this.variant}`]: true,
+          passive: this.passive,
         }}
       >
         <div class="card-content">

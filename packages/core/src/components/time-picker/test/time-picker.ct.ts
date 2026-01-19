@@ -16,6 +16,78 @@ const getTimeObjs = async (page: Page) => {
   });
 };
 
+const waitForScrollAnimations = async (page: Page) => {
+  await page.evaluate(() => {
+    // Check if scroll position has changed by less than 0.5px
+    const isScrollStable = (
+      currentScrollTop: number,
+      lastScrollTop: number
+    ) => {
+      const scrollDiff = Math.abs(currentScrollTop - lastScrollTop);
+
+      return scrollDiff < 0.5;
+    };
+
+    // Schedule next stability check or resolve if stable for 5 frames
+    const scheduleStabilityCheck = (
+      element: Element,
+      currentScrollTop: number,
+      stableCount: number,
+      resolve: () => void
+    ) => {
+      const newStableCount = stableCount + 1;
+
+      if (newStableCount >= 5) {
+        resolve();
+        return;
+      }
+
+      requestAnimationFrame(() =>
+        checkScrollStable(element, currentScrollTop, newStableCount, resolve)
+      );
+    };
+
+    // Recursively check if scroll position is stable across frames
+    const checkScrollStable = (
+      element: Element,
+      lastScrollTop: number,
+      stableCount: number,
+      resolve: () => void
+    ): void => {
+      const currentScrollTop = element.scrollTop;
+
+      if (isScrollStable(currentScrollTop, lastScrollTop)) {
+        scheduleStabilityCheck(element, currentScrollTop, stableCount, resolve);
+        return;
+      }
+
+      requestAnimationFrame(() =>
+        checkScrollStable(element, currentScrollTop, 0, resolve)
+      );
+    };
+
+    // Initialize stability check on next animation frame
+    const startStabilityCheck = (element: Element, resolve: () => void) => {
+      requestAnimationFrame(() =>
+        checkScrollStable(element, element.scrollTop, 0, resolve)
+      );
+    };
+
+    // Wait for element scroll to become stable
+    const waitForStableScroll = (element: Element) => {
+      return new Promise<void>((resolve) => {
+        startStabilityCheck(element, resolve);
+      });
+    };
+
+    const lists = document
+      .querySelectorAll('ix-time-picker')[0]
+      .shadowRoot!.querySelectorAll('.element-list');
+
+    return Promise.all(Array.from(lists).map(waitForStableScroll));
+  });
+};
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-time-picker></ix-time-picker>`);
   const datePicker = page.locator(TIME_PICKER_SELECTOR);
@@ -186,51 +258,60 @@ regressionTest.describe('time picker tests', () => {
   );
 
   regressionTest(
-    'should update scroll position when time value is selected',
+    'selected values should remain top-aligned after scrolling through all columns',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
 
-      // Get the first time picker
       const firstPicker = page.locator('ix-time-picker').first();
+      await firstPicker.locator('[data-element-container-id="hour-9"]').focus();
 
-      // Get the initial scroll position of the hour list
-      const initialScrollTop = await firstPicker
-        .locator('[data-element-list-id="hour"]')
-        .evaluate((el) => el.scrollTop);
+      for (let i = 0; i < 6; i++) {
+        await page.keyboard.press('ArrowDown');
+      }
+      await page.keyboard.press('Tab');
 
-      await firstPicker.locator('[data-element-container-id="hour-6"]').click();
+      for (let i = 0; i < 2; i++) {
+        await page.keyboard.press('ArrowUp');
+      }
+      await page.keyboard.press('Tab');
 
-      // wait for scroll
-      await page.waitForTimeout(500);
+      for (let i = 0; i < 2; i++) {
+        await page.keyboard.press('ArrowUp');
+      }
+      await page.keyboard.press('Tab');
 
-      const newScrollTop = await firstPicker
-        .locator('[data-element-list-id="hour"]')
-        .evaluate((el) => el.scrollTop);
+      const checkScrollAlignment = async (locator: any) => {
+        return await locator.evaluate((el: HTMLElement) => {
+          const list = el.parentElement!;
+          // Offset from time-picker.tsx elementListScrollToTop
+          const scrollPositionOffset = 11;
+          // Scrollposition calculation from time-picker.tsx elementListScrollToTop
+          const expected =
+            el.offsetTop -
+            list.clientHeight / 2 +
+            el.clientHeight -
+            scrollPositionOffset;
 
-      expect(newScrollTop).not.toEqual(initialScrollTop);
-
-      // Verify the scroll follows the scrollPosition calculation
-      const isScrollPositionCorrect = await firstPicker
-        .locator('[data-element-list-id="hour"]')
-        .evaluate((container) => {
-          const selectedElement = container.querySelector(
-            '[data-element-container-id="hour-6"]'
-          ) as HTMLElement;
-          const containerHeight = container.clientHeight;
-          const elementHeight = selectedElement.clientHeight;
-
-          // This should match the calculation in the elementListScrollToTop method
-          const expectedScrollPosition =
-            selectedElement.offsetTop -
-            containerHeight / 2 +
-            elementHeight -
-            11;
-
-          // Allow small differences due to rounding/margin
-          return Math.abs(container.scrollTop - expectedScrollPosition) < 5;
+          // <= 5 px tolerance
+          return Math.abs(list.scrollTop - expected) <= 5;
         });
+      };
 
-      expect(isScrollPositionCorrect).toBe(true);
+      const hourColumn = firstPicker.locator(
+        '[data-element-container-id="hour-9"]'
+      );
+      const minuteColumn = firstPicker.locator(
+        '[data-element-container-id="minute-10"]'
+      );
+      const secondColumn = firstPicker.locator(
+        '[data-element-container-id="second-11"]'
+      );
+
+      await waitForScrollAnimations(page);
+
+      expect(await checkScrollAlignment(hourColumn)).toBe(true);
+      expect(await checkScrollAlignment(minuteColumn)).toBe(true);
+      expect(await checkScrollAlignment(secondColumn)).toBe(true);
     }
   );
 });

@@ -64,6 +64,11 @@ export class Toast {
   @Prop() iconColor?: string;
 
   /**
+   * Allows to hide the icon in the toast.
+   */
+  @Prop() hideIcon: boolean = false;
+
+  /**
    * ARIA label for the close icon button
    * Will be set as aria-label on the nested HTML button element
    *
@@ -197,7 +202,7 @@ export class Toast {
             this.touched = true;
           }}
         >
-          {this.type || this.icon ? (
+          {(this.type || this.icon) && !this.hideIcon ? (
             <div class="toast-icon">{this.getIcon()}</div>
           ) : null}
           <div class="toast-content">

@@ -116,7 +116,8 @@ export const IxActionCard: StencilVueComponent<JSX.IxActionCard> = /*@__PURE__*/
   'heading',
   'subheading',
   'selected',
-  'ariaLabelCard'
+  'ariaLabelCard',
+  'passive'
 ]);
 
 
@@ -222,7 +223,8 @@ export const IxButton: StencilVueComponent<JSX.IxButton> = /*@__PURE__*/ defineC
 
 export const IxCard: StencilVueComponent<JSX.IxCard> = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', defineIxCard, [
   'variant',
-  'selected'
+  'selected',
+  'passive'
 ]);
 
 
@@ -841,6 +843,7 @@ export const IxMenu: StencilVueComponent<JSX.IxMenu> = /*@__PURE__*/ defineConta
 export const IxMenuAbout: StencilVueComponent<JSX.IxMenuAbout> = /*@__PURE__*/ defineContainer<JSX.IxMenuAbout>('ix-menu-about', defineIxMenuAbout, [
   'activeTabLabel',
   'label',
+  'ariaLabelCloseButton',
   'show',
   'tabChange',
   'close'
@@ -924,6 +927,7 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
 export const IxMenuSettings: StencilVueComponent<JSX.IxMenuSettings> = /*@__PURE__*/ defineContainer<JSX.IxMenuSettings>('ix-menu-settings', defineIxMenuSettings, [
   'activeTabLabel',
   'label',
+  'ariaLabelCloseButton',
   'show',
   'tabChange',
   'close'
@@ -1108,7 +1112,8 @@ export const IxPushCard: StencilVueComponent<JSX.IxPushCard> = /*@__PURE__*/ def
   'heading',
   'subheading',
   'variant',
-  'expanded'
+  'expanded',
+  'passive'
 ]);
 
 
@@ -1380,6 +1385,7 @@ export const IxToast: StencilVueComponent<JSX.IxToast> = /*@__PURE__*/ defineCon
   'preventAutoClose',
   'icon',
   'iconColor',
+  'hideIcon',
   'ariaLabelCloseIconButton',
   'closeToast'
 ], [
