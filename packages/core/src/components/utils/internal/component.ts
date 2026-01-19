@@ -9,7 +9,7 @@
 import type { ComponentInterface, MixedInCtor } from '@stencil/core';
 import { Mixin } from '@stencil/core';
 import { HTMLStencilElement } from '@stencil/core/internal';
-import { WithGlobalFocusVisibleListenerMixin } from './mixins/global-focus-handling.mixin';
+import { WithGlobalFocusVisibleListenerMixin } from './mixins/detect-keyboard-mode.mixin';
 
 export interface StencilLifecycle {
   hostElement?: HTMLStencilElement;

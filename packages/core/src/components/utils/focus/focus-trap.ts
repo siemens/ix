@@ -7,11 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  focusableQueryString,
-  focusElement,
-  queryElements,
-} from './focus-visible-listener';
+import { focusableQueryString, queryElements } from './focus-utilities';
 
 export interface FocusTrapResult {
   destroy: () => void;
@@ -48,12 +44,12 @@ export const addFocusTrap = (
       if (keyboardEvent.shiftKey) {
         if (activeElement === firstElement) {
           keyboardEvent.preventDefault();
-          focusElement(lastElement as HTMLElement);
+          lastElement.focus();
         }
       } else {
         if (activeElement === lastElement) {
           keyboardEvent.preventDefault();
-          focusElement(firstElement as HTMLElement);
+          firstElement.focus();
         }
       }
 

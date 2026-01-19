@@ -41,7 +41,7 @@ import {
   focusFirstDescendant,
   focusLastDescendant,
   queryElements,
-} from '../utils/focus/focus-visible-listener';
+} from '../utils/focus/focus-utilities';
 import { IxComponent } from '../utils/internal/component';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {

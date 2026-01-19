@@ -25,7 +25,6 @@ import { DateTime } from 'luxon';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-import { getFocusUtilities } from '../utils/internal';
 import { IxComponent } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
@@ -34,6 +33,7 @@ import type {
   DateDropdownOption,
   DateRangeChangeEvent,
 } from './date-dropdown.types';
+import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
 
 @Component({
   tag: 'ix-date-dropdown',
@@ -389,7 +389,7 @@ export class DateDropdown
               this.onDateSelect(this.currentRangeValue);
             }
 
-            if (show && getFocusUtilities()?.hasKeyboardMode()) {
+            if (show && hasKeyboardMode()) {
               requestAnimationFrameNoNgZone(() => {
                 const datePicker = this.datePickerRef.current!;
                 datePicker.focus();

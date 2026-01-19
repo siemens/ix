@@ -7,8 +7,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 export { IxComponentInterface } from './component';
-
-export {
-  WithGlobalFocusVisibleListenerMixin,
-  getFocusUtilities,
-} from './mixins/global-focus-handling.mixin';
+export { WithGlobalFocusVisibleListenerMixin } from './mixins/detect-keyboard-mode.mixin';

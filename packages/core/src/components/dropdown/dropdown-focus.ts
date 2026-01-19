@@ -13,7 +13,6 @@
 
 import { Build } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import { focusElement } from '../utils/focus/focus-visible-listener';
 
 const VALID_FOCUS_ELEMENTS = [
   'ix-dropdown',
@@ -80,7 +79,7 @@ const focusItem = (item: HTMLElement) => {
     }
 
     if (element) {
-      focusElement(element);
+      element.focus();
     }
   });
 };

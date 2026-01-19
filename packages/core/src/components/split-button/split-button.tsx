@@ -21,10 +21,6 @@ import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
 import type { SplitButtonVariant } from './split-button.types';
 import { makeRef } from '../utils/make-ref';
-import {
-  FocusVisibleUtility,
-  addFocusVisibleListener,
-} from '../utils/focus/focus-visible-listener';
 import { IxComponent } from '../utils/internal/component';
 
 @Component({
@@ -104,19 +100,6 @@ export class SplitButton extends IxComponent() {
   @Event() buttonClick!: EventEmitter<MouseEvent>;
 
   private readonly triggerElementRef = makeRef<HTMLElement>();
-  private focusVisibleUtility?: FocusVisibleUtility;
-
-  connectedCallback() {
-    if (this.focusVisibleUtility) {
-      this.focusVisibleUtility.destroy();
-    }
-
-    this.focusVisibleUtility = addFocusVisibleListener(this.hostElement);
-  }
-
-  disconnectedCallback() {
-    this.focusVisibleUtility?.destroy();
-  }
 
   private get isDisabledButton() {
     return this.disabled || this.disableButton;
@@ -146,12 +129,7 @@ export class SplitButton extends IxComponent() {
     };
 
     return (
-      <Host
-        class={{ 'btn-group': true, 'middle-gap': !hasOutline }}
-        onFocusout={() => {
-          this.focusVisibleUtility?.setFocus([]);
-        }}
-      >
+      <Host class={{ 'btn-group': true, 'middle-gap': !hasOutline }}>
         {this.label ? (
           <ix-button
             {...buttonAttributes}

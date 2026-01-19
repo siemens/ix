@@ -29,12 +29,6 @@ export const FOCUS_KEYS = new Set([
   'End',
 ]);
 
-export interface FocusVisibleUtility {
-  destroy: () => void;
-  setFocus: (elements: Element[]) => void;
-  hasKeyboardMode: () => boolean;
-}
-
 export function queryElements(
   dropdownElement: HTMLElement | ShadowRoot | undefined,
   query: string
@@ -72,101 +66,6 @@ export function queryElements(
 export type FocusVisibleConfig = {
   trapFocus?: boolean;
   trapFocusInShadowDom?: boolean;
-};
-
-export const addFocusVisibleListener = (
-  element?: HTMLElement,
-  config?: FocusVisibleConfig
-): FocusVisibleUtility => {
-  const trapFocus = config?.trapFocus ?? false;
-  let currentFocus: Element[] = [];
-  let keyboardMode = true;
-
-  const ref = element ? element.shadowRoot! : document;
-  const root = element ?? document.body;
-
-  const setFocus = (elements: Element[]) => {
-    currentFocus.forEach((el) => el.classList.remove(IX_FOCUSED));
-    elements.forEach((el) => el.classList.add(IX_FOCUSED));
-    currentFocus = elements;
-  };
-
-  const pointerDown = () => {
-    keyboardMode = false;
-    setFocus([]);
-  };
-
-  const onKeydown = (event: Event) => {
-    const keyboardEvent = event as KeyboardEvent;
-    keyboardMode = FOCUS_KEYS.has(keyboardEvent.key);
-    if (!keyboardMode) {
-      setFocus([]);
-    }
-
-    if (trapFocus && keyboardEvent.key === 'Tab') {
-      const focusableElements = queryElements(
-        config?.trapFocusInShadowDom ? root.shadowRoot! : root,
-        focusableQueryString
-      );
-
-      if (focusableElements.length === 0) {
-        return;
-      }
-
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-      const activeElement = ref.activeElement || document.activeElement;
-
-      if (keyboardEvent.shiftKey) {
-        if (activeElement === firstElement) {
-          keyboardEvent.preventDefault();
-          focusElement(lastElement as HTMLElement);
-        }
-      } else {
-        if (activeElement === lastElement) {
-          keyboardEvent.preventDefault();
-          focusElement(firstElement as HTMLElement);
-        }
-      }
-
-      event.stopImmediatePropagation();
-    }
-  };
-
-  const onFocusin = (ev: Event) => {
-    if (keyboardMode && ev.composedPath !== undefined) {
-      const toFocus = ev.composedPath().filter((el): el is Element => {
-        return el instanceof Element && el.classList.contains(IX_FOCUSABLE);
-      }) as Element[];
-      setFocus(toFocus);
-    }
-  };
-
-  const onFocusout = () => {
-    if (ref.activeElement === root) {
-      setFocus([]);
-    }
-  };
-
-  // ref.addEventListener('keydown', onKeydown);
-  // ref.addEventListener('focusin', onFocusin);
-  // ref.addEventListener('focusout', onFocusout);
-  // ref.addEventListener('touchstart', pointerDown, { passive: true });
-  // ref.addEventListener('mousedown', pointerDown);
-
-  const destroy = () => {
-    ref.removeEventListener('keydown', onKeydown);
-    ref.removeEventListener('focusin', onFocusin);
-    ref.removeEventListener('focusout', onFocusout);
-    ref.removeEventListener('touchstart', pointerDown);
-    ref.removeEventListener('mousedown', pointerDown);
-  };
-
-  return {
-    destroy,
-    setFocus,
-    hasKeyboardMode: () => keyboardMode,
-  };
 };
 
 export const focusFirstDescendant = <
@@ -207,21 +106,6 @@ export const getHostElement = (element: HTMLElement): HTMLElement => {
   return element;
 };
 
-export const focusElement = (element: HTMLElement) => {
-  /**
-   * If the focus element is inside a shadow DOM, the host element is focused and does not trigger any
-   * focusin events. To workaround this, we manually dispatch a focusin event on the shadow DOM element.
-   */
-  // element!.dispatchEvent(
-  //   new Event('focusin', {
-  //     bubbles: true,
-  //     composed: true,
-  //     cancelable: true,
-  //   })
-  // );
-  element.focus();
-};
-
 export const focusElementInContext = <T extends HTMLElement>(
   hostToFocus: HTMLElement | null | undefined,
   fallbackElement: T
@@ -236,7 +120,7 @@ export const focusElementInContext = <T extends HTMLElement>(
   }
 
   if (elementToFocus) {
-    focusElement(elementToFocus);
+    elementToFocus.focus();
   } else {
     fallbackElement.focus();
   }

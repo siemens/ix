@@ -28,13 +28,13 @@ import {
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import { configureKeyboardInteraction } from '../dropdown/dropdown-focus';
-import { getFocusUtilities } from '../utils/internal';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
 import { IxComponent } from '../utils/internal/component';
+import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -868,9 +868,7 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
     return (
       <Host
         onFocusin={() => {
-          if (getFocusUtilities()?.hasKeyboardMode()) {
-            this.requestCalendarFocus();
-          }
+          this.requestCalendarFocus();
         }}
       >
         <ix-date-time-card corners={this.corners} embedded={this.embedded}>
@@ -906,7 +904,7 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
                   event.stopImmediatePropagation();
 
                   const show = event.detail;
-                  if (show && getFocusUtilities()?.hasKeyboardMode()) {
+                  if (show && hasKeyboardMode()) {
                     requestAnimationFrameNoNgZone(() => {
                       const currentMonthElement = this.hostElement
                         .shadowRoot!.getElementById('month-selection')!

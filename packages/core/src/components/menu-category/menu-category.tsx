@@ -21,12 +21,12 @@ import {
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
-import { getFocusUtilities } from '../utils/internal';
 import { IxComponent } from '../utils/internal/component';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
 import { createEnterLeaveDebounce } from './enter-leave';
+import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
@@ -328,7 +328,7 @@ export class MenuCategory extends IxComponent() implements IxMenuItemBase {
             if (
               this.showItems === false &&
               dropdownShown === false &&
-              getFocusUtilities()?.hasKeyboardMode()
+              hasKeyboardMode()
             ) {
               this.hostElement.focus();
             }

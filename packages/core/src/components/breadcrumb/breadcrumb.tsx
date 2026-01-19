@@ -23,7 +23,7 @@ import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { makeRef } from '../utils/make-ref';
 import { IxComponent } from '../utils/internal/component';
-import { getFocusUtilities } from '../utils/internal';
+import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
 
 let sequenceId = 0;
 const createId = (prefix: string = 'breadcrumb-') => {
@@ -195,7 +195,7 @@ export class Breadcrumb extends IxComponent() {
 
             if (
               detail === false &&
-              getFocusUtilities()?.hasKeyboardMode() &&
+              hasKeyboardMode() &&
               this.lastKeyboardNavigation?.key === 'Tab' &&
               this.lastKeyboardNavigation.shiftKey === false
             ) {
@@ -255,7 +255,7 @@ export class Breadcrumb extends IxComponent() {
             this.isNextDropdownExpanded = detail;
             if (
               detail === false &&
-              getFocusUtilities()?.hasKeyboardMode() &&
+              hasKeyboardMode() &&
               this.lastKeyboardNavigation?.key === 'Tab' &&
               this.lastKeyboardNavigation.shiftKey === true
             ) {

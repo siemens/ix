@@ -36,10 +36,6 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import {
-  addFocusVisibleListener,
-  FocusVisibleUtility,
-} from '../utils/focus/focus-visible-listener';
 import { IxComponent } from '../utils/internal/component';
 
 let selectId = 0;
@@ -252,9 +248,6 @@ export class Select
 
   private inputElement?: HTMLInputElement;
   private keyboardNavigationCleanup?: () => void;
-
-  private focusVisibleUtility?: FocusVisibleUtility;
-
   private touched = false;
 
   get nonShadowItems() {
@@ -309,14 +302,6 @@ export class Select
 
   get isEveryDropdownItemHidden() {
     return this.items.every((item) => item.hidden === true);
-  }
-
-  connectedCallback(): void {
-    this.focusVisibleUtility = addFocusVisibleListener(this.hostElement);
-  }
-
-  disconnectedCallback(): void {
-    this.focusVisibleUtility?.destroy();
   }
 
   @Watch('value')
@@ -798,9 +783,6 @@ export class Select
           'ix-focusable': true,
           'show-focus-outline':
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
-        }}
-        onFocusout={() => {
-          this.focusVisibleUtility?.setFocus([]);
         }}
       >
         <ix-field-wrapper
