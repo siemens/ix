@@ -195,6 +195,7 @@ export namespace Components {
         /**
           * ARIA label for the menu expand icon button
           * @since 3.2.0
+          * @deprecated This prop is no longer used as the menu expand button is hidden from screen readers. Will be removed in 5.0.0
          */
         "ariaLabelMenuExpandIconButton"?: string;
         /**
@@ -2199,6 +2200,7 @@ export namespace Components {
         "i18nExpand": string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
+          * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
           * @default 'Expand sidebar'
          */
         "i18nExpandSidebar": string;
@@ -2263,6 +2265,11 @@ export namespace Components {
           * Active tab
          */
         "activeTabLabel"?: string;
+        /**
+          * Aria label for close button
+          * @default 'Close About'
+         */
+        "ariaLabelCloseButton": string;
         /**
           * Content of the header
           * @default 'About & legal information'
@@ -2378,10 +2385,11 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Accessibility label for the menu expand icon (MANDATORY)
+          * Accessibility label for the menu expand icon
+          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
           * @default 'Expand'
          */
-        "ixAriaLabel": string;
+        "ixAriaLabel"?: string;
         /**
           * Display as pinned
           * @default false
@@ -2452,6 +2460,11 @@ export namespace Components {
           * Active tab
          */
         "activeTabLabel"?: string;
+        /**
+          * Aria label for close button
+          * @default 'Close Settings'
+         */
+        "ariaLabelCloseButton": string;
         /**
           * Label of first tab
           * @default 'Settings'
@@ -3186,7 +3199,7 @@ export namespace Components {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
+          * @default ''
          */
         "value": string | string[];
         /**
@@ -6055,6 +6068,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the menu expand icon button
           * @since 3.2.0
+          * @deprecated This prop is no longer used as the menu expand button is hidden from screen readers. Will be removed in 5.0.0
          */
         "ariaLabelMenuExpandIconButton"?: string;
         /**
@@ -8180,6 +8194,7 @@ declare namespace LocalJSX {
         "i18nExpand"?: string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
+          * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
           * @default 'Expand sidebar'
          */
         "i18nExpandSidebar"?: string;
@@ -8247,6 +8262,11 @@ declare namespace LocalJSX {
           * Active tab
          */
         "activeTabLabel"?: string;
+        /**
+          * Aria label for close button
+          * @default 'Close About'
+         */
+        "ariaLabelCloseButton"?: string;
         /**
           * Content of the header
           * @default 'About & legal information'
@@ -8391,7 +8411,8 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
-          * Accessibility label for the menu expand icon (MANDATORY)
+          * Accessibility label for the menu expand icon
+          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
           * @default 'Expand'
          */
         "ixAriaLabel"?: string;
@@ -8465,6 +8486,11 @@ declare namespace LocalJSX {
           * Active tab
          */
         "activeTabLabel"?: string;
+        /**
+          * Aria label for close button
+          * @default 'Close Settings'
+         */
+        "ariaLabelCloseButton"?: string;
         /**
           * Label of first tab
           * @default 'Settings'
@@ -9252,7 +9278,7 @@ declare namespace LocalJSX {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
+          * @default ''
          */
         "value"?: string | string[];
         /**

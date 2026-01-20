@@ -1577,14 +1577,14 @@ export declare interface IxMenu extends Components.IxMenu {
 
 
 @ProxyCmp({
-  inputs: ['activeTabLabel', 'label']
+  inputs: ['activeTabLabel', 'ariaLabelCloseButton', 'label']
 })
 @Component({
   selector: 'ix-menu-about',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabLabel', 'label'],
+  inputs: ['activeTabLabel', 'ariaLabelCloseButton', 'label'],
   outputs: ['tabChange', 'close'],
   standalone: false
 })
@@ -1787,14 +1787,14 @@ export declare interface IxMenuItem extends Components.IxMenuItem {}
 
 
 @ProxyCmp({
-  inputs: ['activeTabLabel', 'label']
+  inputs: ['activeTabLabel', 'ariaLabelCloseButton', 'label']
 })
 @Component({
   selector: 'ix-menu-settings',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabLabel', 'label'],
+  inputs: ['activeTabLabel', 'ariaLabelCloseButton', 'label'],
   outputs: ['tabChange', 'close'],
   standalone: false
 })

@@ -851,6 +851,7 @@ export const IxMenu: StencilVueComponent<JSX.IxMenu> = /*@__PURE__*/ defineConta
 export const IxMenuAbout: StencilVueComponent<JSX.IxMenuAbout> = /*@__PURE__*/ defineContainer<JSX.IxMenuAbout>('ix-menu-about', defineIxMenuAbout, [
   'activeTabLabel',
   'label',
+  'ariaLabelCloseButton',
   'show',
   'tabChange',
   'close'
@@ -935,6 +936,7 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
 export const IxMenuSettings: StencilVueComponent<JSX.IxMenuSettings> = /*@__PURE__*/ defineContainer<JSX.IxMenuSettings>('ix-menu-settings', defineIxMenuSettings, [
   'activeTabLabel',
   'label',
+  'ariaLabelCloseButton',
   'show',
   'tabChange',
   'close'

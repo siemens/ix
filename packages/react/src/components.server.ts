@@ -1157,6 +1157,7 @@ export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutE
     properties: {
         activeTabLabel: 'active-tab-label',
         label: 'label',
+        ariaLabelCloseButton: 'aria-label-close-button',
         show: 'show'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1272,6 +1273,7 @@ export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenu
     properties: {
         activeTabLabel: 'active-tab-label',
         label: 'label',
+        ariaLabelCloseButton: 'aria-label-close-button',
         show: 'show'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,

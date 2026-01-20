@@ -120,7 +120,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * Current selected value.
    * This corresponds to the value property of ix-select-items
    */
-  @Prop({ mutable: true }) value: string | string[] = [];
+  @Prop({ mutable: true }) value: string | string[] = '';
 
   /**
    * Show clear button
@@ -746,8 +746,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private clear() {
     this.clearInput();
     this.selectedLabels = [];
-    this.value = [];
-    this.emitValueChange([]);
+    const emptyValue = this.isSingleMode ? '' : [];
+    this.value = emptyValue;
+    this.emitValueChange(emptyValue);
     this.dropdownShow = false;
   }
 
