@@ -45,6 +45,8 @@ import {
 } from '../utils/disposable-event-listener';
 import { ElementReference } from '../utils/element-reference';
 
+const DROPDOWN_Z_INDEX = 1001;
+
 let sequenceId = 0;
 
 @Component({
@@ -522,8 +524,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
     const isSubmenu = this.isAnchorSubmenu();
 
+    const useAbsolute = !!this.containerElement;
     let positionConfig: Partial<ComputePositionConfig> = {
-      strategy: this.positioningStrategy,
+      strategy: useAbsolute ? 'absolute' : this.positioningStrategy,
       middleware: [],
     };
 
@@ -568,13 +571,31 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
             this.hostElement,
             positionConfig
           );
-          Object.assign(this.hostElement.style, {
-            top: '0',
-            left: '0',
-            transform: `translate(${Math.round(
-              computeResponse.x
-            )}px,${Math.round(computeResponse.y)}px)`,
-          });
+
+          let x = Math.round(computeResponse.x);
+          let y = Math.round(computeResponse.y);
+
+          if (useAbsolute && this.containerElement) {
+            if (this.hostElement.parentElement !== this.containerElement) {
+              this.containerElement.appendChild(this.hostElement);
+            }
+            Object.assign(this.hostElement.style, {
+              position: 'absolute',
+              top: `${y}px`,
+              left: `${x}px`,
+              transform: '',
+              zIndex: DROPDOWN_Z_INDEX.toString(),
+              pointerEvents: 'auto',
+            });
+          } else {
+            Object.assign(this.hostElement.style, {
+              top: '0',
+              left: '0',
+              transform: `translate(${x}px,${y}px)`,
+              position: this.positioningStrategy,
+              zIndex: DROPDOWN_Z_INDEX.toString(),
+            });
+          }
         }
         if (this.overwriteDropdownStyle) {
           const overwriteStyle = await this.overwriteDropdownStyle({
