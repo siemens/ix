@@ -365,35 +365,37 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   @Watch('show')
   async changedShow(newShow: boolean) {
-    if (newShow) {
-      this.arrowFocusController = new ArrowFocusController(
-        this.dropdownItems,
-        this.hostElement,
-        (index) => this.focusDropdownItem(index)
-      );
-
-      this.itemObserver?.observe(this.hostElement, {
-        childList: true,
-        subtree: true,
-      });
-
-      this.registerKeyListener();
-
-      if (this.enableTopLayer) {
-        await this.showDropdownAsync();
-      } else {
-        await this.resolveAnchorElement();
-
-        if (this.anchorElement) {
-          this.applyDropdownPosition();
-        }
-      }
-    } else {
+    if (!newShow) {
       this.cleanupOnHide();
 
       if (this.enableTopLayer) {
         await this.hideDropdownAsync();
       }
+      return;
+    }
+
+    this.arrowFocusController = new ArrowFocusController(
+      this.dropdownItems,
+      this.hostElement,
+      (index) => this.focusDropdownItem(index)
+    );
+
+    this.itemObserver?.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+    });
+
+    this.registerKeyListener();
+
+    if (this.enableTopLayer) {
+      await this.showDropdownAsync();
+      return;
+    }
+
+    await this.resolveAnchorElement();
+
+    if (this.anchorElement) {
+      this.applyDropdownPosition();
     }
   }
 
@@ -444,7 +446,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         Object.assign(popover.style, {
           top: '0',
           left: '0',
-          transform: transform,
+          transform,
         });
       });
     }
@@ -643,29 +645,29 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           </dialog>
         </Host>
       );
-    } else {
-      return (
-        <Host
-          data-ix-dropdown={this.localUId}
-          class={{
-            'dropdown-menu': true,
-            show: this.show,
-            overflow: !this.suppressOverflowBehavior,
-          }}
-          style={{
-            margin: '0',
-            minWidth: '0px',
-            position: this.positioningStrategy,
-          }}
-          role="list"
-          onClick={(event: PointerEvent) => this.onDropdownClick(event)}
-        >
-          <div style={{ display: 'contents' }}>
-            {this.header && <div class="dropdown-header">{this.header}</div>}
-            {this.show && <slot></slot>}
-          </div>
-        </Host>
-      );
     }
+
+    return (
+      <Host
+        data-ix-dropdown={this.localUId}
+        class={{
+          'dropdown-menu': true,
+          show: this.show,
+          overflow: !this.suppressOverflowBehavior,
+        }}
+        style={{
+          margin: '0',
+          minWidth: '0px',
+          position: this.positioningStrategy,
+        }}
+        role="list"
+        onClick={(event: PointerEvent) => this.onDropdownClick(event)}
+      >
+        <div style={{ display: 'contents' }}>
+          {this.header && <div class="dropdown-header">{this.header}</div>}
+          {this.show && <slot></slot>}
+        </div>
+      </Host>
+    );
   }
 }

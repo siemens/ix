@@ -201,6 +201,86 @@ regressionTest.describe('enableTopLayer feature', () => {
         }).toPass({ timeout: 2000 });
       }
     );
+
+    regressionTest(
+      'escapes CSS stacking context - dropdown is fully visible and not hidden (enableTopLayer=true)',
+      async ({ mount, page }) => {
+        await mount(`
+        <style>
+          .container {
+            position: relative;
+            width: 300px;
+            border: 2px solid blue;
+          }
+          .row {
+            height: 40px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            position: relative;
+            overflow: hidden;
+            background: white;
+          }
+          .row-with-dropdown {
+            z-index: 100;
+          }
+          .row-overlay {
+            z-index: 200;
+            background: #f0f0f0;
+            position: relative;
+          }
+        </style>
+        
+        <div class="container">
+          <div class="row row-with-dropdown">
+            <ix-button id="trigger" size="small">Actions</ix-button>
+            <ix-dropdown 
+              id="dropdown" 
+              trigger="trigger" 
+              enable-top-layer="true"
+            >
+              <ix-dropdown-item label="Edit"></ix-dropdown-item>
+              <ix-dropdown-item label="Delete"></ix-dropdown-item>
+              <ix-dropdown-item label="Share"></ix-dropdown-item>
+              <ix-dropdown-item label="Export"></ix-dropdown-item>
+            </ix-dropdown>
+          </div>
+          <div id="overlay-row" class="row row-overlay">Row 2 (Higher z-index)</div>
+          <div class="row">Row 3</div>
+          <div class="row">Row 4</div>
+        </div>
+      `);
+
+        const trigger = page.locator('#trigger');
+        await trigger.click();
+
+        const dialog = page
+          .locator('ix-dropdown#dropdown')
+          .locator('dialog[popover="manual"]');
+        await expect(dialog).toBeVisible();
+
+        await page.waitForTimeout(100);
+
+        await expect(async () => {
+          const dialogBox = await dialog.boundingBox();
+          const overlayBox = await page.locator('#overlay-row').boundingBox();
+
+          expect(dialogBox).toBeTruthy();
+          expect(overlayBox).toBeTruthy();
+
+          const dialogBottom = dialogBox!.y + dialogBox!.height;
+          const overlayTop = overlayBox!.y;
+
+          expect(dialogBottom).toBeGreaterThan(overlayTop);
+        }).toPass({ timeout: 2000 });
+
+        // Verify dropdown items are clickable even over higher z-index elements
+        const firstItem = page.locator('ix-dropdown-item').first();
+        await expect(firstItem).toBeVisible();
+        await firstItem.click();
+      }
+    );
   });
 
   regressionTest.describe('Nested dropdowns with mixed enableTopLayer', () => {
