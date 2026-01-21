@@ -1,4 +1,5 @@
 - button "Normal"
 - button "Pressed" [pressed]
 - button "Disabled" [disabled]
-- button "Loading Loading" [disabled]
+- button "Loading Loading" [disabled]:
+  - status "Loading"

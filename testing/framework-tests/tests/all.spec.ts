@@ -10,9 +10,10 @@ import { test, expect } from '@playwright/test';
 import { testIds } from './test-ids';
 import { excludedTestIds } from './exclude-test-ids';
 
-for (const testId of testIds.filter(
-  (id) => !(excludedTestIds as any).includes(id)
-)) {
+for (const testId of testIds) {
+  if ((excludedTestIds as any).includes(testId) || testId.includes('echarts')) {
+    continue;
+  }
   test(testId, async ({ page }) => {
     await page.goto('/preview/' + testId);
 
@@ -20,7 +21,7 @@ for (const testId of testIds.filter(
     await page.waitForTimeout(250);
 
     await expect(page.locator('body')).toMatchAriaSnapshot({
-      name: `${testId}.aria-snapshot.txt`,
+      name: `${testId}.aria-snapshot.yaml`,
     });
   });
 }

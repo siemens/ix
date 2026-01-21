@@ -4,39 +4,45 @@
   - img
 - button [disabled]:
   - img
-- button [disabled]
+- button "Loading" [disabled]:
+  - status "Loading"
 - button:
   - img
 - button [pressed]:
   - img
 - button [disabled]:
   - img
-- button [disabled]
+- button "Loading" [disabled]:
+  - status "Loading"
 - button:
   - img
 - button [pressed]:
   - img
 - button [disabled]:
   - img
-- button [disabled]
+- button "Loading" [disabled]:
+  - status "Loading"
 - button:
   - img
 - button [pressed]:
   - img
 - button [disabled]:
   - img
-- button [disabled]
+- button "Loading" [disabled]:
+  - status "Loading"
 - button:
   - img
 - button [pressed]:
   - img
 - button [disabled]:
   - img
-- button [disabled]
+- button "Loading" [disabled]:
+  - status "Loading"
 - button:
   - img
 - button [pressed]:
   - img
 - button [disabled]:
   - img
-- button [disabled]
+- button "Loading" [disabled]:
+  - status "Loading"
