@@ -1,4 +1,4 @@
 - text: /\d+\.\d+ °C Tile header \d+\.\d+ °C Tile header/
-- button "Unknown"
+- button "Context Menu"
 - text: /Temperature \d+\.\d+ °C/
 - button "Details"
