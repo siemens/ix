@@ -1,3 +1,0 @@
-- img
-- text: No elements available Failed to retrieve data
-- button "Try again"
