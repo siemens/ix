@@ -7,9 +7,11 @@
   "scripts": {
     "start": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host 127.0.0.1",
     "test.setup": "playwright install chromium --with-deps",
-    "test": "vitest --config=vitest.config.ts run",
+    "test.vitest": "vitest --config=vitest.config.ts run",
+    "test.framework": "playwright test",
+    "test": "pnpm run test.vitest && pnpm run test.framework",
     "test.watch": "vitest --config=vitest.config.ts"
   },
   "dependencies": {
@@ -29,13 +31,15 @@
     "vue-echarts": "~6.6.10"
   },
   "devDependencies": {
+    "@playwright/test": "catalog:",
     "@testing-library/vue": "^8.1.0",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.32",
-    "@vitejs/plugin-vue": "^6.0.0",
     "@vitejs/plugin-vue-jsx": "^5.0.0",
+    "@vitejs/plugin-vue": "^6.0.0",
     "@vitest/browser": "^3.2.4",
     "@vue/tsconfig": "^0.7.0",
+    "framework-tests": "workspace:*",
     "playwright": "^1.54.1",
     "typescript": "~5.8.0",
     "vite": "catalog:",
