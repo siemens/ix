@@ -374,7 +374,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   ): HTMLElement | null {
     let el = element;
     while (el) {
-      const style = window.getComputedStyle(el);
+      const style = globalThis.getComputedStyle(el);
       const overflowY = style.overflowY;
       if (
         (overflowY === 'auto' || overflowY === 'scroll') &&
