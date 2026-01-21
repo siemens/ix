@@ -633,10 +633,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
               overflow: !this.suppressOverflowBehavior,
             }}
             popover="manual"
-            aria-modal="false"
+            aria-modal="true"
+            aria-label={this.header}
             tabindex={-1}
             onClick={(event: PointerEvent) => this.onDropdownClick(event)}
-            onKeyDown={() => {}}
           >
             <div class="dropdown-container">
               {this.header && <div class="dropdown-header">{this.header}</div>}

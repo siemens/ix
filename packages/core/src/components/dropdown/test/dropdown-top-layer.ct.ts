@@ -16,16 +16,18 @@ regressionTest.describe('enableTopLayer feature', () => {
       async ({ mount, page }) => {
         await mount(`
         <ix-button id="trigger">Open</ix-button>
-        <ix-dropdown id="dropdown" trigger="trigger" enable-top-layer="true">
+        <ix-dropdown id="dropdown" trigger="trigger" enable-top-layer="true" header="Menu">
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown>
       `);
 
-        const dropdown = page.locator('ix-dropdown#dropdown');
-
-        const dialog = dropdown.locator('dialog[popover="manual"]');
+        const dialog = page.locator(
+          'ix-dropdown#dropdown dialog[popover="manual"]'
+        );
         await expect(dialog).toBeAttached();
+        await expect(dialog).toHaveAttribute('aria-modal', 'true');
+        await expect(dialog).toHaveAttribute('aria-label', 'Menu');
       }
     );
 
@@ -34,15 +36,14 @@ regressionTest.describe('enableTopLayer feature', () => {
       async ({ mount, page }) => {
         await mount(`
         <ix-button id="trigger">Open</ix-button>
-        <ix-dropdown id="dropdown" trigger="trigger" enable-top-layer="true">
+        <ix-dropdown id="dropdown" trigger="trigger" enable-top-layer="true" header="Menu">
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown>
       `);
 
-        const trigger = page.locator('#trigger');
-        const dropdown = page.locator('ix-dropdown#dropdown');
-        const dialog = dropdown.locator('dialog[popover="manual"]');
+        const trigger = page.getByRole('button', { name: 'Open' });
+        const dialog = page.getByRole('dialog');
 
         await expect(dialog).not.toBeVisible();
 
@@ -57,15 +58,14 @@ regressionTest.describe('enableTopLayer feature', () => {
     regressionTest('Escape key closes dropdown', async ({ mount, page }) => {
       await mount(`
         <ix-button id="trigger">Open</ix-button>
-        <ix-dropdown id="dropdown" trigger="trigger" enable-top-layer="true">
+        <ix-dropdown id="dropdown" trigger="trigger" enable-top-layer="true" header="Menu">
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown>
       `);
 
-      const trigger = page.locator('#trigger');
-      const dropdown = page.locator('ix-dropdown#dropdown');
-      const dialog = dropdown.locator('dialog[popover="manual"]');
+      const trigger = page.getByRole('button', { name: 'Open' });
+      const dialog = page.getByRole('dialog', { name: 'Menu' });
 
       await trigger.click();
       await expect(dialog).toBeVisible();
@@ -84,6 +84,7 @@ regressionTest.describe('enableTopLayer feature', () => {
           trigger="trigger" 
           enable-top-layer="true"
           suppress-overflow-behavior="true"
+          header="Menu"
         >
           ${Array.from(
             { length: 20 },
@@ -92,13 +93,10 @@ regressionTest.describe('enableTopLayer feature', () => {
         </ix-dropdown>
       `);
 
-        const trigger = page.locator('#trigger');
+        const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page
-          .locator('ix-dropdown#dropdown')
-          .locator('dialog[popover="manual"]');
-
+        const dialog = page.getByRole('dialog');
         await expect(dialog).not.toHaveClass(/overflow/);
       }
     );
@@ -113,6 +111,7 @@ regressionTest.describe('enableTopLayer feature', () => {
           trigger="trigger" 
           enable-top-layer="true"
           suppress-overflow-behavior="false"
+          header="Menu"
         >
           ${Array.from(
             { length: 20 },
@@ -121,13 +120,10 @@ regressionTest.describe('enableTopLayer feature', () => {
         </ix-dropdown>
       `);
 
-        const trigger = page.locator('#trigger');
+        const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page
-          .locator('ix-dropdown#dropdown')
-          .locator('dialog[popover="manual"]');
-
+        const dialog = page.getByRole('dialog');
         await expect(dialog).toHaveClass(/overflow/);
       }
     );
@@ -142,21 +138,20 @@ regressionTest.describe('enableTopLayer feature', () => {
           trigger="trigger" 
           enable-top-layer="true"
           close-behavior="both"
+          header="Menu"
         >
           <ix-dropdown-item id="item-1" label="Item 1"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown>
       `);
 
-        const trigger = page.locator('#trigger');
+        const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page
-          .locator('ix-dropdown#dropdown')
-          .locator('dialog[popover="manual"]');
+        const dialog = page.getByRole('dialog');
         await expect(dialog).toBeVisible();
 
-        const item = page.locator('#item-1');
+        const item = page.locator('ix-dropdown-item').first();
         await item.click();
 
         await expect(dialog).not.toBeVisible();
@@ -174,18 +169,17 @@ regressionTest.describe('enableTopLayer feature', () => {
           id="dropdown" 
           trigger="trigger" 
           enable-top-layer="true"
+          header="Menu"
         >
           <ix-dropdown-item label="Item 1"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown>
       `);
 
-        const trigger = page.locator('#trigger');
+        const trigger = page.getByRole('button', { name: 'Open' });
         await trigger.click();
 
-        const dialog = page
-          .locator('ix-dropdown#dropdown')
-          .locator('dialog[popover="manual"]');
+        const dialog = page.getByRole('dialog');
         await expect(dialog).toBeVisible();
 
         await page.waitForTimeout(100);
@@ -239,6 +233,7 @@ regressionTest.describe('enableTopLayer feature', () => {
               id="dropdown" 
               trigger="trigger" 
               enable-top-layer="true"
+              header="Actions"
             >
               <ix-dropdown-item label="Edit"></ix-dropdown-item>
               <ix-dropdown-item label="Delete"></ix-dropdown-item>
@@ -252,12 +247,10 @@ regressionTest.describe('enableTopLayer feature', () => {
         </div>
       `);
 
-        const trigger = page.locator('#trigger');
+        const trigger = page.getByRole('button', { name: 'Actions' });
         await trigger.click();
 
-        const dialog = page
-          .locator('ix-dropdown#dropdown')
-          .locator('dialog[popover="manual"]');
+        const dialog = page.getByRole('dialog');
         await expect(dialog).toBeVisible();
 
         await page.waitForTimeout(100);
@@ -293,13 +286,13 @@ regressionTest.describe('enableTopLayer feature', () => {
           <ix-dropdown-item id="trigger-2">Item 1</ix-dropdown-item>
         </ix-dropdown>
 
-        <ix-dropdown id="dropdown-2" trigger="trigger-2" enable-top-layer="true">
+        <ix-dropdown id="dropdown-2" trigger="trigger-2" enable-top-layer="true" header="Submenu">
           <ix-dropdown-item>Item 1.1</ix-dropdown-item>
           <ix-dropdown-item>Item 1.2</ix-dropdown-item>
         </ix-dropdown>
       `);
 
-        const trigger1 = page.locator('#trigger-1');
+        const trigger1 = page.getByRole('button', { name: 'Trigger 1' });
         await trigger1.click();
 
         const dropdown1 = page.locator('.dropdown-menu.show').first();
@@ -308,9 +301,7 @@ regressionTest.describe('enableTopLayer feature', () => {
         const trigger2 = page.locator('#trigger-2');
         await trigger2.click();
 
-        const dropdown2Dialog = page.locator(
-          '#dropdown-2 dialog[popover="manual"]'
-        );
+        const dropdown2Dialog = page.getByRole('dialog');
         await expect(dropdown2Dialog).toBeVisible();
       }
     );
