@@ -53,6 +53,9 @@ jobs:
               - packages/angular-test-app/**
               - packages/react-test-app/**
               - packages/vue-test-app/**
+            accessibility:
+              - packages/storybook-docs/**
+              - packages/core/**
   build:
     needs: changes
     runs-on: ubuntu-latest
@@ -150,7 +153,7 @@ jobs:
       - uses: ./.github/workflows/actions/unit
 
   accessibility:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.accessibility_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
