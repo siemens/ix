@@ -232,12 +232,13 @@ import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-
 import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.vue';
 import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.vue';
 import ProgressIndicator from './preview-examples/progress-indicator.vue';
+import { testIds } from 'framework-tests/tests/test-ids';
 
 const exampleNames = [...testIds, ...'validation'] as const;
 type IxPreviewRoutes = {
-  '/': React.ComponentType;
+  '/': any;
 } & {
-  [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
+  [K in (typeof exampleNames)[number] as `/preview/${K}`]: any;
 };
 
 const routes: IxPreviewRoutes = {
@@ -469,9 +470,8 @@ const routes: IxPreviewRoutes = {
 };
 
 const currentPath = ref(window.location.pathname);
-
 const currentView = computed(() => {
-  return routes[currentPath.value || '/'] || App;
+  return (routes as any)[currentPath.value || '/'] || App;
 });
 </script>
 
