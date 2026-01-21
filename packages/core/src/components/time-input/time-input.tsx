@@ -22,12 +22,12 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { dropdownController } from '../dropdown/dropdown-controller';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -35,10 +35,17 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { IxTimePickerCustomEvent } from '../../components';
 import type { TimeInputValidityState } from './time-input.types';
+import {
+  closeDropdown as closeDropdownUtil,
+  createValidityState,
+  handleIconClick,
+  openDropdown as openDropdownUtil,
+} from '../utils/input/picker-input.util';
 
 /**
  * @since 3.2.0
@@ -77,7 +84,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   /**
    * Format of time string
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'TT';
 
@@ -195,6 +202,24 @@ export class TimeInput implements IxInputFieldComponent<string> {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
+   * Hides the header of the picker.
+   *
+   * @since 4.0.0
+   */
+  @Prop() hideHeader: boolean = false;
+
+  /**
+   * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -231,6 +256,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  private handleInputKeyDown(event: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      event,
+      this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
+  }
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -324,49 +357,23 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   onTimeIconClick(event: Event) {
-    if (!this.show) {
-      event.stopPropagation();
-      event.preventDefault();
-      this.openDropdown();
-    }
-
-    if (this.inputElementRef.current) {
-      this.inputElementRef.current.focus();
-    }
+    handleIconClick(
+      event,
+      this.show,
+      () => this.openDropdown(),
+      this.inputElementRef
+    );
   }
 
   async openDropdown() {
     // keep picker in sync with input
     this.time = this.value;
 
-    const dropdownElement = await this.dropdownElementRef.waitForCurrent();
-    const id = dropdownElement.getAttribute('data-ix-dropdown');
-
-    dropdownController.dismissAll();
-    if (!id) {
-      return;
-    }
-
-    const dropdown = dropdownController.getDropdownById(id);
-    if (!dropdown) {
-      return;
-    }
-    dropdownController.present(dropdown);
+    return openDropdownUtil(this.dropdownElementRef);
   }
 
   async closeDropdown() {
-    const dropdownElement = await this.dropdownElementRef.waitForCurrent();
-    const id = dropdownElement.getAttribute('data-ix-dropdown');
-
-    if (!id) {
-      return;
-    }
-
-    const dropdown = dropdownController.getDropdownById(id);
-    if (!dropdown) {
-      return;
-    }
-    dropdownController.dismiss(dropdown);
+    return closeDropdownUtil(this.dropdownElementRef);
   }
 
   private checkClassList() {
@@ -384,6 +391,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
+          }}
+          style={{
+            textAlign: this.textAlignment,
           }}
           disabled={this.disabled}
           readOnly={this.readonly}
@@ -411,6 +421,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             this.ixBlur.emit();
             this.touched = true;
           }}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -419,7 +430,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
           <ix-icon-button
             data-testid="open-time-picker"
             class={{ 'time-icon-hidden': this.disabled || this.readonly }}
-            ghost
+            variant="subtle-tertiary"
             icon={iconClock}
             onClick={(event) => this.onTimeIconClick(event)}
             aria-label="Toggle time picker"
@@ -456,19 +467,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /** @internal */
   @Method()
   getValidityState(): Promise<ValidityState> {
-    return Promise.resolve({
-      badInput: false,
-      customError: false,
-      patternMismatch: this.isInputInvalid,
-      rangeOverflow: false,
-      rangeUnderflow: false,
-      stepMismatch: false,
-      tooLong: false,
-      tooShort: false,
-      typeMismatch: false,
-      valid: !this.isInputInvalid,
-      valueMissing: !!this.required && !this.value,
-    });
+    return Promise.resolve(
+      createValidityState(this.isInputInvalid, !!this.required, this.value)
+    );
   }
 
   /**
@@ -497,9 +498,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorTimeUnparsable
-      : this.invalidText;
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorTimeUnparsable
+    );
 
     return (
       <Host
@@ -544,7 +547,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
             minuteInterval={this.minuteInterval}
             secondInterval={this.secondInterval}
             millisecondInterval={this.millisecondInterval}
-            standaloneAppearance={false}
+            embedded
+            hideHeader={this.hideHeader}
             i18nConfirmTime={this.i18nSelectTime}
             i18nHeader={this.i18nTime}
             i18nHourColumnHeader={this.i18nHourColumnHeader}

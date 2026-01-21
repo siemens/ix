@@ -7,17 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/text-truncation';
-@import 'mixins/hover';
-@import './../button/button-mixin';
-@import 'mixins/scrollbar';
+@use './common-variables' as vars;
+@use './../button/button-mixin';
+@use 'mixins/text-truncation';
+@use 'mixins/hover';
+@use 'mixins/scrollbar';
 
 :host {
-  @include scrollbar();
   display: flex;
   position: relative;
   width: fit-content;
+
+  @include scrollbar.scrollbar();
 
   .avatar {
     display: flex;
@@ -42,6 +43,11 @@
       border-radius: 100px;
       background-color: var(--theme-avatar--background);
       color: var(--theme-avatar--color);
+
+      > ix-typography {
+        // Fix to get the text vertically centered
+        margin-top: 1px;
+      }
     }
 
     #avatar-path-background {
@@ -49,7 +55,7 @@
     }
 
     #avatar-path-person {
-      fill:var(--theme-avatar--color);
+      fill: var(--theme-avatar--color);
     }
   }
 }
@@ -98,13 +104,16 @@
 
 :host(.avatar-button) {
   button {
-    @include btn-base;
-    padding: 0px;
-
     border-radius: 100px !important;
+
+    @include button-mixin.btn-base;
+
+    & {
+      padding: 0px;
+    }
   }
 
-  @include btn-base-variant('invisible-primary', false);
+  @include button-mixin.btn-base-variant('tertiary');
 
   .avatar {
     transform: scale(0.8);

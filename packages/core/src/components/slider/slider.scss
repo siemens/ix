@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
+@use 'mixins/shadow-dom/component';
 
 @mixin track {
   // Chrome, Safari, Opera, and Edge Chromium
@@ -88,20 +88,25 @@
 }
 
 :host {
-  @include ix-component;
   display: flex;
   flex-direction: column;
   min-height: 2rem;
+
+  // Slider specific calculations
   --thumb-size: 1rem;
   --value: 0;
   --trace-start: 0;
   --trace-end: 0;
   --trace-reference: 0;
-  --trace-reference-color: var(--theme-color-8);
-  --trace-color: var(--theme-color-dynamic);
-  --tick-color: var(--theme-color-8);
-  --tick-color--active: var(--theme-color-dynamic);
-  --track-color: var(--theme-color-component-4);
+
+  // Theme colors:
+  --trace-reference-color: var(--theme-slider-track-marker--background);
+  --trace-color: var(--theme-slider-trace--background);
+  --tick-color: var(--theme-slider-track-marker--background);
+  --tick-color--active: var(--theme-slider-trace-marker--background);
+  --track-color: var(--theme-slider-track--background);
+
+  @include component.ix-component;
 
   input[type='range'] {
     position: absolute;
@@ -166,7 +171,7 @@
 
   @include thumb() {
     border-radius: 100px;
-    background-color: var(--theme-color-dynamic);
+    background-color: var(--theme-slider-thumb--background);
     height: var(--thumb-size);
     width: var(--thumb-size);
     transition: all var(--theme-default-time) ease-in-out;
@@ -175,13 +180,13 @@
 
   @include thumb-hover() {
     transform: scale(1.2);
-    background-color: var(--theme-color-dynamic);
+    background-color: var(--theme-slider-thumb--background--hover);
   }
 
   @include thumb-active() {
     transform: scale(1.2);
 
-    background-color: var(--theme-color-dynamic);
+    background-color: var(--theme-slider-thumb--background--active);
   }
 
   @include thumb-focus() {
@@ -271,23 +276,31 @@
 }
 
 :host(.error) {
-  --trace-color: var(--theme-color-alarm-40);
-  --tick-color--active: var(--theme-color-alarm);
+  --trace-color: var(--theme-slider-trace--background--invalid);
+  --tick-color--active: var(--theme-slider-trace-marker--background--invalid);
 
-  @include thumb() {
-    background-color: var(--theme-color-alarm);
+  @include thumb {
+    background-color: var(--theme-slider-thumb--background--invalid);
+  }
+
+  @include thumb-hover() {
+    background-color: var(--theme-slider-thumb--background--invalid--hover);
+  }
+
+  @include thumb-active() {
+    background-color: var(--theme-slider-thumb--background--invalid--active);
   }
 }
 
 :host(.disabled) {
   pointer-events: none;
 
-  --track-color: var(--theme-color-component-3);
-  --trace-color: var(--theme-color-3);
-  --tick-color: var(--theme-color-7);
-  --tick-color--active: var(--theme-color-7);
+  --track-color: var(--theme-slider-track--background--disabled);
+  --trace-color: var(--theme-slider-trace--background--disabled);
+  --tick-color: var(--theme-slider-track-marker--background--disabled);
+  --tick-color--active: var(--theme-slider-trace-marker--background--disabled);
 
-  @include thumb() {
-    background-color: var(--theme-color-7);
+  @include thumb {
+    background-color: var(--theme-slider-thumb--background--disabled);
   }
 }

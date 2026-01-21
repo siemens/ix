@@ -21,18 +21,40 @@ LICENSE file in the root directory of this source tree.
         margin: 0.25rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconBulb, iconStar } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconBulb,
+        iconStar,
+      });
+    </script>
   </head>
   <body>
     <div>
-      <ix-toggle-button outline>Normal</ix-toggle-button>
-      <ix-toggle-button outline pressed>Pressed</ix-toggle-button>
-      <ix-toggle-button disabled outline>Disabled</ix-toggle-button>
-      <ix-toggle-button ghost outline="false"> Normal </ix-toggle-button>
-      <ix-toggle-button ghost pressed> Pressed</ix-toggle-button>
-      <ix-toggle-button disabled ghost> Disabled</ix-toggle-button>
+      <ix-toggle-button variant="subtle-secondary">Normal</ix-toggle-button>
+      <ix-toggle-button variant="subtle-secondary" pressed
+        >Pressed</ix-toggle-button
+      >
+      <ix-toggle-button disabled variant="subtle-secondary"
+        >Disabled</ix-toggle-button
+      >
+      <ix-toggle-button variant="subtle-tertiary"> Normal </ix-toggle-button>
+      <ix-toggle-button variant="subtle-tertiary" pressed>
+        Pressed</ix-toggle-button
+      >
+      <ix-toggle-button disabled variant="subtle-tertiary">
+        Disabled</ix-toggle-button
+      >
       <ix-toggle-button> Normal</ix-toggle-button>
       <ix-toggle-button pressed> Pressed</ix-toggle-button>
       <ix-toggle-button disabled> Disabled</ix-toggle-button>
+    </div>
+
+    <div>
+      <ix-toggle-button icon="star">Normal</ix-toggle-button>
+      <ix-toggle-button icon="star" icon-right="bulb">Pressed</ix-toggle-button>
     </div>
 
     <div>
@@ -41,18 +63,14 @@ LICENSE file in the root directory of this source tree.
         Pressed (primary)
       </ix-toggle-button>
 
-      <ix-toggle-button variant="primary" outline> Normal</ix-toggle-button>
-      <ix-toggle-button variant="primary" outline pressed>
-        Pressed
-      </ix-toggle-button>
-      <ix-toggle-button variant="primary" outline disabled>
+      <ix-toggle-button variant="secondary"> Normal</ix-toggle-button>
+      <ix-toggle-button variant="secondary" pressed> Pressed </ix-toggle-button>
+      <ix-toggle-button variant="secondary" disabled>
         Disabled
       </ix-toggle-button>
-      <ix-toggle-button variant="primary" ghost> Normal</ix-toggle-button>
-      <ix-toggle-button variant="primary" ghost pressed>
-        Pressed
-      </ix-toggle-button>
-      <ix-toggle-button variant="primary" ghost disabled>
+      <ix-toggle-button variant="tertiary"> Normal</ix-toggle-button>
+      <ix-toggle-button variant="tertiary" pressed> Pressed </ix-toggle-button>
+      <ix-toggle-button variant="tertiary" disabled>
         Disabled
       </ix-toggle-button>
     </div>

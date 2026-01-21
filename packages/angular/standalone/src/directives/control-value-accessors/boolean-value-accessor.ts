@@ -17,7 +17,6 @@ import {
  * Value Accessor for ix-checkbox and ix-toggle
  */
 @Directive({
-  standalone: true,
   selector: 'ix-checkbox,ix-toggle',
   providers: [createValueAccessorProvider(IxBooleanValueAccessorDirective)],
 })

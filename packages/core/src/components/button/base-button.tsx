@@ -6,28 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import { ButtonVariant } from './button';
+import { AnchorInterface } from './button.interface';
 
 export type ButtonAlignment = 'center' | 'start';
 
-const isDanger = (variant: string) => {
-  return variant.toUpperCase() === 'Danger'.toUpperCase();
-};
-
-const isPrimary = (variant: string) => {
-  return variant.toUpperCase() === 'Primary'.toUpperCase();
-};
-
-const isSecondary = (variant: string) => {
-  return variant.toUpperCase() === 'Secondary'.toUpperCase();
-};
-
 export const getButtonClasses = (
   variant: ButtonVariant,
-  outline: boolean,
-  ghost: boolean,
   iconOnly = false,
   iconOval = false,
   selected: boolean,
@@ -35,15 +23,7 @@ export const getButtonClasses = (
 ) => {
   return {
     btn: true,
-    'btn-danger': isDanger(variant) && !outline && !ghost,
-    'btn-outline-danger': isDanger(variant) && outline && !ghost,
-    'btn-invisible-danger': isDanger(variant) && !outline && ghost,
-    'btn-primary': isPrimary(variant) && !outline && !ghost,
-    'btn-outline-primary': isPrimary(variant) && outline && !ghost,
-    'btn-invisible-primary': isPrimary(variant) && !outline && ghost,
-    'btn-secondary': isSecondary(variant) && !outline && !ghost,
-    'btn-outline-secondary': isSecondary(variant) && outline && !ghost,
-    'btn-invisible-secondary': isSecondary(variant) && !outline && ghost,
+    [`btn-${variant}`]: true,
     'btn-icon': iconOnly,
     'btn-oval': iconOval,
     selected: selected,
@@ -54,14 +34,13 @@ export const getButtonClasses = (
 export type BaseButtonProps = {
   type: string;
   variant: ButtonVariant;
-  outline: boolean;
-  ghost: boolean;
   iconOnly: boolean;
   iconOval: boolean;
   selected: boolean;
   disabled: boolean;
   loading: boolean;
   icon?: string;
+  iconRight?: string;
   onClick?: Function;
   ariaAttributes?: A11yAttributes;
   extraClasses?: { [key: string]: boolean };
@@ -70,7 +49,7 @@ export type BaseButtonProps = {
   alignment?: ButtonAlignment;
   tabIndex?: number;
   afterContent?: any;
-};
+} & AnchorInterface;
 
 const getSpinnerSize = (btnProps: BaseButtonProps) => {
   if (!btnProps.icon) {
@@ -87,6 +66,28 @@ const getSpinnerSize = (btnProps: BaseButtonProps) => {
   }
 };
 
+const handleOnClick = (e: Event, props: BaseButtonProps) => {
+  if (props.disabled || props.loading) {
+    e.preventDefault();
+    e.stopPropagation();
+    return;
+  }
+  if (props.onClick) {
+    props.onClick(e);
+  }
+};
+
+const isIconDecorative = (
+  ariaAttributes: A11yAttributes,
+  children: any
+): boolean => {
+  const hasTextContent = children && children.length > 0;
+  const hasAriaLabel = !!(
+    ariaAttributes['aria-label'] || ariaAttributes['aria-labelledby']
+  );
+  return hasTextContent || hasAriaLabel;
+};
+
 export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   props: BaseButtonProps,
   children
@@ -98,45 +99,80 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     ariaAttributes['aria-disabled'] = 'true';
   }
 
-  return (
-    <button
-      {...ariaAttributes}
-      onClick={(e: Event) => (props.onClick ? props.onClick(e) : undefined)}
-      tabindex={props.disabled ? -1 : (props.tabIndex ?? 0)}
-      type={props.type}
+  const iconIsDecorative = isIconDecorative(ariaAttributes, children);
+
+  const commonAttributes = {
+    ...ariaAttributes,
+    tabindex: props.disabled ? -1 : (props.tabIndex ?? 0),
+    class: {
+      ...getButtonClasses(
+        props.variant,
+        props.iconOnly,
+        props.iconOval,
+        props.selected,
+        props.disabled || props.loading
+      ),
+      ...extraClasses,
+    },
+  };
+
+  const buttonContent = [
+    props.loading ? (
+      <ix-spinner size={getSpinnerSize(props)} hideTrack></ix-spinner>
+    ) : null,
+    props.icon && !props.loading ? (
+      <ix-icon
+        class="icon"
+        name={props.icon}
+        size={props.iconSize as any}
+        color={props.iconColor}
+        aria-hidden={iconIsDecorative ? 'true' : undefined}
+      ></ix-icon>
+    ) : null,
+    <div
       class={{
-        ...getButtonClasses(
-          props.variant,
-          props.outline,
-          props.ghost,
-          props.iconOnly,
-          props.iconOval,
-          props.selected,
-          props.disabled || props.loading
-        ),
-        ...extraClasses,
+        content: true,
+        [`content-${props.alignment}`]: !!props.alignment,
       }}
     >
-      {props.loading ? (
-        <ix-spinner size={getSpinnerSize(props)} hideTrack></ix-spinner>
-      ) : null}
-      {props.icon && !props.loading ? (
-        <ix-icon
-          class="icon"
-          name={props.icon}
-          size={props.iconSize as any}
-          color={props.iconColor}
-        ></ix-icon>
-      ) : null}
-      <div
-        class={{
-          content: true,
-          [`content-${props.alignment}`]: !!props.alignment,
-        }}
+      {children}
+    </div>,
+    props.iconRight ? (
+      <ix-icon
+        class="icon-right"
+        name={props.iconRight}
+        size={props.iconSize as any}
+        color={props.iconColor}
+        aria-hidden={iconIsDecorative ? 'true' : undefined}
+      ></ix-icon>
+    ) : null,
+    props.afterContent ? props.afterContent : null,
+  ];
+
+  // If href is provided, render as an anchor tag
+  if (props.href) {
+    return (
+      <a
+        {...commonAttributes}
+        href={props.disabled ? undefined : props.href}
+        target={props.target}
+        role="button"
+        rel={props.rel}
+        onClick={(e: Event) => handleOnClick(e, props)}
       >
-        {children}
-      </div>
-      {props.afterContent ? props.afterContent : null}
+        {buttonContent}
+      </a>
+    );
+  }
+
+  // Otherwise, render as a button
+  return (
+    <button
+      {...commonAttributes}
+      onClick={(e: Event) => handleOnClick(e, props)}
+      type={props.type}
+    >
+      {buttonContent}
     </button>
   );
 };

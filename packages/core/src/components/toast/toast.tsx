@@ -14,6 +14,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Method,
   Prop,
   State,
 } from '@stencil/core';
@@ -50,7 +51,7 @@ export class Toast {
   /**
    * Autoclose behavior
    */
-  @Prop() autoClose = true;
+  @Prop() preventAutoClose = false;
 
   /**
    * Icon of toast
@@ -61,6 +62,11 @@ export class Toast {
    * Icon color of toast
    */
   @Prop() iconColor?: string;
+
+  /**
+   * Allows to hide the icon in the toast.
+   */
+  @Prop() hideIcon: boolean = false;
 
   /**
    * ARIA label for the close icon button
@@ -77,6 +83,7 @@ export class Toast {
 
   @State() progress = 0;
   @State() touched = false;
+  @State() paused = false;
 
   @Element() hostElement!: HTMLIxToastElement;
 
@@ -124,12 +131,13 @@ export class Toast {
         );
 
       case 'warning':
+        //TODO(IX-3400): Replace icon colors with proper CSS variables when available
         return (
           <ix-icon
             data-testid="toast-icon"
             name={iconWarning}
             size="24"
-            color="color-warning"
+            color="color-warning-text"
           />
         );
 
@@ -147,6 +155,30 @@ export class Toast {
     }, 250);
   }
 
+  /**
+   * Pause the toast's auto-close progress bar and timer.
+   */
+  @Method()
+  async pause() {
+    this.paused = true;
+  }
+
+  /**
+   * Resume the toast's auto-close progress bar and timer if previously paused.
+   */
+  @Method()
+  async resume() {
+    this.paused = false;
+  }
+
+  /**
+   * Returns whether the toast is currently paused (auto-close is paused).
+   */
+  @Method()
+  async isPaused(): Promise<boolean> {
+    return this.paused || this.touched;
+  }
+
   render() {
     let progressBarStyle: Record<string, string> = {};
 
@@ -154,7 +186,7 @@ export class Toast {
 
     progressBarStyle = {
       animationDuration: `${this.autoCloseDelay}ms`,
-      animationPlayState: this.touched ? 'paused' : 'running',
+      animationPlayState: this.touched || this.paused ? 'paused' : 'running',
     };
 
     progressBarClass.push('toast-progress-bar--animated');
@@ -170,7 +202,7 @@ export class Toast {
             this.touched = true;
           }}
         >
-          {this.type || this.icon ? (
+          {(this.type || this.icon) && !this.hideIcon ? (
             <div class="toast-icon">{this.getIcon()}</div>
           ) : null}
           <div class="toast-content">
@@ -189,14 +221,15 @@ export class Toast {
           <div class="toast-close">
             <ix-icon-button
               icon={iconClose}
+              iconColor="color-soft-text"
               size="24"
-              ghost
+              variant="tertiary"
               onClick={() => this.closeToast.emit()}
               aria-label={this.ariaLabelCloseIconButton}
             />
           </div>
         </div>
-        {this.autoClose ? (
+        {!this.preventAutoClose && (
           <div
             class={progressBarClass.join(' ')}
             style={progressBarStyle}
@@ -209,7 +242,7 @@ export class Toast {
               }
             }}
           ></div>
-        ) : null}
+        )}
       </Host>
     );
   }

@@ -10,6 +10,7 @@
 import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
+import { componentUsagePlugin } from './tools/component-usage';
 
 const __dirname = path.resolve();
 
@@ -19,7 +20,7 @@ const entryPoints = fs
   .readdirSync(previewPath)
   .filter((f) => f.endsWith('.html'));
 
-const input = {};
+const input: Record<string, string> = {};
 
 entryPoints.forEach((file) => {
   const name = file.replace('.html', '');
@@ -41,6 +42,7 @@ export default defineConfig(() => {
       __THEME__: JSON.stringify(additionalTheme),
     },
     build: {
+      target: 'es2022',
       emptyOutDir: true,
       minify: false,
       rollupOptions: {
@@ -51,6 +53,6 @@ export default defineConfig(() => {
       },
       outDir: path.join(__dirname, 'dist'),
     },
-    plugins: [],
+    plugins: [componentUsagePlugin()],
   };
 });

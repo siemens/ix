@@ -11,8 +11,8 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
 import {
-  getFallbackLabelFromIconName,
   a11yHostAttributes,
+  getFallbackLabelFromIconName,
 } from '../utils/a11y';
 import type { IconButtonVariant } from './icon-button.types';
 
@@ -28,24 +28,14 @@ export class IconButton {
    * Accessibility label for the icon button
    * Will be set as aria-label on the nested HTML button element
    *
-   * @deprecated Set the native `aria-label` on the ix-icon-button host element
+   * @deprecated Set the native `aria-label` on the ix-icon-button host element. Will be removed in 5.0.0
    */
   @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
   /**
    * Variant of button
    */
-  @Prop() variant: IconButtonVariant = 'secondary';
-
-  /**
-   * Button outline
-   */
-  @Prop() outline: boolean = false;
-
-  /**
-   * Button invisible
-   */
-  @Prop() ghost: boolean = false;
+  @Prop() variant: IconButtonVariant = 'subtle-primary';
 
   /**
    * Button in oval shape
@@ -125,8 +115,6 @@ export class IconButton {
           getFallbackLabelFromIconName(this.icon),
       },
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: true,
       iconOval: this.oval,
       selected: false,
@@ -138,6 +126,9 @@ export class IconButton {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       extraClasses: this.getIconSizeClass(),
+      tabIndex: this.hostElement.hasAttribute('tabindex')
+        ? this.hostElement.tabIndex
+        : undefined,
     };
 
     return (

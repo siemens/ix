@@ -18,17 +18,19 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import animejs from 'animejs';
+import { animate } from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
+import Animation from '../utils/animation';
+import { AnchorInterface, AnchorTarget } from '../button/button.interface';
 
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
   shadow: true,
 })
-export class BreadcrumbItem {
+export class BreadcrumbItem implements AnchorInterface {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
@@ -49,14 +51,35 @@ export class BreadcrumbItem {
    */
   @Prop() icon?: string;
 
-  /**@internal */
-  @Prop() ghost: boolean = true;
+  /**
+   * URL for the button link. When provided, the button will render as an anchor tag.
+   *
+   * @since 4.0.0
+   */
+  @Prop() href?: string;
+
+  /**
+   * Specifies where to open the linked document when href is provided.
+   *
+   * @since 4.0.0
+   */
+  @Prop() target?: AnchorTarget = '_self';
+
+  /**
+   * Specifies the relationship between the current document and the linked document when href is provided.
+   *
+   * @since 4.0.0
+   */
+  @Prop() rel?: string;
 
   /**@internal */
-  @Prop() visible = true;
+  @Prop() subtle: boolean = false;
 
   /**@internal */
-  @Prop() showChevron = true;
+  @Prop() invisible = false;
+
+  /**@internal */
+  @Prop() hideChevron = false;
 
   /** @internal */
   @Prop() isDropdownTrigger = false;
@@ -79,9 +102,8 @@ export class BreadcrumbItem {
   }
 
   animationFadeIn() {
-    animejs({
-      targets: this.hostElement,
-      duration: 150,
+    animate(this.hostElement, {
+      duration: Animation.defaultTime,
       opacity: [0, 1],
       translateX: ['-100%', '0%'],
       easing: 'linear',
@@ -90,9 +112,7 @@ export class BreadcrumbItem {
 
   render() {
     const props: BaseButtonProps = {
-      variant: this.ghost ? 'primary' : 'secondary',
-      outline: false,
-      ghost: this.ghost,
+      variant: this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
       iconOval: false,
       disabled: false,
@@ -107,16 +127,19 @@ export class BreadcrumbItem {
         'dropdown-trigger': this.isDropdownTrigger,
       },
       ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabelButton },
+      href: this.href,
+      target: this.target,
+      rel: this.rel,
     };
 
-    if (!this.visible) {
+    if (this.invisible) {
       return <Host class={'invisible'}></Host>;
     }
 
     return (
       <Host
         class={{
-          'hide-chevron': !this.showChevron,
+          'hide-chevron': this.hideChevron,
         }}
         onClick={() => this.itemClick.emit(this.label)}
       >
@@ -125,13 +148,13 @@ export class BreadcrumbItem {
             {...props}
             afterContent={
               <Fragment>
-                {this.showChevron ? (
+                {!this.hideChevron && (
                   <ix-icon
                     name={iconChevronRightSmall}
                     size="16"
                     class={'chevron'}
                   ></ix-icon>
-                ) : null}
+                )}
               </Fragment>
             }
           >

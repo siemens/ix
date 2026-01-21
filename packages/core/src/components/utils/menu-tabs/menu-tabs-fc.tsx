@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconClose } from '@siemens/ix-icons/icons';
 import { FunctionalComponent, h, Host } from '@stencil/core';
-import { setTab } from './menu-tabs-utils';
 import { MenuAbout } from '../../menu-about/menu-about';
 import { MenuSettings } from '../../menu-settings/menu-settings';
-import { iconClose } from '@siemens/ix-icons/icons';
+import { setTab } from './menu-tabs-utils';
 
 interface MenuTabsProps {
   context: MenuSettings | MenuAbout;
@@ -55,9 +55,11 @@ export const MenuTabs: FunctionalComponent<MenuTabsProps> = ({ context }) => {
       >
         <h2 class="text-h2">{context.label}</h2>
         <ix-icon-button
-          ghost
+          variant="tertiary"
           size="24"
           icon={iconClose}
+          iconColor="color-soft-text"
+          aria-label={context.ariaLabelCloseButton}
           onClick={(e) =>
             context.close.emit({
               name:

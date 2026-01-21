@@ -15,6 +15,7 @@ import {
 } from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
+import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-dropdown-button',
@@ -30,19 +31,9 @@ export class DropdownButton {
   @Prop() variant: DropdownButtonVariant = 'primary';
 
   /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
-
-  /**
    * Disable button
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Set label
@@ -81,11 +72,8 @@ export class DropdownButton {
       <div
         class={{
           triangle: true,
-          hide: this.label !== '',
-          primary: this.variant === 'primary',
-          secondary: this.variant === 'secondary',
-          ghost: this.ghost,
-          outline: this.outline,
+          [this.variant]: true,
+          hide: !!this.label,
           disabled: this.disabled,
         }}
       ></div>
@@ -93,12 +81,16 @@ export class DropdownButton {
   }
 
   private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
+    if (this.disabled && event.detail) {
+      return;
+    }
     this.dropdownShow = event.detail;
   };
 
   render() {
     return (
       <Host
+        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
         }}
@@ -108,11 +100,10 @@ export class DropdownButton {
           {this.label ? (
             <ix-button
               variant={this.variant}
-              outline={this.outline}
-              ghost={this.ghost}
               disabled={this.disabled}
               alignment="start"
               ariaLabel={this.ariaLabelDropdownButton}
+              tabIndex={this.disabled ? -1 : 0}
             >
               <div class={'content'}>
                 {this.icon ? (
@@ -138,9 +129,8 @@ export class DropdownButton {
               <ix-icon-button
                 icon={this.icon}
                 variant={this.variant}
-                outline={this.outline}
-                ghost={this.ghost}
                 disabled={this.disabled}
+                tabIndex={this.disabled ? -1 : 0}
               ></ix-icon-button>
               {this.getTriangle()}
             </div>

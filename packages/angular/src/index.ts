@@ -18,7 +18,8 @@ export {
   ModalContext,
 } from './providers/modal';
 export { ToastConfig, ToastService } from './providers/toast';
-export * from './providers/theme';
+export { MessageService } from './providers/message';
+export { LoadingService } from './providers/loading';
 export * from './directives/control-value-accessors';
 export { IxDropdownTriggerDirective } from './directives/dropdown-trigger';
 export * from './module';

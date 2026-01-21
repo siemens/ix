@@ -10,9 +10,17 @@
 import Animation from '../animation';
 import { getCoreDelegate } from '../delegate';
 
+export type ModalLoadingContext = {
+  update: (text: string) => string;
+  finish: (text?: string, timeout?: number) => void;
+};
+
+/**
+ * Displays a loading modal with a message
+ */
 export function showModalLoading(message: string) {
   const modal = document.createElement('ix-modal');
-  modal.closeOnEscape = false;
+  modal.disableEscapeClose = true;
 
   const loading = document.createElement('ix-modal-loading');
   loading.innerText = message;

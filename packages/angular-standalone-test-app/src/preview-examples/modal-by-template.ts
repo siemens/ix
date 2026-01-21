@@ -14,12 +14,10 @@ import {
   IxModalHeader,
   IxModalContent,
   IxModalFooter,
+  ModalService,
 } from '@siemens/ix-angular/standalone';
 
-import { ModalService } from '@siemens/ix-angular';
-
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxButton, IxModal, IxModalHeader, IxModalContent, IxModalFooter],
   template: `
@@ -33,7 +31,7 @@ import { ModalService } from '@siemens/ix-angular';
         >
         <ix-modal-footer>
           <ix-button
-            outline
+            variant="subtle-primary"
             class="dismiss-modal"
             (click)="modal.dismiss('dismiss')"
           >

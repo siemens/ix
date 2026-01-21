@@ -104,6 +104,7 @@ export const config: Config = {
       outDir: '../react/src',
       excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
       hydrateModule: '@siemens/ix/hydrate',
+      clientModule: '@siemens/ix',
       serializeShadowRoot: { scoped: [], default: 'declarative-shadow-dom' },
     }),
     {
@@ -126,6 +127,10 @@ export const config: Config = {
     {
       type: 'docs-custom',
       generator: customComponentDocGenerator,
+    },
+    {
+      type: 'docs-readme',
+      dir: './api-docs',
     },
     {
       type: 'www',

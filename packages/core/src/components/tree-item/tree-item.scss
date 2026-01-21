@@ -7,13 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/text-truncation';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
-
   display: flex;
   align-items: center;
 
@@ -22,16 +20,19 @@
 
   cursor: pointer;
 
+  @include component.ix-component;
+
   .tree-node-container {
-    @include ellipsis;
     display: flex;
     align-items: center;
-    height: $x-large-space;
+    height: vars.$x-large-space;
     flex-grow: 1;
     align-items: center;
 
+    @include text-truncation.ellipsis;
+
     .tree-node-text {
-      @include ellipsis;
+      @include text-truncation.ellipsis;
     }
   }
 

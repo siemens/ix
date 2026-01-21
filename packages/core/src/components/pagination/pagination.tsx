@@ -30,9 +30,7 @@ import {
 })
 export class Pagination {
   private readonly baseButtonConfig: BaseButtonProps = {
-    variant: 'secondary',
-    outline: false,
-    ghost: true,
+    variant: 'subtle-tertiary',
     iconOnly: true,
     iconOval: false,
     disabled: false,
@@ -58,9 +56,9 @@ export class Pagination {
   @Prop() itemCount = 15;
 
   /**
-   * Show item count in advanced mode
+   * Hide item count in advanced mode
    */
-  @Prop() showItemCount = true;
+  @Prop() hideItemCount = false;
 
   /**
    * Total number of pages
@@ -73,20 +71,19 @@ export class Pagination {
   @Prop({ mutable: true }) selectedPage = 0;
 
   /**
-   * i18n
+   * i18n label for 'Page'
    */
-  @Prop() i18nPage = 'Page';
+  @Prop({ attribute: 'i18n-page' }) i18nPage = 'Page';
 
   /**
-   * i18n
+   * i18n label for 'of'
    */
-  @Prop() i18nOf = 'of';
+  @Prop({ attribute: 'i18n-of' }) i18nOf = 'of';
 
   /**
-  /**
-   * i18n
+   * i18n label for 'Items'
    */
-  @Prop() i18nItems = 'Items';
+  @Prop({ attribute: 'i18n-items' }) i18nItems = 'Items';
 
   /**
    * ARIA label for the chevron left icon button
@@ -104,6 +101,13 @@ export class Pagination {
    */
   @Prop() ariaLabelChevronRightIconButton?: string;
 
+  /**
+   * ARIA label for the page selection input
+   * Will be set as aria-label on the nested HTML input element
+   *
+   * @since 4.1.0
+   */
+  @Prop() ariaLabelPageSelection = 'Page selection input';
   /**
    * Page selection event
    */
@@ -227,12 +231,20 @@ export class Pagination {
     return <span class="page-buttons">{pageButtons}</span>;
   }
 
+  private handlePageInput(inputValue: string) {
+    const value = Number.parseInt(inputValue, 10);
+    if (!Number.isNaN(value)) {
+      const clampedValue = Math.max(1, Math.min(value, this.count));
+      this.selectPage(clampedValue - 1);
+    }
+  }
+
   render() {
     return (
       <Host>
         <ix-icon-button
           disabled={!this.count || this.selectedPage === 0}
-          ghost
+          variant="subtle-tertiary"
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
           aria-label={this.ariaLabelChevronLeftIconButton}
@@ -242,17 +254,28 @@ export class Pagination {
           <div class="advanced-pagination">
             <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
+              aria-label={this.ariaLabelPageSelection}
               class="ix-form-control page-selection"
               type="number"
               min="1"
               max={this.count}
               value={this.selectedPage + 1}
               onChange={(event: Event) => {
-                const eventTarget = event.target as HTMLInputElement;
-                if (eventTarget) {
-                  const index = Number.parseInt(eventTarget.value);
-                  this.selectPage(index - 1);
+                const inputElement = event.target as HTMLInputElement;
+                this.handlePageInput(inputElement.value);
+              }}
+              onKeyDown={(event: KeyboardEvent) => {
+                if (['e', 'E', '+', '-', '.'].includes(event.key))
+                  event.preventDefault();
+                if (event.key === 'Enter') {
+                  const inputElement = event.target as HTMLInputElement;
+                  this.handlePageInput(inputElement.value);
+                  inputElement.blur();
                 }
+              }}
+              onBlur={(e: Event) => {
+                const inputElement = e.target as HTMLInputElement;
+                inputElement.value = (this.selectedPage + 1).toString();
               }}
             />
             <span class="total-count">
@@ -267,13 +290,13 @@ export class Pagination {
 
         <ix-icon-button
           disabled={!this.count || this.selectedPage === this.count - 1}
-          ghost
+          variant="subtle-tertiary"
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
           aria-label={this.ariaLabelChevronRightIconButton}
         ></ix-icon-button>
 
-        {this.advanced && this.showItemCount ? (
+        {this.advanced && !this.hideItemCount && (
           <span class="item-count">
             <ix-typography format="body">{this.i18nItems}</ix-typography>
             <ix-select
@@ -296,8 +319,6 @@ export class Pagination {
               <ix-select-item label="100" value="100"></ix-select-item>
             </ix-select>
           </span>
-        ) : (
-          ''
         )}
       </Host>
     );

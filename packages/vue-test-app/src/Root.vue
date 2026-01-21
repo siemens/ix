@@ -10,8 +10,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
-import { IxApplicationContext } from "@siemens/ix-vue"
-
+import { IxApplicationContext } from '@siemens/ix-vue';
 
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
@@ -22,12 +21,10 @@ import ApplicationAppSwitch from './preview-examples/application-app-switch.vue'
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
 import ApplicationHeader from './preview-examples/application-header.vue';
 import Application from './preview-examples/application.vue';
+import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
-import BasicNavigationMigration from './preview-examples/basic-navigation-migration.vue';
-import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header.vue';
-import BasicNavigation from './preview-examples/basic-navigation.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
 import BlindVariants from './preview-examples/blind-variants.vue';
 import Blind from './preview-examples/blind.vue';
@@ -46,6 +43,7 @@ import ButtonLoading from './preview-examples/button-loading.vue';
 import ButtonSecondary from './preview-examples/button-secondary.vue';
 import ButtonTextIcon from './preview-examples/button-text-icon.vue';
 import ButtonWithIcon from './preview-examples/button-with-icon.vue';
+import ButtonWithLink from './preview-examples/button-with-link.vue';
 import Buttons from './preview-examples/buttons.vue';
 import CardList from './preview-examples/card-list.vue';
 import Card from './preview-examples/card.vue';
@@ -56,6 +54,7 @@ import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
+import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.vue';
 import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
 import CustomField from './preview-examples/custom-field.vue';
@@ -96,6 +95,7 @@ import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
 import EmptyState from './preview-examples/empty-state.vue';
 import EventListCompact from './preview-examples/event-list-compact.vue';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height.vue';
+import EventListFilled from './preview-examples/event-list-filled.vue';
 import EventListSelected from './preview-examples/event-list-selected.vue';
 import EventList from './preview-examples/event-list.vue';
 import ExpandingSearch from './preview-examples/expanding-search.vue';
@@ -115,6 +115,8 @@ import GroupContextMenu from './preview-examples/group-context-menu.vue';
 import GroupCustomEntry from './preview-examples/group-custom-entry.vue';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed.vue';
 import Group from './preview-examples/group.vue';
+import HtmlTable from './preview-examples/html-table.vue';
+import HtmlTableStriped from './preview-examples/html-table-striped.vue';
 import IconToggleButtonPrimaryGhost from './preview-examples/icon-toggle-button-primary-ghost.vue';
 import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-button-primary-outline.vue';
 import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost.vue';
@@ -123,11 +125,7 @@ import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-sec
 import InputDisabled from './preview-examples/input-disabled.vue';
 import InputLabel from './preview-examples/input-label.vue';
 import InputLegacyDisabled from './preview-examples/input-legacy-disabled.vue';
-import InputLegacyLabels from './preview-examples/input-legacy-labels.vue';
 import InputLegacyReadonly from './preview-examples/input-legacy-readonly.vue';
-import InputLegacySearch from './preview-examples/input-legacy-search.vue';
-import InputLegacyTypes from './preview-examples/input-legacy-types.vue';
-import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon.vue';
 import InputLegacy from './preview-examples/input-legacy.vue';
 import InputPattern from './preview-examples/input-pattern.vue';
 import InputReadonly from './preview-examples/input-readonly.vue';
@@ -149,9 +147,6 @@ import LayoutAuto from './preview-examples/layout-auto.vue';
 import LinkButtonDisabled from './preview-examples/link-button-disabled.vue';
 import LinkButton from './preview-examples/link-button.vue';
 import Loading from './preview-examples/loading.vue';
-import MapNavigationMigration from './preview-examples/map-navigation-migration.vue';
-import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
-import MapNavigation from './preview-examples/map-navigation.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
 import MessageBar from './preview-examples/message-bar.vue';
@@ -159,6 +154,7 @@ import MessageBarRemoval from './preview-examples/message-bar-removal.vue';
 import Message from './preview-examples/message.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
 import ModalExample from './preview-examples/modal.vue';
+import ModalClose from './preview-examples/modal-close.vue';
 import NumberInputDisabled from './preview-examples/number-input-disabled.vue';
 import NumberInputLabel from './preview-examples/number-input-label.vue';
 import NumberInputReadOnly from './preview-examples/number-input-readonly.vue';
@@ -219,6 +215,7 @@ import ToggleDisabled from './preview-examples/toggle-disabled.vue';
 import ToggleIndeterminate from './preview-examples/toggle-indeterminate.vue';
 import Toggle from './preview-examples/toggle.vue';
 import Tooltip from './preview-examples/tooltip.vue';
+import TooltipWithIcon from './preview-examples/tooltip-with-icon.vue';
 import TreeCustom from './preview-examples/tree-custom.vue';
 import Tree from './preview-examples/tree.vue';
 import Upload from './preview-examples/upload.vue';
@@ -243,6 +240,7 @@ const routes: any = {
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
   '/preview/application': Application,
+  '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-header': ApplicationHeader,
   '/preview/application-breakpoints': ApplicationBreakpoints,
   '/preview/application-app-switch': ApplicationAppSwitch,
@@ -250,9 +248,6 @@ const routes: any = {
   '/preview/avatar-image': AvatarImage,
   '/preview/avatar-initials': AvatarInitials,
   '/preview/avatar': Avatar,
-  '/preview/basic-navigation-without-header': BasicNavigationWithoutHeader,
-  '/preview/basic-navigation': BasicNavigation,
-  '/preview/basic-navigation-migration': BasicNavigationMigration,
   '/preview/blind-header-actions': BlindHeaderActions,
   '/preview/blind-variants': BlindVariants,
   '/preview/blind': Blind,
@@ -268,6 +263,7 @@ const routes: any = {
   '/preview/button-secondary': ButtonSecondary,
   '/preview/button-text-icon': ButtonTextIcon,
   '/preview/button-with-icon': ButtonWithIcon,
+  '/preview/button-with-link': ButtonWithLink,
   '/preview/buttons': Buttons,
   '/preview/card': Card,
   '/preview/card-list': CardList,
@@ -283,6 +279,7 @@ const routes: any = {
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
+  '/preview/content-header-with-slot': ContentHeaderWithSlot,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
@@ -314,10 +311,11 @@ const routes: any = {
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
+  '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
+  '/preview/event-list-filled': EventListFilled,
   '/preview/event-list-selected': EventListSelected,
-  '/preview/event-list': EventList,
   '/preview/expanding-search': ExpandingSearch,
   '/preview/flip-tile': FlipTile,
   '/preview/form-checkbox': FormCheckbox,
@@ -330,6 +328,8 @@ const routes: any = {
   '/preview/grid': Grid,
   '/preview/group-context-menu': GroupContextMenu,
   '/preview/group-custom-entry': GroupCustomEntry,
+  '/preview/html-table': HtmlTable,
+  '/preview/html-table-striped': HtmlTableStriped,
   '/preview/group-header-suppressed': GroupHeaderSuppressed,
   '/preview/icon-toggle-button-primary-ghost': IconToggleButtonPrimaryGhost,
   '/preview/icon-toggle-button-primary-outline': IconToggleButtonPrimaryOutline,
@@ -338,11 +338,7 @@ const routes: any = {
     IconToggleButtonSecondaryOutline,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
   '/preview/input-legacy-disabled': InputLegacyDisabled,
-  '/preview/input-legacy-labels': InputLegacyLabels,
   '/preview/input-legacy-readonly': InputLegacyReadonly,
-  '/preview/input-legacy-search': InputLegacySearch,
-  '/preview/input-legacy-types': InputLegacyTypes,
-  '/preview/input-legacy-with-icon': InputLegacyWithIcon,
   '/preview/message-bar': MessageBar,
   '/preview/message-bar-removal': MessageBarRemoval,
   '/preview/pill': Pill,
@@ -393,6 +389,7 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
+  '/preview/modal-close': ModalClose,
   '/preview/modal-form-ix-button-submit': ModalFormIxButtonSubmit,
   '/preview/number-input': NumberInput,
   '/preview/number-input-disabled': NumberInputDisabled,
@@ -404,10 +401,8 @@ const routes: any = {
   '/preview/date-input-with-slots': DateInputWithSlots,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
-  '/preview/map-navigation': MapNavigation,
-  '/preview/map-navigation-overlay': MapNavigationOverlay,
-  '/preview/map-navigation-migration': MapNavigationMigration,
   '/preview/tooltip': Tooltip,
+  '/preview/tooltip-with-icon': TooltipWithIcon,
   '/preview/push-card': PushCard,
   '/preview/page-header': ContentHeader,
   '/preview/page-header-no-back': ContentHeaderNoBack,

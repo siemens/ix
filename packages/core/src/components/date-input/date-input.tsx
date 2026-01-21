@@ -22,12 +22,12 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { dropdownController } from '../dropdown/dropdown-controller';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -35,9 +35,16 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
+import {
+  closeDropdown as closeDropdownUtil,
+  createValidityState,
+  handleIconClick,
+  openDropdown as openDropdownUtil,
+} from '../utils/input/picker-input.util';
 
 /**
  * @form-ready
@@ -88,12 +95,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
+   * The locale is used to translate the labels for weekdays and months.
+   * It also determines the default order of weekdays based on the locale's conventions.
+   * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
+   * It does not affect the values returned by methods and events.
    */
   @Prop() locale?: string;
 
   /**
    * Date format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
@@ -185,6 +196,17 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * Will be set as aria-label on the nested HTML button element
    */
   @Prop() ariaLabelNextMonthButton?: string;
+
+  /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
+   * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
 
   /**
    * Input change event.
@@ -316,50 +338,32 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   onCalenderClick(event: Event) {
-    if (!this.show) {
-      event.stopPropagation();
-      event.preventDefault();
-      this.openDropdown();
-    }
-
-    if (this.inputElementRef.current) {
-      this.inputElementRef.current.focus();
-    }
+    handleIconClick(
+      event,
+      this.show,
+      () => this.openDropdown(),
+      this.inputElementRef
+    );
   }
 
   async openDropdown() {
-    const dropdownElement = await this.dropdownElementRef.waitForCurrent();
-    const id = dropdownElement.getAttribute('data-ix-dropdown');
-
-    dropdownController.dismissAll();
-    if (!id) {
-      return;
-    }
-
-    const dropdown = dropdownController.getDropdownById(id);
-    if (!dropdown) {
-      return;
-    }
-    dropdownController.present(dropdown);
+    return openDropdownUtil(this.dropdownElementRef);
   }
 
   async closeDropdown() {
-    const dropdownElement = await this.dropdownElementRef.waitForCurrent();
-    const id = dropdownElement.getAttribute('data-ix-dropdown');
-
-    if (!id) {
-      return;
-    }
-
-    const dropdown = dropdownController.getDropdownById(id);
-    if (!dropdown) {
-      return;
-    }
-    dropdownController.dismiss(dropdown);
+    return closeDropdownUtil(this.dropdownElementRef);
   }
 
   private checkClassList() {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
+  }
+
+  private handleInputKeyDown(event: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      event,
+      this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
   }
 
   private renderInput() {
@@ -401,6 +405,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.ixBlur.emit();
             this.touched = true;
           }}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
+          style={{
+            textAlign: this.textAlignment,
+          }}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -409,7 +417,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           <ix-icon-button
             data-testid="open-calendar"
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
-            ghost
+            variant="subtle-tertiary"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
             aria-label={this.ariaLabelCalendarButton}
@@ -445,19 +453,9 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   /** @internal */
   @Method()
   getValidityState(): Promise<ValidityState> {
-    return Promise.resolve({
-      badInput: false,
-      customError: false,
-      patternMismatch: this.isInputInvalid,
-      rangeOverflow: false,
-      rangeUnderflow: false,
-      stepMismatch: false,
-      tooLong: false,
-      tooShort: false,
-      typeMismatch: false,
-      valid: !this.isInputInvalid,
-      valueMissing: !!this.required && !this.value,
-    });
+    return Promise.resolve(
+      createValidityState(this.isInputInvalid, !!this.required, this.value)
+    );
   }
 
   /**
@@ -486,9 +484,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorDateUnparsable
-      : this.invalidText;
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorDateUnparsable
+    );
 
     return (
       <Host
@@ -529,7 +529,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             ref={this.datepickerRef}
             format={this.format}
             locale={this.locale}
-            range={false}
+            singleSelection
             from={this.from ?? ''}
             minDate={this.minDate}
             maxDate={this.maxDate}
@@ -540,7 +540,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             showWeekNumbers={this.showWeekNumbers}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-            standaloneAppearance={false}
+            embedded
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

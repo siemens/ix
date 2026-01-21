@@ -6,22 +6,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/shadow-dom/component';
-@import 'mixins/break-points';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/break-points';
 
 :host {
-  @include ix-component;
-
   display: flex;
-  align-items: flex-end;
   flex-wrap: nowrap;
+  align-items: end;
+  justify-content: space-between;
   position: relative;
   width: 100%;
-  height: calc(2.75rem + var(--ix-safe-area-inset-top, 0rem));
-  min-height: calc(2.75rem + var(--ix-safe-area-inset-top, 0rem));
-  padding-top: 0;
-  padding-right: calc(1rem + var(--ix-safe-area-inset-right, 0rem));
-  padding-bottom: 0.3rem;
+  min-height: 3rem;
+  padding-top: var(--ix-safe-area-inset-top, 0rem);
+  padding-right: calc(0.625rem + var(--ix-safe-area-inset-right, 0rem));
   padding-left: calc(0.625rem + var(--ix-safe-area-inset-left, 0rem));
 
   color: var(--theme-app-header--color);
@@ -32,70 +29,184 @@
 
   z-index: var(--theme-z-index-fixed);
 
-  .app-switch {
-    margin-right: 1rem;
-  }
+  @include component.ix-component;
 
-  .name {
-    overflow: hidden;
-    overflow-wrap: anywhere;
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
-    max-width: 50%;
-    margin-left: 1.5rem;
-    margin-right: 2.5rem;
-    margin-bottom: 0.25rem;
-    color: var(--theme-app-header--color);
-  }
-
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    position: relative;
-    height: 32px;
-    overflow: hidden;
-    line-height: 0rem;
-    color: var(--theme-app-header-logo--color);
-    margin-left: 0.375rem;
-  }
-
-  .content {
+  .left-side,
+  .right-side {
     display: flex;
-    position: relative;
     flex-direction: row;
-    margin-left: auto;
-    margin-right: 0px;
+    flex-wrap: nowrap;
+    position: relative;
+    align-items: center;
+    min-width: 0;
+    min-height: 3rem;
+    height: 100%;
   }
 
-  .dropdown {
-    overflow: visible;
-  }
+  .left-side {
+    flex: 0 1 auto;
 
-  .dropdown-content {
-    padding: 1rem;
-  }
+    .app-icon {
+      display: block;
+      position: relative;
+      width: 2rem;
+      min-width: 2rem;
+      max-width: 2rem;
+      height: 2rem;
+      min-height: 2rem;
+      max-height: 2rem;
+    }
 
-  .context-menu {
-    display: none;
-  }
+    .app-icon.app-icon-outline {
+      outline: 1px solid var(--theme-app-header-app-icon--outline-color);
+      border-radius: 0.125rem;
+    }
 
-  .context-menu.context-menu-visible {
-    display: block;
-  }
+    .app-icon img {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.125rem;
+    }
 
-  @include media-breakpoint-match('sm') {
+    .app-switch {
+      margin: 0 0.625rem;
+    }
+
+    .app-switch.without-app-icon {
+      margin-left: 0px;
+    }
+
+    .name {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      margin-left: 0.75rem;
+      margin-right: 0.75rem;
+      color: var(--theme-app-header--color);
+      min-width: 0;
+
+      gap: 0.75rem;
+      overflow: hidden;
+    }
+
+    .application-name,
+    .application-name-suffix {
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      text-overflow: ellipsis;
+      text-wrap: nowrap;
+    }
+
+    .application-name {
+      flex: 0 1 auto;
+      min-width: 0;
+      flex-shrink: 0;
+      max-width: 100%;
+    }
+
+    .application-name-suffix {
+      flex: 1 1 auto;
+      margin-top: 0.4rem;
+      min-width: 0;
+      flex-shrink: 1;
+      color: var(--theme-app-header-name-suffix--color);
+    }
+
     .logo {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      height: 32px;
+      overflow: hidden;
+      line-height: 0rem;
+      color: var(--theme-app-header-logo--color);
+      margin-right: 1rem;
+      margin-left: 1rem;
+      min-width: fit-content;
+    }
+
+    .logo.hide-logo {
       display: none;
     }
   }
 
-  ::slotted(ix-avatar) {
-    margin-left: 1rem;
+  .right-side {
+    flex: 1 1 auto;
+    overflow: hidden;
+    justify-content: space-between;
+
+    .content,
+    .secondary {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      height: 100%;
+    }
+
+    .content {
+      min-width: max-content;
+    }
+
+    .secondary {
+      overflow: hidden;
+    }
+
+    .dropdown {
+      overflow: visible;
+    }
+
+    .dropdown-content > .slot-content-active {
+      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      border-top: none;
+    }
+
+    .dropdown-content .slot-content-active ~ .slot-content-active {
+      border-top: 1px solid var(--theme-color-x-weak-bdr);
+    }
+
+    .context-menu {
+      display: none;
+    }
+
+    .context-menu.context-menu-visible {
+      display: block;
+      margin-left: 0.5rem;
+    }
+
+    ::slotted(ix-avatar) {
+      margin-left: 0.5rem;
+    }
+
+    .primary-navigation {
+      align-self: end;
+    }
+  }
+
+  .right-side.sm {
+    justify-content: end;
+  }
+
+  @include break-points.media-breakpoint-match('sm') {
+    .logo {
+      margin-left: 0.5rem;
+      display: none !important;
+    }
+
+    .content,
+    .secondary,
+    .app-icon {
+      display: none;
+    }
   }
 }
 
-:host(.breakpoint-sm) {
-  .logo {
-    margin-left: 0.5rem;
-  }
+:host(.hide-bottom-border) {
+  border-bottom: none;
 }

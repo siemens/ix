@@ -1,4 +1,13 @@
+minimumReleaseAge: 2880
+minimumReleaseAgeExclude:
+  - '@siemens/*'
+
 packages:
   - 'packages/*'
   - 'tooling/*'
   - 'testing/*'
+
+catalog:
+  vite: ^7.3.1
+  '@esbuild/linux-arm64': 0.25.5
+  '@playwright/test': ^1.54.1

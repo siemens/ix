@@ -7,21 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/mixins/fonts';
-@import 'mixins/shadow-dom/hover';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/text-truncation';
+@use './common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/shadow-dom/hover';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/text-truncation';
 
 $focusBorderWidth: 1px;
 
 :host {
-  @include ix-component;
   display: flex;
   min-height: 2.25rem;
   height: 2.25rem;
 
-  > button {
+  @include component.ix-component;
+
+  > button,
+  > .group-footer {
     display: flex;
     height: 100%;
     width: 100%;
@@ -39,10 +41,20 @@ $focusBorderWidth: 1px;
     &:focus-visible {
       border: $focusBorderWidth solid var(--theme-color-focus-bdr);
     }
+
+    &:disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  .group-footer {
+    cursor: default;
+    border: none;
   }
 
   ix-icon {
-    margin-right: $tiny-space;
+    margin-right: vars.$tiny-space;
     margin-top: -0.125rem;
   }
 
@@ -50,26 +62,26 @@ $focusBorderWidth: 1px;
     position: absolute;
     left: -#{$focusBorderWidth};
     height: calc(100% + #{$focusBorderWidth * 2});
-    width: $tiny-space;
+    width: vars.$tiny-space;
   }
 
   .group-entry-text {
-    @include text-default;
-    @include ellipsis();
+    @include fonts.text-default;
+    @include text-truncation.ellipsis();
   }
 
   .group-entry-text-secondary {
-    &,
-    span {
-      @include text-default;
-      @include ellipsis;
-    }
-
     display: flex;
     justify-content: flex-end;
     flex-grow: 1;
     white-space: nowrap;
     color: var(--theme-color-soft-text);
+
+    &,
+    span {
+      @include fonts.text-default;
+      @include text-truncation.ellipsis;
+    }
   }
 }
 
@@ -82,20 +94,27 @@ $focusBorderWidth: 1px;
   }
 }
 
-:host(:hover) {
+:host(:not(.suppress-mouse-states):hover) {
   background-color: var(--theme-color-ghost--selected-hover);
   border-color: var(--theme-group-item--border-color--hover);
 }
 
-:host(.selected:hover) {
+:host(:not(.suppress-mouse-states).selected:hover) {
   background-color: var(--theme-color-ghost--selected-hover);
 }
 
-:host(:active) {
+:host(:not(.suppress-mouse-states):active):not(.suppress-mouse-states) {
   background-color: var(--theme-color-ghost--selected-active);
   border-color: var(--theme-group-item--border-color--active);
 }
 
-:host(.selected:active) {
+:host(:not(.suppress-mouse-states).selected:active):not(
+    .suppress-mouse-states
+  ) {
   background-color: var(--theme-color-ghost--selected-active);
+}
+
+:host([disabled]) {
+  pointer-events: none;
+  color: var(--theme-color-weak-text);
 }

@@ -18,8 +18,9 @@ import {
   State,
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
+import { makeRef } from '../utils/make-ref';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
-import { a11yHostAttributes } from '../utils/a11y';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -27,7 +28,11 @@ function DefaultAvatar(
   const { initials } = props;
 
   if (initials) {
-    return <div class={'avatar-initials'}>{initials}</div>;
+    return (
+      <div class={'avatar-initials'}>
+        <ix-typography format="label-lg">{initials}</ix-typography>
+      </div>
+    );
   }
 
   return (
@@ -121,7 +126,7 @@ export class Avatar {
    * Accessibility label for the image
    * Will be set as aria-label on the nested HTML img element
    *
-   * @deprecated Set the native `aria-label` on the ix-avatar host element
+   * @deprecated Set the native `aria-label` on the ix-avatar host element. Will be removed in 5.0.0
    */
   @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
@@ -149,11 +154,27 @@ export class Avatar {
    */
   @Prop() extra?: string;
 
+  /**
+   * Text to display in a tooltip when hovering over the avatar
+   *
+   * @since 4.0.0
+   */
+  @Prop() tooltipText?: string;
+
+  /**
+   * aria-label for the tooltip
+   *
+   * @since 4.0.0
+   */
+  @Prop() ariaLabelTooltip?: string;
+
   @State() isClosestApplicationHeader = false;
   @State() hasSlottedElements = false;
 
   private slotElement?: HTMLSlotElement;
   private dropdownElement?: HTMLIxDropdownElement;
+
+  private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
   componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
@@ -187,32 +208,54 @@ export class Avatar {
     const a11y = a11yHostAttributes(this.hostElement);
     const a11yLabel = a11y['aria-label'];
 
+    const tooltipText = this.tooltipText || this.username;
+    const ariaHidden = tooltipText === this.username;
+
+    const Avatar = (
+      <Fragment>
+        <AvatarImage
+          image={this.image}
+          initials={this.initials}
+          a11yLabel={a11yLabel ?? this.a11yLabel}
+        />
+        {!!tooltipText && (
+          <ix-tooltip
+            ref={this.tooltipRef}
+            for={this.hostElement}
+            aria-hidden={a11yBoolean(ariaHidden)}
+            aria-label={this.ariaLabelTooltip}
+          >
+            {tooltipText}
+          </ix-tooltip>
+        )}
+      </Fragment>
+    );
+
     if (this.isClosestApplicationHeader) {
       return (
         <Host slot="ix-application-header-avatar" class={'avatar-button'}>
           <BaseButton
             disabled={false}
-            ghost={true}
             iconOval={false}
             icon={undefined}
             iconOnly={false}
             loading={false}
-            outline={false}
             selected={false}
             type="button"
-            variant="primary"
+            variant="tertiary"
           >
-            <AvatarImage
-              image={this.image}
-              initials={this.initials}
-              a11yLabel={a11yLabel ?? this.a11yLabel}
-            />
+            {Avatar}
           </BaseButton>
           <ix-dropdown
             ref={(ref) => (this.dropdownElement = ref as HTMLIxDropdownElement)}
             trigger={this.resolveAvatarTrigger()}
             class="avatar-dropdown"
             onClick={(e) => this.onDropdownClick(e)}
+            onShowChanged={(event) => {
+              if (event.detail && this.tooltipRef.current) {
+                this.tooltipRef.current.hideTooltip(0);
+              }
+            }}
           >
             {this.username && (
               <Fragment>
@@ -237,14 +280,6 @@ export class Avatar {
       );
     }
 
-    return (
-      <Host>
-        <AvatarImage
-          image={this.image}
-          initials={this.initials}
-          a11yLabel={a11yLabel ?? this.a11yLabel}
-        />
-      </Host>
-    );
+    return <Host>{Avatar}</Host>;
   }
 }

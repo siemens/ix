@@ -16,6 +16,26 @@ regressionTest.describe('application header: basic', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('without bottom border', async ({ page }) => {
+    await page.goto('application-header/no-border');
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('should use safe areas', async ({ page }) => {
+    await page.goto('application-header/basic');
+    const head = page.locator('head');
+    await head.evaluate(() => {
+      const style = document.createElement('style');
+      style.textContent = `
+        :root {
+          --ix-safe-area-inset-top: 10rem;
+        }
+      `;
+      document.head.appendChild(style);
+    });
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest(
     'should not have visual regressions - svg',
     async ({ page }) => {
@@ -57,6 +77,27 @@ regressionTest.describe('application header: basic', () => {
       await expect(page).toHaveScreenshot();
     }
   );
+
+  regressionTest('company logo and app icon', async ({ page }) => {
+    await page.goto('application-header/app-icon');
+
+    const applicationHeader = page.locator('ix-application-header');
+    await expect(applicationHeader).toHaveScreenshot();
+  });
+
+  regressionTest('app icon with outline', async ({ page }) => {
+    await page.goto('application-header/app-icon');
+
+    const applicationHeader = page.locator('ix-application-header');
+    await applicationHeader.evaluate((el: HTMLIxApplicationHeaderElement) => {
+      el.appIconOutline = true;
+    });
+
+    const appIcon = applicationHeader.locator('.app-icon');
+
+    await expect(appIcon).toHaveClass(/app-icon-outline/);
+    await expect(applicationHeader).toHaveScreenshot();
+  });
 });
 
 regressionTest.describe('application header: standalone', () => {

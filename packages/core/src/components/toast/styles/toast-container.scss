@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
 
 :host {
-  @include ix-component;
+  @include component.ix-component;
 }
 
 #toast-container {
   > :not(:last-child) {
-    margin-block-end: $default-space;
+    margin-block-end: vars.$default-space;
   }
 }
 

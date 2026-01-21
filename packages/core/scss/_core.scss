@@ -6,62 +6,67 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use './theme/core/common' as common;
-@use './theme/core/components' as components;
+@use 'theme/core/common' as common;
+@use 'theme/core/components' as components;
+@use 'mixins/reduce-motion' as rm;
+
+@use 'common-variables' as vars;
 
 /* Import global stylings for Web Components */
-@import './../src/components/toast/styles/toast-container';
+@use './../src/components/toast/styles/toast-container';
 
 /* Legacy typography will be removed in 4.0.0 */
-@import './legacy/mixins/fonts';
-@import './legacy/fonts';
+@use 'legacy/mixins/fonts' as legacy-font-mixins;
+@use 'legacy/fonts' as legacy-fonts;
 
 /* Common */
-@import './common-variables';
-@import 'z-index';
+@use 'z-index';
 
 /* Global legacy style components  */
-@import 'legacy/components/input';
-@import 'legacy/components/checkboxes';
-@import 'legacy/components/radiobuttons';
-@import 'legacy/fonts';
+@use 'legacy/components/input';
+@use 'legacy/components/checkboxes';
+@use 'legacy/components/radiobuttons';
 
 /* Global style components */
-@import './components/links';
-@import './components/shadows';
-@import './components/input-group';
-@import './components/table';
-@import './components/fonts';
-@import './components/button-group';
+@use 'components/links';
+@use 'components/shadows';
+@use 'components/input-group';
+@use 'components/table';
+@use 'components/fonts';
+@use 'components/button-group';
 
-@import 'mixins/scrollbar';
-@import './normalize';
+@use 'mixins/scrollbar';
+@use 'mixins/fonts' as font-mixins;
+@use 'normalize';
 
-:not([data-ix-theme]) body:not([data-ix-theme]),
-[data-ix-theme] {
-  @include common.setVars;
-  @include components.setComponentVars;
-
-  --animate-duration: #{$default-time};
-  --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
-    Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-
+:root {
   --ix-safe-area-inset-top: 0rem;
   --ix-safe-area-inset-right: 0rem;
   --ix-safe-area-inset-bottom: 0rem;
   --ix-safe-area-inset-left: 0rem;
+}
+
+:not([data-ix-theme]) body:not([data-ix-theme]),
+[data-ix-theme] {
+  --animate-duration: var(--theme-default-time);
+  --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
+    Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   color: var(--theme-color-std-text);
+
+  @include common.setVars;
+  @include components.setComponentVars;
+  @include rm.reduce-motion;
 }
 
 body {
-  @include typography-body();
   color: var(--theme-color-std-text);
   background-color: var(--theme-color-1);
   margin: 0;
+  @include font-mixins.typography-body;
 }
 
 body:not(.disable-scrollbar) {
-  @include scrollbar();
+  @include scrollbar.scrollbar;
 }

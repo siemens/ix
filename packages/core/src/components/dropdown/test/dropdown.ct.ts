@@ -757,18 +757,35 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
     dialog.showModal();
   });
 
+  // Animation timeout
+  await page.waitForTimeout(250);
+
   const trigger = page.locator('#trigger');
   await trigger.click();
 
   const dropdown = page.locator('#dropdown');
+  await expect(trigger).toHaveClass(/hydrated/);
+  await expect(dropdown).toHaveClass(/hydrated/);
+  await expect(trigger).toBeVisible();
+  await expect(dropdown).toBeVisible();
 
-  const dropdownRect = (await dropdown.boundingBox())!;
-  const triggerRect = (await trigger.boundingBox())!;
+  await expect(dropdown).toBeVisible();
 
-  expect(Math.round(dropdownRect.x)).toBe(Math.round(triggerRect.x));
-  expect(Math.round(dropdownRect.y)).toBe(
-    Math.round(triggerRect.y + triggerRect.height)
-  );
+  // Animation timeout
+  await page.waitForTimeout(250);
+
+  await expect(async () => {
+    const dropdownRect = await dropdown.boundingBox();
+    const triggerRect = await trigger.boundingBox();
+
+    expect(dropdownRect).toBeTruthy();
+    expect(triggerRect).toBeTruthy();
+
+    expect(Math.round(dropdownRect!.x)).toBe(Math.round(triggerRect!.x));
+    expect(Math.round(dropdownRect!.y)).toBe(
+      Math.round(triggerRect!.y + triggerRect!.height)
+    );
+  }).toPass({ timeout: 2000 });
 });
 
 regressionTest(
@@ -817,5 +834,53 @@ regressionTest(
       item.scrollIntoView();
     });
     await expect(lastItem).toBeVisible();
+  }
+);
+regressionTest(
+  'should reflect aria-disabled on disabled dropdown item',
+  async ({ page, mount }) => {
+    await mount(`
+    <ix-button id="trigger">Open</ix-button>
+    <ix-dropdown trigger="trigger">
+      <ix-dropdown-item id="disabled-item" label="Disabled Item" disabled></ix-dropdown-item>
+      <ix-dropdown-item id="enabled-item" label="Enabled Item"></ix-dropdown-item>
+    </ix-dropdown>
+  `);
+
+    const disabledItem = page.locator('#disabled-item');
+    const enabledItem = page.locator('#enabled-item');
+
+    const disabledItemButton = disabledItem.locator('button');
+    const enabledItemButton = enabledItem.locator('button');
+
+    await expect(disabledItemButton).toHaveAttribute('aria-disabled', 'true');
+    await expect(enabledItemButton).toHaveAttribute('aria-disabled', 'false');
+  }
+);
+regressionTest(
+  'should reflect disabled attribute in DOM when changed dynamically',
+  async ({ page, mount }) => {
+    await mount(`
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger">
+        <ix-dropdown-item id="dynamic-disabled" label="Dynamic Disabled"></ix-dropdown-item>
+      </ix-dropdown>
+    `);
+
+    const dynamicItem = page.locator('#dynamic-disabled');
+
+    await expect(dynamicItem).not.toHaveAttribute('disabled');
+
+    await dynamicItem.evaluate((element: any) => {
+      element.disabled = true;
+    });
+
+    await expect(dynamicItem).toHaveAttribute('disabled');
+
+    await dynamicItem.evaluate((element: any) => {
+      element.disabled = false;
+    });
+
+    await expect(dynamicItem).not.toHaveAttribute('disabled');
   }
 );

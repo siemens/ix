@@ -21,7 +21,7 @@ import {
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
 export { IxActiveModal } from '@siemens/ix-angular/common';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ModalService extends BaseModalService {
   constructor(
     appRef: ApplicationRef,
@@ -29,12 +29,20 @@ export class ModalService extends BaseModalService {
     injector: Injector
   ) {
     super(appRef, componentFactoryResolver, injector);
+
+    defineCustomElement();
   }
 
-  public open<TData = any, TReason = any>(
+  public override open<TData = any, TReason = any>(
     config: ModalConfig<TData>
   ): Promise<ModalInstance<TReason>> {
-    defineCustomElement();
     return super.open(config);
+  }
+
+  public override close<TReason = any>(
+    instance: ModalInstance<TReason>,
+    reason?: TReason
+  ): void {
+    super.close(instance, reason);
   }
 }

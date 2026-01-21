@@ -24,7 +24,8 @@ type Position = { x: number; y: number };
 /**
  * @slot tooltip-message - Custom tooltip message with html support
  *
- * @deprecated Will be removed with 4.0.0
+ * @deprecated Since 3.0.0. Will be removed with 4.0.0
+ * Not maintained anymore.
  */
 @Component({
   tag: 'ix-validation-tooltip',

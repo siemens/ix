@@ -52,15 +52,23 @@ export class GroupItem {
   @Prop() suppressSelection = false;
 
   /**
+   * @internal
+   * Item represents the footer of the group
+   */
+  @Prop() groupFooter = false;
+
+  /**
    * Show selected state
    */
   @Prop() selected: boolean = false;
 
   /**
+   * Disable the group item.
    * The elements tabindex attribute will get set accordingly.
-   * If true tabindex will be 0, -1 otherwise.
+   *
+   * If false tabindex will be 0, -1 otherwise.
    */
-  @Prop() focusable = true;
+  @Prop() disabled = false;
 
   /**
    * Selection changed
@@ -74,17 +82,30 @@ export class GroupItem {
 
   @Listen('click', { passive: true })
   clickListen() {
+    if (this.suppressSelection || this.disabled) {
+      return;
+    }
     this.selectedChanged.emit(this.hostElement);
   }
 
   render() {
+    if (this.groupFooter) {
+      return (
+        <Host class="suppress-mouse-states">
+          <div class="group-footer">
+            <slot></slot>
+          </div>
+        </Host>
+      );
+    }
+
     return (
       <Host
         class={{
           selected: this.selected && !this.suppressSelection,
         }}
       >
-        <button tabindex={this.focusable ? 0 : -1}>
+        <button tabindex={this.disabled ? -1 : 0} disabled={this.disabled}>
           <div class="group-entry-selection-indicator"></div>
           {this.icon ? (
             <ix-icon

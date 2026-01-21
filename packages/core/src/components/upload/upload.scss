@@ -7,15 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/text-truncation';
+@use './common-variables' as vars;
+@use 'mixins/shadow-dom/component';
+@use 'mixins/text-truncation';
 
 :host {
-  @include ix-component;
   display: block;
   min-height: 4rem;
   height: 4rem;
+
+  @include component.ix-component;
 
   .file-upload-area {
     display: flex;
@@ -28,7 +29,7 @@
     height: 100%;
     width: 100%;
 
-    padding: $default-space;
+    padding: vars.$default-space;
 
     border: 1px dashed var(--theme-upload--border-color);
     border-radius: var(--theme-upload--border-radius);
@@ -51,7 +52,7 @@
     &:not(.multiline) {
       .state,
       .upload-text {
-        @include ellipsis;
+        @include text-truncation.ellipsis;
       }
     }
 
@@ -71,7 +72,7 @@
     }
 
     ix-button {
-      margin-inline-start: $default-space;
+      margin-inline-start: vars.$default-space;
     }
 
     .upload-browser {
@@ -88,8 +89,8 @@
     .loader {
       margin: 2.187rem auto;
       font-size: 0.937rem;
-      width: $default-space;
-      height: $default-space;
+      width: vars.$default-space;
+      height: vars.$default-space;
       border-radius: 50%;
       position: relative;
       text-indent: -9999em;
@@ -98,7 +99,7 @@
     }
 
     .upload-filename {
-      margin-bottom: $default-space;
+      margin-bottom: vars.$default-space;
     }
 
     .state {
@@ -106,11 +107,11 @@
       align-items: center;
 
       > ix-spinner {
-        margin-inline-end: $small-space;
+        margin-inline-end: vars.$small-space;
       }
 
       > ix-icon {
-        margin-inline-end: $small-space;
+        margin-inline-end: vars.$small-space;
 
         &.icon-error {
           color: var(--theme-color-alarm);

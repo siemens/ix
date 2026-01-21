@@ -7,14 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'legacy/mixins/fonts';
-@import 'mixins/shadow-dom/component';
-@import 'mixins/hover';
+@use 'common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
 
-@mixin btn-base-variant($name, $enable-border: true) {
+@mixin btn-base-variant($name) {
   .btn-#{$name} {
-    border-radius: var(--theme-btn--border-radius);
+    border-top-left-radius: var(--ix-button-border-radius-left);
+    border-bottom-left-radius: var(--ix-button-border-radius-left);
+    border-top-right-radius: var(--ix-button-border-radius-right);
+    border-bottom-right-radius: var(--ix-button-border-radius-right);
 
     &,
     &.focus,
@@ -24,65 +27,51 @@
 
       --ix-button-color: var(--theme-btn-#{$name}--color);
 
-      @if $enable-border {
-        border-width: var(--theme-btn--border-thickness);
-        border-color: var(--theme-btn-#{$name}--border-color);
-        border-style: solid;
-      } @else {
-        border-color: transparent;
-      }
+      border-width: var(--theme-btn--border-thickness);
+      border-color: var(--theme-btn-#{$name}--border-color);
+      border-style: solid;
     }
 
-    @include focus-visible {
+    @include hover.focus-visible {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-btn--focus--outline-offset);
     }
 
     &.selected {
-      background-color: var(--theme-color-ghost--selected);
-      color: var(--theme-color-dynamic);
+      background-color: var(--theme-btn-#{$name}--background--pressed);
+      color: var(--theme-btn-#{$name}--color--pressed);
 
-      @include hover {
-        background-color: var(--theme-color-ghost--selected-hover);
-        color: var(--theme-color-dynamic);
+      @include hover.hover {
+        background-color: var(--theme-btn-#{$name}--background--pressed-hover);
+        color: var(--theme-btn-#{$name}--color--pressed-hover);
       }
 
-      @include active {
-        background-color: var(--theme-color-ghost--selected-active);
-        color: var(--theme-color-dynamic);
+      @include hover.active {
+        background-color: var(--theme-btn-#{$name}--background--pressed-hover);
+        color: var(--theme-btn-#{$name}--color--pressed-active);
       }
     }
 
-    @include hover {
-      @if $enable-border {
-        border-color: var(--theme-btn-#{$name}--border-color--hover);
-      }
-
+    @include hover.hover {
+      border-color: var(--theme-btn-#{$name}--border-color--hover);
       background-color: var(--theme-btn-#{$name}--background--hover);
       color: var(--theme-btn-#{$name}--color--hover);
     }
 
-    @include active {
-      @if $enable-border {
-        border-color: var(--theme-btn-#{$name}--border-color--active);
-      }
-
+    @include hover.active {
+      border-color: var(--theme-btn-#{$name}--border-color--active);
       background-color: var(--theme-btn-#{$name}--background--active);
       color: var(--theme-btn-#{$name}--color--active);
     }
   }
 }
 
-@mixin btn-base-variant-disabled($name, $enable-border: true) {
+@mixin btn-base-variant-disabled($name) {
   .btn-#{$name} {
     &.disabled,
     &:disabled {
       pointer-events: none;
-
-      @if $enable-border {
-        border-color: var(--theme-btn-#{$name}--border-color--disabled);
-      }
-
+      border-color: var(--theme-btn-#{$name}--border-color--disabled);
       background-color: var(--theme-btn-#{$name}--background--disabled);
       color: var(--theme-btn-#{$name}--color--disabled);
       opacity: 1;
@@ -92,15 +81,15 @@
   }
 }
 
-@mixin btn-variant($name, $enable-border: true) {
+@mixin btn-variant($name) {
   :host {
-    @include btn-base-variant($name, $enable-border);
+    @include btn-base-variant($name);
   }
 
   :host(.disabled) {
     pointer-events: none;
 
-    @include btn-base-variant-disabled($name, $enable-border);
+    @include btn-base-variant-disabled($name);
   }
 }
 
@@ -124,23 +113,23 @@
 
 @mixin btn {
   :host {
-    @include ix-component;
+    --ix-button-border-radius-left: var(--theme-btn--border-radius);
+    --ix-button-border-radius-right: var(--theme-btn--border-radius);
+
     display: inline-block;
     height: 2rem;
     vertical-align: middle;
     cursor: pointer;
 
-    @include text-default-title;
+    @include fonts.text-default-title;
+    @include component.ix-component;
 
-    button {
+    button,
+    a {
       @include btn-base();
     }
 
     ix-spinner {
-      margin-right: 0.25rem;
-    }
-
-    ix-icon {
       margin-right: 0.25rem;
     }
 
@@ -160,6 +149,11 @@
       // Prevents icon to show title tooltip
       // if embedded in ix-icon-button or ix-button[icon]
       pointer-events: none;
+      margin-right: 0.25rem;
+    }
+
+    .icon-right {
+      margin-left: 0.25rem;
     }
   }
 
@@ -169,12 +163,20 @@
 }
 
 @mixin all-btn-variants {
-  @include btn;
-  $button-categories: (primary, secondary);
+  $button-categories: (
+    primary,
+    secondary,
+    tertiary,
+    subtle-primary,
+    subtle-secondary,
+    subtle-tertiary,
+    danger-primary,
+    danger-secondary,
+    danger-tertiary
+  );
 
+  @include btn;
   @each $category in $button-categories {
     @include btn-variant($category);
-    @include btn-variant('outline-#{$category}');
-    @include btn-variant('invisible-#{$category}', false);
   }
 }

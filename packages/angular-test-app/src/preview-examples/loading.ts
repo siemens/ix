@@ -8,16 +8,21 @@
  */
 
 import { Component } from '@angular/core';
-import { showModalLoading } from '@siemens/ix';
+import { ModalLoadingContext } from '@siemens/ix';
+import { LoadingService } from '@siemens/ix-angular';
 
 @Component({
+  standalone: false,
   selector: 'app-example',
   template: ` <ix-button (click)="startLoading()">Start loading</ix-button> `,
 })
 export default class Loading {
+  constructor(private readonly loadingService: LoadingService) {}
+
   startLoading = () => {
     let count = 0;
-    const progress = showModalLoading('Loading 0/2');
+    const progress: ModalLoadingContext =
+      this.loadingService.showModalLoading('Loading 0/2');
     const interval = setInterval(() => {
       count++;
       progress.update(`Loading ${count}/2`);

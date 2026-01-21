@@ -85,10 +85,11 @@ export class ToastContainer {
 
     toast.toastTitle = config.title;
     toast.type = config.type ?? 'info';
-    toast.autoClose = config.autoClose ?? true;
+    toast.preventAutoClose = config.autoClose === false;
     toast.autoCloseDelay = config.autoCloseDelay ?? 5000;
     toast.icon = config.icon;
     toast.iconColor = config.iconColor;
+    toast.hideIcon = config.hideIcon ?? false;
     toast.addEventListener(
       'closeToast',
       (event: CustomEvent<any | undefined>) => {
@@ -116,6 +117,15 @@ export class ToastContainer {
       onClose,
       close: (result?: any) => {
         removeToast(result);
+      },
+      pause: () => {
+        toast.pause();
+      },
+      resume: () => {
+        toast.resume();
+      },
+      isPaused: () => {
+        return toast.isPaused();
       },
     };
   }

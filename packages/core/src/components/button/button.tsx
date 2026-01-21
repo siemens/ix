@@ -17,13 +17,19 @@ import {
   Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
+import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 import { IxButtonComponent } from './button-component';
+import { AnchorTarget } from './button.interface';
 
-export type ButtonVariant = 'danger' | 'primary' | 'secondary';
+export type ButtonVariant =
+  | `${BaseButtonVariant}`
+  | `${BaseButtonStyle}-${BaseButtonVariant}`;
 
 @Component({
   tag: 'ix-button',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
   styleUrl: './button.scss',
 })
 export class Button implements IxButtonComponent {
@@ -39,16 +45,6 @@ export class Button implements IxButtonComponent {
    * Button variant
    */
   @Prop() variant: ButtonVariant = 'primary';
-
-  /**
-   * Outline button
-   */
-  @Prop() outline = false;
-
-  /**
-   * Button with no background or outline
-   */
-  @Prop() ghost = false;
 
   /**
    * Disable the button
@@ -77,11 +73,38 @@ export class Button implements IxButtonComponent {
    */
   @Prop() icon?: string;
 
+  /**
+   * Icon name for the right side of the button
+   * @since 4.0.0
+   */
+  @Prop() iconRight?: string;
+
   /** @internal */
   @Prop() alignment: 'center' | 'start' = 'center';
 
   /** @internal */
   @Prop() iconSize: '12' | '16' | '24' = '24';
+
+  /**
+   * URL for the button link. When provided, the button will render as an anchor tag.
+   *
+   * @since 4.0.0
+   */
+  @Prop() href?: string;
+
+  /**
+   * Specifies where to open the linked document when href is provided.
+   *
+   * @since 4.0.0
+   */
+  @Prop() target?: AnchorTarget = '_self';
+
+  /**
+   * Specifies the relationship between the current document and the linked document when href is provided.
+   *
+   * @since 4.0.0
+   */
+  @Prop() rel?: string;
 
   @Element() hostElement!: HTMLIxButtonElement;
 
@@ -146,37 +169,41 @@ export class Button implements IxButtonComponent {
   }
 
   setFocus() {
-    this.hostElement.shadowRoot!.querySelector('button')?.focus();
+    this.hostElement
+      .shadowRoot!.querySelector<
+        HTMLButtonElement | HTMLAnchorElement
+      >(this.href ? 'a' : 'button')
+      ?.focus();
   }
 
   render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
-      outline: this.outline,
-      ghost: this.ghost,
       iconOnly: false,
       iconOval: false,
       selected: false,
       disabled: this.disabled || this.loading,
       icon: this.icon,
+      iconRight: this.iconRight,
       iconSize: this.iconSize,
       loading: this.loading,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
-      tabIndex: this.hostElement.tabIndex,
+      tabIndex: 0,
       ariaAttributes: {
         'aria-label': this.ariaLabelButton,
       },
+      href: this.href,
+      target: this.target,
+      rel: this.rel,
     };
 
     return (
       <Host
-        tabindex={this.disabled ? -1 : 0}
         class={{
           disabled: this.disabled || this.loading,
         }}
-        onFocus={() => this.setFocus()}
       >
         <BaseButton {...baseButtonProps}>
           <slot></slot>

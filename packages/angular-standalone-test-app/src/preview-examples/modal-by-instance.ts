@@ -8,13 +8,11 @@
  */
 
 import { Component } from '@angular/core';
-import { IxButton } from '@siemens/ix-angular/standalone';
+import { IxButton, ModalService } from '@siemens/ix-angular/standalone';
 
-import { ModalService } from '@siemens/ix-angular';
 import ModalByInstanceExample from './modal-by-instance-content';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxButton],
   template: '<ix-button (click)="openModal()">Show modal</ix-button>',

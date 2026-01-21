@@ -8,12 +8,11 @@
  */
 
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { IxButton } from '@siemens/ix-angular/standalone';
+import { IxButton, ModalService } from '@siemens/ix-angular/standalone';
 
-import { IxModalSize, ModalService } from '@siemens/ix-angular';
+import { IxModalSize } from '@siemens/ix-angular';
 
 @Component({
-  standalone: true,
   selector: 'app-example',
   imports: [IxButton],
   styleUrls: ['./modal-sizes.css'],

@@ -9,6 +9,7 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import type { ActionCardVariant } from './action-card.types';
+import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
 
 @Component({
   tag: 'ix-action-card',
@@ -55,6 +56,11 @@ export class IxActionCard {
    */
   @Prop() ariaLabelCard?: string;
 
+  /**
+   * If true, disables hover and active styles and changes cursor to default
+   */
+  @Prop() passive: boolean = false;
+
   private getSubheadingTextColor() {
     return this.variant === 'outline' || this.variant === 'filled'
       ? 'soft'
@@ -62,16 +68,21 @@ export class IxActionCard {
   }
 
   render() {
+    const ariaLabelledBy =
+      !this.ariaLabelCard && this.heading
+        ? 'ix-action-card-heading'
+        : undefined;
+
     return (
       <Host>
         <ix-card
           selected={this.selected}
           variant={this.variant}
+          passive={this.passive}
           class={'pointer'}
           aria-label={this.ariaLabelCard}
-          aria-labelledby={
-            !this.ariaLabelCard ? 'ix-action-card-heading' : undefined
-          }
+          aria-labelledby={ariaLabelledBy}
+          role={ariaLabelledBy ? 'group' : undefined}
         >
           <ix-card-content>
             {this.icon ? (
@@ -79,14 +90,16 @@ export class IxActionCard {
                 class={'icon'}
                 name={this.icon}
                 size="32"
-                aria-label={this.ariaLabelIcon}
+                aria-label={
+                  this.ariaLabelIcon || getFallbackLabelFromIconName(this.icon)
+                }
               ></ix-icon>
             ) : null}
             <div>
               {this.heading ? (
                 <ix-typography
                   id="ix-action-card-heading"
-                  aria-hidden="true"
+                  aria-hidden={a11yBoolean(!ariaLabelledBy)}
                   format="h4"
                 >
                   {this.heading}

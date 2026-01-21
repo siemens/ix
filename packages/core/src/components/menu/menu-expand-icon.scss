@@ -6,16 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'common-variables';
-@import 'legacy/components/buttons';
-@import 'mixins/hover';
-@import 'mixins/shadow-dom/component';
+@use './../button/button-mixin';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
 
 $focus-bdr-width: 0.0625rem;
 
-:host {
-  @include ix-component;
+@include button-mixin.btn;
+@include button-mixin.btn-variant(subtle-tertiary);
 
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +23,8 @@ $focus-bdr-width: 0.0625rem;
   width: 2rem;
   border-radius: var(--theme-btn--border-radius);
   pointer-events: all;
+
+  @include component.ix-component;
 
   svg {
     display: inline-block;
@@ -33,13 +35,14 @@ $focus-bdr-width: 0.0625rem;
     fill: var(--theme-menu-btn--color);
     opacity: 1;
     x: 2px;
-    transition: x 0.075s ease-in var(--theme-default-time), transform 0.075s ease-in-out 0.075s,
-      y 0.075s ease-in-out, opacity 0.075s linear 0.075s;
+    transition: x 0.075s ease-in var(--theme-default-time),
+      transform 0.075s ease-in-out 0.075s, y 0.075s ease-in-out,
+      opacity 0.075s linear 0.075s;
     transform-origin: center;
   }
 }
 
-@include host-hover {
+@include hover.host-hover {
   .menu-expand-button {
     background-color: var(--theme-menu-btn--background--hover);
   }
@@ -47,11 +50,11 @@ $focus-bdr-width: 0.0625rem;
 
 .menu-expand-button {
   width: 2rem;
-  padding: 0;
+  padding: 0px !important;
   cursor: pointer;
 }
 
-@include host-active {
+@include hover.host-active {
   .menu-expand-button {
     background-color: var(--theme-menu-btn--background--active);
   }

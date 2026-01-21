@@ -14,11 +14,10 @@ import {
   ElementRef,
   NgZone,
 } from '@angular/core';
-import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 import { TreeBaseDirective } from '@siemens/ix-angular/common';
+import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 
 @ProxyCmp({
-  defineCustomElementFn: undefined,
   inputs: ['context', 'model', 'root'],
 })
 @Component({
@@ -26,6 +25,7 @@ import { TreeBaseDirective } from '@siemens/ix-angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['context', 'model', 'root', 'renderItem'],
+  standalone: false,
 })
 export class IxTree extends TreeBaseDirective {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {

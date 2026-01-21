@@ -8,8 +8,8 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
+import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import type {
   DateTimeDateChangeEvent,
   DateTimeSelectEvent,
@@ -24,30 +24,9 @@ export class DatetimePicker
   implements Omit<IxDatePickerComponent, 'corners' | 'format'>
 {
   /**
-   * If true a date-range can be selected (from/to).
+   * If true disables date range selection (from/to).
    */
-  @Prop() range = true;
-
-  /**
-   * Show hour input
-   *
-   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-   */
-  @Prop() showHour = true;
-
-  /**
-   * Show minutes input
-   *
-   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-   */
-  @Prop() showMinutes = true;
-
-  /**
-   * Show seconds input
-   *
-   * @deprecated This is now determined by the format that is used. Will be removed in 4.0.0
-   */
-  @Prop() showSeconds = true;
+  @Prop() singleSelection = false;
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -63,13 +42,13 @@ export class DatetimePicker
 
   /**
    * Date format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() dateFormat: string = 'yyyy/LL/dd';
 
   /**
    * Time format string.
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() timeFormat: string = 'HH:mm:ss';
 
@@ -111,7 +90,7 @@ export class DatetimePicker
    *
    * @since 3.0.0
    */
-  @Prop() i18nTime: string = 'Time';
+  @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
    * ARIA label for the previous month icon button
@@ -133,7 +112,7 @@ export class DatetimePicker
 
   /**
    * Format of time string
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() locale?: string;
 
@@ -193,12 +172,12 @@ export class DatetimePicker
     return (
       <Host>
         <ix-layout-grid class="no-padding">
-          <ix-row>
-            <ix-col>
+          <ix-row class="row-separator">
+            <ix-col class="col-separator">
               <ix-date-picker
                 ref={(ref) => (this.datePickerElement = ref)}
                 corners="left"
-                range={this.range}
+                singleSelection={this.singleSelection}
                 onDateChange={(event) => this.onDateChange(event)}
                 from={this.from}
                 to={this.to}
@@ -206,7 +185,7 @@ export class DatetimePicker
                 minDate={this.minDate}
                 maxDate={this.maxDate}
                 weekStartIndex={this.weekStartIndex}
-                standaloneAppearance={false}
+                embedded
                 locale={this.locale}
                 showWeekNumbers={this.showWeekNumbers}
                 ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
@@ -218,16 +197,16 @@ export class DatetimePicker
               <ix-time-picker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
-                standaloneAppearance={false}
+                embedded
                 dateTimePickerAppearance={true}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
-                textTime={this.i18nTime}
                 time={this.time}
-                showHour={this.showHour}
-                showMinutes={this.showMinutes}
-                showSeconds={this.showSeconds}
               ></ix-time-picker>
+            </ix-col>
+          </ix-row>
+          <ix-row>
+            <ix-col>
               <div class="btn-select-date-container">
                 <ix-button
                   class="btn-select-date"

@@ -19,8 +19,8 @@ import { appInitialize } from './utils/app-initialize';
 import { DIRECTIVES } from './declare-components';
 import { IxIcon } from './ix-icon';
 import { ModalService } from './providers/modal';
-import { ThemeService } from './providers/theme';
 import { ToastService } from './providers/toast';
+import { MessageService } from './providers/message';
 import * as tree from './tree';
 import { IxDropdownTriggerDirective } from './directives/dropdown-trigger';
 import { IxSelectValueAccessorDirective } from './directives/control-value-accessors/select-value-accessor';
@@ -56,8 +56,8 @@ export class IxModule {
           deps: [DOCUMENT, NgZone],
         },
         ModalService,
-        ThemeService,
         ToastService,
+        MessageService,
       ],
     };
   }

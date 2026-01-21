@@ -20,7 +20,7 @@ import type { DateTimeCardCorners } from './date-time-card.types';
 })
 export class DateTimeCard {
   /** @internal */
-  @Prop() standaloneAppearance?: boolean;
+  @Prop() embedded?: boolean;
 
   /** Timepicker specific styling */
   @Prop() timePickerAppearance: boolean = false;
@@ -36,11 +36,6 @@ export class DateTimeCard {
   @Prop() hasFooter: boolean = false;
 
   /**
-   * set styles
-   */
-  @Prop() individual: boolean = true;
-
-  /**
    * Set corners style
    */
   @Prop() corners: DateTimeCardCorners = 'rounded';
@@ -48,7 +43,7 @@ export class DateTimeCard {
   private cardClasses() {
     return {
       card: true,
-      standaloneAppearance: this.standaloneAppearance ?? this.individual,
+      standaloneAppearance: this.embedded === false,
       rounded: this.corners === 'rounded',
       left: this.corners === 'left',
       right: this.corners === 'right',

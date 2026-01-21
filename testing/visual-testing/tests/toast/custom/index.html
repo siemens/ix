@@ -30,7 +30,7 @@ SPDX-License-Identifier: MIT
     </template>
 
     <template id="ghost-undo">
-      <ix-button ghost icon="undo">Undo</ix-button>
+      <ix-button variant="tertiary" icon="undo">Undo</ix-button>
     </template>
 
     <script>
@@ -74,6 +74,15 @@ SPDX-License-Identifier: MIT
           action: createActionFromTemplate('basic-undo'),
           autoClose: false,
           type: 'success',
+        });
+
+        toastContainer.showToast({
+          title: 'Toast headline',
+          message: 'Toast message text',
+          action: createActionFromTemplate('basic-undo'),
+          autoClose: false,
+          type: 'success',
+          hideIcon: true,
         });
       })();
     </script>
