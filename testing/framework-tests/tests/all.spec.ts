@@ -8,8 +8,11 @@
  */
 import { test, expect } from '@playwright/test';
 import { testIds } from './test-ids';
+import { excludedTestIds } from './exclude-test-ids';
 
-for (const testId of testIds.filter((id) => !id.startsWith('echarts'))) {
+for (const testId of testIds.filter(
+  (id) => !(excludedTestIds as any).includes(id)
+)) {
   test(testId, async ({ page }) => {
     await page.goto('/preview/' + testId);
 

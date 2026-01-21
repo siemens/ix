@@ -11,11 +11,15 @@ import { Routes } from '@angular/router';
 
 type AngularComponent = any;
 
-const exampleNames = [...testIds, ...'validation'] as const;
+const exampleNames = [...testIds, 'validation'] as const;
 type IxPreviewRoutes = {
-  '': AngularComponent;
-} & {
   [K in (typeof exampleNames)[number] as `preview/${K}`]: AngularComponent;
+} & {
+  '': AngularComponent;
+  'preview/modal-by-instance': AngularComponent;
+  'preview/modal-by-template': AngularComponent;
+  'preview/select-ng-model': AngularComponent;
+  'preview/toggle-ng-model': AngularComponent;
 };
 
 export const routePaths: IxPreviewRoutes = {
@@ -138,8 +142,6 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/datepicker-range').then((m) => m.default),
   'preview/datetimepicker': () =>
     import('../preview-examples/datetimepicker').then((m) => m.default),
-  'preview/divider': () =>
-    import('../preview-examples/divider').then((m) => m.default),
   'preview/drawer': () =>
     import('../preview-examples/drawer').then((m) => m.default),
   'preview/drawer-full-height': () =>
@@ -193,12 +195,6 @@ export const routePaths: IxPreviewRoutes = {
       (m) => m.default
     ),
   'preview/echarts-special-zoom': () =>
-    import('../preview-examples/echarts-special-zoom').then((m) => m.default),
-  'preview/echarts-toolbox': () =>
-    import('../preview-examples/echarts-special-toolbox').then(
-      (m) => m.default
-    ),
-  'preview/echarts-zoom': () =>
     import('../preview-examples/echarts-special-zoom').then((m) => m.default),
   'preview/empty-state': () =>
     import('../preview-examples/empty-state').then((m) => m.default),
@@ -288,8 +284,6 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/input').then((m) => m.default),
   'preview/input-disabled': () =>
     import('../preview-examples/input-disabled').then((m) => m.default),
-  'preview/input-form-validation': () =>
-    import('../preview-examples/input-form-validation').then((m) => m.default),
   'preview/input-label': () =>
     import('../preview-examples/input-label').then((m) => m.default),
   'preview/input-legacy': () =>
@@ -551,6 +545,44 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/progress-indicator-circular').then(
       (m) => m.default
     ),
+  'preview/button-danger': () =>
+    import('../preview-examples/button-danger').then((m) => m.default),
+  'preview/button-danger-ghost': () =>
+    import('../preview-examples/button-danger-ghost').then((m) => m.default),
+  'preview/button-danger-outline': () =>
+    import('../preview-examples/button-danger-outline').then((m) => m.default),
+  'preview/date-input-min-max-date': () =>
+    import('../preview-examples/date-input-min-max-date').then(
+      (m) => m.default
+    ),
+  'preview/event-list-custom-item-height-in-number': () =>
+    import('../preview-examples/event-list-custom-item-height').then(
+      (m) => m.default
+    ),
+  'preview/modal': () =>
+    import('../preview-examples/modal-by-instance').then((m) => m.default),
+  'preview/textarea-readonly': () =>
+    import('../preview-examples/textarea-readonly').then((m) => m.default),
+  'preview/time-input': () =>
+    import('../preview-examples/time-input').then((m) => m.default),
+  'preview/time-input-disabled': () =>
+    import('../preview-examples/time-input-disabled').then((m) => m.default),
+  'preview/time-input-label': () =>
+    import('../preview-examples/time-input-label').then((m) => m.default),
+  'preview/time-input-readonly': () =>
+    import('../preview-examples/time-input-readonly').then((m) => m.default),
+  'preview/time-input-validation': () =>
+    import('../preview-examples/time-input-validation').then((m) => m.default),
+  'preview/time-input-with-slots': () =>
+    import('../preview-examples/time-input-with-slots').then((m) => m.default),
+  'preview/timepicker-format-adjusted': () =>
+    import('../preview-examples/timepicker-format-adjusted').then(
+      (m) => m.default
+    ),
+  'preview/timepicker-intervals': () =>
+    import('../preview-examples/timepicker-intervals').then((m) => m.default),
+  'preview/tooltip-with-icon': () =>
+    import('../preview-examples/tooltip-with-icon').then((m) => m.default),
 };
 
 export const routes: Routes = Object.entries(routePaths).map(

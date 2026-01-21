@@ -6,16 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { resolveTestIds } from './utils';
-import { excludedTestIds } from '../tests/exclude-test-ids';
-import path from 'node:path';
 import fs from 'fs/promises';
+import path from 'node:path';
+import { resolveTestIds } from './utils';
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 async function main() {
-  let testIds = await resolveTestIds();
-  testIds = testIds.filter((id) => !excludedTestIds.includes(id));
+  const testIds = await resolveTestIds();
 
   const rawTestIdsArray = `export const testIds = ${JSON.stringify(
     testIds,
