@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsx src/main.ts"
+    "build": "tsx src/main.ts",
+    "test.setup": "playwright install chromium --with-deps"
   },
   "devDependencies": {
     "@playwright/test": "catalog:",
