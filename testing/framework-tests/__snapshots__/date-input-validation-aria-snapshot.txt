@@ -1,0 +1,16 @@
+- textbox: /\d+\/\d+\/\d+/
+- button "Unknown"
+- img
+- text: Info text
+- textbox: /\d+\/\d+\/\d+/
+- button "Unknown"
+- img
+- text: Warning text
+- textbox: /\d+\/\d+\/\d+/
+- button "Unknown"
+- img
+- text: Valid text
+- textbox: /\d+\/\d+\/\d+/
+- button "Unknown"
+- img
+- text: Invalid text

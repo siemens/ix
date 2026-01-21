@@ -1,0 +1,4 @@
+- text: Begin
+- textbox: /\d+\/\d+\/\d+/
+- button "Unknown"
+- text: Some helper text
