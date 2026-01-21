@@ -89,7 +89,9 @@ regressionTest('drawerClose', async ({ mount, page }) => {
 regressionTest(
   'close button should emit drawerClose event only once',
   async ({ mount, page }) => {
-    await mount('<ix-drawer show>Content</ix-drawer>');
+    await mount(
+      '<ix-drawer show aria-label-close-button="Close drawer">Content</ix-drawer>'
+    );
     const drawer = page.locator('ix-drawer');
     await expect(drawer).toHaveClass(/hydrated/);
 
@@ -97,9 +99,7 @@ regressionTest(
       d.addEventListener('drawerClose', () => {}, { once: true });
     });
 
-    const closeButton = page.locator(
-      'ix-drawer ix-icon-button[data-testid="close-button"]'
-    );
+    const closeButton = page.getByLabel('Close drawer');
 
     const eventPromise = drawer.evaluate((d: HTMLIxDrawerElement) => {
       return new Promise<void>((resolve) => {
