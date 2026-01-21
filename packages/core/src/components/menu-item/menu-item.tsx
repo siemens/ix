@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconDocument } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { createMutationObserver } from '../utils/mutation-observer';
+import { AnchorTarget } from '../button/button.interface';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { menuController } from '../utils/menu-service/menu-service';
+import { createMutationObserver } from '../utils/mutation-observer';
 import { Disposable } from '../utils/typed-event';
-import { iconDocument } from '@siemens/ix-icons/icons';
-import { a11yBoolean } from '../utils/a11y';
 import { createSequentialId } from '../utils/uuid';
 import { IxMenuItemBase } from './menu-item.interface';
-import { AnchorTarget } from '../button/button.interface';
 
 let sequenceId = 0;
 
@@ -183,13 +183,22 @@ export class MenuItem implements IxMenuItemBase {
       };
     }
 
+    const hostA11y = a11yHostAttributes(this.hostElement);
+
     const commonAttributes = {
       class: 'tab',
       tabIndex: this.disabled ? -1 : 0,
+      ...hostA11y,
     };
 
     const menuContent = [
-      this.icon && <ix-icon class={'tab-icon'} name={this.icon}></ix-icon>,
+      this.icon && (
+        <ix-icon
+          class={'tab-icon'}
+          name={this.icon}
+          aria-hidden="true"
+        ></ix-icon>
+      ),
       this.notifications ? (
         <div class="notification">
           <div class="pill">{this.notifications}</div>
@@ -210,6 +219,7 @@ export class MenuItem implements IxMenuItemBase {
           active: this.active,
           'tab-nested': this.isHostedInsideCategory,
         }}
+        aria-disabled={this.disabled ? 'true' : null}
         {...extendedAttributes}
       >
         {this.href ? (

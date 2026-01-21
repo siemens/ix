@@ -1049,6 +1049,38 @@ test('should not show "All" chip of de-selected a item', async ({
   await expect(allChip).not.toBeVisible();
 });
 
+test('clear button returns empty string in single mode', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-select allow-clear mode="single" value="1">
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+      </ix-select>
+    `);
+
+  const select = page.locator('ix-select');
+
+  const valueChanged = select.evaluate((elm: HTMLIxSelectElement) => {
+    return new Promise<string | string[]>((resolve) => {
+      elm.addEventListener('valueChange', (e: Event) => {
+        resolve((e as CustomEvent).detail);
+      });
+    });
+  });
+
+  const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
+  await expect(clearButton).toBeVisible();
+
+  await clearButton.click();
+
+  const emittedValue = await valueChanged;
+
+  expect(emittedValue).toBe('');
+});
+
 test('required select prevents form submission when empty', async ({
   mount,
   page,
