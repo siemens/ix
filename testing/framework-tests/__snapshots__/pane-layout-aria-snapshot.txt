@@ -1,0 +1,14 @@
+- complementary:
+  - button "Unknown"
+  - text: Pane Top
+- complementary:
+  - button "Unknown"
+  - text: Pane Left
+- button "Toggle Variant"
+- button "Toggle Layout"
+- complementary:
+  - button "Unknown"
+  - text: Pane Right
+- complementary:
+  - button "Unknown"
+  - text: Pane Bottom

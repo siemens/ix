@@ -1,0 +1,14 @@
+- button:
+  - img
+- button [pressed]:
+  - img
+- button [disabled]:
+  - img
+- button [disabled]
+- button:
+  - img
+- button [pressed]:
+  - img
+- button [disabled]:
+  - img
+- button [disabled]

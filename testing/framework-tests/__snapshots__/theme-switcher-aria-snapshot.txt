@@ -1,0 +1,8 @@
+- text: Light/Dark
+- button "Toggle mode"
+- text: Theme
+- textbox "Select an option"
+- button "Open select dropdown"
+- checkbox "Use system":
+  - button:
+    - img

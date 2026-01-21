@@ -1,0 +1,4 @@
+- button "Normal"
+- button "Pressed" [pressed]
+- button "Disabled" [disabled]
+- button "Loading" [disabled]

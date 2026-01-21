@@ -1,0 +1,21 @@
+- text: Flip header
+- button "Unknown"
+- text: Example 1 Example 2 Predicted maintenance date
+- img
+- text: /\d+-\d+-\d+ Flip header/
+- button "Unknown"
+- text: Example 1 Example 2 Predicted maintenance date
+- img
+- text: /\d+-\d+-\d+ Flip header/
+- button "Unknown"
+- text: Example 1 Example 2 Predicted maintenance date
+- img
+- text: /\d+-\d+-\d+ Flip header/
+- button "Unknown"
+- text: Example 1 Example 2 Predicted maintenance date
+- img
+- text: /\d+-\d+-\d+ Flip header/
+- button "Unknown"
+- text: Example 1 Example 2 Predicted maintenance date
+- img
+- text: /\d+-\d+-\d+/

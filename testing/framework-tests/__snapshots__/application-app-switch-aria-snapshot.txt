@@ -1,0 +1,12 @@
+- button "Unknown"
+- text: My Application
+- button "Select config":
+  - img
+- button:
+  - img
+- navigation:
+  - button "Item 1"
+  - button "Item 2"
+- complementary
+- main: My Content Page
+- contentinfo

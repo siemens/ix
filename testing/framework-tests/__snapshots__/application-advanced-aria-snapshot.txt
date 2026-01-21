@@ -1,0 +1,14 @@
+- text: My Application
+- button:
+  - img
+- navigation:
+  - button "Home"
+  - button "Alarm"
+  - button "Analysis"
+  - button "Settings"
+  - tooltip "Settings"
+  - button "About & legal information"
+  - tooltip "About & legal information"
+- complementary
+- main: Example home content
+- contentinfo

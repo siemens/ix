@@ -1,0 +1,12 @@
+- navigation:
+  - button "About & legal information"
+  - tooltip "About & legal information"
+- complementary
+- main
+- contentinfo
+- img
+- img
+- text: Test
+- button "Unknown"
+- text: Test
+- button "Show more"

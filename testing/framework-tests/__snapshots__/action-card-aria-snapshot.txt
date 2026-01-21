@@ -1,0 +1,3 @@
+- group "Scan for new devices":
+  - img "Unknown"
+  - text: Scan for new devices Secondary text

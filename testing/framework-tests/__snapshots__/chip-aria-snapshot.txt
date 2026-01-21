@@ -1,0 +1,41 @@
+- img
+- text: Primary
+- button "Unknown"
+- img
+- text: Alarm
+- button "Unknown"
+- img
+- text: Critical
+- img
+- text: Warning
+- img
+- text: Info
+- img
+- text: Success
+- img
+- text: Neutral
+- img
+- text: Custom
+- button "Unknown"
+- img
+- text: Chip with icon
+- button "Unknown"
+- img
+- text: Primary
+- button "Unknown"
+- img
+- text: Alarm
+- button "Unknown"
+- img
+- text: Critical
+- img
+- text: Warning
+- img
+- text: Info
+- img
+- text: Success
+- img
+- text: Neutral Custom
+- button "Unknown"
+- text: Chip without icon
+- button "Unknown"

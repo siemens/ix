@@ -1,0 +1,8 @@
+- text: My Application
+- button "Unknown"
+- button "Unknown"
+- button "Unknown"
+- button "Select config":
+  - img
+- button:
+  - img

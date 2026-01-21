@@ -1,0 +1,7 @@
+- img
+- text: Custom filter text
+- button "Unknown"
+- text: Vendor != IBM
+- button "Unknown"
+- textbox "Filter by"
+- button "Unknown"

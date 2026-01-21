@@ -1,0 +1,8 @@
+- button "Unknown" [disabled]
+- text: Page
+- spinbutton "Page selection input"
+- text: /of \d+/
+- button "Unknown"
+- text: Items
+- textbox: /\d+/
+- button "Open select dropdown"

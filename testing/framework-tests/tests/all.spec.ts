@@ -6,9 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-// import './buttons.spec.ts';
-// import './breadcrumb.spec.ts';
-
 import { glob } from 'glob';
 import path from 'node:path';
 import { test, expect } from '@playwright/test';
@@ -30,7 +27,7 @@ async function resolveTestIds() {
 
 const testIds = await resolveTestIds();
 
-for (const testId of testIds.filter((id) => id.includes('avatar'))) {
+for (const testId of testIds) {
   test(testId, async ({ page }) => {
     await page.goto('/preview/' + testId);
 

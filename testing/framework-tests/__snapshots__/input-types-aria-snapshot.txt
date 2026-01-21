@@ -1,0 +1,11 @@
+- text: Username
+- textbox: MaxMuster1
+- text: Email
+- textbox: example@example.com
+- text: Password
+- textbox "Enter your password"
+- button "Unknown"
+- text: Telephone
+- textbox "Enter your phone number"
+- text: URL
+- textbox "Enter your URL": https://ix.siemens.io

@@ -1,0 +1,3 @@
+- navigation:
+  - button "Home"
+  - button "Bottom Tab"

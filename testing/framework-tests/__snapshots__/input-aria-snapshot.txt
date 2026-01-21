@@ -1,0 +1,17 @@
+- textbox
+- button "Login"
+- heading "IxInput Form" [level=3]
+- textbox "Email"
+- textbox "Password"
+- button "Unknown"
+- spinbutton: "0"
+- textbox "Date of Birth"
+- button "Unknown"
+- textbox "Appointment Time"
+- button "Toggle time picker"
+- button "Submit"
+- heading "Native Input Form" [level=3]
+- textbox "Email"
+- textbox "Password"
+- button "Submit"
+- button "Native Submit Input"
