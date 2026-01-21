@@ -3,5 +3,5 @@
     - img
   - button "Home"
   - button "Normal tab"
-  - button "Disabled Tab" [disabled]
+  - button "Disabled tab" [disabled]
   - button "With other icon"

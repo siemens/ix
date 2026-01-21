@@ -11,7 +11,6 @@
 
 import { glob } from 'glob';
 import path from 'node:path';
-import fs from 'node:fs/promises';
 import { test, expect } from '@playwright/test';
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -34,6 +33,11 @@ const testIds = await resolveTestIds();
 for (const testId of testIds.filter((id) => id.includes('avatar'))) {
   test(testId, async ({ page }) => {
     await page.goto('/preview/' + testId);
+
+    const components = page.locator('//*[starts-with(name(), "ix-")]');
+    for (const component of await components.all()) {
+      await expect(component).toHaveClass(/hydrated/);
+    }
 
     await expect(page.locator('body')).toMatchAriaSnapshot({
       name: `${testId}.aria-snapshot.txt`,
