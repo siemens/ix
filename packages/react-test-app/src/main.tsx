@@ -13,8 +13,6 @@ import { IxApplicationContext } from '@siemens/ix-react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { resolveTestIds } from 'framework-tests/src/utils';
-
 import App from './App';
 import AboutAndLegal from './preview-examples/about-and-legal';
 import ActionCard from './preview-examples/action-card';
@@ -233,8 +231,34 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
+import { testIds } from 'framework-tests/tests/test-ids';
+import buttonDanger from './preview-examples/button-danger.tsx';
+import buttonDangerGhost from './preview-examples/button-danger-ghost.tsx';
+import buttonDangerOutline from './preview-examples/button-danger-outline.tsx';
+import dateInputDisabled from './preview-examples/date-input-disabled.tsx';
+import dateInputLabel from './preview-examples/date-input-label.tsx';
+import dateInputMinMaxDate from './preview-examples/date-input-min-max-date.tsx';
+import dateInputReadonly from './preview-examples/date-input-readonly.tsx';
+import dateInputValidation from './preview-examples/date-input-validation.tsx';
+import eventListCustomItemHeightInNumber from './preview-examples/event-list-custom-item-height-in-number.tsx';
+import timeInput from './preview-examples/time-input.tsx';
+import timeInputDisabled from './preview-examples/time-input-disabled.tsx';
+import timeInputLabel from './preview-examples/time-input-label.tsx';
+import timeInputReadonly from './preview-examples/time-input-readonly.tsx';
+import timeInputValidation from './preview-examples/time-input-validation.tsx';
+import timeInputWithSlots from './preview-examples/time-input-with-slots.tsx';
+import timepickerFormatAdjusted from './preview-examples/timepicker-format-adjusted.tsx';
+import timepickerIntervals from './preview-examples/timepicker-intervals.tsx';
+import toggleButtonPrimary from './preview-examples/toggle-button-primary.tsx';
 
-const routes: Record<string, React.ComponentType> = {
+const exampleNames = [...testIds, ...'validation'] as const;
+type IxPreviewRoutes = {
+  '/': React.ComponentType;
+} & {
+  [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
+};
+
+const routes: IxPreviewRoutes = {
   '/': App,
   '/preview/grid-padding': GridPadding,
   '/preview/grid-size': GridSize,
@@ -266,7 +290,6 @@ const routes: Record<string, React.ComponentType> = {
   '/preview/button-secondary': ButtonSecondary,
   '/preview/button-text-icon': ButtonTextIcon,
   '/preview/button-with-icon': ButtonWithIcon,
-  '/preview/button-with-Link': ButtonWithLink,
   '/preview/buttons': Buttons,
   '/preview/card': Card,
   '/preview/card-list': CardList,
@@ -310,7 +333,6 @@ const routes: Record<string, React.ComponentType> = {
   '/preview/echarts-pie': EchartsPie,
   '/preview/echarts-progress-circle': EchartsProgressCircle,
   '/preview/echarts-progress-arc': EchartsProgressArc,
-  '/preview/echarts-zoom': EchartsZoom,
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
@@ -454,6 +476,26 @@ const routes: Record<string, React.ComponentType> = {
   '/preview/progress-indicator-circular-sizes': ProgressIndicatorCircularSizes,
   '/preview/progress-indicator-circular': ProgressIndicatorCircular,
   '/preview/progress-indicator': ProgressIndicator,
+  '/preview/button-danger': buttonDanger,
+  '/preview/button-danger-ghost': buttonDangerGhost,
+  '/preview/button-danger-outline': buttonDangerOutline,
+  '/preview/button-with-link': ButtonWithLink,
+  '/preview/date-input-disabled': dateInputDisabled,
+  '/preview/date-input-label': dateInputLabel,
+  '/preview/date-input-min-max-date': dateInputMinMaxDate,
+  '/preview/date-input-readonly': dateInputReadonly,
+  '/preview/date-input-validation': dateInputValidation,
+  '/preview/event-list-custom-item-height-in-number':
+    eventListCustomItemHeightInNumber,
+  '/preview/time-input': timeInput,
+  '/preview/time-input-disabled': timeInputDisabled,
+  '/preview/time-input-label': timeInputLabel,
+  '/preview/time-input-readonly': timeInputReadonly,
+  '/preview/time-input-validation': timeInputValidation,
+  '/preview/time-input-with-slots': timeInputWithSlots,
+  '/preview/timepicker-format-adjusted': timepickerFormatAdjusted,
+  '/preview/timepicker-intervals': timepickerIntervals,
+  '/preview/toggle-button-primary': toggleButtonPrimary,
 };
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
