@@ -9,6 +9,7 @@
 
 import './preview-examples/global.css';
 
+import { testIds } from 'framework-tests/tests/test-ids';
 import { IxApplicationContext } from '@siemens/ix-react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -231,7 +232,6 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
-import { testIds } from 'framework-tests/tests/test-ids';
 import buttonDanger from './preview-examples/button-danger.tsx';
 import buttonDangerGhost from './preview-examples/button-danger-ghost.tsx';
 import buttonDangerOutline from './preview-examples/button-danger-outline.tsx';
