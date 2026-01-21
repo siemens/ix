@@ -4,11 +4,14 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "catalog:",
     "@types/node": "^20.16.0",
+    "glob": "catalog:",
+    "html-test-app": "workspace:*",
     "typescript": "^5.8.2"
   },
   "files": [
-    "./tests"
+    "./tests",
+    "./playwright.config.ts"
   ]
 }

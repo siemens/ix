@@ -70,6 +70,12 @@ export default defineConfig({
     // },
   ],
 
+  expect: {
+    toMatchAriaSnapshot: {
+      pathTemplate: './node_modules/framework-tests/__snapshots__/{arg}{ext}',
+    },
+  },
+
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
