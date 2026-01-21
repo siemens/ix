@@ -612,6 +612,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * Clear the checked state and reset validation
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled state of the checkbox component
           * @default false
          */
@@ -647,6 +651,10 @@ export namespace Components {
      * @form-ready 
      */
     interface IxCheckboxGroup {
+        /**
+          * Clear all checked checkboxes and reset validation state
+         */
+        "clear": () => Promise<void>;
         /**
           * Alignment of the checkboxes in the group
           * @default 'column'
@@ -954,6 +962,10 @@ export namespace Components {
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
          */
         "ariaLabelPreviousMonthButton"?: string;
+        /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
         /**
           * Disabled attribute
           * @default false
@@ -1912,6 +1924,10 @@ export namespace Components {
          */
         "allowedCharactersPattern"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Specifies whether the text field is disabled.
           * @default false
          */
@@ -2539,6 +2555,10 @@ export namespace Components {
          */
         "allowedCharactersPattern"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disables the input field
           * @default false
          */
@@ -2930,6 +2950,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * Clear the checked state and reset validation
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled state of the radio component
           * @default false
          */
@@ -2960,6 +2984,10 @@ export namespace Components {
      * @form-ready 
      */
     interface IxRadioGroup {
+        /**
+          * Clear the selected radio button and reset validation state
+         */
+        "clear": () => Promise<void>;
         /**
           * Alignment of the radio buttons in the group
           * @default 'column'
@@ -3372,6 +3400,10 @@ export namespace Components {
      */
     interface IxTextarea {
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
+        /**
           * Determines if the textarea field is disabled.
           * @default false
          */
@@ -3385,6 +3417,10 @@ export namespace Components {
           * Get the native textarea element.
          */
         "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
+        /**
+          * Returns the validity state of the textarea field.
+         */
+        "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the textarea field.
@@ -3483,6 +3519,10 @@ export namespace Components {
      * @form-ready 
      */
     interface IxTimeInput {
+        /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+         */
+        "clear": () => Promise<void>;
         /**
           * Disabled attribute
           * @default false
