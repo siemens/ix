@@ -2,5 +2,5 @@
 - button "Button"
 - button
 - button "Unknown"
-- button "Button" [disabled]
+- button "Loading Button" [disabled]
 - button "Unknown" [disabled]
