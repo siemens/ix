@@ -24,9 +24,11 @@ export default () => {
         <IxTabItem onClick={() => changeTab(1)}>Tab 2</IxTabItem>
         <IxTabItem onClick={() => changeTab(2)}>Tab 3</IxTabItem>
       </IxTabs>
-      {selectedTab === 0 ? <div>Content 1</div> : null}
-      {selectedTab === 1 ? <div>Content 2</div> : null}
-      {selectedTab === 2 ? <div>Content 3</div> : null}
+      <section role="tabpanel" aria-label="Example content">
+        {selectedTab === 0 ? <>Content 1</> : null}
+        {selectedTab === 1 ? <>Content 2</> : null}
+        {selectedTab === 2 ? <>Content 3</> : null}
+      </section>
     </div>
   );
 };
