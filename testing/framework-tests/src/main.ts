@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { resolveTestIds } from './utils';
-import { excludedTestIds } from '../tests/test-ids';
+import { excludedTestIds } from '../tests/exclude-test-ids';
 import path from 'node:path';
 import fs from 'fs/promises';
 
@@ -17,7 +17,6 @@ async function main() {
   let testIds = await resolveTestIds();
   testIds = testIds.filter((id) => !excludedTestIds.includes(id));
 
-  // ['/preview/input-input'] as const;
   const rawTestIdsArray = `export const testIds = ${JSON.stringify(
     testIds,
     null,

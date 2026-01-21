@@ -233,7 +233,14 @@ import ProgressIndicatorCircularSizes from './preview-examples/progress-indicato
 import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.vue';
 import ProgressIndicator from './preview-examples/progress-indicator.vue';
 
-const routes: any = {
+const exampleNames = [...testIds, ...'validation'] as const;
+type IxPreviewRoutes = {
+  '/': React.ComponentType;
+} & {
+  [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
+};
+
+const routes: IxPreviewRoutes = {
   '/': App,
   '/preview/about-and-legal': AboutAndLegal,
   '/preview/action-card': ActionCard,

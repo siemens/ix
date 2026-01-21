@@ -19,5 +19,6 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "moduleResolution": "bundler"
-  }
+  },
+  "include": ["tests", "src"]
 }
