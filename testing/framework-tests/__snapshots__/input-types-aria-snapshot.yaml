@@ -4,7 +4,7 @@
 - textbox: example@example.com
 - text: Password
 - textbox "Enter your password"
-- button "Unknown"
+- button "Eye"
 - text: Telephone
 - textbox "Enter your phone number"
 - text: URL

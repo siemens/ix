@@ -1,8 +1,8 @@
 - button "Action text"
-- button "Unknown"
+- button "Chevron Down Small"
 - button "Action text" [disabled]
-- button "Unknown" [disabled]
+- button "Chevron Down Small" [disabled]
 - button "Action text" [disabled]
-- button "Unknown"
+- button "Chevron Down Small"
 - button "Action text"
-- button "Unknown" [disabled]
+- button "Chevron Down Small" [disabled]

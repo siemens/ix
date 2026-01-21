@@ -1,7 +1,7 @@
 - button "Button"
 - button "Button"
 - button
-- button "Unknown"
+- button "Star"
 - button "Loading Button" [disabled]:
   - status "Loading"
 - button "Unknown" [disabled]:

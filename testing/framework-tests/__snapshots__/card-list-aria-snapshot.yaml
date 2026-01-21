@@ -1,4 +1,4 @@
-- button "Unknown"
+- button "Chevron Down"
 - text: Stack Layout
 - button /Show all \(\d+\)/
 - img
@@ -13,7 +13,7 @@
 - text: 3 Heading content Subheading
 - button:
   - img
-- button "Unknown"
+- button "Chevron Down"
 - text: Flow Layout
 - button /Show all \(\d+\)/
 - img

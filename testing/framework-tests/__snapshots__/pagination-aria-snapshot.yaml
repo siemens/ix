@@ -1,4 +1,4 @@
-- button "Unknown" [disabled]
+- button "Chevron Left Small" [disabled]
 - button "1" [pressed]
 - button "2"
 - button "3"
@@ -6,4 +6,4 @@
 - button "5"
 - button "..."
 - button /\d+/
-- button "Unknown"
+- button "Chevron Right Small"

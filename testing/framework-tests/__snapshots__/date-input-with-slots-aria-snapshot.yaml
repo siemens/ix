@@ -1,4 +1,4 @@
 - img
 - textbox: /\d+\/\d+\/\d+/
 - text: Slot
-- button "Unknown"
+- button "Calendar"

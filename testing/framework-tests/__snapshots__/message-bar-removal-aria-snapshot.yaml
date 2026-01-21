@@ -1,4 +1,4 @@
 - alert:
   - img
   - text: Message text
-  - button "Unknown"
+  - button "Close"

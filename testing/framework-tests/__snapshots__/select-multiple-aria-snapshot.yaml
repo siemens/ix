@@ -1,6 +1,6 @@
 - text: Item 1
-- button "Unknown"
+- button "Close Small"
 - text: Item 3
-- button "Unknown"
+- button "Close Small"
 - textbox "Select an option"
 - button "Open select dropdown"

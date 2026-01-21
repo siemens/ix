@@ -1,4 +1,4 @@
-- button "Unknown"
+- button "Apps"
 - text: My Application
 - button "Select config":
   - img

@@ -3,10 +3,10 @@
 - heading "IxInput Form" [level=3]
 - textbox "Email"
 - textbox "Password"
-- button "Unknown"
+- button "Eye"
 - spinbutton: "0"
 - textbox "Date of Birth"
-- button "Unknown"
+- button "Calendar"
 - textbox "Appointment Time"
 - button "Toggle time picker"
 - button "Submit"

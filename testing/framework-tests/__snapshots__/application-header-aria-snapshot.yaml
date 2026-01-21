@@ -1,7 +1,7 @@
 - text: My Application
-- button "Unknown"
-- button "Unknown"
-- button "Unknown"
+- button "Checkboxes"
+- button "Checkboxes"
+- button "Checkboxes"
 - button "Select config":
   - img
 - button:

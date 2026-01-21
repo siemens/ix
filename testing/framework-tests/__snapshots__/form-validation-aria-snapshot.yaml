@@ -29,10 +29,10 @@
 - img
 - text: A threshold greater than 5 is not recommended Begin
 - textbox: /\d+\/\d+\/\d+/
-- button "Unknown"
+- button "Calendar"
 - text: End
 - textbox: /\d+\/\d+\/\d+/
-- button "Unknown"
+- button "Calendar"
 - img
 - text: /\d+\/\d+\/\d+ is not allowed to pick Comment/
 - textbox: Some info
@@ -40,14 +40,14 @@
 - textbox
 - text: Upload
 - textbox
-- button "Unknown"
+- button "Star"
 - img
 - text: You need to upload a file PIN
 - textbox
-- button "Unknown"
+- button "Eye"
 - text: Only numbers between 1 and 4 is allowed 0/4 PIN
 - textbox
-- button "Unknown"
+- button "Eye"
 - text: Confirm password 0/4
 - checkbox "I agree everything":
   - button:

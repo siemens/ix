@@ -1,7 +1,7 @@
 - img
 - text: Custom filter text
-- button "Unknown"
+- button "Close Small"
 - text: Vendor != IBM
-- button "Unknown"
+- button "Close Small"
 - textbox "Filter by"
-- button "Unknown"
+- button "Clear"

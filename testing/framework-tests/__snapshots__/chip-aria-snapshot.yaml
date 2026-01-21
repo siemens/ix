@@ -1,9 +1,9 @@
 - img
 - text: Primary
-- button "Unknown"
+- button "Close Small"
 - img
 - text: Alarm
-- button "Unknown"
+- button "Close Small"
 - img
 - text: Critical
 - img
@@ -16,16 +16,16 @@
 - text: Neutral
 - img
 - text: Custom
-- button "Unknown"
+- button "Close Small"
 - img
 - text: Chip with icon
-- button "Unknown"
+- button "Close Small"
 - img
 - text: Primary
-- button "Unknown"
+- button "Close Small"
 - img
 - text: Alarm
-- button "Unknown"
+- button "Close Small"
 - img
 - text: Critical
 - img
@@ -36,6 +36,6 @@
 - text: Success
 - img
 - text: Neutral Custom
-- button "Unknown"
+- button "Close Small"
 - text: Chip without icon
-- button "Unknown"
+- button "Close Small"
