@@ -272,7 +272,7 @@ function createIxChangePromise<T>(el: Element): Promise<T> {
   });
 }
 
-test.describe.only('ixChange event', () => {
+test.describe('ixChange event', () => {
   test.describe('on blur', () => {
     ['ix-input', 'ix-textarea'].forEach((selector) => {
       test(`${selector} - should emit ixChange on blur when value changed`, async ({
@@ -284,7 +284,9 @@ test.describe.only('ixChange event', () => {
         const component = page.locator(selector);
         const input = component.locator(getInputSelector(selector));
 
-        const ixChangePromise = component.evaluate(createIxChangePromise<string>);
+        const ixChangePromise = component.evaluate(
+          createIxChangePromise<string>
+        );
 
         await input.focus();
         await input.fill('changed');
@@ -455,7 +457,9 @@ test.describe.only('ixChange event', () => {
       mount,
       page,
     }) => {
-      await mount('<ix-time-input format="HH:mm:ss" value="10:00:00"></ix-time-input>');
+      await mount(
+        '<ix-time-input format="HH:mm:ss" value="10:00:00"></ix-time-input>'
+      );
 
       const component = page.locator('ix-time-input');
       const input = component.locator('input');
@@ -495,10 +499,9 @@ test.describe.only('ixChange event', () => {
 
         await component.evaluate(setupIxChangeEmittedListener);
 
-        await component.evaluate(
-          (el, value) => { (el as any).value = value; },
-          'programmatic'
-        );
+        await component.evaluate((el, value) => {
+          (el as any).value = value;
+        }, 'programmatic');
 
         await page.waitForTimeout(100);
 
@@ -511,7 +514,9 @@ test.describe.only('ixChange event', () => {
       mount,
       page,
     }) => {
-      await mount('<ix-date-input format="yyyy/LL/dd" value="2024/01/01"></ix-date-input>');
+      await mount(
+        '<ix-date-input format="yyyy/LL/dd" value="2024/01/01"></ix-date-input>'
+      );
 
       const component = page.locator('ix-date-input');
 
@@ -564,6 +569,7 @@ test.describe.only('ixChange event', () => {
         try {
           await input.focus({ timeout: 1000 });
         } catch {
+          // Expected - disabled inputs cannot be focused
         }
 
         const emitted = await page.evaluate(getIxChangeEmitted);
@@ -601,7 +607,9 @@ test.describe.only('ixChange event', () => {
         const component = page.locator(selector);
         const input = component.locator(getInputSelector(selector));
 
-        const ixChangePromise = component.evaluate(createIxChangePromise<string>);
+        const ixChangePromise = component.evaluate(
+          createIxChangePromise<string>
+        );
 
         await input.focus();
         await input.fill('new value');
@@ -620,7 +628,9 @@ test.describe.only('ixChange event', () => {
         const component = page.locator(selector);
         const input = component.locator(getInputSelector(selector));
 
-        const ixChangePromise = component.evaluate(createIxChangePromise<string>);
+        const ixChangePromise = component.evaluate(
+          createIxChangePromise<string>
+        );
 
         await input.focus();
         await input.fill('');
@@ -659,14 +669,20 @@ test.describe.only('ixChange event', () => {
       const component = page.locator('ix-number-input');
       const input = component.locator('input');
 
-      const ixChangePromise = component.evaluate(createIxChangePromise<number | undefined>);
+      const ixChangePromise = component.evaluate(
+        createIxChangePromise<number | undefined>
+      );
 
       await input.focus();
       await input.fill('');
       await input.blur();
 
       const emittedValue = await ixChangePromise;
-      expect(emittedValue === undefined || emittedValue === null || Number.isNaN(emittedValue)).toBe(true);
+      expect(
+        emittedValue === undefined ||
+          emittedValue === null ||
+          Number.isNaN(emittedValue)
+      ).toBe(true);
     });
   });
 });

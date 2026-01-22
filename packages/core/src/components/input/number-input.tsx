@@ -491,7 +491,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
               onBeforeInput={(event) => this.handleBeforeInput(event)}
               onPaste={(event) => this.handlePaste(event)}
               onFocus={this.handleFocus}
-              onEnterKeyChange={(event) => onEnterKeyChangeEmit(event, this, this.value)}
+              onEnterKeyChange={(event) =>
+                onEnterKeyChangeEmit(event, this, this.value)
+              }
               valueChange={this.handleInputChange}
               updateFormInternalValue={(value) => {
                 const isScientificNotation = this.isScientificNotation(

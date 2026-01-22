@@ -327,7 +327,9 @@ export class Input implements IxInputFieldComponent<string> {
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
               onFocus={() => onInputFocus(this, this.value)}
-              onEnterKeyChange={(event) => onEnterKeyChangeEmit(event, this, this.value)}
+              onEnterKeyChange={(event) =>
+                onEnterKeyChangeEmit(event, this, this.value)
+              }
               valueChange={(value) => this.valueChange.emit(value)}
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)

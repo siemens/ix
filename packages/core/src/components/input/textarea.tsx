@@ -27,7 +27,11 @@ import {
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
-import { mapValidationResult, onInputFocus, onInputBlurWithChange } from './input.util';
+import {
+  mapValidationResult,
+  onInputFocus,
+  onInputBlurWithChange,
+} from './input.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
 /**
@@ -340,7 +344,11 @@ export class Textarea implements IxInputFieldComponent<string> {
                 this.updateFormInternalValue(value)
               }
               onBlur={() => {
-                onInputBlurWithChange(this, this.textAreaRef.current, this.value);
+                onInputBlurWithChange(
+                  this,
+                  this.textAreaRef.current,
+                  this.value
+                );
                 this.touched = true;
               }}
             ></TextareaElement>
