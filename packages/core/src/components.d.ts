@@ -2293,6 +2293,7 @@ export namespace Components {
         "initials"?: string;
         /**
           * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+          * @since 4.3.0.
          */
         "tooltipText"?: string;
         /**
@@ -8253,6 +8254,7 @@ declare namespace LocalJSX {
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
         /**
           * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+          * @since 4.3.0.
          */
         "tooltipText"?: string;
         /**

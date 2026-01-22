@@ -51,6 +51,8 @@ export class MenuAvatar {
 
   /**
    * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+   *
+   * @since 4.3.0.
    */
   @Prop() tooltipText?: string;
 
