@@ -33,10 +33,11 @@ async function main() {
     'utf-8'
   );
   await generateAllTests();
-  await generateIndexForGeneratedTests();
+  await generateIndexForGeneratedSnapshotTests();
+  await generateIndexForGeneratedAxeTests();
 }
 
-async function generateIndexForGeneratedTests() {
+async function generateIndexForGeneratedSnapshotTests() {
   const files = await fs.readdir(__generatedTestsPath);
 
   const importStatements = files
@@ -45,6 +46,18 @@ async function generateIndexForGeneratedTests() {
     .join('\n');
 
   const indexPath = path.join(__generatedTestsPath, 'index.ts');
+  await fs.writeFile(indexPath, importStatements, 'utf-8');
+}
+
+async function generateIndexForGeneratedAxeTests() {
+  const files = await fs.readdir(__generatedTestsPath);
+
+  const importStatements = files
+    .filter((file) => file.endsWith('-axe.spec.ts'))
+    .map((file, index) => `import './${file}';`)
+    .join('\n');
+
+  const indexPath = path.join(__generatedTestsPath, 'axe.ts');
   await fs.writeFile(indexPath, importStatements, 'utf-8');
 }
 
@@ -59,20 +72,6 @@ async function generateTestForTestId(testId: string) {
  */
 import { test, expect } from '@playwright/test';
 import { waitForReadiness } from '../utils';
-import AxeBuilder from '@axe-core/playwright';
-
-if (process.env.DO_ACCESSIBILITY_AUDIT) {
-  test('${testId} - accessibility check', async ({ page }) => {
-    await page.goto('/preview/${testId}');
-
-    // Ugly and not the reliable way to wait for Stencil to be ready
-    await waitForReadiness(page);
-
-    const accessibilityScanResults = await new AxeBuilder({ page } as any).disableRules(['page-has-heading-one']).analyze();
-
-    expect(accessibilityScanResults.violations).toEqual([]);
-  });
-}
 
 test('${testId}', async ({ page }) => {
   await page.goto('/preview/${testId}');
@@ -86,13 +85,40 @@ test('${testId}', async ({ page }) => {
 });
 `;
 
-  const testFilePath = getTestPath(testId);
-  await fs.writeFile(testFilePath, testContent, 'utf-8');
+  const axeTextContent = `/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import { test, expect } from '@playwright/test';
+import { waitForReadiness } from '../utils';
+import AxeBuilder from '@axe-core/playwright';
+
+test('${testId} - accessibility check', async ({ page }) => {
+  await page.goto('/preview/${testId}');
+
+  // Ugly and not the reliable way to wait for Stencil to be ready
+  await waitForReadiness(page);
+
+  const accessibilityScanResults = await new AxeBuilder({ page } as any).disableRules(['page-has-heading-one']).analyze();
+
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+`;
+
+  await fs.writeFile(getSnapshotTestPath(testId), testContent, 'utf-8');
+  await fs.writeFile(getAxeTestPath(testId), axeTextContent, 'utf-8');
 }
 
-function getTestPath(testId: string) {
-  const testFilePath = path.join(__generatedTestsPath, `${testId}.spec.ts`);
-  return testFilePath;
+function getSnapshotTestPath(testId: string) {
+  return path.join(__generatedTestsPath, `${testId}.spec.ts`);
+}
+
+function getAxeTestPath(testId: string) {
+  return path.join(__generatedTestsPath, `${testId}-axe.spec.ts`);
 }
 
 async function generateAllTests() {
@@ -106,7 +132,7 @@ async function generateAllTests() {
       continue;
     }
 
-    if (fs.existsSync(getTestPath(testId))) {
+    if (fs.existsSync(getSnapshotTestPath(testId))) {
       if (!process.env.CI) {
         console.log(`Test for ${testId} already exists, skipping generation.`);
       }

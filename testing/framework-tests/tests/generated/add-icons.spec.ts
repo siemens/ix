@@ -8,20 +8,6 @@
  */
 import { test, expect } from '@playwright/test';
 import { waitForReadiness } from '../utils';
-import AxeBuilder from '@axe-core/playwright';
-
-if (process.env.DO_ACCESSIBILITY_AUDIT) {
-  test('add-icons - accessibility check', async ({ page }) => {
-    await page.goto('/preview/add-icons');
-
-    // Ugly and not the reliable way to wait for Stencil to be ready
-    await waitForReadiness(page);
-
-    const accessibilityScanResults = await new AxeBuilder({ page } as any).disableRules(['page-has-heading-one']).analyze();
-
-    expect(accessibilityScanResults.violations).toEqual([]);
-  });
-}
 
 test('add-icons', async ({ page }) => {
   await page.goto('/preview/add-icons');
