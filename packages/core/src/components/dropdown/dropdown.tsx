@@ -187,7 +187,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   private triggerElement?: Element;
   private anchorElement?: Element;
 
-  private localUId = `dropdown-${sequenceId++}`;
+  private dropdownElementId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
 
   private keyboardNavigationCleanup?: () => void;
@@ -220,21 +220,10 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
 
-    if (this.disposeClickListener) {
-      this.disposeClickListener();
-      this.disposeClickListener = undefined;
-    }
-
-    if (this.disposeKeyListener) {
-      this.disposeKeyListener();
-      this.disposeKeyListener = undefined;
-    }
-
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
       this.autoUpdateCleanup = undefined;
     }
-    this.focusUtilities?.destroy();
   }
 
   getAssignedSubmenuIds() {
@@ -254,7 +243,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   }
 
   getId() {
-    return this.localUId;
+    return this.dropdownElementId;
   }
 
   willDismiss() {
@@ -358,28 +347,29 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   }
 
   private addEventListenersFor() {
-    this.disposeClickListener?.();
-    this.disposeKeyListener?.();
-
     if (!this.triggerElement) {
       return;
     }
 
-    this.disposeClickListener = addDisposableEventListener(
-      this.triggerElement,
-      'click',
-      this.onTriggerClick
-    );
+    if (!this.disposeClickListener) {
+      this.disposeClickListener = addDisposableEventListener(
+        this.triggerElement,
+        'click',
+        this.onTriggerClick
+      );
+    }
 
-    this.disposeKeyListener = addDisposableEventListener(
-      this.triggerElement,
-      'keydown',
-      this.onTriggerKeydown as EventListener
-    );
+    if (!this.disposeKeyListener) {
+      this.disposeKeyListener = addDisposableEventListener(
+        this.triggerElement,
+        'keydown',
+        this.onTriggerKeydown as EventListener
+      );
+    }
 
     this.triggerElement?.setAttribute(
       'data-ix-dropdown-trigger',
-      this.localUId
+      this.dropdownElementId
     );
   }
 
@@ -391,7 +381,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         bubbles: true,
         composed: true,
         cancelable: true,
-        detail: this.localUId,
+        detail: this.dropdownElementId,
       })
     );
   }
@@ -485,7 +475,17 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   }
 
   @Watch('trigger')
-  changedTrigger(newTriggerValue: ElementReference) {
+  changedTrigger(
+    newTriggerValue: ElementReference,
+    oldTriggerValue: ElementReference | undefined
+  ) {
+    if (newTriggerValue && newTriggerValue !== oldTriggerValue) {
+      this.disposeClickListener?.();
+      this.disposeClickListener = undefined;
+      this.disposeKeyListener?.();
+      this.disposeKeyListener = undefined;
+    }
+
     this.registerListener(newTriggerValue);
   }
 
@@ -516,9 +516,8 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
 
   private cleanupOnHide() {
     this.destroyAutoUpdate();
-    this.disposeKeyListener?.();
-    this.focusUtilities?.destroy();
     this.keyboardNavigationCleanup?.();
+    this.focusUtilities?.destroy();
   }
 
   private destroyAutoUpdate() {
@@ -631,12 +630,25 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
       return;
     }
 
-    this.changedTrigger(this.trigger);
+    this.changedTrigger(this.trigger, undefined);
   }
 
   async componentDidRender() {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
+
+    if (this.enableTopLayer) {
+      const dialogElement = this.dialogRef.current;
+
+      // Baseline 2025 feature https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/ariaLabelledByElements
+      if (
+        dialogElement &&
+        'ariaLabelledByElements' in ElementInternals.prototype
+      ) {
+        dialogElement.removeAttribute('aria-labelledby');
+        dialogElement.ariaLabelledByElements = [this.hostElement];
+      }
+    }
   }
 
   private isTriggerElement(element: HTMLElement) {
@@ -730,12 +742,12 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
       ...hostAriaAttributes,
       role: hostAriaAttributes.role ?? 'list',
     };
+    const id = this.hostElement.id || this.dropdownElementId;
 
-    // TODO ariaLabelled by to dialog element
-    // TODO enableTopLayer sometimes arrow down not working after clicking on trigger
     return (
       <Host
-        data-ix-dropdown={this.localUId}
+        id={id}
+        data-ix-dropdown={this.dropdownElementId}
         data-ix-focus-trap
         class={{
           'dropdown-menu': true,
@@ -783,6 +795,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
               overflow: !this.suppressOverflowBehavior,
             }}
             popover="manual"
+            aria-labelledby={id}
             aria-modal="true"
             tabindex={-1}
             onClick={(event: PointerEvent) => this.onDropdownClick(event)}

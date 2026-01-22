@@ -35,18 +35,30 @@ SPDX-License-Identifier: MIT
     <ix-dropdown trigger="trigger" disable-focus-trap enable-top-layer>
       <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
-      <ix-dropdown-item id="trigger2">Custom</ix-dropdown-item>
     </ix-dropdown>
 
-    <ix-dropdown trigger="trigger2" disable-focus-trap enable-top-layer>
+    <!-- <ix-dropdown trigger="trigger2" disable-focus-trap>
       <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       <ix-dropdown-item>Custom</ix-dropdown-item>
-    </ix-dropdown>
-    <ix-select enable-top-layer>
+    </ix-dropdown> -->
+
+    <ix-button id="other">OTHER</ix-button>
+
+    <button id="change">Change</button>
+    <!-- <ix-select enable-top-layer>
       <ix-select-item value="1" label="Option 1"></ix-select-item>
       <ix-select-item value="2" label="Option 2"></ix-select-item>
       <ix-select-item value="3" label="Option 3"></ix-select-item>
-    </ix-select>
+    </ix-select> -->
+
+    <script type="module">
+      const button = document.getElementById('change');
+      button.addEventListener('click', () => {
+        console.log('CHANGE TRIGGER');
+        const dropdown = document.getElementById('dropdown-1');
+        dropdown.trigger = 'other';
+      });
+    </script>
   </body>
 </html>
