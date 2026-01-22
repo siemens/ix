@@ -463,3 +463,128 @@ regressionTest(
     await expect(items.nth(2)).not.toBeVisible();
   }
 );
+
+const createLargeTreeModel = (itemCount: number): Record<string, any> => {
+  const model: Record<string, any> = {
+    root: {
+      id: 'root',
+      data: { name: '' },
+      hasChildren: true,
+      children: [] as string[],
+    },
+  };
+
+  for (let i = 1; i <= itemCount; i++) {
+    const id = `item-${i}`;
+    model['root'].children.push(id);
+    model[id] = {
+      id,
+      data: { name: `Item ${i}` },
+      hasChildren: false,
+      children: [],
+    };
+  }
+
+  return model;
+};
+
+regressionTest(
+  'should not trigger continuous requestAnimationFrame when idle',
+  async ({ mount, page }) => {
+    await mount(`
+      <div style="height: 10rem; width: 100%;">
+        <ix-tree root="root"></ix-tree>
+      </div>
+    `);
+
+    const tree = page.locator('ix-tree');
+    await tree.evaluate(
+      (element: HTMLIxTreeElement, [model]) => {
+        element.model = model;
+      },
+      [createLargeTreeModel(50)]
+    );
+
+    await expect(tree).toHaveClass(/hydrated/);
+
+    const rafCallCount = await page.evaluate(() => {
+      return new Promise<number>((resolve) => {
+        let count = 0;
+        const originalRAF = globalThis.requestAnimationFrame;
+
+        globalThis.requestAnimationFrame = (callback: FrameRequestCallback) => {
+          count++;
+          return originalRAF(callback);
+        };
+
+        setTimeout(() => {
+          globalThis.requestAnimationFrame = originalRAF;
+          resolve(count);
+        }, 500);
+      });
+    });
+
+    expect(rafCallCount).toBeLessThan(5);
+  }
+);
+
+regressionTest(
+  'should trigger requestAnimationFrame only during scroll',
+  async ({ mount, page }) => {
+    await mount(`
+      <div style="height: 10rem; width: 100%;">
+        <ix-tree root="root"></ix-tree>
+      </div>
+    `);
+
+    const tree = page.locator('ix-tree');
+    await tree.evaluate(
+      (element: HTMLIxTreeElement, [model]) => {
+        element.model = model;
+      },
+      [createLargeTreeModel(100)]
+    );
+
+    await expect(tree).toHaveClass(/hydrated/);
+
+    const rafCalledDuringScroll = await tree.evaluate((element) => {
+      return new Promise<boolean>((resolve) => {
+        let rafCalled = false;
+        const originalRAF = globalThis.requestAnimationFrame;
+
+        globalThis.requestAnimationFrame = (callback: FrameRequestCallback) => {
+          rafCalled = true;
+          return originalRAF(callback);
+        };
+
+        element.scrollTop = 200;
+
+        setTimeout(() => {
+          globalThis.requestAnimationFrame = originalRAF;
+          resolve(rafCalled);
+        }, 100);
+      });
+    });
+
+    expect(rafCalledDuringScroll).toBe(true);
+
+    const rafCallCountAfterScroll = await page.evaluate(() => {
+      return new Promise<number>((resolve) => {
+        let count = 0;
+        const originalRAF = globalThis.requestAnimationFrame;
+
+        globalThis.requestAnimationFrame = (callback: FrameRequestCallback) => {
+          count++;
+          return originalRAF(callback);
+        };
+
+        setTimeout(() => {
+          globalThis.requestAnimationFrame = originalRAF;
+          resolve(count);
+        }, 300);
+      });
+    });
+
+    expect(rafCallCountAfterScroll).toBeLessThan(5);
+  }
+);

@@ -7,23 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
-import { genericRender, makeArgTypes } from './utils/generic-render';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
+import { genericRender, makeArgTypes } from '@utils/generic-render';
 
-type Elements = Components.IxMenuCategory & {
+type Element = Components.IxMenuCategory & {
   items: number;
 };
 
 const meta = {
-  title: 'Example/MenuCategory',
+  title: 'Example/Menu/MenuCategory',
   tags: [],
   render: (args) => {
     const container = genericRender('ix-menu-category', args, ['items']);
     const categoryMenu = container.querySelector(
       'ix-menu-category'
     ) as HTMLIxMenuCategoryElement;
-
-    categoryMenu.ariaLabel = 'my-category-menu';
 
     const menu = document.createElement('ix-menu');
     menu.appendChild(categoryMenu);
@@ -37,7 +35,7 @@ const meta = {
 
     return menu;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu', {
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-menu-category', {
     items: {
       control: 'number',
       name: 'items*',
@@ -51,14 +49,32 @@ const meta = {
       type: 'figma',
       url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=4533-132499&m=dev',
     },
+    a11y: {
+      test: 'error',
+    },
   },
-} satisfies Meta<Elements>;
+} satisfies Meta<Element>;
 
 export default meta;
-type Story = StoryObj<Elements>;
+type Story = StoryObj<Element>;
 
 export const Default: Story = {
   args: {
     label: 'Menu Category',
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    label: 'Menu Category',
+    icon: 'rocket',
+  },
+};
+
+export const WithNotifications: Story = {
+  args: {
+    label: 'Menu Category',
+    icon: 'rocket',
+    notifications: 3,
   },
 };
