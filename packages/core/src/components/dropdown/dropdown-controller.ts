@@ -221,11 +221,12 @@ class DropdownController {
       }
     });
 
-    window.addEventListener('keydown', (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        this.dismissAll([...this.dropdowns.keys()]);
-      }
-    });
+    // window.addEventListener('keydown', (event: KeyboardEvent) => {
+    //   if (event.key === 'Escape') {
+    //     console.log('Escape pressed - dismiss all dropdowns');
+    //     this.dismissAll([...this.dropdowns.keys()]);
+    //   }
+    // });
   }
 }
 

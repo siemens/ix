@@ -52,6 +52,7 @@ import {
 } from './dropdown-controller';
 import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
+import { makeRef } from '../utils/make-ref';
 
 let sequenceId = 0;
 
@@ -193,6 +194,8 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
 
   private focusUtilities?: FocusTrapResult;
 
+  private readonly dialogRef = makeRef<HTMLDialogElement>();
+
   connectedCallback(): void {
     dropdownController.connected(this);
 
@@ -307,6 +310,15 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
       requestAnimationFrameNoNgZone(() => {
         focusLastDescendant(element);
       });
+
+    console.log(event.key);
+
+    if (event.key === 'Escape' && this.show) {
+      // Handle Escape key when the dropdown is attached to an input element
+      // that retains focus while the dropdown remains open
+      dropdownController.dismiss(this);
+      return;
+    }
 
     const navigationKeys = ['ArrowUp', 'ArrowDown', ' ', 'Enter'];
 
@@ -433,29 +445,38 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
 
   @Watch('show')
   async changedShow(newShow: boolean) {
-    if (newShow) {
-      await this.resolveAnchorElement();
+    if (!newShow) {
+      this.cleanupOnHide();
 
-      if (this.anchorElement) {
-        this.applyDropdownPosition();
+      if (this.enableTopLayer) {
+        await this.hideDialog();
       }
 
-      if (!this.disableFocusHandling) {
-        this.keyboardNavigationCleanup = configureKeyboardInteraction(
-          this.hostElement
-        );
-      }
-
-      if (!this.disableFocusTrap) {
-        this.focusUtilities = addFocusTrap(this.hostElement);
-      }
-
-      this.registerKeyListener();
-    } else {
-      this.destroyAutoUpdate();
-      this.keyboardNavigationCleanup?.();
-      this.focusUtilities?.destroy();
+      return;
     }
+
+    await this.resolveAnchorElement();
+    this.registerKeyListener();
+    if (!this.disableFocusHandling) {
+      this.keyboardNavigationCleanup = configureKeyboardInteraction(
+        this.hostElement
+      );
+    }
+
+    if (!this.disableFocusTrap) {
+      this.focusUtilities = addFocusTrap(this.hostElement);
+    }
+
+    if (this.enableTopLayer) {
+      const popover = await this.dialogRef.waitForCurrent();
+      if (!popover) {
+        return;
+      }
+
+      popover.showPopover();
+    }
+
+    this.applyDropdownPosition();
   }
 
   @Watch('show')
@@ -466,6 +487,38 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   @Watch('trigger')
   changedTrigger(newTriggerValue: ElementReference) {
     this.registerListener(newTriggerValue);
+  }
+
+  private applyFallbackPosition(element: HTMLElement) {
+    requestAnimationFrameNoNgZone(() => {
+      const referenceElement =
+        this.hostElement.parentElement || this.hostElement;
+      const refRect = referenceElement.getBoundingClientRect();
+
+      const transform = `translate(${Math.round(
+        refRect.left
+      )}px, ${Math.round(refRect.top)}px)`;
+
+      Object.assign(element.style, {
+        top: '0',
+        left: '0',
+        transform,
+      });
+    });
+  }
+
+  private async hideDialog() {
+    const popover = await this.dialogRef.waitForCurrent();
+    if (popover?.matches(':popover-open')) {
+      popover.hidePopover();
+    }
+  }
+
+  private cleanupOnHide() {
+    this.destroyAutoUpdate();
+    this.disposeKeyListener?.();
+    this.focusUtilities?.destroy();
+    this.keyboardNavigationCleanup?.();
   }
 
   private destroyAutoUpdate() {
@@ -486,16 +539,36 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   }
 
   private async applyDropdownPosition() {
+    const targetElement: HTMLElement = this.enableTopLayer
+      ? await this.dialogRef.waitForCurrent()
+      : this.hostElement;
+
     if (!this.show) {
       return;
     }
-    if (!this.anchorElement) {
+
+    if (!targetElement) {
       return;
     }
+
+    if (!this.anchorElement) {
+      this.applyFallbackPosition(targetElement);
+      return;
+    }
+
+    const referenceElement = this.anchorElement;
     const isSubmenu = this.isAnchorSubmenu();
 
+    // let targetElement: HTMLElement = this.hostElement;
+    let strategy: 'fixed' | 'absolute' = this.positioningStrategy;
+
+    if (this.enableTopLayer) {
+      // Popover API only supports fixed positioning
+      strategy = 'fixed';
+    }
+
     let positionConfig: Partial<ComputePositionConfig> = {
-      strategy: this.positioningStrategy,
+      strategy,
       middleware: [],
     };
 
@@ -519,35 +592,30 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
 
     this.destroyAutoUpdate();
 
-    if (!this.anchorElement) {
-      return;
-    }
-
     this.autoUpdateCleanup = autoUpdate(
-      this.anchorElement,
-      this.hostElement,
+      referenceElement,
+      targetElement,
       async () => {
-        if (this.anchorElement) {
-          const computeResponse = await computePosition(
-            this.anchorElement,
-            this.hostElement,
-            positionConfig
-          );
-          Object.assign(this.hostElement.style, {
-            top: '0',
-            left: '0',
-            transform: `translate(${Math.round(
-              computeResponse.x
-            )}px,${Math.round(computeResponse.y)}px)`,
-          });
-        }
+        const computeResponse = await computePosition(
+          referenceElement,
+          targetElement,
+          positionConfig
+        );
+        Object.assign(targetElement.style, {
+          top: '0',
+          left: '0',
+          transform: `translate(${Math.round(computeResponse.x)}px,${Math.round(
+            computeResponse.y
+          )}px)`,
+        });
+
         if (this.overwriteDropdownStyle) {
           const overwriteStyle = await this.overwriteDropdownStyle({
-            dropdownRef: this.hostElement,
+            dropdownRef: targetElement,
             triggerRef: this.triggerElement as HTMLElement,
           });
 
-          Object.assign(this.hostElement.style, overwriteStyle);
+          Object.assign(targetElement.style, overwriteStyle);
         }
       },
       {
@@ -658,11 +726,13 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
 
   render() {
     const hostAriaAttributes = a11yHostAttributes(this.hostElement);
-    const dropdownAriaAttributes = {
+    let dropdownAriaAttributes = {
       ...hostAriaAttributes,
       role: hostAriaAttributes.role ?? 'list',
     };
 
+    // TODO ariaLabelled by to dialog element
+    // TODO enableTopLayer sometimes arrow down not working after clicking on trigger
     return (
       <Host
         data-ix-dropdown={this.localUId}
@@ -670,28 +740,64 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         class={{
           'dropdown-menu': true,
           show: this.show,
-          overflow: !this.suppressOverflowBehavior,
+          // overflow handling not needed when using top-layer
+          overflow: !this.suppressOverflowBehavior && !this.enableTopLayer,
         }}
-        style={{
-          margin: '0',
-          minWidth: '0px',
-          position: this.positioningStrategy,
-        }}
+        style={
+          this.enableTopLayer
+            ? {}
+            : {
+                margin: '0',
+                minWidth: '0px',
+                position: this.positioningStrategy,
+              }
+        }
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
         onKeydown={(event: KeyboardEvent) => {
+          if (event.key === 'Escape' && this.show) {
+            dropdownController.dismiss(this);
+            requestAnimationFrameNoNgZone(() => {
+              this.triggerElement &&
+                focusElementInContext(
+                  this.triggerElement as HTMLElement,
+                  this.hostElement
+                );
+            });
+          }
+
           if (!this.disableFocusTrap) {
             return;
           }
+
           if (event.key === 'Tab' && this.show) {
             dropdownController.dismiss(this);
           }
         }}
         {...dropdownAriaAttributes}
       >
-        <div style={{ display: 'contents' }}>
-          {this.header && <div class="dropdown-header">{this.header}</div>}
-          {this.show && <slot></slot>}
-        </div>
+        {this.enableTopLayer ? (
+          <dialog
+            ref={this.dialogRef}
+            class={{
+              dialog: true,
+              overflow: !this.suppressOverflowBehavior,
+            }}
+            popover="manual"
+            aria-modal="true"
+            tabindex={-1}
+            onClick={(event: PointerEvent) => this.onDropdownClick(event)}
+          >
+            <div class="dropdown-container">
+              {this.header && <div class="dropdown-header">{this.header}</div>}
+              {this.show && <slot></slot>}
+            </div>
+          </dialog>
+        ) : (
+          <div style={{ display: 'contents' }}>
+            {this.header && <div class="dropdown-header">{this.header}</div>}
+            {this.show && <slot></slot>}
+          </div>
+        )}
       </Host>
     );
   }
