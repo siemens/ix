@@ -45,8 +45,6 @@ import {
 } from '../utils/disposable-event-listener';
 import { ElementReference } from '../utils/element-reference';
 
-const DROPDOWN_Z_INDEX = 1001;
-
 let sequenceId = 0;
 
 @Component({
@@ -584,7 +582,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
               top: `${y}px`,
               left: `${x}px`,
               transform: '',
-              zIndex: DROPDOWN_Z_INDEX.toString(),
+              zIndex: `var(--theme-z-index-dropdown)`,
               pointerEvents: 'auto',
             });
           } else {
@@ -593,7 +591,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
               left: '0',
               transform: `translate(${x}px,${y}px)`,
               position: this.positioningStrategy,
-              zIndex: DROPDOWN_Z_INDEX.toString(),
+              zIndex: `var(--theme-z-index-dropdown)`,
             });
           }
         }
