@@ -104,6 +104,7 @@
       "autoHeader": "autoSave",
       "language": "*",
       "exclude": ["yaml", "md"]
-    }
+    },
+    "angular.enable-strict-mode-prompt": false
   }
 }

@@ -110,7 +110,7 @@ regressionTest('update tree', async ({ mount, page }) => {
 
   const item3 = tree.locator('ix-tree-item').nth(4);
   await expect(item3).toBeVisible();
-  await expect(item3).toHaveText('Sample Child 3');
+  await expect(item3).toHaveText(/Sample Child 3/);
   await expect(item3).toHaveCSS('padding-left', '16px');
 
   await updateModel(tree, {

@@ -15,6 +15,7 @@ import {
   expect,
 } from '@playwright/test';
 import type { addIcons as _addIcons } from '@siemens/ix-icons';
+import AxeBuilder from '@axe-core/playwright';
 
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;
@@ -125,7 +126,16 @@ export const regressionTest = testBase.extend<{
     selector: string,
     appendTo?: ElementHandle<Element>
   ) => Promise<ElementHandle<HTMLElement>>;
+  makeAxeBuilder: () => AxeBuilder;
 }>({
+  makeAxeBuilder: async ({ page }, use) => {
+    const makeAxeBuilder = () =>
+      new AxeBuilder({ page } as any)
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+        .exclude('#commonly-reused-element-with-known-issue');
+
+    await use(makeAxeBuilder);
+  },
   page: async ({ page }, use, testInfo) => {
     page = await extendPageFixture(page, testInfo);
 

@@ -40,7 +40,7 @@ export default () => {
       </IxMenuItem>
       <IxMenuItem icon={iconGlobe}>Normal tab</IxMenuItem>
       <IxMenuItem icon={iconStar} disabled>
-        Disabled Tab
+        Disabled tab
       </IxMenuItem>
       <IxMenuItem icon={iconStar}>With other icon</IxMenuItem>
       <IxMenuItem icon={iconStar} style={{ display: 'none' }}>

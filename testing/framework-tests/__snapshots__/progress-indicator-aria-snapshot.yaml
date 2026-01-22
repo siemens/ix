@@ -1,0 +1,3 @@
+- text: Download
+- progressbar
+- text: /\d+% This is a help text for the progress indicator/

@@ -21,7 +21,7 @@
     "angular-test-app": "workspace:*",
     "angular-standalone-test-app": "workspace:*",
     "fs-extra": "^11.3.0",
-    "glob": "^11.1.0",
+    "glob": "catalog:",
     "html-test-app": "workspace:*",
     "ionic-test-app": "workspace:*",
     "mustache": "^4.2.0",
