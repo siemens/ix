@@ -178,6 +178,7 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.initResizeObserver();
   });
   private touched = false;
+  /** @internal */
   public initialValue?: string;
   private resizeObserver?: ResizeObserver;
   private isManuallyResized = false;

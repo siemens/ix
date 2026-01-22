@@ -205,6 +205,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
   private touched = false;
+  /** @internal */
   public initialValue?: number;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;

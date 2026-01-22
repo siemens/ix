@@ -187,6 +187,7 @@ export class Input implements IxInputFieldComponent<string> {
 
   @State() inputType = 'text';
 
+  /** @internal */
   public initialValue?: string;
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();

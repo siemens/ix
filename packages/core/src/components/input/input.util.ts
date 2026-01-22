@@ -236,6 +236,7 @@ export function onInputBlurWithChange<T>(
 
   if (comp.initialValue !== currentValue) {
     comp.ixChange.emit(currentValue!);
+    comp.initialValue = currentValue;
   }
 }
 

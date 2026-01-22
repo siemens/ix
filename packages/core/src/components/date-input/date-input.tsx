@@ -246,7 +246,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  public initialValue?: string;
+  private initialValue?: string;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -416,6 +416,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.touched = true;
             if (this.initialValue !== this.value) {
               this.ixChange.emit(this.value);
+              this.initialValue = this.value;
             }
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}

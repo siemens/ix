@@ -68,26 +68,8 @@ test.describe('validation', () => {
       const shadowDomInput = ixInput.locator('input');
 
       let eventTriggered = ixInput.evaluate(
-        (element, [eventTriggered]) =>
-          new Promise<{
-            event: string;
-            count?: number;
-          }>((resolve) => {
-            element.addEventListener('validityStateChange', () => {
-              eventTriggered++;
-              resolve({
-                event: 'validityStateChange',
-                count: eventTriggered,
-              });
-            });
-
-            element.addEventListener('valueChange', () =>
-              resolve({
-                event: 'valueChange',
-              })
-            );
-          }),
-        [0]
+        createValidityOrValueChangePromise,
+        0
       );
 
       await shadowDomInput.fill('15');
@@ -95,23 +77,7 @@ test.describe('validation', () => {
       expect((await eventTriggered).event).not.toBe('validityStateChange');
 
       eventTriggered = ixInput.evaluate(
-        (element) =>
-          new Promise<{
-            event: string;
-            count?: number;
-          }>((resolve) => {
-            element.addEventListener('validityStateChange', () => {
-              resolve({
-                event: 'validityStateChange',
-              });
-            });
-
-            element.addEventListener('valueChange', () =>
-              resolve({
-                event: 'valueChange',
-              })
-            );
-          })
+        createValidityOrValueChangePromiseSimple
       );
 
       await shadowDomInput.fill('');
@@ -270,6 +236,38 @@ function createIxChangePromise<T>(el: Element): Promise<T> {
       resolve(e.detail);
     }) as EventListener);
   });
+}
+
+function createValidityOrValueChangePromise(
+  el: Element,
+  eventTriggered: number
+): Promise<{ event: string; count?: number }> {
+  return new Promise((resolve) => {
+    el.addEventListener('validityStateChange', () => {
+      eventTriggered++;
+      resolve({ event: 'validityStateChange', count: eventTriggered });
+    });
+    el.addEventListener('valueChange', () => {
+      resolve({ event: 'valueChange' });
+    });
+  });
+}
+
+function createValidityOrValueChangePromiseSimple(
+  el: Element
+): Promise<{ event: string; count?: number }> {
+  return new Promise((resolve) => {
+    el.addEventListener('validityStateChange', () => {
+      resolve({ event: 'validityStateChange' });
+    });
+    el.addEventListener('valueChange', () => {
+      resolve({ event: 'valueChange' });
+    });
+  });
+}
+
+function setElementValue(el: Element, value: string): void {
+  (el as any).value = value;
 }
 
 test.describe('ixChange event', () => {
@@ -499,9 +497,7 @@ test.describe('ixChange event', () => {
 
         await component.evaluate(setupIxChangeEmittedListener);
 
-        await component.evaluate((el, value) => {
-          (el as any).value = value;
-        }, 'programmatic');
+        await component.evaluate(setElementValue, 'programmatic');
 
         await page.waitForTimeout(100);
 

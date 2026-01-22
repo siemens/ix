@@ -259,7 +259,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  public initialValue?: string;
+  private initialValue?: string;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -433,6 +433,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             this.touched = true;
             if (this.initialValue !== this.value) {
               this.ixChange.emit(this.value);
+              this.initialValue = this.value;
             }
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
