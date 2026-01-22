@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Locator, Page } from '@playwright/test';
+import { iconGlobe, iconRocket } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -314,7 +315,8 @@ regressionTest('should have correct aria label', async ({ mount, page }) => {
 regressionTest(
   'should collapse category when menu is programmatically collapsed',
   async ({ mount, page }) => {
-    await mount(`
+    await mount(
+      `
     <ix-application force-breakpoint="lg">
       <ix-menu>
         <ix-menu-category label="Top level Category" icon="rocket">
@@ -323,7 +325,14 @@ regressionTest(
         </ix-menu-category>
       </ix-menu>
     </ix-application>
-  `);
+  `,
+      {
+        icons: {
+          iconGlobe,
+          iconRocket,
+        },
+      }
+    );
 
     const menu = page.locator('ix-menu');
     const menuExpandIcon = menu.locator('ix-menu-expand-icon');
