@@ -555,7 +555,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
               const { from } = event.detail;
               this.onInput(from);
             }}
-            showWeekNumbers={true}
+            showWeekNumbers={this.showWeekNumbers}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded
