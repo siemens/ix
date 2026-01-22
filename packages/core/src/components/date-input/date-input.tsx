@@ -223,7 +223,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
-
+  /**
+   * Event emitted when the date input loses focus and the value has changed.
+   */
+  @Event() ixChange!: EventEmitter<string | undefined>;
   @State() show = false;
   @State() from?: string | null = null;
   @State() isInputInvalid = false;
@@ -243,6 +246,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  public initialValue?: string;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -359,6 +363,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' && this.initialValue !== this.value) {
+      this.ixChange.emit(this.value);
+      this.initialValue = this.value;
+    }
+
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
@@ -398,12 +407,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             }
           }}
           onFocus={async () => {
+            this.initialValue = this.value;
             this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+            if (this.initialValue !== this.value) {
+              this.ixChange.emit(this.value);
+            }
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
@@ -536,6 +549,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             onDateChange={(event) => {
               const { from } = event.detail;
               this.onInput(from);
+              if (this.initialValue !== from) {
+                this.ixChange.emit(from);
+                this.initialValue = from;
+              }
             }}
             showWeekNumbers={this.showWeekNumbers}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}

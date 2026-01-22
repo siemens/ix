@@ -235,6 +235,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the time input loses focus and the value has changed.
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
   @State() show = false;
   @State() time: string | null = null;
   @State() isInputInvalid = false;
@@ -254,10 +259,16 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
+  public initialValue?: string;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleInputKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' && this.initialValue !== this.value) {
+      this.ixChange.emit(this.value);
+      this.initialValue = this.value;
+    }
+
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
@@ -366,7 +377,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   async openDropdown() {
-    // keep picker in sync with input
     this.time = this.value;
 
     return openDropdownUtil(this.dropdownElementRef);
@@ -414,12 +424,16 @@ export class TimeInput implements IxInputFieldComponent<string> {
             }
           }}
           onFocus={async () => {
+            this.initialValue = this.value;
             this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+            if (this.initialValue !== this.value) {
+              this.ixChange.emit(this.value);
+            }
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
@@ -557,7 +571,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
             i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
               this.onInput(event.detail);
-
+              if (this.initialValue !== event.detail) {
+                this.ixChange.emit(event.detail);
+                this.initialValue = event.detail;
+              }
               this.show = false;
             }}
           ></ix-time-picker>

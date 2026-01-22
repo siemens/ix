@@ -219,3 +219,38 @@ export function handleSubmitOnEnterKeydown(
     form.requestSubmit();
   }
 }
+
+
+export function onInputFocus<T>(
+  comp: { initialValue?: T },
+  currentValue: T
+) {
+  comp.initialValue = currentValue;
+}
+
+
+export function onInputBlurWithChange<T>(
+  comp: IxFormComponent<T> & { initialValue?: T; ixChange: { emit: (value: T) => void } },
+  input?: HTMLInputElement | HTMLTextAreaElement | null,
+  currentValue?: T
+) {
+  // Call the existing blur logic
+  onInputBlur(comp, input);
+
+  // Check if value has changed and emit ixchange
+  if (comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue!);
+  }
+}
+
+export function onEnterKeyChangeEmit<T>(
+  event: KeyboardEvent,
+  comp: { initialValue?: T; ixChange: { emit: (value: T) => void } },
+  currentValue: T
+) {
+  if (event.key === 'Enter' && comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue);
+    // Update initialValue so blur doesn't emit again
+    comp.initialValue = currentValue;
+  }
+}

@@ -35,11 +35,33 @@ export default () => {
         }}
       >
         <h3>IxInput Form</h3>
-        <IxInput type="email" name="email" placeholder="Email" />
-        <IxInput type="password" name="password" placeholder="Password" />
-        <IxNumberInput name="age" placeholder="Age" />
-        <IxDateInput name="dob" placeholder="Date of Birth" />
-        <IxTimeInput name="appointment" placeholder="Appointment Time" />
+        <IxInput
+          type="email"
+          name="email"
+          placeholder="Email"
+          onIxChange={(e) => console.log('IxInput email ixChange:', e.detail)}
+        />
+        <IxInput
+          type="password"
+          name="password"
+          placeholder="Password"
+          onIxChange={(e) => console.log('IxInput password ixChange:', e.detail)}
+        />
+        <IxNumberInput
+          name="age"
+          placeholder="Age"
+          onIxChange={(e) => console.log('IxNumberInput age ixChange:', e.detail)}
+        />
+        <IxDateInput
+          name="dob"
+          placeholder="Date of Birth"
+          onIxChange={(e) => console.log('IxDateInput dob ixChange:', e.detail)}
+        />
+        <IxTimeInput
+          name="appointment"
+          placeholder="Appointment Time"
+          onIxChange={(e) => console.log('IxTimeInput appointment ixChange:', e.detail)}
+        />
         <IxButton type="submit">Submit</IxButton>
       </form>
 
