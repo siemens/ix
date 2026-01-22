@@ -72,7 +72,7 @@ export class DropdownItem extends IxComponent() implements DropdownItemWrapper {
   @Prop() checked = false;
 
   /**
-   * Can has focus
+   * Whether to suppress focus behavior
    *
    * @internal
    */

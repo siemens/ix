@@ -758,8 +758,7 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
           class={{
             arrowYear: true,
             'month-dropdown-item': true,
-            selected:
-              this.tempYear === this.selectedYear && this.tempMonth === index,
+            selected,
             'disabled-item': !this.isWithinMinMaxMonth(index),
           }}
           onClick={(event) => {
@@ -813,7 +812,11 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
           }}
           onClick={(event) => this.selectTempYear(event, year)}
           onKeyDown={(event) => {
-            if (event.key === 'Enter') {
+            if (
+              event.key === 'Enter' ||
+              event.key === ' ' ||
+              event.key === 'ArrowRight'
+            ) {
               this.tempYear = year;
               this.focusMonth();
             }

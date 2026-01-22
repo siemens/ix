@@ -107,11 +107,15 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
 
   /**
    * Suppress automatic focus when the dropdown is shown
+   *
+   * @since 4.3.0
    */
   @Prop() disableFocusHandling = false;
 
   /**
    * Close dropdown when tabbing away, and do not trap focus inside dropdown
+   *
+   * @since 4.3.0
    */
   @Prop() disableFocusTrap = false;
 

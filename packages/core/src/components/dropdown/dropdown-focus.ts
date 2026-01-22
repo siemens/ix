@@ -104,11 +104,11 @@ export const configureKeyboardInteraction = (
         document.activeElement as HTMLElement | null;
 
       /**
-       * If a element is :focus-visible inside a shadow root, the host element is always focused.
+       * If an element is :focus-visible inside a shadow root, the host element is always focused.
        * Therefore, we need to check if the active element's root node is a shadow root
        * and if its host is the document's active element.
        *
-       * This ensure that a iteration of items is possible even when the dropdown is inside
+       * This ensures that iteration of items is possible even when the dropdown is inside
        * a shadow DOM.
        */
       const rootNode = dropdownElement.getRootNode();
@@ -231,7 +231,6 @@ export const configureKeyboardInteraction = (
       case ' ':
       case 'Enter': {
         if (activeElement && isTriggerElement(activeElement)) {
-          console.log('OPEN SUBMENU');
           const triggerEvent = new CustomEvent('ix-open-submenu', {
             bubbles: true,
             cancelable: true,

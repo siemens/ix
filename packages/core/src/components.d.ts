@@ -1308,11 +1308,13 @@ export namespace Components {
         "closeBehavior": CloseBehavior;
         /**
           * Suppress automatic focus when the dropdown is shown
+          * @since 4.3.0
           * @default false
          */
         "disableFocusHandling": boolean;
         /**
           * Close dropdown when tabbing away, and do not trap focus inside dropdown
+          * @since 4.3.0
           * @default false
          */
         "disableFocusTrap": boolean;
@@ -1463,7 +1465,7 @@ export namespace Components {
          */
         "suppressChecked": boolean;
         /**
-          * Can has focus
+          * Whether to suppress focus behavior
           * @default false
          */
         "suppressFocus": boolean;
@@ -7219,11 +7221,13 @@ declare namespace LocalJSX {
         "closeBehavior"?: CloseBehavior;
         /**
           * Suppress automatic focus when the dropdown is shown
+          * @since 4.3.0
           * @default false
          */
         "disableFocusHandling"?: boolean;
         /**
           * Close dropdown when tabbing away, and do not trap focus inside dropdown
+          * @since 4.3.0
           * @default false
          */
         "disableFocusTrap"?: boolean;
@@ -7382,7 +7386,7 @@ declare namespace LocalJSX {
          */
         "suppressChecked"?: boolean;
         /**
-          * Can has focus
+          * Whether to suppress focus behavior
           * @default false
          */
         "suppressFocus"?: boolean;
