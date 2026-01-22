@@ -45,7 +45,7 @@
     "playwright": "^1.54.1",
     "rimraf": "^3.0.2",
     "typescript": "^5.8.3",
-    "vite": "^6.3.5",
+    "vite": "catalog:",
     "vitest": "^3.2.4",
     "vue": "^3.4.34",
     "vue-tsc": "^2.2.10"

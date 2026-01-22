@@ -7,14 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
+import { makeArgTypes } from '@utils/generic-render';
 import { html } from 'lit';
-import { makeArgTypes } from './utils/generic-render';
 
-type Elements = Components.IxMenu;
+type Element = Components.IxMenu;
 
 const meta = {
-  title: 'Example/Menu',
+  title: 'Example/Menu/Menu',
   tags: [],
   render: (args) => {
     return html`<ix-menu expand="${args.expand}">
@@ -28,20 +28,29 @@ const meta = {
       <ix-menu-settings></ix-menu-settings>
     </ix-menu>`;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu'),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-menu', {}),
   parameters: {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=4533-132499&m=dev',
     },
+    a11y: {
+      test: 'error',
+    },
   },
-} satisfies Meta<Elements>;
+} satisfies Meta<Element>;
 
 export default meta;
-type Story = StoryObj<Elements>;
+type Story = StoryObj<Element>;
 
 export const Default: Story = {
   args: {
     expand: true,
+  },
+};
+
+export const Collapsed: Story = {
+  args: {
+    expand: false,
   },
 };

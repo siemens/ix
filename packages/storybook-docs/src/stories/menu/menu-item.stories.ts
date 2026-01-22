@@ -7,13 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
-import { genericRender, makeArgTypes } from './utils/generic-render';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
+import { genericRender, makeArgTypes } from '@utils/generic-render';
 
-type Elements = Components.IxMenuItem;
+type Element = Components.IxMenuItem;
 
 const meta = {
-  title: 'Example/MenuItem',
+  title: 'Example/Menu/MenuItem',
   tags: [],
   render: (args) => {
     const container = genericRender('ix-menu-item', args);
@@ -25,17 +25,20 @@ const meta = {
     menu.appendChild(menuItem);
     return menu;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Elements>>>('ix-menu-item'),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-menu-item', {}),
   parameters: {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=4533-132499&m=dev',
     },
+    a11y: {
+      test: 'error',
+    },
   },
-} satisfies Meta<Elements>;
+} satisfies Meta<Element>;
 
 export default meta;
-type Story = StoryObj<Elements>;
+type Story = StoryObj<Element>;
 
 export const Default: Story = {
   args: {
@@ -64,5 +67,21 @@ export const CustomTooltip: Story = {
     label: 'Menu Item',
     icon: 'home',
     tooltipText: 'My custom tooltip text',
+  },
+};
+
+export const Active: Story = {
+  args: {
+    label: 'Menu Item',
+    icon: 'home',
+    active: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    label: 'Menu Item',
+    icon: 'home',
+    disabled: true,
   },
 };

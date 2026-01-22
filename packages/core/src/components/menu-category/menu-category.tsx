@@ -306,6 +306,7 @@ export class MenuCategory extends IxComponent() implements IxMenuItemBase {
                 'category-chevron': true,
                 'category-chevron--open': this.showItems,
               }}
+              aria-hidden="true"
             ></ix-icon>
           </div>
         </ix-menu-item>

@@ -39,6 +39,7 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
+import { Disposable } from '../utils/typed-event';
 
 @Component({
   tag: 'ix-menu',
@@ -78,6 +79,7 @@ export class Menu {
 
   /**
    * Accessibility i18n label for the burger menu of the sidebar
+   * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
    */
   @Prop({ attribute: 'i18n-expand-sidebar' }) i18nExpandSidebar =
     'Expand sidebar';
@@ -180,7 +182,9 @@ export class Menu {
   @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
+  @State() isDarkMode: boolean = false;
   private isTransitionDisabled = false;
+  private themeDisposer?: Disposable;
 
   // FBC IAM workaround #488
   private readonly isVisible = (elm: HTMLElement) => {
@@ -324,6 +328,12 @@ export class Menu {
       this.onBreakpointChange(breakpoint)
     );
     this.onBreakpointChange(applicationLayoutService.breakpoint, true);
+
+    this.updateThemeState();
+
+    this.themeDisposer = themeSwitcher.schemaChanged.on(() => {
+      this.updateThemeState();
+    });
   }
 
   componentDidRender() {
@@ -331,6 +341,15 @@ export class Menu {
       this.aboutNewsPopover.show = false;
     }
     this.appendFragments();
+  }
+
+  disconnectedCallback() {
+    this.themeDisposer?.dispose();
+  }
+
+  private updateThemeState() {
+    const currentTheme = themeSwitcher.getCurrentTheme();
+    this.isDarkMode = currentTheme.includes(themeSwitcher.suffixDark);
   }
 
   private setPinned(pinned: boolean) {
@@ -637,6 +656,13 @@ export class Menu {
   }
 
   render() {
+    let overlayLabel: string | undefined;
+    if (this.showSettings) {
+      overlayLabel = this.i18nSettings;
+    } else if (this.showAbout) {
+      overlayLabel = this.i18nLegal;
+    }
+
     return (
       <Host
         class={{
@@ -646,6 +672,7 @@ export class Menu {
         slot="menu"
       >
         <nav
+          aria-label={this.applicationName}
           class={{
             menu: true,
             expanded: this.expand,
@@ -658,7 +685,6 @@ export class Menu {
                 expanded={this.expand}
                 pinned={this.pinned}
                 class="menu-expand-icon"
-                ixAriaLabel={this.i18nExpandSidebar}
                 onClick={async () => this.toggleMenu()}
                 data-testid="expand-collapse-menu"
               ></ix-menu-expand-icon>
@@ -727,6 +753,8 @@ export class Menu {
               icon={iconCogwheel}
               onClick={async () => this.toggleSettings(!this.showSettings)}
               label={this.i18nSettings}
+              aria-expanded={this.showSettings.toString()}
+              aria-controls="menu-overlay"
             ></ix-menu-item>
           ) : null}
           {this.enableToggleTheme ? (
@@ -737,6 +765,8 @@ export class Menu {
               class="internal-tab bottom-tab"
               icon={iconLightDark}
               label={this.i18nToggleTheme}
+              role="switch"
+              aria-checked={this.isDarkMode.toString()}
             ></ix-menu-item>
           ) : null}
           <div onClick={(e) => this.onMenuItemsClick(e)}>
@@ -765,10 +795,14 @@ export class Menu {
               icon={iconInfo}
               onClick={async () => this.toggleAbout(!this.showAbout)}
               label={this.i18nLegal}
+              aria-expanded={this.showAbout.toString()}
+              aria-controls="menu-overlay"
             ></ix-menu-item>
           ) : null}
         </nav>
-        <div
+        <section
+          id="menu-overlay"
+          aria-label={overlayLabel}
           class={{
             'menu-overlay': true,
             visible: this.isOverlayVisible(),
@@ -785,7 +819,7 @@ export class Menu {
           <div class={'menu-overlay-container'}>
             {this.showAbout ? <slot name="ix-menu-about"></slot> : null}
           </div>
-        </div>
+        </section>
       </Host>
     );
   }

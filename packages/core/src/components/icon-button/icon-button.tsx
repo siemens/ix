@@ -11,8 +11,8 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
 import {
-  getFallbackLabelFromIconName,
   a11yHostAttributes,
+  getFallbackLabelFromIconName,
 } from '../utils/a11y';
 import type { IconButtonVariant } from './icon-button.types';
 import { IxComponent } from '../utils/internal/component';
@@ -127,6 +127,9 @@ export class IconButton extends IxComponent() {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       extraClasses: this.getIconSizeClass(),
+      tabIndex: this.hostElement.hasAttribute('tabindex')
+        ? this.hostElement.tabIndex
+        : undefined,
     };
 
     return (

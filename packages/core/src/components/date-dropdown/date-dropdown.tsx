@@ -198,6 +198,14 @@ export class DateDropdown
   @Prop() today = DateTime.now().toISO();
 
   /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
+  /**
    * EventEmitter for date range change events.
    *
    * This event is emitted when the date range changes within the component.
@@ -377,6 +385,7 @@ export class DateDropdown
           trigger={this.triggerRef.waitForCurrent()}
           closeBehavior="outside"
           placement="bottom-start"
+          enableTopLayer={this.enableTopLayer}
           disableFocusHandling
           suppressOverflowBehavior
           onShowChanged={async ({ detail: show }) => {

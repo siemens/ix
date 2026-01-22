@@ -174,6 +174,14 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
   @Prop() today = DateTime.now().toISO();
 
   /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
+  /**
    * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
    * The property strings are formatted according to the `format` property and not affected by the `locale` property.
    * The locale applied is always `en-US`.
@@ -900,6 +908,7 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
                 trigger={this.dropdownButtonRef.waitForCurrent()}
                 ignoreRelatedSubmenu
                 placement="bottom-start"
+                enableTopLayer={this.enableTopLayer}
                 disableFocusHandling
                 onShowChanged={(event) => {
                   // Close only year/month selection, avoid closing parent dropdowns

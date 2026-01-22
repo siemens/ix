@@ -223,6 +223,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @Prop() textAlignment: 'start' | 'end' = 'start';
 
   /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -546,7 +554,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
-          suppressOverflowBehavior={true}
+          enableTopLayer={this.enableTopLayer}
+          suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;

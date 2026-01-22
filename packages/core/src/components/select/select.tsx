@@ -131,7 +131,7 @@ export class Select
    * Current selected value.
    * This corresponds to the value property of ix-select-items
    */
-  @Prop({ mutable: true }) value: string | string[] = [];
+  @Prop({ mutable: true }) value: string | string[] = '';
 
   /**
    * Show clear button
@@ -205,6 +205,14 @@ export class Select
    * Show "all" chip when all items are selected in multiple mode
    */
   @Prop() collapseMultipleSelection = false;
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Value changed
@@ -597,8 +605,9 @@ export class Select
   private clear() {
     this.clearInput();
     this.selectedLabels = [];
-    this.value = [];
-    this.emitValueChange([]);
+    const emptyValue = this.isSingleMode ? '' : [];
+    this.value = emptyValue;
+    this.emitValueChange(emptyValue);
     this.dropdownShow = false;
   }
 
@@ -922,6 +931,7 @@ export class Select
           trigger={this.dropdownWrapperRef.waitForCurrent()}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
+          enableTopLayer={this.enableTopLayer}
           overwriteDropdownStyle={async () => {
             const styleOverwrites: Partial<CSSStyleDeclaration> = {};
 

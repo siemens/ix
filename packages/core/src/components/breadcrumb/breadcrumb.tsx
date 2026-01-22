@@ -20,10 +20,10 @@ import {
   Watch,
 } from '@stencil/core';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
-import { createMutationObserver } from '../utils/mutation-observer';
 import { makeRef } from '../utils/make-ref';
 import { IxComponent } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 let sequenceId = 0;
 const createId = (prefix: string = 'breadcrumb-') => {
@@ -64,6 +64,14 @@ export class Breadcrumb extends IxComponent() {
    * with conditionally hidden previous items
    */
   @Prop() ariaLabelPreviousButton = 'Show previous breadcrumb items';
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Crumb item clicked event
@@ -181,6 +189,7 @@ export class Breadcrumb extends IxComponent() {
               ? this.previousButtonRef.waitForCurrent()
               : undefined
           }
+          enableTopLayer={this.enableTopLayer}
           onShowChanged={({ detail }) => {
             this.isPreviousDropdownExpanded = detail;
 
@@ -267,6 +276,7 @@ export class Breadcrumb extends IxComponent() {
 
             this.lastKeyboardNavigation = null;
           }}
+          enableTopLayer={this.enableTopLayer}
         >
           {this.nextItems?.map((item) => (
             <ix-dropdown-item

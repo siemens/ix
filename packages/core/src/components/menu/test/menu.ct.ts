@@ -305,11 +305,11 @@ regressionTest('should have correct aria label', async ({ mount, page }) => {
 
   const expandButton = page.locator('ix-menu').locator('ix-menu-expand-icon');
 
-  await expect(expandButton).toHaveAttribute('aria-label', 'Expand sidebar');
+  await expect(expandButton).toHaveAttribute('aria-hidden', 'true');
 
   await expandButton.click();
 
-  await expect(expandButton).toHaveAttribute('aria-label', 'Expand sidebar');
+  await expect(expandButton).toHaveAttribute('aria-hidden', 'true');
 });
 
 regressionTest(

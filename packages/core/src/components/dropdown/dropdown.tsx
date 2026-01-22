@@ -120,6 +120,14 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   @Prop() disableFocusTrap = false;
 
   /**
+   * Enable Popover API rendering for top-layer positioning.
+   *
+   * @default false in v4.x, will default to true in v5.0.0
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
+  /**
    * Move dropdown along main axis of alignment
    *
    * @internal
