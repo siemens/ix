@@ -7,11 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { BaseButtonVariant } from '../button/base-button.types';
 import { ButtonVariant } from '../button/button';
-import { a11yBoolean } from '../utils/a11y';
+import {
+  a11yBoolean,
+  a11yHostAttributes,
+  getFallbackLabelFromIconName,
+} from '../utils/a11y';
 
 export type ToggleButtonVariant = Exclude<
   ButtonVariant,
@@ -24,6 +36,8 @@ export type ToggleButtonVariant = Exclude<
   styleUrl: './toggle-button.scss',
 })
 export class ToggleButton {
+  @Element() hostElement!: HTMLIxToggleButtonElement;
+
   /**
    * Button variant.
    */
@@ -73,6 +87,8 @@ export class ToggleButton {
   }
 
   render() {
+    const a11y = a11yHostAttributes(this.hostElement);
+
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
       iconOnly: false,
@@ -86,7 +102,10 @@ export class ToggleButton {
       type: 'button',
       ariaAttributes: {
         'aria-pressed': a11yBoolean(this.pressed),
-        'aria-label': this.ariaLabelButton,
+        'aria-label':
+          a11y['aria-label'] ??
+          this.ariaLabelButton ??
+          getFallbackLabelFromIconName(this.icon),
       },
     };
 
