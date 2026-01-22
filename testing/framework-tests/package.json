@@ -9,7 +9,9 @@
   },
   "devDependencies": {
     "@playwright/test": "catalog:",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.16.0",
+    "fs-extra": "^11.3.3",
     "glob": "catalog:",
     "html-test-app": "workspace:*",
     "tsx": "^4.21.0",

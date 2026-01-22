@@ -10,8 +10,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "test.setup": "playwright install chromium --with-deps",
     "test.vitest": "vitest --config=vitest.config.ts run",
-    "test.framework": "playwright test",
-    "test": "pnpm run test.vitest && pnpm run test.framework",
+    "test": "pnpm run test.vitest",
     "test.watch": "vitest --config=vitest.config.ts"
   },
   "dependencies": {
