@@ -7,7 +7,7 @@
     "nightwatch.conf.*",
     "playwright.config.*",
     "eslint.config.*",
-    "tests"
+    "smoke-tests"
   ],
   "compilerOptions": {
     "noEmit": true,

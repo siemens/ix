@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [vue(), vueJSX()],
   test: {
     setupFiles: ['./src/tests/setup.ts'],
-    exclude: ['tests/**/*.spec.ts', '**/node_modules/**'],
+    exclude: ['smoke-tests/**/*.spec.ts', '**/node_modules/**'],
     browser: {
       enabled: true,
       provider: 'playwright',
