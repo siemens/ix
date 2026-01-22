@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { dismissModal, showModal } from '@siemens/ix/components';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html, render } from 'lit';
 import { icon } from './utils/arg-types';
 import exampleImage from './introduction.png';
