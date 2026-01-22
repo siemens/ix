@@ -159,7 +159,7 @@ export class Breadcrumb extends IxComponent() {
 
   @Watch('isNextDropdownExpanded')
   onNextDropdownExpandedChange() {
-    // this.onChildMutation();
+    this.onChildMutation();
   }
 
   render() {
