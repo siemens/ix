@@ -24,6 +24,7 @@ import { defineCustomElement as ixCustomField } from '@siemens/ix/components/ix-
 import { defineCustomElement as ixDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as ixDateInput } from '@siemens/ix/components/ix-date-input.js';
 import { defineCustomElement as ixDatePicker } from '@siemens/ix/components/ix-date-picker.js';
+import { defineCustomElement as ixDatetimeInput } from '@siemens/ix/components/ix-datetime-input.js';
 import { defineCustomElement as ixDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as ixDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as ixDrawer } from '@siemens/ix/components/ix-drawer.js';
@@ -126,6 +127,7 @@ ixCustomField();
 ixDateDropdown();
 ixDateInput();
 ixDatePicker();
+ixDatetimeInput();
 ixDatetimePicker();
 ixDivider();
 ixDrawer();
