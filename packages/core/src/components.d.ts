@@ -25,6 +25,7 @@ import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-drop
 import { DateInputValidityState } from "./components/date-input/date-input.types";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 import { DateChangeEvent } from "./components/date-picker/date-picker.events";
+import { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
@@ -75,6 +76,7 @@ export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-drop
 export { DateInputValidityState } from "./components/date-input/date-input.types";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 export { DateChangeEvent } from "./components/date-picker/date-picker.events";
+export { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
@@ -1203,6 +1205,143 @@ export namespace Components {
           * @default false
          */
         "timePickerAppearance": boolean;
+    }
+    /**
+     * @form-ready 
+     */
+    interface IxDatetimeInput {
+        /**
+          * ARIA label for the calendar icon button
+         */
+        "ariaLabelCalendarButton"?: string;
+        /**
+          * ARIA label for next month navigation button
+         */
+        "ariaLabelNextMonthButton"?: string;
+        /**
+          * ARIA label for previous month navigation button
+         */
+        "ariaLabelPreviousMonthButton"?: string;
+        /**
+          * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20")
+          * @default 'yyyy/LL/dd'
+         */
+        "dateFormat": string;
+        /**
+          * Whether the input is disabled
+          * @default false
+         */
+        "disabled": boolean;
+        "focusInput": () => Promise<void>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
+        "getNativeInputElement": () => Promise<HTMLInputElement>;
+        "getValidityState": () => Promise<ValidityState>;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * Helper text displayed below the input
+         */
+        "helperText"?: string;
+        /**
+          * Text for confirm button in picker (prop name matches datetime-picker)
+          * @default 'Confirm'
+         */
+        "i18nDone": string;
+        /**
+          * Error message when datetime cannot be parsed
+          * @default 'Date time is not valid'
+         */
+        "i18nErrorDateTimeUnparsable": string;
+        /**
+          * Header text for time picker section
+          * @default 'Time'
+         */
+        "i18nTime": string;
+        /**
+          * Informational message
+         */
+        "infoText"?: string;
+        /**
+          * Validation message for invalid state
+         */
+        "invalidText"?: string;
+        "isTouched": () => Promise<boolean>;
+        /**
+          * Label text displayed above the input
+         */
+        "label"?: string;
+        /**
+          * Locale for date/time formatting (e.g., 'en-US', 'de-DE')
+         */
+        "locale"?: string;
+        /**
+          * Maximum allowed date in date format (matching dateFormat, e.g., "2026/12/31")
+         */
+        "maxDate"?: string;
+        /**
+          * Minimum allowed date in date format (matching dateFormat, e.g., "2026/01/20")
+         */
+        "minDate"?: string;
+        /**
+          * Name of the form control for form submission
+         */
+        "name"?: string;
+        /**
+          * Placeholder text when input is empty
+         */
+        "placeholder"?: string;
+        /**
+          * Whether the input is read-only (calendar icon hidden)
+          * @default false
+         */
+        "readonly": boolean;
+        /**
+          * Whether the field is required
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * Show helper text as tooltip instead of below input
+          * @default false
+         */
+        "showTextAsTooltip": boolean;
+        /**
+          * Show week numbers in date picker
+          * @default false
+         */
+        "showWeekNumbers": boolean;
+        /**
+          * Prevent form submission when Enter is pressed
+          * @default false
+         */
+        "suppressSubmitOnEnter": boolean;
+        /**
+          * Text alignment within the input field
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
+          * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04")
+          * @default 'HH:mm:ss'
+         */
+        "timeFormat": string;
+        /**
+          * Success/valid message
+         */
+        "validText"?: string;
+        /**
+          * Value in display format (e.g., "2026/01/21 13:07:04" for default dateFormat + timeFormat)
+          * @default ''
+         */
+        "value"?: string;
+        /**
+          * Warning message
+         */
+        "warningText"?: string;
+        /**
+          * First day of week (0=Sunday, 1=Monday, etc.)
+          * @default 0
+         */
+        "weekStartIndex": number;
     }
     interface IxDatetimePicker {
         /**
@@ -4301,6 +4440,10 @@ export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatePickerElement;
 }
+export interface IxDatetimeInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDatetimeInputElement;
+}
 export interface IxDatetimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatetimePickerElement;
@@ -4833,6 +4976,29 @@ declare global {
     var HTMLIxDateTimeCardElement: {
         prototype: HTMLIxDateTimeCardElement;
         new (): HTMLIxDateTimeCardElement;
+    };
+    interface HTMLIxDatetimeInputElementEventMap {
+        "valueChange": string | undefined;
+        "validityStateChange": DateTimeInputValidityState;
+        "ixFocus": void;
+        "ixBlur": void;
+    }
+    /**
+     * @form-ready 
+     */
+    interface HTMLIxDatetimeInputElement extends Components.IxDatetimeInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDatetimeInputElementEventMap>(type: K, listener: (this: HTMLIxDatetimeInputElement, ev: IxDatetimeInputCustomEvent<HTMLIxDatetimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDatetimeInputElementEventMap>(type: K, listener: (this: HTMLIxDatetimeInputElement, ev: IxDatetimeInputCustomEvent<HTMLIxDatetimeInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxDatetimeInputElement: {
+        prototype: HTMLIxDatetimeInputElement;
+        new (): HTMLIxDatetimeInputElement;
     };
     interface HTMLIxDatetimePickerElementEventMap {
         "timeChange": string;
@@ -5950,6 +6116,7 @@ declare global {
         "ix-date-input": HTMLIxDateInputElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
+        "ix-datetime-input": HTMLIxDatetimeInputElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
         "ix-divider": HTMLIxDividerElement;
         "ix-drawer": HTMLIxDrawerElement;
@@ -7204,6 +7371,153 @@ declare namespace LocalJSX {
           * @default false
          */
         "timePickerAppearance"?: boolean;
+    }
+    /**
+     * @form-ready 
+     */
+    interface IxDatetimeInput {
+        /**
+          * ARIA label for the calendar icon button
+         */
+        "ariaLabelCalendarButton"?: string;
+        /**
+          * ARIA label for next month navigation button
+         */
+        "ariaLabelNextMonthButton"?: string;
+        /**
+          * ARIA label for previous month navigation button
+         */
+        "ariaLabelPreviousMonthButton"?: string;
+        /**
+          * Luxon date format for display (e.g., 'yyyy/LL/dd' → "2026/01/20")
+          * @default 'yyyy/LL/dd'
+         */
+        "dateFormat"?: string;
+        /**
+          * Whether the input is disabled
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Helper text displayed below the input
+         */
+        "helperText"?: string;
+        /**
+          * Text for confirm button in picker (prop name matches datetime-picker)
+          * @default 'Confirm'
+         */
+        "i18nDone"?: string;
+        /**
+          * Error message when datetime cannot be parsed
+          * @default 'Date time is not valid'
+         */
+        "i18nErrorDateTimeUnparsable"?: string;
+        /**
+          * Header text for time picker section
+          * @default 'Time'
+         */
+        "i18nTime"?: string;
+        /**
+          * Informational message
+         */
+        "infoText"?: string;
+        /**
+          * Validation message for invalid state
+         */
+        "invalidText"?: string;
+        /**
+          * Label text displayed above the input
+         */
+        "label"?: string;
+        /**
+          * Locale for date/time formatting (e.g., 'en-US', 'de-DE')
+         */
+        "locale"?: string;
+        /**
+          * Maximum allowed date in date format (matching dateFormat, e.g., "2026/12/31")
+         */
+        "maxDate"?: string;
+        /**
+          * Minimum allowed date in date format (matching dateFormat, e.g., "2026/01/20")
+         */
+        "minDate"?: string;
+        /**
+          * Name of the form control for form submission
+         */
+        "name"?: string;
+        /**
+          * Emitted when the input loses focus
+         */
+        "onIxBlur"?: (event: IxDatetimeInputCustomEvent<void>) => void;
+        /**
+          * Emitted when the input receives focus
+         */
+        "onIxFocus"?: (event: IxDatetimeInputCustomEvent<void>) => void;
+        /**
+          * Emitted when validation state changes
+         */
+        "onValidityStateChange"?: (event: IxDatetimeInputCustomEvent<DateTimeInputValidityState>) => void;
+        /**
+          * Emitted when the datetime value changes. Payload is display format or undefined
+         */
+        "onValueChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
+        /**
+          * Placeholder text when input is empty
+         */
+        "placeholder"?: string;
+        /**
+          * Whether the input is read-only (calendar icon hidden)
+          * @default false
+         */
+        "readonly"?: boolean;
+        /**
+          * Whether the field is required
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * Show helper text as tooltip instead of below input
+          * @default false
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * Show week numbers in date picker
+          * @default false
+         */
+        "showWeekNumbers"?: boolean;
+        /**
+          * Prevent form submission when Enter is pressed
+          * @default false
+         */
+        "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Text alignment within the input field
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
+          * Luxon time format for display (e.g., 'HH:mm:ss' → "13:07:04")
+          * @default 'HH:mm:ss'
+         */
+        "timeFormat"?: string;
+        /**
+          * Success/valid message
+         */
+        "validText"?: string;
+        /**
+          * Value in display format (e.g., "2026/01/21 13:07:04" for default dateFormat + timeFormat)
+          * @default ''
+         */
+        "value"?: string;
+        /**
+          * Warning message
+         */
+        "warningText"?: string;
+        /**
+          * First day of week (0=Sunday, 1=Monday, etc.)
+          * @default 0
+         */
+        "weekStartIndex"?: number;
     }
     interface IxDatetimePicker {
         /**
@@ -10437,6 +10751,7 @@ declare namespace LocalJSX {
         "ix-date-input": IxDateInput;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
+        "ix-datetime-input": IxDatetimeInput;
         "ix-datetime-picker": IxDatetimePicker;
         "ix-divider": IxDivider;
         "ix-drawer": IxDrawer;
@@ -10562,6 +10877,10 @@ declare module "@stencil/core" {
             "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
+            /**
+             * @form-ready 
+             */
+            "ix-datetime-input": LocalJSX.IxDatetimeInput & JSXBase.HTMLAttributes<HTMLIxDatetimeInputElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             /**

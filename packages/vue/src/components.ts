@@ -29,6 +29,7 @@ import { defineCustomElement as defineIxCustomField } from '@siemens/ix/componen
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDateInput } from '@siemens/ix/components/ix-date-input.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
+import { defineCustomElement as defineIxDatetimeInput } from '@siemens/ix/components/ix-datetime-input.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
@@ -472,6 +473,47 @@ export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/
   'dateChange',
   'dateRangeChange',
   'dateSelect'
+]);
+
+
+export const IxDatetimeInput: StencilVueComponent<JSX.IxDatetimeInput> = /*@__PURE__*/ defineContainer<JSX.IxDatetimeInput>('ix-datetime-input', defineIxDatetimeInput, [
+  'name',
+  'placeholder',
+  'value',
+  'dateFormat',
+  'timeFormat',
+  'locale',
+  'required',
+  'disabled',
+  'readonly',
+  'minDate',
+  'maxDate',
+  'label',
+  'helperText',
+  'invalidText',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
+  'i18nErrorDateTimeUnparsable',
+  'i18nDone',
+  'i18nTime',
+  'ariaLabelPreviousMonthButton',
+  'ariaLabelNextMonthButton',
+  'ariaLabelCalendarButton',
+  'showWeekNumbers',
+  'weekStartIndex',
+  'suppressSubmitOnEnter',
+  'textAlignment',
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur'
+], [
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur'
 ]);
 
 

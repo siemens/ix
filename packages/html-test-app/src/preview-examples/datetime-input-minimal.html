@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Minimal DateTime Input Test</title>
+    <style>
+      /* Override global.css to allow scrolling */
+      html {
+        overflow: auto !important;
+        height: auto !important;
+      }
+      
+      body {
+        padding: 2rem;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body class="theme-classic-dark">
+    <h1>Minimal DateTime Input Test</h1>
+    
+    <p>If you see an input below, the component works:</p>
+    
+    <ix-datetime-input label="Test"></ix-datetime-input>
+    
+    <script type="module" src="./init.js"></script>
+    <script type="module">
+      // Check if component loaded
+      setTimeout(() => {
+        const component = document.querySelector('ix-datetime-input');
+        console.log('Component element:', component);
+        console.log('Shadow root:', component?.shadowRoot);
+        console.log('Input inside shadow:', component?.shadowRoot?.querySelector('input'));
+        
+        if (!component) {
+          console.error('❌ Component not found!');
+        } else if (!component.shadowRoot) {
+          console.error('❌ Shadow root not attached!');
+        } else if (!component.shadowRoot.querySelector('input')) {
+          console.error('❌ Input not rendered!');
+        } else {
+          console.log('✅ Component rendered successfully!');
+        }
+      }, 1000);
+      
+      // Log any errors
+      window.addEventListener('error', (e) => {
+        console.error('Runtime error:', e.message);
+      });
+    </script>
+  </body>
+</html>
