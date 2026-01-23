@@ -666,26 +666,42 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
     });
   }
 
-  private getDayClasses(day: number): Record<string, boolean> {
+  private getUtilitiesBasedOnDay(day: number) {
     const todayObj = this.getDateTimeNow();
     const selectedDayObj = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, day)
     );
+    return {
+      isFirstDay: () => day === 1,
+      isToday: () => todayObj.hasSame(selectedDayObj, 'day'),
+      isSelected: () =>
+        !!(
+          this.currFromDate?.hasSame(selectedDayObj, 'day') ||
+          this.currToDate?.hasSame(selectedDayObj, 'day')
+        ),
+      isRange: () =>
+        !!(
+          this.currFromDate &&
+          selectedDayObj.startOf('day') > this.currFromDate.startOf('day') &&
+          this.currToDate !== undefined &&
+          selectedDayObj.startOf('day') < this.currToDate?.startOf('day')
+        ),
+    };
+  }
 
+  private getDayClasses(day: number): Record<string, boolean> {
+    const selectedDayObj = DateTime.fromJSDate(
+      new Date(this.selectedYear, this.selectedMonth, day)
+    );
+
+    const util = this.getUtilitiesBasedOnDay(day);
     return {
       'calendar-item': true,
       'empty-day': day === undefined,
-      today: todayObj.hasSame(selectedDayObj, 'day'),
-      selected: !!(
-        this.currFromDate?.hasSame(selectedDayObj, 'day') ||
-        this.currToDate?.hasSame(selectedDayObj, 'day')
-      ),
-      range: !!(
-        this.currFromDate &&
-        selectedDayObj.startOf('day') > this.currFromDate.startOf('day') &&
-        this.currToDate !== undefined &&
-        selectedDayObj.startOf('day') < this.currToDate?.startOf('day')
-      ),
+      'first-day': util.isFirstDay(),
+      today: util.isToday(),
+      selected: util.isSelected(),
+      range: util.isRange(),
       disabled: !this.isWithinMinMaxDate(selectedDayObj),
     };
   }
@@ -851,35 +867,63 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
     if (this.yearMonthSelectionDropdownRef.current?.show) {
       return;
     }
+    this.changeFocusedDay();
 
-    const shadowRoot = this.hostElement.shadowRoot!;
+    requestAnimationFrameNoNgZone(() => {
+      const shadowRoot = this.hostElement.shadowRoot!;
+      let dayToFocus = shadowRoot.querySelector(
+        '.calendar-item[autofocus]'
+      ) as HTMLElement;
 
-    const selectedDayElement = shadowRoot.querySelector(
-      '.calendar-item.selected'
-    ) as HTMLElement;
+      if (dayToFocus === null) {
+        dayToFocus = shadowRoot.querySelector(
+          '.calendar-item.first-day'
+        ) as HTMLElement;
+      }
 
-    const todayElement = shadowRoot.querySelector(
-      '.calendar-item.today'
-    ) as HTMLElement;
+      dayToFocus?.focus();
+    });
+  }
 
-    const dayElement = selectedDayElement ?? todayElement;
-    if (!dayElement) {
-      return;
-    }
+  private changeFocusedDay() {
+    requestAnimationFrameNoNgZone(() => {
+      const shadowRoot = this.hostElement.shadowRoot!;
 
-    const currentDay = dayElement.dataset.calendarDay;
+      const selectedDayElement = shadowRoot.querySelector(
+        '.calendar-item.selected'
+      ) as HTMLElement;
 
-    if (currentDay) {
-      this.focusedDay = parseInt(currentDay, 10);
-      requestAnimationFrameNoNgZone(() => dayElement?.focus());
-    }
+      const todayElement = shadowRoot.querySelector(
+        '.calendar-item.today'
+      ) as HTMLElement;
+
+      let dayElement = selectedDayElement ?? todayElement;
+
+      if (!dayElement) {
+        // This is only the case if user use the year/month selector to select a date
+        // and changing to a month with has ether a today or selected day
+        dayElement = shadowRoot.querySelector(
+          '.calendar-item.first-day'
+        ) as HTMLElement;
+      }
+
+      if (!dayElement) {
+        return;
+      }
+
+      const currentDay = dayElement.dataset.calendarDay;
+
+      if (currentDay) {
+        this.focusedDay = parseInt(currentDay, 10);
+      }
+    });
   }
 
   render() {
     return (
       <Host
         onFocusin={() => {
-          this.requestCalendarFocus();
+          this.changeFocusedDay();
         }}
       >
         <ix-date-time-card corners={this.corners} embedded={this.embedded}>
@@ -916,7 +960,12 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
                   event.stopImmediatePropagation();
 
                   const show = event.detail;
-                  if (show && hasKeyboardMode()) {
+
+                  if (!hasKeyboardMode()) {
+                    return;
+                  }
+
+                  if (show) {
                     requestAnimationFrameNoNgZone(() => {
                       const currentMonthElement = this.hostElement
                         .shadowRoot!.getElementById('month-selection')!
@@ -926,6 +975,8 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
 
                       currentMonthElement?.focus();
                     });
+                  } else if (!show) {
+                    this.requestCalendarFocus();
                   }
                 }}
               >
@@ -997,6 +1048,7 @@ export class DatePicker extends IxComponent() implements IxDatePickerComponent {
                           }
                         }}
                         tabIndex={day === this.focusedDay ? 0 : -1}
+                        autofocus={this.getUtilitiesBasedOnDay(day).isToday()}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
                         aria-label={`${this.selectedMonth}: ${day}`}

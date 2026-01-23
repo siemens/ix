@@ -300,8 +300,6 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         focusLastDescendant(element);
       });
 
-    console.log(event.key);
-
     if (event.key === 'Escape' && this.show) {
       // Handle Escape key when the dropdown is attached to an input element
       // that retains focus while the dropdown remains open
