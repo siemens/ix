@@ -307,14 +307,17 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
       return;
     }
 
-    const navigationKeys = ['ArrowUp', 'ArrowDown', ' ', 'Enter'];
+    if (this.show) {
+      return;
+    }
 
+    const navigationKeys = ['ArrowUp', 'ArrowDown', ' ', 'Enter'];
     if (!navigationKeys.includes(event.key)) {
       return;
     }
 
     // If dropdown is not yet shown, try to open it
-    if (!this.show && !this.isAnchorSubmenu()) {
+    if (!this.isAnchorSubmenu()) {
       if (!event.defaultPrevented) {
         this.toggleController();
       }
@@ -634,18 +637,6 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   async componentDidRender() {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
-
-    // if (this.enableTopLayer) {
-    // const dialogElement = this.dialogRef.current;
-    // // Baseline 2025 feature https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/ariaLabelledByElements
-    // if (
-    //   dialogElement &&
-    //   'ariaLabelledByElements' in ElementInternals.prototype
-    // ) {
-    //   dialogElement.removeAttribute('aria-labelledby');
-    //   dialogElement.ariaLabelledByElements = [this.hostElement];
-    // }
-    // }
   }
 
   private isTriggerElement(element: HTMLElement) {

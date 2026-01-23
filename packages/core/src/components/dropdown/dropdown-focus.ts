@@ -169,6 +169,8 @@ export const configureKeyboardInteraction = (
       options.beforeKeydown(ev);
     }
 
+    console.log('keydown', ev.key);
+
     switch (ev.key) {
       case 'ArrowLeft': {
         dropdownElement.dispatchEvent(
