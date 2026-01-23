@@ -15,6 +15,7 @@ import {
   inline,
   offset,
   shift,
+  limitShift,
 } from '@floating-ui/dom';
 import {
   Component,
@@ -131,6 +132,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Prop() suppressOverflowBehavior = false;
 
   /**
+   * Define a container element to constrain dropdown within.
+   */
+  @Prop() container?: ElementReference;
+
+  /**
    * Enable Popover API rendering for top-layer positioning.
    *
    * @default false in v4.x, will default to true in v5.0.0
@@ -206,6 +212,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.autoUpdateCleanup();
       this.autoUpdateCleanup = undefined;
     }
+    this.removeVisibilityListeners();
   }
 
   getAssignedSubmenuIds() {
@@ -363,6 +370,30 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
   }
 
+  private autoCloseTimeout?: ReturnType<typeof setTimeout>;
+  private containerElement?: HTMLElement | null;
+
+  private visibilityHandler?: () => void;
+  private scrollableParent?: HTMLElement;
+
+  private findScrollableParent(
+    element: HTMLElement | null
+  ): HTMLElement | null {
+    let el = element;
+    while (el) {
+      const style = globalThis.getComputedStyle(el);
+      const overflowY = style.overflowY;
+      if (
+        (overflowY === 'auto' || overflowY === 'scroll') &&
+        el.scrollHeight > el.clientHeight
+      ) {
+        return el;
+      }
+      el = el.parentElement;
+    }
+    return null;
+  }
+
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (!newShow) {
@@ -371,8 +402,38 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       if (this.enableTopLayer) {
         await this.hideDropdownAsync();
       }
+      this.clearAutoCloseTimeout();
+      this.removeVisibilityListeners();
       return;
     }
+
+    await this.resolveContainerElement();
+    this.removeVisibilityListeners();
+    this.scrollableParent =
+      this.findScrollableParent(this.hostElement.parentElement) || undefined;
+
+    this.visibilityHandler = () => {
+      if (this.isDropdownFullyNotVisible()) {
+        this.dismiss();
+      }
+    };
+
+    window.addEventListener('scroll', this.visibilityHandler, true);
+    window.addEventListener('resize', this.visibilityHandler, true);
+    if (this.scrollableParent) {
+      this.scrollableParent.addEventListener(
+        'scroll',
+        this.visibilityHandler,
+        true
+      );
+    }
+
+    this.clearAutoCloseTimeout();
+    this.autoCloseTimeout = setTimeout(() => {
+      if (this.isDropdownFullyNotVisible()) {
+        this.dismiss();
+      }
+    }, 300);
 
     this.arrowFocusController = new ArrowFocusController(
       this.dropdownItems,
@@ -399,9 +460,57 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
   }
 
+  private removeVisibilityListeners() {
+    if (this.visibilityHandler) {
+      window.removeEventListener('scroll', this.visibilityHandler, true);
+      window.removeEventListener('resize', this.visibilityHandler, true);
+      if (this.scrollableParent) {
+        this.scrollableParent.removeEventListener(
+          'scroll',
+          this.visibilityHandler,
+          true
+        );
+        this.scrollableParent = undefined;
+      }
+      this.visibilityHandler = undefined;
+    }
+  }
+
+  private isDropdownFullyNotVisible(): boolean {
+    const rect = this.hostElement.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    return (
+      rect.bottom <= 0 || rect.top >= vh || rect.right <= 0 || rect.left >= vw
+    );
+  }
+
+  private clearAutoCloseTimeout() {
+    if (this.autoCloseTimeout) {
+      clearTimeout(this.autoCloseTimeout);
+      this.autoCloseTimeout = undefined;
+    }
+  }
+
   @Watch('trigger')
   changedTrigger(newTriggerValue: ElementReference) {
     this.registerListener(newTriggerValue);
+  }
+
+  @Watch('container')
+  async changedContainer() {
+    await this.resolveContainerElement();
+    await this.applyDropdownPosition();
+  }
+
+  private async resolveContainerElement() {
+    if (this.container) {
+      this.containerElement = (await findElement(
+        this.container
+      )) as HTMLElement;
+    } else {
+      this.containerElement = null;
+    }
   }
 
   private destroyAutoUpdate() {
@@ -477,8 +586,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     const referenceElement = this.anchorElement;
     const isSubmenu = this.isAnchorSubmenu();
 
+    const useAbsolute = !!this.containerElement;
+
     let targetElement: HTMLElement = this.hostElement;
-    let strategy: 'fixed' | 'absolute' = this.positioningStrategy;
 
     if (this.enableTopLayer) {
       const dialog = await this.dialogRef.waitForCurrent();
@@ -486,11 +596,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         return;
       }
       targetElement = dialog;
-      strategy = 'fixed';
     }
 
     let positionConfig: Partial<ComputePositionConfig> = {
-      strategy,
+      strategy: useAbsolute ? 'absolute' : this.positioningStrategy,
       middleware: [],
     };
 
@@ -505,7 +614,14 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     positionConfig.middleware = [
       ...(positionConfig.middleware?.filter(Boolean) || []),
       inline(),
-      shift(),
+      shift({
+        limiter: this.containerElement
+          ? limitShift({
+              // @ts-ignore
+              boundary: this.containerElement,
+            })
+          : undefined,
+      }),
     ];
 
     if (this.offset) {
@@ -523,13 +639,30 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           targetElement,
           positionConfig
         );
-        Object.assign(targetElement.style, {
-          top: '0',
-          left: '0',
-          transform: `translate(${Math.round(computeResponse.x)}px,${Math.round(
-            computeResponse.y
-          )}px)`,
-        });
+        let x = Math.round(computeResponse.x);
+        let y = Math.round(computeResponse.y);
+
+        if (useAbsolute && this.containerElement) {
+          if (this.hostElement.parentElement !== this.containerElement) {
+            this.containerElement.appendChild(this.hostElement);
+          }
+          Object.assign(this.hostElement.style, {
+            position: 'absolute',
+            top: `${y}px`,
+            left: `${x}px`,
+            transform: '',
+            zIndex: `var(--theme-z-index-dropdown)`,
+            pointerEvents: 'auto',
+          });
+        } else {
+          Object.assign(this.hostElement.style, {
+            top: '0',
+            left: '0',
+            transform: `translate(${x}px,${y}px)`,
+            position: this.positioningStrategy,
+            zIndex: `var(--theme-z-index-dropdown)`,
+          });
+        }
 
         if (this.overwriteDropdownStyle) {
           const overwriteStyle = await this.overwriteDropdownStyle({
@@ -569,11 +702,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
 
     this.changedTrigger(this.trigger);
+    await this.resolveContainerElement();
   }
 
   async componentDidRender() {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
+    await this.resolveContainerElement();
   }
 
   private isTriggerElement(element: HTMLElement) {

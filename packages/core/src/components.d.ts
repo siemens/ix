@@ -1343,6 +1343,10 @@ export namespace Components {
          */
         "closeBehavior": CloseBehavior;
         /**
+          * Define a container element to constrain dropdown within.
+         */
+        "container"?: ElementReference;
+        /**
           * @default false
          */
         "discoverAllSubmenus": boolean;
@@ -7303,6 +7307,10 @@ declare namespace LocalJSX {
           * @default 'both'
          */
         "closeBehavior"?: CloseBehavior;
+        /**
+          * Define a container element to constrain dropdown within.
+         */
+        "container"?: ElementReference;
         /**
           * @default false
          */
