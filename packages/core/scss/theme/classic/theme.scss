@@ -72,11 +72,14 @@
     }
   }
 
-  :not([data-ix-theme]) body:not([class*='theme-']):not([data-ix-theme]),
+  html:not([class*='theme-']):not([data-ix-theme])
+    body:not([class*='theme-']):not([data-ix-theme]),
+  html[class*='theme-classic-dark'],
   body[class*='theme-classic-dark'] {
     @include as_dark_variables.setVars();
   }
 
+  html[class*='theme-classic-light'],
   body[class*='theme-classic-light'] {
     @include as_light_variables.setVars();
   }
