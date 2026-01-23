@@ -635,18 +635,17 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
 
-    if (this.enableTopLayer) {
-      const dialogElement = this.dialogRef.current;
-
-      // Baseline 2025 feature https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/ariaLabelledByElements
-      if (
-        dialogElement &&
-        'ariaLabelledByElements' in ElementInternals.prototype
-      ) {
-        dialogElement.removeAttribute('aria-labelledby');
-        dialogElement.ariaLabelledByElements = [this.hostElement];
-      }
-    }
+    // if (this.enableTopLayer) {
+    // const dialogElement = this.dialogRef.current;
+    // // Baseline 2025 feature https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/ariaLabelledByElements
+    // if (
+    //   dialogElement &&
+    //   'ariaLabelledByElements' in ElementInternals.prototype
+    // ) {
+    //   dialogElement.removeAttribute('aria-labelledby');
+    //   dialogElement.ariaLabelledByElements = [this.hostElement];
+    // }
+    // }
   }
 
   private isTriggerElement(element: HTMLElement) {
