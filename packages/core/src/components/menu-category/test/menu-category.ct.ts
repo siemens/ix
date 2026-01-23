@@ -315,6 +315,8 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
 
+  await expect(categoryElement).toBeFocused();
+
   const dropdown = categoryElement.locator('ix-dropdown');
   await expect(dropdown).not.toBeVisible();
 

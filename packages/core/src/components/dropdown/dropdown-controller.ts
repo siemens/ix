@@ -220,6 +220,12 @@ class DropdownController {
         this.dismissAll();
       }
     });
+
+    window.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        this.dismissAll([...this.dropdowns.keys()]);
+      }
+    });
   }
 }
 

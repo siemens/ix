@@ -21,7 +21,9 @@ import { a11yBoolean } from '../utils/a11y';
 @Component({
   tag: 'ix-menu-expand-icon',
   styleUrl: './menu-expand-icon.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
 export class MenuExpandIcon {
   /** Whether the menu expand icon displays the expanded state or not */
@@ -42,7 +44,7 @@ export class MenuExpandIcon {
   getSmallScreenIcon() {
     return (
       <button
-        tabindex={-1}
+        aria-hidden="true"
         class={{
           ...getButtonClasses('subtle-tertiary', true, false, false, false),
           'menu-expand-button': true,
@@ -65,8 +67,8 @@ export class MenuExpandIcon {
   getLargeScreenIcon() {
     return (
       <ix-icon-button
-        tabindex={-1}
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
+        aria-hidden="true"
         variant="subtle-tertiary"
       ></ix-icon-button>
     );
