@@ -406,34 +406,35 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.removeVisibilityListeners();
       return;
     }
+    if (!this.enableTopLayer) {
+      await this.resolveContainerElement();
+      this.removeVisibilityListeners();
+      this.scrollableParent =
+        this.findScrollableParent(this.hostElement.parentElement) || undefined;
 
-    await this.resolveContainerElement();
-    this.removeVisibilityListeners();
-    this.scrollableParent =
-      this.findScrollableParent(this.hostElement.parentElement) || undefined;
+      this.visibilityHandler = () => {
+        if (this.isDropdownFullyNotVisible()) {
+          this.dismiss();
+        }
+      };
 
-    this.visibilityHandler = () => {
-      if (this.isDropdownFullyNotVisible()) {
-        this.dismiss();
+      window.addEventListener('scroll', this.visibilityHandler, true);
+      window.addEventListener('resize', this.visibilityHandler, true);
+      if (this.scrollableParent) {
+        this.scrollableParent.addEventListener(
+          'scroll',
+          this.visibilityHandler,
+          true
+        );
       }
-    };
 
-    window.addEventListener('scroll', this.visibilityHandler, true);
-    window.addEventListener('resize', this.visibilityHandler, true);
-    if (this.scrollableParent) {
-      this.scrollableParent.addEventListener(
-        'scroll',
-        this.visibilityHandler,
-        true
-      );
+      this.clearAutoCloseTimeout();
+      this.autoCloseTimeout = setTimeout(() => {
+        if (this.isDropdownFullyNotVisible()) {
+          this.dismiss();
+        }
+      }, 300);
     }
-
-    this.clearAutoCloseTimeout();
-    this.autoCloseTimeout = setTimeout(() => {
-      if (this.isDropdownFullyNotVisible()) {
-        this.dismiss();
-      }
-    }, 300);
 
     this.arrowFocusController = new ArrowFocusController(
       this.dropdownItems,
@@ -655,10 +656,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
             pointerEvents: 'auto',
           });
         } else {
-          Object.assign(this.hostElement.style, {
+          Object.assign(targetElement.style, {
             top: '0',
             left: '0',
-            transform: `translate(${x}px,${y}px)`,
+            transform: `translate(${Math.round(computeResponse.x)}px,${Math.round(
+              computeResponse.y
+            )}px)`,
             position: this.positioningStrategy,
             zIndex: `var(--theme-z-index-dropdown)`,
           });
