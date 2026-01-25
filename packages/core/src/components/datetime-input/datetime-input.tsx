@@ -237,26 +237,53 @@ export class DatetimeInput
       locale: this.locale,
     });
 
-    let minDateTime: DateTime | null = null;
-    if (this.minDate) {
-      const parsed = DateTime.fromFormat(this.minDate, this.dateFormat, {
-        locale: this.locale,
-      });
-      if (parsed.isValid) {
-        minDateTime = parsed.startOf('day');
-      }
+    const minDateTime = this.parseConstraintDate(this.minDate, 'start');
+    const maxDateTime = this.parseConstraintDate(this.maxDate, 'end');
+
+    const validationResult = this.validateConstraints(
+      dateTime,
+      minDateTime,
+      maxDateTime
+    );
+
+    this.isInputInvalid = validationResult.isInvalid;
+    this.invalidReason = validationResult.reason;
+
+    if (this.isInputInvalid) {
+      this.from = null;
+      this.time = null;
+    } else {
+      this.updateFormInternalValue(value);
+      this.closeDropdown();
     }
 
-    let maxDateTime: DateTime | null = null;
-    if (this.maxDate) {
-      const parsed = DateTime.fromFormat(this.maxDate, this.dateFormat, {
-        locale: this.locale,
-      });
-      if (parsed.isValid) {
-        maxDateTime = parsed.endOf('day');
-      }
+    this.valueChange.emit(value);
+  }
+
+  private parseConstraintDate(
+    dateString: string | undefined,
+    boundary: 'start' | 'end'
+  ): DateTime | null {
+    if (!dateString) {
+      return null;
     }
 
+    const parsed = DateTime.fromFormat(dateString, this.dateFormat, {
+      locale: this.locale,
+    });
+
+    if (!parsed.isValid) {
+      return null;
+    }
+
+    return boundary === 'start' ? parsed.startOf('day') : parsed.endOf('day');
+  }
+
+  private validateConstraints(
+    dateTime: DateTime,
+    minDateTime: DateTime | null,
+    maxDateTime: DateTime | null
+  ): { isInvalid: boolean; reason: string | undefined } {
     const isFormatInvalid = !dateTime.isValid;
     const isBeforeMin = !!(
       minDateTime?.isValid &&
@@ -269,25 +296,18 @@ export class DatetimeInput
       dateTime > maxDateTime
     );
 
-    this.isInputInvalid = isFormatInvalid || isBeforeMin || isAfterMax;
+    const isInvalid = isFormatInvalid || isBeforeMin || isAfterMax;
 
-    if (this.isInputInvalid) {
-      if (isBeforeMin) {
-        this.invalidReason = 'rangeUnderflow';
-      } else if (isAfterMax) {
-        this.invalidReason = 'rangeOverflow';
-      } else {
-        this.invalidReason = dateTime.invalidReason || undefined;
-      }
-      this.from = null;
-      this.time = null;
-    } else {
-      this.invalidReason = undefined;
-      this.updateFormInternalValue(value);
-      this.closeDropdown();
+    let reason: string | undefined;
+    if (isBeforeMin) {
+      reason = 'rangeUnderflow';
+    } else if (isAfterMax) {
+      reason = 'rangeOverflow';
+    } else if (isFormatInvalid) {
+      reason = dateTime.invalidReason || undefined;
     }
 
-    this.valueChange.emit(value);
+    return { isInvalid, reason };
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
