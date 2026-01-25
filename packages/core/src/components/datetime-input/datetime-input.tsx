@@ -473,17 +473,20 @@ export class DatetimeInput
             'is-invalid': this.isInputInvalid,
           }}
           disabled={this.disabled}
+          name={this.name}
+          placeholder={this.placeholder}
           readOnly={this.readonly}
           readonly={this.readonly}
-          required={this.required}
           ref={this.inputElementRef}
+          required={this.required}
+          style={{
+            textAlign: this.textAlignment,
+          }}
           type="text"
           value={this.value ?? ''}
-          placeholder={this.placeholder}
-          name={this.name}
-          onInput={(event) => {
-            const target = event.target as HTMLInputElement;
-            this.onInput(target.value);
+          onBlur={() => {
+            this.ixBlur.emit();
+            this.touched = true;
           }}
           onClick={(event) => {
             if (this.show) {
@@ -495,29 +498,26 @@ export class DatetimeInput
             this.openDropdown();
             this.ixFocus.emit();
           }}
-          onBlur={() => {
-            this.ixBlur.emit();
-            this.touched = true;
+          onInput={(event) => {
+            const target = event.target as HTMLInputElement;
+            this.onInput(target.value);
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
-          style={{
-            textAlign: this.textAlignment,
-          }}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
           onSlotChange={() => this.updatePaddings()}
         >
           <ix-icon-button
-            data-testid="open-datetime-picker"
-            class={{ 'calendar-hidden': this.disabled || this.readonly }}
-            variant="subtle-tertiary"
-            icon={iconCalendar}
-            onClick={(event) => this.onCalendarClick(event)}
+            aria-expanded={this.show}
             aria-label={
               this.ariaLabelCalendarButton || 'Toggle datetime picker'
             }
-            aria-expanded={this.show}
+            class={{ 'calendar-hidden': this.disabled || this.readonly }}
+            data-testid="open-datetime-picker"
+            icon={iconCalendar}
+            variant="subtle-tertiary"
+            onClick={(event) => this.onCalendarClick(event)}
           ></ix-icon-button>
         </SlotEnd>
       </div>
@@ -539,49 +539,49 @@ export class DatetimeInput
         }}
       >
         <ix-field-wrapper
-          label={this.label}
-          helperText={this.helperText}
-          isInvalid={this.isInvalid}
-          invalidText={invalidText}
-          infoText={this.infoText}
-          isInfo={this.isInfo}
-          isWarning={this.isWarning}
-          warningText={this.warningText}
-          isValid={this.isValid}
-          validText={this.validText}
-          showTextAsTooltip={this.showTextAsTooltip}
-          required={this.required}
           controlRef={this.inputElementRef}
+          helperText={this.helperText}
+          infoText={this.infoText}
+          invalidText={invalidText}
+          isInfo={this.isInfo}
+          isInvalid={this.isInvalid}
+          isValid={this.isValid}
+          isWarning={this.isWarning}
+          label={this.label}
+          required={this.required}
+          showTextAsTooltip={this.showTextAsTooltip}
+          validText={this.validText}
+          warningText={this.warningText}
         >
           {this.renderInput()}
         </ix-field-wrapper>
         <ix-dropdown
-          data-testid="datetime-dropdown"
-          trigger={this.inputElementRef.waitForCurrent()}
-          ref={this.dropdownElementRef}
           closeBehavior="outside"
-          suppressOverflowBehavior={true}
+          data-testid="datetime-dropdown"
+          ref={this.dropdownElementRef}
           show={this.show}
+          suppressOverflowBehavior={true}
+          trigger={this.inputElementRef.waitForCurrent()}
           onShowChanged={(event) => {
             this.show = event.detail;
           }}
         >
           <ix-datetime-picker
-            ref={this.datetimePickerRef}
+            ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+            ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             dateFormat={this.dateFormat}
-            timeFormat={this.timeFormat}
-            locale={this.locale}
-            singleSelection
             from={this.from ?? ''}
-            time={this.time ?? ''}
-            minDate={this.minDate}
-            maxDate={this.maxDate}
             i18nDone={this.i18nDone}
             i18nTime={this.i18nTime}
+            locale={this.locale}
+            maxDate={this.maxDate}
+            minDate={this.minDate}
+            ref={this.datetimePickerRef}
             showWeekNumbers={this.showWeekNumbers}
+            singleSelection
+            time={this.time ?? ''}
+            timeFormat={this.timeFormat}
             weekStartIndex={this.weekStartIndex}
-            ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-            ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             onDateSelect={this.handleDateSelect}
           ></ix-datetime-picker>
         </ix-dropdown>
