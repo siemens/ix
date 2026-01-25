@@ -1236,12 +1236,21 @@ export namespace Components {
           * Focus the native input element
          */
         "focusInput": () => Promise<void>;
+        /**
+          * Returns the associated HTML form element.
+         */
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Get the native input element
          */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
+        /**
+          * Returns the validity state of the input.
+         */
         "getValidityState": () => Promise<ValidityState>;
+        /**
+          * Returns whether the input has a value.
+         */
         "hasValidValue": () => Promise<boolean>;
         /**
           * Helper text displayed below the input
@@ -1270,6 +1279,9 @@ export namespace Components {
           * Validation message for invalid state
          */
         "invalidText"?: string;
+        /**
+          * Returns whether the input field has been touched.
+         */
         "isTouched": () => Promise<boolean>;
         /**
           * Label text displayed above the input
