@@ -225,6 +225,9 @@ export class DatetimeInput
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
+      this.isInputInvalid = false;
+      this.invalidReason = undefined;
+      this.updateFormInternalValue(undefined);
       this.valueChange.emit(value);
       return;
     }
@@ -252,6 +255,7 @@ export class DatetimeInput
     if (this.isInputInvalid) {
       this.from = null;
       this.time = null;
+      this.updateFormInternalValue(undefined);
     } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
@@ -350,6 +354,7 @@ export class DatetimeInput
   }
 
   /**
+   * Returns whether the input has a value.
    * @internal
    */
   @Method()
@@ -358,6 +363,7 @@ export class DatetimeInput
   }
 
   /**
+   * Returns the associated HTML form element.
    * @internal
    */
   @Method()
@@ -384,6 +390,7 @@ export class DatetimeInput
   }
 
   /**
+   * Returns whether the input field has been touched.
    * @internal
    */
   @Method()
@@ -392,6 +399,7 @@ export class DatetimeInput
   }
 
   /**
+   * Returns the validity state of the input.
    * @internal
    */
   @Method()
@@ -411,7 +419,11 @@ export class DatetimeInput
       valueMissing: state.valueMissing,
       rangeUnderflow: this.invalidReason === 'rangeUnderflow',
       rangeOverflow: this.invalidReason === 'rangeOverflow',
-      typeMismatch: state.patternMismatch,
+      typeMismatch: !!(
+        this.invalidReason &&
+        this.invalidReason !== 'rangeUnderflow' &&
+        this.invalidReason !== 'rangeOverflow'
+      ),
       customError: state.customError,
       badInput: state.badInput,
       patternMismatch: false,
