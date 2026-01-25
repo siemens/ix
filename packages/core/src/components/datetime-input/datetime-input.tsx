@@ -209,11 +209,9 @@ export class DatetimeInput
       return;
     }
 
-    const dateTime = DateTime.fromFormat(
-      this.value,
-      this.combinedFormat,
-      { locale: this.locale }
-    );
+    const dateTime = DateTime.fromFormat(this.value, this.combinedFormat, {
+      locale: this.locale,
+    });
 
     if (dateTime.isValid) {
       this.from = dateTime.toFormat(this.dateFormat);
@@ -260,8 +258,16 @@ export class DatetimeInput
     }
 
     const isFormatInvalid = !dateTime.isValid;
-    const isBeforeMin = !!(minDateTime?.isValid && dateTime.isValid && dateTime < minDateTime);
-    const isAfterMax = !!(maxDateTime?.isValid && dateTime.isValid && dateTime > maxDateTime);
+    const isBeforeMin = !!(
+      minDateTime?.isValid &&
+      dateTime.isValid &&
+      dateTime < minDateTime
+    );
+    const isAfterMax = !!(
+      maxDateTime?.isValid &&
+      dateTime.isValid &&
+      dateTime > maxDateTime
+    );
 
     this.isInputInvalid = isFormatInvalid || isBeforeMin || isAfterMax;
 
@@ -273,8 +279,8 @@ export class DatetimeInput
       } else {
         this.invalidReason = dateTime.invalidReason || undefined;
       }
-      this.from = undefined;
-      this.time = undefined;
+      this.from = null;
+      this.time = null;
     } else {
       this.invalidReason = undefined;
       this.updateFormInternalValue(value);
@@ -292,13 +298,8 @@ export class DatetimeInput
     );
   }
 
-
   private initPickerValues() {
     this.syncPickerState();
-    
-    if (!this.from || !this.time) {
-      console.warn('Invalid value, cannot initialize picker:', this.value);
-    }
   }
 
   private readonly onCalendarClick = (event: Event) => {
@@ -344,11 +345,19 @@ export class DatetimeInput
     return Promise.resolve(this.formInternals.form);
   }
 
+  /**
+   * Get the native input element
+   * @internal
+   */
   @Method()
   getNativeInputElement(): Promise<HTMLInputElement> {
     return this.inputElementRef.waitForCurrent();
   }
 
+  /**
+   * Focus the native input element
+   * @internal
+   */
   @Method()
   async focusInput(): Promise<void> {
     return (await this.getNativeInputElement()).focus();
@@ -454,7 +463,6 @@ export class DatetimeInput
     const { from, time } = event.detail;
 
     if (!from || !time) {
-      console.warn('Incomplete picker selection:', { from, time });
       return;
     }
 
