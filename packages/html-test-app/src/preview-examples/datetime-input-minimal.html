@@ -31,19 +31,19 @@
         console.log('Shadow root:', component?.shadowRoot);
         console.log('Input inside shadow:', component?.shadowRoot?.querySelector('input'));
         
-        if (!component) {
+        if (component && component.shadowRoot && component.shadowRoot.querySelector('input')) {
+          console.log('✅ Component rendered successfully!');
+        } else if (!component) {
           console.error('❌ Component not found!');
         } else if (!component.shadowRoot) {
           console.error('❌ Shadow root not attached!');
-        } else if (!component.shadowRoot.querySelector('input')) {
-          console.error('❌ Input not rendered!');
         } else {
-          console.log('✅ Component rendered successfully!');
+          console.error('❌ Input not rendered!');
         }
       }, 1000);
       
       // Log any errors
-      window.addEventListener('error', (e) => {
+      globalThis.addEventListener('error', (e) => {
         console.error('Runtime error:', e.message);
       });
     </script>
