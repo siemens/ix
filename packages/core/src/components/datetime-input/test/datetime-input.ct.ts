@@ -8,9 +8,9 @@
  */
 import { Locator, expect } from '@playwright/test';
 import {
-    getFormValue,
-    preventFormSubmission,
-    regressionTest,
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
 } from '@utils/test';
 
 const createDateTimeInputAccessor = async (dateTimeInput: Locator) => {
@@ -283,6 +283,18 @@ regressionTest('validates minDate with date boundary', async ({ mount, page }) =
 
   const input = page.locator('ix-datetime-input input');
   await expect(input).toHaveClass(/is-invalid/);
+});
+
+regressionTest('validates maxDate with date boundary', async ({ mount, page }) => {
+  await mount(`
+    <ix-datetime-input 
+      value="2024/12/20 23:59:59" 
+      max-date="2024/12/20"
+    ></ix-datetime-input>
+  `);
+
+  const input = page.locator('ix-datetime-input input');
+  await expect(input).not.toHaveClass(/is-invalid/);
 });
 
 regressionTest('validates minDate with date-only format', async ({ mount, page }) => {
