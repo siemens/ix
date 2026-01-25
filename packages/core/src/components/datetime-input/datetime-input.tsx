@@ -202,20 +202,6 @@ export class DatetimeInput
     return `${this.dateFormat} ${this.timeFormat}`;
   }
 
-  private parseDate(dateString: string): DateTime | null {
-    let parsed = DateTime.fromFormat(dateString, this.combinedFormat, {
-      locale: this.locale,
-    });
-    
-    if (!parsed.isValid) {
-      parsed = DateTime.fromFormat(dateString, this.dateFormat, {
-        locale: this.locale,
-      });
-    }
-    
-    return parsed.isValid ? parsed : null;
-  }
-
   private syncPickerState() {
     if (!this.value) {
       this.from = null;
@@ -253,12 +239,29 @@ export class DatetimeInput
       locale: this.locale,
     });
 
-    const minDateTime = this.minDate ? this.parseDate(this.minDate) : null;
-    const maxDateTime = this.maxDate ? this.parseDate(this.maxDate) : null;
+    let minDateTime: DateTime | null = null;
+    if (this.minDate) {
+      const parsed = DateTime.fromFormat(this.minDate, this.dateFormat, {
+        locale: this.locale,
+      });
+      if (parsed.isValid) {
+        minDateTime = parsed.startOf('day');
+      }
+    }
+
+    let maxDateTime: DateTime | null = null;
+    if (this.maxDate) {
+      const parsed = DateTime.fromFormat(this.maxDate, this.dateFormat, {
+        locale: this.locale,
+      });
+      if (parsed.isValid) {
+        maxDateTime = parsed.endOf('day');
+      }
+    }
 
     const isFormatInvalid = !dateTime.isValid;
-    const isBeforeMin = !!(minDateTime && dateTime < minDateTime);
-    const isAfterMax = !!(maxDateTime && dateTime > maxDateTime);
+    const isBeforeMin = !!(minDateTime?.isValid && dateTime.isValid && dateTime < minDateTime);
+    const isAfterMax = !!(maxDateTime?.isValid && dateTime.isValid && dateTime > maxDateTime);
 
     this.isInputInvalid = isFormatInvalid || isBeforeMin || isAfterMax;
 
@@ -298,8 +301,7 @@ export class DatetimeInput
     }
   }
 
-
-  private onCalendarClick = (event: Event) => {
+  private readonly onCalendarClick = (event: Event) => {
     handleIconClick(
       event,
       this.show,
@@ -383,7 +385,7 @@ export class DatetimeInput
       typeMismatch: state.patternMismatch,
       customError: state.customError,
       badInput: state.badInput,
-      patternMismatch: state.patternMismatch,
+      patternMismatch: false,
       stepMismatch: state.stepMismatch,
       tooLong: state.tooLong,
       tooShort: state.tooShort,
@@ -448,7 +450,7 @@ export class DatetimeInput
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
-  private handleDateSelect = (event: CustomEvent) => {
+  private readonly handleDateSelect = (event: CustomEvent) => {
     const { from, time } = event.detail;
 
     if (!from || !time) {
@@ -475,7 +477,6 @@ export class DatetimeInput
           disabled={this.disabled}
           name={this.name}
           placeholder={this.placeholder}
-          readOnly={this.readonly}
           readonly={this.readonly}
           ref={this.inputElementRef}
           required={this.required}
