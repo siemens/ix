@@ -1232,8 +1232,14 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Focus the native input element
+         */
         "focusInput": () => Promise<void>;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
+        /**
+          * Get the native input element
+         */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
