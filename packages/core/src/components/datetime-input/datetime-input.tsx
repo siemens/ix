@@ -227,7 +227,7 @@ export class DatetimeInput
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
-      this.updateFormInternalValue(undefined);
+      this.formInternals.setFormValue(null);
       this.valueChange.emit(value);
       return;
     }
@@ -255,9 +255,9 @@ export class DatetimeInput
     if (this.isInputInvalid) {
       this.from = null;
       this.time = null;
-      this.updateFormInternalValue(undefined);
+      this.formInternals.setFormValue(null);
     } else {
-      this.updateFormInternalValue(value);
+      this.formInternals.setFormValue(value);
       this.closeDropdown();
     }
 
@@ -350,7 +350,6 @@ export class DatetimeInput
     } else {
       this.formInternals.setFormValue(null);
     }
-    this.value = value;
   }
 
   /**
