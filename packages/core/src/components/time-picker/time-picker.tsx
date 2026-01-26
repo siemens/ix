@@ -530,23 +530,34 @@ export class TimePicker {
   }
 
   private setupVisibilityObserver() {
-    let dropdownElement: Element | null = this.hostElement;
-    while (dropdownElement && dropdownElement.tagName !== 'IX-DROPDOWN') {
-      dropdownElement = dropdownElement.parentElement;
+    let currentElement: Element | null = this.hostElement;
+
+    while (currentElement) {
+      if (currentElement.tagName === 'IX-DROPDOWN') {
+        this.visibilityObserver = new MutationObserver((mutations) =>
+          this.mutationObserverCallback(mutations)
+        );
+
+        this.visibilityObserver.observe(currentElement, {
+          attributes: true,
+          attributeFilter: ['class', 'style'],
+        });
+        return;
+      }
+
+      // Try to go up via parentElement first
+      if (currentElement.parentElement) {
+        currentElement = currentElement.parentElement;
+      } else {
+        // We hit a shadow boundary, try to get the host element
+        const rootNode = currentElement.getRootNode();
+        if (rootNode && (rootNode as ShadowRoot).host) {
+          currentElement = (rootNode as ShadowRoot).host as Element;
+        } else {
+          break;
+        }
+      }
     }
-
-    if (!dropdownElement) {
-      return;
-    }
-
-    this.visibilityObserver = new MutationObserver((mutations) =>
-      this.mutationObserverCallback(mutations)
-    );
-
-    this.visibilityObserver.observe(dropdownElement, {
-      attributes: true,
-      attributeFilter: ['class', 'style'],
-    });
   }
 
   private mutationObserverCallback(mutations: MutationRecord[]) {
