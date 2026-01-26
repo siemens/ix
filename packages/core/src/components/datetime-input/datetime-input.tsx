@@ -324,6 +324,16 @@ export class DatetimeInput
 
   private initPickerValues() {
     this.syncPickerState();
+
+    // If no value is set, initialize picker to current datetime for better UX
+    // (shows current time scrolled into view, but nothing is selected until user clicks)
+    if (!this.value) {
+      const now = DateTime.now();
+      if (now.isValid) {
+        this.from = now.toFormat(this.dateFormat);
+        this.time = now.toFormat(this.timeFormat);
+      }
+    }
   }
 
   private readonly onCalendarClick = (event: Event) => {
