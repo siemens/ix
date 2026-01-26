@@ -2438,14 +2438,14 @@ export declare interface IxSpinner extends Components.IxSpinner {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disableButton', 'disableDropdownButton', 'disabled', 'enableTopLayer', 'icon', 'label', 'placement', 'splitIcon', 'variant']
+  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disableButton', 'disableDropdownButton', 'disableFocusTrap', 'disabled', 'enableTopLayer', 'icon', 'label', 'placement', 'splitIcon', 'variant']
 })
 @Component({
   selector: 'ix-split-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disableButton', 'disableDropdownButton', 'disabled', 'enableTopLayer', 'icon', 'label', 'placement', 'splitIcon', 'variant'],
+  inputs: ['ariaLabelButton', 'ariaLabelSplitIconButton', 'closeBehavior', 'disableButton', 'disableDropdownButton', 'disableFocusTrap', 'disabled', 'enableTopLayer', 'icon', 'label', 'placement', 'splitIcon', 'variant'],
   outputs: ['buttonClick'],
   standalone: false
 })

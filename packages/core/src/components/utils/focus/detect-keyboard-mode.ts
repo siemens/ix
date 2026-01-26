@@ -22,16 +22,23 @@ export function detectKeyboardMode(
 
   const onKeydown = (event: Event) => {
     const keyboardEvent = event as KeyboardEvent;
-
     if (!FOCUS_KEYS.has(keyboardEvent.key)) {
       return;
     }
 
     keyboardMode = true;
+
+    ref.dispatchEvent(
+      new CustomEvent('keyboardmodechange', { detail: { keyboardMode } })
+    );
   };
 
   const pointerDown = () => {
     keyboardMode = false;
+
+    ref.dispatchEvent(
+      new CustomEvent('keyboardmodechange', { detail: { keyboardMode } })
+    );
   };
 
   ref.addEventListener('keydown', onKeydown);

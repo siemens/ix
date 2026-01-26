@@ -14,6 +14,12 @@ export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
 ) => {
   class FocusVisibleMixinCtor extends Base {
     @Prop({ reflect: true }) ixFocusVisible = false;
+
+    componentDidLoad(): void {
+      if (super.componentDidLoad) {
+        super.componentDidLoad();
+      }
+    }
   }
 
   return FocusVisibleMixinCtor;

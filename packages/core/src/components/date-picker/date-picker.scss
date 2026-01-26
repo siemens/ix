@@ -52,7 +52,7 @@
       margin-left: 4px;
       margin-right: 4px;
 
-      &:focus-visible {
+      &.ix-focused {
         outline: 1px solid var(--theme-color-focus-bdr);
         outline-offset: var(--theme-btn--focus--outline-offset);
       }
@@ -97,6 +97,14 @@
     .overflow {
       overflow-y: scroll;
       max-height: 250px;
+    }
+
+    ul {
+      padding: 0px;
+    }
+
+    ul:focus-visible {
+      outline: none;
     }
   }
 

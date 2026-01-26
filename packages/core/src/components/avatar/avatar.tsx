@@ -258,6 +258,7 @@ export class Avatar extends Mixin() {
               }
             }}
             disableFocusTrap
+            focusHost={this.hostElement}
           >
             {this.username && (
               <Fragment>

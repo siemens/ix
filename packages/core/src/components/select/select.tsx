@@ -38,7 +38,7 @@ import { makeRef } from '../utils/make-ref';
 import { Mixin } from '../utils/internal/component';
 import {
   IX_FOCUS_VISIBLE_ACTIVE,
-  IX_VISIBLE_FOCUSABLE,
+  IX_FOCUS_VISIBLE,
   queryElements,
 } from '../utils/focus/focus-utilities';
 
@@ -764,7 +764,7 @@ export class Select
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
-          [IX_VISIBLE_FOCUSABLE]: true,
+          [IX_FOCUS_VISIBLE]: true,
           'show-focus-outline':
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}

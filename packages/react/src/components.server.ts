@@ -1683,7 +1683,8 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
         disableButton: 'disable-button',
         disableDropdownButton: 'disable-dropdown-button',
         placement: 'placement',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        disableFocusTrap: 'disable-focus-trap'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSplitButton as ReactWebComponent<IxSplitButtonElement, IxSplitButtonEvents>,

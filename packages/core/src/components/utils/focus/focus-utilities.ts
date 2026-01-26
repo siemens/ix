@@ -13,7 +13,7 @@
  */
 
 export const IX_FOCUS_VISIBLE_ACTIVE = 'ix-focused';
-export const IX_VISIBLE_FOCUSABLE = 'ix-focusable';
+export const IX_FOCUS_VISIBLE = 'ix-focusable';
 export const FOCUS_KEYS = new Set([
   'Tab',
   'ArrowDown',

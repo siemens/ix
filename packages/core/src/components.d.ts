@@ -3355,6 +3355,10 @@ export namespace Components {
          */
         "disableDropdownButton": boolean;
         /**
+          * @default false
+         */
+        "disableFocusTrap": boolean;
+        /**
           * Disabled
           * @default false
          */
@@ -9506,6 +9510,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disableDropdownButton"?: boolean;
+        /**
+          * @default false
+         */
+        "disableFocusTrap"?: boolean;
         /**
           * Disabled
           * @default false

@@ -26,7 +26,7 @@ import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { makeRef } from '../utils/make-ref';
 import {
   IX_FOCUS_VISIBLE_ACTIVE,
-  IX_VISIBLE_FOCUSABLE,
+  IX_FOCUS_VISIBLE,
 } from '../utils/focus/focus-utilities';
 import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
 import { Mixin } from '../utils/internal/component';
@@ -125,7 +125,7 @@ export class SelectItem
     return (
       <Host
         class={{
-          [IX_VISIBLE_FOCUSABLE]: true,
+          [IX_FOCUS_VISIBLE]: true,
         }}
       >
         <ix-dropdown-item

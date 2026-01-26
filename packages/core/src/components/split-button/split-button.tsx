@@ -102,6 +102,8 @@ export class SplitButton extends Mixin() {
    */
   @Prop() enableTopLayer: boolean = false;
 
+  @Prop() disableFocusTrap = false;
+
   /**
    * Button clicked
    */
@@ -164,7 +166,6 @@ export class SplitButton extends Mixin() {
         ></ix-icon-button>
         <ix-dropdown
           focusHost={this.hostElement}
-          disableFocusTrap
           closeBehavior={this.closeBehavior}
           trigger={this.triggerElementRef.waitForCurrent()}
           enableTopLayer={this.enableTopLayer}

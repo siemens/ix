@@ -19,6 +19,7 @@ import {
   queryElements,
 } from '../utils/focus/focus-utilities';
 
+// TODO: Remove valid elements, all elements with ix-focusable should be considered
 const VALID_FOCUS_ELEMENTS = [
   'ix-dropdown-item',
   'ix-select-item',
@@ -95,15 +96,21 @@ export const configureKeyboardInteraction = (
     setItemActive?: (item: HTMLElement) => void;
     getEventListenerTarget?: () => HTMLElement;
     querySelector?: string;
+    activeQuerySelector?: string;
     beforeKeydown?: (ev: KeyboardEvent) => void;
+    onEnterOrSpace?: (event: KeyboardEvent, activeElement: HTMLElement) => void;
   } = {}
 ) => {
+  const querySelector = options.querySelector ?? QUERY_ARROW_ELEMENTS;
+  const activeQuerySelector =
+    options.activeQuerySelector ?? QUERY_CURRENT_VISIBLE_FOCUS;
+
   const getActiveElement =
     options.getActiveElement ??
     (() => {
       return queryElements(
         dropdownElement,
-        QUERY_CURRENT_VISIBLE_FOCUS
+        activeQuerySelector
       )[0] as HTMLElement | null;
     });
 
@@ -112,8 +119,6 @@ export const configureKeyboardInteraction = (
 
   const getEventListenerTarget =
     options.getEventListenerTarget ?? (() => dropdownElement);
-
-  const querySelector = options.querySelector ?? QUERY_ARROW_ELEMENTS;
 
   const callback = async (ev: KeyboardEvent) => {
     const activeElement = getActiveElement();
@@ -174,7 +179,11 @@ export const configureKeyboardInteraction = (
 
         // Disable movement/scroll with keyboard
         ev.preventDefault();
-        const nextItem = getNextFocusableDropdownItem(items, activeElement);
+        const nextItem = getNextFocusableDropdownItem(
+          items,
+          activeElement,
+          activeQuerySelector
+        );
 
         if (nextItem !== undefined) {
           setItemActive(nextItem);
@@ -189,7 +198,11 @@ export const configureKeyboardInteraction = (
         }
         // Disable movement/scroll with keyboard
         ev.preventDefault();
-        const prevItem = getPreviousFocusableItem(items, activeElement);
+        const prevItem = getPreviousFocusableItem(
+          items,
+          activeElement,
+          activeQuerySelector
+        );
         if (prevItem !== undefined) {
           setItemActive(prevItem);
         }
@@ -226,7 +239,9 @@ export const configureKeyboardInteraction = (
             },
           });
           activeElement.dispatchEvent(triggerEvent);
+          return;
         }
+        options.onEnterOrSpace?.(ev, activeElement!);
         break;
       }
       default:

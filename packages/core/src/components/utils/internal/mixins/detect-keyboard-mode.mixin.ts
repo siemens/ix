@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { type MixedInCtor } from '@stencil/core';
+import { Build, type MixedInCtor } from '@stencil/core';
 import { StencilLifecycle } from '../component';
 import {
   detectKeyboardMode,
@@ -15,7 +15,7 @@ import {
 } from '../../focus/detect-keyboard-mode';
 import { getComposedPath } from '../../shadow-dom';
 import {
-  IX_VISIBLE_FOCUSABLE,
+  IX_FOCUS_VISIBLE,
   IX_FOCUS_VISIBLE_ACTIVE,
 } from '../../focus/focus-utilities';
 
@@ -40,7 +40,7 @@ export function removeVisibleFocus() {
 function updateFocusState(target: HTMLElement) {
   const composedPath = getComposedPath(target);
   const focusableElements = composedPath.filter((el) =>
-    el.classList.contains(IX_VISIBLE_FOCUSABLE)
+    el.classList.contains(IX_FOCUS_VISIBLE)
   );
 
   // Clear previous focus
@@ -67,6 +67,19 @@ function applyFocusPatch() {
       this: HTMLElement,
       options?: FocusOptions
     ) {
+      if (Build.isDev) {
+        const composedPath = getComposedPath(this);
+        if (
+          !composedPath.some((el) => el.classList.contains(IX_FOCUS_VISIBLE))
+        ) {
+          console.warn(
+            `Calling focus() on an element that is not focus-visible aware:`,
+            this,
+            composedPath
+          );
+        }
+      }
+
       originalFocus?.call(this, options);
       updateFocusState(this);
     };
@@ -82,10 +95,20 @@ function applyFocusPatch() {
       },
       true
     );
+
+    document.addEventListener('keyboardmodechange', (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const isKeyboardMode = customEvent.detail.keyboardMode;
+
+      if (!isKeyboardMode) {
+        removeVisibleFocus();
+        return;
+      }
+    });
   }
 }
 
-// Apply patch immediately at module load
+// Apply patches immediately at module load, before any components are created
 applyFocusPatch();
 
 /**
@@ -102,11 +125,13 @@ export const FocusHandlingMixin = <B extends MixedInCtor<StencilLifecycle>>(
       }
 
       if (!globalKeyboardDetectionInitialized) {
+        if (Build.isDev) {
+          console.info('Initializing global keyboard mode detection');
+        }
+
         globalKeyboardDetectionInitialized = true;
         keyboardMode = detectKeyboardMode();
       }
-
-      applyFocusPatch();
     }
 
     override disconnectedCallback(): void {

@@ -360,6 +360,9 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     this.experimentalRequestFocus.emit({
       keyEvent: event,
     });
+
+    // Prevent click listener from also toggling the dropdown, which would close it again
+    event.preventDefault();
   }
 
   private addEventListenersFor() {
@@ -465,12 +468,18 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     this.registerKeyListener();
     if (!this.disableFocusHandling) {
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
-        this.focusHost ?? (this.triggerElement as HTMLElement)
+        this.focusHost ?? (this.triggerElement as HTMLElement),
+        {
+          onEnterOrSpace: (event, activeElement) => {
+            event.preventDefault();
+            activeElement.click();
+          },
+        }
       );
     }
 
     if (!this.disableFocusTrap) {
-      this.focusUtilities = addFocusTrap(this.hostElement);
+      this.focusUtilities = addFocusTrap(this.focusHost ?? this.hostElement);
     }
 
     if (this.enableTopLayer) {
@@ -536,6 +545,14 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     this.focusUtilities?.destroy();
 
     removeVisibleFocus();
+
+    if (!this.disableFocusTrap) {
+      // Restore focus to trigger element
+      requestAnimationFrameNoNgZone(() => {
+        console.log(this.triggerElement);
+        (this.triggerElement as HTMLElement)?.focus();
+      });
+    }
   }
 
   private destroyAutoUpdate() {

@@ -24,7 +24,7 @@ import {
 } from '@siemens/ix-icons/icons';
 import { Mixin } from '../utils/internal/component';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
-import { IX_VISIBLE_FOCUSABLE } from '../utils/focus/focus-utilities';
+import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
 
 @Component({
   tag: 'ix-dropdown-item',
@@ -128,7 +128,7 @@ export class DropdownItem extends Mixin() implements DropdownItemWrapper {
           'icon-only': this.isIconOnly(),
           disabled: this.disabled,
           submenu: this.isSubMenu,
-          [IX_VISIBLE_FOCUSABLE]: !this.suppressFocus,
+          [IX_FOCUS_VISIBLE]: !this.suppressFocus,
           'outline-visible': this.hasVisualFocus,
         }}
         onClick={() => {
