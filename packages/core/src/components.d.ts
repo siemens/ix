@@ -2680,7 +2680,7 @@ export namespace Components {
          */
         "itemCount": number;
         /**
-          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive numbers greater than 0 are valid.
+          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
           * @example [5, 10, 25, 50, 100]
          */
         "itemCountOptions"?: number[];
@@ -8646,7 +8646,7 @@ declare namespace LocalJSX {
          */
         "itemCount"?: number;
         /**
-          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive numbers greater than 0 are valid.
+          * Custom item count options for advanced mode. Provide an array of numbers to display in the items per page dropdown. If not provided or empty, defaults to [10, 15, 20, 40, 100]. Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
           * @example [5, 10, 25, 50, 100]
          */
         "itemCountOptions"?: number[];
