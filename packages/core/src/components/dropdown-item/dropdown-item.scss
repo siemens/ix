@@ -114,7 +114,7 @@ $focusBorder: 0.0625rem;
   }
 }
 
-:host(.ix-focused) {
+:host(:focus-visible) {
   outline: none;
 
   .dropdown-item {
@@ -122,8 +122,10 @@ $focusBorder: 0.0625rem;
   }
 }
 
-:host {
-  .dropdown-item:focus-visible {
+:host(.ix-focused) {
+  outline: none;
+
+  .dropdown-item {
     border-color: var(--theme-color-focus-bdr);
   }
 }

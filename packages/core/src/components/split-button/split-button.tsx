@@ -163,21 +163,11 @@ export class SplitButton extends IxComponent() {
           aria-label={this.ariaLabelSplitIconButton}
         ></ix-icon-button>
         <ix-dropdown
+          focusHost={this.hostElement}
           disableFocusTrap
           closeBehavior={this.closeBehavior}
           trigger={this.triggerElementRef.waitForCurrent()}
           enableTopLayer={this.enableTopLayer}
-          onShowChanged={({ detail: show }) => {
-            const triggerElement = this.triggerElementRef.current;
-            if (triggerElement) {
-              // Binding via @State variable does not work as expected for tabindex
-              if (show) {
-                triggerElement.tabIndex = -1;
-              } else {
-                triggerElement.removeAttribute('tabindex');
-              }
-            }
-          }}
         >
           <slot></slot>
         </ix-dropdown>

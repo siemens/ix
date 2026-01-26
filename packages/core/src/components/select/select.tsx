@@ -501,7 +501,7 @@ export class Select
 
   private removeVisualFocusFromItems() {
     this.allFocusableItems.forEach((item) => {
-      item.hasVisualFocus = false;
+      // item.hasVisualFocus = false;
     });
 
     this.inputRef.current?.removeAttribute('aria-activedescendant');
@@ -528,8 +528,8 @@ export class Select
   private setItemActive(item: HTMLElement) {
     const inputElement = this.inputRef.current!;
 
-    (item as HTMLIxSelectItemElement).hasVisualFocus = true;
-    inputElement.ariaActiveDescendantElement = item as HTMLElement;
+    // (item as HTMLIxSelectItemElement).hasVisualFocus = true;
+    // inputElement.ariaActiveDescendantElement = item as HTMLElement;
   }
 
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
@@ -548,17 +548,17 @@ export class Select
 
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
 
-      this.keyboardNavigationCleanup = configureKeyboardInteraction(
-        this.hostElement.shadowRoot!.querySelector('ix-dropdown')!,
-        {
-          getActiveElement: () => this.getActiveVisualFocusedItem(),
-          setItemActive: (item: HTMLElement) => {
-            this.removeVisualFocusFromItems();
-            this.setItemActive(item);
-          },
-          getEventListenerTarget: () => this.hostElement,
-        }
-      );
+      // this.keyboardNavigationCleanup = configureKeyboardInteraction(
+      //   this.hostElement.shadowRoot!.querySelector('ix-dropdown')!,
+      //   {
+      //     getActiveElement: () => this.getActiveVisualFocusedItem(),
+      //     setItemActive: (item: HTMLElement) => {
+      //       this.removeVisualFocusFromItems();
+      //       this.setItemActive(item);
+      //     },
+      //     getEventListenerTarget: () => this.hostElement,
+      //   }
+      // );
     } else {
       this.updateSelection();
       this.inputFilterText = '';
@@ -695,33 +695,29 @@ export class Select
   }
 
   onKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'Tab') {
-      this.dropdownShow = false;
-      return;
-    }
-
-    if (!this.dropdownShow) {
-      return;
-    }
-
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-        if (this.hasActiveVisualFocusItem()) {
-          const item =
-            this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
-
-          if (item.classList.contains('add-item')) {
-            this.emitAddItem(this.inputFilterText);
-          } else {
-            this.itemClick(item.value);
-            this.setItemFilter();
-          }
-        }
-
-        this.dropdownShow = false;
-        break;
-    }
+    // if (event.key === 'Tab') {
+    //   this.dropdownShow = false;
+    //   return;
+    // }
+    // if (!this.dropdownShow) {
+    //   return;
+    // }
+    // switch (event.key) {
+    //   case 'Enter':
+    //   case ' ':
+    //     if (this.hasActiveVisualFocusItem()) {
+    //       const item =
+    //         this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
+    //       if (item.classList.contains('add-item')) {
+    //         this.emitAddItem(this.inputFilterText);
+    //       } else {
+    //         this.itemClick(item.value);
+    //         this.setItemFilter();
+    //       }
+    //     }
+    //     this.dropdownShow = false;
+    //     break;
+    // }
   }
 
   @HookValidationLifecycle()
@@ -789,7 +785,7 @@ export class Select
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
-          'ix-focusable': true,
+          // 'ix-focusable': true,
           'show-focus-outline':
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}
@@ -894,35 +890,37 @@ export class Select
           </div>
         </ix-field-wrapper>
         <ix-dropdown
-          onExperimentalRequestFocus={({ detail }) => {
-            /**
-             * Will be fired only after dropdown changed visibility to "true"
-             */
+          // onExperimentalRequestFocus={({ detail }) => {
+          //   /**
+          //    * Will be fired only after dropdown changed visibility to "true"
+          //    */
 
-            const hasItems = this.focusableItems.length !== 0;
+          //   const hasItems = this.focusableItems.length !== 0;
 
-            if (!hasItems) {
-              return;
-            }
+          //   if (!hasItems) {
+          //     return;
+          //   }
 
-            if (
-              detail.keyEvent.key === 'ArrowDown' &&
-              detail.keyEvent.altKey === false
-            ) {
-              this.removeVisualFocusFromItems();
-              this.setItemActive(this.focusableItems[0]);
-              this.dropdownItemsVisualFocused = true;
-            }
+          //   if (
+          //     detail.keyEvent.key === 'ArrowDown' &&
+          //     detail.keyEvent.altKey === false
+          //   ) {
+          //     this.removeVisualFocusFromItems();
+          //     this.setItemActive(this.focusableItems[0]);
+          //     this.dropdownItemsVisualFocused = true;
+          //   }
 
-            if (detail.keyEvent.key === 'ArrowUp') {
-              this.removeVisualFocusFromItems();
-              this.setItemActive(
-                this.focusableItems[this.focusableItems.length - 1]
-              );
-              this.dropdownItemsVisualFocused = true;
-            }
-          }}
+          //   if (detail.keyEvent.key === 'ArrowUp') {
+          //     this.removeVisualFocusFromItems();
+          //     this.setItemActive(
+          //       this.focusableItems[this.focusableItems.length - 1]
+          //     );
+          //     this.dropdownItemsVisualFocused = true;
+          //   }
+          // }}
           disableFocusTrap
+          // disableFocusHandling
+          focusHost={this.hostElement}
           ref={this.dropdownRef}
           show={this.dropdownShow}
           closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
@@ -955,7 +953,6 @@ export class Select
           }}
           role="listbox"
           id={`${this.hostId}-listbox`}
-          disableFocusHandling
         >
           <div
             class={{

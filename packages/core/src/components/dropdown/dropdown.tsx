@@ -50,7 +50,11 @@ import {
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
-import { configureKeyboardInteraction } from './dropdown-focus';
+import {
+  QUERY_CURRENT_VISIBLE_FOCUS,
+  QUERY_ARROW_ELEMENTS,
+  configureKeyboardInteraction,
+} from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 import { makeRef } from '../utils/make-ref';
 
@@ -181,6 +185,11 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
   @Event() experimentalRequestFocus!: EventEmitter<{
     keyEvent: KeyboardEvent;
   }>;
+
+  /**
+   * @internal
+   */
+  @Event() experimentalFocusNextElement!: EventEmitter<void>;
 
   private autoUpdateCleanup?: () => void;
 
@@ -450,7 +459,16 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
     this.registerKeyListener();
     if (!this.disableFocusHandling) {
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
-        this.hostElement
+        this.focusHost ?? (this.triggerElement as HTMLElement),
+        {
+          // getActiveElement: () => {
+          //   const elem = queryElements(
+          //     this.hostElement,
+          //     QUERY_ARROW_ACTIVE_ELEMENT
+          //   );
+          //   return elem[0] as HTMLElement | null;
+          // },
+        }
       );
     }
 
@@ -754,24 +772,30 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         }
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
         onKeydown={(event: KeyboardEvent) => {
-          if (event.key === 'Escape' && this.show) {
-            dropdownController.dismiss(this);
-            requestAnimationFrameNoNgZone(() => {
-              this.triggerElement &&
-                focusElementInContext(
-                  this.triggerElement as HTMLElement,
-                  this.hostElement
-                );
-            });
-          }
-
-          if (!this.disableFocusTrap) {
-            return;
-          }
-
-          if (event.key === 'Tab' && this.show) {
-            dropdownController.dismiss(this);
-          }
+          // if (event.key === 'Escape' && this.show) {
+          //   dropdownController.dismiss(this);
+          //   requestAnimationFrameNoNgZone(() => {
+          //     this.triggerElement &&
+          //       focusElementInContext(
+          //         this.triggerElement as HTMLElement,
+          //         this.hostElement
+          //       );
+          //   });
+          //   event.stopImmediatePropagation();
+          // }
+          // if (!this.disableFocusTrap) {
+          //   return;
+          // }
+          // if (event.key === 'Tab' && this.show) {
+          //   requestAnimationFrameNoNgZone(() => {
+          //     this.triggerElement &&
+          //       focusElementInContext(
+          //         this.triggerElement as HTMLElement,
+          //         this.hostElement
+          //       );
+          //   });
+          //   dropdownController.dismiss(this);
+          // }
         }}
         {...dropdownAriaAttributes}
       >

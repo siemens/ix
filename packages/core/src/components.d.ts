@@ -3242,10 +3242,6 @@ export namespace Components {
         /**
           * @default false
          */
-        "hasVisualFocus": boolean;
-        /**
-          * @default false
-         */
         "hover": boolean;
         /**
           * Displayed name of the item
@@ -4868,6 +4864,7 @@ declare global {
         "experimentalRequestFocus": {
     keyEvent: KeyboardEvent;
   };
+        "experimentalFocusNextElement": void;
     }
     interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDropdownElementEventMap>(type: K, listener: (this: HTMLIxDropdownElement, ev: IxDropdownCustomEvent<HTMLIxDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6601,6 +6598,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Indeterminate state of the checkbox component
           * @default false
          */
@@ -6970,6 +6971,10 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -7380,6 +7385,7 @@ declare namespace LocalJSX {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        "onExperimentalFocusNextElement"?: (event: IxDropdownCustomEvent<void>) => void;
         /**
           * Will be fired only after dropdown changed visibility to "true"
          */
@@ -8034,6 +8040,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * The helper text for the text field.
          */
@@ -8715,6 +8725,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * The helper text for the input field
          */
         "helperText"?: string;
@@ -9126,6 +9140,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Label for the radio component
          */
         "label"?: string;
@@ -9265,6 +9283,10 @@ declare namespace LocalJSX {
          */
         "enableTopLayer"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Helper text for the select component
          */
         "helperText"?: string;
@@ -9364,10 +9386,6 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     interface IxSelectItem {
-        /**
-          * @default false
-         */
-        "hasVisualFocus"?: boolean;
         /**
           * @default false
          */
@@ -9614,6 +9632,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * The helper text for the textarea field.
          */
         "helperText"?: string;
@@ -9729,6 +9751,10 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
@@ -10030,6 +10056,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Hide `on` and `off` text
           * @default false

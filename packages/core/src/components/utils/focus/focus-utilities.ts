@@ -12,8 +12,8 @@
  * Fork of https://github.com/ionic-team/ionic-framework/blob/c37e2a5d9e765cf48d768061c9d453a13b187e13/core/src/utils/focus-visible.ts
  */
 
-export const IX_FOCUSED = 'ix-focused';
-export const IX_FOCUSABLE = 'ix-focusable';
+export const IX_FOCUS_VISIBLE_ACTIVE = 'ix-focused';
+export const IX_VISIBLE_FOCUSABLE = 'ix-focusable';
 export const FOCUS_KEYS = new Set([
   'Tab',
   'ArrowDown',
@@ -120,10 +120,18 @@ export const focusElementInContext = <T extends HTMLElement>(
   }
 
   if (elementToFocus) {
-    elementToFocus.focus();
+    focusElement(elementToFocus);
   } else {
-    fallbackElement.focus();
+    focusElement(fallbackElement);
   }
+};
+
+export const focusElement = (element: HTMLElement | null | undefined) => {
+  if (!element) {
+    return;
+  }
+
+  element.focus();
 };
 
 export const focusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled]), .ix-focusable:not([hidden]):not([disabled]):not([tabindex^="-"]), .ix-focusable[disabled="false"]:not([hidden]):not([tabindex^="-"]), ${[

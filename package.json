@@ -59,9 +59,6 @@
     "overrides": {
       "cheerio": "1.0.0-rc.12",
       "rollup": "npm:@rollup/wasm-node"
-    },
-    "patchedDependencies": {
-      "@stencil/core@4.38.3": "patches/@stencil__core@4.38.3.patch"
     }
   },
   "volta": {

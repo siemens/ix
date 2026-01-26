@@ -13,23 +13,32 @@
 
 import { Build } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import {
+  focusElement,
+  IX_FOCUS_VISIBLE_ACTIVE,
+  queryElements,
+} from '../utils/focus/focus-utilities';
 
 const VALID_FOCUS_ELEMENTS = [
-  'ix-dropdown',
   'ix-dropdown-item',
   'ix-select-item',
   'ix-menu-item',
   'ix-menu-category',
 ];
 
-export const ARROW_QUERY_SELECTOR = VALID_FOCUS_ELEMENTS.map(
+export const QUERY_ARROW_ELEMENTS = VALID_FOCUS_ELEMENTS.map(
   (selector) => `${selector}:not([tabindex^="-"]):not([disabled]):not([hidden])`
+).join(', ');
+
+export const QUERY_CURRENT_VISIBLE_FOCUS = VALID_FOCUS_ELEMENTS.map(
+  (selector) =>
+    `${selector}.${IX_FOCUS_VISIBLE_ACTIVE}:not([tabindex^="-"]):not([disabled]):not([hidden])`
 ).join(', ');
 
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
   item: HTMLElement | null,
-  selector: string = ARROW_QUERY_SELECTOR
+  selector: string = QUERY_ARROW_ELEMENTS
 ) => {
   if (!item) {
     return -1;
@@ -45,7 +54,7 @@ export const getIndexOfDropdownItem = (
 export const getNextFocusableDropdownItem = (
   items: HTMLElement[],
   currentItem: HTMLElement | null,
-  selector: string = ARROW_QUERY_SELECTOR
+  selector: string = QUERY_CURRENT_VISIBLE_FOCUS
 ) => {
   const currentItemIndex = getIndexOfDropdownItem(items, currentItem, selector);
   const nextIndex = currentItemIndex + 1;
@@ -55,7 +64,7 @@ export const getNextFocusableDropdownItem = (
 export const getPreviousFocusableItem = (
   items: HTMLElement[],
   currentItem: HTMLElement | null,
-  selector: string = ARROW_QUERY_SELECTOR
+  selector: string = QUERY_CURRENT_VISIBLE_FOCUS
 ) => {
   const currentItemIndex = getIndexOfDropdownItem(items, currentItem, selector);
   const prevIndex = currentItemIndex - 1;
@@ -66,20 +75,12 @@ const focusItem = (item: HTMLElement) => {
   requestAnimationFrameNoNgZone(async () => {
     let element: HTMLElement | null = item;
 
-    if (
-      'getDropdownItemElement' in item &&
-      typeof item.getDropdownItemElement === 'function'
-    ) {
-      const dropdownItem = await item.getDropdownItemElement();
-      element = dropdownItem.shadowRoot!.querySelector('button');
-    }
-
     if (item.matches('ix-menu-category')) {
       element = item.shadowRoot!.querySelector('.category-parent');
     }
 
     if (element) {
-      element.focus();
+      focusElement(element);
     }
   });
 };
@@ -100,25 +101,10 @@ export const configureKeyboardInteraction = (
   const getActiveElement =
     options.getActiveElement ??
     (() => {
-      const documentActiveElement =
-        document.activeElement as HTMLElement | null;
-
-      /**
-       * If an element is :focus-visible inside a shadow root, the host element is always focused.
-       * Therefore, we need to check if the active element's root node is a shadow root
-       * and if its host is the document's active element.
-       *
-       * This ensures that iteration of items is possible even when the dropdown is inside
-       * a shadow DOM.
-       */
-      const rootNode = dropdownElement.getRootNode();
-      if (
-        rootNode instanceof ShadowRoot &&
-        rootNode.host === documentActiveElement
-      ) {
-        return rootNode.activeElement as HTMLElement | null;
-      }
-      return documentActiveElement;
+      return queryElements(
+        dropdownElement,
+        QUERY_CURRENT_VISIBLE_FOCUS
+      )[0] as HTMLElement | null;
     });
 
   const setItemActive =
@@ -127,7 +113,7 @@ export const configureKeyboardInteraction = (
   const getEventListenerTarget =
     options.getEventListenerTarget ?? (() => dropdownElement);
 
-  const querySelector = options.querySelector ?? ARROW_QUERY_SELECTOR;
+  const querySelector = options.querySelector ?? QUERY_ARROW_ELEMENTS;
 
   const callback = async (ev: KeyboardEvent) => {
     const activeElement = getActiveElement();
@@ -169,7 +155,7 @@ export const configureKeyboardInteraction = (
       options.beforeKeydown(ev);
     }
 
-    console.log('keydown', ev.key);
+    console.log('Dropdown keydown:', ev.key, activeElement, items);
 
     switch (ev.key) {
       case 'ArrowLeft': {
@@ -185,11 +171,7 @@ export const configureKeyboardInteraction = (
       case 'ArrowDown': {
         // Disable movement/scroll with keyboard
         ev.preventDefault();
-        const nextItem = getNextFocusableDropdownItem(
-          items,
-          activeElement,
-          querySelector
-        );
+        const nextItem = getNextFocusableDropdownItem(items, activeElement);
 
         if (nextItem !== undefined) {
           setItemActive(nextItem);
@@ -200,11 +182,7 @@ export const configureKeyboardInteraction = (
       case 'ArrowUp': {
         // Disable movement/scroll with keyboard
         ev.preventDefault();
-        const prevItem = getPreviousFocusableItem(
-          items,
-          activeElement,
-          querySelector
-        );
+        const prevItem = getPreviousFocusableItem(items, activeElement);
         if (prevItem !== undefined) {
           setItemActive(prevItem);
         }
@@ -248,7 +226,6 @@ export const configureKeyboardInteraction = (
         break;
     }
   };
-
   getEventListenerTarget().addEventListener('keydown', callback);
   return () =>
     getEventListenerTarget().removeEventListener('keydown', callback);

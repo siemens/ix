@@ -542,11 +542,13 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'focusHost',
   'showChange',
   'showChanged',
-  'experimentalRequestFocus'
+  'experimentalRequestFocus',
+  'experimentalFocusNextElement'
 ], [
   'showChange',
   'showChanged',
-  'experimentalRequestFocus'
+  'experimentalRequestFocus',
+  'experimentalFocusNextElement'
 ]);
 
 
@@ -1219,7 +1221,6 @@ export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/
   'value',
   'selected',
   'hover',
-  'hasVisualFocus',
   'itemClick'
 ], [
   'itemClick'

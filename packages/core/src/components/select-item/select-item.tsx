@@ -24,13 +24,22 @@ import {
 } from './events';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { makeRef } from '../utils/make-ref';
+import {
+  IX_FOCUS_VISIBLE_ACTIVE,
+  IX_VISIBLE_FOCUSABLE,
+} from '../utils/focus/focus-utilities';
+import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
+import { IxComponent } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
   shadow: true,
 })
-export class SelectItem implements DropdownItemWrapper {
+export class SelectItem
+  extends IxComponent(FocusVisibleMixin)
+  implements DropdownItemWrapper
+{
   @Element() hostElement!: HTMLIxSelectItemElement;
 
   /**
@@ -54,11 +63,6 @@ export class SelectItem implements DropdownItemWrapper {
    * @internal
    */
   @Prop() hover = false;
-
-  /**
-   * @internal
-   */
-  @Prop({ reflect: true }) hasVisualFocus = false;
 
   /**
    * Item clicked
@@ -119,16 +123,23 @@ export class SelectItem implements DropdownItemWrapper {
 
   render() {
     return (
-      <Host class={{ 'outline-visible': this.hasVisualFocus }}>
+      <Host
+        class={{
+          [IX_VISIBLE_FOCUSABLE]: true,
+        }}
+      >
+        {this.ixFocusVisible ? 'y' : 'n'}
         <ix-dropdown-item
           class={{
             'select-item-checked': this.selected,
+            [IX_FOCUS_VISIBLE_ACTIVE]: this.hostElement.classList.contains(
+              IX_FOCUS_VISIBLE_ACTIVE
+            ),
           }}
           checked={this.selected}
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}
           ref={this.dropdownItemRef}
-          suppressFocus
         ></ix-dropdown-item>
       </Host>
     );

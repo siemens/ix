@@ -1626,8 +1626,7 @@ export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectIt
         label: 'label',
         value: 'value',
         selected: 'selected',
-        hover: 'hover',
-        hasVisualFocus: 'has-visual-focus'
+        hover: 'hover'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSelectItem as ReactWebComponent<IxSelectItemElement, IxSelectItemEvents>,

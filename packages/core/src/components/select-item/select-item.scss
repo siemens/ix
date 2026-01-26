@@ -25,11 +25,6 @@
   }
 }
 
-:host(.outline-visible) {
-  outline: 0.0625rem solid var(--theme-color-focus-bdr);
-  outline-offset: -0.0625rem;
-}
-
 :host(.display-none) {
   display: none;
 }
