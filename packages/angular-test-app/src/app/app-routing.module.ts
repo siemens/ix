@@ -64,6 +64,13 @@ import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
 import Datetimepicker from '../preview-examples/datetimepicker';
+import DatetimeInput from '../preview-examples/datetime-input';
+import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
+import DatetimeInputLabel from '../preview-examples/datetime-input-label';
+import DatetimeInputMinMaxDate from '../preview-examples/datetime-input-min-max-date';
+import DatetimeInputReadonly from '../preview-examples/datetime-input-readonly';
+import DatetimeInputValidation from '../preview-examples/datetime-input-validation';
+import DatetimeInputWithSlots from '../preview-examples/datetime-input-with-slots';
 import Divider from '../preview-examples/divider';
 import Drawer from '../preview-examples/drawer';
 import DrawerFullHeight from '../preview-examples/drawer-full-height';
@@ -486,6 +493,34 @@ const routes: Routes = [
       {
         path: 'datetimepicker',
         component: Datetimepicker,
+      },
+      {
+        path: 'datetime-input',
+        component: DatetimeInput,
+      },
+      {
+        path: 'datetime-input-disabled',
+        component: DatetimeInputDisabled,
+      },
+      {
+        path: 'datetime-input-label',
+        component: DatetimeInputLabel,
+      },
+      {
+        path: 'datetime-input-min-max-date',
+        component: DatetimeInputMinMaxDate,
+      },
+      {
+        path: 'datetime-input-readonly',
+        component: DatetimeInputReadonly,
+      },
+      {
+        path: 'datetime-input-validation',
+        component: DatetimeInputValidation,
+      },
+      {
+        path: 'datetime-input-with-slots',
+        component: DatetimeInputWithSlots,
       },
       {
         path: 'divider',
