@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { iconLogOut } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -17,7 +18,6 @@ import {
   State,
 } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
-import { iconLogOut } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-menu-avatar',
@@ -56,6 +56,14 @@ export class MenuAvatar {
    *  Control the visibility of the logout button
    */
   @Prop() hideLogoutButton: boolean = false;
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Control the visibility of the dropdown menu
@@ -105,6 +113,7 @@ export class MenuAvatar {
           offset={{
             mainAxis: 16,
           }}
+          enableTopLayer={this.enableTopLayer}
         >
           <slot onSlotchange={() => this.onSlotChange()}></slot>
           {!this.hideLogoutButton && (

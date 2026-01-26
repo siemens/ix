@@ -13,11 +13,41 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   template: `
-    <ix-toggle-button>Normal</ix-toggle-button>
-    <ix-toggle-button pressed> Pressed</ix-toggle-button>
-    <ix-toggle-button disabled> Disabled</ix-toggle-button>
-    <ix-toggle-button disabled loading> Loading</ix-toggle-button>
+    <div class="button-container">
+      <ix-toggle-button
+        variant="secondary"
+        icon="text-bold"
+        [pressed]="boldPressed"
+        (click)="handleBoldClick()"
+        >Bold</ix-toggle-button
+      >
+      <ix-toggle-button variant="secondary" disabled icon="text-italic"
+        >Italic</ix-toggle-button
+      >
+      <ix-toggle-button
+        variant="secondary"
+        icon="text-underline"
+        [pressed]="underlinePressed"
+        (click)="handleUnderlineClick()"
+        >Underline</ix-toggle-button
+      >
+      <ix-toggle-button variant="secondary" disabled loading>
+        Strikethrough
+      </ix-toggle-button>
+    </div>
+    <p [style.fontWeight]="boldPressed ? 'bold' : 'normal'" [style.text-decoration]="underlinePressed ? 'underline' : 'none'">Lorem ipsum text</p>
   `,
   styleUrls: ['./toggle-button-secondary.css'],
 })
-export default class Buttons {}
+export default class Buttons {
+  boldPressed = false;
+  underlinePressed = true;
+
+  handleBoldClick() {
+    this.boldPressed = !this.boldPressed;
+  }
+
+  handleUnderlineClick() {
+    this.underlinePressed = !this.underlinePressed;
+  }
+}
