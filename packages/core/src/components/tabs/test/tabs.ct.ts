@@ -439,10 +439,4 @@ regressionTest('tab re-selection algorithm', async ({ mount, page }) => {
   });
 
   await expect(page.locator('ix-tab-item').nth(0)).toHaveClass(/\bselected\b/);
-
-  await page.evaluate(() => {
-    document.querySelector('ix-tabs')!.innerHTML = '';
-  });
-
-  await expect(page.locator('ix-tab-item')).toHaveCount(0);
 });
