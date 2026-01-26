@@ -30,6 +30,13 @@ export function hasKeyboardMode() {
 
 let currentFocus: Element[] = [];
 
+export function removeVisibleFocus() {
+  currentFocus.forEach((el) => {
+    el.classList.remove(IX_FOCUS_VISIBLE_ACTIVE);
+    (el as any).ixFocusVisible = false;
+  });
+}
+
 function updateFocusState(target: HTMLElement) {
   const composedPath = getComposedPath(target);
   const focusableElements = composedPath.filter((el) =>
@@ -37,10 +44,7 @@ function updateFocusState(target: HTMLElement) {
   );
 
   // Clear previous focus
-  currentFocus.forEach((el) => {
-    el.classList.remove(IX_FOCUS_VISIBLE_ACTIVE);
-    (el as any).ixFocusVisible = false;
-  });
+  removeVisibleFocus();
 
   // Set new focus if keyboard mode is active
   if (hasKeyboardMode()) {
@@ -56,13 +60,12 @@ function updateFocusState(target: HTMLElement) {
 
 function applyFocusPatch() {
   if (typeof HTMLElement !== 'undefined' && !originalFocus) {
-    console.log('Patching focus method for focus-visible handling');
     originalFocus = HTMLElement.prototype.focus;
 
     // Patch programmatic focus()
     HTMLElement.prototype.focus = function (
       this: HTMLElement,
-      options?: FocusOptions & { focusVisible?: boolean }
+      options?: FocusOptions
     ) {
       originalFocus?.call(this, options);
       updateFocusState(this);

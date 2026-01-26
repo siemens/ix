@@ -24,7 +24,7 @@ import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-breadcrumb-item',
@@ -33,7 +33,7 @@ import { IxComponent } from '../utils/internal/component';
     delegatesFocus: true,
   },
 })
-export class BreadcrumbItem extends IxComponent() implements AnchorInterface {
+export class BreadcrumbItem extends Mixin() implements AnchorInterface {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**

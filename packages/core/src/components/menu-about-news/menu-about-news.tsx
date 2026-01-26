@@ -17,14 +17,14 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-menu-about-news',
   styleUrl: 'menu-about-news.scss',
   shadow: true,
 })
-export class MenuAboutNews extends IxComponent() {
+export class MenuAboutNews extends Mixin() {
   @Element() hostElement!: HTMLIxMenuAboutNewsElement;
   /**
    * Show about news

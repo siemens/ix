@@ -42,7 +42,7 @@ import {
   focusLastDescendant,
   queryElements,
 } from '../utils/focus/focus-utilities';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
   CloseBehavior,
@@ -57,6 +57,7 @@ import {
 } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 import { makeRef } from '../utils/make-ref';
+import { removeVisibleFocus } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
 
 let sequenceId = 0;
 
@@ -65,7 +66,7 @@ let sequenceId = 0;
   styleUrl: 'dropdown.scss',
   shadow: true,
 })
-export class Dropdown extends IxComponent() implements DropdownInterface {
+export class Dropdown extends Mixin() implements DropdownInterface {
   @Element() hostElement!: HTMLIxDropdownElement;
 
   /**
@@ -309,9 +310,10 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         focusLastDescendant(element);
       });
 
-    if (event.key === 'Escape' && this.show) {
-      // Handle Escape key when the dropdown is attached to an input element
-      // that retains focus while the dropdown remains open
+    const shouldCloseOnTab =
+      this.disableFocusTrap === true && event.key === 'Tab';
+
+    if ((event.key === 'Escape' || shouldCloseOnTab) && this.show) {
       dropdownController.dismiss(this);
       return;
     }
@@ -336,6 +338,10 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
         event.preventDefault();
       } else {
         // Focus first item for all keys except ArrowUp (which focuses last)
+        if (event.altKey) {
+          return;
+        }
+
         if (event.key === 'ArrowUp') {
           focusLast(this.hostElement);
         } else {
@@ -459,16 +465,7 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
     this.registerKeyListener();
     if (!this.disableFocusHandling) {
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
-        this.focusHost ?? (this.triggerElement as HTMLElement),
-        {
-          // getActiveElement: () => {
-          //   const elem = queryElements(
-          //     this.hostElement,
-          //     QUERY_ARROW_ACTIVE_ELEMENT
-          //   );
-          //   return elem[0] as HTMLElement | null;
-          // },
-        }
+        this.focusHost ?? (this.triggerElement as HTMLElement)
       );
     }
 
@@ -537,6 +534,8 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.focusUtilities?.destroy();
+
+    removeVisibleFocus();
   }
 
   private destroyAutoUpdate() {
@@ -577,7 +576,6 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
     const referenceElement = this.anchorElement;
     const isSubmenu = this.isAnchorSubmenu();
 
-    // let targetElement: HTMLElement = this.hostElement;
     let strategy: 'fixed' | 'absolute' = this.positioningStrategy;
 
     if (this.enableTopLayer) {
@@ -771,32 +769,6 @@ export class Dropdown extends IxComponent() implements DropdownInterface {
               }
         }
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
-        onKeydown={(event: KeyboardEvent) => {
-          // if (event.key === 'Escape' && this.show) {
-          //   dropdownController.dismiss(this);
-          //   requestAnimationFrameNoNgZone(() => {
-          //     this.triggerElement &&
-          //       focusElementInContext(
-          //         this.triggerElement as HTMLElement,
-          //         this.hostElement
-          //       );
-          //   });
-          //   event.stopImmediatePropagation();
-          // }
-          // if (!this.disableFocusTrap) {
-          //   return;
-          // }
-          // if (event.key === 'Tab' && this.show) {
-          //   requestAnimationFrameNoNgZone(() => {
-          //     this.triggerElement &&
-          //       focusElementInContext(
-          //         this.triggerElement as HTMLElement,
-          //         this.hostElement
-          //       );
-          //   });
-          //   dropdownController.dismiss(this);
-          // }
-        }}
         {...dropdownAriaAttributes}
       >
         {this.enableTopLayer ? (

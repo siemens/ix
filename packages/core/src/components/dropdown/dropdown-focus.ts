@@ -155,8 +155,6 @@ export const configureKeyboardInteraction = (
       options.beforeKeydown(ev);
     }
 
-    console.log('Dropdown keydown:', ev.key, activeElement, items);
-
     switch (ev.key) {
       case 'ArrowLeft': {
         dropdownElement.dispatchEvent(
@@ -169,6 +167,11 @@ export const configureKeyboardInteraction = (
       }
 
       case 'ArrowDown': {
+        if (ev.altKey) {
+          // ALT + DOWN opens the dropdown but prevent focus change
+          return;
+        }
+
         // Disable movement/scroll with keyboard
         ev.preventDefault();
         const nextItem = getNextFocusableDropdownItem(items, activeElement);
@@ -180,6 +183,10 @@ export const configureKeyboardInteraction = (
       }
 
       case 'ArrowUp': {
+        if (ev.altKey) {
+          // ALT + DOWN opens the dropdown but prevent focus change
+          return;
+        }
         // Disable movement/scroll with keyboard
         ev.preventDefault();
         const prevItem = getPreviousFocusableItem(items, activeElement);

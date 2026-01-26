@@ -29,7 +29,7 @@ import {
   IX_VISIBLE_FOCUSABLE,
 } from '../utils/focus/focus-utilities';
 import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-select-item',
@@ -37,7 +37,7 @@ import { IxComponent } from '../utils/internal/component';
   shadow: true,
 })
 export class SelectItem
-  extends IxComponent(FocusVisibleMixin)
+  extends Mixin(FocusVisibleMixin)
   implements DropdownItemWrapper
 {
   @Element() hostElement!: HTMLIxSelectItemElement;
@@ -128,13 +128,10 @@ export class SelectItem
           [IX_VISIBLE_FOCUSABLE]: true,
         }}
       >
-        {this.ixFocusVisible ? 'y' : 'n'}
         <ix-dropdown-item
           class={{
             'select-item-checked': this.selected,
-            [IX_FOCUS_VISIBLE_ACTIVE]: this.hostElement.classList.contains(
-              IX_FOCUS_VISIBLE_ACTIVE
-            ),
+            [IX_FOCUS_VISIBLE_ACTIVE]: this.ixFocusVisible,
           }}
           checked={this.selected}
           label={this.label ? this.label : this.value}

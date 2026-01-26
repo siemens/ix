@@ -15,14 +15,14 @@ import {
   getFallbackLabelFromIconName,
 } from '../utils/a11y';
 import type { IconButtonVariant } from './icon-button.types';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',
   shadow: true,
 })
-export class IconButton extends IxComponent() {
+export class IconButton extends Mixin() {
   @Element() hostElement!: HTMLIxIconButtonElement;
 
   /**

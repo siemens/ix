@@ -1623,6 +1623,7 @@ export type IxSelectItemEvents = { onItemClick: EventName<CustomEvent<string>> }
 export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents>({
     tagName: 'ix-select-item',
     properties: {
+        ixFocusVisible: 'ix-focus-visible',
         label: 'label',
         value: 'value',
         selected: 'selected',

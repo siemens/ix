@@ -16,14 +16,14 @@ import { AlignedPlacement } from '../dropdown/placement';
 import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
   shadow: true,
 })
-export class DropdownButton extends IxComponent() {
+export class DropdownButton extends Mixin() {
   @Element() hostElement!: HTMLIxDropdownButtonElement;
 
   /**

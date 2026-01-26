@@ -21,7 +21,7 @@ import {
 } from '@stencil/core';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
 import { createMutationObserver } from '../utils/mutation-observer';
 
@@ -37,7 +37,7 @@ const createId = (prefix: string = 'breadcrumb-') => {
     delegatesFocus: true,
   },
 })
-export class Breadcrumb extends IxComponent() {
+export class Breadcrumb extends Mixin() {
   @Element() hostElement!: HTMLIxBreadcrumbElement;
 
   /**

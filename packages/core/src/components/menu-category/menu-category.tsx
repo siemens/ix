@@ -21,7 +21,7 @@ import {
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
@@ -37,7 +37,7 @@ const DefaultAnimationTimeout = 150;
     delegatesFocus: true,
   },
 })
-export class MenuCategory extends IxComponent() implements IxMenuItemBase {
+export class MenuCategory extends Mixin() implements IxMenuItemBase {
   @Element() hostElement!: HTMLIxMenuCategoryElement;
 
   /**

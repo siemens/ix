@@ -33,7 +33,7 @@ import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
 
 interface CalendarWeek {
@@ -48,7 +48,7 @@ interface CalendarWeek {
     delegatesFocus: true,
   },
 })
-export class DatePicker extends IxComponent() implements IxDatePickerComponent {
+export class DatePicker extends Mixin() implements IxDatePickerComponent {
   @Element() hostElement!: HTMLIxDatePickerElement;
 
   /**

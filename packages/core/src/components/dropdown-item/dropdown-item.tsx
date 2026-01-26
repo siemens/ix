@@ -22,7 +22,7 @@ import {
   iconChevronRightSmall,
   iconSingleCheck,
 } from '@siemens/ix-icons/icons';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { IX_VISIBLE_FOCUSABLE } from '../utils/focus/focus-utilities';
 
@@ -33,7 +33,7 @@ import { IX_VISIBLE_FOCUSABLE } from '../utils/focus/focus-utilities';
     delegatesFocus: false,
   },
 })
-export class DropdownItem extends IxComponent() implements DropdownItemWrapper {
+export class DropdownItem extends Mixin() implements DropdownItemWrapper {
   @Element() hostElement!: HTMLIxDropdownItemElement;
 
   /**
@@ -139,6 +139,7 @@ export class DropdownItem extends IxComponent() implements DropdownItemWrapper {
         }}
         onKeyDown={(event: KeyboardEvent) => {
           if (!this.disabled && (event.key === 'Enter' || event.key === ' ')) {
+            console.log('dropdown item clicked');
             this.emitItemClick();
           }
         }}

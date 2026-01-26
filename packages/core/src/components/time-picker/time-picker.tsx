@@ -20,7 +20,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import type { TimePickerCorners } from './time-picker.types';
 
@@ -74,7 +74,7 @@ const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
     delegatesFocus: true,
   },
 })
-export class TimePicker extends IxComponent() {
+export class TimePicker extends Mixin() {
   @Element() hostElement!: HTMLIxTimePickerElement;
 
   /**

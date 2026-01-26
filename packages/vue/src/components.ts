@@ -1217,6 +1217,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
 
 
 export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
+  'ixFocusVisible',
   'label',
   'value',
   'selected',

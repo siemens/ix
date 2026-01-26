@@ -20,7 +20,7 @@ import {
 import { CloseBehavior } from '../dropdown/dropdown-controller';
 import { AlignedPlacement } from '../dropdown/placement';
 import { makeRef } from '../utils/make-ref';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 import type { SplitButtonVariant } from './split-button.types';
 
 @Component({
@@ -28,7 +28,7 @@ import type { SplitButtonVariant } from './split-button.types';
   styleUrl: 'split-button.scss',
   shadow: true,
 })
-export class SplitButton extends IxComponent() {
+export class SplitButton extends Mixin() {
   @Element() hostElement!: HTMLIxSplitButtonElement;
 
   /**

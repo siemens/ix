@@ -27,7 +27,6 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { configureKeyboardInteraction } from '../dropdown/dropdown-focus';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
 import {
@@ -36,7 +35,12 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
+import {
+  IX_FOCUS_VISIBLE_ACTIVE,
+  IX_VISIBLE_FOCUSABLE,
+  queryElements,
+} from '../utils/focus/focus-utilities';
 
 let selectId = 0;
 
@@ -52,7 +56,7 @@ let selectId = 0;
   formAssociated: true,
 })
 export class Select
-  extends IxComponent()
+  extends Mixin()
   implements IxInputFieldComponent<string | string[]>
 {
   @Element() hostElement!: HTMLIxSelectElement;
@@ -500,36 +504,26 @@ export class Select
   }
 
   private removeVisualFocusFromItems() {
-    this.allFocusableItems.forEach((item) => {
-      // item.hasVisualFocus = false;
-    });
-
     this.inputRef.current?.removeAttribute('aria-activedescendant');
   }
 
   private hasActiveVisualFocusItem() {
-    return !!this.hostElement.querySelector(
-      'ix-select-item[has-visual-focus], ix-dropdown-item[has-visual-focus]'
+    return (
+      queryElements(this.hostElement, `.${IX_FOCUS_VISIBLE_ACTIVE}`).length > 0
     );
   }
 
   private getActiveVisualFocusedItem() {
-    const activeElement = this.hostElement.querySelector(
-      'ix-select-item[has-visual-focus], ix-dropdown-item[has-visual-focus]'
+    const elements = queryElements(
+      this.hostElement,
+      `.${IX_FOCUS_VISIBLE_ACTIVE}`
     );
 
-    if (activeElement) {
-      return activeElement as HTMLElement;
+    if (elements.length > 0) {
+      return elements[0];
     }
 
     return this.hostElement;
-  }
-
-  private setItemActive(item: HTMLElement) {
-    const inputElement = this.inputRef.current!;
-
-    // (item as HTMLIxSelectItemElement).hasVisualFocus = true;
-    // inputElement.ariaActiveDescendantElement = item as HTMLElement;
   }
 
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
@@ -547,18 +541,6 @@ export class Select
       }
 
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
-
-      // this.keyboardNavigationCleanup = configureKeyboardInteraction(
-      //   this.hostElement.shadowRoot!.querySelector('ix-dropdown')!,
-      //   {
-      //     getActiveElement: () => this.getActiveVisualFocusedItem(),
-      //     setItemActive: (item: HTMLElement) => {
-      //       this.removeVisualFocusFromItems();
-      //       this.setItemActive(item);
-      //     },
-      //     getEventListenerTarget: () => this.hostElement,
-      //   }
-      // );
     } else {
       this.updateSelection();
       this.inputFilterText = '';
@@ -695,29 +677,26 @@ export class Select
   }
 
   onKeyDown(event: KeyboardEvent): void {
-    // if (event.key === 'Tab') {
-    //   this.dropdownShow = false;
-    //   return;
-    // }
-    // if (!this.dropdownShow) {
-    //   return;
-    // }
-    // switch (event.key) {
-    //   case 'Enter':
-    //   case ' ':
-    //     if (this.hasActiveVisualFocusItem()) {
-    //       const item =
-    //         this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
-    //       if (item.classList.contains('add-item')) {
-    //         this.emitAddItem(this.inputFilterText);
-    //       } else {
-    //         this.itemClick(item.value);
-    //         this.setItemFilter();
-    //       }
-    //     }
-    //     this.dropdownShow = false;
-    //     break;
-    // }
+    if (!this.dropdownShow) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        if (this.hasActiveVisualFocusItem()) {
+          const item =
+            this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
+          if (item.classList.contains('add-item')) {
+            this.emitAddItem(this.inputFilterText);
+          } else {
+            this.itemClick(item.value);
+            this.setItemFilter();
+          }
+        }
+        this.dropdownShow = false;
+        break;
+    }
   }
 
   @HookValidationLifecycle()
@@ -785,7 +764,7 @@ export class Select
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
-          // 'ix-focusable': true,
+          [IX_VISIBLE_FOCUSABLE]: true,
           'show-focus-outline':
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}

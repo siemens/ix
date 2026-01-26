@@ -25,7 +25,7 @@ import { DateTime } from 'luxon';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
-import { IxComponent } from '../utils/internal/component';
+import { Mixin } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { type LiteralStringUnion } from '../utils/type-helper';
@@ -41,7 +41,7 @@ import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.m
   shadow: true,
 })
 export class DateDropdown
-  extends IxComponent()
+  extends Mixin()
   implements
     Omit<IxDatePickerComponent, 'corners'>,
     Omit<IxButtonComponent, 'type' | 'icon'>

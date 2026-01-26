@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { ComponentInterface, MixedInCtor } from '@stencil/core';
-import { Mixin } from '@stencil/core';
+import { Mixin as BaseMixin } from '@stencil/core';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { FocusHandlingMixin } from './mixins/detect-keyboard-mode.mixin';
 
@@ -75,11 +75,11 @@ export interface IxComponentInterface extends ComponentInterface {
   hostElement: HTMLStencilElement;
 }
 
-export function IxComponent<T extends StencilLifecycle = StencilLifecycle>(
+export function Mixin<T extends StencilLifecycle = StencilLifecycle>(
   ...mixins: Array<(base: MixedInCtor<StencilLifecycle>) => MixedInCtor<T>>
 ): MixedInCtor<T & StencilLifecycle> {
   if (mixins.length === 0) {
-    return Mixin(FocusHandlingMixin) as any;
+    return BaseMixin(FocusHandlingMixin) as any;
   }
-  return Mixin(FocusHandlingMixin, ...mixins) as any;
+  return BaseMixin(FocusHandlingMixin, ...mixins) as any;
 }

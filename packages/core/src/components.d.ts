@@ -3244,6 +3244,10 @@ export namespace Components {
          */
         "hover": boolean;
         /**
+          * @default false
+         */
+        "ixFocusVisible": boolean;
+        /**
           * Displayed name of the item
          */
         "label"?: string;
@@ -9390,6 +9394,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "hover"?: boolean;
+        /**
+          * @default false
+         */
+        "ixFocusVisible"?: boolean;
         /**
           * Displayed name of the item
          */
