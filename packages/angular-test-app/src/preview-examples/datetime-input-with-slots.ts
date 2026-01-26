@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  standalone: true,
+  standalone: false,
   selector: 'app-example',
   templateUrl: './datetime-input-with-slots.html',
 })

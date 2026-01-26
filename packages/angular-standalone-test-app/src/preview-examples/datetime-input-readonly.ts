@@ -8,14 +8,11 @@
  */
 
 import { Component } from '@angular/core';
-import {
-  IxDatetimeInput,
-  IxDatetimeValueAccessorDirective,
-} from '@siemens/ix-angular/standalone';
+import { IxDatetimeInput } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
-  imports: [IxDatetimeInput, IxDatetimeValueAccessorDirective],
+  imports: [IxDatetimeInput],
   templateUrl: './datetime-input-readonly.html',
 })
 export default class DatetimeInputReadonly {}

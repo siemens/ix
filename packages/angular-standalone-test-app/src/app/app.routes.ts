@@ -334,6 +334,53 @@ export const routes: Routes = [
           import('../preview-examples/datetimepicker').then((m) => m.default),
       },
       {
+        path: 'datetime-input',
+        loadComponent: () =>
+          import('../preview-examples/datetime-input').then((m) => m.default),
+      },
+      {
+        path: 'datetime-input-disabled',
+        loadComponent: () =>
+          import('../preview-examples/datetime-input-disabled').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'datetime-input-label',
+        loadComponent: () =>
+          import('../preview-examples/datetime-input-label').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'datetime-input-min-max-date',
+        loadComponent: () =>
+          import('../preview-examples/datetime-input-min-max-date').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'datetime-input-readonly',
+        loadComponent: () =>
+          import('../preview-examples/datetime-input-readonly').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'datetime-input-validation',
+        loadComponent: () =>
+          import('../preview-examples/datetime-input-validation').then(
+            (m) => m.default
+          ),
+      },
+      {
+        path: 'datetime-input-with-slots',
+        loadComponent: () =>
+          import('../preview-examples/datetime-input-with-slots').then(
+            (m) => m.default
+          ),
+      },
+      {
         path: 'divider',
         loadComponent: () =>
           import('../preview-examples/divider').then((m) => m.default),
