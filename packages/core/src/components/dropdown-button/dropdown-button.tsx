@@ -7,12 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
-import { AlignedPlacement } from '../dropdown/placement';
 import {
   iconChevronDownSmall,
   iconChevronUpSmall,
 } from '@siemens/ix-icons/icons';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { AlignedPlacement } from '../dropdown/placement';
+import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
 
@@ -32,7 +33,7 @@ export class DropdownButton {
   /**
    * Disable button
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Set label
@@ -62,6 +63,14 @@ export class DropdownButton {
    */
   @Prop() ariaLabelDropdownButton?: string;
 
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
   @State() dropdownShow = false;
 
   private readonly dropdownAnchor = makeRef<HTMLElement>();
@@ -80,12 +89,16 @@ export class DropdownButton {
   }
 
   private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
+    if (this.disabled && event.detail) {
+      return;
+    }
     this.dropdownShow = event.detail;
   };
 
   render() {
     return (
       <Host
+        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
         }}
@@ -98,6 +111,7 @@ export class DropdownButton {
               disabled={this.disabled}
               alignment="start"
               ariaLabel={this.ariaLabelDropdownButton}
+              tabIndex={this.disabled ? -1 : 0}
             >
               <div class={'content'}>
                 {this.icon ? (
@@ -124,6 +138,7 @@ export class DropdownButton {
                 icon={this.icon}
                 variant={this.variant}
                 disabled={this.disabled}
+                tabIndex={this.disabled ? -1 : 0}
               ></ix-icon-button>
               {this.getTriangle()}
             </div>
@@ -135,6 +150,7 @@ export class DropdownButton {
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
+          enableTopLayer={this.enableTopLayer}
           onShowChanged={this.onDropdownShowChanged}
         >
           <slot></slot>
