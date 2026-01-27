@@ -41,6 +41,7 @@ import {
 } from '../utils/input';
 import { Mixin } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 let selectId = 0;
 
@@ -382,8 +383,10 @@ export class Select
 
     this.addItemElement?.before(newItem);
 
-    this.clearInput();
-    this.itemClick(value);
+    requestAnimationFrameNoNgZone(() => {
+      this.clearInput();
+      this.itemClick(value);
+    });
 
     return false;
   }
@@ -886,7 +889,8 @@ export class Select
             ) {
               const item =
                 this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
-              if (item.classList.contains('add-item')) {
+
+              if (!item.classList.contains('add-item')) {
                 this.emitAddItem(this.inputFilterText);
               } else {
                 this.itemClick(item.value);
