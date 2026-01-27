@@ -640,7 +640,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         let y = Math.round(computeResponse.y);
 
         if (useAbsolute && this.containerElement) {
-          if (this.hostElement.parentElement !== this.containerElement) {
+          if (
+            this.hostElement.parentElement !== this.containerElement &&
+            this.hostElement.isConnected &&
+            this.containerElement.isConnected
+          ) {
             this.containerElement.appendChild(this.hostElement);
           }
           Object.assign(this.hostElement.style, {
