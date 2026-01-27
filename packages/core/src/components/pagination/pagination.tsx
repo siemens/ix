@@ -68,8 +68,9 @@ export class Pagination {
    * Provide an array of numbers to display in the items per page dropdown.
    * If not provided or empty, defaults to [10, 15, 20, 40, 100].
    * Only positive integers greater than 0 are valid. Invalid values and duplicates are automatically filtered out.
-   *
    * @example [5, 10, 25, 50, 100]
+   *
+   * @since 4.x
    */
   @Prop() itemCountOptions?: number[];
 
@@ -132,47 +133,74 @@ export class Pagination {
   @Event() itemCountChanged!: EventEmitter<number>;
 
   componentWillLoad() {
-    if (this.advanced && !this.hideItemCount) {
-      this.validatedItemCountOptions = this.getValidItemCountOptions();
-
-      if (this.itemCountOptions?.length === 0) {
-        console.warn(
-          `[ix-pagination] ${this.itemCountOptionsPropName} is an empty array. Falling back to default options: [10, 15, 20, 40, 100]`
-        );
-      }
-
-      if (this.itemCountOptions?.length && this.validatedItemCountOptions.length === 0) {
-        console.warn(
-          `[ix-pagination] All values in ${this.itemCountOptionsPropName} are invalid. ` +
-          `Only positive integers are allowed. Falling back to default options: [10, 15, 20, 40, 100]`
-        );
-        this.validatedItemCountOptions = this.getValidItemCountOptions();
-      }
-
-      if (this.validatedItemCountOptions.length > 0 && !this.validatedItemCountOptions.includes(this.itemCount)) {
-        const displayOptions = this.validatedItemCountOptions.length > 5 
-          ? `${this.validatedItemCountOptions.slice(0, 5).join(', ')} ...`
-          : this.validatedItemCountOptions.join(', ');
-        
-        console.warn(
-          `[ix-pagination] Configuration mismatch: itemCount value "${
-            this.itemCount
-          }" is not present in ${this.itemCountOptionsPropName} [${displayOptions}]. ` +
-            `This will result in an invalid dropdown state. Please either add ${this.itemCount} to ${this.itemCountOptionsPropName} or set itemCount to one of the available options.`
-        );
-      }
+    if (!this.advanced || this.hideItemCount) {
+      return;
     }
+
+    this.validatedItemCountOptions = this.getValidItemCountOptions();
+    this.validateEmptyItemCountOptions();
+    this.validateAllInvalidItemCountOptions();
+    this.validateItemCountMismatch();
+  }
+
+  private validateEmptyItemCountOptions(): void {
+    if (this.itemCountOptions?.length !== 0) {
+      return;
+    }
+
+    console.warn(
+      `[ix-pagination] ${this.itemCountOptionsPropName} is an empty array. Falling back to default options: [10, 15, 20, 40, 100]`
+    );
+  }
+
+  private validateAllInvalidItemCountOptions(): void {
+    if (
+      !this.itemCountOptions?.length ||
+      (this.validatedItemCountOptions?.length ?? 0) > 0
+    ) {
+      return;
+    }
+
+    console.warn(
+      `[ix-pagination] All values in ${this.itemCountOptionsPropName} are invalid. ` +
+        `Only positive integers are allowed. Falling back to default options: [10, 15, 20, 40, 100]`
+    );
+    this.validatedItemCountOptions = this.getValidItemCountOptions();
+  }
+
+  private validateItemCountMismatch(): void {
+    if (!this.validatedItemCountOptions?.length) {
+      return;
+    }
+
+    if (this.validatedItemCountOptions.includes(this.itemCount)) {
+      return;
+    }
+
+    const displayOptions =
+      this.validatedItemCountOptions.length > 5
+        ? `${this.validatedItemCountOptions.slice(0, 5).join(', ')} ...`
+        : this.validatedItemCountOptions.join(', ');
+
+    console.warn(
+      `[ix-pagination] Configuration mismatch: itemCount value "${
+        this.itemCount
+      }" is not present in ${this.itemCountOptionsPropName} [${displayOptions}]. ` +
+        `This will result in an invalid dropdown state. Please either add ${this.itemCount} to ${this.itemCountOptionsPropName} or set itemCount to one of the available options.`
+    );
   }
 
   private getValidItemCountOptions(): number[] {
-    return Array.from(new Set(
-      (this.itemCountOptions?.length
-        ? this.itemCountOptions
-        : this.defaultItemCountOptions
+    return Array.from(
+      new Set(
+        (this.itemCountOptions?.length
+          ? this.itemCountOptions
+          : this.defaultItemCountOptions
+        )
+          .filter((option) => option > 0 && Number.isInteger(option))
+          .sort((a, b) => a - b)
       )
-        .filter((option) => option > 0 && Number.isInteger(option))
-        .sort((a, b) => a - b)
-    ));
+    );
   }
 
   private selectPage(index: number) {
@@ -369,7 +397,10 @@ export class Pagination {
                 this.itemCountChanged.emit(count);
               }}
             >
-              {(this.validatedItemCountOptions || this.getValidItemCountOptions()).map((option) => (
+              {(
+                this.validatedItemCountOptions ||
+                this.getValidItemCountOptions()
+              ).map((option) => (
                 <ix-select-item
                   label={`${option}`}
                   value={`${option}`}
