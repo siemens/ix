@@ -39,6 +39,7 @@ import {
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
  * @form-ready
@@ -119,7 +120,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * Current selected value.
    * This corresponds to the value property of ix-select-items
    */
-  @Prop({ mutable: true }) value: string | string[] = [];
+  @Prop({ mutable: true }) value: string | string[] = '';
 
   /**
    * Show clear button
@@ -193,6 +194,14 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * Show "all" chip when all items are selected in multiple mode
    */
   @Prop() collapseMultipleSelection = false;
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Value changed
@@ -365,7 +374,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         return;
       }
 
-      requestAnimationFrame(() => {
+      requestAnimationFrameNoNgZone(() => {
         nestedDropdownItem?.shadowRoot?.querySelector('button')?.focus();
       });
     }
@@ -737,8 +746,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private clear() {
     this.clearInput();
     this.selectedLabels = [];
-    this.value = [];
-    this.emitValueChange([]);
+    const emptyValue = this.isSingleMode ? '' : [];
+    this.value = emptyValue;
+    this.emitValueChange(emptyValue);
     this.dropdownShow = false;
   }
 
@@ -994,6 +1004,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           trigger={this.dropdownWrapperRef.waitForCurrent()}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
+          enableTopLayer={this.enableTopLayer}
           overwriteDropdownStyle={async () => {
             const styleOverwrites: Partial<CSSStyleDeclaration> = {};
 

@@ -6,24 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-/*
- * SPDX-FileCopyrightText: 2024 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
-import { Component, h, Host, Prop } from '@stencil/core';
-import { getButtonClasses } from '../button/base-button';
-import { a11yBoolean } from '../utils/a11y';
-import { Breakpoint } from '../utils/breakpoints';
 import {
   iconDoubleChevronLeft,
   iconDoubleChevronRight,
 } from '@siemens/ix-icons/icons';
-
+import { Component, h, Host, Prop } from '@stencil/core';
+import { getButtonClasses } from '../button/base-button';
+import { Breakpoint } from '../utils/breakpoints';
 /**
  * @internal
  */
@@ -33,9 +23,6 @@ import {
   shadow: true,
 })
 export class MenuExpandIcon {
-  /** Accessibility label for the menu expand icon (MANDATORY) */
-  @Prop() ixAriaLabel: string = 'Expand';
-
   /** Whether the menu expand icon displays the expanded state or not */
   @Prop({ reflect: true }) expanded = false;
 
@@ -45,9 +32,16 @@ export class MenuExpandIcon {
   /** Display as pinned */
   @Prop() pinned = false;
 
+  /**
+   * Accessibility label for the menu expand icon
+   * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
+   */
+  @Prop() ixAriaLabel?: string = 'Expand';
+
   getSmallScreenIcon() {
     return (
       <button
+        tabindex={-1}
         class={{
           ...getButtonClasses('subtle-tertiary', true, false, false, false),
           'menu-expand-button': true,
@@ -70,6 +64,7 @@ export class MenuExpandIcon {
   getLargeScreenIcon() {
     return (
       <ix-icon-button
+        tabindex={-1}
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
         variant="subtle-tertiary"
       ></ix-icon-button>
@@ -98,9 +93,7 @@ export class MenuExpandIcon {
         class={{
           expanded: this.expanded,
         }}
-        type="button"
-        aria-label={this.ixAriaLabel}
-        aria-pressed={a11yBoolean(this.expanded)}
+        aria-hidden="true"
       >
         {this.getMenuIcon()}
       </Host>

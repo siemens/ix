@@ -19,14 +19,23 @@ import { ToastConfig } from './toast.config';
   providedIn: 'root',
 })
 export class ToastService {
+  /**
+   * Sets the position of the toast container
+   */
   public setPosition(position: 'bottom-right' | 'top-right') {
     getToastContainer().position = position;
   }
 
+  /**
+   * Gets the position of the toast container
+   */
   public getPosition() {
     return getToastContainer().position;
   }
 
+  /**
+   * Display a toast based on the provided configuration
+   */
   public async show(config: ToastConfig) {
     if (typeof config.message === 'string' && !config.action) {
       return toast(config as IxToastConfig);
