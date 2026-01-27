@@ -56,7 +56,7 @@ export default class ToastCustom {
     this.toastService.show({
       title: 'Toast headline',
       message: this.customToastRef,
-     // action: this.customToastActionRef,
+      action: this.customToastActionRef,
     });
   }
 }
