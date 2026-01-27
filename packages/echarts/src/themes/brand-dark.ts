@@ -141,6 +141,9 @@ export default {
         borderWidth: 0,
         borderColor: '#ffffff',
       },
+      axisLabel: {
+        color: '#FFFFFF',
+      },
     },
     candlestick: {
       itemStyle: {

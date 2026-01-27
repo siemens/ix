@@ -22,6 +22,7 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { IxTimePickerCustomEvent } from '../../components';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -39,15 +40,14 @@ import {
   createClassMutationObserver,
   getValidationText,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
-import { IxTimePickerCustomEvent } from '../../components';
-import type { TimeInputValidityState } from './time-input.types';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
+import { makeRef } from '../utils/make-ref';
+import type { TimeInputValidityState } from './time-input.types';
 
 /**
  * @since 3.2.0
@@ -220,6 +220,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
    * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
    */
   @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Input change event.
@@ -548,7 +556,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
-          suppressOverflowBehavior={true}
+          enableTopLayer={this.enableTopLayer}
+          suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;

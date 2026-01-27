@@ -15,6 +15,9 @@ export type ModalLoadingContext = {
   finish: (text?: string, timeout?: number) => void;
 };
 
+/**
+ * Displays a loading modal with a message
+ */
 export function showModalLoading(message: string) {
   const modal = document.createElement('ix-modal');
   modal.disableEscapeClose = true;
