@@ -289,10 +289,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.handleValueChangeEvent(parsedValue);
   };
 
-  private readonly handleFocus = () => {
-    onInputFocus(this, this.value);
-  };
-
   private readonly handleBlur = () => {
     if (!this.inputRef.current) return;
 
@@ -491,7 +487,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
               onKeyDown={(event) => this.handleKeyDown(event)}
               onBeforeInput={(event) => this.handleBeforeInput(event)}
               onPaste={(event) => this.handlePaste(event)}
-              onFocus={this.handleFocus}
+              onFocus={() => onInputFocus(this, this.value)}
               onEnterKeyChange={(event) =>
                 onEnterKeyChangeEmit(event, this, this.value)
               }

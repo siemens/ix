@@ -28,6 +28,8 @@ import {
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   handleSubmitOnEnterKeydown,
+  onEnterKeyChangeEmit,
+  onInputBlurWithChange,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -246,7 +248,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private initialValue?: string;
+  /** @internal */
+  public initialValue?: string;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -363,10 +366,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter' && this.initialValue !== this.value) {
-      this.ixChange.emit(this.value);
-      this.initialValue = this.value;
-    }
+    onEnterKeyChangeEmit(event, this, this.value);
 
     handleSubmitOnEnterKeydown(
       event,
@@ -412,12 +412,12 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             this.ixFocus.emit();
           }}
           onBlur={() => {
-            this.ixBlur.emit();
+            onInputBlurWithChange(
+              this,
+              this.inputElementRef.current,
+              this.value
+            );
             this.touched = true;
-            if (this.initialValue !== this.value) {
-              this.ixChange.emit(this.value);
-              this.initialValue = this.value;
-            }
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
