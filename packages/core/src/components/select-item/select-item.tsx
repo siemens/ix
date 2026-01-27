@@ -23,13 +23,23 @@ import {
   IxSelectItemValueChangeEvent,
 } from './events';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { makeRef } from '../utils/make-ref';
+import {
+  IX_FOCUS_VISIBLE_ACTIVE,
+  IX_FOCUS_VISIBLE,
+} from '../utils/focus/focus-utilities';
+import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
+import { Mixin } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
   shadow: true,
 })
-export class SelectItem implements DropdownItemWrapper {
+export class SelectItem
+  extends Mixin(FocusVisibleMixin)
+  implements DropdownItemWrapper
+{
   @Element() hostElement!: HTMLIxSelectItemElement;
 
   /**
@@ -60,11 +70,12 @@ export class SelectItem implements DropdownItemWrapper {
   @Event() itemClick!: EventEmitter<string>;
 
   private componentLoaded = false;
+  private readonly dropdownItemRef = makeRef<HTMLIxDropdownItemElement>();
 
   /** @internal */
   @Method()
   async getDropdownItemElement(): Promise<HTMLIxDropdownItemElement> {
-    return this.dropdownItem!;
+    return this.dropdownItemRef.waitForCurrent();
   }
 
   /**
@@ -77,10 +88,6 @@ export class SelectItem implements DropdownItemWrapper {
     event?.stopPropagation();
 
     this.itemClick.emit(this.value);
-  }
-
-  get dropdownItem() {
-    return this.hostElement.querySelector('ix-dropdown-item');
   }
 
   componentDidRender() {
@@ -116,14 +123,20 @@ export class SelectItem implements DropdownItemWrapper {
 
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          [IX_FOCUS_VISIBLE]: true,
+        }}
+      >
         <ix-dropdown-item
           class={{
             'select-item-checked': this.selected,
+            [IX_FOCUS_VISIBLE_ACTIVE]: this.ixFocusVisible,
           }}
           checked={this.selected}
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}
+          ref={this.dropdownItemRef}
         ></ix-dropdown-item>
       </Host>
     );

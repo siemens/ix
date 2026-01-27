@@ -21,6 +21,7 @@ import { BaseButton } from '../button/base-button';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+import { Mixin } from '../utils/internal/component';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -119,7 +120,7 @@ function UserInfo(
   styleUrl: 'avatar.scss',
   shadow: true,
 })
-export class Avatar {
+export class Avatar extends Mixin() {
   @Element() hostElement!: HTMLIxAvatarElement;
 
   /**
@@ -256,6 +257,8 @@ export class Avatar {
                 this.tooltipRef.current.hideTooltip(0);
               }
             }}
+            disableFocusTrap
+            focusHost={this.hostElement}
           >
             {this.username && (
               <Fragment>

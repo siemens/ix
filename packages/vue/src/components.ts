@@ -531,15 +531,26 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'placement',
   'positioningStrategy',
   'header',
+  'disableFocusHandling',
+  'disableFocusTrap',
+  'enableTopLayer',
+  'keyboardActivationKeys',
+  'keyboardItemTriggerKeys',
   'offset',
   'overwriteDropdownStyle',
   'discoverAllSubmenus',
   'ignoreRelatedSubmenu',
   'suppressOverflowBehavior',
-  'enableTopLayer',
-  'showChanged'
+  'focusHost',
+  'showChange',
+  'showChanged',
+  'experimentalRequestFocus',
+  'experimentalFocusNextElement'
 ], [
-  'showChanged'
+  'showChange',
+  'showChanged',
+  'experimentalRequestFocus',
+  'experimentalFocusNextElement'
 ]);
 
 
@@ -570,6 +581,7 @@ export const IxDropdownItem: StencilVueComponent<JSX.IxDropdownItem> = /*@__PURE
   'checked',
   'isSubMenu',
   'suppressChecked',
+  'hasVisualFocus',
   'itemClick'
 ], [
   'itemClick'
@@ -1171,6 +1183,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'label',
   'ariaLabelChevronDownIconButton',
   'ariaLabelClearIconButton',
+  'ariaLabelAddItem',
   'warningText',
   'infoText',
   'invalidText',
@@ -1207,6 +1220,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
 
 
 export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
+  'ixFocusVisible',
   'label',
   'value',
   'selected',
@@ -1253,6 +1267,7 @@ export const IxSplitButton: StencilVueComponent<JSX.IxSplitButton> = /*@__PURE__
   'disableDropdownButton',
   'placement',
   'enableTopLayer',
+  'disableFocusTrap',
   'buttonClick'
 ], [
   'buttonClick'

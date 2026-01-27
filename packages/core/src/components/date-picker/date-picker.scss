@@ -11,6 +11,8 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 
+@use './../button/button-mixin' as button-mixin;
+
 :host {
   display: block;
   position: relative;
@@ -44,15 +46,11 @@
       line-height: 20px;
     }
 
-    .capitalize {
-      text-transform: capitalize;
-    }
-
     .month-dropdown-item {
       margin-left: 4px;
       margin-right: 4px;
 
-      &:focus-visible {
+      &.ix-focused {
         outline: 1px solid var(--theme-color-focus-bdr);
         outline-offset: var(--theme-btn--focus--outline-offset);
       }
@@ -127,14 +125,7 @@
 
       &:focus-visible {
         outline: 1px solid var(--theme-color-focus-bdr);
-        box-shadow: inset 0 0 0 1px var(--theme-color-inv-contrast-text);
-        background-color: var(--theme-datepicker-day--background--selected);
-        border: inset 1px solid
-          var(--theme-datepicker-day--border-color--selected);
-        color: var(--theme-datepicker-day--color--selected);
-        font-size: 14px;
-        line-height: 20px;
-        letter-spacing: 0;
+        outline-offset: var(--theme-btn--focus--outline-offset);
       }
 
       &.today {
@@ -319,5 +310,29 @@
 
   .hidden {
     display: none;
+  }
+}
+
+.custom-button {
+  display: inline-block;
+  height: 2rem;
+  --ix-button-border-radius-left: var(--theme-btn--border-radius);
+  --ix-button-border-radius-right: var(--theme-btn--border-radius);
+
+  button {
+    @include button-mixin.btn-base;
+    padding: 0 0.25rem;
+    margin: 0px;
+  }
+
+  @include button-mixin.btn-base-variant(tertiary);
+
+  .capitalize {
+    text-transform: capitalize;
+  }
+
+  button:focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: 0px;
   }
 }

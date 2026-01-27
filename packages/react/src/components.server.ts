@@ -140,9 +140,7 @@ export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplic
     properties: {
         theme: 'theme',
         themeSystemAppearance: 'theme-system-appearance',
-        forceBreakpoint: 'force-breakpoint',
-        breakpoints: 'breakpoints',
-        appSwitchConfig: 'app-switch-config'
+        forceBreakpoint: 'force-breakpoint'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxApplication as ReactWebComponent<IxApplicationElement, IxApplicationEvents>,
@@ -219,7 +217,6 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
     tagName: 'ix-breadcrumb',
     properties: {
         visibleItemCount: 'visible-item-count',
-        nextItems: 'next-items',
         subtle: 'subtle',
         ariaLabelPreviousButton: 'aria-label-previous-button',
         enableTopLayer: 'enable-top-layer'
@@ -363,11 +360,7 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
     properties: {
         disabled: 'disabled',
         readonly: 'readonly',
-        filterState: 'filter-state',
         placeholder: 'placeholder',
-        categories: 'categories',
-        nonSelectableCategories: 'non-selectable-categories',
-        suggestions: 'suggestions',
         icon: 'icon',
         hideIcon: 'hide-icon',
         staticOperator: 'static-operator',
@@ -524,7 +517,6 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
         showWeekNumbers: 'show-week-numbers',
         ariaLabelDropdownButton: 'aria-label-dropdown-button',
         customRangeDisabled: 'custom-range-disabled',
-        dateRangeOptions: 'date-range-options',
         locale: 'locale',
         weekStartIndex: 'week-start-index',
         i18nCustomItem: 'i18n-custom-item',
@@ -672,7 +664,10 @@ export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents> = 
     serializeShadowRoot,
 });
 
-export type IxDropdownEvents = { onShowChanged: EventName<CustomEvent<boolean>> };
+export type IxDropdownEvents = {
+    onShowChange: EventName<CustomEvent<boolean>>,
+    onShowChanged: EventName<CustomEvent<boolean>>
+};
 
 export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents>({
     tagName: 'ix-dropdown',
@@ -685,12 +680,12 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         placement: 'placement',
         positioningStrategy: 'positioning-strategy',
         header: 'header',
-        offset: 'offset',
-        overwriteDropdownStyle: 'overwrite-dropdown-style',
+        disableFocusHandling: 'disable-focus-handling',
+        disableFocusTrap: 'disable-focus-trap',
+        enableTopLayer: 'enable-top-layer',
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
-        suppressOverflowBehavior: 'suppress-overflow-behavior',
-        enableTopLayer: 'enable-top-layer'
+        suppressOverflowBehavior: 'suppress-overflow-behavior'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdown as ReactWebComponent<IxDropdownElement, IxDropdownEvents>,
@@ -739,7 +734,8 @@ export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDrop
         disabled: 'disabled',
         checked: 'checked',
         isSubMenu: 'is-sub-menu',
-        suppressChecked: 'suppress-checked'
+        suppressChecked: 'suppress-checked',
+        hasVisualFocus: 'has-visual-focus'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDropdownItem as ReactWebComponent<IxDropdownItemElement, IxDropdownItemEvents>,
@@ -830,7 +826,6 @@ export const IxFieldLabel: StencilReactComponent<IxFieldLabelElement, IxFieldLab
     properties: {
         required: 'required',
         htmlFor: 'html-for',
-        controlRef: 'control-ref',
         isInvalid: 'is-invalid'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
@@ -1081,7 +1076,7 @@ export type IxLayoutAutoEvents = NonNullable<unknown>;
 
 export const IxLayoutAuto: StencilReactComponent<IxLayoutAutoElement, IxLayoutAutoEvents> = /*@__PURE__*/ createComponent<IxLayoutAutoElement, IxLayoutAutoEvents>({
     tagName: 'ix-layout-auto',
-    properties: { layout: 'layout' },
+    properties: {},
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxLayoutAuto as ReactWebComponent<IxLayoutAutoElement, IxLayoutAutoEvents>,
     serializeShadowRoot,
@@ -1321,7 +1316,6 @@ export const IxModal: StencilReactComponent<IxModalElement, IxModalEvents> = /*@
         disableAnimation: 'disable-animation',
         hideBackdrop: 'hide-backdrop',
         closeOnBackdropClick: 'close-on-backdrop-click',
-        beforeDismiss: 'before-dismiss',
         centered: 'centered',
         disableEscapeClose: 'disable-escape-close'
     },
@@ -1596,6 +1590,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
         label: 'label',
         ariaLabelChevronDownIconButton: 'aria-label-chevron-down-icon-button',
         ariaLabelClearIconButton: 'aria-label-clear-icon-button',
+        ariaLabelAddItem: 'aria-label-add-item',
         warningText: 'warning-text',
         infoText: 'info-text',
         invalidText: 'invalid-text',
@@ -1629,6 +1624,7 @@ export type IxSelectItemEvents = { onItemClick: EventName<CustomEvent<string>> }
 export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents>({
     tagName: 'ix-select-item',
     properties: {
+        ixFocusVisible: 'ix-focus-visible',
         label: 'label',
         value: 'value',
         selected: 'selected',
@@ -1648,7 +1644,6 @@ export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents> = 
         min: 'min',
         max: 'max',
         value: 'value',
-        marker: 'marker',
         trace: 'trace',
         traceReference: 'trace-reference',
         disabled: 'disabled',
@@ -1689,7 +1684,8 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
         disableButton: 'disable-button',
         disableDropdownButton: 'disable-dropdown-button',
         placement: 'placement',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        disableFocusTrap: 'disable-focus-trap'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxSplitButton as ReactWebComponent<IxSplitButtonElement, IxSplitButtonEvents>,

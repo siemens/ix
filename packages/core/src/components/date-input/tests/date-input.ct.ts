@@ -59,6 +59,7 @@ regressionTest('select date by focus', async ({ mount, page }) => {
 
   const dateInput = await createDateInputAccessor(dateInputElement);
   await dateInputElement.locator('input').focus();
+  await page.keyboard.press('ArrowDown');
 
   await dateInput.selectDay(10);
   await expect(dateInputElement).toHaveAttribute('value', '2024/05/10');
@@ -74,6 +75,8 @@ regressionTest('select date by input', async ({ mount, page }) => {
 
   const dateInput = await createDateInputAccessor(dateInputElement);
   await dateInputElement.locator('input').focus();
+  await page.keyboard.press('ArrowDown');
+
   await expect(dateInputElement.getByTestId('date-dropdown')).toHaveClass(
     /show/
   );

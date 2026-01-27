@@ -16,13 +16,16 @@ import { AlignedPlacement } from '../dropdown/placement';
 import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
+import { Mixin } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
-export class DropdownButton {
+export class DropdownButton extends Mixin() {
   @Element() hostElement!: HTMLIxDropdownButtonElement;
 
   /**
@@ -103,6 +106,7 @@ export class DropdownButton {
           disabled: this.disabled,
         }}
         ref={this.dropdownAnchor}
+        tabIndex={this.disabled ? -1 : 0}
       >
         <div class="dropdown-button">
           {this.label ? (
@@ -146,11 +150,11 @@ export class DropdownButton {
         </div>
 
         <ix-dropdown
-          class="dropdown"
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
           enableTopLayer={this.enableTopLayer}
+          disableFocusTrap={true}
           onShowChanged={this.onDropdownShowChanged}
         >
           <slot></slot>

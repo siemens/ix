@@ -25,12 +25,15 @@ import { DateTime } from 'luxon';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
+import { Mixin } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { type LiteralStringUnion } from '../utils/type-helper';
 import type {
   DateDropdownOption,
   DateRangeChangeEvent,
 } from './date-dropdown.types';
+import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
 
 @Component({
   tag: 'ix-date-dropdown',
@@ -38,6 +41,7 @@ import type {
   shadow: true,
 })
 export class DateDropdown
+  extends Mixin()
   implements
     Omit<IxDatePickerComponent, 'corners'>,
     Omit<IxButtonComponent, 'type' | 'icon'>
@@ -226,6 +230,11 @@ export class DateDropdown
   }
 
   private datePickerTouched = false;
+  private readonly datePickerRef = makeRef<HTMLIxDatePickerElement>();
+
+  connectedCallback() {}
+
+  disconnectedCallback() {}
 
   componentWillLoad() {
     this.initialize();
@@ -346,7 +355,17 @@ export class DateDropdown
 
   render() {
     return (
-      <Host>
+      <Host
+        onFocusout={(event: FocusEvent) => {
+          const relatedTarget = event.relatedTarget as HTMLElement | null;
+
+          if (!relatedTarget) {
+            return;
+          }
+
+          this.closeDropdown();
+        }}
+      >
         <ix-button
           data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
@@ -367,7 +386,9 @@ export class DateDropdown
           closeBehavior="outside"
           placement="bottom-start"
           enableTopLayer={this.enableTopLayer}
-          onShowChanged={({ detail: show }) => {
+          disableFocusHandling
+          suppressOverflowBehavior
+          onShowChanged={async ({ detail: show }) => {
             if (
               !show &&
               this.selectedDateRangeId === 'custom' &&
@@ -375,6 +396,13 @@ export class DateDropdown
               this.currentRangeValue
             ) {
               this.onDateSelect(this.currentRangeValue);
+            }
+
+            if (show && hasKeyboardMode()) {
+              requestAnimationFrameNoNgZone(() => {
+                const datePicker = this.datePickerRef.current!;
+                datePicker.focus();
+              });
             }
           }}
         >
@@ -407,6 +435,7 @@ export class DateDropdown
                 {this.selectedDateRangeId === 'custom' && (
                   <Fragment>
                     <ix-date-picker
+                      ref={this.datePickerRef}
                       embedded
                       locale={this.locale}
                       onDateChange={(e) => {

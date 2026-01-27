@@ -8,14 +8,24 @@
  */
 
 import { iconClose, iconShout } from '@siemens/ix-icons/icons';
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
+import { Mixin } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-menu-about-news',
   styleUrl: 'menu-about-news.scss',
   shadow: true,
 })
-export class MenuAboutNews {
+export class MenuAboutNews extends Mixin() {
+  @Element() hostElement!: HTMLIxMenuAboutNewsElement;
   /**
    * Show about news
    */

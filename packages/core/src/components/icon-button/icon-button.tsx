@@ -15,13 +15,17 @@ import {
   getFallbackLabelFromIconName,
 } from '../utils/a11y';
 import type { IconButtonVariant } from './icon-button.types';
+import { Mixin } from '../utils/internal/component';
+import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
 
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
-export class IconButton {
+export class IconButton extends Mixin() {
   @Element() hostElement!: HTMLIxIconButtonElement;
 
   /**
@@ -137,6 +141,7 @@ export class IconButton {
           ...this.getIconSizeClass(),
           disabled: this.disabled || this.loading,
         }}
+        tabIndex={this.disabled ? -1 : 0}
       >
         <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>

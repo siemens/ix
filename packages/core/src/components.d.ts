@@ -305,7 +305,7 @@ export namespace Components {
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @default 'previous'
+          * @default 'Show previous breadcrumb items'
          */
         "ariaLabelPreviousButton": string;
         /**
@@ -1124,6 +1124,7 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
+        "focusFirstCalenderDay": () => Promise<void>;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -1343,6 +1344,18 @@ export namespace Components {
          */
         "closeBehavior": CloseBehavior;
         /**
+          * Suppress automatic focus when the dropdown is shown
+          * @since 4.3.0
+          * @default false
+         */
+        "disableFocusHandling": boolean;
+        /**
+          * Close dropdown when tabbing away, and do not trap focus inside dropdown
+          * @since 4.3.0
+          * @default false
+         */
+        "disableFocusTrap": boolean;
+        /**
           * @default false
          */
         "discoverAllSubmenus": boolean;
@@ -1350,8 +1363,10 @@ export namespace Components {
         /**
           * Enable Popover API rendering for top-layer positioning.
           * @default false in v4.x, will default to true in v5.0.0
+          * @since 4.3.0
          */
         "enableTopLayer": boolean;
+        "focusHost"?: HTMLElement;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -1360,6 +1375,16 @@ export namespace Components {
           * @default false
          */
         "ignoreRelatedSubmenu": boolean;
+        /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default [     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
+         */
+        "keyboardActivationKeys": string[];
+        /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default ['Enter', ' ']
+         */
+        "keyboardItemTriggerKeys": string[];
         /**
           * Move dropdown along main axis of alignment
          */
@@ -1473,6 +1498,10 @@ export namespace Components {
         "disabled": boolean;
         "emitItemClick": () => Promise<void>;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
+        /**
+          * @default false
+         */
+        "hasVisualFocus": boolean;
         /**
           * Display hover state
           * @default false
@@ -3081,6 +3110,12 @@ export namespace Components {
          */
         "allowClear": boolean;
         /**
+          * ARIA label for the add item
+          * @since TODO: Define
+          * @default 'Add item'
+         */
+        "ariaLabelAddItem": string;
+        /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @default 'Open select dropdown'
@@ -3224,6 +3259,10 @@ export namespace Components {
          */
         "hover": boolean;
         /**
+          * @default false
+         */
+        "ixFocusVisible": boolean;
+        /**
           * Displayed name of the item
          */
         "label"?: string;
@@ -3330,6 +3369,10 @@ export namespace Components {
           * @default false
          */
         "disableDropdownButton": boolean;
+        /**
+          * @default false
+         */
+        "disableFocusTrap": boolean;
         /**
           * Disabled
           * @default false
@@ -4839,7 +4882,12 @@ declare global {
         new (): HTMLIxDrawerElement;
     };
     interface HTMLIxDropdownElementEventMap {
+        "showChange": boolean;
         "showChanged": boolean;
+        "experimentalRequestFocus": {
+    keyEvent: KeyboardEvent;
+  };
+        "experimentalFocusNextElement": void;
     }
     interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDropdownElementEventMap>(type: K, listener: (this: HTMLIxDropdownElement, ev: IxDropdownCustomEvent<HTMLIxDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6201,7 +6249,7 @@ declare namespace LocalJSX {
     interface IxBreadcrumb {
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
-          * @default 'previous'
+          * @default 'Show previous breadcrumb items'
          */
         "ariaLabelPreviousButton"?: string;
         /**
@@ -6573,6 +6621,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Indeterminate state of the checkbox component
           * @default false
          */
@@ -6942,6 +6994,10 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -7314,14 +7370,28 @@ declare namespace LocalJSX {
          */
         "closeBehavior"?: CloseBehavior;
         /**
+          * Suppress automatic focus when the dropdown is shown
+          * @since 4.3.0
+          * @default false
+         */
+        "disableFocusHandling"?: boolean;
+        /**
+          * Close dropdown when tabbing away, and do not trap focus inside dropdown
+          * @since 4.3.0
+          * @default false
+         */
+        "disableFocusTrap"?: boolean;
+        /**
           * @default false
          */
         "discoverAllSubmenus"?: boolean;
         /**
           * Enable Popover API rendering for top-layer positioning.
           * @default false in v4.x, will default to true in v5.0.0
+          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        "focusHost"?: HTMLElement;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -7331,6 +7401,16 @@ declare namespace LocalJSX {
          */
         "ignoreRelatedSubmenu"?: boolean;
         /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default [     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
+         */
+        "keyboardActivationKeys"?: string[];
+        /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default ['Enter', ' ']
+         */
+        "keyboardItemTriggerKeys"?: string[];
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -7338,6 +7418,17 @@ declare namespace LocalJSX {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        "onExperimentalFocusNextElement"?: (event: IxDropdownCustomEvent<void>) => void;
+        /**
+          * Will be fired only after dropdown changed visibility to "true"
+         */
+        "onExperimentalRequestFocus"?: (event: IxDropdownCustomEvent<{
+    keyEvent: KeyboardEvent;
+  }>) => void;
+        /**
+          * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+         */
+        "onShowChange"?: (event: IxDropdownCustomEvent<boolean>) => void;
         /**
           * Fire event after visibility of dropdown has changed
          */
@@ -7441,6 +7532,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "hasVisualFocus"?: boolean;
         /**
           * Display hover state
           * @default false
@@ -7973,6 +8068,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * The helper text for the text field.
          */
@@ -8664,6 +8763,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * The helper text for the input field
          */
         "helperText"?: string;
@@ -9075,6 +9178,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Label for the radio component
          */
         "label"?: string;
@@ -9168,6 +9275,12 @@ declare namespace LocalJSX {
          */
         "allowClear"?: boolean;
         /**
+          * ARIA label for the add item
+          * @since TODO: Define
+          * @default 'Add item'
+         */
+        "ariaLabelAddItem"?: string;
+        /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
           * @default 'Open select dropdown'
@@ -9207,6 +9320,10 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Helper text for the select component
          */
@@ -9311,6 +9428,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "hover"?: boolean;
+        /**
+          * @default false
+         */
+        "ixFocusVisible"?: boolean;
         /**
           * Displayed name of the item
          */
@@ -9419,6 +9540,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disableDropdownButton"?: boolean;
+        /**
+          * @default false
+         */
+        "disableFocusTrap"?: boolean;
         /**
           * Disabled
           * @default false
@@ -9553,6 +9678,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * The helper text for the textarea field.
          */
         "helperText"?: string;
@@ -9668,6 +9797,10 @@ declare namespace LocalJSX {
           * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
@@ -9969,6 +10102,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Hide `on` and `off` text
           * @default false

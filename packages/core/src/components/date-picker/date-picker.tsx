@@ -27,10 +27,20 @@ import {
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
+import { configureKeyboardInteraction } from '../dropdown/dropdown-focus';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
+import { Mixin } from '../utils/internal/component';
+import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
+import {
+  focusFirstDescendant,
+  IX_FOCUS_VISIBLE_ACTIVE,
+  IX_FOCUS_VISIBLE,
+  queryElements,
+} from '../utils/focus/focus-utilities';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -40,9 +50,11 @@ interface CalendarWeek {
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
-export class DatePicker implements IxDatePickerComponent {
+export class DatePicker extends Mixin() implements IxDatePickerComponent {
   @Element() hostElement!: HTMLIxDatePickerElement;
 
   /**
@@ -224,7 +236,8 @@ export class DatePicker implements IxDatePickerComponent {
     };
   }
 
-  @State() currFromDate?: DateTime;
+  @State()
+  currFromDate?: DateTime;
   @State() currToDate?: DateTime;
 
   @State() selectedYear = 0;
@@ -237,6 +250,8 @@ export class DatePicker implements IxDatePickerComponent {
   private readonly dropdownButtonRef = makeRef<HTMLElement>();
   private readonly yearContainerRef = makeRef<HTMLElement>();
   private readonly firstMonthRef = makeRef<HTMLElement>();
+  private readonly yearMonthSelectionDropdownRef =
+    makeRef<HTMLIxDropdownElement>();
 
   @State() dayNames!: string[];
   @State() monthNames!: string[];
@@ -253,8 +268,11 @@ export class DatePicker implements IxDatePickerComponent {
       return;
     }
 
-    let _focusedDay = this.focusedDay;
+    if (this.yearMonthSelectionDropdownRef.current?.show) {
+      return;
+    }
 
+    let _focusedDay = this.focusedDay;
     switch (event.key) {
       case 'ArrowLeft':
         _focusedDay--;
@@ -274,10 +292,10 @@ export class DatePicker implements IxDatePickerComponent {
 
     if (_focusedDay > this.getDaysInCurrentMonth()) {
       _focusedDay = _focusedDay - this.getDaysInCurrentMonth();
-      this.changeToAdjacentMonth(1);
+      this.changeCalendarView(1);
       this.monthChangedFromFocus = true;
     } else if (_focusedDay < 1) {
-      this.changeToAdjacentMonth(-1);
+      this.changeCalendarView(-1);
       _focusedDay = _focusedDay + this.getDaysInCurrentMonth();
       this.monthChangedFromFocus = true;
     }
@@ -341,6 +359,49 @@ export class DatePicker implements IxDatePickerComponent {
     this.tempYear = this.selectedYear;
   }
 
+  private keyboardNavigationYearSelection?: () => void;
+  private keyboardNavigationMonthSelection?: () => void;
+
+  disconnectedCallback() {
+    this.keyboardNavigationYearSelection?.();
+    this.keyboardNavigationMonthSelection?.();
+  }
+
+  override componentDidLoad() {
+    super.componentDidLoad?.();
+
+    const yearContainer =
+      this.hostElement.shadowRoot!.getElementById('year-selection')!;
+
+    const monthContainer =
+      this.hostElement.shadowRoot!.getElementById('month-selection')!;
+
+    const keyboardNavigationOptions = (parent: HTMLElement) => ({
+      querySelector: `.${IX_FOCUS_VISIBLE}`,
+      activeQuerySelector: `.${IX_FOCUS_VISIBLE}.${IX_FOCUS_VISIBLE_ACTIVE}`,
+      getActiveElement: () => {
+        const elements = queryElements(parent, `.${IX_FOCUS_VISIBLE_ACTIVE}`);
+        if (elements.length === 0) {
+          const fallbackElement = parent.querySelector(`.${IX_FOCUS_VISIBLE}`)!;
+          fallbackElement.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
+          return fallbackElement as HTMLElement;
+        }
+
+        return elements[0] as HTMLElement;
+      },
+    });
+
+    // this.keyboardNavigationYearSelection = configureKeyboardInteraction(
+    //   yearContainer,
+    //   keyboardNavigationOptions(yearContainer)
+    // );
+
+    // this.keyboardNavigationMonthSelection = configureKeyboardInteraction(
+    //   monthContainer,
+    //   keyboardNavigationOptions(monthContainer)
+    // );
+  }
+
   componentWillRender() {
     this.calculateCalendar();
   }
@@ -353,7 +414,36 @@ export class DatePicker implements IxDatePickerComponent {
     const dayElem = this.hostElement.shadowRoot!.querySelector(
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
+
     dayElem.focus();
+  }
+
+  /**
+   * @internal
+   */
+  @Method()
+  async focusFirstCalenderDay() {
+    const firstDayCell = this.hostElement.shadowRoot!.querySelector(
+      '[date-calender-day].calendar-item'
+    )! as HTMLElement;
+
+    if (firstDayCell) {
+      firstDayCell.focus();
+    }
+  }
+
+  private getActiveCalenderViewElement(
+    type: 'month' | 'year'
+  ): HTMLElement | null {
+    const shadowActiveElement = this.hostElement.shadowRoot!.activeElement;
+
+    if (shadowActiveElement) {
+      return shadowActiveElement as HTMLElement;
+    }
+
+    return this.hostElement
+      .shadowRoot!.getElementById(`${type}-selection`)
+      ?.querySelector('.arrowYear.selected') as HTMLElement;
   }
 
   private setTranslations() {
@@ -479,13 +569,11 @@ export class DatePicker implements IxDatePickerComponent {
     this.calendar = calendar;
   }
 
-  private selectTempYear(event: MouseEvent, year: number) {
-    event?.stopPropagation();
-    this.tempYear = year;
-  }
-
   private focusMonth() {
-    this.firstMonthRef.current?.focus();
+    const monthContainer =
+      this.hostElement.shadowRoot!.getElementById('month-selection')!;
+
+    monthContainer.focus();
   }
 
   private infiniteScrollYears() {
@@ -524,13 +612,17 @@ export class DatePicker implements IxDatePickerComponent {
     this.selectedYear = this.tempYear;
     this.tempMonth = month;
 
-    const dropdown = this.hostElement.shadowRoot!.querySelector('ix-dropdown');
+    this.closeYearMonthDropdown();
+  }
+
+  private closeYearMonthDropdown() {
+    const dropdown = this.yearMonthSelectionDropdownRef.current;
     if (dropdown) {
       dropdown.show = false;
     }
   }
 
-  private changeToAdjacentMonth(number: -1 | 1) {
+  private changeCalendarView(number: -1 | 1) {
     if (this.selectedMonth + number < 0) {
       this.selectedYear--;
       this.selectedMonth = 11;
@@ -540,6 +632,9 @@ export class DatePicker implements IxDatePickerComponent {
     } else {
       this.selectedMonth += number;
     }
+
+    this.tempMonth = this.selectedMonth;
+    this.tempYear = this.selectedYear;
   }
 
   private selectDay(selectedDay: number, target: Element) {
@@ -590,26 +685,42 @@ export class DatePicker implements IxDatePickerComponent {
     });
   }
 
-  private getDayClasses(day: number): Record<string, boolean> {
+  private getUtilitiesBasedOnDay(day: number) {
     const todayObj = this.getDateTimeNow();
     const selectedDayObj = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, day)
     );
+    return {
+      isFirstDay: () => day === 1,
+      isToday: () => todayObj.hasSame(selectedDayObj, 'day'),
+      isSelected: () =>
+        !!(
+          this.currFromDate?.hasSame(selectedDayObj, 'day') ||
+          this.currToDate?.hasSame(selectedDayObj, 'day')
+        ),
+      isRange: () =>
+        !!(
+          this.currFromDate &&
+          selectedDayObj.startOf('day') > this.currFromDate.startOf('day') &&
+          this.currToDate !== undefined &&
+          selectedDayObj.startOf('day') < this.currToDate?.startOf('day')
+        ),
+    };
+  }
 
+  private getDayClasses(day: number): Record<string, boolean> {
+    const selectedDayObj = DateTime.fromJSDate(
+      new Date(this.selectedYear, this.selectedMonth, day)
+    );
+
+    const util = this.getUtilitiesBasedOnDay(day);
     return {
       'calendar-item': true,
       'empty-day': day === undefined,
-      today: todayObj.hasSame(selectedDayObj, 'day'),
-      selected: !!(
-        this.currFromDate?.hasSame(selectedDayObj, 'day') ||
-        this.currToDate?.hasSame(selectedDayObj, 'day')
-      ),
-      range: !!(
-        this.currFromDate &&
-        selectedDayObj.startOf('day') > this.currFromDate.startOf('day') &&
-        this.currToDate !== undefined &&
-        selectedDayObj.startOf('day') < this.currToDate?.startOf('day')
-      ),
+      'first-day': util.isFirstDay(),
+      today: util.isToday(),
+      selected: util.isSelected(),
+      range: util.isRange(),
       disabled: !this.isWithinMinMaxDate(selectedDayObj),
     };
   }
@@ -663,57 +774,210 @@ export class DatePicker implements IxDatePickerComponent {
     return !isBefore && !isAfter;
   }
 
+  private renderMonths() {
+    return this.monthNames.map((month, index) => {
+      const selected =
+        this.tempYear === this.selectedYear && this.tempMonth === index;
+
+      return (
+        <ix-dropdown-item
+          checked={selected}
+          key={month}
+          class={{
+            'month-dropdown-item': true,
+            'disabled-item': !this.isWithinMinMaxMonth(index),
+            [IX_FOCUS_VISIBLE]: true,
+          }}
+          onClick={() => {
+            this.selectMonth(index);
+          }}
+        >
+          <span class="capitalize monthMargin">{`${month} ${this.tempYear}`}</span>
+        </ix-dropdown-item>
+      );
+    });
+  }
+
   private renderYears() {
     const rows = [];
 
     for (let year = this.startYear; year <= this.endYear; year++) {
+      const selected = this.tempYear === year;
+
       rows.push(
-        <div
+        <ix-dropdown-item
           key={year}
+          checked={selected}
           class={{
-            arrowYear: true,
             'month-dropdown-item': true,
             'disabled-item': !this.isWithinMinMaxYear(year),
+            [IX_FOCUS_VISIBLE]: true,
           }}
-          onClick={(event) => this.selectTempYear(event, year)}
-          onKeyUp={(event) => {
-            if (event.key === 'Enter') {
-              this.tempYear = year;
+          onClick={() => {
+            this.tempYear = year;
+
+            if (hasKeyboardMode()) {
               this.focusMonth();
             }
           }}
-          tabIndex={0}
         >
-          <ix-icon
-            class={{
-              hidden: this.tempYear !== year,
-              arrowPosition: true,
-            }}
-            name={iconChevronRightSmall}
-            size="12"
-          ></ix-icon>
           <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
-        </div>
+        </ix-dropdown-item>
       );
     }
 
     return rows;
   }
 
+  private requestCalendarFocus() {
+    if (this.yearMonthSelectionDropdownRef.current?.show) {
+      return;
+    }
+    this.changeFocusedDay();
+
+    requestAnimationFrameNoNgZone(() => {
+      const shadowRoot = this.hostElement.shadowRoot!;
+      let dayToFocus = shadowRoot.querySelector(
+        '.calendar-item[autofocus]'
+      ) as HTMLElement;
+
+      if (dayToFocus === null) {
+        dayToFocus = shadowRoot.querySelector(
+          '.calendar-item.first-day'
+        ) as HTMLElement;
+      }
+
+      dayToFocus?.focus();
+    });
+  }
+
+  private changeFocusedDay() {
+    requestAnimationFrameNoNgZone(() => {
+      const shadowRoot = this.hostElement.shadowRoot!;
+
+      const selectedDayElement = shadowRoot.querySelector(
+        '.calendar-item.selected'
+      ) as HTMLElement;
+
+      const todayElement = shadowRoot.querySelector(
+        '.calendar-item.today'
+      ) as HTMLElement;
+
+      let dayElement = selectedDayElement ?? todayElement;
+
+      if (!dayElement) {
+        // This is only the case if user use the year/month selector to select a date
+        // and changing to a month with has ether a today or selected day
+        dayElement = shadowRoot.querySelector(
+          '.calendar-item.first-day'
+        ) as HTMLElement;
+      }
+
+      if (!dayElement) {
+        return;
+      }
+
+      const currentDay = dayElement.dataset.calendarDay;
+
+      if (currentDay) {
+        this.focusedDay = parseInt(currentDay, 10);
+      }
+    });
+  }
+
+  private focusYearSelection() {
+    requestAnimationFrameNoNgZone(() => {
+      // Need to be run inside rAF to ensure the year selection is rendered and focused
+      const selectedYearElement =
+        this.yearContainerRef.current?.querySelector('.selected');
+
+      if (selectedYearElement) {
+        (selectedYearElement as HTMLElement).focus();
+        return;
+      }
+
+      focusFirstDescendant(this.yearContainerRef.current as HTMLElement);
+    });
+  }
+
+  private focusMonthSection() {
+    requestAnimationFrameNoNgZone(() => {
+      // Need to be run inside rAF to ensure the month selection is rendered and focused
+      const monthContainer =
+        this.hostElement.shadowRoot!.getElementById('month-selection')!;
+
+      const selectedMonth = monthContainer.querySelector('.selected');
+
+      if (selectedMonth) {
+        (selectedMonth as HTMLElement).focus();
+        return;
+      }
+
+      focusFirstDescendant(monthContainer as HTMLElement);
+    });
+  }
+
+  private readonly monthSelectionRef = makeRef<HTMLButtonElement>();
+  private readonly yearSelectionRef = makeRef<HTMLButtonElement>();
+
   render() {
     return (
-      <Host>
+      <Host
+        onFocusin={() => {
+          this.changeFocusedDay();
+        }}
+      >
         <ix-date-time-card corners={this.corners} embedded={this.embedded}>
           <div class="header" slot="header">
             <ix-icon-button
-              onClick={() => this.changeToAdjacentMonth(-1)}
+              onClick={() => this.changeCalendarView(-1)}
               icon={iconChevronLeftSmall}
               variant="tertiary"
               class="arrows"
               aria-label={this.ariaLabelPreviousMonthButton}
             ></ix-icon-button>
             <div class="selector">
-              <ix-button
+              <div class="custom-button">
+                <button class={'btn btn-tertiary'} ref={this.monthSelectionRef}>
+                  <ix-typography bold class="capitalize">
+                    {this.monthNames[this.selectedMonth]}
+                  </ix-typography>
+                </button>
+              </div>
+
+              <ix-dropdown
+                ignoreRelatedSubmenu
+                trigger={this.monthSelectionRef.waitForCurrent()}
+                disableFocusTrap
+              >
+                {this.renderMonths()}
+              </ix-dropdown>
+
+              <div class="custom-button">
+                <button class={'btn btn-tertiary'} ref={this.yearSelectionRef}>
+                  <ix-typography bold class="capitalize">
+                    {this.selectedYear}
+                  </ix-typography>
+                </button>
+              </div>
+
+              <ix-dropdown
+                ignoreRelatedSubmenu
+                trigger={this.yearSelectionRef.waitForCurrent()}
+                disableFocusTrap
+                onShowChanged={(event) => {
+                  event.stopImmediatePropagation();
+                  event.preventDefault();
+                }}
+              >
+                {this.renderYears()}
+              </ix-dropdown>
+
+              {/* <ix-button variant="tertiary">
+                <span class="capitalize">{this.selectedYear}</span>
+              </ix-button> */}
+
+              {/* <ix-button
                 variant="tertiary"
                 ref={this.dropdownButtonRef}
                 data-testid="year-month-button"
@@ -721,68 +985,108 @@ export class DatePicker implements IxDatePickerComponent {
                 <span class="capitalize">
                   {this.monthNames[this.selectedMonth]} {this.selectedYear}
                 </span>
-              </ix-button>
+              </ix-button> */}
               <ix-dropdown
+                closeBehavior={false}
+                ref={this.yearMonthSelectionDropdownRef}
                 data-testid="year-month-dropdown"
                 class="dropdown"
                 trigger={this.dropdownButtonRef.waitForCurrent()}
                 ignoreRelatedSubmenu
                 placement="bottom-start"
                 enableTopLayer={this.enableTopLayer}
+                disableFocusHandling
+                onKeyDown={(event) => {
+                  if (!hasKeyboardMode()) {
+                    return;
+                  }
+
+                  const container = this.yearMonthSelectionDropdownRef.current!;
+                  if (
+                    event.key === 'Enter' ||
+                    event.key === ' ' ||
+                    event.key === 'ArrowRight'
+                  ) {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+
+                    const item = container.querySelector(
+                      `.${IX_FOCUS_VISIBLE_ACTIVE}`
+                    ) as HTMLElement | null;
+
+                    item?.click();
+                  }
+                }}
+                onFocusout={(event) => {
+                  const relatedTarget = event.relatedTarget as HTMLElement;
+                  const dropdownElement =
+                    this.yearMonthSelectionDropdownRef.current!;
+
+                  if (dropdownElement.contains(relatedTarget)) {
+                    return;
+                  }
+
+                  dropdownElement.show = false;
+                }}
+                onShowChanged={(event) => {
+                  // Close only year/month selection, avoid closing parent dropdowns
+                  // e.g within ix-date-input
+                  event.stopImmediatePropagation();
+
+                  // const show = event.detail;
+                  // if (!hasKeyboardMode()) {
+                  //   return;
+                  // }
+
+                  // if (show) {
+                  //   // const monthContainer =
+                  //   //   this.hostElement.shadowRoot!.getElementById(
+                  //   //     'month-selection'
+                  //   //   )!;
+                  //   // requestAnimationFrameNoNgZone(() => {
+                  //   //   const elementWithFocusVisible =
+                  //   //     monthContainer.querySelector(
+                  //   //       `.selected`
+                  //   //     ) as HTMLElement | null;
+                  //   //   // Focus month UL element to ensure focus is within the month container
+                  //   //   monthContainer.focus();
+                  //   //   if (elementWithFocusVisible) {
+                  //   //     elementWithFocusVisible?.focus();
+                  //   //     return;
+                  //   //   }
+                  //   //   focusFirstDescendant(monthContainer);
+                  //   // });
+                  // } else if (!show) {
+                  //   this.requestCalendarFocus();
+                  // }
+                }}
               >
                 <div class="wrapper">
-                  <div
+                  {/* <ul
+                    id="year-selection"
                     data-testid="year-container"
                     class="overflow"
                     onScroll={() => this.infiniteScrollYears()}
                     ref={this.yearContainerRef}
+                    tabIndex={0}
+                    onFocusin={() => this.focusYearSelection()}
                   >
                     {this.renderYears()}
-                  </div>
-                  <div class="overflow" data-testid="month-container">
-                    {this.monthNames.map((month, index) => (
-                      <div
-                        key={month}
-                        ref={(ref) => {
-                          if (month === this.monthNames[0]) {
-                            this.firstMonthRef(ref);
-                          }
-                        }}
-                        class={{
-                          arrowYear: true,
-                          'month-dropdown-item': true,
-                          selected:
-                            this.tempYear === this.selectedYear &&
-                            this.tempMonth === index,
-                          'disabled-item': !this.isWithinMinMaxMonth(index),
-                        }}
-                        onClick={() => this.selectMonth(index)}
-                        onKeyUp={(event) =>
-                          event.key === 'Enter' && this.selectMonth(index)
-                        }
-                        tabIndex={0}
-                      >
-                        <ix-icon
-                          class={{
-                            hidden:
-                              this.tempYear !== this.selectedYear ||
-                              this.tempMonth !== index,
-                            checkPosition: true,
-                          }}
-                          name={iconSingleCheck}
-                          size="16"
-                        ></ix-icon>
-                        <div>
-                          <span class="capitalize monthMargin">{`${month} ${this.tempYear}`}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  </ul>
+                  <ul
+                    class="overflow"
+                    data-testid="month-container"
+                    id="month-selection"
+                    tabIndex={0}
+                    onFocusin={() => this.focusMonthSection()}
+                  >
+                    {this.renderMonths()}
+                  </ul> */}
                 </div>
               </ix-dropdown>
             </div>
             <ix-icon-button
-              onClick={() => this.changeToAdjacentMonth(1)}
+              onClick={() => this.changeCalendarView(1)}
               icon={iconChevronRightSmall}
               variant="tertiary"
               class="arrows"
@@ -812,21 +1116,24 @@ export class DatePicker implements IxDatePickerComponent {
                   {week.dayNumbers.map((day) => {
                     return day ? (
                       <div
+                        role="button"
                         key={day}
                         id={`day-cell-${day}`}
-                        date-calender-day
+                        data-calendar-day={day}
+                        data-date-value={`${week.weekNumber}-${day}`}
                         class={this.getDayClasses(day)}
                         onClick={(e) => {
                           const target = e.currentTarget as HTMLElement;
                           this.selectDay(day, target);
                         }}
-                        onKeyUp={(e) => {
+                        onKeyDown={(e) => {
                           const target = e.currentTarget as HTMLElement;
                           if (e.key === 'Enter') {
                             this.selectDay(day, target);
                           }
                         }}
                         tabIndex={day === this.focusedDay ? 0 : -1}
+                        autofocus={this.getUtilitiesBasedOnDay(day).isToday()}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
                         aria-label={`${this.selectedMonth}: ${day}`}

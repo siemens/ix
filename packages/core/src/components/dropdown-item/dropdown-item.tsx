@@ -22,14 +22,18 @@ import {
   iconChevronRightSmall,
   iconSingleCheck,
 } from '@siemens/ix-icons/icons';
-import { a11yBoolean } from '../utils/a11y';
+import { Mixin } from '../utils/internal/component';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
+import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
 
 @Component({
   tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: false,
+  },
 })
-export class DropdownItem implements DropdownItemWrapper {
+export class DropdownItem extends Mixin() implements DropdownItemWrapper {
   @Element() hostElement!: HTMLIxDropdownItemElement;
 
   /**
@@ -77,6 +81,9 @@ export class DropdownItem implements DropdownItemWrapper {
   @Prop() suppressChecked = false;
 
   /** @internal */
+  @Prop({ reflect: true }) hasVisualFocus = false;
+
+  /** @internal */
   @Event() itemClick!: EventEmitter<HTMLIxDropdownItemElement>;
 
   /** @internal */
@@ -100,6 +107,13 @@ export class DropdownItem implements DropdownItemWrapper {
   }
 
   render() {
+    const ariaAttributes = a11yHostAttributes(this.hostElement);
+
+    ariaAttributes.role = ariaAttributes.role ?? 'listitem';
+    ariaAttributes['aria-disabled'] = a11yBoolean(this.disabled);
+    ariaAttributes['aria-label'] =
+      ariaAttributes['aria-label'] ?? this.ariaLabelButton;
+
     return (
       <Host
         class={{
@@ -107,25 +121,27 @@ export class DropdownItem implements DropdownItemWrapper {
           'icon-only': this.isIconOnly(),
           disabled: this.disabled,
           submenu: this.isSubMenu,
+          [IX_FOCUS_VISIBLE]: !this.disabled,
+          'outline-visible': this.hasVisualFocus,
         }}
-        role="listitem"
+        onClick={() => {
+          if (!this.disabled) {
+            this.emitItemClick();
+          }
+        }}
+        onKeyDown={(event: KeyboardEvent) => {
+          if (!this.disabled && (event.key === 'Enter' || event.key === ' ')) {
+            this.emitItemClick();
+          }
+        }}
+        {...ariaAttributes}
       >
-        <button
-          type="button"
-          tabIndex={this.disabled ? -1 : 0}
+        <div
           class={{
             'dropdown-item': true,
             'no-checked-field': this.suppressChecked,
             disabled: this.disabled,
           }}
-          onClick={() => {
-            if (!this.disabled) {
-              this.emitItemClick();
-            }
-          }}
-          aria-label={this.ariaLabelButton}
-          aria-disabled={a11yBoolean(this.disabled)}
-          disabled={this.disabled}
         >
           {!this.suppressChecked ? (
             <div class="dropdown-item-checked">
@@ -155,7 +171,7 @@ export class DropdownItem implements DropdownItemWrapper {
               class={'submenu-icon'}
             ></ix-icon>
           ) : null}
-        </button>
+        </div>
       </Host>
     );
   }

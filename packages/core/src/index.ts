@@ -8,6 +8,7 @@
  */
 export * from './public-api';
 export { handlePlatformHelpers, IxConfig } from './setup';
+
 export type * from './components.d.ts';
 
 export type {
