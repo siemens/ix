@@ -27,6 +27,8 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
 import { createEnterLeaveDebounce } from './enter-leave';
 import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
+import { makeRef } from '../utils/make-ref';
+import { getComposedPath } from '../utils/shadow-dom';
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
@@ -322,10 +324,13 @@ export class MenuCategory extends Mixin() implements IxMenuItemBase {
         </div>
         <ix-dropdown
           closeBehavior={'both'}
+          disableFocusTrap
           show={this.showDropdown}
           onShowChanged={({ detail: dropdownShown }: CustomEvent<boolean>) => {
             this.showDropdown = dropdownShown;
 
+            // TODO Cause a false focus shift, if keyboard navigation through content
+            // Then hover and leave via mouse case a focus change to the menu item
             if (
               this.showItems === false &&
               dropdownShown === false &&

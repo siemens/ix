@@ -69,11 +69,12 @@ function applyFocusPatch() {
     ) {
       if (Build.isDev) {
         const composedPath = getComposedPath(this);
-        if (
-          !composedPath.some((el) => el.classList.contains(IX_FOCUS_VISIBLE))
-        ) {
+        const hasFocusableClass = composedPath.some((el) =>
+          el.classList.contains(IX_FOCUS_VISIBLE)
+        );
+        if (!hasFocusableClass && this.tabIndex === -1) {
           console.warn(
-            `Calling focus() on an element that is not focus-visible aware:`,
+            `Calling focus() on an element that is not focus-visible aware, or has tabIndex -1:`,
             this,
             composedPath
           );
@@ -103,6 +104,13 @@ function applyFocusPatch() {
       if (!isKeyboardMode) {
         removeVisibleFocus();
         return;
+      }
+    });
+
+    document.addEventListener('focusout', (event: FocusEvent) => {
+      const target = event.target;
+      if (target instanceof HTMLElement) {
+        updateFocusState(target);
       }
     });
   }

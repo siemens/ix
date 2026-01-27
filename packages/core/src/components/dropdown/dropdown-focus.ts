@@ -97,13 +97,23 @@ export const configureKeyboardInteraction = (
     getEventListenerTarget?: () => HTMLElement;
     querySelector?: string;
     activeQuerySelector?: string;
+    itemTriggerKeys?: string[];
     beforeKeydown?: (ev: KeyboardEvent) => void;
-    onEnterOrSpace?: (event: KeyboardEvent, activeElement: HTMLElement) => void;
+    onItemActivation?: (
+      event: KeyboardEvent,
+      activeElement: HTMLElement
+    ) => void;
   } = {}
 ) => {
   const querySelector = options.querySelector ?? QUERY_ARROW_ELEMENTS;
   const activeQuerySelector =
     options.activeQuerySelector ?? QUERY_CURRENT_VISIBLE_FOCUS;
+
+  const itemTriggerKeys = options.itemTriggerKeys ?? [
+    'ArrowRight',
+    'Enter',
+    ' ',
+  ];
 
   const getActiveElement =
     options.getActiveElement ??
@@ -241,14 +251,18 @@ export const configureKeyboardInteraction = (
           activeElement.dispatchEvent(triggerEvent);
           return;
         }
-        options.onEnterOrSpace?.(ev, activeElement!);
         break;
       }
       default:
         break;
     }
+
+    if (itemTriggerKeys.includes(ev.key)) {
+      options.onItemActivation?.(ev, activeElement!);
+    }
   };
-  getEventListenerTarget().addEventListener('keydown', callback);
-  return () =>
-    getEventListenerTarget().removeEventListener('keydown', callback);
+
+  const listenerTarget = getEventListenerTarget();
+  listenerTarget.addEventListener('keydown', callback);
+  return () => listenerTarget.removeEventListener('keydown', callback);
 };

@@ -29,9 +29,7 @@ import { Mixin } from '../utils/internal/component';
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
-  shadow: {
-    delegatesFocus: true,
-  },
+  shadow: true,
 })
 export class BreadcrumbItem extends Mixin() implements AnchorInterface {
   @Element() hostElement!: HTMLIxBreadcrumbItemElement;

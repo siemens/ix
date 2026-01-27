@@ -165,10 +165,10 @@ export class SplitButton extends Mixin() {
           aria-label={this.ariaLabelSplitIconButton}
         ></ix-icon-button>
         <ix-dropdown
-          focusHost={this.hostElement}
           closeBehavior={this.closeBehavior}
           trigger={this.triggerElementRef.waitForCurrent()}
           enableTopLayer={this.enableTopLayer}
+          disableFocusTrap
         >
           <slot></slot>
         </ix-dropdown>

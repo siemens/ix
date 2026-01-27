@@ -134,6 +134,25 @@ export class Dropdown extends Mixin() implements DropdownInterface {
   @Prop() enableTopLayer: boolean = false;
 
   /**
+   * Keys that will open the dropdown when the trigger is focused
+   *
+   * @internal
+   */
+  @Prop() keyboardActivationKeys: string[] = [
+    'ArrowDown',
+    'ArrowUp',
+    'Enter',
+    ' ',
+  ];
+
+  /**
+   * Keys that will open the dropdown when the trigger is focused
+   *
+   * @internal
+   */
+  @Prop() keyboardItemTriggerKeys: string[] = ['Enter', ' '];
+
+  /**
    * Move dropdown along main axis of alignment
    *
    * @internal
@@ -322,7 +341,13 @@ export class Dropdown extends Mixin() implements DropdownInterface {
       return;
     }
 
-    const navigationKeys = ['ArrowUp', 'ArrowDown', ' ', 'Enter'];
+    const navigationKeys = this.keyboardActivationKeys ?? [
+      'ArrowUp',
+      'ArrowDown',
+      ' ',
+      'Enter',
+    ];
+
     if (!navigationKeys.includes(event.key)) {
       return;
     }
@@ -468,12 +493,16 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     this.registerKeyListener();
     if (!this.disableFocusHandling) {
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
-        this.focusHost ?? (this.triggerElement as HTMLElement),
+        this.focusHost ?? this.hostElement,
         {
-          onEnterOrSpace: (event, activeElement) => {
+          getEventListenerTarget: () =>
+            (this.triggerElement as HTMLElement) ??
+            (this.anchorElement as HTMLElement),
+          onItemActivation: (event, activeElement) => {
             event.preventDefault();
-            activeElement.click();
+            activeElement?.click();
           },
+          itemTriggerKeys: this.keyboardItemTriggerKeys,
         }
       );
     }

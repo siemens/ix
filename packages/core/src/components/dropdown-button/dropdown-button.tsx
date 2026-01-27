@@ -21,7 +21,9 @@ import { Mixin } from '../utils/internal/component';
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
 export class DropdownButton extends Mixin() {
   @Element() hostElement!: HTMLIxDropdownButtonElement;
@@ -104,6 +106,7 @@ export class DropdownButton extends Mixin() {
           disabled: this.disabled,
         }}
         ref={this.dropdownAnchor}
+        tabIndex={this.disabled ? -1 : 0}
       >
         <div class="dropdown-button">
           {this.label ? (

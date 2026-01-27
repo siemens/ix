@@ -33,7 +33,13 @@ SPDX-License-Identifier: MIT
   <body>
     <ix-application>
       <ix-application-header>
-        <ix-button>Test</ix-button>
+        <ix-button>Test2</ix-button>
+        <ix-button>Test3</ix-button>
+        <ix-dropdown-button label="Test 123">
+          <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        </ix-dropdown-button>
+        <!-- <ix-button>Test</ix-button>
         <ix-button>Test2</ix-button>
         <ix-button>Test3</ix-button>
         <ix-dropdown-button label="Test 123">
@@ -41,6 +47,7 @@ SPDX-License-Identifier: MIT
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-dropdown-button>
 
+         -->
         <ix-avatar>
           <ix-dropdown-item>Test</ix-dropdown-item>
           <ix-dropdown-item>Test1</ix-dropdown-item>
@@ -63,7 +70,34 @@ SPDX-License-Identifier: MIT
         <ix-menu-item label="Menu Item 5"></ix-menu-item>
       </ix-menu>
       <ix-content>
+        <ix-breadcrumb id="bb">
+          <ix-breadcrumb-item>Test1</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test2</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test3</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test4</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test5</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test6</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test7</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test8</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test9</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test10</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Test11</ix-breadcrumb-item>
+        </ix-breadcrumb>
+
         <ix-split-button label="Bla">
+          <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        </ix-split-button>
+
+        <ix-select editable>
+          <ix-select-item value="Option 1" label="Option 1"></ix-select-item>
+          <ix-select-item value="Option 2" label="Option 2"></ix-select-item>
+          <ix-select-item value="Option 3" label="Option abc"></ix-select-item>
+          <ix-select-item value="Option 4" label="Option abx"></ix-select-item>
+          <ix-select-item value="Option 5" label="Option 5"></ix-select-item>
+          <ix-select-item value="Option 6" label="Option 6"></ix-select-item>
+        </ix-select>
+        <!-- <ix-split-button label="Bla">
           <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         </ix-split-button>
@@ -180,7 +214,7 @@ SPDX-License-Identifier: MIT
           <ix-select-item value="Option 13" label="Option 13"></ix-select-item>
           <ix-select-item value="Option 14" label="Option 14"></ix-select-item>
           <ix-select-item value="Option 15" label="Option 15"></ix-select-item>
-        </ix-select>
+        </ix-select> -->
       </ix-content>
     </ix-application>
     <script>

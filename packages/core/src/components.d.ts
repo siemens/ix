@@ -1376,6 +1376,16 @@ export namespace Components {
          */
         "ignoreRelatedSubmenu": boolean;
         /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default [     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
+         */
+        "keyboardActivationKeys": string[];
+        /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default ['Enter', ' ']
+         */
+        "keyboardItemTriggerKeys": string[];
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -1513,11 +1523,6 @@ export namespace Components {
           * @default false
          */
         "suppressChecked": boolean;
-        /**
-          * Whether to suppress focus behavior
-          * @default false
-         */
-        "suppressFocus": boolean;
     }
     interface IxDropdownQuickActions {
     }
@@ -7386,6 +7391,16 @@ declare namespace LocalJSX {
          */
         "ignoreRelatedSubmenu"?: boolean;
         /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default [     'ArrowDown',     'ArrowUp',     'Enter',     ' ',   ]
+         */
+        "keyboardActivationKeys"?: string[];
+        /**
+          * Keys that will open the dropdown when the trigger is focused
+          * @default ['Enter', ' ']
+         */
+        "keyboardItemTriggerKeys"?: string[];
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -7533,11 +7548,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "suppressChecked"?: boolean;
-        /**
-          * Whether to suppress focus behavior
-          * @default false
-         */
-        "suppressFocus"?: boolean;
     }
     interface IxDropdownQuickActions {
     }

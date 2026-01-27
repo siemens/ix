@@ -74,13 +74,6 @@ export class DropdownItem extends Mixin() implements DropdownItemWrapper {
    */
   @Prop() checked = false;
 
-  /**
-   * Whether to suppress focus behavior
-   *
-   * @internal
-   */
-  @Prop() suppressFocus = false;
-
   /** @internal */
   @Prop() isSubMenu = false;
 
@@ -128,23 +121,20 @@ export class DropdownItem extends Mixin() implements DropdownItemWrapper {
           'icon-only': this.isIconOnly(),
           disabled: this.disabled,
           submenu: this.isSubMenu,
-          [IX_FOCUS_VISIBLE]: !this.suppressFocus,
+          [IX_FOCUS_VISIBLE]: !this.disabled,
           'outline-visible': this.hasVisualFocus,
         }}
         onClick={() => {
-          console.log('dropdown item clicked');
           if (!this.disabled) {
             this.emitItemClick();
           }
         }}
         onKeyDown={(event: KeyboardEvent) => {
           if (!this.disabled && (event.key === 'Enter' || event.key === ' ')) {
-            console.log('dropdown item clicked');
             this.emitItemClick();
           }
         }}
         {...ariaAttributes}
-        // tabIndex={this.suppressFocus || this.disabled ? -1 : 0}
       >
         <div
           class={{

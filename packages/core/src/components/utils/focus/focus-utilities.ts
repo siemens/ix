@@ -133,8 +133,10 @@ export const focusElement = (element: HTMLElement | null | undefined) => {
 
   element.focus();
 };
+// TODO Check why ix-focusable is not working as expected in some components
+// export const focusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled]), .ix-focusable:not([hidden]):not([disabled]):not([tabindex^="-"]), .ix-focusable[disabled="false"]:not([hidden]):not([tabindex^="-"]), ${[
 
-export const focusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled]), .ix-focusable:not([hidden]):not([disabled]):not([tabindex^="-"]), .ix-focusable[disabled="false"]:not([hidden]):not([tabindex^="-"]), ${[
+export const focusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled]), ${[
   'ix-dropdown-item',
   'ix-select-item',
 ]

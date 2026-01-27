@@ -30,17 +30,17 @@ import {
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
 import {
+  IX_FOCUS_VISIBLE,
+  IX_FOCUS_VISIBLE_ACTIVE,
+  queryElements,
+} from '../utils/focus/focus-utilities';
+import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
 import { Mixin } from '../utils/internal/component';
-import {
-  IX_FOCUS_VISIBLE_ACTIVE,
-  IX_FOCUS_VISIBLE,
-  queryElements,
-} from '../utils/focus/focus-utilities';
+import { makeRef } from '../utils/make-ref';
 
 let selectId = 0;
 
@@ -259,7 +259,6 @@ export class Select
   private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
 
   private inputElement?: HTMLInputElement;
-  private keyboardNavigationCleanup?: () => void;
   private touched = false;
 
   get nonShadowItems() {
@@ -454,6 +453,7 @@ export class Select
 
   private createAddItemElement() {
     const onAddItemButtonClick = () => {
+      console.log(this.inputFilterText);
       this.emitAddItem(this.inputFilterText);
     };
 
@@ -507,12 +507,6 @@ export class Select
     this.inputRef.current?.removeAttribute('aria-activedescendant');
   }
 
-  private hasActiveVisualFocusItem() {
-    return (
-      queryElements(this.hostElement, `.${IX_FOCUS_VISIBLE_ACTIVE}`).length > 0
-    );
-  }
-
   private getActiveVisualFocusedItem() {
     const elements = queryElements(
       this.hostElement,
@@ -544,7 +538,6 @@ export class Select
     } else {
       this.updateSelection();
       this.inputFilterText = '';
-      this.keyboardNavigationCleanup?.();
       this.removeVisualFocusFromItems();
       this.dropdownItemsVisualFocused = false;
     }
@@ -676,29 +669,6 @@ export class Select
     );
   }
 
-  onKeyDown(event: KeyboardEvent): void {
-    if (!this.dropdownShow) {
-      return;
-    }
-
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-        if (this.hasActiveVisualFocusItem()) {
-          const item =
-            this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
-          if (item.classList.contains('add-item')) {
-            this.emitAddItem(this.inputFilterText);
-          } else {
-            this.itemClick(item.value);
-            this.setItemFilter();
-          }
-        }
-        this.dropdownShow = false;
-        break;
-    }
-  }
-
   @HookValidationLifecycle()
   onValidationChange({
     isInvalid,
@@ -764,10 +734,10 @@ export class Select
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
-          [IX_FOCUS_VISIBLE]: true,
           'show-focus-outline':
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}
+        tabIndex={this.disabled ? -1 : 0}
       >
         <ix-field-wrapper
           required={this.required}
@@ -827,7 +797,6 @@ export class Select
                     onFocus={() => this.onInputFocus()}
                     onBlur={(e) => this.onInputBlur(e)}
                     onInput={() => this.setItemFilter()}
-                    onKeyDown={(e) => this.onKeyDown(e)}
                   />
                   {this.allowClear &&
                   !this.disabled &&
@@ -850,7 +819,11 @@ export class Select
                   ) : null}
                   {this.disabled || this.readonly ? null : (
                     <ix-icon-button
-                      tabindex={-1}
+                      ref={(ref) => {
+                        // VDOM issue if tabIndex is provided via property <ix-icon-button tabIndex={-1}>
+                        // the tabindex will be '0' after expanding the dropdown
+                        ref!.tabIndex = -1;
+                      }}
                       data-select-dropdown
                       key="dropdown"
                       class={{ 'dropdown-visible': this.dropdownShow }}
@@ -869,36 +842,9 @@ export class Select
           </div>
         </ix-field-wrapper>
         <ix-dropdown
-          // onExperimentalRequestFocus={({ detail }) => {
-          //   /**
-          //    * Will be fired only after dropdown changed visibility to "true"
-          //    */
-
-          //   const hasItems = this.focusableItems.length !== 0;
-
-          //   if (!hasItems) {
-          //     return;
-          //   }
-
-          //   if (
-          //     detail.keyEvent.key === 'ArrowDown' &&
-          //     detail.keyEvent.altKey === false
-          //   ) {
-          //     this.removeVisualFocusFromItems();
-          //     this.setItemActive(this.focusableItems[0]);
-          //     this.dropdownItemsVisualFocused = true;
-          //   }
-
-          //   if (detail.keyEvent.key === 'ArrowUp') {
-          //     this.removeVisualFocusFromItems();
-          //     this.setItemActive(
-          //       this.focusableItems[this.focusableItems.length - 1]
-          //     );
-          //     this.dropdownItemsVisualFocused = true;
-          //   }
-          // }}
+          keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
+          keyboardItemTriggerKeys={['Enter']}
           disableFocusTrap
-          // disableFocusHandling
           focusHost={this.hostElement}
           ref={this.dropdownRef}
           show={this.dropdownShow}
@@ -932,6 +878,23 @@ export class Select
           }}
           role="listbox"
           id={`${this.hostId}-listbox`}
+          onClick={(event) => {
+            const target = event.target as HTMLElement;
+            if (
+              target.tagName === 'IX-DROPDOWN-ITEM' ||
+              target.tagName === 'IX-SELECT-ITEM'
+            ) {
+              const item =
+                this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
+              if (item.classList.contains('add-item')) {
+                this.emitAddItem(this.inputFilterText);
+              } else {
+                this.itemClick(item.value);
+                this.setItemFilter();
+              }
+              this.dropdownShow = false;
+            }
+          }}
         >
           <div
             class={{

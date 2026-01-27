@@ -140,8 +140,8 @@ export class IconButton extends Mixin() {
         class={{
           ...this.getIconSizeClass(),
           disabled: this.disabled || this.loading,
-          [IX_FOCUS_VISIBLE]: true,
         }}
+        tabIndex={this.disabled ? -1 : 0}
       >
         <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>
