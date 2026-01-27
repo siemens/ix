@@ -133,6 +133,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   /**
    * Define a container element to constrain dropdown within.
+   * @since 4.3.0
    */
   @Prop() container?: ElementReference;
 
