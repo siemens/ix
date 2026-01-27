@@ -177,16 +177,16 @@ regressionTest(
     await pagination.evaluate((elm: HTMLIxPaginationElement) => {
       elm.itemCountOptions = [5, 25, 50, 100];
     });
-    await page.waitForTimeout(100);
 
     await pagination.getByRole('button').nth(-1).click();
 
     const dropdownItems = pagination.locator('ix-dropdown-item');
-    await expect(dropdownItems).toHaveCount(4);
-    await expect(dropdownItems.nth(0)).toContainText('5');
-    await expect(dropdownItems.nth(1)).toContainText('25');
-    await expect(dropdownItems.nth(2)).toContainText('50');
-    await expect(dropdownItems.nth(3)).toContainText('100');
+    const expectedValues = ['5', '25', '50', '100'];
+    await expect(dropdownItems).toHaveCount(expectedValues.length);
+
+    for (let i = 0; i < expectedValues.length; i++) {
+      await expect(dropdownItems.nth(i)).toContainText(expectedValues[i]);
+    }
   }
 );
 
@@ -202,15 +202,15 @@ regressionTest(
     await pagination.evaluate((elm: HTMLIxPaginationElement) => {
       elm.itemCountOptions = [100, 5, 50, 25];
     });
-    await page.waitForTimeout(100);
 
     await pagination.getByRole('button').nth(-1).click();
 
     const dropdownItems = pagination.locator('ix-dropdown-item');
-    await expect(dropdownItems.nth(0)).toContainText('5');
-    await expect(dropdownItems.nth(1)).toContainText('25');
-    await expect(dropdownItems.nth(2)).toContainText('50');
-    await expect(dropdownItems.nth(3)).toContainText('100');
+    const expectedValues = ['5', '25', '50', '100'];
+
+    for (let i = 0; i < expectedValues.length; i++) {
+      await expect(dropdownItems.nth(i)).toContainText(expectedValues[i]);
+    }
   }
 );
 
@@ -227,8 +227,7 @@ regressionTest(
       elm.itemCountOptions = [0, -5, 10, 20, -1];
       elm.count = 11;
     });
-    await page.waitForTimeout(100);
-
+    //await page.waitForSelector('ix-pagination');
     await pagination.getByRole('button').nth(-1).click();
 
     const dropdownItems = pagination.locator('ix-dropdown-item');
@@ -250,16 +249,15 @@ regressionTest(
     await pagination.evaluate((elm: HTMLIxPaginationElement) => {
       elm.itemCountOptions = [];
     });
-    await page.waitForTimeout(100);
 
     await pagination.getByRole('button').nth(-1).click();
 
     const dropdownItems = pagination.locator('ix-dropdown-item');
-    await expect(dropdownItems).toHaveCount(5);
-    await expect(dropdownItems.nth(0)).toContainText('10');
-    await expect(dropdownItems.nth(1)).toContainText('15');
-    await expect(dropdownItems.nth(2)).toContainText('20');
-    await expect(dropdownItems.nth(3)).toContainText('40');
-    await expect(dropdownItems.nth(4)).toContainText('100');
+    const expectedValues = ['10', '15', '20', '40', '100'];
+    await expect(dropdownItems).toHaveCount(expectedValues.length);
+
+    for (let i = 0; i < expectedValues.length; i++) {
+      await expect(dropdownItems.nth(i)).toContainText(expectedValues[i]);
+    }
   }
 );

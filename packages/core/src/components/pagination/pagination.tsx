@@ -15,6 +15,7 @@ import {
   h,
   Host,
   Prop,
+  Watch,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yBoolean } from '../utils/a11y';
@@ -131,6 +132,16 @@ export class Pagination {
    * Item count change event
    */
   @Event() itemCountChanged!: EventEmitter<number>;
+
+  @Watch('itemCountOptions')
+  onItemCountOptionsChange() {
+    if (this.advanced && !this.hideItemCount) {
+      this.validatedItemCountOptions = this.getValidItemCountOptions();
+      this.validateEmptyItemCountOptions();
+      this.validateAllInvalidItemCountOptions();
+      this.validateItemCountMismatch();
+    }
+  }
 
   componentWillLoad() {
     if (!this.advanced || this.hideItemCount) {
