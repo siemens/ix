@@ -268,6 +268,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
   }
 
   dismiss() {
+    console.trace(this.getId());
     this.show = false;
   }
 
