@@ -10,7 +10,6 @@
 import {
   iconChevronLeftSmall,
   iconChevronRightSmall,
-  iconSingleCheck,
 } from '@siemens/ix-icons/icons';
 import {
   Component,
@@ -27,20 +26,12 @@ import {
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
-import { configureKeyboardInteraction } from '../dropdown/dropdown-focus';
+import { Mixin } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
-import { Mixin } from '../utils/internal/component';
-import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
-import {
-  focusFirstDescendant,
-  IX_FOCUS_VISIBLE_ACTIVE,
-  IX_FOCUS_VISIBLE,
-  queryElements,
-} from '../utils/focus/focus-utilities';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -247,9 +238,10 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
   @State() selectedMonth = 0;
   @State() tempMonth = 0;
 
-  private readonly dropdownButtonRef = makeRef<HTMLElement>();
-  private readonly yearContainerRef = makeRef<HTMLElement>();
-  private readonly firstMonthRef = makeRef<HTMLElement>();
+  private readonly yearInfiniteScrollContainerRef = makeRef<HTMLElement>();
+  private readonly selectMonthButtonRef = makeRef<HTMLButtonElement>();
+  private readonly selectYearButtonRef = makeRef<HTMLButtonElement>();
+
   private readonly yearMonthSelectionDropdownRef =
     makeRef<HTMLIxDropdownElement>();
 
@@ -369,37 +361,6 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
 
   override componentDidLoad() {
     super.componentDidLoad?.();
-
-    const yearContainer =
-      this.hostElement.shadowRoot!.getElementById('year-selection')!;
-
-    const monthContainer =
-      this.hostElement.shadowRoot!.getElementById('month-selection')!;
-
-    const keyboardNavigationOptions = (parent: HTMLElement) => ({
-      querySelector: `.${IX_FOCUS_VISIBLE}`,
-      activeQuerySelector: `.${IX_FOCUS_VISIBLE}.${IX_FOCUS_VISIBLE_ACTIVE}`,
-      getActiveElement: () => {
-        const elements = queryElements(parent, `.${IX_FOCUS_VISIBLE_ACTIVE}`);
-        if (elements.length === 0) {
-          const fallbackElement = parent.querySelector(`.${IX_FOCUS_VISIBLE}`)!;
-          fallbackElement.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
-          return fallbackElement as HTMLElement;
-        }
-
-        return elements[0] as HTMLElement;
-      },
-    });
-
-    // this.keyboardNavigationYearSelection = configureKeyboardInteraction(
-    //   yearContainer,
-    //   keyboardNavigationOptions(yearContainer)
-    // );
-
-    // this.keyboardNavigationMonthSelection = configureKeyboardInteraction(
-    //   monthContainer,
-    //   keyboardNavigationOptions(monthContainer)
-    // );
   }
 
   componentWillRender() {
@@ -430,20 +391,6 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     if (firstDayCell) {
       firstDayCell.focus();
     }
-  }
-
-  private getActiveCalenderViewElement(
-    type: 'month' | 'year'
-  ): HTMLElement | null {
-    const shadowActiveElement = this.hostElement.shadowRoot!.activeElement;
-
-    if (shadowActiveElement) {
-      return shadowActiveElement as HTMLElement;
-    }
-
-    return this.hostElement
-      .shadowRoot!.getElementById(`${type}-selection`)
-      ?.querySelector('.arrowYear.selected') as HTMLElement;
   }
 
   private setTranslations() {
@@ -569,15 +516,8 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     this.calendar = calendar;
   }
 
-  private focusMonth() {
-    const monthContainer =
-      this.hostElement.shadowRoot!.getElementById('month-selection')!;
-
-    monthContainer.focus();
-  }
-
   private infiniteScrollYears() {
-    const yearContainer = this.yearContainerRef.current;
+    const yearContainer = this.yearInfiniteScrollContainerRef.current;
 
     if (!yearContainer) {
       return;
@@ -611,15 +551,6 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     this.selectedMonth = month;
     this.selectedYear = this.tempYear;
     this.tempMonth = month;
-
-    this.closeYearMonthDropdown();
-  }
-
-  private closeYearMonthDropdown() {
-    const dropdown = this.yearMonthSelectionDropdownRef.current;
-    if (dropdown) {
-      dropdown.show = false;
-    }
   }
 
   private changeCalendarView(number: -1 | 1) {
@@ -786,7 +717,6 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
           class={{
             'month-dropdown-item': true,
             'disabled-item': !this.isWithinMinMaxMonth(index),
-            [IX_FOCUS_VISIBLE]: true,
           }}
           onClick={() => {
             this.selectMonth(index);
@@ -811,14 +741,10 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
           class={{
             'month-dropdown-item': true,
             'disabled-item': !this.isWithinMinMaxYear(year),
-            [IX_FOCUS_VISIBLE]: true,
           }}
           onClick={() => {
             this.tempYear = year;
-
-            if (hasKeyboardMode()) {
-              this.focusMonth();
-            }
+            this.selectedYear = this.tempYear;
           }}
         >
           <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
@@ -827,28 +753,6 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     }
 
     return rows;
-  }
-
-  private requestCalendarFocus() {
-    if (this.yearMonthSelectionDropdownRef.current?.show) {
-      return;
-    }
-    this.changeFocusedDay();
-
-    requestAnimationFrameNoNgZone(() => {
-      const shadowRoot = this.hostElement.shadowRoot!;
-      let dayToFocus = shadowRoot.querySelector(
-        '.calendar-item[autofocus]'
-      ) as HTMLElement;
-
-      if (dayToFocus === null) {
-        dayToFocus = shadowRoot.querySelector(
-          '.calendar-item.first-day'
-        ) as HTMLElement;
-      }
-
-      dayToFocus?.focus();
-    });
   }
 
   private changeFocusedDay() {
@@ -885,41 +789,6 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     });
   }
 
-  private focusYearSelection() {
-    requestAnimationFrameNoNgZone(() => {
-      // Need to be run inside rAF to ensure the year selection is rendered and focused
-      const selectedYearElement =
-        this.yearContainerRef.current?.querySelector('.selected');
-
-      if (selectedYearElement) {
-        (selectedYearElement as HTMLElement).focus();
-        return;
-      }
-
-      focusFirstDescendant(this.yearContainerRef.current as HTMLElement);
-    });
-  }
-
-  private focusMonthSection() {
-    requestAnimationFrameNoNgZone(() => {
-      // Need to be run inside rAF to ensure the month selection is rendered and focused
-      const monthContainer =
-        this.hostElement.shadowRoot!.getElementById('month-selection')!;
-
-      const selectedMonth = monthContainer.querySelector('.selected');
-
-      if (selectedMonth) {
-        (selectedMonth as HTMLElement).focus();
-        return;
-      }
-
-      focusFirstDescendant(monthContainer as HTMLElement);
-    });
-  }
-
-  private readonly monthSelectionRef = makeRef<HTMLButtonElement>();
-  private readonly yearSelectionRef = makeRef<HTMLButtonElement>();
-
   render() {
     return (
       <Host
@@ -938,7 +807,10 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
             ></ix-icon-button>
             <div class="selector">
               <div class="custom-button">
-                <button class={'btn btn-tertiary'} ref={this.monthSelectionRef}>
+                <button
+                  class={'btn btn-tertiary'}
+                  ref={this.selectMonthButtonRef}
+                >
                   <ix-typography bold class="capitalize">
                     {this.monthNames[this.selectedMonth]}
                   </ix-typography>
@@ -947,14 +819,21 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
 
               <ix-dropdown
                 ignoreRelatedSubmenu
-                trigger={this.monthSelectionRef.waitForCurrent()}
+                trigger={this.selectMonthButtonRef.waitForCurrent()}
                 disableFocusTrap
+                onShowChanged={(event) => {
+                  event.stopImmediatePropagation();
+                  event.preventDefault();
+                }}
               >
                 {this.renderMonths()}
               </ix-dropdown>
 
               <div class="custom-button">
-                <button class={'btn btn-tertiary'} ref={this.yearSelectionRef}>
+                <button
+                  class={'btn btn-tertiary'}
+                  ref={this.selectYearButtonRef}
+                >
                   <ix-typography bold class="capitalize">
                     {this.selectedYear}
                   </ix-typography>
@@ -962,127 +841,19 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
               </div>
 
               <ix-dropdown
+                ref={this.yearInfiniteScrollContainerRef}
+                class="infinite-year-scrolling"
                 ignoreRelatedSubmenu
-                trigger={this.yearSelectionRef.waitForCurrent()}
+                trigger={this.selectYearButtonRef.waitForCurrent()}
                 disableFocusTrap
                 onShowChanged={(event) => {
                   event.stopImmediatePropagation();
                   event.preventDefault();
                 }}
+                onScroll={() => this.infiniteScrollYears()}
               >
                 {this.renderYears()}
-              </ix-dropdown>
-
-              {/* <ix-button variant="tertiary">
-                <span class="capitalize">{this.selectedYear}</span>
-              </ix-button> */}
-
-              {/* <ix-button
-                variant="tertiary"
-                ref={this.dropdownButtonRef}
-                data-testid="year-month-button"
-              >
-                <span class="capitalize">
-                  {this.monthNames[this.selectedMonth]} {this.selectedYear}
-                </span>
-              </ix-button> */}
-              <ix-dropdown
-                closeBehavior={false}
-                ref={this.yearMonthSelectionDropdownRef}
-                data-testid="year-month-dropdown"
-                class="dropdown"
-                trigger={this.dropdownButtonRef.waitForCurrent()}
-                ignoreRelatedSubmenu
-                placement="bottom-start"
-                enableTopLayer={this.enableTopLayer}
-                disableFocusHandling
-                onKeyDown={(event) => {
-                  if (!hasKeyboardMode()) {
-                    return;
-                  }
-
-                  const container = this.yearMonthSelectionDropdownRef.current!;
-                  if (
-                    event.key === 'Enter' ||
-                    event.key === ' ' ||
-                    event.key === 'ArrowRight'
-                  ) {
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-
-                    const item = container.querySelector(
-                      `.${IX_FOCUS_VISIBLE_ACTIVE}`
-                    ) as HTMLElement | null;
-
-                    item?.click();
-                  }
-                }}
-                onFocusout={(event) => {
-                  const relatedTarget = event.relatedTarget as HTMLElement;
-                  const dropdownElement =
-                    this.yearMonthSelectionDropdownRef.current!;
-
-                  if (dropdownElement.contains(relatedTarget)) {
-                    return;
-                  }
-
-                  dropdownElement.show = false;
-                }}
-                onShowChanged={(event) => {
-                  // Close only year/month selection, avoid closing parent dropdowns
-                  // e.g within ix-date-input
-                  event.stopImmediatePropagation();
-
-                  // const show = event.detail;
-                  // if (!hasKeyboardMode()) {
-                  //   return;
-                  // }
-
-                  // if (show) {
-                  //   // const monthContainer =
-                  //   //   this.hostElement.shadowRoot!.getElementById(
-                  //   //     'month-selection'
-                  //   //   )!;
-                  //   // requestAnimationFrameNoNgZone(() => {
-                  //   //   const elementWithFocusVisible =
-                  //   //     monthContainer.querySelector(
-                  //   //       `.selected`
-                  //   //     ) as HTMLElement | null;
-                  //   //   // Focus month UL element to ensure focus is within the month container
-                  //   //   monthContainer.focus();
-                  //   //   if (elementWithFocusVisible) {
-                  //   //     elementWithFocusVisible?.focus();
-                  //   //     return;
-                  //   //   }
-                  //   //   focusFirstDescendant(monthContainer);
-                  //   // });
-                  // } else if (!show) {
-                  //   this.requestCalendarFocus();
-                  // }
-                }}
-              >
-                <div class="wrapper">
-                  {/* <ul
-                    id="year-selection"
-                    data-testid="year-container"
-                    class="overflow"
-                    onScroll={() => this.infiniteScrollYears()}
-                    ref={this.yearContainerRef}
-                    tabIndex={0}
-                    onFocusin={() => this.focusYearSelection()}
-                  >
-                    {this.renderYears()}
-                  </ul>
-                  <ul
-                    class="overflow"
-                    data-testid="month-container"
-                    id="month-selection"
-                    tabIndex={0}
-                    onFocusin={() => this.focusMonthSection()}
-                  >
-                    {this.renderMonths()}
-                  </ul> */}
-                </div>
+                <div class="force-scrolling"></div>
               </ix-dropdown>
             </div>
             <ix-icon-button

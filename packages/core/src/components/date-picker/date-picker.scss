@@ -46,16 +46,6 @@
       line-height: 20px;
     }
 
-    .month-dropdown-item {
-      margin-left: 4px;
-      margin-right: 4px;
-
-      &.ix-focused {
-        outline: 1px solid var(--theme-color-focus-bdr);
-        outline-offset: var(--theme-btn--focus--outline-offset);
-      }
-    }
-
     .arrowYear {
       display: flex;
       position: relative;
@@ -89,13 +79,9 @@
     }
   }
 
-  .wrapper {
-    display: flex;
-
-    .overflow {
-      overflow-y: scroll;
-      max-height: 250px;
-    }
+  .infinite-year-scrolling {
+    max-height: 15.625rem;
+    overflow-y: scroll;
   }
 
   .grid {
