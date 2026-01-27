@@ -5,4 +5,4 @@
 "@siemens/ix-vue": patch
 ---
 
-fix(core/menu-avatar): add property for setting custom tooltip text.
+Add properties **tooltipText** and **ariaLabelTooltip** to **ix-menu-avatar**.
