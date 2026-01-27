@@ -230,6 +230,13 @@ export interface PickerValidityStateTracker {
   lastEmittedValueMissing?: boolean;
 }
 
+export function createPickerValidityStateTracker(): PickerValidityStateTracker {
+  return {
+    lastEmittedPatternMismatch: false,
+    lastEmittedValueMissing: false,
+  };
+}
+
 export interface PickerValidityContext {
   touched: boolean;
   invalidReason?: string;

@@ -25,9 +25,9 @@ import { DateTime } from 'luxon';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
-  PickerValidityStateTracker,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  createPickerValidityStateTracker,
   emitPickerValidityStateChangeIfChanged,
   handleSubmitOnEnterKeydown,
 } from '../input/input.util';
@@ -256,10 +256,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
   private touched = false;
-  private validityTracker: PickerValidityStateTracker = {
-    lastEmittedPatternMismatch: false,
-    lastEmittedValueMissing: false,
-  };
+  private validityTracker = createPickerValidityStateTracker();
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 

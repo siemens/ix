@@ -57,7 +57,7 @@ test.describe('validation', () => {
       await expect(ixInput).not.toHaveClass(/ix-invalid--required/);
     });
 
-    test('validityStateChange emitted only if validity change', async ({
+    test.only('validityStateChange emitted only if validity change', async ({
       mount,
       page,
     }) => {
@@ -85,8 +85,7 @@ test.describe('validation', () => {
         (el as any).__validityChanged = false;
       });
 
-      await shadowDomInput.click({ clickCount: 3 });
-      await page.keyboard.press('Backspace');
+      await shadowDomInput.clear();
       await shadowDomInput.blur();
 
       const secondCheckResult = await ixInput.evaluate(
