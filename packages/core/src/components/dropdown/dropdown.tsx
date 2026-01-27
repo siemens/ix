@@ -617,12 +617,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       ...(positionConfig.middleware?.filter(Boolean) || []),
       inline(),
       shift({
-        limiter: this.containerElement
-          ? limitShift({
-              // @ts-ignore
-              boundary: this.containerElement,
-            })
-          : undefined,
+        limiter: this.containerElement ? limitShift() : undefined,
       }),
     ];
 
