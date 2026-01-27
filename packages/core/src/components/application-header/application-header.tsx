@@ -133,6 +133,14 @@ export class ApplicationHeader {
   @Prop() ariaLabelMoreMenuIconButton?: string;
 
   /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
+  /**
    * Event emitted when the menu toggle button is clicked
    */
   @Event() menuToggle!: EventEmitter<boolean>;
@@ -438,6 +446,7 @@ export class ApplicationHeader {
               aria-hidden={a11yBoolean(
                 !(this.hasOverflowContextMenu || this.hasOverflowSlotElements)
               )}
+              enableTopLayer={this.enableTopLayer}
             >
               <div
                 class="dropdown-content"
