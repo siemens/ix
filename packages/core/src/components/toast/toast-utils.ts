@@ -43,8 +43,15 @@ export interface ToastConfig {
    * Color of the icon
    */
   iconColor?: string;
+  /**
+   * Allows to hide the icon in the toast
+   */
+  hideIcon?: boolean;
 }
 
+/**
+ * Gets the toast container.
+ */
 export function getToastContainer() {
   const containerList = Array.from(
     document.querySelectorAll('ix-toast-container')
@@ -65,16 +72,25 @@ export function getToastContainer() {
   return container;
 }
 
+/**
+ * Sets the position of the toast container
+ */
 export function setToastPosition(position: ToastPosition) {
   const container = getToastContainer();
   container.setAttribute('position', position);
 }
 
+/**
+ * Display a toast based on the provided configuration
+ */
 function toast(config: ToastConfig): Promise<ShowToastResult> {
   const container = getToastContainer();
   return container.showToast(config);
 }
 
+/**
+ * Display an info toast based on the provided configuration
+ */
 toast.info = (config: ToastConfig) => {
   return toast({
     ...config,
@@ -82,6 +98,9 @@ toast.info = (config: ToastConfig) => {
   });
 };
 
+/**
+ * Display an error toast based on the provided configuration
+ */
 toast.error = (config: ToastConfig) => {
   return toast({
     ...config,
@@ -89,6 +108,9 @@ toast.error = (config: ToastConfig) => {
   });
 };
 
+/**
+ * Display a success toast based on the provided configuration
+ */
 toast.success = (config: ToastConfig) => {
   return toast({
     ...config,
@@ -96,6 +118,9 @@ toast.success = (config: ToastConfig) => {
   });
 };
 
+/**
+ * Display a warning toast based on the provided configuration
+ */
 toast.warning = (config: ToastConfig) => {
   return toast({
     ...config,

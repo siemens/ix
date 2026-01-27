@@ -8,9 +8,8 @@
  */
 
 import { Component } from '@angular/core';
-import { IxButton } from '@siemens/ix-angular/standalone';
+import { IxButton, ModalService } from '@siemens/ix-angular/standalone';
 
-import { ModalService } from '@siemens/ix-angular';
 import ModalByInstanceExample from './modal-by-instance-content';
 
 @Component({

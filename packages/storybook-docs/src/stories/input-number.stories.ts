@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 import { html } from 'lit';
 
@@ -79,5 +79,23 @@ export const Step: Story = {
     showStepperButtons: true,
     step: 3,
     max: 10,
+  },
+};
+
+export const ScientificNotationPositiveExponent: Story = {
+  args: {
+    label: 'Stepper',
+    showStepperButtons: true,
+    step: '1',
+    value: 1e3,
+  },
+};
+
+export const ScientificNotationNegativeExponent: Story = {
+  args: {
+    label: 'Stepper',
+    showStepperButtons: true,
+    step: '1',
+    value: 1e-3,
   },
 };

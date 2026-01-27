@@ -22,7 +22,7 @@ import { MenuTabs } from '../utils/menu-tabs/menu-tabs-fc';
 import {
   CustomCloseEvent,
   initialize,
-  setTab,
+  syncTabDisplay,
 } from '../utils/menu-tabs/menu-tabs-utils';
 
 @Component({
@@ -44,6 +44,11 @@ export class MenuSettings {
    */
   @Prop() label = 'Settings';
 
+  /**
+   * Aria label for close button
+   */
+  @Prop() ariaLabelCloseButton = 'Close Settings';
+
   /** @internal */
   @Prop() show = false;
 
@@ -61,8 +66,10 @@ export class MenuSettings {
   @State() items!: HTMLIxMenuSettingsItemElement[];
 
   @Watch('activeTabLabel')
-  updateTab(label: string) {
-    setTab(this, label);
+  updateTab(newLabel: string, oldLabel: string) {
+    if (newLabel !== oldLabel) {
+      syncTabDisplay(this, newLabel);
+    }
   }
 
   componentWillLoad() {

@@ -22,11 +22,13 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { IxTimePickerCustomEvent } from '../../components';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -34,16 +36,16 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
-import { IxTimePickerCustomEvent } from '../../components';
-import type { TimeInputValidityState } from './time-input.types';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
+import { makeRef } from '../utils/make-ref';
+import type { TimeInputValidityState } from './time-input.types';
 
 /**
  * @since 3.2.0
@@ -200,11 +202,30 @@ export class TimeInput implements IxInputFieldComponent<string> {
   i18nMillisecondColumnHeader: string = 'ms';
 
   /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
    * Hides the header of the picker.
    *
    * @since 4.0.0
    */
   @Prop() hideHeader: boolean = false;
+
+  /**
+   * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Input change event.
@@ -243,6 +264,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
+  private handleInputKeyDown(event: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      event,
+      this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
+  }
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -371,6 +400,9 @@ export class TimeInput implements IxInputFieldComponent<string> {
           class={{
             'is-invalid': this.isInputInvalid,
           }}
+          style={{
+            textAlign: this.textAlignment,
+          }}
           disabled={this.disabled}
           readOnly={this.readonly}
           required={this.required}
@@ -397,6 +429,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
             this.ixBlur.emit();
             this.touched = true;
           }}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -473,9 +506,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorTimeUnparsable
-      : this.invalidText;
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorTimeUnparsable
+    );
 
     return (
       <Host
@@ -506,7 +541,8 @@ export class TimeInput implements IxInputFieldComponent<string> {
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
-          suppressOverflowBehavior={true}
+          enableTopLayer={this.enableTopLayer}
+          suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;

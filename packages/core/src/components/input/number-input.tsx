@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -19,6 +19,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import {
   HookValidationLifecycle,
@@ -38,6 +39,8 @@ import {
 } from './input.util';
 
 let numberInputIds = 0;
+
+const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
 
 /**
  * @form-ready
@@ -65,12 +68,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop({ reflect: true }) placeholder?: string;
 
   /**
-   * The value of the input field
+   * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
    */
-  @Prop({ reflect: true, mutable: true }) value: number = 0;
+  @Prop({ reflect: true, mutable: true }) value?: number = 0;
 
   /**
-   * Indicates if the field is required
+   * Indicates if the field is required. When required, empty values (undefined) are not accepted.
    */
   @Prop({ reflect: true }) required: boolean = false;
 
@@ -145,11 +148,29 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop() showStepperButtons?: boolean;
 
   /**
-   * Step value to increment or decrement the input value
+   * Step value to increment or decrement the input value. Default step value is 1.
    *
-   * @since 3.0.0
    */
-  @Prop() step?: string | number;
+  @Prop() step?: string | number = 1;
+
+  /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
+   * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'end';
+
+  /**
+   * If true, the valueChange event will return null instead of 0 for an empty input state.
+   * This property will be removed in 5.0.0 and this behaviour will be default.
+   *
+   * @since 4.1.0
+   */
+  @Prop({ reflect: true }) allowEmptyValueChange: boolean = false;
 
   /**
    * Event emitted when the value of the input field changes
@@ -180,13 +201,18 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
+  @Watch('value')
+  onValueChange(newValue: number | undefined) {
+    this.updateFormInternalValue(newValue!);
+  }
+
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
   }
 
   componentWillLoad() {
-    this.updateFormInternalValue(this.value);
+    this.updateFormInternalValue(this.value!);
   }
 
   connectedCallback() {
@@ -209,9 +235,148 @@ export class NumberInput implements IxInputFieldComponent<number> {
     );
   }
 
+  private convertNumberStringToFloat(input: string): number | undefined {
+    if (!input || input.trim() === '') {
+      return undefined;
+    }
+
+    const parsed = Number.parseFloat(input);
+    return Number.isNaN(parsed) ? undefined : parsed;
+  }
+
+  private isScientificNotation(input: string): boolean {
+    const parsed = Number.parseFloat(input);
+    return (
+      !Number.isNaN(parsed) && Number.isFinite(parsed) && /[eE]/.test(input)
+    );
+  }
+
+  private formatValue(value: number | undefined): string {
+    if (value === undefined || value === null) {
+      return '';
+    }
+    return value.toString();
+  }
+
+  private handleValueChangeEvent(value: number | undefined) {
+    this.valueChange.emit(this.allowEmptyValueChange ? value : (value ?? 0));
+  }
+
   updateFormInternalValue(value: number) {
-    this.formInternals.setFormValue(value.toString());
+    const formValue =
+      value !== undefined && value !== null ? value.toString() : '';
+    this.formInternals.setFormValue(formValue);
     this.value = value;
+  }
+
+  private readonly handleInputChange = (inputValue: string) => {
+    const parsedValue = this.convertNumberStringToFloat(inputValue);
+    const isScientificNotation = this.isScientificNotation(inputValue.trim());
+
+    if (isScientificNotation) {
+      this.formInternals.setFormValue(inputValue);
+    }
+
+    this.handleValueChangeEvent(parsedValue);
+  };
+
+  private readonly handleBlur = () => {
+    if (!this.inputRef.current) return;
+
+    const inputValue = this.inputRef.current.value;
+
+    const parsedValue = this.convertNumberStringToFloat(inputValue);
+
+    if (parsedValue !== undefined) {
+      this.inputRef.current.value = this.formatValue(parsedValue);
+    }
+
+    this.updateFormInternalValue(parsedValue!);
+
+    onInputBlur(this, this.inputRef.current);
+    this.touched = true;
+  };
+
+  private readonly handleKeyDown = (event: KeyboardEvent) => {
+    if (this.disabled || this.readonly) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowUp':
+        event.preventDefault();
+        this.handleStepOperation('up');
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        this.handleStepOperation('down');
+        break;
+    }
+  };
+
+  private readonly handleBeforeInput = (e: InputEvent) => {
+    if (this.disabled || this.readonly) return;
+
+    if (e.inputType === 'insertText') {
+      const character = e.data;
+
+      if (character && INVALID_NUMBER_INPUT_REGEX.test(character)) {
+        e.preventDefault();
+      }
+    }
+
+    if (e.inputType === 'insertFromPaste') {
+      const dt = e.dataTransfer || (e as any).clipboardData;
+      const text = dt?.getData?.('text') ?? '';
+      if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
+        e.preventDefault();
+      }
+    }
+  };
+
+  private readonly handlePaste = (e: ClipboardEvent) => {
+    // Fallback for browsers that don’t fire beforeinput for paste
+    const text = e.clipboardData?.getData('text') ?? '';
+    if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
+      e.preventDefault();
+    }
+  };
+
+  private handleStepOperation(operation: 'up' | 'down') {
+    if (!this.inputRef.current) {
+      return;
+    }
+
+    const currentValue = this.value ?? 0;
+    const stepValue =
+      typeof this.step === 'string'
+        ? Number.parseFloat(this.step)
+        : (this.step ?? 1);
+
+    let newValue: number;
+
+    if (operation === 'up') {
+      newValue = currentValue + stepValue;
+    } else {
+      newValue = currentValue - stepValue;
+    }
+
+    if (this.min !== undefined) {
+      const minValue =
+        typeof this.min === 'string' ? Number.parseFloat(this.min) : this.min;
+      newValue = Math.max(newValue, minValue);
+    }
+
+    if (this.max !== undefined) {
+      const maxValue =
+        typeof this.max === 'string' ? Number.parseFloat(this.max) : this.max;
+      newValue = Math.min(newValue, maxValue);
+    }
+
+    this.inputRef.current.value = newValue.toString();
+    this.updateFormInternalValue(newValue);
+    checkInternalValidity(this, this.inputRef.current);
+    this.handleValueChangeEvent(newValue);
   }
 
   /** @internal */
@@ -225,12 +390,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
   async hasValidValue(): Promise<boolean> {
     const nativeInput = await this.getNativeInputElement();
     if (nativeInput.value === '') {
-      return Promise.resolve(false);
+      return !this.required;
     }
 
-    return Promise.resolve(
-      this.value !== null && this.value !== undefined && !isNaN(this.value)
-    );
+    const parsedValue = this.convertNumberStringToFloat(nativeInput.value);
+    return parsedValue !== undefined;
   }
 
   /**
@@ -307,18 +471,28 @@ export class NumberInput implements IxInputFieldComponent<number> {
               type={'number'}
               isInvalid={this.isInvalid}
               required={this.required}
-              value={this.value}
+              value={this.formatValue(this.value)}
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
-              valueChange={(value) => this.valueChange.emit(Number(value))}
-              updateFormInternalValue={(value) =>
-                this.updateFormInternalValue(Number(value))
-              }
-              onBlur={() => {
-                onInputBlur(this, this.inputRef.current);
-                this.touched = true;
+              onKeyDown={(event) => this.handleKeyDown(event)}
+              onBeforeInput={(event) => this.handleBeforeInput(event)}
+              onPaste={(event) => this.handlePaste(event)}
+              valueChange={this.handleInputChange}
+              updateFormInternalValue={(value) => {
+                const isScientificNotation = this.isScientificNotation(
+                  value.trim()
+                );
+
+                if (!isScientificNotation) {
+                  const parsedValue = this.convertNumberStringToFloat(value);
+                  this.updateFormInternalValue(parsedValue!);
+                }
               }}
+              onBlur={this.handleBlur}
+              form={this.formInternals.form ?? undefined}
+              suppressSubmitOnEnter={this.suppressSubmitOnEnter}
+              textAlignment={this.textAlignment}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}
@@ -336,17 +510,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   size="16"
                   class="number-stepper-button step-minus"
                   aria-label="decrement number"
-                  onClick={() => {
-                    if (!this.inputRef.current) {
-                      return;
-                    }
-                    this.inputRef.current.stepDown();
-                    checkInternalValidity(this, this.inputRef.current);
-                    this.updateFormInternalValue(
-                      Number(this.inputRef.current.value)
-                    );
-                    this.valueChange.emit(this.value);
-                  }}
+                  onClick={() => this.handleStepOperation('down')}
                 ></ix-icon-button>
                 <ix-icon-button
                   variant="subtle-tertiary"
@@ -354,17 +518,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   size="16"
                   class="number-stepper-button step-plus"
                   aria-label="increment number"
-                  onClick={() => {
-                    if (!this.inputRef.current) {
-                      return;
-                    }
-                    this.inputRef.current.stepUp();
-                    checkInternalValidity(this, this.inputRef.current);
-                    this.updateFormInternalValue(
-                      Number(this.inputRef.current.value)
-                    );
-                    this.valueChange.emit(this.value);
-                  }}
+                  onClick={() => this.handleStepOperation('up')}
                 ></ix-icon-button>
               </div>
             </SlotEnd>

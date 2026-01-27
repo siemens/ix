@@ -13,6 +13,13 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
+    <style>
+      html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
     <script type="module">
       import { addIcons } from '@siemens/ix-icons';
       import { iconUndo } from '@siemens/ix-icons/icons';
@@ -71,6 +78,25 @@ SPDX-License-Identifier: MIT
         toastContainer.showToast({
           title: 'Toast headline',
           message: 'Toast message text',
+          action: createActionFromTemplate('basic-undo'),
+          autoClose: false,
+          type: 'success',
+        });
+
+        toastContainer.showToast({
+          title: 'Toast headline',
+          message: 'Toast message text',
+          action: createActionFromTemplate('basic-undo'),
+          autoClose: false,
+          type: 'success',
+          hideIcon: true,
+        });
+
+        toastContainer.showToast({
+          title:
+            'ThisIsAVeryLongToastHeadlineWithoutAnySpacesThatShouldDemonstrateTextOverflowBehavior',
+          message:
+            'ThisIsAVeryLongToastMessageWithoutAnySpacesThatShouldDemonstrateTextOverflowBehavior',
           action: createActionFromTemplate('basic-undo'),
           autoClose: false,
           type: 'success',

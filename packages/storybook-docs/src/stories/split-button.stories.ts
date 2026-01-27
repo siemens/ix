@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
@@ -34,7 +34,7 @@ const meta = {
 
     return elm;
   },
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-button', {
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-split-button', {
     variant: {
       options: ['primary', 'secondary'],
       control: { type: 'select' },
@@ -59,5 +59,29 @@ type Story = StoryObj<Element>;
 export const Primary: Story = {
   args: {
     label: 'Button',
+  },
+};
+
+export const Disable: Story = {
+  args: {
+    label: 'Button',
+    disabled: true,
+  },
+};
+
+export const DisableMainButton: Story = {
+  args: {
+    label: 'Button',
+    disabled: false,
+    disableButton: true,
+  },
+};
+
+export const DisableDropdownButton: Story = {
+  args: {
+    label: 'Button',
+    disabled: false,
+    disableButton: false,
+    disableDropdownButton: true,
   },
 };

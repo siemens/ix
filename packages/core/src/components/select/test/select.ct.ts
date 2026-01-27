@@ -120,6 +120,46 @@ test('multiple selection', async ({ mount, page }) => {
   await expect(chip3).toBeVisible();
 });
 
+test('multiple mode filter reset', async ({ mount, page }) => {
+  await mount(`
+    <ix-select mode="multiple">
+      <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+      <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+      <ix-select-item value="4" label="Item 4">Test</ix-select-item>
+    </ix-select>
+  `);
+  const element = page.locator('ix-select');
+
+  await page.locator('[data-select-dropdown]').click();
+  const dropdown = element.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  await element.locator('input').fill('Item 1');
+
+  const item1 = page.getByRole('button', { name: 'Item 1' });
+  const item2 = page.getByRole('button', { name: 'Item 2' });
+  const item3 = page.getByRole('button', { name: 'Item 3' });
+  const item4 = page.getByRole('button', { name: 'Item 4' });
+
+  await expect(item1).toBeVisible();
+  await expect(item2).not.toBeVisible();
+  await expect(item3).not.toBeVisible();
+  await expect(item4).not.toBeVisible();
+
+  await item1.click();
+
+  await expect(element.locator('input')).toHaveValue('');
+  await expect(dropdown).toBeVisible();
+  await expect(item1).toBeVisible();
+  await expect(item2).toBeVisible();
+  await expect(item3).toBeVisible();
+  await expect(item4).toBeVisible();
+  await expect(element.locator('.chips').getByTitle('Item 1')).toBeVisible();
+
+  await expect(item1).toBeFocused();
+});
+
 test('filter', async ({ mount, page }) => {
   await mount(`
         <ix-select mode="multiple">
@@ -859,4 +899,184 @@ test('last select item can be accessed via scrolling when select placed at cente
     item.scrollIntoView();
   });
   await expect(lastItem).toBeVisible();
+});
+
+test('should display "All" chip when all items are selected in multiple mode', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select mode="multiple" collapse-multiple-selection>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  const chipsContainer = selectElement.locator('.chips');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const item1 = selectElement.locator('ix-select-item').nth(0);
+  const item2 = selectElement.locator('ix-select-item').nth(1);
+  const item3 = selectElement.locator('ix-select-item').nth(2);
+  await item1.click();
+  await item2.click();
+  await item3.click();
+
+  const allChip = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'All (3)' });
+
+  await expect(allChip).toBeVisible();
+
+  const chip1 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 1' });
+
+  const chip2 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 2' });
+
+  const chip3 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 3' });
+
+  await expect(chip1).not.toBeVisible();
+  await expect(chip2).not.toBeVisible();
+  await expect(chip3).not.toBeVisible();
+});
+
+test('should clear items if "All" chip is clicked', async ({ mount, page }) => {
+  await mount(`
+        <ix-select mode="multiple" collapse-multiple-selection>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  const chipsContainer = selectElement.locator('.chips');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const item1 = selectElement.locator('ix-select-item').nth(0);
+  const item2 = selectElement.locator('ix-select-item').nth(1);
+  const item3 = selectElement.locator('ix-select-item').nth(2);
+  await item1.click();
+  await item2.click();
+  await item3.click();
+
+  const allChip = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'All (3)' });
+
+  await expect(allChip).toBeVisible();
+
+  const chip1 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 1' });
+
+  const chip2 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 2' });
+
+  const chip3 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 3' });
+
+  await expect(chip1).not.toBeVisible();
+  await expect(chip2).not.toBeVisible();
+  await expect(chip3).not.toBeVisible();
+
+  await allChip.getByRole('button', { name: 'All' }).click();
+  await expect(allChip).not.toBeVisible();
+});
+
+test('should not show "All" chip of de-selected a item', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select mode="multiple" collapse-multiple-selection>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  const chipsContainer = selectElement.locator('.chips');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const item1 = selectElement.locator('ix-select-item').nth(0);
+  const item2 = selectElement.locator('ix-select-item').nth(1);
+  const item3 = selectElement.locator('ix-select-item').nth(2);
+  await item1.click();
+  await item2.click();
+  await item3.click();
+
+  const allChip = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'All (3)' });
+
+  await expect(allChip).toBeVisible();
+
+  const chip1 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 1' });
+
+  const chip2 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 2' });
+
+  const chip3 = chipsContainer
+    .locator('ix-filter-chip')
+    .filter({ hasText: 'Item 3' });
+
+  await expect(chip1).not.toBeVisible();
+  await expect(chip2).not.toBeVisible();
+  await expect(chip3).not.toBeVisible();
+
+  await item3.click();
+  await expect(chip1).toBeVisible();
+  await expect(chip2).toBeVisible();
+  await expect(chip3).not.toBeVisible();
+
+  await expect(allChip).not.toBeVisible();
+});
+
+test('clear button returns empty string in single mode', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-select allow-clear mode="single" value="1">
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+      </ix-select>
+    `);
+
+  const select = page.locator('ix-select');
+
+  const valueChanged = select.evaluate((elm: HTMLIxSelectElement) => {
+    return new Promise<string | string[]>((resolve) => {
+      elm.addEventListener('valueChange', (e: Event) => {
+        resolve((e as CustomEvent).detail);
+      });
+    });
+  });
+
+  const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
+  await expect(clearButton).toBeVisible();
+
+  await clearButton.click();
+
+  const emittedValue = await valueChanged;
+
+  expect(emittedValue).toBe('');
 });

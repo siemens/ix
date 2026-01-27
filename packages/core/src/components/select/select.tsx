@@ -39,6 +39,7 @@ import {
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
  * @form-ready
@@ -75,7 +76,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronDownIconButton?: string;
+  @Prop() ariaLabelChevronDownIconButton?: string = 'Open select dropdown';
 
   /**
    * ARIA label for the clear icon button
@@ -119,7 +120,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * Current selected value.
    * This corresponds to the value property of ix-select-items
    */
-  @Prop({ mutable: true }) value: string | string[] = [];
+  @Prop({ mutable: true }) value: string | string[] = '';
 
   /**
    * Show clear button
@@ -169,6 +170,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop({ attribute: 'i18n-no-matches' }) i18nNoMatches = 'No matches';
 
   /**
+   * Chip label for all selected items in multiple mode.
+   */
+  @Prop({ attribute: 'i18n-all-selected' }) i18nAllSelected = 'All';
+
+  /**
    * Hide list header
    */
   @Prop() hideListHeader = false;
@@ -183,6 +189,19 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * By default the maximum width of the dropdown element is set to 100%.
    */
   @Prop() dropdownMaxWidth?: string;
+
+  /**
+   * Show "all" chip when all items are selected in multiple mode
+   */
+  @Prop() collapseMultipleSelection = false;
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Value changed
@@ -234,6 +253,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
+
   private readonly focusControllerCallbackBind =
     this.focusDropdownItem.bind(this);
 
@@ -354,7 +374,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
         return;
       }
 
-      requestAnimationFrame(() => {
+      requestAnimationFrameNoNgZone(() => {
         nestedDropdownItem?.shadowRoot?.querySelector('button')?.focus();
       });
     }
@@ -370,8 +390,15 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       this.value = oldValue;
       return;
     }
-
     this.updateSelection();
+    if (this.isMultipleMode && this.inputFilterText) {
+      this.clearInput();
+      this.removeHiddenFromItems();
+      if (this.arrowFocusController) {
+        this.arrowFocusController.items = this.visibleNonShadowItems;
+      }
+      this.navigationItem = undefined;
+    }
   }
 
   private emitAddItem(value: string) {
@@ -719,8 +746,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private clear() {
     this.clearInput();
     this.selectedLabels = [];
-    this.value = [];
-    this.emitValueChange([]);
+    const emptyValue = this.isSingleMode ? '' : [];
+    this.value = emptyValue;
+    this.emitValueChange(emptyValue);
     this.dropdownShow = false;
   }
 
@@ -764,6 +792,45 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       !this.itemExists(this.inputFilterText) &&
       this.editable &&
       this.inputFilterText
+    );
+  }
+
+  private shouldDisplayAllChip(): boolean {
+    return (
+      this.selectedItems.length === this.items.length &&
+      this.collapseMultipleSelection
+    );
+  }
+
+  private renderAllChip() {
+    return (
+      <ix-filter-chip
+        disabled={this.disabled || this.readonly}
+        ariaLabelCloseIconButton={this.i18nAllSelected}
+        onCloseClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.clear();
+        }}
+      >
+        {`${this.i18nAllSelected} (${this.selectedItems.length})`}
+      </ix-filter-chip>
+    );
+  }
+
+  private renderChip(item: HTMLIxSelectItemElement) {
+    return (
+      <ix-filter-chip
+        disabled={this.disabled || this.readonly}
+        key={item.value}
+        onCloseClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.itemClick(item.value);
+        }}
+      >
+        {item.label}
+      </ix-filter-chip>
     );
   }
 
@@ -855,21 +922,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           >
             <div class="input-container">
               <div class="chips">
-                {this.isMultipleMode
-                  ? this.selectedItems?.map((item) => (
-                      <ix-filter-chip
-                        disabled={this.disabled || this.readonly}
-                        key={item.value}
-                        onCloseClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          this.itemClick(item.value);
-                        }}
-                      >
-                        {item.label}
-                      </ix-filter-chip>
-                    ))
-                  : ''}
+                {this.isMultipleMode &&
+                  this.items.length !== 0 &&
+                  (this.shouldDisplayAllChip()
+                    ? this.renderAllChip()
+                    : this.selectedItems?.map((item) => this.renderChip(item)))}
                 <div class="trigger">
                   <input
                     autocomplete="off"
@@ -947,6 +1004,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           trigger={this.dropdownWrapperRef.waitForCurrent()}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
+          enableTopLayer={this.enableTopLayer}
           overwriteDropdownStyle={async () => {
             const styleOverwrites: Partial<CSSStyleDeclaration> = {};
 

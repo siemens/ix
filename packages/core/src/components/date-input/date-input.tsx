@@ -27,6 +27,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -34,15 +35,16 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
+  getValidationText,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
-import type { DateInputValidityState } from './date-input.types';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
+import { makeRef } from '../utils/make-ref';
+import type { DateInputValidityState } from './date-input.types';
 
 /**
  * @form-ready
@@ -196,6 +198,25 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Prop() ariaLabelNextMonthButton?: string;
 
   /**
+   * If false, pressing Enter will submit the form (if inside a form).
+   * Set to true to suppress submit on Enter.
+   */
+  @Prop({ reflect: true }) suppressSubmitOnEnter: boolean = false;
+
+  /**
+   * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+   */
+  @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -345,6 +366,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
+  private handleInputKeyDown(event: KeyboardEvent) {
+    handleSubmitOnEnterKeydown(
+      event,
+      this.suppressSubmitOnEnter,
+      this.formInternals.form
+    );
+  }
+
   private renderInput() {
     return (
       <div class="input-wrapper">
@@ -383,6 +412,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+          }}
+          onKeyDown={(event) => this.handleInputKeyDown(event)}
+          style={{
+            textAlign: this.textAlignment,
           }}
         ></input>
         <SlotEnd
@@ -459,9 +492,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   render() {
-    const invalidText = this.isInputInvalid
-      ? this.i18nErrorDateUnparsable
-      : this.invalidText;
+    const invalidText = getValidationText(
+      this.isInputInvalid,
+      this.invalidText,
+      this.i18nErrorDateUnparsable
+    );
 
     return (
       <Host
@@ -492,7 +527,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
-          suppressOverflowBehavior={true}
+          enableTopLayer={this.enableTopLayer}
+          suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;

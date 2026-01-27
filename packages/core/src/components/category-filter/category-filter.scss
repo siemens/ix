@@ -36,8 +36,25 @@
   }
 
   .input-container {
-    &:not(.readonly):not(.disabled) {
-      @include input.element-input('false');
+    $padding-with-icon: 1px vars.$large-space 1px 1.75rem;
+    $padding-no-icon: 1px vars.$large-space 1px vars.$tiny-space;
+
+    &:not(.readonly) {
+      &:not(.no-icon) {
+        @include input.element-input(false, $padding-with-icon);
+      }
+      &.no-icon {
+        @include input.element-input(false, $padding-no-icon);
+      }
+    }
+
+    &.readonly {
+      &:not(.no-icon) {
+        @include input.element-input(true, $padding-with-icon);
+      }
+      &.no-icon {
+        @include input.element-input(true, $padding-no-icon);
+      }
     }
 
     &:not(.readonly):not(.disabled):hover {
@@ -57,18 +74,9 @@
         var(--theme-input--border-color-bottom--disabled);
     }
 
-    &.readonly {
-      @include input.element-input;
-    }
-
     display: flex;
     height: auto;
     max-height: 3.75rem;
-    padding: 1px vars.$large-space 1px 1.75rem !important;
-
-    &.no-icon {
-      padding-left: vars.$tiny-space;
-    }
   }
 
   .token-container {

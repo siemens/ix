@@ -18,8 +18,9 @@ LICENSE file in the root directory of this source tree.
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
     <!-- External resources -->
   </head>
-  <body class="theme-classic-dark">
+  <body>
     <div id="main" class="echarts-gauge"></div>
+    <script type="module" src="./init.js"></script>
 
     <script type="module">
       import {
@@ -27,6 +28,9 @@ LICENSE file in the root directory of this source tree.
         registerTheme,
       } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
+
+      // Wait for init.js to complete (including theme CSS loading)
+      await globalThis.ixInitPromise;
 
       function initChart(theme, options) {
         var myChart = echarts.init(document.querySelector('#main'), theme);
@@ -117,7 +121,5 @@ LICENSE file in the root directory of this source tree.
         myChart.resize();
       };
     </script>
-
-    <script type="module" src="./init.js"></script>
   </body>
 </html>

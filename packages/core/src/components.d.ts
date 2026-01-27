@@ -127,6 +127,11 @@ export namespace Components {
          */
         "icon": string | undefined;
         /**
+          * If true, disables hover and active styles and changes cursor to default
+          * @default false
+         */
+        "passive": boolean;
+        /**
           * Card selection
           * @default false
          */
@@ -190,6 +195,7 @@ export namespace Components {
         /**
           * ARIA label for the menu expand icon button
           * @since 3.2.0
+          * @deprecated This prop is no longer used as the menu expand button is hidden from screen readers. Will be removed in 5.0.0
          */
         "ariaLabelMenuExpandIconButton"?: string;
         /**
@@ -207,6 +213,12 @@ export namespace Components {
           * @since 4.0.0
          */
         "companyLogoAlt"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Hides the bottom border of the header
           * @since 4.0.0
@@ -296,6 +308,12 @@ export namespace Components {
           * @default 'previous'
          */
         "ariaLabelPreviousButton": string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Items will be accessible through a dropdown
           * @default []
@@ -426,6 +444,11 @@ export namespace Components {
     }
     interface IxCard {
         /**
+          * If true, disables hover and active styles and changes cursor to default
+          * @default false
+         */
+        "passive": boolean;
+        /**
           * Show card in selected state
           * @default false
          */
@@ -538,6 +561,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * A set of search criteria to populate the component with.
          */
@@ -848,6 +877,12 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -949,6 +984,12 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Focuses the input field
          */
         "focusInput": () => Promise<void>;
@@ -1031,6 +1072,16 @@ export namespace Components {
          */
         "showWeekNumbers": boolean;
         /**
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
+          * @default false
+         */
+        "suppressSubmitOnEnter": boolean;
+        /**
+          * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -1067,6 +1118,12 @@ export namespace Components {
           * @default false
          */
         "embedded": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -1291,6 +1348,11 @@ export namespace Components {
         "discoverAllSubmenus": boolean;
         "discoverSubmenu": () => Promise<void>;
         /**
+          * Enable Popover API rendering for top-layer positioning.
+          * @default false in v4.x, will default to true in v5.0.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
@@ -1359,6 +1421,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Button icon
          */
@@ -1964,6 +2032,16 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
+          * @default false
+         */
+        "suppressSubmitOnEnter": boolean;
+        /**
+          * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -2122,6 +2200,7 @@ export namespace Components {
         "i18nExpand": string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
+          * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
           * @default 'Expand sidebar'
          */
         "i18nExpandSidebar": string;
@@ -2187,6 +2266,11 @@ export namespace Components {
          */
         "activeTabLabel"?: string;
         /**
+          * Aria label for close button
+          * @default 'Close About'
+         */
+        "ariaLabelCloseButton": string;
+        /**
           * Content of the header
           * @default 'About & legal information'
          */
@@ -2231,6 +2315,12 @@ export namespace Components {
           * Second line of text
          */
         "bottom"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Control the visibility of the logout button
           * @default false
@@ -2295,10 +2385,11 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Accessibility label for the menu expand icon (MANDATORY)
+          * Accessibility label for the menu expand icon
+          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
           * @default 'Expand'
          */
-        "ixAriaLabel": string;
+        "ixAriaLabel"?: string;
         /**
           * Display as pinned
           * @default false
@@ -2369,6 +2460,11 @@ export namespace Components {
           * Active tab
          */
         "activeTabLabel"?: string;
+        /**
+          * Aria label for close button
+          * @default 'Close Settings'
+         */
+        "ariaLabelCloseButton": string;
         /**
           * Label of first tab
           * @default 'Settings'
@@ -2486,6 +2582,12 @@ export namespace Components {
      */
     interface IxNumberInput {
         /**
+          * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
+          * @since 4.1.0
+          * @default false
+         */
+        "allowEmptyValueChange": boolean;
+        /**
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
@@ -2550,7 +2652,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Indicates if the field is required
+          * Indicates if the field is required. When required, empty values (undefined) are not accepted.
           * @default false
          */
         "required": boolean;
@@ -2563,19 +2665,29 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Step value to increment or decrement the input value
-          * @since 3.0.0
+          * Step value to increment or decrement the input value. Default step value is 1.
+          * @default 1
          */
         "step"?: string | number;
+        /**
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
+          * @default false
+         */
+        "suppressSubmitOnEnter": boolean;
+        /**
+          * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'end'
+         */
+        "textAlignment": 'start' | 'end';
         /**
           * The valid text for the input field
          */
         "validText"?: string;
         /**
-          * The value of the input field
+          * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
-        "value": number;
+        "value"?: number;
         /**
           * The warning text for the input field
          */
@@ -2597,6 +2709,12 @@ export namespace Components {
           * @since 3.2.0
          */
         "ariaLabelChevronRightIconButton"?: string;
+        /**
+          * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
+          * @since 4.1.0
+          * @default 'Page selection input'
+         */
+        "ariaLabelPageSelection": string;
         /**
           * Total number of pages
           * @default 0
@@ -2841,6 +2959,11 @@ export namespace Components {
          */
         "notification"?: string;
         /**
+          * If true, disables hover and active styles and changes cursor to default
+          * @default false
+         */
+        "passive": boolean;
+        /**
           * Card subheading
          */
         "subheading"?: string;
@@ -2950,6 +3073,7 @@ export namespace Components {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
@@ -2957,6 +3081,11 @@ export namespace Components {
           * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
+        /**
+          * Show "all" chip when all items are selected in multiple mode
+          * @default false
+         */
+        "collapseMultipleSelection": boolean;
         /**
           * If true the select will be in disabled state
           * @default false
@@ -2976,6 +3105,12 @@ export namespace Components {
          */
         "editable": boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Focuses the input field
          */
         "focusInput": () => Promise<void>;
@@ -2994,6 +3129,11 @@ export namespace Components {
           * @default false
          */
         "hideListHeader": boolean;
+        /**
+          * Chip label for all selected items in multiple mode.
+          * @default 'All'
+         */
+        "i18nAllSelected": string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -3059,7 +3199,7 @@ export namespace Components {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
+          * @default ''
          */
         "value": string | string[];
         /**
@@ -3169,10 +3309,28 @@ export namespace Components {
          */
         "closeBehavior": CloseBehavior;
         /**
+          * Disables only the main button while keeping the dropdown trigger enabled
+          * @since 4.1.0
+          * @default false
+         */
+        "disableButton": boolean;
+        /**
+          * Disables only the dropdown trigger while keeping the main button enabled
+          * @since 4.1.0
+          * @default false
+         */
+        "disableDropdownButton": boolean;
+        /**
           * Disabled
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Button icon
          */
@@ -3396,6 +3554,12 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Focuses the input field
          */
         "focusInput": () => Promise<void>;
@@ -3514,6 +3678,16 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
+          * @default false
+         */
+        "suppressSubmitOnEnter": boolean;
+        /**
+          * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment": 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -3613,9 +3787,8 @@ export namespace Components {
         "secondInterval": number;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
          */
-        "time": string;
+        "time"?: string;
     }
     interface IxToast {
         /**
@@ -3628,6 +3801,11 @@ export namespace Components {
           * @default 5000
          */
         "autoCloseDelay": number;
+        /**
+          * Allows to hide the icon in the toast.
+          * @default false
+         */
+        "hideIcon": boolean;
         /**
           * Icon of toast
          */
@@ -3741,7 +3919,7 @@ export namespace Components {
     }
     interface IxToggleButton {
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * ARIA label that will be set on the native HTML button element
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;
@@ -5822,6 +6000,11 @@ declare namespace LocalJSX {
          */
         "icon"?: string | undefined;
         /**
+          * If true, disables hover and active styles and changes cursor to default
+          * @default false
+         */
+        "passive"?: boolean;
+        /**
           * Card selection
           * @default false
          */
@@ -5885,6 +6068,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the menu expand icon button
           * @since 3.2.0
+          * @deprecated This prop is no longer used as the menu expand button is hidden from screen readers. Will be removed in 5.0.0
          */
         "ariaLabelMenuExpandIconButton"?: string;
         /**
@@ -5902,6 +6086,12 @@ declare namespace LocalJSX {
           * @since 4.0.0
          */
         "companyLogoAlt"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Hides the bottom border of the header
           * @since 4.0.0
@@ -6004,6 +6194,12 @@ declare namespace LocalJSX {
           * @default 'previous'
          */
         "ariaLabelPreviousButton"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Items will be accessible through a dropdown
           * @default []
@@ -6143,6 +6339,11 @@ declare namespace LocalJSX {
     }
     interface IxCard {
         /**
+          * If true, disables hover and active styles and changes cursor to default
+          * @default false
+         */
+        "passive"?: boolean;
+        /**
           * Show card in selected state
           * @default false
          */
@@ -6272,6 +6473,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * A set of search criteria to populate the component with.
          */
@@ -6613,6 +6820,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -6714,6 +6927,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -6791,6 +7010,16 @@ declare namespace LocalJSX {
          */
         "showWeekNumbers"?: boolean;
         /**
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
+          * @default false
+         */
+        "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -6827,6 +7056,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "embedded"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -7073,6 +7308,11 @@ declare namespace LocalJSX {
          */
         "discoverAllSubmenus"?: boolean;
         /**
+          * Enable Popover API rendering for top-layer positioning.
+          * @default false in v4.x, will default to true in v5.0.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
@@ -7141,6 +7381,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Button icon
          */
@@ -7780,6 +8026,16 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
+          * @default false
+         */
+        "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Text alignment within the input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
           * @default 'text'
          */
@@ -7938,6 +8194,7 @@ declare namespace LocalJSX {
         "i18nExpand"?: string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
+          * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
           * @default 'Expand sidebar'
          */
         "i18nExpandSidebar"?: string;
@@ -8006,6 +8263,11 @@ declare namespace LocalJSX {
          */
         "activeTabLabel"?: string;
         /**
+          * Aria label for close button
+          * @default 'Close About'
+         */
+        "ariaLabelCloseButton"?: string;
+        /**
           * Content of the header
           * @default 'About & legal information'
          */
@@ -8071,6 +8333,12 @@ declare namespace LocalJSX {
           * Second line of text
          */
         "bottom"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Control the visibility of the logout button
           * @default false
@@ -8143,7 +8411,8 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
-          * Accessibility label for the menu expand icon (MANDATORY)
+          * Accessibility label for the menu expand icon
+          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
           * @default 'Expand'
          */
         "ixAriaLabel"?: string;
@@ -8217,6 +8486,11 @@ declare namespace LocalJSX {
           * Active tab
          */
         "activeTabLabel"?: string;
+        /**
+          * Aria label for close button
+          * @default 'Close Settings'
+         */
+        "ariaLabelCloseButton"?: string;
         /**
           * Label of first tab
           * @default 'Settings'
@@ -8355,6 +8629,12 @@ declare namespace LocalJSX {
      */
     interface IxNumberInput {
         /**
+          * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
+          * @since 4.1.0
+          * @default false
+         */
+        "allowEmptyValueChange"?: boolean;
+        /**
           * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
@@ -8417,7 +8697,7 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * Indicates if the field is required
+          * Indicates if the field is required. When required, empty values (undefined) are not accepted.
           * @default false
          */
         "required"?: boolean;
@@ -8430,16 +8710,26 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Step value to increment or decrement the input value
-          * @since 3.0.0
+          * Step value to increment or decrement the input value. Default step value is 1.
+          * @default 1
          */
         "step"?: string | number;
+        /**
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
+          * @default false
+         */
+        "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Text alignment within the number input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'end'
+         */
+        "textAlignment"?: 'start' | 'end';
         /**
           * The valid text for the input field
          */
         "validText"?: string;
         /**
-          * The value of the input field
+          * The value of the input field. Supports numeric values, scientific notation (1E6, 1E-6), or undefined for empty.
           * @default 0
          */
         "value"?: number;
@@ -8464,6 +8754,12 @@ declare namespace LocalJSX {
           * @since 3.2.0
          */
         "ariaLabelChevronRightIconButton"?: string;
+        /**
+          * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
+          * @since 4.1.0
+          * @default 'Page selection input'
+         */
+        "ariaLabelPageSelection"?: string;
         /**
           * Total number of pages
           * @default 0
@@ -8730,6 +9026,11 @@ declare namespace LocalJSX {
          */
         "notification"?: string;
         /**
+          * If true, disables hover and active styles and changes cursor to default
+          * @default false
+         */
+        "passive"?: boolean;
+        /**
           * Card subheading
          */
         "subheading"?: string;
@@ -8849,6 +9150,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the chevron down icon button Will be set as aria-label on the nested HTML button element
           * @since 3.2.0
+          * @default 'Open select dropdown'
          */
         "ariaLabelChevronDownIconButton"?: string;
         /**
@@ -8856,6 +9158,11 @@ declare namespace LocalJSX {
           * @since 3.2.0
          */
         "ariaLabelClearIconButton"?: string;
+        /**
+          * Show "all" chip when all items are selected in multiple mode
+          * @default false
+         */
+        "collapseMultipleSelection"?: boolean;
         /**
           * If true the select will be in disabled state
           * @default false
@@ -8875,6 +9182,12 @@ declare namespace LocalJSX {
          */
         "editable"?: boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Helper text for the select component
          */
         "helperText"?: string;
@@ -8883,6 +9196,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "hideListHeader"?: boolean;
+        /**
+          * Chip label for all selected items in multiple mode.
+          * @default 'All'
+         */
+        "i18nAllSelected"?: string;
         /**
           * Information inside of dropdown if no items where found with current filter text
           * @default 'No matches'
@@ -8960,7 +9278,7 @@ declare namespace LocalJSX {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
+          * @default ''
          */
         "value"?: string | string[];
         /**
@@ -9070,10 +9388,28 @@ declare namespace LocalJSX {
          */
         "closeBehavior"?: CloseBehavior;
         /**
+          * Disables only the main button while keeping the dropdown trigger enabled
+          * @since 4.1.0
+          * @default false
+         */
+        "disableButton"?: boolean;
+        /**
+          * Disables only the dropdown trigger while keeping the main button enabled
+          * @since 4.1.0
+          * @default false
+         */
+        "disableDropdownButton"?: boolean;
+        /**
           * Disabled
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Button icon
          */
@@ -9307,6 +9643,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
          */
@@ -9420,6 +9762,16 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
+          * @default false
+         */
+        "suppressSubmitOnEnter"?: boolean;
+        /**
+          * Text alignment within the time input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
+          * @default 'start'
+         */
+        "textAlignment"?: 'start' | 'end';
+        /**
           * Valid text below the input field
          */
         "validText"?: string;
@@ -9523,7 +9875,6 @@ declare namespace LocalJSX {
         "secondInterval"?: number;
         /**
           * Select time with format string Format has to match the `format` property.
-          * @default DateTime.now().toFormat(this.format)
          */
         "time"?: string;
     }
@@ -9538,6 +9889,11 @@ declare namespace LocalJSX {
           * @default 5000
          */
         "autoCloseDelay"?: number;
+        /**
+          * Allows to hide the icon in the toast.
+          * @default false
+         */
+        "hideIcon"?: boolean;
         /**
           * Icon of toast
          */
@@ -9644,7 +10000,7 @@ declare namespace LocalJSX {
     }
     interface IxToggleButton {
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * ARIA label that will be set on the native HTML button element
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;

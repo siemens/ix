@@ -115,11 +115,11 @@ import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
 import HtmlTable from '../preview-examples/html-table';
 import HtmlTableStriped from '../preview-examples/html-table-striped';
-import IconToggleButtonPrimaryGhost from '../preview-examples/icon-toggle-button-primary-ghost';
-import IconToggleButtonPrimaryOutline from '../preview-examples/icon-toggle-button-primary-outline';
+import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
+import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSecondaryGhost from '../preview-examples/icon-toggle-button-secondary-ghost';
-import IconToggleButtonSecondaryOutline from '../preview-examples/icon-toggle-button-secondary-outline';
+import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
+import IconToggleButtonSubtlePrimary from '../preview-examples/icon-toggle-button-subtle-primary';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
 import InputFormValidation from '../preview-examples/input-form-validation';
@@ -152,6 +152,7 @@ import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
+import ModalClose from '../preview-examples/modal-close';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
@@ -170,6 +171,7 @@ import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
+import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import ProgressIndicator from '../preview-examples/progress-indicator';
 import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
 import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
@@ -214,11 +216,11 @@ import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
 import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
-import ToggleButtonPrimaryGhost from '../preview-examples/toggle-button-primary-ghost';
-import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primary-outline';
+import ToggleButtonTertiary from '../preview-examples/toggle-button-tertiary';
+import ToggleButtonSubtleTertiary from '../preview-examples/toggle-button-subtle-tertiary';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
-import ToggleButtonSecondaryGhost from '../preview-examples/toggle-button-secondary-ghost';
-import ToggleButtonSecondaryOutline from '../preview-examples/toggle-button-secondary-outline';
+import ToggleButtonSubtleSecondary from '../preview-examples/toggle-button-subtle-secondary';
+import ToggleButtonSubtlePrimary from '../preview-examples/toggle-button-subtle-primary';
 import ToggleChecked from '../preview-examples/toggle-checked';
 import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
 import ToggleDisabled from '../preview-examples/toggle-disabled';
@@ -624,20 +626,20 @@ const routes: Routes = [
         component: HtmlTableStriped,
       },
       {
-        path: 'icon-toggle-button-primary-ghost',
-        component: IconToggleButtonPrimaryGhost,
+        path: 'icon-toggle-button-tertiary',
+        component: IconToggleButtonTertiary,
       },
       {
-        path: 'icon-toggle-button-primary-outline',
-        component: IconToggleButtonPrimaryOutline,
+        path: 'icon-toggle-button-subtle-tertiary',
+        component: IconToggleButtonSubtleTertiary,
       },
       {
-        path: 'icon-toggle-button-secondary-ghost',
-        component: IconToggleButtonSecondaryGhost,
+        path: 'icon-toggle-button-subtle-secondary',
+        component: IconToggleButtonSubtleSecondary,
       },
       {
-        path: 'icon-toggle-button-secondary-outline',
-        component: IconToggleButtonSecondaryOutline,
+        path: 'icon-toggle-button-subtle-primary',
+        component: IconToggleButtonSubtlePrimary,
       },
       {
         path: 'icon-toggle-button-secondary',
@@ -730,6 +732,10 @@ const routes: Routes = [
       {
         path: 'modal-by-instance',
         component: ModalByInstance,
+      },
+      {
+        path: 'modal-close',
+        component: ModalClose,
       },
       {
         path: 'modal-by-template',
@@ -892,12 +898,12 @@ const routes: Routes = [
         component: Toast,
       },
       {
-        path: 'toggle-button-primary-ghost',
-        component: ToggleButtonPrimaryGhost,
+        path: 'toggle-button-tertiary',
+        component: ToggleButtonTertiary,
       },
       {
-        path: 'toggle-button-primary-outline',
-        component: ToggleButtonPrimaryOutline,
+        path: 'toggle-button-subtle-tertiary',
+        component: ToggleButtonSubtleTertiary,
       },
       { path: 'toggle-disabled', component: ToggleDisabled },
       { path: 'toggle-custom-label', component: ToggleCustomLabel },
@@ -920,6 +926,7 @@ const routes: Routes = [
       { path: 'number-input-validation', component: NumberInputValidation },
       { path: 'number-input-with-slots', component: NumberInputWithSlots },
       { path: 'tooltip', component: Tooltip },
+      { path: 'tooltip-with-icon', component: TooltipWithIcon },
       { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },
       { path: 'action-card', component: ActionCard },
@@ -930,12 +937,12 @@ const routes: Routes = [
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
       { path: 'key-value', component: KeyValue },
       {
-        path: 'toggle-button-secondary-ghost',
-        component: ToggleButtonSecondaryGhost,
+        path: 'toggle-button-subtle-secondary',
+        component: ToggleButtonSubtleSecondary,
       },
       {
-        path: 'toggle-button-secondary-outline',
-        component: ToggleButtonSecondaryOutline,
+        path: 'toggle-button-subtle-primary',
+        component: ToggleButtonSubtlePrimary,
       },
       {
         path: 'toggle-button-secondary',
