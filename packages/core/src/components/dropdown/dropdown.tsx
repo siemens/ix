@@ -28,7 +28,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { a11yHostAttributes } from '../utils/a11y';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -50,14 +50,11 @@ import {
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
-import {
-  QUERY_CURRENT_VISIBLE_FOCUS,
-  QUERY_ARROW_ELEMENTS,
-  configureKeyboardInteraction,
-} from './dropdown-focus';
+import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 import { makeRef } from '../utils/make-ref';
 import { removeVisibleFocus } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
+import { getComposedPath } from '../utils/shadow-dom';
 
 let sequenceId = 0;
 
@@ -225,6 +222,8 @@ export class Dropdown extends Mixin() implements DropdownInterface {
 
   private readonly dialogRef = makeRef<HTMLDialogElement>();
 
+  private dropdownRole: 'listbox' | 'menu' | null = null;
+
   connectedCallback(): void {
     dropdownController.connected(this);
 
@@ -268,7 +267,6 @@ export class Dropdown extends Mixin() implements DropdownInterface {
   }
 
   dismiss() {
-    console.trace(this.getId());
     this.show = false;
   }
 
@@ -689,6 +687,10 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     );
   }
 
+  override componentWillLoad() {
+    this.identifyAccessibilityRole();
+  }
+
   async componentDidLoad() {
     if (!this.trigger) {
       return;
@@ -700,6 +702,18 @@ export class Dropdown extends Mixin() implements DropdownInterface {
   async componentDidRender() {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
+  }
+
+  private identifyAccessibilityRole() {
+    const composedPath = getComposedPath(this.hostElement);
+
+    if (composedPath.some((el) => el.tagName === 'IX-SELECT')) {
+      this.dropdownRole = 'listbox';
+    } else if (composedPath.some((el) => el.tagName === 'IX-DROPDOWN-BUTTON')) {
+      this.dropdownRole = 'menu';
+    } else {
+      this.dropdownRole = null;
+    }
   }
 
   private isTriggerElement(element: HTMLElement) {
@@ -795,6 +809,19 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     };
     const id = this.hostElement.id || this.dropdownElementId;
 
+    let TagType = 'div';
+
+    switch (this.dropdownRole) {
+      case 'listbox':
+      case 'menu':
+        TagType = 'ul';
+        break;
+      default:
+        TagType = 'div';
+    }
+
+    dropdownAriaAttributes.role = this.dropdownRole ?? 'list';
+
     return (
       <Host
         id={id}
@@ -816,7 +843,6 @@ export class Dropdown extends Mixin() implements DropdownInterface {
               }
         }
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
-        {...dropdownAriaAttributes}
       >
         {this.enableTopLayer ? (
           <dialog
@@ -831,16 +857,16 @@ export class Dropdown extends Mixin() implements DropdownInterface {
             tabindex={-1}
             onClick={(event: PointerEvent) => this.onDropdownClick(event)}
           >
-            <div class="dropdown-container">
+            <TagType class="dropdown-container" {...dropdownAriaAttributes}>
               {this.header && <div class="dropdown-header">{this.header}</div>}
               {this.show && <slot></slot>}
-            </div>
+            </TagType>
           </dialog>
         ) : (
-          <div style={{ display: 'contents' }}>
+          <TagType style={{ display: 'contents' }} {...dropdownAriaAttributes}>
             {this.header && <div class="dropdown-header">{this.header}</div>}
             {this.show && <slot></slot>}
-          </div>
+          </TagType>
         )}
       </Host>
     );

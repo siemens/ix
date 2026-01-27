@@ -572,6 +572,8 @@ export const IxDropdownHeader: StencilVueComponent<JSX.IxDropdownHeader> = /*@__
 
 
 export const IxDropdownItem: StencilVueComponent<JSX.IxDropdownItem> = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>('ix-dropdown-item', defineIxDropdownItem, [
+  'ixFocusVisible',
+  'disableAriaSelectHandling',
   'label',
   'icon',
   'ariaLabelIcon',
@@ -1219,6 +1221,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
 
 export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
   'ixFocusVisible',
+  'disableAriaSelectHandling',
   'label',
   'value',
   'selected',

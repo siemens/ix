@@ -25,6 +25,8 @@ import {
 import { Mixin } from '../utils/internal/component';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
+import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
+import { getComposedPath } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-dropdown-item',
@@ -33,7 +35,10 @@ import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
     delegatesFocus: false,
   },
 })
-export class DropdownItem extends Mixin() implements DropdownItemWrapper {
+export class DropdownItem
+  extends Mixin(FocusVisibleMixin)
+  implements DropdownItemWrapper
+{
   @Element() hostElement!: HTMLIxDropdownItemElement;
 
   /**
@@ -98,6 +103,18 @@ export class DropdownItem extends Mixin() implements DropdownItemWrapper {
     return this.hostElement;
   }
 
+  private fallbackRole = 'listitem';
+
+  override componentWillLoad(): Promise<void> | void {
+    super.componentWillLoad?.();
+
+    switch (this.hostElement.parentElement?.tagName) {
+      case 'IX-DROPDOWN-BUTTON':
+        this.fallbackRole = 'menuitem';
+        break;
+    }
+  }
+
   private isIconOnly() {
     return (
       this.label === undefined &&
@@ -109,7 +126,7 @@ export class DropdownItem extends Mixin() implements DropdownItemWrapper {
   render() {
     const ariaAttributes = a11yHostAttributes(this.hostElement);
 
-    ariaAttributes.role = ariaAttributes.role ?? 'listitem';
+    ariaAttributes.role = ariaAttributes.role ?? this.fallbackRole;
     ariaAttributes['aria-disabled'] = a11yBoolean(this.disabled);
     ariaAttributes['aria-label'] =
       ariaAttributes['aria-label'] ?? this.ariaLabelButton;

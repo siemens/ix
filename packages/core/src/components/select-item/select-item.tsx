@@ -18,18 +18,20 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import {
+  IX_FOCUS_VISIBLE,
+  IX_FOCUS_VISIBLE_ACTIVE,
+} from '../utils/focus/focus-utilities';
+import { Mixin } from '../utils/internal/component';
+import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
+import { makeRef } from '../utils/make-ref';
 import {
   IxSelectItemLabelChangeEvent,
   IxSelectItemValueChangeEvent,
 } from './events';
-import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
-import { makeRef } from '../utils/make-ref';
-import {
-  IX_FOCUS_VISIBLE_ACTIVE,
-  IX_FOCUS_VISIBLE,
-} from '../utils/focus/focus-utilities';
-import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
-import { Mixin } from '../utils/internal/component';
+
+let selectItemId = 0;
 
 @Component({
   tag: 'ix-select-item',
@@ -69,6 +71,7 @@ export class SelectItem
    */
   @Event() itemClick!: EventEmitter<string>;
 
+  private selectId = selectItemId++;
   private componentLoaded = false;
   private readonly dropdownItemRef = makeRef<HTMLIxDropdownItemElement>();
 
@@ -122,8 +125,15 @@ export class SelectItem
   }
 
   render() {
+    const id =
+      this.hostElement.id === ''
+        ? `ix-select-item-${this.selectId}`
+        : this.hostElement.id;
     return (
       <Host
+        id={id}
+        role="option"
+        aria-selected
         class={{
           [IX_FOCUS_VISIBLE]: true,
         }}

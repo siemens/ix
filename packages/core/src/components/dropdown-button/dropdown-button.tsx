@@ -13,10 +13,12 @@ import {
 } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { AlignedPlacement } from '../dropdown/placement';
-import { a11yBoolean } from '../utils/a11y';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
 import { Mixin } from '../utils/internal/component';
+
+let dropdownButtonId = 0;
 
 @Component({
   tag: 'ix-dropdown-button',
@@ -76,6 +78,8 @@ export class DropdownButton extends Mixin() {
 
   @State() dropdownShow = false;
 
+  private dropdownButtonId = dropdownButtonId++;
+
   private readonly dropdownAnchor = makeRef<HTMLElement>();
 
   private getTriangle() {
@@ -99,9 +103,21 @@ export class DropdownButton extends Mixin() {
   };
 
   render() {
+    const a11y = a11yHostAttributes(this.hostElement);
+
+    const commonProperties = {
+      ...a11y,
+      id: `dropdown-button-${this.dropdownButtonId}`,
+      'aria-haspopup': 'true',
+      'aria-label': this.ariaLabelDropdownButton,
+      'aria-controls': `dropdown-button-menu-${this.dropdownButtonId}`,
+      'aria-disabled': a11yBoolean(this.disabled),
+      tabIndex: this.disabled ? -1 : 0,
+      disabled: this.disabled,
+      variant: this.variant,
+    };
     return (
       <Host
-        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
         }}
@@ -110,13 +126,7 @@ export class DropdownButton extends Mixin() {
       >
         <div class="dropdown-button">
           {this.label ? (
-            <ix-button
-              variant={this.variant}
-              disabled={this.disabled}
-              alignment="start"
-              ariaLabel={this.ariaLabelDropdownButton}
-              tabIndex={this.disabled ? -1 : 0}
-            >
+            <ix-button {...commonProperties} alignment="start">
               <div class={'content'}>
                 {this.icon ? (
                   <ix-icon
@@ -127,6 +137,7 @@ export class DropdownButton extends Mixin() {
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
                 <ix-icon
+                  aria-hidden="true"
                   name={
                     this.dropdownShow
                       ? iconChevronUpSmall
@@ -139,10 +150,8 @@ export class DropdownButton extends Mixin() {
           ) : (
             <div>
               <ix-icon-button
+                {...commonProperties}
                 icon={this.icon}
-                variant={this.variant}
-                disabled={this.disabled}
-                tabIndex={this.disabled ? -1 : 0}
               ></ix-icon-button>
               {this.getTriangle()}
             </div>
@@ -150,6 +159,8 @@ export class DropdownButton extends Mixin() {
         </div>
 
         <ix-dropdown
+          id={`dropdown-button-menu-${this.dropdownButtonId}`}
+          aria-labelledby={`dropdown-button-${this.dropdownButtonId}`}
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}

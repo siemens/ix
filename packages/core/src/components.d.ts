@@ -1492,6 +1492,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * @default false
+         */
+        "disableAriaSelectHandling": boolean;
+        /**
           * Disable item and remove event listeners
           * @default false
          */
@@ -1515,6 +1519,10 @@ export namespace Components {
           * @default false
          */
         "isSubMenu": boolean;
+        /**
+          * @default false
+         */
+        "ixFocusVisible": boolean;
         /**
           * Label of dropdown item
          */
@@ -3243,6 +3251,10 @@ export namespace Components {
         "warningText"?: string;
     }
     interface IxSelectItem {
+        /**
+          * @default false
+         */
+        "disableAriaSelectHandling": boolean;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * @default false
@@ -7518,6 +7530,10 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
+          * @default false
+         */
+        "disableAriaSelectHandling"?: boolean;
+        /**
           * Disable item and remove event listeners
           * @default false
          */
@@ -7539,6 +7555,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "isSubMenu"?: boolean;
+        /**
+          * @default false
+         */
+        "ixFocusVisible"?: boolean;
         /**
           * Label of dropdown item
          */
@@ -9404,6 +9424,10 @@ declare namespace LocalJSX {
         "warningText"?: string;
     }
     interface IxSelectItem {
+        /**
+          * @default false
+         */
+        "disableAriaSelectHandling"?: boolean;
         /**
           * @default false
          */

@@ -204,7 +204,6 @@ export class Button extends Mixin() implements IxButtonComponent {
         class={{
           disabled: this.disabled || this.loading,
         }}
-        tabIndex={this.disabled ? -1 : 0}
       >
         <BaseButton {...baseButtonProps}>
           <slot></slot>

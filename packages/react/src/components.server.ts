@@ -726,6 +726,8 @@ export type IxDropdownItemEvents = NonNullable<unknown>;
 export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDropdownItemEvents> = /*@__PURE__*/ createComponent<IxDropdownItemElement, IxDropdownItemEvents>({
     tagName: 'ix-dropdown-item',
     properties: {
+        ixFocusVisible: 'ix-focus-visible',
+        disableAriaSelectHandling: 'disable-aria-select-handling',
         label: 'label',
         icon: 'icon',
         ariaLabelIcon: 'aria-label-icon',
@@ -1623,6 +1625,7 @@ export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectIt
     tagName: 'ix-select-item',
     properties: {
         ixFocusVisible: 'ix-focus-visible',
+        disableAriaSelectHandling: 'disable-aria-select-handling',
         label: 'label',
         value: 'value',
         selected: 'selected',

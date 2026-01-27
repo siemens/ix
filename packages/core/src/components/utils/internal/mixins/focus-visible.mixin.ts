@@ -6,19 +6,47 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { MixedInCtor, Prop } from '@stencil/core';
+import { MixedInCtor, Prop, Watch } from '@stencil/core';
 import { StencilLifecycle } from '../component';
+import { a11yBoolean } from '../../a11y';
+
+export interface FocusVisibleMixinPublicInterface {
+  ixFocusVisible: boolean;
+}
 
 export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
   Base: B
 ) => {
-  class FocusVisibleMixinCtor extends Base {
+  class FocusVisibleMixinCtor
+    extends Base
+    implements FocusVisibleMixinPublicInterface
+  {
+    /**
+     * @internal
+     */
     @Prop({ reflect: true }) ixFocusVisible = false;
+
+    /**
+     * @internal
+     */
+    @Prop() disableAriaSelectHandling: boolean = false;
 
     componentDidLoad(): void {
       if (super.componentDidLoad) {
         super.componentDidLoad();
       }
+
+      if (!this.disableAriaSelectHandling) {
+      }
+    }
+
+    @Watch('ixFocusVisible')
+    $internal_checkAriaSelected(focusVisible: boolean) {
+      if (!this.hostElement) {
+        return;
+      }
+
+      this.hostElement.ariaSelected = a11yBoolean(focusVisible);
     }
   }
 

@@ -506,10 +506,6 @@ export class Select
     return this.items.find((i) => i.label === item);
   }
 
-  private removeVisualFocusFromItems() {
-    this.inputRef.current?.removeAttribute('aria-activedescendant');
-  }
-
   private getActiveVisualFocusedItem() {
     const elements = queryElements(
       this.hostElement,
@@ -522,6 +518,8 @@ export class Select
 
     return this.hostElement;
   }
+
+  private activeDescendantObserver: MutationObserver | null = null;
 
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
     this.dropdownShow = event.detail;
@@ -538,11 +536,24 @@ export class Select
       }
 
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
+      this.activeDescendantObserver = new MutationObserver(() => {
+        const currentVisibleFocusedItem = this.getActiveVisualFocusedItem();
+        const id = currentVisibleFocusedItem.id;
+        if (id) {
+          this.inputElement?.setAttribute('aria-activedescendant', id);
+        }
+      });
+      this.activeDescendantObserver.observe(this.hostElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+        subtree: true,
+      });
     } else {
       this.updateSelection();
       this.inputFilterText = '';
-      this.removeVisualFocusFromItems();
       this.dropdownItemsVisualFocused = false;
+      this.activeDescendantObserver?.disconnect();
+      this.inputElement?.setAttribute('aria-activedescendant', '');
     }
   }
 
@@ -781,6 +792,8 @@ export class Select
                     role="combobox"
                     aria-controls={`${this.hostId}-listbox`}
                     aria-expanded={a11yBoolean(this.dropdownShow)}
+                    aria-autocomplete="list"
+                    aria-activedescendant
                     autocomplete="off"
                     data-testid="input"
                     disabled={this.disabled}
@@ -837,6 +850,8 @@ export class Select
                       }
                       variant="subtle-tertiary"
                       aria-label={this.ariaLabelChevronDownIconButton}
+                      aria-hidden="true"
+                      role="presentation"
                     ></ix-icon-button>
                   )}
                 </div>
@@ -845,6 +860,8 @@ export class Select
           </div>
         </ix-field-wrapper>
         <ix-dropdown
+          id={`${this.hostId}-listbox`}
+          aria-multiselectable={a11yBoolean(this.isMultipleMode)}
           keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
           keyboardItemTriggerKeys={['Enter']}
           disableFocusTrap
@@ -879,10 +896,9 @@ export class Select
 
             return styleOverwrites;
           }}
-          role="listbox"
-          id={`${this.hostId}-listbox`}
           onClick={(event) => {
             const target = event.target as HTMLElement;
+            console.log(target);
             if (
               target.tagName === 'IX-DROPDOWN-ITEM' ||
               target.tagName === 'IX-SELECT-ITEM'
@@ -891,8 +907,6 @@ export class Select
                 this.getActiveVisualFocusedItem() as HTMLIxSelectItemElement;
 
               if (!item.classList.contains('add-item')) {
-                this.emitAddItem(this.inputFilterText);
-              } else {
                 this.itemClick(item.value);
                 this.setItemFilter();
               }

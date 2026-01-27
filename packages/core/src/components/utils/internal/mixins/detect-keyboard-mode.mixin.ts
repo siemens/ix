@@ -18,6 +18,7 @@ import {
   IX_FOCUS_VISIBLE,
   IX_FOCUS_VISIBLE_ACTIVE,
 } from '../../focus/focus-utilities';
+import { FocusVisibleMixinPublicInterface } from './focus-visible.mixin';
 
 let originalFocus: typeof HTMLElement.prototype.focus | null = null;
 
@@ -33,7 +34,11 @@ let currentFocus: Element[] = [];
 export function removeVisibleFocus() {
   currentFocus.forEach((el) => {
     el.classList.remove(IX_FOCUS_VISIBLE_ACTIVE);
-    (el as any).ixFocusVisible = false;
+    (el as unknown as FocusVisibleMixinPublicInterface).ixFocusVisible = false;
+
+    // if (el.hasAttribute('aria-selected')) {
+    //   el.setAttribute('aria-selected', 'false');
+    // }
   });
 }
 
@@ -50,7 +55,11 @@ function updateFocusState(target: HTMLElement) {
   if (hasKeyboardMode()) {
     focusableElements.forEach((el) => {
       el.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
-      (el as any).ixFocusVisible = true;
+      (el as unknown as FocusVisibleMixinPublicInterface).ixFocusVisible = true;
+
+      // if (el.hasAttribute('aria-selected')) {
+      //   el.setAttribute('aria-selected', 'true');
+      // }
     });
     currentFocus = focusableElements;
   } else {
