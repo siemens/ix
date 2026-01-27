@@ -92,7 +92,7 @@ export class Chip {
    * ARIA label for the close button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelCloseButton?: string;
+  @Prop() ariaLabelCloseButton?: string = 'Close chip';
 
   /**
    * Fire event if close button is clicked
@@ -116,7 +116,7 @@ export class Chip {
             this.closeChip.emit(event);
             event.stopPropagation();
           }}
-          aria-label={this.ariaLabelCloseButton}
+          ariaLabelButton={this.ariaLabelCloseButton}
         ></ix-icon-button>
       </div>
     );

@@ -59,7 +59,7 @@ export class ExpandingSearch
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelSearchIconButton?: string;
+  @Prop() ariaLabelSearchIconButton?: string = 'Search';
 
   /**
    * ARIA label for the clear icon button
@@ -67,7 +67,7 @@ export class ExpandingSearch
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelClearIconButton?: string;
+  @Prop() ariaLabelClearIconButton?: string = 'Clear search';
 
   /**
    * ARIA label for the search input
@@ -75,7 +75,7 @@ export class ExpandingSearch
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelSearchInput?: string;
+  @Prop() ariaLabelSearchInput?: string = 'Search input';
 
   @State() isFieldChanged = false;
   @State() expanded = false;
@@ -150,7 +150,7 @@ export class ExpandingSearch
             'btn-search': true,
             'btn-search--expanded': this.expanded,
           }}
-          aria-label={this.ariaLabelSearchIconButton}
+          ariaLabelButton={this.expanded ? 'Close search' : 'Open search'}
         ></ix-icon-button>
 
         <div
@@ -183,7 +183,7 @@ export class ExpandingSearch
             onFocus={() => (this.hasFocus = true)}
             onInput={(e: InputEvent) => this.onChange(e)}
             tabindex={this.expanded ? 0 : -1}
-            aria-label={this.ariaLabelSearchInput}
+            ariaLabel={this.ariaLabelSearchInput}
           />
 
           {this.isFieldChanged ? (
@@ -194,7 +194,7 @@ export class ExpandingSearch
               size="16"
               data-testid="clear-button"
               onClick={() => this.clearClicked()}
-              aria-label={this.ariaLabelClearIconButton}
+              ariaLabelButton={this.ariaLabelClearIconButton}
             />
           ) : null}
         </div>

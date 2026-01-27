@@ -91,7 +91,7 @@ export class Pagination {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronLeftIconButton?: string;
+  @Prop() ariaLabelChevronLeftIconButton?: string = 'Previous page';
 
   /**
    * ARIA label for the chevron right icon button
@@ -99,7 +99,7 @@ export class Pagination {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronRightIconButton?: string;
+  @Prop() ariaLabelChevronRightIconButton?: string = 'Next page';
 
   /**
    * ARIA label for the page selection input
@@ -247,14 +247,14 @@ export class Pagination {
           variant="subtle-tertiary"
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
-          aria-label={this.ariaLabelChevronLeftIconButton}
+          ariaLabelButton={this.ariaLabelChevronLeftIconButton}
         ></ix-icon-button>
 
         {this.advanced ? (
           <div class="advanced-pagination">
             <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
-              aria-label={this.ariaLabelPageSelection}
+              ariaLabel={this.ariaLabelPageSelection}
               class="ix-form-control page-selection"
               type="number"
               min="1"
@@ -293,7 +293,7 @@ export class Pagination {
           variant="subtle-tertiary"
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
-          aria-label={this.ariaLabelChevronRightIconButton}
+          ariaLabelButton={this.ariaLabelChevronRightIconButton}
         ></ix-icon-button>
 
         {this.advanced && !this.hideItemCount && (

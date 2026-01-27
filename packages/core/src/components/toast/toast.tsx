@@ -74,7 +74,7 @@ export class Toast {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelCloseIconButton?: string;
+  @Prop() ariaLabelCloseIconButton?: string = 'Close toast';
 
   /**
    * Toast closed
@@ -225,7 +225,7 @@ export class Toast {
               size="24"
               variant="tertiary"
               onClick={() => this.closeToast.emit()}
-              aria-label={this.ariaLabelCloseIconButton}
+              ariaLabelButton={this.ariaLabelCloseIconButton}
             />
           </div>
         </div>

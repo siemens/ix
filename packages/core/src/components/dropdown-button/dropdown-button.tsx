@@ -61,7 +61,7 @@ export class DropdownButton {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelDropdownButton?: string;
+  @Prop() ariaLabelDropdownButton?: string = 'Toggle dropdown';
 
   /**
    * Enable Popover API rendering for dropdown.
@@ -110,7 +110,9 @@ export class DropdownButton {
               variant={this.variant}
               disabled={this.disabled}
               alignment="start"
-              ariaLabel={this.ariaLabelDropdownButton}
+              ariaLabelButton={
+                this.dropdownShow ? 'Close dropdown' : 'Open dropdown'
+              }
               tabIndex={this.disabled ? -1 : 0}
             >
               <div class={'content'}>

@@ -129,7 +129,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelCalendarButton?: string;
+  @Prop() ariaLabelCalendarButton?: string = 'Open calendar';
 
   /**
    * Error text below the input field
@@ -189,13 +189,13 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * ARIA label for the previous month icon button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelPreviousMonthButton?: string;
+  @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
 
   /**
    * ARIA label for the next month icon button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelNextMonthButton?: string;
+  @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 
   /**
    * If false, pressing Enter will submit the form (if inside a form).
@@ -428,7 +428,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             variant="subtle-tertiary"
             icon={iconCalendar}
             onClick={(event) => this.onCalenderClick(event)}
-            aria-label={this.ariaLabelCalendarButton}
+            ariaLabelButton={this.ariaLabelCalendarButton}
           ></ix-icon-button>
         </SlotEnd>
       </div>

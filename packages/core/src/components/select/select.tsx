@@ -84,7 +84,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelClearIconButton?: string;
+  @Prop() ariaLabelClearIconButton?: string = 'Clear selection';
 
   /**
    * Warning text for the select component
@@ -968,7 +968,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                         e.stopPropagation();
                         this.clear();
                       }}
-                      aria-label={this.ariaLabelClearIconButton}
+                      ariaLabelButton={this.ariaLabelClearIconButton}
                     />
                   ) : null}
                   {this.disabled || this.readonly ? null : (
@@ -985,7 +985,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
                       }}
-                      aria-label={this.ariaLabelChevronDownIconButton}
+                      ariaLabelButton={
+                        this.dropdownShow
+                          ? 'Close select dropdown'
+                          : 'Open select dropdown'
+                      }
                     ></ix-icon-button>
                   )}
                 </div>
