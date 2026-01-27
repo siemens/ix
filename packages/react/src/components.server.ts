@@ -1205,6 +1205,8 @@ export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvat
         bottom: 'bottom',
         image: 'image',
         initials: 'initials',
+        tooltipText: 'tooltip-text',
+        ariaLabelTooltip: 'aria-label-tooltip',
         i18nLogout: 'i18n-logout',
         hideLogoutButton: 'hide-logout-button',
         enableTopLayer: 'enable-top-layer'

@@ -2312,6 +2312,11 @@ export namespace Components {
     }
     interface IxMenuAvatar {
         /**
+          * aria-label for the tooltip
+          * @since 4.3.0.
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Second line of text
          */
         "bottom"?: string;
@@ -2339,6 +2344,11 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+          * @since 4.3.0.
+         */
+        "tooltipText"?: string;
         /**
           * First line of text
          */
@@ -8343,6 +8353,11 @@ declare namespace LocalJSX {
     }
     interface IxMenuAvatar {
         /**
+          * aria-label for the tooltip
+          * @since 4.3.0.
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Second line of text
          */
         "bottom"?: string;
@@ -8374,6 +8389,11 @@ declare namespace LocalJSX {
           * Logout click
          */
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
+        /**
+          * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+          * @since 4.3.0.
+         */
+        "tooltipText"?: string;
         /**
           * First line of text
          */
