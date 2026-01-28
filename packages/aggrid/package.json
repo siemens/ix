@@ -50,7 +50,7 @@
     "vite": "catalog:"
   },
   "dependencies": {
-    "@siemens/ix": "^4.2.0"
+    "@siemens/ix": "^4.3.0"
   },
   "peerDependencies": {
     "ag-grid-community": "^33"
