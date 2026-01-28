@@ -184,8 +184,8 @@ regressionTest(
     const expectedValues = ['5', '25', '50', '100'];
     await expect(dropdownItems).toHaveCount(expectedValues.length);
 
-    for (let i = 0; i < expectedValues.length; i++) {
-      await expect(dropdownItems.nth(i)).toContainText(expectedValues[i]);
+    for (let index = 0; index < expectedValues.length; index++) {
+      await expect(dropdownItems.nth(index)).toContainText(expectedValues[index]);
     }
   }
 );
@@ -208,8 +208,8 @@ regressionTest(
     const dropdownItems = pagination.locator('ix-dropdown-item');
     const expectedValues = ['5', '25', '50', '100'];
 
-    for (let i = 0; i < expectedValues.length; i++) {
-      await expect(dropdownItems.nth(i)).toContainText(expectedValues[i]);
+    for (let index = 0; index < expectedValues.length; index++) {
+      await expect(dropdownItems.nth(index)).toContainText(expectedValues[index]);
     }
   }
 );
@@ -227,7 +227,6 @@ regressionTest(
       elm.itemCountOptions = [0, -5, 10, 20, -1];
       elm.count = 11;
     });
-    //await page.waitForSelector('ix-pagination');
     await pagination.getByRole('button').nth(-1).click();
 
     const dropdownItems = pagination.locator('ix-dropdown-item');
@@ -256,8 +255,8 @@ regressionTest(
     const expectedValues = ['10', '15', '20', '40', '100'];
     await expect(dropdownItems).toHaveCount(expectedValues.length);
 
-    for (let i = 0; i < expectedValues.length; i++) {
-      await expect(dropdownItems.nth(i)).toContainText(expectedValues[i]);
+    for (let index = 0; index < expectedValues.length; index++) {
+      await expect(dropdownItems.nth(index)).toContainText(expectedValues[index]);
     }
   }
 );
