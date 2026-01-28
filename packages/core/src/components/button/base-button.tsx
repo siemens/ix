@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import { ButtonVariant } from './button';
@@ -76,6 +77,17 @@ const handleOnClick = (e: Event, props: BaseButtonProps) => {
   }
 };
 
+const isIconDecorative = (
+  ariaAttributes: A11yAttributes,
+  children: any
+): boolean => {
+  const hasTextContent = children && children.length > 0;
+  const hasAriaLabel = !!(
+    ariaAttributes['aria-label'] || ariaAttributes['aria-labelledby']
+  );
+  return hasTextContent || hasAriaLabel;
+};
+
 export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   props: BaseButtonProps,
   children
@@ -86,6 +98,8 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   if (!ariaAttributes['aria-disabled'] && props.disabled) {
     ariaAttributes['aria-disabled'] = 'true';
   }
+
+  const iconIsDecorative = isIconDecorative(ariaAttributes, children);
 
   const commonAttributes = {
     ...ariaAttributes,
@@ -112,6 +126,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
         name={props.icon}
         size={props.iconSize as any}
         color={props.iconColor}
+        aria-hidden={iconIsDecorative ? 'true' : undefined}
       ></ix-icon>
     ) : null,
     <div
@@ -128,6 +143,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
         name={props.iconRight}
         size={props.iconSize as any}
         color={props.iconColor}
+        aria-hidden={iconIsDecorative ? 'true' : undefined}
       ></ix-icon>
     ) : null,
     props.afterContent ? props.afterContent : null,

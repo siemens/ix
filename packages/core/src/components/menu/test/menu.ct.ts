@@ -304,11 +304,11 @@ regressionTest('should have correct aria label', async ({ mount, page }) => {
 
   const expandButton = page.locator('ix-menu').locator('ix-menu-expand-icon');
 
-  await expect(expandButton).toHaveAttribute('aria-label', 'Expand sidebar');
+  await expect(expandButton).toHaveAttribute('aria-hidden', 'true');
 
   await expandButton.click();
 
-  await expect(expandButton).toHaveAttribute('aria-label', 'Expand sidebar');
+  await expect(expandButton).toHaveAttribute('aria-hidden', 'true');
 });
 
 regressionTest(
@@ -355,3 +355,53 @@ async function clickSettingsButton(element: Locator, page: Page) {
   await settingsButton.click();
   await page.waitForTimeout(1000);
 }
+
+regressionTest.describe('menu-avatar tooltip', () => {
+  regressionTest(
+    'should show no tooltip when no top(username) property is set',
+    async ({ page, mount }) => {
+      await mount(`
+      <ix-menu>
+        <ix-menu-avatar></ix-menu-avatar>
+      </ix-menu>
+    `);
+
+      const menuAvatar = page.locator('ix-menu-avatar');
+      await menuAvatar.hover();
+
+      const tooltip = page.locator('ix-tooltip');
+      await expect(tooltip).not.toBeAttached();
+    }
+  );
+
+  regressionTest(
+    'should show tooltip text with top(username) or tooltip-text',
+    async ({ page, mount }) => {
+      await mount(`
+        <ix-menu>
+          <ix-menu-avatar top="John Doe"></ix-menu-avatar>
+        </ix-menu>
+      `);
+
+      const menuAvatar = page.locator('ix-menu-avatar');
+      const button = menuAvatar.locator('button.avatar');
+
+      await button.hover();
+
+      const tooltip = page.locator('ix-tooltip');
+      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveClass(/visible/);
+      await expect(tooltip).toHaveText('John Doe');
+
+      await menuAvatar.evaluate((element) =>
+        element.setAttribute('tooltip-text', 'other text')
+      );
+
+      await button.hover();
+
+      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveClass(/visible/);
+      await expect(tooltip).toHaveText('other text');
+    }
+  );
+});

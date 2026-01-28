@@ -7,15 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
-import { AlignedPlacement } from '../dropdown/placement';
 import {
   iconChevronDownSmall,
   iconChevronUpSmall,
 } from '@siemens/ix-icons/icons';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { AlignedPlacement } from '../dropdown/placement';
+import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
-import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-dropdown-button',
@@ -62,6 +62,14 @@ export class DropdownButton {
    * @since 3.2.0
    */
   @Prop() ariaLabelDropdownButton?: string;
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   @State() dropdownShow = false;
 
@@ -142,6 +150,7 @@ export class DropdownButton {
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
+          enableTopLayer={this.enableTopLayer}
           onShowChanged={this.onDropdownShowChanged}
         >
           <slot></slot>

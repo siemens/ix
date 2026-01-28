@@ -8,7 +8,7 @@
  */
 import type { Components } from '@siemens/ix/components';
 import { action } from 'storybook/actions';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { genericRender } from './utils/generic-render';
 
 type Element = Components.IxRadio & {
