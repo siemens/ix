@@ -27,8 +27,15 @@ import {
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
-import { mapValidationResult, onInputBlur } from './input.util';
+import {
+  getAriaAttributesForInput,
+  mapValidationResult,
+  onInputBlur,
+} from './input.util';
+import { convertToPx } from '../utils/unit-conversion.util';
 import type { TextareaResizeBehavior } from './textarea.types';
+
+let sequentialInstanceId = 0;
 
 /**
  * @form-ready
@@ -110,21 +117,25 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   /**
    * The height of the textarea field (e.g. "52px").
+   * Will take precedence over `textareaRows` prop if both are set.
    */
   @Prop() textareaHeight?: string;
 
   /**
    * The width of the textarea field (e.g. "200px").
+   * Will take precedence over `textareaCols` prop if both are set.
    */
   @Prop() textareaWidth?: string;
 
   /**
    * The height of the textarea specified by number of rows.
+   * Will be overridden by `textareaHeight` prop if both are set.
    */
   @Prop() textareaRows?: number;
 
   /**
    * The width of the textarea specified by number of characters.
+   * Will be overridden by `textareaWidth` prop if both are set.
    */
   @Prop() textareaCols?: number;
 
@@ -168,6 +179,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   private readonly textAreaRef = makeRef<HTMLTextAreaElement>(() => {
     this.initResizeObserver();
   });
+  private readonly inputId = `ix-textarea-${sequentialInstanceId++}`;
   private touched = false;
   private resizeObserver?: ResizeObserver;
   private isManuallyResized = false;
@@ -276,6 +288,32 @@ export class Textarea implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
+  private getTextareaHeight(): string | undefined {
+    if (this.isManuallyResized) {
+      return this.manualHeight;
+    }
+
+    const convertedHeight = convertToPx(
+      this.textareaHeight,
+      'height',
+      this.hostElement
+    );
+
+    if (convertedHeight) {
+      return convertedHeight;
+    }
+
+    return this.textareaRows ? 'auto' : undefined;
+  }
+
+  private getTextareaWidth(): string {
+    if (this.isManuallyResized) {
+      return this.manualWidth || '100%';
+    }
+
+    return convertToPx(this.textareaWidth, 'width', this.hostElement) || '100%';
+  }
+
   render() {
     return (
       <Host
@@ -285,6 +323,7 @@ export class Textarea implements IxInputFieldComponent<string> {
         }}
       >
         <ix-field-wrapper
+          htmlForLabel={this.inputId}
           required={this.required}
           label={this.label}
           helperText={this.helperText}
@@ -310,16 +349,13 @@ export class Textarea implements IxInputFieldComponent<string> {
           )}
           <div class="input-wrapper">
             <TextareaElement
+              id={this.inputId}
               minLength={this.minLength}
               maxLength={this.maxLength}
               textareaCols={this.textareaCols}
               textareaRows={this.textareaRows}
-              textareaHeight={
-                this.isManuallyResized ? this.manualHeight : this.textareaHeight
-              }
-              textareaWidth={
-                this.isManuallyResized ? this.manualWidth : this.textareaWidth
-              }
+              textareaHeight={this.getTextareaHeight()}
+              textareaWidth={this.getTextareaWidth()}
               resizeBehavior={this.resizeBehavior}
               readonly={this.readonly}
               disabled={this.disabled}
@@ -328,6 +364,7 @@ export class Textarea implements IxInputFieldComponent<string> {
               value={this.value}
               placeholder={this.placeholder}
               textAreaRef={this.textAreaRef}
+              ariaAttributes={getAriaAttributesForInput(this)}
               valueChange={(value) => this.valueChange.emit(value)}
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
