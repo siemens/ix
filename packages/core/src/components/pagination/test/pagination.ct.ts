@@ -185,7 +185,9 @@ regressionTest(
     await expect(dropdownItems).toHaveCount(expectedValues.length);
 
     for (let index = 0; index < expectedValues.length; index++) {
-      await expect(dropdownItems.nth(index)).toContainText(expectedValues[index]);
+      await expect(dropdownItems.nth(index)).toContainText(
+        expectedValues[index]
+      );
     }
   }
 );
@@ -209,7 +211,9 @@ regressionTest(
     const expectedValues = ['5', '25', '50', '100'];
 
     for (let index = 0; index < expectedValues.length; index++) {
-      await expect(dropdownItems.nth(index)).toContainText(expectedValues[index]);
+      await expect(dropdownItems.nth(index)).toContainText(
+        expectedValues[index]
+      );
     }
   }
 );
@@ -256,7 +260,9 @@ regressionTest(
     await expect(dropdownItems).toHaveCount(expectedValues.length);
 
     for (let index = 0; index < expectedValues.length; index++) {
-      await expect(dropdownItems.nth(index)).toContainText(expectedValues[index]);
+      await expect(dropdownItems.nth(index)).toContainText(
+        expectedValues[index]
+      );
     }
   }
 );

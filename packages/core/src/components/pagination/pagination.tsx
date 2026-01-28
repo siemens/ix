@@ -175,7 +175,7 @@ export class Pagination {
       `[ix-pagination] All values in ${this.itemCountOptionsPropName} are invalid. ` +
         `Only positive integers are allowed. Falling back to default options: [${this.defaultItemCountOptions.join(', ')}]`
     );
-    this.verifiedItemCountOptions = this.getValidItemCountOptions();
+    this.verifiedItemCountOptions = this.defaultItemCountOptions;
   }
 
   private verifyItemCountMismatch(): void {
