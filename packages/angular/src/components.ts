@@ -1272,14 +1272,14 @@ export declare interface IxHelperText extends Components.IxHelperText {}
 
 
 @ProxyCmp({
-  inputs: ['a11yLabel', 'disabled', 'icon', 'iconColor', 'loading', 'oval', 'size', 'type', 'variant']
+  inputs: ['a11yLabel', 'ariaLabelButton', 'disabled', 'icon', 'iconColor', 'loading', 'oval', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['a11yLabel', 'disabled', 'icon', 'iconColor', 'loading', 'oval', 'size', 'type', 'variant'],
+  inputs: ['a11yLabel', 'ariaLabelButton', 'disabled', 'icon', 'iconColor', 'loading', 'oval', 'size', 'type', 'variant'],
   standalone: false
 })
 export class IxIconButton {
