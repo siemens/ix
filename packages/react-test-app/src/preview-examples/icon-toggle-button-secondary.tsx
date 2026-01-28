@@ -7,43 +7,61 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconCheckboxes } from '@siemens/ix-icons/icons';
+import {
+  iconTextBold,
+  iconTextItalic,
+  iconTextUnderline,
+} from '@siemens/ix-icons/icons';
 import './icon-toggle-button-secondary.scoped.css';
 
-import { IxIconToggleButton, IxLayoutGrid, IxRow } from '@siemens/ix-react';
+import { IxIconToggleButton } from '@siemens/ix-react';
+import { useState } from 'react';
 
 export default () => {
+  const [boldPressed, setBoldPressed] = useState(false);
+  const [underlinePressed, setUnderlinePressed] = useState(true);
+
+  const handleBoldClick = () => {
+    setBoldPressed(!boldPressed);
+  };
+
+  const handleUnderlineClick = () => {
+    setUnderlinePressed(!underlinePressed);
+  };
   return (
-    <IxLayoutGrid>
-      <IxRow>
-        <IxIconToggleButton icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton pressed icon={iconCheckboxes}></IxIconToggleButton>
-        <IxIconToggleButton disabled icon={iconCheckboxes}></IxIconToggleButton>
+    <>
+      <div className="button-container">
         <IxIconToggleButton
-          disabled
-          loading
-          icon={iconCheckboxes}
-        ></IxIconToggleButton>
-      </IxRow>
-      <IxRow>
-        <IxIconToggleButton icon={iconCheckboxes} oval></IxIconToggleButton>
+          variant="secondary"
+          icon={iconTextBold}
+          pressed={boldPressed}
+          onClick={handleBoldClick}
+        >
+          Bold
+        </IxIconToggleButton>
+        <IxIconToggleButton variant="secondary" disabled icon={iconTextItalic}>
+          Italic
+        </IxIconToggleButton>
         <IxIconToggleButton
-          pressed
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          disabled
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-        <IxIconToggleButton
-          disabled
-          loading
-          icon={iconCheckboxes}
-          oval
-        ></IxIconToggleButton>
-      </IxRow>
-    </IxLayoutGrid>
+          variant="secondary"
+          icon={iconTextUnderline}
+          pressed={underlinePressed}
+          onClick={handleUnderlineClick}
+        >
+          Underline
+        </IxIconToggleButton>
+        <IxIconToggleButton variant="secondary" disabled loading>
+          Strikethrough
+        </IxIconToggleButton>
+      </div>
+      <p
+        style={{
+          fontWeight: boldPressed ? 'bold' : 'normal',
+          textDecoration: underlinePressed ? 'underline' : 'none',
+        }}
+      >
+        Lorem ipsum text
+      </p>
+    </>
   );
 };

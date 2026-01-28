@@ -72,6 +72,7 @@ const options: EChartsOption = {
         show: true,
         distance: 30,
         fontSize: 16,
+        color: getComputedCSSProperty('color-std-text'),
       },
       progress: {
         show: true,

@@ -39,14 +39,14 @@ import {
   createClassMutationObserver,
   getValidationText,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
-import type { DateInputValidityState } from './date-input.types';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
+import { makeRef } from '../utils/make-ref';
+import type { DateInputValidityState } from './date-input.types';
 
 /**
  * @form-ready
@@ -209,6 +209,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
    * Text alignment within the date input. 'start' aligns the text to the start of the input, 'end' aligns the text to the end of the input.
    */
   @Prop() textAlignment: 'start' | 'end' = 'start';
+
+  /**
+   * Enable Popover API rendering for dropdown.
+   *
+   * @default false
+   * @since 4.3.0
+   */
+  @Prop() enableTopLayer: boolean = false;
 
   /**
    * Input change event.
@@ -528,7 +536,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
-          suppressOverflowBehavior={true}
+          enableTopLayer={this.enableTopLayer}
+          suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;

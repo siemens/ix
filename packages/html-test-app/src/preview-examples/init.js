@@ -48,24 +48,62 @@ const scrollbarOverwrite = `
   }
 `;
 
-function loadAdditionalTheme() {
+async function loadAdditionalTheme() {
   const theme = __THEME__;
-  if (theme?.css) {
-    const base = `./../additional-theme`;
-    const css = theme.css;
-    const head = document.head;
+  if (!theme?.css) {
+    console.warn('No additional theme configured');
+    return false;
+  }
 
-    const style_link = document.createElement('link');
-    style_link.rel = 'stylesheet';
-    style_link.href = `${base}/${css}`;
-    head.appendChild(style_link);
+  const base = `./../additional-theme`;
+  const css = theme.css;
+  const cssUrl = `${base}/${css}`;
+
+  try {
+    const response = await fetch(cssUrl, { method: 'HEAD' });
+
+    if (!response.ok) {
+      console.warn(
+        `Brand theme CSS not found at ${cssUrl} - using default theme`
+      );
+      return false;
+    }
+
+    await new Promise((resolve) => {
+      const head = document.head;
+      const style_link = document.createElement('link');
+      style_link.rel = 'stylesheet';
+      style_link.href = cssUrl;
+      style_link.onload = () => {
+        resolve();
+      };
+      style_link.onerror = () => {
+        console.warn('Failed to load Brand theme CSS');
+        resolve();
+      };
+      head.appendChild(style_link);
+    });
+
+    return true;
+  } catch (error) {
+    console.warn(`Brand theme CSS not available: ${error.message}`);
+    return false;
   }
 }
 
-function detectThemeSwitching() {
+function detectThemeSwitching(isBrandThemeAvailable) {
   const searchParams = new URLSearchParams(location.search);
+
   if (searchParams.has('theme')) {
-    const theme = searchParams.get('theme');
+    let theme = searchParams.get('theme');
+
+    if (theme === 'brand' && !isBrandThemeAvailable) {
+      console.warn(
+        'Brand theme requested but CSS not available - falling back to Classic theme'
+      );
+      theme = 'classic';
+    }
+
     document.documentElement.dataset.ixTheme = theme;
   }
 
@@ -111,17 +149,22 @@ function setBodySizes() {
   document.head.appendChild(styleElement);
 }
 
-(async function init() {
+async function init() {
   ixIconsDefineCustomElements();
   defineCustomElements();
 
-  detectThemeSwitching();
+  const isBrandThemeAvailable = await loadAdditionalTheme();
+
+  detectThemeSwitching(isBrandThemeAvailable);
+
   setBodySizes();
   addMarginToDemo();
-  loadAdditionalTheme();
 
   const header = document.head;
   const scrollbarStyle = document.createElement('style');
   scrollbarStyle.innerHTML = scrollbarOverwrite;
   header.appendChild(scrollbarStyle);
-})();
+}
+
+// Initialize and expose promise for chart scripts to await
+globalThis.ixInitPromise = init();
