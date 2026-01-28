@@ -3258,19 +3258,23 @@ export namespace Components {
         "hasValidValue": () => Promise<boolean>;
         /**
           * Show text below the field component
+          * @since 4.3.0
          */
         "helperText"?: string;
         /**
           * Info text for the field component
+          * @since 4.3.0
          */
         "infoText"?: string;
         /**
           * Error text for the field component
+          * @since 4.3.0
          */
         "invalidText"?: string;
         "isTouched": () => Promise<boolean>;
         /**
           * Label for the field component
+          * @since 4.3.0
          */
         "label"?: string;
         /**
@@ -3289,6 +3293,7 @@ export namespace Components {
         "min": number;
         /**
           * Show helper, info, warning, error and valid text as tooltip
+          * @since 4.3.0
           * @default false
          */
         "showTextAsTooltip": boolean;
@@ -3309,6 +3314,7 @@ export namespace Components {
         "traceReference": number;
         /**
           * Valid text for the field component
+          * @since 4.3.0
          */
         "validText"?: string;
         /**
@@ -3318,6 +3324,7 @@ export namespace Components {
         "value": number;
         /**
           * Warning text for the field component
+          * @since 4.3.0
          */
         "warningText"?: string;
     }
@@ -9383,18 +9390,22 @@ declare namespace LocalJSX {
         "error"?: boolean | string;
         /**
           * Show text below the field component
+          * @since 4.3.0
          */
         "helperText"?: string;
         /**
           * Info text for the field component
+          * @since 4.3.0
          */
         "infoText"?: string;
         /**
           * Error text for the field component
+          * @since 4.3.0
          */
         "invalidText"?: string;
         /**
           * Label for the field component
+          * @since 4.3.0
          */
         "label"?: string;
         /**
@@ -9417,6 +9428,7 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
           * Show helper, info, warning, error and valid text as tooltip
+          * @since 4.3.0
           * @default false
          */
         "showTextAsTooltip"?: boolean;
@@ -9437,6 +9449,7 @@ declare namespace LocalJSX {
         "traceReference"?: number;
         /**
           * Valid text for the field component
+          * @since 4.3.0
          */
         "validText"?: string;
         /**
@@ -9446,6 +9459,7 @@ declare namespace LocalJSX {
         "value"?: number;
         /**
           * Warning text for the field component
+          * @since 4.3.0
          */
         "warningText"?: string;
     }
