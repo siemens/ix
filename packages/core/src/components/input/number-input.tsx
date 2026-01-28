@@ -191,6 +191,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   /**
    * Event emitted when the input field loses focus and the value has changed
+   * @since v4.4.0
    */
   @Event() ixChange!: EventEmitter<number>;
 

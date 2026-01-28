@@ -6994,6 +6994,7 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
           * Event emitted when the date input loses focus and the value has changed.
+          * @since v4.4.0
          */
         "onIxChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
@@ -8016,6 +8017,7 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
         /**
           * Event emitted when the text field loses focus and the value has changed.
+          * @since v4.4.0
          */
         "onIxChange"?: (event: IxInputCustomEvent<string>) => void;
         /**
@@ -8710,6 +8712,7 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
         /**
           * Event emitted when the input field loses focus and the value has changed
+          * @since v4.4.0
          */
         "onIxChange"?: (event: IxNumberInputCustomEvent<number>) => void;
         /**
@@ -9603,6 +9606,7 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
         /**
           * Event emitted when the textarea field loses focus and the value has changed.
+          * @since v4.4.0
          */
         "onIxChange"?: (event: IxTextareaCustomEvent<string>) => void;
         /**
@@ -9773,6 +9777,7 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
           * Event emitted when the time input loses focus and the value has changed.
+          * @since v4.4.0
          */
         "onIxChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         "onIxFocus"?: (event: IxTimeInputCustomEvent<void>) => void;

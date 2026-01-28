@@ -764,7 +764,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
    */
   validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
   /**
-   * Event emitted when the date input loses focus and the value has changed.
+   * Event emitted when the date input loses focus and the value has changed. @since v4.4.0
    */
   ixChange: EventEmitter<CustomEvent<string | undefined>>;
 }
@@ -1469,7 +1469,7 @@ export declare interface IxInput extends Components.IxInput {
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the text field loses focus and the value has changed.
+   * Event emitted when the text field loses focus and the value has changed. @since v4.4.0
    */
   ixChange: EventEmitter<CustomEvent<string>>;
 }
@@ -2151,7 +2151,7 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the input field loses focus and the value has changed
+   * Event emitted when the input field loses focus and the value has changed @since v4.4.0
    */
   ixChange: EventEmitter<CustomEvent<number>>;
 }
@@ -2679,7 +2679,7 @@ export declare interface IxTextarea extends Components.IxTextarea {
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
   /**
-   * Event emitted when the textarea field loses focus and the value has changed.
+   * Event emitted when the textarea field loses focus and the value has changed. @since v4.4.0
    */
   ixChange: EventEmitter<CustomEvent<string>>;
 }
@@ -2745,7 +2745,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    */
   validityStateChange: EventEmitter<CustomEvent<IIxTimeInputTimeInputValidityState>>;
   /**
-   * Event emitted when the time input loses focus and the value has changed.
+   * Event emitted when the time input loses focus and the value has changed. @since v4.4.0
    */
   ixChange: EventEmitter<CustomEvent<string>>;
 }
