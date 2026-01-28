@@ -8,5 +8,6 @@
  */
 export type DateInputValidityState = {
   patternMismatch: boolean;
+  valueMissing: boolean;
   invalidReason?: string;
 };

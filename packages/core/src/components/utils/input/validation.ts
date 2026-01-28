@@ -139,10 +139,16 @@ export function HookValidationLifecycle(options?: {
           typeof host.getValidityState === 'function'
         ) {
           const validityState = await host.getValidityState();
+          const touched = await isTouched(host);
 
           host.classList.toggle(
             `ix-invalid--validity-patternMismatch`,
             validityState.patternMismatch
+          );
+
+          host.classList.toggle(
+            'ix-invalid--validity-invalid',
+            !validityState.valid && touched
           );
         }
       };
