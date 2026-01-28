@@ -58,36 +58,43 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
 
   /**
    * Show text below the field component
+   * @since 4.3.0
    */
   @Prop() helperText?: string;
 
   /**
    * Label for the field component
+   * @since 4.3.0
    */
   @Prop() label?: string;
 
   /**
    * Error text for the field component
+   * @since 4.3.0
    */
   @Prop() invalidText?: string;
 
   /**
    * Info text for the field component
+   * @since 4.3.0
    */
   @Prop() infoText?: string;
 
   /**
    * Warning text for the field component
+   * @since 4.3.0
    */
   @Prop() warningText?: string;
 
   /**
    * Valid text for the field component
+   * @since 4.3.0
    */
   @Prop() validText?: string;
 
   /**
    * Show helper, info, warning, error and valid text as tooltip
+   * @since 4.3.0
    */
   @Prop() showTextAsTooltip: boolean = false;
 
