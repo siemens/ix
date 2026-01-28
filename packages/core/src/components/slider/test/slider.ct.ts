@@ -8,7 +8,11 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+} from '@utils/test';
 
 regressionTest('renders', async ({ page, mount }) => {
   await mount(`<ix-slider></ix-slider>`);
@@ -90,3 +94,22 @@ regressionTest(
     await expect(slider).toHaveAttribute('value', '20');
   }
 );
+
+regressionTest(`form-readiness`, async ({ mount, page }) => {
+  await mount(
+    `<form><ix-slider name="ix-slider" value="0"></ix-slider></form>`
+  );
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+  const input = page.locator('ix-slider').locator('input');
+  await input.focus();
+  await input.evaluate((el) => {
+    (el as HTMLInputElement).value = '50';
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await input.blur();
+
+  const formData = await getFormValue(formElement, 'ix-slider', page);
+  expect(formData).toBe('50');
+});

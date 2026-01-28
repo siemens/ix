@@ -1644,6 +1644,13 @@ export type IxSliderEvents = { onValueChange: EventName<CustomEvent<number>> };
 export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents> = /*@__PURE__*/ createComponent<IxSliderElement, IxSliderEvents>({
     tagName: 'ix-slider',
     properties: {
+        helperText: 'helper-text',
+        label: 'label',
+        invalidText: 'invalid-text',
+        infoText: 'info-text',
+        warningText: 'warning-text',
+        validText: 'valid-text',
+        showTextAsTooltip: 'show-text-as-tooltip',
         step: 'step',
         min: 'min',
         max: 'max',

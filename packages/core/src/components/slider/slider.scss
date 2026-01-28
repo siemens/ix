@@ -91,8 +91,8 @@
   display: flex;
   flex-direction: column;
   min-height: 2rem;
+  justify-content: center;
 
-  // Slider specific calculations
   --thumb-size: 1rem;
   --value: 0;
   --trace-start: 0;
@@ -117,7 +117,7 @@
     background: transparent;
     cursor: pointer;
     width: 100%;
-    height: 1rem;
+    height: 1.5rem;
     margin: 0;
   }
 
@@ -127,23 +127,32 @@
     position: absolute;
     display: block;
     z-index: -1;
-
-    width: calc(
-      calc(7px + calc(100% * var(--trace-end)) - calc(16px * var(--trace-end))) -
-        calc(
-          7px + calc(100% * var(--trace-start)) -
-            calc(16px * var(--trace-start))
-        )
-    );
-
-    left: calc(
-      7px + calc(100% * var(--trace-start)) - calc(16px * var(--trace-start))
-    );
-
+    width: calc((var(--trace-end) - var(--trace-start)) * 100%);
+    left: calc(var(--trace-start) * 100%);
     height: 4px;
     background-color: var(--trace-color);
     top: 50%;
     transform: translateY(-50%);
+    border-radius: clamp(
+        0rem,
+        calc((0.01 - var(--trace-start)) * 999rem),
+        0.125rem
+      )
+      clamp(0rem, calc((var(--trace-end) - 0.99) * 999rem), 0.125rem)
+      clamp(0rem, calc((var(--trace-end) - 0.99) * 999rem), 0.125rem)
+      clamp(0rem, calc((0.01 - var(--trace-start)) * 999rem), 0.125rem);
+  }
+
+  .slider-container {
+    width: 100%;
+
+    .slider {
+      width: 100%;
+
+      input[type='range'] {
+        width: 100%;
+      }
+    }
   }
 
   // Trace reference
@@ -156,10 +165,7 @@
     background-color: var(--trace-reference-color);
     top: 50%;
     transform: translateY(-50%);
-    left: calc(
-      7px + calc(100% * var(--trace-reference)) -
-        calc(16px * var(--trace-reference))
-    );
+    left: calc(100% * var(--trace-reference));
   }
 
   @include track() {
@@ -170,7 +176,7 @@
   @include clear-browser-thumb();
 
   @include thumb() {
-    border-radius: 100px;
+    border-radius: 50%;
     background-color: var(--theme-slider-thumb--background);
     height: var(--thumb-size);
     width: var(--thumb-size);
@@ -179,13 +185,10 @@
   }
 
   @include thumb-hover() {
-    transform: scale(1.2);
     background-color: var(--theme-slider-thumb--background--hover);
   }
 
   @include thumb-active() {
-    transform: scale(1.2);
-
     background-color: var(--theme-slider-thumb--background--active);
   }
 
@@ -196,25 +199,38 @@
 
   /* style datalist */
   .ticks {
-    display: flex;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .ticks .tick {
-    display: block;
     position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: var(--tick-color);
-    border-radius: 100px;
-    top: 50%;
-    transform: translateY(-50%);
-    left: calc(var(--tick-value) * 100% - 4px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .ticks circle.tick {
+    --tick-size: 6px;
+    --tick-radius: calc(var(--tick-size) / 2);
+    r: var(--tick-radius);
+    fill: var(--tick-color);
+    transform: translate(
+      calc(
+        var(--tick-value) * (100% - var(--thumb-size)) + var(--thumb-size) / 2
+      ),
+      50%
+    );
+  }
+
+  .ticks .tick.tick-at-min {
+    transform: translate(var(--tick-radius), 50%);
+  }
+
+  .ticks .tick.tick-at-max {
+    transform: translate(calc(100% - var(--tick-radius)), 50%);
   }
 
   .ticks .tick.tick-active {
-    background-color: var(--tick-color--active);
+    fill: var(--tick-color--active);
   }
 
   .slider {
@@ -228,11 +244,11 @@
     position: absolute;
     background-color: var(--track-color);
     height: 4px;
-    width: calc(100% - 1rem);
-    margin-left: 0.5rem;
+    width: 100%;
     top: 50%;
     transform: translateY(-50%);
     left: 0px;
+    border-radius: 2px;
   }
 
   .thumb {
@@ -242,7 +258,6 @@
     height: 1rem;
     width: 1rem;
     border-radius: 100px;
-    left: 0px;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -261,21 +276,10 @@
 
     min-height: 0px;
   }
-
-  .label-start {
-    margin-left: 0.5rem;
-  }
-
-  .label-end {
-    margin-right: 0.5rem;
-  }
-
-  .label-error {
-    margin-left: 0.5rem;
-  }
 }
 
-:host(.error) {
+:host(.error),
+:host(.invalid) {
   --trace-color: var(--theme-slider-trace--background--invalid);
   --tick-color--active: var(--theme-slider-trace-marker--background--invalid);
 
@@ -302,5 +306,32 @@
 
   @include thumb {
     background-color: var(--theme-slider-thumb--background--disabled);
+  }
+}
+
+:host(.warning) {
+  --trace-color: var(--theme-color-warning-40);
+  --tick-color--active: var(--theme-color-warning);
+
+  @include thumb() {
+    background-color: var(--theme-color-warning);
+  }
+}
+
+:host(.info) {
+  --trace-color: var(--theme-color-info-40);
+  --tick-color--active: var(--theme-color-info);
+
+  @include thumb() {
+    background-color: var(--theme-color-info);
+  }
+}
+
+:host(.valid) {
+  --trace-color: var(--theme-color-success-40);
+  --tick-color--active: var(--theme-color-success);
+
+  @include thumb() {
+    background-color: var(--theme-color-success);
   }
 }
