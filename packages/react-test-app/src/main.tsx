@@ -63,6 +63,13 @@ import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import Datepicker from './preview-examples/datepicker';
 import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
+import DatetimeInput from './preview-examples/datetime-input';
+import DatetimeInputDisabled from './preview-examples/datetime-input-disabled';
+import DatetimeInputLabel from './preview-examples/datetime-input-label';
+import DatetimeInputMinMaxDate from './preview-examples/datetime-input-min-max-date';
+import DatetimeInputReadonly from './preview-examples/datetime-input-readonly';
+import DatetimeInputValidation from './preview-examples/datetime-input-validation';
+import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots';
 import Datetimepicker from './preview-examples/datetimepicker';
 import Divider from './preview-examples/divider';
 import Drawer from './preview-examples/drawer';
@@ -115,11 +122,11 @@ import GroupCustomEntry from './preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed';
 import HtmlTable from './preview-examples/html-table';
 import HtmlTableStriped from './preview-examples/html-table-striped';
-import IconToggleButtonTertiary from './preview-examples/icon-toggle-button-tertiary';
-import IconToggleButtonSubtleTertiary from './preview-examples/icon-toggle-button-subtle-tertiary';
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSubtleSecondary from './preview-examples/icon-toggle-button-subtle-secondary';
 import IconToggleButtonSubtlePrimary from './preview-examples/icon-toggle-button-subtle-primary';
+import IconToggleButtonSubtleSecondary from './preview-examples/icon-toggle-button-subtle-secondary';
+import IconToggleButtonSubtleTertiary from './preview-examples/icon-toggle-button-subtle-tertiary';
+import IconToggleButtonTertiary from './preview-examples/icon-toggle-button-tertiary';
 import Input from './preview-examples/input';
 import InputDisabled from './preview-examples/input-disabled';
 import InputLabel from './preview-examples/input-label';
@@ -210,17 +217,17 @@ import Toast from './preview-examples/toast';
 import ToastCustom from './preview-examples/toast-custom';
 import ToastPosition from './preview-examples/toast-position';
 import Toggle from './preview-examples/toggle';
-import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary';
-import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary';
 import ToggleButtonSecondary from './preview-examples/toggle-button-secondary';
+import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary';
 import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary';
 import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary';
-import TooltipWithIcon from './preview-examples/tooltip-with-icon';
+import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary';
 import ToggleChecked from './preview-examples/toggle-checked';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label';
 import ToggleDisabled from './preview-examples/toggle-disabled';
 import ToggleIndeterminate from './preview-examples/toggle-indeterminate';
 import Tooltip from './preview-examples/tooltip';
+import TooltipWithIcon from './preview-examples/tooltip-with-icon';
 import Tree from './preview-examples/tree';
 import TreeCustom from './preview-examples/tree-custom';
 import Upload from './preview-examples/upload';
@@ -691,6 +698,31 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route
           path="/preview/date-input-with-slots"
           element={<DateInputWithSlots />}
+        />
+        <Route path="/preview/datetime-input" element={<DatetimeInput />} />
+        <Route
+          path="/preview/datetime-input-disabled"
+          element={<DatetimeInputDisabled />}
+        />
+        <Route
+          path="/preview/datetime-input-label"
+          element={<DatetimeInputLabel />}
+        />
+        <Route
+          path="/preview/datetime-input-min-max-date"
+          element={<DatetimeInputMinMaxDate />}
+        />
+        <Route
+          path="/preview/datetime-input-readonly"
+          element={<DatetimeInputReadonly />}
+        />
+        <Route
+          path="/preview/datetime-input-validation"
+          element={<DatetimeInputValidation />}
+        />
+        <Route
+          path="/preview/datetime-input-with-slots"
+          element={<DatetimeInputWithSlots />}
         />
         <Route path="/preview/tree" element={<Tree />} />
         <Route path="/preview/upload" element={<Upload />} />
