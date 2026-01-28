@@ -214,6 +214,12 @@ export namespace Components {
          */
         "companyLogoAlt"?: string;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Hides the bottom border of the header
           * @since 4.0.0
           * @default false
@@ -302,6 +308,12 @@ export namespace Components {
           * @default 'previous'
          */
         "ariaLabelPreviousButton": string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Items will be accessible through a dropdown
           * @default []
@@ -549,6 +561,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * A set of search criteria to populate the component with.
          */
@@ -859,6 +877,12 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -959,6 +983,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Focuses the input field
          */
@@ -1088,6 +1118,12 @@ export namespace Components {
           * @default false
          */
         "embedded": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -1312,6 +1348,11 @@ export namespace Components {
         "discoverAllSubmenus": boolean;
         "discoverSubmenu": () => Promise<void>;
         /**
+          * Enable Popover API rendering for top-layer positioning.
+          * @default false in v4.x, will default to true in v5.0.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
@@ -1380,6 +1421,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Button icon
          */
@@ -2269,6 +2316,12 @@ export namespace Components {
          */
         "bottom"?: string;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Control the visibility of the logout button
           * @default false
          */
@@ -3052,6 +3105,12 @@ export namespace Components {
          */
         "editable": boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Focuses the input field
          */
         "focusInput": () => Promise<void>;
@@ -3266,6 +3325,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Button icon
          */
@@ -3488,6 +3553,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Focuses the input field
          */
@@ -3848,7 +3919,7 @@ export namespace Components {
     }
     interface IxToggleButton {
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * ARIA label that will be set on the native HTML button element
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;
@@ -6016,6 +6087,12 @@ declare namespace LocalJSX {
          */
         "companyLogoAlt"?: string;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Hides the bottom border of the header
           * @since 4.0.0
           * @default false
@@ -6117,6 +6194,12 @@ declare namespace LocalJSX {
           * @default 'previous'
          */
         "ariaLabelPreviousButton"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Items will be accessible through a dropdown
           * @default []
@@ -6390,6 +6473,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * A set of search criteria to populate the component with.
          */
@@ -6731,6 +6820,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -6831,6 +6926,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -6955,6 +7056,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "embedded"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -7201,6 +7308,11 @@ declare namespace LocalJSX {
          */
         "discoverAllSubmenus"?: boolean;
         /**
+          * Enable Popover API rendering for top-layer positioning.
+          * @default false in v4.x, will default to true in v5.0.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
@@ -7269,6 +7381,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Button icon
          */
@@ -8216,6 +8334,12 @@ declare namespace LocalJSX {
          */
         "bottom"?: string;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Control the visibility of the logout button
           * @default false
          */
@@ -9058,6 +9182,12 @@ declare namespace LocalJSX {
          */
         "editable"?: boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Helper text for the select component
          */
         "helperText"?: string;
@@ -9274,6 +9404,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Button icon
          */
@@ -9506,6 +9642,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
@@ -9858,7 +10000,7 @@ declare namespace LocalJSX {
     }
     interface IxToggleButton {
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * ARIA label that will be set on the native HTML button element
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;
