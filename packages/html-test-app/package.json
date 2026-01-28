@@ -17,7 +17,7 @@
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-icons": "^3.2.0",
-    "vite": "^4.5.14"
+    "vite": "catalog:"
   },
   "dependencies": {
     "ag-grid-community": "^33.1.1"
