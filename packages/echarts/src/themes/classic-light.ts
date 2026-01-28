@@ -27,6 +27,37 @@ const colors = [
   '#61778C' /* theme-chart-5 */,
 ];
 
+const axisCommon = {
+  axisLine: {
+    show: true,
+    lineStyle: {
+      color: 'rgba(0,0,0,0.3)',
+    },
+  },
+  axisTick: {
+    show: true,
+    lineStyle: {
+      color: 'rgba(0,0,0,0.3)',
+    },
+  },
+  axisLabel: {
+    show: true,
+    color: 'rgba(0,0,0,0.75)',
+  },
+  splitLine: {
+    show: true,
+    lineStyle: {
+      color: ['rgba(0,0,0,0.1)'],
+    },
+  },
+  splitArea: {
+    show: false,
+    areaStyle: {
+      color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+    },
+  },
+};
+
 export default {
   themeName: 'theme-classic-light',
   theme: {
@@ -110,6 +141,9 @@ export default {
         borderWidth: 0,
         borderColor: '#000000',
       },
+      axisLabel: {
+        color: 'rgba(0, 10, 20, 0.9)',
+      },
     },
     candlestick: {
       itemStyle: {
@@ -137,126 +171,10 @@ export default {
         color: '#ffffff',
       },
     },
-    categoryAxis: {
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(0,0,0,0.3)',
-        },
-      },
-      axisTick: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(0,0,0,0.3)',
-        },
-      },
-      axisLabel: {
-        show: true,
-        color: 'rgba(0,0,0,0.75)',
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: ['rgba(0,0,0,0.1)'],
-        },
-      },
-      splitArea: {
-        show: false,
-        areaStyle: {
-          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
-        },
-      },
-    },
-    valueAxis: {
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(0,0,0,0.3)',
-        },
-      },
-      axisTick: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(0,0,0,0.3)',
-        },
-      },
-      axisLabel: {
-        show: true,
-        color: 'rgba(0,0,0,0.75)',
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: ['rgba(0,0,0,0.1)'],
-        },
-      },
-      splitArea: {
-        show: false,
-        areaStyle: {
-          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
-        },
-      },
-    },
-    logAxis: {
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(0,0,0,0.3)',
-        },
-      },
-      axisTick: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(0,0,0,0.3)',
-        },
-      },
-      axisLabel: {
-        show: true,
-        color: 'rgba(0,0,0,0.75)',
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: ['rgba(0,0,0,0.1)'],
-        },
-      },
-      splitArea: {
-        show: false,
-        areaStyle: {
-          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
-        },
-      },
-    },
-    timeAxis: {
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(0,0,0,0.3)',
-        },
-      },
-      axisTick: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(0,0,0,0.3)',
-        },
-      },
-      axisLabel: {
-        show: true,
-        color: 'rgba(0,0,0,0.75)',
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: ['rgba(0,0,0,0.1)'],
-        },
-      },
-      splitArea: {
-        show: false,
-        areaStyle: {
-          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
-        },
-      },
-    },
+    categoryAxis: axisCommon,
+    valueAxis: axisCommon,
+    logAxis: axisCommon,
+    timeAxis: axisCommon,
     toolbox: {
       iconStyle: {
         borderColor: '#000000',
@@ -273,8 +191,8 @@ export default {
       },
     },
     tooltip: {
-      backgroundColor: '#eff0f1',
-      borderColor: '#eff0f1',
+      backgroundColor: '#ffffffcc',
+      borderColor: '#00000033',
       textStyle: {
         color: 'rgba(0, 10, 20, .9)',
       },

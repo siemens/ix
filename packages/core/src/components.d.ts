@@ -195,6 +195,7 @@ export namespace Components {
         /**
           * ARIA label for the menu expand icon button
           * @since 3.2.0
+          * @deprecated This prop is no longer used as the menu expand button is hidden from screen readers. Will be removed in 5.0.0
          */
         "ariaLabelMenuExpandIconButton"?: string;
         /**
@@ -212,6 +213,12 @@ export namespace Components {
           * @since 4.0.0
          */
         "companyLogoAlt"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Hides the bottom border of the header
           * @since 4.0.0
@@ -301,6 +308,12 @@ export namespace Components {
           * @default 'previous'
          */
         "ariaLabelPreviousButton": string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Items will be accessible through a dropdown
           * @default []
@@ -548,6 +561,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * A set of search criteria to populate the component with.
          */
@@ -858,6 +877,12 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -958,6 +983,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Focuses the input field
          */
@@ -1087,6 +1118,12 @@ export namespace Components {
           * @default false
          */
         "embedded": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -1311,6 +1348,11 @@ export namespace Components {
         "discoverAllSubmenus": boolean;
         "discoverSubmenu": () => Promise<void>;
         /**
+          * Enable Popover API rendering for top-layer positioning.
+          * @default false in v4.x, will default to true in v5.0.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
@@ -1379,6 +1421,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Button icon
          */
@@ -2152,6 +2200,7 @@ export namespace Components {
         "i18nExpand": string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
+          * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
           * @default 'Expand sidebar'
          */
         "i18nExpandSidebar": string;
@@ -2217,6 +2266,11 @@ export namespace Components {
          */
         "activeTabLabel"?: string;
         /**
+          * Aria label for close button
+          * @default 'Close About'
+         */
+        "ariaLabelCloseButton": string;
+        /**
           * Content of the header
           * @default 'About & legal information'
          */
@@ -2258,9 +2312,20 @@ export namespace Components {
     }
     interface IxMenuAvatar {
         /**
+          * aria-label for the tooltip
+          * @since 4.3.0.
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Second line of text
          */
         "bottom"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Control the visibility of the logout button
           * @default false
@@ -2279,6 +2344,11 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+          * @since 4.3.0.
+         */
+        "tooltipText"?: string;
         /**
           * First line of text
          */
@@ -2325,10 +2395,11 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Accessibility label for the menu expand icon (MANDATORY)
+          * Accessibility label for the menu expand icon
+          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
           * @default 'Expand'
          */
-        "ixAriaLabel": string;
+        "ixAriaLabel"?: string;
         /**
           * Display as pinned
           * @default false
@@ -2399,6 +2470,11 @@ export namespace Components {
           * Active tab
          */
         "activeTabLabel"?: string;
+        /**
+          * Aria label for close button
+          * @default 'Close Settings'
+         */
+        "ariaLabelCloseButton": string;
         /**
           * Label of first tab
           * @default 'Settings'
@@ -3039,6 +3115,12 @@ export namespace Components {
          */
         "editable": boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
+        /**
           * Focuses the input field
          */
         "focusInput": () => Promise<void>;
@@ -3127,7 +3209,7 @@ export namespace Components {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
+          * @default ''
          */
         "value": string | string[];
         /**
@@ -3288,6 +3370,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Button icon
          */
@@ -3510,6 +3598,12 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer": boolean;
         /**
           * Focuses the input field
          */
@@ -3870,7 +3964,7 @@ export namespace Components {
     }
     interface IxToggleButton {
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * ARIA label that will be set on the native HTML button element
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;
@@ -6022,6 +6116,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the menu expand icon button
           * @since 3.2.0
+          * @deprecated This prop is no longer used as the menu expand button is hidden from screen readers. Will be removed in 5.0.0
          */
         "ariaLabelMenuExpandIconButton"?: string;
         /**
@@ -6039,6 +6134,12 @@ declare namespace LocalJSX {
           * @since 4.0.0
          */
         "companyLogoAlt"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Hides the bottom border of the header
           * @since 4.0.0
@@ -6141,6 +6242,12 @@ declare namespace LocalJSX {
           * @default 'previous'
          */
         "ariaLabelPreviousButton"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Items will be accessible through a dropdown
           * @default []
@@ -6414,6 +6521,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * A set of search criteria to populate the component with.
          */
@@ -6755,6 +6868,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
          */
@@ -6855,6 +6974,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -6979,6 +7104,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "embedded"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd'
@@ -7225,6 +7356,11 @@ declare namespace LocalJSX {
          */
         "discoverAllSubmenus"?: boolean;
         /**
+          * Enable Popover API rendering for top-layer positioning.
+          * @default false in v4.x, will default to true in v5.0.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
@@ -7293,6 +7429,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Button icon
          */
@@ -8100,6 +8242,7 @@ declare namespace LocalJSX {
         "i18nExpand"?: string;
         /**
           * Accessibility i18n label for the burger menu of the sidebar
+          * @deprecated Since 4.2.0. Will be removed in 5.0.0. The expand button is now hidden from screen readers with aria-hidden="true".
           * @default 'Expand sidebar'
          */
         "i18nExpandSidebar"?: string;
@@ -8168,6 +8311,11 @@ declare namespace LocalJSX {
          */
         "activeTabLabel"?: string;
         /**
+          * Aria label for close button
+          * @default 'Close About'
+         */
+        "ariaLabelCloseButton"?: string;
+        /**
           * Content of the header
           * @default 'About & legal information'
          */
@@ -8230,9 +8378,20 @@ declare namespace LocalJSX {
     }
     interface IxMenuAvatar {
         /**
+          * aria-label for the tooltip
+          * @since 4.3.0.
+         */
+        "ariaLabelTooltip"?: string;
+        /**
           * Second line of text
          */
         "bottom"?: string;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Control the visibility of the logout button
           * @default false
@@ -8255,6 +8414,11 @@ declare namespace LocalJSX {
           * Logout click
          */
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
+        /**
+          * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
+          * @since 4.3.0.
+         */
+        "tooltipText"?: string;
         /**
           * First line of text
          */
@@ -8305,7 +8469,8 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
-          * Accessibility label for the menu expand icon (MANDATORY)
+          * Accessibility label for the menu expand icon
+          * @deprecated This prop is no longer used as the component is hidden from screen readers (aria-hidden="true"). Will be removed in 5.0.0
           * @default 'Expand'
          */
         "ixAriaLabel"?: string;
@@ -8379,6 +8544,11 @@ declare namespace LocalJSX {
           * Active tab
          */
         "activeTabLabel"?: string;
+        /**
+          * Aria label for close button
+          * @default 'Close Settings'
+         */
+        "ariaLabelCloseButton"?: string;
         /**
           * Label of first tab
           * @default 'Settings'
@@ -9070,6 +9240,12 @@ declare namespace LocalJSX {
          */
         "editable"?: boolean;
         /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
+        /**
           * Helper text for the select component
          */
         "helperText"?: string;
@@ -9160,7 +9336,7 @@ declare namespace LocalJSX {
         "validText"?: string;
         /**
           * Current selected value. This corresponds to the value property of ix-select-items
-          * @default []
+          * @default ''
          */
         "value"?: string | string[];
         /**
@@ -9322,6 +9498,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Button icon
          */
@@ -9554,6 +9736,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for dropdown.
+          * @default false
+          * @since 4.3.0
+         */
+        "enableTopLayer"?: boolean;
         /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'TT'
@@ -9906,7 +10094,7 @@ declare namespace LocalJSX {
     }
     interface IxToggleButton {
         /**
-          * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * ARIA label that will be set on the native HTML button element
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;
