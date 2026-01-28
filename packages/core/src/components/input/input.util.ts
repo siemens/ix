@@ -248,6 +248,23 @@ export interface PickerValidityContext {
   }) => void;
 }
 
+export interface PickerInputComponent<T> {
+  validityTracker: PickerValidityStateTracker;
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState(): Promise<ValidityState>;
+  validityStateChange: { emit: (state: T) => void };
+}
+
+export function emitPickerValidityState<T>(component: PickerInputComponent<T>) {
+  return emitPickerValidityStateChangeIfChanged(component.validityTracker, {
+    touched: component.touched,
+    invalidReason: component.invalidReason,
+    getValidityState: () => component.getValidityState(),
+    emit: (state) => component.validityStateChange.emit(state as T),
+  });
+}
+
 export async function emitPickerValidityStateChangeIfChanged(
   tracker: PickerValidityStateTracker,
   context: PickerValidityContext

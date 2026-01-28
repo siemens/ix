@@ -26,10 +26,11 @@ import { IxTimePickerCustomEvent } from '../../components';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
+  PickerValidityStateTracker,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   createPickerValidityStateTracker,
-  emitPickerValidityStateChangeIfChanged,
+  emitPickerValidityState,
   handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
@@ -262,9 +263,14 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private readonly inputElementRef = makeRef<HTMLInputElement>();
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
-  private invalidReason?: string;
-  private touched = false;
-  private validityTracker = createPickerValidityStateTracker();
+
+  /** @internal */
+  public invalidReason?: string;
+  /** @internal */
+  public touched = false;
+  /** @internal */
+  public validityTracker: PickerValidityStateTracker =
+    createPickerValidityStateTracker();
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -472,12 +478,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   }
 
   private emitValidityStateChangeIfChanged() {
-    return emitPickerValidityStateChangeIfChanged(this.validityTracker, {
-      touched: this.touched,
-      invalidReason: this.invalidReason,
-      getValidityState: () => this.getValidityState(),
-      emit: (state) => this.validityStateChange.emit(state),
-    });
+    return emitPickerValidityState(this);
   }
 
   /** @internal */
