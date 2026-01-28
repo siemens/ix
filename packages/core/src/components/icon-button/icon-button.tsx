@@ -37,7 +37,7 @@ export class IconButton {
    * Will be set as aria-label on the nested HTML button element
    * Use this instead of the deprecated a11y-label or the native aria-label attribute
    *
-   * @since 4.2.0
+   * @since 4.3.0
    */
   @Prop() ariaLabelButton: string | null = null;
 

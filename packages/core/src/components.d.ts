@@ -1874,7 +1874,7 @@ export namespace Components {
         "a11yLabel"?: string;
         /**
           * ARIA label for the icon button Will be set as aria-label on the nested HTML button element Use this instead of the deprecated a11y-label or the native aria-label attribute
-          * @since 4.2.0
+          * @since 4.3.0
           * @default null
          */
         "ariaLabelButton": string | null;
@@ -7908,7 +7908,7 @@ declare namespace LocalJSX {
         "a11yLabel"?: string;
         /**
           * ARIA label for the icon button Will be set as aria-label on the nested HTML button element Use this instead of the deprecated a11y-label or the native aria-label attribute
-          * @since 4.2.0
+          * @since 4.3.0
           * @default null
          */
         "ariaLabelButton"?: string | null;

@@ -665,6 +665,7 @@ export class Pane {
       >
         <aside
           id={`pane-${this.composition}`}
+          role="none"
           class={{
             'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
             'left-right-pane': this.isLeftRightPane && !this.isMobile,
