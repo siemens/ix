@@ -26,7 +26,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
 import { createEnterLeaveDebounce } from './enter-leave';
-import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
 import { getComposedPath } from '../utils/shadow-dom';
 const DefaultIxMenuItemHeight = 40;

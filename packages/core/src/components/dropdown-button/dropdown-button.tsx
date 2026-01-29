@@ -11,14 +11,14 @@ import {
   iconChevronDownSmall,
   iconChevronUpSmall,
 } from '@siemens/ix-icons/icons';
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Mixin, Prop, State } from '@stencil/core';
 import { AlignedPlacement } from '../dropdown/placement';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
-import { Mixin } from '../utils/internal/component';
-
-let dropdownButtonId = 0;
+import { DefaultMixins } from '../utils/internal/component';
+import { AriaActiveDescendantMixin } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 
 @Component({
   tag: 'ix-dropdown-button',
@@ -27,7 +27,11 @@ let dropdownButtonId = 0;
     delegatesFocus: true,
   },
 })
-export class DropdownButton extends Mixin() {
+export class DropdownButton extends Mixin(
+  ...DefaultMixins,
+  ComponentIdMixin,
+  AriaActiveDescendantMixin
+) {
   @Element() hostElement!: HTMLIxDropdownButtonElement;
 
   /**
@@ -78,9 +82,10 @@ export class DropdownButton extends Mixin() {
 
   @State() dropdownShow = false;
 
-  private dropdownButtonId = dropdownButtonId++;
+  private dropdownButtonId = this.getHostElementId();
 
   private readonly dropdownAnchor = makeRef<HTMLElement>();
+  private readonly dropdownRef = makeRef<HTMLElement>();
 
   private getTriangle() {
     return (
@@ -102,8 +107,14 @@ export class DropdownButton extends Mixin() {
     this.dropdownShow = event.detail;
   };
 
+  getControllingAriaElement(): Promise<HTMLElement> | HTMLElement | null {
+    return this.dropdownRef.waitForCurrent();
+  }
+
   render() {
-    const a11y = a11yHostAttributes(this.hostElement);
+    const a11y = a11yHostAttributes(this.hostElement, [
+      'aria-activedescendant',
+    ]);
 
     const commonProperties = {
       ...a11y,
@@ -112,6 +123,7 @@ export class DropdownButton extends Mixin() {
       'aria-label': this.ariaLabelDropdownButton,
       'aria-controls': `dropdown-button-menu-${this.dropdownButtonId}`,
       'aria-disabled': a11yBoolean(this.disabled),
+      'aria-expanded': a11yBoolean(this.dropdownShow),
       tabIndex: this.disabled ? -1 : 0,
       disabled: this.disabled,
       variant: this.variant,
@@ -159,6 +171,8 @@ export class DropdownButton extends Mixin() {
         </div>
 
         <ix-dropdown
+          role="menu"
+          ref={this.dropdownRef}
           id={`dropdown-button-menu-${this.dropdownButtonId}`}
           aria-labelledby={`dropdown-button-${this.dropdownButtonId}`}
           trigger={this.dropdownAnchor.waitForCurrent()}
@@ -166,7 +180,7 @@ export class DropdownButton extends Mixin() {
           closeBehavior={this.closeBehavior}
           enableTopLayer={this.enableTopLayer}
           disableFocusTrap={true}
-          onShowChanged={this.onDropdownShowChanged}
+          onShowChanged={(event) => this.onDropdownShowChanged(event)}
         >
           <slot></slot>
         </ix-dropdown>

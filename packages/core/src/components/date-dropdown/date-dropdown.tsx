@@ -33,7 +33,7 @@ import type {
   DateDropdownOption,
   DateRangeChangeEvent,
 } from './date-dropdown.types';
-import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 
 @Component({
   tag: 'ix-date-dropdown',

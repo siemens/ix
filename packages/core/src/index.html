@@ -40,9 +40,13 @@ SPDX-License-Identifier: MIT
       <ix-select-item value="Option 6" label="Option 6"></ix-select-item>
     </ix-select>
 
-    <ix-dropdown-button label="Example" aria-label="Choose action">
+    <ix-dropdown-button
+      aria-controls="test123"
+      label="Example"
+      aria-label="Choose action"
+    >
       <ix-dropdown-item>Item 1</ix-dropdown-item>
-      <ix-dropdown-item>Item 2</ix-dropdown-item>
+      <ix-dropdown-item id="test">Item 2</ix-dropdown-item>
       <ix-dropdown-item>Item 3</ix-dropdown-item>
     </ix-dropdown-button>
   </body>

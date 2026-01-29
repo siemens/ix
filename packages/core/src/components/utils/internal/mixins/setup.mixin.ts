@@ -35,14 +35,25 @@ export function removeVisibleFocus() {
   currentFocus.forEach((el) => {
     el.classList.remove(IX_FOCUS_VISIBLE_ACTIVE);
     (el as unknown as FocusVisibleMixinPublicInterface).ixFocusVisible = false;
-
-    // if (el.hasAttribute('aria-selected')) {
-    //   el.setAttribute('aria-selected', 'false');
-    // }
   });
 }
 
-function updateFocusState(target: HTMLElement) {
+export type IxFocusVisibleChangeEventDetail = {
+  currentFocus: Element[];
+};
+export class IxFocusVisibleChangeEvent extends CustomEvent<IxFocusVisibleChangeEventDetail> {
+  static eventName = 'ixFocusVisibleChange' as const;
+
+  constructor(detail: IxFocusVisibleChangeEventDetail) {
+    super(IxFocusVisibleChangeEvent.eventName, {
+      detail,
+      bubbles: true,
+      cancelable: true,
+    });
+  }
+}
+
+export function updateFocusState(target: HTMLElement) {
   const composedPath = getComposedPath(target);
   const focusableElements = composedPath.filter((el) =>
     el.classList.contains(IX_FOCUS_VISIBLE)
@@ -56,22 +67,19 @@ function updateFocusState(target: HTMLElement) {
     focusableElements.forEach((el) => {
       el.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
       (el as unknown as FocusVisibleMixinPublicInterface).ixFocusVisible = true;
-
-      // if (el.hasAttribute('aria-selected')) {
-      //   el.setAttribute('aria-selected', 'true');
-      // }
     });
     currentFocus = focusableElements;
   } else {
     currentFocus = [];
   }
+
+  target.dispatchEvent(new IxFocusVisibleChangeEvent({ currentFocus }));
 }
 
 function applyFocusPatch() {
   if (typeof HTMLElement !== 'undefined' && !originalFocus) {
     originalFocus = HTMLElement.prototype.focus;
 
-    // Patch programmatic focus()
     HTMLElement.prototype.focus = function (
       this: HTMLElement,
       options?: FocusOptions
@@ -94,7 +102,6 @@ function applyFocusPatch() {
       updateFocusState(this);
     };
 
-    // Listen for actual user focus events
     document.addEventListener(
       'focusin',
       (event) => {
@@ -125,20 +132,21 @@ function applyFocusPatch() {
   }
 }
 
-// Apply patches immediately at module load, before any components are created
-applyFocusPatch();
-
 /**
  * Mixin to add global focus visible handling to a component. Mixin will be used via base class IxComponent().
  * Not necessary to use this mixin directly in components.
  */
-export const FocusHandlingMixin = <B extends MixedInCtor<StencilLifecycle>>(
+export const SetupMixin = <B extends MixedInCtor<StencilLifecycle>>(
   Base: B
 ) => {
   class FocusListenerMixin extends Base {
     override componentDidLoad(): void {
       if (super.componentDidLoad) {
         super.componentDidLoad();
+      }
+
+      if (!originalFocus) {
+        applyFocusPatch();
       }
 
       if (!globalKeyboardDetectionInitialized) {

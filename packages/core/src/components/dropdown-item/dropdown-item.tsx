@@ -8,6 +8,10 @@
  */
 
 import {
+  iconChevronRightSmall,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -15,18 +19,14 @@ import {
   h,
   Host,
   Method,
+  Mixin,
   Prop,
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
-import {
-  iconChevronRightSmall,
-  iconSingleCheck,
-} from '@siemens/ix-icons/icons';
-import { Mixin } from '../utils/internal/component';
-import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
+import { a11yBoolean } from '../utils/a11y';
 import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
-import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
-import { getComposedPath } from '../utils/shadow-dom';
+import { DefaultMixins } from '../utils/internal/component';
+import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 
 @Component({
   tag: 'ix-dropdown-item',
@@ -36,7 +36,7 @@ import { getComposedPath } from '../utils/shadow-dom';
   },
 })
 export class DropdownItem
-  extends Mixin(FocusVisibleMixin)
+  extends Mixin(...DefaultMixins, ComponentIdMixin)
   implements DropdownItemWrapper
 {
   @Element() hostElement!: HTMLIxDropdownItemElement;
@@ -103,18 +103,6 @@ export class DropdownItem
     return this.hostElement;
   }
 
-  private fallbackRole = 'listitem';
-
-  override componentWillLoad(): Promise<void> | void {
-    super.componentWillLoad?.();
-
-    switch (this.hostElement.parentElement?.tagName) {
-      case 'IX-DROPDOWN-BUTTON':
-        this.fallbackRole = 'menuitem';
-        break;
-    }
-  }
-
   private isIconOnly() {
     return (
       this.label === undefined &&
@@ -124,15 +112,13 @@ export class DropdownItem
   }
 
   render() {
-    const ariaAttributes = a11yHostAttributes(this.hostElement);
-
-    ariaAttributes.role = ariaAttributes.role ?? this.fallbackRole;
-    ariaAttributes['aria-disabled'] = a11yBoolean(this.disabled);
-    ariaAttributes['aria-label'] =
-      ariaAttributes['aria-label'] ?? this.ariaLabelButton;
-
+    const id = this.getHostElementId();
     return (
       <Host
+        id={id}
+        role={'menuitem'}
+        aria-disabled={a11yBoolean(this.disabled)}
+        aria-label={this.hostElement.ariaLabel ?? this.ariaLabelButton}
         class={{
           hover: this.hover,
           'icon-only': this.isIconOnly(),
@@ -151,7 +137,6 @@ export class DropdownItem
             this.emitItemClick();
           }
         }}
-        {...ariaAttributes}
       >
         <div
           class={{

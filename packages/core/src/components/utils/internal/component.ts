@@ -9,7 +9,7 @@
 import type { ComponentInterface, MixedInCtor } from '@stencil/core';
 import { Mixin as BaseMixin } from '@stencil/core';
 import { HTMLStencilElement } from '@stencil/core/internal';
-import { FocusHandlingMixin } from './mixins/detect-keyboard-mode.mixin';
+import { SetupMixin } from './mixins/setup.mixin';
 
 export interface StencilLifecycle {
   hostElement?: HTMLStencilElement;
@@ -79,7 +79,9 @@ export function Mixin<T extends StencilLifecycle = StencilLifecycle>(
   ...mixins: Array<(base: MixedInCtor<StencilLifecycle>) => MixedInCtor<T>>
 ): MixedInCtor<T & StencilLifecycle> {
   if (mixins.length === 0) {
-    return BaseMixin(FocusHandlingMixin) as any;
+    return BaseMixin(SetupMixin) as any;
   }
-  return BaseMixin(FocusHandlingMixin, ...mixins) as any;
+  return BaseMixin(SetupMixin, ...mixins) as any;
 }
+
+export const DefaultMixins = [SetupMixin] as const;

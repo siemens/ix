@@ -53,7 +53,7 @@ import {
 import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 import { makeRef } from '../utils/make-ref';
-import { removeVisibleFocus } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
+import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
 import { getComposedPath } from '../utils/shadow-dom';
 
 let sequenceId = 0;
@@ -802,29 +802,9 @@ export class Dropdown extends Mixin() implements DropdownInterface {
   }
 
   render() {
-    const hostAriaAttributes = a11yHostAttributes(this.hostElement);
-    let dropdownAriaAttributes = {
-      ...hostAriaAttributes,
-      role: hostAriaAttributes.role ?? 'list',
-    };
-    const id = this.hostElement.id || this.dropdownElementId;
-
-    let TagType = 'div';
-
-    switch (this.dropdownRole) {
-      case 'listbox':
-      case 'menu':
-        TagType = 'ul';
-        break;
-      default:
-        TagType = 'div';
-    }
-
-    dropdownAriaAttributes.role = this.dropdownRole ?? 'list';
-
     return (
       <Host
-        id={id}
+        aria-modal="true"
         data-ix-dropdown={this.dropdownElementId}
         data-ix-focus-trap
         class={{
@@ -846,27 +826,26 @@ export class Dropdown extends Mixin() implements DropdownInterface {
       >
         {this.enableTopLayer ? (
           <dialog
+            role="presentation"
             ref={this.dialogRef}
             class={{
               dialog: true,
               overflow: !this.suppressOverflowBehavior,
             }}
             popover="manual"
-            aria-labelledby={id}
-            aria-modal="true"
             tabindex={-1}
             onClick={(event: PointerEvent) => this.onDropdownClick(event)}
           >
-            <TagType class="dropdown-container" {...dropdownAriaAttributes}>
+            <div class="dropdown-container">
               {this.header && <div class="dropdown-header">{this.header}</div>}
               {this.show && <slot></slot>}
-            </TagType>
+            </div>
           </dialog>
         ) : (
-          <TagType style={{ display: 'contents' }} {...dropdownAriaAttributes}>
+          <div style={{ display: 'contents' }}>
             {this.header && <div class="dropdown-header">{this.header}</div>}
             {this.show && <slot></slot>}
-          </TagType>
+          </div>
         )}
       </Host>
     );

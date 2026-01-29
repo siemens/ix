@@ -22,7 +22,7 @@ import {
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { Mixin } from '../utils/internal/component';
-import { hasKeyboardMode } from '../utils/internal/mixins/detect-keyboard-mode.mixin';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 let sequenceId = 0;
