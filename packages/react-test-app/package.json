@@ -31,7 +31,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.11.0",
+    "@axe-core/playwright": "catalog:",
     "@playwright/test": "catalog:",
     "@types/node": "^20.16.0",
     "@types/react": "^19.1.0",
