@@ -260,24 +260,24 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/group-header-suppressed').then(
       (m) => m.default
     ),
-  'preview/icon-toggle-button-primary-ghost': () =>
-    import('../preview-examples/icon-toggle-button-primary-ghost').then(
+  'preview/icon-toggle-button-tertiary': () =>
+    import('../preview-examples/icon-toggle-button-tertiary').then(
       (m) => m.default
     ),
-  'preview/icon-toggle-button-primary-outline': () =>
-    import('../preview-examples/icon-toggle-button-primary-outline').then(
+  'preview/icon-toggle-button-subtle-tertiary': () =>
+    import('../preview-examples/icon-toggle-button-subtle-tertiary').then(
       (m) => m.default
     ),
   'preview/icon-toggle-button-secondary': () =>
     import('../preview-examples/icon-toggle-button-secondary').then(
       (m) => m.default
     ),
-  'preview/icon-toggle-button-secondary-ghost': () =>
-    import('../preview-examples/icon-toggle-button-secondary-ghost').then(
+  'preview/icon-toggle-button-subtle-secondary': () =>
+    import('../preview-examples/icon-toggle-button-subtle-secondary').then(
       (m) => m.default
     ),
-  'preview/icon-toggle-button-secondary-outline': () =>
-    import('../preview-examples/icon-toggle-button-secondary-outline').then(
+  'preview/icon-toggle-button-subtle-primary': () =>
+    import('../preview-examples/icon-toggle-button-subtle-primary').then(
       (m) => m.default
     ),
   'preview/input': () =>
@@ -471,24 +471,22 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/toggle').then((m) => m.default),
   'preview/toggle-button-primary': () =>
     import('../preview-examples/toggle-button-primary').then((m) => m.default),
-  'preview/toggle-button-primary-ghost': () =>
-    import('../preview-examples/toggle-button-primary-ghost').then(
-      (m) => m.default
-    ),
-  'preview/toggle-button-primary-outline': () =>
-    import('../preview-examples/toggle-button-primary-outline').then(
+  'preview/toggle-button-tertiary': () =>
+    import('../preview-examples/toggle-button-tertiary').then((m) => m.default),
+  'preview/toggle-button-subtle-tertiary': () =>
+    import('../preview-examples/toggle-button-subtle-tertiary').then(
       (m) => m.default
     ),
   'preview/toggle-button-secondary': () =>
     import('../preview-examples/toggle-button-secondary').then(
       (m) => m.default
     ),
-  'preview/toggle-button-secondary-ghost': () =>
-    import('../preview-examples/toggle-button-secondary-ghost').then(
+  'preview/toggle-button-subtle-secondary': () =>
+    import('../preview-examples/toggle-button-subtle-secondary').then(
       (m) => m.default
     ),
-  'preview/toggle-button-secondary-outline': () =>
-    import('../preview-examples/toggle-button-secondary-outline').then(
+  'preview/toggle-button-subtle-primary': () =>
+    import('../preview-examples/toggle-button-subtle-primary').then(
       (m) => m.default
     ),
   'preview/toggle-checked': () =>

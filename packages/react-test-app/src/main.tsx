@@ -116,11 +116,11 @@ import GroupCustomEntry from './preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed';
 import HtmlTable from './preview-examples/html-table';
 import HtmlTableStriped from './preview-examples/html-table-striped';
-import IconToggleButtonPrimaryGhost from './preview-examples/icon-toggle-button-primary-ghost';
-import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-button-primary-outline';
+import IconToggleButtonTertiary from './preview-examples/icon-toggle-button-tertiary';
+import IconToggleButtonSubtleTertiary from './preview-examples/icon-toggle-button-subtle-tertiary';
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost';
-import IconToggleButtonSecondaryOutline from './preview-examples/icon-toggle-button-secondary-outline';
+import IconToggleButtonSubtleSecondary from './preview-examples/icon-toggle-button-subtle-secondary';
+import IconToggleButtonSubtlePrimary from './preview-examples/icon-toggle-button-subtle-primary';
 import Input from './preview-examples/input';
 import InputDisabled from './preview-examples/input-disabled';
 import InputLabel from './preview-examples/input-label';
@@ -211,12 +211,12 @@ import Toast from './preview-examples/toast';
 import ToastCustom from './preview-examples/toast-custom';
 import ToastPosition from './preview-examples/toast-position';
 import Toggle from './preview-examples/toggle';
-import ToggleButtonPrimaryGhost from './preview-examples/toggle-button-primary-ghost';
-import ToggleButtonPrimaryOutline from './preview-examples/toggle-button-primary-outline';
+import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary';
+import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary';
 import ToggleButtonSecondary from './preview-examples/toggle-button-secondary';
-import ToggleButtonSecondaryGhost from './preview-examples/toggle-button-secondary-ghost';
+import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary';
+import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary';
 import TooltipWithIcon from './preview-examples/tooltip-with-icon';
-import ToggleButtonSecondaryOutline from './preview-examples/toggle-button-secondary-outline';
 import ToggleChecked from './preview-examples/toggle-checked';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label';
 import ToggleDisabled from './preview-examples/toggle-disabled';
@@ -354,11 +354,11 @@ const routes: IxPreviewRoutes = {
   '/preview/group': Group,
   '/preview/html-table': HtmlTable,
   '/preview/html-table-striped': HtmlTableStriped,
-  '/preview/icon-toggle-button-primary-ghost': IconToggleButtonPrimaryGhost,
-  '/preview/icon-toggle-button-primary-outline': IconToggleButtonPrimaryOutline,
-  '/preview/icon-toggle-button-secondary-ghost': IconToggleButtonSecondaryGhost,
-  '/preview/icon-toggle-button-secondary-outline':
-    IconToggleButtonSecondaryOutline,
+  '/preview/icon-toggle-button-tertiary': IconToggleButtonTertiary,
+  '/preview/icon-toggle-button-subtle-tertiary': IconToggleButtonSubtleTertiary,
+  '/preview/icon-toggle-button-subtle-secondary':
+    IconToggleButtonSubtleSecondary,
+  '/preview/icon-toggle-button-subtle-primary': IconToggleButtonSubtlePrimary,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
   '/preview/input-legacy-disabled': InputLegacyDisabled,
   '/preview/input-legacy-readonly': InputLegacyReadonly,
@@ -434,11 +434,10 @@ const routes: IxPreviewRoutes = {
   '/preview/toast-custom': ToastCustom,
   '/preview/toast-position': ToastPosition,
   '/preview/toast': Toast,
-  '/preview/toggle-button-primary-ghost': ToggleButtonPrimaryGhost,
-  '/preview/toggle-button-primary-outline': ToggleButtonPrimaryOutline,
-  '/preview/toggle-button-secondary-ghost': ToggleButtonSecondaryGhost,
-  '/preview/toggle-button-secondary-outline': ToggleButtonSecondaryOutline,
-  '/preview/toggle-button-secondary': ToggleButtonSecondary,
+  '/preview/toggle-button-tertiary': ToggleButtonTertiary,
+  '/preview/toggle-button-subtle-primary': ToggleButtonSubtlePrimary,
+  '/preview/toggle-button-subtle-secondary': ToggleButtonSubtleSecondary,
+  '/preview/toggle-button-subtle-tertiary': ToggleButtonSubtleTertiary,
   '/preview/toggle-checked': ToggleChecked,
   '/preview/toggle-custom-label': ToggleCustomLabel,
   '/preview/toggle-disabled': ToggleDisabled,

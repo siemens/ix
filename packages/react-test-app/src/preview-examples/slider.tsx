@@ -8,10 +8,11 @@
  */
 
 import { IxSlider } from '@siemens/ix-react';
+import './slider.scoped.css';
 
 export default () => {
   return (
-    <>
+    <div className="slider-container">
       <IxSlider value={25}>
         <span slot="label-start">0</span>
         <span slot="label-end">100</span>
@@ -21,6 +22,6 @@ export default () => {
         <span slot="label-start">0</span>
         <span slot="label-end">50</span>
       </IxSlider>
-    </>
+    </div>
   );
 };

@@ -1,0 +1,87 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toggle button subtle primary example</title>
+    <link rel="stylesheet" href="./toggle-button-subtle-primary.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconTextBold,
+        iconTextItalic,
+        iconTextUnderline,
+      } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconTextBold,
+        iconTextItalic,
+        iconTextUnderline,
+      });
+    </script>
+  </head>
+  <body>
+    <div class="button-container">
+      <ix-toggle-button
+        variant="subtle-primary"
+        id="boldButton"
+        icon="text-bold"
+        >Bold</ix-toggle-button
+      >
+      <ix-toggle-button variant="subtle-primary" disabled icon="text-italic"
+        >Italic</ix-toggle-button
+      >
+      <ix-toggle-button
+        variant="subtle-primary"
+        id="underlineButton"
+        icon="text-underline"
+        pressed
+        >Underline</ix-toggle-button
+      >
+      <ix-toggle-button variant="subtle-primary" disabled loading>
+        Strikethrough
+      </ix-toggle-button>
+    </div>
+    <p id="loremIpsum">Lorem ipsum text</p>
+    <script type="module">
+      import './init.js';
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const boldButton = document.getElementById('boldButton');
+        const underlineButton = document.getElementById('underlineButton');
+        const loremIpsum = document.getElementById('loremIpsum');
+
+        function updateStyle() {
+          loremIpsum.style.fontWeight = boldButton.hasAttribute('pressed')
+            ? 'bold'
+            : 'normal';
+          loremIpsum.style.textDecoration = underlineButton.hasAttribute(
+            'pressed'
+          )
+            ? 'underline'
+            : 'none';
+        }
+
+        updateStyle();
+
+        boldButton.addEventListener('click', function () {
+          boldButton.toggleAttribute('pressed');
+          updateStyle();
+        });
+
+        underlineButton.addEventListener('click', function () {
+          underlineButton.toggleAttribute('pressed');
+          updateStyle();
+        });
+      });
+    </script>
+  </body>
+</html>
