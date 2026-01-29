@@ -330,17 +330,15 @@ export class Tree {
   }
 
   private getTreeNodeId(target: HTMLElement): string | undefined {
-    let treeNodeElement = target;
-    let id = treeNodeElement.dataset.treeNodeId;
-
-    while (!id && treeNodeElement && treeNodeElement !== this.hostElement) {
-      treeNodeElement = treeNodeElement.parentElement as HTMLElement;
-      if (treeNodeElement) {
-        id = treeNodeElement.dataset.treeNodeId;
+    let current: HTMLElement | null = target;
+    while (current && current !== this.hostElement) {
+      const id = current.dataset.treeNodeId;
+      if (id) {
+        return id;
       }
+      current = current.parentElement;
     }
-
-    return id;
+    return undefined;
   }
 
   @Listen('toggle')
