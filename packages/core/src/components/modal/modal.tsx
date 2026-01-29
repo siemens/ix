@@ -166,6 +166,7 @@ export class Modal {
       );
       this.modalVisible = true;
       dialog.showModal();
+      this.slideInModal();
     } catch (e) {
       console.error('HTMLDialogElement not existing');
     }
@@ -230,10 +231,6 @@ export class Modal {
 
       this.dialogClose.emit(reason);
     });
-  }
-
-  componentDidLoad() {
-    this.slideInModal();
   }
 
   componentWillLoad() {
