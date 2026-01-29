@@ -254,8 +254,12 @@ regressionTest(
     const tabs = page.locator('ix-tab-item');
 
     for (const className of ['new', 'hydrated', 'bottom']) {
-      await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
-      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
+      await expect(tabs.nth(0)).toHaveClass(
+        new RegExp(String.raw`\b${className}\b`)
+      );
+      await expect(tabs.nth(1)).toHaveClass(
+        new RegExp(String.raw`\b${className}\b`)
+      );
     }
     await expect(tabs.nth(0)).toHaveClass(/\bselected\b/);
 
@@ -286,8 +290,12 @@ regressionTest(
     const tabs = page.locator('ix-tab-item');
 
     for (const className of ['new', 'hydrated', 'top']) {
-      await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
-      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
+      await expect(tabs.nth(0)).toHaveClass(
+        new RegExp(String.raw`\b${className}\b`)
+      );
+      await expect(tabs.nth(1)).toHaveClass(
+        new RegExp(String.raw`\b${className}\b`)
+      );
     }
   }
 );
@@ -313,8 +321,12 @@ regressionTest(
     const tabs = page.locator('ix-tab-item');
 
     for (const className of ['new', 'hydrated', 'bottom', 'stretched']) {
-      await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
-      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
+      await expect(tabs.nth(0)).toHaveClass(
+        new RegExp(String.raw`\b${className}\b`)
+      );
+      await expect(tabs.nth(1)).toHaveClass(
+        new RegExp(String.raw`\b${className}\b`)
+      );
     }
   }
 );
@@ -351,7 +363,9 @@ regressionTest(
       'stretched',
       'selected',
     ]) {
-      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
+      await expect(tabs.nth(1)).toHaveClass(
+        new RegExp(String.raw`\b${className}\b`)
+      );
     }
   }
 );
@@ -377,8 +391,12 @@ regressionTest(
     const tabs = page.locator('ix-tab-item');
 
     for (const className of ['new', 'hydrated', 'bottom']) {
-      await expect(tabs.nth(0)).toHaveClass(new RegExp(`\\b${className}\\b`));
-      await expect(tabs.nth(1)).toHaveClass(new RegExp(`\\b${className}\\b`));
+      await expect(tabs.nth(0)).toHaveClass(
+        new RegExp(String.raw`\b${className}\b`)
+      );
+      await expect(tabs.nth(1)).toHaveClass(
+        new RegExp(String.raw`\b${className}\b`)
+      );
     }
 
     await expect(tabs.nth(0)).toHaveAttribute('disabled', '');
