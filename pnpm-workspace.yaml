@@ -2,6 +2,7 @@ packages:
   - packages/*
   - tooling/*
   - testing/*
+  - blocks/*
 
 catalog:
   '@esbuild/linux-arm64': 0.25.5
