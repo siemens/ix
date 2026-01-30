@@ -1,4 +1,4 @@
-import { NavLink, Redirect, Route, HashRouter } from 'react-router-dom';
+import { NavLink, Route, Routes, HashRouter } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import Home from './pages/Home';
 
@@ -93,19 +93,16 @@ const IxNavLinkMenuItem = ({
   icon: string;
   counter?: number;
 }) => (
-  <NavLink
-    to={to}
-    activeClassName="active"
-    component={(props) => (
+  <NavLink to={to}>
+    {({ isActive }) => (
       <IxMenuItem
         icon={icon}
-        onClick={props.navigate}
-        active={props.className === 'active'}
+        active={isActive}
         label={label}
         notifications={counter}
       ></IxMenuItem>
     )}
-  ></NavLink>
+  </NavLink>
 );
 
 const IxNavLinkTab = ({
@@ -117,20 +114,13 @@ const IxNavLinkTab = ({
   children: any;
   counter?: number;
 }) => (
-  <NavLink
-    to={to}
-    activeClassName="active"
-    component={(props) => (
-      <IxTabItem
-        icon
-        onClick={props.navigate}
-        selected={props.className === 'active'}
-        counter={counter}
-      >
+  <NavLink to={to}>
+    {(props) => (
+      <IxTabItem icon selected={props.isActive} counter={counter}>
         {children}
       </IxTabItem>
     )}
-  ></NavLink>
+  </NavLink>
 );
 
 const App: React.FC = () => {
@@ -155,9 +145,18 @@ const App: React.FC = () => {
         <HashRouter>
           <IxApplication breakpoints={['sm']}>
             <IxApplicationHeader name="My App">
-              <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
-              <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
-              <IxIconButton variant="tertiary" icon={iconCheckboxes}></IxIconButton>
+              <IxIconButton
+                variant="tertiary"
+                icon={iconCheckboxes}
+              ></IxIconButton>
+              <IxIconButton
+                variant="tertiary"
+                icon={iconCheckboxes}
+              ></IxIconButton>
+              <IxIconButton
+                variant="tertiary"
+                icon={iconCheckboxes}
+              ></IxIconButton>
 
               <IxDropdownButton variant="subtle-tertiary" label="Select config">
                 <IxDropdownItem label="Config 1"></IxDropdownItem>
@@ -189,21 +188,12 @@ const App: React.FC = () => {
               ></IxNavLinkMenuItem>
             </IxMenu>
             <IonRouterOutlet animated={false}>
-              <Route path="/home">
-                <Home />
-              </Route>
-
-              <Route path="/other">
-                <Other />
-              </Route>
-
-              <Route path="/demo">
-                <Demo />
-              </Route>
-
-              <Route exact path="/">
-                <Redirect to="home" />
-              </Route>
+              <Routes>
+                <Route path="/home" element={<Home />} />
+                <Route path="/other" element={<Other />} />
+                <Route path="/demo" element={<Demo />} />
+                <Route path="/" element={<Home />} />
+              </Routes>
             </IonRouterOutlet>
             <IxTabs layout="stretched" placement="top" rounded slot="bottom">
               <IxNavLinkTab to="home">
