@@ -17,6 +17,6 @@ import { IxButton } from '@siemens/ix-angular/standalone';
     <ix-button variant="tertiary"> Button </ix-button>
     <ix-button variant="tertiary" disabled> Button </ix-button>
   `,
-  styleUrls: ['./button-ghost.css'],
+  styleUrls: ['./button-tertiary.css'],
 })
 export default class Buttons {}

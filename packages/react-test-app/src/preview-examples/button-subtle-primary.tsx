@@ -7,17 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './button-ghost.scoped.css';
+import './button-subtle-primary.scoped.css';
 
 import { IxButton } from '@siemens/ix-react';
 
 export default () => {
   return (
     <>
-      <IxButton variant="tertiary">
+      <IxButton variant="subtle-primary">
         Button
       </IxButton>
-      <IxButton variant="tertiary" disabled>
+      <IxButton variant="subtle-primary" disabled>
         Button
       </IxButton>
     </>

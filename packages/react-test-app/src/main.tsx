@@ -32,17 +32,20 @@ import BlindVariants from './preview-examples/blind-variants';
 import Breadcrumb from './preview-examples/breadcrumb';
 import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items';
 import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate';
-import ButtonGhost from './preview-examples/button-ghost';
-import ButtonGrey from './preview-examples/button-grey';
-import ButtonGreyGhost from './preview-examples/button-grey-ghost';
-import ButtonGreySecondary from './preview-examples/button-grey-secondary';
+import ButtonTertiary from './preview-examples/button-tertiary.tsx';
+import ButtonSecondary from './preview-examples/button-secondary.tsx';
+import ButtonSubtleTertiary from './preview-examples/button-subtle-tertiary.tsx';
+import ButtonSubtleSecondary from './preview-examples/button-subtle-secondary.tsx';
 import ButtonGroup from './preview-examples/button-group';
 import ButtonLoading from './preview-examples/button-loading';
-import ButtonSecondary from './preview-examples/button-secondary';
+import ButtonSubtlePrimary from './preview-examples/button-subtle-primary.tsx';
 import ButtonTextIcon from './preview-examples/button-text-icon';
 import ButtonWithIcon from './preview-examples/button-with-icon';
 import ButtonWithLink from './preview-examples/button-with-link.tsx';
 import Buttons from './preview-examples/buttons';
+import ButtonDangerPrimary from './preview-examples/button-danger-primary.tsx';
+import ButtonDangerSecondary from './preview-examples/button-danger-secondary.tsx';
+import ButtonDangerTertiary from './preview-examples/button-danger-tertiary.tsx';
 import Card from './preview-examples/card';
 import CardList from './preview-examples/card-list';
 import CategoryFilter from './preview-examples/category-filter';
@@ -279,23 +282,26 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<BreadcrumbTruncate />}
         />
         <Route path="/preview/breadcrumb" element={<Breadcrumb />} />
-        <Route path="/preview/button-ghost" element={<ButtonGhost />} />
+        <Route path="/preview/button-secondary" element={<ButtonSecondary />} />
         <Route
-          path="/preview/button-grey-ghost"
-          element={<ButtonGreyGhost />}
+          path="/preview/button-tertiary"
+          element={<ButtonTertiary />}
         />
         <Route
-          path="/preview/button-grey-secondary"
-          element={<ButtonGreySecondary />}
+          path="/preview/button-subtle-secondary"
+          element={<ButtonSubtleSecondary />}
         />
-        <Route path="/preview/button-grey" element={<ButtonGrey />} />
+        <Route path="/preview/button-subtle-tertiary" element={<ButtonSubtleTertiary />} />
         <Route path="/preview/button-group" element={<ButtonGroup />} />
         <Route path="/preview/button-loading" element={<ButtonLoading />} />
-        <Route path="/preview/button-secondary" element={<ButtonSecondary />} />
+        <Route path="/preview/button-subtle-primary" element={<ButtonSubtlePrimary />} />
         <Route path="/preview/button-text-icon" element={<ButtonTextIcon />} />
         <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
         <Route path="/preview/button-with-Link" element={<ButtonWithLink />} />
         <Route path="/preview/buttons" element={<Buttons />} />
+        <Route path="/preview/button-danger-primary" element={<ButtonDangerPrimary />} />
+        <Route path="/preview/button-danger-secondary" element={<ButtonDangerSecondary />} />
+        <Route path="/preview/button-danger-tertiary" element={<ButtonDangerTertiary />} />
         <Route path="/preview/card" element={<Card />} />
         <Route path="/preview/card-list" element={<CardList />} />
         <Route

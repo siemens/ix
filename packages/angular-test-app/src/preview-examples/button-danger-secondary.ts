@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   standalone: false,
   selector: 'app-example',
-  templateUrl: './button-danger-outline.html',
-  styleUrls: ['./button-danger-outline.css'],
+  templateUrl: './button-danger-secondary.html',
+  styleUrls: ['./button-danger-secondary.css'],
 })
 export default class Buttons {}

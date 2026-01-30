@@ -37,17 +37,20 @@ import BlindVariants from '../preview-examples/blind-variants';
 import Breadcrumb from '../preview-examples/breadcrumb';
 import BreadcrumbNextItems from '../preview-examples/breadcrumb-next-items';
 import BreadcrumbTruncate from '../preview-examples/breadcrumb-truncate';
-import ButtonGhost from '../preview-examples/button-ghost';
-import ButtonGrey from '../preview-examples/button-grey';
-import ButtonGreyGhost from '../preview-examples/button-grey-ghost';
-import ButtonGreySecondary from '../preview-examples/button-grey-secondary';
+import ButtonTertiary from '../preview-examples/button-tertiary';
+import ButtonSecondary from '../preview-examples/button-secondary';
+import ButtonSubtleTertiary from '../preview-examples/button-subtle-tertiary';
+import ButtonSubtleSecondary from '../preview-examples/button-subtle-secondary';
 import ButtonGroup from '../preview-examples/button-group';
 import ButtonLoading from '../preview-examples/button-loading';
-import ButtonSecondary from '../preview-examples/button-secondary';
+import ButtonSubtlePrimary from '../preview-examples/button-subtle-primary';
 import ButtonTextIcon from '../preview-examples/button-text-icon';
 import ButtonWithIcon from '../preview-examples/button-with-icon';
 import ButtonWithLink from '../preview-examples/button-with-link';
 import Buttons from '../preview-examples/buttons';
+import ButtonDangerPrimary from '../preview-examples/button-danger-primary';
+import ButtonDangerSecondary from '../preview-examples/button-danger-secondary';
+import ButtonDangerTertiary from '../preview-examples/button-danger-tertiary';
 import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
@@ -271,17 +274,20 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     BreadcrumbNextItems,
     BreadcrumbTruncate,
     Breadcrumb,
-    ButtonGhost,
-    ButtonGreyGhost,
-    ButtonGreySecondary,
-    ButtonGrey,
+    ButtonTertiary,
+    ButtonSecondary,
+    ButtonSubtleSecondary,
+    ButtonSubtleTertiary,
     ButtonGroup,
     ButtonLoading,
-    ButtonSecondary,
+    ButtonSubtlePrimary,
     ButtonTextIcon,
     ButtonWithIcon,
     ButtonWithLink,
     Buttons,
+    ButtonDangerPrimary,
+    ButtonDangerSecondary,
+    ButtonDangerTertiary,
     Card,
     CardList,
     CategoryFilterSuggestions,

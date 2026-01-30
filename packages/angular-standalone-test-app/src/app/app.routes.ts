@@ -128,26 +128,26 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'button-ghost',
+        path: 'button-tertiary',
         loadComponent: () =>
-          import('../preview-examples/button-ghost').then((m) => m.default),
+          import('../preview-examples/button-tertiary').then((m) => m.default),
       },
       {
-        path: 'button-grey',
+        path: 'button-secondary',
         loadComponent: () =>
-          import('../preview-examples/button-grey').then((m) => m.default),
+          import('../preview-examples/button-secondary').then((m) => m.default),
       },
       {
-        path: 'button-grey-ghost',
+        path: 'button-subtle-tertiary',
         loadComponent: () =>
-          import('../preview-examples/button-grey-ghost').then(
+          import('../preview-examples/button-subtle-tertiary').then(
             (m) => m.default
           ),
       },
       {
-        path: 'button-grey-secondary',
+        path: 'button-subtle-secondary',
         loadComponent: () =>
-          import('../preview-examples/button-grey-secondary').then(
+          import('../preview-examples/button-subtle-secondary').then(
             (m) => m.default
           ),
       },
@@ -162,9 +162,9 @@ export const routes: Routes = [
           import('../preview-examples/button-loading').then((m) => m.default),
       },
       {
-        path: 'button-secondary',
+        path: 'button-subtle-primary',
         loadComponent: () =>
-          import('../preview-examples/button-secondary').then((m) => m.default),
+          import('../preview-examples/button-subtle-primary').then((m) => m.default),
       },
       {
         path: 'button-text-icon',
@@ -185,6 +185,21 @@ export const routes: Routes = [
         path: 'buttons',
         loadComponent: () =>
           import('../preview-examples/buttons').then((m) => m.default),
+      },
+      {
+        path: 'button-danger-primary',
+        loadComponent: () =>
+          import('../preview-examples/button-danger-primary').then((m) => m.default),
+      },
+      {
+        path: 'button-danger-secondary',
+        loadComponent: () =>
+          import('../preview-examples/button-danger-secondary').then((m) => m.default),
+      },
+      {
+        path: 'button-danger-tertiary',
+        loadComponent: () =>
+          import('../preview-examples/button-danger-tertiary').then((m) => m.default),
       },
       {
         path: 'card',

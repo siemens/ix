@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,14 +8,15 @@
  */
 
 import { Component } from '@angular/core';
+import { IxButton } from '@siemens/ix-angular/standalone';
 
 @Component({
-  standalone: false,
   selector: 'app-example',
+  imports: [IxButton],
   template: `
     <ix-button variant="subtle-secondary"> Button </ix-button>
     <ix-button disabled variant="subtle-secondary"> Button </ix-button>
   `,
-  styleUrls: ['./button-grey-secondary.css'],
+  styleUrls: ['./button-subtle-secondary.css'],
 })
 export default class Buttons {}

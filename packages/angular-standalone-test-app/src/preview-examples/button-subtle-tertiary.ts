@@ -13,10 +13,18 @@ import { IxButton } from '@siemens/ix-angular/standalone';
 @Component({
   selector: 'app-example',
   imports: [IxButton],
-  template: `
-    <ix-button variant="subtle-primary"> Button </ix-button>
-    <ix-button disabled variant="subtle-primary"> Button </ix-button>
-  `,
-  styleUrls: ['./button-grey.css'],
+  template: buttonSubtleTertiary(),
+  styleUrls: ['./button-subtle-tertiary.css'],
 })
 export default class Buttons {}
+
+function buttonSubtleTertiary(): string | undefined {
+  return `
+      <ix-button variant="subtle-tertiary">
+        Button
+      </ix-button>
+      <ix-button disabled variant="subtle-tertiary">
+        Button
+      </ix-button>
+  `;
+}

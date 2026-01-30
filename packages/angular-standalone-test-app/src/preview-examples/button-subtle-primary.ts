@@ -13,6 +13,8 @@ import { IxButton } from '@siemens/ix-angular/standalone';
 @Component({
   selector: 'app-example',
   imports: [IxButton],
-  templateUrl: './button-danger-ghost.html',
+  template: ` <ix-button variant="subtle-primary"> Button </ix-button>
+    <ix-button variant="subtle-primary" disabled> Button </ix-button>`,
+  styleUrls: ['./button-subtle-primary.css'],
 })
 export default class Buttons {}
