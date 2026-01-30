@@ -1,0 +1,26 @@
+{
+  "name": "@siemens/ix-cli",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "bin": "dist/cli.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown && cp src/ix-blocks.schema.json dist/",
+    "dev": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "commander": "^14.0.2",
+    "semver": "^7.6.3",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.7",
+    "@types/semver": "^7.5.8",
+    "tsdown": "^0.20.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

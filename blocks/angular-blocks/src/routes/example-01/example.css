@@ -1,0 +1,44 @@
+.container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+}
+
+.search-wrapper {
+  flex-shrink: 0;
+}
+
+.event-list-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.event-item {
+  display: block;
+  padding: 0.5rem;
+}
+
+.event-title {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.event-description {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+.event-date {
+  color: var(--theme-color-soft-text);
+  font-size: 0.75rem;
+}
+
+.empty-state {
+  padding: 1rem;
+  text-align: center;
+  color: var(--theme-color-soft-text);
+}

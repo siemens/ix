@@ -1,0 +1,57 @@
+{
+  "name": "example-01",
+  "variants": {
+    "react": {
+      "files": [
+        {
+          "target": "react/example.tsx",
+          "source": "react-blocks/src/routes/example-01/index.tsx"
+        },
+        {
+          "target": "react/example.module.css",
+          "source": "react-blocks/src/routes/example-01/example.module.css"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "@siemens/ix",
+          "version": "^4.0.0"
+        },
+        {
+          "name": "@siemens/ix-icons",
+          "version": "^3.3.0"
+        },
+        {
+          "name": "@siemens/ix-react",
+          "version": "^4.0.0"
+        }
+      ]
+    },
+    "angular": {
+      "files": [
+        {
+          "target": "angular/example.component.ts",
+          "source": "src/routes/example-01/example.ts"
+        },
+        {
+          "target": "angular/example.component.html",
+          "source": "src/routes/example-01/example.html"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "@siemens/ix",
+          "version": "^4.0.0"
+        },
+        {
+          "name": "@siemens/ix-icons",
+          "version": "^3.3.0"
+        },
+        {
+          "name": "@siemens/ix-angular",
+          "version": "^4.0.0"
+        }
+      ]
+    }
+  }
+}
