@@ -172,6 +172,7 @@ export interface PickerFieldWrapperProps {
   testId: string;
   trigger: () => Promise<HTMLElement>;
   dropdownRef?: any;
+  enableTopLayer?: boolean;
   show?: boolean;
   onShow?: (event: any) => void;
 }
@@ -207,6 +208,7 @@ export function renderFieldWrapper(props: PickerFieldWrapperProps) {
         trigger={props.trigger()}
         ref={props.dropdownRef}
         closeBehavior="outside"
+        enableTopLayer={props.enableTopLayer}
         suppressOverflowBehavior={true}
         show={props.show}
         onShowChanged={props.onShow}

@@ -7,7 +7,8 @@
     "build.watch": "storybook dev -p 6006",
     "build.watch.no-open": "storybook dev -p 6006 --no-open",
     "build": "storybook build",
-    "test.a11y": "start-server-and-test build.watch.no-open http://localhost:6006 test-storybook"
+    "test.a11y": "vitest --project=storybook",
+    "test.setup": "playwright install chromium --with-deps"
   },
   "dependencies": {
     "@maskito/core": "^3.2.0",
@@ -15,24 +16,24 @@
     "lit": "^3.2.1"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^4.0.1",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-icons": "^3.2.0",
     "@stencil/core": "~4.17.0",
-    "@storybook/addon-a11y": "^9.0.18",
-    "@storybook/addon-designs": "^10.0.2",
-    "@storybook/addon-docs": "^9.0.18",
-    "@storybook/addon-links": "^9.0.18",
-    "@storybook/addon-themes": "^9.0.18",
-    "@storybook/test-runner": "^0.23.0",
-    "@storybook/web-components": "^9.0.18",
-    "@storybook/web-components-vite": "^9.0.18",
+    "@storybook/addon-a11y": "^10.1.11",
+    "@storybook/addon-designs": "^11.1.1",
+    "@storybook/addon-docs": "^10.1.11",
+    "@storybook/addon-links": "^10.1.11",
+    "@storybook/addon-themes": "^10.1.11",
+    "@storybook/addon-vitest": "^10.1.11",
+    "@storybook/web-components-vite": "^10.1.11",
     "@types/fs-extra": "^9.0.13",
     "fs-extra": "^11.2.0",
-    "playwright": "^1.54.1",
-    "start-server-and-test": "^2.0.12",
-    "storybook": "^9.0.18",
+    "storybook": "^10.1.11",
     "typescript": "~5.6.2",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vitest": "^4.0.17",
+    "playwright": "catalog:",
+    "@vitest/browser-playwright": "^4.0.17",
+    "@vitest/coverage-v8": "^4.0.17"
   }
 }
