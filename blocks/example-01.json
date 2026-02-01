@@ -1,7 +1,9 @@
 {
+  "$schema": "./../tooling/registry/schemas/block.schema.json",
   "name": "example-01",
   "variants": {
     "react": {
+      "preview": "react-blocks/dist/ix/example-01",
       "files": [
         {
           "target": "react/example.tsx",

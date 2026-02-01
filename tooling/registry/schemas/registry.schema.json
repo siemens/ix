@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IX Blocks Registry",
+  "description": "Registry schema for Siemens IX design system blocks catalog",
+  "type": "object",
+  "required": ["name", "dist-tags", "versions"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Registry package name",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "dist-tags": {
+      "type": "object",
+      "description": "Distribution tags mapping to version numbers",
+      "required": ["latest"],
+      "properties": {
+        "latest": {
+          "type": "string",
+          "description": "Latest stable version",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(-.*)?$"
+        }
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^\\d+\\.\\d+\\.\\d+(-.*)?$"
+      }
+    },
+    "versions": {
+      "type": "object",
+      "description": "Available versions and their blocks",
+      "minProperties": 1,
+      "patternProperties": {
+        "^\\d+\\.\\d+\\.\\d+(-.*)?$": {
+          "$ref": "#/definitions/versionEntry"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "definitions": {
+    "versionEntry": {
+      "type": "object",
+      "required": ["blocks"],
+      "properties": {
+        "blocks": {
+          "type": "array",
+          "description": "List of blocks available in this version",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/blockReference"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "blockReference": {
+      "type": "object",
+      "required": ["name", "path"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Block identifier",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "path": {
+          "type": "string",
+          "description": "Relative path to block configuration file",
+          "pattern": "\\.json$"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

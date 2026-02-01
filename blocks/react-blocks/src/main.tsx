@@ -11,10 +11,10 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/example-01" element={<ExamplePattern />} />
-        <Route path="/upload-01" element={<UploadFiles />} />
+        <Route path="/ix" element={<Index />} />
+        <Route path="/ix/example-01" element={<ExamplePattern />} />
+        <Route path="/ix/upload-01" element={<UploadFiles />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 );

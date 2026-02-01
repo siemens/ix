@@ -1,8 +1,0 @@
-{
-  "name": "siemens-ix-blocks",
-  "version": "0.1.0",
-  "blocks": [
-    { "name": "example-01", "path": "example-01.json" },
-    { "name": "upload-01", "path": "upload-01.json" }
-  ]
-}

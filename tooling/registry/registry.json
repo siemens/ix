@@ -1,0 +1,15 @@
+{
+  "$schema": "./schemas/registry.schema.json",
+  "name": "siemens-ix-blocks",
+  "dist-tags": {
+    "latest": "4.3.0"
+  },
+  "versions": {
+    "4.3.0": {
+      "blocks": [
+        { "name": "example-01", "path": "example-01.json" },
+        { "name": "upload-01", "path": "upload-01.json" }
+      ]
+    }
+  }
+}

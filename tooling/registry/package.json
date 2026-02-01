@@ -1,0 +1,23 @@
+{
+  "name": "registry",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsx src/build.ts",
+    "dev": "http-server dist"
+  },
+  "dependencies": {
+    "angular-blocks": "workspace:",
+    "listr2": "^10.1.0",
+    "react-blocks": "workspace:"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "fs-extra": "^11.3.3",
+    "glob": "^11.1.0",
+    "http-server": "^14.1.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

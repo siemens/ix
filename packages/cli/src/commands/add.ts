@@ -20,14 +20,14 @@ export const addCommand = new Command('add')
   .option(
     '--tokens <json>',
     'JSON map for token replacement (e.g. {"__IX_PREFIX__":"Ix"})',
-    '{}',
+    '{}'
   )
   .action(async (blockName, opts) => {
     const cwd = process.cwd();
 
     if (!(await configExists(cwd))) {
       console.error(
-        `❌ ${CONFIG_FILE_NAME} not found. Run 'ix init' first to create it.`,
+        `❌ ${CONFIG_FILE_NAME} not found. Run 'ix init' first to create it.`
       );
       process.exit(1);
     }
@@ -43,10 +43,11 @@ export const addCommand = new Command('add')
     const baseUrl = opts.registry.replace(/\/+$/, '');
     const index = await fetchRegistryIndex(baseUrl);
 
-    const entry = index.blocks.find((b) => b.name === blockName);
+    const latest = index.versions[index['dist-tags'].latest];
+    const entry = latest.blocks.find((b) => b.name === blockName);
     if (!entry) {
       console.error(
-        `Block '${blockName}' not found in registry '${index.name}'.`,
+        `Block '${blockName}' not found in registry '${index.name}'.`
       );
       process.exit(1);
     }

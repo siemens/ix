@@ -1,7 +1,12 @@
 export type RegistryIndex = {
   name: string;
-  version: string;
-  blocks: Array<{ name: string; path: string }>;
+  'dist-tags': Record<string, string>;
+  versions: Record<
+    string,
+    {
+      blocks: Array<{ name: string; path: string }>;
+    }
+  >;
 };
 
 export type BlockDefinition = {
@@ -24,14 +29,14 @@ async function fetchJson<T>(url: string): Promise<T> {
 }
 
 export async function fetchRegistryIndex(
-  baseUrl: string,
+  baseUrl: string
 ): Promise<RegistryIndex> {
   return await fetchJson<RegistryIndex>(`${baseUrl}/registry.json`);
 }
 
 export async function fetchBlockDefinition(
   baseUrl: string,
-  blockPath: string,
+  blockPath: string
 ): Promise<BlockDefinition> {
   // blockPath like "blocks/hero/block.json"
   return await fetchJson<BlockDefinition>(`${baseUrl}/${blockPath}`);

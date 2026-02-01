@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IX Block Configuration",
+  "description": "Schema for Siemens IX design system block definitions",
+  "type": "object",
+  "required": ["name", "variants"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique identifier for the block",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "variants": {
+      "type": "object",
+      "description": "Framework-specific implementations of the block",
+      "minProperties": 1,
+      "properties": {
+        "react": {
+          "$ref": "#/definitions/variant"
+        },
+        "angular": {
+          "$ref": "#/definitions/variant"
+        },
+        "vue": {
+          "$ref": "#/definitions/variant"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "definitions": {
+    "variant": {
+      "type": "object",
+      "required": ["files", "dependencies"],
+      "properties": {
+        "preview": {
+          "type": "string",
+          "description": "Path to the preview build output"
+        },
+        "files": {
+          "type": "array",
+          "description": "Source files for this variant",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/file"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "description": "NPM dependencies required for this variant",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/dependency"
+          }
+        }
+      }
+    },
+    "file": {
+      "type": "object",
+      "required": ["target", "source"],
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "Destination path for the file in the generated block"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source path of the file in the repository"
+        }
+      },
+      "additionalProperties": false
+    },
+    "dependency": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "NPM package name"
+        },
+        "version": {
+          "type": "string",
+          "description": "Semver version range",
+          "pattern": "^[\\^~]?\\d+\\.\\d+\\.\\d+(-.*)?$"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
