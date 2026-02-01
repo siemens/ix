@@ -34,8 +34,8 @@
   "devDependencies": {
     "@capacitor/cli": "6.1.1",
     "@types/fs-extra": "^11.0.4",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-legacy": "^5.0.0",
     "@vitejs/plugin-react": "^4.0.1",
     "eslint": "^8.35.0",
