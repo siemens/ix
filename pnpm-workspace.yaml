@@ -11,6 +11,5 @@ catalog:
   playwright: ^1.57.0
 
 minimumReleaseAge: 2880
-
 minimumReleaseAgeExclude:
   - '@siemens/*'
