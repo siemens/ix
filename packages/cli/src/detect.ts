@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-type Framework = 'react' | 'angular';
+export type Framework = 'react' | 'angular';
 
 export async function detectFramework(cwd: string): Promise<Framework> {
   const pkgPath = path.join(cwd, 'package.json');

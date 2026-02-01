@@ -3,6 +3,7 @@ import { Command } from 'commander';
 
 import { addCommand } from './commands/add';
 import { initCommand } from './commands/init';
+import { mcpCommand } from './commands/mcp';
 
 const program = new Command();
 
@@ -10,5 +11,6 @@ program.name('ix').description('Siemens IX Blocks CLI').version('0.1.0');
 
 program.addCommand(initCommand);
 program.addCommand(addCommand);
+program.addCommand(mcpCommand);
 
 program.parse(process.argv);

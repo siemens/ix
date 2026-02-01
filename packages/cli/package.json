@@ -9,14 +9,21 @@
   ],
   "scripts": {
     "build": "tsdown && cp src/ix-blocks.schema.json dist/",
-    "dev": "tsx src/cli.ts"
+    "dev": "cp src/ix-blocks.schema.json dist/ && tsdown --watch",
+    "start": "tsx src/cli.ts"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.3",
     "commander": "^14.0.2",
+    "dedent": "^1.7.1",
+    "deepmerge": "^4.3.1",
+    "fs-extra": "^11.3.3",
     "semver": "^7.6.3",
-    "zod": "^3.24.1"
+    "zod": "^3.24.1",
+    "zod-to-json-schema": "^3.25.1"
   },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.19.7",
     "@types/semver": "^7.5.8",
     "tsdown": "^0.20.1",
