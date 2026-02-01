@@ -5,7 +5,7 @@
   "description": "",
   "scripts": {
     "build": "tsx src/build.ts",
-    "dev": "http-server dist"
+    "dev": "pnpm build && http-server dist"
   },
   "dependencies": {
     "angular-blocks": "workspace:",

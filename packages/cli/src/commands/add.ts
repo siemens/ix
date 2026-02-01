@@ -12,9 +12,11 @@ import { detectFramework } from '../detect';
 import { installBlock } from '../installer';
 import { fetchRegistryIndex, fetchBlockDefinition } from '../registry';
 
+const defaultRegistry = 'https://siemens.github.io/ix';
+
 export const addCommand = new Command('add')
   .argument('<blockName>', 'Block name (e.g. hero)')
-  .option('-r, --registry <url>', 'Registry base URL', 'http://127.0.0.1:8080')
+  .option('-r, --registry <url>', 'Registry base URL', defaultRegistry)
   .option('-f, --framework <fw>', 'react|angular|auto', 'auto')
   .option('--dry-run', 'Print what would be done, without writing files', false)
   .option(
