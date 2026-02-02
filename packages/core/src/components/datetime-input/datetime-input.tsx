@@ -606,6 +606,7 @@ export class DatetimeInput
           {this.renderInput()}
         </ix-field-wrapper>
         <ix-dropdown
+          class="datetime-dropdown"
           closeBehavior="outside"
           data-testid="datetime-dropdown"
           ref={this.dropdownElementRef}
