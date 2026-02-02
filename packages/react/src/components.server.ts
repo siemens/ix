@@ -679,7 +679,8 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
         weekStartIndex: 'week-start-index',
         locale: 'locale',
-        showWeekNumbers: 'show-week-numbers'
+        showWeekNumbers: 'show-week-numbers',
+        embedded: 'embedded'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxDatetimePicker as ReactWebComponent<IxDatetimePickerElement, IxDatetimePickerEvents>,
