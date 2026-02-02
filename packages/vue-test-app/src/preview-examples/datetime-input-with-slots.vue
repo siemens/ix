@@ -12,7 +12,7 @@ import { IxDatetimeInput, IxIcon } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxDatetimeInput label="Scheduled event">
+  <IxDatetimeInput value="1970/01/01 00:00:00" label="Scheduled event">
     <IxIcon slot="start" name="calendar" size="16"></IxIcon>
     <IxIcon slot="end" name="clock" size="16"></IxIcon>
   </IxDatetimeInput>
