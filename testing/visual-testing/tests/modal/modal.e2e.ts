@@ -9,17 +9,18 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
-import { IxModalSize } from 'src/components';
+import type { IxModalSize } from '@siemens/ix/components';
 
 regressionTest.describe('modal', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('modal/basic');
 
     const modal = page.locator('ix-modal');
-    await modal.evaluate((modal) => (modal as any).showModal());
     const dialog = modal.locator('dialog');
+    await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
 
     await expect(dialog).toBeVisible();
+    await expect(dialog).toHaveCSS('opacity', '1');
     await dialog.click({
       force: true,
     });
@@ -30,10 +31,11 @@ regressionTest.describe('modal', () => {
     await page.goto('modal/icon');
 
     const modal = page.locator('ix-modal');
-    await modal.evaluate((modal) => (modal as any).showModal());
     const dialog = modal.locator('dialog');
+    await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
 
     await expect(dialog).toBeVisible();
+    await expect(dialog).toHaveCSS('opacity', '1');
     await dialog.click({
       force: true,
     });
@@ -81,17 +83,17 @@ regressionTest('modal with dropdown', async ({ mount, page }) => {
   </ix-modal>
     `);
   const modal = page.locator('ix-modal');
-  await modal.evaluate((modal) => ((modal as any).style.display = 'block'));
+  const dialog = modal.locator('dialog');
+  await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
   await expect(modal).toHaveClass(/hydrated/);
+  await expect(dialog).toBeVisible();
 
   const dropdown = page.locator('ix-dropdown-button');
   await dropdown.click();
 
   const dropdownContent = dropdown.locator('ix-dropdown');
-
   await expect(dropdownContent).toHaveClass(/show/);
 
-  await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
@@ -136,12 +138,12 @@ regressionTest('modal should show centered', async ({ mount, page }) => {
   </ix-modal>
     `);
   const modal = page.locator('ix-modal');
-  await modal.evaluate((modal) => (modal as any).showModal());
-  await expect(modal).toHaveClass(/hydrated/);
-
+  const dialog = modal.locator('dialog');
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
+  await expect(modal).toHaveClass(/hydrated/);
+  await expect(dialog).toBeVisible();
 
-  // Wait until anime.js perform the slideIn animation
-  await page.waitForTimeout(2000);
+  await expect(dialog).toHaveCSS('opacity', '1');
+
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });

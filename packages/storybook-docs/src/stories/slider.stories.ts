@@ -7,16 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
-import { genericRender, makeArgTypes } from './utils/generic-render';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
+import {
+  genericValidationRender,
+  IxValidationComponent,
+  makeArgTypes,
+} from './utils/generic-render';
 
-type Element = Components.IxSlider;
+type Element = IxValidationComponent<Components.IxSlider>;
 
 const meta = {
   title: 'Example/Slider',
   tags: [],
   render: (args) => {
-    const container = genericRender('ix-slider', args);
+    const container = genericValidationRender('ix-slider', args);
 
     const slider = container.querySelector('ix-slider') as HTMLIxSliderElement;
     slider.marker = args.marker;
@@ -26,6 +30,10 @@ const meta = {
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-slider', {
     marker: {
       control: 'object',
+    },
+    validation: {
+      options: ['default', 'info', 'warning', 'invalid', 'valid'],
+      control: { type: 'select' },
     },
   }),
   args: {
