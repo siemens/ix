@@ -12,9 +12,9 @@ import { IxDatetimeInput } from '@siemens/ix-react';
 function DatetimeInputMinMaxDate() {
   return (
     <IxDatetimeInput
-      label="Event date"
-      minDate="2024/01/01"
-      maxDate="2024/12/31"
+      value="1970/01/01 00:00:00"
+      minDate="1970/01/01"
+      maxDate="1970/12/31"
     ></IxDatetimeInput>
   );
 }
