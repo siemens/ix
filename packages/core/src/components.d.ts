@@ -1214,6 +1214,11 @@ export namespace Components {
          */
         "hideHeader": boolean;
         /**
+          * Remove content padding
+          * @default false
+         */
+        "noPadding": boolean;
+        /**
           * Timepicker specific styling
           * @default false
          */
@@ -7324,6 +7329,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "hideHeader"?: boolean;
+        /**
+          * Remove content padding
+          * @default false
+         */
+        "noPadding"?: boolean;
         /**
           * Timepicker specific styling
           * @default false

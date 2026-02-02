@@ -40,6 +40,11 @@ export class DateTimeCard {
    */
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
+  /**
+   * Remove content padding
+   */
+  @Prop() noPadding: boolean = false;
+
   private cardClasses() {
     return {
       card: true,
@@ -68,6 +73,7 @@ export class DateTimeCard {
             class={{
               content: true,
               'content--time-picker': this.timePickerAppearance,
+              'content--no-padding': this.noPadding,
             }}
           >
             <slot></slot>

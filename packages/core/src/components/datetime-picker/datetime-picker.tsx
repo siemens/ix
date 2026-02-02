@@ -181,53 +181,57 @@ export class DatetimePicker
   render() {
     return (
       <Host>
-        <ix-layout-grid class="no-padding">
-          <ix-row class="row-separator">
-            <ix-col class="col-separator">
-              <ix-date-picker
-                ref={(ref) => (this.datePickerElement = ref)}
-                corners="left"
-                singleSelection={this.singleSelection}
-                onDateChange={(event) => this.onDateChange(event)}
-                from={this.from}
-                to={this.to}
-                format={this.dateFormat}
-                minDate={this.minDate}
-                maxDate={this.maxDate}
-                weekStartIndex={this.weekStartIndex}
-                embedded
-                locale={this.locale}
-                showWeekNumbers={this.showWeekNumbers}
-                ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-                ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
-              ></ix-date-picker>
-            </ix-col>
+        <ix-date-time-card
+          hideHeader={true}
+          hasFooter={true}
+          embedded
+          corners="rounded"
+          noPadding
+        >
+          <ix-layout-grid class="no-padding">
+            <ix-row class="row-separator">
+              <ix-col class="col-separator">
+                <ix-date-picker
+                  ref={(ref) => (this.datePickerElement = ref)}
+                  corners="left"
+                  singleSelection={this.singleSelection}
+                  onDateChange={(event) => this.onDateChange(event)}
+                  from={this.from}
+                  to={this.to}
+                  format={this.dateFormat}
+                  minDate={this.minDate}
+                  maxDate={this.maxDate}
+                  weekStartIndex={this.weekStartIndex}
+                  embedded
+                  locale={this.locale}
+                  showWeekNumbers={this.showWeekNumbers}
+                  ariaLabelPreviousMonthButton={
+                    this.ariaLabelPreviousMonthButton
+                  }
+                  ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+                ></ix-date-picker>
+              </ix-col>
 
-            <ix-col>
-              <ix-time-picker
-                class="min-width"
-                ref={(ref) => (this.timePickerElement = ref)}
-                embedded
-                dateTimePickerAppearance={true}
-                onTimeChange={(event) => this.onTimeChange(event)}
-                format={this.timeFormat}
-                time={this.time}
-              ></ix-time-picker>
-            </ix-col>
-          </ix-row>
-          <ix-row>
-            <ix-col>
-              <div class="btn-select-date-container">
-                <ix-button
-                  class="btn-select-date"
-                  onClick={() => this.onDone()}
-                >
-                  {this.i18nDone}
-                </ix-button>
-              </div>
-            </ix-col>
-          </ix-row>
-        </ix-layout-grid>
+              <ix-col>
+                <ix-time-picker
+                  class="min-width"
+                  ref={(ref) => (this.timePickerElement = ref)}
+                  embedded
+                  dateTimePickerAppearance={true}
+                  onTimeChange={(event) => this.onTimeChange(event)}
+                  format={this.timeFormat}
+                  time={this.time}
+                ></ix-time-picker>
+              </ix-col>
+            </ix-row>
+          </ix-layout-grid>
+
+          <div slot="footer" class="btn-select-date-container">
+            <ix-button class="btn-select-date" onClick={() => this.onDone()}>
+              {this.i18nDone}
+            </ix-button>
+          </div>
+        </ix-date-time-card>
       </Host>
     );
   }
