@@ -1239,6 +1239,10 @@ export namespace Components {
          */
         "dateFormat": string;
         /**
+          * @default false
+         */
+        "embedded": boolean;
+        /**
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
          */
         "from"?: string;
@@ -7354,6 +7358,10 @@ declare namespace LocalJSX {
           * @default 'yyyy/LL/dd'
          */
         "dateFormat"?: string;
+        /**
+          * @default false
+         */
+        "embedded"?: boolean;
         /**
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
          */

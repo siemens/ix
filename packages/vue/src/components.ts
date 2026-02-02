@@ -537,6 +537,7 @@ export const IxDatetimePicker: StencilVueComponent<JSX.IxDatetimePicker> = /*@__
   'weekStartIndex',
   'locale',
   'showWeekNumbers',
+  'embedded',
   'timeChange',
   'dateChange',
   'dateSelect'

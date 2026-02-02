@@ -611,7 +611,7 @@ export class DatetimeInput
           data-testid="datetime-dropdown"
           ref={this.dropdownElementRef}
           show={this.show}
-          suppressOverflowBehavior={true}
+          suppressOverflowBehavior
           trigger={this.inputElementRef.waitForCurrent()}
           onShowChanged={(event) => {
             this.show = event.detail;
@@ -621,6 +621,7 @@ export class DatetimeInput
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             dateFormat={this.dateFormat}
+            embedded
             from={this.from ?? ''}
             i18nDone={this.i18nDone}
             i18nTime={this.i18nTime}

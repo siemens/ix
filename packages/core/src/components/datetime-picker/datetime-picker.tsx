@@ -133,6 +133,9 @@ export class DatetimePicker
    */
   @Prop() showWeekNumbers = false;
 
+  /** @internal */
+  @Prop() embedded = false;
+
   /**
    * Time change
    */
@@ -184,7 +187,7 @@ export class DatetimePicker
         <ix-date-time-card
           hideHeader={true}
           hasFooter={true}
-          embedded
+          embedded={this.embedded}
           corners="rounded"
           noPadding
         >
