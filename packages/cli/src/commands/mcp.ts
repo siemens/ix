@@ -48,10 +48,9 @@ const mcpRunAngularMcpCommand = new Command('run-angular')
 
 const mcpInitCommand = new Command('init')
   .description('Initialize MCP configuration in the current directory')
-  .addOption(registryOption)
-  .action(async (options: { registry: string }) => {
+  .action(async () => {
     const framework = await detectFramework(process.cwd());
-    const configPath = await initVSCodeMCPConfig(framework, options.registry);
+    const configPath = await initVSCodeMCPConfig(framework);
     console.log(`MCP configuration initialized in ${configPath}`);
   });
 
