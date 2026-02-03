@@ -8,12 +8,13 @@
     "dev": "pnpm build && http-server dist"
   },
   "devDependencies": {
-    "angular-blocks": "workspace:",
     "@types/fs-extra": "^11.0.4",
+    "angular-blocks": "workspace:",
     "fs-extra": "^11.3.3",
     "glob": "^11.1.0",
     "http-server": "^14.1.1",
     "listr2": "^10.1.0",
+    "minisearch": "^7.2.0",
     "react-blocks": "workspace:",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"

@@ -11,6 +11,7 @@ import path from 'node:path';
 import fs from 'fs-extra';
 import tsconfig from '../tsconfig.json' assert { type: 'json' };
 import { glob } from 'glob';
+import { buildSearchIndex } from './search-index';
 
 const __dirname = path.resolve();
 const __node_modules = path.join(__dirname, 'node_modules');
@@ -116,11 +117,17 @@ const task = new Listr<Ctx>([
       await fs.copy(src, dest, { dereference: true });
     },
   },
+  {
+    title: 'Build search index',
+    task: async (ctx) => {
+      const blocksDir = path.join(ctx.dist, 'blocks');
+      await buildSearchIndex(ctx.dist, blocksDir);
+    },
+  },
 ]);
 
 async function main() {
   const context = await task.run();
-  console.log(context);
   return context;
 }
 

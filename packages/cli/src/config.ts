@@ -2,6 +2,8 @@ import { z } from 'zod';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+export const defaultRegistry = 'https://siemens.github.io/ix' as const;
+
 // Schema for ix-blocks.json
 export const IxBlocksConfigSchema = z.object({
   $schema: z.string().optional(),

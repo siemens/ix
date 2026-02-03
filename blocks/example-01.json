@@ -33,11 +33,11 @@
       "files": [
         {
           "target": "angular/example.component.ts",
-          "source": "src/routes/example-01/example.ts"
+          "source": "angular-blocks/src/routes/example-01/example.ts"
         },
         {
           "target": "angular/example.component.html",
-          "source": "src/routes/example-01/example.html"
+          "source": "angular-blocks/src/routes/example-01/example.html"
         }
       ],
       "dependencies": [

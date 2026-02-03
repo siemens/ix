@@ -7,12 +7,11 @@ import {
   CONFIG_FILE_NAME,
   loadConfig,
   addBlockToConfig,
+  defaultRegistry,
 } from '../config';
 import { detectFramework } from '../detect';
 import { installBlock } from '../installer';
 import { fetchRegistryIndex, fetchBlockDefinition } from '../registry';
-
-const defaultRegistry = 'https://siemens.github.io/ix';
 
 export const addCommand = new Command('add')
   .argument('<blockName>', 'Block name (e.g. hero)')

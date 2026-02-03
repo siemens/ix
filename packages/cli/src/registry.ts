@@ -1,5 +1,6 @@
 export type RegistryIndex = {
   name: string;
+  searchIndex?: string;
   'dist-tags': Record<string, string>;
   versions: Record<
     string,
@@ -14,6 +15,7 @@ export type BlockDefinition = {
   variants: {
     react?: BlockVariant;
     angular?: BlockVariant;
+    vue?: BlockVariant;
   };
 };
 

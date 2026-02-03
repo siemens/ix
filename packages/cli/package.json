@@ -18,6 +18,7 @@
     "dedent": "^1.7.1",
     "deepmerge": "^4.3.1",
     "fs-extra": "^11.3.3",
+    "minisearch": "^7.2.0",
     "semver": "^7.6.3",
     "zod": "^3.24.1",
     "zod-to-json-schema": "^3.25.1"

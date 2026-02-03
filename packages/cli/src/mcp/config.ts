@@ -13,16 +13,23 @@ import { Framework } from '../detect';
 
 const overwriteMerge = (_: any[], sourceArray: any[]) => sourceArray;
 
-export const initVSCodeMCPConfig = async (framework: Framework) => {
+export const initVSCodeMCPConfig = async (
+  framework: Framework,
+  registry: string
+) => {
   const config = {
     configPath: '.vscode/mcp.json',
     config: {
       servers: {
         siemensix: {
           command: 'npx',
-          args: [`./../../ix/packages/cli`, 'mcp', `run-${framework}`],
-          // command: 'npx',
-          // args: [`@siemens/ix-cli@latest`, 'mcp', `run-${framework}`],
+          args: [
+            `./../../ix/packages/cli`,
+            'mcp',
+            `run-${framework}`,
+            '--registry',
+            registry,
+          ],
         },
       },
     },

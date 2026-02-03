@@ -10,6 +10,11 @@
       "description": "Registry package name",
       "pattern": "^[a-z0-9-]+$"
     },
+    "searchIndex": {
+      "type": "string",
+      "description": "Path to the MiniSearch index file for fast block searching",
+      "pattern": "\\.json$"
+    },
     "dist-tags": {
       "type": "object",
       "description": "Distribution tags mapping to version numbers",

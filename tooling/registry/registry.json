@@ -1,6 +1,7 @@
 {
   "$schema": "./schemas/registry.schema.json",
   "name": "siemens-ix-blocks",
+  "searchIndex": "search-index.json",
   "dist-tags": {
     "latest": "4.3.0"
   },

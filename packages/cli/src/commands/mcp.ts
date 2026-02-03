@@ -6,22 +6,40 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Command } from 'commander';
+import { Command, Option } from 'commander';
 import { initVSCodeMCPConfig } from '../mcp/config';
 import { detectFramework } from '../detect';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { createServer } from '../mcp/server';
+import { defaultRegistry } from '../config';
 
 const mcpCommand = new Command('mcp').description(
   'MCP server and configuration commands'
 );
 
+const registryOption = new Option('-r, --registry <url>', 'Registry base URL');
+registryOption.default(defaultRegistry);
+
 const mcpRunReactMcpCommand = new Command('run-react')
   .description('Run the React MCP server')
-  .action(async () => {
+  .addOption(registryOption)
+  .action(async (options: { registry: string }) => {
     try {
       const transport = new StdioServerTransport();
-      const server = createServer('react');
+      const server = createServer('react', options.registry);
+      await server.connect(transport);
+    } catch (error) {
+      console.error('Error starting MCP server:', error);
+    }
+  });
+
+const mcpRunAngularMcpCommand = new Command('run-angular')
+  .description('Run the Angular MCP server')
+  .addOption(registryOption)
+  .action(async (options: { registry: string }) => {
+    try {
+      const transport = new StdioServerTransport();
+      const server = createServer('angular', options.registry);
       await server.connect(transport);
     } catch (error) {
       console.error('Error starting MCP server:', error);
@@ -30,13 +48,15 @@ const mcpRunReactMcpCommand = new Command('run-react')
 
 const mcpInitCommand = new Command('init')
   .description('Initialize MCP configuration in the current directory')
-  .action(async () => {
+  .addOption(registryOption)
+  .action(async (options: { registry: string }) => {
     const framework = await detectFramework(process.cwd());
-    const configPath = await initVSCodeMCPConfig(framework);
+    const configPath = await initVSCodeMCPConfig(framework, options.registry);
     console.log(`MCP configuration initialized in ${configPath}`);
   });
 
 mcpCommand.addCommand(mcpInitCommand);
 mcpCommand.addCommand(mcpRunReactMcpCommand);
+mcpCommand.addCommand(mcpRunAngularMcpCommand);
 
 export { mcpCommand };
