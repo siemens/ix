@@ -12,7 +12,9 @@
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "READMEOSS.html",
+    "README.md"
   ],
   "scripts": {
     "test.setup": "playwright install chromium --with-deps",
