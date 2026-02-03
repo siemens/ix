@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@esbuild/linux-arm64':
-      specifier: 0.25.5
-      version: 0.25.5
+      specifier: 0.27.2
+      version: 0.27.2
     '@playwright/test':
       specifier: ^1.54.1
       version: 1.54.1
@@ -79,7 +79,7 @@ importers:
     devDependencies:
       '@esbuild/linux-arm64':
         specifier: 'catalog:'
-        version: 0.25.5
+        version: 0.27.2
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.54.1
@@ -1220,7 +1220,7 @@ importers:
     devDependencies:
       '@esbuild/linux-arm64':
         specifier: 'catalog:'
-        version: 0.25.5
+        version: 0.27.2
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.54.1
@@ -13807,10 +13807,10 @@ snapshots:
   '@esbuild/linux-arm64@0.25.12':
     optional: true
 
-  '@esbuild/linux-arm64@0.25.5': {}
-
-  '@esbuild/linux-arm64@0.27.2':
+  '@esbuild/linux-arm64@0.25.5':
     optional: true
+
+  '@esbuild/linux-arm64@0.27.2': {}
 
   '@esbuild/linux-arm@0.25.12':
     optional: true
