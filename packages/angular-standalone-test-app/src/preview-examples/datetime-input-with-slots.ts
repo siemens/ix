@@ -8,11 +8,11 @@
  */
 
 import { Component } from '@angular/core';
-import { IxDatetimeInput, IxIcon } from '@siemens/ix-angular/standalone';
+import { IxDatetimeInput, IxIcon, IxTypography } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
-  imports: [IxDatetimeInput, IxIcon],
+  imports: [IxDatetimeInput, IxIcon, IxTypography],
   templateUrl: './datetime-input-with-slots.html',
 })
 export default class DatetimeInputWithSlots {}
