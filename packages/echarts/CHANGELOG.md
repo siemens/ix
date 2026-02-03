@@ -1,4 +1,20 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ * 
+ * SPDX-License-Identifier: MIT
+ * 
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 # @siemens/ix-echarts
+
+## 3.0.1
+
+### Patch Changes
+
+- [#2313](https://github.com/siemens/ix/pull/2313) [`e18d391`](https://github.com/siemens/ix/commit/e18d391dc52dd29a7723c0c0dc092c11bd097ac0) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Update **eCharts** theme to match latest design spec.
+
+- [#2317](https://github.com/siemens/ix/pull/2317) [`0a3b5c9`](https://github.com/siemens/ix/commit/0a3b5c9f482c0bcecb8e58f131ebad1baa2aedce) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Style **axisLabel** for **eCharts** gauge charts.
 
 ## 3.0.0
 

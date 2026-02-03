@@ -4,7 +4,7 @@ packages:
   - testing/*
 
 catalog:
-  '@esbuild/linux-arm64': 0.25.5
+  '@esbuild/linux-arm64': 0.27.2
   '@playwright/test': ^1.54.1
   '@axe-core/playwright': ^4.11.0
   '@siemens/ix-icons': 0.0.0-20260121143851 #^3.2.0
