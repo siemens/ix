@@ -27,7 +27,6 @@ import {
   DisposableChangesAndVisibilityObservers,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
-  clearInputValue,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -44,7 +43,6 @@ import {
   onFocus,
   onBlur,
   onKeyDown,
-  getNativeInput,
   renderFieldWrapper,
   createEventConfig,
   createInputMethods,
@@ -54,10 +52,14 @@ import {
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
-  createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  createPickerInputMethods,
+  createRenderPickerInput,
+  createPickerRenderConfig,
+  createPickerInputConfig,
 } from '../utils/input/picker-input.util';
+import { BasePickerInput } from '../utils/input/base-picker-input';
 import { makeRef } from '../utils/make-ref';
 import type { TimeInputValidityState } from './time-input.types';
 
@@ -73,7 +75,7 @@ import type { TimeInputValidityState } from './time-input.types';
   shadow: true,
   formAssociated: true,
 })
-export class TimeInput implements IxInputFieldComponent<string> {
+export class TimeInput extends BasePickerInput implements IxInputFieldComponent<string> {
   @Element() hostElement!: HTMLIxTimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -283,7 +285,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   private readonly timePickerRef = makeRef<HTMLIxTimePickerElement>();
 
-  private readonly inputElementRef = makeRef<HTMLInputElement>();
+  protected readonly inputElementRef = makeRef<HTMLInputElement>();
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
@@ -291,13 +293,6 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private readonly _isClearing = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
-
-  private handleInputKeyDown(event: KeyboardEvent) {
-    return createKeyDownHandler(
-      this.suppressSubmitOnEnter,
-      this.formInternals
-    )(event);
-  }
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -435,172 +430,84 @@ export class TimeInput implements IxInputFieldComponent<string> {
     this.isInvalid = this.dropdownMethods.checkClassList();
   }
 
-  private getEventConfig() {
-    return createEventConfig({
+  protected get pickerMethods() {
+    const context = {
       show: this.show,
-      setTouched: (touched: boolean) => (this.touched = touched),
-      onInput: (value: string) => void this.onInput(value),
-      openDropdown: () => this.openDropdown(),
-      ixFocus: this.ixFocus,
-      ixBlur: this.ixBlur,
-      syncValidationClasses: () => this.syncValidationClasses(),
-      handleInputKeyDown: (event: KeyboardEvent) =>
-        this.handleInputKeyDown(event),
-      alwaysSetTouchedOnBlur: true,
-    });
-  }
-
-  private renderInput() {
-    const eventConfig = this.getEventConfig();
-
-    return (
-      <div class="input-wrapper">
-        <SlotStart
-          slotStartRef={this.slotStartRef}
-          onSlotChange={() => this.updatePaddings()}
-        ></SlotStart>
-        <input
-          autoComplete="off"
-          class={{
-            'is-invalid': this.isInputInvalid,
-          }}
-          style={{
-            textAlign: this.textAlignment,
-          }}
-          disabled={this.disabled}
-          readOnly={this.readonly}
-          required={this.required}
-          ref={this.inputElementRef}
-          type="text"
-          value={this.value}
-          placeholder={this.placeholder}
-          name={this.name}
-          onInput={onInput(eventConfig)}
-          onClick={onClick(eventConfig)}
-          onFocus={onFocus(eventConfig)}
-          onBlur={onBlur(eventConfig)}
-          onKeyDown={onKeyDown(eventConfig)}
-        ></input>
-        <SlotEnd
-          slotEndRef={this.slotEndRef}
-          onSlotChange={() => this.updatePaddings()}
-        >
-          <ix-icon-button
-            data-testid="open-time-picker"
-            class={{ 'time-icon-hidden': this.disabled || this.readonly }}
-            variant="subtle-tertiary"
-            icon={iconClock}
-            onClick={(event) => this.onTimeIconClick(event)}
-            aria-label="Toggle time picker"
-            aria-expanded={this.show}
-          ></ix-icon-button>
-        </SlotEnd>
-      </div>
-    );
-  }
-
-  @HookValidationLifecycle()
-  hookValidationLifecycle(results: ValidationResults) {
-    handleValidationLifecycle(
-      this.suppressValidation,
-      this.isInputInvalid,
-      results,
-      {
-        setIsInvalid: (value) => (this.isInvalid = value),
-        setIsInfo: (value) => (this.isInfo = value),
-        setIsValid: (value) => (this.isValid = value),
-        setIsWarning: (value) => (this.isWarning = value),
-      }
-    );
-  }
-
-  @Watch('isInputInvalid')
-  async onInputValidationChange() {
-    const state = await this.getValidityState();
-    this.validityStateChange.emit({
-      patternMismatch: state.patternMismatch,
-      invalidReason: this.invalidReason,
-    });
-  }
-
-  /** @internal */
-  @Method()
-  getValidityState(): Promise<ValidityState> {
-    return Promise.resolve(
-      createValidityState(this.isInputInvalid, !!this.required, this.value)
-    );
-  }
-
-  /**
-   * Get the native input element
-   */
-  @Method()
-  getNativeInputElement(): Promise<HTMLInputElement> {
-    return getNativeInput(this.inputElementRef);
-  }
-
-  private get commonMethods() {
-    return createInputMethods({
-      inputElementRef: this.inputElementRef,
       touched: this.touched,
-      hostElement: this.hostElement,
-      suppressValidation: this.suppressValidation,
-      required: this.required,
-      value: this.value,
       isInputInvalid: this.isInputInvalid,
-    });
-  }
-
-  private get dropdownMethods() {
-    return createDropdownMethods({
+      suppressValidation: this.suppressValidation,
+      required: !!this.required,
+      value: this.value,
+      suppressSubmitOnEnter: this.suppressSubmitOnEnter,
+      formInternals: this.formInternals,
+      inputElementRef: this.inputElementRef,
       dropdownElementRef: this.dropdownElementRef,
       hostElement: this.hostElement,
-      show: this.show,
-      touched: this.touched,
+      ixFocus: this.ixFocus,
+      ixBlur: this.ixBlur,
+      validityStateChange: this.validityStateChange,
+      invalidReason: this.invalidReason,
+      setTouched: (touched: boolean) => (this.touched = touched),
+      setIsInvalid: (value: boolean) => (this.isInvalid = value),
+      setIsInfo: (value: boolean) => (this.isInfo = value),
+      setIsValid: (value: boolean) => (this.isValid = value),
+      setIsWarning: (value: boolean) => (this.isWarning = value),
+      syncValidationClasses: () => this.syncValidationClasses(),
+      onInput: (value: string) => this.onInput(value),
       openDropdown: async () => {
         this.time = this.value;
         return openDropdownUtil(this.dropdownElementRef);
       },
-      ixFocus: this.ixFocus,
-      ixBlur: this.ixBlur,
-      syncValidationClasses: () => this.syncValidationClasses(),
-      onInput: (value: string) => void this.onInput(value),
-      handleInputKeyDown: (event: KeyboardEvent) =>
-        this.handleInputKeyDown(event),
+    };
+
+    return createPickerInputMethods({
+      component: this,
+      ...context,
+      createInputMethods,
+      createDropdownMethods,
+      createEventConfig,
+      createKeyDownHandler,
+      handleValidationLifecycle,
     });
   }
 
-  /**
-   * Focuses the input field
-   */
-  @Method()
-  async focusInput(): Promise<void> {
-    return this.commonMethods.focusInput();
+  private getEventConfig() {
+    return this.pickerMethods.getEventConfig();
   }
 
-  /**
-   * Returns whether the text field has been touched.
-   * @internal
-   */
-  @Method()
-  isTouched(): Promise<boolean> {
-    return this.commonMethods.isTouched();
+  private renderInput() {
+    const renderPickerInputFn = createRenderPickerInput(h, SlotStart, SlotEnd);
+    const config = createPickerInputConfig({
+      component: this,
+      getEventConfig: () => this.getEventConfig(),
+      onInput,
+      onClick,
+      onFocus,
+      onBlur,
+      onKeyDown,
+      iconButton: (
+        <ix-icon-button
+          data-testid="open-time-picker"
+          class={{ 'time-icon-hidden': this.disabled || this.readonly }}
+          variant="subtle-tertiary"
+          icon={iconClock}
+          onClick={(event) => this.onTimeIconClick(event)}
+          aria-label="Toggle time picker"
+          aria-expanded={this.show}
+        ></ix-icon-button>
+      ),
+    });
+    return renderPickerInputFn(config);
   }
 
-  /**
-   * @internal
-   */
-  syncValidationClasses(): void {
-    return this.commonMethods.syncValidationClasses();
+  @HookValidationLifecycle()
+  hookValidationLifecycle(results: ValidationResults) {
+    this.pickerMethods.hookValidationLifecycle(results);
   }
 
-  /**
-   * Clears the input field value and resets validation state.
-   * Sets the value to empty and removes touched state to suppress validation.
-   */
-  @Method()
-  async clear(): Promise<void> {
-    return clearInputValue(this);
+  @Watch('isInputInvalid')
+  async onInputValidationChange() {
+    return this.pickerMethods.onInputValidationChange();
   }
 
   render() {
@@ -610,25 +517,10 @@ export class TimeInput implements IxInputFieldComponent<string> {
       this.i18nErrorTimeUnparsable
     );
 
-    return renderFieldWrapper({
-      host: this.hostElement,
-      disabled: this.disabled,
-      readonly: this.readonly,
-      label: this.label,
-      helper: this.helperText,
-      invalid: this.isInvalid,
-      invalidText,
-      info: this.infoText,
-      isInfo: this.isInfo,
-      warning: this.isWarning,
-      warningText: this.warningText,
-      valid: this.isValid,
-      validText: this.validText,
-      tooltip: this.showTextAsTooltip,
-      required: this.required,
-      inputRef: this.inputElementRef,
-      input: this.renderInput(),
-      dropdown: (
+    const config = createPickerRenderConfig(
+      this,
+      this.renderInput(),
+      (
         <ix-time-picker
           ref={this.timePickerRef}
           format={this.format}
@@ -651,14 +543,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
           }}
         ></ix-time-picker>
       ),
-      testId: 'time-dropdown',
-      trigger: () => this.inputElementRef.waitForCurrent(),
-      dropdownRef: this.dropdownElementRef,
-      enableTopLayer: this.enableTopLayer,
-      show: this.show,
-      onShow: (event) => {
-        this.show = event.detail;
-      },
-    });
+      'time-dropdown'
+    );
+
+    config.invalidText = invalidText;
+
+    return renderFieldWrapper(config);
   }
 }

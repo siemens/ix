@@ -1015,6 +1015,9 @@ export namespace Components {
           * Get the native input element
          */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
+        /**
+          * Get validity state
+         */
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
@@ -3665,6 +3668,9 @@ export namespace Components {
           * Get the native input element
          */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
+        /**
+          * Get validity state
+         */
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
