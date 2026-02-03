@@ -986,9 +986,6 @@ export namespace Components {
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
          */
         "ariaLabelPreviousMonthButton"?: string;
-        /**
-          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
-         */
         "clear": () => Promise<void>;
         /**
           * Disabled attribute
@@ -1001,9 +998,6 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
-        /**
-          * Focuses the input field
-         */
         "focusInput": () => Promise<void>;
         /**
           * Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
@@ -1011,13 +1005,7 @@ export namespace Components {
          */
         "format": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
-        /**
-          * Get the native input element
-         */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
-        /**
-          * Get validity state
-         */
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
@@ -1037,9 +1025,6 @@ export namespace Components {
           * Error text below the input field
          */
         "invalidText"?: string;
-        /**
-          * Returns whether the text field has been touched.
-         */
         "isTouched": () => Promise<boolean>;
         /**
           * Label of the input field
@@ -3639,9 +3624,6 @@ export namespace Components {
      * @form-ready 
      */
     interface IxTimeInput {
-        /**
-          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
-         */
         "clear": () => Promise<void>;
         /**
           * Disabled attribute
@@ -3654,9 +3636,6 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
-        /**
-          * Focuses the input field
-         */
         "focusInput": () => Promise<void>;
         /**
           * Format of time string See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
@@ -3664,13 +3643,7 @@ export namespace Components {
          */
         "format": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
-        /**
-          * Get the native input element
-         */
         "getNativeInputElement": () => Promise<HTMLInputElement>;
-        /**
-          * Get validity state
-         */
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
@@ -3731,9 +3704,6 @@ export namespace Components {
           * Error text below the input field
          */
         "invalidText"?: string;
-        /**
-          * Returns whether the text field has been touched.
-         */
         "isTouched": () => Promise<boolean>;
         /**
           * Label of the input field

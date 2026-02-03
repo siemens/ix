@@ -233,7 +233,7 @@ export async function clearInputValue<T>(
     compAny.tagName === 'IX-CHECKBOX-GROUP' ||
     compAny.tagName === 'IX-RADIO-GROUP';
 
-  compAny._isClearing = true;
+  compAny.isClearing = true;
   compAny.touched = false;
 
   if (isGroup) {
@@ -326,5 +326,5 @@ export async function clearInputValue<T>(
     await compAny.syncValidationClasses();
   }
 
-  compAny._isClearing = false;
+  compAny.isClearing = false;
 }

@@ -7,87 +7,74 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Method } from '@stencil/core';
+import { Method, State } from '@stencil/core';
 import { clearInputValue } from '../../input/input.util';
 import { getNativeInput } from '../input';
+import { makeRef } from '../make-ref';
 import type { PickerInputMethods } from './picker-input.util';
 
-/**
- * Base class for picker input components (date-input, time-input)
- * Provides common methods and properties to reduce code duplication
- */
 export class BasePickerInput {
-  /**
-   * Reference to the input element
-   */
-  protected inputElementRef: any;
+  protected hostElement!: HTMLElement;
 
-  /**
-   * Getter for picker methods - must be implemented by derived class
-   */
+  protected readonly inputElementRef = makeRef<HTMLInputElement>();
+  protected readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
+  protected readonly slotStartRef = makeRef<HTMLDivElement>();
+  protected readonly slotEndRef = makeRef<HTMLDivElement>();
+
+  @State() protected show = false;
+  @State() protected isInputInvalid = false;
+  @State() protected suppressValidation = false;
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
+  @State() protected focus = false;
+
+  protected invalidReason?: string;
+  protected touched = false;
+  protected isClearing = false;
+
   protected get pickerMethods(): PickerInputMethods {
-    throw new Error('pickerMethods getter must be implemented by derived class');
+    throw new Error(
+      'pickerMethods getter must be implemented by derived class'
+    );
   }
 
-  /**
-   * Get common methods from pickerMethods
-   */
   protected get commonMethods() {
     return this.pickerMethods.getCommonMethods();
   }
 
-  /**
-   * Get dropdown methods from pickerMethods
-   */
   protected get dropdownMethods() {
     return this.pickerMethods.getDropdownMethods();
   }
 
-  /**
-   * Get validity state
-   * @internal
-   */
+  /** @internal */
   @Method()
   async getValidityState(): Promise<ValidityState> {
     return this.pickerMethods.getValidityState();
   }
 
-  /**
-   * Get the native input element
-   */
   @Method()
   async getNativeInputElement(): Promise<HTMLInputElement> {
     return getNativeInput(this.inputElementRef);
   }
 
-  /**
-   * Focuses the input field
-   */
   @Method()
   async focusInput(): Promise<void> {
     return this.commonMethods.focusInput();
   }
 
-  /**
-   * Returns whether the text field has been touched.
-   * @internal
-   */
+  /** @internal */
   @Method()
   isTouched(): Promise<boolean> {
     return this.commonMethods.isTouched();
   }
 
-  /**
-   * @internal
-   */
+  /** @internal */
   syncValidationClasses(): void {
     return this.commonMethods.syncValidationClasses();
   }
 
-  /**
-   * Clears the input field value and resets validation state.
-   * Sets the value to empty and removes touched state to suppress validation.
-   */
   @Method()
   async clear(): Promise<void> {
     return clearInputValue(this as any);

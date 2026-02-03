@@ -50,13 +50,12 @@ import {
   handleValidationLifecycle,
 } from '../utils/input';
 import {
-  closeDropdown as closeDropdownUtil,
   handleIconClick,
   openDropdown as openDropdownUtil,
-  createPickerInputMethods,
-  createRenderPickerInput,
-  createPickerRenderConfig,
-  createPickerInputConfig,
+  createPickerMethods,
+  createInputRenderer,
+  createRenderConfig,
+  createInputConfig,
 } from '../utils/input/picker-input.util';
 import { BasePickerInput } from '../utils/input/base-picker-input';
 import { makeRef } from '../utils/make-ref';
@@ -74,7 +73,10 @@ import type { DateInputValidityState } from './date-input.types';
   shadow: true,
   formAssociated: true,
 })
-export class DateInput extends BasePickerInput implements IxInputFieldComponent<string | undefined> {
+export class DateInput
+  extends BasePickerInput
+  implements IxInputFieldComponent<string | undefined>
+{
   @Element() hostElement!: HTMLIxDateInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -99,7 +101,7 @@ export class DateInput extends BasePickerInput implements IxInputFieldComponent<
       required: this.required,
       onInput: (value: string) => void this.onInput(value),
       setTouched: (touched: boolean) => (this.touched = touched),
-      isClearing: this._isClearing,
+      isClearing: this.isClearing,
     });
   }
 
@@ -253,34 +255,16 @@ export class DateInput extends BasePickerInput implements IxInputFieldComponent<
    */
   @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
 
-  /** @internal */
+  /** @internal */
   @Event() ixFocus!: EventEmitter<void>;
 
-  /** @internal */
+  /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
 
-  @State() show = false;
   @State() from?: string | null = null;
-  @State() isInputInvalid = false;
-  @State() isInvalid = false;
-  @State() isValid = false;
-  @State() isInfo = false;
-  @State() isWarning = false;
-  @State() focus = false;
-  @State() suppressValidation = false;
-
-  private readonly slotStartRef = makeRef<HTMLDivElement>();
-  private readonly slotEndRef = makeRef<HTMLDivElement>();
 
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
-
-  protected readonly inputElementRef = makeRef<HTMLInputElement>();
-  private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
-  private invalidReason?: string;
-  private touched = false;
-  private readonly _isClearing = false;
-
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string | undefined): void {
@@ -292,10 +276,18 @@ export class DateInput extends BasePickerInput implements IxInputFieldComponent<
     this.value = value;
   }
 
-  connectedCallback(): void {
-    this.classObserver = createClassMutationObserver(this.hostElement, () =>
-      this.checkClassList()
+  private updatePaddings(): void {
+    adjustPaddingForStartAndEnd(
+      this.slotStartRef.current,
+      this.slotEndRef.current,
+      this.inputElementRef.current
     );
+  }
+
+  connectedCallback(): void {
+    this.classObserver = createClassMutationObserver(this.hostElement, () => {
+      this.isInvalid = this.dropdownMethods.checkClassList();
+    });
 
     this.disposableChangesAndVisibilityObservers =
       addDisposableChangesAndVisibilityObservers(
@@ -312,16 +304,7 @@ export class DateInput extends BasePickerInput implements IxInputFieldComponent<
       this.watchValue();
     }
 
-    this.checkClassList();
     this.updateFormInternalValue(this.value);
-  }
-
-  private updatePaddings() {
-    adjustPaddingForStartAndEnd(
-      this.slotStartRef.current,
-      this.slotEndRef.current,
-      this.inputElementRef.current
-    );
   }
 
   disconnectedCallback(): void {
@@ -404,7 +387,7 @@ export class DateInput extends BasePickerInput implements IxInputFieldComponent<
 
   private handleValidInput(value: string | undefined): void {
     this.from = value;
-    this.closeDropdown();
+    this.dropdownMethods.closeDropdown();
     this.emitChangesAndSync(value);
   }
 
@@ -418,25 +401,13 @@ export class DateInput extends BasePickerInput implements IxInputFieldComponent<
     handleIconClick(
       event,
       this.show,
-      () => this.openDropdown(),
+      () => this.dropdownMethods.openDropdown(),
       this.inputElementRef
     );
   }
 
-  async openDropdown() {
-    return openDropdownUtil(this.dropdownElementRef);
-  }
-
-  async closeDropdown() {
-    return closeDropdownUtil(this.dropdownElementRef);
-  }
-
-  private checkClassList() {
-    this.isInvalid = this.dropdownMethods.checkClassList();
-  }
-
   protected get pickerMethods() {
-    return createPickerInputMethods({
+    return createPickerMethods({
       component: this,
       show: this.show,
       touched: this.touched,
@@ -474,8 +445,8 @@ export class DateInput extends BasePickerInput implements IxInputFieldComponent<
   }
 
   private renderInput() {
-    const renderPickerInputFn = createRenderPickerInput(h, SlotStart, SlotEnd);
-    const config = createPickerInputConfig({
+    const renderPickerInputFn = createInputRenderer(h, SlotStart, SlotEnd);
+    const config = createInputConfig({
       component: this,
       getEventConfig: () => this.getEventConfig(),
       onInput,
@@ -541,28 +512,26 @@ export class DateInput extends BasePickerInput implements IxInputFieldComponent<
       this.i18nErrorDateUnparsable
     );
 
-    const config = createPickerRenderConfig(
+    const config = createRenderConfig(
       this,
       this.renderInput(),
-      (
-        <ix-date-picker
-          ref={this.datepickerRef}
-          format={this.format}
-          locale={this.locale}
-          singleSelection
-          from={this.from ?? ''}
-          minDate={this.minDate}
-          maxDate={this.maxDate}
-          onDateChange={(event) => {
-            const { from } = event.detail;
-            this.onInput(from);
-          }}
-          showWeekNumbers={this.showWeekNumbers}
-          ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
-          ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
-          embedded
-        ></ix-date-picker>
-      ),
+      <ix-date-picker
+        ref={this.datepickerRef}
+        format={this.format}
+        locale={this.locale}
+        singleSelection
+        from={this.from ?? ''}
+        minDate={this.minDate}
+        maxDate={this.maxDate}
+        onDateChange={(event) => {
+          const { from } = event.detail;
+          this.onInput(from);
+        }}
+        showWeekNumbers={this.showWeekNumbers}
+        ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
+        ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
+        embedded
+      ></ix-date-picker>,
       'date-dropdown'
     );
 
