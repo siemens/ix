@@ -60,6 +60,8 @@ export const createServer = (framework: Framework, registryUrl: string) => {
       .describe('Maximum number of results to return (default: 10)'),
   });
 
+  const auditChecklist = 'audit_checklist' as const;
+
   server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
       tools: [
@@ -80,6 +82,12 @@ export const createServer = (framework: Framework, registryUrl: string) => {
             'Search the Siemens IX blocks registry. Searches across block names, source code, dependencies, and file paths to find matching UI blocks/components.',
           inputSchema: zodToJsonSchema(searchBlocksSchema),
         },
+        {
+          name: auditChecklist,
+          description:
+            'After creating new blocks or generating new code files, use this tool for a quick checklist to verify that everything is working as expected. Make sure to run the tool after all required steps have been completed.',
+          inputSchema: zodToJsonSchema(z.object({})),
+        },
       ],
     };
   });
@@ -91,6 +99,24 @@ export const createServer = (framework: Framework, registryUrl: string) => {
       }
 
       switch (request.params.name) {
+        case auditChecklist: {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: dedent`## Component Audit Checklist
+
+              After adding or generating components, check the following common issues:
+
+              - [ ] Ensure imports are correct i.e named vs default imports
+              - [ ] Ensure all dependencies are installed.
+              - [ ] Check for linting errors or warnings
+              - [ ] Check for TypeScript errors
+              `,
+              },
+            ],
+          };
+        }
         case searchIxIcons: {
           const inputSchema = searchIxIconsSchema;
           const args = inputSchema.parse(request.params.arguments);

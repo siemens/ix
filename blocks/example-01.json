@@ -32,11 +32,11 @@
     "angular": {
       "files": [
         {
-          "target": "angular/example.component.ts",
+          "target": "angular/example.ts",
           "source": "angular-blocks/src/routes/example-01/example.ts"
         },
         {
-          "target": "angular/example.component.html",
+          "target": "angular/example.html",
           "source": "angular-blocks/src/routes/example-01/example.html"
         }
       ],
