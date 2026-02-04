@@ -270,10 +270,10 @@ If you execute the visual-regression tests, please be sure to execute the build 
 
 1. Build the library: `pnpm build --filter \!documentation`
 
-2. Start the playwright docker container (Currently _v1.45.1-jammy_, but can be a newer version) mounting the current working directory into the container's _work_ directory:
+2. Start the playwright docker container mounting the current working directory into the container's _work_ directory:
 
 ```sh
-docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.50.0-noble /bin/bash
+docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.58.1-noble /bin/bash
 ```
 
 3. Install _pnpm_ within the container: `npm install -g pnpm`
