@@ -1198,6 +1198,8 @@ export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvat
         bottom: 'bottom',
         image: 'image',
         initials: 'initials',
+        tooltipText: 'tooltip-text',
+        ariaLabelTooltip: 'aria-label-tooltip',
         i18nLogout: 'i18n-logout',
         hideLogoutButton: 'hide-logout-button',
         enableTopLayer: 'enable-top-layer'
@@ -1639,6 +1641,13 @@ export type IxSliderEvents = { onValueChange: EventName<CustomEvent<number>> };
 export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents> = /*@__PURE__*/ createComponent<IxSliderElement, IxSliderEvents>({
     tagName: 'ix-slider',
     properties: {
+        helperText: 'helper-text',
+        label: 'label',
+        invalidText: 'invalid-text',
+        infoText: 'info-text',
+        warningText: 'warning-text',
+        validText: 'valid-text',
+        showTextAsTooltip: 'show-text-as-tooltip',
         step: 'step',
         min: 'min',
         max: 'max',

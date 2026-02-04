@@ -900,6 +900,8 @@ export const IxMenuAvatar: StencilVueComponent<JSX.IxMenuAvatar> = /*@__PURE__*/
   'bottom',
   'image',
   'initials',
+  'tooltipText',
+  'ariaLabelTooltip',
   'i18nLogout',
   'hideLogoutButton',
   'enableTopLayer',
@@ -1231,6 +1233,13 @@ export const IxSelectItem: StencilVueComponent<JSX.IxSelectItem> = /*@__PURE__*/
 
 
 export const IxSlider: StencilVueComponent<JSX.IxSlider> = /*@__PURE__*/ defineContainer<JSX.IxSlider>('ix-slider', defineIxSlider, [
+  'helperText',
+  'label',
+  'invalidText',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
   'step',
   'min',
   'max',

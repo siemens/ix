@@ -1,0 +1,13 @@
+- text: Username
+- textbox "Enter your Username"
+- img
+- text: Info text Username
+- textbox "Enter your Username"
+- img
+- text: Warning text Username
+- textbox "Enter your Username"
+- img
+- text: Valid text Username
+- textbox "Enter your Username"
+- img
+- text: Invalid text

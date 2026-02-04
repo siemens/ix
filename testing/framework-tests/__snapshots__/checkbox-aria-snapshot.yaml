@@ -1,0 +1,4 @@
+- checkbox "Simple checkbox"
+- text: Simple checkbox
+- checkbox "Disabled checkbox" [disabled]
+- text: Disabled checkbox

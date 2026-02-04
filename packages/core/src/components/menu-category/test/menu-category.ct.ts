@@ -121,7 +121,7 @@ regressionTest('should show items as dropdown', async ({ mount, page }) => {
   );
 
   const dropdownHeader = dropdown.locator('ix-dropdown-item');
-  await expect(dropdownHeader).toHaveText('Category label');
+  await expect(dropdownHeader).toHaveText(/Category label/);
 
   const itemOne = page.locator('ix-menu-item').nth(0);
   const itemTwo = page.locator('ix-menu-item').nth(1);

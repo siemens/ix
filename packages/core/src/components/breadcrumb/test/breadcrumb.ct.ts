@@ -83,12 +83,12 @@ regressionTest('should change label', async ({ mount, page }) => {
   </ix-breadcrumb>`);
   const breadcrumbItem = page.locator('ix-breadcrumb-item').nth(2);
 
-  await expect(breadcrumbItem).toHaveText('Item 3');
+  await expect(breadcrumbItem).toHaveText(/Item 3/);
 
   await breadcrumbItem.evaluate((item: HTMLIxBreadcrumbItemElement) => {
     item.label = 'UPDATED';
   });
-  await expect(breadcrumbItem).toHaveText('UPDATED');
+  await expect(breadcrumbItem).toHaveText(/UPDATED/);
 });
 
 regressionTest('should show next items', async ({ mount, page }) => {
@@ -114,8 +114,8 @@ regressionTest('should show next items', async ({ mount, page }) => {
   const item2 = dropdownElement.locator('ix-dropdown-item').nth(1);
   await expect(dropdownElement).toBeVisible();
 
-  await expect(item1).toHaveText('Next Item 1');
-  await expect(item2).toHaveText('Next Item 2');
+  await expect(item1).toHaveText(/Next Item 1/);
+  await expect(item2).toHaveText(/Next Item 2/);
 });
 
 async function getByControlsBy(locator: Locator, component: Locator) {
