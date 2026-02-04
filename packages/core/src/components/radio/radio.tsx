@@ -25,6 +25,15 @@ import {
   createClassMutationObserver,
   IxFormComponent,
 } from '../utils/input';
+import { clearInputValue } from '../input/input.util';
+import {
+  getParentForm,
+  isFormNoValidate,
+  handleStandaloneRadioValidation,
+  updateRadioValidationClasses,
+  updateRadioGroupValidationClasses,
+  setupFormSubmitListener,
+} from './radio-validation';
 
 /**
  * @form-ready
@@ -87,6 +96,9 @@ export class Radio implements IxFormComponent<string> {
   @Event() ixBlur!: EventEmitter<void>;
 
   private classMutationObserver?: ClassMutationObserver;
+  private touched = false;
+  private formSubmissionAttempted = false;
+  private cleanupFormListener?: () => void;
 
   /** @internal */
   @Method()
@@ -102,14 +114,86 @@ export class Radio implements IxFormComponent<string> {
     this.checked = newChecked;
   }
 
+  private syncValidationClasses() {
+    if (isFormNoValidate(this.hostElement) || !this.required) {
+      this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
+      return;
+    }
+
+    let isChecked = this.checked;
+    const radioGroup = this.hostElement.closest('ix-radio-group');
+    const clearRadiosAndGroup = (radios: NodeListOf<HTMLElement>) => {
+      Array.from(radios).forEach((el: any) => {
+        el.classList.remove('ix-invalid--required', 'ix-invalid');
+      });
+      if (radios.length > 0) {
+        const group = radios[0].closest('ix-radio-group');
+        if (group) {
+          group.classList.remove('ix-invalid', 'ix-invalid--required');
+        }
+      }
+    };
+
+    const handleNamedRadios = (
+      radios: NodeListOf<HTMLElement>,
+      group: Element | null
+    ) => {
+      if (isFormNoValidate(this.hostElement)) {
+        clearRadiosAndGroup(radios);
+        if (group) {
+          updateRadioGroupValidationClasses(group, radios);
+        }
+        return;
+      }
+
+      updateRadioValidationClasses(
+        radios,
+        this.touched,
+        this.formSubmissionAttempted
+      );
+
+      if (group) {
+        updateRadioGroupValidationClasses(group, radios);
+      }
+    };
+
+    if (this.name) {
+      if (radioGroup) {
+        const radios: NodeListOf<HTMLElement> = radioGroup.querySelectorAll(
+          `ix-radio[name="${this.name}"]`
+        );
+        handleNamedRadios(radios, radioGroup);
+      } else {
+        const form = getParentForm(this.hostElement);
+        const radios: NodeListOf<HTMLElement> = form
+          ? form.querySelectorAll(`ix-radio[name="${this.name}"]`)
+          : document.querySelectorAll(`ix-radio[name="${this.name}"]`);
+        handleNamedRadios(
+          radios,
+          radios.length > 0 ? radios[0].closest('ix-radio-group') : null
+        );
+      }
+    } else {
+      handleStandaloneRadioValidation(
+        this.hostElement,
+        isChecked,
+        this.touched,
+        this.formSubmissionAttempted
+      );
+    }
+  }
+
   @Watch('checked')
   async onCheckedChange() {
+    this.touched = true;
     this.updateFormInternalValue();
+    this.syncValidationClasses();
   }
 
   @Watch('value')
   onValueChange() {
     this.valueChange.emit(this.value);
+    this.syncValidationClasses();
   }
 
   connectedCallback(): void {
@@ -122,11 +206,18 @@ export class Radio implements IxFormComponent<string> {
         );
       });
     }
+    this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
+      this.formSubmissionAttempted = true;
+      this.syncValidationClasses();
+    });
   }
 
   disconnectedCallback(): void {
     if (this.classMutationObserver) {
       this.classMutationObserver.destroy();
+    }
+    if (this.cleanupFormListener) {
+      this.cleanupFormListener();
     }
   }
 
@@ -187,6 +278,18 @@ export class Radio implements IxFormComponent<string> {
     return Promise.resolve(this.formInternals.form);
   }
 
+  /**
+   * Clear the checked state and reset validation
+   */
+  @Method()
+  async clear(): Promise<void> {
+    await clearInputValue(this.hostElement, {
+      additionalCleanup: () => {
+        this.checked = false;
+      },
+    });
+  }
+
   render() {
     let tabIndex = 0;
 
@@ -209,7 +312,11 @@ export class Radio implements IxFormComponent<string> {
           this.setCheckedState(true);
         }}
         onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
-        onBlur={() => this.ixBlur.emit()}
+        onBlur={() => {
+          this.ixBlur.emit();
+          this.touched = true;
+          this.syncValidationClasses();
+        }}
       >
         <label>
           <div class="radio-button">

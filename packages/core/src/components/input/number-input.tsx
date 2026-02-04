@@ -36,6 +36,7 @@ import {
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputBlur,
+  clearInputValue,
 } from './input.util';
 
 let numberInputIds = 0;
@@ -420,6 +421,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   */
+  @Method()
+  async clear(): Promise<void> {
+    return clearInputValue(this, { defaultValue: undefined });
   }
 
   render() {

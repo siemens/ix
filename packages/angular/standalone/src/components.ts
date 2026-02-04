@@ -502,7 +502,8 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCheckbox,
-  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value']
+  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ix-checkbox',
@@ -542,7 +543,8 @@ export declare interface IxCheckbox extends Components.IxCheckbox {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCheckboxGroup,
-  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'warningText']
+  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'warningText'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ix-checkbox-group',
@@ -730,7 +732,7 @@ The event payload contains information about the selected date range.
 @ProxyCmp({
   defineCustomElementFn: defineIxDateInput,
   inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-date-input',
@@ -1427,7 +1429,7 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
 @ProxyCmp({
   defineCustomElementFn: defineIxInput,
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'type', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'getValidityState', 'focusInput']
+  methods: ['getNativeInputElement', 'getValidityState', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-input',
@@ -2104,7 +2106,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 @ProxyCmp({
   defineCustomElementFn: defineIxNumberInput,
   inputs: ['allowEmptyValueChange', 'allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-number-input',
@@ -2315,7 +2317,8 @@ export declare interface IxPushCard extends Components.IxPushCard {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxRadio,
-  inputs: ['checked', 'disabled', 'label', 'name', 'required', 'value']
+  inputs: ['checked', 'disabled', 'label', 'name', 'required', 'value'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ix-radio',
@@ -2355,7 +2358,8 @@ export declare interface IxRadio extends Components.IxRadio {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxRadioGroup,
-  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'value', 'warningText']
+  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ix-radio-group',
@@ -2629,7 +2633,7 @@ export declare interface IxTabs extends Components.IxTabs {
 @ProxyCmp({
   defineCustomElementFn: defineIxTextarea,
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'getValidityState', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-textarea',
@@ -2693,7 +2697,7 @@ export declare interface IxTile extends Components.IxTile {}
 @ProxyCmp({
   defineCustomElementFn: defineIxTimeInput,
   inputs: ['disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'millisecondInterval', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-time-input',
