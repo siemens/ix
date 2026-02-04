@@ -1,0 +1,34 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/shadow-dom/component';
+@use 'mixins/input';
+@use './../input/input.mixins.scss' as input-mixins;
+
+@include input-mixins.input-field;
+
+:host {
+  display: inline-block;
+  position: relative;
+
+  @include component.ix-component;
+
+  input {
+    width: 100%;
+    height: 100%;
+  }
+
+  .calendar-hidden {
+    display: none;
+  }
+}
+
+:host(.readonly) {
+  input {
+    pointer-events: none;
+  }
+}

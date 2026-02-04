@@ -17,11 +17,11 @@ import AboutAndLegal from './preview-examples/about-and-legal.vue';
 import ActionCard from './preview-examples/action-card.vue';
 import AddIcons from './preview-examples/add-icons.vue';
 import AgGrid from './preview-examples/aggrid.vue';
+import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import ApplicationAppSwitch from './preview-examples/application-app-switch.vue';
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
 import ApplicationHeader from './preview-examples/application-header.vue';
 import Application from './preview-examples/application.vue';
-import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
@@ -53,8 +53,8 @@ import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
-import ContentHeader from './preview-examples/content-header.vue';
 import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.vue';
+import ContentHeader from './preview-examples/content-header.vue';
 import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
 import CustomField from './preview-examples/custom-field.vue';
@@ -65,6 +65,13 @@ import DateInput from './preview-examples/date-input.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
+import DatetimeInputDisabled from './preview-examples/datetime-input-disabled.vue';
+import DatetimeInputLabel from './preview-examples/datetime-input-label.vue';
+import DatetimeInputMinMaxDate from './preview-examples/datetime-input-min-max-date.vue';
+import DatetimeInputReadonly from './preview-examples/datetime-input-readonly.vue';
+import DatetimeInputValidation from './preview-examples/datetime-input-validation.vue';
+import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots.vue';
+import DatetimeInput from './preview-examples/datetime-input.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
 import Divider from './preview-examples/divider.vue';
 import DrawerFullHeight from './preview-examples/drawer-full-height.vue';
@@ -115,13 +122,13 @@ import GroupContextMenu from './preview-examples/group-context-menu.vue';
 import GroupCustomEntry from './preview-examples/group-custom-entry.vue';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed.vue';
 import Group from './preview-examples/group.vue';
-import HtmlTable from './preview-examples/html-table.vue';
 import HtmlTableStriped from './preview-examples/html-table-striped.vue';
-import IconToggleButtonTertiary from './preview-examples/icon-toggle-button-tertiary.vue';
-import IconToggleButtonSubtleTertiary from './preview-examples/icon-toggle-button-subtle-tertiary.vue';
-import IconToggleButtonSubtleSecondary from './preview-examples/icon-toggle-button-subtle-secondary.vue';
-import IconToggleButtonSubtlePrimary from './preview-examples/icon-toggle-button-subtle-primary.vue';
+import HtmlTable from './preview-examples/html-table.vue';
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary.vue';
+import IconToggleButtonSubtlePrimary from './preview-examples/icon-toggle-button-subtle-primary.vue';
+import IconToggleButtonSubtleSecondary from './preview-examples/icon-toggle-button-subtle-secondary.vue';
+import IconToggleButtonSubtleTertiary from './preview-examples/icon-toggle-button-subtle-tertiary.vue';
+import IconToggleButtonTertiary from './preview-examples/icon-toggle-button-tertiary.vue';
 import InputDisabled from './preview-examples/input-disabled.vue';
 import InputLabel from './preview-examples/input-label.vue';
 import InputLegacyDisabled from './preview-examples/input-legacy-disabled.vue';
@@ -149,12 +156,13 @@ import LinkButton from './preview-examples/link-button.vue';
 import Loading from './preview-examples/loading.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
-import MessageBar from './preview-examples/message-bar.vue';
 import MessageBarRemoval from './preview-examples/message-bar-removal.vue';
+import MessageBar from './preview-examples/message-bar.vue';
 import Message from './preview-examples/message.vue';
+import ModalClose from './preview-examples/modal-close.vue';
+import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
 import ModalExample from './preview-examples/modal.vue';
-import ModalClose from './preview-examples/modal-close.vue';
 import NumberInputDisabled from './preview-examples/number-input-disabled.vue';
 import NumberInputLabel from './preview-examples/number-input-label.vue';
 import NumberInputReadOnly from './preview-examples/number-input-readonly.vue';
@@ -168,6 +176,12 @@ import Pane from './preview-examples/pane.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
 import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
+import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.vue';
+import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.vue';
+import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.vue';
+import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-linear-sizes.vue';
+import ProgressIndicatorLinearStatus from './preview-examples/progress-indicator-linear-status.vue';
+import ProgressIndicator from './preview-examples/progress-indicator.vue';
 import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
 import RadioDisabled from './preview-examples/radio-disabled.vue';
@@ -203,19 +217,19 @@ import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
 import Toast from './preview-examples/toast.vue';
-import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary.vue';
-import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary.vue';
 import ToggleButtonPrimary from './preview-examples/toggle-button-primary.vue';
-import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary.vue';
-import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary.vue';
 import ToggleButtonSecondary from './preview-examples/toggle-button-secondary.vue';
+import ToggleButtonSubtlePrimary from './preview-examples/toggle-button-subtle-primary.vue';
+import ToggleButtonSubtleSecondary from './preview-examples/toggle-button-subtle-secondary.vue';
+import ToggleButtonSubtleTertiary from './preview-examples/toggle-button-subtle-tertiary.vue';
+import ToggleButtonTertiary from './preview-examples/toggle-button-tertiary.vue';
 import ToggleChecked from './preview-examples/toggle-checked.vue';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label.vue';
 import ToggleDisabled from './preview-examples/toggle-disabled.vue';
 import ToggleIndeterminate from './preview-examples/toggle-indeterminate.vue';
 import Toggle from './preview-examples/toggle.vue';
-import Tooltip from './preview-examples/tooltip.vue';
 import TooltipWithIcon from './preview-examples/tooltip-with-icon.vue';
+import Tooltip from './preview-examples/tooltip.vue';
 import TreeCustom from './preview-examples/tree-custom.vue';
 import Tree from './preview-examples/tree.vue';
 import Upload from './preview-examples/upload.vue';
@@ -225,13 +239,6 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import VerticalTabs from './preview-examples/vertical-tabs.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
-import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.vue';
-import ProgressIndicatorLinearStatus from './preview-examples/progress-indicator-linear-status.vue';
-import ProgressIndicatorCircularStatus from './preview-examples/progress-indicator-circular-status.vue';
-import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-linear-sizes.vue';
-import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.vue';
-import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.vue';
-import ProgressIndicator from './preview-examples/progress-indicator.vue';
 
 const routes: any = {
   '/': App,
@@ -399,6 +406,13 @@ const routes: any = {
   '/preview/number-input-with-slots': NumberInputWithSlots,
   '/preview/date-input': DateInput,
   '/preview/date-input-with-slots': DateInputWithSlots,
+  '/preview/datetime-input': DatetimeInput,
+  '/preview/datetime-input-disabled': DatetimeInputDisabled,
+  '/preview/datetime-input-label': DatetimeInputLabel,
+  '/preview/datetime-input-min-max-date': DatetimeInputMinMaxDate,
+  '/preview/datetime-input-readonly': DatetimeInputReadonly,
+  '/preview/datetime-input-validation': DatetimeInputValidation,
+  '/preview/datetime-input-with-slots': DatetimeInputWithSlots,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/tooltip': Tooltip,
