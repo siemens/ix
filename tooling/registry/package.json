@@ -5,9 +5,11 @@
   "description": "",
   "scripts": {
     "build": "tsx src/build.ts",
-    "dev": "pnpm build && http-server dist"
+    "dev": "pnpm build && http-server dist",
+    "init-version": "tsx scripts/init-version.ts"
   },
   "devDependencies": {
+    "@types/node": "^22.19.0",
     "@types/fs-extra": "^11.0.4",
     "angular-blocks": "workspace:",
     "fs-extra": "^11.3.3",

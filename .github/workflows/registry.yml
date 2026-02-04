@@ -1,10 +1,21 @@
-name: Update blocks registry
+name: Deploy blocks registry
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'blocks/**'
+      - 'tooling/registry/**'
+      - '.github/workflows/registry.yml'
+  push:
+    tags:
+      - 'registry-v*'
   workflow_dispatch:
 
 permissions:
   contents: write
+
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }}
@@ -15,8 +26,26 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
-      - name: Deploy 🚀
+      - name: Build
+        run: pnpm build --filter registry --cache-dir=.turbo
+
+      - name: Determine deployment path
+        id: deploy-path
+        run: |
+          if [[ $GITHUB_REF == refs/tags/registry-v* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/registry-v}
+            echo "target-folder=v/$VERSION" >> $GITHUB_OUTPUT
+            echo "Deploying version $VERSION to /v/$VERSION/"
+          else
+            echo "target-folder=." >> $GITHUB_OUTPUT
+            echo "Deploying development version to root"
+          fi
+
+      - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
         with:
           folder: ./tooling/registry/dist
-          clean: true
+          target-folder: ${{ steps.deploy-path.outputs.target-folder }}
+          clean: false
+          clean-exclude: |
+            v/**
