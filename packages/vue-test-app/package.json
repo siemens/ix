@@ -39,7 +39,7 @@
     "@vitest/browser": "^3.2.4",
     "@vue/tsconfig": "^0.7.0",
     "framework-tests": "workspace:*",
-    "playwright": "^1.54.1",
+    "playwright": "catalog:",
     "typescript": "~5.8.0",
     "vite": "catalog:",
     "vitest": "^3.2.4",

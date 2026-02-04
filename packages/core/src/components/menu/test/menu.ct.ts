@@ -328,8 +328,8 @@ regressionTest(
   `,
       {
         icons: {
-          iconGlobe,
           iconRocket,
+          iconGlobe,
         },
       }
     );
