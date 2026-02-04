@@ -13,6 +13,7 @@ import { MakeRef } from '../utils/make-ref';
 
 export function TextareaElement(
   props: Readonly<{
+    id: string;
     resizeBehavior: 'both' | 'horizontal' | 'vertical' | 'none';
     textareaHeight?: string;
     textareaWidth?: string;
@@ -35,6 +36,7 @@ export function TextareaElement(
 ) {
   return (
     <textarea
+      id={props.id}
       readOnly={props.readonly}
       disabled={props.disabled}
       maxLength={props.maxLength}
