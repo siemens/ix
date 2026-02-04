@@ -218,6 +218,7 @@ import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
 import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeSwitcher from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
+import TimeInput from '../preview-examples/time-input';
 import Timepicker from '../preview-examples/timepicker';
 import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
@@ -433,6 +434,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     TextareaLegacy,
     ThemeSwitcher,
     Tile,
+    TimeInput,
     Timepicker,
     ToastCustom,
     ToastPosition,
