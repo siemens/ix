@@ -13,6 +13,7 @@ import {
   iconSuccess,
   iconWarning,
 } from '@siemens/ix-icons/icons';
+import { a11yBoolean } from '../utils/a11y';
 
 export function hasAnyText({
   invalidText,
@@ -61,7 +62,12 @@ export function HelperText(
   if (props.isInvalid && props.invalidText && props.invalidText.trim() !== '') {
     return (
       <ix-typography textColor="alarm" class="bottom-text">
-        <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
+        <ix-icon
+          aria-hidden={a11yBoolean(!!props.invalidText)}
+          class="text-icon invalid"
+          name={iconError}
+          size="16"
+        ></ix-icon>
         {props.invalidText}
       </ix-typography>
     );
@@ -71,6 +77,7 @@ export function HelperText(
     return (
       <ix-typography textColor="std" class="bottom-text">
         <ix-icon
+          aria-hidden={a11yBoolean(!!props.warningText)}
           class="text-icon warning"
           name={iconWarning}
           size="16"
@@ -83,7 +90,12 @@ export function HelperText(
   if (props.isInfo && props.infoText && props.infoText.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
-        <ix-icon class="text-icon info" name={iconInfo} size="16"></ix-icon>
+        <ix-icon
+          aria-hidden={a11yBoolean(!!props.infoText)}
+          class="text-icon info"
+          name={iconInfo}
+          size="16"
+        ></ix-icon>
         {props.infoText}
       </ix-typography>
     );
@@ -92,7 +104,12 @@ export function HelperText(
   if (props.isValid && props.validText && props.validText.trim() !== '') {
     return (
       <ix-typography textColor="std" class="bottom-text">
-        <ix-icon class="text-icon valid" name={iconSuccess} size="16"></ix-icon>
+        <ix-icon
+          aria-hidden={a11yBoolean(!!props.validText)}
+          class="text-icon valid"
+          name={iconSuccess}
+          size="16"
+        ></ix-icon>
         {props.validText}
       </ix-typography>
     );

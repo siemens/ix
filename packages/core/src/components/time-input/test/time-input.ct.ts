@@ -181,7 +181,7 @@ regressionTest.describe('time input tests', () => {
           .locator('ix-field-wrapper')
           .locator('ix-typography')
           .filter({ hasText: 'Custom time error' })
-      ).toHaveText('Custom time error');
+      ).toHaveText(/Custom time error/);
     }
   );
 

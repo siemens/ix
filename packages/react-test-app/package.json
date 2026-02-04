@@ -7,14 +7,15 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "playwright test"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-icons": "^3.2.0",
+    "@siemens/ix-icons": "catalog:",
     "@siemens/ix-react": "workspace:*",
     "ag-grid-community": "^33.1.1",
     "ag-grid-react": "^33.1.1",
@@ -30,9 +31,13 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "catalog:",
+    "@playwright/test": "catalog:",
+    "@types/node": "^20.16.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "framework-tests": "workspace:*",
     "rollup-plugin-react-scoped-css": "^1.1.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.7.0",
