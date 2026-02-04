@@ -7,12 +7,14 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/echarts"
   },
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Siemens iX theme for echarts",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "READMEOSS.html",
+    "README.md"
   ],
   "scripts": {
     "test.setup": "playwright install chromium --with-deps",
