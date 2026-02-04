@@ -204,10 +204,10 @@ export class MenuItem implements IxMenuItemBase {
           <div class="pill">{this.notifications}</div>
         </div>
       ) : null,
-      <span id={this.internalItemId} class="tab-text text-default">
+      <div id={this.internalItemId} class="tab-text text-default">
         {this.label}
         <slot></slot>
-      </span>,
+      </div>,
     ];
 
     return (
