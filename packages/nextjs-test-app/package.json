@@ -8,17 +8,17 @@
     "start": "next dev"
   },
   "dependencies": {
-    "@siemens/ix-react": "workspace:*",
     "@siemens/ix": "workspace:*",
-    "next": "^16.1.5",
-    "react-dom": "^19.1.0",
-    "react": "^19.1.0"
+    "@siemens/ix-react": "workspace:*",
+    "next": "^16.1.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@stencil/ssr": "^0.1.1",
+    "@stencil/ssr": "^0.3.0",
     "@types/node": "^20",
-    "@types/react-dom": "^19.1.1",
     "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
     "typescript": "^5"
   }
 }
