@@ -37,7 +37,7 @@
     "@playwright/test": "catalog:",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^8.5.0",
-    "@siemens/ix-icons": "^3.2.0",
+    "@siemens/ix-icons": "catalog:",
     "@siemens/ix": "workspace:*",
     "@types/node": "^24.0.3",
     "ag-grid-community-34": "npm:ag-grid-community@^34.3.0",

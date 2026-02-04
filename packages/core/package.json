@@ -83,13 +83,14 @@
     ]
   },
   "dependencies": {
-    "animejs": "^4.1.2",
     "@floating-ui/dom": "^1.6.13",
+    "animejs": "^4.1.2",
     "luxon": "^3.4.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "catalog:",
     "@playwright/test": "catalog:",
-    "@siemens/ix-icons": "^3.2.0",
+    "@siemens/ix-icons": "catalog:",
     "@stencil-community/eslint-plugin": "^0.10.0",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "^1.1.1",

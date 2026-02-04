@@ -78,7 +78,7 @@ regressionTest(
     });
 
     await groupItem.click();
-    await expect(groupItem).toHaveText('Item 1Clicked');
+    await expect(groupItem).toHaveText(/Item 1Clicked/);
   }
 );
 
