@@ -4,10 +4,10 @@ packages:
   - testing/*
 
 catalog:
-  '@esbuild/linux-arm64': 0.25.5
-  '@playwright/test': ^1.54.1
+  '@esbuild/linux-arm64': 0.27.2
+  '@playwright/test': ^1.58.1
   vite: ^7.3.1
-  playwright: ^1.57.0
+  playwright: ^1.58.1
 
 minimumReleaseAge: 2880
 

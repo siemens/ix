@@ -86,3 +86,34 @@ regressionTest('drawerClose', async ({ mount, page }) => {
   await drawer.evaluate((d: HTMLIxDrawerElement) => (d.show = false));
   await expect(drawer).toBeVisible();
 });
+regressionTest(
+  'close button should emit drawerClose event only once and hide the drawer',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-drawer show aria-label-close-button="Close drawer">Drawer Content</ix-drawer>'
+    );
+    const drawer = page.locator('ix-drawer');
+    await expect(drawer).toHaveClass(/hydrated/);
+
+    const eventCount = await drawer.evaluateHandle((d: HTMLIxDrawerElement) => {
+      const count = {
+        drawerClose: 0,
+      };
+      d.addEventListener('drawerClose', () => {
+        count.drawerClose++;
+      });
+      return count;
+    });
+
+    const closeButton = page.getByLabel('Close drawer');
+    await closeButton.click();
+
+    expect(await eventCount.evaluate((c) => c.drawerClose)).toBe(1);
+
+    expect(await drawer.evaluate((d: HTMLIxDrawerElement) => d.show)).toBe(
+      false
+    );
+
+    await expect(drawer).not.toBeVisible();
+  }
+);
