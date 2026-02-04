@@ -1,0 +1,6 @@
+- radiogroup:
+  - text: Storage options
+  - radio "256GB SSD storage"
+  - radio "512GB SSD storage"
+  - radio "1TB SSD storage"
+  - radio "2TB SSD storage" [disabled]
