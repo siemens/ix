@@ -81,6 +81,8 @@ export class TimeInput
   @Element() hostElement!: HTMLIxTimeInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
+  @State() isInputInvalid: boolean = false;
+
   /**
    * Name of the input element
    */

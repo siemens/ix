@@ -6,10 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { EventEmitter, h, Host } from '@stencil/core';
+import { EventEmitter, h, Host, JSX } from '@stencil/core';
 import { syncValidationClasses, ValidationResults } from './validation';
 import { handleSubmitOnEnterKeydown } from '../../input/input.util';
 import { closeDropdown as closeDropdownUtil } from './picker-input.util';
+import type { MakeRef } from '../make-ref';
 
 export interface SyncOptions<T = string | undefined> {
   updateFormInternalValue: (value: T) => void;
@@ -63,7 +64,7 @@ export function watchValue<T = string>(config: WatchConfig<T>): void {
 export interface EventConfig {
   show: boolean;
   setTouched: (touched: boolean) => void;
-  onInput: (value: string) => void;
+  onInput: (value: string) => void | Promise<void>;
   openDropdown: () => void;
   ixFocus: EventEmitter<void>;
   ixBlur: EventEmitter<void>;
@@ -166,15 +167,15 @@ export interface PickerFieldWrapperProps {
   validText?: string;
   tooltip?: boolean;
   required?: boolean;
-  inputRef: any;
-  input: any;
-  dropdown: any;
+  inputRef: MakeRef<HTMLInputElement>;
+  input: JSX.Element;
+  dropdown: JSX.Element;
   testId: string;
   trigger: () => Promise<HTMLElement>;
-  dropdownRef?: any;
+  dropdownRef?: MakeRef<HTMLIxDropdownElement>;
   enableTopLayer?: boolean;
   show?: boolean;
-  onShow?: (event: any) => void;
+  onShow?: (event: CustomEvent<boolean>) => void;
 }
 
 export function renderFieldWrapper(props: PickerFieldWrapperProps) {
@@ -222,8 +223,8 @@ export function renderFieldWrapper(props: PickerFieldWrapperProps) {
 export interface PickerEventConfigOptions {
   show: boolean;
   setTouched: (touched: boolean) => void;
-  onInput: (value: string) => void;
-  openDropdown: () => Promise<any>;
+  onInput: (value: string) => void | Promise<void>;
+  openDropdown: () => Promise<void>;
   ixFocus: EventEmitter<void>;
   ixBlur: EventEmitter<void>;
   syncValidationClasses: () => void;
@@ -291,7 +292,7 @@ export interface DropdownMethodsContext {
   ixFocus: EventEmitter<void>;
   ixBlur: EventEmitter<void>;
   syncValidationClasses: () => void;
-  onInput: (value: string) => void;
+  onInput: (value: string) => void | Promise<void>;
   handleInputKeyDown: (event: KeyboardEvent) => void;
 }
 

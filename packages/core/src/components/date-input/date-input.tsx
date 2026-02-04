@@ -80,6 +80,8 @@ export class DateInput
   @Element() hostElement!: HTMLIxDateInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
+  @State() isInputInvalid: boolean = false;
+
   /**
    * Name of the input element
    */

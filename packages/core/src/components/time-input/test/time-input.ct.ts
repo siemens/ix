@@ -217,7 +217,7 @@ regressionTest.describe('time input tests', () => {
       await input.fill('invalid-time');
       await input.blur();
 
-      await timeInput.evaluate((el: any) => el.clear());
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => el.clear());
 
       await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
       await expect(input).not.toHaveClass(/is-invalid/);
@@ -237,7 +237,7 @@ regressionTest.describe('time input tests', () => {
       await input.focus();
       await input.blur();
 
-      await timeInput.evaluate((el: any) => {
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
         el.value = '';
       });
 
@@ -273,7 +273,7 @@ regressionTest.describe('time input tests', () => {
       await input.focus();
       await input.blur();
 
-      await timeInput.evaluate((el: any) => el.clear());
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => el.clear());
 
       await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
       await expect(input).not.toHaveClass(/is-invalid/);
@@ -291,7 +291,7 @@ regressionTest.describe('time input tests', () => {
       await input.focus();
       await input.blur();
 
-      await timeInput.evaluate((el: any) => {
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
         el.value = '';
       });
 
@@ -318,7 +318,7 @@ regressionTest.describe('time input tests', () => {
   );
 
   regressionTest(
-    'Not required input: Invalid input > Remove touched state > Valid again',
+    'Not required input: Invalid input > Remove touched state > Valid',
     async ({ page, mount }) => {
       await mount(`<ix-time-input value="09:10:11"></ix-time-input>`);
 
@@ -330,7 +330,7 @@ regressionTest.describe('time input tests', () => {
       await input.fill('invalid-time');
       await input.blur();
 
-      await timeInput.evaluate((el: any) => el.clear());
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => el.clear());
 
       await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
       await expect(input).not.toHaveClass(/is-invalid/);
@@ -348,7 +348,7 @@ regressionTest.describe('time input tests', () => {
       await input.focus();
       await input.blur();
 
-      await timeInput.evaluate((el: any) => {
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
         el.value = '';
       });
 
@@ -386,7 +386,7 @@ regressionTest.describe('time input tests', () => {
       await input.focus();
       await input.blur();
 
-      await timeInput.evaluate((el: any) => el.clear());
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => el.clear());
 
       await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
       await expect(input).not.toHaveClass(/is-invalid/);
@@ -404,7 +404,7 @@ regressionTest.describe('time input tests', () => {
       await input.focus();
       await input.blur();
 
-      await timeInput.evaluate((el: any) => {
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
         el.value = '';
       });
 
@@ -469,13 +469,13 @@ regressionTest.describe('time input tests', () => {
       await expect(input).not.toHaveClass(/is-invalid/);
       await expect(timeInput).not.toHaveClass(/ix-invalid--required/);
 
-      await timeInput.evaluate((el: any) => {
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
         el.required = true;
       });
 
       await expect(timeInput).toHaveClass(/ix-invalid--required/);
 
-      await timeInput.evaluate((el: any) => {
+      await timeInput.evaluate((el: HTMLIxTimeInputElement) => {
         el.required = false;
       });
 

@@ -22,7 +22,6 @@ export class BasePickerInput {
   protected readonly slotEndRef = makeRef<HTMLDivElement>();
 
   @State() protected show = false;
-  @State() protected isInputInvalid = false;
   @State() protected suppressValidation = false;
   @State() isInvalid = false;
   @State() isValid = false;
