@@ -21,6 +21,7 @@ import { BaseButton } from '../button/base-button';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+import { Mixin } from '../utils/internal/component';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -119,8 +120,8 @@ function UserInfo(
   styleUrl: 'avatar.scss',
   shadow: true,
 })
-export class Avatar {
-  @Element() hostElement!: HTMLIxAvatarElement;
+export class Avatar extends Mixin() {
+  @Element() override hostElement!: HTMLIxAvatarElement;
 
   /**
    * Accessibility label for the image
@@ -176,7 +177,7 @@ export class Avatar {
 
   private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
-  componentWillLoad() {
+  override componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
     this.isClosestApplicationHeader = closest !== null;
   }
@@ -204,7 +205,7 @@ export class Avatar {
     }
   }
 
-  render() {
+  override render() {
     const a11y = a11yHostAttributes(this.hostElement);
     const a11yLabel = a11y['aria-label'];
 
@@ -256,6 +257,8 @@ export class Avatar {
                 this.tooltipRef.current.hideTooltip(0);
               }
             }}
+            disableFocusTrap
+            focusHost={this.hostElement}
           >
             {this.username && (
               <Fragment>

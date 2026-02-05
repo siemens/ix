@@ -79,7 +79,7 @@ regressionTest(
     await expect(pagination.locator('ix-dropdown')).not.toBeVisible();
 
     await expect(pagination).toHaveClass(/hydrated/);
-    expect(await itemChanged).toBe(40);
+    expect(await itemChanged).toBe(20);
   }
 );
 

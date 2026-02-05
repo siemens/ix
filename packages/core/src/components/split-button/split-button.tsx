@@ -16,11 +16,11 @@ import {
   h,
   Host,
   Prop,
-  State,
 } from '@stencil/core';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
 import { AlignedPlacement } from '../dropdown/placement';
 import { makeRef } from '../utils/make-ref';
+import { Mixin } from '../utils/internal/component';
 import type { SplitButtonVariant } from './split-button.types';
 
 @Component({
@@ -28,8 +28,8 @@ import type { SplitButtonVariant } from './split-button.types';
   styleUrl: 'split-button.scss',
   shadow: true,
 })
-export class SplitButton {
-  @Element() hostElement!: HTMLIxSplitButtonElement;
+export class SplitButton extends Mixin() {
+  @Element() override hostElement!: HTMLIxSplitButtonElement;
 
   /**
    * Color variant of button
@@ -102,7 +102,7 @@ export class SplitButton {
    */
   @Prop() enableTopLayer: boolean = false;
 
-  @State() toggle = false;
+  @Prop() disableFocusTrap = false;
 
   /**
    * Button clicked
@@ -119,7 +119,7 @@ export class SplitButton {
     return this.disabled || this.disableDropdownButton;
   }
 
-  render() {
+  override render() {
     const hasOutline = this.variant.toLocaleLowerCase().includes('secondary');
     const baseAttributes = {
       variant: this.variant,
@@ -139,38 +139,36 @@ export class SplitButton {
     };
 
     return (
-      <Host>
-        <div class={{ 'btn-group': true, 'middle-gap': !hasOutline }}>
-          {this.label ? (
-            <ix-button
-              {...buttonAttributes}
-              icon={this.icon}
-              onClick={(e) => this.buttonClick.emit(e)}
-              aria-label={this.ariaLabelButton}
-            >
-              {this.label}
-            </ix-button>
-          ) : (
-            <ix-icon-button
-              {...buttonAttributes}
-              icon={this.icon}
-              onClick={(e) => this.buttonClick.emit(e)}
-              aria-label={this.ariaLabelButton}
-            ></ix-icon-button>
-          )}
+      <Host class={{ 'btn-group': true, 'middle-gap': !hasOutline }}>
+        {this.label ? (
+          <ix-button
+            {...buttonAttributes}
+            icon={this.icon}
+            onClick={(e) => this.buttonClick.emit(e)}
+            aria-label={this.ariaLabelButton}
+          >
+            {this.label}
+          </ix-button>
+        ) : (
           <ix-icon-button
-            {...dropdownButtonAttributes}
-            ref={this.triggerElementRef}
-            class={'anchor'}
-            icon={this.splitIcon ?? iconContextMenu}
-            aria-label={this.ariaLabelSplitIconButton}
+            {...buttonAttributes}
+            icon={this.icon}
+            onClick={(e) => this.buttonClick.emit(e)}
+            aria-label={this.ariaLabelButton}
           ></ix-icon-button>
-        </div>
-
+        )}
+        <ix-icon-button
+          {...dropdownButtonAttributes}
+          ref={this.triggerElementRef}
+          class={'anchor'}
+          icon={this.splitIcon ?? iconContextMenu}
+          aria-label={this.ariaLabelSplitIconButton}
+        ></ix-icon-button>
         <ix-dropdown
           closeBehavior={this.closeBehavior}
           trigger={this.triggerElementRef.waitForCurrent()}
           enableTopLayer={this.enableTopLayer}
+          disableFocusTrap
         >
           <slot></slot>
         </ix-dropdown>

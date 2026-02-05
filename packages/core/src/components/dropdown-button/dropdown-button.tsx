@@ -11,19 +11,33 @@ import {
   iconChevronDownSmall,
   iconChevronUpSmall,
 } from '@siemens/ix-icons/icons';
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Mixin, Prop, State } from '@stencil/core';
 import { AlignedPlacement } from '../dropdown/placement';
-import { a11yBoolean } from '../utils/a11y';
+import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  AriaActiveDescendantMixinContract,
+  AriaActiveDescendantMixin,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
 
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: false,
+  },
 })
-export class DropdownButton {
-  @Element() hostElement!: HTMLIxDropdownButtonElement;
+export class DropdownButton
+  extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
+  implements AriaActiveDescendantMixinContract, ComponentIdMixinContract
+{
+  @Element() override hostElement!: HTMLIxDropdownButtonElement;
 
   /**
    * Button variant
@@ -73,7 +87,12 @@ export class DropdownButton {
 
   @State() dropdownShow = false;
 
+  private inheritAriaAttributes: A11yAttributes = {};
+
+  private dropdownButtonId = this.getHostElementId();
+
   private readonly dropdownAnchor = makeRef<HTMLElement>();
+  private readonly dropdownRef = makeRef<HTMLElement>();
 
   private getTriangle() {
     return (
@@ -95,23 +114,62 @@ export class DropdownButton {
     this.dropdownShow = event.detail;
   };
 
-  render() {
+  override componentDidLoad(): void {
+    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement, [
+      'aria-activedescendant',
+      'aria-haspopup',
+      'aria-controls',
+      'aria-disabled',
+      'aria-expanded',
+      'role',
+    ]);
+  }
+
+  override getControllingAriaElement():
+    | Promise<HTMLElement>
+    | HTMLElement
+    | null {
+    return this.hostElement;
+  }
+
+  override isAriaActiveDescendantActive(): boolean {
+    return this.dropdownShow;
+  }
+
+  override getAriaActiveDescendantProxyItemId(): string | boolean {
+    return false;
+  }
+
+  override render() {
+    const ariaAttributes = {
+      ...this.inheritAriaAttributes,
+      'aria-haspopup': 'true',
+      'aria-controls': `dropdown-button-menu-${this.dropdownButtonId}`,
+      'aria-disabled': a11yBoolean(this.disabled),
+      'aria-expanded': a11yBoolean(this.dropdownShow),
+      role: 'button',
+    };
+
+    const commonProperties = {
+      id: `dropdown-button-${this.dropdownButtonId}`,
+      disabled: this.disabled,
+      variant: this.variant,
+    };
     return (
       <Host
-        aria-disabled={a11yBoolean(this.disabled)}
         class={{
           disabled: this.disabled,
         }}
         ref={this.dropdownAnchor}
+        tabIndex={this.disabled ? -1 : 0}
+        {...ariaAttributes}
       >
         <div class="dropdown-button">
           {this.label ? (
             <ix-button
-              variant={this.variant}
-              disabled={this.disabled}
+              {...commonProperties}
               alignment="start"
-              ariaLabel={this.ariaLabelDropdownButton}
-              tabIndex={this.disabled ? -1 : 0}
+              ref={(ref) => (ref!.tabIndex = -1)}
             >
               <div class={'content'}>
                 {this.icon ? (
@@ -123,6 +181,7 @@ export class DropdownButton {
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
                 <ix-icon
+                  aria-hidden="true"
                   name={
                     this.dropdownShow
                       ? iconChevronUpSmall
@@ -135,10 +194,9 @@ export class DropdownButton {
           ) : (
             <div>
               <ix-icon-button
+                {...commonProperties}
                 icon={this.icon}
-                variant={this.variant}
-                disabled={this.disabled}
-                tabIndex={this.disabled ? -1 : 0}
+                ref={(ref) => (ref!.tabIndex = -1)}
               ></ix-icon-button>
               {this.getTriangle()}
             </div>
@@ -146,12 +204,16 @@ export class DropdownButton {
         </div>
 
         <ix-dropdown
-          class="dropdown"
+          role="menu"
+          ref={this.dropdownRef}
+          id={`dropdown-button-menu-${this.dropdownButtonId}`}
+          aria-labelledby={`dropdown-button-${this.dropdownButtonId}`}
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
           enableTopLayer={this.enableTopLayer}
-          onShowChanged={this.onDropdownShowChanged}
+          disableFocusTrap={true}
+          onShowChanged={(event) => this.onDropdownShowChanged(event)}
         >
           <slot></slot>
         </ix-dropdown>

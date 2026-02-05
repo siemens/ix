@@ -19,9 +19,37 @@ SPDX-License-Identifier: MIT
     <link rel="stylesheet" href="./build/siemens-ix.css" />
     <script type="module">
       import { defineCustomElement } from '/node_modules/@siemens/ix-icons/components/ix-icon.js';
+      import { addIcons } from '/node_modules/@siemens/ix-icons/dist/index.js';
+      import * as icons from '/node_modules/@siemens/ix-icons/icons/index.mjs';
 
       defineCustomElement();
+
+      /**
+       * Preload all icons at
+       */
+      addIcons(icons);
     </script>
   </head>
-  <body></body>
+  <body>
+    <ix-select editable>
+      <ix-select-item value="Option 1" label="Option 1"></ix-select-item>
+      <ix-select-item value="Option 2" label="Option 2"></ix-select-item>
+      <ix-select-item value="Option 3" label="Option abc"></ix-select-item>
+      <ix-select-item value="Option 4" label="Option abx"></ix-select-item>
+      <ix-select-item value="Option 5" label="Option 5"></ix-select-item>
+      <ix-select-item value="Option 6" label="Option 6"></ix-select-item>
+    </ix-select>
+
+    <ix-dropdown-button label="Example">
+      <ix-dropdown-item>Item 1</ix-dropdown-item>
+      <ix-dropdown-item id="test">Item 2</ix-dropdown-item>
+      <ix-dropdown-item>Item 3</ix-dropdown-item>
+    </ix-dropdown-button>
+
+    <select>
+      <option>Native Option 1</option>
+      <option>Native Option 2</option>
+      <option>Native Option 3</option>
+    </select>
+  </body>
 </html>

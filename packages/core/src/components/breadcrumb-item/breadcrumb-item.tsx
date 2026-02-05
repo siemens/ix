@@ -24,14 +24,15 @@ import { a11yHostAttributes } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import Animation from '../utils/animation';
 import { AnchorInterface, AnchorTarget } from '../button/button.interface';
+import { Mixin } from '../utils/internal/component';
 
 @Component({
   tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
   shadow: true,
 })
-export class BreadcrumbItem implements AnchorInterface {
-  @Element() hostElement!: HTMLIxBreadcrumbItemElement;
+export class BreadcrumbItem extends Mixin() implements AnchorInterface {
+  @Element() override hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
    * ARIA label for the button
@@ -89,16 +90,12 @@ export class BreadcrumbItem implements AnchorInterface {
 
   @State() a11y: any;
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.animationFadeIn();
   }
 
-  componentWillLoad() {
-    this.a11y = a11yHostAttributes(this.hostElement, [
-      'aria-describedby',
-      'aria-controls',
-      'aria-expanded',
-    ]);
+  override componentWillLoad() {
+    this.a11y = a11yHostAttributes(this.hostElement, []);
   }
 
   animationFadeIn() {
@@ -110,7 +107,7 @@ export class BreadcrumbItem implements AnchorInterface {
     });
   }
 
-  render() {
+  override render() {
     const props: BaseButtonProps = {
       variant: this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,
@@ -126,7 +123,10 @@ export class BreadcrumbItem implements AnchorInterface {
       extraClasses: {
         'dropdown-trigger': this.isDropdownTrigger,
       },
-      ariaAttributes: { ...this.a11y, 'aria-label': this.ariaLabelButton },
+      ariaAttributes: {
+        ...this.a11y,
+        'aria-label': this.a11y['aria-label'] ?? this.ariaLabelButton,
+      },
       href: this.href,
       target: this.target,
       rel: this.rel,
@@ -140,6 +140,7 @@ export class BreadcrumbItem implements AnchorInterface {
       <Host
         class={{
           'hide-chevron': this.hideChevron,
+          'ix-focusable': true,
         }}
         onClick={() => this.itemClick.emit(this.label)}
       >

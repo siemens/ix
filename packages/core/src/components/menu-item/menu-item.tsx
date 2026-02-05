@@ -26,7 +26,9 @@ let sequenceId = 0;
 @Component({
   tag: 'ix-menu-item',
   styleUrl: 'menu-item.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
 export class MenuItem implements IxMenuItemBase {
   /**
@@ -183,11 +185,23 @@ export class MenuItem implements IxMenuItemBase {
       };
     }
 
+    // let tabIndex = this.disabled || this.isHostedInsideCategory ? -1 : 0;
+
+    let tabIndex = 0;
+
+    if (this.menuExpanded === false && this.isHostedInsideCategory) {
+      tabIndex = -1;
+    }
+
+    if (this.disabled) {
+      tabIndex = -1;
+    }
+
     const hostA11y = a11yHostAttributes(this.hostElement);
 
     const commonAttributes = {
       class: 'tab',
-      tabIndex: this.disabled ? -1 : 0,
+      tabIndex: tabIndex,
       ...hostA11y,
     };
 
@@ -218,6 +232,7 @@ export class MenuItem implements IxMenuItemBase {
           'bottom-tab': this.bottom,
           active: this.active,
           'tab-nested': this.isHostedInsideCategory,
+          'ix-focusable': !this.disabled,
         }}
         aria-disabled={this.disabled ? 'true' : null}
         {...extendedAttributes}

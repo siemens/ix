@@ -8,6 +8,10 @@
  */
 
 import {
+  iconChevronRightSmall,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -15,22 +19,31 @@ import {
   h,
   Host,
   Method,
+  Mixin,
   Prop,
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
-import {
-  iconChevronRightSmall,
-  iconSingleCheck,
-} from '@siemens/ix-icons/icons';
 import { a11yBoolean } from '../utils/a11y';
+import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
+import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
 
 @Component({
   tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: false,
+  },
 })
-export class DropdownItem implements DropdownItemWrapper {
-  @Element() hostElement!: HTMLIxDropdownItemElement;
+export class DropdownItem
+  extends Mixin(...DefaultMixins, ComponentIdMixin, FocusVisibleMixin)
+  implements DropdownItemWrapper, ComponentIdMixinContract
+{
+  @Element() override hostElement!: HTMLIxDropdownItemElement;
 
   /**
    * Label of dropdown item
@@ -77,6 +90,9 @@ export class DropdownItem implements DropdownItemWrapper {
   @Prop() suppressChecked = false;
 
   /** @internal */
+  @Prop({ reflect: true }) hasVisualFocus = false;
+
+  /** @internal */
   @Event() itemClick!: EventEmitter<HTMLIxDropdownItemElement>;
 
   /** @internal */
@@ -99,33 +115,39 @@ export class DropdownItem implements DropdownItemWrapper {
     );
   }
 
-  render() {
+  override render() {
+    const id = this.getHostElementId();
     return (
       <Host
+        id={id}
+        role={'menuitem'}
+        aria-disabled={a11yBoolean(this.disabled)}
+        aria-label={this.hostElement.ariaLabel ?? this.ariaLabelButton}
         class={{
           hover: this.hover,
           'icon-only': this.isIconOnly(),
           disabled: this.disabled,
           submenu: this.isSubMenu,
+          [IX_FOCUS_VISIBLE]: !this.disabled,
+          'outline-visible': this.hasVisualFocus,
         }}
-        role="listitem"
+        onClick={() => {
+          if (!this.disabled) {
+            this.emitItemClick();
+          }
+        }}
+        onKeyDown={(event: KeyboardEvent) => {
+          if (!this.disabled && (event.key === 'Enter' || event.key === ' ')) {
+            this.emitItemClick();
+          }
+        }}
       >
-        <button
-          type="button"
-          tabIndex={this.disabled ? -1 : 0}
+        <div
           class={{
             'dropdown-item': true,
             'no-checked-field': this.suppressChecked,
             disabled: this.disabled,
           }}
-          onClick={() => {
-            if (!this.disabled) {
-              this.emitItemClick();
-            }
-          }}
-          aria-label={this.ariaLabelButton}
-          aria-disabled={a11yBoolean(this.disabled)}
-          disabled={this.disabled}
         >
           {!this.suppressChecked ? (
             <div class="dropdown-item-checked">
@@ -156,7 +178,7 @@ export class DropdownItem implements DropdownItemWrapper {
               class={'submenu-icon'}
             ></ix-icon>
           ) : null}
-        </button>
+        </div>
       </Host>
     );
   }

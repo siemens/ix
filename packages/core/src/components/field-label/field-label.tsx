@@ -15,7 +15,7 @@ import {
   HTMLIxFormComponentElement,
   isIxInputFieldComponent,
 } from '../utils/input';
-import { IxComponent } from '../utils/internal';
+import { IxComponentInterface } from '../utils/internal';
 import { MakeRef, makeRef } from '../utils/make-ref';
 
 @Component({
@@ -23,7 +23,7 @@ import { MakeRef, makeRef } from '../utils/make-ref';
   styleUrl: 'field-label.scss',
   shadow: true,
 })
-export class FormFieldLabel implements IxComponent {
+export class FormFieldLabel implements IxComponentInterface {
   @Element() hostElement!: HTMLIxFieldLabelElement;
 
   /**

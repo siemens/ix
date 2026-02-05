@@ -24,10 +24,6 @@
 
   @include component.ix-component;
 
-  .display-none {
-    display: none;
-  }
-
   .select {
     position: relative;
     display: flex;
@@ -43,13 +39,6 @@
     @include hover.hover {
       background-color: var(--theme-input--background--hover);
       border-color: var(--theme-input--border-color--hover);
-    }
-
-    &:focus-within {
-      background-color: var(--theme-input--background--focus);
-      border-color: var(--theme-input--border-color--focus);
-      outline: 1px solid #119fff;
-      outline-offset: var(--theme-input--focus--outline-offset);
     }
   }
 
@@ -94,10 +83,6 @@
     input {
       color: var(--theme-color-std-text);
     }
-  }
-
-  .hidden {
-    display: none !important;
   }
 
   .trigger {
@@ -162,6 +147,8 @@
   }
 
   ix-dropdown {
+    display: flex;
+    flex-direction: column;
     max-width: 100%;
   }
 
@@ -186,9 +173,17 @@
 
     @include text-truncation.ellipsis;
   }
+
+  .hidden {
+    display: none !important;
+  }
 }
 
-
+:host(.ix-focused),
+:host(.show-focus-outline) {
+  outline: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
 
 @include form-component.host-valid;
 

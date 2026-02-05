@@ -41,6 +41,8 @@
   height: vars.$x-large-space;
   width: auto;
 
+  border-radius: var(--theme-btn--border-radius);
+
   @include component.ix-component;
 
   .hide {
@@ -90,6 +92,11 @@
     display: flex;
     align-items: center;
   }
+}
+
+:host(:focus-visible) {
+  outline: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-btn--focus--outline-offset);
 }
 
 :host(.disabled) {

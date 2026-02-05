@@ -21,6 +21,8 @@ import {
 } from '@stencil/core';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
+import { Mixin } from '../utils/internal/component';
+import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 let sequenceId = 0;
@@ -31,10 +33,12 @@ const createId = (prefix: string = 'breadcrumb-') => {
 @Component({
   tag: 'ix-breadcrumb',
   styleUrl: 'breadcrumb.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: true,
+  },
 })
-export class Breadcrumb {
-  @Element() hostElement!: HTMLIxBreadcrumbElement;
+export class Breadcrumb extends Mixin() {
+  @Element() override hostElement!: HTMLIxBreadcrumbElement;
 
   /**
    * Excess items will get hidden inside of dropdown
@@ -59,7 +63,7 @@ export class Breadcrumb {
    * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list
    * with conditionally hidden previous items
    */
-  @Prop() ariaLabelPreviousButton = 'previous';
+  @Prop() ariaLabelPreviousButton = 'Show previous breadcrumb items';
 
   /**
    * Enable Popover API rendering for dropdown.
@@ -82,19 +86,26 @@ export class Breadcrumb {
   private readonly previousButtonRef = makeRef<HTMLIxBreadcrumbItemElement>();
   private readonly nextButtonRef = makeRef<HTMLElement>();
 
+  private readonly previousDropdownRef = makeRef<HTMLIxDropdownElement>();
+  private readonly nextDropdownRef = makeRef<HTMLIxDropdownElement>();
+
   @State() items: HTMLIxBreadcrumbItemElement[] = [];
   @State() isPreviousDropdownExpanded = false;
+  @State() isNextDropdownExpanded = false;
 
   private mutationObserver?: MutationObserver;
+  private lastKeyboardNavigation: KeyboardEvent | null = null;
 
   private previousButtonId = createId();
   private previousDropdownId = createId();
+
+  private nextDropdownId = createId();
 
   private onItemClick(item: string) {
     this.itemClick.emit(item);
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.mutationObserver = createMutationObserver(() =>
       this.onChildMutation()
     );
@@ -105,34 +116,46 @@ export class Breadcrumb {
     });
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.onChildMutation();
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     this.mutationObserver?.disconnect();
   }
 
   private async onChildMutation() {
     const updatedItems = this.getItems();
 
-    updatedItems.forEach((bc, index) => {
+    updatedItems.forEach((breadcrumbItem, index) => {
+      breadcrumbItem.removeAttribute('aria-haspopup');
+      breadcrumbItem.removeAttribute('aria-expanded');
+      breadcrumbItem.removeAttribute('aria-controls');
+
       const shouldShowDropdown =
         this.nextItems.length !== 0 && updatedItems.length - 1 === index;
 
-      bc.subtle = this.subtle;
-      bc.hideChevron = updatedItems.length - 1 === index && !shouldShowDropdown;
-      bc.isDropdownTrigger = shouldShowDropdown;
+      breadcrumbItem.subtle = this.subtle;
+      breadcrumbItem.hideChevron =
+        updatedItems.length - 1 === index && !shouldShowDropdown;
+      breadcrumbItem.isDropdownTrigger = shouldShowDropdown;
 
       if (shouldShowDropdown) {
-        this.nextButtonRef(bc);
+        breadcrumbItem.setAttribute('aria-haspopup', 'true');
+        breadcrumbItem.setAttribute(
+          'aria-expanded',
+          a11yBoolean(this.isNextDropdownExpanded)
+        );
+        breadcrumbItem.setAttribute('aria-controls', this.nextDropdownId);
+        this.nextButtonRef(breadcrumbItem);
       }
 
       if (updatedItems.length < this.visibleItemCount) {
         return;
       }
 
-      bc.invisible = index < updatedItems.length - this.visibleItemCount;
+      breadcrumbItem.invisible =
+        index < updatedItems.length - this.visibleItemCount;
     });
 
     this.items = updatedItems;
@@ -142,13 +165,25 @@ export class Breadcrumb {
     return Array.from(this.hostElement.querySelectorAll('ix-breadcrumb-item'));
   }
 
-  render() {
+  @Watch('isNextDropdownExpanded')
+  onNextDropdownExpandedChange() {
+    this.onChildMutation();
+  }
+
+  override render() {
     const a11y = a11yHostAttributes(this.hostElement);
     return (
-      <Host>
+      <Host
+        onKeyDown={(event: KeyboardEvent) => {
+          this.lastKeyboardNavigation = event;
+        }}
+      >
         <ix-dropdown
           id={this.previousDropdownId}
-          aria-label={this.ariaLabelPreviousButton}
+          ref={this.previousDropdownRef}
+          disableFocusTrap
+          role="menu"
+          aria-labelledby={this.previousButtonRef.current!}
           trigger={
             this.items?.length > this.visibleItemCount
               ? this.previousButtonRef.waitForCurrent()
@@ -166,6 +201,20 @@ export class Breadcrumb {
             if (previousButton) {
               forceUpdate(previousButton);
             }
+
+            if (
+              detail === false &&
+              hasKeyboardMode() &&
+              this.lastKeyboardNavigation?.key === 'Tab' &&
+              this.lastKeyboardNavigation.shiftKey === false
+            ) {
+              const visibleItems = this.getItems().filter(
+                (item) => !item.invisible
+              );
+              visibleItems[0]?.focus();
+            }
+
+            this.lastKeyboardNavigation = null;
           }}
         >
           {this.items
@@ -189,12 +238,12 @@ export class Breadcrumb {
             id={this.previousButtonId}
             ref={this.previousButtonRef}
             label="..."
-            tabIndex={1}
             onItemClick={(event) => event.stopPropagation()}
-            aria-describedby={this.previousDropdownId}
+            aria-haspopup="true"
+            aria-label={this.ariaLabelPreviousButton}
             aria-controls={this.previousDropdownId}
             aria-expanded={a11yBoolean(this.isPreviousDropdownExpanded)}
-            class={'previous-button'}
+            class={'previous-button ix-focusable'}
           ></ix-breadcrumb-item>
         ) : null}
         <nav
@@ -206,7 +255,27 @@ export class Breadcrumb {
           </ol>
         </nav>
         <ix-dropdown
+          disableFocusTrap
+          role="menu"
+          id={this.nextDropdownId}
+          ref={this.nextDropdownRef}
           trigger={this.nextButtonRef.waitForCurrent()}
+          onShowChanged={({ detail }) => {
+            this.isNextDropdownExpanded = detail;
+            if (
+              detail === false &&
+              hasKeyboardMode() &&
+              this.lastKeyboardNavigation?.key === 'Tab' &&
+              this.lastKeyboardNavigation.shiftKey === true
+            ) {
+              const visibleItems = this.getItems().filter(
+                (item) => !item.invisible
+              );
+              visibleItems[visibleItems.length - 2]?.focus();
+            }
+
+            this.lastKeyboardNavigation = null;
+          }}
           enableTopLayer={this.enableTopLayer}
         >
           {this.nextItems?.map((item) => (
