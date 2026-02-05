@@ -278,9 +278,25 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
       case 'ArrowDown':
         _focusedDay = _focusedDay + 7;
         break;
+      case 'Home':
+        _focusedDay = this.getFirstDayOfWeek(_focusedDay);
+        break;
+      case 'End':
+        _focusedDay = this.getLastDayOfWeek(_focusedDay);
+        break;
+      case 'PageUp':
+        this.navigateByMonthOrYear(event.shiftKey ? 'year' : 'month', -1);
+        event.preventDefault();
+        return;
+      case 'PageDown':
+        this.navigateByMonthOrYear(event.shiftKey ? 'year' : 'month', 1);
+        event.preventDefault();
+        return;
       default:
         return;
     }
+
+    event.preventDefault();
 
     if (_focusedDay > this.getDaysInCurrentMonth()) {
       _focusedDay = _focusedDay - this.getDaysInCurrentMonth();
@@ -299,6 +315,24 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     return (
       DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth || 0
     );
+  }
+
+  private getFirstDayOfWeek(day: number): number {
+    const week = this.calendar.find((w) => w.dayNumbers.includes(day));
+    if (!week) {
+      return day;
+    }
+    const firstDay = week.dayNumbers.find((d) => d !== undefined);
+    return firstDay ?? day;
+  }
+
+  private getLastDayOfWeek(day: number): number {
+    const week = this.calendar.find((w) => w.dayNumbers.includes(day));
+    if (!week) {
+      return day;
+    }
+    const lastDay = [...week.dayNumbers].reverse().find((d) => d !== undefined);
+    return lastDay ?? day;
   }
 
   private getDateTimeNow() {
@@ -376,7 +410,8 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
 
-    dayElem.focus();
+    dayElem?.focus();
+    this.monthChangedFromFocus = false;
   }
 
   /**
@@ -568,6 +603,34 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     this.tempYear = this.selectedYear;
   }
 
+  private navigateByMonthOrYear(unit: 'month' | 'year', direction: -1 | 1) {
+    let targetYear = this.selectedYear;
+    let targetMonth = this.selectedMonth;
+
+    if (unit === 'year') {
+      targetYear += direction;
+    } else {
+      targetMonth += direction;
+      if (targetMonth < 0) {
+        targetMonth = 11;
+        targetYear--;
+      } else if (targetMonth > 11) {
+        targetMonth = 0;
+        targetYear++;
+      }
+    }
+
+    const daysInTargetMonth =
+      DateTime.utc(targetYear, targetMonth + 1).daysInMonth || 0;
+    this.focusedDay = Math.min(this.focusedDay, daysInTargetMonth);
+
+    this.selectedYear = targetYear;
+    this.selectedMonth = targetMonth;
+    this.tempYear = targetYear;
+    this.tempMonth = targetMonth;
+    this.monthChangedFromFocus = true;
+  }
+
   private selectDay(selectedDay: number, target: Element) {
     if (target.classList.contains('disabled')) {
       return;
@@ -756,6 +819,10 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
   }
 
   private changeFocusedDay() {
+    if (this.monthChangedFromFocus) {
+      return;
+    }
+
     requestAnimationFrameNoNgZone(() => {
       const shadowRoot = this.hostElement.shadowRoot!;
 
