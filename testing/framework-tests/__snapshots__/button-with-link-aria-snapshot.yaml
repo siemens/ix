@@ -1,0 +1,20 @@
+- heading "Button Link Examples" [level=2]
+- heading "Basic Link Buttons" [level=3]
+- button "Visit Siemens"
+- button "Open in New Tab"
+- button "Dashboard"
+- heading "Styled Link Buttons" [level=3]
+- button "Primary Link"
+- button "Secondary Link"
+- button "Danger Link"
+- heading "Outline and Ghost Links" [level=3]
+- button "Outline Link"
+- button "Ghost Link"
+- heading "Icon Links" [level=3]
+- button "Home"
+- button "External"
+- heading "Disabled Link" [level=3]
+- button "Disabled Link" [disabled]
+- heading "Comparison" [level=3]
+- button "Regular Button"
+- button "Link Button"
