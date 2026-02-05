@@ -42,6 +42,10 @@ export const getFallbackLabelFromIconName = (iconName?: string) => {
   }
 
   if (isSvgDataUrl(iconName)) {
+    const fallbackName = /.*\<desc\>(.*)\<\/desc\>.*/g.exec(iconName);
+    if (fallbackName && fallbackName.length > 1) {
+      return kebabCaseToUpperCaseSentence(fallbackName[1]);
+    }
     return 'Unknown';
   }
 

@@ -1,0 +1,16 @@
+- button:
+  - img
+- button [pressed]:
+  - img
+- button [disabled]:
+  - img
+- button "Loading" [disabled]:
+  - status "Loading"
+- button:
+  - img
+- button [pressed]:
+  - img
+- button [disabled]:
+  - img
+- button "Loading" [disabled]:
+  - status "Loading"

@@ -8,13 +8,11 @@
  */
 
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
-
 import { IxTabs, IxTabItem } from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
-  imports: [IxTabs, IxTabItem, NgIf],
+  imports: [IxTabs, IxTabItem],
   template: `
     <div class="tabs">
       <ix-tabs [selected]="selectedTab">
@@ -22,15 +20,17 @@ import { IxTabs, IxTabItem } from '@siemens/ix-angular/standalone';
         <ix-tab-item (click)="changeTab(1)">Tab 2</ix-tab-item>
         <ix-tab-item (click)="changeTab(2)">Tab 3</ix-tab-item>
       </ix-tabs>
-      <div *ngIf="selectedTab === 0">Content Tab 1</div>
-      <div *ngIf="selectedTab === 1">Content Tab 2</div>
-      <div *ngIf="selectedTab === 2">Content Tab 3</div>
+
+      <section role="tabpanel" aria-label="Example content">
+        @if (selectedTab === 0) { Content Tab 1 } @else if (selectedTab === 1) {
+        Content Tab 2 } @else if (selectedTab === 2) { Content Tab 3 }
+      </section>
     </div>
   `,
   styleUrls: ['./tabs.css'],
 })
 export default class Tabs {
-  selectedTab = 1;
+  selectedTab = 0;
 
   changeTab(tabIndex: number) {
     this.selectedTab = tabIndex;
