@@ -6,22 +6,71 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { EventEmitter, h, Host, JSX } from '@stencil/core';
+import { EventEmitter, h, Host } from '@stencil/core';
 import { syncValidationClasses, ValidationResults } from './validation';
 import { handleSubmitOnEnterKeydown } from '../../input/input.util';
 import { closeDropdown as closeDropdownUtil } from './picker-input.util';
-import type { MakeRef } from '../make-ref';
+import type {
+  PickerRenderConfig,
+  ValidationSetters,
+} from './picker-input.util';
+
+export interface ValidationContext {
+  hostElement: HTMLElement;
+  suppressValidation: boolean;
+  required?: boolean;
+  value: string | undefined;
+  touched: boolean;
+  isInputInvalid: boolean;
+}
+
+export interface EventHandlers {
+  ixFocus: EventEmitter<void>;
+  ixBlur: EventEmitter<void>;
+  syncValidationClasses: () => void;
+  onInput: (value: string) => void | Promise<void>;
+  handleInputKeyDown: (event: KeyboardEvent) => void;
+}
 
 export interface SyncOptions<T = string | undefined> {
   updateFormInternalValue: (value: T) => void;
   valueChange: EventEmitter<T>;
   value: T;
-
   hostElement: HTMLElement;
   suppressValidation: boolean;
   required?: boolean;
   touched: boolean;
   isInputInvalid: boolean;
+}
+
+export interface WatchConfig<T = string> {
+  newValue: T;
+  required?: boolean;
+  onInput: (value: T) => void;
+  setTouched?: (touched: boolean) => void;
+  isClearing?: boolean;
+}
+
+export interface EventConfig extends Omit<EventHandlers, 'handleInputKeyDown'> {
+  show: boolean;
+  setTouched: (touched: boolean) => void;
+  openDropdown: () => void | Promise<void>;
+  handleInputKeyDown?: (event: KeyboardEvent) => void;
+  alwaysSetTouchedOnBlur?: boolean;
+}
+
+export interface ValidationOptions extends ValidationContext {}
+
+export interface InputMethodsContext extends ValidationContext {
+  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> };
+}
+
+export interface DropdownMethodsContext extends EventHandlers {
+  dropdownElementRef: { current: HTMLIxDropdownElement | null };
+  hostElement: HTMLElement;
+  show: boolean;
+  touched: boolean;
+  openDropdown: () => Promise<void>;
 }
 
 export function syncState<T = string | undefined>(
@@ -40,14 +89,6 @@ export function syncState<T = string | undefined>(
   });
 }
 
-export interface WatchConfig<T = string> {
-  newValue: T;
-  required?: boolean;
-  onInput: (value: T) => void;
-  setTouched?: (touched: boolean) => void;
-  isClearing?: boolean;
-}
-
 export function watchValue<T = string>(config: WatchConfig<T>): void {
   if (
     !config.isClearing &&
@@ -61,16 +102,15 @@ export function watchValue<T = string>(config: WatchConfig<T>): void {
   config.onInput(config.newValue);
 }
 
-export interface EventConfig {
-  show: boolean;
-  setTouched: (touched: boolean) => void;
-  onInput: (value: string) => void | Promise<void>;
-  openDropdown: () => void;
-  ixFocus: EventEmitter<void>;
-  ixBlur: EventEmitter<void>;
-  syncValidationClasses: () => void;
-  handleInputKeyDown?: (event: KeyboardEvent) => void;
-  alwaysSetTouchedOnBlur?: boolean;
+export function syncValidation(options: ValidationOptions): void {
+  syncValidationClasses({
+    hostElement: options.hostElement,
+    suppressValidation: options.suppressValidation,
+    required: options.required,
+    value: options.value,
+    touched: options.touched,
+    isInputInvalid: options.isInputInvalid,
+  });
 }
 
 export function onInput(config: EventConfig) {
@@ -115,26 +155,6 @@ export function onKeyDown(config: EventConfig) {
   };
 }
 
-export interface ValidationOptions {
-  hostElement: HTMLElement;
-  suppressValidation: boolean;
-  required?: boolean;
-  value: string | undefined;
-  touched: boolean;
-  isInputInvalid: boolean;
-}
-
-export function syncValidation(options: ValidationOptions): void {
-  syncValidationClasses({
-    hostElement: options.hostElement,
-    suppressValidation: options.suppressValidation,
-    required: options.required,
-    value: options.value,
-    touched: options.touched,
-    isInputInvalid: options.isInputInvalid,
-  });
-}
-
 export function getNativeInput(inputElementRef: {
   waitForCurrent: () => Promise<HTMLInputElement>;
 }): Promise<HTMLInputElement> {
@@ -144,120 +164,26 @@ export function getNativeInput(inputElementRef: {
 export async function focusInput(inputElementRef: {
   waitForCurrent: () => Promise<HTMLInputElement>;
 }): Promise<void> {
-  return (await getNativeInput(inputElementRef)).focus();
+  const input = await inputElementRef.waitForCurrent();
+  return input.focus();
 }
 
 export function getTouchedState(touched: boolean): Promise<boolean> {
   return Promise.resolve(touched);
 }
 
-export interface PickerFieldWrapperProps {
-  host: HTMLElement;
-  disabled?: boolean;
-  readonly?: boolean;
-  label?: string;
-  helper?: string;
-  invalid?: boolean;
-  invalidText?: string;
-  info?: string;
-  isInfo?: boolean;
-  warning?: boolean;
-  warningText?: string;
-  valid?: boolean;
-  validText?: string;
-  tooltip?: boolean;
-  required?: boolean;
-  inputRef: MakeRef<HTMLInputElement>;
-  input: JSX.Element;
-  dropdown: JSX.Element;
-  testId: string;
-  trigger: () => Promise<HTMLElement>;
-  dropdownRef?: MakeRef<HTMLIxDropdownElement>;
-  enableTopLayer?: boolean;
-  show?: boolean;
-  onShow?: (event: CustomEvent<boolean>) => void;
-}
-
-export function renderFieldWrapper(props: PickerFieldWrapperProps) {
-  return (
-    <Host
-      class={{
-        disabled: !!props.disabled,
-        readonly: !!props.readonly,
-      }}
-    >
-      <ix-field-wrapper
-        label={props.label}
-        helperText={props.helper}
-        isInvalid={props.invalid}
-        invalidText={props.invalidText}
-        infoText={props.info}
-        isInfo={props.isInfo}
-        isWarning={props.warning}
-        warningText={props.warningText}
-        isValid={props.valid}
-        validText={props.validText}
-        showTextAsTooltip={props.tooltip}
-        required={props.required}
-        controlRef={props.inputRef}
-        htmlForLabel={props.host.id}
-      >
-        {props.input}
-      </ix-field-wrapper>
-      <ix-dropdown
-        data-testid={props.testId}
-        trigger={props.trigger()}
-        ref={props.dropdownRef}
-        closeBehavior="outside"
-        enableTopLayer={props.enableTopLayer}
-        suppressOverflowBehavior={true}
-        show={props.show}
-        onShowChanged={props.onShow}
-      >
-        {props.dropdown}
-      </ix-dropdown>
-    </Host>
-  );
-}
-
-export interface PickerEventConfigOptions {
-  show: boolean;
-  setTouched: (touched: boolean) => void;
-  onInput: (value: string) => void | Promise<void>;
-  openDropdown: () => Promise<void>;
-  ixFocus: EventEmitter<void>;
-  ixBlur: EventEmitter<void>;
-  syncValidationClasses: () => void;
-  handleInputKeyDown?: (event: KeyboardEvent) => void;
-  alwaysSetTouchedOnBlur?: boolean;
-}
-
-export function createEventConfig(
-  options: PickerEventConfigOptions
-): EventConfig {
+export function createEventConfig(options: EventConfig): EventConfig {
   return {
     show: options.show,
     setTouched: options.setTouched,
     onInput: options.onInput,
-    openDropdown: () => {
-      options.openDropdown();
-    },
+    openDropdown: options.openDropdown,
     ixFocus: options.ixFocus,
     ixBlur: options.ixBlur,
     syncValidationClasses: options.syncValidationClasses,
     handleInputKeyDown: options.handleInputKeyDown,
     alwaysSetTouchedOnBlur: options.alwaysSetTouchedOnBlur,
   };
-}
-
-export interface InputMethodsContext {
-  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> };
-  touched: boolean;
-  hostElement: HTMLElement;
-  suppressValidation: boolean;
-  required?: boolean;
-  value: string | undefined;
-  isInputInvalid: boolean;
 }
 
 export function createInputMethods(context: InputMethodsContext) {
@@ -281,19 +207,6 @@ export function createInputMethods(context: InputMethodsContext) {
       });
     },
   };
-}
-
-export interface DropdownMethodsContext {
-  dropdownElementRef: { current: HTMLIxDropdownElement | null };
-  hostElement: HTMLElement;
-  show: boolean;
-  touched: boolean;
-  openDropdown: () => Promise<void>;
-  ixFocus: EventEmitter<void>;
-  ixBlur: EventEmitter<void>;
-  syncValidationClasses: () => void;
-  onInput: (value: string) => void | Promise<void>;
-  handleInputKeyDown: (event: KeyboardEvent) => void;
 }
 
 export function createDropdownMethods(context: DropdownMethodsContext) {
@@ -334,12 +247,7 @@ export function handleValidationLifecycle(
   suppressValidation: boolean,
   isInputInvalid: boolean,
   results: ValidationResults,
-  setters: {
-    setIsInvalid: (value: boolean) => void;
-    setIsInfo: (value: boolean) => void;
-    setIsValid: (value: boolean) => void;
-    setIsWarning: (value: boolean) => void;
-  }
+  setters: ValidationSetters
 ) {
   const { isInfo, isInvalid, isInvalidByRequired, isValid, isWarning } =
     results;
@@ -356,4 +264,46 @@ export function handleValidationLifecycle(
   setters.setIsInfo(isInfo);
   setters.setIsValid(isValid);
   setters.setIsWarning(isWarning);
+}
+
+export function renderFieldWrapper(props: PickerRenderConfig) {
+  return (
+    <Host
+      class={{
+        disabled: !!props.disabled,
+        readonly: !!props.readonly,
+      }}
+    >
+      <ix-field-wrapper
+        label={props.label}
+        helperText={props.helper}
+        isInvalid={props.invalid}
+        invalidText={props.invalidText}
+        infoText={props.info}
+        isInfo={props.isInfo}
+        isWarning={props.warning}
+        warningText={props.warningText}
+        isValid={props.valid}
+        validText={props.validText}
+        showTextAsTooltip={props.tooltip}
+        required={props.required}
+        controlRef={props.inputRef}
+        htmlForLabel={props.host.id}
+      >
+        {props.input}
+      </ix-field-wrapper>
+      <ix-dropdown
+        data-testid={props.testId}
+        trigger={props.trigger()}
+        ref={props.dropdownRef}
+        closeBehavior="outside"
+        enableTopLayer={props.enableTopLayer}
+        suppressOverflowBehavior={true}
+        show={props.show}
+        onShowChanged={props.onShow}
+      >
+        {props.dropdown}
+      </ix-dropdown>
+    </Host>
+  );
 }

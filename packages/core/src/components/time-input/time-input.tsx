@@ -54,6 +54,7 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
   createPickerMethods,
+  createPickerMethodsContext,
   createInputRenderer,
   createRenderConfig,
   createInputConfig,
@@ -280,19 +281,6 @@ export class TimeInput
   private classObserver?: ClassMutationObserver;
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  updateFormInternalValue(value: string): void {
-    this.formInternals.setFormValue(value);
-    this.value = value;
-  }
-
-  private updatePaddings(): void {
-    adjustPaddingForStartAndEnd(
-      this.slotStartRef.current,
-      this.slotEndRef.current,
-      this.inputElementRef.current
-    );
-  }
-
   connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () => {
       this.isInvalid = this.dropdownMethods.checkClassList();
@@ -337,6 +325,16 @@ export class TimeInput
     this.time = this.value;
   }
 
+  @Watch('isInputInvalid')
+  async onInputValidationChange() {
+    return this.pickerMethods.onInputValidationChange();
+  }
+
+  @HookValidationLifecycle()
+  hookValidationLifecycle(results: ValidationResults) {
+    this.pickerMethods.hookValidationLifecycle(results);
+  }
+
   /** @internal */
   @Method()
   hasValidValue(): Promise<boolean> {
@@ -379,19 +377,6 @@ export class TimeInput
     this.emitChangesAndSync(value);
   }
 
-  private emitChangesAndSync(value: string): void {
-    syncState({
-      updateFormInternalValue: (val) => this.updateFormInternalValue(val),
-      valueChange: this.valueChange,
-      value: value,
-      hostElement: this.hostElement,
-      suppressValidation: this.suppressValidation,
-      required: this.required,
-      touched: this.touched,
-      isInputInvalid: this.isInputInvalid,
-    });
-  }
-
   onTimeIconClick(event: Event) {
     handleIconClick(
       event,
@@ -404,49 +389,51 @@ export class TimeInput
     );
   }
 
-  protected get pickerMethods() {
-    const context = {
-      show: this.show,
-      touched: this.touched,
-      isInputInvalid: this.isInputInvalid,
-      suppressValidation: this.suppressValidation,
-      required: !!this.required,
-      value: this.value,
-      suppressSubmitOnEnter: this.suppressSubmitOnEnter,
-      formInternals: this.formInternals,
-      inputElementRef: this.inputElementRef,
-      dropdownElementRef: this.dropdownElementRef,
-      hostElement: this.hostElement,
-      ixFocus: this.ixFocus,
-      ixBlur: this.ixBlur,
-      validityStateChange: this.validityStateChange,
-      invalidReason: this.invalidReason,
-      setTouched: (touched: boolean) => (this.touched = touched),
-      setIsInvalid: (value: boolean) => (this.isInvalid = value),
-      setIsInfo: (value: boolean) => (this.isInfo = value),
-      setIsValid: (value: boolean) => (this.isValid = value),
-      setIsWarning: (value: boolean) => (this.isWarning = value),
-      syncValidationClasses: () => this.syncValidationClasses(),
-      onInput: (value: string) => this.onInput(value),
-      openDropdown: async () => {
-        this.time = this.value;
-        return openDropdownUtil(this.dropdownElementRef);
-      },
-    };
+  updateFormInternalValue(value: string): void {
+    this.formInternals.setFormValue(value);
+    this.value = value;
+  }
 
-    return createPickerMethods({
-      component: this,
-      ...context,
-      createInputMethods,
-      createDropdownMethods,
-      createEventConfig,
-      createKeyDownHandler,
-      handleValidationLifecycle,
-    });
+  protected get pickerMethods() {
+    return createPickerMethods(
+      createPickerMethodsContext({
+        component: this,
+        openDropdown: async () => {
+          this.time = this.value;
+          return openDropdownUtil(this.dropdownElementRef);
+        },
+        createInputMethods,
+        createDropdownMethods,
+        createEventConfig,
+        createKeyDownHandler,
+        handleValidationLifecycle,
+      })
+    );
+  }
+
+  private updatePaddings(): void {
+    adjustPaddingForStartAndEnd(
+      this.slotStartRef.current,
+      this.slotEndRef.current,
+      this.inputElementRef.current
+    );
   }
 
   private getEventConfig() {
     return this.pickerMethods.getEventConfig();
+  }
+
+  private emitChangesAndSync(value: string): void {
+    syncState({
+      updateFormInternalValue: (val) => this.updateFormInternalValue(val),
+      valueChange: this.valueChange,
+      value: value,
+      hostElement: this.hostElement,
+      suppressValidation: this.suppressValidation,
+      required: this.required,
+      touched: this.touched,
+      isInputInvalid: this.isInputInvalid,
+    });
   }
 
   private renderInput() {
@@ -472,16 +459,6 @@ export class TimeInput
       ),
     });
     return renderPickerInputFn(config);
-  }
-
-  @HookValidationLifecycle()
-  hookValidationLifecycle(results: ValidationResults) {
-    this.pickerMethods.hookValidationLifecycle(results);
-  }
-
-  @Watch('isInputInvalid')
-  async onInputValidationChange() {
-    return this.pickerMethods.onInputValidationChange();
   }
 
   render() {

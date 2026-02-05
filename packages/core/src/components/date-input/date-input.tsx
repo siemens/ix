@@ -53,6 +53,7 @@ import {
   handleIconClick,
   openDropdown as openDropdownUtil,
   createPickerMethods,
+  createPickerMethodsContext,
   createInputRenderer,
   createRenderConfig,
   createInputConfig,
@@ -269,23 +270,6 @@ export class DateInput
   private classObserver?: ClassMutationObserver;
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  updateFormInternalValue(value: string | undefined): void {
-    if (value) {
-      this.formInternals.setFormValue(value);
-    } else {
-      this.formInternals.setFormValue(null);
-    }
-    this.value = value;
-  }
-
-  private updatePaddings(): void {
-    adjustPaddingForStartAndEnd(
-      this.slotStartRef.current,
-      this.slotEndRef.current,
-      this.inputElementRef.current
-    );
-  }
-
   connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () => {
       this.isInvalid = this.dropdownMethods.checkClassList();
@@ -317,6 +301,42 @@ export class DateInput
   @Watch('value')
   watchValue() {
     this.from = this.value;
+  }
+
+  @Watch('isInputInvalid')
+  async onInputValidationChange() {
+    const state = await this.getValidityState();
+    this.validityStateChange.emit({
+      patternMismatch: state.patternMismatch,
+      invalidReason: this.invalidReason,
+    });
+
+    if (this.suppressValidation) {
+      return;
+    }
+
+    const shouldShowInputInvalid = this.isInputInvalid && this.touched;
+
+    if (shouldShowInputInvalid) {
+      this.isInvalid = true;
+    }
+  }
+
+  @HookValidationLifecycle()
+  hookValidationLifecycle(results: ValidationResults) {
+    const shouldShowInputInvalid = this.isInputInvalid && this.touched;
+
+    handleValidationLifecycle(
+      this.suppressValidation,
+      shouldShowInputInvalid,
+      results,
+      {
+        setIsInvalid: (value) => (this.isInvalid = value),
+        setIsInfo: (value) => (this.isInfo = value),
+        setIsValid: (value) => (this.isValid = value),
+        setIsWarning: (value) => (this.isWarning = value),
+      }
+    );
   }
 
   /** @internal */
@@ -374,6 +394,50 @@ export class DateInput
     }
   }
 
+  onCalenderClick(event: Event) {
+    handleIconClick(
+      event,
+      this.show,
+      () => this.dropdownMethods.openDropdown(),
+      this.inputElementRef
+    );
+  }
+
+  updateFormInternalValue(value: string | undefined): void {
+    if (value) {
+      this.formInternals.setFormValue(value);
+    } else {
+      this.formInternals.setFormValue(null);
+    }
+    this.value = value;
+  }
+
+  protected get pickerMethods() {
+    return createPickerMethods(
+      createPickerMethodsContext({
+        component: this,
+        openDropdown: () => openDropdownUtil(this.dropdownElementRef),
+        createInputMethods,
+        createDropdownMethods,
+        createEventConfig,
+        createKeyDownHandler,
+        handleValidationLifecycle,
+      })
+    );
+  }
+
+  private updatePaddings(): void {
+    adjustPaddingForStartAndEnd(
+      this.slotStartRef.current,
+      this.slotEndRef.current,
+      this.inputElementRef.current
+    );
+  }
+
+  private getEventConfig() {
+    return this.pickerMethods.getEventConfig();
+  }
+
   private emitChangesAndSync(value: string | undefined): void {
     syncState({
       updateFormInternalValue: (val) => this.updateFormInternalValue(val),
@@ -399,53 +463,6 @@ export class DateInput
     this.emitChangesAndSync(value);
   }
 
-  onCalenderClick(event: Event) {
-    handleIconClick(
-      event,
-      this.show,
-      () => this.dropdownMethods.openDropdown(),
-      this.inputElementRef
-    );
-  }
-
-  protected get pickerMethods() {
-    return createPickerMethods({
-      component: this,
-      show: this.show,
-      touched: this.touched,
-      isInputInvalid: this.isInputInvalid,
-      suppressValidation: this.suppressValidation,
-      required: !!this.required,
-      value: this.value,
-      suppressSubmitOnEnter: this.suppressSubmitOnEnter,
-      formInternals: this.formInternals,
-      inputElementRef: this.inputElementRef,
-      dropdownElementRef: this.dropdownElementRef,
-      hostElement: this.hostElement,
-      openDropdown: () => openDropdownUtil(this.dropdownElementRef),
-      ixFocus: this.ixFocus,
-      ixBlur: this.ixBlur,
-      syncValidationClasses: () => this.syncValidationClasses(),
-      onInput: (value: string) => this.onInput(value),
-      setTouched: (touched: boolean) => (this.touched = touched),
-      setIsInvalid: (value: boolean) => (this.isInvalid = value),
-      setIsInfo: (value: boolean) => (this.isInfo = value),
-      setIsValid: (value: boolean) => (this.isValid = value),
-      setIsWarning: (value: boolean) => (this.isWarning = value),
-      validityStateChange: this.validityStateChange,
-      invalidReason: this.invalidReason,
-      createInputMethods,
-      createDropdownMethods,
-      createEventConfig,
-      createKeyDownHandler,
-      handleValidationLifecycle,
-    });
-  }
-
-  private getEventConfig() {
-    return this.pickerMethods.getEventConfig();
-  }
-
   private renderInput() {
     const renderPickerInputFn = createInputRenderer(h, SlotStart, SlotEnd);
     const config = createInputConfig({
@@ -469,42 +486,6 @@ export class DateInput
       value: this.value ?? '',
     });
     return renderPickerInputFn(config);
-  }
-
-  @HookValidationLifecycle()
-  hookValidationLifecycle(results: ValidationResults) {
-    const shouldShowInputInvalid = this.isInputInvalid && this.touched;
-
-    handleValidationLifecycle(
-      this.suppressValidation,
-      shouldShowInputInvalid,
-      results,
-      {
-        setIsInvalid: (value) => (this.isInvalid = value),
-        setIsInfo: (value) => (this.isInfo = value),
-        setIsValid: (value) => (this.isValid = value),
-        setIsWarning: (value) => (this.isWarning = value),
-      }
-    );
-  }
-
-  @Watch('isInputInvalid')
-  async onInputValidationChange() {
-    const state = await this.getValidityState();
-    this.validityStateChange.emit({
-      patternMismatch: state.patternMismatch,
-      invalidReason: this.invalidReason,
-    });
-
-    if (this.suppressValidation) {
-      return;
-    }
-
-    const shouldShowInputInvalid = this.isInputInvalid && this.touched;
-
-    if (shouldShowInputInvalid) {
-      this.isInvalid = true;
-    }
   }
 
   render() {
