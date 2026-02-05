@@ -247,7 +247,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
   /**
    * Event emitted when the time input loses focus and the value has changed.
-   * @since v4.4.0
+   * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string>;
 

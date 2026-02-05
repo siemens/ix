@@ -235,7 +235,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   @Event() ixBlur!: EventEmitter<void>;
   /**
    * Event emitted when the date input loses focus and the value has changed.
-   * @since v4.4.0
+   * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string | undefined>;
   @State() show = false;
