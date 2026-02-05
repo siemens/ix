@@ -212,15 +212,14 @@ export function handleSubmitOnEnterKeydown(
   }
 
   event.preventDefault();
-  const submitButton = form.querySelector<HTMLElement>(
-    'button[type="submit"], ix-button[type="submit"]'
+
+  const submitButton = form.querySelector<HTMLButtonElement>(
+    'button[type="submit"]'
   );
 
   if (submitButton) {
     form.requestSubmit(submitButton);
-  }
-
-  if (form.length === 1) {
+  } else if (form.length === 1) {
     form.requestSubmit();
   }
 }
