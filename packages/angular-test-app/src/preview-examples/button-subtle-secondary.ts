@@ -12,8 +12,10 @@ import { Component } from '@angular/core';
 @Component({
   standalone: false,
   selector: 'app-example',
-  template: ` <ix-button variant="secondary"> Button </ix-button>
-    <ix-button variant="secondary" disabled> Button </ix-button>`,
-  styleUrls: ['./button-secondary.css'],
+  template: `
+    <ix-button variant="subtle-secondary"> Button </ix-button>
+    <ix-button disabled variant="subtle-secondary"> Button </ix-button>
+  `,
+  styleUrls: ['./button-subtle-secondary.css'],
 })
 export default class Buttons {}
