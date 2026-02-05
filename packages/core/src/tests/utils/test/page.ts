@@ -12,7 +12,9 @@ import {
   PageScreenshotOptions,
   test as testBase,
   TestInfo as _TestInfo,
-  expect,
+  expect as baseExpect,
+  Locator,
+  mergeExpects,
 } from '@playwright/test';
 import type { addIcons as _addIcons } from '@siemens/ix-icons';
 import AxeBuilder from '@axe-core/playwright';
@@ -189,6 +191,45 @@ export const regressionTest = testBase.extend<{
       `http://127.0.0.1:8080/src/tests/utils/ct/index.html?data-ix-theme=${dataIxTheme}&data-ix-color-schema=${dataIxColorSchema}`
     );
     await use((selector, config) => mountComponent(page, selector, config));
+  },
+});
+
+export const expect = baseExpect.extend({
+  async toHaveVisibleFocus(
+    locator: Locator,
+    activeDescendantElementLocator: Locator
+  ) {
+    let pass = true;
+    const errors: string[] = [];
+
+    try {
+      await baseExpect(locator).toHaveClass(/ix-focused/);
+    } catch (e: any) {
+      pass = false;
+      errors.push(e.message);
+    }
+
+    if (activeDescendantElementLocator) {
+      try {
+        const activeDescendantId =
+          await activeDescendantElementLocator.evaluate((el) =>
+            el.getAttribute('aria-activedescendant')
+          );
+        await baseExpect(activeDescendantElementLocator).toHaveAttribute(
+          'aria-activedescendant',
+          activeDescendantId!
+        );
+      } catch (e: any) {
+        pass = false;
+        errors.push(e.message);
+      }
+    }
+
+    return {
+      pass,
+      message: () =>
+        errors.join('\n') || 'Expected element to have visible focus',
+    };
   },
 });
 

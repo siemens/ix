@@ -499,7 +499,7 @@ export class Select
     this.createAddItemElement();
 
     this.proxyListObserver = new MutationObserver(() => {
-      this.updateProxyListbox();
+      this.updateAriaProxyListbox();
     });
     this.proxyListObserver.observe(this.hostElement, {
       attributes: true,
@@ -762,10 +762,10 @@ export class Select
   }
 
   override componentWillRender(): Promise<void> | void {
-    this.insertAriaProxyListbox();
+    this.updateAriaProxyListbox();
   }
 
-  private insertAriaProxyListbox() {
+  private updateAriaProxyListbox() {
     const ariaActiveDescendantHelper =
       this.hostElement.shadowRoot?.getElementById(
         `${this.hostId}-proxy-listbox`
@@ -776,6 +776,8 @@ export class Select
     const firstItem = this.focusableItems[0];
 
     if (ariaActiveDescendantHelper) {
+      ariaActiveDescendantHelper.innerHTML = '';
+
       ariaActiveDescendantHelper.style.top =
         firstItem.getBoundingClientRect().top + 'px';
       ariaActiveDescendantHelper.style.padding = '0px';
@@ -793,34 +795,6 @@ export class Select
         ariaActiveDescendantHelper.appendChild(li);
       });
     }
-  }
-
-  private updateProxyListbox() {
-    const ariaActiveDescendantHelper =
-      this.hostElement.shadowRoot?.getElementById(
-        `${this.hostId}-proxy-listbox`
-      );
-    if (this.focusableItems.length === 0) {
-      return;
-    }
-
-    Array.from(this.hostElement.children).forEach((item) => {
-      const id = item.id + '-proxy-listbox-item';
-      const proxyItem = ariaActiveDescendantHelper?.querySelector(
-        `#${id}`
-      ) as HTMLElement | null;
-
-      let defaultLabel = item.ariaLabel;
-
-      if (item.tagName === 'IX-SELECT-ITEM') {
-        defaultLabel = (item as HTMLIxSelectItemElement).label || '';
-      }
-
-      if (proxyItem) {
-        proxyItem.ariaLabel = defaultLabel;
-        proxyItem.ariaSelected = item.getAttribute('aria-selected') || 'false';
-      }
-    });
   }
 
   override render() {

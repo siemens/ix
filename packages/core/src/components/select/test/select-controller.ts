@@ -70,7 +70,7 @@ export function selectController(select: Locator) {
       await isDropdownVisible();
 
       const focusDropdownItem = select.locator(
-        'ix-select-item[has-visual-focus]'
+        'ix-select-item[ix-focus-visible]'
       );
       return focusDropdownItem;
     },
