@@ -82,14 +82,14 @@ export class Tabs {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronLeftIconButton?: string;
+  @Prop() ariaLabelChevronLeftIconButton?: string = 'Previous tab';
 
   /**
    * ARIA label for the chevron right icon button
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelChevronRightIconButton?: string;
+  @Prop() ariaLabelChevronRightIconButton?: string = 'Next tab';
 
   /**
    * `selected` property changed
@@ -486,7 +486,7 @@ export class Tabs {
           <button
             class="arrow"
             onClick={() => this.move(this.scrollAmount, true)}
-            aria-label={this.ariaLabelChevronLeftIconButton}
+            ariaLabel={this.ariaLabelChevronLeftIconButton}
           >
             <ix-icon name={iconChevronLeftSmall}></ix-icon>
           </button>
@@ -508,7 +508,7 @@ export class Tabs {
           <button
             class="arrow right"
             onClick={() => this.move(-this.scrollAmount, true)}
-            aria-label={this.ariaLabelChevronRightIconButton}
+            ariaLabel={this.ariaLabelChevronRightIconButton}
           >
             <ix-icon name={iconChevronRightSmall}></ix-icon>
           </button>

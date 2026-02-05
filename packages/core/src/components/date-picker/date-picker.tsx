@@ -126,13 +126,13 @@ export class DatePicker implements IxDatePickerComponent {
    * ARIA label for the previous month icon button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelPreviousMonthButton?: string;
+  @Prop() ariaLabelPreviousMonthButton?: string = 'Previous month';
 
   /**
    * ARIA label for the next month icon button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelNextMonthButton?: string;
+  @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
@@ -710,7 +710,7 @@ export class DatePicker implements IxDatePickerComponent {
               icon={iconChevronLeftSmall}
               variant="tertiary"
               class="arrows"
-              aria-label={this.ariaLabelPreviousMonthButton}
+              ariaLabelButton={this.ariaLabelPreviousMonthButton}
             ></ix-icon-button>
             <div class="selector">
               <ix-button
@@ -786,7 +786,7 @@ export class DatePicker implements IxDatePickerComponent {
               icon={iconChevronRightSmall}
               variant="tertiary"
               class="arrows"
-              aria-label={this.ariaLabelNextMonthButton}
+              ariaLabelButton={this.ariaLabelNextMonthButton}
             ></ix-icon-button>
           </div>
           <div

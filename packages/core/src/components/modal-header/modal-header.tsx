@@ -49,7 +49,7 @@ export class ModalHeader {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelCloseIconButton?: string;
+  @Prop() ariaLabelCloseIconButton?: string = 'Close modal';
 
   @Watch('icon')
   onIconChange(icon?: string) {
@@ -100,7 +100,7 @@ export class ModalHeader {
             name={this.icon}
             color={this.iconColor}
             size="32"
-            aria-label={this.ariaLabelIcon}
+            ariaLabel={this.ariaLabelIcon}
           ></ix-icon>
         ) : null}
         <div class="modal-title">
@@ -115,7 +115,7 @@ export class ModalHeader {
             variant="tertiary"
             icon={iconClose}
             iconColor="color-soft-text"
-            aria-label={this.ariaLabelCloseIconButton}
+            ariaLabelButton={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}
       </Host>

@@ -68,7 +68,7 @@ export class Drawer {
    *
    * @since 3.2.0
    */
-  @Prop() ariaLabelCloseButton?: string;
+  @Prop() ariaLabelCloseButton?: string = 'Close drawer';
 
   /**
    * Fire event after drawer is open
@@ -244,7 +244,7 @@ export class Drawer {
               variant="tertiary"
               onClick={() => this.onCloseClicked()}
               data-testid="close-button"
-              aria-label={this.ariaLabelCloseButton}
+              ariaLabelButton={this.ariaLabelCloseButton}
             ></ix-icon-button>
           </div>
           <div
