@@ -26,7 +26,7 @@ import { Mixin } from '../utils/internal/component';
   },
 })
 export class IconButton extends Mixin() {
-  @Element() hostElement!: HTMLIxIconButtonElement;
+  @Element() override hostElement!: HTMLIxIconButtonElement;
 
   /**
    * Accessibility label for the icon button
@@ -84,7 +84,7 @@ export class IconButton extends Mixin() {
 
   private inheritAriaAttributes: A11yAttributes = {};
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
 
     if (this.type === 'submit') {
@@ -112,7 +112,7 @@ export class IconButton extends Mixin() {
     };
   }
 
-  render() {
+  override render() {
     const ariaLabel =
       this.inheritAriaAttributes['aria-label'] ??
       this.a11yLabel ??

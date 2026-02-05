@@ -17,7 +17,10 @@ import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
 import { DefaultMixins } from '../utils/internal/component';
-import { AriaActiveDescendantMixin } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import {
+  AriaActiveDescendantMixinContract,
+  AriaActiveDescendantMixin,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 
 @Component({
@@ -25,12 +28,11 @@ import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
   styleUrl: 'dropdown-button.scss',
   shadow: true,
 })
-export class DropdownButton extends Mixin(
-  ...DefaultMixins,
-  ComponentIdMixin,
-  AriaActiveDescendantMixin
-) {
-  @Element() hostElement!: HTMLIxDropdownButtonElement;
+export class DropdownButton
+  extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
+  implements AriaActiveDescendantMixinContract
+{
+  @Element() override hostElement!: HTMLIxDropdownButtonElement;
 
   /**
    * Button variant
@@ -107,21 +109,28 @@ export class DropdownButton extends Mixin(
     this.dropdownShow = event.detail;
   };
 
-  componentDidLoad(): void {
+  override componentDidLoad(): void {
     this.inheritAriaAttributes = a11yHostAttributes(this.hostElement, [
       'aria-activedescendant',
     ]);
   }
 
-  getControllingAriaElement(): Promise<HTMLElement> | HTMLElement | null {
+  override getControllingAriaElement():
+    | Promise<HTMLElement>
+    | HTMLElement
+    | null {
     return this.hostElement;
   }
 
-  isAriaActiveDescendantActive(): boolean {
+  override isAriaActiveDescendantActive(): boolean {
     return this.dropdownShow;
   }
 
-  render() {
+  override getAriaActiveDescendantProxyItemId(): string | boolean {
+    return false;
+  }
+
+  override render() {
     const ariaAttributes = {
       ...this.inheritAriaAttributes,
       'aria-haspopup': 'true',

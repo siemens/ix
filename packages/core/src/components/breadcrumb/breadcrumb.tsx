@@ -38,7 +38,7 @@ const createId = (prefix: string = 'breadcrumb-') => {
   },
 })
 export class Breadcrumb extends Mixin() {
-  @Element() hostElement!: HTMLIxBreadcrumbElement;
+  @Element() override hostElement!: HTMLIxBreadcrumbElement;
 
   /**
    * Excess items will get hidden inside of dropdown
@@ -105,7 +105,7 @@ export class Breadcrumb extends Mixin() {
     this.itemClick.emit(item);
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.mutationObserver = createMutationObserver(() =>
       this.onChildMutation()
     );
@@ -116,11 +116,11 @@ export class Breadcrumb extends Mixin() {
     });
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.onChildMutation();
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     this.mutationObserver?.disconnect();
   }
 
@@ -170,7 +170,7 @@ export class Breadcrumb extends Mixin() {
     this.onChildMutation();
   }
 
-  render() {
+  override render() {
     const a11y = a11yHostAttributes(this.hostElement);
     return (
       <Host

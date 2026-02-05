@@ -43,7 +43,7 @@ export class SelectItem
   extends Mixin(...DefaultMixins, FocusVisibleMixin, ComponentIdMixin)
   implements DropdownItemWrapper
 {
-  @Element() hostElement!: HTMLIxSelectItemElement;
+  @Element() override hostElement!: HTMLIxSelectItemElement;
 
   /**
    * Displayed name of the item
@@ -77,7 +77,7 @@ export class SelectItem
 
   private inheritAriaAttributes: A11yAttributes = {};
 
-  componentDidLoad(): void {
+  override componentDidLoad(): void {
     this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
   }
 
@@ -99,7 +99,7 @@ export class SelectItem
     this.itemClick.emit(this.value);
   }
 
-  componentDidRender() {
+  override componentDidRender() {
     if (this.value === undefined || this.value === null) {
       console.warn('ix-select-item must have a `value` property');
     }
@@ -130,7 +130,7 @@ export class SelectItem
     }
   }
 
-  render() {
+  override render() {
     const ariaAttributes = {
       ...this.inheritAriaAttributes,
       'aria-label': this.inheritAriaAttributes['aria-label'] ?? this.label,

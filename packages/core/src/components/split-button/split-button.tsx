@@ -29,7 +29,7 @@ import type { SplitButtonVariant } from './split-button.types';
   shadow: true,
 })
 export class SplitButton extends Mixin() {
-  @Element() hostElement!: HTMLIxSplitButtonElement;
+  @Element() override hostElement!: HTMLIxSplitButtonElement;
 
   /**
    * Color variant of button
@@ -119,7 +119,7 @@ export class SplitButton extends Mixin() {
     return this.disabled || this.disableDropdownButton;
   }
 
-  render() {
+  override render() {
     const hasOutline = this.variant.toLocaleLowerCase().includes('secondary');
     const baseAttributes = {
       variant: this.variant,

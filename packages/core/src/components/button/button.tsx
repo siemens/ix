@@ -107,7 +107,7 @@ export class Button extends Mixin() implements IxButtonComponent {
    */
   @Prop() rel?: string;
 
-  @Element() hostElement!: HTMLIxButtonElement;
+  @Element() override hostElement!: HTMLIxButtonElement;
 
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
@@ -122,7 +122,7 @@ export class Button extends Mixin() implements IxButtonComponent {
     }
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     if (this.type !== 'submit') {
       return;
     }
@@ -149,7 +149,7 @@ export class Button extends Mixin() implements IxButtonComponent {
     }
   }
 
-  componentDidRender() {
+  override componentDidRender() {
     if (
       this.submitButtonElement &&
       !this.hostElement.contains(this.submitButtonElement)
@@ -177,7 +177,7 @@ export class Button extends Mixin() implements IxButtonComponent {
       ?.focus();
   }
 
-  render() {
+  override render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
       iconOnly: false,

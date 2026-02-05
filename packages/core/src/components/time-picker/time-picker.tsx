@@ -75,7 +75,7 @@ const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
   },
 })
 export class TimePicker extends Mixin() {
-  @Element() hostElement!: HTMLIxTimePickerElement;
+  @Element() override hostElement!: HTMLIxTimePickerElement;
 
   /**
    * Format of time string
@@ -294,7 +294,7 @@ export class TimePicker extends Mixin() {
   private visibilityObserver?: MutationObserver;
   private focusScrollAlignment: 'start' | 'end' = 'start';
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.initPicker();
   }
 
@@ -326,12 +326,12 @@ export class TimePicker extends Mixin() {
     this.watchMillisecondIntervalPropHandler(this.millisecondInterval);
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.updateScrollPositions();
     this.setupVisibilityObserver();
   }
 
-  componentDidRender() {
+  override componentDidRender() {
     if (this.isUnitFocused) {
       const elementContainer = this.getElementContainer(
         this.focusedUnit,
@@ -353,7 +353,7 @@ export class TimePicker extends Mixin() {
     }
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     if (this.visibilityObserver) {
       this.visibilityObserver.disconnect();
     }
@@ -896,7 +896,7 @@ export class TimePicker extends Mixin() {
     return ':';
   }
 
-  render() {
+  override render() {
     return (
       <Host>
         <ix-date-time-card

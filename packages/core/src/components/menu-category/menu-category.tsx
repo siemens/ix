@@ -40,7 +40,7 @@ const DefaultAnimationTimeout = 150;
   },
 })
 export class MenuCategory extends Mixin() implements IxMenuItemBase {
-  @Element() hostElement!: HTMLIxMenuCategoryElement;
+  @Element() override hostElement!: HTMLIxMenuCategoryElement;
 
   /**
    * Display name of the category
@@ -215,7 +215,7 @@ export class MenuCategory extends Mixin() implements IxMenuItemBase {
     return this.menuExpand && (this.showItems || this.isNestedItemActive());
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     const closestMenu = closestIxMenu(this.hostElement);
     if (!closestMenu) {
       throw Error('ix-menu-category can only be used as a child of ix-menu');
@@ -226,7 +226,7 @@ export class MenuCategory extends Mixin() implements IxMenuItemBase {
     this.showItems = this.isCategoryItemListVisible();
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.observer = createMutationObserver((mutations: MutationRecord[]) =>
       this.onNestedItemsChanged(mutations)
     );
@@ -268,13 +268,13 @@ export class MenuCategory extends Mixin() implements IxMenuItemBase {
     });
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     if (this.observer) {
       this.observer.disconnect();
     }
   }
 
-  render() {
+  override render() {
     return (
       <Host
         class={{

@@ -39,7 +39,7 @@ export class DropdownItem
   extends Mixin(...DefaultMixins, ComponentIdMixin)
   implements DropdownItemWrapper
 {
-  @Element() hostElement!: HTMLIxDropdownItemElement;
+  @Element() override hostElement!: HTMLIxDropdownItemElement;
 
   /**
    * Label of dropdown item
@@ -111,7 +111,7 @@ export class DropdownItem
     );
   }
 
-  render() {
+  override render() {
     const id = this.getHostElementId();
     return (
       <Host

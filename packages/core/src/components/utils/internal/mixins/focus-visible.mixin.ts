@@ -31,7 +31,7 @@ export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
      */
     @Prop() disableAriaSelectHandling: boolean = false;
 
-    componentDidLoad(): void {
+    override componentDidLoad(): void {
       if (super.componentDidLoad) {
         super.componentDidLoad();
       }

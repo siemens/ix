@@ -25,7 +25,7 @@ import { Mixin } from '../utils/internal/component';
   shadow: true,
 })
 export class MenuAboutNews extends Mixin() {
-  @Element() hostElement!: HTMLIxMenuAboutNewsElement;
+  @Element() override hostElement!: HTMLIxMenuAboutNewsElement;
   /**
    * Show about news
    */
@@ -59,7 +59,7 @@ export class MenuAboutNews extends Mixin() {
   /** @internal */
   @Prop() expanded = false;
 
-  render() {
+  override render() {
     return (
       <Host
         class={{

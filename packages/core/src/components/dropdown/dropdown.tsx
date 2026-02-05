@@ -64,7 +64,7 @@ let sequenceId = 0;
   shadow: true,
 })
 export class Dropdown extends Mixin() implements DropdownInterface {
-  @Element() hostElement!: HTMLIxDropdownElement;
+  @Element() override hostElement!: HTMLIxDropdownElement;
 
   /**
    * Suppress the automatic placement of the dropdown.
@@ -224,7 +224,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
 
   private dropdownRole: 'listbox' | 'menu' | null = null;
 
-  connectedCallback(): void {
+  override connectedCallback(): void {
     dropdownController.connected(this);
 
     if (this.trigger != undefined) {
@@ -244,7 +244,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     }
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
 
@@ -691,7 +691,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     this.identifyAccessibilityRole();
   }
 
-  async componentDidLoad() {
+  override async componentDidLoad() {
     if (!this.trigger) {
       return;
     }
@@ -699,7 +699,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     this.changedTrigger(this.trigger, undefined);
   }
 
-  async componentDidRender() {
+  override async componentDidRender() {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
   }
@@ -801,7 +801,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     }
   }
 
-  render() {
+  override render() {
     return (
       <Host
         aria-modal="true"

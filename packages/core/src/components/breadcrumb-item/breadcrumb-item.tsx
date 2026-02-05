@@ -32,7 +32,7 @@ import { Mixin } from '../utils/internal/component';
   shadow: true,
 })
 export class BreadcrumbItem extends Mixin() implements AnchorInterface {
-  @Element() hostElement!: HTMLIxBreadcrumbItemElement;
+  @Element() override hostElement!: HTMLIxBreadcrumbItemElement;
 
   /**
    * ARIA label for the button
@@ -90,11 +90,11 @@ export class BreadcrumbItem extends Mixin() implements AnchorInterface {
 
   @State() a11y: any;
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.animationFadeIn();
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.a11y = a11yHostAttributes(this.hostElement, []);
   }
 
@@ -107,7 +107,7 @@ export class BreadcrumbItem extends Mixin() implements AnchorInterface {
     });
   }
 
-  render() {
+  override render() {
     const props: BaseButtonProps = {
       variant: this.subtle ? 'subtle-primary' : 'tertiary',
       iconOnly: false,

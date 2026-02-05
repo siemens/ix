@@ -11,12 +11,21 @@ import { Build, Listen, MixedInCtor } from '@stencil/core';
 import { StencilLifecycle } from '../../component';
 import { IxFocusVisibleChangeEvent } from '../setup.mixin';
 
+export interface AriaActiveDescendantMixinContract {
+  isAriaActiveDescendantActive(): boolean;
+  getControllingAriaElement(): Promise<HTMLElement> | HTMLElement | null;
+  getAriaActiveDescendantProxyItemId?(): string | boolean;
+}
+
 export const AriaActiveDescendantMixin = <
   B extends MixedInCtor<StencilLifecycle>,
 >(
   Base: B
 ) => {
-  class AriaActiveDescendantMixinCtor extends Base {
+  class AriaActiveDescendantMixinCtor
+    extends Base
+    implements AriaActiveDescendantMixinContract
+  {
     isAriaActiveDescendantActive() {
       return false;
     }
@@ -70,11 +79,11 @@ export const AriaActiveDescendantMixin = <
           controllingElement.ariaActiveDescendantElement = item;
         }
 
-        const helperId = this.getAriaActiveDescendantProxyItemId();
-        if (helperId) {
+        const proxyId = this.getAriaActiveDescendantProxyItemId();
+        if (proxyId) {
           controllingElement.setAttribute(
             'aria-activedescendant',
-            item.id + '-' + helperId
+            item.id + '-' + proxyId
           );
         } else {
           controllingElement.setAttribute('aria-activedescendant', item.id);

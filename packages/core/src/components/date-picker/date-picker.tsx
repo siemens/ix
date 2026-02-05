@@ -46,7 +46,7 @@ interface CalendarWeek {
   },
 })
 export class DatePicker extends Mixin() implements IxDatePickerComponent {
-  @Element() hostElement!: HTMLIxDatePickerElement;
+  @Element() override hostElement!: HTMLIxDatePickerElement;
 
   /**
    * Date format string.
@@ -330,7 +330,7 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     this.isDayFocus = true;
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.setTranslations();
 
     this.currFromDate = this.from
@@ -354,7 +354,7 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
   private keyboardNavigationYearSelection?: () => void;
   private keyboardNavigationMonthSelection?: () => void;
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     this.keyboardNavigationYearSelection?.();
     this.keyboardNavigationMonthSelection?.();
   }
@@ -363,11 +363,11 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     super.componentDidLoad?.();
   }
 
-  componentWillRender() {
+  override componentWillRender() {
     this.calculateCalendar();
   }
 
-  componentDidRender() {
+  override componentDidRender() {
     if (!this.monthChangedFromFocus && !this.isDayFocus) {
       return;
     }
@@ -789,7 +789,7 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     });
   }
 
-  render() {
+  override render() {
     return (
       <Host
         onFocusin={() => {

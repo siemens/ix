@@ -121,7 +121,7 @@ function UserInfo(
   shadow: true,
 })
 export class Avatar extends Mixin() {
-  @Element() hostElement!: HTMLIxAvatarElement;
+  @Element() override hostElement!: HTMLIxAvatarElement;
 
   /**
    * Accessibility label for the image
@@ -177,7 +177,7 @@ export class Avatar extends Mixin() {
 
   private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
-  componentWillLoad() {
+  override componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
     this.isClosestApplicationHeader = closest !== null;
   }
@@ -205,7 +205,7 @@ export class Avatar extends Mixin() {
     }
   }
 
-  render() {
+  override render() {
     const a11y = a11yHostAttributes(this.hostElement);
     const a11yLabel = a11y['aria-label'];
 

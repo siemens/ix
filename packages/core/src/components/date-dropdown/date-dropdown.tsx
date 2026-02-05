@@ -46,7 +46,7 @@ export class DateDropdown
     Omit<IxDatePickerComponent, 'corners'>,
     Omit<IxButtonComponent, 'type' | 'icon'>
 {
-  @Element() hostElement!: HTMLIxDateDropdownElement;
+  @Element() override hostElement!: HTMLIxDateDropdownElement;
 
   /**
    * Disable the button that opens the dropdown containing the date picker.
@@ -232,11 +232,11 @@ export class DateDropdown
   private datePickerTouched = false;
   private readonly datePickerRef = makeRef<HTMLIxDatePickerElement>();
 
-  connectedCallback() {}
+  override connectedCallback() {}
 
-  disconnectedCallback() {}
+  override disconnectedCallback() {}
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.initialize();
     this.setDateRangeSelection(this.dateRangeId);
   }
@@ -353,7 +353,7 @@ export class DateDropdown
     return option.label;
   }
 
-  render() {
+  override render() {
     return (
       <Host
         onFocusout={(event: FocusEvent) => {

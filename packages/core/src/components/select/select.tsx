@@ -42,7 +42,10 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { DefaultMixins } from '../utils/internal/component';
-import { AriaActiveDescendantMixin } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import {
+  AriaActiveDescendantMixinContract,
+  AriaActiveDescendantMixin,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 
 let selectId = 0;
@@ -60,9 +63,11 @@ let selectId = 0;
 })
 export class Select
   extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
-  implements IxInputFieldComponent<string | string[]>
+  implements
+    IxInputFieldComponent<string | string[]>,
+    AriaActiveDescendantMixinContract
 {
-  @Element() hostElement!: HTMLIxSelectElement;
+  @Element() override hostElement!: HTMLIxSelectElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -483,7 +488,7 @@ export class Select
     }
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.inputElement?.addEventListener('input', () => {
       this.dropdownShow = true;
       this.inputChange.emit(this.inputElement?.value);
@@ -492,7 +497,7 @@ export class Select
     this.createAddItemElement();
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
     this.updateSelection();
     this.updateFormInternalValue(this.value);
   }
@@ -723,11 +728,14 @@ export class Select
     return Promise.resolve(this.touched);
   }
 
-  getControllingAriaElement(): Promise<HTMLElement> | HTMLElement | null {
+  override getControllingAriaElement():
+    | Promise<HTMLElement>
+    | HTMLElement
+    | null {
     return this.inputRef.waitForCurrent();
   }
 
-  isAriaActiveDescendantActive(): boolean {
+  override isAriaActiveDescendantActive(): boolean {
     return this.dropdownShow;
   }
 
@@ -735,7 +743,7 @@ export class Select
     return 'proxy-listbox-item';
   }
 
-  componentWillRender(): Promise<void> | void {
+  override componentWillRender(): Promise<void> | void {
     this.insertAriaProxyListbox();
   }
 
@@ -768,7 +776,7 @@ export class Select
     }
   }
 
-  render() {
+  override render() {
     if (this.addItemElement) {
       this.addItemElement.hidden = !this.isAddItemVisible();
       this.addItemElement.label = this.inputFilterText;
