@@ -7,15 +7,225 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { EventEmitter, FunctionalComponent, JSX } from '@stencil/core';
 import { dropdownController } from '../../dropdown/dropdown-controller';
 import type { MakeRef } from '../make-ref';
+import type { ValidationResults } from './validation';
+import type {
+  EventConfig,
+  InputMethodsContext,
+  DropdownMethodsContext,
+} from './picker-input-common';
+
+type StencilHFn = <P>(
+  tag: string | FunctionalComponent<P>,
+  props: P | null,
+  children?: JSX.Element[]
+) => JSX.Element;
+
+type InputRenderer = (config: RenderInputConfig) => JSX.Element;
 
 type DropdownRef =
   | MakeRef<HTMLIxDropdownElement>
   | { current: HTMLIxDropdownElement | null };
+
 type InputRef =
   | MakeRef<HTMLInputElement>
   | { current: HTMLInputElement | null };
+
+type SlotStartProps = {
+  slotStartRef: MakeRef<HTMLDivElement>;
+  onSlotChange?: (event: Event) => void;
+};
+
+type SlotEndProps = {
+  slotEndRef: MakeRef<HTMLDivElement>;
+  onSlotChange?: (event: Event) => void;
+};
+
+export interface PickerValidityState {
+  patternMismatch: boolean;
+  invalidReason?: string;
+}
+
+export interface CommonInputMethods {
+  focusInput: () => Promise<void>;
+  isTouched: () => Promise<boolean>;
+  syncValidationClasses: () => void;
+}
+
+export interface DropdownMethods {
+  openDropdown: () => Promise<void>;
+  closeDropdown: () => Promise<void>;
+  getEventConfig: () => EventConfig;
+  checkClassList: () => boolean;
+}
+
+export interface PickerInputMethods {
+  getEventConfig: () => EventConfig;
+  getCommonMethods: () => CommonInputMethods;
+  getDropdownMethods: () => DropdownMethods;
+  handleInputKeyDown: (event: KeyboardEvent) => void;
+  getValidityState: () => Promise<ValidityState>;
+  hookValidationLifecycle: (results: ValidationResults) => void;
+  onInputValidationChange: () => Promise<void>;
+}
+
+export interface ValidationSetters {
+  setIsInvalid: (value: boolean) => void;
+  setIsInfo: (value: boolean) => void;
+  setIsValid: (value: boolean) => void;
+  setIsWarning: (value: boolean) => void;
+}
+
+export interface PickerEventConfigOptions {
+  show: boolean;
+  setTouched: (touched: boolean) => void;
+  onInput: (value: string) => void | Promise<void>;
+  openDropdown: () => Promise<void>;
+  ixFocus: EventEmitter<void>;
+  ixBlur: EventEmitter<void>;
+  syncValidationClasses: () => void;
+  handleInputKeyDown: (event: KeyboardEvent) => void;
+  alwaysSetTouchedOnBlur?: boolean;
+}
+
+export interface PickerMethodsConfig<Component> {
+  component: Component;
+  show: boolean;
+  touched: boolean;
+  isInputInvalid: boolean;
+  suppressValidation: boolean;
+  required: boolean;
+  value: string | undefined;
+  suppressSubmitOnEnter: boolean;
+  formInternals: ElementInternals;
+  inputElementRef: MakeRef<HTMLInputElement>;
+  dropdownElementRef: MakeRef<HTMLIxDropdownElement>;
+  hostElement: HTMLElement;
+  openDropdown: () => Promise<void>;
+  ixFocus: EventEmitter<void>;
+  ixBlur: EventEmitter<void>;
+  syncValidationClasses: () => void;
+  onInput: (value: string) => Promise<void>;
+  setTouched: (touched: boolean) => void;
+  setIsInvalid: (value: boolean) => void;
+  setIsInfo: (value: boolean) => void;
+  setIsValid: (value: boolean) => void;
+  setIsWarning: (value: boolean) => void;
+  validityStateChange: EventEmitter<PickerValidityState>;
+  invalidReason: string | undefined;
+  createInputMethods: (params: InputMethodsContext) => CommonInputMethods;
+  createDropdownMethods: (params: DropdownMethodsContext) => DropdownMethods;
+  createEventConfig: (params: PickerEventConfigOptions) => EventConfig;
+  createKeyDownHandler: (
+    suppressSubmitOnEnter: boolean,
+    formInternals: ElementInternals
+  ) => (event: KeyboardEvent) => void;
+  handleValidationLifecycle: (
+    suppressValidation: boolean,
+    shouldShowInvalid: boolean,
+    results: ValidationResults,
+    setters: ValidationSetters
+  ) => void;
+}
+
+export interface RenderInputConfig {
+  eventConfig: EventConfig;
+  slotStartRef: MakeRef<HTMLDivElement>;
+  slotEndRef: MakeRef<HTMLDivElement>;
+  updatePaddings: () => void;
+  isInputInvalid: boolean;
+  textAlignment?: 'start' | 'end';
+  disabled?: boolean;
+  readonly?: boolean;
+  required?: boolean;
+  inputElementRef: MakeRef<HTMLInputElement>;
+  value: string;
+  placeholder?: string;
+  name?: string;
+  onInput: (config: EventConfig) => (event: Event) => void;
+  onClick: (config: EventConfig) => (event: MouseEvent) => void;
+  onFocus: (config: EventConfig) => (event: FocusEvent) => Promise<void>;
+  onBlur: (config: EventConfig) => (event?: FocusEvent) => void;
+  onKeyDown: (config: EventConfig) => (event: KeyboardEvent) => void;
+  iconButton: JSX.Element;
+}
+
+export interface PickerRenderConfig {
+  host: HTMLElement;
+  disabled?: boolean;
+  readonly?: boolean;
+  label?: string;
+  helper?: string;
+  invalid: boolean;
+  invalidText: string | undefined;
+  info?: string;
+  isInfo: boolean;
+  warning: boolean;
+  warningText?: string;
+  valid: boolean;
+  validText?: string;
+  tooltip?: boolean;
+  required?: boolean;
+  inputRef: MakeRef<HTMLInputElement>;
+  input: JSX.Element;
+  dropdown: JSX.Element;
+  testId: string;
+  trigger: () => Promise<HTMLElement>;
+  dropdownRef: MakeRef<HTMLIxDropdownElement>;
+  enableTopLayer?: boolean;
+  show: boolean;
+  onShow: (event: CustomEvent<boolean>) => void;
+}
+
+export interface PickerComponent {
+  hostElement: HTMLElement;
+  disabled?: boolean;
+  readonly?: boolean;
+  label?: string;
+  helperText?: string;
+  isInvalid: boolean;
+  infoText?: string;
+  isInfo: boolean;
+  isWarning: boolean;
+  warningText?: string;
+  isValid: boolean;
+  validText?: string;
+  showTextAsTooltip?: boolean;
+  required?: boolean;
+  inputElementRef: MakeRef<HTMLInputElement>;
+  dropdownElementRef: MakeRef<HTMLIxDropdownElement>;
+  enableTopLayer?: boolean;
+  show: boolean;
+}
+
+export interface InputConfigComponent {
+  slotStartRef: MakeRef<HTMLDivElement>;
+  slotEndRef: MakeRef<HTMLDivElement>;
+  updatePaddings: () => void;
+  isInputInvalid: boolean;
+  textAlignment?: 'start' | 'end';
+  disabled?: boolean;
+  readonly?: boolean;
+  required?: boolean;
+  inputElementRef: MakeRef<HTMLInputElement>;
+  value?: string;
+  placeholder?: string;
+  name?: string;
+}
+
+export interface PickerInputConfigParams<Component> {
+  component: Component;
+  getEventConfig: () => EventConfig;
+  onInput: (config: EventConfig) => (event: Event) => void;
+  onClick: (config: EventConfig) => (event: MouseEvent) => void;
+  onFocus: (config: EventConfig) => (event?: FocusEvent) => Promise<void>;
+  onBlur: (config: EventConfig) => () => void;
+  onKeyDown: (config: EventConfig) => (event: KeyboardEvent) => void;
+  iconButton: JSX.Element;
+  value?: string;
+}
 
 async function getDropdownElement(ref: DropdownRef) {
   return 'waitForCurrent' in ref ? await ref.waitForCurrent() : ref.current;
@@ -95,43 +305,13 @@ export function createValidityState(
   };
 }
 
-export interface PickerInputMethods {
-  getEventConfig: () => any;
-  getCommonMethods: () => any;
-  getDropdownMethods: () => any;
-  handleInputKeyDown: (event: KeyboardEvent) => void;
-  getValidityState: () => Promise<ValidityState>;
-  hookValidationLifecycle: (results: any) => void;
-  onInputValidationChange: () => Promise<void>;
-}
-
-export interface RenderInputConfig {
-  eventConfig: any;
-  slotStartRef: any;
-  slotEndRef: any;
-  updatePaddings: () => void;
-  isInputInvalid: boolean;
-  textAlignment?: 'start' | 'end';
-  disabled?: boolean;
-  readonly?: boolean;
-  required?: boolean;
-  inputElementRef: any;
-  value: string;
-  placeholder?: string;
-  name?: string;
-  onInput: (config: any) => (event: Event) => void;
-  onClick: (config: any) => (event: MouseEvent) => void;
-  onFocus: (config: any) => (event: FocusEvent) => void;
-  onBlur: (config: any) => (event: FocusEvent) => void;
-  onKeyDown: (config: any) => (event: KeyboardEvent) => void;
-  iconButton: any;
-}
-
-export function createInputRenderer(h: any, SlotStart: any, SlotEnd: any) {
+export function createInputRenderer(
+  h: StencilHFn,
+  SlotStart: FunctionalComponent<SlotStartProps>,
+  SlotEnd: FunctionalComponent<SlotEndProps>
+): InputRenderer {
   return (config: RenderInputConfig) =>
-    h(
-      'div',
-      { class: 'input-wrapper' },
+    h('div', { class: 'input-wrapper' }, [
       h(SlotStart, {
         slotStartRef: config.slotStartRef,
         onSlotChange: config.updatePaddings,
@@ -160,50 +340,14 @@ export function createInputRenderer(h: any, SlotStart: any, SlotEnd: any) {
           slotEndRef: config.slotEndRef,
           onSlotChange: config.updatePaddings,
         },
-        config.iconButton
-      )
-    );
+        [config.iconButton]
+      ),
+    ]);
 }
 
-export function createPickerMethods<T>(config: {
-  component: T;
-  show: boolean;
-  touched: boolean;
-  isInputInvalid: boolean;
-  suppressValidation: boolean;
-  required: boolean;
-  value: string | undefined;
-  suppressSubmitOnEnter: boolean;
-  formInternals: ElementInternals;
-  inputElementRef: any;
-  dropdownElementRef: any;
-  hostElement: HTMLElement;
-  openDropdown: () => Promise<void>;
-  ixFocus: any;
-  ixBlur: any;
-  syncValidationClasses: () => void;
-  onInput: (value: string) => Promise<void>;
-  setTouched: (touched: boolean) => void;
-  setIsInvalid: (value: boolean) => void;
-  setIsInfo: (value: boolean) => void;
-  setIsValid: (value: boolean) => void;
-  setIsWarning: (value: boolean) => void;
-  validityStateChange: any;
-  invalidReason: string | undefined;
-  createInputMethods: (params: any) => any;
-  createDropdownMethods: (params: any) => any;
-  createEventConfig: (params: any) => any;
-  createKeyDownHandler: (
-    suppressSubmitOnEnter: boolean,
-    formInternals: ElementInternals
-  ) => (event: KeyboardEvent) => void;
-  handleValidationLifecycle: (
-    suppressValidation: boolean,
-    shouldShowInvalid: boolean,
-    results: any,
-    setters: any
-  ) => void;
-}): PickerInputMethods {
+export function createPickerMethods<Component>(
+  config: PickerMethodsConfig<Component>
+): PickerInputMethods {
   const keyDownHandler = (event: KeyboardEvent) =>
     config.createKeyDownHandler(
       config.suppressSubmitOnEnter,
@@ -260,7 +404,7 @@ export function createPickerMethods<T>(config: {
         )
       ),
 
-    hookValidationLifecycle: (results: any) =>
+    hookValidationLifecycle: (results: ValidationResults) =>
       config.handleValidationLifecycle(
         config.suppressValidation,
         config.isInputInvalid,
@@ -287,97 +431,60 @@ export function createPickerMethods<T>(config: {
   };
 }
 
-export interface PickerRenderConfig {
-  host: HTMLElement;
-  disabled?: boolean;
-  readonly?: boolean;
-  label?: string;
-  helper?: string;
-  invalid: boolean;
-  invalidText: string | undefined;
-  info?: string;
-  isInfo: boolean;
-  warning: boolean;
-  warningText?: string;
-  valid: boolean;
-  validText?: string;
-  tooltip?: boolean;
-  required?: boolean;
-  inputRef: any;
-  input: any;
-  dropdown: any;
-  testId: string;
-  trigger: () => Promise<HTMLElement>;
-  dropdownRef: any;
-  enableTopLayer?: boolean;
-  show: boolean;
-  onShow: (event: any) => void;
-}
-
-export function createRenderConfig(
-  component: any,
-  input: any,
-  dropdown: any,
+export function createRenderConfig<Component>(
+  component: Component,
+  input: JSX.Element,
+  dropdown: JSX.Element,
   testId: string
 ): PickerRenderConfig {
+  const picker = component as PickerComponent;
   return {
-    host: component.hostElement,
-    disabled: component.disabled,
-    readonly: component.readonly,
-    label: component.label,
-    helper: component.helperText,
-    invalid: component.isInvalid,
+    host: picker.hostElement,
+    disabled: picker.disabled,
+    readonly: picker.readonly,
+    label: picker.label,
+    helper: picker.helperText,
+    invalid: picker.isInvalid,
     invalidText: '',
-    info: component.infoText,
-    isInfo: component.isInfo,
-    warning: component.isWarning,
-    warningText: component.warningText,
-    valid: component.isValid,
-    validText: component.validText,
-    tooltip: component.showTextAsTooltip,
-    required: component.required,
-    inputRef: component.inputElementRef,
+    info: picker.infoText,
+    isInfo: picker.isInfo,
+    warning: picker.isWarning,
+    warningText: picker.warningText,
+    valid: picker.isValid,
+    validText: picker.validText,
+    tooltip: picker.showTextAsTooltip,
+    required: picker.required,
+    inputRef: picker.inputElementRef,
     input,
     dropdown,
     testId,
-    trigger: () => component.inputElementRef.waitForCurrent(),
-    dropdownRef: component.dropdownElementRef,
-    enableTopLayer: component.enableTopLayer,
-    show: component.show,
-    onShow: (event) => (component.show = event.detail),
+    trigger: () => picker.inputElementRef.waitForCurrent(),
+    dropdownRef: picker.dropdownElementRef,
+    enableTopLayer: picker.enableTopLayer,
+    show: picker.show,
+    onShow: (event) => (picker.show = event.detail),
   };
 }
 
-export interface PickerInputConfigParams {
-  component: any;
-  getEventConfig: () => any;
-  onInput: any;
-  onClick: any;
-  onFocus: any;
-  onBlur: any;
-  onKeyDown: any;
-  iconButton: any;
-  value?: string;
-}
-
-export function createInputConfig(
-  params: PickerInputConfigParams
+export function createInputConfig<Component>(
+  params: PickerInputConfigParams<Component>
 ): RenderInputConfig {
   const { component, getEventConfig, value, ...handlers } = params;
+  const inputComponent = component as InputConfigComponent;
   return {
     eventConfig: getEventConfig(),
-    slotStartRef: component.slotStartRef,
-    slotEndRef: component.slotEndRef,
-    updatePaddings: () => component.updatePaddings(),
-    isInputInvalid: component.isInputInvalid,
-    textAlignment: component.textAlignment,
-    disabled: component.disabled,
-    readonly: component.readonly,
-    required: component.required,
-    inputElementRef: component.inputElementRef,
-    value: value ?? component.value ?? '',
-    placeholder: component.placeholder,
-    name: component.name,
+    slotStartRef: inputComponent.slotStartRef,
+    slotEndRef: inputComponent.slotEndRef,
+    updatePaddings: () => inputComponent.updatePaddings(),
+    isInputInvalid: inputComponent.isInputInvalid,
+    textAlignment: inputComponent.textAlignment,
+    disabled: inputComponent.disabled,
+    readonly: inputComponent.readonly,
+    required: inputComponent.required,
+    inputElementRef: inputComponent.inputElementRef,
+    value: value ?? inputComponent.value ?? '',
+    placeholder: inputComponent.placeholder,
+    name: inputComponent.name,
     ...handlers,
   };
 }

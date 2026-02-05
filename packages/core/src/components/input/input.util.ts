@@ -11,6 +11,7 @@ import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   IxFormComponent,
   IxInputFieldComponent,
+  isIxInputFieldComponent,
   ValidationResults,
   shouldSuppressInternalValidation,
 } from '../utils/input';
@@ -18,6 +19,26 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 import { generateUUID } from '../utils/uuid';
 import { shakeInput } from './input.animation';
+
+interface ClearableFormComponent extends HTMLElement {
+  tagName: string;
+  isInputInvalid?: boolean;
+  isInvalidByRequired?: boolean;
+  isInvalid?: boolean;
+  isValid?: boolean;
+  isInfo?: boolean;
+  isWarning?: boolean;
+  invalidReason?: string;
+  from?: string;
+  time?: string | null;
+  invalidText?: string;
+  value?: string | number | null;
+  syncValidationClasses?: () => void | Promise<void>;
+  isClearing?: boolean;
+  touched?: boolean;
+  formSubmissionAttempt?: boolean;
+  formSubmissionAttempted?: boolean;
+}
 
 export function createIdIfNotExists(
   element: IxFormComponent,
@@ -220,14 +241,14 @@ export function handleSubmitOnEnterKeydown(
   }
 }
 
-function isGroupComponent(component: any): boolean {
+function isGroupComponent(component: ClearableFormComponent): boolean {
   return (
     component.tagName === 'IX-CHECKBOX-GROUP' ||
     component.tagName === 'IX-RADIO-GROUP'
   );
 }
 
-function resetValidationStates(component: any): void {
+function resetValidationStates(component: ClearableFormComponent): void {
   component.isInputInvalid = false;
   component.isInvalidByRequired = false;
 
@@ -241,7 +262,7 @@ function resetValidationStates(component: any): void {
   Object.assign(component, validationProps);
 }
 
-function resetOptionalFields(component: any): void {
+function resetOptionalFields(component: ClearableFormComponent): void {
   if ('invalidReason' in component) {
     component.invalidReason = undefined;
   }
@@ -259,7 +280,7 @@ function resetOptionalFields(component: any): void {
 
 function clearGroupValue(
   comp: HTMLElement,
-  component: any,
+  component: ClearableFormComponent,
   options?: { childSelector?: string }
 ): void {
   if ('value' in component) {
@@ -291,20 +312,18 @@ function clearGroupValue(
 
 async function clearSingleInputValue<T>(
   comp: IxInputFieldComponent<T>,
-  component: any,
   emptyValue: T
 ): Promise<void> {
-  component.value = emptyValue;
+  comp.value = emptyValue;
 
-  if ('updateFormInternalValue' in component) {
-    await comp.updateFormInternalValue(emptyValue);
-  }
-  if ('valueChange' in component && component.valueChange?.emit) {
-    comp.valueChange.emit(emptyValue);
-  }
+  await comp.updateFormInternalValue(emptyValue);
+  comp.valueChange.emit(emptyValue);
 }
 
-function initializeClearingState(component: any, isGroup: boolean): void {
+function initializeClearingState(
+  component: ClearableFormComponent,
+  isGroup: boolean
+): void {
   component.isClearing = true;
   component.touched = false;
 
@@ -314,7 +333,9 @@ function initializeClearingState(component: any, isGroup: boolean): void {
   }
 }
 
-async function finalizeClearingState(component: any): Promise<void> {
+async function finalizeClearingState(
+  component: ClearableFormComponent
+): Promise<void> {
   if (
     'syncValidationClasses' in component &&
     typeof component.syncValidationClasses === 'function'
@@ -332,7 +353,7 @@ export async function clearInputValue<T>(
     childSelector?: string;
   }
 ): Promise<void> {
-  const component = comp as any;
+  const component = comp as ClearableFormComponent;
   const isGroup = isGroupComponent(component);
 
   initializeClearingState(component, isGroup);
@@ -341,13 +362,9 @@ export async function clearInputValue<T>(
 
   if (isGroup) {
     clearGroupValue(comp as HTMLElement, component, options);
-  } else {
+  } else if (isIxInputFieldComponent<T>(comp)) {
     const emptyValue = options?.defaultValue ?? ('' as T);
-    await clearSingleInputValue(
-      comp as IxInputFieldComponent<T>,
-      component,
-      emptyValue
-    );
+    await clearSingleInputValue(comp, emptyValue);
   }
 
   options?.additionalCleanup?.();

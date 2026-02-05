@@ -315,31 +315,33 @@ export class NumberInput implements IxInputFieldComponent<number> {
     }
   };
 
-  private readonly handleBeforeInput = (e: InputEvent) => {
+  private readonly handleBeforeInput = (event: InputEvent) => {
     if (this.disabled || this.readonly) return;
 
-    if (e.inputType === 'insertText') {
-      const character = e.data;
+    if (event.inputType === 'insertText') {
+      const character = event.data;
 
       if (character && INVALID_NUMBER_INPUT_REGEX.test(character)) {
-        e.preventDefault();
+        event.preventDefault();
       }
     }
 
-    if (e.inputType === 'insertFromPaste') {
-      const dt = e.dataTransfer || (e as any).clipboardData;
-      const text = dt?.getData?.('text') ?? '';
+    if (event.inputType === 'insertFromPaste') {
+      const dataTransfer =
+        event.dataTransfer ||
+        (event as InputEvent & { clipboardData?: DataTransfer }).clipboardData;
+      const text = dataTransfer?.getData?.('text') ?? '';
       if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
-        e.preventDefault();
+        event.preventDefault();
       }
     }
   };
 
-  private readonly handlePaste = (e: ClipboardEvent) => {
-    // Fallback for browsers that don’t fire beforeinput for paste
-    const text = e.clipboardData?.getData('text') ?? '';
+  private readonly handlePaste = (event: ClipboardEvent) => {
+    // Fallback for browsers that don't fire beforeinput for paste
+    const text = event.clipboardData?.getData('text') ?? '';
     if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
-      e.preventDefault();
+      event.preventDefault();
     }
   };
 
