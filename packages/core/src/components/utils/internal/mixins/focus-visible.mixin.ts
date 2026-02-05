@@ -10,8 +10,9 @@ import { MixedInCtor, Prop, Watch } from '@stencil/core';
 import { StencilLifecycle } from '../component';
 import { a11yBoolean } from '../../a11y';
 
-export interface FocusVisibleMixinPublicInterface {
+export interface FocusVisibleMixinContract {
   ixFocusVisible: boolean;
+  $internal_checkAriaSelected(focusVisible: boolean): void;
 }
 
 export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
@@ -19,7 +20,7 @@ export const FocusVisibleMixin = <B extends MixedInCtor<StencilLifecycle>>(
 ) => {
   class FocusVisibleMixinCtor
     extends Base
-    implements FocusVisibleMixinPublicInterface
+    implements FocusVisibleMixinContract
   {
     /**
      * @internal

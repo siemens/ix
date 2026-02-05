@@ -46,7 +46,10 @@ import {
   AriaActiveDescendantMixinContract,
   AriaActiveDescendantMixin,
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
-import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
 
 let selectId = 0;
 
@@ -65,7 +68,8 @@ export class Select
   extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
   implements
     IxInputFieldComponent<string | string[]>,
-    AriaActiveDescendantMixinContract
+    AriaActiveDescendantMixinContract,
+    ComponentIdMixinContract
 {
   @Element() override hostElement!: HTMLIxSelectElement;
   @AttachInternals() formInternals!: ElementInternals;

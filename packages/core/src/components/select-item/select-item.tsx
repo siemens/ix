@@ -31,7 +31,10 @@ import {
   IxSelectItemValueChangeEvent,
 } from './events';
 import { DefaultMixins } from '../utils/internal/component';
-import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
@@ -43,7 +46,7 @@ import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 })
 export class SelectItem
   extends Mixin(...DefaultMixins, FocusVisibleMixin, ComponentIdMixin)
-  implements DropdownItemWrapper
+  implements DropdownItemWrapper, ComponentIdMixinContract
 {
   @Element() override hostElement!: HTMLIxSelectItemElement;
 

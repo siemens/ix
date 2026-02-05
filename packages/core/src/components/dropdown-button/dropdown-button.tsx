@@ -21,7 +21,10 @@ import {
   AriaActiveDescendantMixinContract,
   AriaActiveDescendantMixin,
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
-import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
 
 @Component({
   tag: 'ix-dropdown-button',
@@ -32,7 +35,7 @@ import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 })
 export class DropdownButton
   extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
-  implements AriaActiveDescendantMixinContract
+  implements AriaActiveDescendantMixinContract, ComponentIdMixinContract
 {
   @Element() override hostElement!: HTMLIxDropdownButtonElement;
 

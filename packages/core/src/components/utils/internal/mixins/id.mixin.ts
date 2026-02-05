@@ -19,10 +19,14 @@ import { StencilLifecycle } from '../component';
 
 let componentId = 0;
 
+export interface ComponentIdMixinContract {
+  getHostElementId(): string;
+}
+
 export const ComponentIdMixin = <B extends MixedInCtor<StencilLifecycle>>(
   Base: B
 ) => {
-  class ComponentIdMixinCtor extends Base {
+  class ComponentIdMixinCtor extends Base implements ComponentIdMixinContract {
     $internal_id = ++componentId;
 
     getHostElementId(): string {

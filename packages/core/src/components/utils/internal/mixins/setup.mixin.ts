@@ -18,7 +18,7 @@ import {
   IX_FOCUS_VISIBLE,
   IX_FOCUS_VISIBLE_ACTIVE,
 } from '../../focus/focus-utilities';
-import { FocusVisibleMixinPublicInterface } from './focus-visible.mixin';
+import { FocusVisibleMixinContract } from './focus-visible.mixin';
 
 let originalFocus: typeof HTMLElement.prototype.focus | null = null;
 
@@ -34,7 +34,7 @@ let currentFocus: Element[] = [];
 export function removeVisibleFocus() {
   currentFocus.forEach((el) => {
     el.classList.remove(IX_FOCUS_VISIBLE_ACTIVE);
-    (el as unknown as FocusVisibleMixinPublicInterface).ixFocusVisible = false;
+    (el as unknown as FocusVisibleMixinContract).ixFocusVisible = false;
   });
 }
 
@@ -66,7 +66,7 @@ export function updateFocusState(target: HTMLElement) {
   if (hasKeyboardMode()) {
     focusableElements.forEach((el) => {
       el.classList.add(IX_FOCUS_VISIBLE_ACTIVE);
-      (el as unknown as FocusVisibleMixinPublicInterface).ixFocusVisible = true;
+      (el as unknown as FocusVisibleMixinContract).ixFocusVisible = true;
     });
     currentFocus = focusableElements;
   } else {
