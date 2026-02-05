@@ -1492,6 +1492,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * @default false
+         */
+        "disableAriaSelectHandling": boolean;
+        /**
           * Disable item and remove event listeners
           * @default false
          */
@@ -1515,6 +1519,10 @@ export namespace Components {
           * @default false
          */
         "isSubMenu": boolean;
+        /**
+          * @default false
+         */
+        "ixFocusVisible": boolean;
         /**
           * Label of dropdown item
          */
@@ -7580,6 +7588,10 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
+          * @default false
+         */
+        "disableAriaSelectHandling"?: boolean;
+        /**
           * Disable item and remove event listeners
           * @default false
          */
@@ -7601,6 +7613,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "isSubMenu"?: boolean;
+        /**
+          * @default false
+         */
+        "ixFocusVisible"?: boolean;
         /**
           * Label of dropdown item
          */
@@ -10878,6 +10894,8 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface IxDropdownItemAttributes {
+        "ixFocusVisible": boolean;
+        "disableAriaSelectHandling": boolean;
         "label": string;
         "icon": string;
         "ariaLabelIcon": string;

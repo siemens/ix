@@ -28,7 +28,6 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -54,7 +53,6 @@ import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 import { makeRef } from '../utils/make-ref';
 import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
-import { getComposedPath } from '../utils/shadow-dom';
 
 let sequenceId = 0;
 
@@ -221,8 +219,6 @@ export class Dropdown extends Mixin() implements DropdownInterface {
   private focusUtilities?: FocusTrapResult;
 
   private readonly dialogRef = makeRef<HTMLDialogElement>();
-
-  private dropdownRole: 'listbox' | 'menu' | null = null;
 
   override connectedCallback(): void {
     dropdownController.connected(this);
@@ -687,10 +683,6 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     );
   }
 
-  override componentWillLoad() {
-    this.identifyAccessibilityRole();
-  }
-
   override async componentDidLoad() {
     if (!this.trigger) {
       return;
@@ -702,18 +694,6 @@ export class Dropdown extends Mixin() implements DropdownInterface {
   override async componentDidRender() {
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
-  }
-
-  private identifyAccessibilityRole() {
-    const composedPath = getComposedPath(this.hostElement);
-
-    if (composedPath.some((el) => el.tagName === 'IX-SELECT')) {
-      this.dropdownRole = 'listbox';
-    } else if (composedPath.some((el) => el.tagName === 'IX-DROPDOWN-BUTTON')) {
-      this.dropdownRole = 'menu';
-    } else {
-      this.dropdownRole = null;
-    }
   }
 
   private isTriggerElement(element: HTMLElement) {

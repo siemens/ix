@@ -67,13 +67,15 @@ export const AriaActiveDescendantMixin = <
       }
 
       if (event.detail.currentFocus.length > 0) {
-        const item = event.detail.currentFocus[0];
+        const item =
+          event.detail.currentFocus[event.detail.currentFocus.length - 1];
 
         if (!item.id) {
           Build.isDev &&
             console.warn('aria-activedescendant item has no id', item);
           return;
         }
+
         if ('ariaActiveDescendantElement' in Element.prototype) {
           //@ts-ignore
           controllingElement.ariaActiveDescendantElement = item;

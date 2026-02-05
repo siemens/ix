@@ -267,6 +267,7 @@ export class Select
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
 
+  private proxyListObserver: MutationObserver | null = null;
   private inputElement?: HTMLInputElement;
   private touched = false;
 
@@ -464,7 +465,6 @@ export class Select
 
   private createAddItemElement() {
     const onAddItemButtonClick = () => {
-      console.log(this.inputFilterText);
       this.emitAddItem(this.inputFilterText);
     };
 
@@ -480,9 +480,7 @@ export class Select
       return addItemElement;
     };
 
-    const isRendered = this.hostElement.querySelector(
-      'ix-dropdown-item[slot="footer"].add-item'
-    );
+    const isRendered = this.hostElement.querySelector('.add-item');
     if (!isRendered) {
       this.hostElement.appendChild(createElement());
     }
@@ -495,11 +493,27 @@ export class Select
     });
 
     this.createAddItemElement();
+
+    this.proxyListObserver = new MutationObserver(() => {
+      this.updateProxyListbox();
+    });
+    this.proxyListObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeFilter: ['aria-selected'],
+      subtree: true,
+      childList: true,
+    });
   }
 
   override componentWillLoad() {
     this.updateSelection();
     this.updateFormInternalValue(this.value);
+  }
+
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
+
+    this.proxyListObserver?.disconnect();
   }
 
   @Listen('ix-select-item:valueChange')
@@ -769,11 +783,40 @@ export class Select
         li.role = 'option';
         li.innerText = item.label ?? '';
         li.ariaLabel = item.getAttribute('aria-label') || item.label || '';
+        li.ariaSelected = item.getAttribute('aria-selected') || 'false';
         li.style.height = item.getBoundingClientRect().height + 'px';
         li.style.width = item.getBoundingClientRect().width + 'px';
         ariaActiveDescendantHelper.appendChild(li);
       });
     }
+  }
+
+  private updateProxyListbox() {
+    const ariaActiveDescendantHelper =
+      this.hostElement.shadowRoot?.getElementById(
+        `${this.hostId}-proxy-listbox`
+      );
+    if (this.focusableItems.length === 0) {
+      return;
+    }
+
+    Array.from(this.hostElement.children).forEach((item) => {
+      const id = item.id + '-proxy-listbox-item';
+      const proxyItem = ariaActiveDescendantHelper?.querySelector(
+        `#${id}`
+      ) as HTMLElement | null;
+
+      let defaultLabel = item.ariaLabel;
+
+      if (item.tagName === 'IX-SELECT-ITEM') {
+        defaultLabel = (item as HTMLIxSelectItemElement).label || '';
+      }
+
+      if (proxyItem) {
+        proxyItem.ariaLabel = defaultLabel;
+        proxyItem.ariaSelected = item.getAttribute('aria-selected') || 'false';
+      }
+    });
   }
 
   override render() {
@@ -901,26 +944,8 @@ export class Select
             </div>
           </div>
         </ix-field-wrapper>
-        <ul
-          role="listbox"
-          id={`${this.hostId}-proxy-listbox`}
-          aria-hidden={a11yBoolean(!this.dropdownShow)}
-          aria-labelledby={`${this.hostId}-input`}
-          aria-multiselectable={a11yBoolean(this.isMultipleMode)}
-          hidden={this.disabled || this.readonly}
-          style={{
-            position: 'absolute',
-            left: '0px',
-            top: '0px',
-            overflow: 'hidden',
-            clip: 'rect(0 0 0 0)',
-            clipPath: 'inset(50%)',
-            pointerEvents: 'none',
-          }}
-        ></ul>
         <ix-dropdown
           id={`${this.hostId}-listbox`}
-          aria-hidden="true"
           keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
           keyboardItemTriggerKeys={['Enter']}
           disableFocusTrap
@@ -972,6 +997,25 @@ export class Select
             }
           }}
         >
+          <ul
+            role="listbox"
+            id={`${this.hostId}-proxy-listbox`}
+            aria-hidden={a11yBoolean(!this.dropdownShow)}
+            aria-labelledby={`${this.hostId}-input`}
+            aria-multiselectable={a11yBoolean(this.isMultipleMode)}
+            hidden={this.disabled || this.readonly}
+            style={{
+              position: 'absolute',
+              left: '0px',
+              top: '0px',
+              overflow: 'hidden',
+              clip: 'rect(0 0 0 0)',
+              clipPath: 'inset(50%)',
+              maxWidth: '0px',
+              maxHeight: '0px',
+              pointerEvents: 'none',
+            }}
+          ></ul>
           <div
             class={{
               'select-list-header': true,

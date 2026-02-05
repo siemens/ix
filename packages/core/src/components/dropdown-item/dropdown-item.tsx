@@ -27,6 +27,7 @@ import { a11yBoolean } from '../utils/a11y';
 import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
+import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
 
 @Component({
   tag: 'ix-dropdown-item',
@@ -36,7 +37,7 @@ import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
   },
 })
 export class DropdownItem
-  extends Mixin(...DefaultMixins, ComponentIdMixin)
+  extends Mixin(...DefaultMixins, ComponentIdMixin, FocusVisibleMixin)
   implements DropdownItemWrapper
 {
   @Element() override hostElement!: HTMLIxDropdownItemElement;

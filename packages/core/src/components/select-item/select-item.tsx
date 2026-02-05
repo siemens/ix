@@ -37,7 +37,9 @@ import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: false,
+  },
 })
 export class SelectItem
   extends Mixin(...DefaultMixins, FocusVisibleMixin, ComponentIdMixin)
@@ -152,7 +154,10 @@ export class SelectItem
           checked={this.selected}
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}
-          ref={this.dropdownItemRef}
+          ref={(ref) => {
+            this.dropdownItemRef(ref);
+            ref!.tabIndex = -1;
+          }}
         ></ix-dropdown-item>
       </Host>
     );
