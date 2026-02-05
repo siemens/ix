@@ -1,5 +1,16 @@
 # @siemens/ix-angular
 
+## 4.4.0
+
+### Minor Changes
+
+- [#2352](https://github.com/siemens/ix/pull/2352) [`ba790a6`](https://github.com/siemens/ix/commit/ba790a66c4e7bb135e440aa11b312b69fccefde9) Thanks [@danielleroux](https://github.com/danielleroux)! - If an icon is provided via import like `<IxIcon name={iconDocument}></IxIcon>` the fallback will now be resolved. Works only if https://github.com/siemens/ix-icons/pull/112 is merged and released
+
+### Patch Changes
+
+- Updated dependencies [[`f41cc19`](https://github.com/siemens/ix/commit/f41cc1961434dfafe5a6b418e561683c4a5317fe), [`ba790a6`](https://github.com/siemens/ix/commit/ba790a66c4e7bb135e440aa11b312b69fccefde9)]:
+  - @siemens/ix@4.4.0
+
 ## 4.3.0
 
 ### Minor Changes
