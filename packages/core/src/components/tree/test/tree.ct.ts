@@ -489,6 +489,7 @@ regressionTest(
           container.style.alignItems = 'center';
 
           const name = document.createElement('span');
+          name.classList.add('custom-name');
           name.innerText = treeItem.data.name;
 
           container.appendChild(name);
@@ -506,7 +507,10 @@ regressionTest(
     await root.locator('.icon-toggle-container').click();
 
     const customItem = tree.locator('ix-tree-item').nth(1);
-    await customItem.click();
+    const customName = customItem.locator('.custom-name');
+    await expect(customName).toBeVisible();
+    await expect(customName).toHaveText('Sample Child 1');
+    await customName.click();
     await expect(customItem).toHaveClass(/selected/);
   }
 );
