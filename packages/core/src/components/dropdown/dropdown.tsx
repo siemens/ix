@@ -842,7 +842,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
             </div>
           </dialog>
         ) : (
-          <div style={{ display: 'contents' }}>
+          <div style={{ display: 'contents' }} role="presentation">
             {this.header && <div class="dropdown-header">{this.header}</div>}
             {this.show && <slot></slot>}
           </div>

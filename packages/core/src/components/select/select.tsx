@@ -23,6 +23,7 @@ import {
   Host,
   Listen,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -30,7 +31,6 @@ import {
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { a11yBoolean } from '../utils/a11y';
 import {
-  IX_FOCUS_VISIBLE,
   IX_FOCUS_VISIBLE_ACTIVE,
   queryElements,
 } from '../utils/focus/focus-utilities';
@@ -39,9 +39,11 @@ import {
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { Mixin } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import { DefaultMixins } from '../utils/internal/component';
+import { AriaActiveDescendantMixin } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 
 let selectId = 0;
 
@@ -57,7 +59,7 @@ let selectId = 0;
   formAssociated: true,
 })
 export class Select
-  extends Mixin()
+  extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
   implements IxInputFieldComponent<string | string[]>
 {
   @Element() hostElement!: HTMLIxSelectElement;
@@ -84,6 +86,7 @@ export class Select
    * Will be set as aria-label on the nested HTML button element
    *
    * @since 3.2.0
+   * @deprecated 4.4.0 Button to expand/collapse the dropdown is hidden inside the AOM
    */
   @Prop() ariaLabelChevronDownIconButton?: string = 'Open select dropdown';
 
@@ -519,8 +522,6 @@ export class Select
     return this.hostElement;
   }
 
-  private activeDescendantObserver: MutationObserver | null = null;
-
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
     this.dropdownShow = event.detail;
 
@@ -536,23 +537,10 @@ export class Select
       }
 
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
-      this.activeDescendantObserver = new MutationObserver(() => {
-        const currentVisibleFocusedItem = this.getActiveVisualFocusedItem();
-        const id = currentVisibleFocusedItem.id;
-        if (id) {
-          this.inputElement?.setAttribute('aria-activedescendant', id);
-        }
-      });
-      this.activeDescendantObserver.observe(this.hostElement, {
-        attributes: true,
-        attributeFilter: ['class'],
-        subtree: true,
-      });
     } else {
       this.updateSelection();
       this.inputFilterText = '';
       this.dropdownItemsVisualFocused = false;
-      this.activeDescendantObserver?.disconnect();
       this.inputElement?.setAttribute('aria-activedescendant', '');
     }
   }
@@ -735,6 +723,51 @@ export class Select
     return Promise.resolve(this.touched);
   }
 
+  getControllingAriaElement(): Promise<HTMLElement> | HTMLElement | null {
+    return this.inputRef.waitForCurrent();
+  }
+
+  isAriaActiveDescendantActive(): boolean {
+    return this.dropdownShow;
+  }
+
+  override getAriaActiveDescendantProxyItemId(): string | boolean {
+    return 'proxy-listbox-item';
+  }
+
+  componentWillRender(): Promise<void> | void {
+    this.insertAriaProxyListbox();
+  }
+
+  private insertAriaProxyListbox() {
+    const ariaActiveDescendantHelper =
+      this.hostElement.shadowRoot?.getElementById(
+        `${this.hostId}-proxy-listbox`
+      );
+    if (this.focusableItems.length === 0) {
+      return;
+    }
+    const firstItem = this.focusableItems[0];
+
+    if (ariaActiveDescendantHelper) {
+      ariaActiveDescendantHelper.style.top =
+        firstItem.getBoundingClientRect().top + 'px';
+      ariaActiveDescendantHelper.style.padding = '0px';
+      ariaActiveDescendantHelper.style.margin = '0px';
+      ariaActiveDescendantHelper.innerHTML = '';
+      this.focusableItems.forEach((item) => {
+        const li = document.createElement('li');
+        li.id = item.id + '-proxy-listbox-item';
+        li.role = 'option';
+        li.innerText = item.label ?? '';
+        li.ariaLabel = item.getAttribute('aria-label') || item.label || '';
+        li.style.height = item.getBoundingClientRect().height + 'px';
+        li.style.width = item.getBoundingClientRect().width + 'px';
+        ariaActiveDescendantHelper.appendChild(li);
+      });
+    }
+  }
+
   render() {
     if (this.addItemElement) {
       this.addItemElement.hidden = !this.isAddItemVisible();
@@ -745,7 +778,7 @@ export class Select
 
     return (
       <Host
-        aria-disabled={a11yBoolean(this.disabled)}
+        id={this.getHostElementId()}
         class={{
           disabled: this.disabled,
           'show-focus-outline':
@@ -790,10 +823,10 @@ export class Select
                   <input
                     id={`${this.hostId}-input`}
                     role="combobox"
-                    aria-controls={`${this.hostId}-listbox`}
+                    aria-controls={`${this.hostId}-proxy-listbox`}
                     aria-expanded={a11yBoolean(this.dropdownShow)}
                     aria-autocomplete="list"
-                    aria-activedescendant
+                    aria-disabled={a11yBoolean(this.disabled)}
                     autocomplete="off"
                     data-testid="input"
                     disabled={this.disabled}
@@ -835,10 +868,14 @@ export class Select
                   ) : null}
                   {this.disabled || this.readonly ? null : (
                     <ix-icon-button
+                      aria-label={this.ariaLabelChevronDownIconButton}
+                      aria-hidden="true"
                       ref={(ref) => {
+                        const element = ref as unknown as HTMLButtonElement;
                         // VDOM issue if tabIndex is provided via property <ix-icon-button tabIndex={-1}>
                         // the tabindex will be '0' after expanding the dropdown
-                        ref!.tabIndex = -1;
+                        element.tabIndex = -1;
+                        element.ariaHidden = 'true';
                       }}
                       data-select-dropdown
                       key="dropdown"
@@ -849,9 +886,6 @@ export class Select
                           : iconChevronDownSmall
                       }
                       variant="subtle-tertiary"
-                      aria-label={this.ariaLabelChevronDownIconButton}
-                      aria-hidden="true"
-                      role="presentation"
                     ></ix-icon-button>
                   )}
                 </div>
@@ -859,9 +893,26 @@ export class Select
             </div>
           </div>
         </ix-field-wrapper>
+        <ul
+          role="listbox"
+          id={`${this.hostId}-proxy-listbox`}
+          aria-hidden={a11yBoolean(!this.dropdownShow)}
+          aria-labelledby={`${this.hostId}-input`}
+          aria-multiselectable={a11yBoolean(this.isMultipleMode)}
+          hidden={this.disabled || this.readonly}
+          style={{
+            position: 'absolute',
+            left: '0px',
+            top: '0px',
+            overflow: 'hidden',
+            clip: 'rect(0 0 0 0)',
+            clipPath: 'inset(50%)',
+            pointerEvents: 'none',
+          }}
+        ></ul>
         <ix-dropdown
           id={`${this.hostId}-listbox`}
-          aria-multiselectable={a11yBoolean(this.isMultipleMode)}
+          aria-hidden="true"
           keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
           keyboardItemTriggerKeys={['Enter']}
           disableFocusTrap
@@ -898,7 +949,6 @@ export class Select
           }}
           onClick={(event) => {
             const target = event.target as HTMLElement;
-            console.log(target);
             if (
               target.tagName === 'IX-DROPDOWN-ITEM' ||
               target.tagName === 'IX-SELECT-ITEM'

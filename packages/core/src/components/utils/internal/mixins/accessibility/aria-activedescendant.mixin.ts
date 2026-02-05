@@ -17,8 +17,16 @@ export const AriaActiveDescendantMixin = <
   Base: B
 ) => {
   class AriaActiveDescendantMixinCtor extends Base {
+    isAriaActiveDescendantActive() {
+      return false;
+    }
+
     getControllingAriaElement(): Promise<HTMLElement> | HTMLElement | null {
       return null;
+    }
+
+    getAriaActiveDescendantProxyItemId(): string | boolean {
+      return false;
     }
 
     async clearActiveDescendant() {
@@ -36,6 +44,11 @@ export const AriaActiveDescendantMixin = <
 
     @Listen(IxFocusVisibleChangeEvent.eventName, { target: 'document' })
     async $internal_onActiveDescendantChange(event: IxFocusVisibleChangeEvent) {
+      if (!this.isAriaActiveDescendantActive()) {
+        this.clearActiveDescendant();
+        return;
+      }
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -56,7 +69,16 @@ export const AriaActiveDescendantMixin = <
           //@ts-ignore
           controllingElement.ariaActiveDescendantElement = item;
         }
-        controllingElement.setAttribute('aria-activedescendant', item.id);
+
+        const helperId = this.getAriaActiveDescendantProxyItemId();
+        if (helperId) {
+          controllingElement.setAttribute(
+            'aria-activedescendant',
+            item.id + '-' + helperId
+          );
+        } else {
+          controllingElement.setAttribute('aria-activedescendant', item.id);
+        }
       }
     }
   }

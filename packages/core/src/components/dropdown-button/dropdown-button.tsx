@@ -13,7 +13,7 @@ import {
 } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, Mixin, Prop, State } from '@stencil/core';
 import { AlignedPlacement } from '../dropdown/placement';
-import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
+import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
 import { DefaultMixins } from '../utils/internal/component';
@@ -23,9 +23,7 @@ import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
-  shadow: {
-    delegatesFocus: true,
-  },
+  shadow: true,
 })
 export class DropdownButton extends Mixin(
   ...DefaultMixins,
@@ -82,6 +80,8 @@ export class DropdownButton extends Mixin(
 
   @State() dropdownShow = false;
 
+  private inheritAriaAttributes: A11yAttributes = {};
+
   private dropdownButtonId = this.getHostElementId();
 
   private readonly dropdownAnchor = makeRef<HTMLElement>();
@@ -107,23 +107,32 @@ export class DropdownButton extends Mixin(
     this.dropdownShow = event.detail;
   };
 
+  componentDidLoad(): void {
+    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement, [
+      'aria-activedescendant',
+    ]);
+  }
+
   getControllingAriaElement(): Promise<HTMLElement> | HTMLElement | null {
-    return this.dropdownRef.waitForCurrent();
+    return this.hostElement;
+  }
+
+  isAriaActiveDescendantActive(): boolean {
+    return this.dropdownShow;
   }
 
   render() {
-    const a11y = a11yHostAttributes(this.hostElement, [
-      'aria-activedescendant',
-    ]);
-
-    const commonProperties = {
-      ...a11y,
-      id: `dropdown-button-${this.dropdownButtonId}`,
+    const ariaAttributes = {
+      ...this.inheritAriaAttributes,
       'aria-haspopup': 'true',
-      'aria-label': this.ariaLabelDropdownButton,
       'aria-controls': `dropdown-button-menu-${this.dropdownButtonId}`,
       'aria-disabled': a11yBoolean(this.disabled),
       'aria-expanded': a11yBoolean(this.dropdownShow),
+      role: 'button',
+    };
+
+    const commonProperties = {
+      id: `dropdown-button-${this.dropdownButtonId}`,
       tabIndex: this.disabled ? -1 : 0,
       disabled: this.disabled,
       variant: this.variant,
@@ -135,6 +144,7 @@ export class DropdownButton extends Mixin(
         }}
         ref={this.dropdownAnchor}
         tabIndex={this.disabled ? -1 : 0}
+        {...ariaAttributes}
       >
         <div class="dropdown-button">
           {this.label ? (

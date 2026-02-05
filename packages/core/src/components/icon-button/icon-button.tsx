@@ -11,12 +11,12 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
 import {
+  A11yAttributes,
   a11yHostAttributes,
   getFallbackLabelFromIconName,
 } from '../utils/a11y';
 import type { IconButtonVariant } from './icon-button.types';
 import { Mixin } from '../utils/internal/component';
-import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
 
 @Component({
   tag: 'ix-icon-button',
@@ -82,7 +82,11 @@ export class IconButton extends Mixin() {
    */
   submitButtonElement!: HTMLButtonElement;
 
+  private inheritAriaAttributes: A11yAttributes = {};
+
   componentDidLoad() {
+    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
+
     if (this.type === 'submit') {
       const submitButton = document.createElement('button');
       submitButton.style.display = 'none';
@@ -109,15 +113,20 @@ export class IconButton extends Mixin() {
   }
 
   render() {
-    const a11y = a11yHostAttributes(this.hostElement);
+    const ariaLabel =
+      this.inheritAriaAttributes['aria-label'] ??
+      this.a11yLabel ??
+      getFallbackLabelFromIconName(this.icon);
+
+    let ariaAttributes: A11yAttributes = {};
+    const ariaHidden = this.inheritAriaAttributes['aria-hidden'];
+
+    if (ariaHidden !== 'true') {
+      ariaAttributes['aria-label'] = ariaLabel;
+    }
 
     const baseButtonProps: BaseButtonProps = {
-      ariaAttributes: {
-        'aria-label':
-          a11y['aria-label'] ??
-          this.a11yLabel ??
-          getFallbackLabelFromIconName(this.icon),
-      },
+      ariaAttributes: ariaAttributes,
       variant: this.variant,
       iconOnly: true,
       iconOval: this.oval,

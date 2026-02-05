@@ -17,21 +17,22 @@ import {
   Method,
   Prop,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import {
   IX_FOCUS_VISIBLE,
   IX_FOCUS_VISIBLE_ACTIVE,
 } from '../utils/focus/focus-utilities';
-import { Mixin } from '../utils/internal/component';
 import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin';
 import { makeRef } from '../utils/make-ref';
 import {
   IxSelectItemLabelChangeEvent,
   IxSelectItemValueChangeEvent,
 } from './events';
-
-let selectItemId = 0;
+import { DefaultMixins } from '../utils/internal/component';
+import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-select-item',
@@ -39,7 +40,7 @@ let selectItemId = 0;
   shadow: true,
 })
 export class SelectItem
-  extends Mixin(FocusVisibleMixin)
+  extends Mixin(...DefaultMixins, FocusVisibleMixin, ComponentIdMixin)
   implements DropdownItemWrapper
 {
   @Element() hostElement!: HTMLIxSelectItemElement;
@@ -71,9 +72,14 @@ export class SelectItem
    */
   @Event() itemClick!: EventEmitter<string>;
 
-  private selectId = selectItemId++;
   private componentLoaded = false;
   private readonly dropdownItemRef = makeRef<HTMLIxDropdownItemElement>();
+
+  private inheritAriaAttributes: A11yAttributes = {};
+
+  componentDidLoad(): void {
+    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
+  }
 
   /** @internal */
   @Method()
@@ -125,20 +131,20 @@ export class SelectItem
   }
 
   render() {
-    const id =
-      this.hostElement.id === ''
-        ? `ix-select-item-${this.selectId}`
-        : this.hostElement.id;
+    const ariaAttributes = {
+      ...this.inheritAriaAttributes,
+      'aria-label': this.inheritAriaAttributes['aria-label'] ?? this.label,
+    };
     return (
       <Host
-        id={id}
-        role="option"
-        aria-selected
+        {...ariaAttributes}
+        id={this.getHostElementId()}
         class={{
           [IX_FOCUS_VISIBLE]: true,
         }}
       >
         <ix-dropdown-item
+          role="option"
           class={{
             'select-item-checked': this.selected,
             [IX_FOCUS_VISIBLE_ACTIVE]: this.ixFocusVisible,
