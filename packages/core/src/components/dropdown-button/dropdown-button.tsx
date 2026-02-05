@@ -26,7 +26,9 @@ import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
-  shadow: true,
+  shadow: {
+    delegatesFocus: false,
+  },
 })
 export class DropdownButton
   extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
@@ -142,7 +144,6 @@ export class DropdownButton
 
     const commonProperties = {
       id: `dropdown-button-${this.dropdownButtonId}`,
-      tabIndex: this.disabled ? -1 : 0,
       disabled: this.disabled,
       variant: this.variant,
     };
@@ -157,7 +158,11 @@ export class DropdownButton
       >
         <div class="dropdown-button">
           {this.label ? (
-            <ix-button {...commonProperties} alignment="start">
+            <ix-button
+              {...commonProperties}
+              alignment="start"
+              ref={(ref) => (ref!.tabIndex = -1)}
+            >
               <div class={'content'}>
                 {this.icon ? (
                   <ix-icon
@@ -183,6 +188,7 @@ export class DropdownButton
               <ix-icon-button
                 {...commonProperties}
                 icon={this.icon}
+                ref={(ref) => (ref!.tabIndex = -1)}
               ></ix-icon-button>
               {this.getTriangle()}
             </div>
