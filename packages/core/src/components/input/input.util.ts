@@ -208,20 +208,9 @@ export function handleSubmitOnEnterKeydown(
 
   event.preventDefault();
 
-  let submitButton = form.querySelector<HTMLButtonElement>(
+  const submitButton = form.querySelector<HTMLButtonElement>(
     'button[type="submit"]'
   );
-
-  if (!submitButton) {
-    const ixButton = form.querySelector<HTMLElement>(
-      'ix-button[type="submit"]'
-    );
-    if (ixButton) {
-      submitButton = ixButton.querySelector<HTMLButtonElement>(
-        'button[type="submit"]'
-      );
-    }
-  }
 
   if (submitButton) {
     form.requestSubmit(submitButton);

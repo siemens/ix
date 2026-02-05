@@ -92,7 +92,7 @@ for (const { tag, fill } of inputTags) {
   ];
 
   for (const { name, markup } of submitButtons) {
-    regressionTest.only(
+    regressionTest(
       `form-ready - multiple ${tag}s submits form on Enter key when ${name} type submit is present`,
       async ({ mount, page }) => {
         await mount(`
