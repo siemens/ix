@@ -36,7 +36,9 @@ import {
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
-  onInputBlur,
+  onInputFocus,
+  onInputBlurWithChange,
+  onEnterKeyChangeEmit,
 } from './input.util';
 
 let inputIds = 0;
@@ -172,6 +174,12 @@ export class Input implements IxInputFieldComponent<string> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the text field loses focus and the value has changed.
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -180,6 +188,8 @@ export class Input implements IxInputFieldComponent<string> {
 
   @State() inputType = 'text';
 
+  /** @internal */
+  public initialValue?: string;
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
@@ -318,12 +328,16 @@ export class Input implements IxInputFieldComponent<string> {
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
+              onFocus={() => onInputFocus(this, this.value)}
+              onEnterKeyChange={(event) =>
+                onEnterKeyChangeEmit(event, this, this.value)
+              }
               valueChange={(value) => this.valueChange.emit(value)}
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
               onBlur={() => {
-                onInputBlur(this, this.inputRef.current);
+                onInputBlurWithChange(this, this.inputRef.current, this.value);
                 this.touched = true;
               }}
               ariaAttributes={inputAria}
