@@ -7,11 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+function App() {
+  return <div></div>;
+}
 
-export default defineConfig(() => {
-  return {
-    plugins: [react()],
-  };
-});
+export default App;

@@ -43,7 +43,6 @@
     "@playwright/test": "catalog:",
     "@types/jasmine": "~5.1.4",
     "@types/node": "^20.16.0",
-    "framework-tests": "workspace:*",
     "http-server": "^14.1.1",
     "jasmine-core": "~5.1.2",
     "karma-chrome-launcher": "~3.2.0",

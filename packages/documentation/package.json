@@ -30,7 +30,7 @@
     "html-test-app": "workspace:*",
     "ionic-test-app": "workspace:*",
     "mustache": "^4.2.0",
-    "react-test-app": "workspace:*",
+    "react-examples": "workspace:*",
     "rimraf": "^6.0.1",
     "storybook-docs": "workspace:*",
     "tsx": "^4.15.4",

@@ -40,7 +40,7 @@ const __htmlTestApp = path.join(
   'preview-examples'
 );
 
-const __reactTestAppRoot = path.join(__packages, 'react-test-app');
+const __reactTestAppRoot = path.join(__packages, 'react-examples');
 const __reactTestApp = path.join(__reactTestAppRoot, 'src', 'preview-examples');
 
 const __angularTestApp = path.join(
