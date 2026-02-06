@@ -9,16 +9,21 @@
     "init-version": "tsx scripts/init-version.ts"
   },
   "devDependencies": {
-    "@types/node": "^22.19.0",
     "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.19.0",
     "angular-blocks": "workspace:",
+    "angular-examples": "workspace:",
+    "angular-standalone-examples": "workspace:",
     "fs-extra": "^11.3.3",
     "glob": "^11.1.0",
+    "html-examples": "workspace:",
     "http-server": "^14.1.1",
     "listr2": "^10.1.0",
     "minisearch": "^7.2.0",
     "react-blocks": "workspace:",
+    "react-examples": "workspace:",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vue-examples": "workspace:"
   }
 }
