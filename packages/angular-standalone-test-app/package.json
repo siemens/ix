@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "copy-preview-styles": "node ./scripts/copy-preview.mjs",
-    "start": "pnpm copy-preview-styles && ng serve",
-    "build": "pnpm copy-preview-styles && ng build",
-    "watch": "pnpm copy-preview-styles && ng build --watch --configuration development",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
     "test": "playwright test",
     "preview": "http-server ./dist/angular-standalone-test-app/browser -p 4173 --proxy http://localhost:4173?"
   },

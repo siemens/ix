@@ -15,4 +15,4 @@ import { Component } from '@angular/core';
   templateUrl: './playground.html',
   styleUrls: ['./playground.css'],
 })
-export default class Playground {}
+export class Playground {}

@@ -711,9 +711,6 @@ importers:
       echarts-gl:
         specifier: ^2.0.9
         version: 2.0.9(echarts@5.4.3)
-      html-test-app:
-        specifier: workspace:*
-        version: link:../html-test-app
       ngx-echarts:
         specifier: ^20.0.1
         version: 20.0.1(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(echarts@5.4.3)
