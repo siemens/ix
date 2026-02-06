@@ -995,11 +995,11 @@ importers:
         specifier: ^20
         version: 20.16.5
       '@types/react':
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: ^19.2.5
+        version: 19.2.10
       '@types/react-dom':
-        specifier: ^19.1.1
-        version: 19.1.1(@types/react@19.1.0)
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.10)
       typescript:
         specifier: ^5
         version: 5.8.3
