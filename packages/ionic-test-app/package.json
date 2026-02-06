@@ -21,7 +21,7 @@
     "@capacitor/status-bar": "6.0.2",
     "@ionic/react": "^8.7.4",
     "@siemens/ix": "workspace:*",
-    "@siemens/ix-icons": "^3.2.0",
+    "@siemens/ix-icons": "catalog:",
     "@siemens/ix-react": "workspace:*",
     "classnames": "^2.5.1",
     "ionicons": "^7.0.0",

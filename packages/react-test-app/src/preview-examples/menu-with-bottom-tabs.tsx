@@ -17,7 +17,7 @@ export default () => {
         Home
       </IxMenuItem>
       <IxMenuItem icon={iconGlobe} slot="bottom">
-        Bottom Tab
+        Bottom tab
       </IxMenuItem>
     </IxMenu>
   );

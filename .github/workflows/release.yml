@@ -7,6 +7,10 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  id-token: write
+  contents: write
+
 jobs:
   release:
     if: ${{ github.repository == 'siemens/ix' }}
@@ -24,6 +28,9 @@ jobs:
 
       - name: Build
         run: pnpm build --cache-dir=.turbo --force
+
+      - name: Upgrade npm for OIDC support
+        run: npm install -g npm@^11.8.0 --no-man
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

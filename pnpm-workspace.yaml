@@ -5,10 +5,13 @@ packages:
   - blocks/*
 
 catalog:
-  '@esbuild/linux-arm64': 0.25.5
-  '@playwright/test': ^1.54.1
+  '@esbuild/linux-arm64': 0.27.2
+  '@playwright/test': ^1.58.1
+  '@axe-core/playwright': ^4.11.0
+  '@siemens/ix-icons': ^3.3.0
+  glob: ^13.0.0
+  playwright: ^1.58.1
   vite: ^7.3.1
-  playwright: ^1.57.0
 
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:

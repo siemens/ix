@@ -1,0 +1,26 @@
+- img
+- text: /\d+ Heading content Subheading/
+- button:
+  - img
+- table:
+  - rowgroup:
+    - row "# First Last Handle":
+      - columnheader "#"
+      - columnheader "First"
+      - columnheader "Last"
+      - columnheader "Handle"
+  - rowgroup:
+    - row "1 Mark Otto @mdo":
+      - rowheader "1"
+      - cell "Mark"
+      - cell "Otto"
+      - cell "@mdo"
+    - row "2 Jacob Thornton @fat":
+      - rowheader "2"
+      - cell "Jacob"
+      - cell "Thornton"
+      - cell "@fat"
+    - row "3 Larry the Bird @twitter":
+      - rowheader "3"
+      - cell "Larry the Bird"
+      - cell "@twitter"

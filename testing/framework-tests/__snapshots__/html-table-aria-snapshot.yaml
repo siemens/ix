@@ -1,0 +1,23 @@
+- table:
+  - rowgroup:
+    - row "ID Type Status HW Version":
+      - columnheader "ID"
+      - columnheader "Type"
+      - columnheader "Status"
+      - columnheader "HW Version"
+  - rowgroup:
+    - row "1 Equipment Normal 2.0":
+      - rowheader "1"
+      - cell "Equipment"
+      - cell "Normal"
+      - cell "2.0"
+    - row "2 Positioner Maintenance 1.0":
+      - rowheader "2"
+      - cell "Positioner"
+      - cell "Maintenance"
+      - cell "1.0"
+    - row "3 Pressure sensor Unknown N/A":
+      - rowheader "3"
+      - cell "Pressure sensor"
+      - cell "Unknown"
+      - cell "N/A"
