@@ -8,8 +8,14 @@
   "versions": {
     "4.3.0": {
       "blocks": [
-        { "name": "example-01", "path": "blocks/example-01.json" },
-        { "name": "upload-01", "path": "blocks/upload-01.json" }
+        {
+          "name": "example-01",
+          "path": "blocks/example-01.json"
+        },
+        {
+          "name": "upload-01",
+          "path": "blocks/upload-01.json"
+        }
       ]
     }
   }

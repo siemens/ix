@@ -12,6 +12,8 @@ import fs from 'fs-extra';
 import tsconfig from '../tsconfig.json' assert { type: 'json' };
 import { glob } from 'glob';
 import { buildSearchIndex } from './search-index';
+import { generateExampleBlocks } from './generate-examples';
+import { updateBlocksRegistry, updateExamplesRegistry } from './update-registry';
 
 const __dirname = path.resolve();
 const __node_modules = path.join(__dirname, 'node_modules');
@@ -55,6 +57,30 @@ const task = new Listr<Ctx>([
           dereference: true,
         }),
       ]);
+    },
+  },
+  {
+    title: 'Generate example block definitions',
+    task: async (ctx) => {
+      const examplesOutputDir = path.join(ctx.dist, 'examples');
+      const examplesDir = path.join(__dirname, '..', '..', 'examples');
+      await generateExampleBlocks(examplesOutputDir, examplesDir);
+    },
+  },
+  {
+    title: 'Update blocks registry.json',
+    task: async (ctx) => {
+      const registryPath = path.join(__dirname, 'registry.json');
+      const blocksDir = path.join(__dirname, '..', '..', 'blocks');
+      await updateBlocksRegistry(registryPath, blocksDir);
+    },
+  },
+  {
+    title: 'Update examples registry.json',
+    task: async (ctx) => {
+      const registryPath = path.join(__dirname, 'examples-registry.json');
+      const examplesDir = path.join(ctx.dist, 'examples');
+      await updateExamplesRegistry(registryPath, examplesDir);
     },
   },
   {
@@ -110,6 +136,25 @@ const task = new Listr<Ctx>([
     },
   },
   {
+    title: 'Fix schema $schema paths for example JSON files',
+    task: async (ctx) => {
+      const examplesDir = path.join(ctx.dist, 'examples');
+      const files = await glob(path.join(examplesDir, '*.json'), {
+        absolute: true,
+      });
+      await Promise.all(
+        files.map(async (file) => {
+          const content = await fs.readFile(file, 'utf-8');
+          const json = JSON.parse(content);
+          if (json.$schema) {
+            json.$schema = '../schemas/example.schema.json';
+            await fs.writeFile(file, JSON.stringify(json, null, 2), 'utf-8');
+          }
+        })
+      );
+    },
+  },
+  {
     title: 'Copy registry.json to dist',
     task: async (ctx) => {
       const src = path.join(__dirname, 'registry.json');
@@ -118,10 +163,25 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Build search index',
+    title: 'Copy examples-registry.json to dist',
+    task: async (ctx) => {
+      const src = path.join(__dirname, 'examples-registry.json');
+      const dest = path.join(ctx.dist, 'examples-registry.json');
+      await fs.copy(src, dest, { dereference: true });
+    },
+  },
+  {
+    title: 'Build blocks search index',
     task: async (ctx) => {
       const blocksDir = path.join(ctx.dist, 'blocks');
-      await buildSearchIndex(ctx.dist, blocksDir);
+      await buildSearchIndex(ctx.dist, blocksDir, 'search-index.json');
+    },
+  },
+  {
+    title: 'Build examples search index',
+    task: async (ctx) => {
+      const examplesDir = path.join(ctx.dist, 'examples');
+      await buildSearchIndex(ctx.dist, examplesDir, 'examples-search-index.json');
     },
   },
 ]);

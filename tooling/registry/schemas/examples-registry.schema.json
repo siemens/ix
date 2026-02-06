@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IX Examples Registry",
+  "description": "Registry schema for Siemens IX design system examples catalog",
+  "type": "object",
+  "required": ["name", "dist-tags", "versions"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Registry package name",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "searchIndex": {
+      "type": "string",
+      "description": "Path to the MiniSearch index file for fast example searching",
+      "pattern": "\\.json$"
+    },
+    "dist-tags": {
+      "type": "object",
+      "description": "Distribution tags mapping to version numbers",
+      "required": ["latest"],
+      "properties": {
+        "latest": {
+          "type": "string",
+          "description": "Latest stable version",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(-.*)?$"
+        }
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^\\d+\\.\\d+\\.\\d+(-.*)?$"
+      }
+    },
+    "versions": {
+      "type": "object",
+      "description": "Available versions and their examples",
+      "minProperties": 1,
+      "patternProperties": {
+        "^\\d+\\.\\d+\\.\\d+(-.*)?$": {
+          "$ref": "#/definitions/versionEntry"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "definitions": {
+    "versionEntry": {
+      "type": "object",
+      "required": ["examples"],
+      "properties": {
+        "examples": {
+          "type": "array",
+          "description": "List of examples available in this version",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/exampleReference"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "exampleReference": {
+      "type": "object",
+      "required": ["name", "path"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Example identifier",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "path": {
+          "type": "string",
+          "description": "Relative path to example configuration file",
+          "pattern": "\\.json$"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

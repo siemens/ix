@@ -26,13 +26,17 @@ interface BlockDocument {
  */
 export async function buildSearchIndex(
   distDir: string,
-  blocksDir: string
+  blocksDir: string,
+  outputFileName: string = 'search-index.json'
 ): Promise<string> {
   const blockFiles = await glob(path.join(blocksDir, '*.json'), {
     absolute: true,
   });
 
   const documents: BlockDocument[] = [];
+
+  // Get workspace root (go up from blocksDir which is typically dist/blocks)
+  const workspaceRoot = path.join(blocksDir, '..', '..', '..');
 
   for (const blockFile of blockFiles) {
     const blockDef = await fs.readJson(blockFile);
@@ -56,7 +60,8 @@ export async function buildSearchIndex(
 
       if (Array.isArray((variant as any).files)) {
         for (const file of (variant as any).files) {
-          const sourcePath = path.join(blocksDir, file.source);
+          // Resolve source path from workspace root
+          const sourcePath = path.join(workspaceRoot, file.source);
           files.push(file.target);
 
           try {
@@ -102,10 +107,10 @@ export async function buildSearchIndex(
   miniSearch.addAll(documents);
 
   const serialized = JSON.stringify(miniSearch.toJSON());
-  const indexPath = path.join(distDir, 'search-index.json');
+  const indexPath = path.join(distDir, outputFileName);
   await fs.writeFile(indexPath, serialized, 'utf-8');
 
-  console.log(`✅ Created search index with ${documents.length} blocks`);
+  console.log(`✅ Created search index with ${documents.length} blocks at ${outputFileName}`);
 
   return indexPath;
 }
