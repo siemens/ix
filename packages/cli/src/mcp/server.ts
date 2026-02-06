@@ -15,8 +15,13 @@ import dedent from 'dedent';
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { Framework } from '../detect';
-import { searchBlocks } from '../search';
-import { fetchBlockDefinition, listAllBlocks } from '../registry';
+import { searchBlocks, searchExamples } from '../search';
+import {
+  fetchBlockDefinition,
+  listAllBlocks,
+  fetchExampleDefinition,
+  getExampleCode,
+} from '../registry';
 import {
   searchComponents,
   getComponentDetails,
@@ -85,6 +90,28 @@ export const createServer = (framework: Framework, registryUrl: string) => {
   const listAllBlocksName = 'list_all_blocks' as const;
   const listAllBlocksSchema = z.object({});
 
+  const searchExamplesName = 'search_examples' as const;
+  const searchExamplesSchema = z.object({
+    query: z
+      .string()
+      .describe(
+        'Search query to find examples for components. Searches across example names, source code, and component tags.'
+      ),
+    limit: z
+      .number()
+      .optional()
+      .describe('Maximum number of results to return (default: 10)'),
+  });
+
+  const getExampleCodeName = 'get_example_code' as const;
+  const getExampleCodeSchema = z.object({
+    exampleName: z
+      .string()
+      .describe(
+        'The name of the example (e.g., "button", "modal", "avatar"). Use the name from search_examples results.'
+      ),
+  });
+
   const auditChecklist = 'audit_checklist' as const;
 
   server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -124,6 +151,18 @@ export const createServer = (framework: Framework, registryUrl: string) => {
           description:
             'List all available Siemens IX blocks for the current framework. Use this to get a complete overview of available blocks.',
           inputSchema: zodToJsonSchema(listAllBlocksSchema),
+        },
+        {
+          name: searchExamplesName,
+          description:
+            'Search for Siemens IX component examples. Use this to find usage examples for specific components or patterns. Returns code examples with file paths.',
+          inputSchema: zodToJsonSchema(searchExamplesSchema),
+        },
+        {
+          name: getExampleCodeName,
+          description:
+            'Get the complete source code for a specific example. Use the example name from search_examples results. Returns all source files with their content.',
+          inputSchema: zodToJsonSchema(getExampleCodeSchema),
         },
         {
           name: auditChecklist,
@@ -191,7 +230,7 @@ export const createServer = (framework: Framework, registryUrl: string) => {
                   **Next Steps:**
                   - Use "get_component_details" with tag "${topResult.tag}" for complete API documentation
                   - Read the full documentation at: ${mdPath}
-                  - Search for usage examples in: node_modules/@siemens/ix-${framework}/component-examples/
+                  - Use "search_examples" to find examples related to this component
 
                   ${promptNodeModulesExcluded}
                   `,
@@ -642,6 +681,185 @@ export const createServer = (framework: Framework, registryUrl: string) => {
             };
           }
         }
+
+        case searchExamplesName: {
+          const inputSchema = searchExamplesSchema;
+          const args = inputSchema.parse(request.params.arguments);
+
+          try {
+            // Map framework to include standalone variant
+            const examplesFramework =
+              framework === 'angular'
+                ? ('angular-standalone' as const)
+                : framework;
+
+            const results = await searchExamples({
+              baseUrl: registryUrl,
+              query: args.query,
+              framework: examplesFramework,
+              limit: args.limit || 10,
+            });
+
+            if (results.length === 0) {
+              return {
+                content: [
+                  {
+                    type: 'text',
+                    text: dedent`No examples found matching "${args.query}" for ${framework}.
+
+                    Try different search terms like:
+                    - Component names (button, input, modal, select)
+                    - Patterns (form, validation, layout)
+                    `,
+                  },
+                ],
+              };
+            }
+
+            const resultsList = results
+              .map(
+                (r, i) =>
+                  `${i + 1}. **${r.name}** (score: ${r.score.toFixed(2)})`
+              )
+              .join('\n');
+
+            const topResult = results[0];
+            let exampleDetails = '';
+
+            try {
+              const exampleDef = await fetchExampleDefinition(
+                registryUrl,
+                topResult.path
+              );
+              const variant = exampleDef.variants[examplesFramework];
+
+              if (variant) {
+                const files = variant.files
+                  .map((f: { target: string }) => `  - ${f.target}`)
+                  .join('\n');
+                const deps = variant.dependencies
+                  ? variant.dependencies
+                      .map(
+                        (d: { name: string; version: string }) =>
+                          `  - ${d.name}@${d.version}`
+                      )
+                      .join('\n')
+                  : '  None';
+
+                exampleDetails = dedent`
+
+                **Top Result Details: ${exampleDef.name}**
+                - Files:
+                ${files}
+                - Dependencies:
+                ${deps}
+                `;
+              }
+            } catch (err) {
+              console.error('Could not fetch example details:', err);
+            }
+
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`Found ${results.length} example(s) matching "${args.query}" for ${framework}:
+
+                  ${resultsList}
+                  ${exampleDetails}
+
+                  **Next Steps:**
+                  - Use "get_example_code" with exampleName "${topResult.name}" to see the complete source code
+                  - Examples show practical usage of IX components
+
+                  `,
+                },
+              ],
+            };
+          } catch (error) {
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`Error searching examples: ${
+                    error instanceof Error ? error.message : String(error)
+                  }
+
+                  Please ensure the examples registry is accessible and properly configured.
+                  `,
+                },
+              ],
+            };
+          }
+        }
+
+        case getExampleCodeName: {
+          const inputSchema = getExampleCodeSchema;
+          const args = inputSchema.parse(request.params.arguments);
+
+          try {
+            // Map framework to include standalone variant
+            const examplesFramework =
+              framework === 'angular'
+                ? ('angular-standalone' as const)
+                : framework;
+
+            // Construct the example path
+            const examplePath = `examples/${args.exampleName}.json`;
+
+            const exampleCode = await getExampleCode(
+              registryUrl,
+              examplePath,
+              examplesFramework
+            );
+
+            // Format the source code files
+            const filesContent = exampleCode.files
+              .map(
+                (file) => `**${file.path}**\n\`\`\`\n${file.content}\n\`\`\``
+              )
+              .join('\n\n---\n\n');
+
+            const depsList = exampleCode.dependencies
+              .map((d) => `  - ${d.name}@${d.version}`)
+              .join('\n');
+
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`# Example: ${exampleCode.name} (${framework})
+
+                  ## Dependencies
+                  ${depsList}
+
+                  ## Source Files
+
+                  ${filesContent}
+
+                  You can use these files as a reference or starting point for implementing similar functionality.
+                  `,
+                },
+              ],
+            };
+          } catch (error) {
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`Error getting example code: ${
+                    error instanceof Error ? error.message : String(error)
+                  }
+
+                  Make sure the example name is correct (use the name from search_examples results).
+                  Example names should be in the format: "button", "modal", "avatar", etc.
+                  `,
+                },
+              ],
+            };
+          }
+        }
+
         default:
           throw new Error(`Tool ${request.params.name} not found`);
       }

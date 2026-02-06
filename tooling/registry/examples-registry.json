@@ -15,976 +15,976 @@
     "4.3.0": {
       "examples": [
         {
-          "name": "about-and-legal-example",
-          "path": "examples/about-and-legal-example.json"
+          "name": "about-and-legal",
+          "path": "examples/about-and-legal.json"
         },
         {
-          "name": "action-card-example",
-          "path": "examples/action-card-example.json"
+          "name": "action-card",
+          "path": "examples/action-card.json"
         },
         {
-          "name": "add-icons-example",
-          "path": "examples/add-icons-example.json"
+          "name": "add-icons",
+          "path": "examples/add-icons.json"
         },
         {
-          "name": "aggrid-example",
-          "path": "examples/aggrid-example.json"
+          "name": "aggrid",
+          "path": "examples/aggrid.json"
         },
         {
-          "name": "application-advanced-example",
-          "path": "examples/application-advanced-example.json"
+          "name": "application",
+          "path": "examples/application.json"
         },
         {
-          "name": "application-app-switch-example",
-          "path": "examples/application-app-switch-example.json"
+          "name": "application-advanced",
+          "path": "examples/application-advanced.json"
         },
         {
-          "name": "application-breakpoints-example",
-          "path": "examples/application-breakpoints-example.json"
+          "name": "application-app-switch",
+          "path": "examples/application-app-switch.json"
         },
         {
-          "name": "application-example",
-          "path": "examples/application-example.json"
+          "name": "application-breakpoints",
+          "path": "examples/application-breakpoints.json"
         },
         {
-          "name": "application-header-example",
-          "path": "examples/application-header-example.json"
+          "name": "application-header",
+          "path": "examples/application-header.json"
         },
         {
-          "name": "aria-label-properties-example",
-          "path": "examples/aria-label-properties-example.json"
+          "name": "aria-label-properties",
+          "path": "examples/aria-label-properties.json"
         },
         {
-          "name": "avatar-example",
-          "path": "examples/avatar-example.json"
+          "name": "avatar",
+          "path": "examples/avatar.json"
         },
         {
-          "name": "avatar-image-example",
-          "path": "examples/avatar-image-example.json"
+          "name": "avatar-image",
+          "path": "examples/avatar-image.json"
         },
         {
-          "name": "avatar-initials-example",
-          "path": "examples/avatar-initials-example.json"
+          "name": "avatar-initials",
+          "path": "examples/avatar-initials.json"
         },
         {
-          "name": "basic-navigation-migration-example",
-          "path": "examples/basic-navigation-migration-example.json"
+          "name": "basic-navigation-migration",
+          "path": "examples/basic-navigation-migration.json"
         },
         {
-          "name": "blind-example",
-          "path": "examples/blind-example.json"
+          "name": "blind",
+          "path": "examples/blind.json"
         },
         {
-          "name": "blind-header-actions-example",
-          "path": "examples/blind-header-actions-example.json"
+          "name": "blind-header-actions",
+          "path": "examples/blind-header-actions.json"
         },
         {
-          "name": "blind-variants-example",
-          "path": "examples/blind-variants-example.json"
+          "name": "blind-variants",
+          "path": "examples/blind-variants.json"
         },
         {
-          "name": "breadcrumb-example",
-          "path": "examples/breadcrumb-example.json"
+          "name": "breadcrumb",
+          "path": "examples/breadcrumb.json"
         },
         {
-          "name": "breadcrumb-next-items-example",
-          "path": "examples/breadcrumb-next-items-example.json"
+          "name": "breadcrumb-next-items",
+          "path": "examples/breadcrumb-next-items.json"
         },
         {
-          "name": "breadcrumb-truncate-example",
-          "path": "examples/breadcrumb-truncate-example.json"
+          "name": "breadcrumb-truncate",
+          "path": "examples/breadcrumb-truncate.json"
         },
         {
-          "name": "button-danger-example",
-          "path": "examples/button-danger-example.json"
+          "name": "button-danger",
+          "path": "examples/button-danger.json"
         },
         {
-          "name": "button-danger-ghost-example",
-          "path": "examples/button-danger-ghost-example.json"
+          "name": "button-danger-ghost",
+          "path": "examples/button-danger-ghost.json"
         },
         {
-          "name": "button-danger-outline-example",
-          "path": "examples/button-danger-outline-example.json"
+          "name": "button-danger-outline",
+          "path": "examples/button-danger-outline.json"
         },
         {
-          "name": "button-ghost-example",
-          "path": "examples/button-ghost-example.json"
+          "name": "button-ghost",
+          "path": "examples/button-ghost.json"
         },
         {
-          "name": "button-grey-example",
-          "path": "examples/button-grey-example.json"
+          "name": "button-grey",
+          "path": "examples/button-grey.json"
         },
         {
-          "name": "button-grey-ghost-example",
-          "path": "examples/button-grey-ghost-example.json"
+          "name": "button-grey-ghost",
+          "path": "examples/button-grey-ghost.json"
         },
         {
-          "name": "button-grey-secondary-example",
-          "path": "examples/button-grey-secondary-example.json"
+          "name": "button-grey-secondary",
+          "path": "examples/button-grey-secondary.json"
         },
         {
-          "name": "button-group-example",
-          "path": "examples/button-group-example.json"
+          "name": "button-group",
+          "path": "examples/button-group.json"
         },
         {
-          "name": "button-loading-example",
-          "path": "examples/button-loading-example.json"
+          "name": "button-loading",
+          "path": "examples/button-loading.json"
         },
         {
-          "name": "button-secondary-example",
-          "path": "examples/button-secondary-example.json"
+          "name": "button-secondary",
+          "path": "examples/button-secondary.json"
         },
         {
-          "name": "button-text-icon-example",
-          "path": "examples/button-text-icon-example.json"
+          "name": "button-text-icon",
+          "path": "examples/button-text-icon.json"
         },
         {
-          "name": "button-with-icon-example",
-          "path": "examples/button-with-icon-example.json"
+          "name": "button-with-icon",
+          "path": "examples/button-with-icon.json"
         },
         {
-          "name": "button-with-link-example",
-          "path": "examples/button-with-link-example.json"
+          "name": "button-with-link",
+          "path": "examples/button-with-link.json"
         },
         {
-          "name": "buttons-example",
-          "path": "examples/buttons-example.json"
+          "name": "buttons",
+          "path": "examples/buttons.json"
         },
         {
-          "name": "card-example",
-          "path": "examples/card-example.json"
+          "name": "card",
+          "path": "examples/card.json"
         },
         {
-          "name": "card-list-example",
-          "path": "examples/card-list-example.json"
+          "name": "card-list",
+          "path": "examples/card-list.json"
         },
         {
-          "name": "category-filter-example",
-          "path": "examples/category-filter-example.json"
+          "name": "category-filter",
+          "path": "examples/category-filter.json"
         },
         {
-          "name": "category-filter-suggestions-example",
-          "path": "examples/category-filter-suggestions-example.json"
+          "name": "category-filter-suggestions",
+          "path": "examples/category-filter-suggestions.json"
         },
         {
-          "name": "checkbox-example",
-          "path": "examples/checkbox-example.json"
+          "name": "checkbox",
+          "path": "examples/checkbox.json"
         },
         {
-          "name": "checkbox-indeterminate-example",
-          "path": "examples/checkbox-indeterminate-example.json"
+          "name": "checkbox-indeterminate",
+          "path": "examples/checkbox-indeterminate.json"
         },
         {
-          "name": "chip-example",
-          "path": "examples/chip-example.json"
+          "name": "chip",
+          "path": "examples/chip.json"
         },
         {
-          "name": "content-example",
-          "path": "examples/content-example.json"
+          "name": "content",
+          "path": "examples/content.json"
         },
         {
-          "name": "content-header-example",
-          "path": "examples/content-header-example.json"
+          "name": "content-header",
+          "path": "examples/content-header.json"
         },
         {
-          "name": "content-header-no-back-example",
-          "path": "examples/content-header-no-back-example.json"
+          "name": "content-header-no-back",
+          "path": "examples/content-header-no-back.json"
         },
         {
-          "name": "content-header-with-slot-example",
-          "path": "examples/content-header-with-slot-example.json"
+          "name": "content-header-with-slot",
+          "path": "examples/content-header-with-slot.json"
         },
         {
-          "name": "custom-field-example",
-          "path": "examples/custom-field-example.json"
+          "name": "custom-field",
+          "path": "examples/custom-field.json"
         },
         {
-          "name": "custom-field-validation-example",
-          "path": "examples/custom-field-validation-example.json"
+          "name": "custom-field-validation",
+          "path": "examples/custom-field-validation.json"
         },
         {
-          "name": "date-dropdown-example",
-          "path": "examples/date-dropdown-example.json"
+          "name": "date-dropdown",
+          "path": "examples/date-dropdown.json"
         },
         {
-          "name": "date-dropdown-user-range-example",
-          "path": "examples/date-dropdown-user-range-example.json"
+          "name": "date-dropdown-user-range",
+          "path": "examples/date-dropdown-user-range.json"
         },
         {
-          "name": "date-input-disabled-example",
-          "path": "examples/date-input-disabled-example.json"
+          "name": "date-input",
+          "path": "examples/date-input.json"
         },
         {
-          "name": "date-input-example",
-          "path": "examples/date-input-example.json"
+          "name": "date-input-disabled",
+          "path": "examples/date-input-disabled.json"
         },
         {
-          "name": "date-input-label-example",
-          "path": "examples/date-input-label-example.json"
+          "name": "date-input-label",
+          "path": "examples/date-input-label.json"
         },
         {
-          "name": "date-input-min-max-date-example",
-          "path": "examples/date-input-min-max-date-example.json"
+          "name": "date-input-min-max-date",
+          "path": "examples/date-input-min-max-date.json"
         },
         {
-          "name": "date-input-readonly-example",
-          "path": "examples/date-input-readonly-example.json"
+          "name": "date-input-readonly",
+          "path": "examples/date-input-readonly.json"
         },
         {
-          "name": "date-input-validation-example",
-          "path": "examples/date-input-validation-example.json"
+          "name": "date-input-validation",
+          "path": "examples/date-input-validation.json"
         },
         {
-          "name": "date-input-with-slots-example",
-          "path": "examples/date-input-with-slots-example.json"
+          "name": "date-input-with-slots",
+          "path": "examples/date-input-with-slots.json"
         },
         {
-          "name": "datepicker-example",
-          "path": "examples/datepicker-example.json"
+          "name": "datepicker",
+          "path": "examples/datepicker.json"
         },
         {
-          "name": "datepicker-locale-example",
-          "path": "examples/datepicker-locale-example.json"
+          "name": "datepicker-locale",
+          "path": "examples/datepicker-locale.json"
         },
         {
-          "name": "datepicker-range-example",
-          "path": "examples/datepicker-range-example.json"
+          "name": "datepicker-range",
+          "path": "examples/datepicker-range.json"
         },
         {
-          "name": "datetimepicker-example",
-          "path": "examples/datetimepicker-example.json"
+          "name": "datetimepicker",
+          "path": "examples/datetimepicker.json"
         },
         {
-          "name": "divider-example",
-          "path": "examples/divider-example.json"
+          "name": "divider",
+          "path": "examples/divider.json"
         },
         {
-          "name": "drawer-example",
-          "path": "examples/drawer-example.json"
+          "name": "drawer",
+          "path": "examples/drawer.json"
         },
         {
-          "name": "drawer-full-height-example",
-          "path": "examples/drawer-full-height-example.json"
+          "name": "drawer-full-height",
+          "path": "examples/drawer-full-height.json"
         },
         {
-          "name": "dropdown-button-example",
-          "path": "examples/dropdown-button-example.json"
+          "name": "dropdown",
+          "path": "examples/dropdown.json"
         },
         {
-          "name": "dropdown-button-icon-example",
-          "path": "examples/dropdown-button-icon-example.json"
+          "name": "dropdown-button",
+          "path": "examples/dropdown-button.json"
         },
         {
-          "name": "dropdown-example",
-          "path": "examples/dropdown-example.json"
+          "name": "dropdown-button-icon",
+          "path": "examples/dropdown-button-icon.json"
         },
         {
-          "name": "dropdown-icon-example",
-          "path": "examples/dropdown-icon-example.json"
+          "name": "dropdown-icon",
+          "path": "examples/dropdown-icon.json"
         },
         {
-          "name": "dropdown-quick-actions-example",
-          "path": "examples/dropdown-quick-actions-example.json"
+          "name": "dropdown-quick-actions",
+          "path": "examples/dropdown-quick-actions.json"
         },
         {
-          "name": "dropdown-submenu-example",
-          "path": "examples/dropdown-submenu-example.json"
+          "name": "dropdown-submenu",
+          "path": "examples/dropdown-submenu.json"
         },
         {
-          "name": "echarts-bar-horizontal-stacked-example",
-          "path": "examples/echarts-bar-horizontal-stacked-example.json"
+          "name": "echarts",
+          "path": "examples/echarts.json"
         },
         {
-          "name": "echarts-bar-simple-example",
-          "path": "examples/echarts-bar-simple-example.json"
+          "name": "echarts-bar-horizontal-stacked",
+          "path": "examples/echarts-bar-horizontal-stacked.json"
         },
         {
-          "name": "echarts-circle-example",
-          "path": "examples/echarts-circle-example.json"
+          "name": "echarts-bar-simple",
+          "path": "examples/echarts-bar-simple.json"
         },
         {
-          "name": "echarts-empty-state-example",
-          "path": "examples/echarts-empty-state-example.json"
+          "name": "echarts-circle",
+          "path": "examples/echarts-circle.json"
         },
         {
-          "name": "echarts-example",
-          "path": "examples/echarts-example.json"
+          "name": "echarts-empty-state",
+          "path": "examples/echarts-empty-state.json"
         },
         {
-          "name": "echarts-gauge-example",
-          "path": "examples/echarts-gauge-example.json"
+          "name": "echarts-gauge",
+          "path": "examples/echarts-gauge.json"
         },
         {
-          "name": "echarts-line-advanced-example",
-          "path": "examples/echarts-line-advanced-example.json"
+          "name": "echarts-line-advanced",
+          "path": "examples/echarts-line-advanced.json"
         },
         {
-          "name": "echarts-line-multiple-y-axis-example",
-          "path": "examples/echarts-line-multiple-y-axis-example.json"
+          "name": "echarts-line-multiple-y-axis",
+          "path": "examples/echarts-line-multiple-y-axis.json"
         },
         {
-          "name": "echarts-line-simple-example",
-          "path": "examples/echarts-line-simple-example.json"
+          "name": "echarts-line-simple",
+          "path": "examples/echarts-line-simple.json"
         },
         {
-          "name": "echarts-pie-example",
-          "path": "examples/echarts-pie-example.json"
+          "name": "echarts-pie",
+          "path": "examples/echarts-pie.json"
         },
         {
-          "name": "echarts-progress-arc-example",
-          "path": "examples/echarts-progress-arc-example.json"
+          "name": "echarts-progress-arc",
+          "path": "examples/echarts-progress-arc.json"
         },
         {
-          "name": "echarts-progress-circle-example",
-          "path": "examples/echarts-progress-circle-example.json"
+          "name": "echarts-progress-circle",
+          "path": "examples/echarts-progress-circle.json"
         },
         {
-          "name": "echarts-special-3d-example",
-          "path": "examples/echarts-special-3d-example.json"
+          "name": "echarts-special-3d",
+          "path": "examples/echarts-special-3d.json"
         },
         {
-          "name": "echarts-special-toolbox-example",
-          "path": "examples/echarts-special-toolbox-example.json"
+          "name": "echarts-special-toolbox",
+          "path": "examples/echarts-special-toolbox.json"
         },
         {
-          "name": "echarts-special-zoom-example",
-          "path": "examples/echarts-special-zoom-example.json"
+          "name": "echarts-special-zoom",
+          "path": "examples/echarts-special-zoom.json"
         },
         {
-          "name": "empty-state-compact-break-example",
-          "path": "examples/empty-state-compact-break-example.json"
+          "name": "empty-state",
+          "path": "examples/empty-state.json"
         },
         {
-          "name": "empty-state-compact-example",
-          "path": "examples/empty-state-compact-example.json"
+          "name": "empty-state-compact",
+          "path": "examples/empty-state-compact.json"
         },
         {
-          "name": "empty-state-example",
-          "path": "examples/empty-state-example.json"
+          "name": "empty-state-compact-break",
+          "path": "examples/empty-state-compact-break.json"
         },
         {
-          "name": "event-list-compact-example",
-          "path": "examples/event-list-compact-example.json"
+          "name": "event-list",
+          "path": "examples/event-list.json"
         },
         {
-          "name": "event-list-custom-item-height-example",
-          "path": "examples/event-list-custom-item-height-example.json"
+          "name": "event-list-compact",
+          "path": "examples/event-list-compact.json"
         },
         {
-          "name": "event-list-custom-item-height-in-number-example",
-          "path": "examples/event-list-custom-item-height-in-number-example.json"
+          "name": "event-list-custom-item-height",
+          "path": "examples/event-list-custom-item-height.json"
         },
         {
-          "name": "event-list-example",
-          "path": "examples/event-list-example.json"
+          "name": "event-list-custom-item-height-in-number",
+          "path": "examples/event-list-custom-item-height-in-number.json"
         },
         {
-          "name": "event-list-filled-example",
-          "path": "examples/event-list-filled-example.json"
+          "name": "event-list-filled",
+          "path": "examples/event-list-filled.json"
         },
         {
-          "name": "event-list-selected-example",
-          "path": "examples/event-list-selected-example.json"
+          "name": "event-list-selected",
+          "path": "examples/event-list-selected.json"
         },
         {
-          "name": "expanding-search-example",
-          "path": "examples/expanding-search-example.json"
+          "name": "expanding-search",
+          "path": "examples/expanding-search.json"
         },
         {
-          "name": "flip-tile-example",
-          "path": "examples/flip-tile-example.json"
+          "name": "flip-tile",
+          "path": "examples/flip-tile.json"
         },
         {
-          "name": "form-checkbox-disabled-example",
-          "path": "examples/form-checkbox-disabled-example.json"
+          "name": "form-checkbox",
+          "path": "examples/form-checkbox.json"
         },
         {
-          "name": "form-checkbox-example",
-          "path": "examples/form-checkbox-example.json"
+          "name": "form-checkbox-disabled",
+          "path": "examples/form-checkbox-disabled.json"
         },
         {
-          "name": "form-checkbox-group-example",
-          "path": "examples/form-checkbox-group-example.json"
+          "name": "form-checkbox-group",
+          "path": "examples/form-checkbox-group.json"
         },
         {
-          "name": "form-checkbox-group-indeterminate-example",
-          "path": "examples/form-checkbox-group-indeterminate-example.json"
+          "name": "form-checkbox-group-indeterminate",
+          "path": "examples/form-checkbox-group-indeterminate.json"
         },
         {
-          "name": "form-checkbox-validation-example",
-          "path": "examples/form-checkbox-validation-example.json"
+          "name": "form-checkbox-validation",
+          "path": "examples/form-checkbox-validation.json"
         },
         {
-          "name": "form-layout-auto-example",
-          "path": "examples/form-layout-auto-example.json"
+          "name": "form-layout-auto",
+          "path": "examples/form-layout-auto.json"
         },
         {
-          "name": "form-layout-grid-example",
-          "path": "examples/form-layout-grid-example.json"
+          "name": "form-layout-grid",
+          "path": "examples/form-layout-grid.json"
         },
         {
-          "name": "form-validation-example",
-          "path": "examples/form-validation-example.json"
+          "name": "form-validation",
+          "path": "examples/form-validation.json"
         },
         {
-          "name": "grid-example",
-          "path": "examples/grid-example.json"
+          "name": "grid",
+          "path": "examples/grid.json"
         },
         {
-          "name": "grid-padding-example",
-          "path": "examples/grid-padding-example.json"
+          "name": "grid-padding",
+          "path": "examples/grid-padding.json"
         },
         {
-          "name": "grid-size-example",
-          "path": "examples/grid-size-example.json"
+          "name": "grid-size",
+          "path": "examples/grid-size.json"
         },
         {
-          "name": "group-context-menu-example",
-          "path": "examples/group-context-menu-example.json"
+          "name": "group",
+          "path": "examples/group.json"
         },
         {
-          "name": "group-custom-entry-example",
-          "path": "examples/group-custom-entry-example.json"
+          "name": "group-context-menu",
+          "path": "examples/group-context-menu.json"
         },
         {
-          "name": "group-example",
-          "path": "examples/group-example.json"
+          "name": "group-custom-entry",
+          "path": "examples/group-custom-entry.json"
         },
         {
-          "name": "group-header-suppressed-example",
-          "path": "examples/group-header-suppressed-example.json"
+          "name": "group-header-suppressed",
+          "path": "examples/group-header-suppressed.json"
         },
         {
-          "name": "html-table-example",
-          "path": "examples/html-table-example.json"
+          "name": "html-table",
+          "path": "examples/html-table.json"
         },
         {
-          "name": "html-table-striped-example",
-          "path": "examples/html-table-striped-example.json"
+          "name": "html-table-striped",
+          "path": "examples/html-table-striped.json"
         },
         {
-          "name": "icon-toggle-button-secondary-example",
-          "path": "examples/icon-toggle-button-secondary-example.json"
+          "name": "icon-toggle-button-secondary",
+          "path": "examples/icon-toggle-button-secondary.json"
         },
         {
-          "name": "icon-toggle-button-subtle-primary-example",
-          "path": "examples/icon-toggle-button-subtle-primary-example.json"
+          "name": "icon-toggle-button-subtle-primary",
+          "path": "examples/icon-toggle-button-subtle-primary.json"
         },
         {
-          "name": "icon-toggle-button-subtle-secondary-example",
-          "path": "examples/icon-toggle-button-subtle-secondary-example.json"
+          "name": "icon-toggle-button-subtle-secondary",
+          "path": "examples/icon-toggle-button-subtle-secondary.json"
         },
         {
-          "name": "icon-toggle-button-subtle-tertiary-example",
-          "path": "examples/icon-toggle-button-subtle-tertiary-example.json"
+          "name": "icon-toggle-button-subtle-tertiary",
+          "path": "examples/icon-toggle-button-subtle-tertiary.json"
         },
         {
-          "name": "icon-toggle-button-tertiary-example",
-          "path": "examples/icon-toggle-button-tertiary-example.json"
+          "name": "icon-toggle-button-tertiary",
+          "path": "examples/icon-toggle-button-tertiary.json"
         },
         {
-          "name": "input-disabled-example",
-          "path": "examples/input-disabled-example.json"
+          "name": "input",
+          "path": "examples/input.json"
         },
         {
-          "name": "input-example",
-          "path": "examples/input-example.json"
+          "name": "input-disabled",
+          "path": "examples/input-disabled.json"
         },
         {
-          "name": "input-form-validation-example",
-          "path": "examples/input-form-validation-example.json"
+          "name": "input-form-validation",
+          "path": "examples/input-form-validation.json"
         },
         {
-          "name": "input-label-example",
-          "path": "examples/input-label-example.json"
+          "name": "input-label",
+          "path": "examples/input-label.json"
         },
         {
-          "name": "input-legacy-disabled-example",
-          "path": "examples/input-legacy-disabled-example.json"
+          "name": "input-legacy",
+          "path": "examples/input-legacy.json"
         },
         {
-          "name": "input-legacy-example",
-          "path": "examples/input-legacy-example.json"
+          "name": "input-legacy-disabled",
+          "path": "examples/input-legacy-disabled.json"
         },
         {
-          "name": "input-legacy-readonly-example",
-          "path": "examples/input-legacy-readonly-example.json"
+          "name": "input-legacy-readonly",
+          "path": "examples/input-legacy-readonly.json"
         },
         {
-          "name": "input-pattern-example",
-          "path": "examples/input-pattern-example.json"
+          "name": "input-pattern",
+          "path": "examples/input-pattern.json"
         },
         {
-          "name": "input-readonly-example",
-          "path": "examples/input-readonly-example.json"
+          "name": "input-readonly",
+          "path": "examples/input-readonly.json"
         },
         {
-          "name": "input-types-example",
-          "path": "examples/input-types-example.json"
+          "name": "input-types",
+          "path": "examples/input-types.json"
         },
         {
-          "name": "input-validation-example",
-          "path": "examples/input-validation-example.json"
+          "name": "input-validation",
+          "path": "examples/input-validation.json"
         },
         {
-          "name": "input-with-slots-example",
-          "path": "examples/input-with-slots-example.json"
+          "name": "input-with-slots",
+          "path": "examples/input-with-slots.json"
         },
         {
-          "name": "key-value-example",
-          "path": "examples/key-value-example.json"
+          "name": "key-value",
+          "path": "examples/key-value.json"
         },
         {
-          "name": "key-value-list-example",
-          "path": "examples/key-value-list-example.json"
+          "name": "key-value-list",
+          "path": "examples/key-value-list.json"
         },
         {
-          "name": "key-value-list-striped-example",
-          "path": "examples/key-value-list-striped-example.json"
+          "name": "key-value-list-striped",
+          "path": "examples/key-value-list-striped.json"
         },
         {
-          "name": "key-value-list-with-custom-value-example",
-          "path": "examples/key-value-list-with-custom-value-example.json"
+          "name": "key-value-list-with-custom-value",
+          "path": "examples/key-value-list-with-custom-value.json"
         },
         {
-          "name": "key-value-list-with-icon-example",
-          "path": "examples/key-value-list-with-icon-example.json"
+          "name": "key-value-list-with-icon",
+          "path": "examples/key-value-list-with-icon.json"
         },
         {
-          "name": "key-value-with-custom-value-example",
-          "path": "examples/key-value-with-custom-value-example.json"
+          "name": "key-value-with-custom-value",
+          "path": "examples/key-value-with-custom-value.json"
         },
         {
-          "name": "key-value-with-icon-example",
-          "path": "examples/key-value-with-icon-example.json"
+          "name": "key-value-with-icon",
+          "path": "examples/key-value-with-icon.json"
         },
         {
-          "name": "key-value-with-label-left-example",
-          "path": "examples/key-value-with-label-left-example.json"
+          "name": "key-value-with-label-left",
+          "path": "examples/key-value-with-label-left.json"
         },
         {
-          "name": "kpi-example",
-          "path": "examples/kpi-example.json"
+          "name": "kpi",
+          "path": "examples/kpi.json"
         },
         {
-          "name": "layout-auto-custom-example",
-          "path": "examples/layout-auto-custom-example.json"
+          "name": "layout-auto",
+          "path": "examples/layout-auto.json"
         },
         {
-          "name": "layout-auto-example",
-          "path": "examples/layout-auto-example.json"
+          "name": "layout-auto-custom",
+          "path": "examples/layout-auto-custom.json"
         },
         {
-          "name": "link-button-disabled-example",
-          "path": "examples/link-button-disabled-example.json"
+          "name": "link-button",
+          "path": "examples/link-button.json"
         },
         {
-          "name": "link-button-example",
-          "path": "examples/link-button-example.json"
+          "name": "link-button-disabled",
+          "path": "examples/link-button-disabled.json"
         },
         {
-          "name": "loading-example",
-          "path": "examples/loading-example.json"
+          "name": "loading",
+          "path": "examples/loading.json"
         },
         {
-          "name": "map-navigation-migration-example",
-          "path": "examples/map-navigation-migration-example.json"
+          "name": "map-navigation-migration",
+          "path": "examples/map-navigation-migration.json"
         },
         {
-          "name": "menu-category-example",
-          "path": "examples/menu-category-example.json"
+          "name": "menu-category",
+          "path": "examples/menu-category.json"
         },
         {
-          "name": "menu-with-bottom-tabs-example",
-          "path": "examples/menu-with-bottom-tabs-example.json"
+          "name": "menu-with-bottom-tabs",
+          "path": "examples/menu-with-bottom-tabs.json"
         },
         {
-          "name": "message-bar-example",
-          "path": "examples/message-bar-example.json"
+          "name": "message",
+          "path": "examples/message.json"
         },
         {
-          "name": "message-bar-removal-example",
-          "path": "examples/message-bar-removal-example.json"
+          "name": "message-bar",
+          "path": "examples/message-bar.json"
         },
         {
-          "name": "message-example",
-          "path": "examples/message-example.json"
+          "name": "message-bar-removal",
+          "path": "examples/message-bar-removal.json"
         },
         {
-          "name": "modal-by-instance-content-example",
-          "path": "examples/modal-by-instance-content-example.json"
+          "name": "modal",
+          "path": "examples/modal.json"
         },
         {
-          "name": "modal-by-instance-example",
-          "path": "examples/modal-by-instance-example.json"
+          "name": "modal-by-instance",
+          "path": "examples/modal-by-instance.json"
         },
         {
-          "name": "modal-by-template-example",
-          "path": "examples/modal-by-template-example.json"
+          "name": "modal-by-instance-content",
+          "path": "examples/modal-by-instance-content.json"
         },
         {
-          "name": "modal-close-example",
-          "path": "examples/modal-close-example.json"
+          "name": "modal-by-template",
+          "path": "examples/modal-by-template.json"
         },
         {
-          "name": "modal-example",
-          "path": "examples/modal-example.json"
+          "name": "modal-close",
+          "path": "examples/modal-close.json"
         },
         {
-          "name": "modal-form-ix-button-submit-example",
-          "path": "examples/modal-form-ix-button-submit-example.json"
+          "name": "modal-form-ix-button-submit",
+          "path": "examples/modal-form-ix-button-submit.json"
         },
         {
-          "name": "modal-sizes-example",
-          "path": "examples/modal-sizes-example.json"
+          "name": "modal-sizes",
+          "path": "examples/modal-sizes.json"
         },
         {
-          "name": "number-input-disabled-example",
-          "path": "examples/number-input-disabled-example.json"
+          "name": "number-input",
+          "path": "examples/number-input.json"
         },
         {
-          "name": "number-input-example",
-          "path": "examples/number-input-example.json"
+          "name": "number-input-disabled",
+          "path": "examples/number-input-disabled.json"
         },
         {
-          "name": "number-input-label-example",
-          "path": "examples/number-input-label-example.json"
+          "name": "number-input-label",
+          "path": "examples/number-input-label.json"
         },
         {
-          "name": "number-input-readonly-example",
-          "path": "examples/number-input-readonly-example.json"
+          "name": "number-input-readonly",
+          "path": "examples/number-input-readonly.json"
         },
         {
-          "name": "number-input-stepper-button-example",
-          "path": "examples/number-input-stepper-button-example.json"
+          "name": "number-input-stepper-button",
+          "path": "examples/number-input-stepper-button.json"
         },
         {
-          "name": "number-input-validation-example",
-          "path": "examples/number-input-validation-example.json"
+          "name": "number-input-validation",
+          "path": "examples/number-input-validation.json"
         },
         {
-          "name": "number-input-with-slots-example",
-          "path": "examples/number-input-with-slots-example.json"
+          "name": "number-input-with-slots",
+          "path": "examples/number-input-with-slots.json"
         },
         {
-          "name": "pagination-advanced-example",
-          "path": "examples/pagination-advanced-example.json"
+          "name": "pagination",
+          "path": "examples/pagination.json"
         },
         {
-          "name": "pagination-example",
-          "path": "examples/pagination-example.json"
+          "name": "pagination-advanced",
+          "path": "examples/pagination-advanced.json"
         },
         {
-          "name": "pane-example",
-          "path": "examples/pane-example.json"
+          "name": "pane",
+          "path": "examples/pane.json"
         },
         {
-          "name": "pane-layout-example",
-          "path": "examples/pane-layout-example.json"
+          "name": "pane-layout",
+          "path": "examples/pane-layout.json"
         },
         {
-          "name": "pill-example",
-          "path": "examples/pill-example.json"
+          "name": "pill",
+          "path": "examples/pill.json"
         },
         {
-          "name": "pill-variants-example",
-          "path": "examples/pill-variants-example.json"
+          "name": "pill-variants",
+          "path": "examples/pill-variants.json"
         },
         {
-          "name": "popover-news-example",
-          "path": "examples/popover-news-example.json"
+          "name": "popover-news",
+          "path": "examples/popover-news.json"
         },
         {
-          "name": "progress-indicator-circular-example",
-          "path": "examples/progress-indicator-circular-example.json"
+          "name": "progress-indicator",
+          "path": "examples/progress-indicator.json"
         },
         {
-          "name": "progress-indicator-circular-sizes-example",
-          "path": "examples/progress-indicator-circular-sizes-example.json"
+          "name": "progress-indicator-circular",
+          "path": "examples/progress-indicator-circular.json"
         },
         {
-          "name": "progress-indicator-circular-status-example",
-          "path": "examples/progress-indicator-circular-status-example.json"
+          "name": "progress-indicator-circular-sizes",
+          "path": "examples/progress-indicator-circular-sizes.json"
         },
         {
-          "name": "progress-indicator-example",
-          "path": "examples/progress-indicator-example.json"
+          "name": "progress-indicator-circular-status",
+          "path": "examples/progress-indicator-circular-status.json"
         },
         {
-          "name": "progress-indicator-linear-sizes-example",
-          "path": "examples/progress-indicator-linear-sizes-example.json"
+          "name": "progress-indicator-linear-sizes",
+          "path": "examples/progress-indicator-linear-sizes.json"
         },
         {
-          "name": "progress-indicator-linear-status-example",
-          "path": "examples/progress-indicator-linear-status-example.json"
+          "name": "progress-indicator-linear-status",
+          "path": "examples/progress-indicator-linear-status.json"
         },
         {
-          "name": "push-card-example",
-          "path": "examples/push-card-example.json"
+          "name": "push-card",
+          "path": "examples/push-card.json"
         },
         {
-          "name": "radio-button-example",
-          "path": "examples/radio-button-example.json"
+          "name": "radio",
+          "path": "examples/radio.json"
         },
         {
-          "name": "radio-disabled-example",
-          "path": "examples/radio-disabled-example.json"
+          "name": "radio-button",
+          "path": "examples/radio-button.json"
         },
         {
-          "name": "radio-example",
-          "path": "examples/radio-example.json"
+          "name": "radio-disabled",
+          "path": "examples/radio-disabled.json"
         },
         {
-          "name": "radio-group-example",
-          "path": "examples/radio-group-example.json"
+          "name": "radio-group",
+          "path": "examples/radio-group.json"
         },
         {
-          "name": "radio-validation-example",
-          "path": "examples/radio-validation-example.json"
+          "name": "radio-validation",
+          "path": "examples/radio-validation.json"
         },
         {
-          "name": "select-editable-example",
-          "path": "examples/select-editable-example.json"
+          "name": "select",
+          "path": "examples/select.json"
         },
         {
-          "name": "select-example",
-          "path": "examples/select-example.json"
+          "name": "select-editable",
+          "path": "examples/select-editable.json"
         },
         {
-          "name": "select-multiple-example",
-          "path": "examples/select-multiple-example.json"
+          "name": "select-multiple",
+          "path": "examples/select-multiple.json"
         },
         {
-          "name": "select-ng-model-example",
-          "path": "examples/select-ng-model-example.json"
+          "name": "select-ng-model",
+          "path": "examples/select-ng-model.json"
         },
         {
-          "name": "select-validation-example",
-          "path": "examples/select-validation-example.json"
+          "name": "select-validation",
+          "path": "examples/select-validation.json"
         },
         {
-          "name": "settings-example",
-          "path": "examples/settings-example.json"
+          "name": "settings",
+          "path": "examples/settings.json"
         },
         {
-          "name": "slider-error-example",
-          "path": "examples/slider-error-example.json"
+          "name": "slider",
+          "path": "examples/slider.json"
         },
         {
-          "name": "slider-example",
-          "path": "examples/slider-example.json"
+          "name": "slider-error",
+          "path": "examples/slider-error.json"
         },
         {
-          "name": "slider-marker-example",
-          "path": "examples/slider-marker-example.json"
+          "name": "slider-marker",
+          "path": "examples/slider-marker.json"
         },
         {
-          "name": "slider-trace-example",
-          "path": "examples/slider-trace-example.json"
+          "name": "slider-trace",
+          "path": "examples/slider-trace.json"
         },
         {
-          "name": "spinner-example",
-          "path": "examples/spinner-example.json"
+          "name": "spinner",
+          "path": "examples/spinner.json"
         },
         {
-          "name": "spinner-large-example",
-          "path": "examples/spinner-large-example.json"
+          "name": "spinner-large",
+          "path": "examples/spinner-large.json"
         },
         {
-          "name": "split-button-example",
-          "path": "examples/split-button-example.json"
+          "name": "split-button",
+          "path": "examples/split-button.json"
         },
         {
-          "name": "split-button-icons-example",
-          "path": "examples/split-button-icons-example.json"
+          "name": "split-button-icons",
+          "path": "examples/split-button-icons.json"
         },
         {
-          "name": "tabs-example",
-          "path": "examples/tabs-example.json"
+          "name": "tabs",
+          "path": "examples/tabs.json"
         },
         {
-          "name": "tabs-rounded-example",
-          "path": "examples/tabs-rounded-example.json"
+          "name": "tabs-rounded",
+          "path": "examples/tabs-rounded.json"
         },
         {
-          "name": "textarea-disabled-example",
-          "path": "examples/textarea-disabled-example.json"
+          "name": "textarea",
+          "path": "examples/textarea.json"
         },
         {
-          "name": "textarea-example",
-          "path": "examples/textarea-example.json"
+          "name": "textarea-disabled",
+          "path": "examples/textarea-disabled.json"
         },
         {
-          "name": "textarea-legacy-disabled-example",
-          "path": "examples/textarea-legacy-disabled-example.json"
+          "name": "textarea-legacy",
+          "path": "examples/textarea-legacy.json"
         },
         {
-          "name": "textarea-legacy-example",
-          "path": "examples/textarea-legacy-example.json"
+          "name": "textarea-legacy-disabled",
+          "path": "examples/textarea-legacy-disabled.json"
         },
         {
-          "name": "textarea-legacy-readonly-example",
-          "path": "examples/textarea-legacy-readonly-example.json"
+          "name": "textarea-legacy-readonly",
+          "path": "examples/textarea-legacy-readonly.json"
         },
         {
-          "name": "textarea-readonly-example",
-          "path": "examples/textarea-readonly-example.json"
+          "name": "textarea-readonly",
+          "path": "examples/textarea-readonly.json"
         },
         {
-          "name": "textarea-rows-cols-example",
-          "path": "examples/textarea-rows-cols-example.json"
+          "name": "textarea-rows-cols",
+          "path": "examples/textarea-rows-cols.json"
         },
         {
-          "name": "textarea-validation-example",
-          "path": "examples/textarea-validation-example.json"
+          "name": "textarea-validation",
+          "path": "examples/textarea-validation.json"
         },
         {
-          "name": "theme-switcher-example",
-          "path": "examples/theme-switcher-example.json"
+          "name": "theme-switcher",
+          "path": "examples/theme-switcher.json"
         },
         {
-          "name": "tile-example",
-          "path": "examples/tile-example.json"
+          "name": "tile",
+          "path": "examples/tile.json"
         },
         {
-          "name": "time-input-disabled-example",
-          "path": "examples/time-input-disabled-example.json"
+          "name": "time-input",
+          "path": "examples/time-input.json"
         },
         {
-          "name": "time-input-example",
-          "path": "examples/time-input-example.json"
+          "name": "time-input-disabled",
+          "path": "examples/time-input-disabled.json"
         },
         {
-          "name": "time-input-label-example",
-          "path": "examples/time-input-label-example.json"
+          "name": "time-input-label",
+          "path": "examples/time-input-label.json"
         },
         {
-          "name": "time-input-readonly-example",
-          "path": "examples/time-input-readonly-example.json"
+          "name": "time-input-readonly",
+          "path": "examples/time-input-readonly.json"
         },
         {
-          "name": "time-input-validation-example",
-          "path": "examples/time-input-validation-example.json"
+          "name": "time-input-validation",
+          "path": "examples/time-input-validation.json"
         },
         {
-          "name": "time-input-with-slots-example",
-          "path": "examples/time-input-with-slots-example.json"
+          "name": "time-input-with-slots",
+          "path": "examples/time-input-with-slots.json"
         },
         {
-          "name": "timepicker-example",
-          "path": "examples/timepicker-example.json"
+          "name": "timepicker",
+          "path": "examples/timepicker.json"
         },
         {
-          "name": "timepicker-format-adjusted-example",
-          "path": "examples/timepicker-format-adjusted-example.json"
+          "name": "timepicker-format-adjusted",
+          "path": "examples/timepicker-format-adjusted.json"
         },
         {
-          "name": "timepicker-intervals-example",
-          "path": "examples/timepicker-intervals-example.json"
+          "name": "timepicker-intervals",
+          "path": "examples/timepicker-intervals.json"
         },
         {
-          "name": "toast-custom-example",
-          "path": "examples/toast-custom-example.json"
+          "name": "toast",
+          "path": "examples/toast.json"
         },
         {
-          "name": "toast-example",
-          "path": "examples/toast-example.json"
+          "name": "toast-custom",
+          "path": "examples/toast-custom.json"
         },
         {
-          "name": "toast-position-example",
-          "path": "examples/toast-position-example.json"
+          "name": "toast-position",
+          "path": "examples/toast-position.json"
         },
         {
-          "name": "toggle-button-primary-example",
-          "path": "examples/toggle-button-primary-example.json"
+          "name": "toggle",
+          "path": "examples/toggle.json"
         },
         {
-          "name": "toggle-button-secondary-example",
-          "path": "examples/toggle-button-secondary-example.json"
+          "name": "toggle-button-primary",
+          "path": "examples/toggle-button-primary.json"
         },
         {
-          "name": "toggle-button-subtle-primary-example",
-          "path": "examples/toggle-button-subtle-primary-example.json"
+          "name": "toggle-button-secondary",
+          "path": "examples/toggle-button-secondary.json"
         },
         {
-          "name": "toggle-button-subtle-secondary-example",
-          "path": "examples/toggle-button-subtle-secondary-example.json"
+          "name": "toggle-button-subtle-primary",
+          "path": "examples/toggle-button-subtle-primary.json"
         },
         {
-          "name": "toggle-button-subtle-tertiary-example",
-          "path": "examples/toggle-button-subtle-tertiary-example.json"
+          "name": "toggle-button-subtle-secondary",
+          "path": "examples/toggle-button-subtle-secondary.json"
         },
         {
-          "name": "toggle-button-tertiary-example",
-          "path": "examples/toggle-button-tertiary-example.json"
+          "name": "toggle-button-subtle-tertiary",
+          "path": "examples/toggle-button-subtle-tertiary.json"
         },
         {
-          "name": "toggle-checked-example",
-          "path": "examples/toggle-checked-example.json"
+          "name": "toggle-button-tertiary",
+          "path": "examples/toggle-button-tertiary.json"
         },
         {
-          "name": "toggle-custom-label-example",
-          "path": "examples/toggle-custom-label-example.json"
+          "name": "toggle-checked",
+          "path": "examples/toggle-checked.json"
         },
         {
-          "name": "toggle-disabled-example",
-          "path": "examples/toggle-disabled-example.json"
+          "name": "toggle-custom-label",
+          "path": "examples/toggle-custom-label.json"
         },
         {
-          "name": "toggle-example",
-          "path": "examples/toggle-example.json"
+          "name": "toggle-disabled",
+          "path": "examples/toggle-disabled.json"
         },
         {
-          "name": "toggle-indeterminate-example",
-          "path": "examples/toggle-indeterminate-example.json"
+          "name": "toggle-indeterminate",
+          "path": "examples/toggle-indeterminate.json"
         },
         {
-          "name": "toggle-ng-model-example",
-          "path": "examples/toggle-ng-model-example.json"
+          "name": "toggle-ng-model",
+          "path": "examples/toggle-ng-model.json"
         },
         {
-          "name": "tooltip-example",
-          "path": "examples/tooltip-example.json"
+          "name": "tooltip",
+          "path": "examples/tooltip.json"
         },
         {
-          "name": "tooltip-with-icon-example",
-          "path": "examples/tooltip-with-icon-example.json"
+          "name": "tooltip-with-icon",
+          "path": "examples/tooltip-with-icon.json"
         },
         {
-          "name": "tree-custom-example",
-          "path": "examples/tree-custom-example.json"
+          "name": "tree",
+          "path": "examples/tree.json"
         },
         {
-          "name": "tree-example",
-          "path": "examples/tree-example.json"
+          "name": "tree-custom",
+          "path": "examples/tree-custom.json"
         },
         {
-          "name": "upload-example",
-          "path": "examples/upload-example.json"
+          "name": "upload",
+          "path": "examples/upload.json"
         },
         {
-          "name": "validation-example",
-          "path": "examples/validation-example.json"
+          "name": "validation",
+          "path": "examples/validation.json"
         },
         {
-          "name": "validation-select-example",
-          "path": "examples/validation-select-example.json"
+          "name": "validation-select",
+          "path": "examples/validation-select.json"
         },
         {
-          "name": "vertical-tabs-example",
-          "path": "examples/vertical-tabs-example.json"
+          "name": "vertical-tabs",
+          "path": "examples/vertical-tabs.json"
         },
         {
-          "name": "vertical-tabs-with-avatar-example",
-          "path": "examples/vertical-tabs-with-avatar-example.json"
+          "name": "vertical-tabs-with-avatar",
+          "path": "examples/vertical-tabs-with-avatar.json"
         },
         {
-          "name": "workflow-example",
-          "path": "examples/workflow-example.json"
+          "name": "workflow",
+          "path": "examples/workflow.json"
         },
         {
-          "name": "workflow-vertical-example",
-          "path": "examples/workflow-vertical-example.json"
+          "name": "workflow-vertical",
+          "path": "examples/workflow-vertical.json"
         }
       ]
     }

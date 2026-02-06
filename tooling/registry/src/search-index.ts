@@ -44,6 +44,10 @@ export async function buildSearchIndex(
   // Get workspace root (go up from blocksDir which is typically dist/blocks)
   const workspaceRoot = path.join(blocksDir, '..', '..', '..');
 
+  // Determine if this is for examples or blocks based on the base file name
+  const isExamples = baseFileName.includes('examples');
+  const pathPrefix = isExamples ? 'examples' : 'blocks';
+
   // Create separate document collections for each framework
   const frameworkDocuments: Record<string, BlockDocument[]> = {
     html: [],
@@ -106,9 +110,7 @@ export async function buildSearchIndex(
           sourceCode: sourceCodeParts.join('\n'),
           dependencies: dependencies.join(' '),
           files: files.join(' '),
-          path: blockPath.includes('example')
-            ? `examples/${blockPath}`
-            : `blocks/${blockPath}`,
+          path: `${pathPrefix}/${blockPath}`,
         });
       }
     }

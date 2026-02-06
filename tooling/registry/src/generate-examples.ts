@@ -193,7 +193,7 @@ export async function generateExampleBlocks(outputDir: string, examplesDir: stri
 
     // Only generate if at least one framework variant exists
     if (Object.keys(blockJson.variants).length > 0) {
-      const outputPath = path.join(outputDir, `${name}-example.json`);
+      const outputPath = path.join(outputDir, `${name}.json`);
       await fs.writeJson(outputPath, blockJson, { spaces: 2 });
       count++;
     }
