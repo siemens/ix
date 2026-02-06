@@ -1,5 +1,5 @@
 {
-  "name": "vue-test-app",
+  "name": "vue-examples",
   "version": "2.1.2",
   "private": true,
   "license": "MIT",
@@ -38,6 +38,7 @@
     "@vitejs/plugin-vue": "^6.0.0",
     "@vitest/browser": "^3.2.4",
     "@vue/tsconfig": "^0.7.0",
+    "framework-tests": "workspace:*",
     "playwright": "catalog:",
     "typescript": "~5.8.0",
     "vite": "catalog:",

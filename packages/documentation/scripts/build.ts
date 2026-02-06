@@ -57,7 +57,7 @@ const __angularStandaloneTestApp = path.join(
 );
 const __vueTestApp = path.join(
   __packages,
-  'vue-test-app',
+  'vue-examples',
   'src',
   'preview-examples'
 );
