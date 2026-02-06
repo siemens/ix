@@ -16,7 +16,7 @@ import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { Framework } from '../detect';
 import { searchBlocks } from '../search';
-import { fetchBlockDefinition } from '../registry';
+import { fetchBlockDefinition, listAllBlocks } from '../registry';
 import {
   searchComponents,
   getComponentDetails,
@@ -82,6 +82,9 @@ export const createServer = (framework: Framework, registryUrl: string) => {
       .describe('Maximum number of results to return (default: 10)'),
   });
 
+  const listAllBlocksName = 'list_all_blocks' as const;
+  const listAllBlocksSchema = z.object({});
+
   const auditChecklist = 'audit_checklist' as const;
 
   server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -115,6 +118,12 @@ export const createServer = (framework: Framework, registryUrl: string) => {
           description:
             'Search the Siemens IX blocks registry. Searches across block names, source code, dependencies, and file paths to find matching UI blocks/components.',
           inputSchema: zodToJsonSchema(searchBlocksSchema),
+        },
+        {
+          name: listAllBlocksName,
+          description:
+            'List all available Siemens IX blocks for the current framework. Use this to get a complete overview of available blocks.',
+          inputSchema: zodToJsonSchema(listAllBlocksSchema),
         },
         {
           name: auditChecklist,
@@ -492,6 +501,7 @@ export const createServer = (framework: Framework, registryUrl: string) => {
                     Try different search terms like:
                     - Component names (button, form, modal)
                     - Functionality keywords (upload, navigation, chart)
+                    - Use "list_all_blocks" to get a complete list of available blocks
                     `,
                   },
                 ],
@@ -503,7 +513,7 @@ export const createServer = (framework: Framework, registryUrl: string) => {
                 (r, i) =>
                   `${i + 1}. **${r.name}** (score: ${r.score.toFixed(
                     2
-                  )})\n   - Frameworks: ${r.frameworks}\n   - Path: ${r.path}`
+                  )})\n   - Path: ${r.path}`
               )
               .join('\n\n');
 
@@ -568,6 +578,60 @@ export const createServer = (framework: Framework, registryUrl: string) => {
                 {
                   type: 'text',
                   text: dedent`Error searching blocks: ${
+                    error instanceof Error ? error.message : String(error)
+                  }
+
+                  Please ensure the blocks registry is accessible and properly configured.
+                  `,
+                },
+              ],
+            };
+          }
+        }
+        case listAllBlocksName: {
+          try {
+            const blocks = await listAllBlocks(registryUrl, framework);
+
+            if (blocks.length === 0) {
+              return {
+                content: [
+                  {
+                    type: 'text',
+                    text: dedent`No blocks available for ${framework}.
+
+                    The blocks registry may be empty or unavailable.
+                    `,
+                  },
+                ],
+              };
+            }
+
+            const blocksList = blocks
+              .map((b, i) => `${i + 1}. **${b.name}**`)
+              .join('\n');
+
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`# All Siemens IX Blocks for ${framework} (${blocks.length} total)
+
+                  ${blocksList}
+
+                  **Next Steps:**
+                  - Use "search_blocks" to find specific blocks
+                  - Use the block name with the 'add' command to install it
+                    e.g: npx ix-cli add ${blocks[0].name}
+                  `,
+                },
+              ],
+            };
+          } catch (error) {
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`Error listing blocks: ${
                     error instanceof Error ? error.message : String(error)
                   }
 

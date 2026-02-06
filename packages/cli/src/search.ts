@@ -12,7 +12,6 @@ import { fetchRegistryIndex } from './registry';
 export interface BlockSearchResult {
   id: string;
   name: string;
-  frameworks: string;
   path: string;
   score: number;
 }
@@ -20,7 +19,7 @@ export interface BlockSearchResult {
 export interface SearchOptions {
   baseUrl: string;
   query: string;
-  framework?: 'react' | 'angular' | 'vue';
+  framework: 'react' | 'angular' | 'vue';
   limit?: number;
 }
 
@@ -38,7 +37,13 @@ export async function searchBlocks(
     throw new Error('Registry does not include a search index');
   }
 
-  const indexUrl = `${baseUrl}/${registry.searchIndex}`;
+  // Get framework-specific search index
+  const frameworkIndexPath = registry.searchIndex[framework];
+  if (!frameworkIndexPath) {
+    throw new Error(`No search index available for framework: ${framework}`);
+  }
+
+  const indexUrl = `${baseUrl}/${frameworkIndexPath}`;
   const indexRes = await fetch(indexUrl);
 
   if (!indexRes.ok) {
@@ -48,28 +53,21 @@ export async function searchBlocks(
   const indexData = await indexRes.json();
 
   const miniSearch = MiniSearch.loadJSON(JSON.stringify(indexData), {
-    fields: ['name', 'frameworks', 'sourceCode', 'dependencies', 'files'],
-    storeFields: ['id', 'name', 'frameworks', 'path'],
+    fields: ['name', 'sourceCode', 'dependencies', 'files'],
+    storeFields: ['id', 'name', 'path'],
   });
 
   let results = miniSearch.search(query, {
-    boost: { name: 3, frameworks: 2, files: 1.5 },
+    boost: { name: 3, files: 1.5 },
     fuzzy: 0.2,
     prefix: true,
   });
-
-  if (framework) {
-    results = results.filter((result) =>
-      result.frameworks?.toLowerCase().includes(framework.toLowerCase())
-    );
-  }
 
   results = results.slice(0, limit);
 
   return results.map((r) => ({
     id: r.id,
     name: r.name,
-    frameworks: r.frameworks || '',
     path: r.path || '',
     score: r.score,
   }));

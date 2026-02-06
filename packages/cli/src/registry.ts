@@ -1,6 +1,12 @@
 export type RegistryIndex = {
   name: string;
-  searchIndex?: string;
+  searchIndex?: {
+    html?: string;
+    react?: string;
+    angular?: string;
+    'angular-standalone'?: string;
+    vue?: string;
+  };
   'dist-tags': Record<string, string>;
   versions: Record<
     string,
@@ -42,4 +48,31 @@ export async function fetchBlockDefinition(
 ): Promise<BlockDefinition> {
   // blockPath like "blocks/hero/block.json"
   return await fetchJson<BlockDefinition>(`${baseUrl}/${blockPath}`);
+}
+
+export async function listAllBlocks(
+  baseUrl: string,
+  framework: 'react' | 'angular' | 'vue'
+): Promise<Array<{ name: string; path: string }>> {
+  const registry = await fetchRegistryIndex(baseUrl);
+  const latestVersion = registry['dist-tags'].latest;
+  const versionBlocks = registry.versions[latestVersion]?.blocks || [];
+
+  // Filter blocks that support the requested framework
+  const filteredBlocks: Array<{ name: string; path: string }> = [];
+
+  for (const block of versionBlocks) {
+    try {
+      const blockDef = await fetchBlockDefinition(baseUrl, block.path);
+      // Check if this block has a variant for the requested framework
+      if (blockDef.variants[framework]) {
+        filteredBlocks.push(block);
+      }
+    } catch (err) {
+      // Skip blocks that fail to load
+      console.error(`Failed to load block ${block.name}:`, err);
+    }
+  }
+
+  return filteredBlocks;
 }
