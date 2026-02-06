@@ -793,6 +793,8 @@ export class Select
         li.style.height = item.getBoundingClientRect().height + 'px';
         li.style.width = item.getBoundingClientRect().width + 'px';
         ariaActiveDescendantHelper.appendChild(li);
+
+        item.ariaHidden = 'true';
       });
     }
   }
@@ -995,6 +997,7 @@ export class Select
             }}
           ></ul>
           <div
+            aria-hidden="true"
             class={{
               'select-list-header': true,
               hidden: this.hideListHeader || this.isDropdownEmpty,

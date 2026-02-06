@@ -31,22 +31,17 @@ import {
   IxSelectItemValueChangeEvent,
 } from './events';
 import { DefaultMixins } from '../utils/internal/component';
-import {
-  ComponentIdMixin,
-  ComponentIdMixinContract,
-} from '../utils/internal/mixins/id.mixin';
+import { ComponentIdMixin } from '../utils/internal/mixins/id.mixin';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
-  shadow: {
-    delegatesFocus: false,
-  },
+  shadow: true,
 })
 export class SelectItem
   extends Mixin(...DefaultMixins, FocusVisibleMixin, ComponentIdMixin)
-  implements DropdownItemWrapper, ComponentIdMixinContract
+  implements DropdownItemWrapper
 {
   @Element() override hostElement!: HTMLIxSelectItemElement;
 
@@ -157,10 +152,7 @@ export class SelectItem
           checked={this.selected}
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}
-          ref={(ref) => {
-            this.dropdownItemRef(ref);
-            ref!.tabIndex = -1;
-          }}
+          ref={this.dropdownItemRef}
         ></ix-dropdown-item>
       </Host>
     );

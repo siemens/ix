@@ -25,8 +25,8 @@ test('renders', async ({ mount, page }) => {
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 
-  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
 });
 
 test('editable mode', async ({ mount, page }) => {
@@ -45,18 +45,18 @@ test('editable mode', async ({ mount, page }) => {
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 
-  await expect(page.getByRole('button', { name: 'Item 1' })).not.toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).not.toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 1' })).not.toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 2' })).not.toBeVisible();
 
-  const add = page.getByRole('button', { name: /Not existing/ });
+  const add = page.getByRole('option', { name: /Not existing/ });
   await expect(add).toBeVisible();
 
   await add.click();
   await expect(page.getByTestId('input')).toHaveValue(/Not existing/);
   await page.locator('[data-select-dropdown]').click();
 
-  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
 
   const addedItem = page
     .getByRole('listitem')
