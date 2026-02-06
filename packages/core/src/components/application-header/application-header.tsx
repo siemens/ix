@@ -224,6 +224,11 @@ export class ApplicationHeader {
     this.breakpoint = 'md';
   }
 
+  @Watch('breakpoint')
+  watchBreakpoint() {
+    this.updateHasSlotAssignedElementsStates();
+  }
+
   private checkLogoSlot() {
     const slotElement = this.hostElement.shadowRoot!.querySelector(
       'slot[name="logo"]'
@@ -326,7 +331,9 @@ export class ApplicationHeader {
     this.hasOverflowSlotElements = hasSlottedElements(overflowSlot);
 
     this.hasOverflowContextMenu =
-      this.hasDefaultSlotElements || this.hasSecondarySlotElements;
+      this.hasOverflowSlotElements ||
+      (this.breakpoint === 'sm' &&
+        (this.hasDefaultSlotElements || this.hasSecondarySlotElements));
   }
 
   private onContentBgClick(e: MouseEvent) {
