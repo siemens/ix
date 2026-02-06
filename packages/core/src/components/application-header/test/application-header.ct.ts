@@ -604,7 +604,7 @@ test('should update context menu visibility when breakpoint changes', async ({
       `
   );
   const header = page.locator('ix-application-header');
-  const contextMenu = header.locator('[data-testid="context-menu"]');
+  const contextMenu = header.locator('[data-testid="show-more"]');
 
   await expect(header).toHaveClass(/breakpoint-lg/);
   await expect(contextMenu).not.toBeVisible();
@@ -617,4 +617,3 @@ test('should update context menu visibility when breakpoint changes', async ({
   await expect(header).toHaveClass(/breakpoint-lg/);
   await expect(contextMenu).not.toBeVisible();
 });
-
