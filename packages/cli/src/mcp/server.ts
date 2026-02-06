@@ -17,6 +17,12 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 import { Framework } from '../detect';
 import { searchBlocks } from '../search';
 import { fetchBlockDefinition } from '../registry';
+import {
+  searchComponents,
+  getComponentDetails,
+  getComponentMarkdownPath,
+  listAllComponents,
+} from '../component-search';
 
 const promptNodeModulesExcluded = dedent`Important:
 node_modules is excluded by default in VS Code search settings.
@@ -39,8 +45,24 @@ export const createServer = (framework: Framework, registryUrl: string) => {
 
   const searchComponentApiName = 'search_component_api' as const;
   const searchComponentApiSchema = z.object({
-    component: z.string().describe('The search query string'),
+    query: z
+      .string()
+      .describe('Search query for component name or functionality'),
+    limit: z
+      .number()
+      .optional()
+      .describe('Maximum number of results to return (default: 10)'),
   });
+
+  const getComponentDetailsName = 'get_component_details' as const;
+  const getComponentDetailsSchema = z.object({
+    componentTag: z
+      .string()
+      .describe('The component tag (e.g., "ix-button", "ix-modal")'),
+  });
+
+  const listAllComponentsName = 'list_all_components' as const;
+  const listAllComponentsSchema = z.object({});
 
   const searchIxIcons = 'search_ix_icons';
   const searchIxIconsSchema = z.object({
@@ -68,8 +90,20 @@ export const createServer = (framework: Framework, registryUrl: string) => {
         {
           name: searchComponentApiName,
           description:
-            'Search the ix component API documentation for a specific siemens ix component',
+            'Search Siemens IX components by name, category, or functionality. Returns a list of matching components with descriptions. Use this for discovery and overview.',
           inputSchema: zodToJsonSchema(searchComponentApiSchema),
+        },
+        {
+          name: getComponentDetailsName,
+          description:
+            'Get complete API documentation for a specific IX component including props, events, methods, and slots. Use this after finding a component via search.',
+          inputSchema: zodToJsonSchema(getComponentDetailsSchema),
+        },
+        {
+          name: listAllComponentsName,
+          description:
+            'List all available Siemens IX components with their descriptions. Use this to get a complete overview of available components.',
+          inputSchema: zodToJsonSchema(listAllComponentsSchema),
         },
         {
           name: searchIxIcons,
@@ -99,6 +133,215 @@ export const createServer = (framework: Framework, registryUrl: string) => {
       }
 
       switch (request.params.name) {
+        case searchComponentApiName: {
+          const inputSchema = searchComponentApiSchema;
+          const args = inputSchema.parse(request.params.arguments);
+
+          try {
+            const results = await searchComponents(args.query, {
+              limit: args.limit || 10,
+            });
+
+            if (results.length === 0) {
+              return {
+                content: [
+                  {
+                    type: 'text',
+                    text: dedent`No components found matching "${args.query}".
+
+                    Try different search terms like:
+                    - Component types (button, input, modal, select)
+                    - Categories (Actions, Inputs, Overlays, Navigation)
+                    - Functionality keywords (form, dialog, menu, chart)
+                    `,
+                  },
+                ],
+              };
+            }
+
+            const resultsList = results
+              .map(
+                (r, i) =>
+                  `${i + 1}. **${r.tag}**\n   ${
+                    r.description
+                  }\n   (score: ${r.score.toFixed(2)})`
+              )
+              .join('\n\n');
+
+            const topResult = results[0];
+            const mdPath = getComponentMarkdownPath(topResult.tag);
+
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`Found ${results.length} component(s) matching "${args.query}":
+
+                  ${resultsList}
+
+                  **Next Steps:**
+                  - Use "get_component_details" with tag "${topResult.tag}" for complete API documentation
+                  - Read the full documentation at: ${mdPath}
+                  - Search for usage examples in: node_modules/@siemens/ix-${framework}/component-examples/
+
+                  ${promptNodeModulesExcluded}
+                  `,
+                },
+              ],
+            };
+          } catch (error) {
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`Error searching components: ${
+                    error instanceof Error ? error.message : String(error)
+                  }
+
+                  Make sure @siemens/ix is installed in your project.
+                  `,
+                },
+              ],
+            };
+          }
+        }
+
+        case getComponentDetailsName: {
+          const inputSchema = getComponentDetailsSchema;
+          const args = inputSchema.parse(request.params.arguments);
+
+          try {
+            const details = await getComponentDetails(args.componentTag);
+
+            if (!details) {
+              return {
+                content: [
+                  {
+                    type: 'text',
+                    text: `Component "${args.componentTag}" not found.`,
+                  },
+                ],
+              };
+            }
+
+            const propsList =
+              details.props && details.props.length > 0
+                ? details.props
+                    .map(
+                      (p) =>
+                        `- **${p.name}**: \`${p.type}\`${
+                          p.default ? ` (default: ${p.default})` : ''
+                        }\n  ${p.docs || ''}`
+                    )
+                    .join('\n\n')
+                : 'No props';
+
+            const eventsList =
+              details.events && details.events.length > 0
+                ? details.events
+                    .map(
+                      (e) => `- **${e.name}**: ${e.docs || 'No description'}`
+                    )
+                    .join('\n')
+                : 'No events';
+
+            const methodsList =
+              details.methods && details.methods.length > 0
+                ? details.methods
+                    .map(
+                      (m) =>
+                        `- **${m.name}**: \`${m.signature}\`\n  ${m.docs || ''}`
+                    )
+                    .join('\n\n')
+                : 'No public methods';
+
+            const slotsList =
+              details.slots && details.slots.length > 0
+                ? details.slots
+                    .map(
+                      (s) => `- **${s.name}**: ${s.docs || 'No description'}`
+                    )
+                    .join('\n')
+                : 'No slots';
+
+            const depsList = details.dependencies?.length
+              ? details.dependencies.map((d) => `- ${d}`).join('\n')
+              : 'None';
+
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`# ${details.tag} API Documentation
+
+                  ## Properties
+                  ${propsList}
+
+                  ## Events
+                  ${eventsList}
+
+                  ## Methods
+                  ${methodsList}
+
+                  ## Slots
+                  ${slotsList}
+
+                  ## Dependencies
+                  ${depsList}
+
+                  **Framework Usage (${framework}):**
+                  ${
+                    framework === 'react'
+                      ? `\`\`\`tsx\nimport { ${details.tag
+                          .split('-')
+                          .map((w, i) =>
+                            i === 0
+                              ? 'Ix'
+                              : w.charAt(0).toUpperCase() + w.slice(1)
+                          )
+                          .join('')} } from '@siemens/ix-react';\n\`\`\``
+                      : ''
+                  }
+                  ${
+                    framework === 'angular'
+                      ? `\`\`\`typescript\nimport { ${details.tag
+                          .split('-')
+                          .map((w, i) => w.charAt(0).toUpperCase() + w.slice(1))
+                          .join(
+                            ''
+                          )} } from '@siemens/ix-angular/standalone';\n\`\`\``
+                      : ''
+                  }
+                  ${
+                    framework === 'vue'
+                      ? `\`\`\`vue\n<${details.tag}></${details.tag}>\n\`\`\``
+                      : ''
+                  }
+
+                  For usage examples, search in node_modules/@siemens/ix-${framework}/component-examples/
+
+                  ${promptNodeModulesExcluded}
+                  `,
+                },
+              ],
+            };
+          } catch (error) {
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`Error loading component details: ${
+                    error instanceof Error ? error.message : String(error)
+                  }
+
+                  Make sure @siemens/ix is installed and the component tag is correct.
+                  `,
+                },
+              ],
+            };
+          }
+        }
+
         case auditChecklist: {
           return {
             content: [
@@ -117,6 +360,47 @@ export const createServer = (framework: Framework, registryUrl: string) => {
             ],
           };
         }
+
+        case listAllComponentsName: {
+          try {
+            const components = await listAllComponents();
+
+            const componentsList = components
+              .map((c, i) => `${i + 1}. **${c.tag}** - ${c.description}`)
+              .join('\n');
+
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`# All Siemens IX Components (${components.length} total)
+
+                  ${componentsList}
+
+                  **Next Steps:**
+                  - Use "search_component_api" to find specific components
+                  - Use "get_component_details" with a component tag for full API documentation
+                  `,
+                },
+              ],
+            };
+          } catch (error) {
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: dedent`Error listing components: ${
+                    error instanceof Error ? error.message : String(error)
+                  }
+
+                  Make sure @siemens/ix is installed in your project.
+                  `,
+                },
+              ],
+            };
+          }
+        }
+
         case searchIxIcons: {
           const inputSchema = searchIxIconsSchema;
           const args = inputSchema.parse(request.params.arguments);
@@ -179,38 +463,6 @@ export const createServer = (framework: Framework, registryUrl: string) => {
                 The icons are listed as "add-shield-half" in ${framework} you have to import the icons like this:
                 ${framework === 'react' && usageReact}
                 ${framework === 'angular' && usageAngular}
-
-                ${promptNodeModulesExcluded}
-                `,
-              },
-            ],
-          };
-        }
-        case searchComponentApiName: {
-          const inputSchema = searchComponentApiSchema;
-          const args = inputSchema.parse(request.params.arguments);
-
-          return {
-            content: [
-              {
-                type: 'text',
-                text: dedent`The component API can be found inside the node_modules folder of your project.
-
-                Location is node_modules/@siemens/ix/api-docs/components
-                Important is that the prefix ${
-                  framework === 'react' ? 'Ix' : 'ix-'
-                } is not part of the folder name. For example for the component "${
-                  framework === 'react' ? 'IxButton' : 'ix-button'
-                }" the folder name is "button".
-                Inside each component folder you find a "readme.md" file which contains the API documentation for the component.
-
-                Examples for ${
-                  args.component
-                } can be found in the node_modules/@siemens/ix-${framework}/component-examples folder as tsx files. Each tsx file contains multiple components.
-                The component you are looking for is used inside those files.
-
-                Tell the developer that there are also blocks available which are reusable components with predefined functionality.
-                You can search for blocks using the "search_blocks" tool (description "Search the Siemens IX blocks registry").
 
                 ${promptNodeModulesExcluded}
                 `,

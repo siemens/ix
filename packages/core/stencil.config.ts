@@ -14,7 +14,11 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import { vueOutputTarget } from '@stencil/vue-output-target';
 import autoprefixer from 'autoprefixer';
-import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
+import {
+  componentIndexDocGenerator,
+  customComponentDocGenerator,
+  getDevAssets,
+} from './scripts/build/dev';
 import { storybookOutputTarget } from './scripts/build/storybook';
 
 const corePackageName = '@siemens/ix';
@@ -57,7 +61,11 @@ export const config: Config = {
     browserHeadless: 'shell',
   },
   namespace: 'siemens-ix',
-  watchIgnoredRegex: [/component-doc.json/],
+  watchIgnoredRegex: [
+    /component-doc\.json/,
+    /component-index\.json/,
+    /component-search-index\.json/,
+  ],
   globalStyle: './scss/ix.scss',
   minifyCss: false,
   plugins: [
@@ -127,6 +135,10 @@ export const config: Config = {
     {
       type: 'docs-custom',
       generator: customComponentDocGenerator,
+    },
+    {
+      type: 'docs-custom',
+      generator: componentIndexDocGenerator,
     },
     {
       type: 'docs-readme',

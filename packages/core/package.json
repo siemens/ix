@@ -24,7 +24,11 @@
     "components/",
     "loader/",
     "scss/",
-    "hydrate/"
+    "hydrate/",
+    "api-docs/",
+    "component-doc.json",
+    "component-index.json",
+    "component-search-index.json"
   ],
   "exports": {
     ".": {
@@ -59,7 +63,10 @@
     "./dist/siemens-ix/theme/classic-dark.css": "./dist/siemens-ix/theme/classic-dark.css",
     "./dist/siemens-ix/theme/classic-light.css": "./dist/siemens-ix/theme/classic-light.css",
     "./component-doc.json": "./component-doc.json",
-    "./scss/*": "./scss/*"
+    "./scss/*": "./scss/*",
+    "./component-index.json": "./component-index.json",
+    "./component-search-index.json": "./component-search-index.json",
+    "./api-docs/*": "./api-docs/*"
   },
   "scripts": {
     "build": "stencil build --prod && npm run build.scss",
@@ -117,6 +124,7 @@
     "http-server": "^14.1.1",
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
+    "minisearch": "^7.1.0",
     "mustache": "^4.2.0",
     "postcss": "^8.4.40",
     "puppeteer": "21.1.1",

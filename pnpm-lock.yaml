@@ -658,6 +658,9 @@ importers:
       jest-cli:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.16.5)(ts-node@10.9.2(@swc/core@1.9.2(@swc/helpers@0.5.15))(@types/node@20.16.5)(typescript@5.4.5))
+      minisearch:
+        specifier: ^7.1.0
+        version: 7.2.0
       mustache:
         specifier: ^4.2.0
         version: 4.2.0
