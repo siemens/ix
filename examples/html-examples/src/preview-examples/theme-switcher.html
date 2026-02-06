@@ -1,0 +1,116 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme switcher example</title>
+    <link rel="stylesheet" href="./theme-switcher.css" />
+  </head>
+  <body>
+    <ix-layout-grid class="theme-switcher">
+      <ix-row>
+        <ix-col size="2">
+          <span>Light/Dark</span>
+        </ix-col>
+        <ix-col>
+          <ix-button id="toggle-mode">Toggle mode</ix-button>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col size="2">Theme</ix-col>
+        <ix-col>
+          <ix-select id="select-theme" placeholder="Select a theme">
+          </ix-select>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col size="2"></ix-col>
+        <ix-col>
+          <ix-checkbox id="system" label="Use system"></ix-checkbox>
+        </ix-col>
+      </ix-row>
+    </ix-layout-grid>
+
+    <script type="module">
+      import { themeSwitcher } from '@siemens/ix';
+
+      const variants = ['light', 'dark'];
+      let selectedVariant = 'dark';
+      let useSystemTheme = false;
+
+      const toggleModeButton = document.getElementById('toggle-mode');
+      const themeSelect = document.getElementById('select-theme');
+      const toggleSystem = document.getElementById('system');
+
+      setTimeout(() => {
+        themeSwitcher.setTheme('classic');
+        themeSwitcher.setVariant(selectedVariant);
+      });
+
+      for (const variant of variants) {
+        const item = document.createElement('ix-select-item');
+
+        item.label = variant;
+        item.value = variant;
+
+        themeSelect.appendChild(item);
+      }
+
+      themeSelect.value = selectedVariant;
+
+      const updateControlsState = () => {
+        toggleModeButton.disabled = useSystemTheme;
+        themeSelect.disabled = useSystemTheme;
+      };
+
+      toggleModeButton.addEventListener('click', () => {
+        if (useSystemTheme) {
+          return;
+        }
+
+        themeSwitcher.toggleMode();
+
+        selectedVariant = selectedVariant === 'light' ? 'dark' : 'light';
+        themeSelect.value = selectedVariant;
+      });
+
+      themeSelect.addEventListener('valueChange', ({ detail: variant }) => {
+        if (useSystemTheme) {
+          return;
+        }
+
+        themeSwitcher.setVariant(variant);
+
+        selectedVariant = variant;
+      });
+
+      toggleSystem.addEventListener('checkedChange', ({ detail: checked }) => {
+        useSystemTheme = checked;
+
+        if (checked) {
+          themeSwitcher.setVariant();
+        } else {
+          themeSwitcher.setVariant(selectedVariant);
+
+          themeSelect.value = selectedVariant;
+        }
+
+        updateControlsState();
+      });
+
+      updateControlsState();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

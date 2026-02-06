@@ -16,7 +16,7 @@ import fs from 'fs';
 const previewPath = path.join(
   __dirname,
   'node_modules',
-  'html-test-app',
+  'html-examples',
   'src',
   'preview-examples'
 );

@@ -14,13 +14,13 @@ const __dirname = path.resolve();
 const previewPath = path.join(
   __dirname,
   'node_modules',
-  'html-test-app',
+  'html-examples',
   'src',
   'preview-examples'
 );
 
 (async () => {
-  console.log('Copying preview styles to html-test-app...');
+  console.log('Copying preview styles to html-examples...');
   const cssFiles = fs
     .readdirSync(previewPath)
     .filter((f) => f.endsWith('.css'));

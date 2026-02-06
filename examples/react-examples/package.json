@@ -23,7 +23,7 @@
     "echarts": "^5.5.1",
     "echarts-for-react": "~3.0.2",
     "echarts-gl": "^2.0.9",
-    "html-test-app": "workspace:*",
+    "html-examples": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.52.1",

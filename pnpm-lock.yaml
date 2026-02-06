@@ -246,9 +246,9 @@ importers:
       echarts-gl:
         specifier: ^2.0.9
         version: 2.0.9(echarts@5.4.3)
-      html-test-app:
+      html-examples:
         specifier: workspace:*
-        version: link:../../packages/html-test-app
+        version: link:../html-examples
       ngx-echarts:
         specifier: ^20.0.1
         version: 20.0.1(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(echarts@5.4.3)
@@ -361,9 +361,9 @@ importers:
       echarts-gl:
         specifier: ^2.0.9
         version: 2.0.9(echarts@6.0.0)
-      html-test-app:
+      html-examples:
         specifier: workspace:*
-        version: link:../../packages/html-test-app
+        version: link:../html-examples
       ngx-echarts:
         specifier: ^20.0.1
         version: 20.0.1(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(echarts@6.0.0)
@@ -423,6 +423,28 @@ importers:
         specifier: ~5.8.2
         version: 5.8.3
 
+  examples/html-examples:
+    dependencies:
+      ag-grid-community:
+        specifier: ^33.1.1
+        version: 33.3.2
+    devDependencies:
+      '@siemens/ix':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@siemens/ix-aggrid':
+        specifier: workspace:*
+        version: link:../../packages/aggrid
+      '@siemens/ix-echarts':
+        specifier: workspace:*
+        version: link:../../packages/echarts
+      '@siemens/ix-icons':
+        specifier: 'catalog:'
+        version: 3.3.0
+      vite:
+        specifier: 'catalog:'
+        version: 7.3.1(@types/node@25.0.9)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.97.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
+
   examples/react-examples:
     dependencies:
       '@hookform/resolvers':
@@ -461,9 +483,9 @@ importers:
       echarts-gl:
         specifier: ^2.0.9
         version: 2.0.9(echarts@5.5.1)
-      html-test-app:
+      html-examples:
         specifier: workspace:*
-        version: link:../../packages/html-test-app
+        version: link:../html-examples
       react:
         specifier: ^19.1.0
         version: 19.2.4
@@ -552,9 +574,9 @@ importers:
       echarts-gl:
         specifier: ^2.0.9
         version: 2.0.9(echarts@5.5.1)
-      html-test-app:
+      html-examples:
         specifier: workspace:*
-        version: link:../../packages/html-test-app
+        version: link:../html-examples
       vue:
         specifier: ^3.4.34
         version: 3.5.17(typescript@5.8.3)
@@ -945,9 +967,9 @@ importers:
       glob:
         specifier: 'catalog:'
         version: 13.0.0
-      html-test-app:
+      html-examples:
         specifier: workspace:*
-        version: link:../html-test-app
+        version: link:../../examples/html-examples
       ionic-test-app:
         specifier: workspace:*
         version: link:../../testing/ionic-test-app
@@ -1500,9 +1522,9 @@ importers:
       glob:
         specifier: 'catalog:'
         version: 13.0.0
-      html-test-app:
+      html-examples:
         specifier: workspace:*
-        version: link:../../packages/html-test-app
+        version: link:../../examples/html-examples
       tsx:
         specifier: ^4.21.0
         version: 4.21.0

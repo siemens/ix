@@ -28,14 +28,14 @@ const __root = path.resolve(__dirname, '../');
 const __core = path.join(__dirname, '../node_modules', '@siemens', 'ix');
 const __packages = path.join(__dirname, '../node_modules');
 
-const __htmlTestAppRoot = path.join(__packages, 'html-test-app');
+const __htmlTestAppRoot = path.join(__packages, 'html-examples');
 const __htmlTestAppDist = path.join(__htmlTestAppRoot, 'dist');
 
 const __mobileTestAppDist = path.join(__packages, 'ionic-test-app', 'dist');
 
 const __htmlTestApp = path.join(
   __packages,
-  'html-test-app',
+  'html-examples',
   'src',
   'preview-examples'
 );

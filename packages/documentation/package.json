@@ -27,7 +27,7 @@
     "angular-standalone-examples": "workspace:*",
     "fs-extra": "^11.3.0",
     "glob": "catalog:",
-    "html-test-app": "workspace:*",
+    "html-examples": "workspace:*",
     "ionic-test-app": "workspace:*",
     "mustache": "^4.2.0",
     "react-examples": "workspace:*",

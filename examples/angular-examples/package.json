@@ -30,7 +30,7 @@
     "ag-grid-community": "^33.1.1",
     "echarts": "5.4.3",
     "echarts-gl": "^2.0.9",
-    "html-test-app": "workspace:*",
+    "html-examples": "workspace:*",
     "ngx-echarts": "^20.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
