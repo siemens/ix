@@ -193,6 +193,236 @@ importers:
         specifier: ^7.2.4
         version: 7.3.1(@types/node@24.10.9)(jiti@1.21.7)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.97.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
 
+  examples/angular-examples:
+    dependencies:
+      '@angular/animations':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/common':
+        specifier: ^20.3.14
+        version: 20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/compiler':
+        specifier: ^20.3.16
+        version: 20.3.16
+      '@angular/core':
+        specifier: ^20.3.16
+        version: 20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/forms':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.1.4(@angular/animations@20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@angular/platform-browser':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/animations@20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/platform-browser-dynamic':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler@20.3.16)(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.1.4(@angular/animations@20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))
+      '@angular/router':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.1.4(@angular/animations@20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@siemens/ix':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@siemens/ix-aggrid':
+        specifier: workspace:*
+        version: link:../../packages/aggrid
+      '@siemens/ix-angular':
+        specifier: workspace:*
+        version: link:../../packages/angular/dist
+      '@siemens/ix-echarts':
+        specifier: workspace:*
+        version: link:../../packages/echarts
+      '@siemens/ix-icons':
+        specifier: 'catalog:'
+        version: 3.3.0
+      ag-grid-angular:
+        specifier: ^33.1.1
+        version: 33.3.2(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      ag-grid-community:
+        specifier: ^33.1.1
+        version: 33.3.2
+      echarts:
+        specifier: 5.4.3
+        version: 5.4.3
+      echarts-gl:
+        specifier: ^2.0.9
+        version: 2.0.9(echarts@5.4.3)
+      html-test-app:
+        specifier: workspace:*
+        version: link:../../packages/html-test-app
+      ngx-echarts:
+        specifier: ^20.0.1
+        version: 20.0.1(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(echarts@5.4.3)
+      rxjs:
+        specifier: ~7.8.0
+        version: 7.8.2
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+      zone.js:
+        specifier: ~0.15.0
+        version: 0.15.1
+    devDependencies:
+      '@angular-devkit/build-angular':
+        specifier: ^20.1.4
+        version: 20.1.4(d693d27ae782828fc220ae1b794c5778)
+      '@angular/cli':
+        specifier: ^20.1.4
+        version: 20.1.4(@types/node@20.16.5)(chokidar@4.0.3)
+      '@angular/compiler-cli':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/compiler@20.3.16)(typescript@5.8.3)
+      '@playwright/test':
+        specifier: 'catalog:'
+        version: 1.58.1
+      '@types/jasmine':
+        specifier: ~5.1.4
+        version: 5.1.5
+      '@types/node':
+        specifier: ^20.16.0
+        version: 20.16.5
+      framework-tests:
+        specifier: workspace:*
+        version: link:../../testing/framework-tests
+      http-server:
+        specifier: ^14.1.1
+        version: 14.1.1
+      jasmine-core:
+        specifier: ~5.1.2
+        version: 5.1.2
+      karma:
+        specifier: ~6.4.3
+        version: 6.4.4
+      karma-chrome-launcher:
+        specifier: ~3.2.0
+        version: 3.2.0
+      karma-coverage:
+        specifier: ~2.2.1
+        version: 2.2.1
+      karma-jasmine:
+        specifier: ~5.1.0
+        version: 5.1.0(karma@6.4.4)
+      karma-jasmine-html-reporter:
+        specifier: ~2.1.0
+        version: 2.1.0(jasmine-core@5.1.2)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+
+  examples/angular-standalone-examples:
+    dependencies:
+      '@angular/animations':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/common':
+        specifier: ^20.3.14
+        version: 20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/compiler':
+        specifier: ^20.3.16
+        version: 20.3.16
+      '@angular/core':
+        specifier: ^20.3.16
+        version: 20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/forms':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.1.4(@angular/animations@20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@angular/platform-browser':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/animations@20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/platform-browser-dynamic':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler@20.3.16)(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.1.4(@angular/animations@20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))
+      '@angular/router':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.1.4(@angular/animations@20.1.4(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@siemens/ix':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@siemens/ix-aggrid':
+        specifier: workspace:*
+        version: link:../../packages/aggrid
+      '@siemens/ix-angular':
+        specifier: workspace:*
+        version: link:../../packages/angular/dist
+      '@siemens/ix-echarts':
+        specifier: workspace:*
+        version: link:../../packages/echarts
+      '@siemens/ix-icons':
+        specifier: 'catalog:'
+        version: 3.3.0
+      ag-grid-angular:
+        specifier: ^33.1.1
+        version: 33.3.2(@angular/common@20.3.16(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      ag-grid-community:
+        specifier: ^33.1.1
+        version: 33.3.2
+      echarts:
+        specifier: ^6.0.0
+        version: 6.0.0
+      echarts-gl:
+        specifier: ^2.0.9
+        version: 2.0.9(echarts@6.0.0)
+      html-test-app:
+        specifier: workspace:*
+        version: link:../../packages/html-test-app
+      ngx-echarts:
+        specifier: ^20.0.1
+        version: 20.0.1(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(echarts@6.0.0)
+      rxjs:
+        specifier: ~7.8.0
+        version: 7.8.2
+      tslib:
+        specifier: ^2.6.3
+        version: 2.8.1
+      zone.js:
+        specifier: ~0.15.0
+        version: 0.15.1
+    devDependencies:
+      '@angular-devkit/build-angular':
+        specifier: ^20.1.4
+        version: 20.1.4(d693d27ae782828fc220ae1b794c5778)
+      '@angular/cli':
+        specifier: ^20.1.4
+        version: 20.1.4(@types/node@20.16.5)(chokidar@4.0.3)
+      '@angular/compiler-cli':
+        specifier: ^20.1.4
+        version: 20.1.4(@angular/compiler@20.3.16)(typescript@5.8.3)
+      '@playwright/test':
+        specifier: 'catalog:'
+        version: 1.58.1
+      '@types/jasmine':
+        specifier: ~5.1.4
+        version: 5.1.5
+      '@types/node':
+        specifier: ^20.16.0
+        version: 20.16.5
+      framework-tests:
+        specifier: workspace:*
+        version: link:../../testing/framework-tests
+      http-server:
+        specifier: ^14.1.1
+        version: 14.1.1
+      jasmine-core:
+        specifier: ~5.1.2
+        version: 5.1.2
+      karma:
+        specifier: ~6.4.3
+        version: 6.4.4
+      karma-chrome-launcher:
+        specifier: ~3.2.0
+        version: 3.2.0
+      karma-coverage:
+        specifier: ~2.2.1
+        version: 2.2.1
+      karma-jasmine:
+        specifier: ~5.1.0
+        version: 5.1.0(karma@6.4.4)
+      karma-jasmine-html-reporter:
+        specifier: ~2.1.0
+        version: 2.1.0(jasmine-core@5.1.2)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+
   packages/aggrid:
     dependencies:
       '@siemens/ix':
@@ -751,12 +981,12 @@ importers:
       '@types/tar':
         specifier: ^6.1.13
         version: 6.1.13
-      angular-standalone-test-app:
+      angular-examples:
         specifier: workspace:*
-        version: link:../angular-standalone-test-app
-      angular-test-app:
+        version: link:../../examples/angular-examples
+      angular-standalone-examples:
         specifier: workspace:*
-        version: link:../angular-test-app
+        version: link:../../examples/angular-standalone-examples
       fs-extra:
         specifier: ^11.3.0
         version: 11.3.0
@@ -3703,15 +3933,6 @@ packages:
     resolution: {integrity: sha512-S8qNSZiYzFd0wAcyG5AXCvUHC5Sr7xpZ9wZ2py9XR88jUz8wooStVx5M6dRzczbBWjic9NP7+rY0Xi7qqK/aMQ==}
     engines: {node: '>=18'}
 
-  '@inquirer/checkbox@4.2.0':
-    resolution: {integrity: sha512-fdSw07FLJEU5vbpOPzXo5c6xmMGDzbZE2+niuDHX5N6mc6V0Ebso/q3xiHra4D73+PMsC8MJmcaZKuAAoaQsSA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
   '@inquirer/checkbox@4.3.2':
     resolution: {integrity: sha512-VXukHf0RR1doGe6Sm4F0Em7SWYLTHSsbGfJdS9Ja2bX5/D5uwVOEjr07cncLROdBvmnvCATYEWlHqYmXv2IlQA==}
     engines: {node: '>=18'}
@@ -3748,26 +3969,8 @@ packages:
       '@types/node':
         optional: true
 
-  '@inquirer/editor@4.2.15':
-    resolution: {integrity: sha512-wst31XT8DnGOSS4nNJDIklGKnf+8shuauVrWzgKegWUe28zfCftcWZ2vktGdzJgcylWSS2SrDnYUb6alZcwnCQ==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
   '@inquirer/editor@4.2.23':
     resolution: {integrity: sha512-aLSROkEwirotxZ1pBaP8tugXRFCxW94gwrQLxXfrZsKkfjOYC1aRvAZuhpJOb5cu4IBTJdsCigUlf2iCOu4ZDQ==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
-  '@inquirer/expand@4.0.17':
-    resolution: {integrity: sha512-PSqy9VmJx/VbE3CT453yOfNa+PykpKg/0SYP7odez1/NWBGuDXgPhp4AeGYYKjhLn5lUUavVS/JbeYMPdH50Mw==}
     engines: {node: '>=18'}
     peerDependencies:
       '@types/node': '>=18'
@@ -3806,15 +4009,6 @@ packages:
     resolution: {integrity: sha512-t2IEY+unGHOzAaVM5Xx6DEWKeXlDDcNPeDyUpsRc6CUhBfU3VQOEl+Vssh7VNp1dR8MdUJBWhuObjXCsVpjN5g==}
     engines: {node: '>=18'}
 
-  '@inquirer/input@4.2.1':
-    resolution: {integrity: sha512-tVC+O1rBl0lJpoUZv4xY+WGWY8V5b0zxU1XDsMsIHYregdh7bN5X5QnIONNBAl0K765FYlAfNHS2Bhn7SSOVow==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
   '@inquirer/input@4.3.1':
     resolution: {integrity: sha512-kN0pAM4yPrLjJ1XJBjDxyfDduXOuQHrBB8aLDMueuwUGn+vNpF7Gq7TvyVxx8u4SHlFFj4trmj+a2cbpG4Jn1g==}
     engines: {node: '>=18'}
@@ -3824,26 +4018,8 @@ packages:
       '@types/node':
         optional: true
 
-  '@inquirer/number@3.0.17':
-    resolution: {integrity: sha512-GcvGHkyIgfZgVnnimURdOueMk0CztycfC8NZTiIY9arIAkeOgt6zG57G+7vC59Jns3UX27LMkPKnKWAOF5xEYg==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
   '@inquirer/number@3.0.23':
     resolution: {integrity: sha512-5Smv0OK7K0KUzUfYUXDXQc9jrf8OHo4ktlEayFlelCjwMXz0299Y8OrI+lj7i4gCBY15UObk76q0QtxjzFcFcg==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
-  '@inquirer/password@4.0.17':
-    resolution: {integrity: sha512-DJolTnNeZ00E1+1TW+8614F7rOJJCM4y4BAGQ3Gq6kQIG+OJ4zr3GLjIjVVJCbKsk2jmkmv6v2kQuN/vriHdZA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@types/node': '>=18'
@@ -3887,35 +4063,8 @@ packages:
       '@types/node':
         optional: true
 
-  '@inquirer/rawlist@4.1.5':
-    resolution: {integrity: sha512-R5qMyGJqtDdi4Ht521iAkNqyB6p2UPuZUbMifakg1sWtu24gc2Z8CJuw8rP081OckNDMgtDCuLe42Q2Kr3BolA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
-  '@inquirer/search@3.1.0':
-    resolution: {integrity: sha512-PMk1+O/WBcYJDq2H7foV0aAZSmDdkzZB9Mw2v/DmONRJopwA/128cS9M/TXWLKKdEQKZnKwBzqu2G4x/2Nqx8Q==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
   '@inquirer/search@3.2.2':
     resolution: {integrity: sha512-p2bvRfENXCZdWF/U2BXvnSI9h+tuA8iNqtUKb9UWbmLYCRQxd8WkvwWvYn+3NgYaNwdUkHytJMGG4MMLucI1kA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
-  '@inquirer/select@4.3.1':
-    resolution: {integrity: sha512-Gfl/5sqOF5vS/LIrSndFgOh7jgoe0UXEizDqahFRkq5aJBLegZ6WjuMh/hVEJwlFQjyLq1z9fRtvUMkb7jM1LA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@types/node': '>=18'
@@ -8636,7 +8785,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
@@ -9269,10 +9418,6 @@ packages:
   istanbul-lib-source-maps@4.0.1:
     resolution: {integrity: sha512-n3s8EwkdFIJCG3BPKBYvskgXGoy88ARzvegkitk60NxRdwltLOTaH7CUiMRXvwYorl0Q712iEjcWB+fK/MrWVw==}
     engines: {node: '>=10'}
-
-  istanbul-reports@3.1.6:
-    resolution: {integrity: sha512-TLgnMkKg3iTDsQ9PbPTdpfAK2DzjF9mqUG7RMgcQl8oFjad8ob4laGxv5XV5U9MAfx8D6tSJiUyuAwzLicaxlg==}
-    engines: {node: '>=8'}
 
   istanbul-reports@3.2.0:
     resolution: {integrity: sha512-HGYWWS/ehqTV3xN10i23tkPkpH46MLCIMFNCaaKNavAXTF1RkqxawEPtnjnGZ6XKSInBKkiOA5BKS+aZiY3AvA==}
@@ -14209,7 +14354,7 @@ snapshots:
       chokidar: 4.0.3
       convert-source-map: 1.9.0
       reflect-metadata: 0.2.2
-      semver: 7.7.2
+      semver: 7.7.3
       tslib: 2.8.1
       yargs: 18.0.0
     optionalDependencies:
@@ -16725,12 +16870,12 @@ snapshots:
 
   '@inquirer/ansi@1.0.2': {}
 
-  '@inquirer/checkbox@4.2.0(@types/node@20.16.5)':
+  '@inquirer/checkbox@4.3.2(@types/node@20.16.5)':
     dependencies:
+      '@inquirer/ansi': 1.0.2
       '@inquirer/core': 10.3.2(@types/node@20.16.5)
       '@inquirer/figures': 1.0.15
       '@inquirer/type': 3.0.10(@types/node@20.16.5)
-      ansi-escapes: 4.3.2
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
       '@types/node': 20.16.5
@@ -16814,11 +16959,11 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.0.9
 
-  '@inquirer/editor@4.2.15(@types/node@20.16.5)':
+  '@inquirer/editor@4.2.23(@types/node@20.16.5)':
     dependencies:
       '@inquirer/core': 10.3.2(@types/node@20.16.5)
+      '@inquirer/external-editor': 1.0.3(@types/node@20.16.5)
       '@inquirer/type': 3.0.10(@types/node@20.16.5)
-      external-editor: 3.1.0
     optionalDependencies:
       '@types/node': 20.16.5
 
@@ -16830,7 +16975,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.0.9
 
-  '@inquirer/expand@4.0.17(@types/node@20.16.5)':
+  '@inquirer/expand@4.0.23(@types/node@20.16.5)':
     dependencies:
       '@inquirer/core': 10.3.2(@types/node@20.16.5)
       '@inquirer/type': 3.0.10(@types/node@20.16.5)
@@ -16853,6 +16998,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.0.9
 
+  '@inquirer/external-editor@1.0.3(@types/node@20.16.5)':
+    dependencies:
+      chardet: 2.1.1
+      iconv-lite: 0.7.0
+    optionalDependencies:
+      '@types/node': 20.16.5
+
   '@inquirer/external-editor@1.0.3(@types/node@25.0.9)':
     dependencies:
       chardet: 2.1.1
@@ -16862,7 +17014,7 @@ snapshots:
 
   '@inquirer/figures@1.0.15': {}
 
-  '@inquirer/input@4.2.1(@types/node@20.16.5)':
+  '@inquirer/input@4.3.1(@types/node@20.16.5)':
     dependencies:
       '@inquirer/core': 10.3.2(@types/node@20.16.5)
       '@inquirer/type': 3.0.10(@types/node@20.16.5)
@@ -16876,7 +17028,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.0.9
 
-  '@inquirer/number@3.0.17(@types/node@20.16.5)':
+  '@inquirer/number@3.0.23(@types/node@20.16.5)':
     dependencies:
       '@inquirer/core': 10.3.2(@types/node@20.16.5)
       '@inquirer/type': 3.0.10(@types/node@20.16.5)
@@ -16890,11 +17042,11 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.0.9
 
-  '@inquirer/password@4.0.17(@types/node@20.16.5)':
+  '@inquirer/password@4.0.23(@types/node@20.16.5)':
     dependencies:
+      '@inquirer/ansi': 1.0.2
       '@inquirer/core': 10.3.2(@types/node@20.16.5)
       '@inquirer/type': 3.0.10(@types/node@20.16.5)
-      ansi-escapes: 4.3.2
     optionalDependencies:
       '@types/node': 20.16.5
 
@@ -16923,16 +17075,24 @@ snapshots:
 
   '@inquirer/prompts@7.6.0(@types/node@20.16.5)':
     dependencies:
-      '@inquirer/checkbox': 4.2.0(@types/node@20.16.5)
+      '@inquirer/checkbox': 4.3.2(@types/node@20.16.5)
       '@inquirer/confirm': 5.1.21(@types/node@20.16.5)
-      '@inquirer/editor': 4.2.15(@types/node@20.16.5)
-      '@inquirer/expand': 4.0.17(@types/node@20.16.5)
-      '@inquirer/input': 4.2.1(@types/node@20.16.5)
-      '@inquirer/number': 3.0.17(@types/node@20.16.5)
-      '@inquirer/password': 4.0.17(@types/node@20.16.5)
-      '@inquirer/rawlist': 4.1.5(@types/node@20.16.5)
-      '@inquirer/search': 3.1.0(@types/node@20.16.5)
-      '@inquirer/select': 4.3.1(@types/node@20.16.5)
+      '@inquirer/editor': 4.2.23(@types/node@20.16.5)
+      '@inquirer/expand': 4.0.23(@types/node@20.16.5)
+      '@inquirer/input': 4.3.1(@types/node@20.16.5)
+      '@inquirer/number': 3.0.23(@types/node@20.16.5)
+      '@inquirer/password': 4.0.23(@types/node@20.16.5)
+      '@inquirer/rawlist': 4.1.11(@types/node@20.16.5)
+      '@inquirer/search': 3.2.2(@types/node@20.16.5)
+      '@inquirer/select': 4.4.2(@types/node@20.16.5)
+    optionalDependencies:
+      '@types/node': 20.16.5
+
+  '@inquirer/rawlist@4.1.11(@types/node@20.16.5)':
+    dependencies:
+      '@inquirer/core': 10.3.2(@types/node@20.16.5)
+      '@inquirer/type': 3.0.10(@types/node@20.16.5)
+      yoctocolors-cjs: 2.1.3
     optionalDependencies:
       '@types/node': 20.16.5
 
@@ -16944,15 +17104,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.0.9
 
-  '@inquirer/rawlist@4.1.5(@types/node@20.16.5)':
-    dependencies:
-      '@inquirer/core': 10.3.2(@types/node@20.16.5)
-      '@inquirer/type': 3.0.10(@types/node@20.16.5)
-      yoctocolors-cjs: 2.1.3
-    optionalDependencies:
-      '@types/node': 20.16.5
-
-  '@inquirer/search@3.1.0(@types/node@20.16.5)':
+  '@inquirer/search@3.2.2(@types/node@20.16.5)':
     dependencies:
       '@inquirer/core': 10.3.2(@types/node@20.16.5)
       '@inquirer/figures': 1.0.15
@@ -16970,12 +17122,12 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.0.9
 
-  '@inquirer/select@4.3.1(@types/node@20.16.5)':
+  '@inquirer/select@4.4.2(@types/node@20.16.5)':
     dependencies:
+      '@inquirer/ansi': 1.0.2
       '@inquirer/core': 10.3.2(@types/node@20.16.5)
       '@inquirer/figures': 1.0.15
       '@inquirer/type': 3.0.10(@types/node@20.16.5)
-      ansi-escapes: 4.3.2
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
       '@types/node': 20.16.5
@@ -17428,7 +17580,7 @@ snapshots:
 
   '@jest/transform@29.7.0':
     dependencies:
-      '@babel/core': 7.28.0
+      '@babel/core': 7.28.6
       '@jest/types': 29.6.3
       '@jridgewell/trace-mapping': 0.3.31
       babel-plugin-istanbul: 6.1.1
@@ -21025,7 +21177,7 @@ snapshots:
       minipass-pipeline: 1.2.4
       p-map: 7.0.3
       ssri: 12.0.0
-      tar: 7.4.3
+      tar: 7.5.7
       unique-filename: 4.0.0
 
   cacache@20.0.3:
@@ -21227,8 +21379,8 @@ snapshots:
   cliui@9.0.1:
     dependencies:
       string-width: 7.2.0
-      strip-ansi: 7.1.0
-      wrap-ansi: 9.0.0
+      strip-ansi: 7.1.2
+      wrap-ansi: 9.0.2
 
   clone-deep@4.0.1:
     dependencies:
@@ -22771,7 +22923,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.4.1
+      debug: 4.4.3
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -23764,10 +23916,10 @@ snapshots:
 
   istanbul-lib-instrument@5.2.1:
     dependencies:
-      '@babel/core': 7.28.0
-      '@babel/parser': 7.28.0
+      '@babel/core': 7.28.6
+      '@babel/parser': 7.28.6
       '@istanbuljs/schema': 0.1.3
-      istanbul-lib-coverage: 3.2.0
+      istanbul-lib-coverage: 3.2.2
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -23784,22 +23936,17 @@ snapshots:
 
   istanbul-lib-report@3.0.1:
     dependencies:
-      istanbul-lib-coverage: 3.2.0
+      istanbul-lib-coverage: 3.2.2
       make-dir: 4.0.0
       supports-color: 7.2.0
 
   istanbul-lib-source-maps@4.0.1:
     dependencies:
-      debug: 4.4.1
-      istanbul-lib-coverage: 3.2.0
+      debug: 4.4.3
+      istanbul-lib-coverage: 3.2.2
       source-map: 0.6.1
     transitivePeerDependencies:
       - supports-color
-
-  istanbul-reports@3.1.6:
-    dependencies:
-      html-escaper: 2.0.2
-      istanbul-lib-report: 3.0.1
 
   istanbul-reports@3.2.0:
     dependencies:
@@ -24326,15 +24473,15 @@ snapshots:
 
   jest-snapshot@29.7.0:
     dependencies:
-      '@babel/core': 7.28.0
+      '@babel/core': 7.28.6
       '@babel/generator': 7.28.0
-      '@babel/plugin-syntax-jsx': 7.27.1(@babel/core@7.28.0)
-      '@babel/plugin-syntax-typescript': 7.27.1(@babel/core@7.28.0)
+      '@babel/plugin-syntax-jsx': 7.27.1(@babel/core@7.28.6)
+      '@babel/plugin-syntax-typescript': 7.27.1(@babel/core@7.28.6)
       '@babel/types': 7.28.2
       '@jest/expect-utils': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      babel-preset-current-node-syntax: 1.2.0(@babel/core@7.28.0)
+      babel-preset-current-node-syntax: 1.2.0(@babel/core@7.28.6)
       chalk: 4.1.2
       expect: 29.7.0
       graceful-fs: 4.2.11
@@ -24655,11 +24802,11 @@ snapshots:
 
   karma-coverage@2.2.1:
     dependencies:
-      istanbul-lib-coverage: 3.2.0
+      istanbul-lib-coverage: 3.2.2
       istanbul-lib-instrument: 5.2.1
       istanbul-lib-report: 3.0.1
       istanbul-lib-source-maps: 4.0.1
-      istanbul-reports: 3.1.6
+      istanbul-reports: 3.2.0
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -24797,7 +24944,7 @@ snapshots:
       eventemitter3: 5.0.1
       log-update: 6.1.0
       rfdc: 1.4.1
-      wrap-ansi: 9.0.0
+      wrap-ansi: 9.0.2
 
   listr2@9.0.5:
     dependencies:
@@ -24930,7 +25077,7 @@ snapshots:
   log4js@6.9.1:
     dependencies:
       date-format: 4.0.14
-      debug: 4.4.1
+      debug: 4.4.3
       flatted: 3.2.9
       rfdc: 1.4.1
       streamroller: 3.1.5
@@ -25209,7 +25356,7 @@ snapshots:
     dependencies:
       minipass: 7.1.2
       minipass-sized: 1.0.3
-      minizlib: 3.0.2
+      minizlib: 3.1.0
     optionalDependencies:
       encoding: 0.1.13
 
@@ -25670,7 +25817,7 @@ snapshots:
       nopt: 8.1.0
       proc-log: 5.0.0
       semver: 7.7.3
-      tar: 7.4.3
+      tar: 7.5.7
       tinyglobby: 0.2.15
       which: 5.0.0
     transitivePeerDependencies:
@@ -25737,7 +25884,7 @@ snapshots:
     dependencies:
       hosted-git-info: 8.1.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.3
       validate-npm-package-name: 6.0.2
 
   npm-package-arg@13.0.2:
@@ -25756,7 +25903,7 @@ snapshots:
       npm-install-checks: 7.1.1
       npm-normalize-package-bin: 4.0.0
       npm-package-arg: 12.0.2
-      semver: 7.7.2
+      semver: 7.7.3
 
   npm-pick-manifest@11.0.3:
     dependencies:
@@ -25772,7 +25919,7 @@ snapshots:
       make-fetch-happen: 14.0.3
       minipass: 7.1.2
       minipass-fetch: 4.0.1
-      minizlib: 3.0.2
+      minizlib: 3.1.0
       npm-package-arg: 12.0.2
       proc-log: 5.0.0
     transitivePeerDependencies:
@@ -26593,7 +26740,7 @@ snapshots:
   proxy-agent@6.3.0:
     dependencies:
       agent-base: 7.1.3
-      debug: 4.4.1
+      debug: 4.4.3
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       lru-cache: 7.18.3

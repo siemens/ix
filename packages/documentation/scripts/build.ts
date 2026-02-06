@@ -45,13 +45,13 @@ const __reactTestApp = path.join(__reactTestAppRoot, 'src', 'preview-examples');
 
 const __angularTestApp = path.join(
   __packages,
-  'angular-test-app',
+  'angular-examples',
   'src',
   'preview-examples'
 );
 const __angularStandaloneTestApp = path.join(
   __packages,
-  'angular-standalone-test-app',
+  'angular-standalone-examples',
   'src',
   'preview-examples'
 );

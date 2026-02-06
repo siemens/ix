@@ -15,7 +15,6 @@ const exampleNames = [...testIds, 'validation'] as const;
 type IxPreviewRoutes = {
   [K in (typeof exampleNames)[number] as `preview/${K}`]: AngularComponent;
 } & {
-  '': AngularComponent;
   'preview/modal-by-instance': AngularComponent;
   'preview/modal-by-template': AngularComponent;
   'preview/select-ng-model': AngularComponent;
@@ -23,7 +22,6 @@ type IxPreviewRoutes = {
 };
 
 export const routePaths: IxPreviewRoutes = {
-  '': () => import('../playground/playground').then((m) => m.default),
   'preview/about-and-legal': () =>
     import('../preview-examples/about-and-legal').then((m) => m.default),
   'preview/action-card': () =>
