@@ -222,6 +222,12 @@ export class ApplicationHeader {
   @Watch('suppressResponsive')
   watchSuppressResponsive() {
     this.breakpoint = 'md';
+    this.updateHasSlotAssignedElementsStates();
+  }
+
+  @Watch('breakpoint')
+  watchBreakpoint() {
+    this.updateHasSlotAssignedElementsStates();
   }
 
   private checkLogoSlot() {
@@ -326,7 +332,8 @@ export class ApplicationHeader {
     this.hasOverflowSlotElements = hasSlottedElements(overflowSlot);
 
     this.hasOverflowContextMenu =
-      this.hasDefaultSlotElements || this.hasSecondarySlotElements;
+      this.hasOverflowSlotElements ||
+      (this.breakpoint === 'sm' && (this.hasDefaultSlotElements || this.hasSecondarySlotElements));
   }
 
   private onContentBgClick(e: MouseEvent) {
