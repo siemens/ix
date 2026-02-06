@@ -1,7 +1,13 @@
 {
   "$schema": "./schemas/examples-registry.schema.json",
   "name": "siemens-ix-examples",
-  "searchIndex": "examples-search-index.json",
+  "searchIndex": {
+    "html": "examples-search-index-html.json",
+    "react": "examples-search-index-react.json",
+    "angular": "examples-search-index-angular.json",
+    "angular-standalone": "examples-search-index-angular-standalone.json",
+    "vue": "examples-search-index-vue.json"
+  },
   "dist-tags": {
     "latest": "4.3.0"
   },

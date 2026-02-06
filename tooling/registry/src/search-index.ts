@@ -14,43 +14,59 @@ import { glob } from 'glob';
 interface BlockDocument {
   id: string;
   name: string;
-  frameworks: string;
   sourceCode: string;
   dependencies: string;
   files: string;
   path: string;
 }
 
+const FRAMEWORKS = [
+  'html',
+  'react',
+  'angular',
+  'angular-standalone',
+  'vue',
+] as const;
+type Framework = (typeof FRAMEWORKS)[number];
+
 /**
- * Build a search index for all blocks including their source code
+ * Build framework-specific search indexes for blocks/examples
  */
 export async function buildSearchIndex(
   distDir: string,
   blocksDir: string,
-  outputFileName: string = 'search-index.json'
-): Promise<string> {
+  baseFileName: string = 'search-index'
+): Promise<Record<Framework, string>> {
   const blockFiles = await glob(path.join(blocksDir, '*.json'), {
     absolute: true,
   });
 
-  const documents: BlockDocument[] = [];
-
   // Get workspace root (go up from blocksDir which is typically dist/blocks)
   const workspaceRoot = path.join(blocksDir, '..', '..', '..');
+
+  // Create separate document collections for each framework
+  const frameworkDocuments: Record<string, BlockDocument[]> = {
+    html: [],
+    react: [],
+    angular: [],
+    'angular-standalone': [],
+    vue: [],
+  };
 
   for (const blockFile of blockFiles) {
     const blockDef = await fs.readJson(blockFile);
     const blockName = blockDef.name;
+    const blockPath = path.basename(blockFile);
 
-    const sourceCodeParts: string[] = [];
-    const frameworks: string[] = [];
-    const dependencies: string[] = [];
-    const files: string[] = [];
-
-    for (const [framework, variant] of Object.entries(blockDef.variants || {})) {
+    // Process each framework variant separately
+    for (const [framework, variant] of Object.entries(
+      blockDef.variants || {}
+    )) {
       if (!variant || typeof variant !== 'object') continue;
 
-      frameworks.push(framework);
+      const sourceCodeParts: string[] = [];
+      const dependencies: string[] = [];
+      const files: string[] = [];
 
       if (Array.isArray((variant as any).dependencies)) {
         for (const dep of (variant as any).dependencies) {
@@ -70,47 +86,67 @@ export async function buildSearchIndex(
               sourceCodeParts.push(content);
             } else {
               console.warn(
-                `Source file not found: ${sourcePath} for block ${blockName}`
+                `Source file not found: ${sourcePath} for ${framework} ${blockName}`
               );
             }
           } catch (err) {
             console.warn(
-              `Could not read source file ${sourcePath} for block ${blockName}:`,
+              `Could not read source file ${sourcePath} for ${framework} ${blockName}:`,
               err
             );
           }
         }
       }
-    }
 
-    documents.push({
-      id: blockName,
-      name: blockName,
-      frameworks: frameworks.join(' '),
-      sourceCode: sourceCodeParts.join('\n'),
-      dependencies: dependencies.join(' '),
-      files: files.join(' '),
-      path: `blocks/${path.basename(blockFile)}`,
-    });
+      // Add document to the framework-specific collection
+      if (frameworkDocuments[framework]) {
+        frameworkDocuments[framework].push({
+          id: blockName,
+          name: blockName,
+          sourceCode: sourceCodeParts.join('\n'),
+          dependencies: dependencies.join(' '),
+          files: files.join(' '),
+          path: blockPath.includes('example')
+            ? `examples/${blockPath}`
+            : `blocks/${blockPath}`,
+        });
+      }
+    }
   }
 
-  const miniSearch = new MiniSearch<BlockDocument>({
-    fields: ['name', 'frameworks', 'sourceCode', 'dependencies', 'files'],
-    storeFields: ['id', 'name', 'frameworks', 'path'],
-    searchOptions: {
-      boost: { name: 3, frameworks: 2, files: 1.5 },
-      fuzzy: 0.2,
-      prefix: true,
-    },
-  });
+  // Create a separate MiniSearch index for each framework
+  const indexPaths: Record<Framework, string> = {} as any;
 
-  miniSearch.addAll(documents);
+  for (const framework of FRAMEWORKS) {
+    const documents = frameworkDocuments[framework];
 
-  const serialized = JSON.stringify(miniSearch.toJSON());
-  const indexPath = path.join(distDir, outputFileName);
-  await fs.writeFile(indexPath, serialized, 'utf-8');
+    if (documents.length === 0) {
+      console.warn(`⚠️  No documents found for framework: ${framework}`);
+      continue;
+    }
 
-  console.log(`✅ Created search index with ${documents.length} blocks at ${outputFileName}`);
+    const miniSearch = new MiniSearch<BlockDocument>({
+      fields: ['name', 'sourceCode', 'dependencies', 'files'],
+      storeFields: ['id', 'name', 'path'],
+      searchOptions: {
+        boost: { name: 3, files: 1.5 },
+        fuzzy: 0.2,
+        prefix: true,
+      },
+    });
 
-  return indexPath;
+    miniSearch.addAll(documents);
+
+    const serialized = JSON.stringify(miniSearch.toJSON());
+    const fileName = `${baseFileName}-${framework}.json`;
+    const indexPath = path.join(distDir, fileName);
+    await fs.writeFile(indexPath, serialized, 'utf-8');
+
+    indexPaths[framework as Framework] = fileName;
+    console.log(
+      `✅ Created ${framework} search index with ${documents.length} items at ${fileName}`
+    );
+  }
+
+  return indexPaths;
 }

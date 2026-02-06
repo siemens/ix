@@ -11,9 +11,15 @@
       "pattern": "^[a-z0-9-]+$"
     },
     "searchIndex": {
-      "type": "string",
-      "description": "Path to the MiniSearch index file for fast block searching",
-      "pattern": "\\.json$"
+      "type": "object",
+      "description": "Framework-specific MiniSearch index files for fast block searching",
+      "properties": {
+        "html": { "type": "string", "pattern": "\\.json$" },
+        "react": { "type": "string", "pattern": "\\.json$" },
+        "angular": { "type": "string", "pattern": "\\.json$" },
+        "angular-standalone": { "type": "string", "pattern": "\\.json$" },
+        "vue": { "type": "string", "pattern": "\\.json$" }
+      }
     },
     "dist-tags": {
       "type": "object",

@@ -1,7 +1,13 @@
 {
   "$schema": "./schemas/registry.schema.json",
   "name": "siemens-ix-blocks",
-  "searchIndex": "search-index.json",
+  "searchIndex": {
+    "html": "search-index-html.json",
+    "react": "search-index-react.json",
+    "angular": "search-index-angular.json",
+    "angular-standalone": "search-index-angular-standalone.json",
+    "vue": "search-index-vue.json"
+  },
   "dist-tags": {
     "latest": "4.3.0"
   },

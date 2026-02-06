@@ -171,17 +171,29 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Build blocks search index',
+    title: 'Build blocks search indexes',
     task: async (ctx) => {
       const blocksDir = path.join(ctx.dist, 'blocks');
-      await buildSearchIndex(ctx.dist, blocksDir, 'search-index.json');
+      const indexPaths = await buildSearchIndex(ctx.dist, blocksDir, 'search-index');
+
+      // Update registry.json with search index paths
+      const registryPath = path.join(ctx.dist, 'registry.json');
+      const registry = await fs.readJson(registryPath);
+      registry.searchIndex = indexPaths;
+      await fs.writeJson(registryPath, registry, { spaces: 2 });
     },
   },
   {
-    title: 'Build examples search index',
+    title: 'Build examples search indexes',
     task: async (ctx) => {
       const examplesDir = path.join(ctx.dist, 'examples');
-      await buildSearchIndex(ctx.dist, examplesDir, 'examples-search-index.json');
+      const indexPaths = await buildSearchIndex(ctx.dist, examplesDir, 'examples-search-index');
+
+      // Update examples-registry.json with search index paths
+      const registryPath = path.join(ctx.dist, 'examples-registry.json');
+      const registry = await fs.readJson(registryPath);
+      registry.searchIndex = indexPaths;
+      await fs.writeJson(registryPath, registry, { spaces: 2 });
     },
   },
 ]);
