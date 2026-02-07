@@ -141,25 +141,19 @@ export function InputElement(
   );
 }
 
-export const SlotEnd: FunctionalComponent<{
-  slotEndRef: MakeRef<HTMLDivElement>;
+export const Slot: FunctionalComponent<{
+  slotRef: MakeRef<HTMLDivElement>;
+  position: 'start' | 'end';
   onSlotChange?: (e: Event) => void;
 }> = (props, children) => {
-  return (
-    <div class="end-container" ref={props.slotEndRef}>
-      <slot name="end" onSlotchange={props.onSlotChange}></slot>
-      {children}
-    </div>
-  );
-};
+  const className =
+    props.position === 'start' ? 'start-container' : 'end-container';
+  const slotName = props.position;
 
-export const SlotStart: FunctionalComponent<{
-  slotStartRef: MakeRef<HTMLDivElement>;
-  onSlotChange?: (e: Event) => void;
-}> = (props) => {
   return (
-    <div class="start-container" ref={props.slotStartRef}>
-      <slot name="start" onSlotchange={props.onSlotChange}></slot>
+    <div class={className} ref={props.slotRef}>
+      <slot name={slotName} onSlotchange={props.onSlotChange}></slot>
+      {children}
     </div>
   );
 };

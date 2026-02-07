@@ -27,7 +27,7 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import { InputElement, SlotEnd, SlotStart } from './input.fc';
+import { InputElement, Slot } from './input.fc';
 import {
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
@@ -467,10 +467,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
               'show-stepper-buttons': !!this.showStepperButtons,
             }}
           >
-            <SlotStart
-              slotStartRef={this.slotStartRef}
+            <Slot
+              slotRef={this.slotStartRef}
+              position="start"
               onSlotChange={() => this.updatePaddings()}
-            ></SlotStart>
+            ></Slot>
 
             <InputElement
               id={this.numberInputId}
@@ -506,8 +507,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}
               textAlignment={this.textAlignment}
             ></InputElement>
-            <SlotEnd
-              slotEndRef={this.slotEndRef}
+            <Slot
+              slotRef={this.slotEndRef}
+              position="end"
               onSlotChange={() => this.updatePaddings()}
             >
               <div
@@ -533,7 +535,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   onClick={() => this.handleStepOperation('up')}
                 ></ix-icon-button>
               </div>
-            </SlotEnd>
+            </Slot>
           </div>
         </ix-field-wrapper>
       </Host>

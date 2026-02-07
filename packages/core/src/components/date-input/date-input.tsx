@@ -21,39 +21,24 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { SlotEnd, SlotStart } from '../input/input.fc';
+import { Slot } from '../input/input.fc';
 import {
-  DisposableChangesAndVisibilityObservers,
-  addDisposableChangesAndVisibilityObservers,
-  adjustPaddingForStartAndEnd,
-} from '../input/input.util';
-import {
-  ClassMutationObserver,
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
-  createClassMutationObserver,
   getValidationText,
   shouldSuppressInternalValidation,
-  syncState,
   watchValue,
+  renderFieldWrapper,
+  handleValidationLifecycle,
   onInput,
   onClick,
   onFocus,
   onBlur,
   onKeyDown,
-  renderFieldWrapper,
-  createEventConfig,
-  createInputMethods,
-  createDropdownMethods,
-  createKeyDownHandler,
-  handleValidationLifecycle,
 } from '../utils/input';
 import {
   handleIconClick,
-  openDropdown as openDropdownUtil,
-  createPickerMethods,
-  createPickerMethodsContext,
   createInputRenderer,
   createRenderConfig,
   createInputConfig,
@@ -82,6 +67,13 @@ export class DateInput
   @AttachInternals() formInternals!: ElementInternals;
 
   @State() isInputInvalid: boolean = false;
+  @State() protected show = false;
+  @State() protected suppressValidation = false;
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
+  @State() protected focus = false;
 
   /**
    * Name of the input element
@@ -267,19 +259,9 @@ export class DateInput
   @State() from?: string | null = null;
 
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
-  private classObserver?: ClassMutationObserver;
-  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   connectedCallback(): void {
-    this.classObserver = createClassMutationObserver(this.hostElement, () => {
-      this.isInvalid = this.dropdownMethods.checkClassList();
-    });
-
-    this.disposableChangesAndVisibilityObservers =
-      addDisposableChangesAndVisibilityObservers(
-        this.hostElement,
-        this.updatePaddings.bind(this)
-      );
+    this.initializeObservers();
   }
 
   componentWillLoad(): void {
@@ -294,8 +276,7 @@ export class DateInput
   }
 
   disconnectedCallback(): void {
-    this.classObserver?.destroy();
-    this.disposableChangesAndVisibilityObservers?.();
+    this.destroyObservers();
   }
 
   @Watch('value')
@@ -362,7 +343,7 @@ export class DateInput
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
-      this.emitChangesAndSync(value);
+      this.emitChangesAndSyncValue(value);
       return;
     }
 
@@ -394,8 +375,8 @@ export class DateInput
     }
   }
 
-  onCalenderClick(event: Event) {
-    handleIconClick(
+  async onCalendarClick(event: Event) {
+    await handleIconClick(
       event,
       this.show,
       () => this.dropdownMethods.openDropdown(),
@@ -412,80 +393,50 @@ export class DateInput
     this.value = value;
   }
 
-  protected get pickerMethods() {
-    return createPickerMethods(
-      createPickerMethodsContext({
-        component: this,
-        openDropdown: () => openDropdownUtil(this.dropdownElementRef),
-        createInputMethods,
-        createDropdownMethods,
-        createEventConfig,
-        createKeyDownHandler,
-        handleValidationLifecycle,
-      })
+  private emitChangesAndSyncValue(value: string | undefined): void {
+    this.emitChangesAndSync(
+      value,
+      this.valueChange,
+      (val) => this.updateFormInternalValue(val),
+      this.required
     );
-  }
-
-  private updatePaddings(): void {
-    adjustPaddingForStartAndEnd(
-      this.slotStartRef.current,
-      this.slotEndRef.current,
-      this.inputElementRef.current
-    );
-  }
-
-  private getEventConfig() {
-    return this.pickerMethods.getEventConfig();
-  }
-
-  private emitChangesAndSync(value: string | undefined): void {
-    syncState({
-      updateFormInternalValue: (val) => this.updateFormInternalValue(val),
-      valueChange: this.valueChange,
-      value: value,
-      hostElement: this.hostElement,
-      suppressValidation: this.suppressValidation,
-      required: this.required,
-      touched: this.touched,
-      isInputInvalid: this.isInputInvalid,
-    });
   }
 
   private handleValidInput(value: string | undefined): void {
     this.from = value;
     this.dropdownMethods.closeDropdown();
-    this.emitChangesAndSync(value);
+    this.emitChangesAndSyncValue(value);
   }
 
   private handleInvalidInput(value: string | undefined): void {
     this.touched = true;
     this.from = undefined;
-    this.emitChangesAndSync(value);
+    this.emitChangesAndSyncValue(value);
   }
 
   private renderInput() {
-    const renderPickerInputFn = createInputRenderer(h, SlotStart, SlotEnd);
-    const config = createInputConfig({
-      component: this,
-      getEventConfig: () => this.getEventConfig(),
-      onInput,
-      onClick,
-      onFocus,
-      onBlur,
-      onKeyDown,
-      iconButton: (
-        <ix-icon-button
-          data-testid="open-calendar"
-          class={{ 'calendar-hidden': this.disabled || this.readonly }}
-          variant="subtle-tertiary"
-          icon={iconCalendar}
-          onClick={(event) => this.onCalenderClick(event)}
-          aria-label={this.ariaLabelCalendarButton}
-        ></ix-icon-button>
-      ),
-      value: this.value ?? '',
+    const renderPickerInputFn = createInputRenderer(h, Slot);
+    const config = createInputConfig(
+      this,
+      <ix-icon-button
+        data-testid="open-calendar"
+        class={{ 'calendar-hidden': this.disabled || this.readonly }}
+        variant="subtle-tertiary"
+        icon={iconCalendar}
+        onClick={(event) => this.onCalendarClick(event)}
+        aria-label={this.ariaLabelCalendarButton}
+        aria-expanded={this.show}
+      ></ix-icon-button>,
+      this.value ?? ''
+    );
+    const eventConfig = this.getEventConfig();
+    return renderPickerInputFn(config, {
+      onInput: onInput(eventConfig),
+      onClick: onClick(eventConfig),
+      onFocus: onFocus(eventConfig),
+      onBlur: onBlur(eventConfig),
+      onKeyDown: onKeyDown(eventConfig),
     });
-    return renderPickerInputFn(config);
   }
 
   render() {

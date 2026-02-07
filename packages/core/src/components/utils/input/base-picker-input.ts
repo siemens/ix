@@ -7,11 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Method, State } from '@stencil/core';
-import { clearInputValue } from '../../input/input.util';
-import { getNativeInput } from '../input';
+import { EventEmitter, Method } from '@stencil/core';
+import {
+  adjustPaddingForStartAndEnd,
+  clearInputValue,
+  DisposableChangesAndVisibilityObservers,
+  addDisposableChangesAndVisibilityObservers,
+} from '../../input/input.util';
+import {
+  getNativeInput,
+  syncState,
+  SyncOptions,
+  createClassMutationObserver,
+  ClassMutationObserver,
+  EventConfig,
+  createPickerMethods,
+  createPickerMethodsContext,
+} from '../input';
+import { openDropdown, createValidityState } from './picker-input.util';
 import { makeRef } from '../make-ref';
-import type { PickerInputMethods } from './picker-input.util';
+import type { PickerInputMethods } from '../input';
 
 export class BasePickerInput {
   protected hostElement!: HTMLElement;
@@ -21,30 +36,102 @@ export class BasePickerInput {
   protected readonly slotStartRef = makeRef<HTMLDivElement>();
   protected readonly slotEndRef = makeRef<HTMLDivElement>();
 
-  @State() protected show = false;
-  @State() protected suppressValidation = false;
-  @State() isInvalid = false;
-  @State() isValid = false;
-  @State() isInfo = false;
-  @State() isWarning = false;
-  @State() protected focus = false;
+  /**
+   * Note: @State() decorators in base classes are not reactive in Stencil.
+   * Derived component classes must redeclare these properties with @State()
+   * for reactivity to work.
+   * These declarations provide shared property definitions and initial values.
+   */
+  protected show = false;
+  protected suppressValidation = false;
+  isInvalid = false;
+  isValid = false;
+  isInfo = false;
+  isWarning = false;
+  protected focus = false;
+  isInputInvalid = false;
 
   protected invalidReason?: string;
   protected touched = false;
   protected isClearing = false;
 
+  protected classObserver?: ClassMutationObserver;
+  protected disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
   protected get pickerMethods(): PickerInputMethods {
-    throw new Error(
-      'pickerMethods getter must be implemented by derived class'
+    return createPickerMethods(
+      createPickerMethodsContext(
+        {
+          component: this,
+        },
+        openDropdown
+      ),
+      createValidityState
     );
   }
 
   protected get commonMethods() {
-    return this.pickerMethods.getCommonMethods();
+    return {
+      focusInput: this.pickerMethods.focusInput,
+      isTouched: this.pickerMethods.isTouched,
+      syncValidationClasses: this.pickerMethods.syncValidationClasses,
+    };
   }
 
   protected get dropdownMethods() {
-    return this.pickerMethods.getDropdownMethods();
+    return {
+      openDropdown: this.pickerMethods.openDropdown,
+      closeDropdown: this.pickerMethods.closeDropdown,
+      checkClassList: this.pickerMethods.checkClassList,
+    };
+  }
+
+  protected initializeObservers(): void {
+    this.classObserver = createClassMutationObserver(this.hostElement, () => {
+      this.isInvalid = this.dropdownMethods.checkClassList();
+    });
+
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
+  }
+
+  protected destroyObservers(): void {
+    this.classObserver?.destroy();
+    this.disposableChangesAndVisibilityObservers?.();
+  }
+
+  protected updatePaddings(): void {
+    adjustPaddingForStartAndEnd(
+      this.slotStartRef.current,
+      this.slotEndRef.current,
+      this.inputElementRef.current
+    );
+  }
+
+  getEventConfig(): EventConfig {
+    return this.pickerMethods.eventConfig;
+  }
+
+  protected emitChangesAndSync<T = string | undefined>(
+    value: T,
+    valueChange: EventEmitter<T>,
+    updateFormValue: (val: T) => void,
+    required?: boolean
+  ): void {
+    const options: SyncOptions<T> = {
+      updateFormInternalValue: updateFormValue,
+      valueChange,
+      value,
+      hostElement: this.hostElement,
+      suppressValidation: this.suppressValidation,
+      required,
+      touched: this.touched,
+      isInputInvalid: this.isInputInvalid,
+    };
+    syncState(options);
   }
 
   /** @internal */

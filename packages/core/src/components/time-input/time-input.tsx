@@ -22,39 +22,23 @@ import {
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { IxTimePickerCustomEvent } from '../../components';
-import { SlotEnd, SlotStart } from '../input/input.fc';
+import { Slot } from '../input/input.fc';
 import {
-  DisposableChangesAndVisibilityObservers,
-  addDisposableChangesAndVisibilityObservers,
-  adjustPaddingForStartAndEnd,
-} from '../input/input.util';
-import {
-  ClassMutationObserver,
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
-  createClassMutationObserver,
   getValidationText,
   shouldSuppressInternalValidation,
-  syncState,
   watchValue,
+  renderFieldWrapper,
   onInput,
   onClick,
   onFocus,
   onBlur,
   onKeyDown,
-  renderFieldWrapper,
-  createEventConfig,
-  createInputMethods,
-  createDropdownMethods,
-  createKeyDownHandler,
-  handleValidationLifecycle,
 } from '../utils/input';
 import {
   handleIconClick,
-  openDropdown as openDropdownUtil,
-  createPickerMethods,
-  createPickerMethodsContext,
   createInputRenderer,
   createRenderConfig,
   createInputConfig,
@@ -83,6 +67,13 @@ export class TimeInput
   @AttachInternals() formInternals!: ElementInternals;
 
   @State() isInputInvalid: boolean = false;
+  @State() protected show = false;
+  @State() protected suppressValidation = false;
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
+  @State() protected focus = false;
 
   /**
    * Name of the input element
@@ -278,19 +269,9 @@ export class TimeInput
   @State() time: string | null = null;
 
   private readonly timePickerRef = makeRef<HTMLIxTimePickerElement>();
-  private classObserver?: ClassMutationObserver;
-  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   connectedCallback(): void {
-    this.classObserver = createClassMutationObserver(this.hostElement, () => {
-      this.isInvalid = this.dropdownMethods.checkClassList();
-    });
-
-    this.disposableChangesAndVisibilityObservers =
-      addDisposableChangesAndVisibilityObservers(
-        this.hostElement,
-        this.updatePaddings.bind(this)
-      );
+    this.initializeObservers();
   }
 
   componentWillLoad(): void {
@@ -316,8 +297,7 @@ export class TimeInput
   }
 
   disconnectedCallback(): void {
-    this.classObserver?.destroy();
-    this.disposableChangesAndVisibilityObservers?.();
+    this.destroyObservers();
   }
 
   @Watch('value')
@@ -355,7 +335,7 @@ export class TimeInput
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
-      this.emitChangesAndSync(value);
+      this.emitChangesAndSyncValue(value);
       return;
     }
 
@@ -366,7 +346,7 @@ export class TimeInput
     if (this.suppressValidation) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
-      this.emitChangesAndSync(value);
+      this.emitChangesAndSyncValue(value);
       return;
     }
 
@@ -374,17 +354,14 @@ export class TimeInput
     this.isInputInvalid = !time.isValid;
     this.invalidReason = time.isValid ? undefined : time.invalidReason;
 
-    this.emitChangesAndSync(value);
+    this.emitChangesAndSyncValue(value);
   }
 
-  onTimeIconClick(event: Event) {
-    handleIconClick(
+  async onTimeIconClick(event: Event) {
+    await handleIconClick(
       event,
       this.show,
-      async () => {
-        this.time = this.value;
-        return this.dropdownMethods.openDropdown();
-      },
+      () => this.dropdownMethods.openDropdown(),
       this.inputElementRef
     );
   }
@@ -394,71 +371,41 @@ export class TimeInput
     this.value = value;
   }
 
-  protected get pickerMethods() {
-    return createPickerMethods(
-      createPickerMethodsContext({
-        component: this,
-        openDropdown: async () => {
-          this.time = this.value;
-          return openDropdownUtil(this.dropdownElementRef);
-        },
-        createInputMethods,
-        createDropdownMethods,
-        createEventConfig,
-        createKeyDownHandler,
-        handleValidationLifecycle,
-      })
+  beforeOpenDropdown(): void {
+    this.time = this.value;
+  }
+
+  private emitChangesAndSyncValue(value: string): void {
+    this.emitChangesAndSync(
+      value,
+      this.valueChange,
+      (val) => this.updateFormInternalValue(val),
+      this.required
     );
-  }
-
-  private updatePaddings(): void {
-    adjustPaddingForStartAndEnd(
-      this.slotStartRef.current,
-      this.slotEndRef.current,
-      this.inputElementRef.current
-    );
-  }
-
-  private getEventConfig() {
-    return this.pickerMethods.getEventConfig();
-  }
-
-  private emitChangesAndSync(value: string): void {
-    syncState({
-      updateFormInternalValue: (val) => this.updateFormInternalValue(val),
-      valueChange: this.valueChange,
-      value: value,
-      hostElement: this.hostElement,
-      suppressValidation: this.suppressValidation,
-      required: this.required,
-      touched: this.touched,
-      isInputInvalid: this.isInputInvalid,
-    });
   }
 
   private renderInput() {
-    const renderPickerInputFn = createInputRenderer(h, SlotStart, SlotEnd);
-    const config = createInputConfig({
-      component: this,
-      getEventConfig: () => this.getEventConfig(),
-      onInput,
-      onClick,
-      onFocus,
-      onBlur,
-      onKeyDown,
-      iconButton: (
-        <ix-icon-button
-          data-testid="open-time-picker"
-          class={{ 'time-icon-hidden': this.disabled || this.readonly }}
-          variant="subtle-tertiary"
-          icon={iconClock}
-          onClick={(event) => this.onTimeIconClick(event)}
-          aria-label="Toggle time picker"
-          aria-expanded={this.show}
-        ></ix-icon-button>
-      ),
+    const renderPickerInputFn = createInputRenderer(h, Slot);
+    const config = createInputConfig(
+      this,
+      <ix-icon-button
+        data-testid="open-time-picker"
+        class={{ 'time-icon-hidden': this.disabled || this.readonly }}
+        variant="subtle-tertiary"
+        icon={iconClock}
+        onClick={(event) => this.onTimeIconClick(event)}
+        aria-label="Toggle time picker"
+        aria-expanded={this.show}
+      ></ix-icon-button>
+    );
+    const eventConfig = this.getEventConfig();
+    return renderPickerInputFn(config, {
+      onInput: onInput(eventConfig),
+      onClick: onClick(eventConfig),
+      onFocus: onFocus(eventConfig),
+      onBlur: onBlur(eventConfig),
+      onKeyDown: onKeyDown(eventConfig),
     });
-    return renderPickerInputFn(config);
   }
 
   render() {

@@ -6,72 +6,28 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { EventEmitter, h, Host } from '@stencil/core';
-import { syncValidationClasses, ValidationResults } from './validation';
+import { h, Host } from '@stencil/core';
+import {
+  syncValidationClasses as syncValidationClassesUtil,
+  ValidationResults,
+} from './validation';
 import { handleSubmitOnEnterKeydown } from '../../input/input.util';
-import { closeDropdown as closeDropdownUtil } from './picker-input.util';
+import { closeDropdown } from './picker-input.util';
 import type {
-  PickerRenderConfig,
   ValidationSetters,
-} from './picker-input.util';
-
-export interface ValidationContext {
-  hostElement: HTMLElement;
-  suppressValidation: boolean;
-  required?: boolean;
-  value: string | undefined;
-  touched: boolean;
-  isInputInvalid: boolean;
-}
-
-export interface EventHandlers {
-  ixFocus: EventEmitter<void>;
-  ixBlur: EventEmitter<void>;
-  syncValidationClasses: () => void;
-  onInput: (value: string) => void | Promise<void>;
-  handleInputKeyDown: (event: KeyboardEvent) => void;
-}
-
-export interface SyncOptions<T = string | undefined> {
-  updateFormInternalValue: (value: T) => void;
-  valueChange: EventEmitter<T>;
-  value: T;
-  hostElement: HTMLElement;
-  suppressValidation: boolean;
-  required?: boolean;
-  touched: boolean;
-  isInputInvalid: boolean;
-}
-
-export interface WatchConfig<T = string> {
-  newValue: T;
-  required?: boolean;
-  onInput: (value: T) => void;
-  setTouched?: (touched: boolean) => void;
-  isClearing?: boolean;
-}
-
-export interface EventConfig extends Omit<EventHandlers, 'handleInputKeyDown'> {
-  show: boolean;
-  setTouched: (touched: boolean) => void;
-  openDropdown: () => void | Promise<void>;
-  handleInputKeyDown?: (event: KeyboardEvent) => void;
-  alwaysSetTouchedOnBlur?: boolean;
-}
-
-export interface ValidationOptions extends ValidationContext {}
-
-export interface InputMethodsContext extends ValidationContext {
-  inputElementRef: { waitForCurrent: () => Promise<HTMLInputElement> };
-}
-
-export interface DropdownMethodsContext extends EventHandlers {
-  dropdownElementRef: { current: HTMLIxDropdownElement | null };
-  hostElement: HTMLElement;
-  show: boolean;
-  touched: boolean;
-  openDropdown: () => Promise<void>;
-}
+  CommonInputMethods,
+  DropdownMethods,
+  PickerInputMethods,
+  PickerMethodsConfig,
+  PickerComponent,
+  PickerRenderConfig,
+  CreatePickerMethodsContext,
+  SyncOptions,
+  WatchConfig,
+  EventConfig,
+  InputMethodsContext,
+  DropdownMethodsContext,
+} from './picker-input.types';
 
 export function syncState<T = string | undefined>(
   options: SyncOptions<T>
@@ -79,7 +35,7 @@ export function syncState<T = string | undefined>(
   options.updateFormInternalValue(options.value);
   options.valueChange.emit(options.value);
 
-  syncValidationClasses({
+  syncValidationClassesUtil({
     hostElement: options.hostElement,
     suppressValidation: options.suppressValidation,
     required: options.required,
@@ -100,17 +56,6 @@ export function watchValue<T = string>(config: WatchConfig<T>): void {
   }
 
   config.onInput(config.newValue);
-}
-
-export function syncValidation(options: ValidationOptions): void {
-  syncValidationClasses({
-    hostElement: options.hostElement,
-    suppressValidation: options.suppressValidation,
-    required: options.required,
-    value: options.value,
-    touched: options.touched,
-    isInputInvalid: options.isInputInvalid,
-  });
 }
 
 export function onInput(config: EventConfig) {
@@ -161,17 +106,6 @@ export function getNativeInput(inputElementRef: {
   return inputElementRef.waitForCurrent();
 }
 
-export async function focusInput(inputElementRef: {
-  waitForCurrent: () => Promise<HTMLInputElement>;
-}): Promise<void> {
-  const input = await inputElementRef.waitForCurrent();
-  return input.focus();
-}
-
-export function getTouchedState(touched: boolean): Promise<boolean> {
-  return Promise.resolve(touched);
-}
-
 export function createEventConfig(options: EventConfig): EventConfig {
   return {
     show: options.show,
@@ -189,22 +123,16 @@ export function createEventConfig(options: EventConfig): EventConfig {
 export function createInputMethods(context: InputMethodsContext) {
   return {
     async focusInput(): Promise<void> {
-      return focusInput(context.inputElementRef);
+      const input = await context.inputElementRef.waitForCurrent();
+      return input.focus();
     },
 
     isTouched(): Promise<boolean> {
-      return getTouchedState(context.touched);
+      return Promise.resolve(context.touched);
     },
 
     syncValidationClasses(): void {
-      syncValidation({
-        hostElement: context.hostElement,
-        suppressValidation: context.suppressValidation,
-        required: context.required,
-        value: context.value,
-        touched: context.touched,
-        isInputInvalid: context.isInputInvalid,
-      });
+      context.syncValidationClasses();
     },
   };
 }
@@ -212,7 +140,7 @@ export function createInputMethods(context: InputMethodsContext) {
 export function createDropdownMethods(context: DropdownMethodsContext) {
   return {
     openDropdown: context.openDropdown,
-    closeDropdown: () => closeDropdownUtil(context.dropdownElementRef),
+    closeDropdown: () => closeDropdown(context.dropdownElementRef),
     getEventConfig: () =>
       createEventConfig({
         show: context.show,
@@ -264,6 +192,214 @@ export function handleValidationLifecycle(
   setters.setIsInfo(isInfo);
   setters.setIsValid(isValid);
   setters.setIsWarning(isWarning);
+}
+
+function buildKeyDownHandler<Component>(
+  config: PickerMethodsConfig<Component>
+): (event: KeyboardEvent) => void {
+  return config.createKeyDownHandler(
+    config.suppressSubmitOnEnter,
+    config.formInternals
+  );
+}
+
+function buildEventConfig<Component>(
+  config: PickerMethodsConfig<Component>,
+  keyDownHandler: (event: KeyboardEvent) => void
+): EventConfig {
+  return config.createEventConfig({
+    show: config.show,
+    setTouched: config.setTouched,
+    onInput: config.onInput,
+    openDropdown: config.openDropdown,
+    ixFocus: config.ixFocus,
+    ixBlur: config.ixBlur,
+    syncValidationClasses: config.syncValidationClasses,
+    handleInputKeyDown: keyDownHandler,
+    alwaysSetTouchedOnBlur: true,
+  });
+}
+
+function buildInputMethods<Component>(
+  config: PickerMethodsConfig<Component>
+): CommonInputMethods {
+  return config.createInputMethods({
+    inputElementRef: config.inputElementRef,
+    touched: config.touched,
+    hostElement: config.hostElement,
+    suppressValidation: config.suppressValidation,
+    required: config.required,
+    value: config.value,
+    isInputInvalid: config.isInputInvalid,
+    syncValidationClasses: () => {
+      syncValidationClassesUtil({
+        hostElement: config.hostElement,
+        suppressValidation: config.suppressValidation,
+        required: config.required,
+        value: config.value,
+        touched: config.touched,
+        isInputInvalid: config.isInputInvalid,
+      });
+    },
+  });
+}
+
+function buildDropdownMethods<Component>(
+  config: PickerMethodsConfig<Component>,
+  keyDownHandler: (event: KeyboardEvent) => void
+): DropdownMethods {
+  return config.createDropdownMethods({
+    dropdownElementRef: config.dropdownElementRef,
+    hostElement: config.hostElement,
+    show: config.show,
+    touched: config.touched,
+    openDropdown: config.openDropdown,
+    ixFocus: config.ixFocus,
+    ixBlur: config.ixBlur,
+    syncValidationClasses: config.syncValidationClasses,
+    onInput: config.onInput,
+    handleInputKeyDown: keyDownHandler,
+  });
+}
+
+function buildValidationSetters<Component>(
+  config: PickerMethodsConfig<Component>
+): ValidationSetters {
+  return {
+    setIsInvalid: config.setIsInvalid,
+    setIsInfo: config.setIsInfo,
+    setIsValid: config.setIsValid,
+    setIsWarning: config.setIsWarning,
+  };
+}
+
+function buildGetValidityState<Component>(
+  config: PickerMethodsConfig<Component>,
+  createValidityState: (
+    isInputInvalid: boolean,
+    required: boolean,
+    value: string | undefined
+  ) => ValidityState
+): () => Promise<ValidityState> {
+  return () =>
+    Promise.resolve(
+      createValidityState(
+        config.isInputInvalid,
+        !!config.required,
+        config.value
+      )
+    );
+}
+
+function buildHookValidationLifecycle<Component>(
+  config: PickerMethodsConfig<Component>
+): (results: ValidationResults) => void {
+  const setters = buildValidationSetters(config);
+  return (results: ValidationResults) =>
+    config.handleValidationLifecycle(
+      config.suppressValidation,
+      config.isInputInvalid,
+      results,
+      setters
+    );
+}
+
+function buildOnInputValidationChange<Component>(
+  config: PickerMethodsConfig<Component>,
+  createValidityState: (
+    isInputInvalid: boolean,
+    required: boolean,
+    value: string | undefined
+  ) => ValidityState
+): () => Promise<void> {
+  return async () => {
+    const state = createValidityState(
+      config.isInputInvalid,
+      !!config.required,
+      config.value
+    );
+    config.validityStateChange.emit({
+      patternMismatch: state.patternMismatch,
+      invalidReason: config.invalidReason,
+    });
+  };
+}
+
+export function createPickerMethods<Component>(
+  config: PickerMethodsConfig<Component>,
+  createValidityState: (
+    isInputInvalid: boolean,
+    required: boolean,
+    value: string | undefined
+  ) => ValidityState
+): PickerInputMethods {
+  const keyDownHandler = buildKeyDownHandler(config);
+  const eventConfig = buildEventConfig(config, keyDownHandler);
+  const inputMethods = buildInputMethods(config);
+  const dropdownMethods = buildDropdownMethods(config, keyDownHandler);
+
+  return {
+    eventConfig,
+    handleInputKeyDown: keyDownHandler,
+    focusInput: inputMethods.focusInput,
+    isTouched: inputMethods.isTouched,
+    syncValidationClasses: inputMethods.syncValidationClasses,
+    openDropdown: dropdownMethods.openDropdown,
+    closeDropdown: dropdownMethods.closeDropdown,
+    checkClassList: dropdownMethods.checkClassList,
+    getValidityState: buildGetValidityState(config, createValidityState),
+    hookValidationLifecycle: buildHookValidationLifecycle(config),
+    onInputValidationChange: buildOnInputValidationChange(
+      config,
+      createValidityState
+    ),
+  };
+}
+
+export function createPickerMethodsContext<Component>(
+  params: CreatePickerMethodsContext<Component>,
+  openDropdown: (
+    dropdownElementRef: DropdownMethodsContext['dropdownElementRef']
+  ) => Promise<void>
+): PickerMethodsConfig<Component> {
+  const comp = params.component as PickerComponent;
+
+  return {
+    component: params.component,
+    show: comp.show,
+    touched: comp.touched,
+    isInputInvalid: comp.isInputInvalid,
+    suppressValidation: comp.suppressValidation,
+    required: !!comp.required,
+    value: comp.value,
+    suppressSubmitOnEnter: comp.suppressSubmitOnEnter,
+    formInternals: comp.formInternals,
+    inputElementRef: comp.inputElementRef,
+    dropdownElementRef: comp.dropdownElementRef,
+    hostElement: comp.hostElement,
+    ixFocus: comp.ixFocus,
+    ixBlur: comp.ixBlur,
+    validityStateChange: comp.validityStateChange,
+    invalidReason: comp.invalidReason,
+    setTouched: (touched: boolean) => (comp.touched = touched),
+    setIsInvalid: (value: boolean) => (comp.isInvalid = value),
+    setIsInfo: (value: boolean) => (comp.isInfo = value),
+    setIsValid: (value: boolean) => (comp.isValid = value),
+    setIsWarning: (value: boolean) => (comp.isWarning = value),
+    syncValidationClasses: () => comp.syncValidationClasses(),
+    onInput: (value: string) => comp.onInput(value),
+    openDropdown: async () => {
+      if (comp.beforeOpenDropdown) {
+        await comp.beforeOpenDropdown();
+      }
+      return openDropdown(comp.dropdownElementRef);
+    },
+    createInputMethods: createInputMethods,
+    createDropdownMethods: createDropdownMethods,
+    createEventConfig: createEventConfig,
+    createKeyDownHandler: createKeyDownHandler,
+    handleValidationLifecycle: handleValidationLifecycle,
+  };
 }
 
 export function renderFieldWrapper(props: PickerRenderConfig) {
