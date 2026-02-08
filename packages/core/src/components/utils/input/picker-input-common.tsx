@@ -194,7 +194,7 @@ export function handleValidationLifecycle(
   setters.setIsWarning(isWarning);
 }
 
-function buildKeyDownHandler<Component>(
+function getKeyDownHandler<Component>(
   config: PickerMethodsConfig<Component>
 ): (event: KeyboardEvent) => void {
   return config.createKeyDownHandler(
@@ -203,7 +203,7 @@ function buildKeyDownHandler<Component>(
   );
 }
 
-function buildEventConfig<Component>(
+function getEventConfig<Component>(
   config: PickerMethodsConfig<Component>,
   keyDownHandler: (event: KeyboardEvent) => void
 ): EventConfig {
@@ -220,7 +220,7 @@ function buildEventConfig<Component>(
   });
 }
 
-function buildInputMethods<Component>(
+function getInputMethods<Component>(
   config: PickerMethodsConfig<Component>
 ): CommonInputMethods {
   return config.createInputMethods({
@@ -244,7 +244,7 @@ function buildInputMethods<Component>(
   });
 }
 
-function buildDropdownMethods<Component>(
+function getDropdownMethods<Component>(
   config: PickerMethodsConfig<Component>,
   keyDownHandler: (event: KeyboardEvent) => void
 ): DropdownMethods {
@@ -262,7 +262,7 @@ function buildDropdownMethods<Component>(
   });
 }
 
-function buildValidationSetters<Component>(
+function getValidationSetters<Component>(
   config: PickerMethodsConfig<Component>
 ): ValidationSetters {
   return {
@@ -273,7 +273,7 @@ function buildValidationSetters<Component>(
   };
 }
 
-function buildGetValidityState<Component>(
+function getValidityState<Component>(
   config: PickerMethodsConfig<Component>,
   createValidityState: (
     isInputInvalid: boolean,
@@ -291,10 +291,10 @@ function buildGetValidityState<Component>(
     );
 }
 
-function buildHookValidationLifecycle<Component>(
+function getHookValidationLifecycle<Component>(
   config: PickerMethodsConfig<Component>
 ): (results: ValidationResults) => void {
-  const setters = buildValidationSetters(config);
+  const setters = getValidationSetters(config);
   return (results: ValidationResults) =>
     config.handleValidationLifecycle(
       config.suppressValidation,
@@ -304,7 +304,7 @@ function buildHookValidationLifecycle<Component>(
     );
 }
 
-function buildOnInputValidationChange<Component>(
+function getOnInputValidationChange<Component>(
   config: PickerMethodsConfig<Component>,
   createValidityState: (
     isInputInvalid: boolean,
@@ -333,10 +333,10 @@ export function createPickerMethods<Component>(
     value: string | undefined
   ) => ValidityState
 ): PickerInputMethods {
-  const keyDownHandler = buildKeyDownHandler(config);
-  const eventConfig = buildEventConfig(config, keyDownHandler);
-  const inputMethods = buildInputMethods(config);
-  const dropdownMethods = buildDropdownMethods(config, keyDownHandler);
+  const keyDownHandler = getKeyDownHandler(config);
+  const eventConfig = getEventConfig(config, keyDownHandler);
+  const inputMethods = getInputMethods(config);
+  const dropdownMethods = getDropdownMethods(config, keyDownHandler);
 
   return {
     eventConfig,
@@ -347,9 +347,9 @@ export function createPickerMethods<Component>(
     openDropdown: dropdownMethods.openDropdown,
     closeDropdown: dropdownMethods.closeDropdown,
     checkClassList: dropdownMethods.checkClassList,
-    getValidityState: buildGetValidityState(config, createValidityState),
-    hookValidationLifecycle: buildHookValidationLifecycle(config),
-    onInputValidationChange: buildOnInputValidationChange(
+    getValidityState: getValidityState(config, createValidityState),
+    hookValidationLifecycle: getHookValidationLifecycle(config),
+    onInputValidationChange: getOnInputValidationChange(
       config,
       createValidityState
     ),
