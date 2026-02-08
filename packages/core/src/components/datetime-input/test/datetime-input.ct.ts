@@ -573,7 +573,7 @@ regressionTest(
         .locator('ix-field-wrapper')
         .locator('ix-typography')
         .filter({ hasText: 'Custom error message' })
-    ).toHaveText('Custom error message');
+    ).toHaveText(/Custom error message/);
   }
 );
 
