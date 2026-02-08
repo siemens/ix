@@ -8,6 +8,10 @@
  */
 
 import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -20,10 +24,6 @@ import {
   Watch,
 } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import {
-  iconChevronLeftSmall,
-  iconChevronRightSmall,
-} from '@siemens/ix-icons/icons';
 
 type ManagedClass =
   (typeof TAB_MANAGED_CLASSES)[keyof typeof TAB_MANAGED_CLASSES];
@@ -388,7 +388,7 @@ export class Tabs {
     this.setSelected(index);
   }
 
-  private dragStart(element: HTMLIxTabItemElement, event: MouseEvent) {
+  private dragStart(element: HTMLIxTabItemElement, event: PointerEvent) {
     if (!this.showArrows()) return;
     if (event.button > 0) return;
 
@@ -398,20 +398,22 @@ export class Tabs {
         : null;
 
     const tabPositionX = parseFloat(window.getComputedStyle(element).left);
-    const mousedownPositionX = event.clientX;
-    const move = (event: MouseEvent) =>
-      this.dragMove(event, tabPositionX, mousedownPositionX);
-    const windowClick = () => {
-      window.removeEventListener('mousemove', move, false);
-      window.removeEventListener('click', windowClick, false);
+    const pointerdownPositionX = event.clientX;
+    const move = (event: PointerEvent) =>
+      this.dragMove(event, tabPositionX, pointerdownPositionX);
+    const pointerUp = () => {
+      window.removeEventListener('pointermove', move, false);
+      window.removeEventListener('pointerup', pointerUp, false);
+      window.removeEventListener('pointercancel', pointerUp, false);
       this.dragStop();
     };
-    window.addEventListener('click', windowClick);
-    window.addEventListener('mousemove', move, false);
+    window.addEventListener('pointerup', pointerUp);
+    window.addEventListener('pointercancel', pointerUp);
+    window.addEventListener('pointermove', move, false);
   }
 
-  private dragMove(event: MouseEvent, tabX: number, mousedownX: number) {
-    this.move(event.clientX + tabX - mousedownX);
+  private dragMove(event: PointerEvent, tabX: number, pointerdownX: number) {
+    this.move(event.clientX + tabX - pointerdownX);
   }
 
   private dragStop() {
@@ -450,7 +452,7 @@ export class Tabs {
   componentDidLoad() {
     const tabs = this.getTabs();
     tabs.forEach((element) => {
-      element.addEventListener('mousedown', (event) =>
+      element.addEventListener('pointerdown', (event) =>
         this.dragStart(element, event)
       );
     });
