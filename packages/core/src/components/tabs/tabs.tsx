@@ -109,11 +109,7 @@ export class Tabs {
   private classObserver?: MutationObserver;
   private updateScheduled = false;
 
-  private clickAction: {
-    timeout: NodeJS.Timeout | null;
-    isClick: boolean;
-  } = {
-    timeout: null,
+  private clickAction = {
     isClick: true,
   };
 
@@ -417,11 +413,11 @@ export class Tabs {
   }
 
   private dragStop() {
-    if (this.clickAction.isClick) return;
+    if (this.clickAction.isClick) {
+      return;
+    }
 
     this.currentScrollAmount = this.scrollActionAmount;
-
-    return true;
   }
 
   componentWillLoad() {
