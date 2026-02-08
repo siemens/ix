@@ -376,7 +376,8 @@ export class Tabs {
   }
 
   private clickTab(index: number) {
-    if (!this.clickAction.isClick || this.dragStop()) {
+    // Don't select if it was a drag
+    if (!this.clickAction.isClick) {
       return;
     }
 
@@ -392,10 +393,7 @@ export class Tabs {
     if (!this.showArrows()) return;
     if (event.button > 0) return;
 
-    this.clickAction.timeout =
-      this.clickAction.timeout === null
-        ? setTimeout(() => (this.clickAction.isClick = false), 300)
-        : null;
+    this.clickAction.isClick = true;
 
     element.setPointerCapture(event.pointerId);
 
@@ -414,19 +412,14 @@ export class Tabs {
   }
 
   private dragMove(event: PointerEvent, pointerdownX: number) {
+    this.clickAction.isClick = false;
     this.move(event.clientX - pointerdownX);
   }
 
   private dragStop() {
-    if (this.clickAction.timeout) {
-      clearTimeout(this.clickAction.timeout);
-      this.clickAction.timeout = null;
-    }
-
-    if (this.clickAction.isClick) return false;
+    if (this.clickAction.isClick) return;
 
     this.currentScrollAmount = this.scrollActionAmount;
-    this.clickAction.isClick = true;
 
     return true;
   }
