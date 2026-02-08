@@ -146,7 +146,7 @@
   @include text-truncation.ellipsis;
 }
 
-:host(:hover:not(.circle):not(.disabled)) {
+:host(:hover:not(.circle):not(.disabled):not(.selected)) {
   background-color: var(--theme-tab--background--hover);
   color: var(--theme-tab-color-hover);
   cursor: pointer;
@@ -156,7 +156,7 @@
   }
 }
 
-:host(:active:not(.circle):not(.disabled)) {
+:host(:active:not(.circle):not(.disabled):not(.selected)) {
   background-color: var(--theme-tab--background--active);
   color: var(--theme-tab-color--active);
 
