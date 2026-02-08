@@ -62,6 +62,13 @@ import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
 import DateInput from './preview-examples/date-input';
 import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import Datepicker from './preview-examples/datepicker';
+import DatetimeInput from './preview-examples/datetime-input';
+import DatetimeInputDisabled from './preview-examples/datetime-input-disabled';
+import DatetimeInputLabel from './preview-examples/datetime-input-label';
+import DatetimeInputMinMaxDate from './preview-examples/datetime-input-min-max-date';
+import DatetimeInputReadonly from './preview-examples/datetime-input-readonly';
+import DatetimeInputValidation from './preview-examples/datetime-input-validation';
+import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots';
 import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
@@ -455,6 +462,13 @@ const routes: IxPreviewRoutes = {
   '/preview/number-input-validation': NumberInputValidation,
   '/preview/date-input': DateInput,
   '/preview/date-input-with-slots': DateInputWithSlots,
+  '/preview/datetime-input': DatetimeInput,
+  '/preview/datetime-input-disabled': DatetimeInputDisabled,
+  '/preview/datetime-input-label': DatetimeInputLabel,
+  '/preview/datetime-input-min-max-date': DatetimeInputMinMaxDate,
+  '/preview/datetime-input-readonly': DatetimeInputReadonly,
+  '/preview/datetime-input-validation': DatetimeInputValidation,
+  '/preview/datetime-input-with-slots': DatetimeInputWithSlots,
   '/preview/tree': Tree,
   '/preview/upload': Upload,
   '/preview/validation': Validation,
