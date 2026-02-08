@@ -13,8 +13,8 @@ import { IxDatetimeInput } from '@siemens/ix-vue';
 
 <template>
   <IxDatetimeInput
-    value="1970/01/01 00:00:00"
-    minDate="1970/01/01"
-    maxDate="1970/12/31"
+    value="2026/02/08 00:00:00"
+    minDate="2026/02/01"
+    maxDate="2026/02/28"
   ></IxDatetimeInput>
 </template>

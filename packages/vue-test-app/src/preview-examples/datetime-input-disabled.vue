@@ -12,5 +12,5 @@ import { IxDatetimeInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxDatetimeInput value="1970/01/01 00:00:00" disabled></IxDatetimeInput>
+  <IxDatetimeInput value="2026/02/08 00:00:00" disabled></IxDatetimeInput>
 </template>

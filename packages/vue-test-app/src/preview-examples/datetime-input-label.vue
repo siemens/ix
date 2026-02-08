@@ -13,7 +13,7 @@ import { IxDatetimeInput } from '@siemens/ix-vue';
 
 <template>
   <IxDatetimeInput
-    value="01.01.1970 00:00"
+    value="08.02.2026 00:00"
     label="Meeting schedule"
     dateFormat="dd.MM.yyyy"
     timeFormat="HH:mm"
