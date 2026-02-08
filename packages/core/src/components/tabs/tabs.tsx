@@ -398,17 +398,37 @@ export class Tabs {
     element.setPointerCapture(event.pointerId);
 
     const pointerdownPositionX = event.clientX;
+    const initialScrollAmount = this.currentScrollAmount;
+
     const move = (event: PointerEvent) =>
       this.dragMove(event, pointerdownPositionX);
+
     const pointerUp = () => {
       element.removeEventListener('pointermove', move, false);
       element.removeEventListener('pointerup', pointerUp, false);
-      element.removeEventListener('pointercancel', pointerUp, false);
+      element.removeEventListener('pointercancel', pointerCancel, false);
       this.isDragging = false;
       this.dragStop();
     };
+
+    const pointerCancel = () => {
+      element.removeEventListener('pointermove', move, false);
+      element.removeEventListener('pointerup', pointerUp, false);
+      element.removeEventListener('pointercancel', pointerCancel, false);
+      this.isDragging = false;
+      this.scrollActionAmount = initialScrollAmount;
+      const tabsWrapper = this.getTabsWrapper();
+      if (tabsWrapper) {
+        tabsWrapper.setAttribute(
+          'style',
+          `transform: translateX(${initialScrollAmount}px);`
+        );
+      }
+      this.clickAction.isClick = true;
+    };
+
     element.addEventListener('pointerup', pointerUp);
-    element.addEventListener('pointercancel', pointerUp);
+    element.addEventListener('pointercancel', pointerCancel);
     element.addEventListener('pointermove', move, false);
   }
 
