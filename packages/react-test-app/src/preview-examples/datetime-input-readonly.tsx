@@ -10,7 +10,7 @@
 import { IxDatetimeInput } from '@siemens/ix-react';
 
 function DatetimeInputReadonly() {
-  return <IxDatetimeInput value="1970/01/01 00:00:00" readonly></IxDatetimeInput>;
+  return <IxDatetimeInput value="2026/02/08 00:00:00" readonly></IxDatetimeInput>;
 }
 
 export default DatetimeInputReadonly;

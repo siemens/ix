@@ -13,18 +13,18 @@ import { IxDatetimeInput } from '@siemens/ix-vue';
 
 <template>
   <div>
-    <IxDatetimeInput value="1970/01/01 00:00:00" info-text="Info text" class="ix-info"></IxDatetimeInput>
+    <IxDatetimeInput value="2026/02/08 00:00:00" info-text="Info text" class="ix-info"></IxDatetimeInput>
   </div>
 
   <div>
-    <IxDatetimeInput value="1970/01/01 00:00:00" warning-text="Warning text" class="ix-warning"></IxDatetimeInput>
+    <IxDatetimeInput value="2026/02/08 00:00:00" warning-text="Warning text" class="ix-warning"></IxDatetimeInput>
   </div>
 
   <div>
-    <IxDatetimeInput value="1970/01/01 00:00:00" valid-text="Valid text" class="ix-valid"></IxDatetimeInput>
+    <IxDatetimeInput value="2026/02/08 00:00:00" valid-text="Valid text" class="ix-valid"></IxDatetimeInput>
   </div>
 
   <div>
-    <IxDatetimeInput value="1970/01/01 00:00:00" invalid-text="Invalid text" class="ix-invalid"></IxDatetimeInput>
+    <IxDatetimeInput value="2026/02/08 00:00:00" invalid-text="Invalid text" class="ix-invalid"></IxDatetimeInput>
   </div>
 </template>
