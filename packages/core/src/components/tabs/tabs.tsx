@@ -397,23 +397,24 @@ export class Tabs {
         ? setTimeout(() => (this.clickAction.isClick = false), 300)
         : null;
 
-    const tabPositionX = parseFloat(window.getComputedStyle(element).left);
+    element.setPointerCapture(event.pointerId);
+
     const pointerdownPositionX = event.clientX;
     const move = (event: PointerEvent) =>
-      this.dragMove(event, tabPositionX, pointerdownPositionX);
+      this.dragMove(event, pointerdownPositionX);
     const pointerUp = () => {
-      window.removeEventListener('pointermove', move, false);
-      window.removeEventListener('pointerup', pointerUp, false);
-      window.removeEventListener('pointercancel', pointerUp, false);
+      element.removeEventListener('pointermove', move, false);
+      element.removeEventListener('pointerup', pointerUp, false);
+      element.removeEventListener('pointercancel', pointerUp, false);
       this.dragStop();
     };
-    window.addEventListener('pointerup', pointerUp);
-    window.addEventListener('pointercancel', pointerUp);
-    window.addEventListener('pointermove', move, false);
+    element.addEventListener('pointerup', pointerUp);
+    element.addEventListener('pointercancel', pointerUp);
+    element.addEventListener('pointermove', move, false);
   }
 
-  private dragMove(event: PointerEvent, tabX: number, pointerdownX: number) {
-    this.move(event.clientX + tabX - pointerdownX);
+  private dragMove(event: PointerEvent, pointerdownX: number) {
+    this.move(event.clientX - pointerdownX);
   }
 
   private dragStop() {
