@@ -113,6 +113,8 @@ export class Tabs {
     isClick: true,
   };
 
+  private isDragging = false;
+
   @Listen('resize', { target: 'window' })
   onWindowResize() {
     this.totalItems = 0;
@@ -388,7 +390,9 @@ export class Tabs {
   private dragStart(element: HTMLIxTabItemElement, event: PointerEvent) {
     if (!this.showArrows()) return;
     if (event.button > 0) return;
+    if (this.isDragging) return;
 
+    this.isDragging = true;
     this.clickAction.isClick = true;
 
     element.setPointerCapture(event.pointerId);
@@ -400,6 +404,7 @@ export class Tabs {
       element.removeEventListener('pointermove', move, false);
       element.removeEventListener('pointerup', pointerUp, false);
       element.removeEventListener('pointercancel', pointerUp, false);
+      this.isDragging = false;
       this.dragStop();
     };
     element.addEventListener('pointerup', pointerUp);
