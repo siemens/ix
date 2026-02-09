@@ -159,7 +159,7 @@ export class Pagination {
     }
 
     console.warn(
-      `[ix-pagination] ${this.itemCountOptionsPropName} is an empty array. Falling back to default options: [${this.defaultItemCountOptions.join(', ')}]`
+      `[ix-pagination] itemCountOptions is an empty array. Falling back to default options: [${this.defaultItemCountOptions.join(', ')}]`
     );
   }
 
@@ -172,7 +172,7 @@ export class Pagination {
     }
 
     console.warn(
-      `[ix-pagination] All values in ${this.itemCountOptionsPropName} are invalid. ` +
+      `[ix-pagination] All values in itemCountOptions are invalid. ` +
         `Only positive integers are allowed. Falling back to default options: [${this.defaultItemCountOptions.join(', ')}]`
     );
     this.verifiedItemCountOptions = this.defaultItemCountOptions;
