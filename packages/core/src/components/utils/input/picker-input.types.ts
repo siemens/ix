@@ -17,9 +17,31 @@ export interface CommonInputAttributes {
   required?: boolean;
 }
 
-export interface PickerValidityState {
+export type PickerInputValidityState = {
   patternMismatch: boolean;
+  valueMissing: boolean;
   invalidReason?: string;
+};
+
+export interface PickerValidityStateTracker {
+  lastEmittedPatternMismatch?: boolean;
+  lastEmittedValueMissing?: boolean;
+  lastEmittedInvalidReason?: string;
+}
+
+export interface PickerValidityContext {
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState: () => Promise<ValidityState>;
+  emit: (state: PickerInputValidityState) => void;
+}
+
+export interface PickerInputComponent<T> {
+  validityTracker: PickerValidityStateTracker;
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState(): Promise<ValidityState>;
+  validityStateChange: { emit: (state: T) => void };
 }
 
 export interface ValidationSetters {
@@ -91,7 +113,7 @@ export interface PickerMethodsConfig<Component>
   setTouched: (touched: boolean) => void;
   suppressSubmitOnEnter: boolean;
   formInternals: ElementInternals;
-  validityStateChange: EventEmitter<PickerValidityState>;
+  validityStateChange: EventEmitter<PickerInputValidityState>;
   invalidReason: string | undefined;
   createInputMethods: (params: InputMethodsContext) => CommonInputMethods;
   createDropdownMethods: (params: DropdownMethodsContext) => DropdownMethods;
@@ -130,7 +152,7 @@ export interface PickerComponent
   showTextAsTooltip?: boolean;
   suppressSubmitOnEnter: boolean;
   formInternals: ElementInternals;
-  validityStateChange: EventEmitter<PickerValidityState>;
+  validityStateChange: EventEmitter<PickerInputValidityState>;
   invalidReason?: string;
   onInput: (value: string | undefined) => Promise<void>;
   beforeOpenDropdown?: () => void | Promise<void>;

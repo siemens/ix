@@ -320,6 +320,7 @@ function getOnInputValidationChange<Component>(
     );
     config.validityStateChange.emit({
       patternMismatch: state.patternMismatch,
+      valueMissing: state.valueMissing,
       invalidReason: config.invalidReason,
     });
   };

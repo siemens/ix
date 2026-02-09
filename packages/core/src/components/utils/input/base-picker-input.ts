@@ -51,8 +51,10 @@ export class BasePickerInput {
   protected focus = false;
   isInputInvalid = false;
 
-  protected invalidReason?: string;
-  protected touched = false;
+  /** @internal */
+  public invalidReason?: string;
+  /** @internal */
+  public touched = false;
   protected isClearing = false;
 
   protected classObserver?: ClassMutationObserver;

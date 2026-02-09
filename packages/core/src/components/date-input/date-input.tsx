@@ -38,14 +38,19 @@ import {
   onKeyDown,
 } from '../utils/input';
 import {
+  createPickerValidityStateTracker,
+  emitPickerValidityState,
   handleIconClick,
   createInputRenderer,
   createRenderConfig,
   createInputConfig,
 } from '../utils/input/picker-input.util';
+import type {
+  PickerInputValidityState as DateInputValidityState,
+  PickerValidityStateTracker,
+} from '../utils/input/picker-input.types';
 import { BasePickerInput } from '../utils/input/base-picker-input';
 import { makeRef } from '../utils/make-ref';
-import type { DateInputValidityState } from './date-input.types';
 
 const DATE_DROPDOWN_TEST_ID = 'date-dropdown';
 
@@ -262,6 +267,10 @@ export class DateInput
 
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
 
+  /** @internal */
+  public validityTracker: PickerValidityStateTracker =
+    createPickerValidityStateTracker();
+
   connectedCallback(): void {
     this.initializeObservers();
   }
@@ -284,25 +293,6 @@ export class DateInput
   @Watch('value')
   watchValue() {
     this.from = this.value;
-  }
-
-  @Watch('isInputInvalid')
-  async onInputValidationChange() {
-    const state = await this.getValidityState();
-    this.validityStateChange.emit({
-      patternMismatch: state.patternMismatch,
-      invalidReason: this.invalidReason,
-    });
-
-    if (this.suppressValidation) {
-      return;
-    }
-
-    const shouldShowInputInvalid = this.isInputInvalid && this.touched;
-
-    if (shouldShowInputInvalid) {
-      this.isInvalid = true;
-    }
   }
 
   @HookValidationLifecycle()
@@ -345,7 +335,9 @@ export class DateInput
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
-      this.emitChangesAndSyncValue(value);
+      emitPickerValidityState(this);
+      this.updateFormInternalValue(value);
+      this.valueChange.emit(value);
       return;
     }
 
@@ -369,6 +361,8 @@ export class DateInput
     this.invalidReason = isDateInvalid
       ? (date.invalidReason ?? undefined)
       : undefined;
+
+    emitPickerValidityState(this);
 
     if (isDateInvalid) {
       this.handleInvalidInput(value);

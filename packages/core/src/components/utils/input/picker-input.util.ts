@@ -18,6 +18,10 @@ import type {
   InputEventHandlers,
   PickerRenderConfig,
   PickerComponentForRenderConfig,
+  PickerValidityStateTracker,
+  PickerValidityContext,
+  PickerInputComponent,
+  PickerInputValidityState,
 } from './picker-input.types';
 
 type StencilHFn = <P>(
@@ -205,4 +209,55 @@ export function createInputConfig<Component>(
     name: inputComponent.name,
     iconButton,
   };
+}
+
+export function createPickerValidityStateTracker(): PickerValidityStateTracker {
+  return {
+    lastEmittedPatternMismatch: undefined,
+    lastEmittedValueMissing: undefined,
+    lastEmittedInvalidReason: undefined,
+  };
+}
+
+export function emitPickerValidityState<T extends PickerInputValidityState>(
+  component: PickerInputComponent<T>
+) {
+  return emitPickerValidityStateChangeIfChanged(component.validityTracker, {
+    touched: component.touched,
+    invalidReason: component.invalidReason,
+    getValidityState: () => component.getValidityState(),
+    emit: (state) => component.validityStateChange.emit(state as T),
+  });
+}
+
+export async function emitPickerValidityStateChangeIfChanged(
+  tracker: PickerValidityStateTracker,
+  context: PickerValidityContext
+): Promise<void> {
+  if (!context.touched) {
+    return;
+  }
+
+  const state = await context.getValidityState();
+  const currentPatternMismatch = state.patternMismatch;
+  const currentValueMissing = state.valueMissing;
+  const currentInvalidReason = context.invalidReason;
+
+  if (
+    tracker.lastEmittedPatternMismatch === currentPatternMismatch &&
+    tracker.lastEmittedValueMissing === currentValueMissing &&
+    tracker.lastEmittedInvalidReason === currentInvalidReason
+  ) {
+    return;
+  }
+
+  tracker.lastEmittedPatternMismatch = currentPatternMismatch;
+  tracker.lastEmittedValueMissing = currentValueMissing;
+  tracker.lastEmittedInvalidReason = currentInvalidReason;
+
+  context.emit({
+    patternMismatch: currentPatternMismatch,
+    valueMissing: currentValueMissing,
+    invalidReason: currentInvalidReason,
+  });
 }

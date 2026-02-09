@@ -20,8 +20,9 @@ import { convertToRemString } from '../utils/rwd.util';
 import { generateUUID } from '../utils/uuid';
 import { shakeInput } from './input.animation';
 
-interface ClearableFormComponent extends HTMLElement {
+export interface ClearableFormComponent extends HTMLElement {
   tagName: string;
+  hostElement?: HTMLElement;
   isInputInvalid?: boolean;
   isInvalidByRequired?: boolean;
   isInvalid?: boolean;
@@ -87,6 +88,11 @@ export async function checkInternalValidity<T>(
     if (eventResult.defaultPrevented) {
       return;
     }
+
+    comp.hostElement.classList.toggle(
+      'ix-invalid--validity-invalid',
+      !newValidityState
+    );
   }
 
   if (comp.value === null || comp.value === undefined) {
@@ -252,6 +258,13 @@ function resetValidationStates(component: ClearableFormComponent): void {
   component.isInputInvalid = false;
   component.isInvalidByRequired = false;
 
+  const element = component.hostElement || component;
+  element.classList.remove(
+    'ix-invalid',
+    'ix-invalid--required',
+    'ix-invalid--validity-invalid'
+  );
+
   const validationProps = {
     isInvalid: false,
     isValid: false,
@@ -287,7 +300,8 @@ function clearGroupValue(
     component.value = undefined;
   }
 
-  comp.classList.remove(
+  const element = component.hostElement || comp;
+  element.classList.remove(
     'ix-invalid',
     'ix-invalid--required',
     'ix-invalid--validity-invalid'

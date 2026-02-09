@@ -38,14 +38,19 @@ import {
   onKeyDown,
 } from '../utils/input';
 import {
+  createPickerValidityStateTracker,
+  emitPickerValidityState,
   handleIconClick,
   createInputRenderer,
   createRenderConfig,
   createInputConfig,
 } from '../utils/input/picker-input.util';
+import type {
+  PickerInputValidityState as TimeInputValidityState,
+  PickerValidityStateTracker,
+} from '../utils/input/picker-input.types';
 import { BasePickerInput } from '../utils/input/base-picker-input';
 import { makeRef } from '../utils/make-ref';
-import type { TimeInputValidityState } from './time-input.types';
 
 const TIME_DROPDOWN_TEST_ID = 'time-dropdown';
 
@@ -272,6 +277,10 @@ export class TimeInput
 
   private readonly timePickerRef = makeRef<HTMLIxTimePickerElement>();
 
+  /** @internal */
+  public validityTracker: PickerValidityStateTracker =
+    createPickerValidityStateTracker();
+
   connectedCallback(): void {
     this.initializeObservers();
   }
@@ -305,11 +314,6 @@ export class TimeInput
   @Watch('value')
   watchValue() {
     this.time = this.value;
-  }
-
-  @Watch('isInputInvalid')
-  async onInputValidationChange() {
-    return this.pickerMethods.onInputValidationChange();
   }
 
   @HookValidationLifecycle()
@@ -356,6 +360,7 @@ export class TimeInput
     this.isInputInvalid = !time.isValid;
     this.invalidReason = time.isValid ? undefined : time.invalidReason;
 
+    emitPickerValidityState(this);
     this.emitChangesAndSyncValue(value);
   }
 
