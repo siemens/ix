@@ -111,7 +111,7 @@ regressionTest.describe('time input tests', () => {
         'ix-icon-button[data-testid="open-time-picker"]'
       );
 
-      await input.click();
+      await iconButton.click();
 
       await expect(dropdown).toHaveClass(/show/);
 
