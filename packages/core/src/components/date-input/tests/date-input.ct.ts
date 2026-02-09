@@ -173,6 +173,9 @@ regressionTest(
       `<form><ix-date-input name="my-field-name" value="2024/12/12"></ix-date-input></form>`
     );
 
+    const dateInput = page.locator('ix-date-input');
+    await expect(dateInput.locator('input')).toHaveValue('2024/12/12');
+
     const formElement = page.locator('form');
     preventFormSubmission(formElement);
     const formData = await getFormValue(formElement, 'my-field-name', page);
