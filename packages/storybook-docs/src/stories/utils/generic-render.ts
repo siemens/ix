@@ -17,7 +17,26 @@ export type GenericArgs<A = Record<string, any>> = {
   previewWidth?: string;
 } & A;
 
+export type IxValidationComponent<A> = A & {
+  validation: 'default' | 'info' | 'warning' | 'invalid' | 'valid';
+};
+
 export type GenericRenderComponent<T, A> = T & GenericArgs<A>;
+
+export function genericValidationRender<T>(
+  tag: string,
+  args: IxValidationComponent<T>
+) {
+  const container = genericRender(tag, args, ['validation']);
+  const input = container.querySelector(tag) as HTMLElement;
+
+  input.classList.remove('ix-info', 'ix-warning', 'ix-invalid', 'ix-valid');
+
+  if (args.validation !== 'default') {
+    input.classList.add(`ix-${args.validation}`);
+  }
+  return container;
+}
 
 export function genericRender<A extends GenericArgs>(
   selector: string,

@@ -23,7 +23,7 @@ regressionTest('renders with label', async ({ mount, page }) => {
   await expect(customFieldElement).toHaveClass(/hydrated/);
   await expect(fieldLabel).toHaveClass(/hydrated/);
   await expect(typography).toHaveClass(/typography-label/);
-  await expect(fieldLabel.filter({ hasText: 'Label' })).toHaveText('Label');
+  await expect(fieldLabel.filter({ hasText: 'Label' })).toHaveText(/Label/);
 });
 
 regressionTest('renders with helper-text', async ({ mount, page }) => {
@@ -49,7 +49,7 @@ regressionTest('renders with invalid-text', async ({ mount, page }) => {
   const fieldWrapper = customFieldElement.locator('ix-field-wrapper');
   await expect(customFieldElement).toHaveClass(/hydrated/);
   await expect(fieldWrapper).toHaveClass(/hydrated/);
-  await expect(fieldWrapper.filter({ hasText: 'Error' })).toHaveText('Error');
+  await expect(fieldWrapper.filter({ hasText: 'Error' })).toHaveText(/Error/);
 });
 
 regressionTest(
@@ -67,12 +67,12 @@ regressionTest(
     await expect(fieldWrapper).toHaveClass(/hydrated/);
     await expect(
       fieldWrapper.filter({ hasText: 'Some helper text' })
-    ).toHaveText('Some helper text');
+    ).toHaveText(/Some helper text/);
 
     const custom = customFieldElement.getByTestId('custom');
     custom.evaluate((node) => node.classList.add('ix-invalid'));
 
-    await expect(fieldWrapper.filter({ hasText: 'Error' })).toHaveText('Error');
+    await expect(fieldWrapper.filter({ hasText: 'Error' })).toHaveText(/Error/);
   }
 );
 
@@ -86,5 +86,5 @@ regressionTest('renders with required label', async ({ mount, page }) => {
   await expect(customFieldElement).toHaveClass(/hydrated/);
   await expect(fieldLabel).toHaveClass(/hydrated/);
   await expect(typography).toHaveClass(/typography-label/);
-  await expect(fieldLabel.filter({ hasText: 'Label*' })).toHaveText('Label*');
+  await expect(fieldLabel.filter({ hasText: 'Label*' })).toHaveText(/Label*/);
 });

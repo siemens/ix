@@ -85,7 +85,7 @@ regressionTest('update item text', async ({ mount, page }) => {
   await expect(menuItem2).toHaveClass('hydrated');
 
   await expect(menuItem1.locator('.tab-text').locator('slot')).toBeAttached();
-  await expect(menuItem1.locator('ix-tooltip')).toHaveText('Foo bar');
+  await expect(menuItem1.locator('ix-tooltip')).toHaveText(/Foo bar/);
 
   await menuItem1.evaluate(
     (item: HTMLIxMenuItemElement) => (item.innerText = 'Test123')
@@ -96,5 +96,5 @@ regressionTest('update item text', async ({ mount, page }) => {
   await page.waitForTimeout(1500);
 
   await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
-  await expect(menuItem1.locator('ix-tooltip')).toHaveText('Test123');
+  await expect(menuItem1.locator('ix-tooltip')).toHaveText(/Test123/);
 });

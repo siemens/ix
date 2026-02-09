@@ -1,0 +1,5 @@
+- text: Select Car
+- textbox "Select an option"
+- button "Open select dropdown"
+- text: Select your car brand
+- button "Submit"

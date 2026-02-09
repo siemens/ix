@@ -1,0 +1,26 @@
+{
+  "name": "framework-tests",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsx src/main.ts",
+    "test.setup": "playwright install chromium --with-deps"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "catalog:",
+    "@playwright/test": "catalog:",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.16.0",
+    "fs-extra": "^11.3.3",
+    "glob": "catalog:",
+    "html-test-app": "workspace:*",
+    "tsx": "^4.21.0",
+    "typescript": "^5.8.2"
+  },
+  "files": [
+    "./tests",
+    "./src",
+    "./playwright.config.ts"
+  ]
+}

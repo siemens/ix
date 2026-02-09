@@ -1,0 +1,5 @@
+- navigation:
+  - button "Home"
+  - button "Normal tab"
+  - button "Disabled tab" [disabled]
+  - button "With other icon"
