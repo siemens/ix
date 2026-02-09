@@ -47,6 +47,8 @@ import { BasePickerInput } from '../utils/input/base-picker-input';
 import { makeRef } from '../utils/make-ref';
 import type { TimeInputValidityState } from './time-input.types';
 
+const TIME_DROPDOWN_TEST_ID = 'time-dropdown';
+
 /**
  * @since 3.2.0
  * @form-ready
@@ -439,7 +441,7 @@ export class TimeInput
           this.show = false;
         }}
       ></ix-time-picker>,
-      'time-dropdown'
+      TIME_DROPDOWN_TEST_ID
     );
 
     config.invalidText = invalidText;

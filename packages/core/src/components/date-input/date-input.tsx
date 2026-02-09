@@ -47,6 +47,8 @@ import { BasePickerInput } from '../utils/input/base-picker-input';
 import { makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
 
+const DATE_DROPDOWN_TEST_ID = 'date-dropdown';
+
 /**
  * @form-ready
  *
@@ -441,7 +443,7 @@ export class DateInput
 
   render() {
     const invalidText = getValidationText(
-      this.isInputInvalid && !this.suppressValidation,
+      this.isInputInvalid,
       this.invalidText,
       this.i18nErrorDateUnparsable
     );
@@ -466,7 +468,7 @@ export class DateInput
         ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
         embedded
       ></ix-date-picker>,
-      'date-dropdown'
+      DATE_DROPDOWN_TEST_ID
     );
 
     config.invalidText = invalidText;
