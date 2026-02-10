@@ -10,6 +10,36 @@ import { expect } from '@playwright/test';
 import { getFormValue, preventFormSubmission, test } from '@utils/test';
 import { selectController } from './select-controller';
 
+test('a test', async ({ mount, page }) => {
+  await mount(`
+        <ix-select>
+          <ix-select-item value="11" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="22" label="Item 2">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  const item1 = page.getByRole('option', { name: 'Item 1' });
+  const item2 = page.getByRole('option', { name: 'Item 2' });
+
+  const select = page.locator('ix-select');
+
+  const ctrl = selectController(select);
+
+  await ctrl.getInputLocator().click();
+  await page.keyboard.press('ArrowDown');
+
+  await ctrl.getInputLocator().fill('Item 1');
+
+  await expect(item1).toBeVisible();
+  await expect(item2).not.toBeVisible();
+
+  const dropdown = ctrl.getDropdownLocator();
+  await expect(dropdown).toBeVisible();
+
+  await item1.click();
+  await expect(ctrl.getInputLocator()).toHaveValue('Item 1');
+});
+
 test('renders', async ({ mount, page }) => {
   await mount(`
         <ix-select>
@@ -45,8 +75,12 @@ test('editable mode', async ({ mount, page }) => {
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 
-  await expect(page.getByRole('option', { name: 'Item 1' })).not.toBeVisible();
-  await expect(page.getByRole('option', { name: 'Item 2' })).not.toBeVisible();
+  await expect(
+    page.locator('div').filter({ hasText: 'Item 1' }).nth(1)
+  ).not.toBeVisible();
+  await expect(
+    page.locator('div').filter({ hasText: 'Item 2' }).nth(2)
+  ).not.toBeVisible();
 
   const add = page.getByRole('option', { name: /Not existing/ });
   await expect(add).toBeVisible();
@@ -55,11 +89,15 @@ test('editable mode', async ({ mount, page }) => {
   await expect(page.getByTestId('input')).toHaveValue(/Not existing/);
   await page.locator('[data-select-dropdown]').click();
 
-  await expect(page.getByRole('option', { name: 'Item 1' })).toBeVisible();
-  await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
+  await expect(
+    page.locator('div').filter({ hasText: 'Item 1' }).nth(1)
+  ).toBeVisible();
+  await expect(
+    page.locator('div').filter({ hasText: 'Item 2' }).nth(2)
+  ).toBeVisible();
 
   const addedItem = page
-    .getByRole('listitem')
+    .getByRole('option')
     .filter({ hasText: 'Not existing' });
 
   await expect(addedItem).toBeVisible();

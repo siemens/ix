@@ -6,18 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import AxeBuilder from '@axe-core/playwright';
 import {
+  TestInfo as _TestInfo,
+  expect as baseExpect,
   ElementHandle,
+  Locator,
   Page,
   PageScreenshotOptions,
   test as testBase,
-  TestInfo as _TestInfo,
-  expect as baseExpect,
-  Locator,
-  mergeExpects,
 } from '@playwright/test';
 import type { addIcons as _addIcons } from '@siemens/ix-icons';
-import AxeBuilder from '@axe-core/playwright';
 
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;

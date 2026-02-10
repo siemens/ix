@@ -177,6 +177,15 @@
   .hidden {
     display: none !important;
   }
+
+  .proxy-list {
+    all: unset;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    color: transparent;
+  }
 }
 
 :host(.ix-focused),

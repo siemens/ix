@@ -776,10 +776,13 @@ export class Select
     const firstItem = this.focusableItems[0];
 
     if (ariaActiveDescendantHelper) {
-      ariaActiveDescendantHelper.innerHTML = '';
+      const top =
+        firstItem.getBoundingClientRect().top -
+        firstItem.getBoundingClientRect().height +
+        8;
 
-      ariaActiveDescendantHelper.style.top =
-        firstItem.getBoundingClientRect().top + 'px';
+      ariaActiveDescendantHelper.innerHTML = '';
+      ariaActiveDescendantHelper.style.top = top + 'px';
       ariaActiveDescendantHelper.style.padding = '0px';
       ariaActiveDescendantHelper.style.margin = '0px';
       ariaActiveDescendantHelper.innerHTML = '';
@@ -794,7 +797,8 @@ export class Select
         li.style.width = item.getBoundingClientRect().width + 'px';
         ariaActiveDescendantHelper.appendChild(li);
 
-        item.ariaHidden = 'true';
+        // Bad for building playwright selectors but necessary to ensure that assistive technologies can announce the items in the dropdown with their respective aria-labels
+        // item.ariaHidden = 'true';
       });
     }
   }
@@ -962,6 +966,7 @@ export class Select
           }}
           onClick={(event) => {
             const target = event.target as HTMLElement;
+            console.log('click', target);
             if (
               target.tagName === 'IX-DROPDOWN-ITEM' ||
               target.tagName === 'IX-SELECT-ITEM'
@@ -977,25 +982,6 @@ export class Select
             }
           }}
         >
-          <ul
-            role="listbox"
-            id={`${this.hostId}-proxy-listbox`}
-            aria-hidden={a11yBoolean(!this.dropdownShow)}
-            aria-labelledby={`${this.hostId}-input`}
-            aria-multiselectable={a11yBoolean(this.isMultipleMode)}
-            hidden={this.disabled || this.readonly}
-            style={{
-              position: 'absolute',
-              left: '0px',
-              top: '0px',
-              overflow: 'hidden',
-              clip: 'rect(0 0 0 0)',
-              clipPath: 'inset(50%)',
-              maxWidth: '0px',
-              maxHeight: '0px',
-              pointerEvents: 'none',
-            }}
-          ></ul>
           <div
             aria-hidden="true"
             class={{
@@ -1012,6 +998,15 @@ export class Select
               this.updateSelection();
             }}
           ></slot>
+          <ul
+            class="proxy-list"
+            role="listbox"
+            id={`${this.hostId}-proxy-listbox`}
+            aria-hidden={a11yBoolean(!this.dropdownShow)}
+            aria-labelledby={`${this.hostId}-input`}
+            aria-multiselectable={a11yBoolean(this.isMultipleMode)}
+            hidden={this.disabled || this.readonly}
+          ></ul>
           {this.isDropdownEmpty && !this.editable && (
             <div class="select-list-header">{this.i18nNoMatches}</div>
           )}
