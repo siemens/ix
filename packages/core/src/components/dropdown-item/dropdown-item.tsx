@@ -48,7 +48,7 @@ export class DropdownItem
   /**
    * Label of dropdown item
    */
-  @Prop() label?: string;
+  @Prop({ reflect: true }) label?: string;
 
   /**
    * Icon of dropdown item

@@ -31,13 +31,20 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <ix-select value="Option 2" collapse-multiple-selection mode="multiple">
-      <ix-select-item value="Option 1" label="Option 1"></ix-select-item>
-      <ix-select-item value="Option 2" label="Option 2"></ix-select-item>
-      <ix-select-item value="Option 3" label="Option abc"></ix-select-item>
-      <ix-select-item value="Option 4" label="Option abx"></ix-select-item>
-      <ix-select-item value="Option 5" label="Option 5"></ix-select-item>
-      <ix-select-item value="Option 6" label="Option 6"></ix-select-item>
-    </ix-select>
+    <ix-breadcrumb visible-item-count="2">
+      <ix-breadcrumb-item>Home1</ix-breadcrumb-item>
+      <ix-breadcrumb-item>Home2</ix-breadcrumb-item>
+      <ix-breadcrumb-item>Home3</ix-breadcrumb-item>
+      <ix-breadcrumb-item>Home4</ix-breadcrumb-item>
+      <ix-breadcrumb-item>Home5</ix-breadcrumb-item>
+      <ix-breadcrumb-item>Home6</ix-breadcrumb-item>
+      <ix-breadcrumb-item>Home7</ix-breadcrumb-item>
+      <ix-breadcrumb-item>Library</ix-breadcrumb-item>
+      <ix-breadcrumb-item>Data</ix-breadcrumb-item>
+    </ix-breadcrumb>
+    <script>
+      const breadcrumb = document.querySelector('ix-breadcrumb');
+      breadcrumb.nextItems = ['Next 1', 'Next 2', 'Next 3'];
+    </script>
   </body>
 </html>

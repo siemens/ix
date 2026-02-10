@@ -334,6 +334,7 @@ export namespace Components {
         /**
           * ARIA label for the button Will be set as aria-label for the nested HTML button element
           * @since 3.2.0
+          * @deprecated Use `aria-label` attribute directly on the component instead.
          */
         "ariaLabelButton"?: string;
         /**
@@ -6338,6 +6339,7 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the button Will be set as aria-label for the nested HTML button element
           * @since 3.2.0
+          * @deprecated Use `aria-label` attribute directly on the component instead.
          */
         "ariaLabelButton"?: string;
         /**

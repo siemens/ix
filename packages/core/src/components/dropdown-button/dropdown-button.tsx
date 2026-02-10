@@ -25,6 +25,7 @@ import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
+import { closestPassShadow } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-dropdown-button',
@@ -94,6 +95,8 @@ export class DropdownButton
   private readonly dropdownAnchor = makeRef<HTMLElement>();
   private readonly dropdownRef = makeRef<HTMLElement>();
 
+  private hostContext?: { breadcrumb: boolean };
+
   private getTriangle() {
     return (
       <div
@@ -121,8 +124,15 @@ export class DropdownButton
       'aria-controls',
       'aria-disabled',
       'aria-expanded',
+      'aria-current',
       'role',
     ]);
+  }
+
+  override componentWillRender(): Promise<void> | void {
+    this.hostContext = {
+      breadcrumb: !!closestPassShadow(this.hostElement, 'ix-breadcrumb'),
+    };
   }
 
   override getControllingAriaElement():
@@ -155,10 +165,12 @@ export class DropdownButton
       disabled: this.disabled,
       variant: this.variant,
     };
+
     return (
       <Host
         class={{
           disabled: this.disabled,
+          'host-context-breadcrumb': !!this.hostContext?.breadcrumb,
         }}
         ref={this.dropdownAnchor}
         tabIndex={this.disabled ? -1 : 0}
@@ -168,6 +180,7 @@ export class DropdownButton
           {this.label ? (
             <ix-button
               {...commonProperties}
+              class={'internal-button'}
               alignment="start"
               ref={(ref) => (ref!.tabIndex = -1)}
             >
@@ -180,15 +193,18 @@ export class DropdownButton
                   ></ix-icon>
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
-                <ix-icon
-                  aria-hidden="true"
-                  name={
-                    this.dropdownShow
-                      ? iconChevronUpSmall
-                      : iconChevronDownSmall
-                  }
-                  size="24"
-                ></ix-icon>
+                <slot name="button-label"></slot>
+                {!this.hostContext?.breadcrumb && (
+                  <ix-icon
+                    aria-hidden="true"
+                    name={
+                      this.dropdownShow
+                        ? iconChevronUpSmall
+                        : iconChevronDownSmall
+                    }
+                    size="24"
+                  ></ix-icon>
+                )}
               </div>
             </ix-button>
           ) : (

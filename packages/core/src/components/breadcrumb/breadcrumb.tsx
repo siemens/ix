@@ -6,24 +6,25 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import Animation from '../utils/animation';
 
+import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
   Event,
   EventEmitter,
-  forceUpdate,
   h,
   Host,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
-import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
-import { makeRef } from '../utils/make-ref';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { Mixin } from '../utils/internal/component';
-import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { animate } from 'animejs';
 
 let sequenceId = 0;
 const createId = (prefix: string = 'breadcrumb-') => {
@@ -83,23 +84,16 @@ export class Breadcrumb extends Mixin() {
    */
   @Event() nextClick!: EventEmitter<{ event: UIEvent; item: string }>;
 
-  private readonly previousButtonRef = makeRef<HTMLIxBreadcrumbItemElement>();
-  private readonly nextButtonRef = makeRef<HTMLElement>();
-
-  private readonly previousDropdownRef = makeRef<HTMLIxDropdownElement>();
-  private readonly nextDropdownRef = makeRef<HTMLIxDropdownElement>();
-
   @State() items: HTMLIxBreadcrumbItemElement[] = [];
-  @State() isPreviousDropdownExpanded = false;
   @State() isNextDropdownExpanded = false;
 
+  @State() shouldRenderNextDropdown = false;
+
+  private readonly nextDropdownButtonRef =
+    makeRef<HTMLIxDropdownButtonElement>();
+
   private mutationObserver?: MutationObserver;
-  private lastKeyboardNavigation: KeyboardEvent | null = null;
-
-  private previousButtonId = createId();
-  private previousDropdownId = createId();
-
-  private nextDropdownId = createId();
+  private inheritAriaAttributes: A11yAttributes = {};
 
   private onItemClick(item: string) {
     this.itemClick.emit(item);
@@ -117,6 +111,7 @@ export class Breadcrumb extends Mixin() {
   }
 
   override componentWillLoad() {
+    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
     this.onChildMutation();
   }
 
@@ -128,9 +123,7 @@ export class Breadcrumb extends Mixin() {
     const updatedItems = this.getItems();
 
     updatedItems.forEach((breadcrumbItem, index) => {
-      breadcrumbItem.removeAttribute('aria-haspopup');
-      breadcrumbItem.removeAttribute('aria-expanded');
-      breadcrumbItem.removeAttribute('aria-controls');
+      breadcrumbItem.removeAttribute('aria-current');
 
       const shouldShowDropdown =
         this.nextItems.length !== 0 && updatedItems.length - 1 === index;
@@ -141,24 +134,20 @@ export class Breadcrumb extends Mixin() {
       breadcrumbItem.isDropdownTrigger = shouldShowDropdown;
 
       if (shouldShowDropdown) {
-        breadcrumbItem.setAttribute('aria-haspopup', 'true');
-        breadcrumbItem.setAttribute(
-          'aria-expanded',
-          a11yBoolean(this.isNextDropdownExpanded)
-        );
-        breadcrumbItem.setAttribute('aria-controls', this.nextDropdownId);
-        this.nextButtonRef(breadcrumbItem);
+        breadcrumbItem.invisible = true;
+        breadcrumbItem.ariaCurrent = 'page';
+      } else {
+        breadcrumbItem.invisible =
+          index < updatedItems.length - this.visibleItemCount;
       }
-
-      if (updatedItems.length < this.visibleItemCount) {
-        return;
-      }
-
-      breadcrumbItem.invisible =
-        index < updatedItems.length - this.visibleItemCount;
     });
 
+    this.shouldRenderNextDropdown = this.nextItems.length !== 0;
     this.items = updatedItems;
+
+    if (this.shouldRenderNextDropdown) {
+      this.animationFadeIn();
+    }
   }
 
   private getItems() {
@@ -170,127 +159,87 @@ export class Breadcrumb extends Mixin() {
     this.onChildMutation();
   }
 
+  async animationFadeIn() {
+    const dropdownRef = await this.nextDropdownButtonRef.waitForCurrent();
+    animate(dropdownRef, {
+      duration: Animation.defaultTime,
+      opacity: [0, 1],
+      translateX: ['-100%', '0%'],
+      easing: 'linear',
+    });
+  }
+
   override render() {
-    const a11y = a11yHostAttributes(this.hostElement);
+    const labelLastItem = this.items?.[this.items.length - 1];
+
+    this.inheritAriaAttributes['aria-label'] =
+      this.inheritAriaAttributes['aria-label'] ?? 'Breadcrumbs';
+
     return (
-      <Host
-        onKeyDown={(event: KeyboardEvent) => {
-          this.lastKeyboardNavigation = event;
-        }}
-      >
-        <ix-dropdown
-          id={this.previousDropdownId}
-          ref={this.previousDropdownRef}
-          disableFocusTrap
-          role="menu"
-          aria-labelledby={this.previousButtonRef.current!}
-          trigger={
-            this.items?.length > this.visibleItemCount
-              ? this.previousButtonRef.waitForCurrent()
-              : undefined
-          }
-          enableTopLayer={this.enableTopLayer}
-          onShowChanged={({ detail }) => {
-            this.isPreviousDropdownExpanded = detail;
-
-            const previousButton = this.hostElement.shadowRoot!.getElementById(
-              this.previousButtonId
-            );
-
-            // Need to force update previous button to change `aria-expanded`
-            if (previousButton) {
-              forceUpdate(previousButton);
-            }
-
-            if (
-              detail === false &&
-              hasKeyboardMode() &&
-              this.lastKeyboardNavigation?.key === 'Tab' &&
-              this.lastKeyboardNavigation.shiftKey === false
-            ) {
-              const visibleItems = this.getItems().filter(
-                (item) => !item.invisible
-              );
-              visibleItems[0]?.focus();
-            }
-
-            this.lastKeyboardNavigation = null;
-          }}
-        >
-          {this.items
-            .slice(0, this.items.length - this.visibleItemCount)
-            .map((item) => {
-              const label = item.label ?? item.innerText;
-
-              return (
-                <ix-dropdown-item
-                  label={label}
-                  onClick={() => {
-                    this.onItemClick(label);
-                  }}
-                  onItemClick={(event) => event.stopPropagation()}
-                ></ix-dropdown-item>
-              );
-            })}
-        </ix-dropdown>
-        {this.items?.length > this.visibleItemCount ? (
-          <ix-breadcrumb-item
-            id={this.previousButtonId}
-            ref={this.previousButtonRef}
+      <Host {...this.inheritAriaAttributes} role="navigation">
+        {this.items?.length > this.visibleItemCount && (
+          <ix-dropdown-button
             label="..."
-            onItemClick={(event) => event.stopPropagation()}
-            aria-haspopup="true"
-            aria-label={this.ariaLabelPreviousButton}
-            aria-controls={this.previousDropdownId}
-            aria-expanded={a11yBoolean(this.isPreviousDropdownExpanded)}
-            class={'previous-button ix-focusable'}
-          ></ix-breadcrumb-item>
-        ) : null}
-        <nav
-          class="crumb-items"
-          aria-label={a11y['aria-label'] ?? 'breadcrumbs'}
-        >
-          <ol>
-            <slot></slot>
-          </ol>
-        </nav>
-        <ix-dropdown
-          disableFocusTrap
-          role="menu"
-          id={this.nextDropdownId}
-          ref={this.nextDropdownRef}
-          trigger={this.nextButtonRef.waitForCurrent()}
-          onShowChanged={({ detail }) => {
-            this.isNextDropdownExpanded = detail;
-            if (
-              detail === false &&
-              hasKeyboardMode() &&
-              this.lastKeyboardNavigation?.key === 'Tab' &&
-              this.lastKeyboardNavigation.shiftKey === true
-            ) {
-              const visibleItems = this.getItems().filter(
-                (item) => !item.invisible
-              );
-              visibleItems[visibleItems.length - 2]?.focus();
-            }
+            variant="tertiary"
+            class="previous-button"
+            enableTopLayer={this.enableTopLayer}
+          >
+            <ix-icon
+              slot="button-label"
+              name={iconChevronRightSmall}
+              size="16"
+              class={'chevron'}
+            ></ix-icon>
+            {this.items
+              .slice(0, this.items.length - this.visibleItemCount)
+              .map((item) => {
+                const label = item.label ?? item.innerText;
 
-            this.lastKeyboardNavigation = null;
-          }}
-          enableTopLayer={this.enableTopLayer}
-        >
-          {this.nextItems?.map((item) => (
-            <ix-dropdown-item
-              label={item}
-              onClick={(e) => {
-                this.nextClick.emit({
-                  event: e,
-                  item,
-                });
-              }}
-              onItemClick={(event) => event.stopPropagation()}
-            ></ix-dropdown-item>
-          ))}
-        </ix-dropdown>
+                return (
+                  <ix-dropdown-item
+                    label={label}
+                    onClick={() => {
+                      this.onItemClick(label);
+                    }}
+                    onItemClick={(event) => event.stopPropagation()}
+                  ></ix-dropdown-item>
+                );
+              })}
+          </ix-dropdown-button>
+        )}
+        <div class="crumb-items">
+          <slot></slot>
+        </div>
+
+        {this.shouldRenderNextDropdown && (
+          <ix-dropdown-button
+            ref={this.nextDropdownButtonRef}
+            label={labelLastItem.label ?? labelLastItem.innerText}
+            class="next-button"
+            variant="tertiary"
+            enableTopLayer={this.enableTopLayer}
+            aria-current="page"
+          >
+            <ix-icon
+              slot="button-label"
+              name={iconChevronRightSmall}
+              size="16"
+              class={'chevron'}
+            ></ix-icon>
+            {this.nextItems?.map((item) => (
+              <ix-dropdown-item
+                label={item}
+                onClick={(e) => {
+                  this.nextClick.emit({
+                    event: e,
+                    item,
+                  });
+                }}
+                onItemClick={(event) => event.stopPropagation()}
+              ></ix-dropdown-item>
+            ))}
+          </ix-dropdown-button>
+        )}
       </Host>
     );
   }
