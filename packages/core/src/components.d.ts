@@ -3276,10 +3276,6 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * @param event
-         */
-        "onItemClick": (event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>;
-        /**
           * Flag indicating whether the item is selected
           * @default false
          */

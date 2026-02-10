@@ -72,7 +72,8 @@ export function updateFocusState(target: HTMLElement) {
   } else {
     currentFocus = [];
   }
-  target.dispatchEvent(new IxFocusVisibleChangeEvent({ currentFocus }));
+
+  document.dispatchEvent(new IxFocusVisibleChangeEvent({ currentFocus }));
 }
 
 function applyFocusPatch() {

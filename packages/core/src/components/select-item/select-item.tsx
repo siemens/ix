@@ -87,18 +87,6 @@ export class SelectItem
     return this.dropdownItemRef.waitForCurrent();
   }
 
-  /**
-   * @internal
-   * @param event
-   */
-  @Method()
-  async onItemClick(event?: CustomEvent<HTMLIxDropdownItemElement>) {
-    event?.preventDefault();
-    event?.stopPropagation();
-
-    this.itemClick.emit(this.value);
-  }
-
   override componentDidRender() {
     if (this.value === undefined || this.value === null) {
       console.warn('ix-select-item must have a `value` property');
@@ -142,8 +130,11 @@ export class SelectItem
         class={{
           [IX_FOCUS_VISIBLE]: true,
         }}
+        aria-hidden="true"
+        role="presentation"
       >
         <ix-dropdown-item
+          aria-hidden="true"
           role="option"
           class={{
             'select-item-checked': this.selected,
@@ -151,7 +142,6 @@ export class SelectItem
           }}
           checked={this.selected}
           label={this.label ? this.label : this.value}
-          onItemClick={(e) => this.onItemClick(e)}
           ref={this.dropdownItemRef}
         ></ix-dropdown-item>
       </Host>

@@ -312,13 +312,8 @@ regressionTest(
   `,
       {
         icons: {
-<<<<<<< HEAD
           iconGlobe,
           iconRocket,
-=======
-          iconRocket,
-          iconGlobe,
->>>>>>> origin/main
         },
       }
     );

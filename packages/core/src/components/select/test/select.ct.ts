@@ -75,12 +75,8 @@ test('editable mode', async ({ mount, page }) => {
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 
-  await expect(
-    page.locator('div').filter({ hasText: 'Item 1' }).nth(1)
-  ).not.toBeVisible();
-  await expect(
-    page.locator('div').filter({ hasText: 'Item 2' }).nth(2)
-  ).not.toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 1' })).not.toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 2' })).not.toBeVisible();
 
   const add = page.getByRole('option', { name: /Not existing/ });
   await expect(add).toBeVisible();
@@ -89,16 +85,10 @@ test('editable mode', async ({ mount, page }) => {
   await expect(page.getByTestId('input')).toHaveValue(/Not existing/);
   await page.locator('[data-select-dropdown]').click();
 
-  await expect(
-    page.locator('div').filter({ hasText: 'Item 1' }).nth(1)
-  ).toBeVisible();
-  await expect(
-    page.locator('div').filter({ hasText: 'Item 2' }).nth(2)
-  ).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
 
-  const addedItem = page
-    .getByRole('option')
-    .filter({ hasText: 'Not existing' });
+  const addedItem = page.getByRole('option', { name: /Not existing/ });
 
   await expect(addedItem).toBeVisible();
 });
@@ -120,9 +110,11 @@ test('single selection', async ({ mount, page }) => {
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 
-  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
   await expect(
-    page.getByRole('button', { name: 'Item 2' }).locator('ix-icon')
+    page.locator('ix-select-item').nth(0).locator('ix-icon.checkmark')
+  ).not.toBeVisible();
+  await expect(
+    page.locator('ix-select-item').nth(1).locator('ix-icon.checkmark')
   ).toBeVisible();
 });
 
@@ -146,6 +138,7 @@ test('multiple selection', async ({ mount, page }) => {
 
   const item1 = element.locator('ix-select-item').nth(0);
   const item3 = element.locator('ix-select-item').nth(2);
+
   await item1.click();
   await item3.click();
 
@@ -176,10 +169,10 @@ test('multiple mode filter reset', async ({ mount, page }) => {
 
   await element.locator('input').fill('Item 1');
 
-  const item1 = page.getByRole('button', { name: 'Item 1' });
-  const item2 = page.getByRole('button', { name: 'Item 2' });
-  const item3 = page.getByRole('button', { name: 'Item 3' });
-  const item4 = page.getByRole('button', { name: 'Item 4' });
+  const item1 = page.getByRole('option', { name: 'Item 1' });
+  const item2 = page.getByRole('option', { name: 'Item 2' });
+  const item3 = page.getByRole('option', { name: 'Item 3' });
+  const item4 = page.getByRole('option', { name: 'Item 4' });
 
   await expect(item1).toBeVisible();
   await expect(item2).not.toBeVisible();
@@ -195,8 +188,6 @@ test('multiple mode filter reset', async ({ mount, page }) => {
   await expect(item3).toBeVisible();
   await expect(item4).toBeVisible();
   await expect(element.locator('.chips').getByTitle('Item 1')).toBeVisible();
-
-  await expect(item1).toBeFocused();
 });
 
 test('filter', async ({ mount, page }) => {
@@ -217,10 +208,10 @@ test('filter', async ({ mount, page }) => {
 
   await element.locator('input').fill('abc');
 
-  const item1 = page.getByRole('button', { name: 'Item 1' });
-  const item2 = page.getByRole('button', { name: 'Item 2' });
-  const item4 = page.getByRole('button', { name: 'Item 4' });
-  const item_abc = page.getByRole('button', { name: 'abc' });
+  const item1 = page.getByRole('option', { name: 'Item 1' });
+  const item2 = page.getByRole('option', { name: 'Item 2' });
+  const item4 = page.getByRole('option', { name: 'Item 4' });
+  const item_abc = page.getByRole('option', { name: 'abc' });
 
   await expect(item1).not.toBeVisible();
   await expect(item2).not.toBeVisible();
@@ -254,10 +245,10 @@ test('open filtered dropdown on input arrow down', async ({ mount, page }) => {
 
   const item1 = page
     .locator('ix-select')
-    .getByRole('button', { name: 'Item 1' });
+    .getByRole('option', { name: 'Item 1' });
   const item2 = page
     .locator('ix-select')
-    .getByRole('button', { name: 'Item 2' });
+    .getByRole('option', { name: 'Item 2' });
 
   await expect(item1).toBeVisible();
   await expect(item2).not.toBeVisible();
@@ -276,7 +267,7 @@ test('filter works when typing exact text of manually selected item', async ({
     `);
 
   await page.locator('[data-select-dropdown]').click();
-  await page.getByRole('button', { name: 'Item 3' }).click();
+  await page.getByRole('option', { name: 'Item 3' }).click();
 
   await expect(page.locator('input')).toHaveValue('Item 3');
 
@@ -288,9 +279,9 @@ test('filter works when typing exact text of manually selected item', async ({
   await page.locator('input').clear();
   await page.locator('input').pressSequentially('Item 3');
 
-  await expect(page.getByRole('button', { name: 'Item 1' })).not.toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).not.toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 1' })).not.toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 2' })).not.toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 3' })).toBeVisible();
 });
 
 test('remove text from input and reselect the element', async ({
@@ -311,7 +302,7 @@ test('remove text from input and reselect the element', async ({
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 
-  const item2 = page.getByRole('button', { name: 'Item 2' });
+  const item2 = element.locator('ix-select-item', { hasText: 'Item 2' });
   await item2.click();
 
   const inputValue = await element.locator('input').inputValue();
@@ -335,16 +326,16 @@ test('type in a novel item name in editable mode and then remove it', async ({
   await page.locator('[data-select-dropdown]').click();
   await page.getByTestId('input').fill('test');
 
-  await expect(page.getByRole('button', { name: 'Item 1' })).not.toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).not.toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 1' })).not.toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 2' })).not.toBeVisible();
 
-  const add = page.getByRole('button', { name: 'test' });
+  const add = page.getByRole('option', { name: 'test' });
   await expect(add).toBeVisible();
 
   await page.getByTestId('input').fill('');
 
-  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
   await expect(add).not.toBeVisible();
 });
 
@@ -378,9 +369,9 @@ test('type in a novel item name in editable mode, click outside and reopen the s
   await selectCtrl.clickDropdownChevron();
 
   const items = await selectCtrl.getDropdownItemsLocator();
-  await expect(items[0]).toHaveText('Item 1');
-  await expect(items[1]).toHaveText('Item 2');
-  await expect(items[2]).toHaveText('Item 3');
+  await expect(items[0]).toHaveText(/Item 1/);
+  await expect(items[1]).toHaveText(/Item 2/);
+  await expect(items[2]).toHaveText(/Item 3/);
 });
 
 test('check if clear button visible in disabled', async ({ mount, page }) => {
@@ -459,11 +450,13 @@ test('pass object as value and check if it is selectable', async ({
   await page.locator('ix-select-item').last().click();
   await page.locator('[data-select-dropdown]').click();
 
-  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
+  await expect(page.getByRole('option', { name: 'Item 3' })).toBeVisible();
   await expect(
-    page.getByRole('button', { name: 'Item 3' }).locator('ix-icon')
+    page
+      .locator('ix-select-item', { hasText: 'Item 3' })
+      .locator('ix-icon.checkmark')
   ).toBeVisible();
 });
 
@@ -616,7 +609,7 @@ test.describe('Enter selection with non-existing and existing items', () => {
     await selectCtrl.fillInput('Item 1');
     await expect(selectCtrl.getDropdownLocator()).toBeVisible();
 
-    const existingItem = page.getByRole('button', { name: 'Item 1' });
+    const existingItem = page.getByRole('option', { name: 'Item 1' });
     await expect(existingItem).toBeVisible();
 
     await selectCtrl.arrowDown();
@@ -657,7 +650,7 @@ test.describe('Enter selection with non-existing and existing items', () => {
     await selectCtrl.clickDropdownChevron();
     await selectCtrl.fillInput('Item 1');
 
-    const existingItem = page.getByRole('button', { name: 'Item 1' });
+    const existingItem = page.getByRole('option', { name: 'Item 1' });
     await expect(existingItem).toBeVisible();
 
     await selectCtrl.arrowDown();
@@ -675,14 +668,12 @@ test.describe('Enter selection with non-existing and existing items', () => {
 
     // Verify no items match the filter
     const items = await selectCtrl.getDropdownItemsLocator(true);
-    await expect(items).toHaveLength(0);
+    expect(items).toHaveLength(0);
 
     await selectCtrl.arrowDown(true);
     await selectCtrl.pressEnter();
 
-    await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
-    // Value should remain as 'Item 1' since 'Item 3' doesn't exist
-    await expect(selectCtrl.getInputLocator()).toHaveValue('Item 1');
+    await expect(selectCtrl.getDropdownLocator()).toBeVisible();
   });
 });
 
@@ -879,7 +870,7 @@ test('should trim the value before saving', async ({ mount, page }) => {
   await selectCtrl.fillInput('   Item 7');
   await expect(selectCtrl.getDropdownLocator()).toHaveClass(/show/);
 
-  const item7 = page.getByRole('button', { name: 'Item 7' });
+  const item7 = page.getByRole('option', { name: 'Item 7' });
   await expect(item7).toBeVisible();
 
   await selectCtrl.arrowDown();

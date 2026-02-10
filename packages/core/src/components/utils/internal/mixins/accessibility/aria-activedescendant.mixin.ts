@@ -58,9 +58,6 @@ export const AriaActiveDescendantMixin = <
         return;
       }
 
-      event.preventDefault();
-      event.stopPropagation();
-
       const controllingElement = await this.getControllingAriaElement();
       if (!controllingElement) {
         return;
@@ -90,6 +87,9 @@ export const AriaActiveDescendantMixin = <
         } else {
           controllingElement.setAttribute('aria-activedescendant', item.id);
         }
+
+        event.preventDefault();
+        event.stopPropagation();
       }
     }
   }
