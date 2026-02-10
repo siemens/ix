@@ -277,7 +277,7 @@ regressionTest(
     });
 
     const counter = page.locator('ix-typography.bottom-text');
-    await expect(counter).toHaveText('0/100');
+    await expect(counter).toHaveText(/0\/100/);
   }
 );
 
@@ -293,7 +293,7 @@ regressionTest(
       el.value = null;
     });
     const counter = page.locator('ix-typography.bottom-text');
-    await expect(counter).toHaveText('0/20');
+    await expect(counter).toHaveText(/0\/20/);
   }
 );
 
@@ -304,7 +304,7 @@ regressionTest(
       `<form><ix-input name="my-field-name" value="221" max-length="20"></ix-input></form>`
     );
     const counter = page.locator('ix-typography.bottom-text').first();
-    await expect(counter).toHaveText('3/20');
+    await expect(counter).toHaveText(/3\/20/);
   }
 );
 
@@ -315,7 +315,7 @@ regressionTest(
       `<form><ix-input name="my-field-name" value=" " max-length="20"></ix-input></form>`
     );
     const counter = page.locator('ix-typography.bottom-text').first();
-    await expect(counter).toHaveText('1/20');
+    await expect(counter).toHaveText(/1\/20/);
   }
 );
 

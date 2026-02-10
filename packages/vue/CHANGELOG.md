@@ -1,5 +1,38 @@
 # @siemens/ix-vue
 
+## 4.3.0
+
+### Minor Changes
+
+- [#2341](https://github.com/siemens/ix/pull/2341) [`0299abd`](https://github.com/siemens/ix/commit/0299abd202dcbdfb8b9483015ae8548fb7a21372) Thanks [@alexkaduk](https://github.com/alexkaduk)! - **feat(dropdown): add enableTopLayer prop for Popover API rendering**
+
+  Introduces a new `enableTopLayer` prop for `ix-dropdown` and all consuming components to enable rendering in the browser's top layer using the Popover API. This resolves z-index and stacking context issues, particularly with AG Grid and other complex layouts.
+
+- [#2280](https://github.com/siemens/ix/pull/2280) [`9842b69`](https://github.com/siemens/ix/commit/9842b690e3a56a585436d493dfe085ee7ded6e64) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Add property `passive` to **ix-card**, **ix-action-card**, and **ix-push-card** allowing to suppress mouse states.
+
+- [#2287](https://github.com/siemens/ix/pull/2287) [`fb0edfd`](https://github.com/siemens/ix/commit/fb0edfde119ae83bcb0acb6af641a7e24401b7fc) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Improved accessibility for the following components: `ix-menu`, `ix-menu-item`, `ix-menu-settings`, `ix-menu-about`, `ix-menu-expand-icon`, and `ix-icon-button`.
+
+  **API changes:**
+
+  - `ix-menu-settings`: Added `ariaLabelCloseButton` prop (default: "Close Settings")
+  - `ix-menu-about`: Added `ariaLabelCloseButton` prop (default: "Close About")
+
+  **Deprecations (will be removed in 5.0.0):**
+
+  - `ix-menu`: `i18nExpandSidebar` prop
+  - `ix-application-header`: `ariaLabelMenuExpandIconButton` prop
+
+- [#2051](https://github.com/siemens/ix/pull/2051) [`3c937af`](https://github.com/siemens/ix/commit/3c937afc722fa2d09e6c8e43756c8e7a15391448) Thanks [@1307-Dev](https://github.com/1307-Dev)! - `ix-slider` is now `form-ready`
+
+### Patch Changes
+
+- [#2337](https://github.com/siemens/ix/pull/2337) [`8a1de8b`](https://github.com/siemens/ix/commit/8a1de8b1c0142d8c3a162b740e40d68301330768) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Add properties **tooltipText** and **ariaLabelTooltip** to **ix-menu-avatar**.
+
+- [#2373](https://github.com/siemens/ix/pull/2373) [`3d0bbb9`](https://github.com/siemens/ix/commit/3d0bbb976b23db3b50721f198109be0a2c9aef42) Thanks [@danielleroux](https://github.com/danielleroux)! - Remove blur effect from modal backdrop
+
+- Updated dependencies [[`0299abd`](https://github.com/siemens/ix/commit/0299abd202dcbdfb8b9483015ae8548fb7a21372), [`1340274`](https://github.com/siemens/ix/commit/1340274534b269f89151452ab48093b5800951ad), [`605ef5b`](https://github.com/siemens/ix/commit/605ef5b30a4cae9d6091cae48504fa42ba69f9ff), [`8a1de8b`](https://github.com/siemens/ix/commit/8a1de8b1c0142d8c3a162b740e40d68301330768), [`9842b69`](https://github.com/siemens/ix/commit/9842b690e3a56a585436d493dfe085ee7ded6e64), [`04279c1`](https://github.com/siemens/ix/commit/04279c1a2bb3c92344c0958731d1f061faff6af6), [`fb0edfd`](https://github.com/siemens/ix/commit/fb0edfde119ae83bcb0acb6af641a7e24401b7fc), [`79eed16`](https://github.com/siemens/ix/commit/79eed1645d0f9e23203b26c81e81dc21c818bde3), [`00366ae`](https://github.com/siemens/ix/commit/00366ae3fd06d74a6af7a037728de9b60694d80f), [`0847ca9`](https://github.com/siemens/ix/commit/0847ca9ca8d258ffd64657bd823fbb90cf44f250), [`dcc06b0`](https://github.com/siemens/ix/commit/dcc06b0f924f468ae4341f729062408b6689093b), [`07e1ad1`](https://github.com/siemens/ix/commit/07e1ad1954afb98479441c90167787535e5c432e), [`3c937af`](https://github.com/siemens/ix/commit/3c937afc722fa2d09e6c8e43756c8e7a15391448), [`3d0bbb9`](https://github.com/siemens/ix/commit/3d0bbb976b23db3b50721f198109be0a2c9aef42), [`f7345bd`](https://github.com/siemens/ix/commit/f7345bde3489d6eea36aa7d85b7fba6f2ee0092e), [`ca01772`](https://github.com/siemens/ix/commit/ca01772b9f6cb83b84e5ebccbdf740ca3920727b), [`828110e`](https://github.com/siemens/ix/commit/828110eadd0658df444405fd9eb7f89bc7fa7aef), [`089f850`](https://github.com/siemens/ix/commit/089f85033cad045dc55133577073ab58c074f4b4), [`d2a0d17`](https://github.com/siemens/ix/commit/d2a0d17153c5c62cbee4e6a483076c9fad990984)]:
+  - @siemens/ix@4.3.0
+
 ## 4.2.0
 
 ### Minor Changes

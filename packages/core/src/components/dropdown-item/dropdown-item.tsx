@@ -131,6 +131,7 @@ export class DropdownItem implements DropdownItemWrapper {
             <div class="dropdown-item-checked">
               {this.checked ? (
                 <ix-icon
+                  aria-hidden="true"
                   class="checkmark"
                   name={iconSingleCheck}
                   size="16"

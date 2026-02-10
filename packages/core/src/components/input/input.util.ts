@@ -66,6 +66,11 @@ export async function checkInternalValidity<T>(
     if (eventResult.defaultPrevented) {
       return;
     }
+
+    comp.hostElement.classList.toggle(
+      'ix-invalid--validity-invalid',
+      !newValidityState
+    );
   }
 
   if (comp.value === null || comp.value === undefined) {
@@ -217,4 +222,73 @@ export function handleSubmitOnEnterKeydown(
   } else if (form.length === 1) {
     form.requestSubmit();
   }
+}
+
+export interface PickerValidityStateTracker {
+  lastEmittedPatternMismatch?: boolean;
+  lastEmittedValueMissing?: boolean;
+}
+
+export function createPickerValidityStateTracker(): PickerValidityStateTracker {
+  return {
+    lastEmittedPatternMismatch: false,
+    lastEmittedValueMissing: false,
+  };
+}
+
+export interface PickerValidityContext {
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState: () => Promise<ValidityState>;
+  emit: (state: {
+    patternMismatch: boolean;
+    valueMissing: boolean;
+    invalidReason?: string;
+  }) => void;
+}
+
+export interface PickerInputComponent<T> {
+  validityTracker: PickerValidityStateTracker;
+  touched: boolean;
+  invalidReason?: string;
+  getValidityState(): Promise<ValidityState>;
+  validityStateChange: { emit: (state: T) => void };
+}
+
+export function emitPickerValidityState<T>(component: PickerInputComponent<T>) {
+  return emitPickerValidityStateChangeIfChanged(component.validityTracker, {
+    touched: component.touched,
+    invalidReason: component.invalidReason,
+    getValidityState: () => component.getValidityState(),
+    emit: (state) => component.validityStateChange.emit(state as T),
+  });
+}
+
+export async function emitPickerValidityStateChangeIfChanged(
+  tracker: PickerValidityStateTracker,
+  context: PickerValidityContext
+): Promise<void> {
+  if (!context.touched) {
+    return;
+  }
+
+  const state = await context.getValidityState();
+  const currentPatternMismatch = state.patternMismatch;
+  const currentValueMissing = state.valueMissing;
+
+  if (
+    tracker.lastEmittedPatternMismatch === currentPatternMismatch &&
+    tracker.lastEmittedValueMissing === currentValueMissing
+  ) {
+    return;
+  }
+
+  tracker.lastEmittedPatternMismatch = currentPatternMismatch;
+  tracker.lastEmittedValueMissing = currentValueMissing;
+
+  context.emit({
+    patternMismatch: currentPatternMismatch,
+    valueMissing: currentValueMissing,
+    invalidReason: context.invalidReason,
+  });
 }

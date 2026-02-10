@@ -8,5 +8,6 @@
  */
 export type TimeInputValidityState = {
   patternMismatch: boolean;
+  valueMissing: boolean;
   invalidReason?: string;
 };

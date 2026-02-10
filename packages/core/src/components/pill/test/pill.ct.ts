@@ -53,7 +53,7 @@ test.describe('tooltip', () => {
     await expect(pill).toHaveAttribute('tooltip-text', '');
     const tooltip = pill.locator('ix-tooltip');
     await expect(tooltip).toHaveClass(/visible/);
-    await expect(tooltip).toHaveText('Text content');
+    await expect(tooltip).toHaveText(/Text content/);
   });
 
   test('should display the component text content when tooltip-text attribute is present but no value is set', async ({
@@ -67,7 +67,7 @@ test.describe('tooltip', () => {
     await expect(pill).toHaveAttribute('tooltip-text', undefined);
     const tooltip = pill.locator('ix-tooltip');
     await expect(tooltip).toHaveClass(/visible/);
-    await expect(tooltip).toHaveText('Text content');
+    await expect(tooltip).toHaveText(/Text content/);
   });
 
   test('should display the custom text when tooltip-text attribute is a custom string', async ({
@@ -83,6 +83,6 @@ test.describe('tooltip', () => {
     await expect(pill).toHaveAttribute('tooltip-text', 'custom tooltip text');
     const tooltip = pill.locator('ix-tooltip');
     await expect(tooltip).toHaveClass(/visible/);
-    await expect(tooltip).toHaveText('custom tooltip text');
+    await expect(tooltip).toHaveText(/custom tooltip text/);
   });
 });

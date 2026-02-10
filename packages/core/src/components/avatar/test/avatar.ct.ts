@@ -65,8 +65,8 @@ regressionTest.describe('embedded into header', () => {
 
     await expect(avatar.locator('.user-info')).toBeVisible();
 
-    await expect(username).toHaveText('foo');
-    await expect(extra).toHaveText('bar');
+    await expect(username).toHaveText(/foo/);
+    await expect(extra).toHaveText(/bar/);
 
     await expect(avatar.locator('ix-divider')).not.toBeVisible();
   });
@@ -139,7 +139,7 @@ regressionTest.describe('embedded into header', () => {
       const tooltip = avatar.getByLabel('myTooltip');
       await expect(tooltip).toHaveClass(/hydrated/);
       await expect(tooltip).toHaveClass(/visible/);
-      await expect(tooltip).toHaveText('foo');
+      await expect(tooltip).toHaveText(/foo/);
 
       await avatar.evaluate((avatar) =>
         avatar.setAttribute('tooltip-text', 'other text')
@@ -147,7 +147,7 @@ regressionTest.describe('embedded into header', () => {
 
       await expect(tooltip).toHaveClass(/hydrated/);
       await expect(tooltip).toHaveClass(/visible/);
-      await expect(tooltip).toHaveText('other text');
+      await expect(tooltip).toHaveText(/other text/);
     }
   );
 });

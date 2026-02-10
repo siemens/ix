@@ -1,0 +1,7 @@
+- button /Show modal size \d+/
+- button /Show modal size \d+/
+- button /Show modal size \d+/
+- button /Show modal size \d+/
+- button /Show modal size \d+/
+- button "Show modal size full-width"
+- button "Show modal size full-screen"
