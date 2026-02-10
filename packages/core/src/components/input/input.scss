@@ -13,6 +13,10 @@
 @include input.input-field;
 
 :host {
+  input::-ms-reveal {
+    display: none;
+  }
+
   .password-eye {
     margin-left: 0.125rem;
     color: red;
