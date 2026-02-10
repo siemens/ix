@@ -1,0 +1,11 @@
+- navigation "breadcrumbs":
+  - list:
+    - listitem:
+      - button "Item 1":
+        - img
+    - listitem:
+      - button "Item 2":
+        - img
+    - listitem:
+      - button "Item 3":
+        - img

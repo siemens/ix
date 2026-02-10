@@ -28,11 +28,12 @@ import {
   ValidationResults,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
-import { InputElement, SlotEnd, SlotStart } from './input.fc';
+import { InputElement, Slot } from './input.fc';
 import {
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
+  checkInternalValidity,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
@@ -227,6 +228,14 @@ export class Input implements IxInputFieldComponent<string> {
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
+
+    if (
+      this.inputRef.current &&
+      this.touched &&
+      !(this as { isClearing?: boolean }).isClearing
+    ) {
+      checkInternalValidity(this, this.inputRef.current);
+    }
   }
 
   /** @internal */
@@ -310,10 +319,11 @@ export class Input implements IxInputFieldComponent<string> {
           controlRef={this.inputRef}
         >
           <div class="input-wrapper">
-            <SlotStart
-              slotStartRef={this.slotStartRef}
+            <Slot
+              slotRef={this.slotStartRef}
+              position="start"
               onSlotChange={() => this.updatePaddings()}
-            ></SlotStart>
+            ></Slot>
             <InputElement
               id={this.inputId}
               readonly={this.readonly}
@@ -341,8 +351,9 @@ export class Input implements IxInputFieldComponent<string> {
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}
               textAlignment={this.textAlignment}
             ></InputElement>
-            <SlotEnd
-              slotEndRef={this.slotEndRef}
+            <Slot
+              slotRef={this.slotEndRef}
+              position="end"
               onSlotChange={() => this.updatePaddings()}
             >
               <ix-icon-button
@@ -364,7 +375,7 @@ export class Input implements IxInputFieldComponent<string> {
                   this.inputType = 'password';
                 }}
               ></ix-icon-button>
-            </SlotEnd>
+            </Slot>
           </div>
           {!!this.maxLength && this.maxLength > 0 && (
             <ix-typography

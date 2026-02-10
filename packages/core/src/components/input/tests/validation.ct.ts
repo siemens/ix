@@ -64,59 +64,50 @@ test.describe('validation', () => {
       await mount('<ix-number-input required value="10"></ix-number-input>');
 
       const ixInput = page.locator('ix-number-input');
-
       const shadowDomInput = ixInput.locator('input');
 
-      let eventTriggered = ixInput.evaluate(
-        (element, [eventTriggered]) =>
-          new Promise<{
-            event: string;
-            count?: number;
-          }>((resolve) => {
-            element.addEventListener('validityStateChange', () => {
-              eventTriggered++;
-              resolve({
-                event: 'validityStateChange',
-                count: eventTriggered,
-              });
-            });
-
-            element.addEventListener('valueChange', () =>
-              resolve({
-                event: 'valueChange',
-              })
-            );
-          }),
-        [0]
-      );
+      await ixInput.evaluate((el) => {
+        (
+          el as HTMLElement & { __validityChanged?: boolean }
+        ).__validityChanged = false;
+        el.addEventListener('validityStateChange', () => {
+          (
+            el as HTMLElement & { __validityChanged?: boolean }
+          ).__validityChanged = true;
+        });
+      });
 
       await shadowDomInput.fill('15');
       await shadowDomInput.blur();
-      expect((await eventTriggered).event).not.toBe('validityStateChange');
 
-      eventTriggered = ixInput.evaluate(
-        (element) =>
-          new Promise<{
-            event: string;
-            count?: number;
-          }>((resolve) => {
-            element.addEventListener('validityStateChange', () => {
-              resolve({
-                event: 'validityStateChange',
-              });
-            });
+      await expect
+        .poll(async () => {
+          return await ixInput.evaluate(
+            (el) =>
+              (el as HTMLElement & { __validityChanged?: boolean })
+                .__validityChanged
+          );
+        })
+        .toBe(false);
 
-            element.addEventListener('valueChange', () =>
-              resolve({
-                event: 'valueChange',
-              })
-            );
-          })
-      );
+      await ixInput.evaluate((el) => {
+        (
+          el as HTMLElement & { __validityChanged?: boolean }
+        ).__validityChanged = false;
+      });
 
-      await shadowDomInput.fill('');
+      await shadowDomInput.clear();
       await shadowDomInput.blur();
-      expect((await eventTriggered).event).toBe('validityStateChange');
+
+      await expect
+        .poll(async () => {
+          return await ixInput.evaluate(
+            (el) =>
+              (el as HTMLElement & { __validityChanged?: boolean })
+                .__validityChanged
+          );
+        })
+        .toBe(true);
     });
 
     test('number input should be invalid if value is empty and required', async ({
@@ -213,8 +204,7 @@ test.describe('validation', () => {
       const shadowDomInput = ixInput.locator('input');
 
       ixInput.evaluate((el) => {
-        // @ts-ignore
-        el.value = undefined;
+        (el as HTMLElement & { value: number | undefined }).value = undefined;
       });
 
       const buttonPlus = ixInput.getByLabel('increment number');
@@ -285,7 +275,10 @@ test.describe('clear method', () => {
 
       await expect(inputComponent).toHaveClass(/ix-invalid--required/);
 
-      await inputComponent.evaluate((element: any) => element.clear());
+      await inputComponent.evaluate(
+        (element: HTMLElement & { clear: () => Promise<void> }) =>
+          element.clear()
+      );
 
       await expect(inputComponent).not.toHaveClass(/ix-invalid--required/);
       await expect(inputComponent).not.toHaveClass(/ix-invalid/);
@@ -320,7 +313,10 @@ test.describe('clear method', () => {
 
       await expect(inputComponent).toHaveClass(/ix-invalid--required/);
 
-      await inputComponent.evaluate((element: any) => element.clear());
+      await inputComponent.evaluate(
+        (element: HTMLElement & { clear: () => Promise<void> }) =>
+          element.clear()
+      );
 
       await expect(inputComponent).not.toHaveClass(/ix-invalid--required/);
       await expect(inputComponent).not.toHaveClass(/ix-invalid/);

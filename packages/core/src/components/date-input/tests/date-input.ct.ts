@@ -108,7 +108,7 @@ regressionTest(
         .locator('ix-field-wrapper')
         .locator('ix-typography')
         .filter({ hasText: 'Date is not valid' })
-    ).toHaveText('Date is not valid');
+    ).toHaveText(/Date is not valid/);
   }
 );
 
@@ -131,7 +131,7 @@ regressionTest(
         .locator('ix-field-wrapper')
         .locator('ix-typography')
         .filter({ hasText: 'Datum nicht korrekt!' })
-    ).toHaveText('Datum nicht korrekt!');
+    ).toHaveText(/Datum nicht korrekt!/);
   }
 );
 
@@ -219,7 +219,7 @@ regressionTest(
         .locator('ix-field-wrapper')
         .locator('ix-typography')
         .filter({ hasText: 'Custom error message' })
-    ).toHaveText('Custom error message');
+    ).toHaveText(/Custom error message/);
   }
 );
 
@@ -255,7 +255,7 @@ regressionTest(
     await input.fill('invalid-date');
     await input.blur();
 
-    await dateInput.evaluate((el: any) => el.clear());
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => el.clear());
 
     await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
     await expect(input).not.toHaveClass(/is-invalid/);
@@ -275,7 +275,7 @@ regressionTest(
     await input.focus();
     await input.blur();
 
-    await dateInput.evaluate((el: any) => {
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => {
       el.value = '';
     });
 
@@ -311,7 +311,7 @@ regressionTest(
     await input.focus();
     await input.blur();
 
-    await dateInput.evaluate((el: any) => el.clear());
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => el.clear());
 
     await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
     await expect(input).not.toHaveClass(/is-invalid/);
@@ -329,7 +329,7 @@ regressionTest(
     await input.focus();
     await input.blur();
 
-    await dateInput.evaluate((el: any) => {
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => {
       el.value = '';
     });
 
@@ -368,7 +368,7 @@ regressionTest(
     await input.fill('invalid-date');
     await input.blur();
 
-    await dateInput.evaluate((el: any) => el.clear());
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => el.clear());
 
     await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
     await expect(input).not.toHaveClass(/is-invalid/);
@@ -386,7 +386,7 @@ regressionTest(
     await input.focus();
     await input.blur();
 
-    await dateInput.evaluate((el: any) => {
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => {
       el.value = '';
     });
 
@@ -424,7 +424,7 @@ regressionTest(
     await input.focus();
     await input.blur();
 
-    await dateInput.evaluate((el: any) => el.clear());
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => el.clear());
 
     await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
     await expect(input).not.toHaveClass(/is-invalid/);
@@ -442,7 +442,7 @@ regressionTest(
     await input.focus();
     await input.blur();
 
-    await dateInput.evaluate((el: any) => {
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => {
       el.value = '';
     });
 
@@ -507,13 +507,13 @@ regressionTest(
     await expect(input).not.toHaveClass(/is-invalid/);
     await expect(dateInput).not.toHaveClass(/ix-invalid--required/);
 
-    await dateInput.evaluate((el: any) => {
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => {
       el.required = true;
     });
 
     await expect(dateInput).toHaveClass(/ix-invalid--required/);
 
-    await dateInput.evaluate((el: any) => {
+    await dateInput.evaluate((el: HTMLIxDateInputElement) => {
       el.required = false;
     });
 

@@ -11,6 +11,7 @@ import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   IxFormComponent,
   IxInputFieldComponent,
+  isIxInputFieldComponent,
   ValidationResults,
   shouldSuppressInternalValidation,
 } from '../utils/input';
@@ -18,6 +19,27 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 import { generateUUID } from '../utils/uuid';
 import { shakeInput } from './input.animation';
+
+export interface ClearableFormComponent extends HTMLElement {
+  tagName: string;
+  hostElement?: HTMLElement;
+  isInputInvalid?: boolean;
+  isInvalidByRequired?: boolean;
+  isInvalid?: boolean;
+  isValid?: boolean;
+  isInfo?: boolean;
+  isWarning?: boolean;
+  invalidReason?: string;
+  from?: string;
+  time?: string | null;
+  invalidText?: string;
+  value?: string | number | null;
+  syncValidationClasses?: () => void | Promise<void>;
+  isClearing?: boolean;
+  touched?: boolean;
+  formSubmissionAttempt?: boolean;
+  formSubmissionAttempted?: boolean;
+}
 
 export function createIdIfNotExists(
   element: IxFormComponent,
@@ -66,6 +88,11 @@ export async function checkInternalValidity<T>(
     if (eventResult.defaultPrevented) {
       return;
     }
+
+    comp.hostElement.classList.toggle(
+      'ix-invalid--validity-invalid',
+      !newValidityState
+    );
   }
 
   if (comp.value === null || comp.value === undefined) {
@@ -91,7 +118,7 @@ export function onInputBlur<T>(
     throw new Error('Input element is not available');
   }
 
-  input.setAttribute('data-ix-touched', 'true');
+  input.dataset.ixTouched = 'true';
   checkInternalValidity(comp, input);
 }
 
@@ -220,6 +247,118 @@ export function handleSubmitOnEnterKeydown(
   }
 }
 
+function isGroupComponent(component: ClearableFormComponent): boolean {
+  return (
+    component.tagName === 'IX-CHECKBOX-GROUP' ||
+    component.tagName === 'IX-RADIO-GROUP'
+  );
+}
+
+function resetValidationStates(component: ClearableFormComponent): void {
+  component.isInputInvalid = false;
+  component.isInvalidByRequired = false;
+
+  const element = component.hostElement || component;
+  element.classList.remove(
+    'ix-invalid',
+    'ix-invalid--required',
+    'ix-invalid--validity-invalid'
+  );
+
+  const validationProps = {
+    isInvalid: false,
+    isValid: false,
+    isInfo: false,
+    isWarning: false,
+  };
+
+  Object.assign(component, validationProps);
+}
+
+function resetOptionalFields(component: ClearableFormComponent): void {
+  if ('invalidReason' in component) {
+    component.invalidReason = undefined;
+  }
+  if ('from' in component) {
+    component.from = undefined;
+  }
+  if ('time' in component) {
+    component.time = null;
+  }
+
+  if (component.invalidText) {
+    component.invalidText = '';
+  }
+}
+
+function clearGroupValue(
+  comp: HTMLElement,
+  component: ClearableFormComponent,
+  options?: { childSelector?: string }
+): void {
+  if ('value' in component) {
+    component.value = undefined;
+  }
+
+  const element = component.hostElement || comp;
+  element.classList.remove(
+    'ix-invalid',
+    'ix-invalid--required',
+    'ix-invalid--validity-invalid'
+  );
+
+  const selector = options?.childSelector || 'ix-checkbox, ix-radio';
+  const childElements = Array.from(
+    comp.querySelectorAll<HTMLElement & { checked?: boolean }>(selector)
+  );
+
+  childElements.forEach((child) => {
+    if ('checked' in child) {
+      child.checked = false;
+    }
+    child.classList.remove(
+      'ix-invalid',
+      'ix-invalid--required',
+      'ix-invalid--validity-invalid'
+    );
+  });
+}
+
+async function clearSingleInputValue<T>(
+  comp: IxInputFieldComponent<T>,
+  emptyValue: T
+): Promise<void> {
+  comp.value = emptyValue;
+
+  await comp.updateFormInternalValue(emptyValue);
+  comp.valueChange.emit(emptyValue);
+}
+
+function initializeClearingState(
+  component: ClearableFormComponent,
+  isGroup: boolean
+): void {
+  component.isClearing = true;
+  component.touched = false;
+
+  if (isGroup) {
+    component.formSubmissionAttempt = false;
+    component.formSubmissionAttempted = false;
+  }
+}
+
+async function finalizeClearingState(
+  component: ClearableFormComponent
+): Promise<void> {
+  if (
+    'syncValidationClasses' in component &&
+    typeof component.syncValidationClasses === 'function'
+  ) {
+    await component.syncValidationClasses();
+  }
+  component.isClearing = false;
+}
+
 export async function clearInputValue<T>(
   comp: IxInputFieldComponent<T> | HTMLElement,
   options?: {
@@ -228,103 +367,20 @@ export async function clearInputValue<T>(
     childSelector?: string;
   }
 ): Promise<void> {
-  const compAny = comp as any;
-  const isGroup =
-    compAny.tagName === 'IX-CHECKBOX-GROUP' ||
-    compAny.tagName === 'IX-RADIO-GROUP';
+  const component = comp as ClearableFormComponent;
+  const isGroup = isGroupComponent(component);
 
-  compAny._isClearing = true;
-  compAny.touched = false;
-
-  if (isGroup) {
-    compAny.formSubmissionAttempt = false;
-    compAny.formSubmissionAttempted = false;
-  }
-
-  compAny.isInputInvalid = false;
-
-  if (!isGroup) {
-    (comp as IxInputFieldComponent<T>).isInvalid = false;
-    (comp as IxInputFieldComponent<T>).isValid = false;
-    (comp as IxInputFieldComponent<T>).isInfo = false;
-    (comp as IxInputFieldComponent<T>).isWarning = false;
-  } else {
-    compAny.isInvalid = false;
-    compAny.isValid = false;
-    compAny.isInfo = false;
-    compAny.isWarning = false;
-  }
-
-  compAny.isInvalidByRequired = false;
-
-  if ('invalidReason' in compAny) {
-    compAny.invalidReason = undefined;
-  }
-  if ('from' in compAny) {
-    compAny.from = undefined;
-  }
-  if ('time' in compAny) {
-    compAny.time = null;
-  }
-
-  if (
-    compAny.invalidText === 'Please select the required field.' ||
-    compAny.invalidText
-  ) {
-    compAny.invalidText = '';
-  }
+  initializeClearingState(component, isGroup);
+  resetValidationStates(component);
+  resetOptionalFields(component);
 
   if (isGroup) {
-    if ('value' in compAny) {
-      compAny.value = undefined;
-    }
-
-    (comp as HTMLElement).classList.remove(
-      'ix-invalid',
-      'ix-invalid--required',
-      'ix-invalid--validity-invalid'
-    );
-
-    const selector = options?.childSelector || 'ix-checkbox, ix-radio';
-    const childElements = Array.from(
-      (comp as HTMLElement).querySelectorAll(selector)
-    ) as Array<HTMLElement & { checked?: boolean }>;
-
-    childElements.forEach((child) => {
-      if ('checked' in child) {
-        child.checked = false;
-      }
-      child.classList.remove(
-        'ix-invalid',
-        'ix-invalid--required',
-        'ix-invalid--validity-invalid'
-      );
-    });
-  } else {
-    const emptyValue =
-      options?.defaultValue !== undefined ? options.defaultValue : ('' as T);
-    compAny.value = emptyValue;
-
-    if ('updateFormInternalValue' in compAny) {
-      await (comp as IxInputFieldComponent<T>).updateFormInternalValue(
-        emptyValue
-      );
-    }
-    if ('valueChange' in compAny && compAny.valueChange?.emit) {
-      (comp as IxInputFieldComponent<T>).valueChange.emit(emptyValue);
-    }
+    clearGroupValue(comp as HTMLElement, component, options);
+  } else if (isIxInputFieldComponent<T>(comp)) {
+    const emptyValue = options?.defaultValue ?? ('' as T);
+    await clearSingleInputValue(comp, emptyValue);
   }
 
-  if (options?.additionalCleanup) {
-    options.additionalCleanup();
-  }
-
-  if (
-    'syncValidationClasses' in compAny &&
-    typeof compAny.syncValidationClasses === 'function'
-  ) {
-    await compAny.syncValidationClasses();
-  }
-
-  compAny._isClearing = false;
+  options?.additionalCleanup?.();
+  await finalizeClearingState(component);
 }
