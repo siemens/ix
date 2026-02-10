@@ -1681,10 +1681,6 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-          * The id of the form element that the label is associated with
-         */
-        "htmlForLabel"?: string;
-        /**
           * Info text for the field component
          */
         "infoText"?: string;
@@ -7788,10 +7784,6 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-          * The id of the form element that the label is associated with
-         */
-        "htmlForLabel"?: string;
-        /**
           * Info text for the field component
          */
         "infoText"?: string;
@@ -10956,7 +10948,6 @@ declare namespace LocalJSX {
         "isWarning": boolean;
         "showTextAsTooltip": boolean;
         "required": boolean;
-        "htmlForLabel": string;
     }
     interface IxFilterChipAttributes {
         "disabled": boolean;

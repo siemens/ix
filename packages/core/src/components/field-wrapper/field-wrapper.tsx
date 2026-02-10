@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, Element, Host, Prop, h } from '@stencil/core';
+import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
 import { FieldWrapperInterface } from '../utils/input';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { hasAnyText, HelperText } from './helper-text-util';
@@ -81,11 +81,6 @@ export class FieldWrapper implements FieldWrapperInterface {
   @Prop() required: boolean = false;
 
   /**
-   * The id of the form element that the label is associated with
-   */
-  @Prop() htmlForLabel?: string;
-
-  /**
    * The control element that the label is associated with
    */
   @Prop() controlRef?:
@@ -94,6 +89,25 @@ export class FieldWrapper implements FieldWrapperInterface {
     | MakeRef<HTMLTextAreaElement>;
 
   private readonly slotRef = makeRef<HTMLDivElement>();
+
+  componentDidLoad() {
+    this.syncAriaLabel();
+  }
+
+  @Watch('label')
+  syncAriaLabel() {
+    if (!this.controlRef) {
+      return;
+    }
+
+    this.controlRef.waitForCurrent().then((el) => {
+      if (this.label) {
+        el.setAttribute('aria-label', this.label);
+      } else {
+        el.removeAttribute('aria-label');
+      }
+    });
+  }
 
   render() {
     const textOptions = {
@@ -113,7 +127,6 @@ export class FieldWrapper implements FieldWrapperInterface {
           <div class="field-top">
             <ix-field-label
               required={this.required}
-              htmlFor={this.htmlForLabel}
               controlRef={this.controlRef}
               isInvalid={this.isInvalid}
             >
