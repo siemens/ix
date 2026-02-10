@@ -31,7 +31,7 @@
     "ionic-test-app": "workspace:*",
     "mustache": "^4.2.0",
     "react-test-app": "workspace:*",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.2",
     "storybook-docs": "workspace:*",
     "tsx": "^4.15.4",
     "typedoc": "^0.27.9",

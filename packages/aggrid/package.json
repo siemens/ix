@@ -43,7 +43,7 @@
     "ag-grid-community-34": "npm:ag-grid-community@^34.3.0",
     "ag-grid-community": "^33.3.2",
     "http-server": "^14.1.1",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.2",
     "rollup-plugin-import-css": "^4.0.1",
     "rollup": "^4.43.0",
     "typescript": "^5.8.3",
