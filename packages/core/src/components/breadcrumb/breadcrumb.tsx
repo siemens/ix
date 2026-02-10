@@ -6,7 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import Animation from '../utils/animation';
 
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import {
@@ -24,7 +23,6 @@ import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { Mixin } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { animate } from 'animejs';
 
 let sequenceId = 0;
 const createId = (prefix: string = 'breadcrumb-') => {
@@ -89,9 +87,6 @@ export class Breadcrumb extends Mixin() {
 
   @State() shouldRenderNextDropdown = false;
 
-  private readonly nextDropdownButtonRef =
-    makeRef<HTMLIxDropdownButtonElement>();
-
   private mutationObserver?: MutationObserver;
   private inheritAriaAttributes: A11yAttributes = {};
 
@@ -144,10 +139,6 @@ export class Breadcrumb extends Mixin() {
 
     this.shouldRenderNextDropdown = this.nextItems.length !== 0;
     this.items = updatedItems;
-
-    if (this.shouldRenderNextDropdown) {
-      this.animationFadeIn();
-    }
   }
 
   private getItems() {
@@ -157,16 +148,6 @@ export class Breadcrumb extends Mixin() {
   @Watch('isNextDropdownExpanded')
   onNextDropdownExpandedChange() {
     this.onChildMutation();
-  }
-
-  async animationFadeIn() {
-    const dropdownRef = await this.nextDropdownButtonRef.waitForCurrent();
-    animate(dropdownRef, {
-      duration: Animation.defaultTime,
-      opacity: [0, 1],
-      translateX: ['-100%', '0%'],
-      easing: 'linear',
-    });
   }
 
   override render() {
@@ -213,7 +194,6 @@ export class Breadcrumb extends Mixin() {
 
         {this.shouldRenderNextDropdown && (
           <ix-dropdown-button
-            ref={this.nextDropdownButtonRef}
             label={labelLastItem.label ?? labelLastItem.innerText}
             class="next-button"
             variant="tertiary"
