@@ -168,9 +168,6 @@ export class CheckboxGroup
 
   private clearValidationState() {
     this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
-    if (this.invalidText) {
-      this.invalidText = '';
-    }
     this.checkboxElements.forEach((el: any) => {
       el.classList.remove('ix-invalid', 'ix-invalid--required');
     });
@@ -196,7 +193,6 @@ export class CheckboxGroup
       hasAnyChecked,
       touched,
       formSubmissionAttempt,
-      invalidText,
       hostElement,
       clearValidationState,
       updateValidationClasses,
@@ -230,15 +226,8 @@ export class CheckboxGroup
     hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
     if (isRequiredInvalid) {
       hostElement.classList.add('ix-invalid');
-      this.invalidText =
-        invalidText && invalidText.trim().length > 0
-          ? invalidText
-          : 'Please select the required field.';
     } else {
       hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
-      if (invalidText === 'Please select the required field.') {
-        this.invalidText = '';
-      }
     }
     if (!isFormNoValidate(hostElement)) {
       updateValidationClasses(

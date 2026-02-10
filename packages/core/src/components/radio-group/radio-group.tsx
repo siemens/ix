@@ -238,8 +238,7 @@ export class RadiobuttonGroup
   private clearValidationState() {
     clearRadioGroupValidationState(
       this.hostElement,
-      this.radiobuttonElements as HTMLElement[],
-      this.invalidText
+      this.radiobuttonElements as HTMLElement[]
     );
   }
 
@@ -263,7 +262,6 @@ export class RadiobuttonGroup
       hasAnyChecked,
       touched,
       formSubmissionAttempted,
-      invalidText,
       hostElement,
       clearValidationState,
       updateValidationClasses,
@@ -300,15 +298,8 @@ export class RadiobuttonGroup
 
     if (isRequiredInvalid) {
       hostElement.classList.add('ix-invalid');
-      this.invalidText =
-        invalidText && invalidText.trim().length > 0
-          ? invalidText
-          : 'Please select the required field.';
     } else {
       hostElement.classList.remove('ix-invalid', 'ix-invalid--required');
-      if (invalidText === 'Please select the required field.') {
-        this.invalidText = '';
-      }
     }
 
     if (!isFormNoValidate(hostElement)) {

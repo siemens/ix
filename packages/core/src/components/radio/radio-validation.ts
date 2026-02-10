@@ -159,16 +159,10 @@ export function hasAnyCheckedRadios(
 
 export function clearRadioGroupValidationState(
   group: HTMLElement,
-  radios: HTMLElement[] | NodeListOf<HTMLElement>,
-  invalidText?: string
+  radios: HTMLElement[] | NodeListOf<HTMLElement>
 ) {
   const radiosArr = Array.from(radios);
   group.classList.remove('ix-invalid--required', 'ix-invalid');
-  if (invalidText) {
-    if (invalidText === 'Please select the required field.') {
-      (group as any).invalidText = '';
-    }
-  }
   radiosArr.forEach((el: any) => {
     el.classList.remove('ix-invalid', 'ix-invalid--required');
   });
