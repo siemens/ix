@@ -234,7 +234,7 @@ regressionTest.describe('keyboard navigation', () => {
 
     await page.keyboard.press('ArrowDown');
     await expect(page.getByLabel('Option 3')).not.toBeChecked();
-     await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByLabel('Option 4')).toBeChecked();
 
     await page.keyboard.press('ArrowRight');
