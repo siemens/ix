@@ -43,6 +43,9 @@ import {
 let inputIds = 0;
 
 /**
+ *
+ * @figma-main-component-id 42365:39459, 42365:42743
+ *
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input

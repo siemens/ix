@@ -1951,6 +1951,7 @@ export namespace Components {
         "variant": ButtonVariant1;
     }
     /**
+     * @figma-main-component-id 42365:39459, 42365:42743
      * @form-ready 
      */
     interface IxInput {
@@ -5118,6 +5119,7 @@ declare global {
         "ixBlur": void;
     }
     /**
+     * @figma-main-component-id 42365:39459, 42365:42743
      * @form-ready 
      */
     interface HTMLIxInputElement extends Components.IxInput, HTMLStencilElement {
@@ -8006,6 +8008,7 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant1;
     }
     /**
+     * @figma-main-component-id 42365:39459, 42365:42743
      * @form-ready 
      */
     interface IxInput {
@@ -10589,6 +10592,7 @@ declare module "@stencil/core" {
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
             /**
+             * @figma-main-component-id 42365:39459, 42365:42743
              * @form-ready 
              */
             "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;

@@ -1,72 +1,24 @@
 {
   "folders": [
     {
-      "name": "@siemens/ix",
-      "path": "./packages/core"
+      "name": "Library",
+      "path": "./packages"
     },
     {
-      "name": "@siemens/ix-react",
-      "path": "./packages/react"
+      "name": "Examples",
+      "path": "./examples"
     },
     {
-      "name": "@siemens/ix-angular",
-      "path": "./packages/angular"
+      "name": "Blocks",
+      "path": "./blocks"
     },
     {
-      "name": "@siemens/ix-vue (experimental)",
-      "path": "./packages/vue"
+      "name": "Testing",
+      "path": "./testing"
     },
     {
-      "name": "@siemens/ix-aggrid",
-      "path": "./packages/aggrid"
-    },
-    {
-      "name": "@siemens/ix-echarts",
-      "path": "./packages/echarts"
-    },
-    {
-      "name": "@siemens/ix-documentation",
-      "path": "./packages/documentation"
-    },
-    {
-      "name": "html-test-app",
-      "path": "./packages/html-test-app"
-    },
-    {
-      "name": "react-test-app",
-      "path": "./packages/react-test-app"
-    },
-    {
-      "name": "nextjs-test-app",
-      "path": "./packages/nextjs-test-app"
-    },
-    {
-      "name": "angular-test-app",
-      "path": "./packages/angular-test-app"
-    },
-    {
-      "name": "angular-test-app (standalone)",
-      "path": "./packages/angular-standalone-test-app"
-    },
-    {
-      "name": "vue-test-app",
-      "path": "./packages/vue-test-app"
-    },
-    {
-      "name": "ionic-test-app",
-      "path": "./packages/ionic-test-app"
-    },
-    {
-      "name": "eslint-config",
-      "path": "./packages/eslint-config-ix"
-    },
-    {
-      "name": "figma-plugin",
-      "path": "./packages/figma-plugin"
-    },
-    {
-      "name": "storybook",
-      "path": "./packages/storybook-docs"
+      "name": "Tooling",
+      "path": "./tooling"
     },
     {
       "name": "root",

@@ -19,6 +19,7 @@ export interface ComponentIndexItem {
   hasSlots: boolean;
   dependencies: string[];
   dependents: string[];
+  figmaMainComponentIds: string[];
 }
 
 export interface ComponentIndex {
@@ -45,6 +46,10 @@ export const generateComponentIndex = (docs: JsonDocs): ComponentIndex => {
       hasSlots: component.slots.length > 0,
       dependencies: component.dependencies || [],
       dependents: component.dependents || [],
+      figmaMainComponentIds:
+        component.docsTags
+          ?.filter((tag) => tag.name === 'figma-main-component-id')
+          .flatMap((tag) => tag.text!.split(',').map((id) => id.trim())) || [],
     };
   });
 

@@ -208,3 +208,111 @@ export function getComponentMarkdownPath(componentTag: string): string {
     'readme.md'
   );
 }
+
+export interface FigmaComponentMapping {
+  componentTag: string;
+  figmaMainComponentIds: string[];
+}
+
+/**
+ * Find IX components by Figma main component ID or get Figma main component IDs for a specific IX component
+ */
+export async function getFigmaComponentMapping(query: string): Promise<{
+  queryType: 'figma-id' | 'component-tag';
+  results: FigmaComponentMapping[];
+}> {
+  try {
+    const pkgRoot = getPackageRoot();
+    const indexPath = path.join(pkgRoot, 'component-index.json');
+    const index = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
+
+    // Check if query looks like a Figma main component ID (e.g., "42365:39459" or "42365-39459")
+    const isFigmaId = /^\d+[:-]\d+$/.test(query);
+
+    if (isFigmaId) {
+      // Normalize the Figma ID format (both : and - are valid separators)
+      const normalizedQuery = query.replace('-', ':');
+
+      // Search for components that have this Figma main component ID
+      const matchingComponents = index.components
+        .filter(
+          (c: any) =>
+            c.figmaMainComponentIds &&
+            c.figmaMainComponentIds.some(
+              (id: string) => id === normalizedQuery || id === query
+            )
+        )
+        .map((c: any) => ({
+          componentTag: c.tag,
+          figmaMainComponentIds: c.figmaMainComponentIds,
+        }));
+
+      return {
+        queryType: 'figma-id',
+        results: matchingComponents,
+      };
+    } else {
+      // Search by component tag
+      const component = index.components.find(
+        (c: any) => c.tag === query || c.tag === `ix-${query}`
+      );
+
+      if (!component) {
+        return {
+          queryType: 'component-tag',
+          results: [],
+        };
+      }
+
+      return {
+        queryType: 'component-tag',
+        results: [
+          {
+            componentTag: component.tag,
+            figmaMainComponentIds: component.figmaMainComponentIds || [],
+          },
+        ],
+      };
+    }
+  } catch (error) {
+    console.error('Error searching Figma main component mapping:', error);
+    throw new Error(
+      `Failed to search Figma main component mapping: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
+  }
+}
+
+/**
+ * List all components that have Figma main component IDs
+ */
+export async function listComponentsWithFigmaIds(): Promise<
+  FigmaComponentMapping[]
+> {
+  try {
+    const pkgRoot = getPackageRoot();
+    const indexPath = path.join(pkgRoot, 'component-index.json');
+    const index = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
+
+    return index.components
+      .filter(
+        (c: any) =>
+          c.figmaMainComponentIds && c.figmaMainComponentIds.length > 0
+      )
+      .map((c: any) => ({
+        componentTag: c.tag,
+        figmaMainComponentIds: c.figmaMainComponentIds,
+      }));
+  } catch (error) {
+    console.error(
+      'Error listing components with Figma main component IDs:',
+      error
+    );
+    throw new Error(
+      `Failed to list components with Figma main component IDs: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
+  }
+}
