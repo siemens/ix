@@ -207,7 +207,7 @@ pnpm start --filter html-test-app       # Web Components examples
 #### Angular
 
 1. Run `pnpm start --filter angular-test-app` from within the `root` directory.
-2. A browser should open at `http://localhost:4200/preview/button`.
+2. A browser should open at `http://localhost:4200/preview/buttons`.
 3. Edit or add an example in `packages/angular-test-app/src/preview-examples`.
 4. Navigate to `http://localhost:4200/preview/{your-example-file-name}` to review your changes.
 
