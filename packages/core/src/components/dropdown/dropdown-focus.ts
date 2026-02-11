@@ -90,7 +90,7 @@ export const isTriggerElement = (element: HTMLElement) =>
   element.hasAttribute('data-ix-dropdown-trigger');
 
 export const configureKeyboardInteraction = (
-  dropdownElement: HTMLElement,
+  getItemsHost: () => HTMLElement,
   options: {
     getActiveElement?: () => HTMLElement | null;
     setItemActive?: (item: HTMLElement) => void;
@@ -119,7 +119,7 @@ export const configureKeyboardInteraction = (
     options.getActiveElement ??
     (() => {
       return queryElements(
-        dropdownElement,
+        getItemsHost(),
         activeQuerySelector
       )[0] as HTMLElement | null;
     });
@@ -128,7 +128,7 @@ export const configureKeyboardInteraction = (
     options.setItemActive ?? ((item: HTMLElement) => focusItem(item));
 
   const getEventListenerTarget =
-    options.getEventListenerTarget ?? (() => dropdownElement);
+    options.getEventListenerTarget ?? (() => getItemsHost());
 
   const callback = async (ev: KeyboardEvent) => {
     const activeElement = getActiveElement();
@@ -136,9 +136,9 @@ export const configureKeyboardInteraction = (
 
     try {
       // Collect items from slots if they exist
-      if (dropdownElement.querySelectorAll('slot').length > 0) {
+      if (getItemsHost().querySelectorAll('slot').length > 0) {
         const slotElements = Array.from(
-          dropdownElement.querySelectorAll('slot')
+          getItemsHost().querySelectorAll('slot')
         );
         items = slotElements.flatMap((slot) =>
           Array.from(
@@ -157,7 +157,7 @@ export const configureKeyboardInteraction = (
       items = [
         ...items,
         ...Array.from(
-          dropdownElement.querySelectorAll<HTMLElement>(querySelector)
+          getItemsHost().querySelectorAll<HTMLElement>(querySelector)
         ),
       ];
     } catch (e) {
@@ -172,7 +172,7 @@ export const configureKeyboardInteraction = (
 
     switch (ev.key) {
       case 'ArrowLeft': {
-        dropdownElement.dispatchEvent(
+        getItemsHost().dispatchEvent(
           new CustomEvent('ix-close-submenu', {
             bubbles: true,
             cancelable: true,

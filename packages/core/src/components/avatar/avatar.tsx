@@ -16,12 +16,23 @@ import {
   Prop,
   readTask,
   State,
+  Mixin,
+  Build,
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
-import { Mixin } from '../utils/internal/component';
+import { FocusProxy, updateFocusProxyList } from '../utils/focus/focus-proxy';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  ComponentIdMixin,
+  ComponentIdMixinContract,
+} from '../utils/internal/mixins/id.mixin';
+import {
+  AriaActiveDescendantMixin,
+  AriaActiveDescendantMixinContract,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 
 function DefaultAvatar(
   props: Readonly<{ initials?: string; a11yLabel?: string }>
@@ -120,7 +131,10 @@ function UserInfo(
   styleUrl: 'avatar.scss',
   shadow: true,
 })
-export class Avatar extends Mixin() {
+export class Avatar
+  extends Mixin(...DefaultMixins, ComponentIdMixin, AriaActiveDescendantMixin)
+  implements ComponentIdMixinContract, AriaActiveDescendantMixinContract
+{
   @Element() override hostElement!: HTMLIxAvatarElement;
 
   /**
@@ -172,14 +186,30 @@ export class Avatar extends Mixin() {
   @State() isClosestApplicationHeader = false;
   @State() hasSlottedElements = false;
 
+  @State() dropdownShow = false;
+
   private slotElement?: HTMLSlotElement;
   private dropdownElement?: HTMLIxDropdownElement;
+
+  private observeChildrenChange?: MutationObserver;
 
   private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
   override componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
     this.isClosestApplicationHeader = closest !== null;
+
+    this.observeChildrenChange = new MutationObserver(() => {
+      this.updateProxyList();
+    });
+    this.observeChildrenChange.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  override componentDidLoad(): void {
+    this.updateProxyList();
   }
 
   private async slottedChanged() {
@@ -203,6 +233,43 @@ export class Avatar extends Mixin() {
     if (event.target === this.dropdownElement) {
       event.preventDefault();
     }
+  }
+
+  override getControllingAriaElement():
+    | Promise<HTMLElement>
+    | HTMLElement
+    | null {
+    return this.hostElement.shadowRoot!.querySelector<HTMLElement>(
+      `[aria-controls="${this.getHostElementId()}-proxy-listbox"]`
+    );
+  }
+
+  override isAriaActiveDescendantActive(): boolean {
+    return this.dropdownShow;
+  }
+
+  override getAriaActiveDescendantProxyItemId(): string | boolean {
+    return 'proxy-listbox-item';
+  }
+
+  private updateProxyList() {
+    const items = this.hostElement.querySelectorAll('ix-dropdown-item');
+    const proxyList = this.hostElement.shadowRoot!.querySelector(
+      '.proxy-list'
+    ) as HTMLUListElement | null;
+
+    if (!proxyList) {
+      Build.isDev &&
+        console.warn('ix-avatar - focus proxy list element not found');
+      return;
+    }
+
+    updateFocusProxyList(proxyList, Array.from(items), (item, proxyElement) => {
+      proxyElement.role = 'menuitem';
+      proxyElement.innerText = item.label ?? item.textContent ?? '';
+      proxyElement.ariaLabel =
+        item.ariaLabel ?? item.label ?? item.textContent ?? '';
+    });
   }
 
   override render() {
@@ -244,6 +311,11 @@ export class Avatar extends Mixin() {
             selected={false}
             type="button"
             variant="tertiary"
+            ariaAttributes={{
+              role: 'combobox',
+              'aria-controls': `${this.getHostElementId()}-proxy-listbox`,
+              'aria-expanded': a11yBoolean(this.dropdownShow),
+            }}
           >
             {Avatar}
           </BaseButton>
@@ -253,6 +325,7 @@ export class Avatar extends Mixin() {
             class="avatar-dropdown"
             onClick={(e) => this.onDropdownClick(e)}
             onShowChanged={(event) => {
+              this.dropdownShow = event.detail;
               if (event.detail && this.tooltipRef.current) {
                 this.tooltipRef.current.hideTooltip(0);
               }
@@ -260,6 +333,10 @@ export class Avatar extends Mixin() {
             disableFocusTrap
             focusHost={this.hostElement}
           >
+            <FocusProxy
+              hostId={this.getHostElementId()}
+              otherProps={{}}
+            ></FocusProxy>
             {this.username && (
               <Fragment>
                 <UserInfo

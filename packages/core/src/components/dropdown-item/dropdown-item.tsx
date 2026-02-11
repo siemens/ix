@@ -23,7 +23,7 @@ import {
   Prop,
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
-import { a11yBoolean } from '../utils/a11y';
+import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import { IX_FOCUS_VISIBLE } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import {
@@ -117,6 +117,16 @@ export class DropdownItem
 
   override render() {
     const id = this.getHostElementId();
+
+    let submenuAriaAttributes: A11yAttributes = {};
+
+    if (this.isSubMenu) {
+      submenuAriaAttributes = {
+        'aria-haspopup': 'menu',
+        'aria-expanded': 'false',
+      };
+    }
+
     return (
       <Host
         id={id}
@@ -141,6 +151,7 @@ export class DropdownItem
             this.emitItemClick();
           }
         }}
+        {...submenuAriaAttributes}
       >
         <div
           class={{

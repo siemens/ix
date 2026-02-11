@@ -28,6 +28,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { A11yAttributes } from '../utils/a11y';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -42,6 +43,8 @@ import {
   queryElements,
 } from '../utils/focus/focus-utilities';
 import { Mixin } from '../utils/internal/component';
+import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
+import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
   CloseBehavior,
@@ -51,8 +54,6 @@ import {
 } from './dropdown-controller';
 import { configureKeyboardInteraction } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
-import { makeRef } from '../utils/make-ref';
-import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
 
 let sequenceId = 0;
 
@@ -210,6 +211,8 @@ export class Dropdown extends Mixin() implements DropdownInterface {
 
   private triggerElement?: Element;
   private anchorElement?: Element;
+
+  private forwardQueryElement: HTMLElement | null = null;
 
   private dropdownElementId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
@@ -477,6 +480,13 @@ export class Dropdown extends Mixin() implements DropdownInterface {
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (!newShow) {
+      if (
+        this.triggerElement &&
+        this.triggerElement.ariaHasPopup === 'menu' &&
+        this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
+      ) {
+        this.triggerElement.ariaExpanded = 'false';
+      }
       this.cleanupOnHide();
 
       if (this.enableTopLayer) {
@@ -490,7 +500,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     this.registerKeyListener();
     if (!this.disableFocusHandling) {
       this.keyboardNavigationCleanup = configureKeyboardInteraction(
-        this.focusHost ?? this.hostElement,
+        () => this.forwardQueryElement ?? this.focusHost ?? this.hostElement,
         {
           getEventListenerTarget: () =>
             (this.triggerElement as HTMLElement) ??
@@ -506,6 +516,14 @@ export class Dropdown extends Mixin() implements DropdownInterface {
 
     if (!this.disableFocusTrap) {
       this.focusUtilities = addFocusTrap(this.focusHost ?? this.hostElement);
+    }
+
+    if (
+      this.triggerElement &&
+      this.triggerElement.ariaHasPopup === 'menu' &&
+      this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
+    ) {
+      this.triggerElement.ariaExpanded = 'true';
     }
 
     if (this.enableTopLayer) {
@@ -752,6 +770,10 @@ export class Dropdown extends Mixin() implements DropdownInterface {
       dropdownController.getDropdownById(submenuIds[0])!
     );
 
+    this.forwardQueryElement = dropdownController.getDropdownById(
+      submenuIds[0]
+    )!.hostElement;
+
     requestAnimationFrameNoNgZone(() => {
       focusFirstDescendant(
         dropdownController.getDropdownById(submenuIds[0])!.hostElement
@@ -775,6 +797,11 @@ export class Dropdown extends Mixin() implements DropdownInterface {
       if (parentDropdown && activeTriggers.length > 0) {
         const activeTrigger = activeTriggers[0];
         activeTrigger.classList.remove('ix-dropdown-submenu-trigger-active');
+
+        (
+          parentDropdown.hostElement as HTMLIxDropdownElement
+        ).resetForwardQueryElement();
+
         requestAnimationFrameNoNgZone(() => {
           focusElementInContext(activeTrigger, parentDropdown.hostElement);
         });
@@ -782,9 +809,25 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     }
   }
 
+  /**@internal */
+  @Method()
+  async resetForwardQueryElement() {
+    this.forwardQueryElement = null;
+  }
+
   override render() {
+    const ariaAttributes: A11yAttributes = {};
+    if (
+      this.triggerElement &&
+      this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
+    ) {
+      ariaAttributes['aria-labelledby'] = this.triggerElement.id;
+      ariaAttributes['aria-owns'] = this.triggerElement.id;
+      ariaAttributes['role'] = 'menu';
+    }
     return (
       <Host
+        {...ariaAttributes}
         aria-modal="true"
         data-ix-dropdown={this.dropdownElementId}
         data-ix-focus-trap

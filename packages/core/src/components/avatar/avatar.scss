@@ -13,6 +13,8 @@
 @use 'mixins/hover';
 @use 'mixins/scrollbar';
 
+@use '../utils/focus/focus-proxy' as focus-proxy;
+
 :host {
   display: flex;
   position: relative;
@@ -123,4 +125,6 @@
   .avatar {
     transform: scale(0.8);
   }
+
+  @include focus-proxy.focus-proxy();
 }

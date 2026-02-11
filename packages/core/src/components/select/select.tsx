@@ -50,6 +50,7 @@ import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
+import { FocusProxy, updateFocusProxyList } from '../utils/focus/focus-proxy';
 
 let selectId = 0;
 
@@ -775,45 +776,32 @@ export class Select
     if (this.focusableItems.length === 0) {
       return;
     }
-    const firstItem = this.focusableItems[0];
 
-    if (ariaActiveDescendantHelper) {
-      const top =
-        firstItem.getBoundingClientRect().top -
-        firstItem.getBoundingClientRect().height +
-        8;
-
-      ariaActiveDescendantHelper.innerHTML = '';
-      ariaActiveDescendantHelper.style.top = top + 'px';
-      ariaActiveDescendantHelper.style.padding = '0px';
-      ariaActiveDescendantHelper.style.margin = '0px';
-      ariaActiveDescendantHelper.innerHTML = '';
-      this.focusableItems.forEach((item) => {
-        const li = document.createElement('li');
-        li.id = item.id + '-proxy-listbox-item';
-        li.role = 'option';
-        li.innerText = item.label ?? '';
-        li.ariaLabel = item.getAttribute('aria-label') || item.label || '';
-        li.ariaSelected = item.getAttribute('aria-selected') || 'false';
-        li.ariaChecked = item.getAttribute('aria-checked') || 'false';
-
+    updateFocusProxyList(
+      ariaActiveDescendantHelper!,
+      this.focusableItems,
+      (item, proxyElement) => {
+        proxyElement.role = 'option';
+        proxyElement.innerText = item.label ?? '';
+        proxyElement.ariaLabel =
+          item.getAttribute('aria-label') || item.label || '';
+        proxyElement.ariaSelected =
+          item.getAttribute('aria-selected') || 'false';
+        proxyElement.ariaChecked = item.getAttribute('aria-checked') || 'false';
         // Forward clicks from the proxy element to the actual dropdown item
-        li.addEventListener('click', (event) => {
+        proxyElement.addEventListener('click', (event) => {
           event.stopPropagation();
           event.preventDefault();
           item.click();
         });
-        ariaActiveDescendantHelper.appendChild(li);
-
         if (this.addItemElement === item) {
-          li.ariaLabel = `${this.ariaLabelAddItem}: ${item.label}`;
+          proxyElement.ariaLabel = `${this.ariaLabelAddItem}: ${item.label}`;
         }
-
         // Bad for building playwright selectors but necessary to ensure that assistive technologies
         // can announce the items in the dropdown with their respective aria-labels
         item.ariaHidden = 'true';
-      });
-    }
+      }
+    );
   }
 
   override render() {
@@ -1017,15 +1005,14 @@ export class Select
               this.updateSelection();
             }}
           ></slot>
-          <ul
-            class="proxy-list"
-            role="listbox"
-            id={`${this.hostId}-proxy-listbox`}
-            aria-hidden={a11yBoolean(!this.dropdownShow)}
-            aria-labelledby={`${this.hostId}-input`}
-            aria-multiselectable={a11yBoolean(this.isMultipleMode)}
-            hidden={this.disabled || this.readonly}
-          ></ul>
+          <FocusProxy
+            hostId={this.hostId}
+            otherProps={{
+              'aria-hidden': a11yBoolean(!this.dropdownShow),
+              'aria-multiselectable': a11yBoolean(this.isMultipleMode),
+              hidden: this.disabled || this.readonly,
+            }}
+          ></FocusProxy>
           {this.isDropdownEmpty && !this.editable && (
             <div class="select-list-header">{this.i18nNoMatches}</div>
           )}

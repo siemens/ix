@@ -15,6 +15,8 @@
 @use 'mixins/field';
 @use 'mixins/validation/form-component';
 
+@use '../utils/focus/focus-proxy' as focus-proxy;
+
 :host {
   display: inline-block;
   position: relative;
@@ -178,24 +180,7 @@
     display: none !important;
   }
 
-  .proxy-list {
-    all: unset;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    overflow: hidden;
-    color: transparent;
-    opacity: 0;
-    pointer-events: all;
-    z-index: 1000;
-  }
-
-  .proxy-list li {
-    // Make it at least 1px high so that testing tools like playwright can find and click it
-    height: 1px;
-    width: 1px;
-    pointer-events: all;
-  }
+  @include focus-proxy.focus-proxy;
 }
 
 :host(.ix-focused),

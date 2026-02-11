@@ -1408,6 +1408,7 @@ export namespace Components {
           * @default 'fixed'
          */
         "positioningStrategy": 'absolute' | 'fixed';
+        "resetForwardQueryElement": () => Promise<void>;
         /**
           * Show dropdown
           * @default false
