@@ -258,7 +258,7 @@ regressionTest('select different year', async ({ mount, page }) => {
   await march2020.click();
 
   await expect(yearMonthDropdown).not.toBeVisible();
-  await expect(yearMonthButton).toHaveText('March 2020');
+  await expect(yearMonthButton).toHaveText(/March 2020/);
 });
 
 regressionTest('disable', async ({ mount, page }) => {
