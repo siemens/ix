@@ -255,6 +255,7 @@ export function onEnterKeyChangeEmit<T>(
     comp.initialValue = currentValue;
   }
 }
+
 export interface PickerValidityStateTracker {
   lastEmittedPatternMismatch?: boolean;
   lastEmittedValueMissing?: boolean;

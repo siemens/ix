@@ -56,6 +56,7 @@ test.describe('validation', () => {
 
       await expect(ixInput).not.toHaveClass(/ix-invalid--required/);
     });
+
     test('validityStateChange emitted only if validity change', async ({
       mount,
       page,
