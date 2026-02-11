@@ -31,7 +31,6 @@ import {
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
-  onInputBlur,
   checkInternalValidity,
 } from './input.util';
 import type { TextareaResizeBehavior } from './textarea.types';
