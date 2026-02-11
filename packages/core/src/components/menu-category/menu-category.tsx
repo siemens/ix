@@ -18,15 +18,16 @@ import {
   Prop,
   State,
   Watch,
+  Mixin,
 } from '@stencil/core';
 import { animate } from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
-import { Mixin } from '../utils/internal/component';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { IxMenuItemBase } from './../menu-item/menu-item.interface';
 import { createEnterLeaveDebounce } from './enter-leave';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { DefaultMixins } from '../utils/internal/component';
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
@@ -37,7 +38,10 @@ const DefaultAnimationTimeout = 150;
     delegatesFocus: true,
   },
 })
-export class MenuCategory extends Mixin() implements IxMenuItemBase {
+export class MenuCategory
+  extends Mixin(...DefaultMixins)
+  implements IxMenuItemBase
+{
   @Element() override hostElement!: HTMLIxMenuCategoryElement;
 
   /**
@@ -322,7 +326,6 @@ export class MenuCategory extends Mixin() implements IxMenuItemBase {
         </div>
         <ix-dropdown
           closeBehavior={'both'}
-          disableFocusTrap
           show={this.showDropdown}
           onShowChanged={({ detail: dropdownShown }: CustomEvent<boolean>) => {
             this.showDropdown = dropdownShown;
@@ -343,6 +346,7 @@ export class MenuCategory extends Mixin() implements IxMenuItemBase {
           offset={{
             mainAxis: 3,
           }}
+          focusHost={this.hostElement}
           onClick={(e) => {
             if (e.target instanceof HTMLElement) {
               if (e.target.tagName === 'IX-MENU-ITEM') {
@@ -350,6 +354,16 @@ export class MenuCategory extends Mixin() implements IxMenuItemBase {
               } else {
                 e.preventDefault();
               }
+            }
+          }}
+          onFocusout={(event) => {
+            const relatedTarget = event.relatedTarget as HTMLElement | null;
+            if (
+              relatedTarget &&
+              relatedTarget !== this.hostElement &&
+              !this.hostElement.contains(relatedTarget)
+            ) {
+              this.showDropdown = false;
             }
           }}
         >

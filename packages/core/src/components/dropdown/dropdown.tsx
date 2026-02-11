@@ -329,6 +329,8 @@ export class Dropdown extends Mixin() implements DropdownInterface {
 
     if ((event.key === 'Escape' || shouldCloseOnTab) && this.show) {
       dropdownController.dismiss(this);
+      event.stopPropagation();
+      event.preventDefault();
       return;
     }
 
@@ -573,7 +575,6 @@ export class Dropdown extends Mixin() implements DropdownInterface {
     if (!this.disableFocusTrap) {
       // Restore focus to trigger element
       requestAnimationFrameNoNgZone(() => {
-        console.log(this.triggerElement);
         (this.triggerElement as HTMLElement)?.focus();
       });
     }

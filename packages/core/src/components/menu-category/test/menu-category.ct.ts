@@ -6,8 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
-import { regressionTest, test } from '@utils/test';
+import { regressionTest, test, expect } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -327,11 +326,11 @@ regressionTest('show category if item are focused', async ({ mount, page }) => {
   const item2 = categoryElement.locator('ix-menu-item').nth(1);
 
   // Focus trapping inside dropdown
-  await expect(item1).toBeFocused();
+  await expect(item1).toHaveVisibleFocus();
   await page.keyboard.press('Tab');
-  await expect(item2).toBeFocused();
+  await expect(item2).toHaveVisibleFocus();
   await page.keyboard.press('Tab');
-  await expect(item1).toBeFocused();
+  await expect(item1).toHaveVisibleFocus();
 
   await page.keyboard.press('Escape');
   await expect(dropdown).not.toBeVisible();

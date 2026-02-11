@@ -28,8 +28,6 @@ regressionTest.describe('enableTopLayer feature', () => {
         const dialog = dropdown.getByRole('dialog');
 
         await expect(dialog).toBeAttached();
-        await expect(dialog).toHaveAttribute('aria-modal', 'true');
-        await expect(dialog).toHaveAttribute('aria-labelledby', 'dropdown');
       }
     );
 

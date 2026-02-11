@@ -185,23 +185,10 @@ export class MenuItem implements IxMenuItemBase {
       };
     }
 
-    // let tabIndex = this.disabled || this.isHostedInsideCategory ? -1 : 0;
-
-    let tabIndex = 0;
-
-    if (this.menuExpanded === false && this.isHostedInsideCategory) {
-      tabIndex = -1;
-    }
-
-    if (this.disabled) {
-      tabIndex = -1;
-    }
-
     const hostA11y = a11yHostAttributes(this.hostElement);
 
     const commonAttributes = {
       class: 'tab',
-      tabIndex: tabIndex,
       ...hostA11y,
     };
 
@@ -235,6 +222,7 @@ export class MenuItem implements IxMenuItemBase {
           'ix-focusable': !this.disabled,
         }}
         aria-disabled={this.disabled ? 'true' : null}
+        tabIndex={this.disabled ? -1 : 0}
         {...extendedAttributes}
       >
         {this.href ? (

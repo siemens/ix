@@ -31,20 +31,67 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <ix-breadcrumb visible-item-count="4">
-      <ix-breadcrumb-item>Home1</ix-breadcrumb-item>
-      <ix-breadcrumb-item>Home2</ix-breadcrumb-item>
-      <ix-breadcrumb-item>Home3</ix-breadcrumb-item>
-      <ix-breadcrumb-item>Home4</ix-breadcrumb-item>
-      <ix-breadcrumb-item>Home5</ix-breadcrumb-item>
-      <ix-breadcrumb-item>Home6</ix-breadcrumb-item>
-      <ix-breadcrumb-item>Home7</ix-breadcrumb-item>
-      <ix-breadcrumb-item>Library</ix-breadcrumb-item>
-      <ix-breadcrumb-item>Data</ix-breadcrumb-item>
-    </ix-breadcrumb>
-    <script>
-      const breadcrumb = document.querySelector('ix-breadcrumb');
-      breadcrumb.nextItems = ['Next 1', 'Next 2', 'Next 3'];
-    </script>
+    <ix-application>
+      <ix-application-header name="My Header">
+        <ix-button>BTEst</ix-button>
+        <ix-button>BTEst1</ix-button>
+        <button>BTEst2</button>
+        <ix-dropdown-button label="BTest2">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 3"></ix-dropdown-item>
+        </ix-dropdown-button>
+        <ix-avatar>
+          <ix-dropdown-item label="TEst 1"></ix-dropdown-item>
+          <ix-dropdown-item label="TEst 2"></ix-dropdown-item>
+          <ix-dropdown-item label="TEst 3"></ix-dropdown-item>
+          <ix-dropdown-item id="id4" label="TEst 4"></ix-dropdown-item>
+
+          <ix-dropdown trigger="id4" enable-top-layer>
+            <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+            <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+            <ix-dropdown-item label="Item 3"></ix-dropdown-item>
+          </ix-dropdown>
+        </ix-avatar>
+      </ix-application-header>
+
+      <ix-menu>
+        <ix-menu-item>Menu item 1</ix-menu-item>
+        <ix-menu-item>Menu item 2</ix-menu-item>
+        <ix-menu-item>Menu item 3</ix-menu-item>
+        <ix-menu-category label="Category 1">
+          <ix-menu-item>Menu item 4</ix-menu-item>
+          <ix-menu-item>Menu item 5</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+
+      <ix-content>
+        <ix-select>
+          <ix-select-item value="1" label="Option 1"></ix-select-item>
+          <ix-select-item value="2" label="Option 2"></ix-select-item>
+          <ix-select-item value="3" label="Option 3"></ix-select-item>
+        </ix-select>
+        <ix-dropdown-button label="Dropdown button">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 3"></ix-dropdown-item>
+        </ix-dropdown-button>
+        <ix-breadcrumb visible-item-count="4">
+          <ix-breadcrumb-item>Home1</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Home2</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Home3</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Home4</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Home5</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Home6</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Home7</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Library</ix-breadcrumb-item>
+          <ix-breadcrumb-item>Data</ix-breadcrumb-item>
+        </ix-breadcrumb>
+        <script>
+          const breadcrumb = document.querySelector('ix-breadcrumb');
+          breadcrumb.nextItems = ['Next 1', 'Next 2', 'Next 3'];
+        </script>
+      </ix-content>
+    </ix-application>
   </body>
 </html>
