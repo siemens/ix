@@ -8,6 +8,10 @@
  */
 
 import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -20,10 +24,6 @@ import {
   Watch,
 } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import {
-  iconChevronLeftSmall,
-  iconChevronRightSmall,
-} from '@siemens/ix-icons/icons';
 
 type ManagedClass =
   (typeof TAB_MANAGED_CLASSES)[keyof typeof TAB_MANAGED_CLASSES];
@@ -109,13 +109,11 @@ export class Tabs {
   private classObserver?: MutationObserver;
   private updateScheduled = false;
 
-  private clickAction: {
-    timeout: NodeJS.Timeout | null;
-    isClick: boolean;
-  } = {
-    timeout: null,
+  private clickAction = {
     isClick: true,
   };
+
+  private isDragging = false;
 
   @Listen('resize', { target: 'window' })
   onWindowResize() {
@@ -376,7 +374,8 @@ export class Tabs {
   }
 
   private clickTab(index: number) {
-    if (!this.clickAction.isClick || this.dragStop()) {
+    // Don't select if it was a drag
+    if (!this.clickAction.isClick) {
       return;
     }
 
@@ -388,44 +387,62 @@ export class Tabs {
     this.setSelected(index);
   }
 
-  private dragStart(element: HTMLIxTabItemElement, event: MouseEvent) {
+  private dragStart(element: HTMLIxTabItemElement, event: PointerEvent) {
     if (!this.showArrows()) return;
     if (event.button > 0) return;
+    if (this.isDragging) return;
 
-    this.clickAction.timeout =
-      this.clickAction.timeout === null
-        ? setTimeout(() => (this.clickAction.isClick = false), 300)
-        : null;
+    this.isDragging = true;
+    this.clickAction.isClick = true;
 
-    const tabPositionX = parseFloat(window.getComputedStyle(element).left);
-    const mousedownPositionX = event.clientX;
-    const move = (event: MouseEvent) =>
-      this.dragMove(event, tabPositionX, mousedownPositionX);
-    const windowClick = () => {
-      window.removeEventListener('mousemove', move, false);
-      window.removeEventListener('click', windowClick, false);
+    element.setPointerCapture(event.pointerId);
+
+    const pointerdownPositionX = event.clientX;
+    const initialScrollAmount = this.currentScrollAmount;
+
+    const move = (event: PointerEvent) =>
+      this.dragMove(event, pointerdownPositionX);
+
+    const pointerUp = () => {
+      element.removeEventListener('pointermove', move, false);
+      element.removeEventListener('pointerup', pointerUp, false);
+      element.removeEventListener('pointercancel', pointerCancel, false);
+      this.isDragging = false;
       this.dragStop();
     };
-    window.addEventListener('click', windowClick);
-    window.addEventListener('mousemove', move, false);
+
+    const pointerCancel = () => {
+      element.removeEventListener('pointermove', move, false);
+      element.removeEventListener('pointerup', pointerUp, false);
+      element.removeEventListener('pointercancel', pointerCancel, false);
+      this.isDragging = false;
+      this.scrollActionAmount = initialScrollAmount;
+      const tabsWrapper = this.getTabsWrapper();
+      if (tabsWrapper) {
+        tabsWrapper.setAttribute(
+          'style',
+          `transform: translateX(${initialScrollAmount}px);`
+        );
+      }
+      this.clickAction.isClick = true;
+    };
+
+    element.addEventListener('pointerup', pointerUp);
+    element.addEventListener('pointercancel', pointerCancel);
+    element.addEventListener('pointermove', move, false);
   }
 
-  private dragMove(event: MouseEvent, tabX: number, mousedownX: number) {
-    this.move(event.clientX + tabX - mousedownX);
+  private dragMove(event: PointerEvent, pointerdownX: number) {
+    this.clickAction.isClick = false;
+    this.move(event.clientX - pointerdownX);
   }
 
   private dragStop() {
-    if (this.clickAction.timeout) {
-      clearTimeout(this.clickAction.timeout);
-      this.clickAction.timeout = null;
+    if (this.clickAction.isClick) {
+      return;
     }
 
-    if (this.clickAction.isClick) return false;
-
     this.currentScrollAmount = this.scrollActionAmount;
-    this.clickAction.isClick = true;
-
-    return true;
   }
 
   componentWillLoad() {
@@ -450,7 +467,7 @@ export class Tabs {
   componentDidLoad() {
     const tabs = this.getTabs();
     tabs.forEach((element) => {
-      element.addEventListener('mousedown', (event) =>
+      element.addEventListener('pointerdown', (event) =>
         this.dragStart(element, event)
       );
     });
