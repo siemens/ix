@@ -1950,12 +1950,21 @@ importers:
       angular-blocks:
         specifier: 'workspace:'
         version: link:../../blocks/angular-blocks
+      angular-examples:
+        specifier: 'workspace:'
+        version: link:../../examples/angular-examples
+      angular-standalone-examples:
+        specifier: 'workspace:'
+        version: link:../../examples/angular-standalone-examples
       fs-extra:
         specifier: ^11.3.3
         version: 11.3.3
       glob:
         specifier: ^11.1.0
         version: 11.1.0
+      html-examples:
+        specifier: 'workspace:'
+        version: link:../../examples/html-examples
       http-server:
         specifier: ^14.1.1
         version: 14.1.1
@@ -1968,12 +1977,18 @@ importers:
       react-blocks:
         specifier: 'workspace:'
         version: link:../../blocks/react-blocks
+      react-examples:
+        specifier: 'workspace:'
+        version: link:../../examples/react-examples
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+      vue-examples:
+        specifier: 'workspace:'
+        version: link:../../examples/vue-examples
 
 packages:
 

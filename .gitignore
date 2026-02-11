@@ -3,6 +3,7 @@
 .yarn-cache
 
 # compiled output
+dist
 /dist
 /tmp
 /out-tsc
