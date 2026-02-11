@@ -33,6 +33,7 @@ import {
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
+  checkInternalValidity,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
@@ -236,6 +237,10 @@ export class Input implements IxInputFieldComponent<string> {
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
+
+    if (this.inputRef.current && this.touched) {
+      checkInternalValidity(this, this.inputRef.current);
+    }
   }
 
   /** @internal */

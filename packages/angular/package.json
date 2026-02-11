@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/angular"
   },
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "Siemens iX for Angular",
   "scripts": {
     "build": "ng-packagr -c tsconfig.json",
@@ -16,7 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@siemens/ix": "~4.2.0",
+    "@siemens/ix": "~4.3.0",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@angular/animations": "^20.1.4",
-    "@angular/common": "^20.1.4",
+    "@angular/common": "^20.3.14",
     "@angular/compiler": "^20.3.16",
     "@angular/compiler-cli": "^20.1.4",
     "@angular/core": "^20.3.16",
@@ -34,7 +34,7 @@
     "@angular/platform-browser": "^20.1.4",
     "@angular/platform-browser-dynamic": "^20.1.4",
     "@angular/router": "^20.1.4",
-    "@jest/globals": "^29.7.0",
+    "@jest/globals": "^30.2.0",
     "@siemens/ix": "workspace:*",
     "@types/jest": "^29.5.12",
     "fs-extra": "^10.1.0",

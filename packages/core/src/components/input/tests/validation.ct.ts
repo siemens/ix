@@ -56,7 +56,6 @@ test.describe('validation', () => {
 
       await expect(ixInput).not.toHaveClass(/ix-invalid--required/);
     });
-
     test('validityStateChange emitted only if validity change', async ({
       mount,
       page,
@@ -64,25 +63,34 @@ test.describe('validation', () => {
       await mount('<ix-number-input required value="10"></ix-number-input>');
 
       const ixInput = page.locator('ix-number-input');
-
       const shadowDomInput = ixInput.locator('input');
 
-      let eventTriggered = ixInput.evaluate(
-        createValidityOrValueChangePromise,
-        0
-      );
+      await ixInput.evaluate((el) => {
+        (el as any).__validityChanged = false;
+        el.addEventListener('validityStateChange', () => {
+          (el as any).__validityChanged = true;
+        });
+      });
 
       await shadowDomInput.fill('15');
       await shadowDomInput.blur();
-      expect((await eventTriggered).event).not.toBe('validityStateChange');
 
-      eventTriggered = ixInput.evaluate(
-        createValidityOrValueChangePromiseSimple
+      const firstCheckResult = await ixInput.evaluate(
+        (el) => (el as any).__validityChanged
       );
+      expect(firstCheckResult).toBe(false);
 
-      await shadowDomInput.fill('');
+      await ixInput.evaluate((el) => {
+        (el as any).__validityChanged = false;
+      });
+
+      await shadowDomInput.clear();
       await shadowDomInput.blur();
-      expect((await eventTriggered).event).toBe('validityStateChange');
+
+      const secondCheckResult = await ixInput.evaluate(
+        (el) => (el as any).__validityChanged
+      );
+      expect(secondCheckResult).toBe(true);
     });
 
     test('number input should be invalid if value is empty and required', async ({

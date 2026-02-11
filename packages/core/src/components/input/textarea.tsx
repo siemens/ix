@@ -31,6 +31,8 @@ import {
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  onInputBlur,
+  checkInternalValidity,
 } from './input.util';
 import type { TextareaResizeBehavior } from './textarea.types';
 
@@ -249,6 +251,9 @@ export class Textarea implements IxInputFieldComponent<string> {
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
+    if (this.textAreaRef.current && this.touched) {
+      checkInternalValidity(this, this.textAreaRef.current);
+    }
   }
 
   /** @internal */

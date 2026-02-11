@@ -1,0 +1,12 @@
+- text: Comment
+- textbox
+- img
+- text: /Info text 0\/\d+ Comment/
+- textbox
+- img
+- text: /Warning text 0\/\d+ Comment/
+- textbox
+- text: /0\/\d+ Comment/
+- textbox
+- img
+- text: /Invalid text 0\/\d+/

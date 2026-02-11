@@ -337,3 +337,55 @@ regressionTest.describe('message utils', () => {
     });
   });
 });
+
+regressionTest(
+  'centered modal should remain centered after reopening',
+  async ({ mount, page }) => {
+    await mount(``);
+    await setupModalEnvironment(page);
+
+    const positionTolerance = 5;
+    const dialog = page.locator('ix-modal dialog');
+
+    const openCenteredModal = () =>
+      page.evaluate(() => {
+        const elm = document.createElement('ix-modal');
+        elm.innerHTML = `<div>hi</div>`;
+        (globalThis as typeof globalThis & Window).showModal({
+          content: elm,
+          centered: true,
+        });
+      });
+
+    const dismissCurrentModal = () =>
+      page.evaluate(() => {
+        const modal = document.querySelector('ix-modal');
+        if (modal) {
+          (globalThis as typeof globalThis & Window).dismissModal(modal);
+        }
+      });
+
+    const getModalCenterX = async () => {
+      const box = await dialog.boundingBox();
+      if (!box) {
+        throw new Error('Modal dialog bounding box not found');
+      }
+      return box.x + box.width / 2;
+    };
+
+    await openCenteredModal();
+    await expect(dialog).toBeVisible();
+    const initialCenterX = await getModalCenterX();
+
+    await dismissCurrentModal();
+    await expect(dialog).not.toBeVisible();
+
+    await openCenteredModal();
+    await expect(dialog).toBeVisible();
+    const reopenCenterX = await getModalCenterX();
+
+    expect(Math.abs(reopenCenterX - initialCenterX)).toBeLessThanOrEqual(
+      positionTolerance
+    );
+  }
+);
