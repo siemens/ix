@@ -196,7 +196,7 @@ export const regressionTest = testBase.extend<{
 export const expect = baseExpect.extend({
   async toHaveVisibleFocus(
     locator: Locator,
-    activeDescendantElementLocator: Locator
+    activeDescendantElementLocator?: Locator
   ) {
     let pass = true;
     const errors: string[] = [];

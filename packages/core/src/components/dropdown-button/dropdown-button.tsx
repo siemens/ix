@@ -119,6 +119,7 @@ export class DropdownButton
 
   override componentDidLoad(): void {
     this.inheritAriaAttributes = a11yHostAttributes(this.hostElement, [
+      'aria-label',
       'aria-activedescendant',
       'aria-haspopup',
       'aria-controls',

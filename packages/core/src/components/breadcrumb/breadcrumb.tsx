@@ -21,13 +21,7 @@ import {
 } from '@stencil/core';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { Mixin } from '../utils/internal/component';
-import { makeRef } from '../utils/make-ref';
 import { createMutationObserver } from '../utils/mutation-observer';
-
-let sequenceId = 0;
-const createId = (prefix: string = 'breadcrumb-') => {
-  return `${prefix}-${sequenceId++}`;
-};
 
 @Component({
   tag: 'ix-breadcrumb',
@@ -160,6 +154,7 @@ export class Breadcrumb extends Mixin() {
       <Host {...this.inheritAriaAttributes} role="navigation">
         {this.items?.length > this.visibleItemCount && (
           <ix-dropdown-button
+            aria-label={this.ariaLabelPreviousButton}
             label="..."
             variant="tertiary"
             class="previous-button"
