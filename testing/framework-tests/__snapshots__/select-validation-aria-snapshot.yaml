@@ -1,0 +1,17 @@
+- text: Framework options
+- textbox "Select an option"
+- button "Open select dropdown"
+- img
+- text: We will show examples based on your selection. Framework options
+- textbox "Select an option"
+- button "Open select dropdown"
+- img
+- text: Selected Framework is partly supported. Framework options
+- textbox "Select an option"
+- button "Open select dropdown"
+- img
+- text: Selected Framework is fully supported. Framework options
+- textbox "Select an option"
+- button "Open select dropdown"
+- img
+- text: Selected Framework is not supported.

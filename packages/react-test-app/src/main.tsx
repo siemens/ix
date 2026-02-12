@@ -9,6 +9,7 @@
 
 import './preview-examples/global.css';
 
+import { testIds } from 'framework-tests/tests/test-ids';
 import { IxApplicationContext } from '@siemens/ix-react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -231,517 +232,278 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
+import buttonDanger from './preview-examples/button-danger.tsx';
+import buttonDangerGhost from './preview-examples/button-danger-ghost.tsx';
+import buttonDangerOutline from './preview-examples/button-danger-outline.tsx';
+import dateInputDisabled from './preview-examples/date-input-disabled.tsx';
+import dateInputLabel from './preview-examples/date-input-label.tsx';
+import dateInputMinMaxDate from './preview-examples/date-input-min-max-date.tsx';
+import dateInputReadonly from './preview-examples/date-input-readonly.tsx';
+import dateInputValidation from './preview-examples/date-input-validation.tsx';
+import eventListCustomItemHeightInNumber from './preview-examples/event-list-custom-item-height-in-number.tsx';
+import timeInput from './preview-examples/time-input.tsx';
+import timeInputDisabled from './preview-examples/time-input-disabled.tsx';
+import timeInputLabel from './preview-examples/time-input-label.tsx';
+import timeInputReadonly from './preview-examples/time-input-readonly.tsx';
+import timeInputValidation from './preview-examples/time-input-validation.tsx';
+import timeInputWithSlots from './preview-examples/time-input-with-slots.tsx';
+import timepickerFormatAdjusted from './preview-examples/timepicker-format-adjusted.tsx';
+import timepickerIntervals from './preview-examples/timepicker-intervals.tsx';
+import toggleButtonPrimary from './preview-examples/toggle-button-primary.tsx';
+
+const exampleNames = [...testIds, ...'validation'] as const;
+type IxPreviewRoutes = {
+  '/': React.ComponentType;
+} & {
+  [K in (typeof exampleNames)[number] as `/preview/${K}`]: React.ComponentType;
+};
+
+const routes: IxPreviewRoutes = {
+  '/': App,
+  '/preview/grid-padding': GridPadding,
+  '/preview/grid-size': GridSize,
+  '/preview/grid': Grid,
+  '/preview/about-and-legal': AboutAndLegal,
+  '/preview/action-card': ActionCard,
+  '/preview/add-icons': AddIcons,
+  '/preview/aggrid': AgGrid,
+  '/preview/application': Application,
+  '/preview/application-advanced': ApplicationAdvanced,
+  '/preview/application-breakpoints': ApplicationBreakpoints,
+  '/preview/application-app-switch': ApplicationAppSwitch,
+  '/preview/application-header': ApplicationHeader,
+  '/preview/avatar-image': AvatarImage,
+  '/preview/avatar-initials': AvatarInitials,
+  '/preview/avatar': Avatar,
+  '/preview/blind-header-actions': BlindHeaderActions,
+  '/preview/blind-variants': BlindVariants,
+  '/preview/blind': Blind,
+  '/preview/breadcrumb-next-items': BreadcrumbNextItems,
+  '/preview/breadcrumb-truncate': BreadcrumbTruncate,
+  '/preview/breadcrumb': Breadcrumb,
+  '/preview/button-ghost': ButtonGhost,
+  '/preview/button-grey-ghost': ButtonGreyGhost,
+  '/preview/button-grey-secondary': ButtonGreySecondary,
+  '/preview/button-grey': ButtonGrey,
+  '/preview/button-group': ButtonGroup,
+  '/preview/button-loading': ButtonLoading,
+  '/preview/button-secondary': ButtonSecondary,
+  '/preview/button-text-icon': ButtonTextIcon,
+  '/preview/button-with-icon': ButtonWithIcon,
+  '/preview/buttons': Buttons,
+  '/preview/card': Card,
+  '/preview/card-list': CardList,
+  '/preview/category-filter-suggestions': CategoryFilterSuggestions,
+  '/preview/category-filter': CategoryFilter,
+  '/preview/checkbox-indeterminate': CheckboxIndeterminate,
+  '/preview/checkbox': Checkbox,
+  '/preview/custom-field': CustomField,
+  '/preview/custom-field-validation': CustomFieldValidation,
+  '/preview/chip': Chip,
+  '/preview/content': Content,
+  '/preview/date-dropdown': DateDropdown,
+  '/preview/date-dropdown-user-range': DateDropdownUserRange,
+  '/preview/content-header-no-back': ContentHeaderNoBack,
+  '/preview/content-header': ContentHeader,
+  '/preview/content-header-with-slot': ContentHeaderWithSlot,
+  '/preview/datepicker-range': DatepickerRange,
+  '/preview/datepicker': Datepicker,
+  '/preview/datepicker-locale': DatepickerLocale,
+  '/preview/datetimepicker': Datetimepicker,
+  '/preview/divider': Divider,
+  '/preview/drawer-full-height': DrawerFullHeight,
+  '/preview/drawer': Drawer,
+  '/preview/dropdown-button-icon': DropdownButtonIcon,
+  '/preview/dropdown-button': DropdownButton,
+  '/preview/dropdown-icon': DropdownIcon,
+  '/preview/dropdown-quick-actions': DropdownQuickActions,
+  '/preview/dropdown-submenu': DropdownSubmenu,
+  '/preview/dropdown': Dropdown,
+  '/preview/echarts': Echarts,
+  '/preview/echarts-bar-horizontal-stacked': EchartsBarHorizontalStacked,
+  '/preview/echarts-bar-simple': EchartsBarSimple,
+  '/preview/echarts-circle': EchartsCircle,
+  '/preview/echarts-empty-state': EchartsEmptyState,
+  '/preview/echarts-line-multiple-y-axis': EchartsLineMultipleYAxis,
+  '/preview/echarts-gauge': EchartsGauge,
+  '/preview/echarts-line-simple': EchartsLineSimple,
+  '/preview/echarts-line-advanced': EchartsLineAdvanced,
+  '/preview/echarts-special-3d': EchartsSpecial3d,
+  '/preview/echarts-special-toolbox': EchartsSpecialToolbox,
+  '/preview/echarts-pie': EchartsPie,
+  '/preview/echarts-progress-circle': EchartsProgressCircle,
+  '/preview/echarts-progress-arc': EchartsProgressArc,
+  '/preview/empty-state-compact-break': EmptyStateCompactBreak,
+  '/preview/empty-state-compact': EmptyStateCompact,
+  '/preview/empty-state': EmptyState,
+  '/preview/event-list-compact': EventListCompact,
+  '/preview/event-list-custom-item-height': EventListCustomItemHeight,
+  '/preview/event-list': EventList,
+  '/preview/event-list-filled': EventListFilled,
+  '/preview/event-list-selected': EventListSelected,
+  '/preview/expanding-search': ExpandingSearch,
+  '/preview/flip-tile': FlipTile,
+  '/preview/form-checkbox': FormCheckbox,
+  '/preview/form-checkbox-disabled': FormCheckboxDisabled,
+  '/preview/form-checkbox-group': FormCheckboxGroup,
+  '/preview/form-checkbox-validation': FormCheckboxValidation,
+  '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
+  '/preview/group-context-menu': GroupContextMenu,
+  '/preview/group-custom-entry': GroupCustomEntry,
+  '/preview/group-header-suppressed': GroupHeaderSuppressed,
+  '/preview/group': Group,
+  '/preview/html-table': HtmlTable,
+  '/preview/html-table-striped': HtmlTableStriped,
+  '/preview/icon-toggle-button-tertiary': IconToggleButtonTertiary,
+  '/preview/icon-toggle-button-subtle-tertiary': IconToggleButtonSubtleTertiary,
+  '/preview/icon-toggle-button-subtle-secondary':
+    IconToggleButtonSubtleSecondary,
+  '/preview/icon-toggle-button-subtle-primary': IconToggleButtonSubtlePrimary,
+  '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
+  '/preview/input-legacy-disabled': InputLegacyDisabled,
+  '/preview/input-legacy-readonly': InputLegacyReadonly,
+  '/preview/input-legacy': InputLegacy,
+  '/preview/key-value-list-striped': KeyValueListStriped,
+  '/preview/key-value-list-with-custom-value': KeyValueListWithCustomValue,
+  '/preview/key-value-list-with-icon': KeyValueListWithIcon,
+  '/preview/key-value-list': KeyValueList,
+  '/preview/key-value-with-custom-value': KeyValueWithCustomValue,
+  '/preview/key-value-with-icon': KeyValueWithIcon,
+  '/preview/key-value-with-label-left': KeyValueWithLabelLeft,
+  '/preview/key-value': KeyValue,
+  '/preview/kpi': Kpi,
+  '/preview/link-button-disabled': LinkButtonDisabled,
+  '/preview/link-button': LinkButton,
+  '/preview/loading': Loading,
+  '/preview/menu-category': MenuCategory,
+  '/preview/menu-with-bottom-tabs': MenuWithBottomTabs,
+  '/preview/message': Message,
+  '/preview/message-bar': MessageBar,
+  '/preview/message-bar-removal': MessageBarRemoval,
+  '/preview/radio-button': RadioButton,
+  '/preview/radio': Radio,
+  '/preview/radio-disabled': RadioDisabled,
+  '/preview/radio-group': RadioGroup,
+  '/preview/radio-validation': RadioValidation,
+  '/preview/select': Select,
+  '/preview/select-editable': SelectEditable,
+  '/preview/select-multiple': SelectMultiple,
+  '/preview/select-validation': SelecValidation,
+  '/preview/modal-sizes': ModalSizes,
+  '/preview/modal-form-ix-button-submit': ModalFormIxButtonSubmit,
+  '/preview/modal': Modal,
+  '/preview/modal-close': ModalClose,
+  '/preview/pagination-advanced': PaginationAdvanced,
+  '/preview/pagination': Pagination,
+  '/preview/pane': Pane,
+  '/preview/pane-layout': PaneLayout,
+  '/preview/pill': Pill,
+  '/preview/pill-variants': PillVariants,
+  '/preview/popover-news': PopoverNews,
+  '/preview/push-card': PushCard,
+  '/preview/settings': Settings,
+  '/preview/slider-error': SliderError,
+  '/preview/slider-marker': SliderMarker,
+  '/preview/slider-trace': SliderTrace,
+  '/preview/slider': Slider,
+  '/preview/spinner-large': SpinnerLarge,
+  '/preview/spinner': Spinner,
+  '/preview/split-button-icons': SplitButtonIcons,
+  '/preview/split-button': SplitButton,
+  '/preview/tabs-rounded': TabsRounded,
+  '/preview/tabs': Tabs,
+  '/preview/textarea-legacy-disabled': TextareaLegacyDisabled,
+  '/preview/textarea-legacy-readonly': TextareaLegacyReadonly,
+  '/preview/textarea': Textarea,
+  '/preview/textarea-disabled': TextareaDisabled,
+  '/preview/textarea-readonly': TextareaReadonly,
+  '/preview/textarea-rows-cols': TextareaRowCols,
+  '/preview/textarea-validation': TextareaValidation,
+  '/preview/input': Input,
+  '/preview/input-disabled': InputDisabled,
+  '/preview/input-label': InputLabel,
+  '/preview/input-pattern': InputPattern,
+  '/preview/input-readonly': InputReadonly,
+  '/preview/input-types': InputTypes,
+  '/preview/input-validation': InputValidation,
+  '/preview/input-with-slots': InputWithSlots,
+  '/preview/textarea-legacy': TextareaLegacy,
+  '/preview/theme-switcher': ThemeSwitcher,
+  '/preview/tile': Tile,
+  '/preview/timepicker': Timepicker,
+  '/preview/toast-custom': ToastCustom,
+  '/preview/toast-position': ToastPosition,
+  '/preview/toast': Toast,
+  '/preview/toggle-button-tertiary': ToggleButtonTertiary,
+  '/preview/toggle-button-subtle-primary': ToggleButtonSubtlePrimary,
+  '/preview/toggle-button-subtle-secondary': ToggleButtonSubtleSecondary,
+  '/preview/toggle-button-subtle-tertiary': ToggleButtonSubtleTertiary,
+  '/preview/toggle-checked': ToggleChecked,
+  '/preview/toggle-custom-label': ToggleCustomLabel,
+  '/preview/toggle-disabled': ToggleDisabled,
+  '/preview/toggle-indeterminate': ToggleIndeterminate,
+  '/preview/toggle': Toggle,
+  '/preview/tooltip': Tooltip,
+  '/preview/tooltip-with-icon': TooltipWithIcon,
+  '/preview/tree-custom': TreeCustom,
+  '/preview/number-input': NumberInput,
+  '/preview/number-input-with-slots': NumberInputWithSlots,
+  '/preview/number-input-disabled': NumberInputDisabled,
+  '/preview/number-input-label': NumberInputLabel,
+  '/preview/number-input-readonly': NumberInputReadonly,
+  '/preview/number-input-stepper-button': NumberInputStepperButton,
+  '/preview/number-input-validation': NumberInputValidation,
+  '/preview/date-input': DateInput,
+  '/preview/date-input-with-slots': DateInputWithSlots,
+  '/preview/tree': Tree,
+  '/preview/upload': Upload,
+  '/preview/validation': Validation,
+  '/preview/vertical-tabs-with-avatar': VerticalTabsWithAvatar,
+  '/preview/vertical-tabs': VerticalTabs,
+  '/preview/workflow-vertical': WorkflowVertical,
+  '/preview/validation-select': ValidationSelect,
+  '/preview/form-validation': FormValidation,
+  '/preview/layout-auto': LayoutAuto,
+  '/preview/layout-auto-custom': LayoutAutoCustom,
+  '/preview/workflow': Workflow,
+  '/preview/form-layout-auto': FormLayoutAuto,
+  '/preview/form-layout-grid': FormLayoutGrid,
+  '/preview/progress-indicator-linear-status': ProgressIndicatorLinearStatus,
+  '/preview/progress-indicator-circular-status':
+    ProgressIndicatorCircularStatus,
+  '/preview/progress-indicator-linear-sizes': ProgressIndicatorLinearSizes,
+  '/preview/progress-indicator-circular-sizes': ProgressIndicatorCircularSizes,
+  '/preview/progress-indicator-circular': ProgressIndicatorCircular,
+  '/preview/progress-indicator': ProgressIndicator,
+  '/preview/button-danger': buttonDanger,
+  '/preview/button-danger-ghost': buttonDangerGhost,
+  '/preview/button-danger-outline': buttonDangerOutline,
+  '/preview/button-with-link': ButtonWithLink,
+  '/preview/date-input-disabled': dateInputDisabled,
+  '/preview/date-input-label': dateInputLabel,
+  '/preview/date-input-min-max-date': dateInputMinMaxDate,
+  '/preview/date-input-readonly': dateInputReadonly,
+  '/preview/date-input-validation': dateInputValidation,
+  '/preview/event-list-custom-item-height-in-number':
+    eventListCustomItemHeightInNumber,
+  '/preview/time-input': timeInput,
+  '/preview/time-input-disabled': timeInputDisabled,
+  '/preview/time-input-label': timeInputLabel,
+  '/preview/time-input-readonly': timeInputReadonly,
+  '/preview/time-input-validation': timeInputValidation,
+  '/preview/time-input-with-slots': timeInputWithSlots,
+  '/preview/timepicker-format-adjusted': timepickerFormatAdjusted,
+  '/preview/timepicker-intervals': timepickerIntervals,
+  '/preview/toggle-button-primary': toggleButtonPrimary,
+};
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/preview/grid-padding" element={<GridPadding />} />
-        <Route path="/preview/grid-size" element={<GridSize />} />
-        <Route path="/preview/grid" element={<Grid />} />
-        <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
-        <Route path="/preview/action-card" element={<ActionCard />} />
-        <Route path="/preview/add-icons" element={<AddIcons />} />
-        <Route path="/preview/aggrid" element={<AgGrid />} />
-        <Route path="/preview/application" element={<Application />} />
-        <Route
-          path="/preview/application-advanced"
-          element={<ApplicationAdvanced />}
-        />
-        <Route
-          path="/preview/application-breakpoints"
-          element={<ApplicationBreakpoints />}
-        />
-        <Route
-          path="/preview/application-app-switch"
-          element={<ApplicationAppSwitch />}
-        />
-        <Route
-          path="/preview/application-header"
-          element={<ApplicationHeader />}
-        />
-        <Route path="/preview/avatar-image" element={<AvatarImage />} />
-        <Route path="/preview/avatar-initials" element={<AvatarInitials />} />
-        <Route path="/preview/avatar" element={<Avatar />} />
-        <Route
-          path="/preview/blind-header-actions"
-          element={<BlindHeaderActions />}
-        />
-        <Route path="/preview/blind-variants" element={<BlindVariants />} />
-        <Route path="/preview/blind" element={<Blind />} />
-        <Route
-          path="/preview/breadcrumb-next-items"
-          element={<BreadcrumbNextItems />}
-        />
-        <Route
-          path="/preview/breadcrumb-truncate"
-          element={<BreadcrumbTruncate />}
-        />
-        <Route path="/preview/breadcrumb" element={<Breadcrumb />} />
-        <Route path="/preview/button-ghost" element={<ButtonGhost />} />
-        <Route
-          path="/preview/button-grey-ghost"
-          element={<ButtonGreyGhost />}
-        />
-        <Route
-          path="/preview/button-grey-secondary"
-          element={<ButtonGreySecondary />}
-        />
-        <Route path="/preview/button-grey" element={<ButtonGrey />} />
-        <Route path="/preview/button-group" element={<ButtonGroup />} />
-        <Route path="/preview/button-loading" element={<ButtonLoading />} />
-        <Route path="/preview/button-secondary" element={<ButtonSecondary />} />
-        <Route path="/preview/button-text-icon" element={<ButtonTextIcon />} />
-        <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
-        <Route path="/preview/button-with-Link" element={<ButtonWithLink />} />
-        <Route path="/preview/buttons" element={<Buttons />} />
-        <Route path="/preview/card" element={<Card />} />
-        <Route path="/preview/card-list" element={<CardList />} />
-        <Route
-          path="/preview/category-filter-suggestions"
-          element={<CategoryFilterSuggestions />}
-        />
-        <Route path="/preview/category-filter" element={<CategoryFilter />} />
-        <Route
-          path="/preview/checkbox-indeterminate"
-          element={<CheckboxIndeterminate />}
-        />
-        <Route path="/preview/checkbox" element={<Checkbox />} />
-        <Route path="/preview/custom-field" element={<CustomField />} />
-        <Route
-          path="/preview/custom-field-validation"
-          element={<CustomFieldValidation />}
-        />
-        <Route path="/preview/chip" element={<Chip />} />
-        <Route path="/preview/content" element={<Content />} />
-        <Route path="/preview/date-dropdown" element={<DateDropdown />} />
-        <Route
-          path="/preview/date-dropdown-user-range"
-          element={<DateDropdownUserRange />}
-        />
-        <Route
-          path="/preview/content-header-no-back"
-          element={<ContentHeaderNoBack />}
-        />
-        <Route path="/preview/content-header" element={<ContentHeader />} />
-        <Route
-          path="/preview/content-header-with-slot"
-          element={<ContentHeaderWithSlot />}
-        />
-        <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
-        <Route path="/preview/datepicker" element={<Datepicker />} />
-        <Route
-          path="/preview/datepicker-locale"
-          element={<DatepickerLocale />}
-        />
-        <Route path="/preview/datetimepicker" element={<Datetimepicker />} />
-        <Route path="/preview/divider" element={<Divider />} />
-        <Route
-          path="/preview/drawer-full-height"
-          element={<DrawerFullHeight />}
-        />
-        <Route path="/preview/drawer" element={<Drawer />} />
-        <Route
-          path="/preview/dropdown-button-icon"
-          element={<DropdownButtonIcon />}
-        />
-        <Route path="/preview/dropdown-button" element={<DropdownButton />} />
-        <Route path="/preview/dropdown-icon" element={<DropdownIcon />} />
-        <Route
-          path="/preview/dropdown-quick-actions"
-          element={<DropdownQuickActions />}
-        />
-        <Route path="/preview/dropdown-submenu" element={<DropdownSubmenu />} />
-        <Route path="/preview/dropdown" element={<Dropdown />} />
-        <Route path="/preview/echarts" element={<Echarts />} />
-        <Route
-          path="/preview/echarts-bar-horizontal-stacked"
-          element={<EchartsBarHorizontalStacked />}
-        />
-        <Route
-          path="/preview/echarts-bar-simple"
-          element={<EchartsBarSimple />}
-        />
-        <Route path="/preview/echarts-circle" element={<EchartsCircle />} />
-        <Route
-          path="/preview/echarts-empty-state"
-          element={<EchartsEmptyState />}
-        />
-        <Route
-          path="/preview/echarts-line-multiple-y-axis"
-          element={<EchartsLineMultipleYAxis />}
-        />
-        <Route path="/preview/echarts-gauge" element={<EchartsGauge />} />
-        <Route
-          path="/preview/echarts-line-simple"
-          element={<EchartsLineSimple />}
-        />
-        <Route
-          path="/preview/echarts-line-advanced"
-          element={<EchartsLineAdvanced />}
-        />
-        <Route
-          path="/preview/echarts-special-3d"
-          element={<EchartsSpecial3d />}
-        />
-        <Route
-          path="/preview/echarts-special-toolbox"
-          element={<EchartsSpecialToolbox />}
-        />
-        <Route path="/preview/echarts-pie" element={<EchartsPie />} />
-        <Route
-          path="/preview/echarts-progress-circle"
-          element={<EchartsProgressCircle />}
-        />
-        <Route
-          path="/preview/echarts-progress-arc"
-          element={<EchartsProgressArc />}
-        />
-        <Route path="/preview/echarts-zoom" element={<EchartsZoom />} />
-        <Route
-          path="/preview/empty-state-compact-break"
-          element={<EmptyStateCompactBreak />}
-        />
-        <Route
-          path="/preview/empty-state-compact"
-          element={<EmptyStateCompact />}
-        />
-        <Route path="/preview/empty-state" element={<EmptyState />} />
-        <Route
-          path="/preview/event-list-compact"
-          element={<EventListCompact />}
-        />
-        <Route
-          path="/preview/event-list-custom-item-height"
-          element={<EventListCustomItemHeight />}
-        />
-        <Route path="/preview/event-list" element={<EventList />} />
-        <Route
-          path="/preview/event-list-filled"
-          element={<EventListFilled />}
-        />
-        <Route
-          path="/preview/event-list-selected"
-          element={<EventListSelected />}
-        />
-        <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
-        <Route path="/preview/flip-tile" element={<FlipTile />} />
-        <Route path="/preview/form-checkbox" element={<FormCheckbox />} />
-        <Route
-          path="/preview/form-checkbox-disabled"
-          element={<FormCheckboxDisabled />}
-        />
-        <Route
-          path="/preview/form-checkbox-group"
-          element={<FormCheckboxGroup />}
-        />
-        <Route
-          path="/preview/form-checkbox-validation"
-          element={<FormCheckboxValidation />}
-        />
-        <Route
-          path="/preview/form-checkbox-group-indeterminate"
-          element={<FormCheckboxGroupIndeterminate />}
-        />
-        <Route
-          path="/preview/group-context-menu"
-          element={<GroupContextMenu />}
-        />
-        <Route
-          path="/preview/group-custom-entry"
-          element={<GroupCustomEntry />}
-        />
-        <Route
-          path="/preview/group-header-suppressed"
-          element={<GroupHeaderSuppressed />}
-        />
-        <Route path="/preview/group" element={<Group />} />
-        <Route path="/preview/html-table" element={<HtmlTable />} />
-        <Route
-          path="/preview/html-table-striped"
-          element={<HtmlTableStriped />}
-        />
-        <Route
-          path="/preview/icon-toggle-button-tertiary"
-          element={<IconToggleButtonTertiary />}
-        />
-        <Route
-          path="/preview/icon-toggle-button-subtle-tertiary"
-          element={<IconToggleButtonSubtleTertiary />}
-        />
-        <Route
-          path="/preview/icon-toggle-button-subtle-secondary"
-          element={<IconToggleButtonSubtleSecondary />}
-        />
-        <Route
-          path="/preview/icon-toggle-button-subtle-primary"
-          element={<IconToggleButtonSubtlePrimary />}
-        />
-        <Route
-          path="/preview/icon-toggle-button-secondary"
-          element={<IconToggleButtonSecondary />}
-        />
-        <Route
-          path="/preview/input-legacy-disabled"
-          element={<InputLegacyDisabled />}
-        />
-        <Route
-          path="/preview/input-legacy-readonly"
-          element={<InputLegacyReadonly />}
-        />
-        <Route path="/preview/input-legacy" element={<InputLegacy />} />
-        <Route
-          path="/preview/key-value-list-striped"
-          element={<KeyValueListStriped />}
-        />
-        <Route
-          path="/preview/key-value-list-with-custom-value"
-          element={<KeyValueListWithCustomValue />}
-        />
-        <Route
-          path="/preview/key-value-list-with-icon"
-          element={<KeyValueListWithIcon />}
-        />
-        <Route path="/preview/key-value-list" element={<KeyValueList />} />
-        <Route
-          path="/preview/key-value-with-custom-value"
-          element={<KeyValueWithCustomValue />}
-        />
-        <Route
-          path="/preview/key-value-with-icon"
-          element={<KeyValueWithIcon />}
-        />
-        <Route
-          path="/preview/key-value-with-label-left"
-          element={<KeyValueWithLabelLeft />}
-        />
-        <Route path="/preview/key-value" element={<KeyValue />} />
-        <Route path="/preview/kpi" element={<Kpi />} />
-        <Route
-          path="/preview/link-button-disabled"
-          element={<LinkButtonDisabled />}
-        />
-        <Route path="/preview/link-button" element={<LinkButton />} />
-        <Route path="/preview/loading" element={<Loading />} />
-        <Route path="/preview/menu-category" element={<MenuCategory />} />
-        <Route
-          path="/preview/menu-with-bottom-tabs"
-          element={<MenuWithBottomTabs />}
-        />
-        <Route path="/preview/message" element={<Message />} />
-        <Route path="/preview/message-bar" element={<MessageBar />} />
-        <Route
-          path="/preview/message-bar-removal"
-          element={<MessageBarRemoval />}
-        />
-        <Route path="/preview/radio-button" element={<RadioButton />} />
-        <Route path="/preview/radio" element={<Radio />} />
-        <Route path="/preview/radio-disabled" element={<RadioDisabled />} />
-        <Route path="/preview/radio-group" element={<RadioGroup />} />
-        <Route path="/preview/radio-validation" element={<RadioValidation />} />
-        <Route path="/preview/select" element={<Select />} />
-        <Route path="/preview/select-editable" element={<SelectEditable />} />
-        <Route path="/preview/select-multiple" element={<SelectMultiple />} />
-        <Route
-          path="/preview/select-validation"
-          element={<SelecValidation />}
-        />
-        <Route path="/preview/modal-sizes" element={<ModalSizes />} />
-
-        <Route
-          path="/preview/modal-form-ix-button-submit"
-          element={<ModalFormIxButtonSubmit />}
-        />
-
-        <Route path="/preview/modal" element={<Modal />} />
-        <Route path="/preview/modal-close" element={<ModalClose />} />
-        <Route
-          path="/preview/pagination-advanced"
-          element={<PaginationAdvanced />}
-        />
-        <Route path="/preview/pagination" element={<Pagination />} />
-        <Route path="/preview/pane" element={<Pane />} />
-        <Route path="/preview/pane-layout" element={<PaneLayout />} />
-        <Route path="/preview/pill" element={<Pill />} />
-        <Route path="/preview/pill-variants" element={<PillVariants />} />
-        <Route path="/preview/popover-news" element={<PopoverNews />} />
-        <Route path="/preview/push-card" element={<PushCard />} />
-        <Route path="/preview/radio-button" element={<RadioButton />} />
-        <Route path="/preview/select-editable" element={<SelectEditable />} />
-        <Route path="/preview/select-multiple" element={<SelectMultiple />} />
-        <Route path="/preview/select" element={<Select />} />
-        <Route path="/preview/settings" element={<Settings />} />
-        <Route path="/preview/slider-error" element={<SliderError />} />
-        <Route path="/preview/slider-marker" element={<SliderMarker />} />
-        <Route path="/preview/slider-trace" element={<SliderTrace />} />
-        <Route path="/preview/slider" element={<Slider />} />
-        <Route path="/preview/spinner-large" element={<SpinnerLarge />} />
-        <Route path="/preview/spinner" element={<Spinner />} />
-        <Route
-          path="/preview/split-button-icons"
-          element={<SplitButtonIcons />}
-        />
-        <Route path="/preview/split-button" element={<SplitButton />} />
-        <Route path="/preview/tabs-rounded" element={<TabsRounded />} />
-        <Route path="/preview/tabs" element={<Tabs />} />
-        <Route
-          path="/preview/textarea-legacy-disabled"
-          element={<TextareaLegacyDisabled />}
-        />
-        <Route
-          path="/preview/textarea-legacy-readonly"
-          element={<TextareaLegacyReadonly />}
-        />
-        <Route path="/preview/textarea" element={<Textarea />} />
-        <Route
-          path="/preview/textarea-disabled"
-          element={<TextareaDisabled />}
-        />
-        <Route
-          path="/preview/textarea-readonly"
-          element={<TextareaReadonly />}
-        />
-        <Route
-          path="/preview/textarea-rows-cols"
-          element={<TextareaRowCols />}
-        />
-        <Route
-          path="/preview/textarea-validation"
-          element={<TextareaValidation />}
-        />
-        <Route path="/preview/input" element={<Input />} />
-        <Route path="/preview/input-disabled" element={<InputDisabled />} />
-        <Route path="/preview/input-label" element={<InputLabel />} />
-        <Route path="/preview/input-pattern" element={<InputPattern />} />
-        <Route path="/preview/input-readonly" element={<InputReadonly />} />
-        <Route path="/preview/input-types" element={<InputTypes />} />
-        <Route path="/preview/input-validation" element={<InputValidation />} />
-        <Route path="/preview/input-with-slots" element={<InputWithSlots />} />
-        <Route path="/preview/textarea-legacy" element={<TextareaLegacy />} />
-        <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
-        <Route path="/preview/tile" element={<Tile />} />
-        <Route path="/preview/timepicker" element={<Timepicker />} />
-        <Route path="/preview/toast-custom" element={<ToastCustom />} />
-        <Route path="/preview/toast-position" element={<ToastPosition />} />
-        <Route path="/preview/toast" element={<Toast />} />
-        <Route
-          path="/preview/toggle-button-tertiary"
-          element={<ToggleButtonTertiary />}
-        />
-        <Route
-          path="/preview/toggle-button-subtle-primary"
-          element={<ToggleButtonSubtlePrimary />}
-        />
-        <Route
-          path="/preview/toggle-button-subtle-secondary"
-          element={<ToggleButtonSubtleSecondary />}
-        />
-        <Route
-          path="/preview/toggle-button-subtle-tertiary"
-          element={<ToggleButtonSubtleTertiary />}
-        />
-        <Route
-          path="/preview/toggle-button-secondary"
-          element={<ToggleButtonSecondary />}
-        />
-        <Route path="/preview/toggle-checked" element={<ToggleChecked />} />
-        <Route
-          path="/preview/toggle-custom-label"
-          element={<ToggleCustomLabel />}
-        />
-        <Route path="/preview/toggle-disabled" element={<ToggleDisabled />} />
-        <Route
-          path="/preview/toggle-indeterminate"
-          element={<ToggleIndeterminate />}
-        />
-        <Route path="/preview/toggle" element={<Toggle />} />
-        <Route path="/preview/tooltip" element={<Tooltip />} />
-        <Route
-          path="/preview/tooltip-with-icon"
-          element={<TooltipWithIcon />}
-        />
-        <Route path="/preview/tree-custom" element={<TreeCustom />} />
-        <Route path="/preview/number-input" element={<NumberInput />} />
-        <Route
-          path="/preview/number-input-with-slots"
-          element={<NumberInputWithSlots />}
-        />
-        <Route
-          path="/preview/number-input-disabled"
-          element={<NumberInputDisabled />}
-        />
-        <Route
-          path="/preview/number-input-label"
-          element={<NumberInputLabel />}
-        />
-        <Route
-          path="/preview/number-input-readonly"
-          element={<NumberInputReadonly />}
-        />
-        <Route
-          path="/preview/number-input-stepper-button"
-          element={<NumberInputStepperButton />}
-        />
-        <Route
-          path="/preview/number-input-validation"
-          element={<NumberInputValidation />}
-        />
-        <Route path="/preview/date-input" element={<DateInput />} />
-        <Route
-          path="/preview/date-input-with-slots"
-          element={<DateInputWithSlots />}
-        />
-        <Route path="/preview/tree" element={<Tree />} />
-        <Route path="/preview/upload" element={<Upload />} />
-        <Route path="/preview/validation" element={<Validation />} />
-        <Route
-          path="/preview/vertical-tabs-with-avatar"
-          element={<VerticalTabsWithAvatar />}
-        />
-        <Route path="/preview/vertical-tabs" element={<VerticalTabs />} />
-        <Route
-          path="/preview/workflow-vertical"
-          element={<WorkflowVertical />}
-        />
-        <Route
-          path="/preview/validation-select"
-          element={<ValidationSelect />}
-        />
-        <Route path="/preview/form-validation" element={<FormValidation />} />
-        <Route path="/preview/layout-auto" element={<LayoutAuto />} />
-        <Route
-          path="/preview/layout-auto-custom"
-          element={<LayoutAutoCustom />}
-        />
-        <Route path="/preview/workflow" element={<Workflow />} />
-        <Route path="/preview/form-layout-auto" element={<FormLayoutAuto />} />
-        <Route path="/preview/form-layout-grid" element={<FormLayoutGrid />} />
-
-        <Route
-          path="/preview/progress-indicator-linear-status"
-          element={<ProgressIndicatorLinearStatus />}
-        />
-        <Route
-          path="/preview/progress-indicator-circular-status"
-          element={<ProgressIndicatorCircularStatus />}
-        />
-        <Route
-          path="/preview/progress-indicator-linear-sizes"
-          element={<ProgressIndicatorLinearSizes />}
-        />
-        <Route
-          path="/preview/progress-indicator-circular-sizes"
-          element={<ProgressIndicatorCircularSizes />}
-        />
-        <Route
-          path="/preview/progress-indicator-circular"
-          element={<ProgressIndicatorCircular />}
-        />
-        <Route
-          path="/preview/progress-indicator"
-          element={<ProgressIndicator />}
-        />
+        {Object.entries(routes).map(([path, Component]) => (
+          <Route key={path} path={path} element={<Component />} />
+        ))}
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>

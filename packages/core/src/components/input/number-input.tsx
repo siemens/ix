@@ -267,6 +267,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
       value !== undefined && value !== null ? value.toString() : '';
     this.formInternals.setFormValue(formValue);
     this.value = value;
+    if (this.inputRef.current && this.touched) {
+      checkInternalValidity(this, this.inputRef.current);
+    }
   }
 
   private readonly handleInputChange = (inputValue: string) => {

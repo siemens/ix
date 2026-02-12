@@ -25,8 +25,11 @@ import { DateTime } from 'luxon';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
+  PickerValidityStateTracker,
   addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
+  createPickerValidityStateTracker,
+  emitPickerValidityState,
   handleSubmitOnEnterKeydown,
 } from '../input/input.util';
 import {
@@ -249,8 +252,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private readonly inputElementRef = makeRef<HTMLInputElement>();
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
-  private invalidReason?: string;
-  private touched = false;
+
+  /** @internal */
+  public invalidReason?: string;
+  /** @internal */
+  public touched = false;
+  /** @internal */
+  public validityTracker: PickerValidityStateTracker =
+    createPickerValidityStateTracker();
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -320,6 +329,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   async onInput(value: string | undefined) {
     this.value = value;
     if (!value) {
+      this.isInputInvalid = false;
+      this.invalidReason = undefined;
+      this.emitValidityStateChangeIfChanged();
+      this.updateFormInternalValue(value);
       this.valueChange.emit(value);
       return;
     }
@@ -335,13 +348,14 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
 
     if (this.isInputInvalid) {
-      this.invalidReason = date.invalidReason || undefined;
+      this.invalidReason = date.invalidReason ?? undefined;
       this.from = undefined;
     } else {
       this.updateFormInternalValue(value);
       this.closeDropdown();
     }
 
+    this.emitValidityStateChangeIfChanged();
     this.valueChange.emit(value);
   }
 
@@ -412,6 +426,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
           onBlur={() => {
             this.ixBlur.emit();
             this.touched = true;
+            this.emitValidityStateChangeIfChanged();
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
@@ -449,13 +464,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     this.isWarning = isWarning;
   }
 
-  @Watch('isInputInvalid')
-  async onInputValidationChange() {
-    const state = await this.getValidityState();
-    this.validityStateChange.emit({
-      patternMismatch: state.patternMismatch,
-      invalidReason: this.invalidReason,
-    });
+  private emitValidityStateChangeIfChanged() {
+    return emitPickerValidityState(this);
   }
 
   /** @internal */

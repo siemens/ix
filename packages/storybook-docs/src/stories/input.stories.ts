@@ -7,29 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
-import { genericRender, makeArgTypes } from './utils/generic-render';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
+import {
+  genericValidationRender,
+  genericRender,
+  makeArgTypes,
+} from './utils/generic-render';
 
 type Element = Components.IxInput & {
   validation: 'default' | 'info' | 'warning' | 'invalid' | 'valid';
 };
 
-function genericInputRender(args: Partial<Element>) {
-  const container = genericRender('ix-input', args, ['validation']);
-  const input = container.querySelector('ix-input') as HTMLIxInputElement;
-
-  input.classList.remove('ix-info', 'ix-warning', 'ix-invalid', 'ix-valid');
-
-  if (args.validation !== 'default') {
-    input.classList.add(`ix-${args.validation}`);
-  }
-  return container;
-}
-
 const meta = {
   title: 'Example/Input',
   tags: [],
-  render: (args) => genericInputRender(args),
+  render: (args) => genericValidationRender('ix-input', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-input', {
     validation: {
       options: ['default', 'info', 'warning', 'invalid', 'valid'],
