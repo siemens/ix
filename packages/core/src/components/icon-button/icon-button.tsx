@@ -127,8 +127,17 @@ export class IconButton extends Mixin(...DefaultMixins) {
       ariaAttributes['aria-label'] = ariaLabel;
     }
 
+    const a11y = a11yHostAttributes(this.hostElement);
+
     const baseButtonProps: BaseButtonProps = {
       ariaAttributes: ariaAttributes,
+      // ariaAttributes: {
+      //   'aria-label':
+      //     a11y['aria-label'] ??
+      //     this.a11yLabel ??
+      //     getFallbackLabelFromIconName(this.icon),
+      //   'aria-describedby': a11y['aria-describedby'],
+      // },
       variant: this.variant,
       iconOnly: true,
       iconOval: this.oval,

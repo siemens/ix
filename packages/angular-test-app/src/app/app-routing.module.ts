@@ -32,6 +32,13 @@ import ButtonTertiary from '../preview-examples/button-tertiary';
 import ButtonSubtlePrimary from '../preview-examples/button-subtle-primary';
 import ButtonSubtleTertiary from '../preview-examples/button-subtle-tertiary';
 import ButtonSubtleSecondary from '../preview-examples/button-subtle-secondary';
+import ButtonDanger from '../preview-examples/button-danger';
+import ButtonDangerGhost from '../preview-examples/button-danger-ghost';
+import ButtonDangerOutline from '../preview-examples/button-danger-outline';
+import ButtonGhost from '../preview-examples/button-ghost';
+import ButtonGrey from '../preview-examples/button-grey';
+import ButtonGreyGhost from '../preview-examples/button-grey-ghost';
+import ButtonGreySecondary from '../preview-examples/button-grey-secondary';
 import ButtonGroup from '../preview-examples/button-group';
 import ButtonLoading from '../preview-examples/button-loading';
 import ButtonSecondary from '../preview-examples/button-secondary';
@@ -127,11 +134,11 @@ import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
 import HtmlTable from '../preview-examples/html-table';
 import HtmlTableStriped from '../preview-examples/html-table-striped';
-import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
-import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
 import IconToggleButtonSubtlePrimary from '../preview-examples/icon-toggle-button-subtle-primary';
+import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
+import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
+import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
 import InputFormValidation from '../preview-examples/input-form-validation';
@@ -164,9 +171,9 @@ import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
-import ModalClose from '../preview-examples/modal-close';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
+import ModalClose from '../preview-examples/modal-close';
 import ModalFormIxButtonSubmit from '../preview-examples/modal-form-ix-button-submit';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
@@ -183,7 +190,6 @@ import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
-import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import ProgressIndicator from '../preview-examples/progress-indicator';
 import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
 import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
@@ -232,17 +238,18 @@ import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
 import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
-import ToggleButtonTertiary from '../preview-examples/toggle-button-tertiary';
-import ToggleButtonSubtleTertiary from '../preview-examples/toggle-button-subtle-tertiary';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
-import ToggleButtonSubtleSecondary from '../preview-examples/toggle-button-subtle-secondary';
 import ToggleButtonSubtlePrimary from '../preview-examples/toggle-button-subtle-primary';
+import ToggleButtonSubtleSecondary from '../preview-examples/toggle-button-subtle-secondary';
+import ToggleButtonSubtleTertiary from '../preview-examples/toggle-button-subtle-tertiary';
+import ToggleButtonTertiary from '../preview-examples/toggle-button-tertiary';
 import ToggleChecked from '../preview-examples/toggle-checked';
 import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
 import ToggleDisabled from '../preview-examples/toggle-disabled';
 import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 import ToggleNgModel from '../preview-examples/toggle-ng-model';
 import Tooltip from '../preview-examples/tooltip';
+import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import Tree from '../preview-examples/tree';
 import TreeCustom from '../preview-examples/tree-custom';
 import Upload from '../preview-examples/upload';
@@ -372,6 +379,18 @@ const routes: Routes = [
       {
         path: 'button-loading',
         component: ButtonLoading,
+      },
+      {
+        path: 'button-danger',
+        component: ButtonDanger,
+      },
+      {
+        path: 'button-danger-ghost',
+        component: ButtonDangerGhost,
+      },
+      {
+        path: 'button-danger-outline',
+        component: ButtonDangerOutline,
       },
       {
         path: 'button-secondary',

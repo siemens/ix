@@ -41,6 +41,13 @@ import ButtonTertiary from '../preview-examples/button-tertiary';
 import ButtonSubtlePrimary from '../preview-examples/button-subtle-primary';
 import ButtonSubtleTertiary from '../preview-examples/button-subtle-tertiary';
 import ButtonSubtleSecondary from '../preview-examples/button-subtle-secondary';
+import ButtonDanger from '../preview-examples/button-danger';
+import ButtonDangerGhost from '../preview-examples/button-danger-ghost';
+import ButtonDangerOutline from '../preview-examples/button-danger-outline';
+import ButtonGhost from '../preview-examples/button-ghost';
+import ButtonGrey from '../preview-examples/button-grey';
+import ButtonGreyGhost from '../preview-examples/button-grey-ghost';
+import ButtonGreySecondary from '../preview-examples/button-grey-secondary';
 import ButtonGroup from '../preview-examples/button-group';
 import ButtonLoading from '../preview-examples/button-loading';
 import ButtonSecondary from '../preview-examples/button-secondary';
@@ -136,11 +143,11 @@ import GroupCustomEntry from '../preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
 import HtmlTable from '../preview-examples/html-table';
 import HtmlTableStriped from '../preview-examples/html-table-striped';
-import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
-import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
 import IconToggleButtonSubtlePrimary from '../preview-examples/icon-toggle-button-subtle-primary';
+import IconToggleButtonSubtleSecondary from '../preview-examples/icon-toggle-button-subtle-secondary';
+import IconToggleButtonSubtleTertiary from '../preview-examples/icon-toggle-button-subtle-tertiary';
+import IconToggleButtonTertiary from '../preview-examples/icon-toggle-button-tertiary';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
 import InputFormValidation from '../preview-examples/input-form-validation';
@@ -240,11 +247,11 @@ import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
 import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
-import ToggleButtonTertiary from '../preview-examples/toggle-button-tertiary';
-import ToggleButtonSubtleTertiary from '../preview-examples/toggle-button-subtle-tertiary';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
-import ToggleButtonSubtleSecondary from '../preview-examples/toggle-button-subtle-secondary';
 import ToggleButtonSubtlePrimary from '../preview-examples/toggle-button-subtle-primary';
+import ToggleButtonSubtleSecondary from '../preview-examples/toggle-button-subtle-secondary';
+import ToggleButtonSubtleTertiary from '../preview-examples/toggle-button-subtle-tertiary';
+import ToggleButtonTertiary from '../preview-examples/toggle-button-tertiary';
 import ToggleChecked from '../preview-examples/toggle-checked';
 import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
 import ToggleDisabled from '../preview-examples/toggle-disabled';
@@ -301,6 +308,9 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ButtonDangerPrimary,
     ButtonDangerSecondary,
     ButtonDangerTertiary,
+    ButtonDanger,
+    ButtonDangerGhost,
+    ButtonDangerOutline,
     Card,
     CardList,
     CategoryFilterSuggestions,

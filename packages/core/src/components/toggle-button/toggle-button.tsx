@@ -104,6 +104,7 @@ export class ToggleButton {
           a11y['aria-label'] ??
           this.ariaLabelButton ??
           getFallbackLabelFromIconName(this.icon),
+        'aria-describedby': a11y['aria-describedby'],
       },
     };
 

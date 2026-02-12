@@ -1,8 +1,10 @@
-- button "Button"
-- button "Button"
-- button
-- button "Star"
-- button "Loading Button" [disabled]:
-  - status "Loading"
-- button "Unknown" [disabled]:
-  - status "Loading"
+- main:
+  - button "Button"
+  - button "Button"
+  - button "Toggle loading"
+  - button "Toggle loading"
+  - button "Loading Button" [disabled]:
+    - status "Loading"
+    - text: ""
+  - button "Loading action" [disabled]:
+    - status "Loading"

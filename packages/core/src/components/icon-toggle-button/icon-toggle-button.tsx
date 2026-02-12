@@ -19,7 +19,7 @@ import {
 import { BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
-import { a11yBoolean } from '../utils/a11y';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-icon-toggle-button',
@@ -103,6 +103,8 @@ export class IconToggleButton {
   }
 
   render() {
+    const a11y = a11yHostAttributes(this.hostElement);
+
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
       iconOnly: true,
@@ -116,7 +118,8 @@ export class IconToggleButton {
       type: 'button',
       ariaAttributes: {
         'aria-pressed': a11yBoolean(this.pressed),
-        'aria-label': this.ariaLabelIconButton,
+        'aria-label': a11y['aria-label'] ?? this.ariaLabelIconButton,
+        'aria-describedby': a11y['aria-describedby'],
       },
       extraClasses: {
         'icon-button': true,

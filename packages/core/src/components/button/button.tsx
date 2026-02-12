@@ -17,6 +17,7 @@ import {
   Watch,
   Mixin,
 } from '@stencil/core';
+import { a11yHostAttributes } from '../utils/a11y';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
 import { IxButtonComponent } from './button-component';
@@ -42,6 +43,7 @@ export class Button
    * ARIA label for the button
    * Will be set as aria-label on the nested HTML button element
    *
+   * @deprecated Set the native `aria-label` on the ix-button host element. Will be removed in 5.0.0
    * @since 3.2.0
    */
   @Prop() ariaLabelButton?: string;
@@ -182,6 +184,8 @@ export class Button
   }
 
   override render() {
+    const a11y = a11yHostAttributes(this.hostElement);
+
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
       iconOnly: false,
@@ -196,7 +200,8 @@ export class Button
       type: this.type,
       alignment: this.alignment,
       ariaAttributes: {
-        'aria-label': this.ariaLabelButton,
+        'aria-label': a11y['aria-label'] ?? this.ariaLabelButton,
+        'aria-describedby': a11y['aria-describedby'],
       },
       href: this.href,
       target: this.target,

@@ -395,6 +395,7 @@ export namespace Components {
         "alignment": 'center' | 'start';
         /**
           * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * @deprecated Set the native `aria-label` on the ix-button host element. Will be removed in 5.0.0
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;
@@ -6699,6 +6700,7 @@ declare namespace LocalJSX {
         "alignment"?: 'center' | 'start';
         /**
           * ARIA label for the button Will be set as aria-label on the nested HTML button element
+          * @deprecated Set the native `aria-label` on the ix-button host element. Will be removed in 5.0.0
           * @since 3.2.0
          */
         "ariaLabelButton"?: string;
