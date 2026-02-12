@@ -113,6 +113,7 @@ export class IconButton {
           a11y['aria-label'] ??
           this.a11yLabel ??
           getFallbackLabelFromIconName(this.icon),
+        'aria-describedby': a11y['aria-describedby'],
       },
       variant: this.variant,
       iconOnly: true,

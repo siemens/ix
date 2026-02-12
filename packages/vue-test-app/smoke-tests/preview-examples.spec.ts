@@ -7,3 +7,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 import 'framework-tests/tests/working.spec.ts';
+import 'framework-tests/tests/working-with-axe.spec.ts';
