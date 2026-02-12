@@ -43,7 +43,10 @@ import {
   queryElements,
 } from '../utils/focus/focus-utilities';
 import { Mixin } from '../utils/internal/component';
-import { removeVisibleFocus } from '../utils/internal/mixins/setup.mixin';
+import {
+  hasKeyboardMode,
+  removeVisibleFocus,
+} from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import {
@@ -590,7 +593,7 @@ export class Dropdown extends Mixin() implements DropdownInterface {
 
     removeVisibleFocus();
 
-    if (!this.disableFocusTrap) {
+    if (!this.disableFocusTrap && hasKeyboardMode()) {
       // Restore focus to trigger element
       requestAnimationFrameNoNgZone(() => {
         (this.triggerElement as HTMLElement)?.focus();

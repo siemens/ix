@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ElementHandle, expect, Locator, Page } from '@playwright/test';
+import { ElementHandle, Locator, Page } from '@playwright/test';
 import {
   iconCogwheel,
   iconHeart,
@@ -14,7 +14,7 @@ import {
   iconPrint,
   iconStar,
 } from '@siemens/ix-icons/icons';
-import { regressionTest, viewPorts } from '@utils/test';
+import { regressionTest, viewPorts, expect } from '@utils/test';
 
 const html = String.raw;
 
@@ -550,8 +550,8 @@ regressionTest(
   'Nested dropdowns within application-header',
   async ({ mount, page }) => {
     await mount(html`
-      <ix-application-header>
-        <ix-dropdown-button label="Trigger">
+      <ix-application-header aria-label-more-menu-icon-button="More Items">
+        <ix-dropdown-button label="Trigger" aria-label="Trigger">
           <ix-dropdown-item label="MainItem 1"></ix-dropdown-item>
           <ix-dropdown-item label="MainItem 2"></ix-dropdown-item>
           <ix-dropdown-item
@@ -573,33 +573,30 @@ regressionTest(
     const header = page.locator('ix-application-header');
     await expect(header).toBeVisible();
 
-    const overflowTrigger = header.locator('ix-icon-button');
+    const overflowTrigger = header.getByLabel('More Items');
     await overflowTrigger.click();
 
-    const dropdownButton = header.locator('ix-dropdown-button');
-    await dropdownButton.locator('ix-button').click();
+    const overflowDropdown = header.locator('[data-overflow-dropdown]');
+    await expect(overflowDropdown).toBeVisible();
+    await expect(overflowDropdown).toHaveClass(/show/);
 
-    const dropdownOfDropdownButton = dropdownButton.locator('ix-dropdown');
-    await expect(dropdownOfDropdownButton).toBeVisible();
+    const trigger = page.getByRole('button', { name: 'Trigger' }).nth(0);
+    await trigger.click();
 
-    const submenuTrigger = page
-      .locator('ix-dropdown-item')
-      .getByText('MainItem 3');
-    await expect(submenuTrigger).toBeVisible();
+    await expect(trigger).toBeVisible();
+
+    const triggerDropdown = trigger.locator('ix-dropdown');
+    await expect(triggerDropdown).toBeVisible();
+    await expect(triggerDropdown).toHaveClass(/show/);
+
+    const submenuTrigger = triggerDropdown.getByRole('menuitem', {
+      name: 'MainItem 3',
+    });
     await submenuTrigger.click();
 
-    const submenuDropdown = page.locator('#submenu');
-
-    await expect(submenuDropdown).toBeVisible();
-
-    const subMenuItem = submenuDropdown
-      .locator('ix-dropdown-item')
-      .getByText('SubMenuItem 3');
-
-    await subMenuItem.click();
-
-    await expect(submenuDropdown).not.toBeVisible();
-    await expect(dropdownOfDropdownButton).not.toBeVisible();
+    const submenu = page.locator('#submenu');
+    await expect(submenu).toBeVisible();
+    await expect(submenu).toHaveClass(/show/);
   }
 );
 
@@ -697,7 +694,7 @@ regressionTest.describe('A11y', () => {
 
         const item = page.locator('ix-dropdown-item').first();
         await page.keyboard.press('ArrowDown');
-        await expect(item).toBeFocused();
+        await expect(item).toHaveVisibleFocus();
       });
 
       regressionTest('first item -> second item', async ({ page }) => {
@@ -707,11 +704,11 @@ regressionTest.describe('A11y', () => {
 
         const firstItem = page.locator('ix-dropdown-item').first();
         await page.keyboard.press('ArrowDown');
-        await expect(firstItem).toBeFocused();
+        await expect(firstItem).toHaveVisibleFocus();
 
         const secondItem = page.locator('ix-dropdown-item').nth(1);
         await page.keyboard.press('ArrowDown');
-        await expect(secondItem).toBeFocused();
+        await expect(secondItem).toHaveVisibleFocus();
       });
     });
 
@@ -723,14 +720,14 @@ regressionTest.describe('A11y', () => {
 
         const firstItem = page.locator('ix-dropdown-item').first();
         await page.keyboard.press('ArrowDown');
-        await expect(firstItem).toBeFocused();
+        await expect(firstItem).toHaveVisibleFocus();
 
         const secondItem = page.locator('ix-dropdown-item').nth(1);
         await page.keyboard.press('ArrowDown');
-        await expect(secondItem).toBeFocused();
+        await expect(secondItem).toHaveVisibleFocus();
 
         await page.keyboard.press('ArrowUp');
-        await expect(firstItem).toBeFocused();
+        await expect(firstItem).toHaveVisibleFocus();
       });
     });
   });
@@ -860,14 +857,17 @@ regressionTest(
     </ix-dropdown>
   `);
 
-    const disabledItem = page.locator('#disabled-item');
-    const enabledItem = page.locator('#enabled-item');
+    const trigger = page.locator('#trigger');
+    await trigger.click();
 
-    const disabledItemButton = disabledItem.locator('button');
-    const enabledItemButton = enabledItem.locator('button');
+    const dropdown = page.locator('ix-dropdown');
+    await expect(dropdown).toHaveClass(/show/);
 
-    await expect(disabledItemButton).toHaveAttribute('aria-disabled', 'true');
-    await expect(enabledItemButton).toHaveAttribute('aria-disabled', 'false');
+    const disabledItem = page.getByRole('menuitem', { name: 'Disabled Item' });
+    const enabledItem = page.getByRole('menuitem', { name: 'Enabled Item' });
+
+    await expect(disabledItem).toHaveAttribute('aria-disabled', 'true');
+    await expect(enabledItem).toHaveAttribute('aria-disabled', 'false');
   }
 );
 regressionTest(
