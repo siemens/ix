@@ -357,6 +357,10 @@ export namespace Components {
         /**
           * @default false
          */
+        "isCurrentPage": boolean;
+        /**
+          * @default false
+         */
         "isDropdownTrigger": boolean;
         /**
           * Breadcrumb label
@@ -6363,6 +6367,10 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "isCurrentPage"?: boolean;
+        /**
+          * @default false
+         */
         "isDropdownTrigger"?: boolean;
         /**
           * Breadcrumb label
@@ -10635,6 +10643,7 @@ declare namespace LocalJSX {
         "invisible": boolean;
         "hideChevron": boolean;
         "isDropdownTrigger": boolean;
+        "isCurrentPage": boolean;
     }
     interface IxButtonAttributes {
         "ariaLabelButton": string;

@@ -240,7 +240,8 @@ export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, Ix
         subtle: 'subtle',
         invisible: 'invisible',
         hideChevron: 'hide-chevron',
-        isDropdownTrigger: 'is-dropdown-trigger'
+        isDropdownTrigger: 'is-dropdown-trigger',
+        isCurrentPage: 'is-current-page'
     },
     hydrateModule: import('@siemens/ix/hydrate') as Promise<HydrateModule>,
     clientModule: clientComponents.IxBreadcrumbItem as ReactWebComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents>,
