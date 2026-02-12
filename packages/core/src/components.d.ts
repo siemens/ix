@@ -1113,10 +1113,12 @@ export namespace Components {
         "ariaLabelMonthSelection"?: string;
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Change calendar view to next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Change calendar view to previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
@@ -7202,10 +7204,12 @@ declare namespace LocalJSX {
         "ariaLabelMonthSelection"?: string;
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Change calendar view to next month'
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Change calendar view to previous month'
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**

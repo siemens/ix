@@ -130,13 +130,15 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
    * ARIA label for the previous month icon button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelPreviousMonthButton?: string;
+  @Prop() ariaLabelPreviousMonthButton?: string =
+    'Change calendar view to previous month';
 
   /**
    * ARIA label for the next month icon button
    * Will be set as aria-label on the nested HTML button element
    */
-  @Prop() ariaLabelNextMonthButton?: string;
+  @Prop() ariaLabelNextMonthButton?: string =
+    'Change calendar view to next month';
 
   /**
    * ARIA label for the next month icon button
