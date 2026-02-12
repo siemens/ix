@@ -26,6 +26,7 @@ import {
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
+import { queryElements } from '../utils/focus/focus-utilities';
 import { Mixin } from '../utils/internal/component';
 import { OnListener } from '../utils/listener';
 import { makeRef } from '../utils/make-ref';
@@ -138,6 +139,18 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
   @Prop() ariaLabelNextMonthButton?: string;
 
   /**
+   * ARIA label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelMonthSelection?: string = 'Select month';
+
+  /**
+   * ARIA label for the next month icon button
+   * Will be set as aria-label on the nested HTML button element
+   */
+  @Prop() ariaLabelYearSelection?: string = 'Select year';
+
+  /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
    */
@@ -238,9 +251,8 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
   @State() selectedMonth = 0;
   @State() tempMonth = 0;
 
-  private readonly yearInfiniteScrollContainerRef = makeRef<HTMLElement>();
-  private readonly selectMonthButtonRef = makeRef<HTMLButtonElement>();
-  private readonly selectYearButtonRef = makeRef<HTMLButtonElement>();
+  private readonly yearDropdownButtonRef =
+    makeRef<HTMLIxDropdownButtonElement>();
 
   private readonly yearMonthSelectionDropdownRef =
     makeRef<HTMLIxDropdownElement>();
@@ -551,37 +563,6 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     this.calendar = calendar;
   }
 
-  private infiniteScrollYears() {
-    const yearContainer = this.yearInfiniteScrollContainerRef.current;
-
-    if (!yearContainer) {
-      return;
-    }
-
-    const scroll = yearContainer.scrollTop;
-    const maxScroll = yearContainer.scrollHeight;
-    const atTop = scroll === 0;
-    const atBottom =
-      Math.round(scroll + yearContainer.offsetHeight) >= maxScroll;
-    const limit = 200;
-
-    if (this.endYear - this.startYear > limit) return;
-
-    if (atTop) {
-      const first = yearContainer.firstElementChild as HTMLElement;
-      this.startYear -= 5;
-      yearContainer.scrollTo(0, first.offsetTop);
-
-      return;
-    }
-
-    if (atBottom) {
-      const last = yearContainer.lastElementChild as HTMLElement;
-      this.endYear += 5;
-      yearContainer.scrollTo(0, last.offsetTop);
-    }
-  }
-
   private selectMonth(month: number) {
     this.selectedMonth = month;
     this.selectedYear = this.tempYear;
@@ -856,6 +837,39 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
     });
   }
 
+  private async intersect(entries: IntersectionObserverEntry[]) {
+    const container =
+      await this.yearDropdownButtonRef.current!.getDropdownReference();
+    entries.forEach((entry) => {
+      const target = entry.target as HTMLElement;
+      if (entry.isIntersecting) {
+        if (target.dataset.sentinel === 'top') {
+          this.startYear -= 5;
+
+          if (!this.skipFirstScrollOffset) {
+            requestAnimationFrameNoNgZone(() => {
+              const first = queryElements(container, 'ix-dropdown-item')[0];
+              container.scrollTo(0, first.offsetTop);
+            });
+          }
+          this.skipFirstScrollOffset = false;
+        } else {
+          this.endYear += 5;
+        }
+      }
+    });
+  }
+
+  private skipFirstScrollOffset = true;
+  private intersectStart = new IntersectionObserver(
+    (entries) => this.intersect(entries),
+    { threshold: 0.5 }
+  );
+  private intersectEnd = new IntersectionObserver(
+    (entries) => this.intersect(entries),
+    { threshold: 0.5 }
+  );
+
   override render() {
     return (
       <Host
@@ -873,55 +887,74 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
               aria-label={this.ariaLabelPreviousMonthButton}
             ></ix-icon-button>
             <div class="selector">
-              <div class="custom-button">
-                <button
-                  class={'btn btn-tertiary'}
-                  ref={this.selectMonthButtonRef}
-                >
-                  <ix-typography bold class="capitalize">
-                    {this.monthNames[this.selectedMonth]}
-                  </ix-typography>
-                </button>
-              </div>
-
-              <ix-dropdown
-                ignoreRelatedSubmenu
-                trigger={this.selectMonthButtonRef.waitForCurrent()}
-                disableFocusTrap
+              <ix-dropdown-button
+                aria-label={this.ariaLabelMonthSelection}
+                variant="tertiary"
+                label={null}
                 onShowChanged={(event) => {
-                  event.stopImmediatePropagation();
-                  event.preventDefault();
+                  // Need to stop event propagation to trigger initial focus handling of the calendar days
+                  event.stopPropagation();
                 }}
               >
+                <ix-typography bold class="capitalize" slot="button-label">
+                  {this.monthNames[this.selectedMonth]}
+                </ix-typography>
                 {this.renderMonths()}
-              </ix-dropdown>
+              </ix-dropdown-button>
 
-              <div class="custom-button">
-                <button
-                  class={'btn btn-tertiary'}
-                  ref={this.selectYearButtonRef}
-                >
-                  <ix-typography bold class="capitalize">
-                    {this.selectedYear}
-                  </ix-typography>
-                </button>
-              </div>
-
-              <ix-dropdown
-                ref={this.yearInfiniteScrollContainerRef}
-                class="infinite-year-scrolling"
-                ignoreRelatedSubmenu
-                trigger={this.selectYearButtonRef.waitForCurrent()}
-                disableFocusTrap
+              <ix-dropdown-button
+                aria-label={this.ariaLabelYearSelection}
+                ref={this.yearDropdownButtonRef}
+                variant="tertiary"
+                label={null}
                 onShowChanged={(event) => {
-                  event.stopImmediatePropagation();
-                  event.preventDefault();
+                  // Need to stop event propagation to trigger initial focus handling of the calendar days
+                  event.stopPropagation();
+
+                  if (event.detail) {
+                    requestAnimationFrameNoNgZone(() => {
+                      this.intersectStart.observe(
+                        this.hostElement.shadowRoot!.querySelector(
+                          '[data-sentinel="top"]'
+                        ) as HTMLElement
+                      );
+                      this.intersectEnd.observe(
+                        this.hostElement.shadowRoot!.querySelector(
+                          '[data-sentinel="bottom"]'
+                        ) as HTMLElement
+                      );
+                      const selectedYearItem =
+                        this.yearDropdownButtonRef.current!.querySelector(
+                          'ix-dropdown-item[checked]'
+                        ) as HTMLElement;
+
+                      if (!selectedYearItem) {
+                        return;
+                      }
+
+                      requestAnimationFrameNoNgZone(() => {
+                        selectedYearItem.scrollIntoView({
+                          block: 'center',
+                        });
+                      });
+                    });
+                  } else {
+                    this.intersectStart.disconnect();
+                    this.intersectEnd.disconnect();
+                  }
                 }}
-                onScroll={() => this.infiniteScrollYears()}
               >
+                <div class="infinite-scrolling-spacer">
+                  <div class="sentinel" data-sentinel="top"></div>
+                </div>
+                <ix-typography bold class="capitalize" slot="button-label">
+                  {this.selectedYear}
+                </ix-typography>
                 {this.renderYears()}
-                <div class="force-scrolling"></div>
-              </ix-dropdown>
+                <div class="infinite-scrolling-spacer">
+                  <div class="sentinel" data-sentinel="bottom"></div>
+                </div>
+              </ix-dropdown-button>
             </div>
             <ix-icon-button
               onClick={() => this.changeCalendarView(1)}

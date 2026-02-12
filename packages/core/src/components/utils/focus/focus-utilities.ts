@@ -75,6 +75,14 @@ export const focusFirstDescendant = <
   ref: R,
   fallbackElement?: T
 ) => {
+  const checkedQueryString = buildFocusableQueryString('[checked]');
+  const checkedElements = queryElements(ref, checkedQueryString);
+
+  if (checkedElements.length > 0) {
+    focusElementInContext(checkedElements[0], fallbackElement ?? ref);
+    return;
+  }
+
   const inputs = queryElements(ref, focusableQueryString);
   const firstInput = inputs.length > 0 ? inputs[0] : null;
 
@@ -142,3 +150,17 @@ export const focusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden
 ]
   .map((tag) => `${tag}:not([tabindex^="-"]):not([hidden]):not([disabled])`)
   .join(', ')}`;
+
+const baseFocusableQueryString = `[tabindex]:not([tabindex^="-"]):not([hidden]):not([disabled])`;
+const customFocusableSelectors = ['ix-dropdown-item', 'ix-select-item'];
+
+export const buildFocusableQueryString = (additionalSelector: string = '') => {
+  const customSelectors = customFocusableSelectors
+    .map(
+      (tag) =>
+        `${tag}:not([tabindex^="-"]):not([hidden]):not([disabled])${additionalSelector}`
+    )
+    .join(', ');
+
+  return `${baseFocusableQueryString}${additionalSelector}, ${customSelectors}`;
+};

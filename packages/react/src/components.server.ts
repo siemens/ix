@@ -590,6 +590,8 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
         i18nDone: 'i18n-done',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
+        ariaLabelMonthSelection: 'aria-label-month-selection',
+        ariaLabelYearSelection: 'aria-label-year-selection',
         weekStartIndex: 'week-start-index',
         locale: 'locale',
         showWeekNumbers: 'show-week-numbers',
@@ -693,7 +695,10 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
     serializeShadowRoot,
 });
 
-export type IxDropdownButtonEvents = NonNullable<unknown>;
+export type IxDropdownButtonEvents = {
+    onShowChange: EventName<CustomEvent<boolean>>,
+    onShowChanged: EventName<CustomEvent<boolean>>
+};
 
 export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, IxDropdownButtonEvents> = /*@__PURE__*/ createComponent<IxDropdownButtonElement, IxDropdownButtonEvents>({
     tagName: 'ix-dropdown-button',

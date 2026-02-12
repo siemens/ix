@@ -128,24 +128,28 @@ regressionTest.describe('date picker tests single', () => {
     'select different date from specific month',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
+      const monthSelection = page.getByLabel('Select month');
 
-      await page
-        .locator('ix-button')
-        .filter({ hasText: /^September 2023$/ })
-        .locator('span')
-        .click();
+      await expect(monthSelection).toBeVisible();
+      await monthSelection.click();
 
-      await page
-        .locator('div')
-        .filter({ hasText: /^2021$/ })
-        .first()
-        .click();
+      const itemJanuary = monthSelection.getByRole('menuitem', {
+        name: 'January',
+      });
 
-      await page
-        .locator('div')
-        .filter({ hasText: /^January 2021$/ })
-        .first()
-        .click();
+      await expect(itemJanuary).toBeVisible();
+      await itemJanuary.click();
+
+      const yearSelection = page.getByLabel('Select year');
+      await expect(yearSelection).toBeVisible();
+      await yearSelection.click();
+
+      const item2021 = yearSelection.getByRole('menuitem', {
+        name: /2021/,
+      });
+
+      await expect(item2021).toBeVisible();
+      await item2021.click();
 
       await page.getByText(/^1$/).nth(0).click();
 

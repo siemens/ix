@@ -1108,12 +1108,22 @@ export namespace Components {
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Select month'
+         */
+        "ariaLabelMonthSelection"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
          */
         "ariaLabelPreviousMonthButton"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Select year'
+         */
+        "ariaLabelYearSelection"?: string;
         /**
           * Corner style
           * @default 'rounded'
@@ -1458,6 +1468,7 @@ export namespace Components {
           * @since 4.3.0
          */
         "enableTopLayer": boolean;
+        "getDropdownReference": () => Promise<HTMLIxDropdownElement>;
         /**
           * Button icon
          */
@@ -1465,7 +1476,7 @@ export namespace Components {
         /**
           * Set label
          */
-        "label"?: string;
+        "label"?: string | null;
         /**
           * Placement of the dropdown
          */
@@ -4367,6 +4378,10 @@ export interface IxDropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDropdownElement;
 }
+export interface IxDropdownButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDropdownButtonElement;
+}
 export interface IxDropdownItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDropdownItemElement;
@@ -4956,7 +4971,19 @@ declare global {
         prototype: HTMLIxDropdownElement;
         new (): HTMLIxDropdownElement;
     };
+    interface HTMLIxDropdownButtonElementEventMap {
+        "showChange": boolean;
+        "showChanged": boolean;
+    }
     interface HTMLIxDropdownButtonElement extends Components.IxDropdownButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDropdownButtonElementEventMap>(type: K, listener: (this: HTMLIxDropdownButtonElement, ev: IxDropdownButtonCustomEvent<HTMLIxDropdownButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDropdownButtonElementEventMap>(type: K, listener: (this: HTMLIxDropdownButtonElement, ev: IxDropdownButtonCustomEvent<HTMLIxDropdownButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDropdownButtonElement: {
         prototype: HTMLIxDropdownButtonElement;
@@ -7170,12 +7197,22 @@ declare namespace LocalJSX {
     interface IxDatePicker {
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Select month'
+         */
+        "ariaLabelMonthSelection"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
          */
         "ariaLabelNextMonthButton"?: string;
         /**
           * ARIA label for the previous month icon button Will be set as aria-label on the nested HTML button element
          */
         "ariaLabelPreviousMonthButton"?: string;
+        /**
+          * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
+          * @default 'Select year'
+         */
+        "ariaLabelYearSelection"?: string;
         /**
           * Corner style
           * @default 'rounded'
@@ -7558,7 +7595,15 @@ declare namespace LocalJSX {
         /**
           * Set label
          */
-        "label"?: string;
+        "label"?: string | null;
+        /**
+          * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
+         */
+        "onShowChange"?: (event: IxDropdownButtonCustomEvent<boolean>) => void;
+        /**
+          * Fire event after visibility of dropdown has changed
+         */
+        "onShowChanged"?: (event: IxDropdownButtonCustomEvent<boolean>) => void;
         /**
           * Placement of the dropdown
          */
@@ -10822,6 +10867,8 @@ declare namespace LocalJSX {
         "i18nDone": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
+        "ariaLabelMonthSelection": string;
+        "ariaLabelYearSelection": string;
         "weekStartIndex": number;
         "locale": string;
         "showWeekNumbers": boolean;
@@ -10883,7 +10930,7 @@ declare namespace LocalJSX {
     interface IxDropdownButtonAttributes {
         "variant": DropdownButtonVariant;
         "disabled": boolean;
-        "label": string;
+        "label": string | null;
         "icon": string;
         "closeBehavior": string;
         "placement": AlignedPlacement;

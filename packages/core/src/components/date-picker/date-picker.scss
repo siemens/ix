@@ -79,11 +79,6 @@
     }
   }
 
-  .infinite-year-scrolling {
-    max-height: 15.625rem;
-    overflow-y: scroll;
-  }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(7, 40px);
@@ -297,28 +292,27 @@
   .hidden {
     display: none;
   }
-}
 
-.custom-button {
-  display: inline-block;
-  height: 2rem;
-  --ix-button-border-radius-left: var(--theme-btn--border-radius);
-  --ix-button-border-radius-right: var(--theme-btn--border-radius);
+  .infinite-scrolling-spacer:first-of-type {
+    position: relative;
+    padding-bottom: 4rem;
 
-  button {
-    @include button-mixin.btn-base;
-    padding: 0 0.25rem;
-    margin: 0px;
+    .sentinel {
+      position: absolute;
+      bottom: 0;
+      height: 1px;
+      width: 50px;
+    }
   }
+  .infinite-scrolling-spacer:last-of-type {
+    position: relative;
+    padding-top: 4rem;
 
-  @include button-mixin.btn-base-variant(tertiary);
-
-  .capitalize {
-    text-transform: capitalize;
-  }
-
-  button:focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: 0px;
+    .sentinel {
+      position: absolute;
+      top: 0;
+      height: 1px;
+      width: 50px;
+    }
   }
 }

@@ -90,9 +90,30 @@ SPDX-License-Identifier: MIT
           <ix-breadcrumb-item>Library</ix-breadcrumb-item>
           <ix-breadcrumb-item>Data</ix-breadcrumb-item>
         </ix-breadcrumb>
+
         <script>
           const breadcrumb = document.querySelector('ix-breadcrumb');
           breadcrumb.nextItems = ['Next 1', 'Next 2', 'Next 3'];
+        </script>
+
+        <ix-date-dropdown></ix-date-dropdown>
+
+        <ix-time-input></ix-time-input>
+
+        <h3 style="margin-top: 2rem">Dont get any keyboard rework yet</h3>
+        <ix-category-filter></ix-category-filter>
+        <script type="module">
+          const categoryFilter = document.querySelector('ix-category-filter');
+          categoryFilter.categories = {
+            ID_1: {
+              label: 'Vendor',
+              options: ['Apple', 'MS', 'Siemens'],
+            },
+            ID_2: {
+              label: 'Product',
+              options: ['iPhone X', 'Windows', 'APS'],
+            },
+          };
         </script>
       </ix-content>
     </ix-application>

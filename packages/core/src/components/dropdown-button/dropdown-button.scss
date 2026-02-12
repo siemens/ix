@@ -98,10 +98,18 @@
   }
 }
 
+:host(.host-context-date-picker),
 :host(.host-context-breadcrumb) {
   .internal-button {
     min-width: 0px;
     padding: 0;
+  }
+}
+
+:host(.host-context-date-picker) {
+  ix-dropdown {
+    max-height: 15.625rem;
+    overflow-y: scroll;
   }
 }
 
