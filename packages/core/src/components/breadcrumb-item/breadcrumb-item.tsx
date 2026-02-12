@@ -88,6 +88,9 @@ export class BreadcrumbItem extends Mixin() implements AnchorInterface {
   /** @internal */
   @Prop() isDropdownTrigger = false;
 
+  /** @internal */
+  @Prop() isCurrentPage = false;
+
   /**@internal */
   @Event() itemClick!: EventEmitter<string>;
 
@@ -147,6 +150,7 @@ export class BreadcrumbItem extends Mixin() implements AnchorInterface {
         ...this.inheritAriaAttributes,
         'aria-label':
           this.inheritAriaAttributes['aria-label'] ?? this.ariaLabelButton,
+        ...(this.isCurrentPage ? { 'aria-current': 'page' } : {}),
       },
       href: this.href,
       target: this.target,

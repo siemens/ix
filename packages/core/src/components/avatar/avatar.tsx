@@ -194,8 +194,10 @@ export class Avatar
   private observeChildrenChange?: MutationObserver;
 
   private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
+  private a11yAttributes: Partial<ReturnType<typeof a11yHostAttributes>> = {};
 
   override componentWillLoad() {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
     const closest = closestElement('ix-application-header', this.hostElement);
     this.isClosestApplicationHeader = closest !== null;
 
@@ -273,8 +275,7 @@ export class Avatar
   }
 
   override render() {
-    const a11y = a11yHostAttributes(this.hostElement);
-    const a11yLabel = a11y['aria-label'];
+    const a11yLabel = this.a11yAttributes['aria-label'];
 
     const tooltipText = this.tooltipText || this.username;
     const ariaHidden = tooltipText === this.username;

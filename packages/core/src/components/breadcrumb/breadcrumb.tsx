@@ -112,19 +112,17 @@ export class Breadcrumb extends Mixin() {
     const updatedItems = this.getItems();
 
     updatedItems.forEach((breadcrumbItem, index) => {
-      breadcrumbItem.removeAttribute('aria-current');
-
+      const isLastItem = updatedItems.length - 1 === index;
       const shouldShowDropdown =
-        this.nextItems.length !== 0 && updatedItems.length - 1 === index;
+        this.nextItems.length !== 0 && isLastItem;
 
       breadcrumbItem.subtle = this.subtle;
-      breadcrumbItem.hideChevron =
-        updatedItems.length - 1 === index && !shouldShowDropdown;
+      breadcrumbItem.hideChevron = isLastItem && !shouldShowDropdown;
       breadcrumbItem.isDropdownTrigger = shouldShowDropdown;
+      breadcrumbItem.isCurrentPage = isLastItem;
 
       if (shouldShowDropdown) {
         breadcrumbItem.invisible = true;
-        breadcrumbItem.ariaCurrent = 'page';
       } else {
         breadcrumbItem.invisible =
           index < updatedItems.length - this.visibleItemCount;
