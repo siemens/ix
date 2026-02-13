@@ -35,7 +35,9 @@ import {
   checkInternalValidity,
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
-  onInputBlur,
+  onInputFocus,
+  onInputBlurWithChange,
+  onEnterKeyChangeEmit,
 } from './input.util';
 
 let numberInputIds = 0;
@@ -187,6 +189,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
    */
   @Event() ixBlur!: EventEmitter<void>;
 
+  /**
+   * Event emitted when the input field loses focus and the value has changed
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<number>;
+
   @State() isInvalid = false;
   @State() isValid = false;
   @State() isInfo = false;
@@ -198,6 +206,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
   private touched = false;
+  /** @internal */
+  public initialValue?: number;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -296,7 +306,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     this.updateFormInternalValue(parsedValue!);
 
-    onInputBlur(this, this.inputRef.current);
+    onInputBlurWithChange(this, this.inputRef.current, parsedValue);
     this.touched = true;
   };
 
@@ -481,6 +491,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
               onKeyDown={(event) => this.handleKeyDown(event)}
               onBeforeInput={(event) => this.handleBeforeInput(event)}
               onPaste={(event) => this.handlePaste(event)}
+              onFocus={() => onInputFocus(this, this.value)}
+              onEnterKeyChange={(event) =>
+                onEnterKeyChangeEmit(event, this, this.value)
+              }
               valueChange={this.handleInputChange}
               updateFormInternalValue={(value) => {
                 const isScientificNotation = this.isScientificNotation(
