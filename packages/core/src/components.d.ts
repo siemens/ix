@@ -4796,6 +4796,7 @@ declare global {
         "validityStateChange": DateInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
+        "ixChange": string | undefined;
     }
     /**
      * @form-ready 
@@ -5121,6 +5122,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5433,6 +5435,7 @@ declare global {
         "valueChange": number;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": number;
     }
     /**
      * @form-ready 
@@ -5686,6 +5689,7 @@ declare global {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @form-ready 
@@ -5715,6 +5719,7 @@ declare global {
         "validityStateChange": TimeInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
+        "ixChange": string;
     }
     /**
      * @since 3.2.0
@@ -7037,6 +7042,11 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the date input loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
           * Validation state change event.
@@ -8061,6 +8071,11 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
         /**
+          * Event emitted when the text field loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxInputCustomEvent<string>) => void;
+        /**
           * Event emitted when the validity state of the text field changes.
          */
         "onValidityStateChange"?: (event: IxInputCustomEvent<ValidityState>) => void;
@@ -8750,6 +8765,11 @@ declare namespace LocalJSX {
           * Event emitted when the input field loses focus
          */
         "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the input field loses focus and the value has changed
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxNumberInputCustomEvent<number>) => void;
         /**
           * Event emitted when the validity state of the input field changes
          */
@@ -9683,6 +9703,11 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
         /**
+          * Event emitted when the textarea field loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxTextareaCustomEvent<string>) => void;
+        /**
           * Event emitted when the validity state of the textarea field changes.
          */
         "onValidityStateChange"?: (event: IxTextareaCustomEvent<ValidityState>) => void;
@@ -9848,6 +9873,11 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the time input loses focus and the value has changed.
+          * @since 4.4.0
+         */
+        "onIxChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         "onIxFocus"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
           * Validation state change event.
