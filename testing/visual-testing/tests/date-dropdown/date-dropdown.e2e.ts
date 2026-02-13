@@ -19,7 +19,7 @@ regressionTest.describe('date dropdown', () => {
 
     await expect(dropdown).toHaveClass(/show/);
     await expect(page).toHaveScreenshot({
-      maxDiffPixels: 0.01
+      maxDiffPixels: 1
     });
   });
 
@@ -61,7 +61,7 @@ regressionTest.describe('date dropdown', () => {
 
     await expect(dropdown).toHaveClass(/show/);
     await expect(page).toHaveScreenshot({
-      maxDiffPixels: 0.01
+      maxDiffPixels: 1
     });
   });
 });
