@@ -7,15 +7,35 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-<ix-button variant="subtle-primary" (click)="toggle()" [loading]="loading"> Button </ix-button>
+<ix-button (click)="toggle()" [loading]="loading" outline> Button </ix-button>
 
-<ix-button variant="subtle-primary" (click)="toggle2()" [loading]="loading2" icon="star">
+<ix-button (click)="toggle2()" [loading]="loading2" outline icon="star">
   Button
 </ix-button>
 
-<ix-icon-button variant="subtle-primary" (click)="toggle3()" [loading]="loading3" icon="star">
+<ix-button
+  (click)="toggle3()"
+  [loading]="loading3"
+  outline
+  icon="star"
+  aria-label="Toggle loading"
+>
+</ix-button>
+
+<ix-icon-button
+  (click)="toggle4()"
+  [loading]="loading4"
+  outline
+  icon="star"
+  aria-label="Toggle loading"
+>
 </ix-icon-button>
 
 <ix-button variant="subtle-primary" loading> Button </ix-button>
 
-<ix-icon-button variant="subtle-primary" loading icon="star"></ix-icon-button>
+<ix-icon-button
+  variant="subtle-primary"
+  loading
+  icon="star"
+  aria-label="Loading action"
+></ix-icon-button>
