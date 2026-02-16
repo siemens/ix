@@ -1045,6 +1045,7 @@ export const IxPagination: StencilVueComponent<JSX.IxPagination> = /*@__PURE__*/
   'advanced',
   'itemCount',
   'hideItemCount',
+  'itemCountOptions',
   'count',
   'selectedPage',
   'i18nPage',
