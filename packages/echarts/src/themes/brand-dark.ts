@@ -69,10 +69,6 @@ export default {
     color: colors,
     backgroundColor: 'rgba(0,0,0,0)',
     textStyle: textStyleDefault,
-    title: {
-      textStyle: textStyleDefault,
-      subtextStyle: textStyleDefault,
-    },
     line: {
       itemStyle: {
         borderWidth: 1,
@@ -186,13 +182,9 @@ export default {
         },
       },
     },
-    legend: {
-      textStyle: textStyleDefault,
-    },
     tooltip: {
       backgroundColor: '#000028cc',
       borderColor: '#ffffff40',
-      textStyle: textStyleDefault,
       axisPointer: {
         lineStyle: {
           color: '#ffffff',
@@ -246,7 +238,6 @@ export default {
       handleSize: 'undefined%',
       textStyle: {},
     },
-    nameTextStyle: textStyleDefault,
     markPoint: {
       label: {
         color: '#fff',

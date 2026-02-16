@@ -69,10 +69,6 @@ export default {
     color: colors,
     backgroundColor: 'rgba(0,0,0,0)',
     textStyle: textStyleDefault,
-    title: {
-      textStyle: textStyleDefault,
-      subtextStyle: textStyleDefault,
-    },
     line: {
       itemStyle: {
         borderWidth: 1,
@@ -186,15 +182,11 @@ export default {
         },
       },
     },
-    legend: {
-      textStyle: textStyleDefault,
-    },
     tooltip: {
       backgroundColor: '#ffffffcc',
       borderColor: '#00000033',
       textStyle: {
         color: 'rgba(0, 10, 20, .9)',
-        fontFamily: 'Siemens Sans, sans-serif',
       },
       axisPointer: {
         lineStyle: {
