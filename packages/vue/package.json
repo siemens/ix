@@ -43,7 +43,7 @@
     "eslint-config-ix": "workspace:*",
     "eslint-plugin-vue": "^9.27.0",
     "playwright": "^1.57.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "^6.1.2",
     "typescript": "^5.8.3",
     "vite": "catalog:",
     "vitest": "^3.2.4",
