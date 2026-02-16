@@ -41,7 +41,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-legacy": "^5.0.0",
     "@vitejs/plugin-react": "^4.0.1",
-    "eslint": "^8.35.0",
+    "eslint": "^10.0.0",
     "eslint-plugin-react": "^7.32.2",
     "fs-extra": "^11.2.0",
     "terser": "^5.4.0",
