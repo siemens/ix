@@ -23,6 +23,14 @@ import {
 import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
+import {
+  isFormNoValidate,
+  getParentForm,
+  setupFormSubmitListener,
+  hasAnyCheckboxChecked,
+  updateCheckboxValidationClasses,
+  updateGroupValidationClasses,
+} from '../utils/checkbox-validation';
 
 /**
  * @form-ready
@@ -91,6 +99,81 @@ export class Checkbox implements IxFormComponent<string> {
   @Event() ixBlur!: EventEmitter<void>;
 
   private touched = false;
+  private formSubmissionAttempted = false;
+  private cleanupFormListener?: () => void;
+
+  connectedCallback(): void {
+    this.cleanupFormListener = setupFormSubmitListener(this.hostElement, () => {
+      this.formSubmissionAttempted = true;
+      this.syncValidationClasses();
+    });
+  }
+
+  disconnectedCallback(): void {
+    if (this.cleanupFormListener) {
+      this.cleanupFormListener();
+    }
+  }
+
+  private syncValidationClasses() {
+    if (isFormNoValidate(this.hostElement)) {
+      this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
+      return;
+    }
+
+    if (!this.required) {
+      this.hostElement.classList.remove('ix-invalid--required', 'ix-invalid');
+      return;
+    }
+
+    let isChecked = this.checked;
+    const checkboxGroup = this.hostElement.closest('ix-checkbox-group');
+
+    if (!checkboxGroup && this.name) {
+      const form = getParentForm(this.hostElement);
+      const checkboxes: NodeListOf<HTMLElement> = form
+        ? form.querySelectorAll(`ix-checkbox[name="${this.name}"]`)
+        : document.querySelectorAll(`ix-checkbox[name="${this.name}"]`);
+
+      isChecked = hasAnyCheckboxChecked(checkboxes);
+
+      updateCheckboxValidationClasses(
+        checkboxes,
+        isChecked,
+        this.touched,
+        this.formSubmissionAttempted
+      );
+
+      if (checkboxes.length > 0) {
+        const group = checkboxes[0].closest('ix-checkbox-group');
+        updateGroupValidationClasses(group, checkboxes, isChecked);
+      }
+    } else if (checkboxGroup && this.name) {
+      const checkboxes: NodeListOf<HTMLElement> = checkboxGroup.querySelectorAll(
+        `ix-checkbox[name="${this.name}"]`
+      );
+
+      isChecked = hasAnyCheckboxChecked(checkboxes);
+
+      updateCheckboxValidationClasses(
+        checkboxes,
+        isChecked,
+        this.touched,
+        this.formSubmissionAttempted
+      );
+
+      updateGroupValidationClasses(checkboxGroup, checkboxes, isChecked);
+    } else {
+      const isRequiredInvalid =
+        !isChecked && (this.touched || this.formSubmissionAttempted);
+      this.hostElement.classList.toggle('ix-invalid--required', isRequiredInvalid);
+      if (isChecked) {
+        this.hostElement.classList.remove('ix-invalid');
+      } else if (isRequiredInvalid) {
+        this.hostElement.classList.add('ix-invalid');
+      }
+    }
+  }
 
   private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
     checkboxRef.checked = this.checked;
@@ -114,6 +197,29 @@ export class Checkbox implements IxFormComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue();
+    this.syncValidationClasses();
+
+    if (this.required && this.name) {
+      const form = getParentForm(this.hostElement);
+      const checkboxes: NodeListOf<HTMLElement> = form
+        ? form.querySelectorAll(`ix-checkbox[name="${this.name}"]`)
+        : document.querySelectorAll(`ix-checkbox[name="${this.name}"]`);
+
+      const isChecked = hasAnyCheckboxChecked(checkboxes);
+
+      if (isChecked) {
+        Array.from(checkboxes).forEach((el: any) => {
+          el.classList.remove('ix-invalid--required', 'ix-invalid');
+        });
+
+        if (checkboxes.length > 0) {
+          const group = checkboxes[0].closest('ix-checkbox-group');
+          if (group) {
+            group.classList.remove('ix-invalid', 'ix-invalid--required');
+          }
+        }
+      }
+    }
   }
 
   updateFormInternalValue() {
@@ -191,8 +297,17 @@ export class Checkbox implements IxFormComponent<string> {
           checked: this.checked,
           indeterminate: this.indeterminate,
         }}
-        onFocus={() => (this.touched = true)}
-        onBlur={() => this.ixBlur.emit()}
+        onFocus={() => {
+          if (!this.touched) {
+            this.touched = true;
+            this.syncValidationClasses();
+          }
+        }}
+        onBlur={() => {
+          this.ixBlur.emit();
+          this.touched = true;
+          this.syncValidationClasses();
+        }}
       >
         <label>
           <input
