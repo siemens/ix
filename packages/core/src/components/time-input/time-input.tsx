@@ -254,6 +254,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
   @State() isInfo = false;
   @State() isWarning = false;
   @State() focus = false;
+  @State() activeDescendantId: string | null = null;
 
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
@@ -269,11 +270,55 @@ export class TimeInput implements IxInputFieldComponent<string> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   private handleInputKeyDown(event: KeyboardEvent) {
-    if (event.key === 'ArrowDown') {
+    if (event.key === 'Escape' && this.show) {
+      this.show = false;
+      this.activeDescendantId = null;
+      this.timePickerRef.current?.deactivateVisualFocus();
+      event.preventDefault();
+      return;
+    }
+
+    if (event.key === 'ArrowDown' && !this.show) {
       this.show = true;
-      requestAnimationFrameNoNgZone(() => {
-        this.timePickerRef.current?.focus();
-      });
+      this.time = this.value;
+      event.preventDefault();
+      return;
+    }
+
+    if (this.show) {
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        this.timePickerRef.current?.navigateToNextColumn(event.shiftKey);
+        requestAnimationFrameNoNgZone(async () => {
+          const id =
+            await this.timePickerRef.current?.getVisuallyFocusedId();
+          this.activeDescendantId = id ?? null;
+        });
+        return;
+      }
+
+      const forwardableKeys = [
+        'ArrowUp',
+        'ArrowDown',
+        'Enter',
+        ' ',
+      ];
+      if (forwardableKeys.includes(event.key)) {
+        event.preventDefault();
+        this.timePickerRef.current?.dispatchEvent(
+          new KeyboardEvent('keydown', {
+            key: event.key,
+            shiftKey: event.shiftKey,
+            bubbles: true,
+          })
+        );
+        requestAnimationFrameNoNgZone(async () => {
+          const id =
+            await this.timePickerRef.current?.getVisuallyFocusedId();
+          this.activeDescendantId = id ?? null;
+        });
+        return;
+      }
     }
 
     handleSubmitOnEnterKeydown(
@@ -439,6 +484,11 @@ export class TimeInput implements IxInputFieldComponent<string> {
             this.touched = true;
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
+          aria-activedescendant={
+            this.show && this.activeDescendantId
+              ? this.activeDescendantId
+              : undefined
+          }
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -524,6 +574,7 @@ export class TimeInput implements IxInputFieldComponent<string> {
 
     return (
       <Host
+        role="combobox"
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
@@ -554,11 +605,22 @@ export class TimeInput implements IxInputFieldComponent<string> {
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
+          disableFocusHandling
           enableTopLayer={this.enableTopLayer}
           suppressOverflowBehavior
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+            if (event.detail) {
+              requestAnimationFrameNoNgZone(async () => {
+                const id =
+                  await this.timePickerRef.current?.activateVisualFocus();
+                this.activeDescendantId = id ?? null;
+              });
+            } else {
+              this.activeDescendantId = null;
+              this.timePickerRef.current?.deactivateVisualFocus();
+            }
           }}
         >
           <ix-time-picker

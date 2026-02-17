@@ -1106,6 +1106,7 @@ export namespace Components {
         "weekStartIndex": number;
     }
     interface IxDatePicker {
+        "activateVisualFocus": () => Promise<string>;
         /**
           * ARIA label for the next month icon button Will be set as aria-label on the nested HTML button element
           * @default 'Select month'
@@ -1131,6 +1132,7 @@ export namespace Components {
           * @default 'rounded'
          */
         "corners": DateTimeCardCorners;
+        "deactivateVisualFocus": () => Promise<void>;
         /**
           * @default false
          */
@@ -1155,6 +1157,7 @@ export namespace Components {
           * Get the currently selected date or range. The object returned contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
          */
         "getCurrentDate": () => Promise<DateChangeEvent>;
+        "getVisuallyFocusedId": () => Promise<string>;
         /**
           * Text of date select button
           * @default 'Done'
@@ -3822,6 +3825,7 @@ export namespace Components {
         "warningText"?: string;
     }
     interface IxTimePicker {
+        "activateVisualFocus": () => Promise<string>;
         /**
           * Corner style
           * @default 'rounded'
@@ -3831,6 +3835,7 @@ export namespace Components {
           * @default false
          */
         "dateTimePickerAppearance": boolean;
+        "deactivateVisualFocus": () => Promise<void>;
         /**
           * Embedded style (for use in other components)
           * @default false
@@ -3845,6 +3850,7 @@ export namespace Components {
           * Get the current time based on the wanted format
          */
         "getCurrentTime": () => Promise<string | undefined>;
+        "getVisuallyFocusedId": () => Promise<string>;
         /**
           * Hides the header of the picker.
           * @since 3.2.0
@@ -3899,6 +3905,7 @@ export namespace Components {
           * @default MINUTE_INTERVAL_DEFAULT
          */
         "minuteInterval": number;
+        "navigateToNextColumn": (reverse: boolean) => Promise<void>;
         /**
           * Interval for second selection
           * @since 3.2.0
