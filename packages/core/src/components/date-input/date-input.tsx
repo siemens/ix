@@ -31,6 +31,8 @@ import {
   createPickerValidityStateTracker,
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
+  onEnterKeyChangeEmit,
+  onInputBlurWithChange,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -234,7 +236,11 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   /** @internal */
   @Event() ixBlur!: EventEmitter<void>;
-
+  /**
+   * Event emitted when the date input loses focus and the value has changed.
+   * @since 4.4.0
+   */
+  @Event() ixChange!: EventEmitter<string | undefined>;
   @State() show = false;
   @State() from?: string | null = null;
   @State() isInputInvalid = false;
@@ -253,6 +259,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
 
+  /** @internal */
+  public initialValue?: string;
   /** @internal */
   public invalidReason?: string;
   /** @internal */
@@ -381,6 +389,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   }
 
   private handleInputKeyDown(event: KeyboardEvent) {
+    onEnterKeyChangeEmit(event, this, this.value);
+
     handleSubmitOnEnterKeydown(
       event,
       this.suppressSubmitOnEnter,
@@ -420,11 +430,16 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             }
           }}
           onFocus={async () => {
+            this.initialValue = this.value;
             this.openDropdown();
             this.ixFocus.emit();
           }}
           onBlur={() => {
-            this.ixBlur.emit();
+            onInputBlurWithChange(
+              this,
+              this.inputElementRef.current,
+              this.value
+            );
             this.touched = true;
             this.emitValidityStateChangeIfChanged();
           }}
@@ -555,6 +570,10 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
             onDateChange={(event) => {
               const { from } = event.detail;
               this.onInput(from);
+              if (this.initialValue !== from) {
+                this.ixChange.emit(from);
+                this.initialValue = from;
+              }
             }}
             showWeekNumbers={this.showWeekNumbers}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}

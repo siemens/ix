@@ -225,6 +225,37 @@ export function handleSubmitOnEnterKeydown(
   }
 }
 
+export function onInputFocus<T>(comp: { initialValue?: T }, currentValue: T) {
+  comp.initialValue = currentValue;
+}
+
+export function onInputBlurWithChange<T>(
+  comp: IxFormComponent<T> & {
+    initialValue?: T;
+    ixChange: { emit: (value: T) => void };
+  },
+  input?: HTMLInputElement | HTMLTextAreaElement | null,
+  currentValue?: T
+) {
+  onInputBlur(comp, input);
+
+  if (comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue!);
+    comp.initialValue = currentValue;
+  }
+}
+
+export function onEnterKeyChangeEmit<T>(
+  event: KeyboardEvent,
+  comp: { initialValue?: T; ixChange: { emit: (value: T) => void } },
+  currentValue: T
+) {
+  if (event.key === 'Enter' && comp.initialValue !== currentValue) {
+    comp.ixChange.emit(currentValue);
+    comp.initialValue = currentValue;
+  }
+}
+
 export interface PickerValidityStateTracker {
   lastEmittedPatternMismatch?: boolean;
   lastEmittedValueMissing?: boolean;
