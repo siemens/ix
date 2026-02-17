@@ -19,7 +19,6 @@ import {
 } from '@stencil/core';
 import { CloseBehavior } from '../dropdown/dropdown-controller';
 import { AlignedPlacement } from '../dropdown/placement';
-import { makeRef } from '../utils/make-ref';
 import { Mixin } from '../utils/internal/component';
 import type { SplitButtonVariant } from './split-button.types';
 
@@ -102,14 +101,10 @@ export class SplitButton extends Mixin() {
    */
   @Prop() enableTopLayer: boolean = false;
 
-  @Prop() disableFocusTrap = false;
-
   /**
    * Button clicked
    */
   @Event() buttonClick!: EventEmitter<MouseEvent>;
-
-  private readonly triggerElementRef = makeRef<HTMLElement>();
 
   private get isDisabledButton() {
     return this.disabled || this.disableButton;
@@ -129,17 +124,13 @@ export class SplitButton extends Mixin() {
       ...baseAttributes,
       disabled: this.isDisabledButton,
       class: {
+        'left-button': true,
         'left-button-border': !hasOutline,
       },
     };
 
-    const dropdownButtonAttributes = {
-      ...baseAttributes,
-      disabled: this.isDisabledIcon,
-    };
-
     return (
-      <Host class={{ 'btn-group': true, 'middle-gap': !hasOutline }}>
+      <Host>
         {this.label ? (
           <ix-button
             {...buttonAttributes}
@@ -157,21 +148,16 @@ export class SplitButton extends Mixin() {
             aria-label={this.ariaLabelButton}
           ></ix-icon-button>
         )}
-        <ix-icon-button
-          {...dropdownButtonAttributes}
-          ref={this.triggerElementRef}
-          class={'anchor'}
-          icon={this.splitIcon ?? iconContextMenu}
+        <ix-dropdown-button
+          class="right-button"
           aria-label={this.ariaLabelSplitIconButton}
-        ></ix-icon-button>
-        <ix-dropdown
-          closeBehavior={this.closeBehavior}
-          trigger={this.triggerElementRef.waitForCurrent()}
+          icon={this.splitIcon ?? iconContextMenu}
           enableTopLayer={this.enableTopLayer}
-          disableFocusTrap
+          closeBehavior={this.closeBehavior}
+          disabled={this.isDisabledIcon}
         >
           <slot></slot>
-        </ix-dropdown>
+        </ix-dropdown-button>
       </Host>
     );
   }

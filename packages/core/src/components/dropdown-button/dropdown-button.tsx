@@ -116,7 +116,11 @@ export class DropdownButton
   private readonly dropdownAnchor = makeRef<HTMLElement>();
   private readonly dropdownRef = makeRef<HTMLIxDropdownElement>();
 
-  private hostContext?: { breadcrumb: boolean; datePicker: boolean };
+  private hostContext?: {
+    breadcrumb: boolean;
+    datePicker: boolean;
+    splitButton: boolean;
+  };
 
   private getTriangle() {
     return (
@@ -155,6 +159,7 @@ export class DropdownButton
     this.hostContext = {
       breadcrumb: !!closestPassShadow(this.hostElement, 'ix-breadcrumb'),
       datePicker: !!closestPassShadow(this.hostElement, 'ix-date-picker'),
+      splitButton: !!closestPassShadow(this.hostElement, 'ix-split-button'),
     };
   }
 
@@ -196,7 +201,9 @@ export class DropdownButton
     };
 
     const hideChevron =
-      this.hostContext?.breadcrumb || this.hostContext?.datePicker;
+      this.hostContext?.breadcrumb ||
+      this.hostContext?.datePicker ||
+      this.hostContext?.splitButton;
 
     return (
       <Host
@@ -247,7 +254,7 @@ export class DropdownButton
                 icon={this.icon}
                 ref={(ref) => (ref!.tabIndex = -1)}
               ></ix-icon-button>
-              {this.getTriangle()}
+              {!hideChevron && this.getTriangle()}
             </div>
           )}
         </div>

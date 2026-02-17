@@ -3436,10 +3436,6 @@ export namespace Components {
          */
         "disableDropdownButton": boolean;
         /**
-          * @default false
-         */
-        "disableFocusTrap": boolean;
-        /**
           * Disabled
           * @default false
          */
@@ -9713,10 +9709,6 @@ declare namespace LocalJSX {
          */
         "disableDropdownButton"?: boolean;
         /**
-          * @default false
-         */
-        "disableFocusTrap"?: boolean;
-        /**
           * Disabled
           * @default false
          */
@@ -11428,7 +11420,6 @@ declare namespace LocalJSX {
         "disableDropdownButton": boolean;
         "placement": AlignedPlacement;
         "enableTopLayer": boolean;
-        "disableFocusTrap": boolean;
     }
     interface IxTabItemAttributes {
         "selected": boolean;

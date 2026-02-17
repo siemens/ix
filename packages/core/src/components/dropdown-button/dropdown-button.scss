@@ -41,12 +41,28 @@
   height: vars.$x-large-space;
   width: auto;
 
-  border-radius: var(--theme-btn--border-radius);
+  --ix-dropdown-button-border-radius-left: var(--theme-btn--border-radius);
+  --ix-dropdown-button-border-radius-right: var(--theme-btn--border-radius);
+
+  border-top-left-radius: var(--ix-dropdown-button-border-radius-left);
+  border-bottom-left-radius: var(--ix-dropdown-button-border-radius-left);
+  border-top-right-radius: var(--ix-dropdown-button-border-radius-right);
+  border-bottom-right-radius: var(--ix-dropdown-button-border-radius-right);
 
   @include component.ix-component;
 
   .hide {
     display: none;
+  }
+
+  ix-button,
+  ix-icon-button {
+    --ix-button-border-radius-left: var(
+      --ix-dropdown-button-border-radius-left
+    );
+    --ix-button-border-radius-right: var(
+      --ix-dropdown-button-border-radius-right
+    );
   }
 
   .dropdown-button {
