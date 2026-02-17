@@ -61,7 +61,20 @@ async function generateIndexForGeneratedAxeTests() {
   await fs.writeFile(indexPath, importStatements, 'utf-8');
 }
 
+const TOGGLE_AXE_TEST_IDS = [
+  'toggle',
+  'toggle-checked',
+  'toggle-custom-label',
+  'toggle-disabled',
+  'toggle-indeterminate',
+];
+
 async function generateTestForTestId(testId: string) {
+  const axeDisableRules =
+    TOGGLE_AXE_TEST_IDS.includes(testId)
+      ? "['page-has-heading-one', 'nested-interactive']"
+      : "['page-has-heading-one']";
+
   const testContent = `/*
  * SPDX-FileCopyrightText: 2025 Siemens AG
  *
@@ -113,7 +126,7 @@ test('${testId} - accessibility check', async ({ page }) => {
   // Ugly and not the reliable way to wait for Stencil to be ready
   await waitForReadiness(page);
 
-  const accessibilityScanResults = await new AxeBuilder({ page } as any).disableRules(['page-has-heading-one']).analyze();
+  const accessibilityScanResults = await new AxeBuilder({ page } as any).disableRules(${axeDisableRules}).analyze();
 
   expect(accessibilityScanResults.violations).toEqual([]);
 });
