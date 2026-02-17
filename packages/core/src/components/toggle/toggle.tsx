@@ -179,6 +179,8 @@ export class Toggle implements IxFormComponent<string> {
     return (
       <Host
         role="switch"
+        tabindex={this.disabled ? -1 : 0}
+        aria-label={this.hostElement.getAttribute('aria-label') ?? 'Toggle'}
         aria-checked={a11yBoolean(this.checked)}
         aria-disabled={a11yBoolean(this.disabled)}
         class={{
@@ -186,34 +188,41 @@ export class Toggle implements IxFormComponent<string> {
         }}
         onBlur={() => this.ixBlur.emit()}
         onFocus={() => (this.touched = true)}
+        onKeyDown={(e: KeyboardEvent) => {
+          if (this.disabled) return;
+          if (e.key === ' ') {
+            e.preventDefault();
+            this.onCheckedChange(!this.checked);
+          }
+        }}
       >
-        <label class="wrapper">
-          <button
+        <label class="wrapper" aria-hidden="true">
+          <div
             class={{
               switch: true,
               checked: this.checked,
               indeterminate: this.indeterminate,
             }}
-            onClick={() => this.onCheckedChange(!this.checked)}
-            tabindex={-1}
             aria-hidden="true"
           >
             <div class="slider"></div>
-          </button>
+          </div>
           <input
             type="checkbox"
+            aria-hidden="true"
+            tabindex={-1}
             disabled={this.disabled}
             indeterminate={this.indeterminate}
             checked={this.checked}
-            tabindex={0}
-            aria-hidden={a11yBoolean(true)}
-            aria-checked={a11yBoolean(this.checked)}
+            onFocus={() => this.hostElement.focus()}
             onChange={(event) =>
               this.onCheckedChange((event.target as HTMLInputElement).checked)
             }
           />
           {!this.hideText && (
-            <ix-typography class="label">{toggleText}</ix-typography>
+            <ix-typography class="label" aria-hidden="true">
+              {toggleText}
+            </ix-typography>
           )}
         </label>
       </Host>

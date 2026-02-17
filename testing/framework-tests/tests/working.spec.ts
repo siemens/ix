@@ -9,3 +9,10 @@
 import './generated/tabs.spec';
 import './generated/tabs-overflow.spec';
 import './generated/tabs-rounded.spec';
+
+// Toggle tests
+import './generated/toggle.spec';
+import './generated/toggle-checked.spec';
+import './generated/toggle-disabled.spec';
+import './generated/toggle-indeterminate.spec';
+import './generated/toggle-custom-label.spec';

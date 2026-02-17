@@ -9,3 +9,10 @@
 import './generated/tabs-axe.spec';
 import './generated/tabs-overflow-axe.spec';
 import './generated/tabs-rounded-axe.spec';
+
+// Toggle tests
+import './generated/toggle-axe.spec';
+import './generated/toggle-checked-axe.spec';
+import './generated/toggle-custom-label-axe.spec';
+import './generated/toggle-disabled-axe.spec';
+import './generated/toggle-indeterminate-axe.spec';

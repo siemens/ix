@@ -22,7 +22,16 @@
   @include component.ix-component;
 
   input[type='checkbox'] {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    border: 0;
+    white-space: nowrap;
   }
 
   .wrapper {
@@ -144,11 +153,18 @@
   .wrapper {
     cursor: pointer;
   }
+}
 
-  .switch:focus-visible > .slider {
-    outline: 0.0625rem solid var(--theme-color-focus-bdr);
-    outline-offset: 0.0625rem;
-  }
+/* Remove default focus ring from host so only the switch track shows our custom ring (Figma: ring around switch only) */
+:host(:focus),
+:host(:focus-visible) {
+  outline: none;
+}
+
+/* Focus ring when the host has focus (keyboard only) – around switch track only */
+:host(:not(.disabled):focus-visible) .switch > .slider {
+  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline-offset: 0.0625rem;
 }
 
 :host(.disabled) {

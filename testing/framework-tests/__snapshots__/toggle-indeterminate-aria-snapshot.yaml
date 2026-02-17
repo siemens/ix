@@ -1,1 +1,2 @@
-- switch "Mixed"
+- main:
+  - switch

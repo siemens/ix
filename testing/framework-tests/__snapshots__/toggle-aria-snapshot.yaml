@@ -1,1 +1,2 @@
-- switch "Off"
+- main:
+  - switch
