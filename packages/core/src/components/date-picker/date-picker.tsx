@@ -974,7 +974,7 @@ export class DatePicker extends Mixin() implements IxDatePickerComponent {
                         autofocus={this.getUtilitiesBasedOnDay(day).isToday()}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
-                        aria-label={`${this.selectedMonth}: ${day}`}
+                        aria-label={`${day} ${Info.months()[this.selectedMonth]} ${this.selectedYear}`}
                       >
                         {day}
                       </div>
