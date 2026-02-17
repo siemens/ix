@@ -13,6 +13,11 @@
 @include input.input-field;
 
 :host {
+  // Hide the default password reveal icon in Microsoft Edge
+  input::-ms-reveal {
+    display: none;
+  }
+
   .password-eye {
     margin-left: 0.125rem;
     color: red;
